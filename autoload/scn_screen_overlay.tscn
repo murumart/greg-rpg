@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl8hnxbtbthry"]
+
+[ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
+[ext_resource type="Texture2D" uid="uid://db7wnv5ki5iac" path="res://sprites/spr_icon.png" id="2_yvydf"]
+
+[node name="SOL" type="CanvasLayer"]
+script = ExtResource("1_3f4vq")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SprIcon" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
+texture = ExtResource("2_yvydf")

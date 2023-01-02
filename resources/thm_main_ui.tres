@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://wknpxv3x21lw"]
+
+[ext_resource type="FontFile" uid="uid://bahaknekl8r3s" path="res://fonts/Retro Gaming.ttf" id="1_um7lb"]
+
+[resource]
+Button/font_sizes/font_size = 8
+Button/fonts/font = ExtResource("1_um7lb")
+CheckBox/fonts/font = null
+CheckButton/fonts/font = null
+CodeEdit/fonts/font = null
+ColorPickerButton/fonts/font = null
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
+GraphNode/fonts/title_font = null
+ItemList/fonts/font = null
+Label/fonts/font = null
+LineEdit/fonts/font = null
+LinkButton/fonts/font = null
+MenuBar/fonts/font = null
+MenuButton/fonts/font = null
+OptionButton/fonts/font = null
+PopupMenu/fonts/font = null
+PopupMenu/fonts/font_separator = null
+ProgressBar/fonts/font = null
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+TabBar/fonts/font = null
+TabContainer/fonts/font = null
+TextEdit/fonts/font = null
+TooltipLabel/fonts/font = null
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Window/fonts/title_font = null

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://himl3pefm1tc"]
+
+[ext_resource type="Script" path="res://autoload/scr_options.gd" id="1_kip0u"]
+
+[node name="OPT" type="Node"]
+script = ExtResource("1_kip0u")

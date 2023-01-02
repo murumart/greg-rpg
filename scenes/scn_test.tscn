@@ -1,20 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://qi4s6c2f3xo6"]
+[gd_scene load_steps=7 format=3 uid="uid://qi4s6c2f3xo6"]
 
 [ext_resource type="Script" path="res://scenes/scr_testroom.gd" id="1_8o2u0"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_th23x"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_vncey"]
+[ext_resource type="Texture2D" uid="uid://db7wnv5ki5iac" path="res://sprites/spr_icon.png" id="3_4p85b"]
+[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_dngaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
+size = Vector2(63, 20)
 
 [node name="TestRoom" type="Node2D"]
 script = ExtResource("1_8o2u0")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 5.0
-offset_top = 123.0
-offset_right = 125.0
-offset_bottom = 203.0
+offset_left = 85.0
+offset_top = 74.0
+offset_right = 159.0
+offset_bottom = 95.0
+theme = ExtResource("2_vncey")
 text = "save data"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 152.0
-offset_top = 120.0
-offset_right = 272.0
-offset_bottom = 200.0
+offset_left = 87.0
+offset_top = 96.0
+offset_right = 157.0
+offset_bottom = 117.0
+theme = ExtResource("2_vncey")
 text = "load data"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 42.0
+offset_right = 131.0
+offset_bottom = 63.0
+theme = ExtResource("2_vncey")
+text = "SHAKE IT"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Button3"]
+position = Vector2(-64, -42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button3/StaticBody2D"]
+position = Vector2(97.5, 52)
+shape = SubResource("RectangleShape2D_6ipc4")
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 63.0
+offset_top = 5.0
+offset_right = 142.0
+offset_bottom = 26.0
+theme = ExtResource("2_vncey")
+text = "trash data"
+
+[node name="Camera" parent="." instance=ExtResource("2_th23x")]
+position = Vector2(80, 61)
+
+[node name="SprIcon" type="Sprite2D" parent="."]
+position = Vector2(81, 89)
+texture = ExtResource("3_4p85b")
+
+[node name="Greg" parent="." instance=ExtResource("4_dngaw")]
+position = Vector2(33, 45)

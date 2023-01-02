@@ -9,27 +9,21 @@ func _init() -> void:
 		DirAccess.make_dir_absolute(GREG_USER_FOLDER_PATH)
 
 
-func save_data(data: Array, filename := "save.grs") -> void:
+func save_data(data, filename := "save.grs") -> void:
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.WRITE)
-	for value in data:
-		if not value: value = 0
-		file.store_line(str(value))
+	var meh := PackedByteArray()
+	meh.resize(int(pow(2, 16) -1))
+	meh.encode_var(0, data)
+	file.store_buffer(meh)
 
 
-func load_data(filename := "save.grs") -> Array:
+func load_data(filename := "save.grs") -> Dictionary:
 	if not FileAccess.file_exists(str(GREG_USER_FOLDER_PATH, "/", filename)):
-		return []
+		return {}
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.READ)
-	var text := file.get_as_text()
-	var split_text := text.split("\n")
-	var array := []
-	for string in split_text:
-		if Math.num_string_type(string) == TYPE_FLOAT:
-			array.append(float(string))
-		elif Math.num_string_type(string) == TYPE_INT:
-			array.append(int(string))
-		else:
-			array.append(string)
-	return array
+	var returnable := {}
+	var meh := file.get_buffer(int(pow(2, 16) -1))
+	returnable = meh.decode_var(0)
+	return returnable
 
 

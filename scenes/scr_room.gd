@@ -5,4 +5,4 @@ class_name Room
 
 
 func _init() -> void:
-	DAT.set_data(DAT.CURRENT_ROOM, id)
+	DAT.set_data("current_room", id)
