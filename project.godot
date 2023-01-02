@@ -8,16 +8,45 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "RefCounted",
+"class": &"Math",
+"language": &"GDScript",
+"path": "res://code/scr_math.gd"
+}, {
+"base": "Node2D",
+"class": &"Room",
+"language": &"GDScript",
+"path": "res://scenes/scr_room.gd"
+}]
+_global_script_class_icons={
+"Math": "",
+"Room": ""
+}
+
 [application]
 
 config/name="Greg RPG"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Murumart"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://sprites/spr_icon.png"
+
+[autoload]
+
+DIR="*res://autoload/scn_directory.tscn"
+DAT="*res://autoload/scn_data.tscn"
+
+[debug]
+
+shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 [display]
 
-window/size/viewport_width=650
-window/size/viewport_height=480
+window/size/viewport_width=320
+window/size/viewport_height=240
+window/size/window_width_override=640
+window/size/window_height_override=480
 window/stretch/mode="viewport"
 
 [rendering]
