@@ -1,17 +1,21 @@
 extends CharacterBody2D
 class_name PlayerOverworld
 
-const SPEED := 3000
-const FRICTION := 720
+const SPEED := 2600
 
 var input := Vector2()
 
 
+func _ready() -> void:
+	pass
+
+
 func _physics_process(delta: float) -> void:
-	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * delta * SPEED
+	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	velocity = Vector2()
-	velocity = input.normalized() * delta * SPEED
+	
+	velocity = input * SPEED * delta
 	
 	var _collided := move_and_slide()
 	

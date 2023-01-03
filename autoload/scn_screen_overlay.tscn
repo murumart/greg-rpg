@@ -1,13 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=7 format=3 uid="uid://cl8hnxbtbthry"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
-[ext_resource type="Texture2D" uid="uid://db7wnv5ki5iac" path="res://sprites/spr_icon.png" id="2_yvydf"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_lb6we"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
+[ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
+[ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
+
+[sub_resource type="Resource" id="Resource_biyso"]
+script = ExtResource("2_lb6we")
+name = "Greg"
+level = 1
+attack = 1.0
+defense = 1.0
+speed = 1.0
+inventory = null
+armour = null
+weapon = null
 
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="DialogueBoxOrderer" type="Node2D" parent="."]
+script = ExtResource("3_jg0vj")
+character_list = [SubResource("Resource_biyso")]
 
-[node name="SprIcon" type="Sprite2D" parent="Node2D"]
-texture_filter = 1
-texture = ExtResource("2_yvydf")
+[node name="DialogueBoxPanel" type="Panel" parent="DialogueBoxOrderer"]
+offset_left = 10.0
+offset_right = 148.0
+offset_bottom = 28.0
+theme = ExtResource("2_xetbm")
+
+[node name="DialogueTextbox" type="RichTextLabel" parent="DialogueBoxOrderer/DialogueBoxPanel"]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 135.0
+offset_bottom = 28.0
+theme = ExtResource("2_xetbm")
+text = "what makes you think this time will be any different?"
+scroll_active = false
+script = ExtResource("3_so1p4")

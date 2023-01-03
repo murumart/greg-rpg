@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bhsbmxi5oncxp"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_lmp3f"]
+
+[resource]
+script = ExtResource("1_lmp3f")
+name = "Gleebungus"
+level = 89
+attack = 89.0
+defense = 89.0
+speed = 89.0
+inventory = [3, 2, 3, 89, 2]
+armour = 2
+weapon = 4

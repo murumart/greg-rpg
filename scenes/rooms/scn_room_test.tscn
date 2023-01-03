@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://b75fam8wem4ex"]
+
+[ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_wqq2x"]
+[ext_resource type="Texture2D" uid="uid://db7wnv5ki5iac" path="res://sprites/spr_icon.png" id="3_ns866"]
+[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_mr34j"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_ffcdj"]
+[ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_mhw0e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
+size = Vector2(66, 20)
+
+[node name="TestRoom" type="Node2D"]
+script = ExtResource("1_g3scf")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 85.0
+offset_top = 74.0
+offset_right = 159.0
+offset_bottom = 95.0
+theme = ExtResource("2_wqq2x")
+text = "why are you l"
+
+[node name="Button6" type="Button" parent="."]
+offset_left = 145.0
+offset_top = 6.0
+offset_right = 325.0
+offset_bottom = 26.0
+scale = Vector2(0.52262, 1.51024)
+theme = ExtResource("2_wqq2x")
+text = "SPEAK TO ME - WHAT WILL HAPPEN NEXT"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 87.0
+offset_top = 96.0
+offset_right = 157.0
+offset_bottom = 117.0
+theme = ExtResource("2_wqq2x")
+text = "load data"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 64.0
+offset_top = 42.0
+offset_right = 131.0
+offset_bottom = 63.0
+theme = ExtResource("2_wqq2x")
+text = "SHAKE IT"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Button3"]
+position = Vector2(-64, -42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button3/StaticBody2D"]
+position = Vector2(97.5, 52)
+shape = SubResource("RectangleShape2D_6ipc4")
+
+[node name="Button5" type="Button" parent="."]
+offset_left = -40.0
+offset_top = 69.0
+offset_right = 27.0
+offset_bottom = 90.0
+theme = ExtResource("2_wqq2x")
+text = "speak for me"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Button5"]
+position = Vector2(-64, -42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button5/StaticBody2D"]
+position = Vector2(99, 52)
+shape = SubResource("RectangleShape2D_6ipc4")
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 63.0
+offset_top = 5.0
+offset_right = 142.0
+offset_bottom = 26.0
+theme = ExtResource("2_wqq2x")
+text = "trash data"
+
+[node name="SprIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(81, 89)
+texture = ExtResource("3_ns866")
+
+[node name="Greg" parent="." instance=ExtResource("4_mr34j")]
+position = Vector2(33, 45)
+
+[node name="Camera" parent="Greg" instance=ExtResource("5_ffcdj")]
+position = Vector2(0, -11)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 61.0
+offset_bottom = 89.0
+mouse_filter = 2
+theme = ExtResource("2_wqq2x")
+text = "i hope you fill find our poopoo fart brlffit"
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("6_mhw0e")

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bahaknekl8r3s"
-path="res://.godot/imported/Retro Gaming.ttf-dad03884b8f0a8a950353fb9a5b356c4.fontdata"
+uid="uid://bxukug0aodcpi"
+path="res://.godot/imported/gregfont.ttf-08bef9b531098aa414581add71d7ef69.fontdata"
 
 [deps]
 
-source_file="res://fonts/Retro Gaming.ttf"
-dest_files=["res://.godot/imported/Retro Gaming.ttf-dad03884b8f0a8a950353fb9a5b356c4.fontdata"]
+source_file="res://fonts/gregfont.ttf"
+dest_files=["res://.godot/imported/gregfont.ttf-08bef9b531098aa414581add71d7ef69.fontdata"]
 
 [params]
 
@@ -21,18 +21,13 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 hinting=1
-subpixel_positioning=0
+subpixel_positioning=1
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0)
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
