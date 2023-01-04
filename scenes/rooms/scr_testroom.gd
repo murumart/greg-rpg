@@ -11,6 +11,7 @@ func _ready() -> void:
 	$Button4.connect("pressed", trash_pressed)
 	$Button5.connect("pressed", speak_pressed)
 	$Button6.connect("pressed", dialogue_speak_pressed)
+	$Button7.connect("pressed", play_music_pressed)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -48,3 +49,7 @@ func speak_pressed():
 
 func dialogue_speak_pressed():
 	SOL.dialogue("test")
+
+
+func play_music_pressed():
+	SND.play_song(SongsList.SONGS.keys().pick_random())

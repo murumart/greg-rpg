@@ -21,6 +21,14 @@ offset_bottom = 95.0
 theme = ExtResource("2_wqq2x")
 text = "why are you l"
 
+[node name="Button7" type="Button" parent="."]
+offset_left = -46.0
+offset_top = 47.0
+offset_right = 28.0
+offset_bottom = 68.0
+theme = ExtResource("2_wqq2x")
+text = "play me  a music"
+
 [node name="Button6" type="Button" parent="."]
 offset_left = 145.0
 offset_top = 6.0
