@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=8 format=3 uid="uid://cl8hnxbtbthry"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Script" path="res://code/scr_character.gd" id="2_lb6we"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
+[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 
 [sub_resource type="Resource" id="Resource_biyso"]
 script = ExtResource("2_lb6we")
 name = "Greg"
+portrait = ExtResource("6_jp2ib")
 level = 1
 attack = 1.0
 defense = 1.0
@@ -39,3 +41,9 @@ theme = ExtResource("2_xetbm")
 text = "what makes you think this time will be any different?"
 scroll_active = false
 script = ExtResource("3_so1p4")
+
+[node name="PortraitSprite" type="Sprite2D" parent="DialogueBoxOrderer/DialogueBoxPanel"]
+visible = false
+position = Vector2(3, 3)
+texture = ExtResource("6_jp2ib")
+centered = false

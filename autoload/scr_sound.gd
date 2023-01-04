@@ -1,7 +1,5 @@
 extends Node
 
-signal fadeout_tween_step_finished
-
 var current_song_player : AudioStreamPlayer
 var current_song : Dictionary
 var old_song : Dictionary

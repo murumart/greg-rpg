@@ -1,17 +1,11 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://wknpxv3x21lw"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://wknpxv3x21lw"]
 
 [ext_resource type="FontFile" uid="uid://bxukug0aodcpi" path="res://fonts/gregfont.ttf" id="1_6sfhd"]
+[ext_resource type="StyleBox" uid="uid://dj10l6lihc6fn" path="res://resources/thm_main_stylebox_focus.tres" id="2_pr2pj"]
+[ext_resource type="StyleBox" uid="uid://bagihqtx85sk4" path="res://resources/thm_main_stylebox.tres" id="3_dbx1c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uaore"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3xmx"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.462745, 0.956863, 0.984314, 0.8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs61a"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 1)
@@ -21,13 +15,8 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucpqm"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gcr"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3oq0"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,23 +33,33 @@ anti_aliasing = false
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.317647, 0.996078, 1, 1)
+Button/colors/font_hover_color = Color(0.317647, 0.996078, 1, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_6sfhd")
 Button/styles/disabled = SubResource("StyleBoxFlat_uaore")
-Button/styles/focus = SubResource("StyleBoxFlat_x3xmx")
+Button/styles/focus = ExtResource("2_pr2pj")
 Button/styles/hover = SubResource("StyleBoxFlat_gs61a")
-Button/styles/normal = SubResource("StyleBoxFlat_ucpqm")
+Button/styles/normal = ExtResource("3_dbx1c")
+Button/styles/pressed = SubResource("StyleBoxFlat_k6gcr")
 CheckBox/fonts/font = null
 CheckButton/fonts/font = null
 CodeEdit/fonts/font = null
-ColorPickerButton/fonts/font = null
+ColorPickerButton/colors/font_color = Color(1, 1, 1, 1)
+ColorPickerButton/font_sizes/font_size = 8
+ColorPickerButton/fonts/font = ExtResource("1_6sfhd")
 Fonts/fonts/large = null
 Fonts/fonts/normal = null
 GraphNode/fonts/title_font = null
 ItemList/fonts/font = null
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_6sfhd")
-LineEdit/fonts/font = null
+LineEdit/font_sizes/font_size = 8
+LineEdit/fonts/font = ExtResource("1_6sfhd")
+LineEdit/styles/focus = ExtResource("2_pr2pj")
+LineEdit/styles/normal = ExtResource("3_dbx1c")
 LinkButton/fonts/font = null
 MenuBar/fonts/font = null
 MenuButton/fonts/font = null

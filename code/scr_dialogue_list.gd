@@ -2,6 +2,7 @@ extends RefCounted
 class_name DialogueList
 
 enum {TEXT, CHARACTER, TEXT_SPEED}
+enum Characters {GREG}
 
 # this could've been json
 
@@ -24,6 +25,22 @@ const dialogues := {
 		],
 		[
 			"what makes you think this time will be any different?"
+		]
+	],
+	"gregtest": [
+		[
+			"i think...",
+			Characters.GREG
+		],
+		[
+			"i think...",
+			Characters.GREG,
+			0.5
+		],
+		[
+			"...",
+			Characters.GREG,
+			0.01
 		]
 	]
 }

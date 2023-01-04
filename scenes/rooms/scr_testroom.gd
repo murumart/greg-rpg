@@ -5,13 +5,11 @@ var speed := 60.0
 
 
 func _ready() -> void:
-	$Button.connect("pressed", save_pressed)
-	$Button2.connect("pressed", load_pressed)
-	$Button3.connect("pressed", shake_pressed)
-	$Button4.connect("pressed", trash_pressed)
-	$Button5.connect("pressed", speak_pressed)
-	$Button6.connect("pressed", dialogue_speak_pressed)
-	$Button7.connect("pressed", play_music_pressed)
+	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed]
+	for i in button_functions.size():
+		var callable := button_functions[i] as Callable
+		var button := $Buttons.get_child(i) as Button
+		button.pressed.connect(callable)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -33,7 +31,7 @@ func load_pressed():
 
 
 func shake_pressed():
-	$Greg/Camera.add_trauma(1.0)
+	$Greg/Camera.add_trauma(0.6)
 
 
 func trash_pressed():
@@ -48,7 +46,7 @@ func speak_pressed():
 
 
 func dialogue_speak_pressed():
-	SOL.dialogue("test")
+	SOL.dialogue("gregtest")
 
 
 func play_music_pressed():
