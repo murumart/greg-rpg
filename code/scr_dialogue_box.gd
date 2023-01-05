@@ -22,6 +22,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func prepare_dialogue(key: String) -> void:
+	DAT.capture_player()
 	loaded_dialogue = DialogueList.get_dialogue(key)
 	assert(loaded_dialogue.size() > 0)
 	current_dialogue = 0
@@ -64,6 +65,7 @@ func next_dialogue_requested() -> void:
 		loaded_dialogue_part = []
 		current_dialogue = 0
 		hide()
+		DAT.call_deferred("free_player")
 	else:
 		speak_this_dialogue_part(loaded_dialogue[current_dialogue])
 

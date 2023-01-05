@@ -13,7 +13,8 @@ var state : int
 
 
 func _ready() -> void:
-	pass
+	if DAT.gate_id == DAT.Gates.LOADING:
+		position = DAT.A.get("player_position", position)
 
 
 func _physics_process(delta: float) -> void:
@@ -46,3 +47,7 @@ func interact() -> void:
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 	print(collider)
+
+
+func _save_me() -> void:
+	DAT.set_data("player_position", position)

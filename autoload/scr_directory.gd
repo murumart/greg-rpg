@@ -1,5 +1,7 @@
 extends Node
 
+# handles access to files
+
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
 
 
@@ -9,25 +11,18 @@ func _init() -> void:
 		DirAccess.make_dir_absolute(GREG_USER_FOLDER_PATH)
 
 
-func save_data(data, filename := "save.grs") -> void:
+func write_dict_to_file(data: Dictionary, filename : String) -> void:
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.WRITE)
-	var meh := PackedByteArray()
-	meh.resize(int(pow(2, 16) -1))
-	meh.encode_var(0, data)
-	file.store_buffer(meh)
+	file.store_var(var_to_bytes(data))
 	file.flush()
-	print("wrote data to wile ", filename)
 
 
-func load_data(filename := "save.grs") -> Dictionary:
+func get_dict_from_file(filename : String) -> Dictionary:
 	if not FileAccess.file_exists(str(GREG_USER_FOLDER_PATH, "/", filename)):
-		print("no savefile exists")
+		print("no %s file exists" % filename)
 		return {}
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.READ)
-	var returnable := {}
-	var meh := file.get_buffer(int(pow(2, 16) -1))
-	returnable = meh.decode_var(0)
-	print("loaded from file ", filename)
+	var returnable : Dictionary = bytes_to_var(file.get_var())
 	return returnable
 
 

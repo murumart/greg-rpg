@@ -12,7 +12,7 @@ const dialogues := {
 			"hello world!"
 		],
 		[
-			"just kidding. dumbass."
+			"[color=#00ff00]just kidding. dumbass.[/color]"
 		],
 		[
 			"you had lots of fun making the engine last time..."

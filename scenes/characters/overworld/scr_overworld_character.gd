@@ -17,7 +17,6 @@ func interacted() -> void:
 
 
 func _set_collision_extents(to: Vector2i) -> void:
-	print(to)
 	collision_extents = to
 	if collision_shape:
 		collision_shape.shape.size = to

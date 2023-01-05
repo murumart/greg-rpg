@@ -1,5 +1,9 @@
 extends Node
 
+# handles changing scenes
+
+const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
+
 
 func change_scene_to(path: String, options := {}) -> void:
 	get_tree().root.get_child(-1).queue_free()

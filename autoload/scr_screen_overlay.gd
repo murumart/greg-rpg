@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+# screen layer over everything else. used for things like UI
+
 signal fade_finished
 
 @export var show_fps := false

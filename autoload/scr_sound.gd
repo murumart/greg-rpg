@@ -1,5 +1,8 @@
 extends Node
 
+# handles playing sounds and music
+# copied over from old Greg
+
 var current_song_player : AudioStreamPlayer
 var current_song : Dictionary
 var old_song : Dictionary
@@ -81,6 +84,7 @@ func fade_out_song_player(player: AudioStreamPlayer, fade_speed := 1.0, options 
 
 
 func _on_fadeout_tween_step_finished(_int_stupid: int, player: AudioStreamPlayer, options := {}):
+	# _int_stupid is provided by the tween.step_finished signal, I don't need it for anything
 	var do_save_audio_position = options.get("save_audio_position", true)
 	
 	if not (is_instance_valid(player) and player.playing): return

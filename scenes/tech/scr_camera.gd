@@ -9,6 +9,10 @@ var shake_trauma := 0.0
 var shake_trauma_power := 2
 
 
+func _ready() -> void:
+	current = true
+
+
 func add_trauma(amount: float) -> void:
 	shake_trauma = minf(shake_trauma + amount, 1.0)
 

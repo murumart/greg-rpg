@@ -15,6 +15,8 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		$RichTextLabel.skip_to_end()
+	if event.keycode == KEY_END and event.pressed:
+		DAT.print_data()
 
 
 func _physics_process(delta: float) -> void:
@@ -27,7 +29,7 @@ func save_pressed():
 
 
 func load_pressed():
-	print(DIR.load_data())
+	DAT.load_data()
 
 
 func shake_pressed():
@@ -46,7 +48,7 @@ func speak_pressed():
 
 
 func dialogue_speak_pressed():
-	SOL.dialogue("gregtest")
+	SOL.dialogue("test")
 
 
 func play_music_pressed():

@@ -5,5 +5,12 @@ class_name Room
 
 
 func _init() -> void:
-	DAT.set_data("current_room", id)
 	self.add_to_group("save_me")
+
+
+func _ready() -> void:
+	DAT.set_data("current_room", id)
+
+
+func _save_me() -> void:
+	DAT.set_data("current_room", id)
