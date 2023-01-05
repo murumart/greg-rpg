@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://xk5mtrl26xyo"]
+
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="1_j2mdd"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_meflg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wj6rh"]
+resource_local_to_scene = true
+size = Vector2(8, 3)
+
+[node name="OverworldCharacter" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "interaction_area") groups=["save_me"]]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1_j2mdd")
+collision_shape = NodePath("CollisionShape")
+interaction_area = NodePath("InteractionArea")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wj6rh")
+debug_color = Color(0.152941, 1, 1, 0.419608)
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_meflg")]
+area_extents = Vector2i(9, 4)

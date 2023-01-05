@@ -5,7 +5,7 @@ var speed := 60.0
 
 
 func _ready() -> void:
-	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed]
+	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed, fade_screen_pressed, leave_pressed]
 	for i in button_functions.size():
 		var callable := button_functions[i] as Callable
 		var button := $Buttons.get_child(i) as Button
@@ -51,3 +51,13 @@ func dialogue_speak_pressed():
 
 func play_music_pressed():
 	SND.play_song(SongsList.SONGS.keys().pick_random())
+
+
+func fade_screen_pressed():
+	SOL.fade_screen(Color(0, 0, 0, 0), Color(0, 0, 0, 1))
+	await SOL.fade_finished
+	SOL.fade_screen(Color(0, 0, 0, 1), Color(1, 1, 1221, 0))
+
+
+func leave_pressed():
+	LTS.level_transition("res://scenes/characters/overworld/scn_greg_overworld.tscn")

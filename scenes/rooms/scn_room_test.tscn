@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b75fam8wem4ex"]
+[gd_scene load_steps=10 format=3 uid="uid://b75fam8wem4ex"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
 [ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/tech/scn_overworld_tiles.tscn" id="2_e5sis"]
@@ -7,12 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_mr34j"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_ffcdj"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_mhw0e"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_j4r0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
 
 [node name="TestRoom" type="Node2D"]
 script = ExtResource("1_g3scf")
+id = "test"
 
 [node name="OverworldTiles" parent="." instance=ExtResource("2_e5sis")]
 layer_0/name = "grass"
@@ -37,10 +39,10 @@ position = Vector2(33, 45)
 position = Vector2(0, -11)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 2.0
+offset_left = -35.0
 offset_top = 3.0
-offset_right = 61.0
-offset_bottom = 89.0
+offset_right = 114.0
+offset_bottom = 19.0
 mouse_filter = 2
 theme = ExtResource("2_wqq2x")
 text = "i hope you fill find our poopoo fart brlffit"
@@ -50,29 +52,28 @@ visible_ratio = 0.0
 script = ExtResource("6_mhw0e")
 
 [node name="Buttons" type="Node2D" parent="."]
-visible = false
 
 [node name="Button" type="Button" parent="Buttons"]
-offset_left = 85.0
-offset_top = 74.0
-offset_right = 159.0
-offset_bottom = 95.0
+offset_left = -107.0
+offset_top = -87.0
+offset_right = -33.0
+offset_bottom = -66.0
 theme = ExtResource("2_wqq2x")
 text = "why are you l"
 
 [node name="Button2" type="Button" parent="Buttons"]
-offset_left = 87.0
-offset_top = 96.0
-offset_right = 157.0
-offset_bottom = 117.0
+offset_left = -107.0
+offset_top = -65.0
+offset_right = -37.0
+offset_bottom = -44.0
 theme = ExtResource("2_wqq2x")
 text = "load data"
 
 [node name="Button3" type="Button" parent="Buttons"]
-offset_left = 64.0
-offset_top = 42.0
-offset_right = 131.0
-offset_bottom = 63.0
+offset_left = -107.0
+offset_top = -43.0
+offset_right = -40.0
+offset_bottom = -22.0
 theme = ExtResource("2_wqq2x")
 text = "SHAKE IT"
 
@@ -84,18 +85,17 @@ position = Vector2(97.5, 52)
 shape = SubResource("RectangleShape2D_6ipc4")
 
 [node name="Button4" type="Button" parent="Buttons"]
-offset_left = 63.0
-offset_top = 5.0
-offset_right = 142.0
-offset_bottom = 26.0
+offset_left = -107.0
+offset_top = -21.0
+offset_right = -28.0
 theme = ExtResource("2_wqq2x")
 text = "trash data"
 
 [node name="Button5" type="Button" parent="Buttons"]
-offset_left = -40.0
-offset_top = 69.0
-offset_right = 27.0
-offset_bottom = 90.0
+offset_left = -107.0
+offset_top = 1.0
+offset_right = -40.0
+offset_bottom = 22.0
 theme = ExtResource("2_wqq2x")
 text = "speak for me"
 
@@ -107,18 +107,38 @@ position = Vector2(99, 52)
 shape = SubResource("RectangleShape2D_6ipc4")
 
 [node name="Button6" type="Button" parent="Buttons"]
-offset_left = 145.0
-offset_top = 6.0
-offset_right = 325.0
-offset_bottom = 26.0
+offset_left = -107.0
+offset_top = 23.0
+offset_right = 73.0
+offset_bottom = 43.0
 scale = Vector2(0.52262, 1.51024)
 theme = ExtResource("2_wqq2x")
 text = "SPEAK TO ME - WHAT WILL HAPPEN NEXT"
 
 [node name="Button7" type="Button" parent="Buttons"]
-offset_left = -46.0
-offset_top = 47.0
-offset_right = 37.0
-offset_bottom = 68.0
+offset_left = -107.0
+offset_top = 54.0
+offset_right = -24.0
+offset_bottom = 75.0
 theme = ExtResource("2_wqq2x")
 text = "play me  a music"
+
+[node name="Button8" type="Button" parent="Buttons"]
+offset_left = -107.0
+offset_top = 76.0
+offset_right = -24.0
+offset_bottom = 97.0
+theme = ExtResource("2_wqq2x")
+text = "fade"
+
+[node name="Button9" type="Button" parent="Buttons"]
+offset_left = -107.0
+offset_top = 98.0
+offset_right = -24.0
+offset_bottom = 119.0
+theme = ExtResource("2_wqq2x")
+text = "leave"
+
+[node name="OverworldCharacter" parent="." instance=ExtResource("8_j4r0r")]
+position = Vector2(6, 34)
+collision_extents = Vector2i(20, 3)

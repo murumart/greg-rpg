@@ -47,3 +47,10 @@ visible = false
 position = Vector2(3, 3)
 texture = ExtResource("6_jp2ib")
 centered = false
+
+[node name="ScreenFadeOrderer" type="Node2D" parent="."]
+
+[node name="ScreenFade" type="ColorRect" parent="ScreenFadeOrderer"]
+offset_right = 160.0
+offset_bottom = 120.0
+mouse_filter = 2
