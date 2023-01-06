@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmhs50mol2dav"]
+[gd_scene load_steps=21 format=3 uid="uid://bmhs50mol2dav"]
 
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_player_overworld.gd" id="1_gx1l0"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_y11nw"]
@@ -19,16 +19,79 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("2_y11nw")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bighp"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxhy4"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7neb6"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72oqv"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgke4"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixsnt"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewdxy"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeyb2"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eag3g"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klusk"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjf34"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km17g"]
+atlas = ExtResource("2_y11nw")
+region = Rect2(48, 48, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_76min"]
 animations = [{
 "frames": [SubResource("AtlasTexture_vo3ai"), SubResource("AtlasTexture_ihigo"), SubResource("AtlasTexture_mu8or"), SubResource("AtlasTexture_ecu36")],
 "loop": true,
 "name": &"walk_down",
 "speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_bighp"), SubResource("AtlasTexture_rxhy4"), SubResource("AtlasTexture_7neb6"), SubResource("AtlasTexture_72oqv")],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_sgke4"), SubResource("AtlasTexture_ixsnt"), SubResource("AtlasTexture_ewdxy"), SubResource("AtlasTexture_aeyb2")],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_eag3g"), SubResource("AtlasTexture_klusk"), SubResource("AtlasTexture_gjf34"), SubResource("AtlasTexture_km17g")],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6efe"]
-size = Vector2(8, 3)
+size = Vector2(6, 3)
 
 [node name="Greg" type="CharacterBody2D" groups=["player", "save_me"]]
 collision_layer = 2

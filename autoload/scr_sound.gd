@@ -110,6 +110,7 @@ func save_audio_position(player: AudioStreamPlayer, song: Dictionary):
 func play_sound(sound: AudioStream, options := {}) -> void:
 	if playing_sounds.size() >= MAX_SOUNDS_PLAYING: return
 	var player := AudioStreamPlayer.new()
+	sound.loop = false
 	player.name = str(sound)
 	player.stream = sound
 	player.bus = options.get("bus", "Master")

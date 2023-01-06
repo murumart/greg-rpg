@@ -11,8 +11,9 @@ func change_scene_to(path: String, options := {}) -> void:
 	if options.get("free_those_nodes", true):
 		for node in free_us:
 			node.call_deferred("queue_free")
+	await get_tree().process_frame
 	var new_scene : PackedScene = load(path)
-	get_tree().root.add_child(new_scene.instantiate())
+	get_tree().root.call_deferred("add_child", new_scene.instantiate(), false)
 
 
 func level_transition(path: String, options := {}) -> void:

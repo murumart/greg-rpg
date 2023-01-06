@@ -18,3 +18,6 @@ class_name Character
 @export var inventory : Array[int]
 @export var armour : int
 @export var weapon : int
+
+@export_group("")
+@export var name_in_file : String = ""

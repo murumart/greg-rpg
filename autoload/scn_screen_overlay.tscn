@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_biyso"]
 script = ExtResource("2_lb6we")
-name = "Greg"
+name = "greg"
 portrait = ExtResource("6_jp2ib")
 level = 1
 attack = 1.0
@@ -18,9 +18,11 @@ speed = 1.0
 inventory = null
 armour = null
 weapon = null
+name_in_file = "greg"
 
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
+show_fps = true
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 script = ExtResource("3_jg0vj")
