@@ -19,6 +19,7 @@ var sound_clear_timer := Timer.new()
 func _ready() -> void:
 	add_child(sound_clear_timer)
 	sound_clear_timer.connect("timeout", _on_sound_clear_timer_timeout)
+	sound_clear_timer.start()
 
 
 func play_song(song: String, fade_speed := 1.0, options := {}):
@@ -117,7 +118,14 @@ func play_sound(sound: AudioStream, options := {}) -> void:
 	player.volume_db = options.get("volume", 0.0)
 	player.pitch_scale = options.get("pitch", 1.0)
 	playing_sounds.append(player)
+	add_child(player)
 	player.play()
+
+
+func menusound(pitch := 1.0, options := {}) -> void:
+	options["pitch"] = pitch
+	options["volume"] = -8
+	play_sound(preload("res://sounds/menusound.ogg"), options)
 
 
 func _on_sound_clear_timer_timeout() -> void:

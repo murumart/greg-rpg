@@ -9,6 +9,26 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"Battle",
+"language": &"GDScript",
+"path": "res://scenes/tech/scr_battle.gd"
+}, {
+"base": "Node2D",
+"class": &"BattleActor",
+"language": &"GDScript",
+"path": "res://scenes/tech/scr_battle_actor.gd"
+}, {
+"base": "BattleActor",
+"class": &"BattleEnemy",
+"language": &"GDScript",
+"path": "res://scenes/tech/scr_battle_enemy.gd"
+}, {
+"base": "RefCounted",
+"class": &"BattlePayload",
+"language": &"GDScript",
+"path": "res://code/scr_battle_payload.gd"
+}, {
 "base": "Resource",
 "class": &"Character",
 "language": &"GDScript",
@@ -55,6 +75,10 @@ _global_script_classes=[{
 "path": "res://code/scr_textbox.gd"
 }]
 _global_script_class_icons={
+"Battle": "",
+"BattleActor": "",
+"BattleEnemy": "",
+"BattlePayload": "",
 "Character": "",
 "DialogueList": "",
 "InteractionArea": "",

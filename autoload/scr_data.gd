@@ -8,6 +8,8 @@ var gate_id : int
 # DATA
 var A : Dictionary
 
+@export var character_list : Array[Character]
+
 
 func _init() -> void:
 	pass
@@ -23,6 +25,7 @@ func get_data(key: String, default = null):
 
 func save_data(filename := "save.grs") -> void:
 	save_nodes_data()
+	save_chars_to_data()
 	
 	var stuff := DIR.get_dict_from_file(filename)
 	for k in A.keys():
@@ -41,7 +44,7 @@ func force_data(key: String, value: Variant, filename := "save.grs") -> void:
 
 
 func save_nodes_data() -> void:
-	print("node saving start.")
+	print("saving nodes...")
 	var saveables := get_tree().get_nodes_in_group("save_me")
 	for node in saveables:
 		if is_instance_valid(node) and node.has_method("_save_me"):
@@ -51,10 +54,14 @@ func save_nodes_data() -> void:
 
 func load_data(filename := "save.grs") -> void:
 	var loaded := DIR.get_dict_from_file(filename)
-	if loaded.size() < 1: print("no data to load."); return
+	if loaded.size() < 1: print("no data to load!"); return
 	
+	print("overwriting data...")
 	for k in loaded.keys():
 		A[k] = loaded[k]
+	print("finished overwriting data.")
+	
+	load_chars_from_data()
 	
 	var room_to_load : String = loaded.get("current_room", "test")
 	gate_id = Gates.LOADING
@@ -82,3 +89,29 @@ func free_player() -> void:
 
 func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
+
+
+func get_character(which: int) -> Character:
+	if not which < character_list.size(): return preload("res://resources/res_default_character.tres")
+	if not which > -1: return preload("res://resources/res_default_character.tres")
+	else: return character_list[which]
+
+
+func char_save_string_key(which: int, key: String) -> String:
+	return str("char_", which, "_", key)
+
+
+func save_chars_to_data() -> void:
+	print("saving characters...")
+	for c in character_list.size():
+		var charc : Character = character_list[c]
+		set_data(char_save_string_key(c, "save"), charc.get_saveable_dict())
+	print("finished saving characters.")
+
+
+func load_chars_from_data() -> void:
+	print("loading characters...")
+	for c in character_list.size():
+		var charc : Character = character_list[c]
+		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
+	print("finished loading characters.")

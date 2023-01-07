@@ -10,8 +10,6 @@ const ROTS = [&"up", &"right", &"down", &"left"]
 enum States {IDLE, TALKING, WANDER, CHASE}
 var state := States.IDLE
 
-@export var character : StringName = ""
-
 @export_group("Nodes")
 @export var animated_sprite : AnimatedSprite2D
 @export var collision_shape : CollisionShape2D
@@ -47,11 +45,13 @@ var target : Vector2 : set = set_target
 
 
 func _ready() -> void:
+	# load stuff
 	if DAT.gate_id == DAT.Gates.LOADING:
 		if save_position:
 			set_position(DAT.get_data(save_key_name("position"), position))
 		if save_convo_progess:
 			convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
+	# setup
 	if random_movement:
 		random_movement_timer = Timer.new()
 		add_child(random_movement_timer)
@@ -71,9 +71,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match state:
 		States.IDLE:
-			if animated_sprite:
-				velocity = Vector2()
+			velocity = Vector2()
 		States.TALKING:
+			# idle if no longer talking
 			if SOL.dialogue_box.loaded_dialogue.size() < 1:
 				set_state(States.IDLE)
 		States.CHASE:
@@ -90,8 +90,7 @@ func _physics_process(delta: float) -> void:
 				var _collided := move_and_slide()
 			else:
 				set_state(States.IDLE)
-			
-	#debprint(velocity)
+	
 	direct_walking_animation(velocity)
 
 
@@ -114,7 +113,6 @@ func _on_random_movement_timer_timeout() -> void:
 		if collider: continue
 		else: break
 	set_state(States.WANDER)
-	debprint(target)
 
 
 func set_state(to: States) -> void:
@@ -166,6 +164,7 @@ func chase(body: CollisionObject2D) -> void:
 		var same_target_as_collider_condition : bool = false
 		same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)
 		
+		# we don't care if we collide with something that chases the same target
 		if collider == chase_target or same_target_as_collider_condition:
 			moving_towards_target = 0.0
 			set_target_offset(body.global_position if not same_target_as_collider_condition else body.global_position, 24) # if a bunch of npcs are chasing the same target, this will help make them not clump up together

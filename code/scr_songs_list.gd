@@ -6,6 +6,10 @@ const SONGS := {
 		"title": "aren't you excited?",
 		"link": "res://music/mus_arent_you_excited.ogg"
 	},
+	"bike_spirit": {
+		"title": "bike_spirit",
+		"link": "res://music/mus_bike_spirit.ogg"
+	},
 	"greg_battle": {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"

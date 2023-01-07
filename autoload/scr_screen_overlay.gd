@@ -14,6 +14,7 @@ var fps_label : Label
 func _ready() -> void:
 	if show_fps:
 		fps_label = Label.new()
+		fps_label.theme = preload("res://resources/thm_main_ui.tres")
 		add_ui_child(fps_label, 120, false)
 	screen_fade.get_parent().hide()
 

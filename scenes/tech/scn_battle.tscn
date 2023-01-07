@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=3 uid="uid://dn3qvlsl4h8ap"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
+[ext_resource type="PackedScene" uid="uid://bknhce8olj2br" path="res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn" id="3_vel7l"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_button.gd" id="5_b8bni"]
+[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_5j3jy")
+
+[node name="Camera" parent="." instance=ExtResource("2_hinxn")]
+
+[node name="Party" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="BikeGhostEnemy" parent="Enemies" instance=ExtResource("3_vel7l")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+theme = ExtResource("3_v2dlj")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 160.0
+offset_bottom = 120.0
+
+[node name="ScreenMainActions" type="Control" parent="UI/Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 44.0
+
+[node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_top = -8.0
+offset_right = 160.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_t32me")
+text = "descriptions go here"
+fit_content_height = true
+scroll_active = false
+
+[node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 14.0
+focus_neighbor_top = NodePath("../ItemButton")
+focus_neighbor_bottom = NodePath("../SpiritButton")
+focus_next = NodePath("../SpiritButton")
+focus_previous = NodePath("../ItemButton")
+mouse_filter = 2
+text = "tussle"
+clip_text = true
+text_overrun_behavior = 3
+script = ExtResource("5_b8bni")
+description = "go in with your hands"
+
+[node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 15.0
+offset_right = 44.0
+offset_bottom = 28.0
+focus_neighbor_top = NodePath("../AttackButton")
+focus_neighbor_bottom = NodePath("../ItemButton")
+focus_next = NodePath("../ItemButton")
+focus_previous = NodePath("../AttackButton")
+mouse_filter = 2
+text = "spirit"
+clip_text = true
+text_overrun_behavior = 3
+script = ExtResource("5_b8bni")
+description = "maybe magic solves this"
+
+[node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 29.0
+offset_right = 44.0
+offset_bottom = 42.0
+focus_neighbor_top = NodePath("../SpiritButton")
+focus_neighbor_bottom = NodePath("../AttackButton")
+focus_next = NodePath("../AttackButton")
+focus_previous = NodePath("../SpiritButton")
+mouse_filter = 2
+text = "object"
+clip_text = true
+text_overrun_behavior = 3
+script = ExtResource("5_b8bni")
+description = "dig through your pockets"
+
+[node name="CharPortrait" type="Sprite2D" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+position = Vector2(56, 13)
+texture = ExtResource("5_kl5pr")
+
+[node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 45.0
+offset_top = 26.0
+offset_right = 85.0
+offset_bottom = 42.0
+bbcode_enabled = true
+text = "gregtech
+lvl 3"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CharInfo2" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 86.0
+offset_top = 2.0
+offset_right = 144.0
+offset_bottom = 42.0
+bbcode_enabled = true
+text = "atk: 3
+def: 3
+spd: 3
+hp: 100/100
+sp: 100/100"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScreenActorSelect" type="Control" parent="UI/Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 44.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenActorSelect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 96.0
+offset_bottom = 43.0
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer/ListContainer"]
+layout_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer/ListContainer"]
+layout_mode = 2
+
+[node name="ReferenceButton" type="Button" parent="UI"]
+visible = false
+layout_mode = 0
+offset_right = 39.0
+offset_bottom = 13.0
+mouse_filter = 2
+text = "forgone"
+flat = true
+script = ExtResource("5_b8bni")

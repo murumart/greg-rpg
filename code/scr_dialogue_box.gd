@@ -1,6 +1,5 @@
 extends Node2D
 
-@export var character_list : Array[Character]
 @onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
 @onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
 
@@ -44,7 +43,7 @@ func speak_this_dialogue_part(part: Array) -> void:
 	portrait.texture = null
 	
 	if character_load > -1:
-		character = get_character(character_load)
+		character = DAT.get_character(character_load)
 	
 	if character and character.portrait:
 		portrait.texture = character.portrait
@@ -69,12 +68,6 @@ func next_dialogue_requested() -> void:
 		DAT.call_deferred("free_player")
 	else:
 		speak_this_dialogue_part(loaded_dialogue[current_dialogue])
-
-
-func get_character(which: int) -> Character:
-	if not which < character_list.size(): return preload("res://resources/res_default_character.tres")
-	if not which > -1: return preload("res://resources/res_default_character.tres")
-	else: return character_list[which]
 
 
 func set_textbox_width_to_full(which: bool) -> void:

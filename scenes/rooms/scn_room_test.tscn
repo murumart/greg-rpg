@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b75fam8wem4ex"]
+[gd_scene load_steps=46 format=3 uid="uid://b75fam8wem4ex"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
 [ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/tech/scn_overworld_tiles.tscn" id="2_e5sis"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_mhw0e"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_j4r0r"]
 [ext_resource type="Texture2D" uid="uid://b8euesf6tltkq" path="res://sprites/characters/overworld/spr_mdp_overworld.png" id="9_pxr2e"]
+[ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="10_q7e26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -95,6 +96,93 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [SubResource("AtlasTexture_gp1xd"), SubResource("AtlasTexture_ki6j7"), SubResource("AtlasTexture_g1ewc"), SubResource("AtlasTexture_vkjci")],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1ijf"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk35x"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_240ib"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hcuo"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl20l"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14rx4"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dr1g"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ob07"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtqpl"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lult"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugeon"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbdjt"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpf22"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cwfm"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42njg"]
+atlas = ExtResource("10_q7e26")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kwod6"]
+animations = [{
+"frames": [SubResource("AtlasTexture_muq41"), SubResource("AtlasTexture_u1ijf"), SubResource("AtlasTexture_rk35x"), SubResource("AtlasTexture_240ib")],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_8hcuo"), SubResource("AtlasTexture_kl20l"), SubResource("AtlasTexture_14rx4"), SubResource("AtlasTexture_5dr1g")],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_1ob07"), SubResource("AtlasTexture_qtqpl"), SubResource("AtlasTexture_0lult"), SubResource("AtlasTexture_ugeon")],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_cbdjt"), SubResource("AtlasTexture_qpf22"), SubResource("AtlasTexture_0cwfm"), SubResource("AtlasTexture_42njg")],
 "loop": true,
 "name": &"walk_up",
 "speed": 5.0
@@ -230,7 +318,6 @@ text = "leave"
 
 [node name="MDP" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
 position = Vector2(627, 52)
-character = &"mdp"
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 random_movement = true
@@ -246,7 +333,6 @@ playing = true
 
 [node name="MDP5" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
 position = Vector2(705, -14)
-character = &"mdp"
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 2000
@@ -260,7 +346,6 @@ playing = true
 
 [node name="MDP69" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
 position = Vector2(648, -47)
-character = &"mdp"
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 2000
@@ -276,7 +361,6 @@ playing = true
 
 [node name="MDP93" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
 position = Vector2(481, -4)
-character = &"mdp"
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 1000
@@ -289,5 +373,19 @@ save_convo_progess = true
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDP93"]
 position = Vector2(0, -8)
 frames = SubResource("SpriteFrames_yv1ib")
+animation = &"walk_down"
+playing = true
+
+[node name="BikeGhost" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+position = Vector2(530, 45)
+animated_sprite = NodePath("BikeGhostAnimations")
+random_movement = true
+random_movement_wait = 6.0
+chase_target = NodePath("../MDP5")
+chase_distance = 128
+
+[node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="BikeGhost"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_kwod6")
 animation = &"walk_down"
 playing = true
