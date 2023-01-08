@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dh4qt868csctw"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_0eoos"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_1cqpr"]
+[ext_resource type="Texture2D" uid="uid://b0uc8205kntls" path="res://sprites/characters/portraits/spr_portrait_gleebungus.png" id="3_2r2cl"]
+
+[sub_resource type="Resource" id="Resource_57h5b"]
+script = ExtResource("1_1cqpr")
+health = null
+health_percent = -0.99
+max_health_percent = 0.0
+magic = -0.99
+magic_percent = null
+max_magic_percent = null
+attack_increase = 89.0
+attack_increase_time = 89
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[resource]
+script = ExtResource("1_0eoos")
+name_in_file = &"gleebungus"
+name = &"gleebungus"
+description = "gleebui bung unbrn bung gun bungug oumboiung more like tingenniernnitangel"
+texture = ExtResource("3_2r2cl")
+price = 129830192318
+use = 2
+payload = SubResource("Resource_57h5b")

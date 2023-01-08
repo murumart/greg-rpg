@@ -1,15 +1,27 @@
-extends RefCounted
+extends Resource
 class_name BattlePayload
 
-var health : float
-var magic : float
+enum Types {ATTACK, SPIRIT, ITEM}
+var type := Types.ATTACK
 
-var attack_increase: float
-var attack_increase_time: int
-var defense_increase: float
-var defense_increase_time: int
-var speed_increase: float
-var speed_increase_time: int
+@export var health : float
+@export var health_percent := 0.0
+@export var max_health_percent := 0.0
+@export var pierce_defense := 0.0
+
+@export var magic : float
+@export var magic_percent: float
+@export var max_magic_percent: float
+
+@export var attack_increase: float
+@export var attack_increase_time: int
+@export var defense_increase: float
+@export var defense_increase_time: int
+@export var speed_increase: float
+@export var speed_increase_time: int
+
+var equip_as_weapon := false
+var equip_as_armour := false
 
 var sender : BattleActor
 
@@ -27,13 +39,38 @@ func _init(options := {}) -> void:
 #	sender = options.get("sender", null)
 
 
+func set_type(x: Types) -> BattlePayload:
+	type = x
+	return self
+
+
 func set_health(x: float) -> BattlePayload:
 	health = x
 	return self
 
 
+func set_health_percent(x: float) -> BattlePayload:
+	health_percent = x
+	return self
+
+
+func set_max_health_percent(x: float) -> BattlePayload:
+	max_health_percent = x
+	return self
+
+
 func set_magic(x: float) -> BattlePayload:
 	magic = x
+	return self
+
+
+func set_magic_percent(x: float) -> BattlePayload:
+	magic_percent = x
+	return self
+
+
+func set_max_magic_percent(x: float) -> BattlePayload:
+	max_magic_percent = x
 	return self
 
 
@@ -54,6 +91,18 @@ func set_speed_increase(amount: float, time: int) -> BattlePayload:
 	speed_increase_time = time
 	return self
 
+
 func set_sender(x: BattleActor) -> BattlePayload:
 	sender = x
 	return self
+
+
+func set_armour(x: bool) -> BattlePayload:
+	equip_as_armour = x
+	return self
+
+
+func set_weapon(x: bool) -> BattlePayload:
+	equip_as_weapon = x
+	return self
+

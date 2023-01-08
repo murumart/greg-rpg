@@ -22,10 +22,11 @@ var experience := 0.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
 
-@export_group("Items")
+@export_group("Items and Spirits")
 @export var inventory : Array[int] = []
 @export var armour : int = -1
 @export var weapon : int = -1
+@export var spirits : Array[int] = []
 
 
 func get_saveable_dict() -> Dictionary:

@@ -19,12 +19,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/tech/scr_battle_actor.gd"
 }, {
-"base": "BattleActor",
-"class": &"BattleEnemy",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_battle_enemy.gd"
-}, {
-"base": "RefCounted",
+"base": "Resource",
 "class": &"BattlePayload",
 "language": &"GDScript",
 "path": "res://code/scr_battle_payload.gd"
@@ -44,6 +39,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scenes/tech/scr_interaction_area.gd"
 }, {
+"base": "Resource",
+"class": &"Item",
+"language": &"GDScript",
+"path": "res://code/scr_item.gd"
+}, {
 "base": "RefCounted",
 "class": &"Math",
 "language": &"GDScript",
@@ -53,6 +53,11 @@ _global_script_classes=[{
 "class": &"OverworldCharacter",
 "language": &"GDScript",
 "path": "res://scenes/characters/overworld/scr_overworld_character.gd"
+}, {
+"base": "Panel",
+"class": &"PartyMemberInfoPanel",
+"language": &"GDScript",
+"path": "res://scenes/tech/scr_battle_member_info.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"PlayerOverworld",
@@ -77,13 +82,14 @@ _global_script_classes=[{
 _global_script_class_icons={
 "Battle": "",
 "BattleActor": "",
-"BattleEnemy": "",
 "BattlePayload": "",
 "Character": "",
 "DialogueList": "",
 "InteractionArea": "",
+"Item": "",
 "Math": "",
 "OverworldCharacter": "",
+"PartyMemberInfoPanel": "",
 "PlayerOverworld": "",
 "Room": "",
 "SongsList": "",

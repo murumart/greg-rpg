@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://wknpxv3x21lw"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://wknpxv3x21lw"]
 
 [ext_resource type="FontFile" uid="uid://bxukug0aodcpi" path="res://fonts/gregfont.ttf" id="1_6sfhd"]
 [ext_resource type="StyleBox" uid="uid://dj10l6lihc6fn" path="res://resources/thm_main_stylebox_focus.tres" id="2_pr2pj"]
@@ -26,6 +26,12 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5mnh"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmtq5"]
+bg_color = Color(1, 1, 1, 1)
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
@@ -63,7 +69,11 @@ OptionButton/fonts/font = null
 Panel/styles/panel = SubResource("StyleBoxFlat_g3oq0")
 PopupMenu/fonts/font = null
 PopupMenu/fonts/font_separator = null
-ProgressBar/fonts/font = null
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/font_sizes/font_size = 8
+ProgressBar/fonts/font = ExtResource("1_6sfhd")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_o5mnh")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_rmtq5")
 RichTextLabel/font_sizes/normal_font_size = 8
 RichTextLabel/fonts/bold_font = null
 RichTextLabel/fonts/bold_italics_font = null

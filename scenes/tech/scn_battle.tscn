@@ -1,11 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn3qvlsl4h8ap"]
+[gd_scene load_steps=10 format=3 uid="uid://dn3qvlsl4h8ap"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
-[ext_resource type="PackedScene" uid="uid://bknhce8olj2br" path="res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn" id="3_vel7l"]
+[ext_resource type="PackedScene" uid="uid://cfb7l37bxkl8d" path="res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn" id="3_vel7l"]
 [ext_resource type="Script" path="res://scenes/tech/scr_battle_button.gd" id="5_b8bni"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
+[ext_resource type="PackedScene" uid="uid://is6bmhsr1fav" path="res://scenes/tech/scn_battle_member_info.tscn" id="7_is2uq"]
+
+[sub_resource type="GDScript" id="GDScript_3lyki"]
+script/source = "class_name BattleEnemy
+extends BattleActor
+
+
+func act() -> void:
+	await get_tree().create_timer(2).timeout
+	print(actor_name, \" acting finished!\")
+	act_finished.emit(self)
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -20,6 +32,7 @@ script = ExtResource("1_5j3jy")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="BikeGhostEnemy" parent="Enemies" instance=ExtResource("3_vel7l")]
+script = SubResource("GDScript_3lyki")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -32,15 +45,14 @@ theme = ExtResource("3_v2dlj")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="UI"]
-layout_mode = 0
-offset_top = 76.0
+offset_top = 60.0
 offset_right = 160.0
 offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 44.0
@@ -48,7 +60,6 @@ offset_bottom = 44.0
 [node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
 show_behind_parent = true
-layout_mode = 0
 offset_top = -8.0
 offset_right = 160.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_t32me")
@@ -58,7 +69,6 @@ scroll_active = false
 
 [node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 44.0
@@ -76,7 +86,6 @@ description = "go in with your hands"
 
 [node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 2.0
 offset_top = 15.0
 offset_right = 44.0
@@ -94,7 +103,6 @@ description = "maybe magic solves this"
 
 [node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 2.0
 offset_top = 29.0
 offset_right = 44.0
@@ -117,7 +125,6 @@ texture = ExtResource("5_kl5pr")
 
 [node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 45.0
 offset_top = 26.0
 offset_right = 85.0
@@ -130,7 +137,6 @@ autowrap_mode = 0
 
 [node name="CharInfo2" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 86.0
 offset_top = 2.0
 offset_right = 144.0
@@ -144,41 +150,134 @@ sp: 100/100"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ScreenActorSelect" type="Control" parent="UI/Panel"]
+[node name="ScreenListSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
-offset_bottom = 44.0
+offset_bottom = 60.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenActorSelect"]
-layout_mode = 0
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenListSelect"]
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 96.0
-offset_bottom = 43.0
+offset_right = 95.0
+offset_bottom = 59.0
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
+[node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer"]
+custom_minimum_size = Vector2(75, 0)
+offset_right = 75.0
+theme_override_constants/separation = 1
 
-[node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer/ListContainer"]
-layout_mode = 2
+[node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
 
-[node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenActorSelect/ScrollContainer/ListContainer"]
-layout_mode = 2
+[node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
+offset_left = 1.0
+offset_right = 1.0
+
+[node name="SelectedGuy" parent="UI/Panel/ScreenListSelect" instance=ExtResource("7_is2uq")]
+unique_name_in_owner = true
+offset_left = 164.0
+offset_top = 3.0
+offset_right = 225.0
+offset_bottom = 59.0
+
+[node name="Portrait" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="0"]
+layout_mode = 3
+offset_left = -28.0
+offset_top = 28.0
+offset_right = -6.0
+offset_bottom = 50.0
+
+[node name="Name" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="1"]
+layout_mode = 3
+offset_left = 2.0
+offset_right = 75.0
+
+[node name="HealthBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="3"]
+layout_mode = 3
+offset_left = -163.0
+offset_top = 51.0
+offset_right = -5.0
+offset_bottom = 53.0
+
+[node name="MagicBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="4"]
+layout_mode = 3
+offset_left = -163.0
+offset_top = 54.0
+offset_right = -5.0
+offset_bottom = 56.0
+
+[node name="WaitBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="5"]
+layout_mode = 3
+offset_left = -163.0
+offset_top = 53.0
+offset_right = -5.0
+offset_bottom = 54.0
+
+[node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 60.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenItemSelect"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 80.0
+offset_bottom = 59.0
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="List" type="VBoxContainer" parent="UI/Panel/ScreenItemSelect/ScrollContainer"]
+
+[node name="ScreenPartyInfo" type="Control" parent="UI/Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 159.0
+offset_bottom = 26.0
+
+[node name="Container" type="HBoxContainer" parent="UI/Panel/ScreenPartyInfo"]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 158.0
+offset_bottom = 26.0
+theme_override_constants/separation = -4
+
+[node name="MemberInfo" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+offset_right = 56.0
+offset_bottom = 25.0
+
+[node name="MemberInfo2" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+offset_left = 52.0
+offset_right = 108.0
+offset_bottom = 25.0
+
+[node name="MemberInfo3" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+offset_left = 104.0
+offset_right = 160.0
+offset_bottom = 25.0
 
 [node name="ReferenceButton" type="Button" parent="UI"]
 visible = false
-layout_mode = 0
-offset_right = 39.0
+offset_right = 22.0
 offset_bottom = 13.0
 mouse_filter = 2
-text = "forgone"
+text = "greg"
 flat = true
+alignment = 0
 script = ExtResource("5_b8bni")
+
+[node name="SlowUpdateTimer" type="Timer" parent="."]
+wait_time = 0.07
+
+[editable path="UI/Panel/ScreenListSelect/SelectedGuy"]

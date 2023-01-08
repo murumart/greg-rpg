@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://is6bmhsr1fav"]
+
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_qos12"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_member_info.gd" id="2_8faxu"]
+
+[node name="MemberInfo" type="Panel"]
+custom_minimum_size = Vector2(56, 24)
+theme = ExtResource("1_qos12")
+script = ExtResource("2_8faxu")
+
+[node name="Portrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 23.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 54.0
+offset_bottom = 13.0
+text = "name"
+clip_text = true
+
+[node name="EffectCenter" type="Marker2D" parent="."]
+position = Vector2(12, 12)
+gizmo_extents = 11.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 54.0
+offset_bottom = 13.0
+value = 51.0
+show_percentage = false
+
+[node name="MagicBar" type="ProgressBar" parent="."]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 54.0
+offset_bottom = 16.0
+step = 1.0
+allow_greater = true
+show_percentage = false
+
+[node name="WaitBar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0.490196, 1)
+layout_mode = 1
+offset_left = 24.0
+offset_top = 17.0
+offset_right = 54.0
+offset_bottom = 19.0
+allow_greater = true
+show_percentage = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=21 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://o5gcfg3083ej" path="res://sprites/characters/portraits/spr_portrait_zerma.png" id="4_fy4ky"]
 [ext_resource type="Texture2D" uid="uid://bm4rwxl0motml" path="res://sprites/characters/portraits/spr_portrait_mail_man.png" id="5_nmkjb"]
 [ext_resource type="Texture2D" uid="uid://dnknk25juokeu" path="res://sprites/characters/portraits/spr_portrait_bike_ghost.png" id="6_p57si"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="7_wrlwy"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="8_cpgm1"]
+[ext_resource type="Texture2D" uid="uid://conks0ye2ywmv" path="res://sprites/items/spr_item_gummy_worm.png" id="9_j2ufb"]
+[ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="10_awhv6"]
 
 [sub_resource type="Resource" id="Resource_rqjdl"]
 script = ExtResource("3_ednal")
@@ -20,9 +24,10 @@ level = 1
 attack = 1.0
 defense = 1.0
 speed = 1.0
-inventory = []
+inventory = [0, 0, 1, 1]
 armour = -1
 weapon = -1
+spirits = null
 
 [sub_resource type="Resource" id="Resource_wjym6"]
 script = ExtResource("3_ednal")
@@ -34,12 +39,13 @@ health = 100.0
 max_magic = 120.0
 magic = 120.0
 level = 3
-attack = 1.0
+attack = 2.0
 defense = 1.0
 speed = 1.0
 inventory = null
 armour = -1
 weapon = -1
+spirits = null
 
 [sub_resource type="Resource" id="Resource_grb88"]
 script = ExtResource("3_ednal")
@@ -54,9 +60,10 @@ level = 21
 attack = 16.0
 defense = 20.0
 speed = 19.0
-inventory = null
+inventory = [2, 2, 2]
 armour = -1
 weapon = -1
+spirits = null
 
 [sub_resource type="Resource" id="Resource_if6cx"]
 script = ExtResource("3_ednal")
@@ -74,7 +81,86 @@ speed = 6.0
 inventory = null
 armour = -1
 weapon = -1
+spirits = null
+
+[sub_resource type="Resource" id="Resource_lquol"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.08
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = 0.01
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_4tbng"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"gummy_worm"
+name = &"gummy worm"
+description = "it looks quite realistic"
+texture = ExtResource("9_j2ufb")
+price = 15
+use = 0
+payload = SubResource("Resource_lquol")
+
+[sub_resource type="Resource" id="Resource_vqlt5"]
+script = ExtResource("7_wrlwy")
+health = 25.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_lrpfs"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"plaster"
+name = &"plaster"
+description = "let's hope it's sterile"
+texture = ExtResource("10_awhv6")
+price = 25
+use = 0
+payload = SubResource("Resource_vqlt5")
+
+[sub_resource type="Resource" id="Resource_cc1kh"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = -5.0
+defense_increase_time = 2
+speed_increase = 16.0
+speed_increase_time = 3
+
+[sub_resource type="Resource" id="Resource_25kn2"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"sugar_lemon"
+name = &"sugar lemon"
+description = "a lump of yellow... sugar?"
+price = 25
+use = 2
+payload = SubResource("Resource_cc1kh")
 
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
+item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2")]

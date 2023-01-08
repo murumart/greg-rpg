@@ -9,6 +9,7 @@ var gate_id : int
 var A : Dictionary
 
 @export var character_list : Array[Character]
+@export var item_list : Array[Item]
 
 
 func _init() -> void:
@@ -93,7 +94,7 @@ func get_current_scene() -> Node:
 
 func get_character(which: int) -> Character:
 	if not which < character_list.size(): return preload("res://resources/res_default_character.tres")
-	if not which > -1: return preload("res://resources/res_default_character.tres")
+	if which < 0: return preload("res://resources/res_default_character.tres")
 	else: return character_list[which]
 
 
@@ -115,3 +116,9 @@ func load_chars_from_data() -> void:
 		var charc : Character = character_list[c]
 		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
 	print("finished loading characters.")
+
+
+func get_item(id: int) -> Item:
+	if not id < item_list.size(): return preload("res://resources/res_default_item.tres")
+	if id < 0: return preload("res://resources/res_default_item.tres")
+	return item_list[id]

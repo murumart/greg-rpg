@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bknhce8olj2br"]
+[gd_scene load_steps=3 format=3 uid="uid://cfb7l37bxkl8d"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_6gd2n"]
+[ext_resource type="PackedScene" uid="uid://cytwpovcoxlpc" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_ikbsv"]
 [ext_resource type="Texture2D" uid="uid://bnti2oagd6b2w" path="res://sprites/characters/battle/spr_bike_ghost_battle.png" id="2_cx5q1"]
 
-[node name="BikeGhostEnemy" type="Node2D"]
-script = ExtResource("1_6gd2n")
+[node name="BikeGhost" instance=ExtResource("1_ikbsv")]
 character_id = 3
 
-[node name="SprBikeGhostBattle" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_cx5q1")
