@@ -20,6 +20,10 @@ var actor_name : StringName
 @export var armour : Item
 var status_effects : Dictionary = {}
 
+var reference_to_team_array := []
+var reference_to_opposing_array := []
+var reference_to_actor_array := []
+
 var player_controlled := false
 
 var wait := 1.0
@@ -35,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		States.IDLE:
 			pass
 		States.COOLDOWN:
-			wait = maxf(wait - sqrt(delta * get_speed()), 0.0)
+			wait = maxf(wait - sqrt(delta * get_speed() * 0.1), 0.0)
 			if wait == 0.0:
 				act_requested.emit(self)
 				set_state(States.ACTING)
@@ -56,9 +60,8 @@ func act() -> void:
 
 
 func autonomous_act() -> void:
-	await get_tree().create_timer(1.0).timeout
+	attack(reference_to_opposing_array.pick_random() if reference_to_actor_array.size() > 0 else null)
 	print(actor_name, " acting finished!")
-	turn_finished()
 
 
 func set_state(to: States) -> void:
@@ -144,20 +147,18 @@ func use_item(id: int, subject: BattleActor) -> void:
 
 func handle_payload(pld: BattlePayload) -> void:
 	await get_tree().process_frame
-	print(actor_name, ": payload received! ")
+	print(actor_name, ": payload received from %s! " % pld.sender)
 	
 	var health_change := 0.0
 	health_change += pld.health
 	health_change += pld.health_percent * character.health
 	health_change += pld.max_health_percent * character.max_health
 	if health_change:
-		print(health_change)
 		if health_change > 0:
 			heal(health_change)
 		else:
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			hurt(health_change)
-			print(health_change)
 	
 	character.magic += pld.magic + (pld.magic_percent * character.magic) + (pld.max_magic_percent * character.max_magic)
 	

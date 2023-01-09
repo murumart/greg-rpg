@@ -45,6 +45,7 @@ theme = ExtResource("3_v2dlj")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
 offset_top = 60.0
 offset_right = 160.0
 offset_bottom = 120.0
@@ -52,7 +53,7 @@ offset_bottom = 120.0
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 44.0
@@ -60,6 +61,7 @@ offset_bottom = 44.0
 [node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
 show_behind_parent = true
+layout_mode = 0
 offset_top = -8.0
 offset_right = 160.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_t32me")
@@ -69,6 +71,7 @@ scroll_active = false
 
 [node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 44.0
@@ -86,6 +89,7 @@ description = "go in with your hands"
 
 [node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 2.0
 offset_top = 15.0
 offset_right = 44.0
@@ -103,6 +107,7 @@ description = "maybe magic solves this"
 
 [node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 2.0
 offset_top = 29.0
 offset_right = 44.0
@@ -125,6 +130,7 @@ texture = ExtResource("5_kl5pr")
 
 [node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 45.0
 offset_top = 26.0
 offset_right = 85.0
@@ -137,6 +143,7 @@ autowrap_mode = 0
 
 [node name="CharInfo2" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 86.0
 offset_top = 2.0
 offset_right = 144.0
@@ -152,12 +159,13 @@ autowrap_mode = 0
 
 [node name="ScreenListSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 60.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenListSelect"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 95.0
@@ -168,17 +176,18 @@ vertical_scroll_mode = 3
 
 [node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer"]
 custom_minimum_size = Vector2(75, 0)
-offset_right = 75.0
+layout_mode = 2
 theme_override_constants/separation = 1
 
 [node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
+layout_mode = 2
 
 [node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
-offset_left = 1.0
-offset_right = 1.0
+layout_mode = 2
 
 [node name="SelectedGuy" parent="UI/Panel/ScreenListSelect" instance=ExtResource("7_is2uq")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 164.0
 offset_top = 3.0
 offset_right = 225.0
@@ -220,12 +229,13 @@ offset_bottom = 54.0
 [node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 60.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenItemSelect"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 80.0
@@ -235,11 +245,12 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
 [node name="List" type="VBoxContainer" parent="UI/Panel/ScreenItemSelect/ScrollContainer"]
+layout_mode = 2
 
 [node name="ScreenPartyInfo" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -247,6 +258,7 @@ offset_right = 159.0
 offset_bottom = 26.0
 
 [node name="Container" type="HBoxContainer" parent="UI/Panel/ScreenPartyInfo"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 1.0
 offset_right = 158.0
@@ -254,21 +266,17 @@ offset_bottom = 26.0
 theme_override_constants/separation = -4
 
 [node name="MemberInfo" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
-offset_right = 56.0
-offset_bottom = 25.0
+layout_mode = 2
 
 [node name="MemberInfo2" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
-offset_left = 52.0
-offset_right = 108.0
-offset_bottom = 25.0
+layout_mode = 2
 
 [node name="MemberInfo3" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
-offset_left = 104.0
-offset_right = 160.0
-offset_bottom = 25.0
+layout_mode = 2
 
 [node name="ReferenceButton" type="Button" parent="UI"]
 visible = false
+layout_mode = 0
 offset_right = 22.0
 offset_bottom = 13.0
 mouse_filter = 2

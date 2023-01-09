@@ -56,6 +56,7 @@ func _ready() -> void:
 	item_button.pressed.connect(_on_item_pressed)
 	load_battle()
 	set_actor_states(BattleActor.States.COOLDOWN)
+	open_party_info_screen()
 
 
 func _physics_process(_delta: float) -> void:
@@ -65,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 
 func load_battle(options := {}) -> void:
 	add_party_member(0)
-	add_party_member(2)
+	add_party_member(1)
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	for i in party.size():
@@ -79,13 +80,18 @@ func set_actor_states(to: BattleActor.States) -> void:
 
 func add_enemy(node: BattleActor, ally := false) -> void:
 	if ally:
-		party_node.add_child(node)
 		party.append(node)
 		node.player_controlled = true
 		node.player_input_requested.connect(_on_player_input_requested)
+		node.reference_to_team_array = party
+		node.reference_to_opposing_array = enemies
+		party_node.add_child(node)
 	else:
-		enemies_node.add_child(node)
 		enemies.append(node)
+		node.reference_to_team_array = enemies
+		node.reference_to_opposing_array = party
+		enemies_node.add_child(node)
+	node.reference_to_actor_array = actors
 	node.act_requested.connect(_on_act_requested)
 	node.act_finished.connect(_on_act_finished)
 	node.wait += 0.02
@@ -96,13 +102,16 @@ func add_enemy(node: BattleActor, ally := false) -> void:
 func add_party_member(id: int) -> void:
 	var party_member : BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.character_id = id
-	party_node.add_child(party_member)
+	party_member.reference_to_actor_array = actors
+	party_member.reference_to_opposing_array = enemies
+	party_member.reference_to_team_array = party
 	party_member.act_requested.connect(_on_act_requested)
 	party_member.act_finished.connect(_on_act_finished)
 	party_member.player_controlled = true
 	party_member.player_input_requested.connect(_on_player_input_requested)
 	actors.append(party_member)
 	party.append(party_member)
+	party_node.add_child(party_member)
 	update_party()
 
 
@@ -205,6 +214,7 @@ func _on_button_reference_received(reference) -> void:
 
 
 func _on_act_requested(actor: BattleActor) -> void:
+	open_party_info_screen()
 	print(actor, " requested act")
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
