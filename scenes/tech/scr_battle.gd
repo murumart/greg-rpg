@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 
 func load_battle(options := {}) -> void:
 	add_party_member(0)
-	add_party_member(1)
+	#add_party_member(1)
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	for i in party.size():
@@ -112,6 +112,7 @@ func add_party_member(id: int) -> void:
 	actors.append(party_member)
 	party.append(party_member)
 	party_node.add_child(party_member)
+	party_member_panel_container.get_child(party.find(party_member)).remote_transform.remote_path = party_member.get_path()
 	update_party()
 
 

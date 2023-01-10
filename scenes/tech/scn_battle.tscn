@@ -35,6 +35,7 @@ script = ExtResource("1_5j3jy")
 script = SubResource("GDScript_3lyki")
 
 [node name="UI" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = -80.0

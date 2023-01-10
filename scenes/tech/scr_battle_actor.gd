@@ -55,13 +55,7 @@ func act() -> void:
 	print(actor_name, " is acting!")
 	if player_controlled:
 		player_input_requested.emit(self)
-	else:
-		autonomous_act()
-
-
-func autonomous_act() -> void:
-	attack(reference_to_opposing_array.pick_random() if reference_to_actor_array.size() > 0 else null)
-	print(actor_name, " acting finished!")
+		return
 
 
 func set_state(to: States) -> void:
@@ -132,6 +126,8 @@ func account_defense(x: float) -> float:
 func attack(subject: BattleActor) -> void:
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	subject.handle_payload(pld)
+	SOL.vfx_dustpuff(subject.global_position)
+	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
 

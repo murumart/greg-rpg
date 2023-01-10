@@ -20,6 +20,7 @@ offset_bottom = 28.0
 theme = ExtResource("2_xetbm")
 
 [node name="DialogueTextbox" type="RichTextLabel" parent="DialogueBoxOrderer/DialogueBoxPanel"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 135.0

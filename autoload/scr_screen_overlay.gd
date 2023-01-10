@@ -4,6 +4,8 @@ extends CanvasLayer
 
 signal fade_finished
 
+const SCREEN_SIZE := Vector2i(160, 120)
+
 @export var show_fps := false
 var fps_label : Label
 
@@ -45,4 +47,11 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 		tw.tween_property(screen_fade.get_parent(), "visible", false, 0.0)
 	tw.tween_callback(emit_signal.bind("fade_finished"))
 
+
+func vfx_dustpuff(pos: Vector2) -> void:
+	var puff := preload("res://scenes/vfx/scn_vfx_dustpuff.tscn").instantiate()
+	puff.global_position = pos + SCREEN_SIZE / 2.0
+	add_child(puff)
+	await get_tree().create_timer(1.0).timeout
+	puff.queue_free()
 

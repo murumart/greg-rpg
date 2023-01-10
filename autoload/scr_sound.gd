@@ -125,7 +125,7 @@ func play_sound(sound: AudioStream, options := {}) -> void:
 func menusound(pitch := 1.0, options := {}) -> void:
 	options["pitch"] = pitch
 	options["volume"] = -8
-	play_sound(preload("res://sounds/menusound.ogg"), options)
+	play_sound(preload("res://sounds/snd_gui.ogg"), options)
 
 
 func _on_sound_clear_timer_timeout() -> void:

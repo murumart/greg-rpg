@@ -58,3 +58,6 @@ offset_right = 54.0
 offset_bottom = 19.0
 allow_greater = true
 show_percentage = false
+
+[node name="RemoteTransform" type="RemoteTransform2D" parent="."]
+position = Vector2(12, 12)

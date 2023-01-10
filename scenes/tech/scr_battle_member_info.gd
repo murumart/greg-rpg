@@ -7,6 +7,7 @@ class_name PartyMemberInfoPanel
 @onready var health_bar := $HealthBar
 @onready var magic_bar := $MagicBar
 @onready var wait_bar := $WaitBar
+@onready var remote_transform := $RemoteTransform
 
 
 func update(actor: BattleActor) -> void:
