@@ -209,7 +209,7 @@ func _reference_button_pressed(reference) -> void:
 
 
 func _on_button_reference_received(reference) -> void:
-	if doing == Doings.ATTACK or doing == Doings.SPIRIT or doing == Doings.ITEM:
+	if doing == Doings.ATTACK:
 		selected_guy_display.update(reference)
 
 
@@ -300,19 +300,19 @@ func open_party_info_screen() -> void:
 func _on_attack_pressed() -> void:
 	doing = Doings.ATTACK
 	open_list_screen()
-	SND.menusound()
+	#SND.menusound()
 
 
 func _on_spirit_pressed() -> void:
 	doing = Doings.SPIRIT_MENU
 	open_list_screen()
-	SND.menusound()
+	#SND.menusound()
 
 
 func _on_item_pressed() -> void:
 	doing = Doings.ITEM_MENU
 	open_list_screen()
-	SND.menusound()
+	#SND.menusound()
 
 
 func set_description(text: String) -> void:

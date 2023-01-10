@@ -11,6 +11,7 @@ var reference
 
 func _init() -> void:
 	focus_entered.connect(_focus_entered)
+	focus_exited.connect(_focus_exited)
 
 
 func _unhandled_key_input(_event: InputEvent) -> void:
@@ -20,7 +21,12 @@ func _unhandled_key_input(_event: InputEvent) -> void:
 func _focus_entered() -> void:
 	selected.emit(description)
 	selected_return_reference.emit(reference)
-	SND.menusound(1.5)
+
+
+func _focus_exited() -> void:
+	await get_tree().process_frame
+	if visible:
+		SND.menusound(1.5)
 
 
 func _pressed() -> void:
