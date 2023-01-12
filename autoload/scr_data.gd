@@ -10,6 +10,7 @@ var A : Dictionary
 
 @export var character_list : Array[Character]
 @export var item_list : Array[Item]
+@export var spirit_list : Array[Spirit]
 
 
 func _init() -> void:
@@ -122,3 +123,9 @@ func get_item(id: int) -> Item:
 	if not id < item_list.size(): return preload("res://resources/res_default_item.tres")
 	if id < 0: return preload("res://resources/res_default_item.tres")
 	return item_list[id]
+
+
+func get_spirit(id: int) -> Spirit:
+	if not id < spirit_list.size(): return preload("res://resources/res_default_spirit.tres")
+	if id < 0: return preload("res://resources/res_default_spirit.tres")
+	return spirit_list[id]

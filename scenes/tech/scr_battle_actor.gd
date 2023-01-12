@@ -126,9 +126,26 @@ func account_defense(x: float) -> float:
 func attack(subject: BattleActor) -> void:
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	subject.handle_payload(pld)
-	SOL.vfx_dustpuff(subject.global_position)
+	SOL.vfx_dustpuff(get_effect_center(subject))
+	SOL.vfx_bangspark(get_effect_center(subject))
 	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
+	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
+	turn_finished()
+
+
+func use_spirit(id: int, subject: BattleActor) -> void:
+	var spirit : Spirit = DAT.get_spirit(id)
+	subject.handle_payload(spirit.payload)
+	character.magic = max(character.magic - spirit.cost, 0)
+	if spirit.animation:
+		SOL.vfx(spirit.animation, Vector2())
+	if spirit.use_animation:
+		SOL.vfx(spirit.use_animation, get_effect_center(self))
+	if spirit.receive_animation:
+		SOL.vfx(spirit.receive_animation, get_effect_center(subject))
+		
+	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
 	turn_finished()
 
 
@@ -137,6 +154,7 @@ func use_item(id: int, subject: BattleActor) -> void:
 	subject.handle_payload(item.payload)
 	if item.use != Item.Uses.NONE:
 		character.inventory.erase(id)
+	
 	await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 	turn_finished()
 
@@ -195,4 +213,8 @@ func offload_character() -> void:
 
 func payload() -> BattlePayload:
 	return BattlePayload.new().set_sender(self)
+
+
+func get_effect_center(subject: BattleActor) -> Vector2i:
+	return subject.effect_center + Vector2i(subject.global_position) if "effect_center" in subject else Vector2i(subject.global_position)
 

@@ -26,7 +26,7 @@ var equip_as_armour := false
 var sender : BattleActor
 
 
-func _init(options := {}) -> void:
+func _init(_options := {}) -> void:
 	pass
 #	health = options.get("health", 0.0)
 #	magic = options.get("magic", 0.0)

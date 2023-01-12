@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 
 func load_battle(options := {}) -> void:
 	add_party_member(0)
-	#add_party_member(1)
+	add_party_member(2)
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
 	for i in party.size():

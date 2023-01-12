@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=24 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://code/scr_item.gd" id="8_cpgm1"]
 [ext_resource type="Texture2D" uid="uid://conks0ye2ywmv" path="res://sprites/items/spr_item_gummy_worm.png" id="9_j2ufb"]
 [ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="10_awhv6"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="11_qkk80"]
 
 [sub_resource type="Resource" id="Resource_rqjdl"]
 script = ExtResource("3_ednal")
@@ -27,7 +28,7 @@ speed = 1.0
 inventory = [0, 0, 1, 1]
 armour = -1
 weapon = -1
-spirits = null
+spirits = [0]
 
 [sub_resource type="Resource" id="Resource_wjym6"]
 script = ExtResource("3_ednal")
@@ -160,7 +161,37 @@ price = 25
 use = 2
 payload = SubResource("Resource_cc1kh")
 
+[sub_resource type="Resource" id="Resource_mkacw"]
+script = ExtResource("7_wrlwy")
+health = 38.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_1ii5w"]
+script = ExtResource("11_qkk80")
+name_in_file = &"hotel"
+name = &"hotel"
+description = "recuperation"
+animation = &"hotel"
+use_animation = &""
+receive_animation = &"hotel_local"
+cost = 15
+use = 0
+reach = 0
+payload = SubResource("Resource_mkacw")
+
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
 item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2")]
+spirit_list = [SubResource("Resource_1ii5w")]

@@ -1,0 +1,179 @@
+[gd_scene load_steps=16 format=3 uid="uid://bqkp1bneanghq"]
+
+[ext_resource type="Texture2D" uid="uid://bjx81xw78es1i" path="res://sprites/spirit/spr_hotel_screen.png" id="1_6k7ma"]
+[ext_resource type="AudioStream" uid="uid://bkmoevdpi74tl" path="res://sounds/spirit/snd_hotel.ogg" id="2_ybfyr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u3up"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(0, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4lo7"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(160, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iocu"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(320, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfsyb"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(0, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhcp8"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(160, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_036n5"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(320, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7wdr"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(0, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd2fp"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(160, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lypo8"]
+atlas = ExtResource("1_6k7ma")
+region = Rect2(320, 240, 160, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtmb4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u3up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4lo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iocu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfsyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhcp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_036n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7wdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd2fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lypo8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_f125e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_851le"]
+resource_name = "default"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ybfyr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwkph"]
+_data = {
+"RESET": SubResource("Animation_f125e"),
+"default": SubResource("Animation_851le")
+}
+
+[node name="Hotel" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+frames = SubResource("SpriteFrames_wtmb4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_hwkph")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ybfyr")

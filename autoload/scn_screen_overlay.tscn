@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=7 format=3 uid="uid://cl8hnxbtbthry"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
@@ -6,9 +6,18 @@
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 
+[sub_resource type="Environment" id="Environment_2qq6b"]
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 2.51
+glow_strength = 1.34
+
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
 show_fps = true
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2qq6b")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 script = ExtResource("3_jg0vj")
@@ -37,6 +46,7 @@ texture = ExtResource("6_jp2ib")
 centered = false
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
+visible = false
 
 [node name="ScreenFade" type="ColorRect" parent="ScreenFadeOrderer"]
 offset_right = 160.0

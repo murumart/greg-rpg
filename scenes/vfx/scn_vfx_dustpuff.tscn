@@ -3,17 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_8nwun"]
 [ext_resource type="Script" path="res://scenes/vfx/scr_vfx_dustpuff.gd" id="1_ioyug"]
 
-[sub_resource type="Curve" id="Curve_w7k4o"]
+[sub_resource type="Curve" id="Curve_pukkq"]
 bake_resolution = 64
 _data = [Vector2(0, 0.872408), 0.0, 0.0, 0, 0, Vector2(0.409763, 1), -2.51568, -0.737681, 0, 0, Vector2(0.617788, 0.70295), 0.0, 0.0, 0, 0, Vector2(0.85355, 0.423844), 0.0, 0.0, 0, 0, Vector2(1, 0.134769), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[sub_resource type="Gradient" id="Gradient_the72"]
+[sub_resource type="Gradient" id="Gradient_l2y3r"]
 offsets = PackedFloat32Array(0, 0.545918, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.960784, 1, 1, 1, 0)
 
 [node name="DustPuff" type="Node2D"]
-z_index = 5
 script = ExtResource("1_ioyug")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -31,5 +30,5 @@ angular_velocity_min = -24.83
 angular_velocity_max = 450.99
 linear_accel_min = -82.76
 linear_accel_max = -44.83
-scale_amount_curve = SubResource("Curve_w7k4o")
-color_ramp = SubResource("Gradient_the72")
+scale_amount_curve = SubResource("Curve_pukkq")
+color_ramp = SubResource("Gradient_l2y3r")
