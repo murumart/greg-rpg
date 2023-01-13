@@ -58,6 +58,7 @@ GraphNode/fonts/title_font = null
 ItemList/fonts/font = null
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_6sfhd")
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/font_sizes/font_size = 8
 LineEdit/fonts/font = ExtResource("1_6sfhd")
 LineEdit/styles/focus = ExtResource("2_pr2pj")

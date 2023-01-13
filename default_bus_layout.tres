@@ -1,6 +1,29 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dt3lfhxd4k6k4"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://dt3lfhxd4k6k4"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_mks6k"]
+resource_name = "Compressor"
+threshold = -0.5
+
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_uw2d4"]
+resource_name = "Delay"
+tap1_active = false
+tap1_delay_ms = 200.0
+tap1_level_db = -2.0
+tap2_active = false
+tap2_delay_ms = 800.0
+tap2_level_db = -4.0
+feedback_active = true
+feedback_delay_ms = 500.0
+feedback_level_db = -15.92
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_nlw60"]
+resource_name = "Reverb"
+room_size = 0.36
+wet = 0.41
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectCompressor_mks6k")
+bus/0/effect/0/enabled = true
 bus/1/name = &"Music"
 bus/1/solo = false
 bus/1/mute = false
@@ -13,3 +36,13 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/3/name = &"ECHO"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectDelay_uw2d4")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectReverb_nlw60")
+bus/3/effect/1/enabled = true

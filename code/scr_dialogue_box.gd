@@ -3,16 +3,23 @@ extends Node2D
 @onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
 @onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
 
-var loaded_dialogue : Array
-var loaded_dialogue_part : Array
+@export var dialogues : Array[Dialogue]
+
+var loaded_dialogue : Dialogue
+var loaded_dialogue_line : DialogueLine
 var current_dialogue : int
+
+var dialogues_dict := {}
 
 
 func _ready() -> void:
 	hide()
+	for i in dialogues:
+		dialogues_dict[i.name] = i
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if not is_instance_valid(loaded_dialogue): return
 	if loaded_dialogue.size() < 1: return
 	if event.is_action_pressed("ui_accept") and not is_speaking():
 		next_dialogue_requested()
@@ -23,22 +30,19 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func prepare_dialogue(key: String) -> void:
 	DAT.capture_player()
-	loaded_dialogue = DialogueList.get_dialogue(key)
-	assert(loaded_dialogue.size() > 0)
+	loaded_dialogue = dialogues_dict.get(key, Dialogue.new())
+	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
+	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
 	current_dialogue = 0
-	speak_this_dialogue_part(loaded_dialogue[current_dialogue])
+	speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 
 
-func speak_this_dialogue_part(part: Array) -> void:
+func speak_this_dialogue_part(part: DialogueLine) -> void:
 	# get the data from the dialogue array
-	var text := part[DialogueList.TEXT] as String
-	var character_load : int = -1
+	var text := part.text
+	var character_load : int = part.character
 	var character : Character = null
-	if part.size() -1 > DialogueList.TEXT:
-		character_load = part[DialogueList.CHARACTER] 
-	var text_speed : float = 1.0
-	if part.size() -1 > DialogueList.CHARACTER:
-		text_speed = part[DialogueList.TEXT_SPEED]
+	var text_speed : float = part.text_speed
 	
 	portrait.texture = null
 	
@@ -61,13 +65,13 @@ func speak_this_dialogue_part(part: Array) -> void:
 func next_dialogue_requested() -> void:
 	current_dialogue += 1
 	if not current_dialogue < loaded_dialogue.size():
-		loaded_dialogue = []
-		loaded_dialogue_part = []
+		loaded_dialogue = null
+		loaded_dialogue_line = null
 		current_dialogue = 0
 		hide()
 		DAT.call_deferred("free_player")
 	else:
-		speak_this_dialogue_part(loaded_dialogue[current_dialogue])
+		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 
 
 func set_textbox_width_to_full(which: bool) -> void:

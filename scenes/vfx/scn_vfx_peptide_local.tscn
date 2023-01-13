@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://ottfotyaqcg0"]
+
+[ext_resource type="Texture2D" uid="uid://ky2i1r8qgvnj" path="res://sprites/spirit/spr_peptide_local.png" id="1_errxw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7hnp"]
+atlas = ExtResource("1_errxw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt81o"]
+atlas = ExtResource("1_errxw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d22er"]
+atlas = ExtResource("1_errxw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gktju"]
+atlas = ExtResource("1_errxw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl5de"]
+atlas = ExtResource("1_errxw")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gal2"]
+atlas = ExtResource("1_errxw")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af4kl"]
+atlas = ExtResource("1_errxw")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llt3j"]
+atlas = ExtResource("1_errxw")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_60qla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7hnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt81o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d22er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gktju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl5de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gal2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af4kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llt3j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_1m8fq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kepfu"]
+resource_name = "default"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 5, 5, 7]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkfmf"]
+_data = {
+"RESET": SubResource("Animation_1m8fq"),
+"default": SubResource("Animation_kepfu")
+}
+
+[node name="PeptideLocalSpell" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_60qla")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_lkfmf")
+}

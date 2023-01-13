@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2()
 		States.TALKING:
 			# idle if no longer talking
-			if SOL.dialogue_box.loaded_dialogue.size() < 1:
+			if not is_instance_valid(SOL.dialogue_box.loaded_dialogue) or SOL.dialogue_box.loaded_dialogue.size() < 1:
 				set_state(States.IDLE)
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed

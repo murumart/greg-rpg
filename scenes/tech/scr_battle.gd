@@ -8,8 +8,8 @@ const PARTY_MAX_SIZE := 3
 
 const BACK_PITCH := 0.75
 
-enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT_MENU, SPIRIT, ITEM_MENU, ITEM}
-var doing : Doings = Doings.NOTHING
+enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM}
+var doing := Doings.NOTHING
 
 @onready var panel : Panel = $UI/Panel
 @onready var reference_button : Button = $UI/ReferenceButton
@@ -23,10 +23,13 @@ var doing : Doings = Doings.NOTHING
 @onready var screen_list_select := $%ScreenListSelect
 @onready var screen_item_select := $%ScreenItemSelect
 @onready var screen_party_info := $%ScreenPartyInfo
+@onready var screen_spirit_name := $%ScreenSpiritName
 @onready var attack_button := $%AttackButton
 @onready var spirit_button := $%SpiritButton
 @onready var item_button := $%ItemButton
 @onready var selected_guy_display := $%SelectedGuy
+@onready var log_text := $%LogText
+@onready var spirit_name := $%SpiritName
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
@@ -37,6 +40,8 @@ var party : Array[BattleActor]
 var enemies : Array[BattleActor]
 
 var current_guy : BattleActor
+var loaded_spirits := {}
+var current_target : BattleActor
 
 var f := 0
 
@@ -54,6 +59,8 @@ func _ready() -> void:
 	spirit_button.pressed.connect(_on_spirit_pressed)
 	item_button.selected.connect(set_description)
 	item_button.pressed.connect(_on_item_pressed)
+	spirit_name.text_changed.connect(_on_spirit_name_changed)
+	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	load_battle()
 	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
@@ -92,6 +99,7 @@ func add_enemy(node: BattleActor, ally := false) -> void:
 		node.reference_to_opposing_array = party
 		enemies_node.add_child(node)
 	node.reference_to_actor_array = actors
+	node.message.connect(_on_message_received)
 	node.act_requested.connect(_on_act_requested)
 	node.act_finished.connect(_on_act_finished)
 	node.wait += 0.02
@@ -105,6 +113,7 @@ func add_party_member(id: int) -> void:
 	party_member.reference_to_actor_array = actors
 	party_member.reference_to_opposing_array = enemies
 	party_member.reference_to_team_array = party
+	party_member.message.connect(_on_message_received)
 	party_member.act_requested.connect(_on_act_requested)
 	party_member.act_finished.connect(_on_act_finished)
 	party_member.player_controlled = true
@@ -150,11 +159,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				doing = Doings.ITEM_MENU
 				open_list_screen()
 				SND.menusound(BACK_PITCH)
-			Doings.SPIRIT_MENU:
+			Doings.SPIRIT:
 				open_main_actions_screen()
 				SND.menusound(BACK_PITCH)
-			Doings.SPIRIT:
-				doing = Doings.SPIRIT_MENU
+			Doings.SPIRIT_NAME:
+				doing = Doings.SPIRIT
 				open_list_screen()
 				SND.menusound(BACK_PITCH)
 
@@ -177,9 +186,6 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 			refbutton.text = reference.actor_name
 		elif reference is int and doing == Doings.ITEM_MENU:
 			refbutton.text = DAT.get_item(reference).name
-		elif reference is int and doing == Doings.SPIRIT_MENU:
-			#refbutton.text = DAT.get_spirit(reference).name
-			pass
 		else:
 			refbutton.text = str(reference)
 		refbutton.connect("return_reference", _reference_button_pressed)
@@ -195,11 +201,10 @@ func _reference_button_pressed(reference) -> void:
 		Doings.ATTACK:
 			current_guy.attack(reference)
 			open_party_info_screen()
-		Doings.SPIRIT_MENU:
-			doing = Doings.SPIRIT
-			open_list_screen()
 		Doings.SPIRIT:
-			print(reference, " had %s used on them boororo" % "sd")
+			print("we talk spirit now")
+			current_target = reference
+			open_spirit_name_screen()
 		Doings.ITEM_MENU:
 			doing = Doings.ITEM
 			held_item_id = reference
@@ -210,7 +215,7 @@ func _reference_button_pressed(reference) -> void:
 
 
 func _on_button_reference_received(reference) -> void:
-	if doing == Doings.ATTACK:
+	if doing == Doings.ATTACK or doing == Doings.SPIRIT or doing == Doings.ITEM:
 		selected_guy_display.update(reference)
 
 
@@ -226,6 +231,10 @@ func _on_act_finished(_actor: BattleActor) -> void:
 	open_party_info_screen()
 
 
+func _on_message_received(msg: String) -> void:
+	log_text.append_text(msg + "\n")
+
+
 func _on_player_input_requested(actor: BattleActor) -> void:
 	print(actor, " wants player input")
 	current_guy = actor
@@ -234,9 +243,11 @@ func _on_player_input_requested(actor: BattleActor) -> void:
 
 func open_main_actions_screen() -> void:
 	held_item_id = -1
+	current_target = null
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.hide()
+	screen_spirit_name.hide()
 	resize_panel(44)
 	$%CharPortrait.texture = current_guy.character.portrait
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
@@ -250,7 +261,7 @@ func open_main_actions_screen() -> void:
 			attack_button.grab_focus()
 		Doings.ITEM_MENU:
 			item_button.grab_focus()
-		Doings.SPIRIT_MENU:
+		Doings.SPIRIT:
 			spirit_button.grab_focus()
 	doing = Doings.NOTHING
 
@@ -260,6 +271,7 @@ func open_list_screen() -> void:
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.hide()
+	screen_spirit_name.hide()
 	match doing:
 		Doings.ATTACK:
 			load_reference_buttons(enemies, list_containers, true)
@@ -272,9 +284,6 @@ func open_list_screen() -> void:
 			load_reference_buttons(party, list_containers, true)
 			load_reference_buttons(enemies, list_containers, false)
 			screen_list_select.show()
-		Doings.SPIRIT_MENU:
-			load_reference_buttons(current_guy.character.spirits, item_list_container, true)
-			screen_item_select.show()
 		Doings.SPIRIT:
 			load_reference_buttons(actors, list_containers, true)
 			screen_list_select.show()
@@ -294,36 +303,91 @@ func open_party_info_screen() -> void:
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.show()
+	screen_spirit_name.hide()
 	resize_panel(25)
 	update_party()
+
+
+func open_spirit_name_screen() -> void:
+	held_item_id = -1
+	resize_panel(4, 0.1)
+	$%ScreenMainActions.hide()
+	spirit_name.text = ""
+	spirit_name.editable = true
+	screen_item_select.hide()
+	screen_list_select.hide()
+	screen_party_info.hide()
+	screen_spirit_name.show()
+	for i in current_guy.character.spirits:
+		var spirit : Spirit = DAT.get_spirit(i)
+		loaded_spirits[spirit.name] = i
+	spirit_name.grab_focus()
 
 
 func _on_attack_pressed() -> void:
 	doing = Doings.ATTACK
 	open_list_screen()
-	#SND.menusound()
+	SND.menusound()
 
 
 func _on_spirit_pressed() -> void:
-	doing = Doings.SPIRIT_MENU
+	if current_guy.character.spirits.size() < 1:
+		SND.menusound(0.3)
+		set_description("this one has no spirits.")
+		return
+	doing = Doings.SPIRIT
 	open_list_screen()
-	#SND.menusound()
+	SND.menusound()
+	spirit_name.modulate = Color(1, 1, 1, 1)
 
 
 func _on_item_pressed() -> void:
 	doing = Doings.ITEM_MENU
 	open_list_screen()
-	#SND.menusound()
+	SND.menusound()
+
+
+func _on_spirit_name_changed(to: String) -> void:
+	if to in loaded_spirits.keys():
+		_on_spirit_name_submitted(to)
+		return
+	
+	SND.play_sound(preload("res://sounds/snd_gui.ogg"), {"bus": "ECHO", "pitch": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(spirit_name, "modulate", Color(1.1, 1.1, 8.0, 1.1), 0.1)
+	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
+
+
+func _on_spirit_name_submitted(submission: String) -> void:
+	print(submission)
+	if submission in loaded_spirits.keys():
+		spirit_name.editable = false
+		var spirit_id = loaded_spirits[submission]
+		var spirit := DAT.get_spirit(spirit_id)
+		if spirit.cost <= current_guy.character.magic:
+			SND.play_sound(preload("res://sounds/spirit/snd_spirit_name_found.ogg"))
+			var tw := create_tween().set_trans(Tween.TRANS_QUART)
+			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 60), 1.5)
+			
+			await get_tree().create_timer(1.5).timeout
+			current_guy.use_spirit(spirit_id, current_target)
+			open_party_info_screen()
+		else:
+			SND.play_sound(preload("res://sounds/snd_error.ogg"))
+			spirit_name.text = "not enough magic!"
+			await get_tree().create_timer(0.5).timeout
+			current_guy.turn_finished()
+			open_party_info_screen()
 
 
 func set_description(text: String) -> void:
 	description_text.text = text
 
 
-func resize_panel(new_y: int) -> void:
+func resize_panel(new_y: int, wait := 0.2) -> void:
 	var tw := create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE)
-	tw.tween_property(panel, "size:y", new_y, 0.2)
-	tw.tween_property(panel, "position:y", SCREEN_SIZE.y - new_y, 0.2)
+	tw.tween_property(panel, "size:y", new_y, wait)
+	tw.tween_property(panel, "position:y", SCREEN_SIZE.y - new_y, wait)
 
 
 func _on_update_timer_timeout() -> void:

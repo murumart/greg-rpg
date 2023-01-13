@@ -129,6 +129,7 @@ func attack(subject: BattleActor) -> void:
 	SOL.vfx_dustpuff(get_effect_center(subject))
 	SOL.vfx_bangspark(get_effect_center(subject))
 	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
+	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
@@ -136,7 +137,7 @@ func attack(subject: BattleActor) -> void:
 
 func use_spirit(id: int, subject: BattleActor) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
-	subject.handle_payload(spirit.payload)
+	subject.handle_payload(spirit.payload.set_sender(self))
 	character.magic = max(character.magic - spirit.cost, 0)
 	if spirit.animation:
 		SOL.vfx(spirit.animation, Vector2())
@@ -144,6 +145,7 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 		SOL.vfx(spirit.use_animation, get_effect_center(self))
 	if spirit.receive_animation:
 		SOL.vfx(spirit.receive_animation, get_effect_center(subject))
+	emit_message("%s: %s!" % [actor_name, spirit.name])
 		
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
 	turn_finished()
@@ -151,9 +153,10 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 
 func use_item(id: int, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
-	subject.handle_payload(item.payload)
+	subject.handle_payload(item.payload.set_sender(self))
 	if item.use != Item.Uses.NONE:
 		character.inventory.erase(id)
+	emit_message("%s used %s" % [actor_name, item.name] if subject == self else "%s used %s on %s" % [actor_name, item.name, subject.actor_name])
 	
 	await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 	turn_finished()
@@ -179,8 +182,6 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("attack", pld.attack_increase, pld.attack_increase_time)
 	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
 	introduce_status_effect("speed", pld.speed_increase, pld.speed_increase_time)
-	
-
 
 
 func status_effect_update() -> void:
@@ -192,9 +193,11 @@ func status_effect_update() -> void:
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
+	if not nomen in status_effects.keys():
+		status_effects[nomen] = {}
 	status_effects[nomen] = {
-		"strength": strength,
-		"duration": duration
+		"strength": strength + status_effects[nomen].get("strength", 0),
+		"duration": duration + status_effects[nomen].get("duration", 0)
 	}
 
 
@@ -217,4 +220,8 @@ func payload() -> BattlePayload:
 
 func get_effect_center(subject: BattleActor) -> Vector2i:
 	return subject.effect_center + Vector2i(subject.global_position) if "effect_center" in subject else Vector2i(subject.global_position)
+
+
+func emit_message(msg: String) -> void:
+	message.emit(msg)
 

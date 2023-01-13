@@ -19,7 +19,7 @@ func act() -> void:
 	if randf() >= 0.5:
 		attack(reference_to_opposing_array.pick_random() if reference_to_actor_array.size() > 0 else null)
 	else:
-		use_spirit(0, self)
+		turn_finished()
 	print(actor_name, " acting finished!")
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=26 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -28,7 +28,7 @@ speed = 1.0
 inventory = [0, 0, 1, 1]
 armour = -1
 weapon = -1
-spirits = [0]
+spirits = [0, 1]
 
 [sub_resource type="Resource" id="Resource_wjym6"]
 script = ExtResource("3_ednal")
@@ -82,7 +82,7 @@ speed = 6.0
 inventory = null
 armour = -1
 weapon = -1
-spirits = null
+spirits = []
 
 [sub_resource type="Resource" id="Resource_lquol"]
 script = ExtResource("7_wrlwy")
@@ -190,8 +190,37 @@ use = 0
 reach = 0
 payload = SubResource("Resource_mkacw")
 
+[sub_resource type="Resource" id="Resource_lat8r"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = 40.0
+defense_increase_time = 3
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_ua7wi"]
+script = ExtResource("11_qkk80")
+name_in_file = &"peptide"
+name = &"peptide"
+description = "strengthens the bonds between your flesh"
+animation = &"peptide"
+use_animation = &""
+receive_animation = &"peptide_local"
+cost = 15
+use = 2
+reach = 0
+payload = SubResource("Resource_lat8r")
+
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
 item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2")]
-spirit_list = [SubResource("Resource_1ii5w")]
+spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi")]

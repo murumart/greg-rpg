@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=19 format=3 uid="uid://cl8hnxbtbthry"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
+[ext_resource type="Script" path="res://code/scr_dialogue.gd" id="3_kwk5e"]
+[ext_resource type="Script" path="res://scr_dialogue_line.gd" id="3_p88gg"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 
@@ -12,15 +14,73 @@ glow_normalized = true
 glow_intensity = 2.51
 glow_strength = 1.34
 
+[sub_resource type="Resource" id="Resource_m7o2u"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]hello world![/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_s4wuy"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]just kidding. dumbass[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_yjxsy"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]remember last time?[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_yugxp"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]working on the game logic was fun...[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_vjws4"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_b5bui"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_b2l4m"]
+script = ExtResource("3_kwk5e")
+name = &"test"
+lines = [SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResource("Resource_yjxsy"), SubResource("Resource_yugxp"), SubResource("Resource_vjws4"), SubResource("Resource_b5bui")]
+
+[sub_resource type="Resource" id="Resource_2tu0x"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_tcwnb"]
+script = ExtResource("3_p88gg")
+text = "[color=#00ff00]why would i ever talk to you?[/color]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_l1vqh"]
+script = ExtResource("3_kwk5e")
+name = &"test2be"
+lines = [SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")]
+
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
-show_fps = true
 
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2qq6b")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 script = ExtResource("3_jg0vj")
+dialogues = [SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh")]
 
 [node name="DialogueBoxPanel" type="Panel" parent="DialogueBoxOrderer"]
 offset_left = 10.0
@@ -30,12 +90,11 @@ theme = ExtResource("2_xetbm")
 
 [node name="DialogueTextbox" type="RichTextLabel" parent="DialogueBoxOrderer/DialogueBoxPanel"]
 layout_mode = 0
-offset_left = 3.0
+offset_left = 2.0
 offset_top = 3.0
-offset_right = 135.0
+offset_right = 136.0
 offset_bottom = 28.0
 theme = ExtResource("2_xetbm")
-text = "what makes you think this time will be any different?"
 scroll_active = false
 script = ExtResource("3_so1p4")
 
