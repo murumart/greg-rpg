@@ -10,6 +10,11 @@ const SONGS := {
 		"title": "bike_spirit",
 		"link": "res://music/mus_bike_spirit.ogg"
 	},
+	"defeat": {
+		"title": "so guys, we died it",
+		"link": "res://music/mus_defeat.ogg",
+		"loop": false
+	},
 	"greg_battle": {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"
@@ -20,6 +25,7 @@ const SONGS := {
 	},
 	"victory": {
 		"title": "so guys, we did it",
-		"link": "res://music/mus_victory.ogg"
+		"link": "res://music/mus_victory.ogg",
+		"loop": false
 	}
 }

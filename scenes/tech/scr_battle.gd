@@ -3,12 +3,16 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
+var load_options := {"party": [0], "enemies": [0]}
+
 const SCREEN_SIZE := Vector2i(160, 120)
-const PARTY_MAX_SIZE := 3
+const MAX_PARTY_MEMBERS := 3
 
 const BACK_PITCH := 0.75
 
-enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM}
+enum Teams {PARTY, ENEMIES}
+
+enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
 var doing := Doings.NOTHING
 
 @onready var panel : Panel = $UI/Panel
@@ -24,26 +28,43 @@ var doing := Doings.NOTHING
 @onready var screen_item_select := $%ScreenItemSelect
 @onready var screen_party_info := $%ScreenPartyInfo
 @onready var screen_spirit_name := $%ScreenSpiritName
+@onready var screen_end := %ScreenEnd
+@onready var victory_text := %VictoryText
+@onready var defeat_text := %DefeatText
 @onready var attack_button := $%AttackButton
 @onready var spirit_button := $%SpiritButton
 @onready var item_button := $%ItemButton
 @onready var selected_guy_display := $%SelectedGuy
 @onready var log_text := $%LogText
 @onready var spirit_name := $%SpiritName
+@onready var spirit_speak_timer := %SpiritSpeakTimer
+@onready var spirit_speak_timer_progress := %SpiritSpeakTimerProgress
+var spirit_speak_timer_wait := 2.0
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
 var held_item_id : int = -1
 
 var actors : Array[BattleActor]
+var dead_actors : Array[BattleActor]
 var party : Array[BattleActor]
+var dead_party : Array[BattleActor]
 var enemies : Array[BattleActor]
+var dead_enemies : Array[BattleActor]
 
 var current_guy : BattleActor
 var loaded_spirits := {}
 var current_target : BattleActor
 
 var f := 0
+
+@export var enable_testing_cheats := false
+@export_group("Cheat Stats")
+@export var party_cheat_health := 100.0
+@export var party_cheat_magic := 30.0
+@export var party_cheat_attack := 0.0
+@export var party_cheat_defense := 0.0
+@export var party_cheat_speed := 0.0
 
 
 func _ready() -> void:
@@ -61,75 +82,109 @@ func _ready() -> void:
 	item_button.pressed.connect(_on_item_pressed)
 	spirit_name.text_changed.connect(_on_spirit_name_changed)
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
-	load_battle()
+	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+	load_battle(load_options)
 	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
 
 
 func _physics_process(_delta: float) -> void:
 	f += 1
+	match doing:
+		Doings.SPIRIT_NAME:
+			spirit_speak_timer_progress.value = remap(spirit_speak_timer.time_left, 0.0, spirit_speak_timer_wait, 0.0, 100.0)
 	#print(f)
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		go_back_a_menu()
+	if event.is_action_pressed("ui_accept"):
+		print("accept pressed")
+		if SOL.speaking: print("speaking"); return
+		print(doing)
+		if doing == Doings.DONE:
+			LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
+			set_process_unhandled_key_input(false)
+
+
 func load_battle(options := {}) -> void:
-	add_party_member(0)
-	add_party_member(2)
-	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
-	add_enemy(preload("res://scenes/characters/enemies/scn_enemy_bike_ghost.tscn").instantiate())
-	for i in party.size():
-		pass
-	current_guy = party[0]
+	for m in options.get("party", [0]):
+		add_party_member(m)
+	for e in options.get("enemies", []):
+		add_enemy(e)
+	apply_cheats()
 
 
 func set_actor_states(to: BattleActor.States) -> void:
 	get_tree().call_group("battle_actors", "set_state", to)
 
 
-func add_enemy(node: BattleActor, ally := false) -> void:
-	if ally:
-		party.append(node)
-		node.player_controlled = true
-		node.player_input_requested.connect(_on_player_input_requested)
-		node.reference_to_team_array = party
-		node.reference_to_opposing_array = enemies
-		party_node.add_child(node)
-	else:
-		enemies.append(node)
-		node.reference_to_team_array = enemies
-		node.reference_to_opposing_array = party
-		enemies_node.add_child(node)
+func add_actor(node: BattleActor, team: Teams) -> void:
+	if team == Teams.PARTY:
+		if party.size() > MAX_PARTY_MEMBERS:
+			push_error("too many party members")
+			return
 	node.reference_to_actor_array = actors
 	node.message.connect(_on_message_received)
 	node.act_requested.connect(_on_act_requested)
 	node.act_finished.connect(_on_act_finished)
-	node.wait += 0.02
+	node.died.connect(_on_actor_died)
 	actors.append(node)
+	match team:
+		Teams.PARTY:
+			party.append(node)
+			node.player_controlled = true
+			node.player_input_requested.connect(_on_player_input_requested)
+			node.reference_to_team_array = party
+			node.reference_to_opposing_array = enemies
+			party_node.add_child(node)
+			party_member_panel_container.\
+			get_child(party.find(node)).remote_transform.remote_path = node.get_path()
+		Teams.ENEMIES:
+			node.wait += 0.2
+			enemies.append(node)
+			node.reference_to_team_array = enemies
+			node.reference_to_opposing_array = party
+			enemies_node.add_child(node)
+
+
+func add_enemy(character_id: int, ally := false) -> void:
+	var character : Character = DAT.get_character(character_id)
+	var node : BattleActor
+	if DIR.enemy_scene_exists(character.id_name) and not ally:
+		node = load(DIR.ENEMY_SCENE_PATH % character.id_name).instantiate()
+	else:
+		node = preload("res://scenes/tech/scn_battle_enemy.tscn").instantiate()
+		node.character_id = character_id
+		if not ally:
+			var sprite_new := Sprite2D.new()
+			node.add_child(sprite_new)
+			sprite_new.texture = preload("res://sprites/characters/battle/spr_enemy_battle.png")
+			node.effect_center = Vector2i(0, -20)
+	
+	add_actor(node, Teams.ENEMIES if not ally else Teams.PARTY)
+	
 	arrange_enemies()
 
 
 func add_party_member(id: int) -> void:
 	var party_member : BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.character_id = id
-	party_member.reference_to_actor_array = actors
-	party_member.reference_to_opposing_array = enemies
-	party_member.reference_to_team_array = party
-	party_member.message.connect(_on_message_received)
-	party_member.act_requested.connect(_on_act_requested)
-	party_member.act_finished.connect(_on_act_finished)
-	party_member.player_controlled = true
-	party_member.player_input_requested.connect(_on_player_input_requested)
-	actors.append(party_member)
-	party.append(party_member)
-	party_node.add_child(party_member)
-	party_member_panel_container.get_child(party.find(party_member)).remote_transform.remote_path = party_member.get_path()
+	
+	add_actor(party_member, Teams.PARTY)
+	
 	update_party()
 
 
 func arrange_enemies():
+	if enemies.size() < 1: return
 	var scree := SCREEN_SIZE.x - 20
+	var tw := create_tween().set_parallel(true)
 	for e in len(enemies):
 		# space enemies evenly on the screen
-		enemies[e].global_position.x = (-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
+		var to : float = (-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
+		tw.tween_property(enemies[e], "global_position:x", to, 0.2)
 		enemies[e].global_position.y = 0
 		if e % 2 != 0:
 			enemies[e].scale.x = -1.0
@@ -144,28 +199,27 @@ func update_party() -> void:
 		party_member_panel_container.get_child(i).show()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		match doing:
-			Doings.NOTHING:
-				pass
-			Doings.ATTACK:
-				open_main_actions_screen()
-				SND.menusound(BACK_PITCH)
-			Doings.ITEM_MENU:
-				open_main_actions_screen()
-				SND.menusound(BACK_PITCH)
-			Doings.ITEM:
-				doing = Doings.ITEM_MENU
-				open_list_screen()
-				SND.menusound(BACK_PITCH)
-			Doings.SPIRIT:
-				open_main_actions_screen()
-				SND.menusound(BACK_PITCH)
-			Doings.SPIRIT_NAME:
-				doing = Doings.SPIRIT
-				open_list_screen()
-				SND.menusound(BACK_PITCH)
+func go_back_a_menu() -> void:
+	match doing:
+		Doings.NOTHING:
+			pass
+		Doings.ATTACK:
+			open_main_actions_screen()
+			SND.menusound(BACK_PITCH)
+		Doings.ITEM_MENU:
+			open_main_actions_screen()
+			SND.menusound(BACK_PITCH)
+		Doings.ITEM:
+			doing = Doings.ITEM_MENU
+			open_list_screen()
+			SND.menusound(BACK_PITCH)
+		Doings.SPIRIT:
+			open_main_actions_screen()
+			SND.menusound(BACK_PITCH)
+		Doings.SPIRIT_NAME:
+			doing = Doings.SPIRIT
+			open_list_screen()
+			SND.menusound(BACK_PITCH)
 
 
 func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
@@ -202,9 +256,9 @@ func _reference_button_pressed(reference) -> void:
 			current_guy.attack(reference)
 			open_party_info_screen()
 		Doings.SPIRIT:
-			print("we talk spirit now")
 			current_target = reference
 			open_spirit_name_screen()
+			SND.play_sound(preload("res://sounds/snd_gui.ogg"), {"bus": "ECHO", "pitch": 0.8})
 		Doings.ITEM_MENU:
 			doing = Doings.ITEM
 			held_item_id = reference
@@ -227,8 +281,29 @@ func _on_act_requested(actor: BattleActor) -> void:
 
 
 func _on_act_finished(_actor: BattleActor) -> void:
+	if doing == Doings.END: return
 	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
+	check_end()
+
+
+func _on_actor_died(actor: BattleActor) -> void:
+	if actor in party:
+		dead_party.append(party.pop_at(party.find(actor)))
+	if actor in enemies:
+		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
+	dead_actors.append(actors.pop_at(actors.find(actor)))
+	arrange_enemies()
+	update_party()
+	check_end()
+
+
+func check_end() -> void:
+	var end_condition := party.size() < 1 or enemies.size() < 1
+	if end_condition:
+		doing = Doings.END
+		open_end_screen(party.size() > 0)
+		print("ENDING BATTLE (%s)" % "victory" if party.size() > 0 else "defeat")
 
 
 func _on_message_received(msg: String) -> void:
@@ -248,6 +323,7 @@ func open_main_actions_screen() -> void:
 	screen_list_select.hide()
 	screen_party_info.hide()
 	screen_spirit_name.hide()
+	screen_end.hide()
 	resize_panel(44)
 	$%CharPortrait.texture = current_guy.character.portrait
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
@@ -272,6 +348,7 @@ func open_list_screen() -> void:
 	screen_list_select.hide()
 	screen_party_info.hide()
 	screen_spirit_name.hide()
+	screen_end.hide()
 	match doing:
 		Doings.ATTACK:
 			load_reference_buttons(enemies, list_containers, true)
@@ -298,17 +375,20 @@ func open_list_screen() -> void:
 
 
 func open_party_info_screen() -> void:
+	doing = Doings.NOTHING
 	held_item_id = -1
 	$%ScreenMainActions.hide()
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.show()
 	screen_spirit_name.hide()
+	screen_end.hide()
 	resize_panel(25)
 	update_party()
 
 
 func open_spirit_name_screen() -> void:
+	doing = Doings.SPIRIT_NAME
 	held_item_id = -1
 	resize_panel(4, 0.1)
 	$%ScreenMainActions.hide()
@@ -318,10 +398,55 @@ func open_spirit_name_screen() -> void:
 	screen_list_select.hide()
 	screen_party_info.hide()
 	screen_spirit_name.show()
+	spirit_speak_timer.paused = false
+	spirit_speak_timer.start(spirit_speak_timer_wait)
 	for i in current_guy.character.spirits:
 		var spirit : Spirit = DAT.get_spirit(i)
 		loaded_spirits[spirit.name] = i
 	spirit_name.grab_focus()
+
+
+func _on_spirit_speak_timer_timeout() -> void:
+	SND.play_sound(preload("res://sounds/snd_error.ogg"), {pitch = 0.7, bus = "ECHO"})
+	spirit_name.text = "moment passed"
+	spirit_name.modulate = Color(2, 0.2, 0.4)
+	spirit_name.editable = false
+	await get_tree().create_timer(0.5).timeout
+	current_guy.turn_finished()
+	open_party_info_screen()
+
+
+func open_end_screen(victory: bool) -> void:
+	set_actor_states(BattleActor.States.IDLE)
+	screen_item_select.hide()
+	screen_list_select.hide()
+	screen_party_info.hide()
+	screen_spirit_name.hide()
+	resize_panel(10)
+	screen_end.show()
+	victory_text.visible = victory
+	defeat_text.visible = !victory
+	await get_tree().create_timer(1.0).timeout
+	resize_panel(60)
+	screen_party_info.show()
+	victory_text.speak_text()
+	defeat_text.speak_text()
+	if victory:
+		SND.play_song("victory", 10, {start_volume = 0.0})
+		var xp_pool : int = 0
+		for i in dead_enemies:
+			print(i.character.level)
+			xp_pool += i.character.level
+		print("xp pool: ", xp_pool)
+		for i in party:
+			i.character.add_experience(xp_pool)
+			await get_tree().process_frame
+			if SOL.speaking:
+				await SOL.dialogue_closed
+		print("doings should be done now")
+		doing = Doings.DONE
+	else:
+		SND.play_song("defeat", 10, {start_volume = 0.0})
 
 
 func _on_attack_pressed() -> void:
@@ -360,6 +485,7 @@ func _on_spirit_name_changed(to: String) -> void:
 
 func _on_spirit_name_submitted(submission: String) -> void:
 	print(submission)
+	spirit_speak_timer.paused = true
 	if submission in loaded_spirits.keys():
 		spirit_name.editable = false
 		var spirit_id = loaded_spirits[submission]
@@ -367,17 +493,18 @@ func _on_spirit_name_submitted(submission: String) -> void:
 		if spirit.cost <= current_guy.character.magic:
 			SND.play_sound(preload("res://sounds/spirit/snd_spirit_name_found.ogg"))
 			var tw := create_tween().set_trans(Tween.TRANS_QUART)
-			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 60), 1.5)
+			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 10), 1.5)
 			
 			await get_tree().create_timer(1.5).timeout
 			current_guy.use_spirit(spirit_id, current_target)
 			open_party_info_screen()
+			return
 		else:
-			SND.play_sound(preload("res://sounds/snd_error.ogg"))
 			spirit_name.text = "not enough magic!"
-			await get_tree().create_timer(0.5).timeout
-			current_guy.turn_finished()
-			open_party_info_screen()
+	SND.play_sound(preload("res://sounds/snd_error.ogg"), {bus = "ECHO"})
+	await get_tree().create_timer(0.5).timeout
+	current_guy.turn_finished()
+	open_party_info_screen()
 
 
 func set_description(text: String) -> void:
@@ -394,3 +521,18 @@ func _on_update_timer_timeout() -> void:
 	if screen_party_info.visible:
 		update_party()
 
+
+func apply_cheats() -> void:
+	if not enable_testing_cheats: return
+	for i in party:
+		i.character.max_health = party_cheat_health
+		i.character.health = party_cheat_health
+		i.character.max_magic = party_cheat_magic
+		i.character.magic = party_cheat_magic
+		i.character.attack = party_cheat_attack
+		i.character.defense = party_cheat_defense
+		i.character.speed = party_cheat_speed
+
+
+func _option_init(options := {}) -> void:
+	load_options = options

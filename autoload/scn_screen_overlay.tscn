@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=24 format=3 uid="uid://cl8hnxbtbthry"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
@@ -72,6 +72,34 @@ script = ExtResource("3_kwk5e")
 name = &"test2be"
 lines = [SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")]
 
+[sub_resource type="Resource" id="Resource_offmx"]
+script = ExtResource("3_p88gg")
+text = "[center]victory![/center]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_m10ek"]
+script = ExtResource("3_kwk5e")
+name = &"battle_victory"
+lines = [SubResource("Resource_offmx")]
+
+[sub_resource type="Resource" id="Resource_6lgx5"]
+script = ExtResource("3_p88gg")
+text = "[center]level up![/center]"
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_3r8jb"]
+script = ExtResource("3_p88gg")
+text = "x leveled up to x."
+character = -1
+text_speed = 1.0
+
+[sub_resource type="Resource" id="Resource_3xhxu"]
+script = ExtResource("3_kwk5e")
+name = &"levelup"
+lines = [SubResource("Resource_6lgx5"), SubResource("Resource_3r8jb")]
+
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
 
@@ -80,7 +108,7 @@ environment = SubResource("Environment_2qq6b")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 script = ExtResource("3_jg0vj")
-dialogues = [SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh")]
+dialogues = [SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")]
 
 [node name="DialogueBoxPanel" type="Panel" parent="DialogueBoxOrderer"]
 offset_left = 10.0

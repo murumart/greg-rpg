@@ -3,6 +3,7 @@ extends Node
 # handles access to files
 
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
+const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s.tscn"
 
 
 func _init() -> void:
@@ -25,4 +26,9 @@ func get_dict_from_file(filename : String) -> Dictionary:
 	var returnable : Dictionary = bytes_to_var(file.get_var())
 	return returnable
 
+
+func enemy_scene_exists(name_in_file: String) -> bool:
+	if not FileAccess.file_exists(ENEMY_SCENE_PATH % name_in_file):
+		return false
+	return true
 

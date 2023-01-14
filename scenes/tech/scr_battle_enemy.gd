@@ -17,14 +17,17 @@ func act() -> void:
 	super.act()
 	
 	if randf() >= 0.5:
-		attack(reference_to_opposing_array.pick_random() if reference_to_actor_array.size() > 0 else null)
+		if reference_to_opposing_array.size() > 0:
+			attack(reference_to_opposing_array.pick_random())
+		else:
+			turn_finished()
 	else:
 		turn_finished()
 	print(actor_name, " acting finished!")
 
 
 func hurt(amount: float) -> void:
-	super.hurt(amount)
+	if amount != 0.0: super.hurt(amount)
 	if state != States.DEAD:
 		animate("hurt")
 	else:
@@ -74,3 +77,7 @@ func animate(what: String) -> void:
 			tw.tween_property(self, "scale:y", 0.9, 0.04)
 			tw.tween_property(self, "scale:y", 1.1, 0.1)
 			tw.tween_property(self, "scale:y", 1.0, 0.2)
+		"death":
+			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_parallel(true)
+			tw.tween_property(self, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
+			tw.tween_property(self, "global_position:y", 200, 3.0)

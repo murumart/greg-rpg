@@ -3,17 +3,23 @@ extends CanvasLayer
 # screen layer over everything else. used for things like UI
 
 signal fade_finished
+signal dialogue_closed
 
 const SCREEN_SIZE := Vector2i(160, 120)
 
 @export var show_fps := false
 var fps_label : Label
 
+var speaking := false
+
 @onready var dialogue_box := $DialogueBoxOrderer
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
 
 
 func _ready() -> void:
+	dialogue_box.dialogue_closed.connect(_on_dialogue_closed)
+	dialogue_box.started_speaking.connect(_on_speaking_started)
+	dialogue_box.finished_speaking.connect(_on_speaking_stopped)
 	if show_fps:
 		fps_label = Label.new()
 		fps_label.theme = preload("res://resources/thm_main_ui.tres")
@@ -28,6 +34,20 @@ func _input(_event: InputEvent) -> void:
 
 func dialogue(key: String) -> void:
 	dialogue_box.prepare_dialogue(key)
+
+
+func _on_dialogue_closed() -> void:
+	dialogue_closed.emit()
+
+
+func _on_speaking_started() -> void:
+	print("started speaking")
+	speaking = true
+
+
+func _on_speaking_stopped() -> void:
+	print("stopped speaking")
+	speaking = false
 
 
 func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := true) -> void:
@@ -56,10 +76,12 @@ func vfx_bangspark(pos: Vector2) -> void:
 	vfx("bangspark", pos, {"random_rotation": true})
 
 
-func vfx(nomen: String, pos: Vector2, options := {}) -> void:
+func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
-	effect.global_position = pos + SCREEN_SIZE / 2.0
-	add_child(effect)
+	effect.z_index = 100
+	var parent : Node = options.get("parent", self)
+	parent.add_child(effect)
+	effect.global_position = pos + SCREEN_SIZE / 2.0 if not "global_position" in parent else pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)
 	if options.get("free_time", -1.0) > 0:

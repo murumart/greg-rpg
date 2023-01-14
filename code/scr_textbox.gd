@@ -1,6 +1,8 @@
 extends RichTextLabel
 class_name TextBox
 
+signal speak_finished
+
 var tween_reference : Tween
 
 
@@ -18,6 +20,7 @@ func speak_text(options := {}):
 	var tw := create_tween()
 	tween_reference = tw
 	tw.tween_property(self, "visible_ratio", 1.0, OPT.text_speak_time * speaking_speed)
+	tw.tween_callback(func(): speak_finished.emit())
 
 
 func skip_to_end():

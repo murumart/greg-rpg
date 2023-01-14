@@ -17,6 +17,12 @@ func _init() -> void:
 	pass
 
 
+# entry point for a new game.
+func start_game() -> void:
+	set_data("party", [0])
+	LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
+
+
 func set_data(key, value) -> void:
 	A[key] = value
 

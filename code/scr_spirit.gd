@@ -17,4 +17,5 @@ enum Reach {LOCAL, ALL, TEAM}
 @export var cost := 15
 @export var use := Uses.NONE
 @export var reach := Reach.LOCAL
+@export var payload_reception_count := 1
 @export var payload : BattlePayload

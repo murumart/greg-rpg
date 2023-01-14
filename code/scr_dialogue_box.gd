@@ -1,5 +1,9 @@
 extends Node2D
 
+signal dialogue_closed
+signal started_speaking
+signal finished_speaking
+
 @onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
 @onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
 
@@ -23,9 +27,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if loaded_dialogue.size() < 1: return
 	if event.is_action_pressed("ui_accept") and not is_speaking():
 		next_dialogue_requested()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		if is_speaking():
 			textbox.skip_to_end()
+			textbox.speak_finished.emit() # yeah
+			get_viewport().set_input_as_handled()
 
 
 func prepare_dialogue(key: String) -> void:
@@ -57,9 +64,12 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	
 	show()
 	textbox.set_text(text)
+	started_speaking.emit()
 	textbox.speak_text({"speaking_speed": text_speed})
 	if character and character.voice_sound:
 		SND.play_sound(character.voice_sound, {"bus": "Speech"})
+	await textbox.speak_finished
+	finished_speaking.emit()
 
 
 func next_dialogue_requested() -> void:
@@ -70,6 +80,7 @@ func next_dialogue_requested() -> void:
 		current_dialogue = 0
 		hide()
 		DAT.call_deferred("free_player")
+		call_deferred("emit_signal", "dialogue_closed")
 	else:
 		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 
@@ -85,3 +96,7 @@ func set_textbox_width_to_full(which: bool) -> void:
 
 func is_speaking() -> bool:
 	return not textbox.visible_ratio == 1.0
+
+
+func adjust_line(key: String, line_id: int, to: String) -> void:
+	dialogues_dict.get(key).lines[line_id].text = to

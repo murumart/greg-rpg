@@ -12,8 +12,9 @@ func change_scene_to(path: String, options := {}) -> void:
 		for node in free_us:
 			node.call_deferred("queue_free")
 	await get_tree().process_frame
-	var new_scene : PackedScene = load(path)
-	get_tree().root.call_deferred("add_child", new_scene.instantiate(), false)
+	var new_scene : Node = load(path).instantiate()
+	get_tree().root.call_deferred("add_child", new_scene, false)
+	if new_scene.has_method("_option_init"): new_scene._option_init(options)
 
 
 func level_transition(path: String, options := {}) -> void:
@@ -21,5 +22,11 @@ func level_transition(path: String, options := {}) -> void:
 	SOL.fade_screen(Color(0, 0, 0, 0), Color(0, 0, 0, 1), fadetime)
 	await SOL.fade_finished
 	DAT.save_nodes_data()
-	change_scene_to(path)
+	change_scene_to(path, options)
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), fadetime)
+
+
+func enter_battle(options := {}) -> void:
+	SOL.vfx("battle_enter", Vector2())
+	await get_tree().create_timer(3.0).timeout
+	change_scene_to("res://scenes/tech/scn_battle.tscn", options)

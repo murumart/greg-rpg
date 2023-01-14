@@ -30,4 +30,5 @@ receive_animation = &""
 cost = 21912
 use = 1
 reach = 1
+payload_reception_count = 1
 payload = SubResource("Resource_ukid5")

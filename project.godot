@@ -133,6 +133,7 @@ SND="*res://autoload/scr_sound.gd"
 
 [debug]
 
+gdscript/warnings/standalone_expression=2
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 [display]
@@ -170,6 +171,6 @@ ui_cancel={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0.0627451, 0.0941176, 0.196078, 1)
 textures/canvas_textures/default_texture_filter=0

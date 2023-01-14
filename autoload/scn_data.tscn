@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=38 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -28,7 +28,7 @@ speed = 1.0
 inventory = [0, 0, 1, 1]
 armour = -1
 weapon = -1
-spirits = [0, 1]
+spirits = [0, 1, 2, 3, 4, 5, 6, 7]
 
 [sub_resource type="Resource" id="Resource_wjym6"]
 script = ExtResource("3_ednal")
@@ -88,11 +88,11 @@ spirits = []
 script = ExtResource("7_wrlwy")
 health = null
 health_percent = 0.0
-max_health_percent = 0.08
+max_health_percent = 8.0
 pierce_defense = 0.0
 magic = null
 magic_percent = null
-max_magic_percent = 0.01
+max_magic_percent = 10.0
 attack_increase = null
 attack_increase_time = null
 defense_increase = null
@@ -185,9 +185,10 @@ description = "recuperation"
 animation = &"hotel"
 use_animation = &""
 receive_animation = &"hotel_local"
-cost = 15
+cost = 21
 use = 0
 reach = 0
+payload_reception_count = 1
 payload = SubResource("Resource_mkacw")
 
 [sub_resource type="Resource" id="Resource_lat8r"]
@@ -214,13 +215,194 @@ description = "strengthens the bonds between your flesh"
 animation = &"peptide"
 use_animation = &""
 receive_animation = &"peptide_local"
-cost = 15
+cost = 30
 use = 2
 reach = 0
+payload_reception_count = 1
 payload = SubResource("Resource_lat8r")
+
+[sub_resource type="Resource" id="Resource_5vjmp"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = 12.0
+attack_increase_time = 6
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_l10ik"]
+script = ExtResource("11_qkk80")
+name_in_file = &"jglove"
+name = &"j. glove"
+description = "angry hands"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 67
+use = 2
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_5vjmp")
+
+[sub_resource type="Resource" id="Resource_476qf"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = -20.0
+attack_increase_time = 6
+defense_increase = -20.0
+defense_increase_time = 6
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_nvoa0"]
+script = ExtResource("11_qkk80")
+name_in_file = &"peanuts"
+name = &"peanuts"
+description = "crumbs everywhere"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 41
+use = 3
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_476qf")
+
+[sub_resource type="Resource" id="Resource_6notv"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = -20.0
+speed_increase_time = 3
+
+[sub_resource type="Resource" id="Resource_kibjd"]
+script = ExtResource("11_qkk80")
+name_in_file = &"littleman"
+name = &"little man"
+description = "run on short legs"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 60
+use = 3
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_6notv")
+
+[sub_resource type="Resource" id="Resource_2etd8"]
+script = ExtResource("7_wrlwy")
+health = -60.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_xhkow"]
+script = ExtResource("11_qkk80")
+name_in_file = &"personally"
+name = &"personally"
+description = "don't take it personally"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 60
+use = 1
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_2etd8")
+
+[sub_resource type="Resource" id="Resource_50eww"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = -30.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_ylqv3"]
+script = ExtResource("11_qkk80")
+name_in_file = &"roundup"
+name = &"round up"
+description = "to the inevitable end"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 81
+use = 1
+reach = 2
+payload_reception_count = 1
+payload = SubResource("Resource_50eww")
+
+[sub_resource type="Resource" id="Resource_1m4tw"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = -9.8
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_liee3"]
+script = ExtResource("11_qkk80")
+name_in_file = &"mooncity"
+name = &"moon city"
+description = "turn that world upside down"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 200
+use = 1
+reach = 2
+payload_reception_count = 10
+payload = SubResource("Resource_1m4tw")
 
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
 item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2")]
-spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi")]
+spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3")]

@@ -21,5 +21,6 @@ func update(actor: BattleActor) -> void:
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
 	wait_bar.value = actor.wait
+	remote_transform.position = Vector2(12, 12)
 	if charc.health <= 0.0:
 		portrait.modulate.a = 0.5

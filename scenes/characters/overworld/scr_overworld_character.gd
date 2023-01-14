@@ -31,9 +31,10 @@ var moving_towards_target := 0.0
 @export var chase_target : Node2D
 @export var chase_distance := 32
 
-@export_group("Conversation")
+@export_group("Interaction")
 var convo_progress := 0
 @export var default_lines : Array[StringName]
+@export var battle_info : Dictionary = {}
 
 @export_group("Save Information")
 @export var save_position : bool = false
@@ -101,6 +102,10 @@ func interacted() -> void:
 		velocity = Vector2()
 		SOL.dialogue(default_lines[convo_progress])
 		convo_progress = mini(convo_progress + 1, default_lines.size() - 1)
+	if battle_info:
+		debprint(battle_info)
+		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
+			LTS.enter_battle(battle_info)
 
 
 func _on_random_movement_timer_timeout() -> void:

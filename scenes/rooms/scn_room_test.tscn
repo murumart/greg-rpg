@@ -479,6 +479,9 @@ random_movement = true
 random_movement_wait = 6.0
 chase_target = NodePath("../MDP5")
 chase_distance = 128
+battle_info = {
+"enemies": [3]
+}
 
 [node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="BikeGhost"]
 position = Vector2(0, -8)

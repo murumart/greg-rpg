@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dn3qvlsl4h8ap"]
+[gd_scene load_steps=15 format=3 uid="uid://d2no3m83ld8fr"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_button.gd" id="5_b8bni"]
+[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
 [ext_resource type="PackedScene" uid="uid://is6bmhsr1fav" path="res://scenes/tech/scn_battle_member_info.tscn" id="7_is2uq"]
+[ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyurf"]
 bg_color = Color(0, 0, 0, 1)
@@ -55,6 +56,10 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
+enable_testing_cheats = true
+party_cheat_magic = 2.0201e+06
+party_cheat_attack = 99.0
+party_cheat_speed = 99.0
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
@@ -123,7 +128,7 @@ mouse_filter = 2
 text = "tussle"
 clip_text = true
 text_overrun_behavior = 3
-script = ExtResource("5_b8bni")
+script = ExtResource("4_ht2pp")
 description = "go in with your hands"
 
 [node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
@@ -141,7 +146,7 @@ mouse_filter = 2
 text = "spirit"
 clip_text = true
 text_overrun_behavior = 3
-script = ExtResource("5_b8bni")
+script = ExtResource("4_ht2pp")
 description = "maybe magic solves this"
 
 [node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions"]
@@ -159,7 +164,7 @@ mouse_filter = 2
 text = "object"
 clip_text = true
 text_overrun_behavior = 3
-script = ExtResource("5_b8bni")
+script = ExtResource("4_ht2pp")
 description = "dig through your pockets"
 
 [node name="CharPortrait" type="Sprite2D" parent="UI/Panel/ScreenMainActions"]
@@ -198,6 +203,7 @@ autowrap_mode = 0
 
 [node name="ScreenListSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -315,6 +321,7 @@ layout_mode = 2
 
 [node name="ScreenSpiritName" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_top = -39.0
 offset_right = 160.0
@@ -342,6 +349,55 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
 
+[node name="SpiritSpeakTimerProgress" type="ProgressBar" parent="UI/Panel/ScreenSpiritName"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 34.0
+offset_right = 160.0
+offset_bottom = 35.0
+value = 100.0
+show_percentage = false
+
+[node name="SpiritSpeakTimer" type="Timer" parent="UI/Panel/ScreenSpiritName"]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
+
+[node name="ScreenEnd" type="Control" parent="UI/Panel"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 59.0
+
+[node name="VictoryText" type="RichTextLabel" parent="UI/Panel/ScreenEnd"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 27.0
+offset_right = 158.0
+offset_bottom = 53.0
+bbcode_enabled = true
+text = "[center][color=#ff8800]victory![/color]
+
+all enemies defeated.[/center]"
+visible_characters_behavior = 1
+script = ExtResource("7_qtl4a")
+
+[node name="DefeatText" type="RichTextLabel" parent="UI/Panel/ScreenEnd"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 27.0
+offset_right = 158.0
+offset_bottom = 53.0
+bbcode_enabled = true
+text = "[center][color=#ff2244]defeat.[/color]
+
+your resolve was overcome.[/center]"
+visible_characters_behavior = 1
+script = ExtResource("7_qtl4a")
+
 [node name="ReferenceButton" type="Button" parent="UI"]
 visible = false
 layout_mode = 0
@@ -351,7 +407,7 @@ mouse_filter = 2
 text = "greg"
 flat = true
 alignment = 0
-script = ExtResource("5_b8bni")
+script = ExtResource("4_ht2pp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = SubResource("AudioStreamOggVorbis_m7oim")

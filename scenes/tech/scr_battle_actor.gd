@@ -1,14 +1,16 @@
 extends Node2D
 class_name BattleActor
 
-const WAIT_AFTER_ATTACK := 2.0
-const WAIT_AFTER_SPIRIT := 2.0
-const WAIT_AFTER_ITEM := 2.0
+const WAIT_AFTER_ATTACK := 1.0
+const WAIT_AFTER_SPIRIT := 1.0
+const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
+const WAIT_AFTER_ITEM := 1.00
 
 signal message(msg: String)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
+signal died(who: BattleActor)
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
@@ -20,9 +22,9 @@ var actor_name : StringName
 @export var armour : Item
 var status_effects : Dictionary = {}
 
-var reference_to_team_array := []
-var reference_to_opposing_array := []
-var reference_to_actor_array := []
+var reference_to_team_array : Array[BattleActor] = []
+var reference_to_opposing_array : Array[BattleActor] = []
+var reference_to_actor_array : Array[BattleActor] = []
 
 var player_controlled := false
 
@@ -70,7 +72,12 @@ func heal(amount: float) -> void:
 func hurt(amount: float) -> void:
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
+		died.emit(self)
 		state = States.DEAD
+		global_position.y += 2
+		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5})
+	else:
+		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(-10, 0)})
 
 
 func get_attack() -> float:
@@ -126,8 +133,8 @@ func account_defense(x: float) -> float:
 func attack(subject: BattleActor) -> void:
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	subject.handle_payload(pld)
-	SOL.vfx_dustpuff(get_effect_center(subject))
-	SOL.vfx_bangspark(get_effect_center(subject))
+	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject, free_time = 1.0})
+	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
 	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	
@@ -137,16 +144,33 @@ func attack(subject: BattleActor) -> void:
 
 func use_spirit(id: int, subject: BattleActor) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
-	subject.handle_payload(spirit.payload.set_sender(self))
 	character.magic = max(character.magic - spirit.cost, 0)
+	emit_message("%s: %s!" % [actor_name, spirit.name])
+	# animating
 	if spirit.animation:
 		SOL.vfx(spirit.animation, Vector2())
 	if spirit.use_animation:
 		SOL.vfx(spirit.use_animation, get_effect_center(self))
-	if spirit.receive_animation:
-		SOL.vfx(spirit.receive_animation, get_effect_center(subject))
-	emit_message("%s: %s!" % [actor_name, spirit.name])
-		
+	# who should be targeted by the spirit
+	var targets : Array[BattleActor]
+	if spirit.reach == Spirit.Reach.TEAM:
+		targets = subject.get_team()
+	elif spirit.reach == Spirit.Reach.ALL:
+		targets = reference_to_actor_array
+	else:
+		targets = [subject]
+	print(targets)
+	# all targets
+	for receiver in targets:
+		if spirit.receive_animation:
+			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
+		for i in spirit.payload_reception_count:
+			receiver.handle_payload(spirit.payload.set_sender(self))
+			# we wait a bit before applying the payload again
+			await get_tree().create_timer(
+					(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
+			).timeout
+	
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
 	turn_finished()
 
@@ -168,8 +192,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	
 	var health_change := 0.0
 	health_change += pld.health
-	health_change += pld.health_percent * character.health
-	health_change += pld.max_health_percent * character.max_health
+	health_change += pld.health_percent / 100.0 * character.health
+	health_change += pld.max_health_percent / 100.0 * character.max_health
 	if health_change:
 		if health_change > 0:
 			heal(health_change)
@@ -177,7 +201,7 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			hurt(health_change)
 	
-	character.magic += pld.magic + (pld.magic_percent * character.magic) + (pld.max_magic_percent * character.max_magic)
+	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
 	
 	introduce_status_effect("attack", pld.attack_increase, pld.attack_increase_time)
 	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
@@ -211,6 +235,7 @@ func load_character(id: int) -> Character:
 
 
 func offload_character() -> void:
+	character.health = maxf(character.health, 1.0)
 	DAT.character_list[character_id] = character
 
 
@@ -225,3 +250,6 @@ func get_effect_center(subject: BattleActor) -> Vector2i:
 func emit_message(msg: String) -> void:
 	message.emit(msg)
 
+
+func get_team() -> Array[BattleActor]:
+	return reference_to_team_array
