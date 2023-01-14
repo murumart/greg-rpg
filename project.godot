@@ -42,7 +42,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"DialogueLine",
 "language": &"GDScript",
-"path": "res://scr_dialogue_line.gd"
+"path": "res://code/scr_dialogue_line.gd"
 }, {
 "base": "Area2D",
 "class": &"InteractionArea",

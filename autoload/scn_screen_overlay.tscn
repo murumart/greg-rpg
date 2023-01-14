@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cl8hnxbtbthry"]
+[gd_scene load_steps=24 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
+[ext_resource type="Script" path="res://code/scr_dialogue_line.gd" id="3_02o1n"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
 [ext_resource type="Script" path="res://code/scr_dialogue.gd" id="3_kwk5e"]
-[ext_resource type="Script" path="res://scr_dialogue_line.gd" id="3_p88gg"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 
@@ -15,37 +15,37 @@ glow_intensity = 2.51
 glow_strength = 1.34
 
 [sub_resource type="Resource" id="Resource_m7o2u"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]hello world![/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_s4wuy"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]just kidding. dumbass[/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_yjxsy"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]remember last time?[/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_yugxp"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]working on the game logic was fun...[/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_vjws4"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_b5bui"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
 character = -1
 text_speed = 1.0
@@ -56,13 +56,13 @@ name = &"test"
 lines = [SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResource("Resource_yjxsy"), SubResource("Resource_yugxp"), SubResource("Resource_vjws4"), SubResource("Resource_b5bui")]
 
 [sub_resource type="Resource" id="Resource_2tu0x"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_tcwnb"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[color=#00ff00]why would i ever talk to you?[/color]"
 character = -1
 text_speed = 1.0
@@ -73,7 +73,7 @@ name = &"test2be"
 lines = [SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")]
 
 [sub_resource type="Resource" id="Resource_offmx"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[center]victory![/center]"
 character = -1
 text_speed = 1.0
@@ -84,13 +84,13 @@ name = &"battle_victory"
 lines = [SubResource("Resource_offmx")]
 
 [sub_resource type="Resource" id="Resource_6lgx5"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "[center]level up![/center]"
 character = -1
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_3r8jb"]
-script = ExtResource("3_p88gg")
+script = ExtResource("3_02o1n")
 text = "x leveled up to x."
 character = -1
 text_speed = 1.0
