@@ -3,13 +3,21 @@ extends Node
 # handles access to files
 
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
-const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s.tscn"
+const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s"
+const TSCN := ".tscn"
+const SCN := ".scn"
 
 
 func _init() -> void:
+	print("DIR init")
+	print("project is standalone" if standalone() else "project is editor version")
 	# assure that a greg_rpg folder exists in user data
 	if not DirAccess.dir_exists_absolute(GREG_USER_FOLDER_PATH):
 		DirAccess.make_dir_absolute(GREG_USER_FOLDER_PATH)
+
+
+func standalone() -> bool:
+	return OS.has_feature("standalone")
 
 
 func write_dict_to_file(data: Dictionary, filename : String) -> void:
@@ -28,7 +36,17 @@ func get_dict_from_file(filename : String) -> Dictionary:
 
 
 func enemy_scene_exists(name_in_file: String) -> bool:
-	if not FileAccess.file_exists(ENEMY_SCENE_PATH % name_in_file):
+	var path := enemy_scene_path(name_in_file)
+	print(path)
+	if not FileAccess.file_exists(path):
 		return false
 	return true
 
+
+func enemy_scene_path(name_in_file: String) -> String:
+	return str((ENEMY_SCENE_PATH % name_in_file), SCN if standalone() else TSCN)
+
+
+func get_dialogue_file() -> String:
+	var file := FileAccess.open("res://resources/res_dialogue.txt", FileAccess.READ)
+	return file.get_as_text()

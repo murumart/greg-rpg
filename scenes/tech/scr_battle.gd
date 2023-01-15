@@ -100,9 +100,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("ui_accept"):
-		print("accept pressed")
 		if SOL.speaking: print("speaking"); return
-		print(doing)
 		if doing == Doings.DONE:
 			LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
 			set_process_unhandled_key_input(false)
@@ -113,6 +111,7 @@ func load_battle(options := {}) -> void:
 		add_party_member(m)
 	for e in options.get("enemies", []):
 		add_enemy(e)
+	SND.play_song(options.get("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
 
 
@@ -153,7 +152,7 @@ func add_enemy(character_id: int, ally := false) -> void:
 	var character : Character = DAT.get_character(character_id)
 	var node : BattleActor
 	if DIR.enemy_scene_exists(character.id_name) and not ally:
-		node = load(DIR.ENEMY_SCENE_PATH % character.id_name).instantiate()
+		node = load(DIR.enemy_scene_path(character.id_name)).instantiate()
 	else:
 		node = preload("res://scenes/tech/scn_battle_enemy.tscn").instantiate()
 		node.character_id = character_id
@@ -288,6 +287,7 @@ func _on_act_finished(_actor: BattleActor) -> void:
 
 
 func _on_actor_died(actor: BattleActor) -> void:
+	print(actor, " died")
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
@@ -303,7 +303,6 @@ func check_end() -> void:
 	if end_condition:
 		doing = Doings.END
 		open_end_screen(party.size() > 0)
-		print("ENDING BATTLE (%s)" % "victory" if party.size() > 0 else "defeat")
 
 
 func _on_message_received(msg: String) -> void:
@@ -417,6 +416,7 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 
 func open_end_screen(victory: bool) -> void:
+	print("ENDING BATTLE: ", "victory" if victory else "defeat")
 	set_actor_states(BattleActor.States.IDLE)
 	screen_item_select.hide()
 	screen_list_select.hide()
@@ -426,12 +426,15 @@ func open_end_screen(victory: bool) -> void:
 	screen_end.show()
 	victory_text.visible = victory
 	defeat_text.visible = !victory
+	print("awaiting")
 	await get_tree().create_timer(1.0).timeout
+	print("await finished")
 	resize_panel(60)
 	screen_party_info.show()
 	victory_text.speak_text()
 	defeat_text.speak_text()
 	if victory:
+		print("playing victory music")
 		SND.play_song("victory", 10, {start_volume = 0.0})
 		var xp_pool : int = 0
 		for i in dead_enemies:

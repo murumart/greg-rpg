@@ -16,6 +16,10 @@ var playing_sounds := []
 var sound_clear_timer := Timer.new()
 
 
+func _init() -> void:
+	print("SND init")
+
+
 func _ready() -> void:
 	add_child(sound_clear_timer)
 	sound_clear_timer.connect("timeout", _on_sound_clear_timer_timeout)

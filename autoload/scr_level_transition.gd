@@ -5,6 +5,10 @@ extends Node
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
 
+func _init() -> void:
+	print("LTS init")
+
+
 func change_scene_to(path: String, options := {}) -> void:
 	get_tree().root.get_child(-1).queue_free()
 	var free_us := get_tree().get_nodes_in_group("free_on_scene_change")
@@ -15,6 +19,8 @@ func change_scene_to(path: String, options := {}) -> void:
 	var new_scene : Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
 	if new_scene.has_method("_option_init"): new_scene._option_init(options)
+	if options.get("free_player", true):
+		DAT.free_player()
 
 
 func level_transition(path: String, options := {}) -> void:
@@ -27,6 +33,7 @@ func level_transition(path: String, options := {}) -> void:
 
 
 func enter_battle(options := {}) -> void:
+	DAT.capture_player()
 	SOL.vfx("battle_enter", Vector2())
 	await get_tree().create_timer(3.0).timeout
 	change_scene_to("res://scenes/tech/scn_battle.tscn", options)

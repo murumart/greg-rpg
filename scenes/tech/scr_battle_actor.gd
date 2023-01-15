@@ -72,10 +72,10 @@ func heal(amount: float) -> void:
 func hurt(amount: float) -> void:
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
-		died.emit(self)
 		state = States.DEAD
 		global_position.y += 2
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5})
+		died.emit(self)
 	else:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(-10, 0)})
 

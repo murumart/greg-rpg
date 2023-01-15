@@ -16,6 +16,10 @@ var speaking := false
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
 
 
+func _init() -> void:
+	print("SOL init")
+
+
 func _ready() -> void:
 	dialogue_box.dialogue_closed.connect(_on_dialogue_closed)
 	dialogue_box.started_speaking.connect(_on_speaking_started)

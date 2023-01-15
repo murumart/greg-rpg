@@ -18,6 +18,7 @@ var dialogues_dict := {}
 
 func _ready() -> void:
 	hide()
+	dialogues = DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file())
 	for i in dialogues:
 		dialogues_dict[i.name] = i
 
@@ -65,7 +66,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	show()
 	textbox.set_text(text)
 	started_speaking.emit()
-	textbox.speak_text({"speaking_speed": text_speed})
+	textbox.speak_text({"speaking_speed": OPT.text_speak_time / text_speed})
 	if character and character.voice_sound:
 		SND.play_sound(character.voice_sound, {"bus": "Speech"})
 	await textbox.speak_finished

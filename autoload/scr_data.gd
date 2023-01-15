@@ -14,7 +14,7 @@ var A : Dictionary
 
 
 func _init() -> void:
-	pass
+	print("DAT init")
 
 
 # entry point for a new game.
@@ -135,3 +135,4 @@ func get_spirit(id: int) -> Spirit:
 	if not id < spirit_list.size(): return preload("res://resources/res_default_spirit.tres")
 	if id < 0: return preload("res://resources/res_default_spirit.tres")
 	return spirit_list[id]
+
