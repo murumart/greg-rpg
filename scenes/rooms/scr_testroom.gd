@@ -5,6 +5,11 @@ var speed := 60.0
 
 
 func _ready() -> void:
+	var dict := {
+	}
+	
+	dict["ass"] = 0.213124214124
+	
 	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed, fade_screen_pressed, leave_pressed]
 	for i in button_functions.size():
 		var callable := button_functions[i] as Callable
@@ -52,7 +57,7 @@ func dialogue_speak_pressed():
 
 
 func play_music_pressed():
-	SND.play_song(SongsList.SONGS.keys().pick_random())
+	SND.play_song(SND.list.songs.keys().pick_random())
 
 
 func fade_screen_pressed():

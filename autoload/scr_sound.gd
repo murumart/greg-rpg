@@ -6,6 +6,7 @@ extends Node
 var current_song_player : AudioStreamPlayer
 var current_song : Dictionary
 var old_song : Dictionary
+var list := SongsList.new()
 
 const DEFAULT_VOLUME := 0.0
 const DEFAULT_WAIT_SPEED := 1.0
@@ -41,9 +42,9 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	var loop_override := "loop" in options
 	var loop : bool = options.get("loop", true)
 	
-	var song_dict : Dictionary = SongsList.SONGS.get(song, {})
+	var song_dict : Dictionary = list.songs.get(song, {})
 	
-	if current_song.size() > 0 and song in SongsList.SONGS and current_song.get("title") == song_dict.get("title", ""):
+	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
 		return
 	
 	old_song = current_song
@@ -65,7 +66,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	new_audio_player.volume_db = start_volume
 	new_audio_player.pitch_scale = song_dict.get("default_pitch", 1.0) * pitch_scale
 	new_audio_player.bus = bus
-	current_song = SongsList.SONGS[song]
+	current_song = list.songs[song]
 	
 	new_audio_player.play()
 	if not play_from_beginning:

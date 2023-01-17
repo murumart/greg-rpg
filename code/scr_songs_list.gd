@@ -1,7 +1,7 @@
 extends RefCounted
 class_name SongsList
 
-const SONGS := {
+var songs := {
 	"arent_you_excited": {
 		"title": "aren't you excited?",
 		"link": "res://music/mus_arent_you_excited.ogg"
