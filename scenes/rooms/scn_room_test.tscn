@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b75fam8wem4ex"]
+[gd_scene load_steps=47 format=3 uid="uid://b75fam8wem4ex"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
 [ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/tech/scn_overworld_tiles.tscn" id="2_e5sis"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_j4r0r"]
 [ext_resource type="Texture2D" uid="uid://b8euesf6tltkq" path="res://sprites/characters/overworld/spr_mdp_overworld.png" id="9_pxr2e"]
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="10_q7e26"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_y2bdo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -413,7 +414,7 @@ theme = ExtResource("2_wqq2x")
 text = "leave"
 
 [node name="MDP" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
-position = Vector2(627, 52)
+position = Vector2(631, 59)
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 random_movement = true
@@ -489,3 +490,11 @@ position = Vector2(0, -8)
 frames = SubResource("SpriteFrames_kwod6")
 animation = &"walk_down"
 playing = true
+
+[node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_y2bdo")]
+position = Vector2(584, 7)
+destination = &"test2"
+gate_id = &"stump"
+player = NodePath("../Greg")
+extents = Vector2i(10, 10)
+spawnpoint = Vector2i(0, 16)

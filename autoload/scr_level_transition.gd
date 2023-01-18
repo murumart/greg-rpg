@@ -24,7 +24,8 @@ func change_scene_to(path: String, options := {}) -> void:
 
 
 func level_transition(path: String, options := {}) -> void:
-	var fadetime : float = options.get("fade_time", 1.0)
+	DAT.capture_player()
+	var fadetime : float = options.get("fade_time", 0.4)
 	SOL.fade_screen(Color(0, 0, 0, 0), Color(0, 0, 0, 1), fadetime)
 	await SOL.fade_finished
 	DAT.save_nodes_data()

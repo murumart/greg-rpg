@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbsyh4m7x7uhg"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_room_gate.gd" id="1_tuj6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyiqk"]
+
+[node name="RoomGate" type="Node2D"]
+script = ExtResource("1_tuj6f")
+area_path = NodePath("Area2D")
+collision_shape_path = NodePath("Area2D/CollisionShape2D")
+spawn_point_path = NodePath("SpawnPoint")
+
+[node name="Area2D" type="Area2D" parent="."]
+modulate = Color(1, 0.552941, 0.486275, 1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hyiqk")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+gizmo_extents = 8.0

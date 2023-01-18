@@ -4,6 +4,7 @@ extends Node
 
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
 const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s"
+const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s"
 const TSCN := ".tscn"
 const SCN := ".scn"
 
@@ -38,13 +39,23 @@ func get_dict_from_file(filename : String) -> Dictionary:
 func enemy_scene_exists(name_in_file: String) -> bool:
 	var path := enemy_scene_path(name_in_file)
 	print(path)
-	if not FileAccess.file_exists(path):
-		return false
-	return true
+	if FileAccess.file_exists(path):
+		return true
+	return false
+
+
+func file_exists(path) -> bool:
+	if FileAccess.file_exists(path):
+		return true
+	return false
 
 
 func enemy_scene_path(name_in_file: String) -> String:
 	return str((ENEMY_SCENE_PATH % name_in_file), SCN if standalone() else TSCN)
+
+
+func room_scene_path(id: String) -> String:
+	return str((ROOM_SCENE_PATH % id), SCN if standalone() else TSCN)
 
 
 func get_dialogue_file() -> String:

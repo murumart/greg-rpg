@@ -16,7 +16,7 @@ var state : int
 
 
 func _ready() -> void:
-	if DAT.gate_id == DAT.Gates.LOADING:
+	if DAT.gate_id == DAT.GATE_LOADING:
 		position = DAT.A.get("player_position", position)
 
 

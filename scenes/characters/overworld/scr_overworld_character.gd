@@ -47,7 +47,7 @@ var target : Vector2 : set = set_target
 
 func _ready() -> void:
 	# load stuff
-	if DAT.gate_id == DAT.Gates.LOADING:
+	if DAT.gate_id == DAT.GATE_LOADING:
 		if save_position:
 			set_position(DAT.get_data(save_key_name("position"), position))
 		if save_convo_progess:

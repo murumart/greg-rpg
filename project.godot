@@ -8,118 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Node2D",
-"class": &"Battle",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_battle.gd"
-}, {
-"base": "Node2D",
-"class": &"BattleActor",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_battle_actor.gd"
-}, {
-"base": "BattleActor",
-"class": &"BattleEnemy",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_battle_enemy.gd"
-}, {
-"base": "Resource",
-"class": &"BattlePayload",
-"language": &"GDScript",
-"path": "res://code/scr_battle_payload.gd"
-}, {
-"base": "Resource",
-"class": &"Character",
-"language": &"GDScript",
-"path": "res://code/scr_character.gd"
-}, {
-"base": "Resource",
-"class": &"Dialogue",
-"language": &"GDScript",
-"path": "res://code/scr_dialogue.gd"
-}, {
-"base": "Resource",
-"class": &"DialogueLine",
-"language": &"GDScript",
-"path": "res://code/scr_dialogue_line.gd"
-}, {
-"base": "RefCounted",
-"class": &"DialogueParser",
-"language": &"GDScript",
-"path": "res://code/scr_dialogue_parser.gd"
-}, {
-"base": "Area2D",
-"class": &"InteractionArea",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_interaction_area.gd"
-}, {
-"base": "Resource",
-"class": &"Item",
-"language": &"GDScript",
-"path": "res://code/scr_item.gd"
-}, {
-"base": "RefCounted",
-"class": &"Math",
-"language": &"GDScript",
-"path": "res://code/scr_math.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"OverworldCharacter",
-"language": &"GDScript",
-"path": "res://scenes/characters/overworld/scr_overworld_character.gd"
-}, {
-"base": "Panel",
-"class": &"PartyMemberInfoPanel",
-"language": &"GDScript",
-"path": "res://scenes/tech/scr_battle_member_info.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"PlayerOverworld",
-"language": &"GDScript",
-"path": "res://scenes/characters/overworld/scr_player_overworld.gd"
-}, {
-"base": "Node2D",
-"class": &"Room",
-"language": &"GDScript",
-"path": "res://scenes/scr_room.gd"
-}, {
-"base": "RefCounted",
-"class": &"SongsList",
-"language": &"GDScript",
-"path": "res://code/scr_songs_list.gd"
-}, {
-"base": "Resource",
-"class": &"Spirit",
-"language": &"GDScript",
-"path": "res://code/scr_spirit.gd"
-}, {
-"base": "RichTextLabel",
-"class": &"TextBox",
-"language": &"GDScript",
-"path": "res://code/scr_textbox.gd"
-}]
-_global_script_class_icons={
-"Battle": "",
-"BattleActor": "",
-"BattleEnemy": "",
-"BattlePayload": "",
-"Character": "",
-"Dialogue": "",
-"DialogueLine": "",
-"DialogueParser": "",
-"InteractionArea": "",
-"Item": "",
-"Math": "",
-"OverworldCharacter": "",
-"PartyMemberInfoPanel": "",
-"PlayerOverworld": "",
-"Room": "",
-"SongsList": "",
-"Spirit": "",
-"TextBox": ""
-}
-
 [application]
 
 config/name="Greg RPG"
@@ -154,7 +42,7 @@ window/stretch/aspect="ignore"
 
 [editor]
 
-export/convert_text_resources_to_binary=false
+export/convert_text_resources_to_binary=true
 
 [input]
 
