@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=41 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://code/scr_item.gd" id="8_cpgm1"]
 [ext_resource type="Texture2D" uid="uid://conks0ye2ywmv" path="res://sprites/items/spr_item_gummy_worm.png" id="9_j2ufb"]
 [ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="10_awhv6"]
+[ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="11_mg5b0"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="11_qkk80"]
 
 [sub_resource type="Resource" id="Resource_rqjdl"]
@@ -160,6 +161,32 @@ description = "a lump of yellow... sugar?"
 price = 25
 use = 2
 payload = SubResource("Resource_cc1kh")
+
+[sub_resource type="Resource" id="Resource_k8uvg"]
+script = ExtResource("7_wrlwy")
+health = 75.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = 5.0
+speed_increase_time = 10
+
+[sub_resource type="Resource" id="Resource_8g7rs"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"milkshake"
+name = &"milkshake"
+description = "there's milk in this universe? wonderful."
+texture = ExtResource("11_mg5b0")
+price = 120
+use = 0
+payload = SubResource("Resource_k8uvg")
 
 [sub_resource type="Resource" id="Resource_mkacw"]
 script = ExtResource("7_wrlwy")
@@ -404,5 +431,5 @@ payload = SubResource("Resource_1m4tw")
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
-item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2")]
+item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs")]
 spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3")]

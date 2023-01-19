@@ -26,6 +26,7 @@ func set_extents(to: Vector2i) -> void:
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	var area : Area2D= get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
