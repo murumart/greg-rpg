@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0boy1v2h80jo"]
+
+[ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_g01qy"]
+[ext_resource type="Texture2D" uid="uid://28xynergqegy" path="res://sprites/photos/spr_town1.jpeg" id="2_h671d"]
+
+[node name="BattleBackground" instance=ExtResource("1_g01qy")]
+
+[node name="SprTown1" type="Sprite2D" parent="." index="2"]
+position = Vector2(80, 60)
+texture = ExtResource("2_h671d")

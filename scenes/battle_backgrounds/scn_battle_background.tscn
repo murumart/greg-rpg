@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm6o78hlxv64n"]
+
+[ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_nkv13"]
+
+[node name="BattleBackground" type="Node2D"]
+z_index = -50
+script = ExtResource("1_nkv13")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="BeatTimer" type="Timer" parent="."]
+process_callback = 0

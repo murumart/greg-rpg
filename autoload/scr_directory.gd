@@ -3,8 +3,9 @@ extends Node
 # handles access to files
 
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
-const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s"
-const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s"
+const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_"
+const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_"
+const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/"
 const TSCN := ".tscn"
 const SCN := ".scn"
 
@@ -51,11 +52,15 @@ func file_exists(path) -> bool:
 
 
 func enemy_scene_path(name_in_file: String) -> String:
-	return str((ENEMY_SCENE_PATH % name_in_file), SCN if standalone() else TSCN)
+	return str((ENEMY_SCENE_PATH + name_in_file), SCN if standalone() else TSCN)
 
 
 func room_scene_path(id: String) -> String:
-	return str((ROOM_SCENE_PATH % id), SCN if standalone() else TSCN)
+	return str((ROOM_SCENE_PATH + id), SCN if standalone() else TSCN)
+
+
+func battle_background_scene_path(id: String) -> String:
+	return str((BATTLE_BACKGROUND_SCENE_PATH + id), SCN if standalone() else TSCN)
 
 
 func get_dialogue_file() -> String:

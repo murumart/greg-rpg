@@ -23,6 +23,7 @@ var doing := Doings.NOTHING
 @onready var enemies_node : Node2D = $Enemies
 @onready var party_node : Node2D = $Party
 @onready var update_timer : Timer = $SlowUpdateTimer
+@onready var background_container : Node2D = $Background
 
 @onready var screen_list_select := $%ScreenListSelect
 @onready var screen_item_select := $%ScreenItemSelect
@@ -111,6 +112,7 @@ func load_battle(options := {}) -> void:
 		add_party_member(m)
 	for e in options.get("enemies", []):
 		add_enemy(e)
+	set_background(options.get("background", "bikeghost"))
 	SND.play_song(options.get("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
 
@@ -187,6 +189,14 @@ func arrange_enemies():
 		enemies[e].global_position.y = 0
 		if e % 2 != 0:
 			enemies[e].scale.x = -1.0
+
+
+func set_background(id: String) -> void:
+	var path := DIR.battle_background_scene_path(id)
+	if DIR.file_exists(path):
+		background_container.add_child(load(path).instantiate())
+	else:
+		background_container.add_child(load("res://scenes/battle_backgrounds/scn_bikeghost.tscn").instantiate())
 
 
 func update_party() -> void:

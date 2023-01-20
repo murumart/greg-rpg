@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://cylhgsb11abjv"
+uid="uid://etvqick4a3mh"
 path="res://.godot/imported/mus_bike_spirit.ogg-7686a0bc0b716069ded1735a106109d2.oggvorbisstr"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/mus_bike_spirit.ogg-7686a0bc0b716069ded1735a1
 [params]
 
 loop=true
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=147.0
 beat_count=0
 bar_beats=4

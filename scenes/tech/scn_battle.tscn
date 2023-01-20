@@ -67,6 +67,9 @@ party_cheat_speed = 99.0
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="Background" type="Node2D" parent="."]
+position = Vector2(-80, -60)
+
 [node name="UI" type="Control" parent="."]
 z_index = 1
 layout_mode = 3
@@ -90,7 +93,7 @@ scroll_following = true
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0
-offset_top = 60.0
+offset_top = 113.0
 offset_right = 160.0
 offset_bottom = 120.0
 
@@ -365,6 +368,7 @@ one_shot = true
 
 [node name="ScreenEnd" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_left = 1.0
 offset_top = 1.0
