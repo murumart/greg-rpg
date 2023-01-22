@@ -11,6 +11,7 @@ var A : Dictionary
 @export var character_list : Array[Character]
 @export var item_list : Array[Item]
 @export var spirit_list : Array[Spirit]
+const MAX_SPIRITS := 3
 
 
 func _init() -> void:

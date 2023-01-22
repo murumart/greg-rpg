@@ -34,7 +34,7 @@ var moving_towards_target := 0.0
 @export_group("Interaction")
 var convo_progress := 0
 @export var default_lines : Array[StringName]
-@export var battle_info : Dictionary = {}
+@export var battle_info : BattleInfo
 
 @export_group("Save Information")
 @export var save_position : bool = false

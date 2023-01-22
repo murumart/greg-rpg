@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=46 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" path="res://code/scr_item.gd" id="8_cpgm1"]
 [ext_resource type="Texture2D" uid="uid://conks0ye2ywmv" path="res://sprites/items/spr_item_gummy_worm.png" id="9_j2ufb"]
 [ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="10_awhv6"]
+[ext_resource type="Texture2D" uid="uid://c885f836xxatc" path="res://sprites/items/spr_item_sugar_lemon.png" id="11_lxneo"]
 [ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="11_mg5b0"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="11_qkk80"]
+[ext_resource type="Texture2D" uid="uid://dnllcdqtg4q84" path="res://sprites/items/spr_item_bike_helmet.png" id="12_u7rlk"]
 
 [sub_resource type="Resource" id="Resource_rqjdl"]
 script = ExtResource("3_ednal")
@@ -26,9 +28,9 @@ level = 1
 attack = 1.0
 defense = 1.0
 speed = 1.0
-inventory = [0, 0, 1, 1]
-spirits = [0, 1, 2, 3, 4, 5, 6, 7]
-unused_sprits = null
+inventory = [0, 0, 1, 1, 4]
+spirits = [0, 1]
+unused_sprits = [2, 3]
 armour = -1
 weapon = -1
 
@@ -89,6 +91,24 @@ unused_sprits = null
 armour = -1
 weapon = -1
 
+[sub_resource type="Resource" id="Resource_m55w8"]
+script = ExtResource("3_ednal")
+id_name = &"grass"
+name = "turf"
+max_health = 20.0
+health = 20.0
+max_magic = 40.0
+magic = 40.0
+level = 1
+attack = 1.0
+defense = 1.0
+speed = 1.0
+inventory = null
+spirits = null
+unused_sprits = null
+armour = -1
+weapon = -1
+
 [sub_resource type="Resource" id="Resource_lquol"]
 script = ExtResource("7_wrlwy")
 health = null
@@ -113,6 +133,7 @@ description = "it looks quite realistic"
 texture = ExtResource("9_j2ufb")
 price = 15
 use = 0
+consume_on_use = true
 payload = SubResource("Resource_lquol")
 
 [sub_resource type="Resource" id="Resource_vqlt5"]
@@ -139,6 +160,7 @@ description = "let's hope it's sterile"
 texture = ExtResource("10_awhv6")
 price = 25
 use = 0
+consume_on_use = true
 payload = SubResource("Resource_vqlt5")
 
 [sub_resource type="Resource" id="Resource_cc1kh"]
@@ -162,8 +184,10 @@ script = ExtResource("8_cpgm1")
 name_in_file = &"sugar_lemon"
 name = &"sugar lemon"
 description = "a lump of yellow... sugar?"
+texture = ExtResource("11_lxneo")
 price = 25
 use = 2
+consume_on_use = true
 payload = SubResource("Resource_cc1kh")
 
 [sub_resource type="Resource" id="Resource_k8uvg"]
@@ -190,7 +214,35 @@ description = "there's milk in this universe? wonderful."
 texture = ExtResource("11_mg5b0")
 price = 120
 use = 0
+consume_on_use = true
 payload = SubResource("Resource_k8uvg")
+
+[sub_resource type="Resource" id="Resource_wskrl"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = 3.0
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_4ek7t"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"bike_helmet"
+name = &"bike helmet"
+description = "protects your mushy head"
+texture = ExtResource("12_u7rlk")
+price = 80
+use = 5
+consume_on_use = true
+payload = SubResource("Resource_wskrl")
 
 [sub_resource type="Resource" id="Resource_mkacw"]
 script = ExtResource("7_wrlwy")
@@ -434,6 +486,6 @@ payload = SubResource("Resource_1m4tw")
 
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
-character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx")]
-item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs")]
+character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx"), SubResource("Resource_m55w8")]
+item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs"), SubResource("Resource_4ek7t")]
 spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3")]

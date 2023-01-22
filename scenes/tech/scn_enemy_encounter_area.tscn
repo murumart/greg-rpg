@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgq5pk53ehdvm"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_enemy_encounter_area.gd" id="1_4kysw"]
+
+[node name="EnemyEncounterArea" type="Area2D" groups=["save_me"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_4kysw")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b75fam8wem4ex"]
+[gd_scene load_steps=51 format=3 uid="uid://b75fam8wem4ex"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
 [ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/tech/scn_overworld_tiles.tscn" id="2_e5sis"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_mhw0e"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_j4r0r"]
 [ext_resource type="Texture2D" uid="uid://b8euesf6tltkq" path="res://sprites/characters/overworld/spr_mdp_overworld.png" id="9_pxr2e"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="10_eqo2j"]
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="10_q7e26"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_y2bdo"]
+[ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="13_cuh6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -150,6 +152,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_ujmyv"]
+script = ExtResource("10_eqo2j")
+enemies = [3]
+background = "bikeghost"
+music = "bike_spirit"
+party = null
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("10_q7e26")
 region = Rect2(0, 0, 16, 16)
@@ -285,6 +294,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_ap7el"]
+script = ExtResource("10_eqo2j")
+enemies = [4, 4, 4]
+background = "bikeghost"
+music = "touch_me"
+party = null
+
 [node name="TestRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_g3scf")
@@ -413,14 +429,17 @@ offset_bottom = 119.0
 theme = ExtResource("2_wqq2x")
 text = "leave"
 
-[node name="MDP" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+[node name="MDP" parent="." instance=ExtResource("8_j4r0r")]
 position = Vector2(631, 59)
-animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
+speed = null
 random_movement = true
-chase_target = NodePath("")
+random_movement_wait = null
+random_movement_distance = null
 default_lines = [&"test", &"test2be"]
 save_position = true
+save_convo_progess = null
+permanently_defeated = null
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDP"]
 position = Vector2(0, -8)
@@ -428,12 +447,16 @@ frames = SubResource("SpriteFrames_yv1ib")
 animation = &"walk_down"
 playing = true
 
-[node name="MDP5" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+[node name="MDP5" parent="." instance=ExtResource("8_j4r0r")]
 position = Vector2(705, -14)
-animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 2000
-chase_target = NodePath("../MDP69")
+random_movement = null
+random_movement_wait = null
+random_movement_distance = null
+save_position = null
+save_convo_progess = null
+permanently_defeated = null
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDP5"]
 position = Vector2(0, -8)
@@ -441,14 +464,16 @@ frames = SubResource("SpriteFrames_yv1ib")
 animation = &"walk_down"
 playing = true
 
-[node name="MDP69" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+[node name="MDP69" parent="." instance=ExtResource("8_j4r0r")]
 position = Vector2(648, -47)
-animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 2000
 random_movement = true
-chase_target = NodePath("../Greg")
+random_movement_wait = null
+random_movement_distance = null
 save_position = true
+save_convo_progess = null
+permanently_defeated = null
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDP69"]
 position = Vector2(0, -8)
@@ -456,16 +481,17 @@ frames = SubResource("SpriteFrames_yv1ib")
 animation = &"walk_down"
 playing = true
 
-[node name="MDP93" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+[node name="MDP93" parent="." instance=ExtResource("8_j4r0r")]
 position = Vector2(481, -4)
-animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 speed = 1000
 random_movement = true
-chase_target = NodePath("")
+random_movement_wait = null
+random_movement_distance = null
 default_lines = [&"test", &"test2be"]
 save_position = true
 save_convo_progess = true
+permanently_defeated = null
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDP93"]
 position = Vector2(0, -8)
@@ -473,18 +499,18 @@ frames = SubResource("SpriteFrames_yv1ib")
 animation = &"walk_down"
 playing = true
 
-[node name="BikeGhost" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("8_j4r0r")]
+[node name="BikeGhost" parent="." instance=ExtResource("8_j4r0r")]
 position = Vector2(530, 45)
-animated_sprite = NodePath("BikeGhostAnimations")
+collision_extents = null
+speed = null
 random_movement = true
 random_movement_wait = 6.0
-chase_target = NodePath("../MDP5")
+random_movement_distance = null
 chase_distance = 128
-battle_info = {
-"enemies": [3],
-"music": "bike_spirit"
-}
+battle_info = SubResource("Resource_ujmyv")
 save_position = true
+save_convo_progess = null
+permanently_defeated = null
 
 [node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="BikeGhost"]
 position = Vector2(0, -8)
@@ -499,3 +525,11 @@ gate_id = &"stump"
 player = NodePath("../Greg")
 extents = Vector2i(10, 10)
 spawnpoint = Vector2i(0, 16)
+
+[node name="EnemyEncounterArea" parent="." node_paths=PackedStringArray("player") instance=ExtResource("13_cuh6h")]
+position = Vector2(736, 121)
+battle = SubResource("Resource_ap7el")
+player = NodePath("../Greg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyEncounterArea"]
+polygon = PackedVector2Array(-13, 90, 107, 59, 158, -26, 93, -99, -13, -99, -80, -45, -99, 25, -41, 84)

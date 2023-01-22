@@ -56,8 +56,6 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-enable_testing_cheats = true
-party_cheat_magic = 1839.0
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
@@ -91,7 +89,7 @@ scroll_following = true
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0
-offset_top = 113.0
+offset_top = 60.0
 offset_right = 160.0
 offset_bottom = 120.0
 
@@ -274,7 +272,6 @@ offset_bottom = 54.0
 
 [node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -292,6 +289,16 @@ vertical_scroll_mode = 3
 
 [node name="List" type="VBoxContainer" parent="UI/Panel/ScreenItemSelect/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ItemInfoLabel" type="RichTextLabel" parent="UI/Panel/ScreenItemSelect"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 59.0
+bbcode_enabled = true
+scroll_active = false
 
 [node name="ScreenPartyInfo" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true

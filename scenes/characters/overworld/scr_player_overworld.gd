@@ -14,11 +14,26 @@ var state : int
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
 
+var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
+
 
 func _ready() -> void:
+	SOL.add_ui_child(menu)
+	menu.hide()
 	if DAT.gate_id == DAT.GATE_LOADING:
 		pass
 	position = DAT.A.get(save_key_name("position"), position)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.is_action_pressed("ui_menu"):
+			if not menu.visible:
+				menu.call_deferred("show")
+				DAT.capture_player()
+			else:
+				menu.call_deferred("hide")
+				DAT.free_player()
 
 
 func _physics_process(delta: float) -> void:

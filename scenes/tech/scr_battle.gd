@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options := {"party": [0], "enemies": [3, 3, 3]}
+var load_options : BattleInfo = BattleInfo.new().set_enemies([4, 4, 4])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -27,6 +27,7 @@ var doing := Doings.NOTHING
 
 @onready var screen_list_select := $%ScreenListSelect
 @onready var screen_item_select := $%ScreenItemSelect
+@onready var item_info_label := $UI/Panel/ScreenItemSelect/ItemInfoLabel
 @onready var screen_party_info := $%ScreenPartyInfo
 @onready var screen_spirit_name := $%ScreenSpiritName
 @onready var screen_end := %ScreenEnd
@@ -61,9 +62,9 @@ var f := 0
 
 @export var enable_testing_cheats := false
 @export_group("Cheat Stats")
-@export var party_cheat_levelup := 0.0
-@export var party_cheat_health := 100.0
-@export var party_cheat_magic := 30.0
+@export var party_cheat_levelup := 0
+@export var party_cheat_health := 0.0
+@export var party_cheat_magic := 0.0
 @export var party_cheat_attack := 0.0
 @export var party_cheat_defense := 0.0
 @export var party_cheat_speed := 0.0
@@ -106,17 +107,22 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if SOL.speaking: print("speaking"); return
 		if doing == Doings.DONE:
 			DAT.gate_id = &"exit_battle"
+			var looper :Array[BattleActor]= []
+			looper.append_array(party)
+			looper.append_array(dead_party)
+			for p in looper:
+				p.offload_character()
 			LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
 			set_process_unhandled_key_input(false)
 
 
-func load_battle(options := {}) -> void:
-	for m in options.get("party", [0]):
+func load_battle(info: BattleInfo) -> void:
+	for m in info.get_("party", [0]):
 		add_party_member(m)
-	for e in options.get("enemies", []):
+	for e in info.get_("enemies", []):
 		add_enemy(e)
-	set_background(options.get("background", "bikeghost"))
-	SND.play_song(options.get("music", ""), 1.0, {start_volume = 0})
+	set_background(info.get_("background", "bikeghost"))
+	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
 
 
@@ -285,6 +291,8 @@ func _on_button_reference_received(reference) -> void:
 	if doing == Doings.ATTACK or doing == Doings.SPIRIT or doing == Doings.ITEM:
 		selected_guy_display.update(reference)
 		highlight_selected_enemy(reference)
+	if doing == Doings.ITEM_MENU:
+		item_info_label.text = str(DAT.get_item(reference).get_effect_description(),"\n[color=#888888]", DAT.get_item(reference).description)
 
 
 func _on_act_requested(actor: BattleActor) -> void:
@@ -367,15 +375,19 @@ func open_list_screen() -> void:
 	screen_end.hide()
 	match doing:
 		Doings.ATTACK:
-			load_reference_buttons(enemies, list_containers, true)
-			load_reference_buttons(party, list_containers, false)
+			var array := []
+			array.append_array(enemies)
+			array.append_array(party)
+			load_reference_buttons(array, list_containers, true)
 			screen_list_select.show()
 		Doings.ITEM_MENU:
 			load_reference_buttons(current_guy.character.inventory, item_list_container, true)
 			screen_item_select.show()
 		Doings.ITEM:
-			load_reference_buttons(party, list_containers, true)
-			load_reference_buttons(enemies, list_containers, false)
+			var array := []
+			array.append_array(party)
+			array.append_array(enemies)
+			load_reference_buttons(array, list_containers, true)
 			screen_list_select.show()
 		Doings.SPIRIT:
 			load_reference_buttons(actors, list_containers, true)
@@ -445,22 +457,20 @@ func open_end_screen(victory: bool) -> void:
 	screen_end.show()
 	victory_text.visible = victory
 	defeat_text.visible = !victory
-	print("awaiting")
 	await get_tree().create_timer(1.0).timeout
-	print("await finished")
 	resize_panel(60)
 	screen_party_info.show()
 	victory_text.speak_text()
-	defeat_text.speak_text()
 	if victory:
-		print("playing victory music")
-		SND.play_song("victory", 10, {start_volume = 0.0})
+		SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
 		var xp_pool : int = 0
 		for i in dead_enemies:
-			print(i.character.level)
 			xp_pool += i.character.level
 		print("xp pool: ", xp_pool)
-		for i in party:
+		var looper := []
+		looper.append_array(party)
+		looper.append_array(dead_party)
+		for i in looper:
 			i.character.add_experience(xp_pool)
 			await get_tree().process_frame
 			if SOL.speaking:
@@ -468,6 +478,7 @@ func open_end_screen(victory: bool) -> void:
 		print("doings should be done now")
 		doing = Doings.DONE
 	else:
+		defeat_text.speak_text()
 		SND.play_song("defeat", 10, {start_volume = 0.0})
 
 
@@ -559,14 +570,19 @@ func apply_cheats() -> void:
 	print("applying cheats")
 	for i in party:
 		i.character.level_up(party_cheat_levelup)
-		i.character.max_health = party_cheat_health
-		i.character.health = party_cheat_health
-		i.character.max_magic = party_cheat_magic
-		i.character.magic = party_cheat_magic
-		i.character.attack = party_cheat_attack
-		i.character.defense = party_cheat_defense
-		i.character.speed = party_cheat_speed
+		if party_cheat_attack:
+			i.character.attack = party_cheat_attack
+		if party_cheat_defense:
+			i.character.defense = party_cheat_defense
+		if party_cheat_speed:
+			i.character.speed = party_cheat_speed
+		if party_cheat_health:
+			i.character.max_health = party_cheat_health
+			i.character.health = party_cheat_health
+		if party_cheat_magic:
+			i.character.max_magic = party_cheat_magic
+			i.character.magic = party_cheat_magic
 
 
 func _option_init(options := {}) -> void:
-	load_options = options
+	load_options = options.get("battle_info")

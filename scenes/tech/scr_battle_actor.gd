@@ -18,8 +18,7 @@ var state : States = States.IDLE : set = set_state
 @export var character_id : int = -1
 var actor_name : StringName
 @onready var character : Character
-@export var weapon : Item
-@export var armour : Item
+
 var status_effects : Dictionary = {}
 
 var reference_to_team_array : Array[BattleActor] = []
@@ -29,6 +28,9 @@ var reference_to_actor_array : Array[BattleActor] = []
 var player_controlled := false
 
 var wait := 1.0
+
+@export_group("Other")
+@export_range(0.0, 1.0) var stat_multiplier: = 1.0
 
 
 func _ready() -> void:
@@ -84,38 +86,26 @@ func hurt(amount: float) -> void:
 
 func get_attack() -> float:
 	var x := 0.0
-	x += character.attack
-	if armour and armour.payload:
-		x += armour.payload.attack_increase
-	if weapon and weapon.payload:
-		x += weapon.payload.attack_increase
+	x += character.get_stat("attack")
 	if status_effects.get("attack", {}):
 		x += status_effects.get("attack").get("strength")
-	return maxf(x, 1)
+	return maxf(x, 1) * stat_multiplier
 
 
 func get_defense() -> float:
 	var x := 0.0
-	x += character.defense
-	if armour and armour.payload:
-		x += armour.payload.defense_increase
-	if weapon and weapon.payload:
-		x += weapon.payload.defense_increase
+	x += character.get_stat("defense")
 	if status_effects.get("defense", {}):
 		x += status_effects.get("defense").get("strength")
-	return maxf(x, 1)
+	return maxf(x, 1) * stat_multiplier
 
 
 func get_speed() -> float:
 	var x := 0.0
-	x += character.speed
-	if armour and armour.payload:
-		x += armour.payload.speed_increase
-	if weapon and weapon.payload:
-		x += weapon.payload.speed_increase
+	x += character.get_stat("speed")
 	if status_effects.get("speed", {}):
 		x += status_effects.get("speed").get("strength")
-	return maxf(x, 1)
+	return maxf(x, 1) * stat_multiplier
 
 
 static func calc_attack_damage(atk: float, random := true) -> float:
@@ -179,8 +169,11 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 
 func use_item(id: int, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
-	subject.handle_payload(item.payload.set_sender(self))
-	if item.use != Item.Uses.NONE:
+	if not id in item.USES_EQUIPABLE:
+		subject.handle_payload(item.payload.set_sender(self))
+	else:
+		subject.character.handle_item(id)
+	if item.consume_on_use:
 		character.inventory.erase(id)
 	emit_message("%s used %s" % [actor_name, item.name] if subject == self else "%s used %s on %s" % [actor_name, item.name, subject.actor_name])
 	
@@ -234,7 +227,11 @@ func turn_finished() -> void:
 
 
 func load_character(id: int) -> Character:
-	return DAT.get_character(id).duplicate(false) # will crash if using deep copy here
+	var char : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
+	print("printing char ", char.name)
+	for i in char.get_saveable_dict():
+		print(i, " ", char.get(i))
+	return char
 
 
 func offload_character() -> void:

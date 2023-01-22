@@ -4,6 +4,8 @@ extends Node
 
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
+var entering_battle := false
+
 
 func _init() -> void:
 	print("LTS init")
@@ -33,9 +35,12 @@ func level_transition(path: String, options := {}) -> void:
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), fadetime)
 
 
-func enter_battle(options := {}) -> void:
+func enter_battle(info: BattleInfo) -> void:
+	if entering_battle: return
+	entering_battle = true
 	DAT.capture_player()
 	SOL.vfx("battle_enter", Vector2())
 	await get_tree().create_timer(3.0).timeout
 	DAT.save_nodes_data()
-	change_scene_to("res://scenes/tech/scn_battle.tscn", options)
+	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
+	entering_battle = false

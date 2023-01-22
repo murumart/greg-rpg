@@ -19,6 +19,10 @@ var songs := {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"
 	},
+	"touch_me": {
+		"title": "touch me",
+		"link": "res://music/mus_touch_me.ogg"
+	},
 	"town": {
 		"title": "town",
 		"link": "res://music/mus_town.ogg"

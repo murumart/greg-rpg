@@ -13,6 +13,7 @@ var current_tab := 0
 @onready var item_container := $Panel/ItemSpiritTabs/items/Scroll/ItemsContainer
 @onready var used_spirit_container := $Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Scroll/UsedSpiritContainer
 @onready var unused_spirit_container := $Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel/Scroll/UnusedSpiritContainer
+@onready var silver_counter := $Panel/ItemSpiritTabs/items/SilverCounterLabel
 
 @onready var using_menu := $UsingMenu
 @onready var using_portraits := $UsingMenu/Panel/Portraits
@@ -25,12 +26,12 @@ var using_item : int
 
 func _ready() -> void:
 	using_menu.hide()
-	DAT.set_data("party", [0])
 	update_tabs()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
+	if not visible: return
 	if event.is_action_pressed("ui_cancel"):
 		match doing:
 			Doings.INNER:
@@ -41,6 +42,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				SND.menusound(0.8)
 				using_menu.hide()
 				grab_item_focus()
+			Doings.PARTY:
+				hide()
 	match doing:
 		Doings.PARTY:
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)
@@ -59,20 +62,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			var old_tab = item_spirit_tabs.current_tab
 			item_spirit_tabs.current_tab = wrapi(item_spirit_tabs.current_tab + roundi(Input.get_axis("ui_left", "ui_right")), 0, item_spirit_tabs.get_tab_count())
 			if item_spirit_tabs.current_tab != old_tab:
-				SND.menusound(1.3)
+				SND.menusound(1.47)
 				grab_item_focus()
+				
 		Doings.USING:
 			var old_choice := using_menu_choice
 			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size())
 			update_using_portraits()
 			if old_choice != using_menu_choice:
-				SND.menusound(1.3)
+				SND.menusound(1.35)
 			if event.is_action_pressed("ui_accept"):
+				
 				if item_spirit_tabs.current_tab == 0:
-					party(using_menu_choice).handle_payload(DAT.get_item(using_item).payload)
-					party(current_tab).inventory.erase(using_item)
+					party(using_menu_choice).handle_item(using_item)
+					var item : Item = DAT.get_item(using_item)
+					if item.consume_on_use:
+						party(current_tab).inventory.erase(using_item)
+				
 				elif item_spirit_tabs.current_tab == 1:
-					var spirit := DAT.get_spirit(using_item)
+					var spirit : Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
 						SND.play_sound(load("res://sounds/snd_error.ogg"))
 						using_label.text = "not enough magic!"
@@ -81,6 +89,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					party(current_tab).magic = party(current_tab).magic - spirit.cost
 					if spirit.animation:
 						SOL.vfx(spirit.animation, Vector2())
+				
 				doing = Doings.INNER
 				load_items()
 				load_spirits()
@@ -116,25 +125,39 @@ def: %s
 spd: %s
 
 hp: %s/%s
-sp: %s/%s" % [charct.level, charct.experience, charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), charct.health, charct.max_health, charct.magic, charct.max_magic])
+sp: %s/%s" % [charct.level, charct.experience, charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
 
 
 func side_load_item_data(id: int) -> void:
 	var item : Item = DAT.get_item(id)
 	mem_portrait.texture = item.texture
-	mem_infotext.text = item.payload.get_effect_description()
+	mem_infotext.text = item.get_effect_description()
+	if party(current_tab).inventory.find(id) < 2:
+		if (id == party(current_tab).armour):
+			mem_infotext.append_text("equipped")
+		if (id == party(current_tab).weapon):
+			mem_infotext.append_text("equipped")
 
 
 func side_load_spirit_data(id: int) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
 	mem_portrait.texture = null
-	mem_infotext.text = spirit.payload.get_effect_description()
+	mem_infotext.text = spirit.get_effect_description()
+	if id in party(current_tab).unused_sprits:
+		mem_infotext.append_text("\nunused. select to equip")
+	else:
+		mem_infotext.append_text("\nselect to unequip")
 
 
 func load_items() -> void:
 	var item_array := []
+	if party(current_tab).armour > -1:
+		item_array.append(party(current_tab).armour)
+	if party(current_tab).weapon > -1:
+		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
 	load_reference_buttons(item_array, [item_container], {"item": true})
+	silver_counter.text = str("party silver:\n", DAT.A.get("silver", 0))
 
 
 func load_spirits() -> void:
@@ -150,8 +173,9 @@ func grab_item_focus() -> void:
 	if item_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 0:
 		item_container.get_child(0).call_deferred("grab_focus")
 	if used_spirit_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 1:
-		print("spirit child eligible to grab focus")
 		used_spirit_container.get_child(0).call_deferred("grab_focus")
+	elif unused_spirit_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 1:
+		unused_spirit_container.get_child(0).call_deferred("grab_focus")
 
 
 func load_using_menu() -> void:
@@ -191,6 +215,9 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 			refbutton.text = reference.name
 		elif reference is int and options.get("item", false):
 			refbutton.text = DAT.get_item(reference).name
+			if i < 2 and (reference == party(current_tab).armour or reference == party(current_tab).weapon):
+				refbutton.modulate = Color(1.0, 0.6, 0.3)
+				refbutton.set_meta(&"equipped", true)
 		elif reference is int and options.get("spirit", false):
 			refbutton.text = DAT.get_spirit(reference).name
 		else:
@@ -204,15 +231,48 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 
 func _reference_button_pressed(reference) -> void:
 	if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
+		if party(current_tab).inventory.find(reference) < 2:
+			if (reference == party(current_tab).armour):
+				party(current_tab).armour = -1
+				party(current_tab).inventory.append(reference)
+				SND.menusound(0.4)
+				load_items()
+				await get_tree().process_frame
+				call_deferred("grab_item_focus")
+				return
+			if (reference == party(current_tab).weapon):
+				party(current_tab).weapon = -1
+				party(current_tab).inventory.append(reference)
+				SND.menusound(0.4)
+				load_items()
+				await get_tree().process_frame
+				call_deferred("grab_item_focus")
+				return
 		doing = Doings.USING
 		using_label.text = "using " + DAT.get_item(reference).name
 		using_item = reference
 		load_using_menu()
 	if item_spirit_tabs.current_tab == 1 and doing == Doings.INNER:
-		doing = Doings.USING
-		using_label.text = "using " + DAT.get_spirit(reference).name
-		using_item = reference
-		load_using_menu()
+		if reference in party(current_tab).unused_sprits:
+			if used_spirit_container.get_child_count() < DAT.MAX_SPIRITS:
+				party(current_tab).unused_sprits.erase(reference)
+				party(current_tab).spirits.append(reference)
+				load_spirits()
+				await get_tree().process_frame
+				grab_item_focus()
+			else:
+				SND.play_sound(load("res://sounds/snd_error.ogg"), {"volume": -10})
+				mem_infotext.text = "can only equip %s spirits at a time" % DAT.MAX_SPIRITS
+		elif reference in party(current_tab).spirits:
+			party(current_tab).spirits.erase(reference)
+			party(current_tab).unused_sprits.append(reference)
+			load_spirits()
+			await get_tree().process_frame
+			grab_item_focus()
+#		doing = Doings.USING
+#		using_label.text = "using " + DAT.get_spirit(reference).name
+#		using_item = reference
+#		load_using_menu()
 
 
 func _on_button_reference_received(reference) -> void:
@@ -231,3 +291,16 @@ func party(index: int = -1):
 		return DAT.get_character(DAT.A.get("party", [0])[index])
 	else:
 		return (DAT.A.get("party", [0]))
+
+
+func show():
+	super.show()
+	SND.menusound()
+
+
+func hide():
+	super.hide()
+	doing = Doings.INNER
+	doing = Doings.PARTY
+	using_menu.hide()
+	grab_item_focus()

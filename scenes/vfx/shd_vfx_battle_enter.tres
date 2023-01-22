@@ -38,6 +38,7 @@ op_type = 0
 code = "shader_type canvas_item;
 uniform float zoom = 1;
 uniform float white : hint_range(0, 1) = 0;
+uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
 
 
 
@@ -69,7 +70,7 @@ void fragment() {
 
 	vec4 n_out3p0;
 // Texture2D:3
-	n_out3p0 = textureLod(SCREEN_TEXTURE, vec2(n_out10p0.xy), 0.0);
+	n_out3p0 = textureLod(screen_tex_frg_3, vec2(n_out10p0.xy), 0.0);
 
 
 // Mix:7
@@ -83,7 +84,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-277.504, -4.57916)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(740, 140)

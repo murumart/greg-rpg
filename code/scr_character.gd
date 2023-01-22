@@ -25,7 +25,7 @@ const UPGRADE_MAX := {
 @export var magic := 30.0
 
 @export_range(1, 99) var level := 1
-var experience := 0
+@export var experience := 0 : set = set_experience
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
@@ -73,8 +73,11 @@ func xp2lvl(lvl: int) -> float:
 
 
 func add_experience(amount: int) -> void:
+	print("adding %s xp" % amount)
+	print("current xp ", experience)
 	for i in amount:
-		experience += 1
+		experience = experience + 1
+		print(experience)
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
@@ -110,14 +113,39 @@ func level_up(by := 1, overflow := false) -> void:
 	SOL.dialogue("levelup")
 
 
+func handle_item(id: int) -> void:
+	var item = DAT.get_item(id)
+	if item.use == Item.Uses.ARMOUR:
+		if armour > -1:
+			inventory.append(armour)
+		armour = id
+		SND.play_sound(load("res://sounds/snd_equip.ogg"))
+	elif item.use == Item.Uses.WEAPON:
+		if weapon > -1:
+			inventory.append(weapon)
+		weapon = id
+		SND.play_sound(load("res://sounds/snd_equip.ogg"))
+	else:
+		handle_payload(item.payload)
+
+
 func handle_payload(pld: BattlePayload) -> void:
 	var health_change := 0.0
 	health_change += pld.health
 	health_change += pld.health_percent / 100.0 * health
 	health_change += pld.max_health_percent / 100.0 * max_health
-	if health_change:
-		health = mini(health + health_change, max_health)
-	
-	magic = mini(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
-	
+	health = minf(health + health_change, max_health)
+	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
 
+
+func extinguish_duplicate_spirits() -> void:
+	for s in spirits.size():
+		var srt := spirits[s]
+		for y in range(1, spirits.size()):
+			var srt2 := spirits[y]
+			if srt == srt2: spirits.erase(srt2)
+
+
+func set_experience(to: int) -> void:
+	print("xp set to ", to)
+	experience = to
