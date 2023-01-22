@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options := {"party": [0], "enemies": [0]}
+var load_options := {"party": [0], "enemies": [3, 3, 3]}
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -61,6 +61,7 @@ var f := 0
 
 @export var enable_testing_cheats := false
 @export_group("Cheat Stats")
+@export var party_cheat_levelup := 0.0
 @export var party_cheat_health := 100.0
 @export var party_cheat_magic := 30.0
 @export var party_cheat_attack := 0.0
@@ -84,6 +85,7 @@ func _ready() -> void:
 	spirit_name.text_changed.connect(_on_spirit_name_changed)
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+	await get_tree().process_frame
 	load_battle(load_options)
 	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
@@ -103,6 +105,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		if SOL.speaking: print("speaking"); return
 		if doing == Doings.DONE:
+			DAT.gate_id = &"exit_battle"
 			LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
 			set_process_unhandled_key_input(false)
 
@@ -229,6 +232,7 @@ func go_back_a_menu() -> void:
 			doing = Doings.SPIRIT
 			open_list_screen()
 			SND.menusound(BACK_PITCH)
+	highlight_selected_enemy()
 
 
 func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
@@ -280,6 +284,7 @@ func _reference_button_pressed(reference) -> void:
 func _on_button_reference_received(reference) -> void:
 	if doing == Doings.ATTACK or doing == Doings.SPIRIT or doing == Doings.ITEM:
 		selected_guy_display.update(reference)
+		highlight_selected_enemy(reference)
 
 
 func _on_act_requested(actor: BattleActor) -> void:
@@ -309,9 +314,11 @@ func _on_actor_died(actor: BattleActor) -> void:
 
 
 func check_end() -> void:
+	if doing == Doings.END: return
 	var end_condition := party.size() < 1 or enemies.size() < 1
 	if end_condition:
 		doing = Doings.END
+		SND.play_song("")
 		open_end_screen(party.size() > 0)
 
 
@@ -394,6 +401,7 @@ func open_party_info_screen() -> void:
 	screen_end.hide()
 	resize_panel(25)
 	update_party()
+	highlight_selected_enemy()
 
 
 func open_spirit_name_screen() -> void:
@@ -426,6 +434,7 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 
 func open_end_screen(victory: bool) -> void:
+	if screen_end.visible: return
 	print("ENDING BATTLE: ", "victory" if victory else "defeat")
 	set_actor_states(BattleActor.States.IDLE)
 	screen_item_select.hide()
@@ -524,6 +533,16 @@ func set_description(text: String) -> void:
 	description_text.text = text
 
 
+func highlight_selected_enemy(enemy:BattleActor = null) -> void:
+	for e in enemies:
+		e.modulate = Color(1, 1, 1, 1)
+		e.position.y = 0
+	if enemy and enemy is BattleEnemy:
+		enemy.modulate = Color(1.2, 1.2, 1.2, 1.3)
+		var tw := create_tween()
+		tw.tween_property(enemy, "position:y", -2, 0.1)
+
+
 func resize_panel(new_y: int, wait := 0.2) -> void:
 	var tw := create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE)
 	tw.tween_property(panel, "size:y", new_y, wait)
@@ -537,7 +556,9 @@ func _on_update_timer_timeout() -> void:
 
 func apply_cheats() -> void:
 	if not enable_testing_cheats: return
+	print("applying cheats")
 	for i in party:
+		i.character.level_up(party_cheat_levelup)
 		i.character.max_health = party_cheat_health
 		i.character.health = party_cheat_health
 		i.character.max_magic = party_cheat_magic

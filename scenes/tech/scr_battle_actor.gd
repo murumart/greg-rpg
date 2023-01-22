@@ -32,11 +32,13 @@ var wait := 1.0
 
 
 func _ready() -> void:
+	print(self, " character loaded")
 	character = load_character(character_id)
 	actor_name = character.name
 
 
 func _physics_process(delta: float) -> void:
+	if SOL.dialogue_open: return
 	match state:
 		States.IDLE:
 			pass
@@ -154,9 +156,9 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 	# who should be targeted by the spirit
 	var targets : Array[BattleActor]
 	if spirit.reach == Spirit.Reach.TEAM:
-		targets = subject.get_team()
+		targets = subject.get_team().duplicate()
 	elif spirit.reach == Spirit.Reach.ALL:
-		targets = reference_to_actor_array
+		targets = reference_to_actor_array.duplicate()
 	else:
 		targets = [subject]
 	print(targets)
@@ -188,6 +190,7 @@ func use_item(id: int, subject: BattleActor) -> void:
 
 func handle_payload(pld: BattlePayload) -> void:
 	await get_tree().process_frame
+	if character.health <= 0: return
 	print(actor_name, ": payload received from %s! " % pld.sender)
 	
 	var health_change := 0.0

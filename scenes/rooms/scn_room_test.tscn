@@ -484,6 +484,7 @@ battle_info = {
 "enemies": [3],
 "music": "bike_spirit"
 }
+save_position = true
 
 [node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="BikeGhost"]
 position = Vector2(0, -8)

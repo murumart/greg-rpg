@@ -17,7 +17,8 @@ var state : int
 
 func _ready() -> void:
 	if DAT.gate_id == DAT.GATE_LOADING:
-		position = DAT.A.get("player_position", position)
+		pass
+	position = DAT.A.get(save_key_name("position"), position)
 
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +62,8 @@ func interact() -> void:
 
 
 func _save_me() -> void:
-	DAT.set_data("player_position", position)
+	DAT.set_data(save_key_name("position"), position)
 
 
+func save_key_name(key: String) -> String:
+	return str("player_in_", DAT.get_current_scene().name, "_", key)

@@ -69,22 +69,70 @@ region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_76min"]
 animations = [{
-"frames": [SubResource("AtlasTexture_vo3ai"), SubResource("AtlasTexture_ihigo"), SubResource("AtlasTexture_mu8or"), SubResource("AtlasTexture_ecu36")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo3ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihigo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu8or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecu36")
+}],
 "loop": true,
 "name": &"walk_down",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_bighp"), SubResource("AtlasTexture_rxhy4"), SubResource("AtlasTexture_7neb6"), SubResource("AtlasTexture_72oqv")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bighp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxhy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7neb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72oqv")
+}],
 "loop": true,
 "name": &"walk_left",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_sgke4"), SubResource("AtlasTexture_ixsnt"), SubResource("AtlasTexture_ewdxy"), SubResource("AtlasTexture_aeyb2")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgke4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixsnt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewdxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeyb2")
+}],
 "loop": true,
 "name": &"walk_right",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_eag3g"), SubResource("AtlasTexture_klusk"), SubResource("AtlasTexture_gjf34"), SubResource("AtlasTexture_km17g")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eag3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klusk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjf34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km17g")
+}],
 "loop": true,
 "name": &"walk_up",
 "speed": 5.0

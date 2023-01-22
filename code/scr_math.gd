@@ -24,3 +24,7 @@ static func method_29193(x: float):
 	var var_4 := 1.068135
 	var y := var_1 + (var_2 - var_1)/(1 + pow(x/var_3, var_4))
 	return y
+
+
+static func sign_symbol(x) -> String:
+	return "+" if x > 0 else "-"

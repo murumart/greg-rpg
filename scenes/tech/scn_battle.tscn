@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2no3m83ld8fr"]
+[gd_scene load_steps=15 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
-[ext_resource type="PackedScene" uid="uid://is6bmhsr1fav" path="res://scenes/tech/scn_battle_member_info.tscn" id="7_is2uq"]
+[ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="7_is2uq"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyurf"]
@@ -57,9 +57,7 @@ loop = true
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
-party_cheat_magic = 2.0201e+06
-party_cheat_attack = 99.0
-party_cheat_speed = 99.0
+party_cheat_magic = 1839.0
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 

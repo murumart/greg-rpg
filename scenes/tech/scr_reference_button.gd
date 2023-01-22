@@ -24,7 +24,6 @@ func _focus_entered() -> void:
 
 
 func _focus_exited() -> void:
-	await get_tree().process_frame
 	if visible:
 		SND.menusound(1.5)
 

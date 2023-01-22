@@ -27,9 +27,10 @@ attack = 1.0
 defense = 1.0
 speed = 1.0
 inventory = [0, 0, 1, 1]
+spirits = [0, 1, 2, 3, 4, 5, 6, 7]
+unused_sprits = null
 armour = -1
 weapon = -1
-spirits = [0, 1, 2, 3, 4, 5, 6, 7]
 
 [sub_resource type="Resource" id="Resource_wjym6"]
 script = ExtResource("3_ednal")
@@ -45,9 +46,10 @@ attack = 2.0
 defense = 1.0
 speed = 1.0
 inventory = null
+spirits = null
+unused_sprits = null
 armour = -1
 weapon = -1
-spirits = null
 
 [sub_resource type="Resource" id="Resource_grb88"]
 script = ExtResource("3_ednal")
@@ -63,9 +65,10 @@ attack = 16.0
 defense = 20.0
 speed = 19.0
 inventory = [2, 2, 2]
+spirits = null
+unused_sprits = null
 armour = -1
 weapon = -1
-spirits = null
 
 [sub_resource type="Resource" id="Resource_if6cx"]
 script = ExtResource("3_ednal")
@@ -81,9 +84,10 @@ attack = 4.0
 defense = 3.0
 speed = 6.0
 inventory = null
+spirits = []
+unused_sprits = null
 armour = -1
 weapon = -1
-spirits = []
 
 [sub_resource type="Resource" id="Resource_lquol"]
 script = ExtResource("7_wrlwy")

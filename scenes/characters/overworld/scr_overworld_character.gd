@@ -48,10 +48,11 @@ var target : Vector2 : set = set_target
 func _ready() -> void:
 	# load stuff
 	if DAT.gate_id == DAT.GATE_LOADING:
-		if save_position:
-			set_position(DAT.get_data(save_key_name("position"), position))
-		if save_convo_progess:
-			convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
+		pass
+	if save_position:
+		set_position(DAT.get_data(save_key_name("position"), position))
+	if save_convo_progess:
+		convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
 	# setup
 	if random_movement:
 		random_movement_timer = Timer.new()

@@ -37,4 +37,5 @@ func enter_battle(options := {}) -> void:
 	DAT.capture_player()
 	SOL.vfx("battle_enter", Vector2())
 	await get_tree().create_timer(3.0).timeout
+	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", options)

@@ -11,6 +11,7 @@ const SCREEN_SIZE := Vector2i(160, 120)
 var fps_label : Label
 
 var speaking := false
+var dialogue_open := false
 
 @onready var dialogue_box := $DialogueBoxOrderer
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
@@ -42,11 +43,13 @@ func dialogue(key: String) -> void:
 
 func _on_dialogue_closed() -> void:
 	dialogue_closed.emit()
+	dialogue_open = false
 
 
 func _on_speaking_started() -> void:
 	print("started speaking")
 	speaking = true
+	dialogue_open = true
 
 
 func _on_speaking_stopped() -> void:

@@ -14,3 +14,4 @@ enum Uses {NONE = -1, HEALING, HURTING, BUFFING, DEBUFFING, WEAPON, ARMOUR}
 @export var price := 0
 @export var use := Uses.NONE
 @export var payload : BattlePayload
+

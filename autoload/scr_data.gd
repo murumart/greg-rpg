@@ -82,7 +82,7 @@ func print_data() -> void:
 
 
 func capture_player() -> void:
-	var players : Array = get_tree().get_nodes_in_group("player")
+	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		players[0].state = PlayerOverworld.States.NOT_FREE_MOVE
 		print(players[0].name, " captured")

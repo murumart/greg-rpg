@@ -106,3 +106,32 @@ func set_weapon(x: bool) -> BattlePayload:
 	equip_as_weapon = x
 	return self
 
+
+func get_effect_description() -> String:
+	var text := ""
+	if health:
+		text += "%s%s hp\n" % [Math.sign_symbol(health), absf(health)]
+	if health_percent:
+		text += "%s%s " % [Math.sign_symbol(health_percent), absf(health_percent)]
+		text += "% hp\n"
+	if max_health_percent:
+		text += "%s%s " % [Math.sign_symbol(max_health_percent), absf(max_health_percent)]
+		text += "% max hp\n"
+	if magic:
+		text += "%s%s sp\n" % [Math.sign_symbol(magic), absf(magic)]
+	if magic_percent:
+		text += "%s%s " % [Math.sign_symbol(magic_percent), absf(magic_percent)]
+		text += "% sp\n"
+	if max_magic_percent:
+		text += "%s%s " % [Math.sign_symbol(max_magic_percent), absf(max_magic_percent)]
+		text += "% max sp\n"
+	if attack_increase:
+		text += "%s%s atk" % [Math.sign_symbol(attack_increase), absf(attack_increase)]
+		text += (" for %s turns\n" % attack_increase_time) if not equip_as_armour and not equip_as_weapon else "\n"
+	if defense_increase:
+		text += "%s%s def" % [Math.sign_symbol(defense_increase), absf(defense_increase)]
+		text += (" for %s turns\n" % defense_increase_time) if not equip_as_armour and not equip_as_weapon else "\n"
+	if speed_increase:
+		text += "%s%s spd" % [Math.sign_symbol(speed_increase), absf(speed_increase)]
+		text += (" for %s turns\n" % speed_increase_time) if not equip_as_armour and not equip_as_weapon else "\n"
+	return text
