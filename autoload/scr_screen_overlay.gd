@@ -88,6 +88,8 @@ func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 	effect.z_index = 100
 	var parent : Node = options.get("parent", self)
 	parent.add_child(effect)
+	if effect.has_method(&"init"):
+		effect.init(options)
 	effect.global_position = pos + SCREEN_SIZE / 2.0 if not "global_position" in parent else pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)

@@ -171,6 +171,7 @@ func use_item(id: int, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
 	if not id in item.USES_EQUIPABLE:
 		subject.handle_payload(item.payload.set_sender(self))
+		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture})
 	else:
 		subject.character.handle_item(id)
 	if item.consume_on_use:

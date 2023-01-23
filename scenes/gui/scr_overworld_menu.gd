@@ -42,8 +42,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				SND.menusound(0.8)
 				using_menu.hide()
 				grab_item_focus()
-			Doings.PARTY:
-				hide()
 	match doing:
 		Doings.PARTY:
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)

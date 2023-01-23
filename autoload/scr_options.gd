@@ -15,7 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_KP_1:
-				DAT.get_character(0).level_up()
+				pass
 
 
 func _ready() -> void:
