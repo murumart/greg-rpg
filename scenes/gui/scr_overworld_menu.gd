@@ -267,10 +267,6 @@ func _reference_button_pressed(reference) -> void:
 			load_spirits()
 			await get_tree().process_frame
 			grab_item_focus()
-#		doing = Doings.USING
-#		using_label.text = "using " + DAT.get_spirit(reference).name
-#		using_item = reference
-#		load_using_menu()
 
 
 func _on_button_reference_received(reference) -> void:

@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="3_cuvke"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_srch7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nj853"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7huo"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7a2g"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2jl4"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
@@ -25,7 +25,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6d0n"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf5e4"]
 bg_color = Color(0, 0, 0, 1)
 expand_margin_top = 1.0
 
@@ -66,7 +66,7 @@ theme_override_constants/separation = -1
 [node name="Tab1" type="Panel" parent="Panel/TabContainer"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nj853")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7huo")
 
 [node name="Name" type="Label" parent="Panel/TabContainer/Tab1"]
 layout_mode = 0
@@ -81,7 +81,7 @@ clip_text = true
 z_index = -1
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nj853")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7huo")
 
 [node name="Name" type="Label" parent="Panel/TabContainer/Tab2"]
 layout_mode = 0
@@ -96,7 +96,7 @@ clip_text = true
 z_index = -1
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nj853")
+theme_override_styles/panel = SubResource("StyleBoxFlat_v7huo")
 
 [node name="Name" type="Label" parent="Panel/TabContainer/Tab3"]
 layout_mode = 0
@@ -155,7 +155,7 @@ offset_left = 71.0
 offset_top = 3.0
 offset_right = 144.0
 offset_bottom = 104.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_b7a2g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_d2jl4")
 tab_alignment = 1
 
 [node name="items" type="Panel" parent="Panel/ItemSpiritTabs"]
@@ -264,7 +264,7 @@ offset_left = 16.0
 offset_top = 26.0
 offset_right = 144.0
 offset_bottom = 37.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_t6d0n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mf5e4")
 text = "using"
 
 [node name="Panel" type="Panel" parent="UsingMenu"]
