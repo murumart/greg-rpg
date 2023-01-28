@@ -97,16 +97,14 @@ func _physics_process(_delta: float) -> void:
 	match doing:
 		Doings.SPIRIT_NAME:
 			spirit_speak_timer_progress.value = remap(spirit_speak_timer.time_left, 0.0, spirit_speak_timer_wait, 0.0, 100.0)
-	#print(f)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("ui_accept"):
-		if SOL.speaking: print("speaking"); return
 		if doing == Doings.DONE:
-			DAT.gate_id = &"exit_battle"
+			LTS.gate_id = &"exit_battle"
 			var looper :Array[BattleActor]= []
 			looper.append_array(party)
 			looper.append_array(dead_party)
@@ -202,6 +200,7 @@ func arrange_enemies():
 
 func set_background(id: String) -> void:
 	var path := DIR.battle_background_scene_path(id)
+	print(path)
 	if DIR.file_exists(path):
 		background_container.add_child(load(path).instantiate())
 	else:
@@ -269,7 +268,6 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 
 
 func _reference_button_pressed(reference) -> void:
-	print(reference, " pressed")
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
@@ -517,7 +515,6 @@ func _on_spirit_name_changed(to: String) -> void:
 
 
 func _on_spirit_name_submitted(submission: String) -> void:
-	print(submission)
 	spirit_speak_timer.paused = true
 	if submission in loaded_spirits.keys():
 		spirit_name.editable = false

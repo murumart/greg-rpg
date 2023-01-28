@@ -4,6 +4,11 @@ extends Node
 
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
+var gate_id : StringName
+const GATE_LOADING := &"loading"
+const GATE_EXIT_BATTLE := &"loading"
+const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE]
+
 var entering_battle := false
 
 

@@ -30,8 +30,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	get_viewport().set_input_as_handled()
 	if not visible: return
+	get_viewport().set_input_as_handled()
 	if event.is_action_pressed("ui_cancel"):
 		match doing:
 			Doings.INNER:
@@ -76,6 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					var item : Item = DAT.get_item(using_item)
 					if item.consume_on_use:
 						party(current_tab).inventory.erase(using_item)
+						SND.play_sound(preload("res://sounds/snd_use_item.ogg"), {volume = -10})
 				
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit : Spirit = DAT.get_spirit(using_item)
@@ -116,14 +117,14 @@ func side_load_character_data() -> void:
 	var charct : Character = party(current_tab)
 	mem_portrait.texture = charct.portrait
 	mem_infotext.text = str("lvl: %s
-exp: %s
+exp: %s/%s
 
 atk: %s
 def: %s
 spd: %s
 
 hp: %s/%s
-sp: %s/%s" % [charct.level, charct.experience, charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
+sp: %s/%s" % [charct.level, charct.experience, roundi(charct.xp2lvl(charct.level)), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
 
 
 func side_load_item_data(id: int) -> void:

@@ -68,6 +68,9 @@ animations = [{
 }]
 
 [node name="BattleEnemy" instance=ExtResource("1_i1psi")]
+altruism = 0.5
+innovation = 0.5
+default_action = 0
 character_id = 4
 stat_multiplier = 0.163
 

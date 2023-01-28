@@ -1,56 +1,65 @@
-[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://dx54lbvrlmhrq"]
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://dx54lbvrlmhrq"]
 
 [ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_os0mr"]
 
-[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_j78ta"]
-default_input_values = [1, 2, 2, 2, 3, 2, 4, 2]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_h57w7"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_h0x3i"]
+source = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_t1put"]
+default_input_values = [1, 0.968, 2, 0.0, 3, 0.161, 4, 0.07, 5, 1.0, 6, 0.0]
 initialized = true
 script = ExtResource("1_os0mr")
-
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_gpc5s"]
-source = 2
 
 [resource]
 code = "shader_type canvas_item;
 
 
-// DistortionUV
-
-vec2 _distortionUV(vec2 _distortion_uv, vec2 _distortion_vect, vec2 _distortion_wave_vect) {
-	_distortion_uv.x += sin(_distortion_uv.y * _distortion_wave_vect.x) * _distortion_vect.x;
-	_distortion_uv.y += sin(_distortion_uv.x * _distortion_wave_vect.y) * _distortion_vect.y;
-	return _distortion_uv;
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
 }
 
-
 void fragment() {
-	vec2 n_out2p0;
-// DistortionUV:2
-	int n_in2p1 = 2;
-	int n_in2p2 = 2;
-	int n_in2p3 = 2;
-	int n_in2p4 = 2;
+// Input:7
+	float n_out7p0 = TIME;
+
+
+	vec2 n_out9p0;
+// DistortionUVAnimated:9
+	float n_in9p1 = 0.96800;
+	float n_in9p2 = 0.00000;
+	float n_in9p3 = 0.16100;
+	float n_in9p4 = 0.07000;
+	float n_in9p5 = 1.00000;
 	{
-		n_out2p0.xy = _distortionUV(UV.xy, vec2(n_in2p3, n_in2p4), vec2(n_in2p1, n_in2p2));
+		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_in9p5, n_out7p0);
 	}
 
 
-	vec4 n_out3p0;
-// Texture2D:3
-	n_out3p0 = texture(TEXTURE, n_out2p0);
+	vec4 n_out8p0;
+// Texture2D:8
+	n_out8p0 = texture(TEXTURE, n_out9p0);
 
 
 // Output:0
-	COLOR.rgb = vec3(n_out3p0.xyz);
+	COLOR.rgb = vec3(n_out8p0.xyz);
 
 
 }
 "
-graph_offset = Vector2(-191.159, 95.5072)
+graph_offset = Vector2(-413.594, 92.3695)
 mode = 1
 flags/light_only = false
-nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_j78ta")
-nodes/fragment/2/position = Vector2(-20, 140)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_gpc5s")
-nodes/fragment/3/position = Vector2(160, 140)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0)
+nodes/fragment/0/position = Vector2(420, 140)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_h57w7")
+nodes/fragment/7/position = Vector2(-380, 260)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_h0x3i")
+nodes/fragment/8/position = Vector2(200, 180)
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_t1put")
+nodes/fragment/9/position = Vector2(-80, 160)
+nodes/fragment/connections = PackedInt32Array(8, 0, 0, 0, 9, 0, 8, 0, 7, 0, 9, 6)

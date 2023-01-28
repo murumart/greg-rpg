@@ -51,6 +51,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 		if l + 1 >= lines.size():
 			dialogue_array.append(dial)
 	
+	if mode: pass
 	print("parsing finished. ", Time.get_ticks_usec() - time)
 	return dialogue_array
 

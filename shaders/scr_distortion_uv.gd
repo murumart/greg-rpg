@@ -1,31 +1,32 @@
-# https://github.com/arkology/ShaderV/blob/master/addons/shaderV/uv/distortionUV.gd
 @tool
 extends VisualShaderNodeCustom
-class_name VisualShaderNodeUVdistortion
+class_name VisualShaderNodeUVdistortionAnimated
 
 func _init() -> void:
-	set_input_port_default_value(1, 0)
-	set_input_port_default_value(2, 0)
-	set_input_port_default_value(3, 0)
-	set_input_port_default_value(4, 0)
+	set_input_port_default_value(1, 0.0)
+	set_input_port_default_value(2, 0.0)
+	set_input_port_default_value(3, 0.0)
+	set_input_port_default_value(4, 0.0)
+	set_input_port_default_value(5, 1.0)
+	set_input_port_default_value(6, 0.0)
 
 func _get_name() -> String:
-	return "DistortionUV"
+	return "DistortionUVAnimated"
 
 func _get_category() -> String:
 	return "UV"
 
-#func _get_subcategory():
-#	return ""
+func _get_subcategory() -> String:
+	return "Animated"
 
 func _get_description() -> String:
-	return "Wave-like UV distortion"
+	return "Animated wave-like UV distortion"
 
 func _get_return_icon_type() -> int:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
 func _get_input_port_count() -> int:
-	return 5
+	return 7
 
 func _get_input_port_name(port: int):
 	match port:
@@ -39,6 +40,10 @@ func _get_input_port_name(port: int):
 			return "distortX"
 		4:
 			return "distortY"
+		5:
+			return "speed"
+		6:
+			return "time"
 
 func _get_input_port_type(port: int):
 	match port:
@@ -52,31 +57,32 @@ func _get_input_port_type(port: int):
 			return VisualShaderNode.PORT_TYPE_SCALAR
 		4:
 			return VisualShaderNode.PORT_TYPE_SCALAR
+		5:
+			return VisualShaderNode.PORT_TYPE_SCALAR
+		6:
+			return VisualShaderNode.PORT_TYPE_SCALAR
 
 func _get_output_port_count() -> int:
 	return 1
 
-func _get_output_port_name(port: int) -> String:
+func _get_output_port_name(_port: int) -> String:
 	return "uv"
 
-func _get_output_port_type(port: int) -> int:
+func _get_output_port_type(_port: int) -> int:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
-func _get_global_code(mode: int) -> String:
-	var code : String = """
-vec2 _distortionUV(vec2 _distortion_uv, vec2 _distortion_vect, vec2 _distortion_wave_vect) {
-	_distortion_uv.x += sin(_distortion_uv.y * _distortion_wave_vect.x) * _distortion_vect.x;
-	_distortion_uv.y += sin(_distortion_uv.x * _distortion_wave_vect.y) * _distortion_vect.y;
-	return _distortion_uv;
-}
-"""
+func _get_global_code(_mode: int) -> String:
+	var code : String = "vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}"
 	return code
 
-func _get_code(input_vars: Array, output_vars: Array, mode: int, type: int) -> String:
+func _get_code(input_vars: Array, output_vars: Array, _mode: int, _type: int) -> String:
 	var uv = "UV"
 	
 	if input_vars[0]:
 		uv = input_vars[0]
 	
-	return "%s.xy = _distortionUV(%s.xy, vec2(%s, %s), vec2(%s, %s));" % [
-			output_vars[0], uv, input_vars[3], input_vars[4], input_vars[1], input_vars[2]]
+	return "%s.xy = _distortionUVAnimatedFunc(%s.xy, %s, %s, %s, %s, %s, %s);" % [output_vars[0], uv, input_vars[3], input_vars[4], input_vars[1], input_vars[2], input_vars[5], input_vars[6]]

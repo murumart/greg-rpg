@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bopqgwpu8u0mr"]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="1_aq6ed"]
 [ext_resource type="Script" path="res://scenes/vfx/scr_vfx_use_item.gd" id="1_jnb8y"]
 [ext_resource type="AudioStream" uid="uid://cl2pqsq7v68vx" path="res://sounds/snd_use_item.ogg" id="2_0qawy"]
-[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/white_pixel.png" id="2_kl3y2"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_kl3y2"]
 
 [sub_resource type="Animation" id="Animation_s0awb"]
 resource_name = "default"

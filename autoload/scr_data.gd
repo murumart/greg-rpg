@@ -2,8 +2,7 @@ extends Node
 
 # handles data, saving and loading it
 
-var gate_id : StringName
-const GATE_LOADING := &"loading"
+
 
 # DATA
 var A : Dictionary
@@ -73,7 +72,7 @@ func load_data(filename := "save.grs") -> void:
 	load_chars_from_data()
 	
 	var room_to_load : String = loaded.get("current_room", "test")
-	gate_id = GATE_LOADING
+	LTS.gate_id = LTS.GATE_LOADING
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
 

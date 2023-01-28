@@ -3,11 +3,12 @@ class_name OverworldCharacter
 
 # this is the overworld npcs class
 # they can walk around, chase you, you can talk to them if they have dialogue
-# to do, I guess: starting battles
+
+signal target_reached
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
-const ROTS = [&"up", &"right", &"down", &"left"]
-enum States {IDLE, TALKING, WANDER, CHASE}
+const ROTS := [&"up", &"right", &"down", &"left"]
+enum States {IDLE, TALKING, WANDER, CHASE, PATH}
 var state := States.IDLE
 
 @export_group("Nodes")
@@ -20,51 +21,70 @@ var state := States.IDLE
 
 @export_group("Movement")
 @export var speed := 3500
+@export var movement_wait := 5.0
 @export var random_movement := false
-@export var random_movement_wait := 5.0
 const TIME_BETWEEN_CHASE_UPDATES := 0.25
 @export var random_movement_distance := 64
 var random_movement_timer : Timer
 const RANDOM_MOVEMENT_TRIES := 16
-var chase_timer := Timer.new()
-var moving_towards_target := 0.0
+var chase_timer : Timer
+var time_moved := 0.0
 @export var chase_target : Node2D
 @export var chase_distance := 32
+@export var path_container : Node2D
+var path_timer : Timer
 
 @export_group("Interaction")
+@export var interact_on_touch := false
 var convo_progress := 0
 @export var default_lines : Array[StringName]
 @export var battle_info : BattleInfo
 
 @export_group("Save Information")
+@export var character_link := -1
 @export var save_position : bool = false
 @export var save_convo_progess : bool = false
 @export var permanently_defeated : bool = false
-
 
 var target : Vector2 : set = set_target
 
 
 func _ready() -> void:
 	# load stuff
-	if DAT.gate_id == DAT.GATE_LOADING:
+	if LTS.gate_id == LTS.GATE_LOADING:
 		pass
 	if save_position:
 		set_position(DAT.get_data(save_key_name("position"), position))
 	if save_convo_progess:
 		convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
+	if permanently_defeated:
+		if character_link > -1:
+			if character_link in DAT.A.get("defeated_characters", []):
+				global_position = Vector2i(129731, 120947912)
+				set_physics_process(false)
+				hide()
+				return
 	# setup
 	if random_movement:
 		random_movement_timer = Timer.new()
 		add_child(random_movement_timer)
 		random_movement_timer.timeout.connect(_on_random_movement_timer_timeout)
-		random_movement_timer.start(random_movement_wait)
+		random_movement_timer.start(movement_wait)
 	if not chase_target:
 		detection_area.monitoring = false
-	add_child(chase_timer)
-	chase_timer.timeout.connect(_on_chase_timer_timeout)
 	if chase_target:
+		chase_timer = Timer.new()
+		add_child(chase_timer)
+		chase_timer.timeout.connect(_on_chase_timer_timeout)
 		chase_timer.start(TIME_BETWEEN_CHASE_UPDATES)
+	if path_container:
+		path_timer = Timer.new()
+		add_child(path_timer)
+		path_timer.one_shot = true
+		path_timer.timeout.connect(_on_path_target_reached)
+		path_timer.start(movement_wait)
+	if interact_on_touch:
+		interaction_area.body_entered.connect(_on_interaction_area_on_interacted)
 	detection_area.get_child(0).shape.radius = chase_distance
 	detection_raycast.add_exception(detection_area)
 	detection_raycast.add_exception(interaction_area)
@@ -80,33 +100,51 @@ func _physics_process(delta: float) -> void:
 				set_state(States.IDLE)
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed
-			if global_position.distance_squared_to(target) > 6 and moving_towards_target < 5:
-				moving_towards_target += delta * 2
+			if global_position.distance_squared_to(target) > 6 and time_moved < 5:
+				time_moved += delta * 2
 				var _collided := move_and_slide()
 			else:
 				set_state(States.IDLE)
 		States.WANDER:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
-			if global_position.distance_squared_to(target) > 4 and moving_towards_target < 5:
-				moving_towards_target += delta * 2
+			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
+				time_moved += delta * 2
 				var _collided := move_and_slide()
 			else:
+				target_reached.emit()
+				set_state(States.IDLE)
+		States.PATH:
+			velocity = global_position.direction_to(target) * delta * speed * 0.75
+			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
+				time_moved += delta * 2
+				var _collided := move_and_slide()
+			else:
+				target_reached.emit()
+				path_timer.start(movement_wait)
 				set_state(States.IDLE)
 	
 	direct_walking_animation(velocity)
 
 
 func interacted() -> void:
-	print(default_lines)
 	if default_lines.size() > 0:
 		set_state(States.TALKING)
 		velocity = Vector2()
 		SOL.dialogue(default_lines[convo_progress])
+		if not SOL.dialogue_closed.is_connected(_on_talking_finished):
+			SOL.dialogue_closed.connect(_on_talking_finished)
 		convo_progress = mini(convo_progress + 1, default_lines.size() - 1)
 	if battle_info:
 		debprint(battle_info)
 		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 			LTS.enter_battle(battle_info)
+
+
+func _on_talking_finished() -> void:
+	if path_timer:
+		set_state(States.PATH)
+		path_timer.paused = false
+	SOL.dialogue_closed.disconnect(_on_talking_finished)
 
 
 func _on_random_movement_timer_timeout() -> void:
@@ -121,12 +159,34 @@ func _on_random_movement_timer_timeout() -> void:
 	set_state(States.WANDER)
 
 
+func _on_path_target_reached() -> void:
+	if not state == States.IDLE: return
+	var path_points := path_container.get_children()
+	if path_points:
+		var current := at_which_path_point()
+		var current_index := path_points.find(current)
+		var next_index := wrapi(current_index + 1, 0, path_points.size())
+		set_target(path_points[next_index].global_position)
+		set_state(States.PATH)
+
+
+func at_which_path_point() -> Node2D:
+	var path_points := path_container.get_children()
+	if path_points:
+		path_points.sort_custom(sort_by_distance)
+		return path_points.front()
+	return null
+
+
 func set_state(to: States) -> void:
 	state = to
 	if to == States.CHASE:
 		chase_timer.start(TIME_BETWEEN_CHASE_UPDATES)
 	if to == States.IDLE:
-		moving_towards_target = 0.0
+		time_moved = 0.0
+	if to == States.TALKING:
+		if path_timer:
+			path_timer.paused = true
 
 
 func direct_walking_animation(direction: Vector2, complain := false) -> void:
@@ -172,7 +232,7 @@ func chase(body: CollisionObject2D) -> void:
 		
 		# we don't care if we collide with something that chases the same target
 		if collider == chase_target or same_target_as_collider_condition:
-			moving_towards_target = 0.0
+			time_moved = 0.0
 			set_target_offset(body.global_position if not same_target_as_collider_condition else body.global_position, 24) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
 			set_state(States.CHASE) # this also restarts the timer
 
@@ -190,7 +250,7 @@ func debprint(msg) -> void:
 	print("npc %s: " % name, msg)
 
 
-func _on_interaction_area_on_interacted() -> void:
+func _on_interaction_area_on_interacted(_possible_body) -> void:
 	interacted()
 
 
@@ -204,3 +264,7 @@ func _save_me() -> void:
 
 func save_key_name(key: String) -> String:
 	return str("npc_", name, "_in_", DAT.get_current_scene().name, "_", key)
+
+
+func sort_by_distance(a: Node2D, b: Node2D) -> bool:
+	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)

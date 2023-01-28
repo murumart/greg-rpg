@@ -27,11 +27,11 @@ func set_extents(to: Vector2i) -> void:
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	var area : Area2D= get_node_or_null(area_path)
+	var area : Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
 	await get_tree().process_frame
-	if DAT.gate_id == gate_id:
+	if LTS.gate_id == gate_id:
 		if player and get_node_or_null(spawn_point_path):
 			player.global_position = get_node(spawn_point_path).global_position
 
@@ -39,6 +39,6 @@ func _ready() -> void:
 func _on_area_entered(body: Node2D) -> void:
 	if body == player:
 		if DIR.file_exists(DIR.room_scene_path(destination)):
-			DAT.gate_id = gate_id
+			LTS.gate_id = gate_id
 			LTS.level_transition(DIR.room_scene_path(destination))
 

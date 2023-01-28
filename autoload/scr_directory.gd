@@ -5,7 +5,7 @@ extends Node
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
 const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_"
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_"
-const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/"
+const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/scn_"
 const TSCN := ".tscn"
 const SCN := ".scn"
 

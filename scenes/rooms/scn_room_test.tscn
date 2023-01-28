@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b75fam8wem4ex"]
+[gd_scene load_steps=53 format=3 uid="uid://b75fam8wem4ex"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_g3scf"]
 [ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/tech/scn_overworld_tiles.tscn" id="2_e5sis"]
@@ -13,9 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="10_q7e26"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_y2bdo"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="13_cuh6h"]
+[ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="14_546m5"]
+[ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="15_g7ug8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
+
+[sub_resource type="Resource" id="Resource_ap7el"]
+script = ExtResource("10_eqo2j")
+enemies = [4, 4, 4]
+background = "grass"
+music = "touch_me"
+party = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm7cp"]
 atlas = ExtResource("9_pxr2e")
@@ -294,13 +303,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_ap7el"]
-script = ExtResource("10_eqo2j")
-enemies = [4, 4, 4]
-background = "bikeghost"
-music = "touch_me"
-party = null
-
 [node name="TestRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_g3scf")
@@ -429,95 +431,6 @@ offset_bottom = 119.0
 theme = ExtResource("2_wqq2x")
 text = "leave"
 
-[node name="MDP" parent="." instance=ExtResource("8_j4r0r")]
-position = Vector2(631, 59)
-collision_extents = Vector2i(20, 3)
-speed = null
-random_movement = true
-random_movement_wait = null
-random_movement_distance = null
-default_lines = [&"test", &"test2be"]
-save_position = true
-save_convo_progess = null
-permanently_defeated = null
-
-[node name="MDPANIM" type="AnimatedSprite2D" parent="MDP"]
-position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_yv1ib")
-animation = &"walk_down"
-playing = true
-
-[node name="MDP5" parent="." instance=ExtResource("8_j4r0r")]
-position = Vector2(705, -14)
-collision_extents = Vector2i(20, 3)
-speed = 2000
-random_movement = null
-random_movement_wait = null
-random_movement_distance = null
-save_position = null
-save_convo_progess = null
-permanently_defeated = null
-
-[node name="MDPANIM" type="AnimatedSprite2D" parent="MDP5"]
-position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_yv1ib")
-animation = &"walk_down"
-playing = true
-
-[node name="MDP69" parent="." instance=ExtResource("8_j4r0r")]
-position = Vector2(648, -47)
-collision_extents = Vector2i(20, 3)
-speed = 2000
-random_movement = true
-random_movement_wait = null
-random_movement_distance = null
-save_position = true
-save_convo_progess = null
-permanently_defeated = null
-
-[node name="MDPANIM" type="AnimatedSprite2D" parent="MDP69"]
-position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_yv1ib")
-animation = &"walk_down"
-playing = true
-
-[node name="MDP93" parent="." instance=ExtResource("8_j4r0r")]
-position = Vector2(481, -4)
-collision_extents = Vector2i(20, 3)
-speed = 1000
-random_movement = true
-random_movement_wait = null
-random_movement_distance = null
-default_lines = [&"test", &"test2be"]
-save_position = true
-save_convo_progess = true
-permanently_defeated = null
-
-[node name="MDPANIM" type="AnimatedSprite2D" parent="MDP93"]
-position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_yv1ib")
-animation = &"walk_down"
-playing = true
-
-[node name="BikeGhost" parent="." instance=ExtResource("8_j4r0r")]
-position = Vector2(530, 45)
-collision_extents = null
-speed = null
-random_movement = true
-random_movement_wait = 6.0
-random_movement_distance = null
-chase_distance = 128
-battle_info = SubResource("Resource_ujmyv")
-save_position = true
-save_convo_progess = null
-permanently_defeated = null
-
-[node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="BikeGhost"]
-position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_kwod6")
-animation = &"walk_down"
-playing = true
-
 [node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_y2bdo")]
 position = Vector2(584, 7)
 destination = &"test2"
@@ -533,3 +446,124 @@ player = NodePath("../Greg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyEncounterArea"]
 polygon = PackedVector2Array(-13, 90, 107, 59, 158, -26, 93, -99, -13, -99, -80, -45, -99, 25, -41, 84)
+
+[node name="MDP93PATH" type="Node2D" parent="."]
+position = Vector2(568, -38)
+
+[node name="Marker2D" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(-44, -16)
+
+[node name="Marker2D2" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(-83, -50)
+
+[node name="Marker2D3" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(-64, -82)
+
+[node name="Marker2D4" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(-17, -114)
+
+[node name="Marker2D5" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(17, -67)
+
+[node name="Marker2D6" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(32, -33)
+
+[node name="Marker2D7" type="Marker2D" parent="MDP93PATH"]
+position = Vector2(-87, 34)
+
+[node name="SprCar1" type="Sprite2D" parent="."]
+position = Vector2(591, 122)
+texture = ExtResource("14_546m5")
+
+[node name="Car" parent="." node_paths=PackedStringArray("path_container") instance=ExtResource("15_g7ug8")]
+position = Vector2(181, 77)
+path_container = NodePath("../MDPS")
+
+[node name="CarPath" type="Node2D" parent="."]
+position = Vector2(167, -33)
+
+[node name="Marker2D" type="Marker2D" parent="CarPath"]
+position = Vector2(-1, 93)
+
+[node name="Marker2D2" type="Marker2D" parent="CarPath"]
+position = Vector2(188, 102)
+
+[node name="Marker2D3" type="Marker2D" parent="CarPath"]
+position = Vector2(185, -58)
+
+[node name="Marker2D4" type="Marker2D" parent="CarPath"]
+position = Vector2(135, -124)
+
+[node name="Marker2D5" type="Marker2D" parent="CarPath"]
+position = Vector2(2, -125)
+
+[node name="MDPS" type="Node2D" parent="."]
+
+[node name="MDP" parent="MDPS" instance=ExtResource("8_j4r0r")]
+position = Vector2(631, 59)
+collision_extents = Vector2i(20, 3)
+random_movement = true
+default_lines = [&"test", &"test2be"]
+save_position = true
+
+[node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_yv1ib")
+animation = &"walk_down"
+playing = true
+
+[node name="MDP5" parent="MDPS" instance=ExtResource("8_j4r0r")]
+position = Vector2(705, -14)
+collision_extents = Vector2i(20, 3)
+speed = 2000
+
+[node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP5"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_yv1ib")
+animation = &"walk_down"
+playing = true
+
+[node name="MDP69" parent="MDPS" instance=ExtResource("8_j4r0r")]
+position = Vector2(648, -47)
+collision_extents = Vector2i(20, 3)
+speed = 2000
+random_movement = true
+save_position = true
+
+[node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP69"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_yv1ib")
+animation = &"walk_down"
+playing = true
+
+[node name="MDP93" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("8_j4r0r")]
+position = Vector2(481, -4)
+animated_sprite = NodePath("MDPANIM")
+collision_extents = Vector2i(20, 3)
+speed = 1000
+movement_wait = 1.0
+path_container = NodePath("../../MDP93PATH")
+default_lines = [&"test", &"test2be"]
+save_position = true
+save_convo_progess = true
+
+[node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP93"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_yv1ib")
+animation = &"walk_down"
+playing = true
+
+[node name="BikeGhost" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_j4r0r")]
+position = Vector2(530, 45)
+animated_sprite = NodePath("BikeGhostAnimations")
+random_movement = true
+chase_distance = 128
+interact_on_touch = true
+battle_info = SubResource("Resource_ujmyv")
+save_position = true
+
+[node name="BikeGhostAnimations" type="AnimatedSprite2D" parent="MDPS/BikeGhost"]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_kwod6")
+animation = &"walk_down"
+playing = true

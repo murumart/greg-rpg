@@ -29,6 +29,7 @@ const UPGRADE_MAX := {
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
+@export var defeated_characters : Array[int] = []
 
 @export_group("Items and Spirits")
 @export var inventory : Array[int] = []
@@ -49,6 +50,7 @@ func get_saveable_dict() -> Dictionary:
 		"attack": attack,
 		"defense": defense,
 		"speed": speed,
+		"defeated_characters": defeated_characters,
 		"inventory": inventory,
 		"spirits": spirits,
 		"unused_sprits": unused_sprits,
@@ -73,11 +75,8 @@ func xp2lvl(lvl: int) -> float:
 
 
 func add_experience(amount: int) -> void:
-	print("adding %s xp" % amount)
-	print("current xp ", experience)
 	for i in amount:
 		experience = experience + 1
-		print(experience)
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
@@ -106,8 +105,8 @@ func level_up(by := 1, overflow := false) -> void:
 			if level == 99:
 				set(k, roundf(UPGRADE_MAX[k]))
 	
-	for i in get_saveable_dict():
-		print(i,": ", get(i))
+#	for i in get_saveable_dict():
+#		print(i,": ", get(i))
 	
 	SOL.dialogue_box.adjust_line("levelup", 1, "%s leveled up to %s." % [name, level])
 	SOL.dialogue("levelup")
@@ -147,5 +146,4 @@ func extinguish_duplicate_spirits() -> void:
 
 
 func set_experience(to: int) -> void:
-	print("xp set to ", to)
 	experience = to

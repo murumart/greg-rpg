@@ -20,9 +20,8 @@ var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instant
 func _ready() -> void:
 	SOL.add_ui_child(menu)
 	menu.hide()
-	if DAT.gate_id == DAT.GATE_LOADING:
-		pass
-	position = DAT.A.get(save_key_name("position"), position)
+	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
+		position = DAT.A.get(save_key_name("position"), position)
 
 
 func _unhandled_input(event: InputEvent) -> void:

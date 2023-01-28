@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://d4mtl2hxqpixv"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://d4mtl2hxqpixv"]
 
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_5vpic"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_gbsxx"]

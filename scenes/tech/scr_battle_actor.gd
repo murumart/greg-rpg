@@ -78,10 +78,10 @@ func hurt(amount: float) -> void:
 	if character.health <= 0.0:
 		state = States.DEAD
 		global_position.y += 2
-		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5})
+		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5, "volume": 4})
 		died.emit(self)
 	else:
-		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(-10, 0)})
+		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
 
 
 func get_attack() -> float:
@@ -131,6 +131,9 @@ func attack(subject: BattleActor) -> void:
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
+	if subject.character.health <= 0:
+		character.defeated_characters.append(subject.character_id)
+		DAT.set_data("defeated_characters", DAT.A.get("defeated_characters", []).append(subject.character_id))
 	turn_finished()
 
 
@@ -185,7 +188,7 @@ func use_item(id: int, subject: BattleActor) -> void:
 func handle_payload(pld: BattlePayload) -> void:
 	await get_tree().process_frame
 	if character.health <= 0: return
-	print(actor_name, ": payload received from %s! " % pld.sender)
+	print(actor_name, ": payload received from %s! " % pld.sender.character.name)
 	
 	var health_change := 0.0
 	health_change += pld.health
@@ -228,11 +231,8 @@ func turn_finished() -> void:
 
 
 func load_character(id: int) -> Character:
-	var char : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
-	print("printing char ", char.name)
-	for i in char.get_saveable_dict():
-		print(i, " ", char.get(i))
-	return char
+	var charc : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
+	return charc
 
 
 func offload_character() -> void:
