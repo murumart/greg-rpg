@@ -106,3 +106,7 @@ func set_weapon(x: bool) -> BattlePayload:
 	equip_as_weapon = x
 	return self
 
+
+func set_defense_pierce(x: float) -> BattlePayload:
+	pierce_defense = x
+	return self

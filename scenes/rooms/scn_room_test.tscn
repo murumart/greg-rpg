@@ -478,6 +478,7 @@ texture = ExtResource("14_546m5")
 [node name="Car" parent="." node_paths=PackedStringArray("path_container") instance=ExtResource("15_g7ug8")]
 position = Vector2(181, 77)
 path_container = NodePath("../MDPS")
+color = Color(0.780392, 0.494118, 0.376471, 1)
 
 [node name="CarPath" type="Node2D" parent="."]
 position = Vector2(167, -33)

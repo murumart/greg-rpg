@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=51 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -93,7 +93,7 @@ attack = 4.0
 defense = 3.0
 speed = 6.0
 defeated_characters = null
-inventory = null
+inventory = [0, 0, 2]
 spirits = []
 unused_sprits = null
 armour = -1
@@ -115,6 +115,26 @@ speed = 1.0
 defeated_characters = null
 inventory = null
 spirits = null
+unused_sprits = null
+armour = -1
+weapon = -1
+
+[sub_resource type="Resource" id="Resource_vbs5j"]
+script = ExtResource("3_ednal")
+id_name = &"car"
+name = "car"
+max_health = 200.0
+health = 200.0
+max_magic = 730.0
+magic = 730.0
+level = 45
+experience = 0
+attack = 99.0
+defense = 45.0
+speed = 45.0
+defeated_characters = null
+inventory = null
+spirits = [8, 9]
 unused_sprits = null
 armour = -1
 weapon = -1
@@ -494,8 +514,68 @@ reach = 2
 payload_reception_count = 10
 payload = SubResource("Resource_1m4tw")
 
+[sub_resource type="Resource" id="Resource_wvqt8"]
+script = ExtResource("7_wrlwy")
+health = -199.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_1wrya"]
+script = ExtResource("11_qkk80")
+name_in_file = &"overrun"
+name = &"overrun"
+description = "vroom vroom"
+animation = &""
+use_animation = &""
+receive_animation = &"overrun"
+cost = 730
+use = 1
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_wvqt8")
+
+[sub_resource type="Resource" id="Resource_jbb8t"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = 100.0
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+
+[sub_resource type="Resource" id="Resource_cgmtq"]
+script = ExtResource("11_qkk80")
+name_in_file = &"rev"
+name = &"rev"
+description = "vroom vroom"
+animation = &""
+use_animation = &""
+receive_animation = &"rev"
+cost = 0
+use = 2
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_jbb8t")
+
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
-character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx"), SubResource("Resource_m55w8")]
+character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx"), SubResource("Resource_m55w8"), SubResource("Resource_vbs5j")]
 item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs"), SubResource("Resource_4ek7t")]
-spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3")]
+spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3"), SubResource("Resource_1wrya"), SubResource("Resource_cgmtq")]

@@ -1,0 +1,216 @@
+[gd_scene load_steps=14 format=3 uid="uid://1ce8wta5k7ra"]
+
+[ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="1_f32ep"]
+[ext_resource type="AudioStream" uid="uid://bhr82d56ke3am" path="res://sounds/snd_car_overrun.ogg" id="1_o1idm"]
+[ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="3_ihyfb"]
+[ext_resource type="PackedScene" uid="uid://bgepjvtvo82in" path="res://scenes/vfx/scn_vfx_dustpuff.tscn" id="4_t1v38"]
+[ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="5_5m7cy"]
+
+[sub_resource type="Animation" id="Animation_vdc6i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-132, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ie8hm"]
+resource_name = "defauly"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_o1idm")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-129, -1), Vector2(162, -1), Vector2(501, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwjq8"]
+_data = {
+"RESET": SubResource("Animation_vdc6i"),
+"defauly": SubResource("Animation_ie8hm")
+}
+
+[sub_resource type="Gradient" id="Gradient_m6vm6"]
+offsets = PackedFloat32Array(0, 0.631781, 1)
+colors = PackedColorArray(9.12, 9.12, 9.12, 1, 0.283104, 0.283104, 0.283103, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ijpnj"]
+gradient = SubResource("Gradient_m6vm6")
+width = 16
+
+[sub_resource type="Curve" id="Curve_i1tqu"]
+_data = [Vector2(0, 0.563397), 0.0, 0.0, 0, 0, Vector2(0.321433, 0.772727), 3.59819, 3.59819, 0, 0, Vector2(1, 0.423844), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uu8p4"]
+curve = SubResource("Curve_i1tqu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b6mds"]
+lifetime_randomness = 0.71
+particle_flag_disable_z = true
+direction = Vector3(1, -0.5, 0)
+spread = 17.31
+flatness = 1.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 38.46
+initial_velocity_max = 83.33
+angular_velocity_min = -55.38
+angular_velocity_max = 276.92
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -110.8
+angle_max = 230.8
+scale_curve = SubResource("CurveTexture_uu8p4")
+color_ramp = SubResource("GradientTexture1D_ijpnj")
+
+[node name="Overrun" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "defauly"
+libraries = {
+"": SubResource("AnimationLibrary_xwjq8")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 3.77, 22.64, 1)
+position = Vector2(-132, 0)
+texture = ExtResource("1_f32ep")
+region_enabled = true
+region_rect = Rect2(0, 0, 28, 14)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+position = Vector2(-13, 3)
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_b6mds")
+texture = ExtResource("3_ihyfb")
+lifetime = 0.4
+visibility_rect = Rect2(-300, -300, 300, 300)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_o1idm")
+
+[node name="DustPuff" parent="." instance=ExtResource("4_t1v38")]
+
+[node name="DustPuff2" parent="." instance=ExtResource("4_t1v38")]
+
+[node name="DustPuff3" parent="." instance=ExtResource("4_t1v38")]
+
+[node name="BangSpark" parent="." instance=ExtResource("5_5m7cy")]
+
+[node name="BangSpark2" parent="." instance=ExtResource("5_5m7cy")]
+
+[node name="BangSpark3" parent="." instance=ExtResource("5_5m7cy")]

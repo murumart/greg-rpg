@@ -1,7 +1,58 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0boy1v2h80jo"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_g01qy"]
-[ext_resource type="Texture2D" uid="uid://28xynergqegy" path="res://sprites/photos/spr_town1.jpeg" id="2_h671d"]
+[ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="2_1s8l4"]
+
+[sub_resource type="Animation" id="Animation_1ioka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SprTown1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SprTown1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SprTown1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SprTown1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.223529, 0.466667, 0.301961, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bpvym"]
 resource_name = "default"
@@ -56,57 +107,6 @@ tracks/3/keys = {
 "values": [Color(0.223529, 0.466667, 0.301961, 1), Color(0.470588, 0.4, 0.184314, 1), Color(0.34902, 0.145098, 0.12549, 1), Color(0.67451, 0.470588, 0.752941, 1), Color(0.552941, 0.764706, 0.941176, 1), Color(1, 1, 1, 1), Color(0.184314, 0.619608, 0.701961, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1ioka"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SprTown1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 60)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SprTown1:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SprTown1:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SprTown1:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.223529, 0.466667, 0.301961, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qk8gv"]
 _data = {
 "RESET": SubResource("Animation_1ioka"),
@@ -118,7 +118,7 @@ _data = {
 [node name="SprTown1" type="Sprite2D" parent="." index="2"]
 self_modulate = Color(0.223529, 0.466667, 0.301961, 1)
 position = Vector2(80, 60)
-texture = ExtResource("2_h671d")
+texture = ExtResource("2_1s8l4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 autoplay = "default"

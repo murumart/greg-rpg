@@ -1,40 +1,124 @@
 extends BattleActor
 class_name BattleEnemy
 
-enum Actions {ATTACK, BUFF, DEBUFF, HEAL}
+enum Intents {ATTACK, BUFF, DEBUFF, HEAL, MAX_ACTION}
+const TEAM := 1
 
 @export var effect_center := Vector2i()
 @export var animator : AnimationPlayer
 
-var healing_spirits : Array[Spirit]
-var hurting_spirits : Array[Spirit]
-var buffing_spirits : Array[Spirit]
-var debuffing_spirits : Array[Spirit]
+const FIND_SUITABLE_ACT_TRIES := 32
+
+var healing_spirits : Array[int]
+var hurting_spirits : Array[int]
+var buffing_spirits : Array[int]
+var debuffing_spirits : Array[int]
 
 @export_group("Behaviour")
-@export_range(0.0, 1.0) var healing_threshold := 0.0
+@export_range(0.0, 1.0) var toughness := 0.25
 @export_range(0.0, 1.0) var altruism := 0.5
-@export_range(0.0, 1.0) var innovation := 0.5
-@export var default_action := Actions.ATTACK
+@export_range(0.0, 1.0) var innovation := 0.75
+@export_range(0.0, 1.0) var vaimulembesus := 1.0
+@export var default_intent := Intents.ATTACK
+
+
+func _ready() -> void:
+	animate("idle")
+	super._ready()
+	for s in character.spirits:
+		var spirit : Spirit = DAT.get_spirit(s)
+		if spirit.use == Spirit.Uses.BUFFING:
+			buffing_spirits.append(s)
+		elif spirit.use == Spirit.Uses.DEBUFFING:
+			debuffing_spirits.append(s)
+		elif spirit.use == Spirit.Uses.HEALING:
+			healing_spirits.append(s)
+		elif spirit.use == Spirit.Uses.HURTING:
+			hurting_spirits.append(s)
 
 
 func act() -> void:
 	super.act()
 	
-	var action := default_action
+	ai_action()
+	
+	print(actor_name, " acting finished!")
+
+
+func ai_action() -> void:
+	var chosen := false
 	var team := reference_to_team_array.duplicate()
 	var team_dict := {}
 	if altruism:
 		team_dict = team_dict_with_health_keys(team)
-	
-	if randf() >= 0.5:
-		if reference_to_opposing_array.size() > 0:
-			attack(reference_to_opposing_array.pick_random())
-		else:
-			turn_finished()
-	else:
-		turn_finished()
-	print(actor_name, " acting finished!")
+	var intent := default_intent
+	for i in FIND_SUITABLE_ACT_TRIES:
+		print(actor_name, ": action try ", i)
+		if randf() <= innovation:
+			intent = randi() % Intents.MAX_ACTION
+		var target : BattleActor
+		var spirit_pocket : Array[int] = []
+		match intent:
+			Intents.ATTACK:
+				target = pick_target()
+				if hurting_spirits.size() > 0:
+					spirit_pocket.append_array(hurting_spirits)
+					spirit_pocket.shuffle()
+					if randf() <= vaimulembesus:
+						for s in spirit_pocket:
+							if DAT.get_spirit(s).cost <= character.magic:
+								use_spirit(s, target)
+								return
+				for s in character.inventory:
+					if DAT.get_item(s).use == Item.Uses.HURTING:
+						use_item(s, target)
+						return
+				attack(target)
+				return
+			Intents.BUFF:
+				target = self
+				if randf() <= altruism: target = pick_target(TEAM)
+				if randf() <= vaimulembesus and buffing_spirits.size() > 0:
+					spirit_pocket.append_array(buffing_spirits)
+					for s in spirit_pocket:
+						if DAT.get_spirit(s).cost <= character.magic:
+							use_spirit(s, target)
+							return
+				for s in character.inventory:
+					if DAT.get_item(s).use == Item.Uses.BUFFING:
+						use_item(s, target)
+						return
+			Intents.DEBUFF:
+				target = pick_target()
+				if randf() <= vaimulembesus and debuffing_spirits.size() > 0:
+					spirit_pocket.append_array(debuffing_spirits)
+					for s in spirit_pocket:
+						if DAT.get_spirit(s).cost <= character.magic:
+							use_spirit(s, target)
+							return
+				for s in character.inventory:
+					if DAT.get_item(s).use == Item.Uses.DEBUFFING:
+						use_item(s, target)
+						return
+			Intents.HEAL:
+				target = self
+				if character.health_perc() > toughness:
+					continue
+				if not (1.0 - character.health_perc() < altruism):
+					team.sort_custom(sort_by_health)
+					target = team[0]
+				if randf() <= vaimulembesus and healing_spirits.size() > 0:
+					spirit_pocket.append_array(healing_spirits)
+					for s in spirit_pocket:
+						if DAT.get_spirit(s).cost <= character.magic:
+							use_spirit(s, target)
+							return
+				for s in character.inventory:
+					if DAT.get_item(s).use == Item.Uses.HEALING:
+						use_item(s, target)
+						return
+	print("could not find suitable action")
+	turn_finished()
 
 
 func hurt(amount: float) -> void:
@@ -63,6 +147,14 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 func use_item(id: int, subject: BattleActor) -> void:
 	animate("use_item")
 	super.use_item(id, subject)
+
+
+func pick_target(team: int = 0) -> BattleActor:
+	if team == TEAM:
+		return reference_to_team_array.pick_random()
+	if reference_to_opposing_array.size() > 0:
+		return reference_to_opposing_array.pick_random()
+	return null
 
 
 func animate(what: String) -> void:

@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cytwpovcoxlpc"]
+[gd_scene load_steps=2 format=3 uid="uid://dmd4qo8vsceo3"]
 
-[ext_resource type="PackedScene" uid="uid://dy838astj23d4" path="res://scenes/tech/scn_battle_actor.tscn" id="1_6i7ty"]
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="2_5g7qu"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_1bfun"]
 
-[node name="BattleEnemy" instance=ExtResource("1_6i7ty")]
-script = ExtResource("2_5g7qu")
-effect_center = Vector2i(0, 0)
-healing_threshold = 0.0
+[node name="BattleEnemy" type="Node2D" groups=["battle_actors"]]
+script = ExtResource("1_1bfun")

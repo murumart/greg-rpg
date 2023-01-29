@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies([4, 4, 4])
+var load_options : BattleInfo = BattleInfo.new().set_enemies([3])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -88,7 +88,7 @@ func _ready() -> void:
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
 	await get_tree().process_frame
 	load_battle(load_options)
-	set_actor_states(BattleActor.States.COOLDOWN)
+	set_actor_states(BattleActor.States.COOLDOWN, true)
 	open_party_info_screen()
 
 
@@ -124,7 +124,12 @@ func load_battle(info: BattleInfo) -> void:
 	apply_cheats()
 
 
-func set_actor_states(to: BattleActor.States) -> void:
+func set_actor_states(to: BattleActor.States, only_party := false) -> void:
+	if only_party:
+		for i in get_tree().get_nodes_in_group("battle_actors"):
+			if i in party:
+				i.call("set_state", to)
+		return
 	get_tree().call_group("battle_actors", "set_state", to)
 
 
@@ -150,7 +155,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			party_member_panel_container.\
 			get_child(party.find(node)).remote_transform.remote_path = node.get_path()
 		Teams.ENEMIES:
-			node.wait += 0.2
+			node.wait += 0.5
 			enemies.append(node)
 			node.reference_to_team_array = enemies
 			node.reference_to_opposing_array = party
@@ -210,8 +215,11 @@ func set_background(id: String) -> void:
 func update_party() -> void:
 	for child in party_member_panel_container.get_children():
 		child.hide()
-	for i in party.size():
-		var member : BattleActor = party[i]
+	var array := []
+	array.append_array(party)
+	array.append_array(dead_party)
+	for i in array.size():
+		var member : BattleActor = array[i]
 		party_member_panel_container.get_child(i).update(member)
 		party_member_panel_container.get_child(i).show()
 
@@ -315,8 +323,9 @@ func _on_actor_died(actor: BattleActor) -> void:
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
 	dead_actors.append(actors.pop_at(actors.find(actor)))
 	arrange_enemies()
-	update_party()
 	check_end()
+	await get_tree().process_frame
+	update_party()
 
 
 func check_end() -> void:
@@ -449,9 +458,7 @@ func open_end_screen(victory: bool) -> void:
 	set_actor_states(BattleActor.States.IDLE)
 	screen_item_select.hide()
 	screen_list_select.hide()
-	screen_party_info.hide()
 	screen_spirit_name.hide()
-	resize_panel(10)
 	screen_end.show()
 	victory_text.visible = victory
 	defeat_text.visible = !victory

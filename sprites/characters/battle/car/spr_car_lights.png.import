@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://28xynergqegy"
-path="res://.godot/imported/spr_town1.jpeg-0bce0c2f1d0da7af300c62df2f2d07c4.ctex"
+uid="uid://col772eny3tlj"
+path="res://.godot/imported/spr_car_lights.png-9dfadd7074a6c6bdb00ab7ef29b28617.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/photos/spr_town1.jpeg"
-dest_files=["res://.godot/imported/spr_town1.jpeg-0bce0c2f1d0da7af300c62df2f2d07c4.ctex"]
+source_file="res://sprites/characters/battle/car/spr_car_lights.png"
+dest_files=["res://.godot/imported/spr_car_lights.png-9dfadd7074a6c6bdb00ab7ef29b28617.ctex"]
 
 [params]
 

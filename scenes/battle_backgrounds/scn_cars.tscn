@@ -1,0 +1,174 @@
+[gd_scene load_steps=17 format=3 uid="uid://cjqgo55mb7qhq"]
+
+[ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_dxu6a"]
+[ext_resource type="Script" path="res://shaders/scr_lens_uv.gd" id="2_7d65d"]
+[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_y1hnw"]
+[ext_resource type="Texture2D" uid="uid://b4pc478sp4ww4" path="res://sprites/photos/spr_cars.png" id="3_7lv1p"]
+[ext_resource type="Script" path="res://shaders/scr_rotate_uv.gd" id="3_233nu"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_snfqo"]
+default_input_values = [1, -0.5]
+initialized = true
+script = ExtResource("2_7d65d")
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_datol"]
+function = 0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_erchp"]
+default_input_values = [0, 0.0, 1, 1.0]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_yp5yd"]
+default_input_values = [0, 0.0, 1, 0.2]
+operator = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_222ho"]
+default_input_values = [1, 20.0, 2, Vector3(0.5, 0.5, 0)]
+initialized = true
+script = ExtResource("3_233nu")
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lutqo"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_js5hb"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_nr71o"]
+source = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_xuq00"]
+default_input_values = [1, 0.2, 2, 10.0, 3, 0.01, 4, 0.008, 5, 1.0, 6, 0.0]
+initialized = true
+script = ExtResource("2_y1hnw")
+
+[sub_resource type="VisualShader" id="VisualShader_cvqqu"]
+code = "shader_type canvas_item;
+
+
+// RotateUV
+
+vec2 r0tateUVFunc(vec2 _uv_r0tate, vec2 _pivot_r0tate, float _r0tation_r0tate){
+	//_r0tation_r0tate = radians(_r0tationDeg_r0tate);
+	vec2 _r0tAngle = vec2(cos(_r0tation_r0tate), sin(_r0tation_r0tate));
+	_uv_r0tate.xy -= _pivot_r0tate;
+	_uv_r0tate.xy = vec2((_uv_r0tate.x*_r0tAngle.x-_uv_r0tate.y*_r0tAngle.y),(_uv_r0tate.x*_r0tAngle.y+_uv_r0tate.y*_r0tAngle.x));
+	_uv_r0tate.xy += _pivot_r0tate;
+	return _uv_r0tate;
+}
+
+// LensDistortionUV
+
+vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
+	vec2 _p0s_d1s_1en5 = _uv_d1s_1en5 - 0.5;
+	float _d1st_d1s_1en5 = length(_p0s_d1s_1en5);
+	if (_fctr_d1s_1en5 > 0.0) // fisheye / barrel
+		_uv_d1s_1en5 = vec2(0.5)+normalize(_p0s_d1s_1en5)*tan(_d1st_d1s_1en5*_fctr_d1s_1en5)*0.70711/tan(0.70711*_fctr_d1s_1en5);
+	else if (_fctr_d1s_1en5 < 0.0) // antifisheye / pincushion
+		_uv_d1s_1en5 = vec2(0.5)+normalize(_p0s_d1s_1en5)*atan(_d1st_d1s_1en5*-_fctr_d1s_1en5*10.0)*0.5/atan(-_fctr_d1s_1en5*0.5*10.0);
+	return _uv_d1s_1en5;
+}
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:7
+	float n_out7p0 = TIME;
+
+
+// FloatOp:12
+	float n_in12p1 = 1.00000;
+	float n_out12p0 = n_out7p0 * n_in12p1;
+
+
+// FloatFunc:11
+	float n_out11p0 = sin(n_out12p0);
+
+
+// FloatOp:13
+	float n_in13p1 = 0.20000;
+	float n_out13p0 = n_out11p0 * n_in13p1;
+
+
+// FloatOp:15
+	float n_in15p1 = 0.50000;
+	float n_out15p0 = n_out13p0 * n_in15p1;
+
+
+	vec2 n_out14p0;
+// RotateUV:14
+	vec3 n_in14p2 = vec3(0.50000, 0.50000, 0.00000);
+	{
+		n_out14p0 = r0tateUVFunc(UV, n_in14p2.xy, n_out15p0);
+	}
+
+
+	vec2 n_out10p0;
+// LensDistortionUV:10
+	{
+		n_out10p0.xy = lensD1st0rti0nFunc(n_out14p0.xy, n_out13p0);
+	}
+
+
+	vec2 n_out9p0;
+// DistortionUVAnimated:9
+	float n_in9p1 = 0.20000;
+	float n_in9p2 = 10.00000;
+	float n_in9p3 = 0.01000;
+	float n_in9p4 = 0.00800;
+	float n_in9p5 = 1.00000;
+	{
+		n_out9p0.xy = _distortionUVAnimatedFunc(n_out10p0.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_in9p5, n_out7p0);
+	}
+
+
+	vec4 n_out8p0;
+// Texture2D:8
+	n_out8p0 = texture(TEXTURE, n_out9p0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out8p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-696.856, 10.965)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(420, 140)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_js5hb")
+nodes/fragment/7/position = Vector2(-620, 200)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_nr71o")
+nodes/fragment/8/position = Vector2(200, 180)
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_xuq00")
+nodes/fragment/9/position = Vector2(-40, 180)
+nodes/fragment/10/node = SubResource("VisualShaderNodeCustom_snfqo")
+nodes/fragment/10/position = Vector2(-220, 300)
+nodes/fragment/11/node = SubResource("VisualShaderNodeFloatFunc_datol")
+nodes/fragment/11/position = Vector2(-580, 340)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatOp_erchp")
+nodes/fragment/12/position = Vector2(-720, 260)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatOp_yp5yd")
+nodes/fragment/13/position = Vector2(-420, 300)
+nodes/fragment/14/node = SubResource("VisualShaderNodeCustom_222ho")
+nodes/fragment/14/position = Vector2(-180, 60)
+nodes/fragment/15/node = SubResource("VisualShaderNodeFloatOp_lutqo")
+nodes/fragment/15/position = Vector2(-340, 60)
+nodes/fragment/connections = PackedInt32Array(8, 0, 0, 0, 7, 0, 9, 6, 9, 0, 8, 0, 10, 0, 9, 0, 7, 0, 12, 0, 12, 0, 11, 0, 11, 0, 13, 0, 13, 0, 10, 1, 14, 0, 10, 0, 13, 0, 15, 0, 15, 0, 14, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gl62f"]
+shader = SubResource("VisualShader_cvqqu")
+
+[node name="Grass" instance=ExtResource("1_dxu6a")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_gl62f")
+texture = ExtResource("3_7lv1p")
+centered = false

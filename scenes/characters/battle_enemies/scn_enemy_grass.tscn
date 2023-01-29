@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b6j7upsd37ys3"]
 
-[ext_resource type="PackedScene" uid="uid://cytwpovcoxlpc" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_i1psi"]
+[ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_i1psi"]
 [ext_resource type="Texture2D" uid="uid://dhb0fkeaohjl4" path="res://sprites/characters/battle/spr_grass_battle.png" id="2_qiarb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8tsf"]
@@ -68,9 +68,10 @@ animations = [{
 }]
 
 [node name="BattleEnemy" instance=ExtResource("1_i1psi")]
-altruism = 0.5
-innovation = 0.5
-default_action = 0
+healing_threshold = 0.112
+altruism = 0.296
+innovation = 0.185
+vaimulembesus = 0.26
 character_id = 4
 stat_multiplier = 0.163
 

@@ -68,6 +68,10 @@ func get_stat(nimi: String) -> int:
 	return roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour > -1 else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon > -1 else 0))
 
 
+func health_perc() -> float:
+	return health / max_health
+
+
 func xp2lvl(lvl: int) -> float:
 	var lvlpow := lvl**1.8
 	var lvldiv := lvlpow/55.0

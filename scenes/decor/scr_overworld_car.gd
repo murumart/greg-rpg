@@ -13,10 +13,12 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @export var speed := 100.0
 
 @export_group("Appearance")
-@export_color_no_alpha var color := Color(1, 1, 1, 1): set = set_color
+@export_color_no_alpha var color := Color(1, 1, 1, 1)
 
 var target := Vector2()
 var velocity := Vector2()
+
+var battle_info : BattleInfo
 
 
 func _ready() -> void:
@@ -29,6 +31,8 @@ func _ready() -> void:
 	collision_area.body_entered.connect(_on_collided_with_player)
 	position = DAT.A.get(save_key_name("position"), position)
 	target = DAT.A.get(save_key_name("target"), target)
+	battle_info = BattleInfo.new().set_enemies([5]).set_background("cars").set_music("overrun")
+	set_color(color)
 
 
 func _physics_process(delta: float) -> void:
@@ -61,6 +65,7 @@ func _on_collided_with_player(_player) -> void:
 	moves = false
 	DAT.set_data("last_hit_car_color", color)
 	DAT.set_data(save_key_name("fought"), true)
+	LTS.enter_battle(battle_info)
 
 
 func turn(rot: int) -> void:

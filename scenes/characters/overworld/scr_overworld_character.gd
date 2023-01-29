@@ -250,7 +250,7 @@ func debprint(msg) -> void:
 	print("npc %s: " % name, msg)
 
 
-func _on_interaction_area_on_interacted(_possible_body) -> void:
+func _on_interaction_area_on_interacted(_possible_body = false) -> void:
 	interacted()
 
 

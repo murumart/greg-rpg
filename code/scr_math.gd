@@ -28,3 +28,8 @@ static func method_29193(x: float):
 
 static func sign_symbol(x) -> String:
 	return "+" if x > 0 else "-"
+
+
+static func reaap(a : Array, b: Variant) -> Array:
+	a.append(b)
+	return a

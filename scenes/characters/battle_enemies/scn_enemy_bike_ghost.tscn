@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfb7l37bxkl8d"]
 
-[ext_resource type="PackedScene" uid="uid://cytwpovcoxlpc" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_axreb"]
+[ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_axreb"]
 [ext_resource type="Texture2D" uid="uid://bnti2oagd6b2w" path="res://sprites/characters/battle/spr_bike_ghost_battle.png" id="2_8i51d"]
 
 [node name="BikeGhost" instance=ExtResource("1_axreb")]
 effect_center = Vector2i(0, -20)
+healing_threshold = 0.5
 character_id = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]

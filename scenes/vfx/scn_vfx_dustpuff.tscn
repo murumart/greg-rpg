@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgepjvtvo82in"]
+[gd_scene load_steps=7 format=3 uid="uid://bgepjvtvo82in"]
 
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_8nwun"]
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_dustpuff.gd" id="1_ioyug"]
 
 [sub_resource type="Curve" id="Curve_pukkq"]
 bake_resolution = 64
@@ -12,11 +11,59 @@ point_count = 5
 offsets = PackedFloat32Array(0, 0.545918, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.960784, 1, 1, 1, 0)
 
+[sub_resource type="Animation" id="Animation_gq4e0"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3pamd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qv1kd"]
+_data = {
+"RESET": SubResource("Animation_3pamd"),
+"default": SubResource("Animation_gq4e0")
+}
+
 [node name="DustPuff" type="Node2D"]
-script = ExtResource("1_ioyug")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-emitting = false
 amount = 16
 one_shot = true
 explosiveness = 1.0
@@ -33,3 +80,9 @@ linear_accel_min = -82.76
 linear_accel_max = -44.83
 scale_amount_curve = SubResource("Curve_pukkq")
 color_ramp = SubResource("Gradient_l2y3r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_qv1kd")
+}

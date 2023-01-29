@@ -76,7 +76,7 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 
 
 func vfx_dustpuff(pos: Vector2) -> void:
-	vfx("dustpuff", pos, {"free_time": 1.0})
+	vfx("dustpuff", pos)
 
 
 func vfx_bangspark(pos: Vector2) -> void:

@@ -27,10 +27,10 @@ var reference_to_actor_array : Array[BattleActor] = []
 
 var player_controlled := false
 
-var wait := 1.0
 
 @export_group("Other")
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
+@export var wait := 1.0
 
 
 func _ready() -> void:
@@ -40,6 +40,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not character: return
 	if SOL.dialogue_open: return
 	match state:
 		States.IDLE:
@@ -125,7 +126,7 @@ func account_defense(x: float) -> float:
 func attack(subject: BattleActor) -> void:
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	subject.handle_payload(pld)
-	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject, free_time = 1.0})
+	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
 	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
@@ -133,7 +134,8 @@ func attack(subject: BattleActor) -> void:
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	if subject.character.health <= 0:
 		character.defeated_characters.append(subject.character_id)
-		DAT.set_data("defeated_characters", DAT.A.get("defeated_characters", []).append(subject.character_id))
+		if player_controlled:
+			DAT.set_data("defeated_characters", Math.reaap (DAT.get_data("defeated_characters", []), subject.character_id))
 	turn_finished()
 
 
@@ -160,7 +162,7 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 		if spirit.receive_animation:
 			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
-			receiver.handle_payload(spirit.payload.set_sender(self))
+			receiver.handle_payload(spirit.payload.set_sender(self).set_defense_pierce(1.0))
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
 					(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
