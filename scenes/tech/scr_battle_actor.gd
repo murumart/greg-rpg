@@ -174,7 +174,7 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 
 func use_item(id: int, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
-	if not id in item.USES_EQUIPABLE:
+	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self))
 		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture})
 	else:
@@ -208,6 +208,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("attack", pld.attack_increase, pld.attack_increase_time)
 	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
 	introduce_status_effect("speed", pld.speed_increase, pld.speed_increase_time)
+	introduce_status_effect("confusion", 1, pld.confusion_time)
 
 
 func status_effect_update() -> void:
@@ -256,3 +257,10 @@ func emit_message(msg: String) -> void:
 
 func get_team() -> Array[BattleActor]:
 	return reference_to_team_array
+
+
+func is_confused() -> bool:
+	if status_effects.get("confusion", {}):
+		if status_effects.get("confusion", {}).get("duration", 0) > 0:
+			return true
+	return false

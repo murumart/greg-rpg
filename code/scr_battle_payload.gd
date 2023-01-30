@@ -4,6 +4,7 @@ class_name BattlePayload
 enum Types {ATTACK, SPIRIT, ITEM}
 var type := Types.ATTACK
 
+@export_group("Resources")
 @export var health : float
 @export var health_percent := 0.0
 @export var max_health_percent := 0.0
@@ -13,13 +14,16 @@ var type := Types.ATTACK
 @export var magic_percent: float
 @export var max_magic_percent: float
 
+@export_group("Effects")
 @export var attack_increase: float
 @export var attack_increase_time: int
 @export var defense_increase: float
 @export var defense_increase_time: int
 @export var speed_increase: float
 @export var speed_increase_time: int
+@export var confusion_time: int
 
+@export_group("Other")
 var equip_as_weapon := false
 var equip_as_armour := false
 

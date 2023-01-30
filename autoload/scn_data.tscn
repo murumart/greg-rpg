@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene load_steps=54 format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="2_raduk"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="11_mg5b0"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="11_qkk80"]
 [ext_resource type="Texture2D" uid="uid://dnllcdqtg4q84" path="res://sprites/items/spr_item_bike_helmet.png" id="12_u7rlk"]
+[ext_resource type="Texture2D" uid="uid://fxrag4w4jega" path="res://sprites/items/spr_item_tumbler.png" id="14_0o3nh"]
 
 [sub_resource type="Resource" id="Resource_rqjdl"]
 script = ExtResource("3_ednal")
@@ -30,7 +31,7 @@ attack = 1.0
 defense = 1.0
 speed = 1.0
 defeated_characters = null
-inventory = [0, 0, 1, 1, 4]
+inventory = [0, 0, 1, 1, 4, 5, 5]
 spirits = [0, 1]
 unused_sprits = [2, 3]
 armour = -1
@@ -154,6 +155,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_4tbng"]
 script = ExtResource("8_cpgm1")
@@ -181,6 +183,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_lrpfs"]
 script = ExtResource("8_cpgm1")
@@ -208,6 +211,7 @@ defense_increase = -5.0
 defense_increase_time = 2
 speed_increase = 16.0
 speed_increase_time = 3
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_25kn2"]
 script = ExtResource("8_cpgm1")
@@ -235,6 +239,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = 5.0
 speed_increase_time = 10
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_8g7rs"]
 script = ExtResource("8_cpgm1")
@@ -262,6 +267,7 @@ defense_increase = 3.0
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_4ek7t"]
 script = ExtResource("8_cpgm1")
@@ -273,6 +279,34 @@ price = 80
 use = 5
 consume_on_use = true
 payload = SubResource("Resource_wskrl")
+
+[sub_resource type="Resource" id="Resource_0w00j"]
+script = ExtResource("7_wrlwy")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+confusion_time = 5
+
+[sub_resource type="Resource" id="Resource_dxf4a"]
+script = ExtResource("8_cpgm1")
+name_in_file = &"tumbler"
+name = &"tumbler"
+description = "what's this? how confusing!"
+texture = ExtResource("14_0o3nh")
+price = 8889
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_0w00j")
 
 [sub_resource type="Resource" id="Resource_mkacw"]
 script = ExtResource("7_wrlwy")
@@ -289,6 +323,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_1ii5w"]
 script = ExtResource("11_qkk80")
@@ -319,6 +354,7 @@ defense_increase = 40.0
 defense_increase_time = 3
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_ua7wi"]
 script = ExtResource("11_qkk80")
@@ -349,6 +385,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_l10ik"]
 script = ExtResource("11_qkk80")
@@ -379,6 +416,7 @@ defense_increase = -20.0
 defense_increase_time = 6
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_nvoa0"]
 script = ExtResource("11_qkk80")
@@ -409,6 +447,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = -20.0
 speed_increase_time = 3
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_kibjd"]
 script = ExtResource("11_qkk80")
@@ -439,6 +478,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_xhkow"]
 script = ExtResource("11_qkk80")
@@ -469,6 +509,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_ylqv3"]
 script = ExtResource("11_qkk80")
@@ -499,6 +540,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_liee3"]
 script = ExtResource("11_qkk80")
@@ -529,6 +571,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_1wrya"]
 script = ExtResource("11_qkk80")
@@ -559,6 +602,7 @@ defense_increase = null
 defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
+confusion_time = null
 
 [sub_resource type="Resource" id="Resource_cgmtq"]
 script = ExtResource("11_qkk80")
@@ -577,5 +621,5 @@ payload = SubResource("Resource_jbb8t")
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = [SubResource("Resource_rqjdl"), SubResource("Resource_wjym6"), SubResource("Resource_grb88"), SubResource("Resource_if6cx"), SubResource("Resource_m55w8"), SubResource("Resource_vbs5j")]
-item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs"), SubResource("Resource_4ek7t")]
+item_list = [SubResource("Resource_4tbng"), SubResource("Resource_lrpfs"), SubResource("Resource_25kn2"), SubResource("Resource_8g7rs"), SubResource("Resource_4ek7t"), SubResource("Resource_dxf4a")]
 spirit_list = [SubResource("Resource_1ii5w"), SubResource("Resource_ua7wi"), SubResource("Resource_l10ik"), SubResource("Resource_nvoa0"), SubResource("Resource_kibjd"), SubResource("Resource_xhkow"), SubResource("Resource_ylqv3"), SubResource("Resource_liee3"), SubResource("Resource_1wrya"), SubResource("Resource_cgmtq")]

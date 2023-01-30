@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies([3])
+var load_options : BattleInfo = BattleInfo.new().set_enemies([3, 4, 4, 4])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -196,7 +196,7 @@ func arrange_enemies():
 	var tw := create_tween().set_parallel(true)
 	for e in len(enemies):
 		# space enemies evenly on the screen
-		var to : float = (-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
+		var to : float = roundf(-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
 		tw.tween_property(enemies[e], "global_position:x", to, 0.2)
 		enemies[e].global_position.y = 0
 		if e % 2 != 0:
@@ -258,6 +258,9 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 					c.disconnect("selected_return_reference", _on_button_reference_received)
 				c.queue_free()
 	var container_nr := 0
+	if current_guy.is_confused():
+		array.shuffle()
+		containers.shuffle()
 	for i in array.size():
 		var reference = array[i]
 		var refbutton := reference_button.duplicate()

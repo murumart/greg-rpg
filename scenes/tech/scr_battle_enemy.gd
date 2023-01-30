@@ -3,6 +3,7 @@ class_name BattleEnemy
 
 enum Intents {ATTACK, BUFF, DEBUFF, HEAL, MAX_ACTION}
 const TEAM := 1
+const SELF := 2
 
 @export var effect_center := Vector2i()
 @export var animator : AnimationPlayer
@@ -76,7 +77,7 @@ func ai_action() -> void:
 				attack(target)
 				return
 			Intents.BUFF:
-				target = self
+				target = pick_target(SELF)
 				if randf() <= altruism: target = pick_target(TEAM)
 				if randf() <= vaimulembesus and buffing_spirits.size() > 0:
 					spirit_pocket.append_array(buffing_spirits)
@@ -101,7 +102,7 @@ func ai_action() -> void:
 						use_item(s, target)
 						return
 			Intents.HEAL:
-				target = self
+				target = pick_target(SELF)
 				if character.health_perc() > toughness:
 					continue
 				if not (1.0 - character.health_perc() < altruism):
@@ -149,9 +150,13 @@ func use_item(id: int, subject: BattleActor) -> void:
 	super.use_item(id, subject)
 
 
-func pick_target(team: int = 0) -> BattleActor:
-	if team == TEAM:
+func pick_target(who: int = 0) -> BattleActor:
+	if is_confused():
+		return reference_to_actor_array.pick_random()
+	if who == TEAM:
 		return reference_to_team_array.pick_random()
+	if who == SELF:
+		return self
 	if reference_to_opposing_array.size() > 0:
 		return reference_to_opposing_array.pick_random()
 	return null

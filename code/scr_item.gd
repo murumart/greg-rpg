@@ -45,6 +45,8 @@ func get_effect_description() -> String:
 	if payload.speed_increase:
 		text += "%s%s spd" % [Math.sign_symbol(payload.speed_increase), absf(payload.speed_increase)]
 		text += (" for %s turns\n" % payload.speed_increase_time) if not use == Uses.ARMOUR and not use == Uses.WEAPON else "\n"
+	if payload.confusion_time:
+		text += "confusion for %s\n" % payload.confusion_time
 	if use == Uses.ARMOUR:
 		text += "armour\n"
 	if use == Uses.WEAPON:
