@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://b7d5kjol5wpkt"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_7dndk"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="2_l7sxr"]
+
+[sub_resource type="Resource" id="Resource_1m4tw"]
+script = ExtResource("1_7dndk")
+health = null
+health_percent = 0.0
+max_health_percent = -9.8
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+confusion_time = null
+
+[resource]
+script = ExtResource("2_l7sxr")
+name_in_file = &"mooncity"
+name = &"moon city"
+description = "turn that world upside down"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 200
+use = 1
+reach = 2
+payload_reception_count = 10
+payload = SubResource("Resource_1m4tw")

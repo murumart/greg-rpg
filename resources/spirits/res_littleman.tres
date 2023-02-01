@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://br5rtmi2b6uuu"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_5pifu"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="2_oyou4"]
+
+[sub_resource type="Resource" id="Resource_6notv"]
+script = ExtResource("1_5pifu")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = -20.0
+speed_increase_time = 3
+confusion_time = null
+
+[resource]
+script = ExtResource("2_oyou4")
+name_in_file = &"littleman"
+name = &"little man"
+description = "run on short legs"
+animation = &""
+use_animation = &""
+receive_animation = &""
+cost = 60
+use = 3
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_6notv")

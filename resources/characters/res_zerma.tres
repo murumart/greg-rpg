@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://ygudmc7s2r3n"]
+
+[ext_resource type="Texture2D" uid="uid://o5gcfg3083ej" path="res://sprites/characters/portraits/spr_portrait_zerma.png" id="1_3u0nh"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_eugr0"]
+
+[resource]
+script = ExtResource("2_eugr0")
+name_in_file = &""
+name = "zeremy"
+portrait = ExtResource("1_3u0nh")
+max_health = 100.0
+health = 100.0
+max_magic = 120.0
+magic = 120.0
+level = 3
+experience = 0
+attack = 2.0
+defense = 1.0
+speed = 1.0
+defeated_characters = null
+inventory = null
+spirits = null
+unused_sprits = null
+armour = ""
+weapon = ""

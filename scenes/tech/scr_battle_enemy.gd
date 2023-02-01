@@ -56,9 +56,9 @@ func ai_action() -> void:
 	for i in FIND_SUITABLE_ACT_TRIES:
 		print(actor_name, ": action try ", i)
 		if randf() <= innovation:
-			intent = randi() % Intents.MAX_ACTION
+			intent = (randi() as Intents) % Intents.MAX_ACTION
 		var target : BattleActor
-		var spirit_pocket : Array[int] = []
+		var spirit_pocket : Array[String] = []
 		match intent:
 			Intents.ATTACK:
 				target = pick_target()
@@ -140,12 +140,12 @@ func attack(subject: BattleActor) -> void:
 	super.attack(subject)
 
 
-func use_spirit(id: int, subject: BattleActor) -> void:
+func use_spirit(id: String, subject: BattleActor) -> void:
 	animate("use_spirit")
 	super.use_spirit(id, subject)
 
 
-func use_item(id: int, subject: BattleActor) -> void:
+func use_item(id: String, subject: BattleActor) -> void:
 	animate("use_item")
 	super.use_item(id, subject)
 

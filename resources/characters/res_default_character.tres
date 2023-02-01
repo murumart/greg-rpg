@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d1kd2vft8bel2"]
 
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_lmp3f"]
 [ext_resource type="Texture2D" uid="uid://b0uc8205kntls" path="res://sprites/characters/portraits/spr_portrait_gleebungus.png" id="1_t1yav"]
@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_lmp3f")
-id_name = &"gleebungus"
+name_in_file = &""
 name = "Gleebungus"
 voice_sound = ExtResource("3_76qak")
 portrait = ExtResource("1_t1yav")
@@ -15,9 +15,13 @@ health = 2088.0
 max_magic = 10000.0
 magic = 9999.0
 level = 89
+experience = 0
 attack = 89.0
 defense = 89.0
 speed = 89.0
-inventory = [3, 2, 3, 89, 2]
-armour = 2
-weapon = 4
+defeated_characters = null
+inventory = null
+spirits = null
+unused_sprits = null
+armour = ""
+weapon = ""

@@ -15,7 +15,6 @@ signal died(who: BattleActor)
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
 
-@export var character_id : int = -1
 var actor_name : StringName
 @onready var character : Character
 
@@ -34,8 +33,7 @@ var player_controlled := false
 
 
 func _ready() -> void:
-	print(self, " character loaded")
-	character = load_character(character_id)
+	print(self, "loaded")
 	actor_name = character.name
 
 
@@ -139,7 +137,7 @@ func attack(subject: BattleActor) -> void:
 	turn_finished()
 
 
-func use_spirit(id: int, subject: BattleActor) -> void:
+func use_spirit(id: String, subject: BattleActor) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
 	character.magic = max(character.magic - spirit.cost, 0)
 	emit_message("%s: %s!" % [actor_name, spirit.name])
@@ -172,7 +170,7 @@ func use_spirit(id: int, subject: BattleActor) -> void:
 	turn_finished()
 
 
-func use_item(id: int, subject: BattleActor) -> void:
+func use_item(id: String, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self))
@@ -233,14 +231,15 @@ func turn_finished() -> void:
 	status_effect_update()
 
 
-func load_character(id: int) -> Character:
+func load_character(id: String) -> void:
 	var charc : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
-	return charc
+	print(self, " character %s loaded" % charc)
+	character = charc
 
 
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
-	DAT.character_list[character_id] = character
+	DAT.character_dict[character.name_in_file] = character
 
 
 func payload() -> BattlePayload:

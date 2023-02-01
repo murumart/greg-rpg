@@ -45,9 +45,10 @@ func enemy_scene_exists(name_in_file: String) -> bool:
 	return false
 
 
-func file_exists(path) -> bool:
+func file_exists(path, complain := false) -> bool:
 	if FileAccess.file_exists(path):
 		return true
+	if complain: printerr("path %s does not exist" % path)
 	return false
 
 

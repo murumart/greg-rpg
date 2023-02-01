@@ -1,12 +1,12 @@
 DIALOGUE test
-CHAR 0
+CHAR greg
 	i think...
-CHAR -1
+CHAR
 	[color=#00ff00]who cares what you think? buddy.[/color]
 	[color=#00ff00]you should know that this will end up horribly.[/color]
 	[color=#00ff00]you will be canned like the earlier ones.[/color]
 	[color=#00ff00]have fun with that thought.[/color]
-CHAR 0
+CHAR greg
 	man...
 
 this line should be ignored
@@ -24,3 +24,8 @@ SPEED 0.75
 SPEED 1
 	x leveled up to x (this line is set in code)
 
+DIALOGUE test2talk
+CHAR
+	[color=#00ff00]blaabl blaalb blaalb.[/color]
+	[color=#ff0000]blaabl blaalb blaalb.[/color]
+	[color=#0000ff]blaabl blaalb blaalb.[/color]

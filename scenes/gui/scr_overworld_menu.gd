@@ -19,7 +19,7 @@ var current_tab := 0
 @onready var using_portraits := $UsingMenu/Panel/Portraits
 @onready var using_label := $UsingMenu/Label
 var using_menu_choice := 0
-var using_item : int
+var using_item : String
 
 @onready var reference_button := $ReferenceButton
 
@@ -127,7 +127,7 @@ hp: %s/%s
 sp: %s/%s" % [charct.level, charct.experience, roundi(charct.xp2lvl(charct.level)), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
 
 
-func side_load_item_data(id: int) -> void:
+func side_load_item_data(id: String) -> void:
 	var item : Item = DAT.get_item(id)
 	mem_portrait.texture = item.texture
 	mem_infotext.text = item.get_effect_description()
@@ -138,7 +138,7 @@ func side_load_item_data(id: int) -> void:
 			mem_infotext.append_text("equipped")
 
 
-func side_load_spirit_data(id: int) -> void:
+func side_load_spirit_data(id: String) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
 	mem_portrait.texture = null
 	mem_infotext.text = spirit.get_effect_description()
@@ -212,12 +212,12 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 		refbutton.reference = reference
 		if reference is Character:
 			refbutton.text = reference.name
-		elif reference is int and options.get("item", false):
+		elif reference is String and options.get("item", false):
 			refbutton.text = DAT.get_item(reference).name
 			if i < 2 and (reference == party(current_tab).armour or reference == party(current_tab).weapon):
 				refbutton.modulate = Color(1.0, 0.6, 0.3)
 				refbutton.set_meta(&"equipped", true)
-		elif reference is int and options.get("spirit", false):
+		elif reference is String and options.get("spirit", false):
 			refbutton.text = DAT.get_spirit(reference).name
 		else:
 			refbutton.text = str(reference)
@@ -283,9 +283,9 @@ func party_size() -> int:
 
 func party(index: int = -1):
 	if index > -1 and index < party_size():
-		return DAT.get_character(DAT.A.get("party", [0])[index])
+		return DAT.get_character(DAT.A.get("party", ["greg"])[index])
 	else:
-		return (DAT.A.get("party", [0]))
+		return (DAT.A.get("party", ["greg"]))
 
 
 func show():

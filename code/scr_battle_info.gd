@@ -1,13 +1,13 @@
 extends Resource
 class_name BattleInfo
 
-@export var enemies : Array[int] = []
+@export var enemies : Array[String] = []
 @export var background := "bikeghost"
 @export var music := ""
-@export var party : Array[int] = [0]
+@export var party : Array[String] = ["greg"]
 
 
-func set_enemies(x: Array[int]) -> BattleInfo:
+func set_enemies(x: Array[String]) -> BattleInfo:
 	enemies = x
 	return self
 
@@ -22,7 +22,7 @@ func set_music(x: String) -> BattleInfo:
 	return self
 
 
-func set_party(x: Array[int]) -> BattleInfo:
+func set_party(x: Array[String]) -> BattleInfo:
 	party = x
 	return self
 

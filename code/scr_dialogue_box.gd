@@ -48,13 +48,13 @@ func prepare_dialogue(key: String) -> void:
 func speak_this_dialogue_part(part: DialogueLine) -> void:
 	# get the data from the dialogue array
 	var text := part.text
-	var character_load : int = part.character
+	var character_load : String = part.character
 	var character : Character = null
 	var text_speed : float = part.text_speed
 	
 	portrait.texture = null
 	
-	if character_load > -1:
+	if character_load:
 		character = DAT.get_character(character_load)
 	
 	if character and character.portrait:

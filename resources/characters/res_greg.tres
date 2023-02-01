@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://x0s1f28mvqqq"]
+
+[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="1_bs81s"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_21jyn"]
+
+[resource]
+script = ExtResource("2_21jyn")
+name_in_file = &""
+name = "greg"
+portrait = ExtResource("1_bs81s")
+max_health = 100.0
+health = 100.0
+max_magic = 30.0
+magic = 30.0
+level = 1
+experience = 0
+attack = 1.0
+defense = 1.0
+speed = 1.0
+defeated_characters = null
+inventory = ["tumbler", "plaster", "plaster"]
+spirits = ["hotel", "peptide"]
+unused_sprits = ["jglove", "peanuts"]
+armour = ""
+weapon = ""

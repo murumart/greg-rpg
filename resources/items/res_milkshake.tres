@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dwg8xicq7jpuu"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_teo7q"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="2_jqfpd"]
+[ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="3_syr5q"]
+
+[sub_resource type="Resource" id="Resource_k8uvg"]
+script = ExtResource("1_teo7q")
+health = 75.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = 5.0
+speed_increase_time = 10
+confusion_time = null
+
+[resource]
+script = ExtResource("2_jqfpd")
+name_in_file = &"milkshake"
+name = &"milkshake"
+description = "there's milk in this universe? wonderful."
+texture = ExtResource("3_syr5q")
+price = 120
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_k8uvg")

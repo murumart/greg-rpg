@@ -35,10 +35,13 @@ var time_moved := 0.0
 var path_timer : Timer
 
 @export_group("Interaction")
+@export var action_right_after_dialogue := false
 @export var interact_on_touch := false
 var convo_progress := 0
 @export var default_lines : Array[StringName]
 @export var battle_info : BattleInfo
+@export var transport_to_scene := ""
+var interactions := 0
 
 @export_group("Save Information")
 @export var character_link := -1
@@ -127,17 +130,30 @@ func _physics_process(delta: float) -> void:
 
 
 func interacted() -> void:
+	interactions += 1
+	set_state(States.TALKING)
+	velocity = Vector2()
 	if default_lines.size() > 0:
-		set_state(States.TALKING)
-		velocity = Vector2()
-		SOL.dialogue(default_lines[convo_progress])
-		if not SOL.dialogue_closed.is_connected(_on_talking_finished):
-			SOL.dialogue_closed.connect(_on_talking_finished)
-		convo_progress = mini(convo_progress + 1, default_lines.size() - 1)
+		var continuing := true
+		if convo_progress >= default_lines.size():
+			print(battle_info != null or transport_to_scene != "")
+			if battle_info != null or transport_to_scene != "":
+				continuing = false
+			else:
+				convo_progress -= 1
+		if continuing:
+			SOL.dialogue(default_lines[convo_progress])
+			if not SOL.dialogue_closed.is_connected(_on_talking_finished):
+				SOL.dialogue_closed.connect(_on_talking_finished)
+			convo_progress = mini(convo_progress + 1, default_lines.size())
+			return
 	if battle_info:
-		debprint(battle_info)
 		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 			LTS.enter_battle(battle_info)
+			return
+	if transport_to_scene:
+		LTS.level_transition(transport_to_scene)
+		return
 
 
 func _on_talking_finished() -> void:
@@ -145,6 +161,12 @@ func _on_talking_finished() -> void:
 		set_state(States.PATH)
 		path_timer.paused = false
 	SOL.dialogue_closed.disconnect(_on_talking_finished)
+	if action_right_after_dialogue:
+		if battle_info:
+			if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
+				LTS.enter_battle(battle_info)
+		if transport_to_scene:
+			LTS.level_transition(transport_to_scene)
 
 
 func _on_random_movement_timer_timeout() -> void:

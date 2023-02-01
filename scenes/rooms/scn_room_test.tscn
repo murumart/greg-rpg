@@ -163,10 +163,10 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_ujmyv"]
 script = ExtResource("10_eqo2j")
-enemies = [3]
+enemies = ["bike_ghost"]
 background = "bikeghost"
 music = "bike_spirit"
-party = null
+party = ["greg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("10_q7e26")
@@ -325,6 +325,7 @@ position = Vector2(670, 35)
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_ffcdj")]
 position = Vector2(0, -11)
+current = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -35.0
@@ -506,9 +507,8 @@ position = Vector2(570, 143)
 position = Vector2(-21, 139)
 
 [node name="MDPS" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
-position = Vector2(33, 30)
+position = Vector2(24, 32)
 
 [node name="MDP" parent="MDPS" instance=ExtResource("8_j4r0r")]
 position = Vector2(631, 59)
@@ -539,6 +539,9 @@ position = Vector2(648, -47)
 collision_extents = Vector2i(20, 3)
 speed = 2000
 random_movement = true
+action_right_after_dialogue = true
+default_lines = [&"test2talk"]
+transport_to_scene = "res://scenes/rooms/scn_room_test2.tscn"
 save_position = true
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP69"]

@@ -2,19 +2,57 @@ extends Node
 
 # handles data, saving and loading it
 
-
+const CHAR_PATH := "res://resources/characters/res_%s."
+const ITEM_PATH := "res://resources/items/res_%s."
+const SPIRIT_PATH := "res://resources/spirits/res_%s."
 
 # DATA
 var A : Dictionary
 
-@export var character_list : Array[Character]
-@export var item_list : Array[Item]
-@export var spirit_list : Array[Spirit]
+@export_multiline var character_list : String = ""
+var character_dict := {}
+@export_multiline var item_list : String = ""
+var item_dict := {}
+@export_multiline var spirit_list : String = ""
+var spirit_dict := {}
 const MAX_SPIRITS := 3
 
 
 func _init() -> void:
 	print("DAT init")
+
+
+func _ready() -> void:
+	load_characters()
+	load_items()
+	load_spirits()
+	print(character_dict)
+	print(item_dict)
+	print(spirit_dict)
+
+
+func load_characters() -> void:
+	for s in character_list.split("\n"):
+		if DIR.file_exists(get_char_path(s), true):
+			character_dict[s] = load(get_char_path(s)) as Character
+			character_dict[s].name_in_file = s
+			print("loaded character ", s)
+
+
+func load_items() -> void:
+	for s in item_list.split("\n"):
+		if DIR.file_exists(get_item_path(s), true):
+			item_dict[s] = load(get_item_path(s)) as Item
+			item_dict[s].name_in_file = s
+			print("loaded item ", s)
+
+
+func load_spirits() -> void:
+	for s in spirit_list.split("\n"):
+		if DIR.file_exists(get_spirit_path(s), true):
+			spirit_dict[s] = load(get_spirit_path(s)) as Spirit
+			spirit_dict[s].name_in_file = s
+			print("loaded spirit ", s)
 
 
 # entry point for a new game.
@@ -99,10 +137,10 @@ func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
 
 
-func get_character(which: int) -> Character:
-	if not which < character_list.size(): return preload("res://resources/res_default_character.tres")
-	if which < 0: return preload("res://resources/res_default_character.tres")
-	else: return character_list[which]
+func get_character(key: String) -> Character:
+	if not key in character_dict:
+		return load("res://resources/characters/res_default_character.tres")
+	return character_dict[key]
 
 
 func char_save_string_key(which: int, key: String) -> String:
@@ -111,28 +149,43 @@ func char_save_string_key(which: int, key: String) -> String:
 
 func save_chars_to_data() -> void:
 	print("saving characters...")
-	for c in character_list.size():
-		var charc : Character = character_list[c]
+	for c in character_dict:
+		var charc : Character = character_dict[c]
 		set_data(char_save_string_key(c, "save"), charc.get_saveable_dict())
 	print("finished saving characters.")
 
 
 func load_chars_from_data() -> void:
 	print("loading characters...")
-	for c in character_list.size():
-		var charc : Character = character_list[c]
+	for c in character_dict:
+		var charc : Character = character_dict[c]
 		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
 	print("finished loading characters.")
 
 
-func get_item(id: int) -> Item:
-	if not id < item_list.size(): return preload("res://resources/res_default_item.tres")
-	if id < 0: return preload("res://resources/res_default_item.tres")
-	return item_list[id]
+func get_item(id: String) -> Item:
+	if not id in item_dict: return preload("res://resources/items/res_default_item.tres")
+	return item_dict[id]
 
 
-func get_spirit(id: int) -> Spirit:
-	if not id < spirit_list.size(): return preload("res://resources/res_default_spirit.tres")
-	if id < 0: return preload("res://resources/res_default_spirit.tres")
-	return spirit_list[id]
+func get_spirit(id: String) -> Spirit:
+	if not id in spirit_dict: return preload("res://resources/res_default_spirit.tres")
+	return spirit_dict[id]
 
+
+func get_char_path(charname : String) -> String:
+	if DIR.standalone():
+		return CHAR_PATH % charname + "tres.remap"
+	return CHAR_PATH % charname + "tres"
+
+
+func get_item_path(itemname : String) -> String:
+	if DIR.standalone():
+		return ITEM_PATH % itemname + "tres.remap"
+	return ITEM_PATH % itemname + "tres"
+
+
+func get_spirit_path(spiritname : String) -> String:
+	if DIR.standalone():
+		return SPIRIT_PATH % spiritname + "tres.remap"
+	return SPIRIT_PATH % spiritname + "tres"

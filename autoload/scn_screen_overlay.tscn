@@ -17,37 +17,37 @@ glow_strength = 1.34
 [sub_resource type="Resource" id="Resource_m7o2u"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]hello world![/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_s4wuy"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]just kidding. dumbass[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_yjxsy"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]remember last time?[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_yugxp"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]working on the game logic was fun...[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_vjws4"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_b5bui"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_b2l4m"]
@@ -58,13 +58,13 @@ lines = [SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResour
 [sub_resource type="Resource" id="Resource_2tu0x"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_tcwnb"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]why would i ever talk to you?[/color]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_l1vqh"]
@@ -75,7 +75,7 @@ lines = [SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")]
 [sub_resource type="Resource" id="Resource_offmx"]
 script = ExtResource("3_02o1n")
 text = "[center]victory![/center]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_m10ek"]
@@ -86,13 +86,13 @@ lines = [SubResource("Resource_offmx")]
 [sub_resource type="Resource" id="Resource_6lgx5"]
 script = ExtResource("3_02o1n")
 text = "[center]level up![/center]"
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_3r8jb"]
 script = ExtResource("3_02o1n")
 text = "x leveled up to x."
-character = -1
+character = ""
 text_speed = 1.0
 
 [sub_resource type="Resource" id="Resource_3xhxu"]

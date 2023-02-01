@@ -17,7 +17,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 	var dialogue_array : Array[Dialogue] = []
 	var dial : Dialogue
 	var dial_line : DialogueLine
-	var char_to_set := -1
+	var char_to_set := ""
 	var text_speed_to_set := 1.0
 	var l := -1
 	
@@ -28,13 +28,13 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 			if not dial == null:
 				dialogue_array.append(dial.duplicate())
 				dial = null
-			char_to_set = -1
+			char_to_set = ""
 			text_speed_to_set = 1.0
 			dial = Dialogue.new()
 			dial.name = line.trim_prefix(NEW_DIAL)
 		elif line.begins_with(NEW_CHAR):
 			mode = SET_CHAR
-			char_to_set = int(line.trim_prefix(NEW_CHAR))
+			char_to_set = String(line.trim_prefix(NEW_CHAR))
 		elif line.begins_with(NEW_TXT_SPD):
 			mode = SET_TEXT_SPEED
 			text_speed_to_set = float(line.trim_prefix(NEW_TXT_SPD))

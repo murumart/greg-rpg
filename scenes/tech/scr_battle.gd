@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies([3, 4, 4, 4])
+var load_options : BattleInfo = BattleInfo.new().set_enemies(["bike_ghost"])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -45,7 +45,7 @@ var spirit_speak_timer_wait := 2.0
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
-var held_item_id : int = -1
+var held_item_id : String = ""
 
 var actors : Array[BattleActor]
 var dead_actors : Array[BattleActor]
@@ -115,7 +115,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func load_battle(info: BattleInfo) -> void:
-	for m in info.get_("party", [0]):
+	for m in info.get_("party", ["greg"]):
 		add_party_member(m)
 	for e in info.get_("enemies", []):
 		add_enemy(e)
@@ -162,14 +162,15 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			enemies_node.add_child(node)
 
 
-func add_enemy(character_id: int, ally := false) -> void:
+func add_enemy(character_id: String, ally := false) -> void:
 	var character : Character = DAT.get_character(character_id)
 	var node : BattleActor
-	if DIR.enemy_scene_exists(character.id_name) and not ally:
-		node = load(DIR.enemy_scene_path(character.id_name)).instantiate()
+	if DIR.enemy_scene_exists(character.name_in_file) and not ally:
+		node = load(DIR.enemy_scene_path(character.name_in_file)).instantiate()
+		node.load_character(character_id)
 	else:
 		node = preload("res://scenes/tech/scn_battle_enemy.tscn").instantiate()
-		node.character_id = character_id
+		node.load_character(character_id)
 		if not ally:
 			var sprite_new := Sprite2D.new()
 			node.add_child(sprite_new)
@@ -181,9 +182,9 @@ func add_enemy(character_id: int, ally := false) -> void:
 	arrange_enemies()
 
 
-func add_party_member(id: int) -> void:
+func add_party_member(id: String) -> void:
 	var party_member : BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
-	party_member.character_id = id
+	party_member.load_character(id)
 	
 	add_actor(party_member, Teams.PARTY)
 	
@@ -267,7 +268,7 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		refbutton.reference = reference
 		if reference is BattleActor:
 			refbutton.text = reference.actor_name
-		elif reference is int and doing == Doings.ITEM_MENU:
+		elif reference is String and doing == Doings.ITEM_MENU:
 			refbutton.text = DAT.get_item(reference).name
 		else:
 			refbutton.text = str(reference)
@@ -351,7 +352,7 @@ func _on_player_input_requested(actor: BattleActor) -> void:
 
 
 func open_main_actions_screen() -> void:
-	held_item_id = -1
+	held_item_id = ""
 	current_target = null
 	screen_item_select.hide()
 	screen_list_select.hide()
@@ -414,7 +415,7 @@ func open_list_screen() -> void:
 
 func open_party_info_screen() -> void:
 	doing = Doings.NOTHING
-	held_item_id = -1
+	held_item_id = ""
 	$%ScreenMainActions.hide()
 	screen_item_select.hide()
 	screen_list_select.hide()
@@ -428,7 +429,7 @@ func open_party_info_screen() -> void:
 
 func open_spirit_name_screen() -> void:
 	doing = Doings.SPIRIT_NAME
-	held_item_id = -1
+	held_item_id = ""
 	resize_panel(4, 0.1)
 	$%ScreenMainActions.hide()
 	spirit_name.text = ""

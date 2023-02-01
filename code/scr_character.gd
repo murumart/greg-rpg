@@ -11,7 +11,7 @@ const UPGRADE_MAX := {
 	"attack": 99, "defense": 99, "speed": 99, "max_health": 200, "max_magic": 200
 }
 
-@export var id_name : StringName = &""
+@export var name_in_file : StringName = &""
 
 @export_group("Appearance")
 @export var name := ""
@@ -29,14 +29,14 @@ const UPGRADE_MAX := {
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
-@export var defeated_characters : Array[int] = []
+@export var defeated_characters : Array[String] = []
 
 @export_group("Items and Spirits")
-@export var inventory : Array[int] = []
-@export var spirits : Array[int] = []
-@export var unused_sprits: Array[int] = []
-@export var armour : int = -1
-@export var weapon : int = -1
+@export var inventory : Array[String] = []
+@export var spirits : Array[String] = []
+@export var unused_sprits: Array[String] = []
+@export var armour : String = ""
+@export var weapon : String = ""
 
 
 func get_saveable_dict() -> Dictionary:
@@ -65,7 +65,7 @@ func load_from_dict(dict: Dictionary) -> void:
 
 
 func get_stat(nimi: String) -> int:
-	return roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour > -1 else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon > -1 else 0))
+	return roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
 
 
 func health_perc() -> float:
@@ -116,15 +116,15 @@ func level_up(by := 1, overflow := false) -> void:
 	SOL.dialogue("levelup")
 
 
-func handle_item(id: int) -> void:
+func handle_item(id: String) -> void:
 	var item = DAT.get_item(id)
 	if item.use == Item.Uses.ARMOUR:
-		if armour > -1:
+		if armour:
 			inventory.append(armour)
 		armour = id
 		SND.play_sound(load("res://sounds/snd_equip.ogg"))
 	elif item.use == Item.Uses.WEAPON:
-		if weapon > -1:
+		if weapon:
 			inventory.append(weapon)
 		weapon = id
 		SND.play_sound(load("res://sounds/snd_equip.ogg"))

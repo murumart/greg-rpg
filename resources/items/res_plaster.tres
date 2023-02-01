@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dle611dx2r6im"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_mhvf1"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="2_i6027"]
+[ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="3_04dkq"]
+
+[sub_resource type="Resource" id="Resource_vqlt5"]
+script = ExtResource("1_mhvf1")
+health = 25.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = null
+defense_increase_time = null
+speed_increase = null
+speed_increase_time = null
+confusion_time = null
+
+[resource]
+script = ExtResource("2_i6027")
+name_in_file = &"plaster"
+name = &"plaster"
+description = "let's hope it's sterile"
+texture = ExtResource("3_04dkq")
+price = 25
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_vqlt5")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://btyl8l6i55yng"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_fjoe2"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="2_3o6nw"]
+[ext_resource type="Texture2D" uid="uid://c885f836xxatc" path="res://sprites/items/spr_item_sugar_lemon.png" id="3_eyykw"]
+
+[sub_resource type="Resource" id="Resource_cc1kh"]
+script = ExtResource("1_fjoe2")
+health = null
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = null
+magic_percent = null
+max_magic_percent = null
+attack_increase = null
+attack_increase_time = null
+defense_increase = -5.0
+defense_increase_time = 2
+speed_increase = 16.0
+speed_increase_time = 3
+confusion_time = null
+
+[resource]
+script = ExtResource("2_3o6nw")
+name_in_file = &"sugar_lemon"
+name = &"sugar lemon"
+description = "a lump of yellow... sugar?"
+texture = ExtResource("3_eyykw")
+price = 25
+use = 2
+consume_on_use = true
+payload = SubResource("Resource_cc1kh")
