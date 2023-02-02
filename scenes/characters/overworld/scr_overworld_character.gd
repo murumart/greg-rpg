@@ -215,9 +215,11 @@ func direct_walking_animation(direction: Vector2, complain := false) -> void:
 	if complain: prints("direction:", direction)
 	if complain: prints("angle:", Math.dir_from_rot(direction.angle()) + 1)
 	if not is_instance_valid(animated_sprite): return
-	animated_sprite.animation = str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1]) if direction.length_squared() > 1 else "walk_down"
+	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1]) if direction.length_squared() > 1 else "walk_down"
+	animated_sprite.play(animation_name)
 	animated_sprite.speed_scale = direction.length_squared() * 0.0006
-	animated_sprite.frame = 0 if is_zero_approx(direction.length_squared()) else animated_sprite.frame
+	if is_zero_approx(direction.length_squared()):
+		animated_sprite.stop()
 
 
 func _set_collision_extents(to: Vector2i) -> void:

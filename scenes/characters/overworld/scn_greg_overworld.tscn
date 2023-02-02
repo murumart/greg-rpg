@@ -150,9 +150,10 @@ script = ExtResource("1_gx1l0")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_76min")
+sprite_frames = SubResource("SpriteFrames_76min")
 animation = &"walk_down"
-playing = true
+autoplay = "walk_down"
+frame_progress = 0.265417
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)

@@ -26,9 +26,6 @@ func _ready() -> void:
 	load_characters()
 	load_items()
 	load_spirits()
-	print(character_dict)
-	print(item_dict)
-	print(spirit_dict)
 
 
 func load_characters() -> void:
@@ -36,7 +33,6 @@ func load_characters() -> void:
 		if DIR.file_exists(get_char_path(s), true):
 			character_dict[s] = load(get_char_path(s)) as Character
 			character_dict[s].name_in_file = s
-			print("loaded character ", s)
 
 
 func load_items() -> void:
@@ -44,7 +40,6 @@ func load_items() -> void:
 		if DIR.file_exists(get_item_path(s), true):
 			item_dict[s] = load(get_item_path(s)) as Item
 			item_dict[s].name_in_file = s
-			print("loaded item ", s)
 
 
 func load_spirits() -> void:
@@ -52,7 +47,6 @@ func load_spirits() -> void:
 		if DIR.file_exists(get_spirit_path(s), true):
 			spirit_dict[s] = load(get_spirit_path(s)) as Spirit
 			spirit_dict[s].name_in_file = s
-			print("loaded spirit ", s)
 
 
 # entry point for a new game.

@@ -150,9 +150,9 @@ func side_load_spirit_data(id: String) -> void:
 
 func load_items() -> void:
 	var item_array := []
-	if party(current_tab).armour > -1:
+	if party(current_tab).armour:
 		item_array.append(party(current_tab).armour)
-	if party(current_tab).weapon > -1:
+	if party(current_tab).weapon:
 		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
 	load_reference_buttons(item_array, [item_container], {"item": true})

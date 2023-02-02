@@ -53,7 +53,7 @@ text_speed = 1.0
 [sub_resource type="Resource" id="Resource_b2l4m"]
 script = ExtResource("3_kwk5e")
 name = &"test"
-lines = [SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResource("Resource_yjxsy"), SubResource("Resource_yugxp"), SubResource("Resource_vjws4"), SubResource("Resource_b5bui")]
+lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResource("Resource_yjxsy"), SubResource("Resource_yugxp"), SubResource("Resource_vjws4"), SubResource("Resource_b5bui")])
 
 [sub_resource type="Resource" id="Resource_2tu0x"]
 script = ExtResource("3_02o1n")
@@ -70,7 +70,7 @@ text_speed = 1.0
 [sub_resource type="Resource" id="Resource_l1vqh"]
 script = ExtResource("3_kwk5e")
 name = &"test2be"
-lines = [SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")]
+lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")])
 
 [sub_resource type="Resource" id="Resource_offmx"]
 script = ExtResource("3_02o1n")
@@ -81,7 +81,7 @@ text_speed = 1.0
 [sub_resource type="Resource" id="Resource_m10ek"]
 script = ExtResource("3_kwk5e")
 name = &"battle_victory"
-lines = [SubResource("Resource_offmx")]
+lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_offmx")])
 
 [sub_resource type="Resource" id="Resource_6lgx5"]
 script = ExtResource("3_02o1n")
@@ -98,7 +98,7 @@ text_speed = 1.0
 [sub_resource type="Resource" id="Resource_3xhxu"]
 script = ExtResource("3_kwk5e")
 name = &"levelup"
-lines = [SubResource("Resource_6lgx5"), SubResource("Resource_3r8jb")]
+lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_6lgx5"), SubResource("Resource_3r8jb")])
 
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
@@ -108,7 +108,7 @@ environment = SubResource("Environment_2qq6b")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 script = ExtResource("3_jg0vj")
-dialogues = [SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")]
+dialogues = Array[ExtResource("3_kwk5e")]([SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")])
 
 [node name="DialogueBoxPanel" type="Panel" parent="DialogueBoxOrderer"]
 offset_left = 10.0

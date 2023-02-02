@@ -2,9 +2,9 @@
 extends Node2D
 
 @export_group("Technical")
-@export_node_path(Area2D) var area_path : NodePath
-@export_node_path(CollisionShape2D) var collision_shape_path : NodePath
-@export_node_path(Marker2D) var spawn_point_path : NodePath
+@export_node_path("Area2D") var area_path : NodePath
+@export_node_path("CollisionShape2D") var collision_shape_path : NodePath
+@export_node_path("Marker2D") var spawn_point_path : NodePath
 
 @export_group("")
 @export var destination := &""

@@ -10,7 +10,7 @@ var shake_trauma_power := 2
 
 
 func _ready() -> void:
-	current = true
+	make_current()
 
 
 func add_trauma(amount: float) -> void:
