@@ -9,7 +9,9 @@ CHAR
 CHAR greg
 	man...
 
+
 this line should be ignored
+
 
 DIALOGUE test2be
 	[color=#00ff00]shut up! shut up![/color]
@@ -18,14 +20,32 @@ SPEED 0.1
 	[color=#00ff00]entel tentel trika trei[/color]
 	[color=#00ff00]a white dove flew over england[/color]
 
+
 DIALOGUE levelup
 SPEED 0.75
 	[center]level up![center]
 SPEED 1
 	x leveled up to x (this line is set in code)
 
+
 DIALOGUE test2talk
 CHAR
 	[color=#00ff00]blaabl blaalb blaalb.[/color]
 	[color=#ff0000]blaabl blaalb blaalb.[/color]
 	[color=#0000ff]blaabl blaalb blaalb.[/color]
+
+
+DIALOGUE mailtest
+CHAR mail_man
+	what is this place?
+	is this a nightmare?
+	sure looks like one.
+	i bet something with spaghetti will happen soon.
+	i just know it.
+
+
+DIALOGUE cwarning
+	do not run bell.c!!!
+	bell hell is real
+	your cpu will be eaten
+

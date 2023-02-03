@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yp6yxcafrgdp"
-path="res://.godot/imported/spr_greg_overworld.png-cb05421cd1e1b42b7bb404d40d33963d.ctex"
+uid="uid://du3ry7j4icp43"
+path="res://.godot/imported/spr_tarikas_overworld.png-63a12c4487ed2c987062f812215d2065.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/overworld/spr_greg_overworld.png"
-dest_files=["res://.godot/imported/spr_greg_overworld.png-cb05421cd1e1b42b7bb404d40d33963d.ctex"]
+source_file="res://sprites/characters/overworld/spr_tarikas_overworld.png"
+dest_files=["res://.godot/imported/spr_tarikas_overworld.png-63a12c4487ed2c987062f812215d2065.ctex"]
 
 [params]
 

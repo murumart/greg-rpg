@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cemn32crj3xio"]
+[gd_scene load_steps=6 format=3 uid="uid://cemn32crj3xio"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_tree.gd" id="1_ntvbr"]
 [ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/trees.png" id="2_bynwh"]
+[ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w45np"]
 size = Vector2(16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
+size = Vector2(16, 112)
 
 [node name="Tree" type="Node2D"]
 script = ExtResource("1_ntvbr")
@@ -16,6 +20,15 @@ region_enabled = true
 region_rect = Rect2(16, 0, 48, 128)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_w45np")
+debug_color = Color(0.294118, 1, 1, 0.419608)
+
+[node name="BehindArea" parent="." node_paths=PackedStringArray("affected_node") instance=ExtResource("3_s4k00")]
+affected_node = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_38uvm")

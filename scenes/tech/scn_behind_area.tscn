@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://byxv0c510ftyr"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_behind_area.gd" id="1_s3gn8"]
+
+[node name="BehindArea" type="Area2D"]
+modulate = Color(0.392157, 0.419608, 0.717647, 0.356863)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_s3gn8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

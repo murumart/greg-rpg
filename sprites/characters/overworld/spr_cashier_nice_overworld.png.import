@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yp6yxcafrgdp"
-path="res://.godot/imported/spr_greg_overworld.png-cb05421cd1e1b42b7bb404d40d33963d.ctex"
+uid="uid://cccik3bi2bxmv"
+path="res://.godot/imported/spr_cashier_nice_overworld.png-bace4a1b1b155c16aaed197177d71c2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/overworld/spr_greg_overworld.png"
-dest_files=["res://.godot/imported/spr_greg_overworld.png-cb05421cd1e1b42b7bb404d40d33963d.ctex"]
+source_file="res://sprites/characters/overworld/spr_cashier_nice_overworld.png"
+dest_files=["res://.godot/imported/spr_cashier_nice_overworld.png-bace4a1b1b155c16aaed197177d71c2b.ctex"]
 
 [params]
 
