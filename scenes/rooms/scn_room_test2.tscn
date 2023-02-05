@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_evqrg"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_06gek"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_53yi6"]
-[ext_resource type="PackedScene" uid="uid://c4tk4onvecuqw" path="res://scenes/scn_overworld_tiles.tscn" id="5_w068s"]
+[ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="5_w068s"]
 
 [node name="Test2" type="Node2D"]
 script = ExtResource("1_0354j")

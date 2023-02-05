@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo30s0jr7gxse"]
+
+[ext_resource type="Script" path="res://scenes/decor/scr_greenhouse.gd" id="1_xl1wo"]
+[ext_resource type="Texture2D" uid="uid://jliineedmxw6" path="res://sprites/world/building/greenhouse/spr_spr_back_layer.png" id="2_tbboa"]
+[ext_resource type="Texture2D" uid="uid://uq2d54i8sd1n" path="res://sprites/world/building/greenhouse/spr_floor.png" id="3_wumk5"]
+[ext_resource type="Texture2D" uid="uid://bs5tx3wqtn0b8" path="res://sprites/world/building/greenhouse/spr_top_layer.png" id="4_si44d"]
+[ext_resource type="Texture2D" uid="uid://b2dy2b1ynhdmk" path="res://sprites/world/building/greenhouse/spr_front_layer.png" id="5_w5xvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugha4"]
+size = Vector2(28, 17)
+
+[node name="Greenhouse" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_xl1wo")
+
+[node name="SprSprBackLayer" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_tbboa")
+offset = Vector2(0, -32)
+
+[node name="SprFloor" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("3_wumk5")
+offset = Vector2(0, -32)
+
+[node name="SprTopLayer" type="Sprite2D" parent="."]
+texture = ExtResource("4_si44d")
+offset = Vector2(0, -32)
+
+[node name="SprFrontLayer" type="Sprite2D" parent="."]
+texture = ExtResource("5_w5xvm")
+offset = Vector2(0, -32)
+
+[node name="Collider" type="StaticBody2D" parent="."]
+modulate = Color(0, 0.6, 0.6, 1)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collider"]
+polygon = PackedVector2Array(-5, 0, -15, 0, -15, -19, 15, -19, 15, 0, 5, 0, 5, -1, 7, -1, 7, -18, -7, -18, -7, -1, -5, -1)
+
+[node name="InsideArea" type="Area2D" parent="."]
+modulate = Color(1, 0.419608, 1, 1)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideArea"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_ugha4")
+
+[connection signal="body_entered" from="InsideArea" to="." method="_on_inside_area_body_entered"]
+[connection signal="body_exited" from="InsideArea" to="." method="_on_inside_area_body_exited"]

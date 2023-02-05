@@ -1,7 +1,7 @@
 DIALOGUE test
 CHAR greg
 	i think...
-CHAR
+CHAR 
 	[color=#00ff00]who cares what you think? buddy.[/color]
 	[color=#00ff00]you should know that this will end up horribly.[/color]
 	[color=#00ff00]you will be canned like the earlier ones.[/color]
@@ -29,7 +29,7 @@ SPEED 1
 
 
 DIALOGUE test2talk
-CHAR
+CHAR 
 	[color=#00ff00]blaabl blaalb blaalb.[/color]
 	[color=#ff0000]blaabl blaalb blaalb.[/color]
 	[color=#0000ff]blaabl blaalb blaalb.[/color]
@@ -42,6 +42,18 @@ CHAR mail_man
 	sure looks like one.
 	i bet something with spaghetti will happen soon.
 	i just know it.
+
+
+DIALOGUE tarikastest
+CHAR tarikas
+	you look boring.
+	also you smell.
+
+
+DIALOGUE cashiernicetest
+CHAR cashier_nice
+	please don't talk to me outside work hours.
+
 
 
 DIALOGUE cwarning

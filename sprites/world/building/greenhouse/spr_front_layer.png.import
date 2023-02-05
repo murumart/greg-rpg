@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm4rwxl0motml"
-path="res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"
+uid="uid://b2dy2b1ynhdmk"
+path="res://.godot/imported/spr_front_layer.png-439183f5d0bafc6863f4a91d2c0a3efe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/portraits/spr_portrait_mail_man.png"
-dest_files=["res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"]
+source_file="res://sprites/world/building/greenhouse/spr_front_layer.png"
+dest_files=["res://.godot/imported/spr_front_layer.png-439183f5d0bafc6863f4a91d2c0a3efe.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm4rwxl0motml"
-path="res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"
+uid="uid://c7n8id1ah7sau"
+path="res://.godot/imported/spr_trees.png-dca043c262d20176c51953f8487503a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/portraits/spr_portrait_mail_man.png"
-dest_files=["res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"]
+source_file="res://sprites/world/nature/spr_trees.png"
+dest_files=["res://.godot/imported/spr_trees.png-dca043c262d20176c51953f8487503a0.ctex"]
 
 [params]
 

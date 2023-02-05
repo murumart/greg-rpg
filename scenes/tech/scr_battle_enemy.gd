@@ -49,9 +49,6 @@ func act() -> void:
 func ai_action() -> void:
 	var chosen := false
 	var team := reference_to_team_array.duplicate()
-	var team_dict := {}
-	if altruism:
-		team_dict = team_dict_with_health_keys(team)
 	var intent := default_intent
 	for i in FIND_SUITABLE_ACT_TRIES:
 		print(actor_name, ": action try ", i)

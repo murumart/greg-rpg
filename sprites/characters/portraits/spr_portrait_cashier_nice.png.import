@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm4rwxl0motml"
-path="res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"
+uid="uid://dld8y316boln2"
+path="res://.godot/imported/spr_portrait_cashier_nice.png-1c3f15ebb4eedb7d7339714e1340a904.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/portraits/spr_portrait_mail_man.png"
-dest_files=["res://.godot/imported/spr_portrait_mail_man.png-84c72bde438854dd4031d0edeae69dbd.ctex"]
+source_file="res://sprites/characters/portraits/spr_portrait_cashier_nice.png"
+dest_files=["res://.godot/imported/spr_portrait_cashier_nice.png-1c3f15ebb4eedb7d7339714e1340a904.ctex"]
 
 [params]
 

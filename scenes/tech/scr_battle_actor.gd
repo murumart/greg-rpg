@@ -69,7 +69,8 @@ func set_state(to: States) -> void:
 
 
 func heal(amount: float) -> void:
-	character.health = minf(character.health + amount, character.max_health)
+	character.health = minf(character.health + absf(amount), character.max_health)
+	SOL.vfx("damage_number", get_effect_center(self), {text = absf(amount), color=Color.GREEN_YELLOW})
 
 
 func hurt(amount: float) -> void:
@@ -81,6 +82,7 @@ func hurt(amount: float) -> void:
 		died.emit(self)
 	else:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
+	SOL.vfx("damage_number", get_effect_center(self), {text = absf(amount), color=Color.RED})
 
 
 func get_attack() -> float:
@@ -224,6 +226,8 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		"strength": strength + status_effects[nomen].get("strength", 0),
 		"duration": duration + status_effects[nomen].get("duration", 0)
 	}
+	if strength and duration:
+		SOL.vfx("damage_number", get_effect_center(self), {text = "+%s%s" % [strength, nomen], color=Color.YELLOW, speed = 0.5})
 
 
 func turn_finished() -> void:

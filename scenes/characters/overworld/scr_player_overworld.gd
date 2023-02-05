@@ -18,6 +18,7 @@ var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instant
 
 
 func _ready() -> void:
+	menu.close_requested.connect(_on_menu_close_requested)
 	SOL.add_ui_child(menu)
 	menu.hide()
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
@@ -38,6 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
+	velocity = Vector2()
 	if state == States.FREE_MOVE:
 		movement(delta)
 		if input: direct_raycast()
@@ -48,8 +50,6 @@ func _physics_process(delta: float) -> void:
 
 
 func movement(delta: float) -> void:
-	velocity = Vector2()
-	
 	velocity = input * SPEED * delta
 	
 	var _collided := move_and_slide()
@@ -84,3 +84,8 @@ func _save_me() -> void:
 
 func save_key_name(key: String) -> String:
 	return str("player_in_", DAT.get_current_scene().name, "_", key)
+
+
+func _on_menu_close_requested() -> void:
+	menu.call_deferred("hide")
+	DAT.free_player()

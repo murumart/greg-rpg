@@ -15,7 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_KP_1:
-				pass
+				SOL.vfx("damage_number", get_viewport().get_mouse_position(), {text = randi()%667, size= randi()%2 + 1})
 
 
 func _ready() -> void:

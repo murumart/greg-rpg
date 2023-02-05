@@ -90,6 +90,7 @@ func _ready() -> void:
 	load_battle(load_options)
 	set_actor_states(BattleActor.States.COOLDOWN, true)
 	open_party_info_screen()
+	check_end()
 
 
 func _physics_process(_delta: float) -> void:

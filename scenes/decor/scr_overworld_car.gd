@@ -8,7 +8,7 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @onready var collision_area: Area2D = $CollisionArea
 @onready var collision_shape: CollisionShape2D = $CollisionArea/CollisionShape
 
-@export var path_container : Node2D
+@export var path_container : Node
 @export var moves := true
 @export var speed := 100.0
 
@@ -33,6 +33,7 @@ func _ready() -> void:
 	target = DAT.A.get(save_key_name("target"), target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars").set_music("overrun")
 	set_color(color)
+	new_target()
 
 
 func _physics_process(delta: float) -> void:

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cemn32crj3xio"]
+[gd_scene load_steps=6 format=3 uid="uid://bp4upclobui8l"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_tree.gd" id="1_ntvbr"]
-[ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/trees.png" id="2_bynwh"]
+[ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/spr_trees.png" id="2_mh3gg"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w45np"]
@@ -15,7 +15,7 @@ script = ExtResource("1_ntvbr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -56)
-texture = ExtResource("2_bynwh")
+texture = ExtResource("2_mh3gg")
 region_enabled = true
 region_rect = Rect2(16, 0, 48, 128)
 

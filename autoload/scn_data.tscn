@@ -7,6 +7,8 @@ script = ExtResource("1_jydat")
 character_list = "greg
 mail_man
 zerma
+tarikas
+cashier_nice
 bike_ghost
 grass
 car"
@@ -25,5 +27,4 @@ personally
 roundup
 mooncity
 rev
-overrun
-"
+overrun"
