@@ -16,6 +16,8 @@ var dialogue_open := false
 @onready var dialogue_box := $DialogueBoxOrderer
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
 
+var dialogue_choice := &""
+
 
 func _init() -> void:
 	print("SOL init")

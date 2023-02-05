@@ -12,13 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="10_q7e26"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_y2bdo"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="13_cuh6h"]
-[ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="14_546m5"]
 [ext_resource type="Texture2D" uid="uid://bfr6g67ugdoth" path="res://sprites/characters/overworld/spr_mail_man_overworld.png" id="15_0olqp"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="15_34lms"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="15_g7ug8"]
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="15_jf107"]
 [ext_resource type="Texture2D" uid="uid://du3ry7j4icp43" path="res://sprites/characters/overworld/spr_tarikas_overworld.png" id="16_7m24p"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="16_c2ls4"]
+[ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="20_5k7c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -28,7 +28,7 @@ script = ExtResource("10_eqo2j")
 enemies = Array[String](["grass", "grass", "grass"])
 background = "grass"
 music = "touch_me"
-party = Array[String](["greg"])
+party = Array[String]([])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm7cp"]
 atlas = ExtResource("9_pxr2e")
@@ -575,7 +575,7 @@ script = ExtResource("10_eqo2j")
 enemies = Array[String](["bike_ghost"])
 background = "bikeghost"
 music = "bike_spirit"
-party = Array[String](["greg"])
+party = Array[String]([])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("10_q7e26")
@@ -739,7 +739,7 @@ layer_5/z_index = 0
 layer_5/tile_data = PackedInt32Array(-458730, 327681, 11, -458729, 327681, 11, -458731, 262145, 11, -458728, 327681, 11, -458727, 327681, 11, -458726, 327681, 11, -458725, 327681, 11, -458724, 393217, 11, -524261, 327681, 10, -524262, 327681, 10, -524260, 393217, 10, -524263, 327681, 10, -524264, 327681, 10, -524265, 327681, 10, -524266, 327681, 10, -524267, 262145, 10, -589802, 327681, 10, -589803, 262145, 10, -589801, 327681, 10, -589800, 327681, 10, -589799, 327681, 10, -589798, 327681, 10, -589797, 327681, 10, -589796, 393217, 10, -655338, 327681, 9, -655337, 327681, 9, -655339, 262145, 9, -655336, 327681, 9, -655335, 327681, 9, -655334, 327681, 9, -655333, 327681, 9, -655332, 393217, 9, -720869, 327681, 8, -720868, 393217, 8, -720870, 327681, 8, -720871, 327681, 8, -720872, 327681, 8, -720873, 327681, 8, -720874, 327681, 8, -720875, 262145, 8)
 
 [node name="Greg" parent="." instance=ExtResource("4_mr34j")]
-position = Vector2(492, -21)
+position = Vector2(613, 89)
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_ffcdj")]
 position = Vector2(0, -11)
@@ -866,7 +866,7 @@ battle = SubResource("Resource_ap7el")
 player = NodePath("../Greg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyEncounterArea"]
-polygon = PackedVector2Array(-120, 39, 95, 40, 95, -123, -16, -123)
+polygon = PackedVector2Array(-120, 39, 95, 40, 95, -123, -72, -121)
 
 [node name="MDP93PATH" type="Node2D" parent="."]
 position = Vector2(568, -38)
@@ -891,10 +891,6 @@ position = Vector2(32, -33)
 
 [node name="Marker2D7" type="Marker2D" parent="MDP93PATH"]
 position = Vector2(-87, 34)
-
-[node name="SprCar1" type="Sprite2D" parent="."]
-position = Vector2(591, 122)
-texture = ExtResource("14_546m5")
 
 [node name="Car" parent="." node_paths=PackedStringArray("path_container") instance=ExtResource("15_g7ug8")]
 position = Vector2(475, 214)
@@ -932,11 +928,11 @@ y_sort_enabled = true
 position = Vector2(24, 32)
 
 [node name="MDP" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_j4r0r")]
-position = Vector2(631, 59)
+position = Vector2(466, -141)
 animated_sprite = NodePath("MDPANIM")
 collision_extents = Vector2i(20, 3)
 random_movement = true
-default_lines = Array[StringName]([&"test", &"test2be"])
+default_lines = Array[StringName]([&"choicestest"])
 save_position = true
 
 [node name="MDPANIM" type="AnimatedSprite2D" parent="MDPS/MDP"]
@@ -1085,3 +1081,6 @@ position = Vector2(558, -11)
 
 [node name="Tree8" parent="Trees" instance=ExtResource("16_c2ls4")]
 position = Vector2(423, -31)
+
+[node name="Greenhouse" parent="." instance=ExtResource("20_5k7c6")]
+position = Vector2(626, 53)

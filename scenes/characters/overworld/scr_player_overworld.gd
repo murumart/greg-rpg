@@ -18,6 +18,8 @@ var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instant
 
 
 func _ready() -> void:
+	if DAT.player_capturers.size() > 0:
+		state = States.NOT_FREE_MOVE
 	menu.close_requested.connect(_on_menu_close_requested)
 	SOL.add_ui_child(menu)
 	menu.hide()
@@ -30,10 +32,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("ui_menu"):
 			if not menu.visible:
 				menu.call_deferred("show")
-				DAT.capture_player()
+				DAT.capture_player("overworld_menu")
 			else:
 				menu.call_deferred("hide")
-				DAT.free_player()
+				DAT.free_player("overworld_menu")
 
 
 func _physics_process(delta: float) -> void:
@@ -75,7 +77,6 @@ func interact() -> void:
 	var collider := raycast.get_collider()
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
-	print("" if not collider else collider.name)
 
 
 func _save_me() -> void:
@@ -88,4 +89,4 @@ func save_key_name(key: String) -> String:
 
 func _on_menu_close_requested() -> void:
 	menu.call_deferred("hide")
-	DAT.free_player()
+	DAT.free_player("overworld_menu")

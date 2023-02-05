@@ -58,6 +58,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	var new_audio_player := AudioStreamPlayer.new()
 	current_song_player = new_audio_player
 	new_audio_player.name = str("music_" + song)
+	playing_sounds.append(new_audio_player)
 	add_child(new_audio_player)
 	var audio_stream : AudioStream = load(song_dict.get("link"))
 	audio_stream.loop = song_dict.get("loop", true)
@@ -136,6 +137,7 @@ func menusound(pitch := 1.0, options := {}) -> void:
 
 func _on_sound_clear_timer_timeout() -> void:
 	for s in playing_sounds:
+		if not is_instance_valid(s): return
 		var player := s as AudioStreamPlayer
 		if !player.playing:
 			playing_sounds.erase(player)

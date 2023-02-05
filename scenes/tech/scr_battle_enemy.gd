@@ -10,10 +10,10 @@ const SELF := 2
 
 const FIND_SUITABLE_ACT_TRIES := 32
 
-var healing_spirits : Array[int]
-var hurting_spirits : Array[int]
-var buffing_spirits : Array[int]
-var debuffing_spirits : Array[int]
+var healing_spirits : Array[String]
+var hurting_spirits : Array[String]
+var buffing_spirits : Array[String]
+var debuffing_spirits : Array[String]
 
 @export_group("Behaviour")
 @export_range(0.0, 1.0) var toughness := 0.25
@@ -47,7 +47,6 @@ func act() -> void:
 
 
 func ai_action() -> void:
-	var chosen := false
 	var team := reference_to_team_array.duplicate()
 	var intent := default_intent
 	for i in FIND_SUITABLE_ACT_TRIES:

@@ -42,10 +42,10 @@ func _get_input_port_type(port: int):
 func _get_output_port_count() -> int:
 	return 1
 
-func _get_output_port_name(port: int) -> String:
+func _get_output_port_name(_port: int) -> String:
 	return "uv"
 
-func _get_output_port_type(port: int) -> int:
+func _get_output_port_type(_port: int) -> int:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
 func _get_global_code(mode: int) -> String:

@@ -105,7 +105,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		go_back_a_menu()
 	if event.is_action_pressed("ui_accept"):
 		if doing == Doings.DONE:
-			LTS.gate_id = &"exit_battle"
+			LTS.gate_id = LTS.GATE_EXIT_BATTLE
 			var looper :Array[BattleActor]= []
 			looper.append_array(party)
 			looper.append_array(dead_party)
@@ -116,7 +116,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func load_battle(info: BattleInfo) -> void:
-	for m in info.get_("party", ["greg"]):
+	for m in info.get_("party", DAT.A.get("party", ["greg"])):
 		add_party_member(m)
 	for e in info.get_("enemies", []):
 		add_enemy(e)

@@ -4,7 +4,7 @@ class_name BattleInfo
 @export var enemies : Array[String] = []
 @export var background := "bikeghost"
 @export var music := ""
-@export var party : Array[String] = ["greg"]
+@export var party : Array[String] = []
 
 
 func set_enemies(x: Array[String]) -> BattleInfo:

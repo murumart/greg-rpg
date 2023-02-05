@@ -8,3 +8,5 @@ const MAX_TEXT_LENGTH := 66
 @export var character : String = ""
 @export var text_speed := 1.0
 
+@export var choice_link := &""
+@export var choices : PackedStringArray = []

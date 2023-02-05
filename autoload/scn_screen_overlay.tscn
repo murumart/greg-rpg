@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://lvdqg7mjwheo"]
+[gd_scene load_steps=26 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://code/scr_dialogue.gd" id="3_kwk5e"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
+[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_3q5xl"]
 
 [sub_resource type="Environment" id="Environment_2qq6b"]
 glow_enabled = true
@@ -19,36 +20,48 @@ script = ExtResource("3_02o1n")
 text = "[color=#00ff00]hello world![/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_s4wuy"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]just kidding. dumbass[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_yjxsy"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]remember last time?[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_yugxp"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]working on the game logic was fun...[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_vjws4"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_b5bui"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_b2l4m"]
 script = ExtResource("3_kwk5e")
@@ -60,12 +73,16 @@ script = ExtResource("3_02o1n")
 text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_tcwnb"]
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]why would i ever talk to you?[/color]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_l1vqh"]
 script = ExtResource("3_kwk5e")
@@ -77,6 +94,8 @@ script = ExtResource("3_02o1n")
 text = "[center]victory![/center]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_m10ek"]
 script = ExtResource("3_kwk5e")
@@ -88,17 +107,24 @@ script = ExtResource("3_02o1n")
 text = "[center]level up![/center]"
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_3r8jb"]
 script = ExtResource("3_02o1n")
 text = "x leveled up to x."
 character = ""
 text_speed = 1.0
+choice_link = &""
+choices = PackedStringArray()
 
 [sub_resource type="Resource" id="Resource_3xhxu"]
 script = ExtResource("3_kwk5e")
 name = &"levelup"
 lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_6lgx5"), SubResource("Resource_3r8jb")])
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3s8v"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
@@ -137,25 +163,26 @@ layout_mode = 0
 offset_left = 98.0
 offset_top = 28.0
 offset_right = 138.0
-offset_bottom = 68.0
+offset_bottom = 63.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3s8v")
+follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer"]
+[node name="ChoicesContainer" type="VBoxContainer" parent="DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = -3
+theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "fewfwef"
-
-[node name="Label2" type="Label" parent="DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "fewfwef"
-
-[node name="Label3" type="Label" parent="DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "fewfwef"
+[node name="ReferenceButton" type="Button" parent="DialogueBoxOrderer/DialogueBoxPanel"]
+visible = false
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 13.0
+mouse_filter = 2
+text = "greg"
+flat = true
+alignment = 0
+script = ExtResource("8_3q5xl")
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
 visible = false

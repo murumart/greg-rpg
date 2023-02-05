@@ -55,6 +55,43 @@ CHAR cashier_nice
 	please don't talk to me outside work hours.
 
 
+DIALOGUE choicestest
+CHAR 
+	will you be a saint?
+	or will you be a grinch?
+	well, what's it gonna be, huh? huh?
+CHOICES saint,grinch,flesh,flush
+	saint? or a grinch.
+CHOICE_LINK saint
+	the saint? wisely chosen.
+CHOICE_LINK grinch
+	the grinch? you never really had free will.
+CHOICE_LINK 
+	good bye.
+
+
+DIALOGUE greenhouse
+	it's pleasant in here.
+CHOICES sleep,eat
+	what would you like to do?
+
+
+DIALOGUE greenhouse_heal_greg_small
+	you feel better but not much.
+
+
+DIALOGUE greenhouse_heal_greg_big
+	those were tasty. hope they grow back.
+
+
+DIALOGUE greenhouse_heal_party_small
+	your party takes a nap.
+
+
+DIALOGUE greenhouse_heal_party_big
+	your party eats all the vegetables.
+	(that heals you fully.)
+
 
 DIALOGUE cwarning
 	do not run bell.c!!!

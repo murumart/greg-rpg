@@ -68,20 +68,17 @@ animations = [{
 }]
 
 [node name="BattleEnemy" instance=ExtResource("1_i1psi")]
-healing_threshold = 0.112
 altruism = 0.296
 innovation = 0.185
 vaimulembesus = 0.26
-character_id = 4
 stat_multiplier = 0.163
 
 [node name="Shadow" type="AnimatedSprite2D" parent="." index="0"]
 modulate = Color(0, 0, 0, 0.403922)
 position = Vector2(1, -6)
-frames = SubResource("SpriteFrames_e4c6l")
-playing = true
+sprite_frames = SubResource("SpriteFrames_e4c6l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(0, -7)
-frames = SubResource("SpriteFrames_e4c6l")
-playing = true
+sprite_frames = SubResource("SpriteFrames_e4c6l")
+autoplay = "default"

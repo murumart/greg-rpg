@@ -9,8 +9,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	DAT.set_data("current_room", id)
+	DAT.set_data("current_room", name)
 
 
 func _save_me() -> void:
-	DAT.set_data("current_room", id)
+	DAT.set_data("current_room", name)

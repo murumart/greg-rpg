@@ -133,9 +133,9 @@ func attack(subject: BattleActor) -> void:
 	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	if subject.character.health <= 0:
-		character.defeated_characters.append(subject.character_id)
+		character.defeated_characters.append(subject.character.name_in_file)
 		if player_controlled:
-			DAT.set_data("defeated_characters", Math.reaap (DAT.get_data("defeated_characters", []), subject.character_id))
+			DAT.set_data("defeated_characters", Math.reaap (DAT.get_data("defeated_characters", []), subject.character.name_in_file))
 	turn_finished()
 
 

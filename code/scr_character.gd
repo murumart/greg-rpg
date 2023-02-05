@@ -141,6 +141,18 @@ func handle_payload(pld: BattlePayload) -> void:
 	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
 
 
+func fully_heal() -> void:
+	health = max_health
+	magic = max_magic
+
+
+func mostly_heal() -> void:
+	if health < 0.8 * max_health:
+		health = roundf(max_health * 0.8)
+	if magic < 0.8 * max_magic:
+		magic = roundf(max_magic * 0.8)
+
+
 func extinguish_duplicate_spirits() -> void:
 	for s in spirits.size():
 		var srt := spirits[s]

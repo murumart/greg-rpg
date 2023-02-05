@@ -17,6 +17,8 @@ var item_dict := {}
 var spirit_dict := {}
 const MAX_SPIRITS := 3
 
+var player_capturers := []
+
 
 func _init() -> void:
 	print("DAT init")
@@ -113,18 +115,19 @@ func print_data() -> void:
 	print(A)
 
 
-func capture_player() -> void:
+func capture_player(type := "") -> void:
+	player_capturers.append(type)
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		players[0].state = PlayerOverworld.States.NOT_FREE_MOVE
-		print(players[0].name, " captured")
 
 
-func free_player() -> void:
+func free_player(type := "") -> void:
+	player_capturers.erase(type)
+	if player_capturers.size() > 0: return
 	var players : Array = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		players[0].state = PlayerOverworld.States.FREE_MOVE
-		print(players[0].name, " freed")
 
 
 func get_current_scene() -> Node:

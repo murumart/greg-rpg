@@ -6,6 +6,8 @@ signal finished_speaking
 
 @onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
 @onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
+@onready var reference_button := $DialogueBoxPanel/ReferenceButton
+@onready var choices_container := $DialogueBoxPanel/ScrollContainer/ChoicesContainer
 
 @export var dialogues : Array[Dialogue]
 
@@ -13,12 +15,15 @@ var loaded_dialogue : Dialogue
 var loaded_dialogue_line : DialogueLine
 var current_dialogue : int
 
+var current_choice := &""
+var choices_open := false
+
 var dialogues_dict := {}
 
 
 func _ready() -> void:
 	hide()
-	dialogues = DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file())
+	dialogues = (DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file()))
 	for i in dialogues:
 		dialogues_dict[i.name] = i
 
@@ -26,7 +31,7 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_instance_valid(loaded_dialogue): return
 	if loaded_dialogue.size() < 1: return
-	if event.is_action_pressed("ui_accept") and not is_speaking():
+	if event.is_action_pressed("ui_accept") and not is_speaking() and not choices_open:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
@@ -51,8 +56,16 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var character_load : String = part.character
 	var character : Character = null
 	var text_speed : float = part.text_speed
+	var choice_link : StringName = part.choice_link
+	var choices : PackedStringArray = part.choices
+	if choice_link != &"" and (choice_link != current_choice):
+		next_dialogue_requested()
+		return
 	
 	portrait.texture = null
+	load_reference_buttons([], [choices_container])
+	choices_container.get_parent().hide()
+	choices_open = false
 	
 	if character_load:
 		character = DAT.get_character(character_load)
@@ -70,6 +83,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if character and character.voice_sound:
 		SND.play_sound(character.voice_sound, {"bus": "Speech"})
 	await textbox.speak_finished
+	
+	if choices:
+		load_reference_buttons(choices, [choices_container])
+		choices_container.get_parent().show()
+		choices_open = true
+		choices_container.get_child(0).grab_focus()
+	
 	finished_speaking.emit()
 
 
@@ -100,4 +120,41 @@ func is_speaking() -> bool:
 
 
 func adjust_line(key: String, line_id: int, to: String) -> void:
-	dialogues_dict.get(key).lines[line_id].text = to
+	adjust(key, line_id, "text", to)
+
+
+func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
+	dialogues_dict.get(key).lines[line_id].set(param, to)
+
+
+func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
+	if clear:
+		for container in containers:
+			for c in container.get_children():
+				if c.is_connected("return_reference", _reference_button_pressed):
+					c.disconnect("return_reference", _reference_button_pressed)
+				if c.is_connected("selected_return_reference", _on_button_reference_received):
+					c.disconnect("selected_return_reference", _on_button_reference_received)
+				c.queue_free()
+	var container_nr := 0
+	for i in array.size():
+		var reference = array[i]
+		var refbutton := reference_button.duplicate()
+		refbutton.reference = reference
+		refbutton.text = str(reference)
+		refbutton.connect("return_reference", _reference_button_pressed)
+		refbutton.connect("selected_return_reference", _on_button_reference_received)
+		containers[container_nr].add_child(refbutton)
+		refbutton.show()
+		container_nr = wrapi(container_nr + 1, 0, containers.size())
+
+
+func _reference_button_pressed(reference) -> void:
+	current_choice = reference
+	SOL.dialogue_choice = reference
+	next_dialogue_requested()
+	get_viewport().set_input_as_handled()
+
+
+func _on_button_reference_received(_reference) -> void:
+	pass
