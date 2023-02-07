@@ -21,5 +21,5 @@ func _physics_process(delta: float) -> void:
 	shake_trauma = move_toward(shake_trauma, 0.0, SHAKE_DECAY * delta)
 	
 	var shake_amount := pow(shake_trauma, shake_trauma_power)
-	offset.x = SHAKE_MAX_OFFSET.x * shake_amount * randf_range(-1.0, 1.0) * OPT.screen_shake_intensity * SHAKE_REDUCTION_CONSTANT
-	offset.y = SHAKE_MAX_OFFSET.y * shake_amount * randf_range(-1.0, 1.0) * OPT.screen_shake_intensity * SHAKE_REDUCTION_CONSTANT
+	offset.x = SHAKE_MAX_OFFSET.x * shake_amount * randf_range(-1.0, 1.0) * OPT.IONS.get("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
+	offset.y = SHAKE_MAX_OFFSET.y * shake_amount * randf_range(-1.0, 1.0) * OPT.IONS.get("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT

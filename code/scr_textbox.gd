@@ -19,7 +19,7 @@ func speak_text(options := {}):
 	visible_ratio = 0.0
 	var tw := create_tween()
 	tween_reference = tw
-	tw.tween_property(self, "visible_ratio", 1.0, OPT.text_speak_time * speaking_speed)
+	tw.tween_property(self, "visible_ratio", 1.0, OPT.IONS.get("text_speak_time") * speaking_speed)
 	tw.tween_callback(func(): speak_finished.emit())
 
 

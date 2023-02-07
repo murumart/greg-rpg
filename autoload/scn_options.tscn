@@ -1,6 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://himl3pefm1tc"]
+[gd_scene load_steps=3 format=3 uid="uid://himl3pefm1tc"]
 
 [ext_resource type="Script" path="res://autoload/scr_options.gd" id="1_kip0u"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_yatxs"]
 
 [node name="OPT" type="Node"]
 script = ExtResource("1_kip0u")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 81.0
+offset_bottom = 120.0
+theme = ExtResource("2_yatxs")
+
+[node name="Panel" type="Panel" parent="Root"]
+layout_mode = 0
+offset_right = 137.0
+offset_bottom = 120.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 87.0
+offset_bottom = 118.0
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MainContainer" type="VBoxContainer" parent="Root/Panel/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Root/Panel"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 137.0
+offset_bottom = 13.0
+text = "game paused - options menu"
+horizontal_alignment = 1
+
+[node name="BaseOption" type="HBoxContainer" parent="Root"]
+visible = false
+
+[node name="Name" type="Label" parent="Root/BaseOption"]
+layout_mode = 2
+text = "screen shake"
+
+[node name="Amount" type="Label" parent="Root/BaseOption"]
+layout_mode = 2
+text = "0.1"
+horizontal_alignment = 2
