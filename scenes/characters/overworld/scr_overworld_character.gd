@@ -287,7 +287,7 @@ func _save_me() -> void:
 
 
 func save_key_name(key: String) -> String:
-	return str("npc_", name, "_in_", DAT.get_current_scene().name, "_", key)
+	return str("npc_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
 
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:

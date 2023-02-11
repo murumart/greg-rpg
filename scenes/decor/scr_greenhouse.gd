@@ -2,6 +2,8 @@ extends Node2D
 
 var zoom := 1.0
 
+@export var grows_in_seconds := 300
+
 var player : PlayerOverworld
 
 @export var has_vegetables := true
@@ -10,6 +12,7 @@ var player : PlayerOverworld
 func _ready() -> void:
 	set_physics_process(false)
 	set_vegetables(DAT.A.get(save_key_name("has_vegetables"), has_vegetables))
+	check_vegetables_regrown()
 
 
 func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
@@ -18,7 +21,7 @@ func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 	set_physics_process(true)
 
 
-func _on_inside_area_body_exited(body: PlayerOverworld) -> void:
+func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 	cam_zoom(Vector2(1, 1), 1)
 	set_physics_process(false)
 	zoom = 1.0
@@ -52,15 +55,18 @@ func pleasant() -> void:
 	if SOL.dialogue_choice == "eat":
 		for c in DAT.A.get("party", ["greg"]):
 			DAT.get_character(c).fully_heal()
+		DAT.set_data(save_key_name("eats"), DAT.get_data(save_key_name("eats"), 0) + 1)
 		SND.play_sound(preload("res://sounds/snd_greenhouse_heal_big.ogg"))
 		if DAT.A.get("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_big")
 		else:
 			SOL.dialogue("greenhouse_heal_greg_big")
 			set_vegetables(false)
+			DAT.set_data(save_key_name("vegs_eaten_second"), DAT.seconds)
 	else:
 		for c in DAT.A.get("party", ["greg"]):
 			DAT.get_character(c).mostly_heal()
+		DAT.set_data(save_key_name("sleeps"), DAT.get_data(save_key_name("sleeps"), 0) + 1)
 		SND.play_sound(preload("res://sounds/snd_greenhouse_heal.ogg"))
 		if DAT.A.get("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_small")
@@ -75,4 +81,13 @@ func set_vegetables(to: bool) -> void:
 
 
 func save_key_name(key: String) -> String:
-	return str("greenhouse_", name, "_in_", DAT.get_current_scene().name, "_", key)
+	return str("greenhouse_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+
+
+func check_vegetables_regrown() -> void:
+	if DAT.seconds - DAT.get_data(save_key_name("vegs_eaten_second"), 0) >= grows_in_seconds:
+		set_vegetables(true)
+
+
+func _on_update_timer_timeout() -> void:
+	check_vegetables_regrown()

@@ -28,3 +28,9 @@ roundup
 mooncity
 rev
 overrun"
+
+[node name="GameTimer" type="Timer" parent="."]
+process_mode = 1
+autostart = true
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

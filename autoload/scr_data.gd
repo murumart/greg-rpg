@@ -2,6 +2,7 @@ extends Node
 
 # handles data, saving and loading it
 
+# file path constants
 const CHAR_PATH := "res://resources/characters/res_%s."
 const ITEM_PATH := "res://resources/items/res_%s."
 const SPIRIT_PATH := "res://resources/spirits/res_%s."
@@ -9,6 +10,7 @@ const SPIRIT_PATH := "res://resources/spirits/res_%s."
 # DATA
 var A : Dictionary
 
+# loadable resources
 @export_multiline var character_list : String = ""
 var character_dict := {}
 @export_multiline var item_list : String = ""
@@ -17,7 +19,13 @@ var item_dict := {}
 var spirit_dict := {}
 const MAX_SPIRITS := 3
 
+# for forbidding player movement
 var player_capturers := []
+
+# counting playtime
+@onready var game_timer := $GameTimer
+var seconds := 0
+var last_save_second := 0
 
 
 func _init() -> void:
@@ -54,7 +62,7 @@ func load_spirits() -> void:
 # entry point for a new game.
 func start_game() -> void:
 	set_data("party", [0])
-	LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
+	LTS.level_transition("res://scenes/rooms/scn_room_test_room.tscn")
 
 
 func set_data(key, value) -> void:
@@ -68,6 +76,8 @@ func get_data(key: String, default = null):
 func save_data(filename := "save.grs") -> void:
 	save_nodes_data()
 	save_chars_to_data()
+	set_data("playtime", seconds)
+	last_save_second = seconds
 	
 	var stuff := DIR.get_dict_from_file(filename)
 	for k in A.keys():
@@ -101,6 +111,7 @@ func load_data(filename := "save.grs") -> void:
 	print("overwriting data...")
 	for k in loaded.keys():
 		A[k] = loaded[k]
+	seconds = loaded.get("playtime", 0)
 	print("finished overwriting data.")
 	
 	load_chars_from_data()
@@ -140,7 +151,7 @@ func get_character(key: String) -> Character:
 	return character_dict[key]
 
 
-func char_save_string_key(which: int, key: String) -> String:
+func char_save_string_key(which: String, key: String) -> String:
 	return str("char_", which, "_", key)
 
 
@@ -186,3 +197,7 @@ func get_spirit_path(spiritname : String) -> String:
 	if DIR.standalone():
 		return SPIRIT_PATH % spiritname + "tres.remap"
 	return SPIRIT_PATH % spiritname + "tres"
+
+
+func _on_game_timer_timeout() -> void:
+	seconds += 1

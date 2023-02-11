@@ -9,8 +9,11 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	DAT.set_data("current_room", name)
+	DAT.set_data("current_room", name.to_snake_case())
 
 
 func _save_me() -> void:
-	DAT.set_data("current_room", name)
+	DAT.set_data("current_room", name.to_snake_case())
+
+
+

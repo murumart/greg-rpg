@@ -77,6 +77,13 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 	tw.tween_callback(emit_signal.bind("fade_finished"))
 
 
+func shake(amt: float) -> void:
+	var cam := get_viewport().get_camera_2d()
+	if not is_instance_valid(cam): return
+	if cam.has_method("add_trauma"):
+		cam.add_trauma(amt)
+
+
 func vfx_dustpuff(pos: Vector2) -> void:
 	vfx("dustpuff", pos)
 

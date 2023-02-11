@@ -1,0 +1,105 @@
+[gd_scene load_steps=4 format=3 uid="uid://bju0euwxosrud"]
+
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_mqtim"]
+[ext_resource type="Script" path="res://scenes/gui/scr_save_screen.gd" id="2_h7lsi"]
+[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_1c2wv"]
+
+[node name="SaveScreen" type="CenterContainer" groups=["free_on_level_transition"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mqtim")
+script = ExtResource("2_h7lsi")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(60, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = -8.0
+offset_right = 110.0
+offset_bottom = 3.0
+text = "save your game."
+horizontal_alignment = 1
+
+[node name="FileContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 58.0
+offset_bottom = 78.0
+theme_override_constants/separation = 1
+
+[node name="File1" type="Button" parent="Panel/FileContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "file 1 "
+script = ExtResource("3_1c2wv")
+
+[node name="File2" type="Button" parent="Panel/FileContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "file 2 "
+script = ExtResource("3_1c2wv")
+
+[node name="File3" type="Button" parent="Panel/FileContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "file 3 "
+script = ExtResource("3_1c2wv")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+z_index = -1
+layout_mode = 0
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 110.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 0.494118)
+metadata/_edit_lock_ = true
+
+[node name="TabContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -13.0
+offset_right = 59.0
+offset_bottom = 1.0
+theme_override_constants/separation = -1
+
+[node name="SavePanel" type="Panel" parent="Panel/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/TabContainer/SavePanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 13.0
+text = "save"
+
+[node name="LoadPanel" type="Panel" parent="Panel/TabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/TabContainer/LoadPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 25.0
+offset_bottom = 13.0
+text = "load"

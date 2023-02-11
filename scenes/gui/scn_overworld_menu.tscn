@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=9 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
@@ -29,6 +29,9 @@ corner_radius_bottom_left = 2
 bg_color = Color(0, 0, 0, 1)
 expand_margin_top = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c61xy"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="OverworldMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -44,7 +47,7 @@ metadata/_edit_lock_ = true
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
-color = Color(0, 0.270588, 0.270588, 0.105882)
+color = Color(0.0509804, 0.101961, 0.117647, 0.298039)
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -297,3 +300,14 @@ stretch_mode = 3
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 3
+
+[node name="SaveWarningLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 51.0
+offset_right = 160.0
+offset_bottom = 62.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_c61xy")
+text = "press ctrl+s to save your game."
+horizontal_alignment = 1
+autowrap_mode = 1

@@ -16,7 +16,7 @@ enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM
 var doing := Doings.NOTHING
 
 @onready var panel : Panel = $UI/Panel
-@onready var reference_button : Button = $UI/ReferenceButton
+@onready var reference_button : Button = preload("res://scenes/tech/scn_reference_button.tscn").instantiate()
 @onready var description_text : RichTextLabel = $%DescriptionText
 @onready var list_containers : Array = [$UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Left, $UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Right]
 @onready var item_list_container : Array = [$UI/Panel/ScreenItemSelect/ScrollContainer/List]
@@ -111,7 +111,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			looper.append_array(dead_party)
 			for p in looper:
 				p.offload_character()
-			LTS.level_transition("res://scenes/rooms/scn_room_test.tscn")
+			LTS.level_transition("res://scenes/rooms/scn_room_test_room.tscn")
 			set_process_unhandled_key_input(false)
 
 

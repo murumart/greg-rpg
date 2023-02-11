@@ -83,6 +83,7 @@ func hurt(amount: float) -> void:
 	else:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
 	SOL.vfx("damage_number", get_effect_center(self), {text = absf(amount), color=Color.RED})
+	SOL.shake(amount/50.0)
 
 
 func get_attack() -> float:

@@ -94,7 +94,7 @@ func level_up(by := 1, overflow := false) -> void:
 		var upgrades := {
 			"attack": 0, "defense": 0, "speed": 0, "max_health": 0, "max_magic": 0
 		}
-		var upgrade_chance := max(((99 - pow(level, 2)/167.0)/100.0) - randf()*0.33, 0)
+		var upgrade_chance := maxf(((99 - pow(level, 2)/167.0)/100.0) - randf()*0.33, 0)
 		for k in upgrades:
 			
 			var perfect_inc : float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0

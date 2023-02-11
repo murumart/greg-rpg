@@ -39,7 +39,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if moves:
 		global_position = global_position.move_toward(target, delta * speed)
-		turn(global_position.angle_to_point(target))
+		turn(int(global_position.angle_to_point(target)))
 		if global_position.distance_squared_to(target) < 2:
 			new_target()
 
@@ -86,7 +86,7 @@ func _save_me() -> void:
 
 
 func save_key_name(key: String) -> String:
-	return str("car_", name, "_in_", DAT.get_current_scene().name, "_", key)
+	return str("car_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
 
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:

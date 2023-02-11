@@ -56,7 +56,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-party_cheat_levelup = 10
+party_cheat_levelup = 50
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
@@ -406,17 +406,6 @@ text = "[center][color=#ff2244]defeat.[/color]
 your resolve was overcome.[/center]"
 visible_characters_behavior = 1
 script = ExtResource("7_qtl4a")
-
-[node name="ReferenceButton" type="Button" parent="UI"]
-visible = false
-layout_mode = 0
-offset_right = 22.0
-offset_bottom = 13.0
-mouse_filter = 2
-text = "greg"
-flat = true
-alignment = 0
-script = ExtResource("4_ht2pp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = SubResource("AudioStreamOggVorbis_m7oim")

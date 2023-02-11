@@ -2,6 +2,8 @@ extends Control
 
 signal close_requested
 
+const TIME_AFTER_WARN_SAVE := 300
+
 enum Doings {PARTY, INNER, USING}
 var doing := Doings.PARTY
 
@@ -23,6 +25,8 @@ var current_tab := 0
 var using_menu_choice := 0
 var using_item : String
 
+@onready var save_warning_label := $SaveWarningLabel
+
 @onready var reference_button := $ReferenceButton
 
 
@@ -32,6 +36,13 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
+		if DAT.player_capturers.is_empty():
+			var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
+			savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
+			SOL.add_ui_child(savemenu)
+			if Input.is_action_just_pressed("quick_load"): savemenu.set_mode(savemenu.LOAD)
+			DAT.capture_player("save_screen")
 	if not visible: return
 	get_viewport().set_input_as_handled()
 	if event.is_action_pressed("ui_cancel"):
@@ -292,13 +303,18 @@ func party(index: int = -1):
 		return (DAT.A.get("party", ["greg"]))
 
 
-func show():
-	super.show()
+func showme():
+	show()
 	SND.menusound()
+	if DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
+		save_warning_label.show()
+		var tw := create_tween()
+		tw.tween_property(save_warning_label, "modulate:a", 0.0, 4.0)
+		tw.tween_callback(save_warning_label.hide)
 
 
-func hide():
-	super.hide()
+func hideme():
+	hide()
 	doing = Doings.INNER
 	doing = Doings.PARTY
 	using_menu.hide()

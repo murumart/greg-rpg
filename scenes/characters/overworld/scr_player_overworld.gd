@@ -31,10 +31,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.is_action_pressed("ui_menu"):
 			if not menu.visible:
-				menu.call_deferred("show")
+				menu.call_deferred("showme")
 				DAT.capture_player("overworld_menu")
 			else:
-				menu.call_deferred("hide")
+				menu.call_deferred("hideme")
 				DAT.free_player("overworld_menu")
 
 
@@ -84,9 +84,9 @@ func _save_me() -> void:
 
 
 func save_key_name(key: String) -> String:
-	return str("player_in_", DAT.get_current_scene().name, "_", key)
+	return str("player_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
 
 
 func _on_menu_close_requested() -> void:
-	menu.call_deferred("hide")
+	menu.call_deferred("hideme")
 	DAT.free_player("overworld_menu")

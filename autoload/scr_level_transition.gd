@@ -33,6 +33,7 @@ func change_scene_to(path: String, options := {}) -> void:
 
 func level_transition(path: String, op := {}) -> void:
 	DAT.capture_player("level_transition")
+	get_tree().call_group("free_on_level_transition", "queue_free")
 	var fadetime : float = op.get("fade_time", 0.4)
 	SOL.fade_screen(
 		op.get("start_color", Color(0, 0, 0, 0)),
@@ -52,6 +53,7 @@ func level_transition(path: String, op := {}) -> void:
 func enter_battle(info: BattleInfo) -> void:
 	if entering_battle: return
 	entering_battle = true
+	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
 	SND.play_song("", 1.0, {save_audio_position = true})
 	SOL.vfx("battle_enter", Vector2())
