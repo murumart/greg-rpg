@@ -311,7 +311,7 @@ func showme():
 	if DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()
 		var tw := create_tween()
-		tw.tween_property(save_warning_label, "modulate:a", 0.0, 4.0)
+		tw.tween_property(save_warning_label, "modulate:a", 0.0, 1.0)
 		tw.tween_callback(save_warning_label.hide)
 
 

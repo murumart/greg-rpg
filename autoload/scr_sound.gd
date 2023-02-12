@@ -6,6 +6,8 @@ extends Node
 var current_song_player : AudioStreamPlayer
 var current_song : Dictionary
 var old_song : Dictionary
+var previously_played_song_key : String = ""
+var current_song_key : String = ""
 var list := SongsList.new()
 
 const DEFAULT_VOLUME := 0.0
@@ -48,6 +50,8 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
 		return
 	
+	previously_played_song_key = current_song_key
+	current_song_key = song
 	old_song = current_song
 	current_song = {}
 	
@@ -72,7 +76,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	
 	new_audio_player.play()
 	if not play_from_beginning:
-		new_audio_player.seek(current_song.get("progress", 0.001))
+		new_audio_player.seek(current_song.get("progress", 0.01))
 		if skip_to != 0.0:
 			new_audio_player.seek(skip_to)
 	var tween := create_tween().set_ease(fade_in_ease_type).set_trans(trans_type)
@@ -80,8 +84,9 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	tween.tween_property(new_audio_player, "volume_db", volume_to, DEFAULT_WAIT_SPEED/float(fade_speed))
 
 
-func fade_out_song_player(player: AudioStreamPlayer, fade_speed := 1.0, options := {}):
+func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 	if not (is_instance_valid(player) and player.playing): return
+	player = player as AudioStreamPlayer
 	
 	var fade_out_ease_type = options.get("fade_out_ease_type", Tween.EASE_IN)
 	var trans_type = options.get("trans_type", Tween.TRANS_QUAD)
@@ -138,8 +143,9 @@ func menusound(pitch := 1.0, options := {}) -> void:
 
 
 func _on_sound_clear_timer_timeout() -> void:
+	
 	for s in playing_sounds:
-		if not is_instance_valid(s): return
+		if not is_instance_valid(s): continue
 		var player := s as AudioStreamPlayer
 		if !player.playing:
 			playing_sounds.erase(player)

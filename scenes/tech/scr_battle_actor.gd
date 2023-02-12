@@ -133,10 +133,6 @@ func attack(subject: BattleActor) -> void:
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
-	if subject.character.health <= 0:
-		character.defeated_characters.append(subject.character.name_in_file)
-		if player_controlled:
-			DAT.set_data("defeated_characters", Math.reaap (DAT.get_data("defeated_characters", []), subject.character.name_in_file))
 	turn_finished()
 
 
@@ -203,6 +199,9 @@ func handle_payload(pld: BattlePayload) -> void:
 		else:
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			hurt(health_change)
+			if character.health <= 0:
+				if pld.sender:
+					pld.sender.character.add_defeated_character(character.name_in_file)
 	
 	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
 	

@@ -24,3 +24,4 @@ func interacted() -> void:
 		await knock_sound.finished
 		DAT.free_player("knocking_on_door")
 		SOL.dialogue("door_unanswer")
+		knock_sound.queue_free()

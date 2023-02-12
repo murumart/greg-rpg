@@ -5,6 +5,7 @@ var speed := 60.0
 
 
 func _ready() -> void:
+	super._ready()
 	var dict := {
 	}
 	

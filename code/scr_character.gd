@@ -163,3 +163,18 @@ func extinguish_duplicate_spirits() -> void:
 
 func set_experience(to: int) -> void:
 	experience = to
+
+
+func add_defeated_character(nimi : StringName) -> void:
+	print("adding defeated character ", nimi)
+	var found_in_array := false
+	for i in defeated_characters:
+		if i.contains(nimi):
+			print("found im")
+			found_in_array = true
+			var number = int(i.lstrip(nimi).lstrip(&"_"))
+			print("found number: ", number)
+			defeated_characters.erase(i)
+			defeated_characters.append(StringName(nimi + &"_" + str(number + 1)))
+	if not found_in_array:
+		defeated_characters.append(nimi + &"_1")

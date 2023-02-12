@@ -6,6 +6,8 @@ var zoom := 1.0
 
 var player : PlayerOverworld
 
+var previous_song_key := ""
+
 @export var has_vegetables := true
 
 
@@ -19,12 +21,15 @@ func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 	player = body
 	cam_zoom(Vector2(2, 2), 1)
 	set_physics_process(true)
+	SND.play_song("greenhouse", 1.0, {play_from_beginning = true})
+	previous_song_key = SND.previously_played_song_key
 
 
 func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 	cam_zoom(Vector2(1, 1), 1)
 	set_physics_process(false)
 	zoom = 1.0
+	SND.play_song(previous_song_key)
 
 
 func cam_zoom(to: Vector2, time: float) -> void:
@@ -52,6 +57,7 @@ func pleasant() -> void:
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT)
 	DAT.free_player("greenhouse")
 	cam_zoom(Vector2(2, 2), 1)
+	SND.play_song("")
 	if SOL.dialogue_choice == "eat":
 		for c in DAT.A.get("party", ["greg"]):
 			DAT.get_character(c).fully_heal()
@@ -85,6 +91,7 @@ func save_key_name(key: String) -> String:
 
 
 func check_vegetables_regrown() -> void:
+	$SprVegetables.visible = has_vegetables
 	if DAT.seconds - DAT.get_data(save_key_name("vegs_eaten_second"), 0) >= grows_in_seconds:
 		set_vegetables(true)
 

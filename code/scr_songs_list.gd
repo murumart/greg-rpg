@@ -15,6 +15,14 @@ var songs := {
 		"link": "res://music/mus_defeat.ogg",
 		"loop": false
 	},
+	"dry_summer": {
+		"title": "dry summer",
+		"link": "res://music/mus_dry_summer.ogg",
+	},
+	"greenhouse": {
+		"title": "webcat - greenhouse",
+		"link": "res://music/mus_greenhouse.ogg"
+	},
 	"greg_battle": {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"

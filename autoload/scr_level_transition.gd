@@ -55,7 +55,7 @@ func enter_battle(info: BattleInfo) -> void:
 	entering_battle = true
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
-	SND.play_song("", 1.0, {save_audio_position = true})
+	SND.play_song("", 100.0, {save_audio_position = true})
 	SOL.vfx("battle_enter", Vector2())
 	await get_tree().create_timer(3.0).timeout
 	DAT.save_nodes_data()
