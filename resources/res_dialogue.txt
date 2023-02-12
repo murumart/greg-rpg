@@ -98,3 +98,7 @@ DIALOGUE cwarning
 	bell hell is real
 	your cpu will be eaten
 
+
+DIALOGUE door_unanswer
+	but nobody answered the door.
+

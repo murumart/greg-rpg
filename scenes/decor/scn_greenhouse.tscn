@@ -25,8 +25,8 @@ texture = ExtResource("3_wumk5")
 offset = Vector2(0, -32)
 
 [node name="SprVegetables" type="Sprite2D" parent="."]
-position = Vector2(0, -32)
 texture = ExtResource("4_0tin1")
+offset = Vector2(0, -32)
 
 [node name="SprTopLayer" type="Sprite2D" parent="."]
 texture = ExtResource("4_si44d")

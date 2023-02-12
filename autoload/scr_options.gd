@@ -24,9 +24,7 @@ var IONS := {
 		"default_value": -2.0,
 		"step": 1.0,
 	},
-	"reset": {
-	}
-	
+	"reset": {}
 }
 const CATEGORIES := {
 	"sound": ["master_volume", "music_volume"],

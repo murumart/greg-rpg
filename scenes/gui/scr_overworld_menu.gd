@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
-		if DAT.player_capturers.is_empty():
+		if DAT.player_capturers.is_empty() or (DAT.player_capturers.size() <= 1 and "overworld_menu" in DAT.player_capturers):
 			var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
 			savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
 			SOL.add_ui_child(savemenu)
@@ -272,6 +272,7 @@ func _reference_button_pressed(reference) -> void:
 				party(current_tab).unused_sprits.erase(reference)
 				party(current_tab).spirits.append(reference)
 				load_spirits()
+				SND.play_sound(preload("res://sounds/spirit/snd_spirit_equip.ogg"))
 				await get_tree().process_frame
 				grab_item_focus()
 			else:
@@ -281,6 +282,7 @@ func _reference_button_pressed(reference) -> void:
 			party(current_tab).spirits.erase(reference)
 			party(current_tab).unused_sprits.append(reference)
 			load_spirits()
+			SND.play_sound(preload("res://sounds/spirit/snd_spirit_dequip.ogg"))
 			await get_tree().process_frame
 			grab_item_focus()
 

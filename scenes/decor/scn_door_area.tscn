@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://f4icx0po6ob5"]
+
+[ext_resource type="Script" path="res://scenes/decor/scr_door_area.gd" id="1_x5j1w"]
+
+[node name="DoorArea" type="Area2D"]
+modulate = Color(1, 0.623529, 1, 0.756863)
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+monitoring = false
+script = ExtResource("1_x5j1w")

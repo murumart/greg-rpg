@@ -22,7 +22,7 @@ func _get_subcategory() -> String:
 func _get_description() -> String:
 	return "Animated wave-like UV distortion"
 
-func _get_return_icon_type() -> int:
+func _get_return_icon_type() -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
 func _get_input_port_count() -> int:
@@ -68,10 +68,10 @@ func _get_output_port_count() -> int:
 func _get_output_port_name(_port: int) -> String:
 	return "uv"
 
-func _get_output_port_type(_port: int) -> int:
+func _get_output_port_type(_port: int) -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
-func _get_global_code(_mode: int) -> String:
+func _get_global_code(_mode: Shader.Mode) -> String:
 	var code : String = "vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
 	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
 	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
@@ -79,7 +79,7 @@ func _get_global_code(_mode: int) -> String:
 }"
 	return code
 
-func _get_code(input_vars: Array, output_vars: Array, _mode: int, _type: int) -> String:
+func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
 	
 	if input_vars[0]:

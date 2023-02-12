@@ -19,7 +19,7 @@ func _get_description() -> String:
 [factor] > 0 - fisheye / barrel;
 [factor] < 0 - antifisheye / pincushion"""
 
-func _get_return_icon_type() -> int:
+func _get_return_icon_type() -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
 func _get_input_port_count() -> int:
@@ -45,10 +45,10 @@ func _get_output_port_count() -> int:
 func _get_output_port_name(_port: int) -> String:
 	return "uv"
 
-func _get_output_port_type(_port: int) -> int:
+func _get_output_port_type(_port: int) -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
-func _get_global_code(mode: int) -> String:
+func _get_global_code(mode: Shader.Mode) -> String:
 	return """
 vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
 	vec2 _p0s_d1s_1en5 = _uv_d1s_1en5 - 0.5;
@@ -61,7 +61,7 @@ vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
 }
 """
 
-func _get_code(input_vars: Array, output_vars: Array, mode: int, type: int) -> String:
+func _get_code(input_vars: Array[String], output_vars: Array[String], mode: Shader.Mode, type: VisualShader.Type) -> String:
 	var uv = "UV"
 	
 	if input_vars[0]:

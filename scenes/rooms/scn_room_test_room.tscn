@@ -715,7 +715,6 @@ animations = [{
 [node name="TestRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5d1ki")
-id = "test"
 
 [node name="OverworldTiles" parent="." instance=ExtResource("2_jxegg")]
 z_index = -1

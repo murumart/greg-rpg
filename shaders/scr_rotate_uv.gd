@@ -18,7 +18,7 @@ func _get_category() -> String:
 func _get_description() -> String:
 	return "Rotate UV by angle in radians relative to pivot vector"
 
-func _get_return_icon_type() -> int:
+func _get_return_icon_type() -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
 func _get_input_port_count() -> int:
@@ -48,10 +48,10 @@ func _get_output_port_count() -> int:
 func _get_output_port_name(_port: int) -> String:
 	return "uv"
 
-func _get_output_port_type(_port: int) -> int:
+func _get_output_port_type(_port: int) -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
-func _get_global_code(_mode: int) -> String:
+func _get_global_code(_mode: Shader.Mode) -> String:
 	return """
 vec2 r0tateUVFunc(vec2 _uv_r0tate, vec2 _pivot_r0tate, float _r0tation_r0tate){
 	//_r0tation_r0tate = radians(_r0tationDeg_r0tate);
@@ -63,7 +63,7 @@ vec2 r0tateUVFunc(vec2 _uv_r0tate, vec2 _pivot_r0tate, float _r0tation_r0tate){
 }
 """
 
-func _get_code(input_vars: Array, output_vars: Array, _mode: int, _type: int) -> String:
+func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
 	
 	if input_vars[0]:
