@@ -6,10 +6,6 @@ var speed := 60.0
 
 func _ready() -> void:
 	super._ready()
-	var dict := {
-	}
-	
-	dict["ass"] = 0.213124214124
 	
 	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed, fade_screen_pressed, leave_pressed]
 	for i in button_functions.size():

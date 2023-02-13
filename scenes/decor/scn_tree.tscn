@@ -5,15 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1fv7"]
-radius = 5.0
-height = 10.0
+radius = 3.0
+height = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
-size = Vector2(16, 112)
+size = Vector2(16, 88)
 
 [node name="Tree" type="Node2D" groups=["trees"]]
 script = ExtResource("1_ntvbr")
-randomise_trees = null
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -56)
@@ -25,13 +24,15 @@ region_rect = Rect2(16, 0, 48, 128)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.396078)
 position = Vector2(0, 2)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_q1fv7")
-debug_color = Color(0.294118, 1, 1, 0.419608)
+debug_color = Color(0.294118, 1, 1, 0.45098)
 
 [node name="BehindArea" parent="." node_paths=PackedStringArray("affected_node") instance=ExtResource("3_s4k00")]
 affected_node = NodePath("../Sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
-position = Vector2(0, -56)
+position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_38uvm")

@@ -735,7 +735,7 @@ layer_5/z_index = 0
 layer_5/tile_data = PackedInt32Array(-458730, 327681, 11, -458729, 327681, 11, -458731, 262145, 11, -458728, 327681, 11, -458727, 327681, 11, -458726, 327681, 11, -458725, 327681, 11, -458724, 393217, 11, -524261, 327681, 10, -524262, 327681, 10, -524260, 393217, 10, -524263, 327681, 10, -524264, 327681, 10, -524265, 327681, 10, -524266, 327681, 10, -524267, 262145, 10, -589802, 327681, 10, -589803, 262145, 10, -589801, 327681, 10, -589800, 327681, 10, -589799, 327681, 10, -589798, 327681, 10, -589797, 327681, 10, -589796, 393217, 10, -655338, 327681, 9, -655337, 327681, 9, -655339, 262145, 9, -655336, 327681, 9, -655335, 327681, 9, -655334, 327681, 9, -655333, 327681, 9, -655332, 393217, 9, -720869, 327681, 8, -720868, 393217, 8, -720870, 327681, 8, -720871, 327681, 8, -720872, 327681, 8, -720873, 327681, 8, -720874, 327681, 8, -720875, 262145, 8)
 
 [node name="Greg" parent="." instance=ExtResource("3_lknet")]
-position = Vector2(616, 64)
+position = Vector2(369, 124)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_bxb8t")]
 position = Vector2(0, -11)
@@ -759,6 +759,7 @@ visible_ratio = 0.0
 script = ExtResource("7_4gaot")
 
 [node name="Buttons" type="Node2D" parent="."]
+visible = false
 position = Vector2(83, 17)
 
 [node name="Button" type="Button" parent="Buttons"]
@@ -1056,66 +1057,82 @@ position = Vector2(101, -82)
 
 [node name="Tree" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(626, -44)
-type = 1
-randomise_trees = false
+type = 3
 
 [node name="Tree2" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(698, 0)
 scale = Vector2(-1, 1)
 type = 1
-randomise_trees = false
 
 [node name="Tree3" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(763, -63)
 scale = Vector2(-1, 1)
-type = 1
-randomise_trees = false
+type = 2
 
 [node name="Tree4" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(796, 29)
-randomise_trees = false
+type = 3
 
 [node name="Tree5" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(507, -40)
 scale = Vector2(-1, 1)
-randomise_trees = false
+type = 3
 
 [node name="Tree6" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(533, -56)
-scale = Vector2(-1, 1)
-randomise_trees = false
 
 [node name="Tree7" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(558, -11)
-randomise_trees = false
+scale = Vector2(-1, 1)
 
 [node name="Tree8" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(423, -31)
-randomise_trees = false
+type = 3
 
 [node name="Tree9" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(855, -113)
 scale = Vector2(-1, 1)
 type = 1
-randomise_trees = false
 
 [node name="Tree10" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(1116, 55)
-randomise_trees = false
+type = 3
 
 [node name="Tree11" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(861, 208)
-randomise_trees = false
 
 [node name="Tree12" parent="Trees" instance=ExtResource("18_3uegb")]
 position = Vector2(899, 208)
-type = 1
-randomise_trees = false
+scale = Vector2(-1, 1)
 
 [node name="Tree13" parent="Trees" instance=ExtResource("18_3uegb")]
-position = Vector2(266, 212)
+position = Vector2(314, 200)
+scale = Vector2(-1, 1)
+type = 4
+
+[node name="Tree14" parent="Trees" instance=ExtResource("18_3uegb")]
+position = Vector2(123, 18)
+scale = Vector2(-1, 1)
+type = 4
+
+[node name="Tree15" parent="Trees" instance=ExtResource("18_3uegb")]
+position = Vector2(75, 18)
+scale = Vector2(-1, 1)
+type = 3
+
+[node name="Tree16" parent="Trees" instance=ExtResource("18_3uegb")]
+position = Vector2(27, 18)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree17" parent="Trees" instance=ExtResource("18_3uegb")]
+position = Vector2(-21, 18)
+scale = Vector2(-1, 1)
 type = 1
-randomise_trees = false
+
+[node name="Tree18" parent="Trees" instance=ExtResource("18_3uegb")]
+position = Vector2(-69, 18)
+scale = Vector2(-1, 1)
 
 [node name="Greenhouse" parent="." instance=ExtResource("19_gb7yw")]
 position = Vector2(626, 53)

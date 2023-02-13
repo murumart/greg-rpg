@@ -1,8 +1,8 @@
 @tool
 extends Node2D
 
-@export_enum("kuusk", "mänd") var type : int = 0 : set = set_type
-const TYPES_SIZE := 2
+@export_enum("kuusk", "mänd", "tooming", "kadak", "toone") var type : int = 0 : set = set_type
+const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
 
 
