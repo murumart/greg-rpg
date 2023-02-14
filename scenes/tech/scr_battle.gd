@@ -58,6 +58,8 @@ var current_guy : BattleActor
 var loaded_spirits := {}
 var current_target : BattleActor
 
+var death_reason := "default"
+
 var f := 0
 
 @export var enable_testing_cheats := false
@@ -121,6 +123,7 @@ func load_battle(info: BattleInfo) -> void:
 	for e in info.get_("enemies", []):
 		add_enemy(e)
 	set_background(info.get_("background", "bikeghost"))
+	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
 
@@ -488,8 +491,7 @@ func open_end_screen(victory: bool) -> void:
 		print("doings should be done now")
 		doing = Doings.DONE
 	else:
-		defeat_text.speak_text()
-		SND.play_song("defeat", 10, {start_volume = 0.0})
+		LTS.to_game_over_screen()
 
 
 func _on_attack_pressed() -> void:

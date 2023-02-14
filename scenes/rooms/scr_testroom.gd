@@ -46,7 +46,7 @@ func trash_pressed():
 func speak_pressed():
 	$RichTextLabel.visible_ratio = 0.0
 	$RichTextLabel.text = str(randi())
-	$RichTextLabel.speak_text({"speaking_speed": randf_range(0.5, 2.0)})
+	$RichTextLabel.speak_text({"speed": randf_range(0.5, 2.0)})
 
 
 func dialogue_speak_pressed():

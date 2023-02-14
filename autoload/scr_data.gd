@@ -27,6 +27,10 @@ var player_capturers := []
 var seconds := 0
 var last_save_second := 0
 
+# on death
+var death_reason := "default"
+var last_save_file := 0
+
 
 func _init() -> void:
 	print("DAT init")

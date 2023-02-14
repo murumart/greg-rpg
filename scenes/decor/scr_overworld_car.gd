@@ -31,7 +31,8 @@ func _ready() -> void:
 	collision_area.body_entered.connect(_on_collided_with_player)
 	position = DAT.A.get(save_key_name("position"), position)
 	target = DAT.A.get(save_key_name("target"), target)
-	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars").set_music("overrun")
+	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
+	.set_music("overrun").set_death_reason("car")
 	set_color(color)
 	new_target()
 

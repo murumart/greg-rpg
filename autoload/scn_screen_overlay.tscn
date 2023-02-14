@@ -21,7 +21,7 @@ text = "[color=#00ff00]hello world![/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_s4wuy"]
 script = ExtResource("3_02o1n")
@@ -29,7 +29,7 @@ text = "[color=#00ff00]just kidding. dumbass[/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_yjxsy"]
 script = ExtResource("3_02o1n")
@@ -37,7 +37,7 @@ text = "[color=#00ff00]remember last time?[/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_yugxp"]
 script = ExtResource("3_02o1n")
@@ -45,7 +45,7 @@ text = "[color=#00ff00]working on the game logic was fun...[/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_vjws4"]
 script = ExtResource("3_02o1n")
@@ -53,7 +53,7 @@ text = "[color=#00ff00]but you ground to a halt when you had to make actual game
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_b5bui"]
 script = ExtResource("3_02o1n")
@@ -61,7 +61,7 @@ text = "[color=#00ff00]what makes you think this time will be any different?[/co
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_b2l4m"]
 script = ExtResource("3_kwk5e")
@@ -74,7 +74,7 @@ text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_tcwnb"]
 script = ExtResource("3_02o1n")
@@ -82,7 +82,7 @@ text = "[color=#00ff00]why would i ever talk to you?[/color]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_l1vqh"]
 script = ExtResource("3_kwk5e")
@@ -95,7 +95,7 @@ text = "[center]victory![/center]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_m10ek"]
 script = ExtResource("3_kwk5e")
@@ -108,7 +108,7 @@ text = "[center]level up![/center]"
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_3r8jb"]
 script = ExtResource("3_02o1n")
@@ -116,7 +116,7 @@ text = "x leveled up to x."
 character = ""
 text_speed = 1.0
 choice_link = &""
-choices = PackedStringArray()
+choices = []
 
 [sub_resource type="Resource" id="Resource_3xhxu"]
 script = ExtResource("3_kwk5e")

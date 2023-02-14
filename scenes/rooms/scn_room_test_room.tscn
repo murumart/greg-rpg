@@ -29,6 +29,7 @@ enemies = Array[String](["grass", "grass", "grass"])
 background = "grass"
 music = "touch_me"
 party = Array[String]([])
+death_reason = "default"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm7cp"]
 atlas = ExtResource("13_35l7x")
@@ -576,6 +577,7 @@ enemies = Array[String](["bike_ghost"])
 background = "bikeghost"
 music = "bike_spirit"
 party = Array[String]([])
+death_reason = "default"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("17_ly4yr")

@@ -48,7 +48,7 @@ func _get_output_port_name(_port: int) -> String:
 func _get_output_port_type(_port: int) -> VisualShaderNode.PortType:
 	return VisualShaderNode.PORT_TYPE_VECTOR_2D
 
-func _get_global_code(mode: Shader.Mode) -> String:
+func _get_global_code(_mode: Shader.Mode) -> String:
 	return """
 vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
 	vec2 _p0s_d1s_1en5 = _uv_d1s_1en5 - 0.5;
@@ -61,7 +61,7 @@ vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
 }
 """
 
-func _get_code(input_vars: Array[String], output_vars: Array[String], mode: Shader.Mode, type: VisualShader.Type) -> String:
+func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
 	
 	if input_vars[0]:

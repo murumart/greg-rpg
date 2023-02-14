@@ -50,6 +50,10 @@ func level_transition(path: String, op := {}) -> void:
 	)
 
 
+func to_game_over_screen() -> void:
+	level_transition("res://scenes/gui/scn_death_screen.tscn")
+
+
 func enter_battle(info: BattleInfo) -> void:
 	if entering_battle: return
 	entering_battle = true

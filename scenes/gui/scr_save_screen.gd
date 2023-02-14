@@ -1,4 +1,5 @@
 extends CenterContainer
+class_name SaveScreen
 
 enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
