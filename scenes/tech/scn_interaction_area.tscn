@@ -1,16 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://j12da57vuv2v"]
+[gd_scene load_steps=2 format=3 uid="uid://j12da57vuv2v"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="1_40une"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f4qo"]
-resource_local_to_scene = true
-size = Vector2(16, 16)
-
 [node name="InteractionArea" type="Area2D"]
+modulate = Color(0.647059, 0.462745, 0.690196, 1)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_40une")
-
-[node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0f4qo")
-debug_color = Color(1, 0.462745, 1, 0.152941)

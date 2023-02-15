@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name DialogueBox
 
 # screen layer over everything else. used for things like UI
 

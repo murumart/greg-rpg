@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dspmw6jvu8h4c"]
+[gd_scene load_steps=109 format=3 uid="uid://dspmw6jvu8h4c"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="17_ly4yr"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="18_3uegb"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="19_gb7yw"]
+[ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_h3jbg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -1138,3 +1139,21 @@ scale = Vector2(-1, 1)
 
 [node name="Greenhouse" parent="." instance=ExtResource("19_gb7yw")]
 position = Vector2(626, 53)
+
+[node name="TrashBin" parent="." instance=ExtResource("20_h3jbg")]
+position = Vector2(340, 157)
+replenish_minutes = 0
+replenish_seconds = 10
+item = &"gummy_worm"
+
+[node name="TrashBin2" parent="." instance=ExtResource("20_h3jbg")]
+position = Vector2(360, 157)
+replenish_minutes = 0
+replenish_seconds = 20
+item = &"plaster"
+
+[node name="TrashBin3" parent="." instance=ExtResource("20_h3jbg")]
+position = Vector2(377, 157)
+replenish_minutes = 1
+replenish_seconds = 60
+item = &"sugar_lemon"

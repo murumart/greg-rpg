@@ -145,6 +145,12 @@ func free_player(type := "") -> void:
 		players[0].state = PlayerOverworld.States.FREE_MOVE
 
 
+func grant_item(item : StringName, party_index := 0) -> void:
+	get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
+	SOL.dialogue_box.dial_concat("getitem", 0, [get_item(item).name])
+	SOL.dialogue("getitem")
+
+
 func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
 

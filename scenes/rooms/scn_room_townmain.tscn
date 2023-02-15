@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=14 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_vlyiu"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_fpmwf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="5_r5v2p"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="6_4ue76"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="7_8qs2a"]
+[ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_axdnt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -233,3 +234,176 @@ shape = SubResource("RectangleShape2D_jv1pm")
 
 [node name="PairhouseGreenhouse" parent="Houses/Pairhouse" instance=ExtResource("6_4ue76")]
 position = Vector2(-160, -128)
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-104, -335)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree2" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(102, -314)
+scale = Vector2(-1, 1)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(147, -485)
+scale = Vector2(-1, 1)
+type = 3
+
+[node name="Tree4" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(192, -426)
+scale = Vector2(-1, 1)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(9, -39)
+type = 3
+
+[node name="Tree6" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(51, 58)
+scale = Vector2(-1, 1)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-143, 16)
+scale = Vector2(-1, 1)
+
+[node name="Tree8" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(217, 258)
+
+[node name="Tree9" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-530, 224)
+type = 2
+
+[node name="Tree10" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-564, 170)
+type = 3
+
+[node name="Tree11" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-521, 63)
+scale = Vector2(-1, 1)
+
+[node name="Tree12" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-439, -2)
+scale = Vector2(-1, 1)
+
+[node name="Tree13" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-253, -173)
+type = 2
+
+[node name="Tree14" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-350, -157)
+type = 2
+
+[node name="Tree15" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-349, -253)
+type = 2
+
+[node name="Tree35" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-395, -309)
+type = 3
+
+[node name="Tree36" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-382, -257)
+type = 1
+
+[node name="Tree37" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-340, -334)
+type = 1
+
+[node name="Tree38" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-526, -338)
+scale = Vector2(-1, 1)
+
+[node name="Tree39" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-458, -360)
+type = 1
+
+[node name="Tree16" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-295, -293)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree17" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-451, -256)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree18" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-418, -172)
+scale = Vector2(-1, 1)
+
+[node name="Tree19" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-539, -154)
+scale = Vector2(-1, 1)
+type = 3
+
+[node name="Tree20" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-503, -232)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree21" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-422, -358)
+type = 1
+
+[node name="Tree22" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-293, -395)
+scale = Vector2(-1, 1)
+type = 3
+
+[node name="Tree23" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-393, -453)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree24" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-264, -469)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree25" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-243, -390)
+
+[node name="Tree26" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-333, -477)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree27" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-352, -390)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree28" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-544, -417)
+type = 1
+
+[node name="Tree29" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-492, -375)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree30" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-456, -465)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="Tree31" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-583, -278)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree32" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-613, -395)
+type = 1
+
+[node name="Tree33" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(-613, -196)
+scale = Vector2(-1, 1)
+type = 2
+
+[node name="Tree34" parent="Trees" instance=ExtResource("8_axdnt")]
+position = Vector2(265, 135)
+scale = Vector2(-1, 1)
+type = 3

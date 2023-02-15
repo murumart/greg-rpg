@@ -227,8 +227,10 @@ func _set_collision_extents(to: Vector2i) -> void:
 	if collision_shape:
 		collision_shape.shape.size = to
 	if interaction_area:
-		interaction_area.area_extents.x = to.x + 2
-		interaction_area.area_extents.y = to.y + 2
+		if interaction_area.get_child_count() > 0:
+			var interaction_collision : CollisionShape2D = interaction_area.get_child(0)
+			interaction_collision.shape.size.x = to.x + 2
+			interaction_collision.shape.size.y = to.y + 2
 
 
 func set_target(to: Vector2) -> void:

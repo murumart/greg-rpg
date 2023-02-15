@@ -126,6 +126,10 @@ func adjust_line(key: String, line_id: int, to: String) -> void:
 func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
 	dialogues_dict.get(key).lines[line_id].set(param, to)
 
+# TODO: FIX THISAAAAAAAAAAAAAAAAA
+func dial_concat(key: String, line_id: int, params: Array) -> void:
+	dialogues_dict.get(key).lines[line_id].text = dialogues_dict.get(key).lines[line_id].text % params
+
 
 func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
 	if clear:
