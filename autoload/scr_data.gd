@@ -151,6 +151,21 @@ func grant_item(item : StringName, party_index := 0) -> void:
 	SOL.dialogue("getitem")
 
 
+func grant_silver(amount: int) -> void:
+	var dialid := "getsilver"
+	if amount < 0: dialid = "losesilver"
+	set_data("silver", A.get("silver", 0) + amount)
+	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
+	SOL.dialogue(dialid)
+
+
+func grant_spirit(spirit : StringName, party_index := 0) -> void:
+	get_character(A.get("party", ["greg"])[party_index]).unused_sprits.append(spirit)
+	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
+	SOL.dialogue("getspirit")
+	SND.play_sound(preload("res://sounds/spirit/snd_spirit_get.ogg"))
+
+
 func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
 

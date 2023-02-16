@@ -20,6 +20,10 @@ var choices_open := false
 
 var dialogues_dict := {}
 
+var unmodified_dialogue_lines := {
+	
+}
+
 
 func _ready() -> void:
 	hide()
@@ -124,11 +128,18 @@ func adjust_line(key: String, line_id: int, to: String) -> void:
 
 
 func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
-	dialogues_dict.get(key).lines[line_id].set(param, to)
+	dialogues_dict.get(key).get_line(line_id).set(param, to)
 
-# TODO: FIX THISAAAAAAAAAAAAAAAAA
+
 func dial_concat(key: String, line_id: int, params: Array) -> void:
-	dialogues_dict.get(key).lines[line_id].text = dialogues_dict.get(key).lines[line_id].text % params
+	var get_key := key + "_" + str(line_id)
+	if not unmodified_dialogue_lines.get(get_key, false):
+		var line := DialogueLine.new()
+		line = dialogues_dict.get(key).get_line(line_id).duplicate()
+		unmodified_dialogue_lines[get_key] = line
+	print(dialogues_dict.get(key).get_line(line_id).text)
+	var line : DialogueLine = dialogues_dict.get(key).get_line(line_id)
+	line.text = unmodified_dialogue_lines.get(get_key).text % params
 
 
 func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:

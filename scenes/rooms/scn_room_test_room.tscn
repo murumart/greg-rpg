@@ -1145,15 +1145,18 @@ position = Vector2(340, 157)
 replenish_minutes = 0
 replenish_seconds = 10
 item = &"gummy_worm"
+silver = 20
 
 [node name="TrashBin2" parent="." instance=ExtResource("20_h3jbg")]
 position = Vector2(360, 157)
 replenish_minutes = 0
 replenish_seconds = 20
-item = &"plaster"
+item = &"porridge"
+silver = 15
 
 [node name="TrashBin3" parent="." instance=ExtResource("20_h3jbg")]
 position = Vector2(377, 157)
 replenish_minutes = 1
 replenish_seconds = 60
 item = &"sugar_lemon"
+silver = -300

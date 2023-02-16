@@ -40,6 +40,10 @@ DIALOGUE getsilver
 	%s silver were received.
 
 
+DIALOGUE losesilver
+	%s silver were lost.
+
+
 DIALOGUE getspirit
 	[color=#7799ff][center]%s[/center][/color]
 
