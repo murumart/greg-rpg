@@ -13,7 +13,6 @@ func _ready() -> void:
 	
 	if music_player.stream:
 		bpm = music_player.stream.get_bpm()
-		print(bpm)
 	
 	beat_timer.start(60.0 / float(bpm))
 	music_player.play()

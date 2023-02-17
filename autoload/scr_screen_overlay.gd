@@ -21,10 +21,11 @@ var dialogue_choice := &""
 
 
 func _init() -> void:
-	print("SOL init")
+	pass
 
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	dialogue_box.dialogue_closed.connect(_on_dialogue_closed)
 	dialogue_box.started_speaking.connect(_on_speaking_started)
 	dialogue_box.finished_speaking.connect(_on_speaking_stopped)
@@ -50,13 +51,13 @@ func _on_dialogue_closed() -> void:
 
 
 func _on_speaking_started() -> void:
-	print("started speaking")
+	#print("started speaking")
 	speaking = true
 	dialogue_open = true
 
 
 func _on_speaking_stopped() -> void:
-	print("stopped speaking")
+	#print("stopped speaking")
 	speaking = false
 
 
@@ -83,6 +84,15 @@ func shake(amt: float) -> void:
 	if not is_instance_valid(cam): return
 	if cam.has_method("add_trauma"):
 		cam.add_trauma(amt)
+
+
+func save_menu(loading := false, options := {}) -> void:
+	var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
+	savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
+	savemenu.init(options)
+	add_ui_child(savemenu)
+	if loading: savemenu.set_mode(savemenu.LOAD)
+	DAT.capture_player("save_screen")
 
 
 func vfx_dustpuff(pos: Vector2) -> void:

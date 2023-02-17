@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi0862uluur74"]
+
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
+[ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
+[ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
+[ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="4_nui45"]
+
+[sub_resource type="Gradient" id="Gradient_tugpb"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uimka"]
+gradient = SubResource("Gradient_tugpb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov56v"]
+shader = ExtResource("4_nui45")
+shader_parameter/Gradient = SubResource("GradientTexture2D_uimka")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_egx3d")
+script = ExtResource("2_wb8tk")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0.00784314, 0.00392157, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 56.0
+texture = ExtResource("3_fpmeo")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 52.0
+offset_right = 160.0
+offset_bottom = 63.0
+bbcode_enabled = true
+text = "[center]rpg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 112.0
+theme_override_constants/separation = -1
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../LoadGameButton")
+focus_next = NodePath("../LoadGameButton")
+focus_previous = NodePath("../QuitButton")
+mouse_filter = 2
+button_mask = 0
+text = " new game"
+alignment = 0
+
+[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../NewGameButton")
+mouse_filter = 2
+button_mask = 0
+text = " load game"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadGameButton")
+focus_neighbor_bottom = NodePath("../NewGameButton")
+focus_next = NodePath("../NewGameButton")
+focus_previous = NodePath("../LoadGameButton")
+mouse_filter = 2
+button_mask = 0
+text = " quit game"
+alignment = 0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ov56v")
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 124.0
+
+[connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

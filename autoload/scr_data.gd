@@ -33,7 +33,7 @@ var last_save_file := 0
 
 
 func _init() -> void:
-	print("DAT init")
+	randomize()
 
 
 func _ready() -> void:
@@ -65,8 +65,9 @@ func load_spirits() -> void:
 
 # entry point for a new game.
 func start_game() -> void:
-	set_data("party", [0])
-	LTS.level_transition("res://scenes/rooms/scn_room_test_room.tscn")
+	A.clear()
+	set_data("party", ["greg"])
+	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 
 
 func set_data(key, value) -> void:
@@ -108,13 +109,16 @@ func save_nodes_data() -> void:
 	print("node saving end.")
 
 
-func load_data(filename := "save.grs") -> void:
+func load_data(filename := "save.grs", overwrite := true) -> void:
 	var loaded := DIR.get_dict_from_file(filename)
 	if loaded.size() < 1: print("no data to load!"); return
 	
 	print("overwriting data...")
-	for k in loaded.keys():
-		A[k] = loaded[k]
+	if not overwrite:
+		for k in loaded.keys():
+			A[k] = loaded[k]
+	else:
+		A = loaded
 	seconds = loaded.get("playtime", 0)
 	print("finished overwriting data.")
 	

@@ -9,7 +9,8 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @onready var collision_shape: CollisionShape2D = $CollisionArea/CollisionShape
 
 @export var path_container : Node
-@export var moves := true
+@export var moves := true: set = set_moves
+	
 @export var speed := 100.0
 
 @export_group("Appearance")
@@ -88,6 +89,13 @@ func _save_me() -> void:
 
 func save_key_name(key: String) -> String:
 	return str("car_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+
+
+func set_moves(to: bool):
+	moves = to
+	var vroom := get_node_or_null("VroomVroom")
+	if vroom:
+		vroom.playing = to
 
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:

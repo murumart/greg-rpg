@@ -10,6 +10,10 @@ var songs := {
 		"title": "bike_spirit",
 		"link": "res://music/mus_bike_spirit.ogg"
 	},
+	"birds": {
+		"title": "birdsong",
+		"link": "res://music/mus_birds.ogg"
+	},
 	"defeat": {
 		"title": "so guys, we died it",
 		"link": "res://music/mus_defeat.ogg",
@@ -34,10 +38,6 @@ var songs := {
 	"touch_me": {
 		"title": "touch me",
 		"link": "res://music/mus_touch_me.ogg"
-	},
-	"town": {
-		"title": "town",
-		"link": "res://music/mus_town.ogg"
 	},
 	"victory": {
 		"title": "so guys, we did it",

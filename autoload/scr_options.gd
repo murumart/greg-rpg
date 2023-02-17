@@ -48,7 +48,6 @@ var options_length := 0
 
 
 func _init() -> void:
-	print("OPT init")
 	if not DIR.file_exists(OPTION_PATH, true):
 		opt.set_value("promo", "website", "https://murumart.neocities.org/")
 		opt.save(OPTION_PATH)
@@ -56,7 +55,6 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	gen_option_nodes()
 	remove_child(root)
 	SOL.add_ui_child(root, 128, false)
@@ -92,7 +90,6 @@ func _input(event: InputEvent) -> void:
 
 
 func save_options() -> void:
-	print("saving options")
 	for c in IONS.keys():
 		var value = get_opt(c)
 		opt.set_value(c, "value", value)

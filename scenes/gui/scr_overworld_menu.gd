@@ -38,11 +38,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
 		if DAT.player_capturers.is_empty() or (DAT.player_capturers.size() <= 1 and "overworld_menu" in DAT.player_capturers):
-			var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
-			savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
-			SOL.add_ui_child(savemenu)
-			if Input.is_action_just_pressed("quick_load"): savemenu.set_mode(savemenu.LOAD)
-			DAT.capture_player("save_screen")
+			SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 	if not visible: return
 	get_viewport().set_input_as_handled()
 	if event.is_action_pressed("ui_cancel"):

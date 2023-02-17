@@ -9,3 +9,5 @@ const MAX_TEXT_LENGTH := 66
 
 @export var choice_link := &""
 @export var choices : PackedStringArray = []
+
+@export var instaskip := false

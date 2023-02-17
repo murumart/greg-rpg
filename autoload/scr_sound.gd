@@ -20,7 +20,7 @@ var sound_clear_timer := Timer.new()
 
 
 func _init() -> void:
-	print("SND init")
+	pass
 
 
 func _ready() -> void:
@@ -147,6 +147,6 @@ func _on_sound_clear_timer_timeout() -> void:
 	for s in playing_sounds:
 		if not is_instance_valid(s): continue
 		var player := s as AudioStreamPlayer
-		if !player.playing:
+		if !player.playing and !player.stream_paused:
 			playing_sounds.erase(player)
 			player.call_deferred("queue_free")

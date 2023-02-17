@@ -9,6 +9,7 @@ const NEW_TXT_SPD := "SPEED "
 const NEW_LINE := "\t"
 const NEW_CHOICES := "CHOICES "
 const NEW_CHOICE_LINK := "CHOICE_LINK "
+const NEW_INSTASKIP := "INSTASKIP"
 
 
 func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
@@ -23,6 +24,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 	var text_speed_to_set := 1.0
 	var choices_to_set : PackedStringArray = []
 	var choice_link_to_set : StringName = &""
+	var instaskip_to_set := false
 	var l := -1
 	
 	for line in lines:
@@ -36,6 +38,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 			text_speed_to_set = 1.0
 			choices_to_set = []
 			choice_link_to_set = &""
+			instaskip_to_set = false
 			dial = Dialogue.new()
 			dial.name = line.trim_prefix(NEW_DIAL)
 		elif line.begins_with(NEW_CHAR):
@@ -50,6 +53,8 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 		elif line.begins_with(NEW_CHOICE_LINK):
 			mode = SET_CHOICE_LINK
 			choice_link_to_set = line.trim_prefix(NEW_CHOICE_LINK)
+		elif line.begins_with(NEW_INSTASKIP):
+			instaskip_to_set = true
 		elif line.begins_with(NEW_LINE):
 			mode = SET_LINE
 			dial_line = DialogueLine.new()
@@ -57,11 +62,13 @@ func parse_dialogue_from_file(file_as_text: String) -> Array[Dialogue]:
 			dial_line.character = char_to_set
 			dial_line.text_speed = text_speed_to_set
 			dial_line.choice_link = choice_link_to_set
+			dial_line.instaskip = instaskip_to_set
 			if choices_to_set:
 				dial_line.choices = choices_to_set
 				choices_to_set = []
 			dial.lines.append(dial_line.duplicate())
 			dial_line = null
+			instaskip_to_set = false
 		else:
 			mode = COMMENT
 		if l + 1 >= lines.size():

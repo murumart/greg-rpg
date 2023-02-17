@@ -42,15 +42,12 @@ func act() -> void:
 	super.act()
 	
 	ai_action()
-	
-	print(actor_name, " acting finished!")
 
 
 func ai_action() -> void:
 	var team := reference_to_team_array.duplicate()
 	var intent := default_intent
 	for i in FIND_SUITABLE_ACT_TRIES:
-		print(actor_name, ": action try ", i)
 		if randf() <= innovation:
 			intent = (randi() as Intents) % Intents.MAX_ACTION
 		var target : BattleActor

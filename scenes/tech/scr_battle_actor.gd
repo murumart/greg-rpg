@@ -33,7 +33,6 @@ var player_controlled := false
 
 
 func _ready() -> void:
-	print(self, "loaded")
 	actor_name = character.name
 
 
@@ -57,7 +56,6 @@ func _physics_process(delta: float) -> void:
 func act() -> void:
 	set_state(States.ACTING)
 	wait = 1.0
-	print(actor_name, " is acting!")
 	if player_controlled:
 		player_input_requested.emit(self)
 		return
@@ -153,7 +151,6 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		targets = reference_to_actor_array.duplicate()
 	else:
 		targets = [subject]
-	print(targets)
 	# all targets
 	for receiver in targets:
 		if spirit.receive_animation:
@@ -187,7 +184,6 @@ func use_item(id: String, subject: BattleActor) -> void:
 func handle_payload(pld: BattlePayload) -> void:
 	await get_tree().process_frame
 	if character.health <= 0: return
-	print(actor_name, ": payload received from %s! " % pld.sender.character.name)
 	
 	var health_change := 0.0
 	health_change += pld.health
@@ -237,7 +233,6 @@ func turn_finished() -> void:
 
 func load_character(id: String) -> void:
 	var charc : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
-	print(self, " character %s loaded" % charc)
 	character = charc
 
 

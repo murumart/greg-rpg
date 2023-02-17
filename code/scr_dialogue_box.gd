@@ -87,6 +87,9 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if character and character.voice_sound:
 		SND.play_sound(character.voice_sound, {"bus": "Speech"})
 	await textbox.speak_finished
+	if part.instaskip:
+		next_dialogue_requested()
+		return
 	
 	if choices:
 		load_reference_buttons(choices, [choices_container])

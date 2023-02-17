@@ -122,3 +122,26 @@ DIALOGUE cwarning
 DIALOGUE door_unanswer
 	but nobody answered the door.
 
+
+DIALOGUE intro_convo
+CHAR zerma
+	greg, wake up!
+	we are getting close to your destination!
+CHAR greg
+SPEED 0.5
+	...?
+CHAR zerma
+SPEED 1.0
+	your childhood town, greg!
+	that's where i'm taking you.
+	it's been a while, right?
+CHAR greg
+INSTASKIP
+	i think 
+CHAR zerma
+	how many people can you still remember?
+	it must be very exciting for you.
+	hey, look, we're almost there...
+
+
+

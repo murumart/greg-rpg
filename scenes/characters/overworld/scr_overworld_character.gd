@@ -136,7 +136,6 @@ func interacted() -> void:
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():
-			print(battle_info != null or transport_to_scene != "")
 			if battle_info != null or transport_to_scene != "":
 				continuing = false
 			else:

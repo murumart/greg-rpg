@@ -13,7 +13,7 @@ var entering_battle := false
 
 
 func _init() -> void:
-	print("LTS init")
+	pass
 
 
 func change_scene_to(path: String, options := {}) -> void:

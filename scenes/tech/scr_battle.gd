@@ -210,7 +210,6 @@ func arrange_enemies():
 
 func set_background(id: String) -> void:
 	var path := DIR.battle_background_scene_path(id)
-	print(path)
 	if DIR.file_exists(path):
 		background_container.add_child(load(path).instantiate())
 	else:
@@ -311,7 +310,6 @@ func _on_button_reference_received(reference) -> void:
 
 func _on_act_requested(actor: BattleActor) -> void:
 	open_party_info_screen()
-	print(actor, " requested act")
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
 
@@ -324,7 +322,6 @@ func _on_act_finished(_actor: BattleActor) -> void:
 
 
 func _on_actor_died(actor: BattleActor) -> void:
-	print(actor, " died")
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
@@ -350,7 +347,6 @@ func _on_message_received(msg: String) -> void:
 
 
 func _on_player_input_requested(actor: BattleActor) -> void:
-	print(actor, " wants player input")
 	current_guy = actor
 	open_main_actions_screen()
 
@@ -462,7 +458,6 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 func open_end_screen(victory: bool) -> void:
 	if screen_end.visible: return
-	print("ENDING BATTLE: ", "victory" if victory else "defeat")
 	set_actor_states(BattleActor.States.IDLE)
 	screen_item_select.hide()
 	screen_list_select.hide()
@@ -479,7 +474,6 @@ func open_end_screen(victory: bool) -> void:
 		var xp_pool : int = 0
 		for i in dead_enemies:
 			xp_pool += i.character.level
-		print("xp pool: ", xp_pool)
 		var looper := []
 		looper.append_array(party)
 		looper.append_array(dead_party)
@@ -488,7 +482,6 @@ func open_end_screen(victory: bool) -> void:
 			await get_tree().process_frame
 			if SOL.speaking:
 				await SOL.dialogue_closed
-		print("doings should be done now")
 		doing = Doings.DONE
 	else:
 		LTS.to_game_over_screen()

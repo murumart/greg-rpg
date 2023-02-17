@@ -7,9 +7,14 @@ const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 
 @onready var file_container := $Panel/FileContainer
 @onready var tab_container := $Panel/TabContainer
-var mode := SAVE
+var mode : int = SAVE
+var restricted_mode := -1
 
 var menu_sound := preload("res://sounds/snd_gui.ogg")
+
+
+func init(opt := {}):
+	restricted_mode = opt.get("restrict", -1)
 
 
 func _ready() -> void:
@@ -34,6 +39,11 @@ func _input(event: InputEvent) -> void:
 
 
 func set_mode(to: int) -> void:
+	if restricted_mode > -1:
+		to = restricted_mode
+		for i in tab_container.get_child_count():
+			if i != restricted_mode:
+				tab_container.get_child(i).hide()
 	mode = to
 	for i in tab_container.get_children():
 		i.modulate = Color.DARK_GRAY

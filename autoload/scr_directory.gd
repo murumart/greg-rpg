@@ -11,7 +11,7 @@ const SCN := ".scn"
 
 
 func _init() -> void:
-	print("DIR init")
+	pass
 	print("project is standalone" if standalone() else "project is editor version")
 	# assure that a greg_rpg folder exists in user data
 	if not DirAccess.dir_exists_absolute(GREG_USER_FOLDER_PATH):
@@ -39,7 +39,6 @@ func get_dict_from_file(filename : String) -> Dictionary:
 
 func enemy_scene_exists(name_in_file: String) -> bool:
 	var path := enemy_scene_path(name_in_file)
-	print(path)
 	if FileAccess.file_exists(path):
 		return true
 	return false
