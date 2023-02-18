@@ -154,9 +154,9 @@ func side_load_spirit_data(id: String) -> void:
 	mem_portrait.texture = null
 	mem_infotext.text = spirit.get_effect_description()
 	if id in party(current_tab).unused_sprits:
-		mem_infotext.append_text("\nunused. select to equip")
+		mem_infotext.append_text("\n[color=#888888]unused. select to equip")
 	else:
-		mem_infotext.append_text("\nselect to unequip")
+		mem_infotext.append_text("\n[color=#888888]select to unequip")
 
 
 func load_items() -> void:
@@ -306,8 +306,9 @@ func showme():
 	SND.menusound()
 	if DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()
+		save_warning_label.modulate.a = 1.0
 		var tw := create_tween()
-		tw.tween_property(save_warning_label, "modulate:a", 0.0, 1.0)
+		tw.tween_property(save_warning_label, "modulate:a", 0.0, 2.0)
 		tw.tween_callback(save_warning_label.hide)
 
 

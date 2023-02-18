@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Greg RPG"
-run/main_scene="res://scenes/rooms/scn_room_test_room.tscn"
+run/main_scene="res://scenes/gui/scn_main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Murumart"
 config/features=PackedStringArray("4.0", "GL Compatibility")
+boot_splash/use_filter=false
 config/icon="res://sprites/spr_icon.png"
 
 [autoload]

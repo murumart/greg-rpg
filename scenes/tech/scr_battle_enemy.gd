@@ -20,7 +20,7 @@ var debuffing_spirits : Array[String]
 @export_range(0.0, 1.0) var altruism := 0.5
 @export_range(0.0, 1.0) var innovation := 0.75
 @export_range(0.0, 1.0) var vaimulembesus := 1.0
-@export var default_intent := Intents.ATTACK
+@export var default_intent : int = Intents.ATTACK
 
 
 func _ready() -> void:

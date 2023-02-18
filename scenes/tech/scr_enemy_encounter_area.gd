@@ -35,6 +35,7 @@ func _on_area_player_exited(_body) -> void:
 
 
 func _on_timer_timeout() -> void:
+	if not is_instance_valid(player): return
 	if not player_in_area:
 		detection = maxf(detection - increase, 0.0)
 		if debug: print(detection)

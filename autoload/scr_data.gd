@@ -135,6 +135,7 @@ func print_data() -> void:
 
 
 func capture_player(type := "") -> void:
+	print(type, " captured player")
 	player_capturers.append(type)
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
@@ -142,7 +143,10 @@ func capture_player(type := "") -> void:
 
 
 func free_player(type := "") -> void:
+	print("freed player from ", type)
 	player_capturers.erase(type)
+	if type == "all":
+		player_capturers.clear()
 	if player_capturers.size() > 0: return
 	var players : Array = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:

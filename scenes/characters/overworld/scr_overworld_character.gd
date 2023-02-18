@@ -175,7 +175,8 @@ func _on_random_movement_timer_timeout() -> void:
 		detection_raycast.target_position = to_local(target)
 		detection_raycast.force_raycast_update()
 		var collider := detection_raycast.get_collider()
-		if collider: continue
+		if collider:
+			target = detection_raycast.get_collision_point()
 		else: break
 	set_state(States.WANDER)
 

@@ -162,6 +162,7 @@ debug_color = Color(0.560784, 1, 1, 0.419608)
 
 [node name="InteractionRay" type="RayCast2D" parent="."]
 self_modulate = Color(1, 0, 1, 1)
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 8)
 collision_mask = 5
+hit_from_inside = true
 collide_with_areas = true

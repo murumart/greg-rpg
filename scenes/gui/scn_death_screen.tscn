@@ -14,7 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_stwf7")
 script = ExtResource("2_c5eij")
-test_death = "car"
 
 [node name="Bg" type="ColorRect" parent="."]
 layout_mode = 0

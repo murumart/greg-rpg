@@ -2,6 +2,10 @@ extends RefCounted
 class_name SongsList
 
 var songs := {
+	"air_conditioning": {
+		"title": "air conditioning",
+		"link": "res://music/mus_air_conditioning.ogg"
+	},
 	"arent_you_excited": {
 		"title": "aren't you excited?",
 		"link": "res://music/mus_arent_you_excited.ogg"

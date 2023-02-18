@@ -92,6 +92,15 @@ button_mask = 0
 text = " quit game"
 alignment = 0
 
+[node name="PressEsc" type="Label" parent="."]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 113.0
+offset_right = 150.0
+offset_bottom = 124.0
+text = "press esc for options any time"
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_ov56v")

@@ -10,7 +10,7 @@ CHAR greg
 	man...
 
 
-this line should be ignored
+# this line should be ignored
 
 
 DIALOGUE test2be
@@ -142,6 +142,56 @@ CHAR zerma
 	how many people can you still remember?
 	it must be very exciting for you.
 	hey, look, we're almost there...
+
+
+DIALOGUE store_shelf_empty
+CHOICES ok
+	this shelf has no products.
+
+
+DIALOGUE store_shelf_start
+CHOICES yes,no
+	this shelf has %s products. take a closer look?
+
+
+# these lines are set in code because that's how the old system from where I copied it worked
+DIALOGUE store_shelf_browse
+	öäö
+
+
+DIALOGUE store_shelf_confirm
+CHOICES yes,no
+	äöäöä
+
+
+DIALOGUE cashier_nice_welcome
+CHAR cashier_nice
+	welcome to the store...
+	get your items from the shelves...
+	...and bring them here to pay.
+
+
+DIALOGUE cashier_nice_tutorial
+CHAR cashier_nice
+	get items from the shelves...
+	...and bring them here to pay for them.
+
+
+DIALOGUE cashier_nice_tally
+CHAR cashier_nice
+	your total is %s silver.
+
+
+DIALOGUE cashier_nice_tally_poor
+CHAR cashier_nice
+	your total is %s... but you don't have that much money...
+	i'll just... go put those back afterwards.
+
+
+DIALOGUE cashier_nice_finish
+CHAR cashier_nice
+	thanks... have a great day.
+
 
 
 

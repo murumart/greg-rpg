@@ -1,4 +1,5 @@
 extends Node2D
+class_name DialogueBox
 
 signal dialogue_closed
 signal started_speaking
@@ -46,7 +47,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func prepare_dialogue(key: String) -> void:
-	DAT.capture_player()
+	DAT.capture_player("dialogue")
 	loaded_dialogue = dialogues_dict.get(key, Dialogue.new())
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
@@ -107,7 +108,7 @@ func next_dialogue_requested() -> void:
 		loaded_dialogue_line = null
 		current_dialogue = 0
 		hide()
-		DAT.call_deferred("free_player")
+		DAT.call_deferred("free_player", "dialogue")
 		call_deferred("emit_signal", "dialogue_closed")
 	else:
 		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))

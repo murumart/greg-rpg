@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://emxihek3ybla"]
+
+[ext_resource type="Script" path="res://scenes/decor/scr_store_shelf.gd" id="1_ysbrw"]
+[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_ueb27"]
+[ext_resource type="Texture2D" uid="uid://kqe5b54mesmb" path="res://sprites/world/object/store_shelves/spr_empty.png" id="3_kbg3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okccm"]
+size = Vector2(18, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6uwn"]
+resource_local_to_scene = true
+size = Vector2(20, 5)
+
+[node name="StoreShelf" type="Node2D"]
+script = ExtResource("1_ysbrw")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("3_kbg3a")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+modulate = Color(1, 0.498039, 1, 1)
+script = ExtResource("2_ueb27")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_okccm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+modulate = Color(0.34902, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_d6uwn")
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]

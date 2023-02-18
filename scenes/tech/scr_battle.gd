@@ -113,7 +113,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			looper.append_array(dead_party)
 			for p in looper:
 				p.offload_character()
-			LTS.level_transition("res://scenes/rooms/scn_room_test_room.tscn")
+			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 			set_process_unhandled_key_input(false)
 
 
@@ -126,6 +126,7 @@ func load_battle(info: BattleInfo) -> void:
 	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
+	log_text.append_text("%s lunges at you!\n" % enemies.front().actor_name)
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:

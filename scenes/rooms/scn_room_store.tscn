@@ -1,0 +1,201 @@
+[gd_scene load_steps=17 format=3 uid="uid://bgj726r0ubr21"]
+
+[ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
+[ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
+[ext_resource type="Texture2D" uid="uid://bcdj7lnnje8bf" path="res://sprites/characters/battle/car/spr_car_battle.png" id="2_idwge"]
+[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_t0r6d"]
+[ext_resource type="PackedScene" uid="uid://emxihek3ybla" path="res://scenes/decor/scn_store_shelf.tscn" id="5_hc7sm"]
+[ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="7_em34h"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_0h0ea"]
+[ext_resource type="SpriteFrames" uid="uid://ddgq4gb8gdb8y" path="res://resources/characters/sfr_cashier_nice.tres" id="9_sx45w"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_nn5u3"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_jnio5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v231s"]
+size = Vector2(34, 40)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_scfas"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lvxqb"]
+normal = Vector2(0, 1)
+distance = 1.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w00jd"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p35a2"]
+normal = Vector2(-1, 0)
+
+[node name="Store" type="Node2D" groups=["save_me"]]
+y_sort_enabled = true
+script = ExtResource("1_4louq")
+music = "air_conditioning"
+
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(0.124998, -97.125)
+scale = Vector2(223.75, 11.4167)
+texture = ExtResource("2_idwge")
+region_enabled = true
+region_rect = Rect2(48, 24, 1, 3)
+
+[node name="InteriorTiles" parent="." instance=ExtResource("2_bdr84")]
+z_index = -1
+layer_0/tile_data = PackedInt32Array(-262150, 1, 0, -196614, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, 196602, 1, 0, 262138, 1, 0, 327674, 1, 0, -262149, 1, 0, -196613, 1, 0, -131077, 1, 0, -65541, 1, 0, -5, 1, 0, 65531, 1, 0, 131067, 1, 0, 196603, 1, 0, 262139, 1, 0, 327675, 1, 0, -262148, 1, 0, -196612, 1, 0, -131076, 1, 0, -65540, 1, 0, -4, 1, 0, 65532, 1, 0, 131068, 1, 0, 196604, 1, 0, 262140, 1, 0, 327676, 1, 0, -262147, 1, 0, -196611, 1, 0, -131075, 1, 0, -65539, 1, 0, -3, 1, 0, 65533, 1, 0, 131069, 1, 0, 196605, 1, 0, 262141, 1, 0, 327677, 1, 0, -262146, 1, 0, -196610, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, 327678, 1, 0, -262145, 1, 0, -196609, 1, 0, -131073, 1, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 196609, 3, -327680, 1, 0, -262144, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 327681, 3, -327679, 1, 0, -262143, 1, 0, -196607, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, -327678, 1, 0, -262142, 1, 0, -196606, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, -327677, 1, 0, -262141, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, -327676, 1, 0, -262140, 1, 0, -196604, 1, 0, -131068, 1, 0, -65532, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 262149, 1, 0, 196613, 1, 0, 131077, 1, 0, 65541, 1, 0, 5, 1, 0, -65530, 1, 0, -131066, 1, 0, -196602, 1, 0, -262138, 1, 0, -327674, 1, 0, -327675, 1, 0, -262139, 1, 0, -196603, 1, 0, -131067, 1, 0, -65531, 1, 0, 262150, 1, 0, 196614, 1, 0, 131078, 1, 0, 65542, 1, 0, 6, 1, 0, -262151, 1, 0, -196615, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, 327673, 1, 0)
+
+[node name="Greg" parent="." instance=ExtResource("3_p4n0p")]
+position = Vector2(0, 32)
+
+[node name="Camera" parent="Greg" instance=ExtResource("4_t0r6d")]
+position = Vector2(0, -11)
+limit_left = -112
+limit_top = -112
+limit_right = 112
+limit_bottom = 80
+
+[node name="Shelves" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="StoreShelf" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(16, -48)
+
+[node name="StoreShelf2" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(48, -48)
+
+[node name="StoreShelf3" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(80, -48)
+
+[node name="StoreShelf4" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(16, -16)
+
+[node name="StoreShelf5" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(48, -16)
+
+[node name="StoreShelf6" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(80, -16)
+
+[node name="StoreShelf7" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(16, 16)
+
+[node name="StoreShelf8" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(48, 16)
+
+[node name="StoreShelf9" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(80, 16)
+
+[node name="StoreShelf10" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(16, 48)
+
+[node name="StoreShelf11" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(48, 48)
+
+[node name="StoreShelf12" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(80, 48)
+
+[node name="StoreShelf13" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-80, -48)
+
+[node name="StoreShelf14" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-48, -48)
+
+[node name="StoreShelf15" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-16, -48)
+
+[node name="StoreShelf16" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-80, -16)
+
+[node name="StoreShelf17" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-48, -16)
+
+[node name="StoreShelf18" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-16, -16)
+
+[node name="StoreShelf19" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-80, -80)
+
+[node name="StoreShelf20" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-48, -80)
+
+[node name="StoreShelf21" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(-16, -80)
+
+[node name="StoreShelf22" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(16, -80)
+
+[node name="StoreShelf23" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(48, -80)
+
+[node name="StoreShelf24" parent="Shelves" instance=ExtResource("5_hc7sm")]
+position = Vector2(80, -80)
+
+[node name="Kassa" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-99, 23)
+
+[node name="Sprite2D" type="Sprite2D" parent="Kassa"]
+position = Vector2(0, 9)
+texture = ExtResource("7_em34h")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(0, 66, 26, 14)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Kassa"]
+position = Vector2(-9, -13)
+texture = ExtResource("7_em34h")
+offset = Vector2(9, -1)
+region_enabled = true
+region_rect = Rect2(0, 48, 26, 18)
+
+[node name="Collision" type="StaticBody2D" parent="Kassa"]
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Kassa/Collision"]
+polygon = PackedVector2Array(-13, 9, 13, 9, 13, -23, -13, -23, -13, -13, -6, -13, -6, -9, 3, -9, 3, 0, -13, 0)
+metadata/_edit_lock_ = true
+
+[node name="Cashier" parent="Kassa" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_0h0ea")]
+position = Vector2(-3, -5)
+animated_sprite = NodePath("Sprite")
+speed = 2000
+random_movement = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Kassa/Cashier"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("9_sx45w")
+animation = &"walk_down"
+
+[node name="KassaSpeak" parent="Kassa" instance=ExtResource("10_nn5u3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kassa/KassaSpeak"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_v231s")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, 80)
+shape = SubResource("WorldBoundaryShape2D_scfas")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, -82)
+shape = SubResource("WorldBoundaryShape2D_lvxqb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-112, 1)
+shape = SubResource("WorldBoundaryShape2D_w00jd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collision"]
+position = Vector2(112, 7)
+shape = SubResource("WorldBoundaryShape2D_p35a2")
+
+[node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_jnio5")]
+position = Vector2(0, 77)
+destination = &"town"
+gate_id = &"store_inside-outside"
+player = NodePath("../Greg")
+extents = Vector2i(12, 8)
+spawnpoint = Vector2i(0, -13)
+
+[connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]

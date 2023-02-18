@@ -5,7 +5,7 @@ enum States {FREE_MOVE, NOT_FREE_MOVE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
 const SPEED := 2600
-const INTERACTION_LENGTH := 16
+const INTERACTION_LENGTH := 8
 const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
@@ -74,7 +74,9 @@ func direct_animation() -> void:
 
 
 func interact() -> void:
+	raycast.force_raycast_update()
 	var collider := raycast.get_collider()
+	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 

@@ -1,5 +1,4 @@
 extends CanvasLayer
-class_name DialogueBox
 
 # screen layer over everything else. used for things like UI
 
@@ -14,7 +13,7 @@ var fps_label : Label
 var speaking := false
 var dialogue_open := false
 
-@onready var dialogue_box := $DialogueBoxOrderer
+@onready var dialogue_box : DialogueBox = $DialogueBoxOrderer
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
 
 var dialogue_choice := &""

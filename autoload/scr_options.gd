@@ -14,7 +14,7 @@ var IONS := {
 	},
 	"master_volume": {
 		"value": 0.0,
-		"range": [-80.0, 0.0],
+		"range": [-60.0, 0.0],
 		"default_value": 0.0,
 		"step": 1.0,
 	},
