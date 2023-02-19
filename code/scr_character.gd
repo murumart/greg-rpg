@@ -79,11 +79,15 @@ func xp2lvl(lvl: int) -> float:
 
 
 func add_experience(amount: int) -> void:
+	var old_level := level
 	for i in amount:
 		experience = experience + 1
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
+	if old_level != level:
+		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
+		SOL.dialogue("levelup")
 
 
 func level_up(by := 1, overflow := false) -> void:
@@ -111,9 +115,6 @@ func level_up(by := 1, overflow := false) -> void:
 	
 #	for i in get_saveable_dict():
 #		print(i,": ", get(i))
-	
-	SOL.dialogue_box.adjust_line("levelup", 1, "%s leveled up to %s." % [name, level])
-	SOL.dialogue("levelup")
 
 
 func handle_item(id: String) -> void:

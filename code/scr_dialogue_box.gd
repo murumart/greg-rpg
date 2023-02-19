@@ -28,9 +28,9 @@ var unmodified_dialogue_lines := {
 
 func _ready() -> void:
 	hide()
-	dialogues = (DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file()))
-	for i in dialogues:
-		dialogues_dict[i.name] = i
+	dialogues_dict = (DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file()))
+	for i in dialogues_dict:
+		dialogues.append(dialogues_dict[i])
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -47,8 +47,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func prepare_dialogue(key: String) -> void:
-	DAT.capture_player("dialogue")
 	loaded_dialogue = dialogues_dict.get(key, Dialogue.new())
+	if loaded_dialogue.alias != "":
+		prepare_dialogue(loaded_dialogue.alias)
+		return
+	DAT.capture_player("dialogue")
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
 	current_dialogue = 0
@@ -57,6 +60,7 @@ func prepare_dialogue(key: String) -> void:
 
 func speak_this_dialogue_part(part: DialogueLine) -> void:
 	# get the data from the dialogue array
+	loaded_dialogue_line = null
 	var text := part.text
 	var character_load : String = part.character
 	var character : Character = null
@@ -66,6 +70,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
+	
+	loaded_dialogue_line = part
 	
 	portrait.texture = null
 	load_reference_buttons([], [choices_container])
@@ -103,6 +109,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 
 func next_dialogue_requested() -> void:
 	current_dialogue += 1
+	if is_instance_valid(loaded_dialogue_line) and loaded_dialogue_line.loop > -1:
+		current_dialogue = loaded_dialogue_line.loop
 	if not current_dialogue < loaded_dialogue.size():
 		loaded_dialogue = null
 		loaded_dialogue_line = null
@@ -141,7 +149,6 @@ func dial_concat(key: String, line_id: int, params: Array) -> void:
 		var line := DialogueLine.new()
 		line = dialogues_dict.get(key).get_line(line_id).duplicate()
 		unmodified_dialogue_lines[get_key] = line
-	print(dialogues_dict.get(key).get_line(line_id).text)
 	var line : DialogueLine = dialogues_dict.get(key).get_line(line_id)
 	line.text = unmodified_dialogue_lines.get(get_key).text % params
 

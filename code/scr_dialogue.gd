@@ -3,6 +3,7 @@ class_name Dialogue
 
 @export var name := &""
 @export var lines : Array[DialogueLine]
+@export var alias : String = ""
 
 
 func size() -> int:

@@ -6,6 +6,10 @@ var songs := {
 		"title": "air conditioning",
 		"link": "res://music/mus_air_conditioning.ogg"
 	},
+	"ac_scary": {
+		"title": "ac_scary",
+		"link": "res://music/mus_ac_scary.ogg"
+	},
 	"arent_you_excited": {
 		"title": "aren't you excited?",
 		"link": "res://music/mus_arent_you_excited.ogg"
@@ -26,6 +30,10 @@ var songs := {
 	"dry_summer": {
 		"title": "dry summer",
 		"link": "res://music/mus_dry_summer.ogg",
+	},
+	"entirely_just": {
+		"title": "entirely just",
+		"link": "res://music/mus_entirely_just.ogg",
 	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",

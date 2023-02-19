@@ -69,6 +69,8 @@ func _input(event: InputEvent) -> void:
 				SOL.vfx("damage_number", get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), {text = "j", size= randi()%3 + 1})
 			KEY_KP_0:
 				DAT.print_data()
+			KEY_KP_2:
+				SOL.dialogue("cashier_mean_welcome")
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()

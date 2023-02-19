@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://dspmw6jvu8h4c"]
+[gd_scene load_steps=110 format=3 uid="uid://dspmw6jvu8h4c"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="12_h5o38"]
 [ext_resource type="Texture2D" uid="uid://b8euesf6tltkq" path="res://sprites/characters/overworld/spr_mdp_overworld.png" id="13_35l7x"]
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="14_eablj"]
+[ext_resource type="SpriteFrames" uid="uid://dn7o24r8k120d" path="res://resources/characters/sfr_cashier_mean.tres" id="15_a8rvo"]
 [ext_resource type="Texture2D" uid="uid://du3ry7j4icp43" path="res://sprites/characters/overworld/spr_tarikas_overworld.png" id="15_y8nf4"]
 [ext_resource type="Texture2D" uid="uid://bfr6g67ugdoth" path="res://sprites/characters/overworld/spr_mail_man_overworld.png" id="16_l3lwi"]
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="17_ly4yr"]
@@ -738,7 +739,7 @@ layer_5/z_index = 0
 layer_5/tile_data = PackedInt32Array(-458730, 327681, 11, -458729, 327681, 11, -458731, 262145, 11, -458728, 327681, 11, -458727, 327681, 11, -458726, 327681, 11, -458725, 327681, 11, -458724, 393217, 11, -524261, 327681, 10, -524262, 327681, 10, -524260, 393217, 10, -524263, 327681, 10, -524264, 327681, 10, -524265, 327681, 10, -524266, 327681, 10, -524267, 262145, 10, -589802, 327681, 10, -589803, 262145, 10, -589801, 327681, 10, -589800, 327681, 10, -589799, 327681, 10, -589798, 327681, 10, -589797, 327681, 10, -589796, 393217, 10, -655338, 327681, 9, -655337, 327681, 9, -655339, 262145, 9, -655336, 327681, 9, -655335, 327681, 9, -655334, 327681, 9, -655333, 327681, 9, -655332, 393217, 9, -720869, 327681, 8, -720868, 393217, 8, -720870, 327681, 8, -720871, 327681, 8, -720872, 327681, 8, -720873, 327681, 8, -720874, 327681, 8, -720875, 262145, 8)
 
 [node name="Greg" parent="." instance=ExtResource("3_lknet")]
-position = Vector2(376, 178)
+position = Vector2(566, 24)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_bxb8t")]
 position = Vector2(0, -11)
@@ -954,6 +955,20 @@ save_position = true
 [node name="CashierSprite" type="AnimatedSprite2D" parent="MDPS/Cashier"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_038a8")
+animation = &"walk_down"
+
+[node name="Cashier2" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]
+position = Vector2(563, -58)
+animated_sprite = NodePath("CashierSprite")
+collision_extents = Vector2i(20, 3)
+speed = 2000
+random_movement = true
+default_lines = Array[StringName]([&"cashier_mean_chat"])
+save_position = true
+
+[node name="CashierSprite" type="AnimatedSprite2D" parent="MDPS/Cashier2"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("15_a8rvo")
 animation = &"walk_down"
 
 [node name="Tarikas" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]

@@ -3,7 +3,7 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies(["bike_ghost"])
+var load_options : BattleInfo = BattleInfo.new().set_enemies(["cashier_mean"])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3

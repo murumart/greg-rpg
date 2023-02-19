@@ -48,6 +48,7 @@ func level_transition(path: String, op := {}) -> void:
 		op.get("start_color", Color(0, 0, 0, 0)),
 		fadetime
 	)
+	handle_stolen_items()
 
 
 func to_game_over_screen() -> void:
@@ -66,3 +67,13 @@ func enter_battle(info: BattleInfo) -> void:
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
 	entering_battle = false
 	DAT.free_player("entering_battle")
+
+
+func handle_stolen_items() -> void:
+	var stolen_items : Array = DAT.A.get("unpaid_items", [])
+	if stolen_items.is_empty(): return
+	DAT.set_data("unpaid_items", [])
+	for i in stolen_items:
+		DAT.grant_item(i)
+		DAT.incri("stolen_from_store", DAT.get_item(i).price)
+		await SOL.dialogue_closed

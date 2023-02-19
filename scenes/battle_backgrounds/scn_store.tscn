@@ -1,0 +1,290 @@
+[gd_scene load_steps=19 format=3 uid="uid://dey5y1ha0cy66"]
+
+[ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_2tnge"]
+[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_6p1ib"]
+[ext_resource type="Texture2D" uid="uid://ddllavac2lvyi" path="res://sprites/photos/spr_store.png" id="2_ge82g"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_iwcv3"]
+default_input_values = [1, 1.0, 2, 2.0, 3, 0.1, 4, 0.2, 5, 0.2, 6, 0.0]
+initialized = true
+script = ExtResource("2_6p1ib")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qnkdm"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_g4rmm"]
+source = 2
+
+[sub_resource type="VisualShader" id="VisualShader_xtqb0"]
+code = "shader_type canvas_item;
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:3
+	float n_out3p0 = TIME;
+
+
+	vec2 n_out2p0;
+// DistortionUVAnimated:2
+	float n_in2p1 = 1.00000;
+	float n_in2p2 = 2.00000;
+	float n_in2p3 = 0.10000;
+	float n_in2p4 = 0.20000;
+	float n_in2p5 = 0.20000;
+	{
+		n_out2p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in2p3, n_in2p4, n_in2p1, n_in2p2, n_in2p5, n_out3p0);
+	}
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(TEXTURE, n_out2p0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(30.6838, 113.87)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(780, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_iwcv3")
+nodes/fragment/2/position = Vector2(120, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_qnkdm")
+nodes/fragment/3/position = Vector2(-160, 240)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_g4rmm")
+nodes/fragment/4/position = Vector2(400, 160)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 6, 2, 0, 4, 0, 4, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5qybl"]
+shader = SubResource("VisualShader_xtqb0")
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_61buw"]
+default_input_values = [1, 1.0, 2, 2.0, 3, 0.1, 4, 0.2, 5, 0.4, 6, 0.0]
+initialized = true
+script = ExtResource("2_6p1ib")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_lsmnm"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_dwrt4"]
+source = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_tqrg5"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_5gn48"]
+function = 0
+
+[sub_resource type="VisualShader" id="VisualShader_4akf2"]
+code = "shader_type canvas_item;
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:3
+	float n_out3p0 = TIME;
+
+
+	vec2 n_out2p0;
+// DistortionUVAnimated:2
+	float n_in2p1 = 1.00000;
+	float n_in2p2 = 2.00000;
+	float n_in2p3 = 0.10000;
+	float n_in2p4 = 0.20000;
+	float n_in2p5 = 0.40000;
+	{
+		n_out2p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in2p3, n_in2p4, n_in2p1, n_in2p2, n_in2p5, n_out3p0);
+	}
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(TEXTURE, n_out2p0);
+
+
+// FloatFunc:7
+	float n_out7p0 = sin(n_out3p0);
+
+
+// FloatOp:6
+	float n_in6p1 = 0.50000;
+	float n_out6p0 = n_out7p0 * n_in6p1;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+	COLOR.a = n_out6p0;
+
+
+}
+"
+graph_offset = Vector2(-202.174, 98.913)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(780, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_61buw")
+nodes/fragment/2/position = Vector2(180, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_lsmnm")
+nodes/fragment/3/position = Vector2(-320, 240)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_dwrt4")
+nodes/fragment/4/position = Vector2(400, 160)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatOp_tqrg5")
+nodes/fragment/6/position = Vector2(400, 320)
+nodes/fragment/7/node = SubResource("VisualShaderNodeFloatFunc_5gn48")
+nodes/fragment/7/position = Vector2(200, 360)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 6, 2, 0, 4, 0, 4, 0, 0, 0, 6, 0, 0, 1, 3, 0, 7, 0, 7, 0, 6, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1krnq"]
+shader = SubResource("VisualShader_4akf2")
+
+[sub_resource type="Animation" id="Animation_acvmp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.168627, 0.168627, 0.168627, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material:shader")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("VisualShader_xtqb0")]
+}
+
+[sub_resource type="Animation" id="Animation_08hhe"]
+resource_name = "default"
+length = 128.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8, 15.7, 25.9, 38.8, 59.1, 78, 101.7, 115.9, 121.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.168627, 0.168627, 0.168627, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 12.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material:shader")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 12.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [null, SubResource("VisualShader_xtqb0")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkqxk"]
+_data = {
+"RESET": SubResource("Animation_acvmp"),
+"default": SubResource("Animation_08hhe")
+}
+
+[node name="BattleBackground" instance=ExtResource("1_2tnge")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+modulate = Color(0.168627, 0.168627, 0.168627, 1)
+texture_repeat = 3
+material = SubResource("ShaderMaterial_5qybl")
+texture = ExtResource("2_ge82g")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="3"]
+visible = false
+modulate = Color(0.168627, 0.168627, 0.168627, 1)
+texture_repeat = 3
+material = SubResource("ShaderMaterial_1krnq")
+texture = ExtResource("2_ge82g")
+centered = false
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_nkqxk")
+}

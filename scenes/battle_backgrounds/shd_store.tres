@@ -1,0 +1,65 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://cx4vj8ph8r5wj"]
+
+[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_xdtc2"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_f0qac"]
+default_input_values = [1, 1.0, 2, 2.0, 3, 0.1, 4, 0.2, 5, 0.2, 6, 0.0]
+initialized = true
+script = ExtResource("1_xdtc2")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_bpah1"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_erdh5"]
+source = 2
+
+[resource]
+code = "shader_type canvas_item;
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:3
+	float n_out3p0 = TIME;
+
+
+	vec2 n_out2p0;
+// DistortionUVAnimated:2
+	float n_in2p1 = 1.00000;
+	float n_in2p2 = 2.00000;
+	float n_in2p3 = 0.10000;
+	float n_in2p4 = 0.20000;
+	float n_in2p5 = 0.20000;
+	{
+		n_out2p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in2p3, n_in2p4, n_in2p1, n_in2p2, n_in2p5, n_out3p0);
+	}
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(TEXTURE, n_out2p0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-184.457, 117.065)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(640, 160)
+nodes/fragment/2/node = SubResource("VisualShaderNodeCustom_f0qac")
+nodes/fragment/2/position = Vector2(120, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_bpah1")
+nodes/fragment/3/position = Vector2(-160, 240)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_erdh5")
+nodes/fragment/4/position = Vector2(400, 160)
+nodes/fragment/connections = PackedInt32Array(3, 0, 2, 6, 2, 0, 4, 0, 4, 0, 0, 0)

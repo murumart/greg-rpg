@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+signal entered
+
 @export_group("Technical")
 @export_node_path("Area2D") var area_path : NodePath
 @export_node_path("CollisionShape2D") var collision_shape_path : NodePath
@@ -41,4 +43,5 @@ func _on_area_entered(body: Node2D) -> void:
 		if DIR.file_exists(DIR.room_scene_path(destination)):
 			LTS.gate_id = gate_id
 			LTS.level_transition(DIR.room_scene_path(destination))
+		entered.emit()
 

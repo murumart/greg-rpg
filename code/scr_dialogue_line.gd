@@ -11,3 +11,4 @@ const MAX_TEXT_LENGTH := 66
 @export var choices : PackedStringArray = []
 
 @export var instaskip := false
+@export var loop := -1

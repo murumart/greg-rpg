@@ -78,6 +78,14 @@ func get_data(key: String, default = null):
 	return A.get(key, default)
 
 
+func incrf(key: String, amount: float) -> void:
+	set_data(key, A.get(key, 0.0) + amount)
+
+
+func incri(key: String, amount: int) -> void:
+	set_data(key, A.get(key, 0) + amount)
+
+
 func save_data(filename := "save.grs") -> void:
 	save_nodes_data()
 	save_chars_to_data()

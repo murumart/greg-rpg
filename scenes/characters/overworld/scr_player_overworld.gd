@@ -76,7 +76,6 @@ func direct_animation() -> void:
 func interact() -> void:
 	raycast.force_raycast_update()
 	var collider := raycast.get_collider()
-	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 

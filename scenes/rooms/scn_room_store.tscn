@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=25 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -9,8 +9,53 @@
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="7_em34h"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_0h0ea"]
 [ext_resource type="SpriteFrames" uid="uid://ddgq4gb8gdb8y" path="res://resources/characters/sfr_cashier_nice.tres" id="9_sx45w"]
+[ext_resource type="Texture2D" uid="uid://vm5q5pq4pmlu" path="res://sprites/characters/overworld/spr_cashier_mean_overworld.png" id="10_dra8p"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_nn5u3"]
+[ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="10_pghuq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_jnio5"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="12_mfggk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
+atlas = ExtResource("10_dra8p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_o4503"]
+resource_name = "hover"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_2fxen"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hrc5"]
+_data = {
+"RESET": SubResource("Animation_2fxen"),
+"hover": SubResource("Animation_o4503")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v231s"]
 size = Vector2(34, 40)
@@ -27,10 +72,16 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p35a2"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3amur"]
+size = Vector2(30, 15)
+
 [node name="Store" type="Node2D" groups=["save_me"]]
 y_sort_enabled = true
 script = ExtResource("1_4louq")
 music = "air_conditioning"
+music_save_progress = false
+music_play_from_beginning = true
+music_start_volume = 0.0
 
 [node name="Wall" type="Sprite2D" parent="."]
 position = Vector2(0.124998, -97.125)
@@ -160,10 +211,22 @@ animated_sprite = NodePath("Sprite")
 speed = 2000
 random_movement = true
 
+[node name="WLIParticles" type="GPUParticles2D" parent="Kassa/Cashier"]
+visible = false
+position = Vector2(0, -6)
+process_material = ExtResource("10_pghuq")
+texture = SubResource("AtlasTexture_e3ktr")
+fixed_fps = 60
+
 [node name="Sprite" type="AnimatedSprite2D" parent="Kassa/Cashier"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("9_sx45w")
 animation = &"walk_down"
+
+[node name="HoverAnimation" type="AnimationPlayer" parent="Kassa/Cashier"]
+libraries = {
+"": SubResource("AnimationLibrary_1hrc5")
+}
 
 [node name="KassaSpeak" parent="Kassa" instance=ExtResource("10_nn5u3")]
 
@@ -191,11 +254,47 @@ position = Vector2(112, 7)
 shape = SubResource("WorldBoundaryShape2D_p35a2")
 
 [node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_jnio5")]
-position = Vector2(0, 77)
+position = Vector2(0, 79)
 destination = &"town"
 gate_id = &"store_inside-outside"
 player = NodePath("../Greg")
-extents = Vector2i(12, 8)
+extents = Vector2i(12, 2)
 spawnpoint = Vector2i(0, -13)
 
+[node name="StoreUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 120.0
+theme = ExtResource("12_mfggk")
+
+[node name="ShoppingList" type="RichTextLabel" parent="StoreUi"]
+modulate = Color(1, 1, 1, 0.701961)
+layout_mode = 0
+offset_left = 64.0
+offset_right = 159.0
+offset_bottom = 119.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+text = "[right]gummy worm x 10
+sugar lemon x 3
+porridge x 3"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="StealingArea" type="Area2D" parent="."]
+position = Vector2(0, 72)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StealingArea"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_3amur")
+debug_color = Color(0.662745, 0.611765, 1, 0.419608)
+
 [connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
+[connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]
+[connection signal="body_entered" from="StealingArea" to="." method="_on_stealing_area_entered"]

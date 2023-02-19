@@ -25,7 +25,7 @@ DIALOGUE levelup
 SPEED 0.75
 	[center]level up![center]
 SPEED 1
-	x leveled up to x (this line is set in code)
+	%s leveled up to %s.
 
 
 DIALOGUE getitem
@@ -171,15 +171,118 @@ CHAR cashier_nice
 	...and bring them here to pay.
 
 
+DIALOGUE cashier_mean_welcome
+ACTUALLY cashier_mean_tutorial
+
+
 DIALOGUE cashier_nice_tutorial
 CHAR cashier_nice
 	get items from the shelves...
 	...and bring them here to pay for them.
 
 
+DIALOGUE cashier_mean_tutorial
+CHAR cashier_mean
+	hello! welcome to the [color=#88aaff]yuku[/color] brand grocery store!
+	all the products you will ever need - here!
+CHOICES buying,stealing,bye
+	do you need any help? i will be glad to help!
+	(smile, smile)
+CHOICE_LINK buying
+	to buy items, simply take them from the shelf...
+	...and bring them to me to pay for them!
+	make sure you have enough silver to pay!
+CHOICE_LINK stealing
+	stealing? do! not! steal! anything!
+	it's common sense!
+	how can you even ask me something like this?!
+	(smile, smile)
+CHOICE_LINK bye
+	goodbye! we hope your experience was [color=#88aaff]yuku[/color]-tastic!!!!
+
+
+DIALOGUE cashier_nice_chat_notfriends
+CHAR cashier_nice
+	not in the mood for chatting.
+	you should buy something instead.
+
+
+DIALOGUE cashier_mean_chat_notfriends
+ACTUALLY cashier_mean_tutorial
+
+
+DIALOGUE cashier_nice_chat
+CHAR cashier_nice
+CHOICES you,me,other,bye
+	chatting... i suppose i can spare some time for that.
+CHOICE_LINK you
+	about me?
+	i live in the part of town where all the villas are.
+	i work at the local [color=#88aaff]yuku[/color] brand department store.
+	i get home by 10pm at the latest.
+	i don't smoke, but i occasionally drink.
+	is this what you wanted to know?
+	half of these were lies, just so you know.
+CHOICE_LINK me
+	about you?
+	i have no idea who you are.
+	but you seemed committed to talk to me.
+	you have spent at least %s silver here, after all...
+CHOICE_LINK other
+	about the other cashier?
+	she is... mean...
+	we switch places on a schedule.
+	but me being here is not an excuse...
+	...for you to cause trouble.
+CHOICE_LINK bye
+	chatting on company time is pretty nice, actually.
+
+
+DIALOGUE cashier_mean_chat
+CHAR cashier_mean
+	you have a wish for idle chatting?
+	uh, sure! we here at [color=#88aaff]yuku[/color] are devoted...
+	...to give the best customer experience possible!
+CHAR 
+	(interesting how loudly she can grind her teeth...)
+	(...while speaking unhindered.)
+CHAR cashier_mean
+CHOICES you,me,other,bye
+	what do you wish to talk about!
+CHOICE_LINK you
+	about me?
+LOOP 5
+	i have been employee of the month for 70 months now!
+CHOICE_LINK me
+	about you?
+	you are a pleasure to speak with!
+CHAR 
+	(did you hear that?)
+LOOP 5
+	(are her teeth even still intact?)
+CHOICE_LINK other
+CHAR cashier_mean
+	about the other cashier?
+	she is nice!
+	we switch places on a schedule!
+	so i apologise if the customer service quality suffers...
+LOOP 5
+	...while i am not here!
+CHOICE_LINK bye
+CHAR cashier_mean
+	goodbye! we hope your experience at [color=#88aaff]yuku[/color] has been great!!
+	(even wider smile, smile)
+	
+
+
 DIALOGUE cashier_nice_tally
 CHAR cashier_nice
 	your total is %s silver.
+
+
+DIALOGUE cashier_mean_tally
+CHAR cashier_mean
+	your total is %s silver!
 
 
 DIALOGUE cashier_nice_tally_poor
@@ -188,10 +291,86 @@ CHAR cashier_nice
 	i'll just... go put those back afterwards.
 
 
+DIALOGUE cashier_mean_tally_poor
+CHAR cashier_mean
+	your total is %s silver!
+	...
+	but you don't have... that much money...
+	(smile, smile)
+	how about i take these back to the shelves later?
+	and how about you come here with enough money!?
+	sounds great, doesn't it!?
+
+
 DIALOGUE cashier_nice_finish
 CHAR cashier_nice
 	thanks... have a great day.
 
 
+DIALOGUE cashier_mean_finish
+CHAR cashier_mean
+	thank you! have a [color=#88aaff]yuku[/color]-tastic day!!!
 
+
+DIALOGUE cashier_nice_notinterrupt
+CHAR cashier_nice
+	...
+
+
+DIALOGUE cashier_nice_interrupt
+CHAR cashier_nice
+	by the way...
+	i can see you sneaking out...
+	...with the %s silver worth of items.
+	i recommend that you reconsider.
+
+
+DIALOGUE cashier_nice_warning
+CHAR cashier_nice
+	that's %s silver worth of items on you.
+	you will face reprecussions for stealing those.
+	turn back now.
+
+
+DIALOGUE store_wont_let_you_in
+	they won't let you in.
+	you might've stolen too much.
+
+
+DIALOGUE cashier_mean_notice
+CHAR cashier_mean
+	...you.
+	do you think i can't see you?
+	hiding all of that under your stupid hoodie?
+	the %s silver worth of products?
+CHAR 
+	...
+	(smile, smile)
+	thieves like you [color=#ff8800]piss me off.
+
+
+DIALOGUE cashier_mean_mean
+SPEED 0.5
+	[color=#ff8888]work life imbalance
+SPEED 1.0
+	free of charge - i'll show you...
+	why i am still employee of the month.
+	(and thus how i can afford basic shopping)
+	(unlike you)
+# (she fights you)
+
+
+DIALOGUE cashier_mean_notice_repeat
+CHAR cashier_mean
+	hey. do you think i can't see you?
+	hiding %s silver worth of products under your hoodie?
+	thieves like you [color=#ff8800]piss me off.
+
+
+DIALOGUE cashier_mean_mean_repeat
+SPEED 0.5
+	[color=#ff8888]work life imbalance
+SPEED 1.0
+	i'll make it painful. (smile, smile)
+# (she fights you)
 

@@ -6,6 +6,8 @@ extends Area2D
 @export var spawn_point : Node2D
 @export var player : PlayerOverworld
 
+@export var fail_dialogue := "door_unanswer"
+
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -23,5 +25,5 @@ func interacted() -> void:
 		var knock_sound : AudioStreamPlayer = SND.play_sound(preload("res://sounds/snd_door_knock.ogg"), {"autofree": false, "return": true})
 		await knock_sound.finished
 		DAT.free_player("knocking_on_door")
-		SOL.dialogue("door_unanswer")
+		SOL.dialogue(fail_dialogue)
 		knock_sound.queue_free()

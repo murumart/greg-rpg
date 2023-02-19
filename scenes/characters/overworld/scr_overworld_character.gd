@@ -170,6 +170,7 @@ func _on_talking_finished() -> void:
 
 func _on_random_movement_timer_timeout() -> void:
 	if not state == States.IDLE: return
+	if not random_movement: return
 	for i in RANDOM_MOVEMENT_TRIES:
 		set_target(global_position + Vector2(randi_range(-random_movement_distance, random_movement_distance), randi_range(-random_movement_distance, random_movement_distance)))
 		detection_raycast.target_position = to_local(target)

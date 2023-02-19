@@ -32,7 +32,13 @@ var player_controlled := false
 @export var wait := 1.0
 
 
+func _init() -> void:
+	self.add_to_group("battle_actors")
+
+
 func _ready() -> void:
+	if not is_instance_valid(character):
+		character = Character.new()
 	actor_name = character.name
 
 

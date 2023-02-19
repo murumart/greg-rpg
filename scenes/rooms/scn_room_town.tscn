@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://d0ypwtjm1o5tg"]
 
-[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_6n0iw"]
+[ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_sx16h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fy0lb"]
@@ -59,7 +59,7 @@ death_reason = "default"
 
 [node name="Town" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_6n0iw")
+script = ExtResource("1_mdes8")
 music = "dry_summer"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
@@ -123,6 +123,12 @@ visible = false
 [node name="Marker2D" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(-202, -601)
 
+[node name="Marker2D11" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(-204, -307)
+
+[node name="Marker2D12" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(-64, 137)
+
 [node name="Marker2D2" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(-202, -82)
 
@@ -138,11 +144,29 @@ position = Vector2(23, 329)
 [node name="Marker2D6" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(25, 632)
 
+[node name="Marker2D14" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(415, 621)
+
+[node name="Marker2D15" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(734, 621)
+
+[node name="Marker2D16" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(1123, 620)
+
 [node name="Marker2D7" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(1142, 448)
 
+[node name="Marker2D13" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(1138, 133)
+
 [node name="Marker2D8" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(1137, -127)
+
+[node name="Marker2D17" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(672, -126)
+
+[node name="Marker2D18" type="Marker2D" parent="Cars/Car1Path"]
+position = Vector2(187, -127)
 
 [node name="Marker2D9" type="Marker2D" parent="Cars/Car1Path"]
 position = Vector2(-161, -130)
@@ -151,23 +175,43 @@ position = Vector2(-161, -130)
 position = Vector2(-161, -600)
 
 [node name="Car2Path" type="Node2D" parent="Cars"]
-visible = false
 position = Vector2(-788, -143)
 
-[node name="Marker2D" type="Marker2D" parent="Cars/Car2Path"]
+[node name="Pathe" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(59, 61)
+
+[node name="Marker2D8" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(443, 59)
 
 [node name="Marker2D2" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(717, 62)
 
+[node name="Marker2D9" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(1237, 59)
+
+[node name="Marker2D11" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(1630, 58)
+
 [node name="Marker2D3" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(1902, 60)
+
+[node name="Marker2D10" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(1901, 248)
 
 [node name="Marker2D4" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(1902, 439)
 
+[node name="Marker2D12" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(1429, 442)
+
+[node name="Marker2D13" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(1067, 443)
+
 [node name="Marker2D5" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(748, 442)
+
+[node name="Marker2D14" type="Marker2D" parent="Cars/Car2Path"]
+position = Vector2(747, 222)
 
 [node name="Marker2D6" type="Marker2D" parent="Cars/Car2Path"]
 position = Vector2(743, 20)
@@ -361,6 +405,7 @@ destination = &"store"
 gate_id = &"store_inside-outside"
 spawn_point = NodePath("SpawnPoint")
 player = NodePath("../../../Greg")
+fail_dialogue = "store_wont_let_you_in"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Store/DoorArea"]
 position = Vector2(0, 1)
