@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dey5y1ha0cy66"]
+[gd_scene load_steps=22 format=3 uid="uid://dey5y1ha0cy66"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_2tnge"]
 [ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_6p1ib"]
@@ -54,7 +54,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(30.6838, 113.87)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(780, 160)
@@ -205,10 +204,22 @@ tracks/3/keys = {
 "update": 1,
 "values": [SubResource("VisualShader_xtqb0")]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_08hhe"]
 resource_name = "default"
-length = 128.0
+length = 115.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -217,7 +228,7 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 8, 15.7, 25.9, 38.8, 59.1, 78, 101.7, 115.9, 121.2),
+"times": PackedFloat32Array(0, 8, 13.5, 22.4, 38.8, 59.1, 78, 93.7, 108, 112.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58)]
@@ -241,10 +252,10 @@ tracks/2/path = NodePath("Sprite2D2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 12.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -253,16 +264,127 @@ tracks/3/path = NodePath("Sprite2D:material:shader")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 12.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null, SubResource("VisualShader_xtqb0")]
+"values": [SubResource("VisualShader_xtqb0")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkqxk"]
 _data = {
 "RESET": SubResource("Animation_acvmp"),
 "default": SubResource("Animation_08hhe")
+}
+
+[sub_resource type="Animation" id="Animation_agjg7"]
+resource_name = "intro"
+length = 12.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(12.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["default", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 12.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dlwoi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("VisualShader_xtqb0")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_25ivg"]
+_data = {
+"RESET": SubResource("Animation_dlwoi"),
+"intro": SubResource("Animation_agjg7")
 }
 
 [node name="BattleBackground" instance=ExtResource("1_2tnge")]
@@ -283,8 +405,13 @@ texture = ExtResource("2_ge82g")
 centered = false
 flip_h = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-autoplay = "default"
+[node name="DefaultAnimation" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_nkqxk")
+}
+
+[node name="IntroAnimation" type="AnimationPlayer" parent="." index="5"]
+autoplay = "intro"
+libraries = {
+"": SubResource("AnimationLibrary_25ivg")
 }

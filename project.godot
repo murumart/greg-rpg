@@ -46,6 +46,15 @@ window/stretch/aspect="ignore"
 movie_writer/mix_rate=41000
 movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
 
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
+[gui]
+
+theme/custom="res://resources/thm_main_ui.tres"
+
 [input]
 
 ui_accept={

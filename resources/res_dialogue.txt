@@ -140,7 +140,7 @@ INSTASKIP
 	i think 
 CHAR zerma
 	how many people can you still remember?
-	it must be very exciting for you.
+	aren't you excited?
 	hey, look, we're almost there...
 
 

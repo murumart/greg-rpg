@@ -48,11 +48,12 @@ func level_transition(path: String, op := {}) -> void:
 		op.get("start_color", Color(0, 0, 0, 0)),
 		fadetime
 	)
-	handle_stolen_items()
+	if op.get("stealing_enabled", true):
+		handle_stolen_items()
 
 
 func to_game_over_screen() -> void:
-	level_transition("res://scenes/gui/scn_death_screen.tscn")
+	level_transition("res://scenes/gui/scn_death_screen.tscn", {"stealing_enabled": false})
 
 
 func enter_battle(info: BattleInfo) -> void:

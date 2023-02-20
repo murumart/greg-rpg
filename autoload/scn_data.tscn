@@ -5,6 +5,7 @@
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")
 character_list = "greg
+grandma
 mail_man
 zerma
 tarikas

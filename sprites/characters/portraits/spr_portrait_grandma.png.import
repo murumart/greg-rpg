@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o5gcfg3083ej"
-path="res://.godot/imported/spr_portrait_zerma.png-8f87d1b65ada46029088ae5c8e0d7a89.ctex"
+uid="uid://b6ccqnopkfrjf"
+path="res://.godot/imported/spr_portrait_grandma.png-bea150d0e8a51cafb08897d41fbaa473.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/portraits/spr_portrait_zerma.png"
-dest_files=["res://.godot/imported/spr_portrait_zerma.png-8f87d1b65ada46029088ae5c8e0d7a89.ctex"]
+source_file="res://sprites/characters/portraits/spr_portrait_grandma.png"
+dest_files=["res://.godot/imported/spr_portrait_grandma.png-bea150d0e8a51cafb08897d41fbaa473.ctex"]
 
 [params]
 
