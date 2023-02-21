@@ -129,6 +129,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	# here we go
 	AudioServer.set_bus_volume_db(0, get_opt("master_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
+	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
 	if prev_opt == get_opt(type): return
 	match type:
 		"reset":

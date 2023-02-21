@@ -27,6 +27,10 @@ var songs := {
 		"link": "res://music/mus_defeat.ogg",
 		"loop": false
 	},
+	"development_hell": {
+		"title": "development hell",
+		"link": "res://music/mus_development_hell.ogg",
+	},
 	"dry_summer": {
 		"title": "dry summer",
 		"link": "res://music/mus_dry_summer.ogg",
@@ -34,6 +38,10 @@ var songs := {
 	"entirely_just": {
 		"title": "entirely just",
 		"link": "res://music/mus_entirely_just.ogg",
+	},
+	"favourable_silence": {
+		"title": "favourable silence",
+		"link": "res://music/mus_favourable_silence.ogg",
 	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",

@@ -26,5 +26,3 @@ func _ready() -> void:
 func _save_me() -> void:
 	DAT.set_data("current_room", name.to_snake_case())
 
-
-
