@@ -30,8 +30,13 @@ func _ready() -> void:
 	$HBoxContainer/RetryButton.call_deferred("grab_focus")
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		$HBoxContainer/RetryButton.grab_focus()
+
+
 func _on_retry_button_pressed() -> void:
-	DAT.load_data(SaveScreen.SAVE_PATH % DAT.last_save_file)
+	SOL.save_menu(true, {"restrict": 1})
 
 
 func _on_quit_button_pressed() -> void:

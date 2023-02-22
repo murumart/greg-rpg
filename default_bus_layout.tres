@@ -33,16 +33,18 @@ resonance = 0.47
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_4n4s2"]
 resource_name = "Distortion"
-pre_gain = -1.29
-drive = 0.28
-post_gain = -9.47
+pre_gain = 16.78
+keep_hf_hz = 17099.0
+drive = 0.3
+post_gain = -22.88
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_hsndk"]
 resource_name = "Reverb"
-room_size = 0.07
+predelay_feedback = 0.35
+room_size = 0.03
 damping = 0.94
 hipass = 0.14
-wet = 0.22
+wet = 0.24
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_mks6k")

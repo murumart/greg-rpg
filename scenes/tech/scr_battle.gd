@@ -15,6 +15,8 @@ enum Teams {PARTY, ENEMIES}
 enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
 var doing := Doings.NOTHING
 
+@onready var ui := $UI
+
 @onready var panel : Panel = $UI/Panel
 @onready var reference_button : Button = preload("res://scenes/tech/scn_reference_button.tscn").instantiate()
 @onready var description_text : RichTextLabel = $%DescriptionText
@@ -115,6 +117,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				p.offload_character()
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 			set_process_unhandled_key_input(false)
+	if event is InputEventKey and event.keycode == KEY_0:
+		ui.visible = ! event.is_pressed()
+		if not event.is_pressed():
+			attack_button.grab_focus()
 
 
 func load_battle(info: BattleInfo) -> void:
@@ -232,7 +238,7 @@ func update_party() -> void:
 func go_back_a_menu() -> void:
 	match doing:
 		Doings.NOTHING:
-			pass
+			attack_button.grab_focus()
 		Doings.ATTACK:
 			open_main_actions_screen()
 			SND.menusound(BACK_PITCH)

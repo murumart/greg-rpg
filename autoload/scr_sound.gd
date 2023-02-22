@@ -150,3 +150,6 @@ func _on_sound_clear_timer_timeout() -> void:
 		if !player.playing and !player.stream_paused:
 			playing_sounds.erase(player)
 			player.call_deferred("queue_free")
+	for s in playing_sounds:
+		if not is_instance_valid(s):
+			playing_sounds.erase(s)

@@ -42,6 +42,7 @@ var songs := {
 	"favourable_silence": {
 		"title": "favourable silence",
 		"link": "res://music/mus_favourable_silence.ogg",
+		"default_volume": -5,
 	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",
