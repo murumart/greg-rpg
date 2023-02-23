@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://dspmw6jvu8h4c"]
+[gd_scene load_steps=112 format=3 uid="uid://dspmw6jvu8h4c"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="14_eablj"]
 [ext_resource type="SpriteFrames" uid="uid://clewd4hw0hige" path="res://resources/characters/sfr_grandma.tres" id="14_lyhr5"]
 [ext_resource type="SpriteFrames" uid="uid://dn7o24r8k120d" path="res://resources/characters/sfr_cashier_mean.tres" id="15_a8rvo"]
-[ext_resource type="Texture2D" uid="uid://dlimfdo2agquv" path="res://sprites/characters/overworld/spr_zerma_overworld.png" id="15_icehf"]
+[ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="15_aavnk"]
 [ext_resource type="Texture2D" uid="uid://du3ry7j4icp43" path="res://sprites/characters/overworld/spr_tarikas_overworld.png" id="15_y8nf4"]
 [ext_resource type="Texture2D" uid="uid://bfr6g67ugdoth" path="res://sprites/characters/overworld/spr_mail_man_overworld.png" id="16_l3lwi"]
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="17_ly4yr"]
@@ -164,141 +164,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vkjci")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvns3"]
-atlas = ExtResource("15_icehf")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_namsf"]
-atlas = ExtResource("15_icehf")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_60bkm"]
-atlas = ExtResource("15_icehf")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g165n"]
-atlas = ExtResource("15_icehf")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri8wd"]
-atlas = ExtResource("15_icehf")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxoyb"]
-atlas = ExtResource("15_icehf")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uyad7"]
-atlas = ExtResource("15_icehf")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epe0h"]
-atlas = ExtResource("15_icehf")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4mdo"]
-atlas = ExtResource("15_icehf")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5knt"]
-atlas = ExtResource("15_icehf")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2kfcc"]
-atlas = ExtResource("15_icehf")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oogt4"]
-atlas = ExtResource("15_icehf")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5fa2h"]
-atlas = ExtResource("15_icehf")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydjjc"]
-atlas = ExtResource("15_icehf")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_relse"]
-atlas = ExtResource("15_icehf")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffhq7"]
-atlas = ExtResource("15_icehf")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_skmb2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wvns3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_namsf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_60bkm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g165n")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ri8wd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxoyb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uyad7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_epe0h")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q4mdo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5knt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2kfcc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oogt4")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5fa2h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ydjjc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_relse")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ffhq7")
 }],
 "loop": true,
 "name": &"walk_up",
@@ -1099,7 +964,7 @@ save_position = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="MDPS/Zerma"]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_skmb2")
+sprite_frames = ExtResource("15_aavnk")
 animation = &"walk_down"
 
 [node name="Cashier" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]

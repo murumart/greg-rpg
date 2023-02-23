@@ -9,7 +9,7 @@ const INTERACTION_LENGTH := 8
 const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
-var state : int
+var state : int: set = set_state
 
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
@@ -47,7 +47,12 @@ func _physics_process(delta: float) -> void:
 		if input: direct_raycast()
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
-	
+		direct_animation()
+
+
+func set_state(to: States) -> void:
+	state = to
+	if not is_inside_tree(): return
 	direct_animation()
 
 

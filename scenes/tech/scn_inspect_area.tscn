@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv4g5jhr5kmef"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="1_dhaik"]
+
+[node name="InspectArea" type="Area2D"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+monitoring = false
+script = ExtResource("1_dhaik")

@@ -123,6 +123,10 @@ DIALOGUE door_unanswer
 	but nobody answered the door.
 
 
+DIALOGUE door_locked
+	it's locked.
+
+
 DIALOGUE intro_convo
 CHAR zerma
 	greg, wake up!
@@ -142,6 +146,25 @@ CHAR zerma
 	how many people can you still remember?
 	aren't you excited?
 	hey, look, we're almost there...
+
+
+DIALOGUE intro_convo_2
+CHAR zerma
+	woah...
+	what a nice town this is!
+	overflowing with nature.
+
+
+DIALOGUE intro_convo_3
+CHAR zerma
+	well, here we are.
+	your house over there.
+
+
+DIALOGUE intro_convo_4
+CHAR zerma
+	why don't you go take a look?
+	maybe someone's inside?
 
 
 DIALOGUE store_shelf_empty
@@ -373,4 +396,27 @@ SPEED 0.5
 SPEED 1.0
 	i'll make it painful. (smile, smile)
 # (she fights you)
+
+
+DIALOGUE insp_snowdrops
+	spring flowers.
+
+
+DIALOGUE insp_dirtbags
+	bags of soil.
+
+
+DIALOGUE insp_carnations
+	yellow carnations.
+
+
+DIALOGUE insp_other_flowers
+	familiar flowers.
+
+
+
+
+
+
+
 
