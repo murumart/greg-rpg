@@ -18,6 +18,7 @@ func _on_radio_interaction_on_interact() -> void:
 				"res://music/mus_bike_spirit.ogg",
 				"res://music/mus_arent_you_excited.ogg",
 				"res://music/mus_birds.ogg",
+				"res://music/mus_birds.ogg",
 				"res://music/mus_dry_summer.ogg"
 			].pick_random())
 		else: musicplayer.stream = preload("res://music/mus_grandma_radio.ogg")

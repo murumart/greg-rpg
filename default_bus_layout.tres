@@ -28,8 +28,8 @@ resonance = 0.42
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_wll65"]
 resource_name = "LowPassFilter"
-cutoff_hz = 7151.0
-resonance = 0.47
+cutoff_hz = 5773.0
+resonance = 0.26
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_4n4s2"]
 resource_name = "Distortion"

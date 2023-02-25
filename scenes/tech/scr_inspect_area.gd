@@ -32,5 +32,5 @@ func interacted() -> void:
 			DAT.incri(save_key("progress"), 1)
 
 
-func save_key(key: String) -> String:
-	return str("inspect_area_%s_in_%s_%s" % [name, DAT.get_current_scene().name, key])
+func save_key(n: String) -> String:
+	return str("inspect_area_%s_in_%s_%s" % [name, DAT.get_current_scene().name, n])

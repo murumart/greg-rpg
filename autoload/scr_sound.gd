@@ -96,7 +96,7 @@ func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 	tween.step_finished.connect(_on_fadeout_tween_step_finished.bind(player, options), CONNECT_ONE_SHOT)
 
 
-func _on_fadeout_tween_step_finished(_int_stupid: int, player, options := {}):
+func _on_fadeout_tween_step_finished(_int_stupid: int, player: AudioStreamPlayer, options := {}):
 	# _int_stupid is provided by the tween.step_finished signal, I don't need it for anything
 	var do_save_audio_position = options.get("save_audio_position", true)
 	

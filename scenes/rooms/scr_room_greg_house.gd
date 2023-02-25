@@ -11,6 +11,7 @@ func _ready() -> void:
 	if not DAT.A.get("intro_cutscene_finished", false):
 		room_gate.global_position = Vector2(100000, 1000)
 		if intro_dialogue_progress <= 0:
+			DAT.capture_player("intro_cutscene")
 			intro_animator.play("intro")
 		else:
 			intro_animator.play("zerm_is_outside")
@@ -34,6 +35,7 @@ func intro_cutscene_first_pause() -> void:
 	SOL.dialogue("intro_convo_4")
 	await SOL.dialogue_closed
 	intro_animator.play("intro")
+	DAT.free_player("intro_cutscene")
 
 
 func _save_me() -> void:
