@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://e2f0lq8pk3rk"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_osi47"]
+
+[resource]
+script = ExtResource("1_osi47")
+name_in_file = &"shopping_cart"
+name = "stray cart"
+info = "it's ravenous."
+max_health = 25.0
+health = 25.0
+max_magic = 30.0
+magic = 30.0
+level = 3
+experience = 0
+attack = 2.0
+defense = 2.0
+speed = 10.0
+defeated_characters = Array[String]([])
+inventory = Array[String]([])
+spirits = Array[String](["shopping_cart"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

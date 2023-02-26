@@ -27,6 +27,7 @@ func change_scene_to(path: String, options := {}) -> void:
 	var new_scene : Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
 	if new_scene.has_method("_option_init"): new_scene._option_init(options)
+	
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
 

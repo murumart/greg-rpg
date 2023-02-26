@@ -5,9 +5,3 @@
 [node name="BattleBackground" type="Node2D"]
 z_index = -50
 script = ExtResource("1_nkv13")
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"Music"
-
-[node name="BeatTimer" type="Timer" parent="."]
-process_callback = 0

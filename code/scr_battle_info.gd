@@ -2,7 +2,7 @@ extends Resource
 class_name BattleInfo
 
 @export var enemies : Array[String] = []
-@export var background := "bikeghost"
+@export var background := "town"
 @export var music := ""
 @export var party : Array[String] = []
 @export var death_reason := "default"

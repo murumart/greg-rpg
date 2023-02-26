@@ -45,7 +45,8 @@ var convo_progress := 0
 var interactions := 0
 
 @export_group("Save Information")
-@export var character_link := -1
+@export var save := true
+@export var character_link := &""
 @export var save_position : bool = false
 @export var save_convo_progess : bool = false
 @export var permanently_defeated : bool = false
@@ -62,7 +63,7 @@ func _ready() -> void:
 	if save_convo_progess:
 		convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
 	if permanently_defeated:
-		if character_link > -1:
+		if character_link:
 			if character_link in DAT.A.get("defeated_characters", []):
 				global_position = Vector2i(129731, 120947912)
 				set_physics_process(false)
@@ -131,9 +132,11 @@ func _physics_process(delta: float) -> void:
 
 
 func interacted() -> void:
+	if DAT.player_capturers.size() > 0: return
 	interactions += 1
-	set_state(States.TALKING)
-	velocity = Vector2()
+	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
+		set_state(States.TALKING)
+		velocity = Vector2()
 	inspected.emit()
 	if default_lines.size() > 0:
 		var continuing := true
@@ -245,6 +248,11 @@ func set_target_offset(to: Vector2, random := 5) -> void:
 	target = to + Vector2(randf_range(-random, random), randf_range(-random, random))
 
 
+func move_to(to: Vector2) -> void:
+	set_target(to)
+	set_state(States.WANDER)
+
+
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	chase(body)
 
@@ -286,6 +294,7 @@ func _on_interaction_area_on_interacted(_possible_body = false) -> void:
 
 
 func _save_me() -> void:
+	if not save: return
 	debprint("saving!")
 	if save_position:
 		DAT.set_data(save_key_name("position"), position)

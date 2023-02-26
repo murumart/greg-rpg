@@ -22,6 +22,10 @@ var songs := {
 		"title": "birdsong",
 		"link": "res://music/mus_birds.ogg"
 	},
+	"daylightthief": {
+		"title": "daylightthief",
+		"link": "res://music/mus_daylightthief.ogg",
+	},
 	"defeat": {
 		"title": "so guys, we died it",
 		"link": "res://music/mus_defeat.ogg",
@@ -74,3 +78,12 @@ var songs := {
 		"loop": false
 	}
 }
+
+
+func _init() -> void:
+	for i in 7:
+		songs["menu_%s" % (i + 1)] = {
+			"title": ("radio - menu%s" % (i + 1)),
+			"link": "res://music/menu/mus_menu%s.ogg" % (i + 1),
+			"loop": false
+		}

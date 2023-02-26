@@ -1,0 +1,145 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjh5xvyx17m7n"]
+
+[ext_resource type="Texture2D" uid="uid://cruhdhnud3hhs" path="res://sprites/spirit/spr_isotoxin.png" id="1_jcwfd"]
+[ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/snd_isotoxin.ogg" id="2_2we3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlsui"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1ym0"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ni0f"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jkfy"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu882"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o86eg"]
+atlas = ExtResource("1_jcwfd")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1bpw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlsui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1ym0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ni0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jkfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu882")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o86eg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_u68tp"]
+resource_name = "default"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 0, 1, 0, 0, 0, 3, 4, 4, 2, 5]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_2we3h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(17.93, 2.83, 4.09, 1), Color(17.9294, 2.83137, 4.0902, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sia1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpt1j"]
+_data = {
+"RESET": SubResource("Animation_sia1s"),
+"default": SubResource("Animation_u68tp")
+}
+
+[node name="VfxIsotoxin" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r1bpw")
+autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_hpt1j")
+}

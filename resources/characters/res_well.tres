@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://b4m723gqwp7le"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_bj5km"]
+
+[resource]
+script = ExtResource("1_bj5km")
+name_in_file = &"well"
+name = "well"
+info = ""
+max_health = 40.0
+health = 40.0
+max_magic = 120.0
+magic = 120.0
+level = 2
+experience = 0
+attack = 1.0
+defense = 8.0
+speed = 4.0
+defeated_characters = Array[String]([])
+inventory = Array[String](["sugar_lemon", "gummy_worm", "gummy_worm", "gummy_worm"])
+spirits = Array[String](["isotoxin"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

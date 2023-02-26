@@ -35,6 +35,8 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	
 	for line in lines:
 		l += 1
+		if line.length() < 3:
+			continue
 		if line.begins_with(NEW_DIAL):
 			if not dial == null:
 				dialogue_dictionary[dial.name] = dial.duplicate()

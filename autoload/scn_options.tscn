@@ -34,7 +34,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="Root/Panel"]
+[node name="TopTextLabel" type="Label" parent="Root/Panel"]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 137.0
@@ -54,3 +54,9 @@ text = "screen shake"
 layout_mode = 2
 text = "0.1"
 horizontal_alignment = 2
+
+[node name="TopTextSwitcher" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="TopTextSwitcher" to="." method="_on_top_text_switcher_timeout"]

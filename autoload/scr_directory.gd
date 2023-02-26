@@ -11,7 +11,6 @@ const SCN := ".scn"
 
 
 func _init() -> void:
-	pass
 	print("project is standalone" if standalone() else "project is editor version")
 	# assure that a greg_rpg folder exists in user data
 	if not DirAccess.dir_exists_absolute(GREG_USER_FOLDER_PATH):

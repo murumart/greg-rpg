@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=27 format=3 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="8_gp7pc"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_qoivq"]
 [ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_70heg"]
 normal = Vector2(-1, 0)
@@ -28,7 +29,7 @@ normal = Vector2(1, 0)
 distance = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi2j2"]
-size = Vector2(20, 21)
+size = Vector2(20, 18)
 
 [sub_resource type="Animation" id="Animation_6shni"]
 length = 0.001
@@ -200,6 +201,30 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Areas/RoomGate:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(339, 232)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Areas/RoomGate:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_1xhoy"]
 resource_name = "intro"
@@ -225,10 +250,10 @@ tracks/1/path = NodePath("ZermCar/VroomVroom:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -297,14 +322,20 @@ tracks/7/path = NodePath("../Greg")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 10.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 10.1, 10.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [false],
+"method": &"set_physics_process"
+}, {
 "args": [1],
 "method": &"set_state"
 }, {
 "args": [0],
 "method": &"set_state"
+}, {
+"args": [true],
+"method": &"set_physics_process"
 }]
 }
 tracks/8/type = "value"
@@ -434,6 +465,47 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Areas/RoomGate:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(391, 234)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Areas/RoomGate:rotation")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Zerma")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"set_physics_process"
+}, {
+"args": [true],
+"method": &"set_physics_process"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5om0d"]
@@ -656,6 +728,45 @@ tracks/17/keys = {
 "values": []
 }
 
+[sub_resource type="Animation" id="Animation_jrnc3"]
+resource_name = "zerm_walks_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zerma:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-15, 196), Vector2(-24, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zerma:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Zerma/Sprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk_down", &"walk_up"]
+}
+
 [sub_resource type="Animation" id="Animation_hayxb"]
 resource_name = "zerma_leaves"
 tracks/0/type = "value"
@@ -736,6 +847,7 @@ _data = {
 "RESET": SubResource("Animation_6shni"),
 "intro": SubResource("Animation_1xhoy"),
 "zerm_is_outside": SubResource("Animation_5om0d"),
+"zerm_walks_up": SubResource("Animation_jrnc3"),
 "zerma_leaves": SubResource("Animation_hayxb")
 }
 
@@ -743,9 +855,16 @@ _data = {
 resource_local_to_scene = true
 size = Vector2(26, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fmsb"]
+size = Vector2(28, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq52v"]
+size = Vector2(26, 7)
+
 [node name="GregHouse" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_nk2dh")
+intro_dialogue_progress = 1
 music = "birds"
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]
@@ -967,9 +1086,17 @@ position = Vector2(-184, -51)
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
-position = Vector2(351, 232)
+position = Vector2(339, 232)
 destination = &"town"
 gate_id = &"house-town"
+player = NodePath("../../Greg")
+extents = Vector2i(8, 32)
+spawnpoint = Vector2i(-20, 0)
+
+[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
+position = Vector2(333, -168)
+destination = &"town"
+gate_id = &"house-town_up"
 player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(-20, 0)
@@ -982,7 +1109,6 @@ spawn_point = NodePath("Node2D")
 player = NodePath("../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/HouseDoor"]
-position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_wi2j2")
 
 [node name="Node2D" type="Node2D" parent="Areas/HouseDoor"]
@@ -1008,9 +1134,27 @@ monitorable = false
 [node name="CollisionShape" parent="Cutscenes/ZermCar/CollisionArea" index="0"]
 shape = SubResource("RectangleShape2D_3a8p1")
 
-[node name="Zerma" parent="Cutscenes" instance=ExtResource("9_qoivq")]
+[node name="InspectArea" type="Area2D" parent="Cutscenes/ZermCar"]
+script = ExtResource("10_h38ha")
+key = "zerma_car"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/ZermCar/InspectArea"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6fmsb")
+
+[node name="CarCollision" type="StaticBody2D" parent="Cutscenes/ZermCar"]
+modulate = Color(0.227451, 1, 1, 1)
+collision_layer = 9
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/ZermCar/CarCollision"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xq52v")
+
+[node name="Zerma" parent="Cutscenes" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("9_qoivq")]
 visible = false
 position = Vector2(-21, 219)
+animated_sprite = NodePath("Sprite")
 speed = 4400
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Cutscenes/Zerma"]

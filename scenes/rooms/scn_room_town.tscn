@@ -608,6 +608,14 @@ player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(18, 0)
 
+[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_0hylv")]
+position = Vector2(-579, -102)
+destination = &"greg_house"
+gate_id = &"house-town_up"
+player = NodePath("../../Greg")
+extents = Vector2i(8, 32)
+spawnpoint = Vector2i(18, 0)
+
 [node name="6Grass" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_orhm2")]
 position = Vector2(-401, -405)
 battle = SubResource("Resource_etbem")

@@ -177,3 +177,12 @@ func add_defeated_character(nimi : StringName) -> void:
 			defeated_characters.append(StringName(nimi + &"_" + str(number + 1)))
 	if not found_in_array:
 		defeated_characters.append(nimi + &"_1")
+
+
+func get_defeated_character(nimi: StringName) -> int:
+	for i in defeated_characters:
+		if i.contains(nimi):
+			var number := int(i.lstrip(nimi).lstrip(&"_"))
+			return number
+	return 0
+

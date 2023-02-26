@@ -5,7 +5,7 @@ class_name Battle
 
 signal player_finished_acting
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies(["grandma"]).set_music("development_hell")
+var load_options : BattleInfo = BattleInfo.new().set_enemies(["shopping_cart"]).set_music("daylightthief")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -75,6 +75,7 @@ var f := 0
 @export var party_cheat_attack := 0.0
 @export var party_cheat_defense := 0.0
 @export var party_cheat_speed := 0.0
+@export var party_add_spirits := []
 
 
 func _ready() -> void:
@@ -446,6 +447,7 @@ func open_party_info_screen() -> void:
 
 
 func open_spirit_name_screen() -> void:
+	spirit_name.add_theme_font_size_override("font_size", 16)
 	doing = Doings.SPIRIT_NAME
 	held_item_id = ""
 	resize_panel(4, 0.1)
@@ -476,6 +478,9 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 
 func _on_spirit_name_changed(to: String) -> void:
+	spirit_name.add_theme_font_size_override("font_size", 16)
+	if to.length() > 12:
+		spirit_name.add_theme_font_size_override("font_size", 8)
 	if to in loaded_spirits.keys():
 		_on_spirit_name_submitted(to)
 		return
@@ -608,6 +613,9 @@ func apply_cheats() -> void:
 		if party_cheat_magic:
 			i.character.max_magic = party_cheat_magic
 			i.character.magic = party_cheat_magic
+		if party_add_spirits:
+			for j in party_add_spirits:
+				i.character.spirits.append(j)
 
 
 func _option_init(options := {}) -> void:

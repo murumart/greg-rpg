@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3w1o74iw8emv"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_coexb"]
+[ext_resource type="Texture2D" uid="uid://xk3e51detlbn" path="res://sprites/characters/battle/thugs/spr_chimney.png" id="2_uixsv"]
+
+[node name="Chimney" type="Node2D"]
+script = ExtResource("1_coexb")
+toughness = 0.482
+altruism = 0.384
+innovation = 0.501
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uixsv")

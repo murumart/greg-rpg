@@ -183,6 +183,12 @@ CHAR zerma
 	maybe someone familiar is inside to welcome you?
 
 
+DIALOGUE intro_inspect_zerma_1
+CHAR zerma
+	don't be shy!
+	go and knock on the door.
+
+
 DIALOGUE intro_grandma_1
 CHAR grandma
 	oh, hello there!
@@ -216,7 +222,10 @@ LOOP 1
 CHOICE_LINK aboutyou
 	ah, it's good to see a new face in town...
 	it is not a lively one.
-	i've taken the job of the town's florist... every town needs one.
+	i've taken the job of the town's florist...
+	every town needs one, you see.
+	and this spot, this house...
+	it was made for me!
 CHOICE_LINK house
 	i bought this house recently. what a lovely spot!
 	the edge of the forest... what picturesque views.
@@ -445,8 +454,12 @@ CHAR zerma
 	you need to grow as a person...
 	or something like that.
 	i'm getting the hell outta here!
+	oh, final thing.
+	greg...
+	don't forget to save.
+CHAR 
+	(press ctrl+s to save.)
 # he leaves
-	
 
 
 DIALOGUE store_shelf_empty
@@ -680,6 +693,15 @@ SPEED 1.0
 # (she fights you)
 
 
+DIALOGUE thug_catch_1
+	you %s. prepare to engage in a %s.
+
+
+DIALOGUE thug_catch_2
+	
+	
+
+
 DIALOGUE neighbour_wife_inspect
 CHAR greg
 	hey can i kiss your husband real quick
@@ -703,9 +725,12 @@ DIALOGUE insp_other_flowers
 	familiar flowers.
 
 
+DIALOGUE insp_zerma_car
+	there is no escape.
 
 
-
-
+DIALOGUE end_of_the_line
+	welcome to the end.
+	there is nothing further from here.
 
 

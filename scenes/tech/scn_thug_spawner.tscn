@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ou1blsidn1su"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_thug_spawner.gd" id="1_jv8nd"]
+
+[node name="ThugSpawner" type="Node2D" groups=["thug_spawners"]]
+y_sort_enabled = true
+script = ExtResource("1_jv8nd")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -23,6 +23,8 @@ var debuffing_spirits : Array[String]
 @export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent : int = Intents.ATTACK
 @export var auto_ai := true
 
+var last_intent : Intents
+
 
 func _ready() -> void:
 	animate("idle")
@@ -97,12 +99,12 @@ func ai_action() -> void:
 						use_item(s, target)
 						return
 			Intents.HEAL:
-				target = pick_target(SELF)
-				if character.health_perc() > toughness:
+				team.sort_custom(sort_by_health)
+				target = team[0]
+				if target == self and target.character.health_perc() > 1.0 - toughness:
 					continue
-				if not (1.0 - character.health_perc() < altruism):
-					team.sort_custom(sort_by_health)
-					target = team[0]
+				if target != self and target.character.health_perc() > altruism:
+					continue
 				if randf() <= vaimulembesus and healing_spirits.size() > 0:
 					spirit_pocket.append_array(healing_spirits)
 					for s in spirit_pocket:
@@ -187,7 +189,7 @@ func animate(what: String) -> void:
 
 
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:
-	return a.character.health < b.character.health
+	return a.character.health_perc() < b.character.health_perc()
 
 
 func team_dict_with_health_keys(team: Array[BattleActor]) -> Dictionary:

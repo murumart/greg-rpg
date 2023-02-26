@@ -11,5 +11,6 @@ func act() -> void:
 		ai_action()
 	else:
 		DAT.set_data("fought_grandma", true)
+		DAT.incri("intro_dialogue_progress", 1)
 		LTS.gate_id = LTS.GATE_EXIT_BATTLE
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))

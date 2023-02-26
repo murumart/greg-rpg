@@ -13,7 +13,11 @@ cashier_nice
 cashier_mean
 bike_ghost
 grass
-car"
+car
+chimney
+well
+stabbing_fella
+shopping_cart"
 item_list = "bike_helmet
 gummy_worm
 milkshake
@@ -32,7 +36,10 @@ personally
 roundup
 mooncity
 rev
-overrun"
+overrun
+airspace_violation
+isotoxin
+shopping_cart"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

@@ -22,6 +22,10 @@ var type := Types.ATTACK
 @export var speed_increase: float
 @export var speed_increase_time: int
 @export var confusion_time: int
+@export var coughing_level: int
+@export var coughing_time: int
+@export var poison_level: int
+@export var poison_time: int
 
 @export_group("Other")
 var equip_as_weapon := false
@@ -94,6 +98,18 @@ func set_defense_increase(amount: float, time: int) -> BattlePayload:
 func set_speed_increase(amount: float, time: int) -> BattlePayload:
 	speed_increase = amount
 	speed_increase_time = time
+	return self
+
+
+func set_coughing(amount: int, time: int) -> BattlePayload:
+	coughing_level = amount
+	coughing_time = time
+	return self
+
+
+func set_poison(amount: int, time: int) -> BattlePayload:
+	poison_level = amount
+	poison_time = time
 	return self
 
 

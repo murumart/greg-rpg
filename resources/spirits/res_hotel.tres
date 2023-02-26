@@ -19,6 +19,7 @@ defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
 confusion_time = null
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("2_ja8xy")

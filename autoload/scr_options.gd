@@ -36,11 +36,13 @@ const CATEGORIES := {
 var opt := ConfigFile.new()
 const OPTION_PATH := "user://greg_rpg/options.ini"
 @onready var menu_sound := preload("res://sounds/snd_gui.ogg")
+var top_text := 0
 
 # nodes
 @onready var root := $Root
 @onready var main_container := $Root/Panel/ScrollContainer/MainContainer
 @onready var base_option := $Root/BaseOption
+@onready var top_text_label := $Root/Panel/TopTextLabel
 
 # selection
 var cur_opt := 0
@@ -77,6 +79,8 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()
+				top_text = -1
+				_on_top_text_switcher_timeout()
 				get_tree().paused = true
 				cur_opt = 0
 				select(cur_opt)
@@ -204,3 +208,16 @@ func reset_options() -> void:
 		cur_opt = o
 		modify(-1, true)
 
+
+func _on_top_text_switcher_timeout() -> void:
+	if not root.visible: return
+	top_text = wrapi(top_text + 1, 0, 3)
+	var text := ""
+	match top_text:
+		0:
+			text = "game paused - options menu"
+		1:
+			text = "music: %s" % SND.current_song.get("title", "nothing")
+		2:
+			text = "minutes played: %s" % roundi(DAT.seconds / 60.0)
+	top_text_label.text = text

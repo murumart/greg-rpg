@@ -88,7 +88,7 @@ func hurt(amount: float) -> void:
 		died.emit(self)
 	else:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
-	SOL.vfx("damage_number", get_effect_center(self), {text = absf(amount), color=Color.RED})
+	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.RED})
 	SOL.shake(sqrt(amount)/15.0)
 
 
@@ -215,6 +215,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
 	introduce_status_effect("speed", pld.speed_increase, pld.speed_increase_time)
 	introduce_status_effect("confusion", 1, pld.confusion_time)
+	introduce_status_effect("coughing", pld.coughing_level, pld.coughing_time)
+	introduce_status_effect("poison", pld.poison_level, pld.poison_time)
 	
 	if pld.reveal_enemy_info and pld.sender.player_controlled:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
@@ -230,17 +232,28 @@ func status_effect_update() -> void:
 		effect["duration"] = effect.get("duration", 1) - 1
 		if effect.get("duration", 1) < 1:
 			status_effects[e] = {}
+		
+		if e == "coughing" and effect.get("duration") > 0:
+			var cougher := BattleActor.new()
+			cougher.character = Character.new()
+			cougher.character.attack = effect.get("strength") * 2
+			add_child(cougher)
+			cougher.attack(self)
+			SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
+			cougher.queue_free()
+		if e == "poison" and effect.get("duration") > 0:
+			hurt(effect.get("strength", 1) * 2)
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
 	if not nomen in status_effects.keys():
 		status_effects[nomen] = {}
 	status_effects[nomen] = {
-		"strength": strength + status_effects[nomen].get("strength", 0),
-		"duration": duration + status_effects[nomen].get("duration", 0)
+		"strength": (strength + status_effects[nomen].get("strength", 0)) / 2,
+		"duration": (duration + status_effects[nomen].get("duration", 0)) / 2
 	}
 	if strength and duration:
-		SOL.vfx("damage_number", get_effect_center(self), {text = "+%s%s" % [strength, nomen], color=Color.YELLOW, speed = 0.5})
+		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen], color = Color.YELLOW, speed = 0.5})
 
 
 func turn_finished() -> void:

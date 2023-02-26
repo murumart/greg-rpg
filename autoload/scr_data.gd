@@ -90,20 +90,27 @@ func incri(key: String, amount: int) -> void:
 	set_data(key, A.get(key, 0) + amount)
 
 
-func save_data(filename := "save.grs") -> void:
+func save_data(filename := "save.grs", overwrite := true) -> void:
 	save_nodes_data()
 	save_chars_to_data()
 	set_data("playtime", seconds)
+	set_data("save_file", filename)
 	last_save_second = seconds
 	
-	var stuff := DIR.get_dict_from_file(filename)
-	for k in A.keys():
-		stuff[k] = A[k]
+	var stuff := {}
+	if not overwrite:
+		stuff = DIR.get_dict_from_file(filename)
+		for k in A.keys():
+			stuff[k] = A[k]
+	else:
+		stuff = A
 	
 	DIR.write_dict_to_file(stuff, filename)
 
 
-func force_data(key: String, value: Variant, filename := "save.grs") -> void:
+func force_data(key: String, value: Variant, filename := "") -> void:
+	if not filename.length():
+		filename = get_data("save_file", "save.grs")
 	var stuff := DIR.get_dict_from_file(filename)
 	
 	stuff[key] = value

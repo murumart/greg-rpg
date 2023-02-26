@@ -47,6 +47,7 @@ func _on_player_act_finished() -> void:
 		battle_reference.dead_enemies.append(self)
 		await SOL.dialogue_closed
 		DAT.set_data("zerma_fought", true)
+		DAT.incri("intro_dialogue_progress", 1)
 		battle_reference.check_end(true)
 
 
