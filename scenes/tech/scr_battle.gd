@@ -3,7 +3,9 @@ class_name Battle
 
 # the battle screen. what did you expect?
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies(["cashier_mean"])
+signal player_finished_acting
+
+var load_options : BattleInfo = BattleInfo.new().set_enemies(["grandma"]).set_music("development_hell")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -14,6 +16,7 @@ enum Teams {PARTY, ENEMIES}
 
 enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
 var doing := Doings.NOTHING
+var action_history := []
 
 @onready var ui := $UI
 
@@ -77,6 +80,8 @@ var f := 0
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start()
+	add_child(reference_button)
+	reference_button.hide()
 	for e in enemies_node.get_children():
 		e.queue_free()
 	for a in party_node.get_children():
@@ -132,7 +137,7 @@ func load_battle(info: BattleInfo) -> void:
 	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0})
 	apply_cheats()
-	log_text.append_text("%s lunges at you!\n" % enemies.front().actor_name)
+	log_text.append_text(info.get_("start_text", "%s lunges at you!\n" % enemies.front().actor_name) + "\n")
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:
@@ -140,8 +145,8 @@ func set_actor_states(to: BattleActor.States, only_party := false) -> void:
 		for i in get_tree().get_nodes_in_group("battle_actors"):
 			if i in party:
 				i.call("set_state", to)
-		return
-	get_tree().call_group("battle_actors", "set_state", to)
+	else:
+		get_tree().call_group("battle_actors", "set_state", to)
 
 
 func add_actor(node: BattleActor, team: Teams) -> void:
@@ -293,6 +298,7 @@ func _reference_button_pressed(reference) -> void:
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
+			append_action_history("attack", {"target": reference})
 			open_party_info_screen()
 		Doings.SPIRIT:
 			current_target = reference
@@ -304,6 +310,7 @@ func _reference_button_pressed(reference) -> void:
 			open_list_screen()
 		Doings.ITEM:
 			current_guy.use_item(held_item_id, reference)
+			append_action_history("item", {"target": reference, "item": held_item_id})
 			open_party_info_screen()
 
 
@@ -321,8 +328,10 @@ func _on_act_requested(actor: BattleActor) -> void:
 	actor.act()
 
 
-func _on_act_finished(_actor: BattleActor) -> void:
+func _on_act_finished(actor: BattleActor) -> void:
 	if doing == Doings.END: return
+	if actor.player_controlled:
+		player_finished_acting.emit()
 	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
 	check_end()
@@ -340,10 +349,10 @@ func _on_actor_died(actor: BattleActor) -> void:
 	update_party()
 
 
-func check_end() -> void:
+func check_end(force := false) -> void:
 	if doing == Doings.END: return
 	var end_condition := party.size() < 1 or enemies.size() < 1
-	if end_condition:
+	if end_condition or force:
 		doing = Doings.END
 		SND.play_song("")
 		open_end_screen(party.size() > 0)
@@ -367,6 +376,8 @@ func open_main_actions_screen() -> void:
 	screen_spirit_name.hide()
 	screen_end.hide()
 	resize_panel(44)
+	if Time.get_date_dict_from_system().weekday == 3 and randf() <= 0.05:
+		attack_button.text = "slay"
 	$%CharPortrait.texture = current_guy.character.portrait
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
 	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
@@ -458,6 +469,44 @@ func _on_spirit_speak_timer_timeout() -> void:
 	spirit_name.text = "moment passed"
 	spirit_name.modulate = Color(2, 0.2, 0.4)
 	spirit_name.editable = false
+	append_action_history("spirit_fail")
+	await get_tree().create_timer(0.5).timeout
+	current_guy.turn_finished()
+	open_party_info_screen()
+
+
+func _on_spirit_name_changed(to: String) -> void:
+	if to in loaded_spirits.keys():
+		_on_spirit_name_submitted(to)
+		return
+	
+	SND.play_sound(preload("res://sounds/snd_gui.ogg"), {"bus": "ECHO", "pitch": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(spirit_name, "modulate", Color(1.1, 1.1, 8.0, 1.1), 0.1)
+	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
+
+
+func _on_spirit_name_submitted(submission: String) -> void:
+	spirit_speak_timer.paused = true
+	if submission in loaded_spirits.keys():
+		spirit_name.editable = false
+		var spirit_id = loaded_spirits[submission]
+		var spirit := DAT.get_spirit(spirit_id)
+		if spirit.cost <= current_guy.character.magic:
+			SND.play_sound(preload("res://sounds/spirit/snd_spirit_name_found.ogg"))
+			var tw := create_tween().set_trans(Tween.TRANS_QUART)
+			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 10), 1.5)
+			
+			await get_tree().create_timer(1.5).timeout
+			current_guy.use_spirit(spirit_id, current_target)
+			append_action_history("spirit", {"spirit": spirit_id, "target": current_target})
+			open_party_info_screen()
+			return
+		else:
+			spirit_name.text = "not enough magic!"
+			
+	SND.play_sound(preload("res://sounds/snd_error.ogg"), {bus = "ECHO"})
+	append_action_history("spirit_fail")
 	await get_tree().create_timer(0.5).timeout
 	current_guy.turn_finished()
 	open_party_info_screen()
@@ -517,52 +566,18 @@ func _on_item_pressed() -> void:
 	SND.menusound()
 
 
-func _on_spirit_name_changed(to: String) -> void:
-	if to in loaded_spirits.keys():
-		_on_spirit_name_submitted(to)
-		return
-	
-	SND.play_sound(preload("res://sounds/snd_gui.ogg"), {"bus": "ECHO", "pitch": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(spirit_name, "modulate", Color(1.1, 1.1, 8.0, 1.1), 0.1)
-	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
-
-
-func _on_spirit_name_submitted(submission: String) -> void:
-	spirit_speak_timer.paused = true
-	if submission in loaded_spirits.keys():
-		spirit_name.editable = false
-		var spirit_id = loaded_spirits[submission]
-		var spirit := DAT.get_spirit(spirit_id)
-		if spirit.cost <= current_guy.character.magic:
-			SND.play_sound(preload("res://sounds/spirit/snd_spirit_name_found.ogg"))
-			var tw := create_tween().set_trans(Tween.TRANS_QUART)
-			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 10), 1.5)
-			
-			await get_tree().create_timer(1.5).timeout
-			current_guy.use_spirit(spirit_id, current_target)
-			open_party_info_screen()
-			return
-		else:
-			spirit_name.text = "not enough magic!"
-	SND.play_sound(preload("res://sounds/snd_error.ogg"), {bus = "ECHO"})
-	await get_tree().create_timer(0.5).timeout
-	current_guy.turn_finished()
-	open_party_info_screen()
-
-
 func set_description(text: String) -> void:
 	description_text.text = text
 
 
-func highlight_selected_enemy(enemy:BattleActor = null) -> void:
+func highlight_selected_enemy(enemy: BattleActor = null) -> void:
 	for e in enemies:
 		e.modulate = Color(1, 1, 1, 1)
 		e.position.y = 0
-	if enemy and enemy is BattleEnemy:
-		enemy.modulate = Color(1.2, 1.2, 1.2, 1.3)
-		var tw := create_tween()
-		tw.tween_property(enemy, "position:y", -2, 0.1)
+	if not (enemy and enemy is BattleEnemy): return
+	enemy.modulate = Color(1.2, 1.2, 1.2, 1.3)
+	var tw := create_tween()
+	tw.tween_property(enemy, "position:y", -2, 0.1)
 
 
 func resize_panel(new_y: int, wait := 0.2) -> void:
@@ -597,3 +612,12 @@ func apply_cheats() -> void:
 
 func _option_init(options := {}) -> void:
 	load_options = options.get("battle_info")
+
+
+func append_action_history(type: String, parameters := {}) -> void:
+	var dict := {}
+	dict["type"] = type
+	dict["parameters"] = parameters
+	dict["time"] = Time.get_time_string_from_system()
+	action_history.append(dict)
+

@@ -8,6 +8,8 @@ const SHAKE_REDUCTION_CONSTANT := 0.05
 var shake_trauma := 0.0
 var shake_trauma_power := 2
 
+var free_cam := false
+
 
 func _ready() -> void:
 	make_current()
@@ -23,3 +25,6 @@ func _physics_process(delta: float) -> void:
 	var shake_amount := pow(shake_trauma, shake_trauma_power)
 	offset.x = SHAKE_MAX_OFFSET.x * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
 	offset.y = SHAKE_MAX_OFFSET.y * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
+	
+	if free_cam:
+		global_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

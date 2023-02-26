@@ -5,6 +5,7 @@ class_name OverworldCharacter
 # they can walk around, chase you, you can talk to them if they have dialogue
 
 signal target_reached
+signal inspected
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 const ROTS := [&"up", &"right", &"down", &"left"]
@@ -133,6 +134,7 @@ func interacted() -> void:
 	interactions += 1
 	set_state(States.TALKING)
 	velocity = Vector2()
+	inspected.emit()
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():
@@ -263,6 +265,7 @@ func chase(body: CollisionObject2D) -> void:
 			time_moved = 0.0
 			set_target_offset(body.global_position if not same_target_as_collider_condition else body.global_position, 24) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
 			set_state(States.CHASE) # this also restarts the timer
+	chase_timer.start(0.5)
 
 
 func _on_chase_timer_timeout() -> void:

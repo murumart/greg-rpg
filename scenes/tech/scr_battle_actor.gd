@@ -15,6 +15,8 @@ signal died(who: BattleActor)
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
 
+var turn := 0
+
 var actor_name : StringName
 @onready var character : Character
 
@@ -169,6 +171,8 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			).timeout
 	
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
+	if SOL.dialogue_open:
+		await SOL.dialogue_closed
 	turn_finished()
 
 
@@ -211,6 +215,13 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
 	introduce_status_effect("speed", pld.speed_increase, pld.speed_increase_time)
 	introduce_status_effect("confusion", 1, pld.confusion_time)
+	
+	if pld.reveal_enemy_info and pld.sender.player_controlled:
+		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
+		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
+		SOL.dialogue_box.dial_concat("battle_inspect", 3, [get_attack(), get_defense(), get_speed()])
+		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
+		SOL.dialogue("battle_inspect")
 
 
 func status_effect_update() -> void:
@@ -235,10 +246,11 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 func turn_finished() -> void:
 	act_finished.emit(self)
 	status_effect_update()
+	turn += 1
 
 
 func load_character(id: String) -> void:
-	var charc : Character = DAT.get_character(id).duplicate(false) # will crash if using deep copy here
+	var charc : Character = DAT.get_character(id).duplicate(true)
 	character = charc
 
 

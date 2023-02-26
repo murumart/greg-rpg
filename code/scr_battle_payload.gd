@@ -26,6 +26,7 @@ var type := Types.ATTACK
 @export_group("Other")
 var equip_as_weapon := false
 var equip_as_armour := false
+@export var reveal_enemy_info := false
 
 var sender : BattleActor
 

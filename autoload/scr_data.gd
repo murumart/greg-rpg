@@ -40,6 +40,10 @@ func _ready() -> void:
 	load_characters()
 	load_items()
 	load_spirits()
+	if get_current_scene().get_script() == self.get_script():
+		var libel := Label.new()
+		libel.text = "Hello world, DAT"
+		add_child(libel)
 
 
 func load_characters() -> void:
@@ -161,25 +165,36 @@ func free_player(type := "") -> void:
 		players[0].state = PlayerOverworld.States.FREE_MOVE
 
 
-func grant_item(item : StringName, party_index := 0) -> void:
+func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
 	get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
+	if DAT.get_current_scene().name == "Battle":
+		var battle = DAT.get_current_scene()
+		if battle.party.is_empty(): return
+		battle.party[party_index].character.inventory.append(item)
+	if not dialogue: return
 	SOL.dialogue_box.dial_concat("getitem", 0, [get_item(item).name])
 	SOL.dialogue("getitem")
 
 
-func grant_silver(amount: int) -> void:
+func grant_silver(amount: int, dialogue := true) -> void:
 	var dialid := "getsilver"
 	if amount < 0: dialid = "losesilver"
 	set_data("silver", A.get("silver", 0) + amount)
+	if not dialogue: return
 	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
 	SOL.dialogue(dialid)
 
 
-func grant_spirit(spirit : StringName, party_index := 0) -> void:
+func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> void:
 	get_character(A.get("party", ["greg"])[party_index]).unused_sprits.append(spirit)
+	if DAT.get_current_scene().name == "Battle":
+		var battle = DAT.get_current_scene()
+		if battle.party.is_empty(): return
+		battle.party[party_index].character.unused_spirits.append(spirit)
+	SND.play_sound(preload("res://sounds/spirit/snd_spirit_get.ogg"))
+	if not dialogue: return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
-	SND.play_sound(preload("res://sounds/spirit/snd_spirit_get.ogg"))
 
 
 func get_current_scene() -> Node:

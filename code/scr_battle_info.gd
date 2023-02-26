@@ -6,6 +6,7 @@ class_name BattleInfo
 @export var music := ""
 @export var party : Array[String] = []
 @export var death_reason := "default"
+@export var start_text := ""
 
 
 func set_enemies(x: Array[String]) -> BattleInfo:
@@ -30,6 +31,11 @@ func set_party(x: Array[String]) -> BattleInfo:
 
 func set_death_reason(x: String) -> BattleInfo:
 	death_reason = x
+	return self
+
+
+func set_start_text(x: String) -> BattleInfo:
+	start_text = x
 	return self
 
 

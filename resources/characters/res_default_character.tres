@@ -2,13 +2,20 @@
 
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_lmp3f"]
 [ext_resource type="Texture2D" uid="uid://b0uc8205kntls" path="res://sprites/characters/portraits/spr_portrait_gleebungus.png" id="1_t1yav"]
-[ext_resource type="AudioStream" uid="uid://3xpaekbolixj" path="res://sounds/snd_gui.ogg" id="3_76qak"]
+[ext_resource type="AudioStream" uid="uid://dh8a30881osvt" path="res://sounds/spirit/snd_spirit_dequip.ogg" id="3_iw6tg"]
 
 [resource]
 script = ExtResource("1_lmp3f")
 name_in_file = &""
 name = "Gleebungus"
-voice_sound = ExtResource("3_76qak")
+info = "modules/text_server_adv/text_server_adv.cpp:4381 - Condition \"!sd\" is true. Returning: 0.0
+modules/text_server_adv/text_server_adv.cpp:3829 - Condition \"!sd\" is true. Returning: TextServer::ORIENTATION_HORIZONTAL
+modules/text_server_adv/text_server_adv.cpp:5763 - Condition \"!sd\" is true. Returning: Vector2i()
+modules/text_server_adv/text_server_adv.cpp:5811 - Condition \"!sd\" is true. Returning: 0.0
+modules/text_server_adv/text_server_adv.cpp:5822 - Condition \"!sd\" is true. Returning: 0.0
+modules/text_server_adv/text_server_adv.cpp:5734 - Condition \"!sd\" is true. Returning: 0
+modules/text_server_adv/text_server_adv.cpp:5723 - Condition \"!sd\" is true. Returning: nullptr"
+voice_sound = ExtResource("3_iw6tg")
 portrait = ExtResource("1_t1yav")
 max_health = 2089.0
 health = 2088.0

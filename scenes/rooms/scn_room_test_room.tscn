@@ -34,6 +34,7 @@ background = "grass"
 music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
+start_text = ""
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm7cp"]
 atlas = ExtResource("13_35l7x")
@@ -582,6 +583,7 @@ background = "bikeghost"
 music = "bike_spirit"
 party = Array[String]([])
 death_reason = "default"
+start_text = ""
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("17_ly4yr")
@@ -944,10 +946,12 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_yv1ib")
 animation = &"walk_down"
 
-[node name="Grandma" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]
+[node name="Grandma" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("12_h5o38")]
 position = Vector2(536, -117)
 animated_sprite = NodePath("Sprite")
+speed = 2000
 random_movement = true
+chase_target = NodePath("../../Greg")
 default_lines = Array[StringName]([&"choicestest"])
 save_position = true
 

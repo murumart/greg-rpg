@@ -28,9 +28,7 @@ var unmodified_dialogue_lines := {
 
 func _ready() -> void:
 	hide()
-	dialogues_dict = (DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file()))
-	for i in dialogues_dict:
-		dialogues.append(dialogues_dict[i])
+	load_dialogue_dict()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -46,7 +44,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 
+func load_dialogue_dict() -> void:
+	dialogues_dict =\
+	DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file())
+	for i in dialogues_dict:
+		dialogues.append(dialogues_dict[i])
+
+
 func prepare_dialogue(key: String) -> void:
+	if dialogues_dict.is_empty():
+		load_dialogue_dict()
 	loaded_dialogue = dialogues_dict.get(key, Dialogue.new())
 	if loaded_dialogue.alias != "":
 		prepare_dialogue(loaded_dialogue.alias)
@@ -70,6 +77,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
+	
+	if part.item_to_give:
+		DAT.grant_item(part.item_to_give, 0, false)
+	if part.spirit_to_give:
+		DAT.grant_spirit(part.spirit_to_give, 0, false)
+	if part.silver_to_give:
+		DAT.grant_silver(part.silver_to_give, false)
 	
 	loaded_dialogue_line = part
 	

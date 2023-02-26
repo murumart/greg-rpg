@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1axmr0mqtkp5"]
+
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_grandma.gd" id="1_mvopl"]
+[ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/battle.png" id="2_okygw"]
+
+[node name="Grandma" type="Node2D"]
+script = ExtResource("1_mvopl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_okygw")

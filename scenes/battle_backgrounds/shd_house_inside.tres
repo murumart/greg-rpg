@@ -1,0 +1,85 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://duyc827l1g47w"]
+
+[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_cw3qb"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_12jt3"]
+source = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_rvxi8"]
+default_input_values = [1, 0.0, 2, 0.3, 3, 0.02, 4, 0.1, 5, 1.0, 6, 0.0]
+initialized = true
+script = ExtResource("1_cw3qb")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_tfqor"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_r2gff"]
+constant = Color(0, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_r06up"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2, 0.8]
+op_type = 6
+
+[resource]
+code = "shader_type canvas_item;
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:4
+	float n_out4p0 = TIME;
+
+
+	vec2 n_out3p0;
+// DistortionUVAnimated:3
+	float n_in3p1 = 0.00000;
+	float n_in3p2 = 0.30000;
+	float n_in3p3 = 0.02000;
+	float n_in3p4 = 0.10000;
+	float n_in3p5 = 1.00000;
+	{
+		n_out3p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in3p3, n_in3p4, n_in3p1, n_in3p2, n_in3p5, n_out4p0);
+	}
+
+
+	vec4 n_out2p0;
+// Texture2D:2
+	n_out2p0 = texture(TEXTURE, n_out3p0);
+
+
+// ColorConstant:5
+	vec4 n_out5p0 = vec4(0.000000, 0.000000, 0.000000, 1.000000);
+
+
+// Mix:6
+	float n_in6p2 = 0.80000;
+	vec4 n_out6p0 = mix(n_out2p0, n_out5p0, n_in6p2);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out6p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-277.18, -150.979)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(440, 120)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_12jt3")
+nodes/fragment/2/position = Vector2(80, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeCustom_rvxi8")
+nodes/fragment/3/position = Vector2(-200, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeInput_tfqor")
+nodes/fragment/4/position = Vector2(-500, 300)
+nodes/fragment/5/node = SubResource("VisualShaderNodeColorConstant_r2gff")
+nodes/fragment/5/position = Vector2(40, 80)
+nodes/fragment/6/node = SubResource("VisualShaderNodeMix_r06up")
+nodes/fragment/6/position = Vector2(280, 20)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 6, 3, 0, 2, 0, 5, 0, 6, 1, 2, 0, 6, 0, 6, 0, 0, 0)

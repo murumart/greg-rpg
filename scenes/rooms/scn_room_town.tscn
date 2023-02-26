@@ -40,6 +40,7 @@ background = "grass"
 music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
+start_text = ""
 
 [sub_resource type="Resource" id="Resource_jm0jg"]
 script = ExtResource("11_dsxoc")
@@ -48,6 +49,7 @@ background = "grass"
 music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
+start_text = ""
 
 [sub_resource type="Resource" id="Resource_u30p0"]
 script = ExtResource("11_dsxoc")
@@ -56,6 +58,7 @@ background = "grass"
 music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
+start_text = ""
 
 [node name="Town" type="Node2D"]
 y_sort_enabled = true

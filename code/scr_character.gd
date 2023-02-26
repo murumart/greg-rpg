@@ -15,6 +15,7 @@ const UPGRADE_MAX := {
 
 @export_group("Appearance")
 @export var name := ""
+@export_multiline var info := ""
 @export var voice_sound : AudioStream
 @export var portrait : Texture
 

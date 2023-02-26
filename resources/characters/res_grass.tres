@@ -6,6 +6,7 @@
 script = ExtResource("1_wcc1b")
 name_in_file = &""
 name = "turf"
+info = "very mobile, and very violent! listen to that snarl!"
 max_health = 20.0
 health = 20.0
 max_magic = 40.0

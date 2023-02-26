@@ -6,6 +6,7 @@
 script = ExtResource("1_h08xf")
 name_in_file = &""
 name = "car"
+info = "did you know that people die all the time?"
 max_health = 200.0
 health = 200.0
 max_magic = 730.0
@@ -17,7 +18,7 @@ defense = 45.0
 speed = 45.0
 defeated_characters = null
 inventory = null
-spirits = ["overrun", "rev"]
+spirits = Array[String](["overrun", "rev"])
 unused_sprits = null
 armour = ""
 weapon = ""

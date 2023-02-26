@@ -66,11 +66,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_KP_1:
-				SOL.vfx("damage_number", get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), {text = "j", size= randi()%3 + 1})
+				SOL.vfx("damage_number", get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), {text = "9999", size= randi()%3 + 1})
 			KEY_KP_0:
 				DAT.print_data()
 			KEY_KP_2:
 				SOL.dialogue("cashier_mean_welcome")
+			KEY_KP_3:
+				if "free_cam" in get_viewport().get_camera_2d():
+					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()

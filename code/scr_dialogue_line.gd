@@ -12,3 +12,7 @@ const MAX_TEXT_LENGTH := 66
 
 @export var instaskip := false
 @export var loop := -1
+
+@export var item_to_give := &""
+@export var spirit_to_give := &""
+@export var silver_to_give := 0

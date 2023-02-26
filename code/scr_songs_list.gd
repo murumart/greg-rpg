@@ -52,9 +52,17 @@ var songs := {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"
 	},
+	"lily_lesson": {
+		"title": "lily lesson",
+		"link": "res://music/mus_lily_lesson.ogg"
+	},
 	"overrun": {
 		"title": "overrun",
 		"link": "res://music/mus_overrun.ogg"
+	},
+	"shitty_entrance_of_the_gladiators": {
+		"title": "julius fucik - entrance of the gladiators",
+		"link": "res://music/mus_entrance_of_the_gladiators.ogg"
 	},
 	"touch_me": {
 		"title": "touch me",

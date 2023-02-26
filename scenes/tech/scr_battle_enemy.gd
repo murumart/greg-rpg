@@ -21,6 +21,7 @@ var debuffing_spirits : Array[String]
 @export_range(0.0, 1.0) var innovation := 0.75
 @export_range(0.0, 1.0) var vaimulembesus := 1.0
 @export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent : int = Intents.ATTACK
+@export var auto_ai := true
 
 
 func _ready() -> void:
@@ -40,7 +41,8 @@ func _ready() -> void:
 
 func act() -> void:
 	super.act()
-	
+	if not auto_ai:
+		return
 	ai_action()
 
 

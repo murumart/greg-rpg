@@ -7,6 +7,7 @@
 script = ExtResource("1_gvou3")
 name_in_file = &"grandma"
 name = "grandma"
+info = ""
 portrait = ExtResource("1_wob4v")
 max_health = 200.0
 health = 200.0

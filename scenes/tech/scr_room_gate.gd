@@ -47,3 +47,6 @@ func _on_area_entered(body: Node2D) -> void:
 			LTS.level_transition(DIR.room_scene_path(destination))
 		entered.emit()
 
+
+func force_level_transition() -> void:
+	_on_area_entered(player)
