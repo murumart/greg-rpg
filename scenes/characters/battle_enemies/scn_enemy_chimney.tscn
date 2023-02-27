@@ -5,9 +5,10 @@
 
 [node name="Chimney" type="Node2D"]
 script = ExtResource("1_coexb")
-toughness = 0.482
-altruism = 0.384
+toughness = 0.699
+altruism = 0.313
 innovation = 0.501
+can_flee = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_uixsv")

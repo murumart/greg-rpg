@@ -5,7 +5,8 @@ class_name Battle
 
 signal player_finished_acting
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies(["shopping_cart"]).set_music("daylightthief")
+var load_options : BattleInfo = BattleInfo.new().set_enemies(["stabbing_fella", "stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella"]).set_music("daylightthief").\
+set_party(["greg",])
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -58,6 +59,8 @@ var party : Array[BattleActor]
 var dead_party : Array[BattleActor]
 var enemies : Array[BattleActor]
 var dead_enemies : Array[BattleActor]
+
+var xp_pool := 0
 
 var current_guy : BattleActor
 var loaded_spirits := {}
@@ -136,7 +139,7 @@ func load_battle(info: BattleInfo) -> void:
 		add_enemy(e)
 	set_background(info.get_("background", "bikeghost"))
 	death_reason = info.get_("death_reason", "default")
-	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0})
+	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0, play_from_beginning = true})
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!\n" % enemies.front().actor_name) + "\n")
 
@@ -160,6 +163,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	node.act_requested.connect(_on_act_requested)
 	node.act_finished.connect(_on_act_finished)
 	node.died.connect(_on_actor_died)
+	node.fled.connect(_on_actor_fled)
 	actors.append(node)
 	match team:
 		Teams.PARTY:
@@ -333,9 +337,10 @@ func _on_act_finished(actor: BattleActor) -> void:
 	if doing == Doings.END: return
 	if actor.player_controlled:
 		player_finished_acting.emit()
-	set_actor_states(BattleActor.States.COOLDOWN)
 	open_party_info_screen()
 	check_end()
+	await get_tree().create_timer(0.25).timeout
+	set_actor_states(BattleActor.States.COOLDOWN)
 
 
 func _on_actor_died(actor: BattleActor) -> void:
@@ -343,6 +348,20 @@ func _on_actor_died(actor: BattleActor) -> void:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
+		xp_pool += actor.character.level
+	dead_actors.append(actors.pop_at(actors.find(actor)))
+	arrange_enemies()
+	check_end()
+	await get_tree().process_frame
+	update_party()
+
+
+func _on_actor_fled(actor: BattleActor) -> void:
+	if actor in party:
+		pass
+	if actor in enemies:
+		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
+		xp_pool += roundi(actor.character.level * 0.33)
 	dead_actors.append(actors.pop_at(actors.find(actor)))
 	arrange_enemies()
 	check_end()
@@ -532,9 +551,6 @@ func open_end_screen(victory: bool) -> void:
 	victory_text.speak_text()
 	if victory:
 		SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
-		var xp_pool : int = 0
-		for i in dead_enemies:
-			xp_pool += i.character.level
 		var looper := []
 		looper.append_array(party)
 		looper.append_array(dead_party)

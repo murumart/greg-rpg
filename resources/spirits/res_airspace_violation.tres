@@ -21,6 +21,8 @@ speed_increase_time = 0
 confusion_time = 0
 coughing_level = 1
 coughing_time = 4
+poison_level = 0
+poison_time = 0
 reveal_enemy_info = false
 
 [resource]

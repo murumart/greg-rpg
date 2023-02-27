@@ -58,7 +58,7 @@ func prepare_dialogue(key: String) -> void:
 	if loaded_dialogue.alias != "":
 		prepare_dialogue(loaded_dialogue.alias)
 		return
-	DAT.capture_player("dialogue")
+	DAT.capture_player("dialogue", false)
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
 	current_dialogue = 0

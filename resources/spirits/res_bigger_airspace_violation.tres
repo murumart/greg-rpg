@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://dte03lofuv47r"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_1pylb"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_oogd0"]
+
+[sub_resource type="Resource" id="Resource_uvi0i"]
+script = ExtResource("1_1pylb")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+attack_increase_time = 0
+defense_increase = 0.0
+defense_increase_time = 0
+speed_increase = 0.0
+speed_increase_time = 0
+confusion_time = 0
+coughing_level = 1
+coughing_time = 4
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_oogd0")
+name_in_file = &""
+name = &"smokescreen"
+description = "COUHG CUGH COUGH OGUHC"
+animation = &"bigger_airspace_violation"
+use_animation = &"airspace_violation"
+receive_animation = &"airspace_violation"
+cost = 30
+use = 3
+reach = 1
+payload_reception_count = 1
+payload = SubResource("Resource_uvi0i")

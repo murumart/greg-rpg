@@ -1,7 +1,8 @@
 extends Node2D
 
-const MAX_THUGS := 8
-const THUG_SCENE := preload("res://scenes/characters/overworld/scn_thug_overworld.tscn")
+@export var spawn_enemy : PackedScene
+@export var max_enemies := 8
+var enemy_amount := 0
 
 @export var player : PlayerOverworld
 @export var wait_time := 1.0
@@ -11,9 +12,13 @@ const THUG_SCENE := preload("res://scenes/characters/overworld/scn_thug_overworl
 
 func _on_timer_timeout() -> void:
 	timer.start(wait_time)
-	var thug_amount : int = 0
-	if thug_amount < MAX_THUGS and randf() <= 0.25:
-		var thug := THUG_SCENE.instantiate()
+	if enemy_amount < max_enemies and randf() <= 0.25:
+		enemy_amount += 1
+		var thug : OverworldCharacter = spawn_enemy.instantiate()
+		thug.save = false
 		if player:
 			thug.chase_target = player
 		add_child(thug)
+		thug.modulate.a = 0
+		var tw := create_tween()
+		tw.tween_property(thug, "modulate:a", 1.0, 0.33)

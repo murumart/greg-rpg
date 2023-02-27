@@ -33,7 +33,7 @@ SPEED 0.75
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
-	[color=#7799ff][center]%s[/center][/color]
+	[center][color=#7799ff]%s[/color][/center]
 
 
 DIALOGUE getitem
@@ -53,7 +53,7 @@ DIALOGUE losesilver
 
 
 DIALOGUE getspirit
-	[color=#7799ff][center]%s[/center][/color]
+	[center][color=#7799ff]%s[/color][/center]
 
 
 DIALOGUE test2talk
@@ -695,11 +695,6 @@ SPEED 1.0
 
 DIALOGUE thug_catch_1
 	you %s. prepare to engage in a %s.
-
-
-DIALOGUE thug_catch_2
-	
-	
 
 
 DIALOGUE neighbour_wife_inspect

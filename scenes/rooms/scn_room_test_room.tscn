@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://dspmw6jvu8h4c"]
+[gd_scene load_steps=114 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -23,7 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="18_3uegb"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="19_gb7yw"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_h3jbg"]
-[ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_thug_spawner.tscn" id="24_1hqpd"]
+[ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="24_1hqpd"]
+[ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="25_kt1if"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -750,8 +751,7 @@ position = Vector2(566, 24)
 position = Vector2(0, -11)
 
 [node name="SprIcon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(81, 89)
+position = Vector2(260, -43)
 texture = ExtResource("5_5gajp")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -1198,10 +1198,7 @@ silver = 15
 
 [node name="TrashBin3" parent="." instance=ExtResource("20_h3jbg")]
 position = Vector2(377, 157)
-replenish_minutes = 1
-replenish_seconds = 60
-item = &"sugar_lemon"
-silver = -300
+item = &"brick"
 
 [node name="OverworldTiles2" parent="." instance=ExtResource("2_jxegg")]
 layer_0/name = "veg level"
@@ -1209,6 +1206,7 @@ layer_0/y_sort_enabled = true
 layer_0/z_index = 0
 layer_0/tile_data = PackedInt32Array(42, 131072, 11, 43, 0, 11, 65579, 131072, 11, 65580, 65536, 11, 65581, 0, 11, 131117, 0, 11, 131118, 65536, 11, 196654, 65536, 11, 196655, 65536, 11, 131119, 0, 11, 65582, 0, 11, 46, 131072, 11, 47, 0, 11, 48, 131072, 11, 65585, 0, 11, 65586, 65536, 11, 131123, 65536, 11, 196658, 131072, 11, 262194, 0, 11, 262193, 65536, 11, 262190, 131072, 11, 262189, 131072, 11, 327725, 65536, 11, 262187, 65536, 11, 196651, 0, 11, 131115, 131072, 11, 327721, 131072, 11, 393256, 0, 11, 262186, 131072, 11, 196650, 131072, 11, 196649, 0, 11, 458794, 131072, 11, 458793, 0, 11, 458792, 131072, 11, 524328, 0, 11, 524327, 65536, 11, 589863, 0, 11, 589865, 65536, 11, 589866, 0, 11, 524330, 131072, 11, 524331, 0, 11, 458795, 65536, 11, 393259, 65536, 11, 393260, 131072, 11, 393261, 0, 11, 458797, 0, 11, 524334, 0, 11, 589870, 131072, 11, 589868, 0, 11, 589869, 131072, 11, 589872, 131072, 11, 589873, 131072, 11, 458800, 131072, 11, 458799, 65536, 11, 393263, 65536, 11, 393264, 65536, 11, 393265, 131072, 11, 458801, 131072, 11, 524338, 131072, 11, 589874, 131072, 11, 589875, 65536, 11, 393266, 131072, 11, 327731, 65536, 11, 327728, 0, 11, 196657, 0, 11, 131122, 0, 11, 51, 131072, 11, 65577, 65536, 11, 327720, 131072, 11, 262184, 65536, 11, 262191, 131072, 11)
 
-[node name="ThugSpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("24_1hqpd")]
-position = Vector2(408, -59)
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("24_1hqpd")]
+position = Vector2(407, -61)
+spawn_enemy = ExtResource("25_kt1if")
 player = NodePath("../Greg")

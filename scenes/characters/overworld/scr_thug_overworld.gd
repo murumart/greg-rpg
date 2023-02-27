@@ -1,24 +1,84 @@
 extends OverworldCharacter
 
-const TWERP_SYNONYMS := [
-	"twerp", "twerp", "twerp", "nitwit", "nincompoop", "sucker", "moron", "nullity", "insect"
-]
+const TWERP_SYNONYMS := ["twerp", "twerp", "twerp", "nitwit", "nincompoop", "sucker", "moron", "nullity", "insect"]
 const TUSSLE_SYNONYMS := ["tussle", "tussle", "tussle", "struggle", "scuffle", "brawl", "scramble"]
+
+const C := "chimney"
+const W := "well"
+const SC := "shopping_cart"
+const SF := "stabbing_fella"
+const KS := "kor_sten"
+const A := "abiss"
+const M := "moron"
 
 
 func _ready() -> void:
 	super._ready()
-	var enemies : Array[String] = []
-	enemies.append("chimney")
-	if randf() < 0.25: enemies.append("chimney")
-	if randf() < 0.33: enemies.append("well")
-	if randf() < 0.33: enemies.append("shopping_cart")
-	if randf() < 0.1: enemies.append("shopping_cart")
-	if randf() < 0.1: enemies.append("stabbing_fella")
-	enemies.shuffle()
-	battle_info = BattleInfo.new().set_enemies(enemies).set_music("daylightthief")
+	battle_info = BattleInfo.new().set_enemies(gen_enemies()).set_music("daylightthief").set_background("town")
 
 
 func chase(body) -> void:
 	super.chase(body)
 	SOL.dialogue_box.dial_concat("thug_catch_1", 0, [TWERP_SYNONYMS.pick_random(), TUSSLE_SYNONYMS.pick_random()])
+
+
+func gen_enemies() -> Array[String]:
+	var enemies : Array[String] = []
+	var level := DAT.get_character("greg").level
+	if level < 3:
+		enemies.append(C)
+	elif Math.inrange(level, 3, 5):
+		enemies.append(C)
+		if randf() <= 0.33: enemies.append(W)
+		if randf() <= 0.25: enemies.append(SC)
+	elif Math.inrange(level, 6, 8):
+		enemies.append(C)
+		if randf() <= 0.25: enemies.append(C)
+		if randf() <= 0.33: enemies.append(W)
+		if randf() <= 0.1: enemies.append(W)
+		if randf() <= 0.1: enemies.append(SF)
+		if randf() <= 0.2: enemies.append(SC)
+	elif Math.inrange(level, 8, 12):
+		enemies.append(C)
+		if randf() <= 0.5: enemies.append(C)
+		if randf() <= 0.5: enemies.append(W)
+		if randf() <= 0.5: enemies.append(A)
+		if randf() <= 0.25: enemies.append(W)
+		if randf() <= 0.25: enemies.append(SF)
+		if randf() <= 0.25: enemies.append(SC)
+		if randf() <= 0.25: enemies.append(KS)
+	elif Math.inrange(level, 12, 20):
+		enemies.append(C)
+		enemies.append(SF)
+		enemies.append(W)
+		enemies.append(SC)
+		if randf() <= 0.5: enemies.append(C)
+		if randf() <= 0.5: enemies.append(W)
+		if randf() <= 0.5: enemies.append(KS)
+		if randf() <= 0.5: enemies.append(A)
+		if randf() <= 0.25: enemies.append(W)
+		if randf() <= 0.25: enemies.append(SF)
+		if randf() <= 0.25: enemies.append(SC)
+	elif Math.inrange(level, 20, 25):
+		enemies.append(C)
+		enemies.append(SF)
+		enemies.append(W)
+		enemies.append(SC)
+		if randf() <= 0.75: enemies.append(W)
+		if randf() <= 0.75: enemies.append(SF)
+		if randf() <= 0.75: enemies.append(KS)
+		if randf() <= 0.75: enemies.append(A)
+		if randf() <= 0.05: enemies.append(M)
+	else:
+		enemies.append(KS)
+		enemies.append(SF)
+		enemies.append(A)
+		enemies.append(SC)
+		if randf() <= 0.1: enemies.append(M)
+	enemies.shuffle()
+	if M in enemies:
+		enemies.push_front(enemies.pop_at(enemies.find(M)))
+	if enemies.size() > 4:
+		enemies.resize(4)
+	return enemies
+

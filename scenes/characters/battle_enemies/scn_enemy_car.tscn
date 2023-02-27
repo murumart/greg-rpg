@@ -307,10 +307,9 @@ _data = {
 [node name="Car" type="Node2D" node_paths=PackedStringArray("animator") groups=["battle_actors"]]
 script = ExtResource("1_6k3xs")
 animator = NodePath("CarAnimator")
-healing_threshold = 1.0
 altruism = 0.0
 innovation = 0.09
-character_id = 5
+can_flee = true
 
 [node name="CarAnimator" type="AnimationPlayer" parent="."]
 libraries = {

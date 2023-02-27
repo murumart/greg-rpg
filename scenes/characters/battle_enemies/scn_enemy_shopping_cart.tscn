@@ -167,9 +167,16 @@ _data = {
 
 [node name="ShoppingCart" type="Node2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_pvxis")
+effect_center = null
 animator = NodePath("AnimationPlayer")
 toughness = 0.0
 altruism = 0.0
+innovation = null
+vaimulembesus = 0.441
+default_intent = null
+auto_ai = null
+stat_multiplier = null
+wait = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

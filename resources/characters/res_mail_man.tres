@@ -7,6 +7,7 @@
 script = ExtResource("2_52w2x")
 name_in_file = &""
 name = "mail man"
+info = ""
 portrait = ExtResource("1_iw8xs")
 max_health = 150.0
 health = 150.0

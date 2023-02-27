@@ -1,7 +1,7 @@
 extends BattleActor
 class_name BattleEnemy
 
-enum Intents {ATTACK, BUFF, DEBUFF, HEAL, MAX_ACTION}
+enum Intents {ATTACK, BUFF, DEBUFF, HEAL, FLEE, MAX_ACTION}
 const TEAM := 1
 const SELF := 2
 
@@ -19,9 +19,10 @@ var debuffing_spirits : Array[String]
 @export_range(0.0, 1.0) var toughness := 0.25
 @export_range(0.0, 1.0) var altruism := 0.5
 @export_range(0.0, 1.0) var innovation := 0.75
-@export_range(0.0, 1.0) var vaimulembesus := 1.0
+@export_range(0.0, 1.0) var vaimulembesus := 0.85
 @export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent : int = Intents.ATTACK
 @export var auto_ai := true
+@export var can_flee := false
 
 var last_intent : Intents
 
@@ -78,6 +79,7 @@ func ai_action() -> void:
 				if randf() <= altruism: target = pick_target(TEAM)
 				if randf() <= vaimulembesus and buffing_spirits.size() > 0:
 					spirit_pocket.append_array(buffing_spirits)
+					spirit_pocket.shuffle()
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -90,6 +92,7 @@ func ai_action() -> void:
 				target = pick_target()
 				if randf() <= vaimulembesus and debuffing_spirits.size() > 0:
 					spirit_pocket.append_array(debuffing_spirits)
+					spirit_pocket.shuffle()
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -107,6 +110,7 @@ func ai_action() -> void:
 					continue
 				if randf() <= vaimulembesus and healing_spirits.size() > 0:
 					spirit_pocket.append_array(healing_spirits)
+					spirit_pocket.shuffle()
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -115,6 +119,15 @@ func ai_action() -> void:
 					if DAT.get_item(s).use == Item.Uses.HEALING:
 						use_item(s, target)
 						return
+			Intents.FLEE:
+				if not can_flee: continue
+				var en : Character = reference_to_opposing_array.pick_random().character
+				if (character.health_perc() < 1.0 - toughness and
+				randf() < 1.0 - toughness and
+				character.health_perc() < en.health_perc() and
+				character.level < en.level):
+					flee()
+					return
 	print("could not find suitable action")
 	turn_finished()
 
@@ -145,6 +158,11 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 func use_item(id: String, subject: BattleActor) -> void:
 	animate("use_item")
 	super.use_item(id, subject)
+
+
+func flee() -> void:
+	animate("flee")
+	super.flee()
 
 
 func pick_target(who: int = 0) -> BattleActor:
@@ -186,6 +204,10 @@ func animate(what: String) -> void:
 			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_parallel(true)
 			tw.tween_property(self, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
 			tw.tween_property(self, "global_position:y", 200, 3.0)
+		"flee":
+			var tw := create_tween()
+			tw.tween_property(self, "scale", Vector2(-1.2, 0.8), 0.4)
+			tw.tween_property(self, "global_position:x", -300, 0.7)
 
 
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:

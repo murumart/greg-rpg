@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://6r8agjcf7q4g"]
+
+[ext_resource type="Texture2D" uid="uid://c27ab6b27ixyf" path="res://sprites/spirit/spr_jglove_local.png" id="1_jolop"]
+
+[sub_resource type="Animation" id="Animation_3gt45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5fjgf"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqvcl"]
+_data = {
+"RESET": SubResource("Animation_3gt45"),
+"default": SubResource("Animation_5fjgf")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34dx6"]
+atlas = ExtResource("1_jolop")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsaaa"]
+atlas = ExtResource("1_jolop")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkr5d"]
+atlas = ExtResource("1_jolop")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qikiy"]
+atlas = ExtResource("1_jolop")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3qb5"]
+atlas = ExtResource("1_jolop")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mapn2"]
+atlas = ExtResource("1_jolop")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iygvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34dx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsaaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkr5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qikiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3qb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mapn2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="VfxJgloveLocal" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_tqvcl")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iygvc")
+autoplay = "default"
+frame_progress = 0.356654

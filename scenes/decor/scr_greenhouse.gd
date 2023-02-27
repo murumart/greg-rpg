@@ -47,6 +47,7 @@ func _physics_process(delta: float) -> void:
 func pleasant() -> void:
 	DAT.capture_player("greenhouse")
 	set_physics_process(false)
+	SOL.dialogue_box.adjust("greenhouse", 1, "choices", PackedStringArray(["eat", "sleep"]))
 	if not has_vegetables:
 		SOL.dialogue_box.adjust("greenhouse", 1, "choices", PackedStringArray(["sleep"]))
 	SOL.dialogue("greenhouse")

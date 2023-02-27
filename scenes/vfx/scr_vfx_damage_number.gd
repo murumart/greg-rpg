@@ -1,7 +1,7 @@
 extends Node2D
 
 var move := Vector2()
-var gravity := 10
+var gravity := 40
 var xrange := 1.0
 var clamp_zone_min := Vector2(10, 0)
 var clamp_zone_max := Vector2()
@@ -15,7 +15,7 @@ func init(options := {}) -> void:
 	label["theme_override_font_sizes/font_size"] = 8 * size
 	clamp_zone_max = Vector2(SOL.SCREEN_SIZE.x - 10, SOL.SCREEN_SIZE.y - 10)
 	move.x += randf_range(-xrange, xrange) * size
-	move.y -= randf_range(0.2, 0.4) * size
+	move.y -= randf_range(0.4, 0.8) * size
 	$AnimationPlayer.speed_scale = options.get("speed", 1.0)
 
 

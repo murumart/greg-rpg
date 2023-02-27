@@ -19,15 +19,20 @@ defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
 confusion_time = null
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("2_pj8la")
 name_in_file = &"jglove"
-name = &"j. glove"
+name = &"j-glove"
 description = "angry hands"
-animation = &""
+animation = &"jglove_screen"
 use_animation = &""
-receive_animation = &""
+receive_animation = &"jglove_local"
 cost = 67
 use = 2
 reach = 0

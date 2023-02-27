@@ -62,11 +62,17 @@ func get_saveable_dict() -> Dictionary:
 
 func load_from_dict(dict: Dictionary) -> void:
 	for k in dict.keys():
-		set(k, dict[k])
+		var value : Variant = dict[k]
+		if value is Array:
+			var typarray : Array[String] = []
+			typarray.append_array(value)
+			value = typarray
+		set(k, value)
 
 
 func get_stat(nimi: String) -> int:
-	return roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
+	var stat := roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
+	return stat
 
 
 func health_perc() -> float:
@@ -80,19 +86,16 @@ func xp2lvl(lvl: int) -> float:
 
 
 func add_experience(amount: int) -> void:
-	var old_level := level
 	for i in amount:
 		experience = experience + 1
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
-	if old_level != level:
-		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
-		SOL.dialogue("levelup")
 
 
 func level_up(by := 1, overflow := false) -> void:
 	if by < 1: return
+	var old_level := level
 	for t in by:
 		if level >= 99 and not overflow: return
 		level += 1
@@ -114,8 +117,18 @@ func level_up(by := 1, overflow := false) -> void:
 			if level == 99:
 				set(k, roundf(UPGRADE_MAX[k]))
 	
-#	for i in get_saveable_dict():
-#		print(i,": ", get(i))
+	if old_level != level and name_in_file in DAT.A.get("party", ["greg"]):
+		if SOL.dialogue_open:
+			await SOL.dialogue_closed
+		var dialogue_key := "levelup"
+		if name_in_file == "greg":
+			if level % 11 == 0:
+				dialogue_key = "levelup_with_spirit"
+				DAT.grant_spirit(DAT.get_levelup_spirit(level), 0, false)
+				SOL.dialogue_box.dial_concat(dialogue_key, 2, [DAT.get_spirit(DAT.get_levelup_spirit(level)).name])
+		SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
+		SOL.dialogue(dialogue_key)
+		SND.play_sound(preload("res://sounds/snd_level_up.ogg"))
 
 
 func handle_item(id: String) -> void:

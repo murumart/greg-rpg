@@ -40,6 +40,7 @@ func _ready() -> void:
 	load_characters()
 	load_items()
 	load_spirits()
+	set_data("party", ["greg"])
 	if get_current_scene().get_script() == self.get_script():
 		var libel := Label.new()
 		libel.text = "Hello world, DAT"
@@ -153,7 +154,8 @@ func print_data() -> void:
 	print(A)
 
 
-func capture_player(type := "") -> void:
+func capture_player(type := "", overlap := true) -> void:
+	if not overlap and type in player_capturers: return
 	print(type, " captured player")
 	player_capturers.append(type)
 	var players := get_tree().get_nodes_in_group("player")
@@ -179,6 +181,8 @@ func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
 		if battle.party.is_empty(): return
 		battle.party[party_index].character.inventory.append(item)
 	if not dialogue: return
+	if SOL.dialogue_open:
+		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat("getitem", 0, [get_item(item).name])
 	SOL.dialogue("getitem")
 
@@ -188,18 +192,28 @@ func grant_silver(amount: int, dialogue := true) -> void:
 	if amount < 0: dialid = "losesilver"
 	set_data("silver", A.get("silver", 0) + amount)
 	if not dialogue: return
+	if SOL.dialogue_open:
+		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
 	SOL.dialogue(dialid)
 
 
 func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> void:
-	get_character(A.get("party", ["greg"])[party_index]).unused_sprits.append(spirit)
+	var charc : Character = get_character(A.get("party", ["greg"])[party_index])
+	var uuspirits : Array[String] = charc.unused_sprits.duplicate()
+	uuspirits.append(spirit)
+	charc.unused_sprits = uuspirits
 	if DAT.get_current_scene().name == "Battle":
 		var battle = DAT.get_current_scene()
-		if battle.party.is_empty(): return
-		battle.party[party_index].character.unused_spirits.append(spirit)
+		if !battle.party.is_empty():
+			var character_is : Character = battle.party[party_index].character
+			var list : Array[String] = character_is.unused_sprits.duplicate()
+			list.append(spirit)
+			character_is.unused_sprits = list
 	SND.play_sound(preload("res://sounds/spirit/snd_spirit_get.ogg"))
 	if not dialogue: return
+	if SOL.dialogue_open:
+		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
 
@@ -210,6 +224,7 @@ func get_current_scene() -> Node:
 
 func get_character(key: String) -> Character:
 	if not key in character_dict:
+		print("char ", key, " not found")
 		return load("res://resources/characters/res_default_character.tres")
 	return character_dict[key]
 
@@ -235,12 +250,16 @@ func load_chars_from_data() -> void:
 
 
 func get_item(id: String) -> Item:
-	if not id in item_dict: return preload("res://resources/items/res_default_item.tres")
+	if not id in item_dict:
+		print("item ", id, " not found")
+		return preload("res://resources/items/res_default_item.tres")
 	return item_dict[id]
 
 
 func get_spirit(id: String) -> Spirit:
-	if not id in spirit_dict: return preload("res://resources/res_default_spirit.tres")
+	if not id in spirit_dict:
+		print("spirit ", id, " not found")
+		return preload("res://resources/res_default_spirit.tres")
 	return spirit_dict[id]
 
 
@@ -264,3 +283,22 @@ func get_spirit_path(spiritname : String) -> String:
 
 func _on_game_timer_timeout() -> void:
 	seconds += 1
+
+
+func get_levelup_spirit(level: int) -> String:
+	var dict := {
+		11: "hotel",
+		22: "peptide",
+		33: "jglove",
+		44: "peanuts",
+		55: "littleman",
+		66: "personally",
+		77: "roundup",
+		88: "mooncity" # <-------- (whistling noise)
+	}
+	return dict.get(level, "")
+
+
+
+
+

@@ -76,6 +76,8 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_3:
 				if "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
+			KEY_KP_4:
+				DAT.get_character("greg").level_up()
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()

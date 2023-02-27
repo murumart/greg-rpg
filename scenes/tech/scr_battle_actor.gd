@@ -5,12 +5,14 @@ const WAIT_AFTER_ATTACK := 1.0
 const WAIT_AFTER_SPIRIT := 1.0
 const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
 const WAIT_AFTER_ITEM := 1.00
+const WAIT_AFTER_FLEE := 1.0
 
 signal message(msg: String)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
 signal died(who: BattleActor)
+signal fled(who: BattleActor)
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
@@ -83,13 +85,22 @@ func hurt(amount: float) -> void:
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
-		global_position.y += 2
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5, "volume": 4})
 		died.emit(self)
 	else:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
 	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.RED})
 	SOL.shake(sqrt(amount)/15.0)
+
+
+func flee() -> void:
+	SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+	SOL.vfx("damage_number", get_effect_center(self), {text = "bye!", color=Color.WHITE})
+	set_state(States.DEAD)
+	fled.emit(self)
+	emit_message("%s vacates the scene" % [actor_name])
+	await get_tree().create_timer(WAIT_AFTER_FLEE).timeout
+	turn_finished()
 
 
 func get_attack() -> float:
@@ -132,6 +143,12 @@ func account_defense(x: float) -> float:
 
 func attack(subject: BattleActor) -> void:
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
+	if character.weapon:
+		var weapon : Item = DAT.get_item(character.weapon)
+		pld.set_defense_pierce(weapon.payload.pierce_defense)
+		pld.set_confusion(weapon.payload.confusion_time)
+		pld.set_coughing(weapon.payload.coughing_level, weapon.payload.coughing_time)
+		pld.set_poison(weapon.payload.poison_level, weapon.payload.poison_time)
 	subject.handle_payload(pld)
 	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
@@ -203,10 +220,11 @@ func handle_payload(pld: BattlePayload) -> void:
 		if health_change > 0:
 			heal(health_change)
 		else:
+			health_change = absf(health_change)
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			hurt(health_change)
 			if character.health <= 0:
-				if pld.sender:
+				if is_instance_valid(pld.sender):
 					pld.sender.character.add_defeated_character(character.name_in_file)
 	
 	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
@@ -227,6 +245,7 @@ func handle_payload(pld: BattlePayload) -> void:
 
 
 func status_effect_update() -> void:
+	print(actor_name, " status effect update")
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
 		effect["duration"] = effect.get("duration", 1) - 1
@@ -242,15 +261,19 @@ func status_effect_update() -> void:
 			SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
 			cougher.queue_free()
 		if e == "poison" and effect.get("duration") > 0:
-			hurt(effect.get("strength", 1) * 2)
+			hurt(effect.get("strength", 1) * 1.3)
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
 	if not nomen in status_effects.keys():
 		status_effects[nomen] = {}
+	var old_strength : float = status_effects[nomen].get("strength", 0)
+	var old_duration : int = status_effects[nomen].get("duration", 0)
+	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
+	var new_duration : int = (old_duration + strength / 2) if old_duration != 0 else duration
 	status_effects[nomen] = {
-		"strength": (strength + status_effects[nomen].get("strength", 0)) / 2,
-		"duration": (duration + status_effects[nomen].get("duration", 0)) / 2
+		"strength": new_strength,
+		"duration": new_duration
 	}
 	if strength and duration:
 		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen], color = Color.YELLOW, speed = 0.5})

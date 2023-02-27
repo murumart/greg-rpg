@@ -15,9 +15,12 @@ bike_ghost
 grass
 car
 chimney
+kor_sten
 well
+abiss
 stabbing_fella
-shopping_cart"
+shopping_cart
+moron"
 item_list = "bike_helmet
 gummy_worm
 milkshake
@@ -25,7 +28,10 @@ plaster
 sugar_lemon
 tumbler
 porridge
-pocket_candy"
+pocket_candy
+brick
+knife
+shovel"
 spirit_list = "sideeye
 hotel
 peptide
@@ -38,7 +44,9 @@ mooncity
 rev
 overrun
 airspace_violation
+bigger_airspace_violation
 isotoxin
+dreaming_in_green
 shopping_cart"
 
 [node name="GameTimer" type="Timer" parent="."]

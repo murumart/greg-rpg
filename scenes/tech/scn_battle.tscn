@@ -64,7 +64,7 @@ script = ExtResource("1_5j3jy")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Background" type="Node2D" parent="."]
-z_index = -2
+z_index = -10
 position = Vector2(-80, -60)
 
 [node name="UI" type="Control" parent="."]

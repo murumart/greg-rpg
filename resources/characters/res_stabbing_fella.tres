@@ -21,4 +21,4 @@ inventory = Array[String]([])
 spirits = Array[String]([])
 unused_sprits = Array[String]([])
 armour = ""
-weapon = ""
+weapon = "knife"

@@ -243,7 +243,7 @@ func _reference_button_pressed(reference) -> void:
 	if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 		if party(current_tab).inventory.find(reference) < 2:
 			if (reference == party(current_tab).armour):
-				party(current_tab).armour = -1
+				party(current_tab).armour = ""
 				party(current_tab).inventory.append(reference)
 				SND.menusound(0.4)
 				load_items()
@@ -251,7 +251,7 @@ func _reference_button_pressed(reference) -> void:
 				call_deferred("grab_item_focus")
 				return
 			if (reference == party(current_tab).weapon):
-				party(current_tab).weapon = -1
+				party(current_tab).weapon = ""
 				party(current_tab).inventory.append(reference)
 				SND.menusound(0.4)
 				load_items()

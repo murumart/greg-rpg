@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bvk5t72r3e8m4"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_40loe"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_mesjn"]
+[ext_resource type="Texture2D" uid="uid://j7ux5j3redkb" path="res://sprites/items/spr_item_shovel.png" id="3_d5rnw"]
+
+[sub_resource type="Resource" id="Resource_lnk6p"]
+script = ExtResource("1_40loe")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 16.0
+attack_increase_time = 0
+defense_increase = 0.0
+defense_increase_time = 0
+speed_increase = 0.0
+speed_increase_time = 0
+confusion_time = 0
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_mesjn")
+name_in_file = &""
+name = &"shovel"
+description = "the edge is sharp, despite seeing a lot of use."
+texture = ExtResource("3_d5rnw")
+price = 450
+use = 4
+consume_on_use = true
+payload = SubResource("Resource_lnk6p")

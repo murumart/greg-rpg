@@ -101,6 +101,11 @@ func set_speed_increase(amount: float, time: int) -> BattlePayload:
 	return self
 
 
+func set_confusion(time: int) -> BattlePayload:
+	confusion_time = time
+	return self
+
+
 func set_coughing(amount: int, time: int) -> BattlePayload:
 	coughing_level = amount
 	coughing_time = time

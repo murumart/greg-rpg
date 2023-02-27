@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/tech/scr_thug_spawner.gd" id="1_jv8nd"]
 
-[node name="ThugSpawner" type="Node2D" groups=["thug_spawners"]]
+[node name="EnemySpawner" type="Node2D" groups=["thug_spawners"]]
 y_sort_enabled = true
 script = ExtResource("1_jv8nd")
 
