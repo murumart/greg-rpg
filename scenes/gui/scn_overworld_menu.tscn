@@ -136,7 +136,7 @@ stretch_mode = 2
 layout_mode = 0
 offset_left = 3.0
 offset_top = 26.0
-offset_right = 60.0
+offset_right = 65.0
 offset_bottom = 96.0
 bbcode_enabled = true
 text = "lvl: 1
@@ -149,6 +149,7 @@ spd: 1
 hp: 100/100
 sp: 30/30"
 scroll_active = false
+autowrap_mode = 0
 shortcut_keys_enabled = false
 
 [node name="ItemSpiritTabs" type="TabContainer" parent="Panel"]

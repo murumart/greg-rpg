@@ -114,8 +114,8 @@ func check_restock() -> void:
 
 
 func check_cashier_switch() -> void:
-	print("cashier second: ", (DAT.seconds / float(WAIT_UNTIL_CASHIER_SWITCH)))
-	if roundi(DAT.seconds / float(WAIT_UNTIL_CASHIER_SWITCH)) % 2 == 0:
+	print("cashier second: ", (wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2)))
+	if wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH:
 		store_cashier.cashier = "mean"
 		cashier_sprite.sprite_frames = load("res://resources/characters/sfr_cashier_mean.tres")
 	else:

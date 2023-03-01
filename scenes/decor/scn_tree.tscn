@@ -34,3 +34,11 @@ affected_node = NodePath("../Sprite")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
 position = Vector2(0, -44)
 shape = SubResource("RectangleShape2D_38uvm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(1, 1, 1, 0.0823529)
+position = Vector2(1.43051e-06, -56)
+scale = Vector2(2.4, 6.4)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="Sprite" method="show"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="Sprite" method="hide"]

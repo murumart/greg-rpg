@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://dpu3mwtmn3lqt"]
+[gd_scene load_steps=101 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -18,10 +18,12 @@
 [ext_resource type="SpriteFrames" uid="uid://dn7o24r8k120d" path="res://resources/characters/sfr_cashier_mean.tres" id="15_a8rvo"]
 [ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="15_aavnk"]
 [ext_resource type="Texture2D" uid="uid://du3ry7j4icp43" path="res://sprites/characters/overworld/spr_tarikas_overworld.png" id="15_y8nf4"]
-[ext_resource type="Texture2D" uid="uid://bfr6g67ugdoth" path="res://sprites/characters/overworld/spr_mail_man_overworld.png" id="16_l3lwi"]
 [ext_resource type="Texture2D" uid="uid://b381213l4nws3" path="res://sprites/characters/overworld/spr_bike_ghost_overworld.png" id="17_ly4yr"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="18_3uegb"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="19_gb7yw"]
+[ext_resource type="SpriteFrames" uid="uid://b0qk4w2yp3ta" path="res://resources/characters/sfr_mail_man.tres" id="19_w23pk"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="20_3p5bt"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="20_84hul"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_h3jbg"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="24_1hqpd"]
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="25_kt1if"]
@@ -443,140 +445,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1e7h"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="Resource" id="Resource_mqmwq"]
+script = ExtResource("20_3p5bt")
+type = 0
+property = ""
+chance = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sc0a6"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_toa4p"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5lj2o"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bj0oi"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw20b"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5ehv"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wsqdb"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhwd6"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebv51"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vifow"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6arl"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_04svr"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xvj52"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j46f0"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dungd"]
-atlas = ExtResource("16_l3lwi")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fcy1u"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1e7h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sc0a6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_toa4p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5lj2o")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bj0oi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qw20b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h5ehv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wsqdb")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uhwd6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ebv51")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vifow")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y6arl")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_04svr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xvj52")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j46f0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dungd")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
+[sub_resource type="Resource" id="Resource_i8jei"]
+script = ExtResource("20_84hul")
+rewards = Array[ExtResource("20_3p5bt")]([SubResource("Resource_mqmwq")])
 
 [sub_resource type="Resource" id="Resource_ujmyv"]
 script = ExtResource("10_ei6e6")
@@ -586,6 +463,7 @@ music = "bike_spirit"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+rewards = SubResource("Resource_i8jei")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_muq41"]
 atlas = ExtResource("17_ly4yr")
@@ -1025,7 +903,7 @@ save_convo_progess = true
 
 [node name="Mailman" type="AnimatedSprite2D" parent="MDPS/Mailmanlol"]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_fcy1u")
+sprite_frames = ExtResource("19_w23pk")
 animation = &"walk_down"
 
 [node name="BikeGhost" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]

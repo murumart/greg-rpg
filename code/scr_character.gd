@@ -1,6 +1,8 @@
 extends Resource
 class_name Character
 
+signal leveled_up
+
 # this will be interpreted by the battle system and dialogue system
 
 const UPGRADE_MIN := {
@@ -85,17 +87,31 @@ func xp2lvl(lvl: int) -> float:
 	return lvl * 1.3 + lvldiv
 
 
-func add_experience(amount: int) -> void:
+func add_experience(amount: int, speak := false) -> void:
+	var old_level := level
+	if speak:
+		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
+		SOL.dialogue("get_experience")
 	for i in amount:
 		experience = experience + 1
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
+			if old_level != level and name_in_file in DAT.A.get("party", ["greg"]):
+				var dialogue_key := "levelup"
+				if name_in_file == "greg":
+					if level % 11 == 0:
+						dialogue_key = "levelup_with_spirit"
+						DAT.grant_spirit(DAT.get_levelup_spirit(level), 0, false)
+						SOL.dialogue_box.dial_concat(dialogue_key, 2, [DAT.get_spirit(DAT.get_levelup_spirit(level)).name])
+				SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
+				SOL.dialogue(dialogue_key)
+	print("emitting levelup")
+	leveled_up.emit()
 
 
 func level_up(by := 1, overflow := false) -> void:
 	if by < 1: return
-	var old_level := level
 	for t in by:
 		if level >= 99 and not overflow: return
 		level += 1
@@ -116,19 +132,6 @@ func level_up(by := 1, overflow := false) -> void:
 				set(k, roundf(get(k) + (perfect_inc * upgrade_chance)))
 			if level == 99:
 				set(k, roundf(UPGRADE_MAX[k]))
-	
-	if old_level != level and name_in_file in DAT.A.get("party", ["greg"]):
-		if SOL.dialogue_open:
-			await SOL.dialogue_closed
-		var dialogue_key := "levelup"
-		if name_in_file == "greg":
-			if level % 11 == 0:
-				dialogue_key = "levelup_with_spirit"
-				DAT.grant_spirit(DAT.get_levelup_spirit(level), 0, false)
-				SOL.dialogue_box.dial_concat(dialogue_key, 2, [DAT.get_spirit(DAT.get_levelup_spirit(level)).name])
-		SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
-		SOL.dialogue(dialogue_key)
-		SND.play_sound(preload("res://sounds/snd_level_up.ogg"))
 
 
 func handle_item(id: String) -> void:
@@ -198,4 +201,12 @@ func get_defeated_character(nimi: StringName) -> int:
 			var number := int(i.lstrip(nimi).lstrip(&"_"))
 			return number
 	return 0
+
+
+func has_spirit(type: String) -> bool:
+	if type in unused_sprits:
+		return true
+	if type in unused_sprits:
+		return true
+	return false
 

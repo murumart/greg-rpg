@@ -6,6 +6,11 @@ const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
 
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		$Sprite.hide()
+
+
 func set_type(to: int) -> void:
 	var sprite : Sprite2D = $Sprite
 	sprite.region_rect.position.x = 16 + to * 48

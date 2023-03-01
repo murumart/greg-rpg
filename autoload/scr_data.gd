@@ -96,6 +96,8 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 	save_chars_to_data()
 	set_data("playtime", seconds)
 	set_data("save_file", filename)
+	set_data("date", Time.get_date_string_from_system())
+	set_data("time", Time.get_time_string_from_system())
 	last_save_second = seconds
 	
 	var stuff := {}
@@ -181,8 +183,6 @@ func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
 		if battle.party.is_empty(): return
 		battle.party[party_index].character.inventory.append(item)
 	if not dialogue: return
-	if SOL.dialogue_open:
-		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat("getitem", 0, [get_item(item).name])
 	SOL.dialogue("getitem")
 
@@ -192,8 +192,6 @@ func grant_silver(amount: int, dialogue := true) -> void:
 	if amount < 0: dialid = "losesilver"
 	set_data("silver", A.get("silver", 0) + amount)
 	if not dialogue: return
-	if SOL.dialogue_open:
-		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
 	SOL.dialogue(dialid)
 
@@ -210,10 +208,7 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 			var list : Array[String] = character_is.unused_sprits.duplicate()
 			list.append(spirit)
 			character_is.unused_sprits = list
-	SND.play_sound(preload("res://sounds/spirit/snd_spirit_get.ogg"))
 	if not dialogue: return
-	if SOL.dialogue_open:
-		await SOL.dialogue_closed
 	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
 

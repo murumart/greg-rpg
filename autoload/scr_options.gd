@@ -12,6 +12,12 @@ var IONS := {
 		"range": [0.25, 2.0],
 		"default_value": 0.75
 	},
+	"content_scale_mode": {
+		"value": 0,
+		"range": [0, 1],
+		"default_value": 0,
+		"step": 1.0,
+	},
 	"master_volume": {
 		"value": 0.0,
 		"range": [-60.0, 0.0],
@@ -28,7 +34,7 @@ var IONS := {
 }
 const CATEGORIES := {
 	"sound": ["master_volume", "music_volume"],
-	"graphics": ["screen_shake_intensity", "text_speak_time"],
+	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time"],
 	"": ["reset"]
 }
 
@@ -72,7 +78,7 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_0:
 				DAT.print_data()
 			KEY_KP_2:
-				SOL.dialogue("cashier_mean_welcome")
+				pass
 			KEY_KP_3:
 				if "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
@@ -150,6 +156,11 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
 		"screen_shake_intensity":
 			SOL.shake(1.0)
+		"content_scale_mode":
+			if get_opt("content_scale_mode") == 0:
+				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
+			else:
+				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 
 
 func update(container: Container) -> void:

@@ -5,8 +5,9 @@ class_name Battle
 
 signal player_finished_acting
 
-var load_options : BattleInfo = BattleInfo.new().set_enemies(["stabbing_fella", "stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella","stabbing_fella"]).set_music("daylightthief").\
-set_party(["greg",])
+var load_options : BattleInfo = BattleInfo.new().\
+set_enemies(["grass",]).\
+set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres"))
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -67,6 +68,7 @@ var loaded_spirits := {}
 var current_target : BattleActor
 
 var death_reason := "default"
+var battle_rewards : BattleRewards
 
 var f := 0
 
@@ -140,8 +142,11 @@ func load_battle(info: BattleInfo) -> void:
 	set_background(info.get_("background", "bikeghost"))
 	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0, play_from_beginning = true})
+	battle_rewards = info.get_("rewards", null)
+	if not battle_rewards:
+		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres")
 	apply_cheats()
-	log_text.append_text(info.get_("start_text", "%s lunges at you!\n" % enemies.front().actor_name) + "\n")
+	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:
@@ -551,17 +556,24 @@ func open_end_screen(victory: bool) -> void:
 	victory_text.speak_text()
 	if victory:
 		SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
-		var looper := []
-		looper.append_array(party)
-		looper.append_array(dead_party)
-		for i in looper:
-			i.character.add_experience(xp_pool)
-			await get_tree().process_frame
-			if SOL.speaking:
-				await SOL.dialogue_closed
+		var xp_reward := Reward.new()
+		xp_reward.type = BattleRewards.Types.EXP
+		xp_reward.property = str(xp_pool)
+		battle_rewards.rewards.append(xp_reward)
+		if battle_rewards.rewards.size() > 0:
+			_grant_rewards()
+			print("awaiting rewards grant")
+			await battle_rewards.granted
+		print("awaiting dialogue close")
+		await SOL.dialogue_closed
 		doing = Doings.DONE
 	else:
 		LTS.to_game_over_screen()
+
+
+func _grant_rewards() -> void:
+	await get_tree().process_frame
+	battle_rewards.grant()
 
 
 func _on_attack_pressed() -> void:

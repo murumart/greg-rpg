@@ -1,0 +1,592 @@
+[gd_scene load_steps=24 format=3 uid="uid://qfdqyhu4un1"]
+
+[ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
+[ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
+[ext_resource type="Texture2D" uid="uid://d2hgl4bddaykp" path="res://sprites/biking/background/spr_background_sky.png" id="2_4w4l6"]
+[ext_resource type="Texture2D" uid="uid://nfu7bpddugd1" path="res://sprites/biking/background/spr_background_trees.png" id="3_0esb8"]
+[ext_resource type="Script" path="res://scenes/biking/scr_biking_greg.gd" id="3_eueen"]
+[ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
+[ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sij3x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w0cxq"]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0t7cf"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0da2"]
+particle_flag_disable_z = true
+direction = Vector3(0, -2, 0)
+spread = 138.11
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 22.99
+initial_velocity_max = 91.95
+angular_velocity_min = -33.1
+angular_velocity_max = 74.48
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clfkk"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(0, 124, 4, 4)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dj1p"]
+radius = 2.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p7ng5"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="Animation" id="Animation_s2qva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rleg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rleg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lleg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lleg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Torso:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -11)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Torso:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -17)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Head:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rarm:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -14)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rarm:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.08941]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Larm:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -14)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Larm:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.22915]
+}
+
+[sub_resource type="Animation" id="Animation_58k4y"]
+resource_name = "pedaling"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rleg:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -11), Vector2(1, -12), Vector2(2, -10), Vector2(1, -10), Vector2(-1, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rleg:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.595602, 6.00651, 0.545048]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Lleg:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -12), Vector2(1, -11), Vector2(-1, -10), Vector2(-2.38419e-07, -13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lleg:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.549695, 5.73642]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Torso:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -11), Vector2(1, -12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Torso:rotation")
+tracks/5/interp = 4
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.403423]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -17), Vector2(2, -17)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Head:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rarm:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(2, -13)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rarm:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.08941, -1.51471]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Larm:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -14), Vector2(3, -13)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Larm:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.22915, -1.50669]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tl418"]
+_data = {
+"RESET": SubResource("Animation_s2qva"),
+"pedaling": SubResource("Animation_58k4y")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
+size = Vector2(5, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tirm"]
+size = Vector2(5, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8uyq"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(0, 1, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvk73"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(3, 12, 10, 16)
+
+[node name="BikingGame" type="Node2D" groups=["speedsters"]]
+y_sort_enabled = true
+script = ExtResource("1_h455q")
+
+[node name="Camera" parent="." instance=ExtResource("5_qc4rn")]
+position = Vector2(80, 60)
+
+[node name="Background" type="Node2D" parent="."]
+z_index = -11
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+modulate = Color(0.297003, 0.275582, 0.197332, 1)
+position = Vector2(78, 18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4w4l6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+position = Vector2(78, 18)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_0esb8")
+
+[node name="Road" parent="." instance=ExtResource("1_fjpor")]
+position = Vector2(-4, 6)
+layer_0/tile_data = PackedInt32Array(458745, 65536, 2, 458746, 131072, 2, 458747, 131072, 2, 458748, 131072, 2, 458749, 131072, 2, 458750, 131072, 2, 458751, 131072, 2, 393217, 131072, 2, 393216, 131072, 2, 393218, 131072, 2, 393219, 131072, 2, 393220, 131072, 2, 393221, 131072, 2, 393222, 131072, 2, 393223, 131072, 2, 393224, 131072, 2, 393225, 131072, 2, 393226, 131072, 2, 393227, 131072, 2, 393228, 131072, 2, 393229, 131072, 2, 589840, 65536, 0, 524304, 0, 0, 458768, 0, 0, 393232, 0, 0, 327696, 0, 0, 262160, 0, 0, 196624, 0, 0, 589839, 0, 0, 524303, 0, 0, 458767, 196608, 3, 393231, 196608, 2, 327695, 196608, 2, 262159, 196608, 2, 196623, 196608, 1, 589838, 0, 0, 524302, 0, 0, 458766, 131072, 3, 393230, 131072, 2, 327694, 131072, 2, 262158, 131072, 2, 196622, 131072, 1, 589837, 0, 0, 524301, 0, 0, 458765, 131072, 3, 327693, 131072, 2, 262157, 131072, 2, 196621, 131072, 1, 589836, 0, 0, 524300, 0, 0, 458764, 131072, 3, 327692, 131072, 2, 262156, 131072, 2, 196620, 131072, 1, 589835, 0, 0, 524299, 0, 0, 458763, 131072, 3, 327691, 131072, 2, 262155, 131072, 2, 196619, 131072, 1, 589834, 0, 0, 524298, 0, 0, 458762, 131072, 3, 327690, 131072, 2, 262154, 131072, 2, 196618, 131072, 1, 589833, 0, 0, 524297, 0, 0, 458761, 131072, 3, 327689, 131072, 2, 262153, 131072, 2, 196617, 131072, 1, 589832, 0, 0, 524296, 65536, 0, 458760, 131072, 3, 327688, 131072, 2, 262152, 131072, 2, 196616, 131072, 1, 589831, 0, 0, 524295, 0, 0, 458759, 131072, 3, 327687, 131072, 2, 262151, 131072, 2, 196615, 131072, 1, 589830, 0, 0, 524294, 0, 0, 458758, 131072, 3, 327686, 131072, 2, 262150, 131072, 2, 196614, 131072, 1, 589829, 0, 0, 524293, 0, 0, 458757, 131072, 3, 327685, 131072, 2, 262149, 131072, 2, 196613, 131072, 1, 589828, 0, 0, 524292, 0, 0, 458756, 131072, 3, 327684, 131072, 2, 262148, 131072, 2, 196612, 131072, 1, 589827, 0, 0, 524291, 0, 0, 458755, 131072, 3, 327683, 131072, 2, 262147, 131072, 2, 196611, 131072, 1, 589826, 0, 0, 524290, 0, 0, 458754, 131072, 3, 327682, 131072, 2, 262146, 131072, 2, 196610, 131072, 1, 589825, 0, 0, 524289, 0, 0, 458753, 131072, 3, 327681, 131072, 2, 262145, 131072, 2, 196609, 131072, 1, 589824, 0, 0, 524288, 0, 0, 458752, 131072, 3, 327680, 131072, 2, 262144, 131072, 2, 196608, 131072, 1, 655359, 0, 0, 589823, 0, 0, 524287, 131072, 3, 393215, 131072, 2, 327679, 131072, 2, 262143, 131072, 1, 655358, 0, 0, 589822, 0, 0, 524286, 131072, 3, 393214, 131072, 2, 327678, 131072, 2, 262142, 131072, 1, 655357, 0, 0, 589821, 0, 0, 524285, 131072, 3, 393213, 131072, 2, 327677, 131072, 2, 262141, 131072, 1, 655356, 65536, 0, 589820, 65536, 0, 524284, 131072, 3, 393212, 131072, 2, 327676, 131072, 2, 262140, 131072, 1, 655355, 0, 0, 589819, 0, 0, 524283, 131072, 3, 393211, 131072, 2, 327675, 131072, 2, 262139, 131072, 1, 655354, 65536, 0, 589818, 65536, 0, 524282, 131072, 3, 393210, 131072, 2, 327674, 131072, 2, 262138, 131072, 1, 655353, 0, 0, 589817, 0, 0, 524281, 65536, 3, 393209, 65536, 2, 327673, 65536, 2, 262137, 65536, 1, 196601, 0, 12, 196602, 65536, 12, 196603, 131072, 12, 196604, 0, 12, 196605, 65536, 12, 196606, 131072, 12, 196607, 0, 12, 131072, 65536, 12, 131073, 131072, 12, 131074, 0, 12, 131075, 65536, 12, 131076, 131072, 12, 131077, 0, 12, 131078, 65536, 12, 131079, 131072, 12, 131080, 0, 12, 131081, 65536, 12, 131082, 131072, 12, 131083, 0, 12, 131084, 65536, 12, 131085, 131072, 12, 131086, 0, 12, 131087, 65536, 12, 131088, 131072, 12)
+layer_1/tile_data = PackedInt32Array(327680, 131074, 3, 327681, 131074, 3, 327682, 131074, 3, 327683, 131074, 3, 327684, 131074, 3, 327685, 131074, 3, 327686, 131074, 3, 327687, 131074, 3, 327688, 131074, 3, 327689, 131074, 3, 327690, 131074, 3, 393225, 589826, 8, 393224, 589826, 8, 393223, 589826, 8, 393222, 589826, 8, 393216, 589826, 8, 393217, 589826, 8, 393218, 589826, 8, 393219, 589826, 8, 393220, 589826, 8, 393221, 589826, 8, 262153, 655362, 5, 262152, 655362, 5, 262151, 655362, 5, 262150, 655362, 5, 262149, 655362, 5, 262148, 655362, 5, 262147, 655362, 5, 262146, 655362, 5, 262145, 655362, 5, 262144, 655362, 5, 327679, 655362, 5, 393215, 131074, 3, 262154, 655362, 5, 393226, 589826, 8, 458751, 589826, 8, 393227, 589826, 8, 327691, 131074, 3, 262155, 655362, 5, 262156, 655362, 5, 327692, 131074, 3, 393228, 589826, 8, 393229, 720898, 8, 327693, 196610, 3, 262157, 655362, 5, 327678, 655362, 5, 393214, 131074, 3, 458750, 589826, 8, 458749, 589826, 8, 393213, 131074, 3, 327677, 655362, 5, 327676, 655362, 5, 393212, 131074, 3, 458748, 589826, 8, 458747, 524290, 8, 393211, 65538, 3, 327675, 524290, 5)
+
+[node name="Bike" type="Node2D" parent="." groups=["speedsters"]]
+z_index = 1
+position = Vector2(11, 92)
+script = ExtResource("3_eueen")
+
+[node name="Frame" type="Sprite2D" parent="Bike"]
+position = Vector2(-9, -9)
+texture = ExtResource("4_n6l6t")
+centered = false
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(7, 12, 18, 11)
+
+[node name="Lwheel" type="Sprite2D" parent="Bike"]
+position = Vector2(-4.5, -4.5)
+texture = ExtResource("4_n6l6t")
+centered = false
+offset = Vector2(-3.5, -3.5)
+region_enabled = true
+region_rect = Rect2(8, 24, 7, 7)
+
+[node name="Rwheel" type="Sprite2D" parent="Bike"]
+position = Vector2(5.5, -4.5)
+texture = ExtResource("4_n6l6t")
+centered = false
+offset = Vector2(-3.5, -3.5)
+region_enabled = true
+region_rect = Rect2(18, 24, 7, 7)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bike"]
+position = Vector2(0, 1)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_sij3x")
+
+[node name="Greg" type="Node2D" parent="Bike"]
+
+[node name="Torso" type="RigidBody2D" parent="Bike/Greg"]
+position = Vector2(0, -11)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Torso" type="Sprite2D" parent="Bike/Greg/Torso"]
+position = Vector2(-3, -5)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(14, 0, 6, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Torso"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_w0cxq")
+
+[node name="Head" type="RigidBody2D" parent="Bike/Greg"]
+position = Vector2(0, -17)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Head" type="Sprite2D" parent="Bike/Greg/Head"]
+position = Vector2(-6, -8)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 13, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Head"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_0t7cf")
+
+[node name="Peas" type="GPUParticles2D" parent="Bike/Greg/Head"]
+position = Vector2(2, -3)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_u0da2")
+texture = SubResource("AtlasTexture_clfkk")
+explosiveness = 1.0
+
+[node name="Larm" type="RigidBody2D" parent="Bike/Greg"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(1, -14)
+rotation = -1.22915
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Larm" type="Sprite2D" parent="Bike/Greg/Larm"]
+position = Vector2(-1, 0)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(21, 0, 4, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Larm"]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_2dj1p")
+
+[node name="Rarm" type="RigidBody2D" parent="Bike/Greg"]
+position = Vector2(0, -14)
+rotation = -1.08941
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Rarm" type="Sprite2D" parent="Bike/Greg/Rarm"]
+position = Vector2(-1, 0)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(21, 0, 4, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Rarm"]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_2dj1p")
+
+[node name="Lleg" type="RigidBody2D" parent="Bike/Greg"]
+show_behind_parent = true
+z_index = -1
+position = Vector2(2, -12)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Lleg" type="Sprite2D" parent="Bike/Greg/Lleg"]
+position = Vector2(-1, 0)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(15, 5, 4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Lleg"]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_p7ng5")
+
+[node name="Rleg" type="RigidBody2D" parent="Bike/Greg"]
+position = Vector2(0, -11)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Rleg" type="Sprite2D" parent="Bike/Greg/Rleg"]
+position = Vector2(-1, 0)
+texture = ExtResource("4_n6l6t")
+centered = false
+region_enabled = true
+region_rect = Rect2(15, 5, 4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Rleg"]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_p7ng5")
+
+[node name="PedalingAnimation" type="AnimationPlayer" parent="Bike/Greg"]
+autoplay = "pedaling"
+speed_scale = 3.0
+libraries = {
+"": SubResource("AnimationLibrary_tl418")
+}
+
+[node name="CollisionArea" type="Area2D" parent="Bike"]
+modulate = Color(1, 0.235294, 1, 1)
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/CollisionArea"]
+position = Vector2(-4.5, -1.5)
+shape = SubResource("RectangleShape2D_ttsgc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bike/CollisionArea"]
+position = Vector2(5.5, -1.5)
+shape = SubResource("RectangleShape2D_0tirm")
+
+[node name="ObstacleTimer" type="Timer" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 120.0
+script = ExtResource("9_l1vy5")
+metadata/_edit_lock_ = true
+
+[node name="Road" type="NinePatchRect" parent="UI"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 157.0
+offset_bottom = 12.0
+texture = SubResource("AtlasTexture_r8uyq")
+patch_margin_left = 3
+patch_margin_right = 3
+axis_stretch_horizontal = 1
+
+[node name="Pointer" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 11.0
+offset_bottom = 22.0
+pivot_offset = Vector2(5, 9)
+texture = SubResource("AtlasTexture_cvk73")
+
+[connection signal="area_entered" from="Bike/CollisionArea" to="Bike" method="_on_collision_area_area_entered"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]

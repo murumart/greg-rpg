@@ -4,18 +4,33 @@
 [ext_resource type="Script" path="res://scenes/gui/scr_save_screen.gd" id="2_h7lsi"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_1c2wv"]
 
-[node name="SaveScreen" type="CenterContainer" groups=["free_on_level_transition"]]
+[node name="SaveScreen" type="Control" groups=["free_on_level_transition"]]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -160.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mqtim")
 script = ExtResource("2_h7lsi")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.494118)
+metadata/_edit_lock_ = true
+
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(60, 80)
 layout_mode = 2
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 68.0
+offset_bottom = 100.0
 
 [node name="Label" type="Label" parent="Panel"]
 visible = false
@@ -62,16 +77,6 @@ button_mask = 0
 text = "file 3 "
 script = ExtResource("3_1c2wv")
 
-[node name="ColorRect" type="ColorRect" parent="Panel"]
-z_index = -1
-layout_mode = 0
-offset_left = -50.0
-offset_top = -20.0
-offset_right = 110.0
-offset_bottom = 100.0
-color = Color(0, 0, 0, 0.494118)
-metadata/_edit_lock_ = true
-
 [node name="TabContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 1.0
@@ -103,3 +108,20 @@ offset_top = 2.0
 offset_right = 25.0
 offset_bottom = 13.0
 text = "load"
+
+[node name="InfoLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 4.0
+offset_right = 159.0
+offset_bottom = 113.0
+bbcode_enabled = true
+text = "[center]save file info[/center]
+
+date: 28.12.2023
+time: 13.47
+playtime: 40 min
+
+party: greg
+level: 12"
+scroll_active = false

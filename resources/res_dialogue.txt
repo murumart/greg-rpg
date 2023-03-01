@@ -21,8 +21,13 @@ SPEED 0.1
 	[color=#00ff00]a white dove flew over england[/color]
 
 
+DIALOGUE get_experience
+	%s experience was gained.
+
+
 DIALOGUE levelup
 SPEED 0.75
+SOUND snd_level_up.ogg
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
@@ -30,9 +35,11 @@ SPEED 1
 
 DIALOGUE levelup_with_spirit
 SPEED 0.75
+SOUND snd_level_up.ogg
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
+SOUND spirit/snd_spirit_get.ogg
 	[center][color=#7799ff]%s[/color][/center]
 
 
@@ -53,6 +60,7 @@ DIALOGUE losesilver
 
 
 DIALOGUE getspirit
+SOUND spirit/snd_spirit_get.ogg
 	[center][color=#7799ff]%s[/color][/center]
 
 
@@ -470,16 +478,13 @@ CHOICES ok
 DIALOGUE store_shelf_start
 CHOICES yes,no
 	this shelf has %s products. take a closer look?
-
-
-# these lines are set in code because that's how the old system from where I copied it worked
-DIALOGUE store_shelf_browse
-	öäö
+CHOICE_LINK yes
+	%s
 
 
 DIALOGUE store_shelf_confirm
 CHOICES yes,no
-	äöäöä
+	do you want to take the %s?
 
 
 DIALOGUE cashier_nice_welcome
@@ -722,6 +727,10 @@ DIALOGUE insp_other_flowers
 
 DIALOGUE insp_zerma_car
 	there is no escape.
+
+
+DIALOGUE insp_campfire_site
+	a campfire spot. hasn't been used in a while.
 
 
 DIALOGUE end_of_the_line

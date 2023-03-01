@@ -245,7 +245,6 @@ func handle_payload(pld: BattlePayload) -> void:
 
 
 func status_effect_update() -> void:
-	print(actor_name, " status effect update")
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
 		effect["duration"] = effect.get("duration", 1) - 1
@@ -270,7 +269,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	var old_strength : float = status_effects[nomen].get("strength", 0)
 	var old_duration : int = status_effects[nomen].get("duration", 0)
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
-	var new_duration : int = (old_duration + strength / 2) if old_duration != 0 else duration
+	var new_duration : int = roundi((old_duration + strength / 2.0)) if old_duration != 0 else duration
 	status_effects[nomen] = {
 		"strength": new_strength,
 		"duration": new_duration
@@ -292,7 +291,9 @@ func load_character(id: String) -> void:
 
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
-	DAT.character_dict[character.name_in_file] = character
+	DAT.character_dict[character.name_in_file].health = character.health
+	DAT.character_dict[character.name_in_file].magic = character.magic
+	DAT.character_dict[character.name_in_file].inventory = character.inventory
 
 
 func payload() -> BattlePayload:

@@ -43,58 +43,49 @@ func _on_interaction_area_on_interact() -> void:
 	
 	# updating dialogue to make sense in current context - stuffing type name in
 	SOL.dialogue_box.dial_concat("store_shelf_start", 0, [typenames[type]])
+	SOL.dialogue_box.dial_concat("store_shelf_start", 1, [typenames[type]])
+	SOL.dialogue_box.adjust("store_shelf_start", 1, "choices", []) # reset choices
+	var text := ""
+	var choices := []
+	for i in inventory.size(): # every available item
+		var item = inventory[i]
+		# item["item"] accesses an item dictionary's type id
+		var item_name = DAT.get_item(item["item"]).name
+		var item_price = DAT.get_item(item["item"]).price
+		name_keys_dict[item_name] = item["item"]
+		choices.append(item_name)
+		if len(text) > 1:
+			text += "; " # separating listings
+		# we show the item's name and price
+		text += "%s - %s silver" % [tr(item_name), item_price]
+	SOL.dialogue_box.adjust("store_shelf_start", 1, "text", text)
+	choices.append("cancel") # add a cancel choosing option
+	SOL.dialogue_box.adjust("store_shelf_start", 1, "choices", choices)
 	
 	SOL.dialogue("store_shelf_start")
 	
 	await SOL.dialogue_closed
 	
-	if SOL.dialogue_box.current_choice == "yes": # show item listings
-		var dlg : DialogueLine = SOL.dialogue_box.dialogues_dict.get("store_shelf_browse").get_line(0) # access dialogue reference
-		dlg.choices.clear() # reset choices
-		var text := ""
-		for i in inventory.size(): # every available item
-			var item = inventory[i]
-			# item["item"] accesses an item dictionary's type id
-			var item_name = DAT.get_item(item["item"]).name
-			var item_price = DAT.get_item(item["item"]).price
-			name_keys_dict[item_name] = item["item"]
-			dlg["choices"].append(item_name)
-			if len(text) > 1:
-				text += "; " # separating listings
-			# we show the item's name and price
-			text += "%s - %s silver" % [tr(item_name), item_price]
-		dlg.text = text
-		dlg.choices.append("cancel") # add a cancel choosing option
+	var choice := SOL.dialogue_box.current_choice
+	if not (choice == "cancel" or choice == "no"):
+		SOL.dialogue_box.dial_concat("store_shelf_confirm", 0, [choice])
 		
-		SOL.call_deferred("dialogue", "store_shelf_browse")
-	
+		SOL.call_deferred("dialogue", "store_shelf_confirm")
+		
 		await SOL.dialogue_closed
 		
-		if not SOL.dialogue_box.current_choice == "cancel":
-			var choice : String = SOL.dialogue_box.current_choice
-			dlg = SOL.dialogue_box.dialogues_dict["store_shelf_confirm"].lines[0]
-			dlg.text = "do you want to take the %s?" % choice
-			
-			SOL.call_deferred("dialogue", "store_shelf_confirm")
-			
-			await SOL.dialogue_closed
-			
-			if not choice == "no": # another chance to not take the item
-				take_item(name_keys_dict.get(choice))
-				# remove item from the shelf inventory
-				for i in inventory:
-					if i["item"] == name_keys_dict[choice]:
-						i["count"] -= 1
-						if i["count"] < 1:
-							inventory.erase(i)
-				if inventory.size() < 1:
-					set_type(0)
+		if not choice == "no": # another chance to not take the item
+			take_item(name_keys_dict.get(choice))
+			# remove item from the shelf inventory
+			for i in inventory:
+				if i["item"] == name_keys_dict[choice]:
+					i["count"] -= 1
+					if i["count"] < 1:
+						inventory.erase(i)
+			if inventory.size() < 1:
+				set_type(0)
 
 
 func take_item(ittype: StringName):
 	emit_signal("item_taken", ittype)
-
-
-
-
 

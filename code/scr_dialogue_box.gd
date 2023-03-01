@@ -12,6 +12,8 @@ signal finished_speaking
 
 @export var dialogues : Array[Dialogue]
 
+var dialogue_queue : Array[Dialogue] = []
+
 var loaded_dialogue : Dialogue
 var loaded_dialogue_line : DialogueLine
 var current_dialogue : int
@@ -21,9 +23,7 @@ var choices_open := false
 
 var dialogues_dict := {}
 
-var unmodified_dialogue_lines := {
-	
-}
+var unmodified_dialogue_lines := {}
 
 
 func _ready() -> void:
@@ -54,12 +54,19 @@ func load_dialogue_dict() -> void:
 func prepare_dialogue(key: String) -> void:
 	if dialogues_dict.is_empty():
 		load_dialogue_dict()
-	loaded_dialogue = dialogues_dict.get(key, Dialogue.new())
+	if is_instance_valid(loaded_dialogue):
+		dialogue_queue.append(dialogues_dict.get(key, Dialogue.new()).duplicate(true))
+		return
+	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
+	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
+
+
+func load_dialogue(dial : Dialogue) -> void:
+	loaded_dialogue = dial
 	if loaded_dialogue.alias != "":
 		prepare_dialogue(loaded_dialogue.alias)
 		return
 	DAT.capture_player("dialogue", false)
-	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
 	current_dialogue = 0
 	speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
@@ -77,6 +84,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
+	if part.sound:
+		SND.play_sound(part.sound)
 	
 	if part.item_to_give:
 		DAT.grant_item(part.item_to_give, 0, false)
@@ -129,6 +138,10 @@ func next_dialogue_requested() -> void:
 		loaded_dialogue = null
 		loaded_dialogue_line = null
 		current_dialogue = 0
+		if dialogue_queue.size() > 0:
+			print("queue in action")
+			load_dialogue(dialogue_queue.pop_front())
+			return
 		hide()
 		DAT.call_deferred("free_player", "dialogue")
 		call_deferred("emit_signal", "dialogue_closed")
