@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdc15ghet4p6c"]
+
+[ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="1_47bik"]
+[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_mail.gd" id="1_dw0f7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dvqhj"]
+bounce = 0.46
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cd2yj"]
+radius = 4.0
+height = 14.0
+
+[node name="BikingMail" type="RigidBody2D"]
+collision_layer = 32
+inertia = 289.54
+physics_material_override = SubResource("PhysicsMaterial_dvqhj")
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_dw0f7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_47bik")
+region_enabled = true
+region_rect = Rect2(25, 38, 12, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cd2yj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

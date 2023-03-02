@@ -14,6 +14,7 @@ const NEW_ITEM := "ITEM "
 const NEW_SPIRIT := "SPIRIT "
 const NEW_SILVER := "SILVER "
 const NEW_SOUND := "SOUND "
+const NEW_EMOTION := "EMO "
 
 
 func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
@@ -33,6 +34,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	var spirit_to_give := &""
 	var silver_to_give := 0
 	var sound_to_set : AudioStream = null
+	var emotion_to_set := ""
 	var l := -1
 	
 	for line in lines:
@@ -73,6 +75,8 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			silver_to_give = int(line.trim_prefix(NEW_SPIRIT))
 		elif line.begins_with(NEW_SOUND):
 			sound_to_set = load("res://sounds/%s" % line.trim_prefix(NEW_SOUND))
+		elif line.begins_with(NEW_EMOTION):
+			emotion_to_set = line.trim_prefix(NEW_EMOTION)
 		elif line.begins_with(NEW_LINE):
 			dial_line = DialogueLine.new()
 			dial_line.text = line.trim_prefix(NEW_LINE)
@@ -85,6 +89,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			dial_line.spirit_to_give = spirit_to_give
 			dial_line.silver_to_give = silver_to_give
 			dial_line.sound = sound_to_set
+			dial_line.emotion = emotion_to_set
 			if choices_to_set:
 				dial_line.choices = choices_to_set
 				choices_to_set = []

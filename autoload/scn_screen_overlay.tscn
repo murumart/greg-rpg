@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lvdqg7mjwheo"]
+[gd_scene load_steps=27 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_3q5xl"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="9_aaeqr"]
 
 [sub_resource type="Environment" id="Environment_2qq6b"]
 glow_enabled = true
@@ -20,6 +21,7 @@ adjustment_enabled = true
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]hello world![/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -33,6 +35,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]just kidding. dumbass[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -46,6 +49,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]remember last time?[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -59,6 +63,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]working on the game logic was fun...[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -72,6 +77,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -85,6 +91,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -104,6 +111,7 @@ alias = ""
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -117,6 +125,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "[color=#00ff00]why would i ever talk to you?[/color]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -136,6 +145,7 @@ alias = ""
 script = ExtResource("3_02o1n")
 text = "[center]victory![/center]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -155,6 +165,7 @@ alias = ""
 script = ExtResource("3_02o1n")
 text = "[center]level up![/center]"
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -168,6 +179,7 @@ silver_to_give = 0
 script = ExtResource("3_02o1n")
 text = "x leveled up to x."
 character = ""
+emotion = ""
 text_speed = 1.0
 choice_link = &""
 choices = []
@@ -193,6 +205,7 @@ script = ExtResource("1_3f4vq")
 environment = SubResource("Environment_2qq6b")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
+z_index = 11
 script = ExtResource("3_jg0vj")
 dialogues = Array[ExtResource("3_kwk5e")]([SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")])
 
@@ -243,6 +256,13 @@ text = "greg"
 flat = true
 alignment = 0
 script = ExtResource("8_3q5xl")
+
+[node name="FinishedMarker" type="Sprite2D" parent="DialogueBoxOrderer/DialogueBoxPanel"]
+position = Vector2(133, 23)
+texture = ExtResource("9_aaeqr")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 1, 3, 3)
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
 visible = false

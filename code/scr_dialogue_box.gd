@@ -9,8 +9,13 @@ signal finished_speaking
 @onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
 @onready var reference_button := $DialogueBoxPanel/ReferenceButton
 @onready var choices_container := $DialogueBoxPanel/ScrollContainer/ChoicesContainer
+@onready var finished_marker := $DialogueBoxPanel/FinishedMarker
 
 @export var dialogues : Array[Dialogue]
+
+@export var dont_close := false
+
+const PORTRAIT_DIR := "res://sprites/characters/portraits/spr_portrait_%s.png"
 
 var dialogue_queue : Array[Dialogue] = []
 
@@ -25,10 +30,15 @@ var dialogues_dict := {}
 
 var unmodified_dialogue_lines := {}
 
+var default_textbox_size := Vector2()
+var default_textbox_position := Vector2()
+
 
 func _ready() -> void:
 	hide()
 	load_dialogue_dict()
+	default_textbox_size = textbox.size
+	default_textbox_position = textbox.position
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -59,6 +69,7 @@ func prepare_dialogue(key: String) -> void:
 		return
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
+	set_finished_marker(0)
 
 
 func load_dialogue(dial : Dialogue) -> void:
@@ -81,6 +92,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var text_speed : float = part.text_speed
 	var choice_link : StringName = part.choice_link
 	var choices : PackedStringArray = part.choices
+	var emotion : String = part.emotion
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
@@ -106,9 +118,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	
 	if character and character.portrait:
 		portrait.texture = character.portrait
+		if DIR.file_exists(PORTRAIT_DIR % character.name_in_file + "_" + emotion):
+			portrait.texture = load(PORTRAIT_DIR % character.name_in_file + "_" + emotion)
 	
 	portrait.visible = portrait.texture != null
 	set_textbox_width_to_full(not portrait.visible)
+	
+	set_finished_marker(0)
 	
 	show()
 	textbox.set_text(text)
@@ -121,11 +137,14 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		next_dialogue_requested()
 		return
 	
+	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
+	
 	if choices:
 		load_reference_buttons(choices, [choices_container])
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).grab_focus()
+		set_finished_marker(0)
 	
 	finished_speaking.emit()
 
@@ -142,7 +161,8 @@ func next_dialogue_requested() -> void:
 			print("queue in action")
 			load_dialogue(dialogue_queue.pop_front())
 			return
-		hide()
+		if not dont_close:
+			hide()
 		DAT.call_deferred("free_player", "dialogue")
 		call_deferred("emit_signal", "dialogue_closed")
 	else:
@@ -151,11 +171,11 @@ func next_dialogue_requested() -> void:
 
 func set_textbox_width_to_full(which: bool) -> void:
 	if not which:
-		textbox.size = Vector2i(107, 25)
-		textbox.position = Vector2i(28, 3)
+		textbox.size = default_textbox_size - Vector2(25, 0)
+		textbox.position = default_textbox_position + Vector2(25, 0)
 	else:
-		textbox.size = Vector2i(132, 25)
-		textbox.position = Vector2i(3, 3)
+		textbox.size = default_textbox_size
+		textbox.position = default_textbox_position
 
 
 func is_speaking() -> bool:
@@ -200,6 +220,11 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		containers[container_nr].add_child(refbutton)
 		refbutton.show()
 		container_nr = wrapi(container_nr + 1, 0, containers.size())
+	# cool moment here where I decide that there are no more than 1 container.
+	for c in containers[0].get_child_count():
+		var child : Control = containers[0].get_child(c)
+		child.focus_neighbor_top = containers[0].get_child(c - 1).get_path()
+		child.focus_neighbor_bottom = containers[0].get_child(wrapi(c + 1, 0, containers[0].get_child_count())).get_path()
 
 
 func _reference_button_pressed(reference) -> void:
@@ -207,6 +232,17 @@ func _reference_button_pressed(reference) -> void:
 	SOL.dialogue_choice = reference
 	next_dialogue_requested()
 	get_viewport().set_input_as_handled()
+
+
+func set_finished_marker(to: int) -> void:
+	if to < 1:
+		finished_marker.hide()
+	elif to == 1:
+		finished_marker.region_rect.position.x = 20.0
+		finished_marker.show()
+	else:
+		finished_marker.region_rect.position.x = 16.0
+		finished_marker.show()
 
 
 func _on_button_reference_received(_reference) -> void:

@@ -99,6 +99,7 @@ quick_load={
 2d_physics/layer_3="player_interactable"
 2d_physics/layer_4="npc"
 2d_physics/layer_5="biking_obstacle"
+2d_physics/layer_6="biking_mail"
 
 [rendering]
 

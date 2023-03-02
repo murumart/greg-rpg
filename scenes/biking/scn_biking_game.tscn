@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=31 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
+[ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sij3x"]
@@ -65,7 +66,7 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Rleg:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 4
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
@@ -89,7 +90,7 @@ tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath("Lleg:rotation")
-tracks/3/interp = 1
+tracks/3/interp = 4
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
@@ -113,7 +114,7 @@ tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Torso:rotation")
-tracks/5/interp = 1
+tracks/5/interp = 4
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
@@ -137,7 +138,7 @@ tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/path = NodePath("Head:rotation")
-tracks/7/interp = 1
+tracks/7/interp = 4
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
@@ -161,7 +162,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Rarm:rotation")
-tracks/9/interp = 1
+tracks/9/interp = 4
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
@@ -185,13 +186,200 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("Larm:rotation")
-tracks/11/interp = 1
+tracks/11/interp = 4
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [-1.22915]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Torso:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Head:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rarm:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Rarm/MailSprite:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vfbms"]
+resource_name = "lob"
+length = 0.75
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.38419e-07, -11), Vector2(2.38419e-07, -10), Vector2(0, -10), Vector2(1, -10), Vector2(2.38419e-07, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Torso:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0345346, -0.132422, 0.370559, 0.0345346]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -17), Vector2(-1, -16), Vector2(-2, -16), Vector2(3, -16), Vector2(0, -17)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rarm:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(-3, -14), Vector2(-3, -16), Vector2(5, -15), Vector2(-1, -14), Vector2(0, -14)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rarm:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.616667, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.08941, 0.461722, 3.72171, 2.38501, 4.61446, 5.55468, -1.08941]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rarm:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rarm/MailSprite:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1002, 0.416667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.4008),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"throw_mail"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_58k4y"]
@@ -250,7 +438,7 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Torso:position")
-tracks/4/interp = 1
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4),
@@ -298,7 +486,7 @@ tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/path = NodePath("Rarm:position")
-tracks/8/interp = 1
+tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.4),
@@ -310,7 +498,7 @@ tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/path = NodePath("Rarm:rotation")
-tracks/9/interp = 1
+tracks/9/interp = 4
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.4),
@@ -322,7 +510,7 @@ tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/path = NodePath("Larm:position")
-tracks/10/interp = 1
+tracks/10/interp = 2
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5),
@@ -334,7 +522,7 @@ tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("Larm:rotation")
-tracks/11/interp = 1
+tracks/11/interp = 4
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0, 0.5),
@@ -342,12 +530,74 @@ tracks/11/keys = {
 "update": 0,
 "values": [-1.22915, -1.50669]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Torso:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Head:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rarm:scale")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl418"]
 _data = {
 "RESET": SubResource("Animation_s2qva"),
+"lob": SubResource("Animation_vfbms"),
 "pedaling": SubResource("Animation_58k4y")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tnvd6"]
+animation = &"pedaling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqmx1"]
+animation = &"lob"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t33lf"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_u1c06"]
+filter_enabled = true
+filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l5sbn"]
+graph_offset = Vector2(-297.796, -4.89227)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bqmx1")
+nodes/Animation/position = Vector2(108.696, 152.174)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tnvd6")
+"nodes/Animation 2/position" = Vector2(108.696, 21.7391)
+nodes/output/position = Vector2(630.435, 86.9565)
+nodes/pedaling_speed/node = SubResource("AnimationNodeTimeScale_t33lf")
+nodes/pedaling_speed/position = Vector2(282.609, 21.7391)
+nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
+nodes/play_lob/position = Vector2(434.783, 43.4783)
+node_connections = [&"output", 0, &"play_lob", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"Animation", &"pedaling_speed", 0, &"Animation 2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -419,18 +669,20 @@ offset = Vector2(-3.5, -3.5)
 region_enabled = true
 region_rect = Rect2(18, 24, 7, 7)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Bike"]
+[node name="RoadCollision" type="StaticBody2D" parent="Bike"]
 position = Vector2(0, 1)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/RoadCollision"]
 shape = SubResource("WorldBoundaryShape2D_sij3x")
 
 [node name="Greg" type="Node2D" parent="Bike"]
 
 [node name="Torso" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(0, -11)
+position = Vector2(0.924687, -11.9247)
+rotation = 0.37304
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Torso" type="Sprite2D" parent="Bike/Greg/Torso"]
@@ -445,8 +697,9 @@ position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_w0cxq")
 
 [node name="Head" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(0, -17)
+position = Vector2(1.84937, -17)
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Head" type="Sprite2D" parent="Bike/Greg/Head"]
@@ -471,9 +724,10 @@ explosiveness = 1.0
 [node name="Larm" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
 z_index = -1
-position = Vector2(1, -14)
-rotation = -1.22915
+position = Vector2(2.54003, -13.23)
+rotation = 4.84032
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Larm" type="Sprite2D" parent="Bike/Greg/Larm"]
@@ -488,9 +742,10 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_2dj1p")
 
 [node name="Rarm" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(0, -14)
-rotation = -1.08941
+position = Vector2(1.84937, -13.0753)
+rotation = 4.80051
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Rarm" type="Sprite2D" parent="Bike/Greg/Rarm"]
@@ -504,11 +759,21 @@ region_rect = Rect2(21, 0, 4, 5)
 position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_2dj1p")
 
+[node name="MailSprite" type="Sprite2D" parent="Bike/Greg/Rarm"]
+visible = false
+position = Vector2(1, 3)
+texture = ExtResource("9_a2fuc")
+centered = false
+region_enabled = true
+region_rect = Rect2(25, 38, 12, 7)
+
 [node name="Lleg" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
 z_index = -1
-position = Vector2(2, -12)
+position = Vector2(-0.667464, -10.0655)
+rotation = 0.45541
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Lleg" type="Sprite2D" parent="Bike/Greg/Lleg"]
@@ -523,8 +788,10 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_p7ng5")
 
 [node name="Rleg" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(0, -11)
+position = Vector2(1.30567, -11.5575)
+rotation = 5.68869
 collision_layer = 2
+collision_mask = 3
 metadata/_edit_group_ = true
 
 [node name="Rleg" type="Sprite2D" parent="Bike/Greg/Rleg"]
@@ -540,10 +807,17 @@ shape = SubResource("CapsuleShape2D_p7ng5")
 
 [node name="PedalingAnimation" type="AnimationPlayer" parent="Bike/Greg"]
 autoplay = "pedaling"
-speed_scale = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_tl418")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
+tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
+anim_player = NodePath("../PedalingAnimation")
+active = true
+parameters/pedaling_speed/scale = 1.0
+parameters/play_lob/active = false
+parameters/play_lob/request = 0
 
 [node name="CollisionArea" type="Area2D" parent="Bike"]
 modulate = Color(1, 0.235294, 1, 1)

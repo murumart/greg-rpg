@@ -698,6 +698,33 @@ SPEED 1.0
 # (she fights you)
 
 
+DIALOGUE biking_welcome_1
+CHAR mail_man
+	hello, greg! you made it to my checkpoint.
+CHOICES browse,leave
+	i sell things that might aid you on your mission.
+
+
+DIALOGUE biking_browse
+CHAR mail_man
+	don't waste too much time choosing!
+
+
+DIALOGUE biking_browse_2
+CHAR mail_man
+	well? which is it then?
+
+
+DIALOGUE biking_bye_1
+CHAR mail_man
+	leaving already? well, get back to work.
+
+
+DIALOGUE biking_do_you_wish_to_buy
+CHOICES yes,no
+	do you wish to buy the %s?
+
+
 DIALOGUE thug_catch_1
 	you %s. prepare to engage in a %s.
 
