@@ -489,10 +489,10 @@ tracks/8/path = NodePath("Rarm:position")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.48537),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -14), Vector2(2, -13)]
+"values": [Vector2(2, -14), Vector2(1, -13), Vector2(0.956752, -12.9568)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -516,7 +516,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, -14), Vector2(3, -13)]
+"values": [Vector2(0, -14), Vector2(3, -13)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -587,7 +587,6 @@ filter_enabled = true
 filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l5sbn"]
-graph_offset = Vector2(-297.796, -4.89227)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bqmx1")
 nodes/Animation/position = Vector2(108.696, 152.174)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tnvd6")
@@ -597,7 +596,7 @@ nodes/pedaling_speed/node = SubResource("AnimationNodeTimeScale_t33lf")
 nodes/pedaling_speed/position = Vector2(282.609, 21.7391)
 nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
 nodes/play_lob/position = Vector2(434.783, 43.4783)
-node_connections = [&"output", 0, &"play_lob", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"Animation", &"pedaling_speed", 0, &"Animation 2"]
+node_connections = [&"output", 0, &"play_lob", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"Animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -679,8 +678,7 @@ shape = SubResource("WorldBoundaryShape2D_sij3x")
 [node name="Greg" type="Node2D" parent="Bike"]
 
 [node name="Torso" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(0.924687, -11.9247)
-rotation = 0.37304
+position = Vector2(0, -11)
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -697,7 +695,7 @@ position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_w0cxq")
 
 [node name="Head" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(1.84937, -17)
+position = Vector2(0, -17)
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -724,8 +722,8 @@ explosiveness = 1.0
 [node name="Larm" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
 z_index = -1
-position = Vector2(2.54003, -13.23)
-rotation = 4.84032
+position = Vector2(1, -14)
+rotation = -1.22915
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -742,8 +740,8 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_2dj1p")
 
 [node name="Rarm" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(1.84937, -13.0753)
-rotation = 4.80051
+position = Vector2(0, -14)
+rotation = -1.08941
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -770,8 +768,7 @@ region_rect = Rect2(25, 38, 12, 7)
 [node name="Lleg" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
 z_index = -1
-position = Vector2(-0.667464, -10.0655)
-rotation = 0.45541
+position = Vector2(2, -12)
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -788,8 +785,7 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_p7ng5")
 
 [node name="Rleg" type="RigidBody2D" parent="Bike/Greg"]
-position = Vector2(1.30567, -11.5575)
-rotation = 5.68869
+position = Vector2(0, -11)
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -814,7 +810,6 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
 tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
 anim_player = NodePath("../PedalingAnimation")
-active = true
 parameters/pedaling_speed/scale = 1.0
 parameters/play_lob/active = false
 parameters/play_lob/request = 0

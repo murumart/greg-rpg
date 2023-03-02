@@ -715,14 +715,82 @@ CHAR mail_man
 	well? which is it then?
 
 
+DIALOGUE biking_perks
+CHAR mail_man
+	perks will help you during the next section of road!
+	they are even free! (how kind of me.)
+
+
 DIALOGUE biking_bye_1
 CHAR mail_man
-	leaving already? well, get back to work.
+CHOICES OK,no
+	leaving already? perhaps consider trying a perk?
+
+
+DIALOGUE biking_bye_2
+CHAR mail_man
+	get back to work, then.
+
+
+DIALOGUE biking_bye_3
+CHAR mail_man
+	good! off you go.
 
 
 DIALOGUE biking_do_you_wish_to_buy
+CHAR mail_man
 CHOICES yes,no
 	do you wish to buy the %s?
+
+
+DIALOGUE biking_man_not_enough_money
+CHAR mail_man
+	you haven't enough money for that!
+
+
+DIALOGUE biking_man_buy_item
+CHAR mail_man
+	nice! enjoy your %s!
+
+
+DIALOGUE biking_man_not_enough_space
+CHAR mail_man
+	you can't carry more than %s items.
+
+
+DIALOGUE biking_perk_snail_repel
+CHAR mail_man
+	snails will not bother you as much in the next section.
+
+
+DIALOGUE biking_perk_mail_attraction
+CHAR mail_man
+	mail will gravitate towards boxes on its own.
+
+
+DIALOGUE biking_perk_snail_bail
+CHAR mail_man
+	i love you
+
+
+DIALOGUE biking_perk_log_repel
+CHAR mail_man
+	there will be less logs on the next section of road.
+
+
+DIALOGUE biking_perk_nicer_roads
+CHAR mail_man
+	there will be less potholes on the next section of road.
+
+
+DIALOGUE biking_perk_fast_earner
+CHAR mail_man
+	someone spilled a bunch of coins! but you have to go fast to grab them.
+
+
+DIALOGUE biking_perk_else
+CHAR mail_man
+	uuh, this perk... how did it get here?
 
 
 DIALOGUE thug_catch_1

@@ -23,3 +23,4 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(_body: Node) -> void:
 	SND.play_sound(paper_sounds.pick_random(), {"volume": -16, "pitch": randf_range(0.9, 1.3)})
+	$CollisionShape2D.set_deferred("disabled", true)

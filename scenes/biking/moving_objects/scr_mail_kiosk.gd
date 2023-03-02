@@ -15,6 +15,7 @@ func _ready() -> void:
 func open_menu() -> void:
 	var menu := UI_LOAD.instantiate()
 	menu.closed.connect(func(): finished.emit())
+	menu.game_reference = get_parent()
 	SOL.add_ui_child(menu)
 
 

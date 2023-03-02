@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://5i0wek400rn3"]
+
+[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_moving_object.gd" id="1_bj2r2"]
+[ext_resource type="Texture2D" uid="uid://ci6mhv0bic0pe" path="res://sprites/vfx/spr_coin.png" id="2_lbs03"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8d4"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(0, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27bsx"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(4, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc4jy"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(0, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfdfr"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(4, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ii6"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(0, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur25q"]
+atlas = ExtResource("2_lbs03")
+region = Rect2(4, 8, 4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gr1ij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8d4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27bsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc4jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfdfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2ii6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur25q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ie6b8"]
+radius = 3.16228
+
+[node name="BikingCoin" type="Node2D"]
+script = ExtResource("1_bj2r2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gr1ij")
+autoplay = "default"
+frame_progress = 0.027404
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ie6b8")
+
+[connection signal="area_entered" from="Area2D" to="." method="collect_coin" unbinds=1]

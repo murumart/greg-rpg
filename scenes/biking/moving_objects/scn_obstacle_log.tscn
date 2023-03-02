@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ynums4xe2afs"]
+
+[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_obstacle.gd" id="1_f0ahl"]
+[ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_c2srh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lre6j"]
+size = Vector2(7.2106, 20)
+
+[node name="Log" type="Node2D" node_paths=PackedStringArray("area")]
+script = ExtResource("1_f0ahl")
+area = NodePath("Area2D")
+damage = 18
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.456877, 0.296865)
+rotation = 0.576214
+shape = SubResource("RectangleShape2D_lre6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c2srh")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 21)

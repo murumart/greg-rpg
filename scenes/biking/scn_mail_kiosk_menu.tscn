@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cea8tmxsxept"]
+[gd_scene load_steps=29 format=3 uid="uid://cea8tmxsxept"]
 
 [ext_resource type="Script" path="res://scenes/biking/scr_mail_kiosk_menu.gd" id="1_0a2qn"]
 [ext_resource type="Texture2D" uid="uid://bj0rqyhomlrjn" path="res://sprites/characters/portraits/spr_front_mail_man.png" id="2_5be7v"]
+[ext_resource type="Texture2D" uid="uid://dk7grnw6404li" path="res://sprites/biking/background/spr_mail_man_table.png" id="2_8in00"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="2_85fyn"]
 [ext_resource type="Script" path="res://code/scr_dialogue_line.gd" id="3_cwenj"]
 [ext_resource type="Texture2D" uid="uid://dnllcdqtg4q84" path="res://sprites/items/spr_item_bike_helmet.png" id="3_e0yq6"]
@@ -203,10 +204,18 @@ grow_vertical = 2
 script = ExtResource("1_0a2qn")
 
 [node name="BackgroundPanel" type="Panel" parent="."]
+clip_children = 2
 layout_mode = 0
 offset_left = 7.0
 offset_right = 153.0
 offset_bottom = 120.0
+
+[node name="MailManPicture2" type="Sprite2D" parent="BackgroundPanel"]
+position = Vector2(54, 76)
+texture = ExtResource("2_8in00")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 90, 29)
 
 [node name="MailManPicture" type="Sprite2D" parent="BackgroundPanel"]
 position = Vector2(64, 1)

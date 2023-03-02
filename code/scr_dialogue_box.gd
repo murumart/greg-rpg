@@ -23,7 +23,7 @@ var loaded_dialogue : Dialogue
 var loaded_dialogue_line : DialogueLine
 var current_dialogue : int
 
-var current_choice := &""
+var current_choice := &"": set = _set_current_choice
 var choices_open := false
 
 var dialogues_dict := {}
@@ -48,10 +48,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
-		if is_speaking():
-			textbox.skip_to_end()
-			textbox.speak_finished.emit() # yeah
-			get_viewport().set_input_as_handled()
+		skip()
 
 
 func load_dialogue_dict() -> void:
@@ -169,6 +166,13 @@ func next_dialogue_requested() -> void:
 		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 
 
+func skip() -> void:
+	if is_speaking():
+		textbox.skip_to_end()
+		textbox.speak_finished.emit() # yeah
+		get_viewport().set_input_as_handled()
+
+
 func set_textbox_width_to_full(which: bool) -> void:
 	if not which:
 		textbox.size = default_textbox_size - Vector2(25, 0)
@@ -247,3 +251,9 @@ func set_finished_marker(to: int) -> void:
 
 func _on_button_reference_received(_reference) -> void:
 	pass
+
+
+func _set_current_choice(to: StringName) -> void:
+	current_choice = to
+	print("setting current choice to  ", to)
+

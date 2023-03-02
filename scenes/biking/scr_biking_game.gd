@@ -2,8 +2,8 @@ class_name BikingGame extends Node2D
 
 const ROAD_BOUNDARIES := Rect2(Vector2(2, 116), Vector2(158, 72))
 
-const ROAD_LENGTH := 400.0
-const MAIL_KIOSK_INTERVAL := 40
+const ROAD_LENGTH := 800.0
+const MAIL_KIOSK_INTERVAL := 200
 
 @onready var road := $Road
 var speed := 60
@@ -14,15 +14,19 @@ var speed := 60
 
 @onready var obstacle_timer := $ObstacleTimer
 const OBSTACLE_PACKED : Array[PackedScene] = [
-	preload("res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn")
+	preload("res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn"),
+	preload("res://scenes/biking/moving_objects/scn_obstacle_log.tscn"),
 ]
 const MAIL_BOX_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_mailbox.tscn")
+const COIN_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_coin.tscn")
 
 var distance := 0.0
 var stop_meter := -1.0
 var kiosk_activated := false
 
 var mail_hits := 0
+var silver_collected := 0
+var current_perk := "": set = _set_perk
 
 
 func _ready() -> void:
@@ -53,11 +57,13 @@ func _on_died() -> void:
 func _on_obstacle_timer_timeout() -> void:
 	if speed < 5: return
 	# obstacle
-	obstacle_timer.start(randf_range(randf(), speed / 200.0))
+	obstacle_timer.start(1.5)
 	var obstacle : BikingObstacle = OBSTACLE_PACKED.pick_random().instantiate()
 	obstacle.speed = speed
 	obstacle.global_position = Vector2(176, randi_range(76, 112))
 	add_child(obstacle)
+	if obstacle.name.contains("Log"):
+		obstacle.rotation = randf_range(-TAU, TAU)
 	# mailboxes
 	if randf() <= 0.33:
 		var mailbox : BikingMovingObject = MAIL_BOX_LOAD.instantiate()
@@ -65,6 +71,19 @@ func _on_obstacle_timer_timeout() -> void:
 		mailbox.speed = speed
 		mailbox.hit.connect(_on_mailbox_hit)
 		add_child(mailbox)
+	# coins
+	if randf() <= 0.5:
+		spawn_coin()
+		if randf() <= 0.5:
+			spawn_coin()
+
+
+func spawn_coin() -> void:
+	var coin : BikingMovingObject = COIN_LOAD.instantiate()
+	add_child(coin)
+	coin.speed = speed
+	coin.coin_got.connect(_on_coin_collected)
+	coin.global_position = Vector2(176, randi_range(76, 112))
 
 
 func the_kiosk() -> void:
@@ -101,4 +120,13 @@ func _on_mailman_approached() -> void:
 func _on_mail_menu_finished() -> void:
 	set_speed(60)
 	bike.paused = false
+	kiosk_activated = false
+
+
+func _on_coin_collected() -> void:
+	silver_collected += 1
+
+
+func _set_perk(to: String) -> void:
+	current_perk = to
 

@@ -1,5 +1,7 @@
 class_name BikingMovingObject extends Node2D
 
+signal coin_got
+
 var speed := 200
 var start_position : Vector2
 
@@ -24,3 +26,8 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 		else:
 			global_position = start_position
+
+
+func collect_coin() -> void:
+	coin_got.emit()
+	self.queue_free()
