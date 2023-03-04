@@ -2,11 +2,6 @@ extends Node
 
 # handles data, saving and loading it
 
-# file path constants
-const CHAR_PATH := "res://resources/characters/res_%s."
-const ITEM_PATH := "res://resources/items/res_%s."
-const SPIRIT_PATH := "res://resources/spirits/res_%s."
-
 # DATA
 var A : Dictionary
 
@@ -49,23 +44,20 @@ func _ready() -> void:
 
 func load_characters() -> void:
 	for s in character_list.split("\n"):
-		if DIR.file_exists(get_char_path(s), true):
-			character_dict[s] = load(get_char_path(s)) as Character
-			character_dict[s].name_in_file = s
+		character_dict[s] = load(DIR.get_char_path(s)) as Character
+		character_dict[s].name_in_file = s
 
 
 func load_items() -> void:
 	for s in item_list.split("\n"):
-		if DIR.file_exists(get_item_path(s), true):
-			item_dict[s] = load(get_item_path(s)) as Item
-			item_dict[s].name_in_file = s
+		item_dict[s] = load(DIR.get_item_path(s)) as Item
+		item_dict[s].name_in_file = s
 
 
 func load_spirits() -> void:
 	for s in spirit_list.split("\n"):
-		if DIR.file_exists(get_spirit_path(s), true):
-			spirit_dict[s] = load(get_spirit_path(s)) as Spirit
-			spirit_dict[s].name_in_file = s
+		spirit_dict[s] = load(DIR.get_spirit_path(s)) as Spirit
+		spirit_dict[s].name_in_file = s
 
 
 # entry point for a new game.
@@ -256,24 +248,6 @@ func get_spirit(id: String) -> Spirit:
 		print("spirit ", id, " not found")
 		return preload("res://resources/res_default_spirit.tres")
 	return spirit_dict[id]
-
-
-func get_char_path(charname : String) -> String:
-	if DIR.standalone():
-		return CHAR_PATH % charname + "tres.remap"
-	return CHAR_PATH % charname + "tres"
-
-
-func get_item_path(itemname : String) -> String:
-	if DIR.standalone():
-		return ITEM_PATH % itemname + "tres.remap"
-	return ITEM_PATH % itemname + "tres"
-
-
-func get_spirit_path(spiritname : String) -> String:
-	if DIR.standalone():
-		return SPIRIT_PATH % spiritname + "tres.remap"
-	return SPIRIT_PATH % spiritname + "tres"
 
 
 func _on_game_timer_timeout() -> void:

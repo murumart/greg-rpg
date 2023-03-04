@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func interacted() -> void:
-	if DIR.file_exists(DIR.room_scene_path(destination)):
+	if DIR.room_exists(destination):
 		LTS.gate_id = gate_id
 		LTS.level_transition(DIR.room_scene_path(destination))
 	else:

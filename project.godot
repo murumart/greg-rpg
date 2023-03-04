@@ -104,6 +104,7 @@ quick_load={
 [rendering]
 
 renderer/rendering_method="mobile"
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/glow/upscale_mode=0
 environment/defaults/default_clear_color=Color(0.0627451, 0.0941176, 0.196078, 1)
 textures/canvas_textures/default_texture_filter=0

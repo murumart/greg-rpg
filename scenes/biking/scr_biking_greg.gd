@@ -1,5 +1,6 @@
 extends Node2D
 
+signal health_changed(to: float)
 signal died
 
 var speed := 200
@@ -15,12 +16,18 @@ var health := 100
 @onready var animation_tree := $Greg/AnimationTree
 @onready var peas := $Greg/Head/Peas
 @onready var mail_sprite := $Greg/Rarm/MailSprite
+@onready var paper_throw_audio := $Greg/Rarm/PaperThrowAudio
+@onready var head_sprite := $Greg/Head/Head
 
 const MAIL_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_mail.tscn")
+var super_mail := false
+var following_mail := false
 
 const PAPER_SOUNDS := [
 	preload("res://sounds/paper/paper4.ogg"),
 ]
+const HURT_SOUND := preload("res://sounds/snd_biking_tumble.ogg")
+const CRASH_SOUND := preload("res://sounds/snd_biking_crash.ogg")
 
 
 func _ready() -> void:
@@ -39,9 +46,14 @@ func _physics_process(delta: float) -> void:
 	for w in wheels:
 		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= BikingGame.ROAD_BOUNDARIES.size.x or global_position.x <= BikingGame.ROAD_BOUNDARIES.position.x) else 1.0))
 	
-	if Input.is_action_just_pressed("ui_accept"):
+	if (Input.is_action_just_pressed("ui_accept") or
+	(Input.is_action_pressed("ui_accept") and super_mail)):
 		if speed > 0 and not paused:
 			lob()
+	if Input.is_action_pressed("ui_text_backspace"):
+		head_sprite.region_rect.position.y = 10.0
+	if Input.is_action_just_released("ui_text_backspace"):
+		head_sprite.region_rect.position.y = 0.0
 
 
 func set_ragdoll_enabled(to: bool) -> void:
@@ -67,13 +79,21 @@ func launch_ragdoll() -> void:
 	call_deferred("add_ragdoll_force", Vector2(50, -150))
 
 
+func heal(amount: int) -> void:
+	health = clamp(health + absi(amount), 0, max_health)
+	health_changed.emit(health)
+
+
 func hurt(amount: int) -> void:
 	health = clamp(health - absi(amount), 0, max_health)
 	if health <= 0:
 		die()
+		SND.play_sound(CRASH_SOUND)
+	else:
+		SND.play_sound(HURT_SOUND)
+	health_changed.emit(health)
 	peas.emitting = true
-	await get_tree().process_frame
-	peas.emitting = false
+	peas.set_deferred("emitting", false)
 
 
 func die() -> void:
@@ -88,7 +108,17 @@ func _on_collision_area_area_entered(area: Area2D) -> void:
 
 
 func lob() -> void:
-	animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	if super_mail:
+		animation_tree.set("parameters/lobbing_speed/scale", 2.0)
+		if animation_tree.get("parameters/play_lob/active") == true:
+			throw_mail()
+		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		return
+	animation_tree.set("parameters/lobbing_speed/scale", 1.0)
+	if animation_tree.get("parameters/play_lob/active") == true:
+		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	else:
+		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
 func throw_mail() -> void:
@@ -99,5 +129,8 @@ func throw_mail() -> void:
 		randf_range(100, 200),
 		randf_range(-300, -100)
 	))
-	SND.play_sound(PAPER_SOUNDS.pick_random(), {"volume": -8, "pitch": randf_range(1.0, 1.2)})
+	mail.following = following_mail
+#	SND.play_sound(PAPER_SOUNDS.pick_random(), {"volume": -8, "pitch": randf_range(1.0, 1.2)})
+	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * ((int(super_mail) * 1.3) + 1)
+	paper_throw_audio.play()
 

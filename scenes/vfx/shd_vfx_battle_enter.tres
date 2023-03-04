@@ -53,7 +53,7 @@ void fragment() {
 
 // UVFunc:4
 	vec2 n_in4p2 = vec2(0.50000, 0.50000);
-	vec2 n_out4p0 = fma((UV - n_in4p2), n_out6p0, n_in4p2);
+	vec2 n_out4p0 = (UV - n_in4p2) * n_out6p0 + n_in4p2;
 
 
 // VectorFunc:9
@@ -70,7 +70,7 @@ void fragment() {
 
 	vec4 n_out3p0;
 // Texture2D:3
-	n_out3p0 = textureLod(screen_tex_frg_3, vec2(n_out10p0.xy), 0.0);
+	n_out3p0 = texture(screen_tex_frg_3, vec2(n_out10p0.xy));
 
 
 // Mix:7

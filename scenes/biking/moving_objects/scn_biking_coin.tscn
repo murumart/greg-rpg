@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://5i0wek400rn3"]
+[gd_scene load_steps=17 format=3 uid="uid://5i0wek400rn3"]
 
 [ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_moving_object.gd" id="1_bj2r2"]
 [ext_resource type="Texture2D" uid="uid://ci6mhv0bic0pe" path="res://sprites/vfx/spr_coin.png" id="2_lbs03"]
+[ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ql27p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bu8d4"]
 atlas = ExtResource("2_lbs03")
@@ -56,6 +57,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ie6b8"]
 radius = 3.16228
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ntbh"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_ydtdq"]
+_data = [Vector2(0, 0.623206), 0.0, 0.0, 0, 0, Vector2(0.506086, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.244418), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_54sd8"]
+width = 32
+curve = SubResource("Curve_ydtdq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hvhl4"]
+lifetime_randomness = 0.09
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 5.75
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_54sd8")
+anim_speed_min = 2.0
+anim_speed_max = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5bqn"]
+radius = 16.0312
+
 [node name="BikingCoin" type="Node2D"]
 script = ExtResource("1_bj2r2")
 
@@ -72,4 +110,22 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ie6b8")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_3ntbh")
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_hvhl4")
+texture = ExtResource("3_ql27p")
+fixed_fps = 12
+visibility_rect = Rect2(-16, -16, 32, 32)
+local_coords = true
+
+[node name="ManArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManArea"]
+shape = SubResource("CircleShape2D_h5bqn")
+
 [connection signal="area_entered" from="Area2D" to="." method="collect_coin" unbinds=1]
+[connection signal="area_entered" from="ManArea" to="." method="randomise_position" unbinds=1]

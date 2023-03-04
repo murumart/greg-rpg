@@ -34,7 +34,7 @@ size = Vector2(18, 16.5)
 size = Vector2(9.5, 16.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw0su"]
-size = Vector2(18, 15)
+size = Vector2(18, 11)
 
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
@@ -358,7 +358,7 @@ position = Vector2(116, -72)
 key = "other_flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers6"]
-position = Vector2(4, 1.5)
+position = Vector2(4, 3.5)
 shape = SubResource("RectangleShape2D_dw0su")
 
 [node name="Flowers7" parent="Areas" instance=ExtResource("11_b4a8j")]

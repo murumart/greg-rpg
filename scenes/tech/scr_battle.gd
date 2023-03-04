@@ -7,7 +7,7 @@ signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["grass",]).\
-set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres"))
+set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("grass")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -232,7 +232,7 @@ func arrange_enemies():
 
 func set_background(id: String) -> void:
 	var path := DIR.battle_background_scene_path(id)
-	if DIR.file_exists(path):
+	if DIR.battle_background_scene_exists(id):
 		background_container.add_child(load(path).instantiate())
 	else:
 		background_container.add_child(load("res://scenes/battle_backgrounds/scn_bikeghost.tscn").instantiate())

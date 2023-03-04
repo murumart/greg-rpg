@@ -770,7 +770,7 @@ CHAR mail_man
 
 DIALOGUE biking_perk_snail_bail
 CHAR mail_man
-	i love you
+	the snails forgive you for your crimes so far.
 
 
 DIALOGUE biking_perk_log_repel

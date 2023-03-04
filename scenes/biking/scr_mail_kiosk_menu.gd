@@ -106,6 +106,8 @@ func gen_items() -> Array:
 
 func gen_perks() -> Array:
 	var reference := possible_perks.duplicate()
+	if randf() <= 0.1:
+		reference.append("super_mail")
 	var arr := []
 	for i in 3:
 		var choice : String = reference.pick_random()
@@ -153,7 +155,7 @@ func _reference_button_pressed(reference) -> void:
 func item_reference_pressed(reference) -> void:
 	var item := DAT.get_item(reference)
 	var price = roundi(item.price / 2.0)
-	var inventory : Array = game_get("inventory", ["s",])
+	var inventory : Array = game_get("inventory", [])
 	var silver : int = game_get("silver_collected", 0)
 	dlbox.dial_concat("biking_do_you_wish_to_buy", 0, [item.name])
 	dlbox.prepare_dialogue("biking_do_you_wish_to_buy")
@@ -175,6 +177,7 @@ func item_reference_pressed(reference) -> void:
 				items_available.erase(reference)
 				game_set("inventory", inventory)
 				game_set("silver_collected", silver - price)
+				game_call("update_ui")
 				load_items()
 				await dlbox.dialogue_closed
 				button_container.get_child(0).grab_focus()
@@ -214,7 +217,7 @@ func perk_reference_received(reference) -> void:
 	item_info_label.text = ""
 	item_picture.get_parent().hide()
 	var dialogue_name : String = "biking_perk_%s" % reference
-	if ! dialogue_name in dlbox.dialogues_dict.keys():
+	if !dialogue_name in dlbox.dialogues_dict.keys():
 		dialogue_name = "biking_perk_else"
 	dlbox.skip()
 	dlbox.loaded_dialogue = null
@@ -228,11 +231,18 @@ func game_get(thing: String, default: Variant = null) -> Variant:
 		return default
 	return game_reference.get(thing)
 
-#.....
+
 func game_set(thing: String, to: Variant) -> void:
 	if !game_reference:
 		print("no game")
 		return
 	game_reference.set(thing, to)
+
+
+func game_call(method: String, arguments : Array = []) -> void:
+	if ! game_reference:
+		print("no game")
+		return
+	game_reference.callv(method, arguments)
 
 

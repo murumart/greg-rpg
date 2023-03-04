@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=37 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
+[ext_resource type="AudioStream" uid="uid://ctje0ls4qog7u" path="res://sounds/paper/paper4.ogg" id="10_5fkpw"]
+[ext_resource type="Texture2D" uid="uid://dvsd0jvyaskrw" path="res://sprites/items/spr_item_masking_tape.png" id="12_hbmle"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sij3x"]
 
@@ -580,6 +582,8 @@ animation = &"pedaling"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqmx1"]
 animation = &"lob"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_h1m0i"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t33lf"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_u1c06"]
@@ -587,16 +591,19 @@ filter_enabled = true
 filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l5sbn"]
+graph_offset = Vector2(-284.256, -8.19565)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bqmx1")
 nodes/Animation/position = Vector2(108.696, 152.174)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tnvd6")
-"nodes/Animation 2/position" = Vector2(108.696, 21.7391)
+"nodes/Animation 2/position" = Vector2(21.7391, 0)
+nodes/lobbing_speed/node = SubResource("AnimationNodeTimeScale_h1m0i")
+nodes/lobbing_speed/position = Vector2(282.609, 173.913)
 nodes/output/position = Vector2(630.435, 86.9565)
 nodes/pedaling_speed/node = SubResource("AnimationNodeTimeScale_t33lf")
-nodes/pedaling_speed/position = Vector2(282.609, 21.7391)
+nodes/pedaling_speed/position = Vector2(239.13, 21.7391)
 nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
 nodes/play_lob/position = Vector2(434.783, 43.4783)
-node_connections = [&"output", 0, &"play_lob", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"Animation"]
+node_connections = [&"output", 0, &"play_lob", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"lobbing_speed", &"lobbing_speed", 0, &"Animation"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -612,8 +619,19 @@ region = Rect2(0, 1, 16, 11)
 atlas = ExtResource("8_t4p2q")
 region = Rect2(3, 12, 10, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb685"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(16, 10, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23di3"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(22, 10, 6, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ko2l"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(22, 3, 6, 7)
+
 [node name="BikingGame" type="Node2D" groups=["speedsters"]]
-y_sort_enabled = true
 script = ExtResource("1_h455q")
 
 [node name="Camera" parent="." instance=ExtResource("5_qc4rn")]
@@ -622,6 +640,7 @@ position = Vector2(80, 60)
 [node name="Background" type="Node2D" parent="."]
 z_index = -11
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 modulate = Color(0.297003, 0.275582, 0.197332, 1)
@@ -650,7 +669,7 @@ texture = ExtResource("4_n6l6t")
 centered = false
 offset = Vector2(0, -5)
 region_enabled = true
-region_rect = Rect2(7, 12, 18, 11)
+region_rect = Rect2(14, 12, 18, 11)
 
 [node name="Lwheel" type="Sprite2D" parent="Bike"]
 position = Vector2(-4.5, -4.5)
@@ -658,7 +677,7 @@ texture = ExtResource("4_n6l6t")
 centered = false
 offset = Vector2(-3.5, -3.5)
 region_enabled = true
-region_rect = Rect2(8, 24, 7, 7)
+region_rect = Rect2(15, 24, 7, 7)
 
 [node name="Rwheel" type="Sprite2D" parent="Bike"]
 position = Vector2(5.5, -4.5)
@@ -666,7 +685,7 @@ texture = ExtResource("4_n6l6t")
 centered = false
 offset = Vector2(-3.5, -3.5)
 region_enabled = true
-region_rect = Rect2(18, 24, 7, 7)
+region_rect = Rect2(25, 24, 7, 7)
 
 [node name="RoadCollision" type="StaticBody2D" parent="Bike"]
 position = Vector2(0, 1)
@@ -705,7 +724,7 @@ position = Vector2(-6, -8)
 texture = ExtResource("4_n6l6t")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 13, 9)
+region_rect = Rect2(0, 0, 14, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/Greg/Head"]
 position = Vector2(0, -3)
@@ -765,6 +784,11 @@ centered = false
 region_enabled = true
 region_rect = Rect2(25, 38, 12, 7)
 
+[node name="PaperThrowAudio" type="AudioStreamPlayer" parent="Bike/Greg/Rarm"]
+stream = ExtResource("10_5fkpw")
+volume_db = -8.0
+max_polyphony = 60
+
 [node name="Lleg" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
 z_index = -1
@@ -810,6 +834,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
 tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
 anim_player = NodePath("../PedalingAnimation")
+parameters/lobbing_speed/scale = 1.0
 parameters/pedaling_speed/scale = 1.0
 parameters/play_lob/active = false
 parameters/play_lob/request = 0
@@ -829,6 +854,12 @@ shape = SubResource("RectangleShape2D_0tirm")
 
 [node name="ObstacleTimer" type="Timer" parent="."]
 
+[node name="CoinTimer" type="Timer" parent="."]
+
+[node name="SnailTimer" type="Timer" parent="."]
+
+[node name="MailboxTimer" type="Timer" parent="."]
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -837,7 +868,12 @@ offset_bottom = 120.0
 script = ExtResource("9_l1vy5")
 metadata/_edit_lock_ = true
 
-[node name="Road" type="NinePatchRect" parent="UI"]
+[node name="RoadParts" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 40.0
+
+[node name="Road" type="NinePatchRect" parent="UI/RoadParts"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 1.0
@@ -848,7 +884,7 @@ patch_margin_left = 3
 patch_margin_right = 3
 axis_stretch_horizontal = 1
 
-[node name="Pointer" type="TextureRect" parent="UI"]
+[node name="Pointer" type="TextureRect" parent="UI/RoadParts"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 6.0
@@ -857,5 +893,165 @@ offset_bottom = 22.0
 pivot_offset = Vector2(5, 9)
 texture = SubResource("AtlasTexture_cvk73")
 
+[node name="MeterCounter" type="Label" parent="UI/RoadParts"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 157.0
+offset_bottom = 24.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "220"
+horizontal_alignment = 1
+
+[node name="HellMenu" type="Control" parent="UI"]
+anchors_preset = 0
+offset_top = -40.0
+offset_right = 160.0
+
+[node name="Label" type="Label" parent="UI/HellMenu"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "punishment."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SnailCounterLabel" type="Label" parent="UI/HellMenu"]
+layout_mode = 0
+offset_top = 11.0
+offset_right = 160.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "0/120"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+layout_mode = 0
+offset_top = 117.0
+offset_right = 160.0
+offset_bottom = 120.0
+step = 1.0
+value = 99.0
+show_percentage = false
+
+[node name="CounterContainer" type="VBoxContainer" parent="UI"]
+z_index = 1
+layout_mode = 0
+offset_left = 118.0
+offset_top = 14.0
+offset_right = 149.0
+offset_bottom = 53.0
+theme_override_constants/separation = -1
+
+[node name="CoinCounter" type="HBoxContainer" parent="UI/CounterContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/CounterContainer/CoinCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_eb685")
+stretch_mode = 2
+
+[node name="CoinCounterLabel" type="Label" parent="UI/CounterContainer/CoinCounter"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "0"
+
+[node name="MailCounter" type="HBoxContainer" parent="UI/CounterContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/CounterContainer/MailCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_23di3")
+stretch_mode = 2
+
+[node name="MailCounterLabel" type="Label" parent="UI/CounterContainer/MailCounter"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "0"
+
+[node name="SnailCounter" type="HBoxContainer" parent="UI/CounterContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/CounterContainer/SnailCounter"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("AtlasTexture_0ko2l")
+stretch_mode = 2
+
+[node name="SnailCounterLabel" type="Label" parent="UI/CounterContainer/SnailCounter"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "0"
+
+[node name="UsingItemPanel" type="Panel" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 66.0
+
+[node name="Label" type="Label" parent="UI/UsingItemPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 103.0
+offset_bottom = 13.0
+text = "which item?"
+horizontal_alignment = 1
+
+[node name="ItemsContainer" type="HBoxContainer" parent="UI/UsingItemPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 9.0
+offset_right = 103.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/UsingItemPanel/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_hbmle")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/UsingItemPanel/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_hbmle")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="UI/UsingItemPanel/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("12_hbmle")
+stretch_mode = 2
+
+[node name="PouintingHand" type="Sprite2D" parent="UI/UsingItemPanel"]
+position = Vector2(32, 51)
+texture = ExtResource("8_t4p2q")
+centered = false
+offset = Vector2(-8, -16)
+flip_v = true
+region_enabled = true
+region_rect = Rect2(33, 0, 14, 16)
+
 [connection signal="area_entered" from="Bike/CollisionArea" to="Bike" method="_on_collision_area_area_entered"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
+[connection signal="timeout" from="SnailTimer" to="." method="_on_snail_timer_timeout"]
+[connection signal="timeout" from="MailboxTimer" to="." method="_on_mailbox_timer_timeout"]

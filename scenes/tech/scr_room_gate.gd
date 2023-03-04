@@ -42,7 +42,7 @@ func _on_area_entered(body: Node2D) -> void:
 	if body == player:
 		print(player.state)
 		if player.state == PlayerOverworld.States.NOT_FREE_MOVE: return
-		if DIR.file_exists(DIR.room_scene_path(destination)):
+		if DIR.room_exists(destination):
 			LTS.gate_id = gate_id
 			LTS.level_transition(DIR.room_scene_path(destination))
 		entered.emit()

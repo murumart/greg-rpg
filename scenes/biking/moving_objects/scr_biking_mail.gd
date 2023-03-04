@@ -9,6 +9,8 @@ var paper_sounds := [
 	preload("res://sounds/paper/paper6.ogg"),
 ]
 
+var following := false
+
 
 func _ready() -> void:
 	apply_torque_impulse(randf_range(300, 3000))
@@ -19,6 +21,21 @@ func _physics_process(delta: float) -> void:
 	
 	if lifetime > MAX_LIFETIME:
 		call_deferred("queue_free")
+	
+	if following:
+		if $CollisionShape2D.disabled:
+			$CollisionShape2D.set_deferred("disabled", false)
+		var target : Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
+		if not is_instance_valid(target): return
+		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
+		freeze = true
+		var target_position := Vector2(target.global_position.x, target.global_position.y - 15)
+		look_at(target_position)
+		global_position = global_position.move_toward(target_position, delta * 60)
+		lifetime -= delta * 0.5
+		
+		if global_position.is_equal_approx(target_position):
+			queue_free()
 
 
 func _on_body_entered(_body: Node) -> void:

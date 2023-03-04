@@ -3,11 +3,15 @@ extends Node
 # handles access to files
 
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
-const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_"
-const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_"
-const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/scn_"
+const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s.tscn"
+const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
+const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/scn_%s.tscn"
 const TSCN := ".tscn"
-const SCN := ".scn"
+
+# file path constants
+const CHAR_PATH := "res://resources/characters/res_%s"
+const ITEM_PATH := "res://resources/items/res_%s"
+const SPIRIT_PATH := "res://resources/spirits/res_%s"
 
 
 func _init() -> void:
@@ -18,7 +22,7 @@ func _init() -> void:
 
 
 func standalone() -> bool:
-	return OS.has_feature("standalone")
+	return not OS.has_feature("editor")
 
 
 func write_dict_to_file(data: Dictionary, filename : String) -> void:
@@ -37,10 +41,8 @@ func get_dict_from_file(filename : String) -> Dictionary:
 
 
 func enemy_scene_exists(name_in_file: String) -> bool:
-	var path := enemy_scene_path(name_in_file)
-	if FileAccess.file_exists(path):
-		return true
-	return false
+	var dir := get_dir_contents("res://scenes/characters/battle_enemies/", "scn_enemy_")
+	return name_in_file in dir
 
 
 func file_exists(path, complain := false) -> bool:
@@ -50,18 +52,60 @@ func file_exists(path, complain := false) -> bool:
 	return false
 
 
+func get_char_path(charname : String) -> String:
+	return CHAR_PATH % charname + ".tres"
+
+
+func get_item_path(itemname : String) -> String:
+	return ITEM_PATH % itemname + ".tres"
+
+
+func get_spirit_path(spiritname : String) -> String:
+	return SPIRIT_PATH % spiritname + ".tres"
+
+
 func enemy_scene_path(name_in_file: String) -> String:
-	return str((ENEMY_SCENE_PATH + name_in_file), SCN if standalone() else TSCN)
+	return str(ENEMY_SCENE_PATH % name_in_file)
 
 
 func room_scene_path(id: String) -> String:
-	return str((ROOM_SCENE_PATH + id), SCN if standalone() else TSCN)
+	return ROOM_SCENE_PATH % id
 
 
 func battle_background_scene_path(id: String) -> String:
-	return str((BATTLE_BACKGROUND_SCENE_PATH + id), SCN if standalone() else TSCN)
+	return BATTLE_BACKGROUND_SCENE_PATH % id
+
+
+func battle_background_scene_exists(id: String) -> bool:
+	var dir := get_dir_contents("res://scenes/battle_backgrounds/", "scn_")
+	return id in dir
+
+
+func room_exists(id: String) -> bool:
+	var dir := get_dir_contents("res://scenes/rooms/", "scn_room_")
+	return id in dir
 
 
 func get_dialogue_file() -> String:
 	var file := FileAccess.open("res://resources/res_dialogue.txt", FileAccess.READ)
 	return file.get_as_text()
+
+
+func get_dir_contents(path: String, trim: String = "") -> Array[String]:
+	var contents : Array[String] = []
+	var dir := DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				pass
+			else:
+				# fuck you and your file suffix
+				contents.append(file_name.get_basename().get_basename().get_basename().get_basename().trim_prefix(trim))
+			file_name = dir.get_next()
+		return contents
+	else:
+		printerr("path %s not good!" % path)
+		return contents
+

@@ -104,7 +104,7 @@ _data = {
 "yum": SubResource("Animation_ve5me")
 }
 
-[node name="Mailbox" type="Node2D"]
+[node name="Mailbox" type="Node2D" groups=["biking_mailboxes"]]
 script = ExtResource("1_m5ewb")
 
 [node name="Pole" type="Sprite2D" parent="."]
