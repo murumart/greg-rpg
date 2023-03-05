@@ -7,6 +7,7 @@ var speed := 200
 var start_position : Vector2
 
 var moving := true
+var following := false
 
 @export_enum("Delete", "Signal and delete") var screen_exit_behaviour : int = 0
 
@@ -20,9 +21,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if moving: global_position.x -= speed * delta
+	if moving:
+		global_position.x -= speed * delta
+		if following:
+			var target : Node2D = get_tree().get_first_node_in_group("biking_players")
+			if not is_instance_valid(target): return
+			var target_position := Vector2(target.global_position.x, target.global_position.y)
+			look_at(target_position)
+			global_position = global_position.move_toward(target_position, delta * speed)
 	
-	if global_position.x < -20:
+	if global_position.x < -60:
 		if screen_exit_behaviour == 1:
 			will_delete.emit()
 		queue_free()
@@ -39,4 +47,5 @@ func delete() -> void:
 
 
 func randomise_position() -> void:
+	if following: return
 	global_position = Vector2(176, randi_range(76, 112))

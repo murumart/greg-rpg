@@ -23,10 +23,10 @@ func _physics_process(delta: float) -> void:
 		call_deferred("queue_free")
 	
 	if following:
-		if $CollisionShape2D.disabled:
-			$CollisionShape2D.set_deferred("disabled", false)
 		var target : Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
 		if not is_instance_valid(target): return
+		if $CollisionShape2D.disabled:
+			$CollisionShape2D.set_deferred("disabled", false)
 		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 		freeze = true
 		var target_position := Vector2(target.global_position.x, target.global_position.y - 15)

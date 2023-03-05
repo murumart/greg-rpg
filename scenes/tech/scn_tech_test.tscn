@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://baqhyu31t6hol"]
+
+[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="1_aevjy"]
+[ext_resource type="PackedScene" uid="uid://qfdqyhu4un1" path="res://scenes/biking/scn_biking_game.tscn" id="1_n2j8k"]
+[ext_resource type="PackedScene" uid="uid://cs4gy581cc8ok" path="res://scenes/biking/moving_objects/scn_biking_snail.tscn" id="2_onjg8"]
+[ext_resource type="PackedScene" uid="uid://c25n4cpx3uhni" path="res://scenes/rooms/scn_room_test_2.tscn" id="3_s0nek"]
+[ext_resource type="PackedScene" uid="uid://u7av7wk05sg8" path="res://scenes/characters/battle_enemies/scn_enemy_cashier_mean.tscn" id="4_8ie6t"]
+[ext_resource type="PackedScene" uid="uid://l703mpu0fwkw" path="res://scenes/vfx/scn_vfx_use_item.tscn" id="5_v4wpo"]
+[ext_resource type="PackedScene" uid="uid://cf1yig2q6wh25" path="res://scenes/tech/scn_battle.tscn" id="6_x808d"]
+
+[node name="TechTest" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_aevjy")
+
+[node name="BikingGame" parent="." instance=ExtResource("1_n2j8k")]
+position = Vector2(71, 0)
+
+[node name="Snail" parent="BikingGame" instance=ExtResource("2_onjg8")]
+position = Vector2(33, 80)
+
+[node name="Snail2" parent="BikingGame" instance=ExtResource("2_onjg8")]
+position = Vector2(48, 80)
+
+[node name="Snail3" parent="BikingGame" instance=ExtResource("2_onjg8")]
+position = Vector2(62, 80)
+
+[node name="Test2" parent="." instance=ExtResource("3_s0nek")]
+position = Vector2(143, 120)
+
+[node name="BattleEnemy" parent="." instance=ExtResource("4_8ie6t")]
+modulate = Color(100, 0, 100, 1)
+position = Vector2(208, 124)
+
+[node name="ItemAnimation" parent="." instance=ExtResource("5_v4wpo")]
+position = Vector2(137, 99)
+
+[node name="Battle" parent="." instance=ExtResource("6_x808d")]
+position = Vector2(-73, 75)
+scale = Vector2(1.6653, 2.13668)

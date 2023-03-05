@@ -6,8 +6,9 @@ const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
 var gate_id : StringName
 const GATE_LOADING := &"loading"
-const GATE_EXIT_BATTLE := &"loading"
-const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE]
+const GATE_EXIT_BATTLE := &"battle_exit"
+const GATE_EXIT_BIKING := &"bike_exit"
+const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING]
 
 var entering_battle := false
 
@@ -54,6 +55,7 @@ func level_transition(path: String, op := {}) -> void:
 
 
 func to_game_over_screen() -> void:
+	SND.play_song("", 100.0)
 	level_transition("res://scenes/gui/scn_death_screen.tscn", {"stealing_enabled": false})
 
 

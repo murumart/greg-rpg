@@ -7,6 +7,7 @@
 size = Vector2(7.2106, 20)
 
 [node name="Log" type="Node2D" node_paths=PackedStringArray("area")]
+z_index = -1
 script = ExtResource("1_f0ahl")
 area = NodePath("Area2D")
 damage = 18

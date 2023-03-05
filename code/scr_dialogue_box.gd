@@ -10,6 +10,7 @@ signal finished_speaking
 @onready var reference_button := $DialogueBoxPanel/ReferenceButton
 @onready var choices_container := $DialogueBoxPanel/ScrollContainer/ChoicesContainer
 @onready var finished_marker := $DialogueBoxPanel/FinishedMarker
+@onready var dialogue_sound : AudioStreamPlayer = get_node_or_null("DialogueSound")
 
 @export var dialogues : Array[Dialogue]
 
@@ -115,8 +116,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	
 	if character and character.portrait:
 		portrait.texture = character.portrait
-		if DIR.file_exists(PORTRAIT_DIR % character.name_in_file + "_" + emotion):
-			portrait.texture = load(PORTRAIT_DIR % character.name_in_file + "_" + emotion)
+		if DIR.portrait_exists(character.name_in_file + "_" + emotion):
+			portrait.texture = load(PORTRAIT_DIR % (character.name_in_file + "_" + emotion))
 	
 	portrait.visible = portrait.texture != null
 	set_textbox_width_to_full(not portrait.visible)
@@ -126,10 +127,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	show()
 	textbox.set_text(text)
 	started_speaking.emit()
-	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed})
-	if character and character.voice_sound:
-		SND.play_sound(character.voice_sound, {"bus": "Speech"})
+	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed * text.length() * 0.05})
+	if character and character.voice_sound and dialogue_sound:
+		dialogue_sound.stream = character.voice_sound
+		dialogue_sound.play()
 	await textbox.speak_finished
+	if dialogue_sound:
+		dialogue_sound.stop()
 	if part.instaskip:
 		next_dialogue_requested()
 		return

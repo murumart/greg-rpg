@@ -737,6 +737,17 @@ CHAR mail_man
 	good! off you go.
 
 
+DIALOGUE biking_last_stop
+CHAR mail_man
+	well done, greg! you have reached the end of the road.
+	you will be rewarded according to your performance.
+
+
+DIALOGUE biking_end
+CHAR mail_man
+	see you again soon...
+
+
 DIALOGUE biking_do_you_wish_to_buy
 CHAR mail_man
 CHOICES yes,no
@@ -793,6 +804,24 @@ CHAR mail_man
 	uuh, this perk... how did it get here?
 
 
+DIALOGUE mail_man_face_test
+CHAR mail_man
+	hey, check this out.
+EMO content
+	i can close my eyes.
+	i look so content right now!
+EMO serious
+	but all is not fun and games, you see.
+	sometimes you have to grab life by the reigns.
+EMO intimidating
+	and take what's yours.
+	...
+EMO content
+	...
+EMO 
+	well, that's it. i'm going to cry now. seeya.
+
+
 DIALOGUE thug_catch_1
 	you %s. prepare to engage in a %s.
 
@@ -826,6 +855,24 @@ DIALOGUE insp_zerma_car
 
 DIALOGUE insp_campfire_site
 	a campfire spot. hasn't been used in a while.
+
+
+DIALOGUE insp_postboxes
+	post boxes.
+
+
+DIALOGUE insp_mail_newspaper
+	newspaper clipping.
+	"failures of the prison system: why are inmates given tungsten spoons?"
+
+
+DIALOGUE insp_mail_calendar
+	a calendar.
+	today sure is a date.
+
+
+DIALOGUE insp_mailstack
+	stacks of envelopes.
 
 
 DIALOGUE end_of_the_line

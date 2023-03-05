@@ -897,7 +897,7 @@ animated_sprite = NodePath("Mailman")
 speed = 1000
 movement_wait = 1.0
 path_container = NodePath("../../MDP93PATH")
-default_lines = Array[StringName]([&"mailtest"])
+default_lines = Array[StringName]([&"mail_man_face_test"])
 save_position = true
 save_convo_progess = true
 

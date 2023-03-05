@@ -60,6 +60,10 @@ var songs := {
 		"title": "lily lesson",
 		"link": "res://music/mus_lily_lesson.ogg"
 	},
+	"mail_mission": {
+		"title": "mail mission",
+		"link": "res://music/mus_mail_mission.ogg"
+	},
 	"overrun": {
 		"title": "overrun",
 		"link": "res://music/mus_overrun.ogg"
@@ -67,6 +71,14 @@ var songs := {
 	"shitty_entrance_of_the_gladiators": {
 		"title": "julius fucik - entrance of the gladiators",
 		"link": "res://music/mus_entrance_of_the_gladiators.ogg"
+	},
+	"snail_mourning": {
+		"title": "snail mourning",
+		"link": "res://music/mus_snail_mourning.ogg"
+	},
+	"mail_man": {
+		"title": "the friendly postman",
+		"link": "res://music/mus_mail_man.ogg"
 	},
 	"touch_me": {
 		"title": "touch me",

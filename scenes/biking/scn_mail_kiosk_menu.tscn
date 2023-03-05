@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://code/scr_dialogue.gd" id="4_wd8bk"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="5_8wxff"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_bw1u3"]
-[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="7_tdptl"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_cw2k1"]
+[ext_resource type="Texture2D" uid="uid://bm4rwxl0motml" path="res://sprites/characters/portraits/spr_portrait_mail_man.png" id="9_f427b"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="9_qnob4"]
 
 [sub_resource type="Resource" id="Resource_m7o2u"]
@@ -256,8 +256,8 @@ scroll_active = false
 script = ExtResource("6_bw1u3")
 
 [node name="PortraitSprite" type="Sprite2D" parent="DialogueBox/DialogueBoxPanel"]
-position = Vector2(-31, 3)
-texture = ExtResource("7_tdptl")
+position = Vector2(86, -81)
+texture = ExtResource("9_f427b")
 centered = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DialogueBox/DialogueBoxPanel"]
@@ -291,6 +291,9 @@ texture = ExtResource("9_qnob4")
 centered = false
 region_enabled = true
 region_rect = Rect2(16, 1, 3, 3)
+
+[node name="DialogueSound" type="AudioStreamPlayer" parent="DialogueBox"]
+bus = &"Speech"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0

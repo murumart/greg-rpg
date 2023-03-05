@@ -11,6 +11,18 @@ const DEATH_REASONS := {
 		"picture": "car",
 		"text": "[center]ride, ride, ride, until you find yourself again.[/center]"
 	},
+	"bikecry": {
+		"picture": "bikecry",
+		"text": "[center]invest in roads, politicians!"
+	},
+	"mail_disappointment": {
+		"picture": "mail_disappointment",
+		"text": "[center]..."
+	},
+	"snail_beam": {
+		"picture": "snail_beam",
+		"text": "[center]you are in for a world of 4000k!"
+	}
 }
 
 @onready var text_box := $TextBox

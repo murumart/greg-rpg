@@ -68,13 +68,14 @@ func _ready() -> void:
 	SOL.add_ui_child(root, 128, false)
 	root.hide()
 	load_options()
+	get_window().always_on_top = true
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_KP_1:
-				SOL.vfx("damage_number", get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), {text = "9999", size= randi()%3 + 1})
+				SOL.vfx_damage_number(get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), "9999", Color.WHITE, randi()%3 + 1)
 			KEY_KP_0:
 				DAT.print_data()
 			KEY_KP_2:

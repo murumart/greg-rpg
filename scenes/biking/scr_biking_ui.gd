@@ -4,6 +4,7 @@ var game : BikingGame
 
 @onready var road_parts := $RoadParts
 @onready var hell_menu := $HellMenu
+@onready var counter_container := $CounterContainer
 
 @onready var road := $RoadParts/Road
 @onready var pointer := $RoadParts/Pointer
@@ -13,6 +14,7 @@ var game : BikingGame
 @onready var mail_label := $CounterContainer/MailCounter/MailCounterLabel
 @onready var snail_label := $CounterContainer/SnailCounter/SnailCounterLabel
 @onready var hell_snail_label := $HellMenu/SnailCounterLabel
+@onready var hell_time_label := $HellMenu/TimeCounterLabel
 
 var inventory_open := false
 @onready var inventory_panel := $UsingItemPanel
@@ -46,7 +48,10 @@ func display_health(new_value: float) -> void:
 	tw2.tween_property(health_bar, "modulate", Color("#ffffff"), 0.4)
 
 
-func display_coins(new_value: float) -> void:
+func display_coins(new_value: int) -> void:
+	var old_value = int(coin_label.text)
+	var tw := create_tween()
+	tw.tween_property(coin_label, "text", str(new_value), 0.5)
 	coin_label.text = str(new_value)
 
 
@@ -62,13 +67,16 @@ func display_hell_snail(new_value: float) -> void:
 	hell_snail_label.text = "%s/%s" % [new_value, game.SNAILS_TO_ESCAPE_HELL]
 
 
+func display_hell_time(new_value: float) -> void:
+	hell_time_label.text = str(new_value)
+
+
 func set_pointer_pos(percent: float) -> void:
 	pointer.global_position.x = remap(percent, 0.0, 1.0, road.position.x, road.position.x + road.size.x)
 	meter_counter.text = str(roundi(percent * 800))
 
 
 func open_item_menu() -> void:
-	print("opeining")
 	update_item_menu()
 	inventory_panel.show()
 	set_deferred("inventory_open", true)
@@ -93,19 +101,20 @@ func use_item(item: String) -> void:
 	update_item_menu()
 	if item == "tape":
 		game.bike.heal(roundi(45/2.0))
+	elif item == "magnet":
+		game.bike.effects["coin_magnet"] = {"time": 20.0}
 
 
 func open_hell_menu() -> void:
-	var tw1 := create_tween()
-	var tw2 := create_tween()
-	tw1.tween_property(hell_menu, "position:y", 2.0, 2.0)
-	tw2.tween_property(road_parts, "position:y", -26.0, 2.0)
-
+	var tw := create_tween().set_parallel()
+	tw.tween_property(hell_menu, "position:y", 2.0, 2.0)
+	tw.tween_property(road_parts, "position:y", -26.0, 2.0)
+	tw.tween_property(counter_container, "position:y", -35.0, 2.0)
 
 func close_hell_menu() -> void:
-	var tw1 := create_tween()
-	var tw2 := create_tween()
-	tw1.tween_property(hell_menu, "position:y", -40.0, 2.0)
-	tw2.tween_property(road_parts, "position:y", -26.0, 2.0)
+	var tw := create_tween().set_parallel()
+	tw.tween_property(hell_menu, "position:y", -40.0, 2.0)
+	tw.tween_property(road_parts, "position:y", 0.0, 2.0)
+	tw.tween_property(counter_container, "position:y", 14.0, 2.0)
 
 

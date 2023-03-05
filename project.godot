@@ -36,6 +36,7 @@ shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 window/size/viewport_width=160
 window/size/viewport_height=120
+window/size/always_on_top=true
 window/size/window_width_override=639
 window/size/window_height_override=480
 window/stretch/mode="viewport"
@@ -103,7 +104,6 @@ quick_load={
 
 [rendering]
 
-renderer/rendering_method="mobile"
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/glow/upscale_mode=0
 environment/defaults/default_clear_color=Color(0.0627451, 0.0941176, 0.196078, 1)

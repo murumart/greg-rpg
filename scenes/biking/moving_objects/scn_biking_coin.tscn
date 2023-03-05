@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://5i0wek400rn3"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_moving_object.gd" id="1_bj2r2"]
+[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_coin.gd" id="1_nsihm"]
 [ext_resource type="Texture2D" uid="uid://ci6mhv0bic0pe" path="res://sprites/vfx/spr_coin.png" id="2_lbs03"]
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ql27p"]
 
@@ -94,8 +94,8 @@ anim_speed_max = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5bqn"]
 radius = 16.0312
 
-[node name="BikingCoin" type="Node2D"]
-script = ExtResource("1_bj2r2")
+[node name="BikingCoin" type="Node2D" groups=["biking_coins"]]
+script = ExtResource("1_nsihm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gr1ij")
@@ -128,4 +128,3 @@ monitorable = false
 shape = SubResource("CircleShape2D_h5bqn")
 
 [connection signal="area_entered" from="Area2D" to="." method="collect_coin" unbinds=1]
-[connection signal="area_entered" from="ManArea" to="." method="randomise_position" unbinds=1]

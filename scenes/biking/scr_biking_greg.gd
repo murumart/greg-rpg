@@ -4,6 +4,7 @@ signal health_changed(to: float)
 signal died
 
 var speed := 200
+var moving_speed := 60.0
 var paused := false
 
 var max_health := 100
@@ -19,13 +20,16 @@ var health := 100
 @onready var paper_throw_audio := $Greg/Rarm/PaperThrowAudio
 @onready var head_sprite := $Greg/Head/Head
 
+@onready var invincibility_timer := $InvincibilityTimer
+
+@onready var collision_area := $CollisionArea
+
 const MAIL_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_mail.tscn")
 var super_mail := false
 var following_mail := false
 
-const PAPER_SOUNDS := [
-	preload("res://sounds/paper/paper4.ogg"),
-]
+var effects := {}
+
 const HURT_SOUND := preload("res://sounds/snd_biking_tumble.ogg")
 const CRASH_SOUND := preload("res://sounds/snd_biking_crash.ogg")
 
@@ -39,7 +43,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	global_position += Vector2(input) * speed * delta
+	if health <= 0.0 or paused: input = Vector2.ZERO
+	global_position += Vector2(input) * moving_speed * delta
 	global_position.x = clampf(global_position.x, BikingGame.ROAD_BOUNDARIES.position.x, BikingGame.ROAD_BOUNDARIES.size.x)
 	global_position.y = clampf(global_position.y, BikingGame.ROAD_BOUNDARIES.size.y, BikingGame.ROAD_BOUNDARIES.position.y)
 	animation_tree["parameters/pedaling_speed/scale"] = (speed * delta) + input.x
@@ -54,6 +59,20 @@ func _physics_process(delta: float) -> void:
 		head_sprite.region_rect.position.y = 10.0
 	if Input.is_action_just_released("ui_text_backspace"):
 		head_sprite.region_rect.position.y = 0.0
+	
+	if Engine.get_physics_frames() % 16 == 0:
+		for e in effects.keys():
+			if e == "coin_magnet":
+				get_tree().set_group("biking_coins", "following", true)
+			
+			var effect : Dictionary = effects[e]
+			var time : float = effect.get("time", 0.0)
+			time = max(time - delta * 16, 0.0) if speed > 5 else time
+			effect["time"] = time
+			if time <= 0:
+				effects.erase(e)
+	
+	nodes.modulate.a = 1 - (int(invincibility_timer.time_left > 0.0) * 0.5)
 
 
 func set_ragdoll_enabled(to: bool) -> void:
@@ -82,21 +101,27 @@ func launch_ragdoll() -> void:
 func heal(amount: int) -> void:
 	health = clamp(health + absi(amount), 0, max_health)
 	health_changed.emit(health)
+	SOL.vfx_damage_number(head_sprite.global_position - Vector2(SOL.SCREEN_SIZE / 2), str(absi(amount)), Color.GREEN)
 
 
 func hurt(amount: int) -> void:
 	health = clamp(health - absi(amount), 0, max_health)
 	if health <= 0:
 		die()
+		if amount >= 41:
+			DAT.death_reason = "snail_beam"
 		SND.play_sound(CRASH_SOUND)
 	else:
 		SND.play_sound(HURT_SOUND)
 	health_changed.emit(health)
 	peas.emitting = true
 	peas.set_deferred("emitting", false)
+	SOL.vfx_damage_number(head_sprite.global_position - Vector2(SOL.SCREEN_SIZE / 2), str(absi(amount)), Color.RED)
 
 
 func die() -> void:
+	collision_area.set_deferred("monitoring", false)
+	collision_area.set_deferred("monitorable", false)
 	died.emit()
 	launch_ragdoll()
 
@@ -104,7 +129,9 @@ func die() -> void:
 func _on_collision_area_area_entered(area: Area2D) -> void:
 	if not area.get_parent() is BikingObstacle: return
 	var obstacle : BikingObstacle = area.get_parent()
-	hurt(obstacle.damage)
+	if invincibility_timer.time_left == 0.0:
+		hurt(obstacle.damage)
+		invincibility_timer.start()
 
 
 func lob() -> void:
@@ -130,7 +157,6 @@ func throw_mail() -> void:
 		randf_range(-300, -100)
 	))
 	mail.following = following_mail
-#	SND.play_sound(PAPER_SOUNDS.pick_random(), {"volume": -8, "pitch": randf_range(1.0, 1.2)})
 	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * ((int(super_mail) * 1.3) + 1)
 	paper_throw_audio.play()
 

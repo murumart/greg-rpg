@@ -102,6 +102,10 @@ func vfx_bangspark(pos: Vector2) -> void:
 	vfx("bangspark", pos, {"random_rotation": true})
 
 
+func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0) -> void:
+	vfx("damage_number", pos, {"text": text, "size": size, "color": color})
+
+
 func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = 100

@@ -591,7 +591,6 @@ filter_enabled = true
 filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l5sbn"]
-graph_offset = Vector2(-284.256, -8.19565)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bqmx1")
 nodes/Animation/position = Vector2(108.696, 152.174)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tnvd6")
@@ -603,7 +602,7 @@ nodes/pedaling_speed/node = SubResource("AnimationNodeTimeScale_t33lf")
 nodes/pedaling_speed/position = Vector2(239.13, 21.7391)
 nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
 nodes/play_lob/position = Vector2(434.783, 43.4783)
-node_connections = [&"output", 0, &"play_lob", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"lobbing_speed", &"lobbing_speed", 0, &"Animation"]
+node_connections = [&"output", 0, &"play_lob", &"lobbing_speed", 0, &"Animation", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"lobbing_speed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -632,6 +631,7 @@ atlas = ExtResource("8_t4p2q")
 region = Rect2(22, 3, 6, 7)
 
 [node name="BikingGame" type="Node2D" groups=["speedsters"]]
+y_sort_enabled = true
 script = ExtResource("1_h455q")
 
 [node name="Camera" parent="." instance=ExtResource("5_qc4rn")]
@@ -642,16 +642,19 @@ z_index = -11
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
+[node name="Sky" type="Sprite2D" parent="Background"]
 modulate = Color(0.297003, 0.275582, 0.197332, 1)
 position = Vector2(78, 18)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_4w4l6")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+[node name="Trees" type="Sprite2D" parent="Background"]
+texture_repeat = 3
 position = Vector2(78, 18)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_0esb8")
+region_enabled = true
+region_rect = Rect2(0, 0, 547, 257)
 
 [node name="Road" parent="." instance=ExtResource("1_fjpor")]
 position = Vector2(-4, 6)
@@ -694,7 +697,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bike/RoadCollision"]
 shape = SubResource("WorldBoundaryShape2D_sij3x")
 
-[node name="Greg" type="Node2D" parent="Bike"]
+[node name="Greg" type="CanvasGroup" parent="Bike" groups=["biking_players"]]
 
 [node name="Torso" type="RigidBody2D" parent="Bike/Greg"]
 position = Vector2(0, -11)
@@ -852,6 +855,9 @@ shape = SubResource("RectangleShape2D_ttsgc")
 position = Vector2(5.5, -1.5)
 shape = SubResource("RectangleShape2D_0tirm")
 
+[node name="InvincibilityTimer" type="Timer" parent="Bike"]
+one_shot = true
+
 [node name="ObstacleTimer" type="Timer" parent="."]
 
 [node name="CoinTimer" type="Timer" parent="."]
@@ -859,6 +865,8 @@ shape = SubResource("RectangleShape2D_0tirm")
 [node name="SnailTimer" type="Timer" parent="."]
 
 [node name="MailboxTimer" type="Timer" parent="."]
+
+[node name="PunishmentTimer" type="Timer" parent="."]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -929,6 +937,19 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "0/120"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeCounterLabel" type="Label" parent="UI/HellMenu"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 23.0
+offset_right = 160.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1055,3 +1076,4 @@ region_rect = Rect2(33, 0, 14, 16)
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
 [connection signal="timeout" from="SnailTimer" to="." method="_on_snail_timer_timeout"]
 [connection signal="timeout" from="MailboxTimer" to="." method="_on_mailbox_timer_timeout"]
+[connection signal="timeout" from="PunishmentTimer" to="." method="_on_punishment_timer_timeout"]

@@ -11,6 +11,7 @@ radius = 4.0
 height = 14.0
 
 [node name="BikingMail" type="RigidBody2D"]
+z_index = 1
 collision_layer = 32
 inertia = 289.54
 physics_material_override = SubResource("PhysicsMaterial_dvqhj")

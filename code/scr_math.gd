@@ -36,5 +36,5 @@ static func reaap(a : Array, b: Variant) -> Array:
 
 
 static func inrange(x, a, b) -> bool:
-	if x >= a and x <= b: return true
-	return false
+	return x >= a and x <= b
+

@@ -14,6 +14,7 @@ const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 @onready var item_picture := $ItemPanel/Sprite2D
 
 var stage := -1
+var ending := false
 
 var possible_items := ["tape", "magnet"]
 var items_available := []
@@ -28,6 +29,8 @@ var perks_available := []
 
 
 func _ready() -> void:
+	if game_reference and game_reference.get_meter() >= game_reference.ROAD_LENGTH - 15:
+		ending = true
 	item_picture.texture = null
 	item_picture.get_parent().hide()
 	item_info_label.text = ""
@@ -55,7 +58,17 @@ func load_perks() -> void:
 
 # this is horrible but I do not have the mental capacity at the moment
 # future me, do your thing
+# fuck you past me
+# go to hell
+# future future me also go to hell lol I'm not improving this
 func bye(choseperk := false) -> void:
+	if ending:
+		dlbox.prepare_dialogue("biking_end")
+		await dlbox.dialogue_closed
+		closed.emit()
+		queue_free()
+		return
+		
 	if choseperk:
 		dlbox.skip()
 		dlbox.loaded_dialogue = null
@@ -93,6 +106,8 @@ func _input(event: InputEvent) -> void:
 
 
 func get_welcome_message() -> String:
+	if ending:
+		return "biking_last_stop"
 	return "biking_welcome_1"
 
 

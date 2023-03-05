@@ -1,6 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
+[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_po8pn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
 [ext_resource type="Script" path="res://code/scr_dialogue_line.gd" id="3_02o1n"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
@@ -9,13 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_3q5xl"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="9_aaeqr"]
-
-[sub_resource type="Environment" id="Environment_2qq6b"]
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 2.51
-glow_strength = 1.34
-adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_m7o2u"]
 script = ExtResource("3_02o1n")
@@ -202,7 +196,7 @@ bg_color = Color(0, 0, 0, 1)
 script = ExtResource("1_3f4vq")
 
 [node name="Environment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2qq6b")
+environment = ExtResource("2_po8pn")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 z_index = 11
@@ -263,6 +257,9 @@ texture = ExtResource("9_aaeqr")
 centered = false
 region_enabled = true
 region_rect = Rect2(16, 1, 3, 3)
+
+[node name="DialogueSound" type="AudioStreamPlayer" parent="DialogueBoxOrderer"]
+bus = &"Speech"
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
 visible = false

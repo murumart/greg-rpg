@@ -91,6 +91,11 @@ func get_dialogue_file() -> String:
 	return file.get_as_text()
 
 
+func portrait_exists(id: String) -> bool:
+	var dir := get_dir_contents("res://sprites/characters/portraits/")
+	return "spr_portrait_" + id in dir
+
+
 func get_dir_contents(path: String, trim: String = "") -> Array[String]:
 	var contents : Array[String] = []
 	var dir := DirAccess.open(path)
