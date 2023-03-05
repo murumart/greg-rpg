@@ -134,10 +134,10 @@ func _physics_process(delta: float) -> void:
 func interacted() -> void:
 	if DAT.player_capturers.size() > 0: return
 	interactions += 1
+	inspected.emit()
 	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
 		set_state(States.TALKING)
 		velocity = Vector2()
-	inspected.emit()
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():

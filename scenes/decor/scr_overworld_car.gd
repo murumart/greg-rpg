@@ -29,6 +29,8 @@ func _ready() -> void:
 		collision_area.monitoring = false
 		hide()
 		return
+	if not moves:
+		$VroomVroom.stop()
 	collision_area.body_entered.connect(_on_collided_with_player)
 	position = DAT.A.get(save_key_name("position"), position)
 	target = DAT.A.get(save_key_name("target"), target)
@@ -65,6 +67,7 @@ func at_which_path_point() -> Node2D:
 
 
 func _on_collided_with_player(_player) -> void:
+	if not moves: return
 	moves = false
 	DAT.set_data("last_hit_car_color", color)
 	DAT.set_data(save_key_name("fought"), true)

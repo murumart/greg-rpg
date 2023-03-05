@@ -15,6 +15,8 @@ const NEW_SPIRIT := "SPIRIT "
 const NEW_SILVER := "SILVER "
 const NEW_SOUND := "SOUND "
 const NEW_EMOTION := "EMO "
+const NEW_DATA_LINK := "DATA_LINK "
+const NEW_SET_DATA := "SET_DATA "
 
 
 func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
@@ -28,6 +30,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	var text_speed_to_set := 1.0
 	var choices_to_set : PackedStringArray = []
 	var choice_link_to_set : StringName = &""
+	var data_link_to_set := &""
 	var instaskip_to_set := false
 	var loop_to_set := -1
 	var item_to_give := &""
@@ -35,6 +38,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	var silver_to_give := 0
 	var sound_to_set : AudioStream = null
 	var emotion_to_set := ""
+	var set_data_to_set := PackedStringArray()
 	var l := -1
 	
 	for line in lines:
@@ -49,6 +53,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			text_speed_to_set = 1.0
 			choices_to_set = []
 			choice_link_to_set = &""
+			data_link_to_set = &""
 			instaskip_to_set = false
 			loop_to_set = -1
 			dial = Dialogue.new()
@@ -63,6 +68,8 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			choices_to_set = line.trim_prefix(NEW_CHOICES).split(",")
 		elif line.begins_with(NEW_CHOICE_LINK):
 			choice_link_to_set = line.trim_prefix(NEW_CHOICE_LINK)
+		elif line.begins_with(NEW_DATA_LINK):
+			data_link_to_set = line.trim_prefix(NEW_DATA_LINK)
 		elif line.begins_with(NEW_INSTASKIP):
 			instaskip_to_set = true
 		elif line.begins_with(NEW_LOOP):
@@ -77,12 +84,15 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			sound_to_set = load("res://sounds/%s" % line.trim_prefix(NEW_SOUND))
 		elif line.begins_with(NEW_EMOTION):
 			emotion_to_set = line.trim_prefix(NEW_EMOTION)
+		elif line.begins_with(NEW_SET_DATA):
+			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
 		elif line.begins_with(NEW_LINE):
 			dial_line = DialogueLine.new()
 			dial_line.text = line.trim_prefix(NEW_LINE)
 			dial_line.character = char_to_set
 			dial_line.text_speed = text_speed_to_set
 			dial_line.choice_link = choice_link_to_set
+			dial_line.data_link = data_link_to_set
 			dial_line.instaskip = instaskip_to_set
 			dial_line.loop = loop_to_set
 			dial_line.item_to_give = item_to_give
@@ -90,6 +100,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			dial_line.silver_to_give = silver_to_give
 			dial_line.sound = sound_to_set
 			dial_line.emotion = emotion_to_set
+			dial_line.set_data = set_data_to_set
 			if choices_to_set:
 				dial_line.choices = choices_to_set
 				choices_to_set = []
@@ -101,6 +112,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			spirit_to_give = &""
 			silver_to_give = 0
 			sound_to_set = null
+			set_data_to_set = []
 		if l + 1 >= lines.size():
 			dialogue_dictionary[dial.name] = dial
 	

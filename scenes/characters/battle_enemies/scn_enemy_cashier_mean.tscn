@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://u7av7wk05sg8"]
+[gd_scene load_steps=4 format=3 uid="uid://u7av7wk05sg8"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_j48vo"]
 [ext_resource type="Texture2D" uid="uid://b4duli40gis6u" path="res://sprites/characters/battle/cashier_mean/spr_lunge.png" id="2_fk0q7"]
 [ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="3_5lyh2"]
-[ext_resource type="Texture2D" uid="uid://ovfmv2545eic" path="res://sprites/characters/battle/cashier_mean/spr_walking.png" id="3_qrquj"]
 
 [node name="BattleEnemy" type="Node2D"]
 script = ExtResource("1_j48vo")
@@ -12,13 +11,12 @@ toughness = 0.653
 altruism = 0.055
 innovation = 0.501
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = ExtResource("3_5lyh2")
+texture = ExtResource("2_fk0q7")
+lifetime = 2.0
+fixed_fps = 60
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
 texture = ExtResource("2_fk0q7")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-process_material = ExtResource("3_5lyh2")
-texture = ExtResource("3_qrquj")
-lifetime = 2.0
-fixed_fps = 60

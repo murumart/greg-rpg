@@ -6,7 +6,7 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["grass",]).\
+set_enemies(["cashier_mean",]).\
 set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("grass")
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -80,7 +80,7 @@ var f := 0
 @export var party_cheat_attack := 0.0
 @export var party_cheat_defense := 0.0
 @export var party_cheat_speed := 0.0
-@export var party_add_spirits := []
+@export var party_add_spirits : Array[String] = []
 
 
 func _ready() -> void:
@@ -453,7 +453,7 @@ func open_list_screen() -> void:
 			list_containers[0].get_child(0).call_deferred("grab_focus")
 	elif screen_item_select.visible:
 		if item_list_container[0].get_children().size() > 0:
-			item_list_container[0].get_child(0).grab_focus()
+			item_list_container[0].get_child(0).call_deferred("grab_focus")
 
 
 func open_party_info_screen() -> void:

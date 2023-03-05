@@ -169,7 +169,7 @@ func _reference_button_pressed(reference) -> void:
 
 func item_reference_pressed(reference) -> void:
 	var item := DAT.get_item(reference)
-	var price = roundi(item.price / 2.0)
+	var price = roundi(item.price / 4.0)
 	var inventory : Array = game_get("inventory", [])
 	var silver : int = game_get("silver_collected", 0)
 	dlbox.dial_concat("biking_do_you_wish_to_buy", 0, [item.name])
@@ -223,7 +223,7 @@ func _on_button_reference_received(reference) -> void:
 func item_reference_received(reference) -> void:
 	item_info_label.text = "%s
 ===
-%s silver" % [DAT.get_item(reference).name, roundi(DAT.get_item(reference).price / 2.0)]
+%s silver" % [DAT.get_item(reference).name, roundi(DAT.get_item(reference).price / 4.0)]
 	item_picture.get_parent().show()
 	item_picture.texture = DAT.get_item(reference).texture
 

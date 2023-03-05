@@ -68,7 +68,6 @@ func _ready() -> void:
 	SOL.add_ui_child(root, 128, false)
 	root.hide()
 	load_options()
-	get_window().always_on_top = true
 
 
 func _input(event: InputEvent) -> void:
@@ -84,7 +83,7 @@ func _input(event: InputEvent) -> void:
 				if "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
 			KEY_KP_4:
-				DAT.get_character("greg").level_up()
+				pass
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()

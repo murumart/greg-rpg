@@ -62,10 +62,10 @@ func load_dialogue_dict() -> void:
 func prepare_dialogue(key: String) -> void:
 	if dialogues_dict.is_empty():
 		load_dialogue_dict()
+	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	if is_instance_valid(loaded_dialogue):
 		dialogue_queue.append(dialogues_dict.get(key, Dialogue.new()).duplicate(true))
 		return
-	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
 	set_finished_marker(0)
 
@@ -73,7 +73,9 @@ func prepare_dialogue(key: String) -> void:
 func load_dialogue(dial : Dialogue) -> void:
 	loaded_dialogue = dial
 	if loaded_dialogue.alias != "":
-		prepare_dialogue(loaded_dialogue.alias)
+		var alias := loaded_dialogue.alias
+		loaded_dialogue = null
+		prepare_dialogue(alias)
 		return
 	DAT.capture_player("dialogue", false)
 	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
@@ -89,9 +91,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var character : Character = null
 	var text_speed : float = part.text_speed
 	var choice_link : StringName = part.choice_link
+	var data_link : StringName = part.data_link
 	var choices : PackedStringArray = part.choices
 	var emotion : String = part.emotion
 	if choice_link != &"" and (choice_link != current_choice):
+		next_dialogue_requested()
+		return
+	if data_link != &"" and not DAT.get_data(data_link, false):
 		next_dialogue_requested()
 		return
 	if part.sound:
@@ -103,6 +109,16 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		DAT.grant_spirit(part.spirit_to_give, 0, false)
 	if part.silver_to_give:
 		DAT.grant_silver(part.silver_to_give, false)
+	
+	if part.set_data.size() > 0:
+		var key : String = part.set_data[0]
+		var read : String = part.set_data[1]
+		var value : Variant = 0
+		if read.is_valid_float(): value = float(read)
+		elif read == "true": value = true
+		elif read == "false": value = false
+		else: value = read
+		DAT.set_data(key, value)
 	
 	loaded_dialogue_line = part
 	

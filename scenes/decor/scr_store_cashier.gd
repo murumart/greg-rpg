@@ -20,9 +20,11 @@ func speak():
 		var friend_score : float = silver_spent * pow(transactions_done, 2) - pow(profit_stolen, 1.6)
 		print("FRIEND SCORE: ", friend_score)
 		if not cashier_welcomed:
+			print("here")
 			SOL.dialogue("cashier_%s_welcome" % cashier)
 			DAT.set_data("cashier_%s_welcomed" % cashier, true)
 		else:
+			print("there")
 			if Math.inrange(friend_score, -10, 201):
 				SOL.dialogue("cashier_%s_tutorial" % cashier)
 			elif Math.inrange(friend_score, 201, 21000):
@@ -64,6 +66,7 @@ func speak():
 
 
 func warn() -> void:
+	if cashier == "dead": return
 	var stolen_profit := 0
 	for i in DAT.A.get("unpaid_items", []):
 		var price := DAT.get_item(i).price

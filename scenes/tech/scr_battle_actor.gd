@@ -269,7 +269,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	var old_strength : float = status_effects[nomen].get("strength", 0)
 	var old_duration : int = status_effects[nomen].get("duration", 0)
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
-	var new_duration : int = roundi((old_duration + strength / 2.0)) if old_duration != 0 else duration
+	var new_duration : int = 0 if duration < 0 else roundi((old_duration + duration / 2.0)) if old_duration != 0 else duration
 	status_effects[nomen] = {
 		"strength": new_strength,
 		"duration": new_duration

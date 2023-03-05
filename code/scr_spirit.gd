@@ -23,7 +23,6 @@ enum Reach {LOCAL, ALL, TEAM}
 
 func get_effect_description() -> String:
 	var text := ""
-	text += "cost: %s\n" % cost
 	if payload.health:
 		text += "%s%s hp\n" % [Math.sign_symbol(payload.health), absf(payload.health)]
 	if payload.health_percent:
@@ -49,4 +48,10 @@ func get_effect_description() -> String:
 	if payload.speed_increase:
 		text += "%s%s spd" % [Math.sign_symbol(payload.speed_increase), absf(payload.speed_increase)]
 		text += (" for %s turns\n" % payload.speed_increase_time)
+	if payload.confusion_time:
+		text += "confusion for %s\n" % payload.confusion_time
+	if payload.poison_time:
+		text += "poison %s for %s\n" % [payload.poison_level, payload.poison_time] if payload.poison_time > 0 else "cures poison"
+	if payload.coughing_time:
+		text += "coughing %s for %s\n" % [payload.coughing_level, payload.coughing_time] if payload.coughing_time > 0 else "cures coughing"
 	return text

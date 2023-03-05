@@ -126,13 +126,14 @@ region_enabled = true
 region_rect = Rect2(80, 32, 10, 8)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Decoration/Paper"]
-position = Vector2(-60, -22)
+position = Vector2(-60, -19)
 texture = ExtResource("3_y8swh")
 centered = false
 region_enabled = true
 region_rect = Rect2(80, 32, 10, 8)
 
 [node name="InspectArea" type="Area2D" parent="Decoration/Paper/Sprite2D4"]
+position = Vector2(0, -3)
 script = ExtResource("4_yvmmt")
 key = "mail_newspaper"
 
@@ -270,7 +271,7 @@ region_rect = Rect2(80, 41, 9, 5)
 [node name="InspectArea2" type="Area2D" parent="Decoration/Paper2"]
 position = Vector2(-38, -15)
 script = ExtResource("4_yvmmt")
-key = "mailstackq"
+key = "mailstack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decoration/Paper2/InspectArea2"]
 position = Vector2(-2.5, 2.5)
@@ -356,3 +357,5 @@ offset_right = 135.0
 offset_bottom = 112.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[connection signal="on_interact" from="Areas/InteractionArea" to="." method="_on_interaction_area_on_interact"]

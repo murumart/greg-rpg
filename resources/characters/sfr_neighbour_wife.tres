@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bqkvljo71j37j"]
+
+[ext_resource type="Texture2D" uid="uid://dwgtepctcetq" path="res://sprites/characters/overworld/spr_neighbour_wife_overworld.png" id="1_1pq8v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sinc"]
+atlas = ExtResource("1_1pq8v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a838o"]
+atlas = ExtResource("1_1pq8v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peyee"]
+atlas = ExtResource("1_1pq8v")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu757"]
+atlas = ExtResource("1_1pq8v")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sinc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a838o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peyee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu757")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}]

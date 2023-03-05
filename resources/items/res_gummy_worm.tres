@@ -20,6 +20,11 @@ defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
 confusion_time = null
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("2_ghdt4")
@@ -27,7 +32,7 @@ name_in_file = &"gummy_worm"
 name = &"gummy worm"
 description = "it looks quite realistic"
 texture = ExtResource("3_7ajk2")
-price = 15
+price = 30
 use = 0
 consume_on_use = true
 payload = SubResource("Resource_lquol")

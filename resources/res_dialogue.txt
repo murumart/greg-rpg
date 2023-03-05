@@ -698,7 +698,94 @@ SPEED 1.0
 # (she fights you)
 
 
+DIALOGUE mail_man_hello
+CHAR mail_man
+EMO serious
+SET_DATA has_not_asked_about_mail_man_job,true
+	hello... welcome to the post office.
+	...
+	...are you from elsewhere?
+EMO 
+	you don't look like any of the local losers.
+EMO content
+	(though you still look like a loser.)
+
+
+DIALOGUE mail_man_talk
+CHAR mail_man
+EMO 
+CHOICES you,me,job,bye
+	so, why are you here?
+
+CHOICE_LINK bye
+DATA_LINK has_not_asked_about_mail_man_job
+EMO content
+	ah, finally, you're leaving me alone. goodbye.
+DATA_LINK asked_about_mail_man_job
+	see you again soon!
+
+DATA_LINK 
+CHOICE_LINK me
+	about you?
+EMO serious
+	i already told you i have no idea who you are.
+	and i don't care about your name.
+EMO 
+	but you can tell me it anyway. maybe i'll even remember.
+EMO serious
+SET_DATA mail_heard_name,true
+	...greg? 
+EMO 
+LOOP 0
+	your parents must've been interesting!
+
+CHOICE_LINK you
+	about me?
+	i'm the mail man. hello.
+	i deliver mail. i am also a man.
+	it's quite self-explanatory.
+EMO serious
+	...
+	a very thankless job.
+	you have no idea how ravenous some of the...
+	...animals in this town are.
+	not to mention the rampant crime.
+EMO content
+LOOP 0
+	...but i have my ways of dealing with it.
+
+CHOICE_LINK job
+EMO 
+SET_DATA has_not_asked_about_mail_man_job,false
+	it's great that you ask. i do have a job for you!
+SET_DATA asked_about_mail_man_job,true
+	what does it entail? ah, nothing much!
+	you'd just have to take a little tour through town.
+	on my bike.
+	and deliver mail.
+	easy, isn't it?
+	i need a break from biking, so i will be sitting instead...
+	...in a little kiosk. if you come across me, say hi.
+	don't worry, you will be paid...
+	well, what do you say, newspaper boy?
+LOOP 0
+	talk to me again if you wish to run this errand.
+
+
+DIALOGUE mail_man_jobtalk
+CHAR mail_man
+	ah, the newspaper boy!
+CHOICES yes,no
+	are you ready to go now?
+CHOICE_LINK yes
+	excellent! off you go!
+CHOICE_LINK no
+EMO serious
+	then why bother coming here? don't waste my time.
+
+
 DIALOGUE biking_welcome_1
+EMO 
 CHAR mail_man
 	hello, greg! you made it to my checkpoint.
 CHOICES browse,leave
@@ -822,15 +909,90 @@ EMO
 	well, that's it. i'm going to cry now. seeya.
 
 
+DIALOGUE mail_man_welcomeback
+CHAR mail_man
+	that wasn't too bad, huh?
+	sorry for not warning you about the road quality.
+	...
+EMO content
+	that was a lie. i am not actually sorry.
+EMO 
+	it was really funny.
+	come back another time!
+
+
+DIALOGUE mail_man_afterbiking
+CHAR mail_man
+	another successful venture on the job market for you, no?
+	come back another time!
+
+
 DIALOGUE thug_catch_1
 	you %s. prepare to engage in a %s.
 
 
-DIALOGUE neighbour_wife_inspect
-CHAR greg
-	hey can i kiss your husband real quick
-CHAR neighbour_wife
-	what
+DIALOGUE neighbour_wife_talk_1
+	good day. you came from the flower shop just now?
+	that florist has some really strange ones.
+
+
+DIALOGUE neighbour_wife_talk_2
+	yes, i'm in my bathrobe even though it's way past noon.
+	you're the weird one for pointing it out.
+
+
+DIALOGUE neighbour_wife_talk_3
+	city life is so stressful...
+	it's good to have a summer home in a dump like this to unwind.
+
+
+DIALOGUE neighbour_wife_talk_4
+	go run along now.
+
+
+DIALOGUE neighbour_wife_talk_store_1
+	yes, i'm visiting the store in my bathrobe.
+	you're the weird one for pointing it out.
+	because noone else does.
+	it's easy to tell you're not a local.
+
+
+DIALOGUE tarikas_hello
+CHAR tarikas
+	mh. you're blocking the sunlight.
+	you don't look like a local.
+	i'm interested in seeing what you'll do.
+
+
+DIALOGUE tarikas_10
+CHAR tarikas
+	a tip for you, mh...
+	watch out for the grass.
+	they might cut your finger.
+
+
+DIALOGUE tarikas_15
+CHAR tarikas
+	there's many thugs in this town, mh.
+	being near them isn't healthy.
+	i've been using pills from the store.
+	they cure the poison hex that some drunks like to use.
+
+
+DIALOGUE tarikas_25
+CHAR tarikas
+	the quality of mail delivery has improved in the town.
+	mh, marginally.
+	what do you think of the snails?
+	they ate my vegetables, back when i still had a garden.
+	but getting rid of them... difficult.
+	they really know how to get to your head.
+
+
+DIALOGUE tarikas_finish
+CHAR tarikas
+	mh. come back later.
+	and step out of the way of the sun.
 
 
 DIALOGUE insp_snowdrops
@@ -873,6 +1035,26 @@ DIALOGUE insp_mail_calendar
 
 DIALOGUE insp_mailstack
 	stacks of envelopes.
+
+
+DIALOGUE insp_neighbour_car_1
+	...hello...
+	...yes, i'm in the car.
+	i happen to work as a truck driver.
+	this means spending a lot of time in the truck...
+	you see, it is a bit jarring to come on vacation...
+	...and be without a truck all of a sudden.
+	i'm trying to acclimate...
+	once i'm done with the car, i can move on to something even smaller.
+	and one day, even exist without a vehicle.
+
+
+DIALOGUE insp_neighbour_car_2
+	leave me be now. trying to acclimate, remember?
+
+
+DIALOGUE insp_trash_road
+	the road condition looks terrible up ahead.
 
 
 DIALOGUE end_of_the_line

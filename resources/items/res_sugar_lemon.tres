@@ -20,6 +20,11 @@ defense_increase_time = 2
 speed_increase = 16.0
 speed_increase_time = 3
 confusion_time = null
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("2_3o6nw")
@@ -27,7 +32,7 @@ name_in_file = &"sugar_lemon"
 name = &"sugar lemon"
 description = "a lump of yellow... sugar?"
 texture = ExtResource("3_eyykw")
-price = 25
+price = 50
 use = 2
 consume_on_use = true
 payload = SubResource("Resource_cc1kh")

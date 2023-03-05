@@ -41,6 +41,13 @@ func _input(_event: InputEvent) -> void:
 
 
 func dialogue(key: String) -> void:
+	var player : PlayerOverworld = get_tree().get_first_node_in_group("player")
+	if is_instance_valid(player):
+		var pos := player.get_global_transform_with_canvas().origin
+		if pos.y < 65:
+			dialogue_low_position()
+		else:
+			dialogue_high_position()
 	dialogue_box.prepare_dialogue(key)
 
 
@@ -66,6 +73,16 @@ func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := tru
 	node2d.z_index = custom_z_index
 	if delete_on_scene_change: node2d.add_to_group("free_on_scene_change")
 	node2d.add_child(node)
+
+
+func dialogue_low_position() -> void:
+	dialogue_box.position.y = 92
+	$DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer.position.y = -35
+
+
+func dialogue_high_position() -> void:
+	dialogue_box.position = Vector2.ZERO
+	$DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer.position.y = 35
 
 
 func fade_screen(start: Color, end: Color, time := 1.0) -> void:

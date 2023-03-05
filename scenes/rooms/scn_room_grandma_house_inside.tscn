@@ -132,7 +132,7 @@ position = Vector2(-35.5, -47.5)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -8)
 region_enabled = true
-region_rect = Rect2(97, 16, 15, 31)
+region_rect = Rect2(97, 17, 15, 24)
 
 [node name="Sprite2D19" type="Sprite2D" parent="Decor"]
 position = Vector2(36, -48)
@@ -140,7 +140,7 @@ texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -8)
 flip_h = true
 region_enabled = true
-region_rect = Rect2(97, 16, 15, 31)
+region_rect = Rect2(97, 17, 15, 24)
 
 [node name="Sprite2D15" type="Sprite2D" parent="Decor"]
 position = Vector2(-60, -56.5)

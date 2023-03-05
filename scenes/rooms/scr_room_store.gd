@@ -30,6 +30,7 @@ func _ready():
 	
 	update_shopping_list()
 	load_store_data()
+	neighbour_wife_position()
 
 
 func set_store_wall_colours():
@@ -60,10 +61,11 @@ func load_store_data():
 
 
 func restock() -> void:
+	if DAT.get_data("fighting_cashier", false): return
 	var store_shelf_count := shelves.size()
 	
 	var healing_items := ["medkit", "plaster", "pills"]
-	var food_items := ["gummy_worm", "porridge", "milkshake"]
+	var food_items := ["muesli", "mueslibar", "bread"]
 	var building_items := []
 	var arrays := [healing_items, food_items, building_items]
 	
@@ -109,11 +111,17 @@ func save_me():
 
 
 func check_restock() -> void:
-	if DAT.seconds - DAT.A.get("store_restock_second", -3000) >= WAIT_UNTIL_RESTOCK:
+	if DAT.seconds - DAT.A.get("store_restock_second", -30000000) >= WAIT_UNTIL_RESTOCK:
 		restock()
 
 
 func check_cashier_switch() -> void:
+	if DAT.get_data("fighting_cashier", false):
+		cashier.global_position.x = -3314412
+		cashier.set_physics_process(false)
+		cashier.hide()
+		store_cashier.cashier = "dead"
+		return
 	print("cashier second: ", (wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2)))
 	if wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH:
 		store_cashier.cashier = "mean"
@@ -181,4 +189,14 @@ func dothethingthething() -> void:
 	.set_enemies(["cashier_mean"]).set_music("entirely_just"))
 	DAT.force_data("mean_cashier_saw_you_steal", true)
 	DAT.free_player("cashier_revenge")
+	DAT.set_data("fighting_cashier", true)
+
+
+func neighbour_wife_position() -> void:
+	var neighbour_wife := $NeighbourWife
+	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
+	if time < DAT.NEIGHBOUR_WIFE_CYCLE / 2:
+		neighbour_wife.position.x = -32767
+		neighbour_wife.set_physics_process(false)
+		neighbour_wife.hide()
 

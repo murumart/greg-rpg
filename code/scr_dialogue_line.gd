@@ -8,6 +8,7 @@ const MAX_TEXT_LENGTH := 66
 @export var emotion := ""
 @export var text_speed := 1.0
 
+@export var data_link := &""
 @export var choice_link := &""
 @export var choices : PackedStringArray = []
 
@@ -19,3 +20,5 @@ const MAX_TEXT_LENGTH := 66
 @export var silver_to_give := 0
 
 @export var sound : AudioStream
+
+@export var set_data : PackedStringArray = []

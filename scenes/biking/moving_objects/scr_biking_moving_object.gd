@@ -3,6 +3,8 @@ class_name BikingMovingObject extends Node2D
 signal will_delete
 signal coin_got
 
+@export var decorative := false
+
 var speed := 200
 var start_position : Vector2
 
@@ -18,6 +20,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	start_position = global_position
+	set_physics_process(not decorative)
 
 
 func _physics_process(delta: float) -> void:

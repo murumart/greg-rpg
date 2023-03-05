@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=26 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="10_pghuq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_jnio5"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="12_mfggk"]
+[ext_resource type="SpriteFrames" uid="uid://bqkvljo71j37j" path="res://resources/characters/sfr_neighbour_wife.tres" id="15_70cgv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -103,6 +104,18 @@ limit_left = -112
 limit_top = -112
 limit_right = 112
 limit_bottom = 80
+
+[node name="NeighbourWife" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_0h0ea")]
+position = Vector2(93, -35)
+animated_sprite = NodePath("AnimatedSprite2D")
+default_lines = Array[StringName]([&"neighbour_wife_talk_store_1", &"neighbour_wife_talk_4"])
+save_convo_progess = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NeighbourWife"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("15_70cgv")
+animation = &"walk_down"
+frame_progress = 0.826367
 
 [node name="Shelves" type="Node2D" parent="."]
 y_sort_enabled = true

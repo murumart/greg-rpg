@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=7 format=3 uid="uid://b7015catt2ee7"]
+
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_1qtej"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_e6fb7"]
+
+[sub_resource type="Resource" id="Resource_mtfgt"]
+script = ExtResource("1_e6fb7")
+type = 0
+property = "12"
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_w0vb5"]
+script = ExtResource("1_e6fb7")
+type = 0
+property = "range 8,16"
+chance = 0.36
+
+[sub_resource type="Resource" id="Resource_knw01"]
+script = ExtResource("1_e6fb7")
+type = 1
+property = "gummy_worm"
+chance = 0.247
+
+[sub_resource type="Resource" id="Resource_r48nf"]
+script = ExtResource("1_e6fb7")
+type = 1
+property = "plaster"
+chance = 0.137
+
+[resource]
+script = ExtResource("1_1qtej")
+rewards = Array[ExtResource("1_e6fb7")]([SubResource("Resource_mtfgt"), SubResource("Resource_w0vb5"), SubResource("Resource_knw01"), SubResource("Resource_r48nf")])

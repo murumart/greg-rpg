@@ -17,6 +17,7 @@ text = "[color=#00ff00]hello world![/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -24,6 +25,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_s4wuy"]
 script = ExtResource("3_02o1n")
@@ -31,6 +33,7 @@ text = "[color=#00ff00]just kidding. dumbass[/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -38,6 +41,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_yjxsy"]
 script = ExtResource("3_02o1n")
@@ -45,6 +49,7 @@ text = "[color=#00ff00]remember last time?[/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -52,6 +57,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_yugxp"]
 script = ExtResource("3_02o1n")
@@ -59,6 +65,7 @@ text = "[color=#00ff00]working on the game logic was fun...[/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -66,6 +73,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_vjws4"]
 script = ExtResource("3_02o1n")
@@ -73,6 +81,7 @@ text = "[color=#00ff00]but you ground to a halt when you had to make actual game
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -80,6 +89,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_b5bui"]
 script = ExtResource("3_02o1n")
@@ -87,6 +97,7 @@ text = "[color=#00ff00]what makes you think this time will be any different?[/co
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -94,6 +105,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_b2l4m"]
 script = ExtResource("3_kwk5e")
@@ -107,6 +119,7 @@ text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -114,6 +127,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_tcwnb"]
 script = ExtResource("3_02o1n")
@@ -121,6 +135,7 @@ text = "[color=#00ff00]why would i ever talk to you?[/color]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -128,6 +143,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_l1vqh"]
 script = ExtResource("3_kwk5e")
@@ -141,6 +157,7 @@ text = "[center]victory![/center]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -148,6 +165,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_m10ek"]
 script = ExtResource("3_kwk5e")
@@ -161,6 +179,7 @@ text = "[center]level up![/center]"
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -168,6 +187,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_3r8jb"]
 script = ExtResource("3_02o1n")
@@ -175,6 +195,7 @@ text = "x leveled up to x."
 character = ""
 emotion = ""
 text_speed = 1.0
+data_link = &""
 choice_link = &""
 choices = []
 instaskip = false
@@ -182,6 +203,7 @@ loop = -1
 item_to_give = &""
 spirit_to_give = &""
 silver_to_give = 0
+set_data = []
 
 [sub_resource type="Resource" id="Resource_3xhxu"]
 script = ExtResource("3_kwk5e")
@@ -200,6 +222,7 @@ environment = ExtResource("2_po8pn")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 z_index = 11
+position = Vector2(0, 92)
 script = ExtResource("3_jg0vj")
 dialogues = Array[ExtResource("3_kwk5e")]([SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")])
 
@@ -228,9 +251,8 @@ centered = false
 [node name="ScrollContainer" type="ScrollContainer" parent="DialogueBoxOrderer/DialogueBoxPanel"]
 layout_mode = 0
 offset_left = 98.0
-offset_top = 28.0
+offset_top = -35.0
 offset_right = 138.0
-offset_bottom = 63.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i3s8v")
 follow_focus = true
 horizontal_scroll_mode = 0

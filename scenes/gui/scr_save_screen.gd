@@ -95,6 +95,7 @@ func _on_button_pressed(reference: Variant) -> void:
 	match mode:
 		SAVE:
 			DAT.save_data(SAVE_PATH % reference)
+			SND.play_sound(menu_sound)
 		LOAD:
 			DAT.load_data(SAVE_PATH % reference)
 			set_current_button(12839)

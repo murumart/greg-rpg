@@ -29,6 +29,10 @@ sugar_lemon
 tumbler
 porridge
 pocket_candy
+muesli
+mueslibar
+bread
+pills
 tape
 magnet
 brick
@@ -49,7 +53,8 @@ airspace_violation
 bigger_airspace_violation
 isotoxin
 dreaming_in_green
-shopping_cart"
+shopping_cart
+wli_attack"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

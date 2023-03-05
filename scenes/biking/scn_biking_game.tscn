@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=39 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://nfu7bpddugd1" path="res://sprites/biking/background/spr_background_trees.png" id="3_0esb8"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_greg.gd" id="3_eueen"]
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
+[ext_resource type="Texture2D" uid="uid://dirs0ik1uh6lm" path="res://sprites/biking/background/spr_town.png" id="5_0mqsj"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="7_pxwvr"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
@@ -638,23 +640,60 @@ script = ExtResource("1_h455q")
 position = Vector2(80, 60)
 
 [node name="Background" type="Node2D" parent="."]
-z_index = -11
+z_index = -18
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Sky" type="Sprite2D" parent="Background"]
-modulate = Color(0.297003, 0.275582, 0.197332, 1)
+modulate = Color(0.545098, 0.752941, 1, 1)
 position = Vector2(78, 18)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_4w4l6")
 
 [node name="Trees" type="Sprite2D" parent="Background"]
 texture_repeat = 3
-position = Vector2(78, 18)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-58, -57)
 texture = ExtResource("3_0esb8")
+centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 547, 257)
+region_rect = Rect2(0, 0, 273, 257)
+
+[node name="Town" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+position = Vector2(-64, 32)
+texture = ExtResource("5_0mqsj")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 288, 16)
+
+[node name="SnailHellBackground" type="Node2D" parent="Background"]
+position = Vector2(0, 119)
+
+[node name="Snail" type="Node2D" parent="Background/SnailHellBackground" groups=["biking_snails"]]
+modulate = Color(100, 0, 0.06, 1)
+position = Vector2(82, 1)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/SnailHellBackground/Snail"]
+position = Vector2(-5, -11)
+texture = ExtResource("9_a2fuc")
+centered = false
+region_enabled = true
+region_rect = Rect2(2, 16, 9, 11)
+
+[node name="Eyes" type="Node2D" parent="Background/SnailHellBackground/Snail"]
+modulate = Color(86.48, 87.11, 85.85, 1)
+position = Vector2(1, -2)
+
+[node name="Eye" type="Sprite2D" parent="Background/SnailHellBackground/Snail/Eyes"]
+position = Vector2(1, 0)
+texture = ExtResource("7_pxwvr")
+centered = false
+
+[node name="Eye2" type="Sprite2D" parent="Background/SnailHellBackground/Snail/Eyes"]
+position = Vector2(-1, 0)
+texture = ExtResource("7_pxwvr")
+centered = false
 
 [node name="Road" parent="." instance=ExtResource("1_fjpor")]
 position = Vector2(-4, 6)
@@ -880,6 +919,7 @@ metadata/_edit_lock_ = true
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
 [node name="Road" type="NinePatchRect" parent="UI/RoadParts"]
 layout_mode = 0

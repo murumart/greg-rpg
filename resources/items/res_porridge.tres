@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_iep8s"]
 script = ExtResource("1_qq2xu")
-health = 199.0
+health = 120.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
@@ -20,6 +20,11 @@ defense_increase_time = 0
 speed_increase = 0.0
 speed_increase_time = 0
 confusion_time = 0
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("1_uqqbw")
@@ -27,7 +32,7 @@ name_in_file = &"porridge"
 name = &"porridge"
 description = "delicious. made in a microwave?"
 texture = ExtResource("3_22mxf")
-price = 199
+price = 240
 use = 0
 consume_on_use = true
 payload = SubResource("Resource_iep8s")

@@ -42,7 +42,7 @@ func save_key(key: String) -> String:
 
 
 func check_full_time_passed() -> void:
-	var emptied_second : int = DAT.get_data(save_key("emptied_second"), -3000)
+	var emptied_second : int = DAT.get_data(save_key("emptied_second"), -3999999999)
 	if DAT.seconds - emptied_second > replenish_seconds:
 		full = true
 	else:

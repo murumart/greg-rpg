@@ -10,6 +10,8 @@ const SNAILS_TO_ESCAPE_HELL := 120
 
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees
+@onready var background_town := $Background/Town
+@onready var background_snail_hell := $Background/SnailHellBackground
 
 @onready var road := $Road
 var speed := 60
@@ -33,6 +35,7 @@ const OBSTACLE_PACKED : Array[PackedScene] = [
 const MAIL_BOX_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_mailbox.tscn")
 const COIN_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_coin.tscn")
 const SNAIL_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_snail.tscn")
+const HOUSE_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_house.tscn")
 
 var distance := 0.0
 var stop_meter := -1.0
@@ -90,7 +93,8 @@ func _physics_process(delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_menu")) and ui.inventory_open:
 		close_inventory()
 	
-	background_trees.region_rect.position.x = wrapf(background_trees.region_rect.position.x + speed * delta * 0.33, 0.0, background_trees.region_rect.size.x * 2.0)
+	background_trees.region_rect.position.x = wrapf(background_trees.region_rect.position.x + speed * delta * 0.22, 0.0, background_trees.region_rect.size.x * 2.0)
+	background_town.region_rect.position.x = wrapf(background_town.region_rect.position.x + speed * delta * 0.33, 0.0, background_town.region_rect.size.x)
 	
 	# debug
 	if Input.is_action_pressed("ui_end"):
@@ -164,9 +168,18 @@ func _on_snail_timer_timeout() -> void:
 
 func _on_mailbox_timer_timeout() -> void:
 	if speed < 5: return
-	mailbox_timer.start(2.0)
+	mailbox_timer.start(0.5)
 	if currently_hell: return
-	if randf() <= 0.33:
+	if randf() <= 0.89:
+		var house := HOUSE_LOAD.instantiate()
+		house.speed = speed - (0.25 * speed) + (randf() * 2)
+		var x : float = remap(house.speed, 30, 60, 0.1, 1.0)
+		house.modulate = Color(x, x, x)
+		house.z_index = roundi(remap(house.speed, 30, 60,-11, -14))
+		add_child(house)
+		house.global_position.x = randi_range(200, 248)
+		house.global_position.y = randi_range(48, 52)
+	if randf() <= 0.11:
 		var mailbox : BikingMovingObject = MAIL_BOX_LOAD.instantiate()
 		mailbox.global_position = Vector2(176, 68)
 		mailbox.speed = speed
@@ -321,20 +334,26 @@ func enter_hell() -> void:
 	ui.display_hell_snail(snails_hit)
 	set_speed(80)
 	ui.open_hell_menu()
-	SND.play_song("snail_mourning", 1.0, {"skip_to": SND.get_music_playback_position()})
+	SND.play_song("snail_mourning", 4.0, {"skip_to": SND.get_music_playback_position()})
 	hell_time = 0
 	punishment_timer.start(1.0)
+	var tw := create_tween().set_parallel()
+	tw.tween_property(background_snail_hell, "position:y", 50.0, 2.0)
+	tw.tween_property(background_sky, "modulate", Color.RED, 2.0)
 
 
 func exit_hell() -> void:
 	set_speed(speed_before_snail)
 	ui.close_hell_menu()
 	snails_hit = 0
-	SND.play_song("mail_mission", 1.0, {"skip_to": SND.get_music_playback_position()})
+	SND.play_song("mail_mission", 4.0, {"skip_to": SND.get_music_playback_position()})
 	set_deferred("currently_hell", false)
 	punishment_timer.stop()
 	silver_collected += maxi(75 - maxi(hell_time - 60, 0), 0)
 	update_ui()
+	var tw := create_tween().set_parallel()
+	tw.tween_property(background_snail_hell, "position:y", 120.0, 2.0)
+	tw.tween_property(background_sky, "modulate", Color("#8bc0ff"), 2.0)
 
 
 func _on_punishment_timer_timeout() -> void:
@@ -344,10 +363,16 @@ func _on_punishment_timer_timeout() -> void:
 
 func calculate_rewards() -> BattleRewards:
 	var rewd := BattleRewards.new()
+	# usual rewards
 	if mail_hits > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
 		rew.property = str(float(roundi(mail_hits * 0.89)))
+		rewd.rewards.append(rew)
+	if mail_hits > 0:
+		var rew := Reward.new()
+		rew.type = BattleRewards.Types.EXP
+		rew.property = str(float(roundi(mail_hits * 0.25)))
 		rewd.rewards.append(rew)
 	if silver_collected > 0:
 		var rew := Reward.new()
@@ -359,6 +384,7 @@ func calculate_rewards() -> BattleRewards:
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str(i)
 		rewd.rewards.append(rew)
+	# special conditional rewards
 	if DAT.A.get("biking_games_finished", 0) < 1:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM

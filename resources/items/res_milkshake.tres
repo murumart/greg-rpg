@@ -20,6 +20,11 @@ defense_increase_time = null
 speed_increase = 5.0
 speed_increase_time = 10
 confusion_time = null
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+reveal_enemy_info = false
 
 [resource]
 script = ExtResource("2_jqfpd")
@@ -27,7 +32,7 @@ name_in_file = &"milkshake"
 name = &"milkshake"
 description = "there's milk in this universe? wonderful."
 texture = ExtResource("3_syr5q")
-price = 120
+price = 240
 use = 0
 consume_on_use = true
 payload = SubResource("Resource_k8uvg")

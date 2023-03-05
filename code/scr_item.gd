@@ -47,6 +47,10 @@ func get_effect_description() -> String:
 		text += (" for %s turns\n" % payload.speed_increase_time) if not use == Uses.ARMOUR and not use == Uses.WEAPON else "\n"
 	if payload.confusion_time:
 		text += "confusion for %s\n" % payload.confusion_time
+	if payload.poison_time:
+		text += "poison %s for %s\n" % [payload.poison_level, payload.poison_time] if payload.poison_time > 0 else "cures poison"
+	if payload.coughing_time:
+		text += "coughing %s for %s\n" % [payload.coughing_level, payload.coughing_time] if payload.coughing_time > 0 else "cures coughing"
 	if use == Uses.ARMOUR:
 		text += "armour\n"
 	if use == Uses.WEAPON:

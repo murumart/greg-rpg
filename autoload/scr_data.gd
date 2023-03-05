@@ -1,6 +1,7 @@
 extends Node
 
 # handles data, saving and loading it
+# ...and a bunch of other things.
 
 # DATA
 var A : Dictionary
@@ -21,6 +22,7 @@ var player_capturers := []
 @onready var game_timer := $GameTimer
 var seconds := 0
 var last_save_second := 0
+const NEIGHBOUR_WIFE_CYCLE := 470
 
 # on death
 var death_reason := "default"
