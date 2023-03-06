@@ -33,6 +33,7 @@ func _ready() -> void:
 	if area:
 		area.body_entered.connect(_on_area_entered)
 	await get_tree().process_frame
+	await get_tree().process_frame
 	if LTS.gate_id == gate_id:
 		if player and get_node_or_null(spawn_point_path):
 			player.global_position = get_node(spawn_point_path).global_position

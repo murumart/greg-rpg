@@ -70,18 +70,22 @@ func start_game() -> void:
 
 
 func set_data(key, value) -> void:
+	if log_dat_chgs(): print("data key %s set to %s" % [key, value])
 	A[key] = value
 
 
 func get_data(key: String, default = null):
+	if log_dat_chgs(): print("requested key %s from data" % key)
 	return A.get(key, default)
 
 
 func incrf(key: String, amount: float) -> void:
+	if log_dat_chgs(): print("floatcrementing: ")
 	set_data(key, A.get(key, 0.0) + amount)
 
 
 func incri(key: String, amount: int) -> void:
+	if log_dat_chgs(): print("intcrementing: ")
 	set_data(key, A.get(key, 0) + amount)
 
 
@@ -154,9 +158,9 @@ func capture_player(type := "", overlap := true) -> void:
 	if not overlap and type in player_capturers: return
 	print(type, " captured player")
 	player_capturers.append(type)
-	var players := get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		players[0].state = PlayerOverworld.States.NOT_FREE_MOVE
+	var player := get_tree().get_first_node_in_group("players")
+	if is_instance_valid(player):
+		player.state = PlayerOverworld.States.NOT_FREE_MOVE
 
 
 func free_player(type := "") -> void:
@@ -165,9 +169,9 @@ func free_player(type := "") -> void:
 	if type == "all":
 		player_capturers.clear()
 	if player_capturers.size() > 0: return
-	var players : Array = get_tree().get_nodes_in_group("player")
-	if players.size() > 0:
-		players[0].state = PlayerOverworld.States.FREE_MOVE
+	var player := get_tree().get_first_node_in_group("players")
+	if is_instance_valid(player):
+		player.state = PlayerOverworld.States.FREE_MOVE
 
 
 func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
@@ -270,6 +274,8 @@ func get_levelup_spirit(level: int) -> String:
 	return dict.get(level, "")
 
 
+func log_dat_chgs() -> bool:
+	return bool(OPT.get_opt("log_data_changes"))
 
 
 

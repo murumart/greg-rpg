@@ -79,6 +79,7 @@ func direct_animation() -> void:
 
 
 func interact() -> void:
+	if DAT.player_capturers.size() > 0: return
 	raycast.force_raycast_update()
 	var collider := raycast.get_collider()
 	#print(collider)

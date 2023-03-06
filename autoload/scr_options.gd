@@ -30,11 +30,24 @@ var IONS := {
 		"default_value": -2.0,
 		"step": 1.0,
 	},
+	"list_button_focus_deferred": {
+		"value": 0.0,
+		"range": [0.0, 1.0],
+		"default_value": 0.0,
+		"step": 1.0
+	},
+	"log_data_changes": {
+		"value": 0.0,
+		"range": [0.0, 1.0],
+		"default_value": 0.0,
+		"step": 1.0
+	},
 	"reset": {}
 }
 const CATEGORIES := {
 	"sound": ["master_volume", "music_volume"],
 	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time"],
+	"debug": ["log_data_changes", "list_button_focus_deferred"],
 	"": ["reset"]
 }
 
@@ -124,9 +137,17 @@ func load_options() -> void:
 
 func select(opti: int) -> void:
 	var opt_contain := get_option_nodes()
+	main_container.position.y = 2
 	for c in opt_contain:
 		c.modulate = Color.WHITE
 	opt_contain[opti].modulate = Color.CYAN
+	var location : Vector2 = opt_contain[opti].get_global_transform_with_canvas().origin
+	while location.y > 103:
+		main_container.position.y -= 1
+		location = opt_contain[opti].get_global_transform_with_canvas().origin
+	while location.y < 15:
+		main_container.position.y += 1
+		location = opt_contain[opti].get_global_transform_with_canvas().origin
 
 
 func modify(a: float, reset := false, ifset := false) -> void:
@@ -156,11 +177,15 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
 		"screen_shake_intensity":
 			SOL.shake(1.0)
+			SND.play_sound(menu_sound, {pitch = 1.36})
 		"content_scale_mode":
 			if get_opt("content_scale_mode") == 0:
 				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 			else:
 				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			SND.play_sound(menu_sound, {pitch = 1.36})
+		_:
+			SND.play_sound(menu_sound, {pitch = 1.36})
 
 
 func update(container: Container) -> void:

@@ -15,6 +15,7 @@ run/main_scene="res://scenes/gui/scn_main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Murumart"
 config/features=PackedStringArray("4.0", "GL Compatibility")
+run/max_fps=60
 boot_splash/use_filter=false
 config/icon="res://sprites/spr_icon.png"
 
@@ -104,6 +105,7 @@ quick_load={
 
 [rendering]
 
+renderer/rendering_method="mobile"
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/glow/upscale_mode=0
 environment/defaults/default_clear_color=Color(0.0627451, 0.0941176, 0.196078, 1)

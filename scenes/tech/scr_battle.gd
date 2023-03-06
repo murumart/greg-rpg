@@ -63,6 +63,7 @@ var dead_enemies : Array[BattleActor]
 
 var xp_pool := 0
 
+var listening_to_player_input := false
 var current_guy : BattleActor
 var loaded_spirits := {}
 var current_target : BattleActor
@@ -116,6 +117,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.keycode == KEY_0:
+		ui.visible = ! event.is_pressed()
+		if not event.is_pressed():
+			attack_button.grab_focus()
+	if not listening_to_player_input: return
 	if event.is_action_pressed("ui_cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("ui_accept"):
@@ -128,10 +134,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				p.offload_character()
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 			set_process_unhandled_key_input(false)
-	if event is InputEventKey and event.keycode == KEY_0:
-		ui.visible = ! event.is_pressed()
-		if not event.is_pressed():
-			attack_button.grab_focus()
 
 
 func load_battle(info: BattleInfo) -> void:
@@ -308,6 +310,7 @@ func _reference_button_pressed(reference) -> void:
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
+			listening_to_player_input = false
 			append_action_history("attack", {"target": reference})
 			open_party_info_screen()
 		Doings.SPIRIT:
@@ -319,6 +322,7 @@ func _reference_button_pressed(reference) -> void:
 			held_item_id = reference
 			open_list_screen()
 		Doings.ITEM:
+			listening_to_player_input = false
 			current_guy.use_item(held_item_id, reference)
 			append_action_history("item", {"target": reference, "item": held_item_id})
 			open_party_info_screen()
@@ -390,6 +394,7 @@ func _on_message_received(msg: String) -> void:
 func _on_player_input_requested(actor: BattleActor) -> void:
 	current_guy = actor
 	open_main_actions_screen()
+	listening_to_player_input = true
 
 
 func open_main_actions_screen() -> void:
@@ -448,15 +453,19 @@ func open_list_screen() -> void:
 			screen_list_select.show()
 	resize_panel(60)
 	await get_tree().process_frame # <---- of course this needs to be here
+	var deferred : int = OPT.get_opt("list_button_focus_deferred")
 	if screen_list_select.visible:
 		if list_containers[0].get_children().size() > 0:
-			list_containers[0].get_child(0).call_deferred("grab_focus")
+			if deferred: list_containers[0].get_child(0).call_deferred("grab_focus")
+			else: list_containers[0].get_child(0).grab_focus()
 	elif screen_item_select.visible:
 		if item_list_container[0].get_children().size() > 0:
-			item_list_container[0].get_child(0).call_deferred("grab_focus")
+			if deferred: item_list_container[0].get_child(0).call_deferred("grab_focus")
+			else: item_list_container[0].get_child(0).grab_focus()
 
 
 func open_party_info_screen() -> void:
+	listening_to_player_input = false
 	doing = Doings.NOTHING
 	held_item_id = ""
 	$%ScreenMainActions.hide()
@@ -491,6 +500,7 @@ func open_spirit_name_screen() -> void:
 
 
 func _on_spirit_speak_timer_timeout() -> void:
+	listening_to_player_input = false
 	SND.play_sound(preload("res://sounds/snd_error.ogg"), {pitch = 0.7, bus = "ECHO"})
 	spirit_name.text = "moment passed"
 	spirit_name.modulate = Color(2, 0.2, 0.4)
@@ -516,6 +526,8 @@ func _on_spirit_name_changed(to: String) -> void:
 
 
 func _on_spirit_name_submitted(submission: String) -> void:
+	listening_to_player_input = false
+	get_viewport().gui_release_focus()
 	spirit_speak_timer.paused = true
 	if submission in loaded_spirits.keys():
 		spirit_name.editable = false

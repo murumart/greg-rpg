@@ -160,7 +160,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		load_reference_buttons(choices, [choices_container])
 		choices_container.get_parent().show()
 		choices_open = true
-		choices_container.get_child(0).grab_focus()
+		choices_container.get_child(0).call_deferred("grab_focus")
 		set_finished_marker(0)
 	
 	finished_speaking.emit()
