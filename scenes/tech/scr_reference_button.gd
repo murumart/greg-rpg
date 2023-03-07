@@ -14,6 +14,11 @@ func _init() -> void:
 	focus_exited.connect(_focus_exited)
 
 
+func _ready() -> void:
+	if self == get_tree().get_first_node_in_group("reference_buttons"):
+		call_deferred("grab_focus")
+
+
 func _unhandled_key_input(_event: InputEvent) -> void:
 	pass
 

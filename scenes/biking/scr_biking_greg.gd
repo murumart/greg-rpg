@@ -42,7 +42,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if health <= 0.0 or paused: input = Vector2.ZERO
 	global_position += Vector2(input) * moving_speed * delta
 	global_position.x = clampf(global_position.x, BikingGame.ROAD_BOUNDARIES.position.x, BikingGame.ROAD_BOUNDARIES.size.x)

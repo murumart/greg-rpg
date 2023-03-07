@@ -6,7 +6,7 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["cashier_mean",]).\
+set_enemies(["grass",]).\
 set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("grass")
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -134,6 +134,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				p.offload_character()
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 			set_process_unhandled_key_input(false)
+		else:
+			var _deferred := bool(OPT.get_opt("list_button_focus_deferred"))
+#			if screen_list_select.visible:
+#				if list_containers[0].get_children().size() > 0:
+#					if deferred: list_containers[0].get_child(0).call_deferred("grab_focus")
+#					else: list_containers[0].get_child(0).grab_focus()
+#			elif screen_item_select.visible:
+#				if item_list_container[0].get_children().size() > 0:
+#					if deferred: item_list_container[0].get_child(0).call_deferred("grab_focus")
+#					else: item_list_container[0].get_child(0).grab_focus()
 
 
 func load_battle(info: BattleInfo) -> void:
@@ -406,7 +416,7 @@ func open_main_actions_screen() -> void:
 	screen_spirit_name.hide()
 	screen_end.hide()
 	resize_panel(44)
-	if Time.get_date_dict_from_system().weekday == 3 and randf() <= 0.05:
+	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05:
 		attack_button.text = "slay"
 	$%CharPortrait.texture = current_guy.character.portrait
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
@@ -512,6 +522,9 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 
 func _on_spirit_name_changed(to: String) -> void:
+	to = to.to_lower()
+	spirit_name.text = to
+	spirit_name.caret_column = to.length()
 	spirit_name.add_theme_font_size_override("font_size", 16)
 	if to.length() > 12:
 		spirit_name.add_theme_font_size_override("font_size", 8)
@@ -521,7 +534,7 @@ func _on_spirit_name_changed(to: String) -> void:
 	
 	SND.play_sound(preload("res://sounds/snd_gui.ogg"), {"bus": "ECHO", "pitch": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(spirit_name, "modulate", Color(1.1, 1.1, 8.0, 1.1), 0.1)
+	tw.tween_property(spirit_name, "modulate", Color(0.8, 0.8, 8.0, 2.0), 0.1)
 	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
 
 
@@ -579,6 +592,7 @@ func open_end_screen(victory: bool) -> void:
 		print("awaiting dialogue close")
 		await SOL.dialogue_closed
 		doing = Doings.DONE
+		listening_to_player_input = true
 	else:
 		LTS.to_game_over_screen()
 

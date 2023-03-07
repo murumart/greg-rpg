@@ -150,8 +150,8 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
 
 
-func print_data() -> void:
-	print(A)
+func copy_data() -> void:
+	DisplayServer.clipboard_set(JSON.stringify(A, "\t"))
 
 
 func capture_player(type := "", overlap := true) -> void:

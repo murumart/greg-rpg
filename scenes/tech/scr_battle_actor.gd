@@ -209,6 +209,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 
 
 func handle_payload(pld: BattlePayload) -> void:
+	print(actor_name, " handling payload!")
 	await get_tree().process_frame
 	if character.health <= 0: return
 	
@@ -291,9 +292,11 @@ func load_character(id: String) -> void:
 
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
-	DAT.character_dict[character.name_in_file].health = character.health
-	DAT.character_dict[character.name_in_file].magic = character.magic
-	DAT.character_dict[character.name_in_file].inventory = character.inventory
+	var basechar : Character = DAT.character_dict[character.name_in_file]
+	basechar.health = character.health
+	basechar.magic = character.magic
+	basechar.inventory = character.inventory
+	basechar.defeated_characters = character.defeated_characters
 
 
 func payload() -> BattlePayload:

@@ -42,12 +42,18 @@ var IONS := {
 		"default_value": 0.0,
 		"step": 1.0
 	},
+	"max_fps": {
+		"value": 60.0,
+		"range": [5.0, 60.0],
+		"default_value": 60.0,
+		"step": 1.0,
+	},
 	"reset": {}
 }
 const CATEGORIES := {
 	"sound": ["master_volume", "music_volume"],
-	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time"],
-	"debug": ["log_data_changes", "list_button_focus_deferred"],
+	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time",  "max_fps"],
+	"debug": ["log_data_changes","list_button_focus_deferred"],
 	"": ["reset"]
 }
 
@@ -89,9 +95,10 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_1:
 				SOL.vfx_damage_number(get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), "9999", Color.WHITE, randi()%3 + 1)
 			KEY_KP_0:
-				DAT.print_data()
+				DAT.copy_data()
+				SOL.vfx_damage_number(Vector2.ZERO, "copied data", Color.WHITE, 2)
 			KEY_KP_2:
-				pass
+				print(get_viewport().gui_get_focus_owner())
 			KEY_KP_3:
 				if "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
@@ -166,6 +173,11 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	AudioServer.set_bus_volume_db(0, get_opt("master_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
+	Engine.max_fps = get_opt("max_fps")
+	if get_opt("content_scale_mode") == 0:
+		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
+	else:
+		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	if prev_opt == get_opt(type): return
 	match type:
 		"reset":
@@ -177,12 +189,6 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
 		"screen_shake_intensity":
 			SOL.shake(1.0)
-			SND.play_sound(menu_sound, {pitch = 1.36})
-		"content_scale_mode":
-			if get_opt("content_scale_mode") == 0:
-				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
-			else:
-				get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			SND.play_sound(menu_sound, {pitch = 1.36})
 		_:
 			SND.play_sound(menu_sound, {pitch = 1.36})

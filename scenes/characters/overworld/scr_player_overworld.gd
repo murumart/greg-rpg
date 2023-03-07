@@ -39,7 +39,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	velocity = Vector2()
 	if state == States.FREE_MOVE:

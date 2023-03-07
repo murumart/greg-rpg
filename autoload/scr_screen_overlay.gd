@@ -52,6 +52,7 @@ func dialogue(key: String) -> void:
 
 
 func _on_dialogue_closed() -> void:
+	print("dialogue closed")
 	dialogue_closed.emit()
 	dialogue_open = false
 

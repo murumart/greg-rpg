@@ -16,7 +16,7 @@ func _ready() -> void:
 func neighbour_wife_position() -> void:
 	var neighbour_wife := $Houses/NeighbourHouse/NeighbourWife
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
-	if time > DAT.NEIGHBOUR_WIFE_CYCLE / 2:
+	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0):
 		neighbour_wife.position.x = -32767
 		neighbour_wife.set_physics_process(false)
 		neighbour_wife.hide()
@@ -25,7 +25,7 @@ func neighbour_wife_position() -> void:
 func tarikas_lines() -> void:
 	var tarikas : OverworldCharacter = $Other/BackPark/Tarikas
 	var level := DAT.get_character("greg").level
-	var lines_to_set : Array[StringName]
+	var lines_to_set : Array[StringName] = []
 	tarikas.convo_progress = 0
 	if not DAT.get_data("tarikas_talked_to", false):
 		lines_to_set.append("tarikas_hello")

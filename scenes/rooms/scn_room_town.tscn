@@ -1019,6 +1019,30 @@ type = 2
 position = Vector2(27, -35)
 type = 3
 
+[node name="Tree57" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(109, -32)
+type = 2
+
+[node name="Tree58" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(216, -22)
+type = 2
+
+[node name="Tree59" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(311, 6)
+type = 2
+
+[node name="Tree60" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(391, -27)
+type = 2
+
+[node name="Tree61" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(497, 13)
+type = 2
+
+[node name="Tree62" parent="Trees" instance=ExtResource("8_l27gf")]
+position = Vector2(605, 8)
+type = 2
+
 [node name="Tree6" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(51, 58)
 scale = Vector2(-1, 1)
