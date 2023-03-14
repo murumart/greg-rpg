@@ -47,6 +47,8 @@ window/stretch/aspect="ignore"
 
 movie_writer/mix_rate=41000
 movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [filesystem]
 
