@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://50csctmtw55r"]
+
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_fisherman.gd" id="1_0spjj"]
+[ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="1_itcb7"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_n6n77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sad0f"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecy3r"]
+size = Vector2(12, 6)
+
+[node name="Fisherman" type="Node2D" groups=["fishermen"]]
+script = ExtResource("1_0spjj")
+randomise_men = null
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_sad0f")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_n6n77")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_ecy3r")
+
+[node name="Face" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_itcb7")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Pole" type="Sprite2D" parent="."]
+position = Vector2(2, -3)
+texture = ExtResource("1_itcb7")
+centered = false
+offset = Vector2(-1, -28)
+region_enabled = true
+region_rect = Rect2(33, 0, 15, 28)
+
+[node name="Line2D" type="Line2D" parent="Pole"]
+position = Vector2(13, -27)
+points = PackedVector2Array(1, 0, 1, 30)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_on_interact"]

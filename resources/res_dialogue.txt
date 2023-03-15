@@ -995,6 +995,26 @@ CHAR tarikas
 	and step out of the way of the sun.
 
 
+DIALOGUE fisherman_1
+	i love fishing!
+
+
+DIALOGUE fisherman_2
+	i am the greatest fisherman!
+
+
+DIALOGUE fisherman_3
+	one time, i caught a fish that was at least as long as my leg.
+
+
+DIALOGUE fisherman_4
+	scratch that. it was as long as a car!
+
+
+DIALOGUE fisherman_5
+	it is a defining moment of my life.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
