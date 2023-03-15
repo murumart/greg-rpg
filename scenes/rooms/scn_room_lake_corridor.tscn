@@ -79,8 +79,11 @@ player = NodePath("../../Greg")
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-32, 16)
 
-[node name="RoomGate2" parent="Areas" instance=ExtResource("5_5nos6")]
+[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("5_5nos6")]
 position = Vector2(-8, 192)
+destination = &"lakeside"
+gate_id = &"corridor-lake"
+player = NodePath("../../Greg")
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(0, -14)
 
