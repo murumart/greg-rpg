@@ -6,8 +6,8 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["grass",]).\
-set_music("daylightthief").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("grass")
+set_enemies(["fish","fish","fish"]).\
+set_music("lake_battle").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3

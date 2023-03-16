@@ -56,6 +56,10 @@ var songs := {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"
 	},
+	"lake_battle": {
+		"title": "drum and perch",
+		"link": "res://music/mus_lake_battle.ogg"
+	},
 	"lily_lesson": {
 		"title": "lily lesson",
 		"link": "res://music/mus_lily_lesson.ogg"

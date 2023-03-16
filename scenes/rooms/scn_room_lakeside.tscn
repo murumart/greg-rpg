@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=22 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_7wyjm"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_xwmth"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_gxb62"]
+[ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="7_7ppah"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="9_8d332"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
 shader = ExtResource("2_aroxh")
@@ -31,6 +35,32 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y3e8c"]
 normal = Vector2(1, 0)
+
+[sub_resource type="Resource" id="Resource_sy3e8"]
+script = ExtResource("7_7ppah")
+type = 0
+property = "8"
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_277tt"]
+script = ExtResource("7_7ppah")
+type = 0
+property = "range 2,16"
+chance = 0.392
+
+[sub_resource type="Resource" id="Resource_k01d4"]
+script = ExtResource("8_ecjdo")
+rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt")])
+
+[sub_resource type="Resource" id="Resource_o50vv"]
+script = ExtResource("9_8d332")
+enemies = Array[String](["fish", "fish"])
+background = "lakeside"
+music = "lake_battle"
+party = Array[String]([])
+death_reason = "default"
+start_text = ""
+rewards = SubResource("Resource_k01d4")
 
 [node name="Lakeside" type="Node2D"]
 y_sort_enabled = true
@@ -580,6 +610,13 @@ gate_id = &"corridor-lake"
 player = NodePath("../../Greg")
 extents = Vector2i(26, 8)
 spawnpoint = Vector2i(0, 14)
+
+[node name="EnemyEncounterArea" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
+battle = SubResource("Resource_o50vv")
+player = NodePath("../../Greg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/EnemyEncounterArea"]
+polygon = PackedVector2Array(-318, -185, 629, 28, 491, 299, -1, 295, -404, 172, -446, -16)
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
 position = Vector2(-478, -312)
