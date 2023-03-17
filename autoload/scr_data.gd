@@ -28,6 +28,8 @@ const NEIGHBOUR_WIFE_CYCLE := 470
 var death_reason := "default"
 var last_save_file := 0
 
+# debug
+var check_for_key := ""
 
 func _init() -> void:
 	randomize()
@@ -70,7 +72,11 @@ func start_game() -> void:
 
 
 func set_data(key, value) -> void:
-	if log_dat_chgs(): print("data key %s set to %s" % [key, value])
+	if log_dat_chgs():
+		if key == check_for_key:
+			SND.play_sound(preload("res://sounds/snd_error.ogg"))
+			SOL.vfx_damage_number(Vector2(SOL.SCREEN_SIZE / 2), str(value), Color.WHITE, 2)
+		print("data key %s set to %s" % [key, value])
 	A[key] = value
 
 

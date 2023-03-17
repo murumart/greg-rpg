@@ -322,7 +322,7 @@ tracks/7/path = NodePath("../Greg")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 10.1, 10.2),
+"times": PackedFloat32Array(0, 0.1, 10.1, 10.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [false],

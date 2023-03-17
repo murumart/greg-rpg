@@ -86,7 +86,7 @@ func _on_zerma_inspected() -> void:
 
 
 func intro_cutscene_dialogue() -> void:
-	if SOL.dialogue_open: return
+	print("\t intro cutscene dialogue:")
 	match intro_dialogue_progress:
 		0:
 			SOL.dialogue("intro_convo_2")
@@ -97,11 +97,13 @@ func intro_cutscene_dialogue() -> void:
 
 
 func intro_cutscene_first_pause() -> void:
+	print("FIRST PAUSE")
 	intro_animator.pause()
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
 	SOL.dialogue("intro_convo_4")
 	await SOL.dialogue_closed
+	print("FIRST PAUSE FINISHED")
 	intro_animator.play("intro")
 	DAT.free_player("intro_cutscene")
 

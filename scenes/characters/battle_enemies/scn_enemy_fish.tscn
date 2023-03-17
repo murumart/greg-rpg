@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_whip6"]
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="2_1cvso"]
 
+[sub_resource type="Animation" id="Animation_reqq0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_mkstr"]
 resource_name = "idle"
 loop_mode = 1
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 14]
-}
-
-[sub_resource type="Animation" id="Animation_reqq0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FishSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_078ep"]
