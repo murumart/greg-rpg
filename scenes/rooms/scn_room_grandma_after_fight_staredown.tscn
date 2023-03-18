@@ -19,21 +19,6 @@ gradient = SubResource("Gradient_bkgfh")
 shader = ExtResource("2_la4kt")
 shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
 
-[sub_resource type="Animation" id="Animation_4fllh"]
-resource_name = "white_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background:material:shader_parameter/Gradient:gradient:colors")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0, 0, 0, 1), PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0.87451, 0.87451, 0.87451, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_s6scb"]
 length = 0.001
 tracks/0/type = "value"
@@ -87,6 +72,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4fllh"]
+resource_name = "white_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:material:shader_parameter/Gradient:gradient:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0, 0, 0, 1), PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0.87451, 0.87451, 0.87451, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_usldh"]

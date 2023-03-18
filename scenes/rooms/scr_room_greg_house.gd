@@ -29,8 +29,6 @@ func _ready() -> void:
 		room_gate.global_position = Vector2(339, 232)
 		return
 	
-	print("intro progress: ", intro_dialogue_progress)
-	
 	if intro_dialogue_progress < 2:
 		intro_animator.play("intro")
 		zerma.default_lines.clear()
@@ -77,9 +75,7 @@ func _on_zerma_inspected() -> void:
 				DAT.set_data("intro_cutscene_finished", true)
 				SOL.dialogue_choice = ""
 		4, 5:
-			print("hey.")
 			await get_tree().process_frame
-			print("ho.")
 			intro_animator.play("zerma_leaves")
 			DAT.set_data("zerma_left", true)
 			DAT.set_data("intro_cutscene_finished", true)
@@ -87,7 +83,6 @@ func _on_zerma_inspected() -> void:
 
 
 func intro_cutscene_dialogue() -> void:
-	print("\t intro cutscene dialogue:")
 	match intro_dialogue_progress:
 		0:
 			SOL.dialogue("intro_convo_2")
@@ -98,13 +93,11 @@ func intro_cutscene_dialogue() -> void:
 
 
 func intro_cutscene_first_pause() -> void:
-	print("FIRST PAUSE")
 	intro_animator.pause()
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
 	SOL.dialogue("intro_convo_4")
 	await SOL.dialogue_closed
-	print("FIRST PAUSE FINISHED")
 	intro_animator.play("intro")
 	DAT.free_player("intro_cutscene")
 
