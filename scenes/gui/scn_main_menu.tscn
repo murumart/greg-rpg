@@ -3,16 +3,17 @@
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
 [ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
-[ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="4_nui45"]
+[ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
 
-[sub_resource type="Gradient" id="Gradient_tugpb"]
+[sub_resource type="Gradient" id="Gradient_wbkcl"]
+colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uimka"]
-gradient = SubResource("Gradient_tugpb")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qpb5b"]
+gradient = SubResource("Gradient_wbkcl")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov56v"]
-shader = ExtResource("4_nui45")
-shader_parameter/Gradient = SubResource("GradientTexture2D_uimka")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0obdr"]
+shader = ExtResource("3_ku6te")
+shader_parameter/Gradient = SubResource("GradientTexture1D_qpb5b")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -27,6 +28,14 @@ metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0.00784314, 0.00392157, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_0obdr")
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
@@ -101,13 +110,6 @@ offset_top = 113.0
 offset_right = 150.0
 offset_bottom = 124.0
 text = "press esc for options any time"
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_ov56v")
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 124.0
 
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]

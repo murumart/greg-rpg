@@ -1,6 +1,7 @@
 extends BattleEnemy
 
 var battle_reference : Battle
+var rewards := BattleRewards.new()
 
 var progress := 0
 
@@ -10,6 +11,7 @@ func _ready() -> void:
 	if DAT.get_current_scene() is Battle:
 		battle_reference = DAT.get_current_scene()
 		battle_reference.player_finished_acting.connect(_on_player_act_finished)
+		battle_reference.battle_rewards = rewards
 	super._ready()
 	progress = 2
 	SOL.dialogue("zerma_fight_1")
@@ -44,7 +46,6 @@ func _on_player_act_finished() -> void:
 			battle_reference.party[0].character.inventory.append("pocket_candy")
 	# ending the battle
 	if progress > 4:
-		battle_reference.dead_enemies.append(self)
 		await SOL.dialogue_closed
 		DAT.set_data("zerma_fought", true)
 		DAT.incri("intro_dialogue_progress", 1)

@@ -209,9 +209,9 @@ CHAR grandma
 DIALOGUE intro_grandma_2
 CHAR grandma
 	ah, you've made a choice?
-	or do you need help?
+	or you need help?
 CHOICES bye,flowers,aboutyou,house
-	well?
+	ask away!
 CHOICE_LINK bye
 	oh... i see you did not choose to buy anything.
 	but i hope to see you again soon! goodbye!
@@ -261,12 +261,14 @@ CHAR grandma
 
 DIALOGUE grandma_fight_end
 CHAR grandma
-	i'll be honest.
+	you're weak.
+	i'll be honest: ...
 	i actually expected some sort of fight from you.
 	you little... man.
 	come back when you're a little stronger!
-	and by little, i mean when you're at least level 88.
-	until then, little man.
+	and by little, i mean when you're at least level 85.
+	you want my house? you'll have to take it by force.
+	see you then, little man.
 
 
 DIALOGUE zerma_fight_preface

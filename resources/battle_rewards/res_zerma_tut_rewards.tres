@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=5 format=3 uid="uid://d3h8qcjqnxp3o"]
+
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_u745b"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_urp55"]
+
+[sub_resource type="Resource" id="Resource_w74rs"]
+script = ExtResource("1_urp55")
+type = 0
+property = "15"
+chance = 1.0
+
+[sub_resource type="Resource" id="Resource_tj768"]
+script = ExtResource("1_urp55")
+type = 3
+property = "5"
+chance = 1.0
+
+[resource]
+script = ExtResource("1_u745b")
+rewards = Array[ExtResource("1_urp55")]([SubResource("Resource_w74rs"), SubResource("Resource_tj768")])

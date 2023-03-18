@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=3 uid="uid://b0i2jut028tdc"]
+
+[ext_resource type="Script" path="res://scenes/rooms/scr_room_grandma_after_fight_staredown.gd" id="1_nnkrl"]
+[ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="2_la4kt"]
+[ext_resource type="Texture2D" uid="uid://dedbkkindpw06" path="res://sprites/photos/spr_lakeside.png" id="3_rok01"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_4jdpd"]
+[ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="5_fnjlt"]
+[ext_resource type="Texture2D" uid="uid://dg4okikxkw6c1" path="res://sprites/characters/overworld/spr_grandma_overworld.png" id="6_noge4"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="7_b8e2s"]
+
+[sub_resource type="Gradient" id="Gradient_bkgfh"]
+offsets = PackedFloat32Array(0.121194, 1)
+colors = PackedColorArray(0.339497, 0.339497, 0.339497, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2ra4h"]
+gradient = SubResource("Gradient_bkgfh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gp58o"]
+shader = ExtResource("2_la4kt")
+shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
+
+[sub_resource type="Animation" id="Animation_4fllh"]
+resource_name = "white_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:material:shader_parameter/Gradient:gradient:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0, 0, 0, 1), PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0.87451, 0.87451, 0.87451, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s6scb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:material:shader_parameter/Gradient:gradient:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedColorArray(0.339497, 0.339497, 0.339497, 1, 1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("White:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3kaly"]
+resource_name = "start_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:material:shader_parameter/Gradient:gradient:colors")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.925),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0.87451, 0.87451, 0.87451, 1), PackedColorArray(0.339497, 0.339497, 0.339497, 1, 0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("White:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_usldh"]
+_data = {
+"RESET": SubResource("Animation_s6scb"),
+"start_animation": SubResource("Animation_3kaly"),
+"white_animation": SubResource("Animation_4fllh")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10suf"]
+blend_mode = 1
+
+[node name="GrandmaAfterFightStaredown" type="Node2D"]
+script = ExtResource("1_nnkrl")
+music = "staredown"
+
+[node name="Background" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gp58o")
+texture = ExtResource("3_rok01")
+
+[node name="Camera" parent="." instance=ExtResource("4_4jdpd")]
+
+[node name="Greg" type="Sprite2D" parent="."]
+position = Vector2(50, -16)
+texture = ExtResource("5_fnjlt")
+centered = false
+region_enabled = true
+region_rect = Rect2(50, 32, 14, 16)
+
+[node name="Grandma" type="Sprite2D" parent="."]
+position = Vector2(-62, -16)
+texture = ExtResource("6_noge4")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 16, 14, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start_animation"
+libraries = {
+"": SubResource("AnimationLibrary_usldh")
+}
+
+[node name="White" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_10suf")
+texture = ExtResource("7_b8e2s")
+region_enabled = true
+region_rect = Rect2(0, 0, 160, 120)

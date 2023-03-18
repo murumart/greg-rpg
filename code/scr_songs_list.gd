@@ -80,6 +80,10 @@ var songs := {
 		"title": "snail mourning",
 		"link": "res://music/mus_snail_mourning.ogg"
 	},
+	"staredown": {
+		"title": "staredown",
+		"link": "res://music/mus_staredown.ogg"
+	},
 	"mail_man": {
 		"title": "the friendly postman",
 		"link": "res://music/mus_mail_man.ogg"

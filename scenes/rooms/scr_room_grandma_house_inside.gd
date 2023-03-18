@@ -34,7 +34,6 @@ func _on_radio_interaction_on_interact() -> void:
 
 
 func _on_dialogue_closed() -> void:
-	print(SOL.dialogue_choice)
 	if SOL.dialogue_choice == "house":
 		LTS.enter_battle(
 			BattleInfo.new().set_background(

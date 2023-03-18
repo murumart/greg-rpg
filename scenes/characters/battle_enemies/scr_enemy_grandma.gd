@@ -10,7 +10,9 @@ func act() -> void:
 	if greg.character.health_perc() > 0.5:
 		ai_action()
 	else:
+		SND.play_song("")
 		DAT.set_data("fought_grandma", true)
 		DAT.incri("intro_dialogue_progress", 1)
 		LTS.gate_id = LTS.GATE_EXIT_BATTLE
-		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		await get_tree().create_timer(3.0).timeout
+		LTS.level_transition(LTS.ROOM_SCENE_PATH % "grandma_after_fight_staredown")
