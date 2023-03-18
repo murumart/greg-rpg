@@ -6,7 +6,7 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["fish","fish","fish"]).\
+set_enemies(["grass",]).\
 set_music("lake_battle").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -594,6 +594,7 @@ func open_end_screen(victory: bool) -> void:
 		doing = Doings.DONE
 		listening_to_player_input = true
 	else:
+		DAT.death_reason = death_reason
 		LTS.to_game_over_screen()
 
 
