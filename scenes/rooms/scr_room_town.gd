@@ -11,6 +11,9 @@ func _ready() -> void:
 	
 	neighbour_wife_position()
 	tarikas_lines()
+	pink_haired_girl_setup()
+	if DAT.get_data("trash_guy_inspected", false):
+		$Houses/BlockNeighbours/Trashguy.queue_free()
 
 
 func neighbour_wife_position() -> void:
@@ -44,4 +47,31 @@ func tarikas_lines() -> void:
 func _on_tarikas_inspected() -> void:
 	tarikas_lines()
 	DAT.set_data("tarikas_talked_to", true)
+
+
+func pink_haired_girl_setup() -> void:
+	var phg := $Houses/HousingBlock/PHG
+	var time := wrapi(DAT.seconds, 0, 1200)
+	if not time / 4 <= 300:
+		phg.queue_free()
+		DAT.set_data("has_interacted_with_phg", false)
+		return
+
+func _on_phg_inspected() -> void:
+	var phg := $Houses/HousingBlock/PHG
+	phg.default_lines.clear()
+	var progress : int = DAT.get_data("phg_progress", 0)
+	if not DAT.get_data("has_interacted_with_phg", false):
+		DAT.set_data("has_interacted_with_phg", true)
+		progress += 1 if SOL.dialogue_box.dialogues_dict.has("phg_%s" % str(progress + 1)) else 0
+		DAT.set_data("phg_progress", progress)
+		phg.default_lines.append("phg_%s" % progress)
+		return
+	phg.default_lines.append("phg_%s" % progress)
+	
+
+
+func _on_trash_guy_inspected() -> void:
+	DAT.set_data("trash_guy_inspected", true)
+
 

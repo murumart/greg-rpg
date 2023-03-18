@@ -260,7 +260,7 @@ CHAR grandma
 
 
 DIALOGUE grandma_fight_end
-CHAR grandma
+CHAR 
 	you're weak.
 	i'll be honest: ...
 	i actually expected some sort of fight from you.
@@ -1017,6 +1017,22 @@ DIALOGUE fisherman_5
 	it is a defining moment of my life.
 
 
+DIALOGUE phg_1
+	what a dull day.
+
+
+DIALOGUE phg_2
+	still dull, thanks for asking.
+
+
+DIALOGUE phg_3
+	...
+
+
+DIALOGUE phg_4
+	as dull as ever.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
@@ -1077,6 +1093,19 @@ DIALOGUE insp_neighbour_car_2
 
 DIALOGUE insp_trash_road
 	the road condition looks terrible up ahead.
+
+
+DIALOGUE insp_trashguy_1
+	pardon me, young man, but you appear quite lost and confounded.
+	is your situation perchance quite exasperating?
+	do not fret, young fellow; an elegant and simple solution exists.
+	bins of rubbish, such as these, pose an excellent source...
+	...for many items that may pique your curiosity.
+	be attentive, young gentleman, and success will find you.
+
+
+DIALOGUE insp_trashguy_2
+	*hic*
 
 
 DIALOGUE end_of_the_line
