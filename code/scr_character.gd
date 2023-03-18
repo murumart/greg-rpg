@@ -88,7 +88,7 @@ func xp2lvl(lvl: int) -> float:
 
 
 func add_experience(amount: int, speak := false) -> void:
-	var old_level := level
+	var _old_level := level
 	if speak:
 		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
 		SOL.dialogue("get_experience")
@@ -97,7 +97,7 @@ func add_experience(amount: int, speak := false) -> void:
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
-			if old_level != level and name_in_file in DAT.A.get("party", ["greg"]):
+			if name_in_file in DAT.A.get("party", ["greg"]):
 				var dialogue_key := "levelup"
 				if name_in_file == "greg":
 					if level % 11 == 0:
@@ -106,7 +106,6 @@ func add_experience(amount: int, speak := false) -> void:
 						SOL.dialogue_box.dial_concat(dialogue_key, 2, [DAT.get_spirit(DAT.get_levelup_spirit(level)).name])
 				SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
 				SOL.dialogue(dialogue_key)
-	print("emitting levelup")
 	leveled_up.emit()
 
 

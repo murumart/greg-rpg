@@ -64,7 +64,13 @@ func prepare_dialogue(key: String) -> void:
 		load_dialogue_dict()
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	if is_instance_valid(loaded_dialogue):
-		dialogue_queue.append(dialogues_dict.get(key, Dialogue.new()).duplicate(true))
+		var dial_to_append : Dialogue = dialogues_dict.get(key, Dialogue.new()).duplicate(true)
+		var new_lines : Array[DialogueLine] = []
+		for l in dial_to_append.lines:
+			var line : DialogueLine = l.duplicate(true)
+			new_lines.append(line)
+		dial_to_append.lines = new_lines
+		dialogue_queue.append(dial_to_append)
 		return
 	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
 	set_finished_marker(0)

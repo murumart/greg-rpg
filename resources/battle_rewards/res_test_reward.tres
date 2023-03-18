@@ -18,7 +18,7 @@ chance = 1.0
 [sub_resource type="Resource" id="Resource_x8227"]
 script = ExtResource("1_i8w45")
 type = 3
-property = "1"
+property = "30"
 chance = 1.0
 
 [resource]
