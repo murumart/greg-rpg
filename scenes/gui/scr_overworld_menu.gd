@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
-		if DAT.player_capturers.is_empty() or (DAT.player_capturers.size() <= 1 and "overworld_menu" in DAT.player_capturers):
+		if DAT.player_capturers.is_empty() and not "overworld_menu" in DAT.player_capturers:
 			SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 	if not visible: return
 	get_viewport().set_input_as_handled()

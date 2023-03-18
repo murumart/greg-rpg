@@ -27,6 +27,12 @@ func _ready() -> void:
 		button.return_reference.connect(_on_button_pressed)
 	set_mode(mode)
 	set_current_button(0)
+	var save_file_name : String = DAT.get_data("save_file", "")
+	print(save_file_name)
+	var save_file_nr := save_file_name.trim_prefix("greg_save_").trim_suffix(".grs")
+	print(save_file_nr)
+	if save_file_nr.is_valid_float():
+		set_current_button(int(save_file_nr))
 
 
 func _input(event: InputEvent) -> void:
@@ -92,10 +98,13 @@ func update_buttons() -> void:
 
 
 func _on_button_pressed(reference: Variant) -> void:
+	update_buttons()
 	match mode:
 		SAVE:
 			DAT.save_data(SAVE_PATH % reference)
 			SND.play_sound(menu_sound)
+			set_current_button(reference)
+			SOL.vfx_damage_number(file_container.get_child(current_button).global_position - Vector2(SOL.SCREEN_SIZE) / 2.0 + file_container.get_child(current_button).size / 2.0, "saved!")
 		LOAD:
 			DAT.load_data(SAVE_PATH % reference)
 			set_current_button(12839)

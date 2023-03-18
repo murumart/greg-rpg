@@ -30,7 +30,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if event.is_action_pressed("ui_menu"):
-			if not menu.visible:
+			if (not menu.visible) and not "save_screen" in DAT.player_capturers:
 				menu.call_deferred("showme")
 				DAT.capture_player("overworld_menu")
 			else:
