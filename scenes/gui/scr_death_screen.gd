@@ -34,9 +34,11 @@ const DEATH_REASONS := {
 func _ready() -> void:
 	if test_death:
 		DAT.death_reason = test_death
-	SND.play_sound(load(DEATH_REASONS.get(DAT.death_reason, {}).get("sound", "res://music/mus_defeat.ogg")), {"bus": "Music"})
-	picture.texture = load(DEATH_PICTURE_PATH % DEATH_REASONS.get(DAT.death_reason, {}).get("picture"))
-	text_box.text = DEATH_REASONS.get(DAT.death_reason, {}).get("text", "")
+	var death_reason : Dictionary = DEATH_REASONS.get(DAT.death_reason, {})
+	print(death_reason)
+	SND.play_sound(load(death_reason.get("sound", "res://music/mus_defeat.ogg")), {"bus": "Music"})
+	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))
+	text_box.text = death_reason.get("text", "[center]your resolve was overcome.[/center]")
 	text_box.speak_text({"speed": 2})
 	DAT.death_reason = "default"
 	$HBoxContainer/RetryButton.call_deferred("grab_focus")
