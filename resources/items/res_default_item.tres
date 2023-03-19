@@ -24,6 +24,7 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +33,7 @@ name_in_file = &"gleebungus"
 name = &"gleebungus"
 description = "gleebui bung unbrn bung gun bungug oumboiung more like tingenniernnitangel"
 texture = ExtResource("3_2r2cl")
+attack_animation = ""
 price = 129830192318
 use = 2
 consume_on_use = true

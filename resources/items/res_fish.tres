@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dyjwhwgeidir"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_bba6c"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_krq1w"]
+[ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="3_h1xxd"]
+
+[sub_resource type="Resource" id="Resource_g7puc"]
+script = ExtResource("1_bba6c")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 4.0
+attack_increase_time = 0
+defense_increase = 0.0
+defense_increase_time = 0
+speed_increase = 0.0
+speed_increase_time = 0
+confusion_time = 0
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_krq1w")
+name_in_file = &""
+name = &"fish"
+description = "fish"
+texture = ExtResource("3_h1xxd")
+attack_animation = "fish_attack"
+price = 2222
+use = 4
+consume_on_use = true
+payload = SubResource("Resource_g7puc")

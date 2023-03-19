@@ -38,6 +38,7 @@ tape
 magnet
 brick
 knife
+fish
 shovel"
 spirit_list = "sideeye
 hotel
@@ -55,7 +56,8 @@ bigger_airspace_violation
 isotoxin
 dreaming_in_green
 shopping_cart
-wli_attack"
+wli_attack
+fish_attack"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

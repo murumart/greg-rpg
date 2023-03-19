@@ -28,6 +28,7 @@ var type := Types.ATTACK
 @export var poison_time: int
 
 @export_group("Other")
+@export var animation_on_receive := ""
 var equip_as_weapon := false
 var equip_as_armour := false
 @export var reveal_enemy_info := false
@@ -135,4 +136,9 @@ func set_weapon(x: bool) -> BattlePayload:
 
 func set_defense_pierce(x: float) -> BattlePayload:
 	pierce_defense = x
+	return self
+
+
+func set_animation_on_receive(x: String) -> BattlePayload:
+	animation_on_receive = x
 	return self

@@ -181,7 +181,7 @@ func animate(what: String) -> void:
 	if animator:
 		if animator.has_animation(what):
 			animator.play(what)
-			if animator.has_animation("idle"):
+			if animator.has_animation("idle") and not what in ["death", "flee"]:
 				animator.queue("idle")
 			return
 	match what:

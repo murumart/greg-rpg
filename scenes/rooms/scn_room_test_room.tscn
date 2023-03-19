@@ -941,7 +941,9 @@ silver = 15
 
 [node name="TrashBin3" parent="." instance=ExtResource("20_h3jbg")]
 position = Vector2(377, 157)
-item = &"brick"
+replenish_minutes = 2
+replenish_seconds = 120
+item = &"fish"
 
 [node name="OverworldTiles2" parent="." instance=ExtResource("2_jxegg")]
 layer_0/name = "veg level"

@@ -24,6 +24,7 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +33,7 @@ name_in_file = &""
 name = &"brick"
 description = "quite heavy. you can barely lift it."
 texture = ExtResource("2_crst0")
+attack_animation = "brick_attack"
 price = 40
 use = 4
 consume_on_use = true

@@ -10,6 +10,7 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 @export var name := &""
 @export_multiline var description := ""
 @export var texture : Texture
+@export var attack_animation := ""
 
 @export_group("Behaviour")
 @export var price := 0

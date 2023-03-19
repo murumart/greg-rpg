@@ -5,6 +5,7 @@ func _ready() -> void:
 	super._ready()
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
+	pink_haired_girl_setup()
 
 
 func _on_interaction_area_on_interact() -> void:
@@ -37,3 +38,15 @@ func mail_man_welcome_after_biking() -> void:
 		SOL.dialogue("mail_man_welcomeback")
 	else:
 		SOL.dialogue("mail_man_afterbiking")
+
+
+func pink_haired_girl_setup(force := false) -> void:
+	var time := wrapi(DAT.seconds, 0, DAT.PHG_CYCLE)
+	var phg := $Decoration/PHG
+	if not Math.inrange(time / 4, 300, 600) and not force:
+		phg.queue_free()
+		return
+	if DAT.get_data("phg_progress", 0) > 3:
+		phg.default_lines.clear()
+		phg.default_lines.append("phg_postoffice_explain")
+

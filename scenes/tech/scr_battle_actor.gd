@@ -30,7 +30,6 @@ var reference_to_actor_array : Array[BattleActor] = []
 
 var player_controlled := false
 
-
 @export_group("Other")
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
@@ -150,11 +149,15 @@ func attack(subject: BattleActor) -> void:
 		pld.set_coughing(weapon.payload.coughing_level, weapon.payload.coughing_time)
 		pld.set_poison(weapon.payload.poison_level, weapon.payload.poison_time)
 	subject.handle_payload(pld)
-	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
-	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
-	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
+	if character.weapon:
+		var weapon : Item = DAT.get_item(character.weapon)
+		if weapon.attack_animation:
+			SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
+		else:
+			blunt_visuals(subject)
+	else:
+		blunt_visuals(subject)
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
-	
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
 
@@ -243,6 +246,9 @@ func handle_payload(pld: BattlePayload) -> void:
 		SOL.dialogue_box.dial_concat("battle_inspect", 3, [get_attack(), get_defense(), get_speed()])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
+	
+	if pld.animation_on_receive:
+		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
 
 
 func status_effect_update() -> void:
@@ -320,3 +326,9 @@ func is_confused() -> bool:
 		if status_effects.get("confusion", {}).get("duration", 0) > 0:
 			return true
 	return false
+
+
+func blunt_visuals(subject: BattleActor) -> void:
+	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
+	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
+	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))

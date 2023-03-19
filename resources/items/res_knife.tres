@@ -24,6 +24,7 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +33,7 @@ name_in_file = &"knife"
 name = &"knife"
 description = "sharp, good for stabbing."
 texture = ExtResource("3_nhgn3")
+attack_animation = "knife_attack"
 price = 1000
 use = 4
 consume_on_use = true

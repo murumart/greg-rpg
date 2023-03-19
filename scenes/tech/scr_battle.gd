@@ -6,7 +6,7 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["grass",]).\
+set_enemies(["fish",]).\
 set_music("lake_battle").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -317,6 +317,7 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 
 
 func _reference_button_pressed(reference) -> void:
+	if SOL.dialogue_open: return
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
@@ -347,6 +348,7 @@ func _on_button_reference_received(reference) -> void:
 
 
 func _on_act_requested(actor: BattleActor) -> void:
+	if doing == Doings.END: return
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
@@ -604,12 +606,14 @@ func _grant_rewards() -> void:
 
 
 func _on_attack_pressed() -> void:
+	if SOL.dialogue_open: return
 	doing = Doings.ATTACK
 	open_list_screen()
 	SND.menusound()
 
 
 func _on_spirit_pressed() -> void:
+	if SOL.dialogue_open: return
 	if current_guy.character.spirits.size() < 1:
 		SND.menusound(0.3)
 		set_description("this one has no spirits.")
@@ -621,6 +625,7 @@ func _on_spirit_pressed() -> void:
 
 
 func _on_item_pressed() -> void:
+	if SOL.dialogue_open: return
 	doing = Doings.ITEM_MENU
 	open_list_screen()
 	SND.menusound()
@@ -628,6 +633,8 @@ func _on_item_pressed() -> void:
 
 func set_description(text: String) -> void:
 	description_text.text = text
+	if text.ends_with("%s"):
+		description_text.text = text % (current_guy.character.weapon if current_guy.character.weapon else "hands")
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:

@@ -134,22 +134,21 @@ stretch_mode = 2
 
 [node name="MainInfoText" type="RichTextLabel" parent="Panel/InfoPanel/MemberInfo"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 26.0
+offset_left = 2.0
+offset_top = 25.0
 offset_right = 65.0
 offset_bottom = 96.0
 bbcode_enabled = true
-text = "lvl: 1
-exp: 0
-
-atk: 1
-def: 1
-spd: 1
-
-hp: 100/100
-sp: 30/30"
+text = "
+[color=#ff88ff]lvl: %s[/color]
+[color=#ff88aa]exp: %s/%s[/color]
+[color=#ff8888]atk: %s[/color]
+[color=#ffaa88]def: %s[/color]
+[color=#ffff88]spd: %s[/color]
+[color=#44ff44]hp: %s/%s[/color]
+[color=#88ffff]sp: %s/%s[/color]"
+fit_content = true
 scroll_active = false
-autowrap_mode = 0
 shortcut_keys_enabled = false
 
 [node name="ItemSpiritTabs" type="TabContainer" parent="Panel"]

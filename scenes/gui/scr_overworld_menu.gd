@@ -4,6 +4,11 @@ signal close_requested
 
 const TIME_AFTER_WARN_SAVE := 300
 
+const MEM_INFO_DEF_SIZE := Vector2(63, 71)
+const MEM_INFO_DEF_POS := Vector2(2, 25)
+const MEM_INFO_BIG_SIZE := Vector2(63, 94)
+const MEM_INFO_BIG_POS := Vector2(2, 2)
+
 enum Doings {PARTY, INNER, USING}
 var doing := Doings.PARTY
 
@@ -127,36 +132,44 @@ func update_tabs() -> void:
 func side_load_character_data() -> void:
 	var charct : Character = party(current_tab)
 	mem_portrait.texture = charct.portrait
-	mem_infotext.text = str("lvl: %s
-exp: %s/%s
-
-atk: %s
-def: %s
-spd: %s
-
-hp: %s/%s
-sp: %s/%s" % [charct.level, charct.experience, roundi(charct.xp2lvl(charct.level)), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
+	mem_infotext.text = str("
+[color=#ff88ff]lvl: %s[/color]
+[color=#ff88aa]exp: %s/%s[/color]
+[color=#ff8888]atk: %s[/color]
+[color=#ffaa88]def: %s[/color]
+[color=#ffff88]spd: %s[/color]
+[color=#44ff44]hp: %s/%s[/color]
+[color=#88ffff]sp: %s/%s[/color]" % [charct.level, charct.experience, roundi(charct.xp2lvl(charct.level)), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
+	mem_infotext.size = MEM_INFO_DEF_SIZE
+	mem_infotext.position = MEM_INFO_DEF_POS
 
 
 func side_load_item_data(id: String) -> void:
 	var item : Item = DAT.get_item(id)
 	mem_portrait.texture = item.texture
-	mem_infotext.text = item.get_effect_description()
+	mem_infotext.text = str("[color=#888888]", item.description + "\n", "[/color]")
+	mem_infotext.text += item.get_effect_description()
 	if party(current_tab).inventory.find(id) < 2:
 		if (id == party(current_tab).armour):
 			mem_infotext.append_text("equipped")
 		if (id == party(current_tab).weapon):
 			mem_infotext.append_text("equipped")
+	mem_infotext.size = MEM_INFO_DEF_SIZE
+	mem_infotext.position = MEM_INFO_DEF_POS
 
 
 func side_load_spirit_data(id: String) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
 	mem_portrait.texture = null
-	mem_infotext.text = spirit.get_effect_description()
+	mem_infotext.text = str("[color=#888888]", spirit.description + "\n", "[/color]")
+	mem_infotext.text += spirit.get_effect_description()
+	mem_infotext.text += str("[color=#008888]","cost: ", spirit.cost, "[/color]\n")
 	if id in party(current_tab).unused_sprits:
 		mem_infotext.append_text("\n[color=#888888]unused. select to equip")
 	else:
 		mem_infotext.append_text("\n[color=#888888]select to unequip")
+	mem_infotext.size = MEM_INFO_BIG_SIZE
+	mem_infotext.position = MEM_INFO_BIG_POS
 
 
 func load_items() -> void:

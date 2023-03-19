@@ -130,7 +130,7 @@ text = "tussle"
 text_overrun_behavior = 3
 clip_text = true
 script = ExtResource("4_ht2pp")
-description = "go in with your hands"
+description = "go in with your %s"
 
 [node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true

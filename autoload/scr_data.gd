@@ -23,6 +23,7 @@ var player_capturers := []
 var seconds := 0
 var last_save_second := 0
 const NEIGHBOUR_WIFE_CYCLE := 470
+const PHG_CYCLE := 1200
 
 # on death
 var death_reason := "default"

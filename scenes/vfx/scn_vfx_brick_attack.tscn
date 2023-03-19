@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://cexlbm2px6nxs"]
+
+[ext_resource type="Texture2D" uid="uid://cd3v2kb4186ep" path="res://sprites/items/spr_item_brick.png" id="1_m62yb"]
+[ext_resource type="AudioStream" uid="uid://bffxmtq4bt5ac" path="res://sounds/snd_attack_brick.ogg" id="2_0k383"]
+[ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="3_sb5lk"]
+[ext_resource type="PackedScene" uid="uid://bgepjvtvo82in" path="res://scenes/vfx/scn_vfx_dustpuff.tscn" id="4_5pebe"]
+
+[sub_resource type="Animation" id="Animation_v6umf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Brick:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Brick:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Brick:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tuw5j"]
+resource_name = "default"
+length = 1.6
+step = 0.05
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_0k383")
+}],
+"times": PackedFloat32Array(0.05)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Brick:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.45, 0.5, 0.65, 0.7, 0.8, 0.9, 1, 1.1, 1.15, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(35, 48), Vector2(1.90735e-06, -2), Vector2(-34, -23), Vector2(-50, -10), Vector2(-55, -1), Vector2(-78, -5), Vector2(-81, -1), Vector2(-99, -5), Vector2(-106, -1), Vector2(-109, -4), Vector2(-113, -2), Vector2(-115, -3), Vector2(-118, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Brick:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.55, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.737069, -1.44035, -2.87495, -3.82739, -4.53174]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Brick:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.35, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3.69029, 3.57706), Vector2(1.24136, 1.22164), Vector2(1, 1), Vector2(0.58516, 0.551854), Vector2(0.208013, 0.216973)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tlwvv"]
+_data = {
+"RESET": SubResource("Animation_v6umf"),
+"default": SubResource("Animation_tuw5j")
+}
+
+[node name="VfxBrickAttack" type="Node2D"]
+
+[node name="Brick" type="Sprite2D" parent="."]
+texture = ExtResource("1_m62yb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_tlwvv")
+}
+
+[node name="BangSpark" parent="." instance=ExtResource("3_sb5lk")]
+
+[node name="DustPuff" parent="." instance=ExtResource("4_5pebe")]
