@@ -5,9 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_mkacw"]
 script = ExtResource("1_ghvdi")
-health = 38.0
+health = 0.0
 health_percent = 0.0
-max_health_percent = 0.0
+max_health_percent = 52.0
 pierce_defense = 0.0
 magic = null
 magic_percent = null
@@ -19,6 +19,11 @@ defense_increase_time = null
 speed_increase = null
 speed_increase_time = null
 confusion_time = null
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]

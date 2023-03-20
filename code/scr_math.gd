@@ -38,3 +38,15 @@ static func reaap(a : Array, b: Variant) -> Array:
 static func inrange(x, a, b) -> bool:
 	return x >= a and x <= b
 
+
+static func süsarv() -> float:
+	var stri := OS.get_unique_id()
+	var nr := 1.0
+	for l in stri:
+		if l.is_valid_float():
+			nr += float(l)
+		else:
+			nr += l.to_ascii_buffer()[0]
+	return stri.length() / nr
+
+

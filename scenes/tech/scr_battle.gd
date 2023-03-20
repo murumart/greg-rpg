@@ -61,7 +61,10 @@ var dead_party : Array[BattleActor]
 var enemies : Array[BattleActor]
 var dead_enemies : Array[BattleActor]
 
-var xp_pool := 0
+var xp_pool := 0:
+	set(to):
+		xp_pool = to
+		print("set xp pool to ", to)
 
 var listening_to_player_input := false
 var current_guy : BattleActor
@@ -154,9 +157,9 @@ func load_battle(info: BattleInfo) -> void:
 	set_background(info.get_("background", "bikeghost"))
 	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0, play_from_beginning = true})
-	battle_rewards = info.get_("rewards", null)
+	battle_rewards = info.get_("rewards", Reward.new()).duplicate(true)
 	if not battle_rewards:
-		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres")
+		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres").duplicate(true)
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
 

@@ -986,7 +986,8 @@ CHAR tarikas
 	the quality of mail delivery has improved in the town.
 	mh, marginally.
 	what do you think of the snails?
-	they ate my vegetables, back when i still had a garden.
+	they ate my vegetables...
+	...back when i still had a garden.
 	but getting rid of them... difficult.
 	they really know how to get to your head.
 

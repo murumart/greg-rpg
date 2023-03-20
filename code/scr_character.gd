@@ -89,6 +89,7 @@ func xp2lvl(lvl: int) -> float:
 
 func add_experience(amount: int, speak := false) -> void:
 	var _old_level := level
+	print("\texp amount: ", amount)
 	if speak:
 		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
 		SOL.dialogue("get_experience")

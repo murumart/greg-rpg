@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=25 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_7wyjm"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -12,6 +12,31 @@
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="9_8d332"]
+
+[sub_resource type="Gradient" id="Gradient_r8mui"]
+offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
+colors = PackedColorArray(0, 0, 0.0901961, 1, 0.261103, 0.21774, 0.298783, 1, 0.596112, 0.708291, 0.916918, 1, 0.968627, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ftli"]
+gradient = SubResource("Gradient_r8mui")
+
+[sub_resource type="Environment" id="Environment_ymw61"]
+background_mode = 3
+ambient_light_source = 1
+glow_enabled = true
+glow_levels/1 = 16.0
+glow_levels/2 = 16.0
+glow_levels/3 = 16.0
+glow_levels/4 = 16.0
+glow_levels/5 = 0.0
+glow_intensity = 1.35
+glow_blend_mode = 4
+glow_hdr_threshold = 0.95
+glow_hdr_scale = 0.32
+adjustment_enabled = true
+adjustment_contrast = 0.97
+adjustment_saturation = 1.09
+adjustment_color_correction = SubResource("GradientTexture1D_4ftli")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
 shader = ExtResource("2_aroxh")
@@ -66,6 +91,9 @@ rewards = SubResource("Resource_k01d4")
 y_sort_enabled = true
 script = ExtResource("1_7wyjm")
 music = "lakeside"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ymw61")
 
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11

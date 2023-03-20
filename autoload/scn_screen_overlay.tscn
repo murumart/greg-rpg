@@ -1,7 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://lvdqg7mjwheo"]
+[gd_scene load_steps=26 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
-[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_po8pn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
 [ext_resource type="Script" path="res://code/scr_dialogue_line.gd" id="3_02o1n"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
@@ -216,9 +215,6 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
-
-[node name="Environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_po8pn")
 
 [node name="DialogueBoxOrderer" type="Node2D" parent="."]
 z_index = 11

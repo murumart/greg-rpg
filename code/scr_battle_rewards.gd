@@ -32,6 +32,7 @@ func grant(speak := true) -> void:
 	if silver_pool:
 		DAT.grant_silver(silver_pool, speak)
 	if exp_pool:
+		print("\tadding xp pool ", exp_pool)
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).add_experience(exp_pool, speak)
 	for i in item_pool:

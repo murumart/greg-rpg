@@ -32,6 +32,10 @@ var last_save_file := 0
 # debug
 var check_for_key := ""
 
+#
+var süs := 0.0
+
+
 func _init() -> void:
 	randomize()
 
@@ -40,7 +44,7 @@ func _ready() -> void:
 	load_characters()
 	load_items()
 	load_spirits()
-	set_data("party", ["greg"])
+	init_data()
 	if get_current_scene().get_script() == self.get_script():
 		var libel := Label.new()
 		libel.text = "Hello world, DAT"
@@ -67,8 +71,7 @@ func load_spirits() -> void:
 
 # entry point for a new game.
 func start_game() -> void:
-	A.clear()
-	set_data("party", ["greg"])
+	init_data()
 	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 
 
@@ -284,5 +287,11 @@ func get_levelup_spirit(level: int) -> String:
 func log_dat_chgs() -> bool:
 	return bool(OPT.get_opt("log_data_changes"))
 
+
+func init_data() -> void:
+	A.clear()
+	set_data("party", ["greg"])
+	set_data("nr", randf())
+	süs = Math.süsarv()
 
 

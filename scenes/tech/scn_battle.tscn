@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=16 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
+[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_l1rx6"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
@@ -58,6 +59,9 @@ loop = true
 script = ExtResource("1_5j3jy")
 party_cheat_levelup = 30
 party_add_spirits = Array[String](["hotel"])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_l1rx6")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 

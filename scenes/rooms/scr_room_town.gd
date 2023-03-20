@@ -52,7 +52,7 @@ func _on_tarikas_inspected() -> void:
 func pink_haired_girl_setup() -> void:
 	var phg := $Houses/HousingBlock/PHG
 	var time := wrapi(DAT.seconds, 0, DAT.PHG_CYCLE)
-	if not time / 4 <= 300:
+	if not time / 4.0 <= 300:
 		phg.queue_free()
 		DAT.set_data("has_interacted_with_phg", false)
 		return
