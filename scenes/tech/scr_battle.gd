@@ -6,8 +6,8 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["fish",]).\
-set_music("lake_battle").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
+set_enemies(["broken_fisherman","sopping"]).\
+set_music("lake_battle").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -663,6 +663,7 @@ func _on_update_timer_timeout() -> void:
 
 func apply_cheats() -> void:
 	if not enable_testing_cheats: return
+	if LTS.gate_id: return
 	print("applying cheats")
 	for i in party:
 		i.character.level_up(party_cheat_levelup)

@@ -21,7 +21,9 @@ abiss
 stabbing_fella
 shopping_cart
 moron
-fish"
+fish
+sopping
+broken_fisherman"
 item_list = "bike_helmet
 gummy_worm
 milkshake
@@ -57,7 +59,9 @@ isotoxin
 dreaming_in_green
 shopping_cart
 wli_attack
-fish_attack"
+fish_attack
+splash_attack
+hook_attack"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

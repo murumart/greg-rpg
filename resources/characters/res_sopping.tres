@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://bnjr8hj76l4jr"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_q6kpp"]
+
+[resource]
+script = ExtResource("1_q6kpp")
+name_in_file = &""
+name = "sopper"
+info = "they're wet and now want to watch the world bur- i mean drown."
+max_health = 98.0
+health = 98.0
+max_magic = 45.0
+magic = 45.0
+level = 22
+experience = 0
+attack = 15.0
+defense = 22.0
+speed = 22.0
+defeated_characters = Array[String]([])
+inventory = Array[String](["bread", "bread"])
+spirits = Array[String](["splash_attack"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = "fish"

@@ -22,6 +22,10 @@ const DEATH_REASONS := {
 	"snail_beam": {
 		"picture": "snail_beam",
 		"text": "[center]you are in for a world of 4000k!"
+	},
+	"lakeside": {
+		"picture": "drinking",
+		"text": "[center]drowning in sadness!"
 	}
 }
 
