@@ -28,6 +28,7 @@ var type := Types.ATTACK
 @export var poison_time: int
 
 @export_group("Other")
+@export var summon_enemy := ""
 @export var animation_on_receive := ""
 var equip_as_weapon := false
 var equip_as_armour := false
@@ -38,15 +39,6 @@ var sender : BattleActor
 
 func _init(_options := {}) -> void:
 	pass
-#	health = options.get("health", 0.0)
-#	magic = options.get("magic", 0.0)
-#	attack_increase = options.get("attack_increase", 0.0)
-#	attack_increase_time = options.get("attack_increase_time", 0)
-#	defense_increase = options.get("defense_increase", 0.0)
-#	defense_increase_time = options.get("defense_increase_time", 0)
-#	speed_increase = options.get("speed_increase", 0.0)
-#	speed_increase_time = options.get("speed_increase_time", 0)
-#	sender = options.get("sender", null)
 
 
 func set_type(x: Types) -> BattlePayload:
@@ -141,4 +133,9 @@ func set_defense_pierce(x: float) -> BattlePayload:
 
 func set_animation_on_receive(x: String) -> BattlePayload:
 	animation_on_receive = x
+	return self
+
+
+func set_summon_enemy(x: String) -> BattlePayload:
+	summon_enemy = x
 	return self

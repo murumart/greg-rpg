@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcd3gjel7a822"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_a2d44"]
+[ext_resource type="Texture2D" uid="uid://dbsikadish272" path="res://sprites/characters/battle/lakeside/spr_not_fish.png" id="2_vs76a"]
+
+[node name="EnemyNotFish" type="Node2D"]
+script = ExtResource("1_a2d44")
+effect_center = Vector2i(0, -11)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vs76a")

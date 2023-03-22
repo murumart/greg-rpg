@@ -13,6 +13,7 @@ signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
 signal died(who: BattleActor)
 signal fled(who: BattleActor)
+signal teammate_requested(who: BattleActor, whom: String)
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
@@ -87,7 +88,7 @@ func hurt(amount: float) -> void:
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5, "volume": 4})
 		died.emit(self)
 	else:
-		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": lerpf(2.0, 0.5, remap(amount, 1, 90, 0, 1)), "volume": randi_range(2, 4)})
+		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1), "volume": randi_range(4, 7)})
 	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.RED})
 	SOL.shake(sqrt(amount)/15.0)
 
@@ -239,6 +240,9 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("confusion", 1, pld.confusion_time)
 	introduce_status_effect("coughing", pld.coughing_level, pld.coughing_time)
 	introduce_status_effect("poison", pld.poison_level, pld.poison_time)
+	
+	if pld.summon_enemy:
+		teammate_requested.emit(self, pld.summon_enemy)
 	
 	if pld.reveal_enemy_info and pld.sender.player_controlled:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])

@@ -59,6 +59,7 @@ loop = true
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
 party_cheat_levelup = 25
+party_cheat_health = 2.18928e+07
 party_add_spirits = Array[String](["hotel"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

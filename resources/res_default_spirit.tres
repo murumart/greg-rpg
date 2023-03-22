@@ -23,6 +23,7 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
 

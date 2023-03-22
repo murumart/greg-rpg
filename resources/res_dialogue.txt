@@ -1018,6 +1018,10 @@ DIALOGUE fisherman_5
 	it is a defining moment of my life.
 
 
+DIALOGUE fisherman_attack
+	oh the misery!
+
+
 DIALOGUE phg_1
 	what a dull day.
 

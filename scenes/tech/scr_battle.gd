@@ -6,11 +6,12 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["broken_fisherman","sopping"]).\
+set_enemies(["not_fish",]).\
 set_music("lake_battle").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
+const MAX_ENEMIES := 6
 
 const BACK_PITCH := 0.75
 
@@ -19,6 +20,8 @@ enum Teams {PARTY, ENEMIES}
 enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
 var doing := Doings.NOTHING
 var action_history := []
+
+var loading_battle := true
 
 @onready var ui := $UI
 
@@ -162,6 +165,7 @@ func load_battle(info: BattleInfo) -> void:
 		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres").duplicate(true)
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
+	loading_battle = false
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:
@@ -184,6 +188,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	node.act_finished.connect(_on_act_finished)
 	node.died.connect(_on_actor_died)
 	node.fled.connect(_on_actor_fled)
+	node.teammate_requested.connect(_on_summon_enemy_requested)
 	actors.append(node)
 	match team:
 		Teams.PARTY:
@@ -212,6 +217,7 @@ func add_enemy(character_id: String, ally := false) -> void:
 	else:
 		node = preload("res://scenes/tech/scn_battle_enemy.tscn").instantiate()
 		node.load_character(character_id)
+		node.xp_multiplier = 1.0 if not loading_battle else 0.25
 		if not ally:
 			var sprite_new := Sprite2D.new()
 			node.add_child(sprite_new)
@@ -371,8 +377,9 @@ func _on_actor_died(actor: BattleActor) -> void:
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
+		actor = actor as BattleEnemy
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
-		xp_pool += actor.character.level
+		xp_pool += actor.character.level * actor.xp_multiplier
 	dead_actors.append(actors.pop_at(actors.find(actor)))
 	arrange_enemies()
 	check_end()
@@ -391,6 +398,21 @@ func _on_actor_fled(actor: BattleActor) -> void:
 	check_end()
 	await get_tree().process_frame
 	update_party()
+
+
+func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
+	if actor in enemies:
+		if enemies.size() < MAX_ENEMIES:
+			add_enemy(req)
+			_on_message_received("%s joined the fight" % DAT.get_character(req).name)
+		else:
+			_on_message_received("%s did not fit into the fight." % DAT.get_character(req).name)
+	else:
+		if party.size() < MAX_PARTY_MEMBERS:
+			add_party_member(req)
+			_on_message_received("%s joined the fight" % DAT.get_character(req).name)
+		else:
+			_on_message_received("%s did not fit into the fight." % DAT.get_character(req).name)
 
 
 func check_end(force := false) -> void:

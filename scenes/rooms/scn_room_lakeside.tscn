@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=27 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_7wyjm"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="9_8d332"]
+[ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="10_w8d1t"]
+[ext_resource type="PackedScene" uid="uid://47jotnf2sqw3" path="res://scenes/characters/overworld/scn_broken_fisherman_overworld.tscn" id="11_wk6gi"]
 
 [sub_resource type="Gradient" id="Gradient_r8mui"]
 offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
@@ -631,6 +633,7 @@ position = Vector2(-410, 194)
 scale = Vector2(-1, 1)
 
 [node name="Areas" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("4_ab10q")]
 position = Vector2(-472, -368)
@@ -646,6 +649,36 @@ player = NodePath("../../Greg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/EnemyEncounterArea"]
 polygon = PackedVector2Array(-318, -185, 629, 28, 491, 299, -1, 295, -404, 172, -446, -16)
+
+[node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
+position = Vector2(2, -342)
+spawn_enemy = ExtResource("11_wk6gi")
+max_enemies = 2
+player = NodePath("../../Greg")
+
+[node name="EnemySpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
+position = Vector2(311, -200)
+spawn_enemy = ExtResource("11_wk6gi")
+max_enemies = 4
+player = NodePath("../../Greg")
+
+[node name="EnemySpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
+position = Vector2(49, -95)
+spawn_enemy = ExtResource("11_wk6gi")
+max_enemies = 3
+player = NodePath("../../Greg")
+
+[node name="EnemySpawner4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
+position = Vector2(420, 211)
+spawn_enemy = ExtResource("11_wk6gi")
+max_enemies = 3
+player = NodePath("../../Greg")
+
+[node name="EnemySpawner5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
+position = Vector2(-438, 281)
+spawn_enemy = ExtResource("11_wk6gi")
+max_enemies = 3
+player = NodePath("../../Greg")
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
 position = Vector2(-478, -312)

@@ -23,6 +23,8 @@ var debuffing_spirits : Array[String]
 @export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent : int = Intents.ATTACK
 @export var auto_ai := true
 @export var can_flee := false
+@export_group("Other")
+@export_range(0.0, 1.0) var xp_multiplier := 1.0
 
 var last_intent : Intents
 

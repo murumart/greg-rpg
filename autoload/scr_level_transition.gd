@@ -62,6 +62,7 @@ func to_game_over_screen() -> void:
 func enter_battle(info: BattleInfo) -> void:
 	if entering_battle: return
 	entering_battle = true
+	gate_id = "entering_battle"
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
 	SND.play_song("", 100.0, {save_audio_position = true})

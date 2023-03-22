@@ -23,7 +23,8 @@ shopping_cart
 moron
 fish
 sopping
-broken_fisherman"
+broken_fisherman
+not_fish"
 item_list = "bike_helmet
 gummy_worm
 milkshake
@@ -61,7 +62,8 @@ shopping_cart
 wli_attack
 fish_attack
 splash_attack
-hook_attack"
+hook_attack
+fish_spawn"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

@@ -1,0 +1,32 @@
+extends OverworldCharacter
+
+const B := "broken_fisherman"
+const S := "sopping"
+const F := "fish"
+const N := "not_fish"
+
+
+func _ready() -> void:
+	super._ready()
+	battle_info = BattleInfo.new().set_background("lakeside").set_music("lake_battle").\
+	set_enemies(gen_enemies()).set_rewards(preload("res://resources/battle_rewards/res_lakeside_reward.tres")).set_death_reason("lakeside")
+
+
+func gen_enemies() -> Array[String]:
+	var enemies : Array[String] = []
+	var level := DAT.get_character("greg").level
+	if level < 25:
+		enemies.append(B)
+		if randf() <= 0.75: enemies.append(S)
+		if randf() <= 0.25: enemies.append(F)
+		if randf() <= 0.25: enemies.append(B)
+	else:
+		enemies.append(B)
+		if randf() <= 0.75: enemies.append(S)
+		if randf() <= 0.5: enemies.append(N)
+		if randf() <= 0.25: enemies.append(S)
+		if randf() <= 0.25: enemies.append(F)
+		if randf() <= 0.25: enemies.append(B)
+	if enemies.size() > 4:
+		enemies.resize(4)
+	return enemies

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dyd5mtd0jiv4b"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_0jr28"]
+
+[resource]
+script = ExtResource("1_0jr28")
+name_in_file = &""
+name = "not fish"
+info = "the disguise makes them unrecognisable. who could it be?"
+max_health = 100.0
+health = 100.0
+max_magic = 200.0
+magic = 200.0
+level = 25
+experience = 0
+attack = 20.0
+defense = 50.0
+speed = 20.0
+defeated_characters = Array[String]([])
+inventory = Array[String](["bread"])
+spirits = Array[String](["fish_attack", "fish_spawn"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = "fish"
