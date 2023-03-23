@@ -92,7 +92,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					var item : Item = DAT.get_item(using_item)
 					if item.consume_on_use:
 						party(current_tab).inventory.erase(using_item)
-						SND.play_sound(preload("res://sounds/snd_use_item.ogg"), {volume = -10})
+					SND.play_sound((item.play_sound if item.play_sound else preload("res://sounds/snd_use_item.ogg")), {volume = -10})
 				
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit : Spirit = DAT.get_spirit(using_item)

@@ -11,6 +11,7 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 @export_multiline var description := ""
 @export var texture : Texture
 @export var attack_animation := ""
+@export var play_sound : AudioStream
 
 @export_group("Behaviour")
 @export var price := 0
@@ -21,6 +22,7 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 
 func get_effect_description() -> String:
 	var text := ""
+	if not payload: return text
 	if payload.health:
 		text += "%s%s hp\n" % [Math.sign_symbol(payload.health), absf(payload.health)]
 	if payload.health_percent:

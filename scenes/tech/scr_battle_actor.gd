@@ -201,7 +201,10 @@ func use_item(id: String, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self))
-		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture})
+		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture, silent = item.play_sound != null})
+		if item.play_sound:
+			SND.play_sound(item.play_sound)
+		
 	else:
 		subject.character.handle_item(id)
 	if item.consume_on_use:

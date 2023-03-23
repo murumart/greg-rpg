@@ -959,6 +959,19 @@ DIALOGUE neighbour_wife_talk_store_1
 	it's easy to tell you're not a local.
 
 
+DIALOGUE bike_alpha_interact_1
+	hmm?
+	you look like you want to steal my bike.
+	how about i steal your earlobes instead?
+
+
+DIALOGUE bike_alpha_interact_2
+CHAR bike_ghost
+	indeed, the bike you are trying to steal is haunted...
+	...by me!
+	all your fears - i will bring them to be.
+
+
 DIALOGUE tarikas_hello
 CHAR tarikas
 	mh. you're blocking the sunlight.

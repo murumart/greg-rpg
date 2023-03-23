@@ -6,8 +6,8 @@ class_name Battle
 signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["not_fish",]).\
-set_music("lake_battle").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("lakeside")
+set_enemies(["bike_ghost",]).\
+set_music("bike_spirit").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -445,6 +445,8 @@ func open_main_actions_screen() -> void:
 	resize_panel(44)
 	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05:
 		attack_button.text = "slay"
+	else:
+		attack_button.text = "tussle"
 	$%CharPortrait.texture = current_guy.character.portrait
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
 	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
