@@ -808,7 +808,7 @@ silver = 15
 position = Vector2(377, 157)
 replenish_minutes = 2
 replenish_seconds = 120
-item = &"fish"
+item = &"bike_ghost_arm"
 
 [node name="OverworldTiles2" parent="." instance=ExtResource("2_jxegg")]
 layer_0/name = "veg level"

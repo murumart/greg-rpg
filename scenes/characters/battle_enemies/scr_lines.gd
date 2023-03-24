@@ -2,7 +2,7 @@
 extends CanvasGroup
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_inside_tree(): return
 	var lines := $Torso/Lines.get_children()
 	var connections := $Torso/Head/Connections.get_children()

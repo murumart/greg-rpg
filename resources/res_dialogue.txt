@@ -972,6 +972,63 @@ CHAR bike_ghost
 	all your fears - i will bring them to be.
 
 
+DIALOGUE bike_ghost_welcome
+CHAR bike_ghost
+	i am the [color=#aaffff]bike ghost[/color].
+	it is my job to supervise this bicycle and...
+	make sure that it is not used for indecent activities.
+	activities such as fast travel.
+	which bikes can do, if you were not aware.
+	but not any more.
+	because i am here.
+	hello.
+
+
+DIALOGUE bike_ghost_convo_1
+CHAR bike_ghost
+	interesting.
+	i was given specific instructions to watch out for you.
+	instructions to obstruct your fast travel in particular.
+	i wonder why... but it does not matter.
+	as long as i am paid.
+
+
+DIALOGUE bike_ghost_convo_2
+CHAR bike_ghost
+	one final thing.
+	you look reaaaal ugly.
+	i am doing the world a service here.
+	my task, apparently, reaches far beyond simple payment.
+	that is all. goodbye.
+
+
+DIALOGUE bike_ghost_halfhealth
+CHAR bike_ghost
+	huff... puff...
+	i must admit that you are quite tough.
+	you have made me wheeze in effort.
+	i don't even have lungs.
+	but this is a great time to introduce you to...
+	...my trump card. behold.
+	healing items.
+
+
+DIALOGUE bike_ghost_defeat
+CHAR bike_ghost
+	no! no no no no no!
+	i was not supposed to lose!
+	the fate of the world...
+	my payment (80 liters of blood)...
+	you fool. you asshole!
+	you will live in guilt forever.
+
+
+DIALOGUE bike_ghost_afterdefeat
+CHAR bike_ghost
+	what now? want to rub your victory in my face?
+	go away!
+
+
 DIALOGUE tarikas_hello
 CHAR tarikas
 	mh. you're blocking the sunlight.

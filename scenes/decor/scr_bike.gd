@@ -20,10 +20,13 @@ func _interacted() -> void:
 	var fought : Array = DAT.get_data("bike_ghosts_fought", [])
 	if ghost == Ghosts.ALPHA:
 		if not int(Ghosts.ALPHA) in fought:
+			SND.play_song("")
 			SOL.dialogue("bike_alpha_interact_1")
 			SOL.dialogue_closed.connect( 
 				func speak_2():
 					$AnimationPlayer.play("emerge")
+					SND.play_song("bike_spirit", 0.20, {pitch_scale = 0.75, volume = -5})
+					SND.play_sound(load("res://sounds/spirit/bikeghost/snd_alpha_appear.ogg"), {bus = "ECHO"})
 					SOL.dialogue("bike_alpha_interact_2")
 					SOL.dialogue_closed.connect(
 						func():
@@ -31,3 +34,5 @@ func _interacted() -> void:
 							DAT.set_data("bike_ghosts_fought", Math.reaap(fought, int(Ghosts.ALPHA)))
 					)
 			, CONNECT_ONE_SHOT)
+		else:
+			SOL.dialogue("bike_ghost_afterdefeat")

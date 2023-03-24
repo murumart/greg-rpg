@@ -43,6 +43,7 @@ bike_bell
 brick
 knife
 fish
+bike_ghost_arm
 shovel"
 spirit_list = "sideeye
 hotel
@@ -64,7 +65,8 @@ wli_attack
 fish_attack
 splash_attack
 hook_attack
-fish_spawn"
+fish_spawn
+alpha_radio"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

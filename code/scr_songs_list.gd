@@ -15,7 +15,7 @@ var songs := {
 		"link": "res://music/mus_arent_you_excited.ogg"
 	},
 	"bike_spirit": {
-		"title": "bike_spirit",
+		"title": "bike spirit",
 		"link": "res://music/mus_bike_spirit.ogg"
 	},
 	"birds": {
