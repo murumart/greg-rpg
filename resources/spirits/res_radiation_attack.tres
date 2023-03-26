@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://ce5gslrnwyknl"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_gx57i"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_pw36q"]
+
+[sub_resource type="Resource" id="Resource_higgi"]
+script = ExtResource("1_gx57i")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+attack_increase_time = 0
+defense_increase = 0.0
+defense_increase_time = 0
+speed_increase = 0.0
+speed_increase_time = 0
+confusion_time = 0
+coughing_level = 0
+coughing_time = 0
+poison_level = 1
+poison_time = 8
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_pw36q")
+name_in_file = &""
+name = &"radiation attack"
+description = "oops! all radiation"
+animation = &"radiation_attack"
+use_animation = &""
+receive_animation = &""
+cost = 15
+use = 3
+reach = 2
+payload_reception_count = 8
+payload = SubResource("Resource_higgi")

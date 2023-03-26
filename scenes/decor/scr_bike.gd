@@ -6,14 +6,17 @@ enum Ghosts {ALPHA, BETA, GAMMA}
 
 var alpha_battle_info := BattleInfo.new()
 
+@export var player : PlayerOverworld
+
 
 func _ready() -> void:
-	if not 0 in DAT.get_data("bike_ghosts_fought", []):
-		alpha_battle_info = alpha_battle_info.set_background("town").\
-		set_enemies(["bike_ghost"]).\
-		set_music("bike_spirit").\
-		set_start_text("toute phrase en langue etrangere.").\
-		set_rewards(preload("res://resources/battle_rewards/res_bike_ghost_alpha.tres"))
+	load_ghosts()
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if LTS.gate_id == LTS.GATE_BIKE_TRAVEL:
+		if player:
+			player.global_position = $SpawnPoint.global_position
 
 
 func _interacted() -> void:
@@ -36,3 +39,12 @@ func _interacted() -> void:
 			, CONNECT_ONE_SHOT)
 		else:
 			SOL.dialogue("bike_ghost_afterdefeat")
+
+
+func load_ghosts() -> void:
+	if not 0 in DAT.get_data("bike_ghosts_fought", []):
+		alpha_battle_info = alpha_battle_info.set_background("town").\
+		set_enemies(["bike_ghost"]).\
+		set_music("bike_spirit").\
+		set_start_text("toute phrase en langue etrangere.").\
+		set_rewards(preload("res://resources/battle_rewards/res_bike_ghost_alpha.tres"))

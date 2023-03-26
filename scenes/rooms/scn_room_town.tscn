@@ -416,8 +416,9 @@ sprite_frames = ExtResource("11_g1geq")
 animation = &"walk_down"
 frame_progress = 0.826367
 
-[node name="Bike" parent="Houses/NeighbourHouse" instance=ExtResource("12_8ipa6")]
+[node name="Bike" parent="Houses/NeighbourHouse" node_paths=PackedStringArray("player") instance=ExtResource("12_8ipa6")]
 position = Vector2(194, 97)
+player = NodePath("../../../Greg")
 
 [node name="BlockNeighbours" type="Node2D" parent="Houses"]
 y_sort_enabled = true

@@ -5,6 +5,7 @@ var said_healing_line := false
 
 func act() -> void:
 	var h := false
+	var y := false
 	if turn == 0:
 		SOL.dialogue("bike_ghost_welcome")
 		h = true
@@ -20,8 +21,9 @@ func act() -> void:
 		use_item("gummy_worm", self)
 		said_healing_line = true
 		h = true
+		y = true
 	if h:
-		turn_finished()
+		if not y: turn_finished()
 		return
 	super.act()
 
@@ -30,3 +32,7 @@ func hurt(amount: float) -> void:
 	super.hurt(amount)
 	if is_zero_approx(character.health_perc()):
 		SOL.dialogue("bike_ghost_defeat")
+		SOL.dialogue_box.changed_dialogue.connect(
+			func():
+				use_spirit("radiation_attack", reference_to_opposing_array[0])
+		, CONNECT_ONE_SHOT)

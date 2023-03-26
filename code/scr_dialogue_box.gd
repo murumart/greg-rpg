@@ -3,6 +3,7 @@ class_name DialogueBox
 
 signal dialogue_closed
 signal started_speaking
+signal changed_dialogue
 signal finished_speaking
 
 @onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
@@ -78,6 +79,7 @@ func prepare_dialogue(key: String) -> void:
 
 func load_dialogue(dial : Dialogue) -> void:
 	loaded_dialogue = dial
+	changed_dialogue.emit()
 	if loaded_dialogue.alias != "":
 		var alias := loaded_dialogue.alias
 		loaded_dialogue = null

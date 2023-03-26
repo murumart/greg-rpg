@@ -19,7 +19,7 @@ feedback_level_db = -15.92
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_nlw60"]
 resource_name = "Reverb"
 room_size = 0.36
-wet = 0.41
+wet = 0.37
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_s46ag"]
 resource_name = "HighPassFilter"

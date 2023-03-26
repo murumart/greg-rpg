@@ -348,4 +348,7 @@ libraries = {
 "": SubResource("AnimationLibrary_pcfhw")
 }
 
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, 5)
+
 [connection signal="on_interact" from="InteractionArea" to="." method="_interacted"]

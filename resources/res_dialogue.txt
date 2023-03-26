@@ -1021,6 +1021,8 @@ CHAR bike_ghost
 	my payment (80 liters of blood)...
 	you fool. you asshole!
 	you will live in guilt forever.
+	but i can help... by reducing your lifespan!
+	radiation attack!
 
 
 DIALOGUE bike_ghost_afterdefeat
