@@ -1,11 +1,13 @@
 extends Room
 
+@export var force_phg := false
+
 
 func _ready() -> void:
 	super._ready()
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
-	pink_haired_girl_setup()
+	pink_haired_girl_setup(force_phg)
 
 
 func _on_interaction_area_on_interact() -> void:

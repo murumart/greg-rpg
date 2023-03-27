@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://07nnb30j8ogd"]
+[gd_scene load_steps=38 format=3 uid="uid://07nnb30j8ogd"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_post_office.gd" id="1_j8r7h"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2qwkk"]
@@ -27,6 +27,141 @@ size = Vector2(10, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvq1m"]
 size = Vector2(1, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1l6e"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g86a"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkodv"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5i7t"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xr74"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7wlo"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nubb"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctdq5"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ea6"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yggyq"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_talmi"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boy45"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0sft"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37222"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73rq8"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1b4a"]
+atlas = ExtResource("7_rt88i")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xwda5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1l6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g86a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkodv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5i7t")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xr74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7wlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nubb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctdq5")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ea6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yggyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_talmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boy45")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0sft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37222")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73rq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1b4a")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dspvh"]
 size = Vector2(82, 10)
@@ -309,13 +444,19 @@ position = Vector2(23, 1)
 [node name="Node2D2" type="Node2D" parent="Decoration/MailManPath"]
 position = Vector2(44, 0)
 
-[node name="PHG" parent="Decoration" instance=ExtResource("4_nlmcd")]
+[node name="PHG" parent="Decoration" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_nlmcd")]
 position = Vector2(75, -52)
+animated_sprite = NodePath("Animator")
+speed = 2500
+movement_wait = 8.0
+random_movement = true
+random_movement_distance = 32
 default_lines = Array[StringName]([&"phg_at_postoffice_1", &"phg_at_postoffice_2"])
 
-[node name="Sprite2D" type="Sprite2D" parent="Decoration/PHG"]
+[node name="Animator" type="AnimatedSprite2D" parent="Decoration/PHG"]
 position = Vector2(0, -8)
-texture = ExtResource("7_rt88i")
+sprite_frames = SubResource("SpriteFrames_xwda5")
+animation = &"walk_left"
 
 [node name="Greg" parent="." instance=ExtResource("4_hetfh")]
 
