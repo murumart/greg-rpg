@@ -67,7 +67,8 @@ splash_attack
 hook_attack
 fish_spawn
 alpha_radio
-radiation_attack"
+radiation_attack
+ghostpunches"
 
 [node name="GameTimer" type="Timer" parent="."]
 process_mode = 1

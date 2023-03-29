@@ -57,6 +57,7 @@ func _physics_process(delta: float) -> void:
 			if wait == 0.0:
 				act_requested.emit(self)
 				set_state(States.ACTING)
+				wait = 1.0
 		States.ACTING:
 			pass
 		States.DEAD:
@@ -65,7 +66,6 @@ func _physics_process(delta: float) -> void:
 
 func act() -> void:
 	set_state(States.ACTING)
-	wait = 1.0
 	if player_controlled:
 		player_input_requested.emit(self)
 		return

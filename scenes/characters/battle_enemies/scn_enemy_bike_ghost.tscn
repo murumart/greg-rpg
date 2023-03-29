@@ -3003,7 +3003,7 @@ default_color = Color(0.164706, 0.498039, 0.329412, 1)
 position = Vector2(9, 5)
 points = PackedVector2Array(0, -9, 0, 1)
 width = 1.0
-default_color = Color(0.164706, 0.498039, 0.329412, 1)
+default_color = Color(0, 0.329412, 0.329412, 1)
 
 [node name="Line2D3" type="Line2D" parent="Puppet/Torso/Lines" index="2"]
 position = Vector2(11, 5)
@@ -3015,7 +3015,7 @@ default_color = Color(0.164706, 0.498039, 0.329412, 1)
 position = Vector2(13, 5)
 points = PackedVector2Array(-1, -13, 0, 1)
 width = 1.0
-default_color = Color(0.164706, 0.498039, 0.329412, 1)
+default_color = Color(0, 0.329412, 0.329412, 1)
 
 [node name="Cover" type="Sprite2D" parent="Puppet/Torso" index="1"]
 position = Vector2(0, -19)

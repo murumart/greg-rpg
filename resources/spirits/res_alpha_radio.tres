@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_qpt23"]
 script = ExtResource("1_3yrfh")
 health = 0.0
-health_percent = -25.0
+health_percent = -10.0
 max_health_percent = 0.0
 pierce_defense = 0.0
 magic = 0.0
@@ -21,8 +21,8 @@ speed_increase_time = 0
 confusion_time = 0
 coughing_level = 0
 coughing_time = 0
-poison_level = 0
-poison_time = 0
+poison_level = 2
+poison_time = 2
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
