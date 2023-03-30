@@ -81,7 +81,7 @@ func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 		elif line.begins_with(NEW_SILVER):
 			silver_to_give = int(line.trim_prefix(NEW_SPIRIT))
 		elif line.begins_with(NEW_SOUND):
-			sound_to_set = load("res://sounds/%s" % line.trim_prefix(NEW_SOUND))
+			sound_to_set = load("res://sounds/%s.ogg" % line.trim_prefix(NEW_SOUND))
 		elif line.begins_with(NEW_EMOTION):
 			emotion_to_set = line.trim_prefix(NEW_EMOTION)
 		elif line.begins_with(NEW_SET_DATA):

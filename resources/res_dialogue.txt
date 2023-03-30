@@ -27,7 +27,7 @@ DIALOGUE get_experience
 
 DIALOGUE levelup
 SPEED 0.75
-SOUND snd_level_up.ogg
+SOUND snd_level_up
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
@@ -35,11 +35,11 @@ SPEED 1
 
 DIALOGUE levelup_with_spirit
 SPEED 0.75
-SOUND snd_level_up.ogg
+SOUND snd_level_up
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
-SOUND spirit/snd_spirit_get.ogg
+SOUND spirit/snd_spirit_get
 	[center][color=#7799ff]%s[/color][/center]
 
 
@@ -60,7 +60,7 @@ DIALOGUE losesilver
 
 
 DIALOGUE getspirit
-SOUND spirit/snd_spirit_get.ogg
+SOUND spirit/snd_spirit_get
 	[center][color=#7799ff]%s[/color][/center]
 
 
@@ -1092,6 +1092,274 @@ DIALOGUE fisherman_5
 
 DIALOGUE fisherman_attack
 	oh the misery!
+
+
+DIALOGUE fisherman_in_hut_warning
+	there are two fishermen in this hut.
+	one tells only truth, the other tells only lies.
+
+
+DIALOGUE fisherman_in_hut_1
+	man i love fish
+
+
+DIALOGUE fisherman_in_hut_2
+	MAAAAN I LOVE FISH!!!
+
+
+DIALOGUE fisherman_in_hut_3
+	did you know? fish's hair is long and auburn.
+
+
+DIALOGUE fisherman_in_hut_4
+	did you know? fish are actually bugs.
+
+
+DIALOGUE fisherman_in_hut_5
+	did you know? fish are actually plants.
+
+
+DIALOGUE fisherman_in_hut_6
+	did you know? fish live up to one minute.
+
+
+DIALOGUE fisherman_in_hut_7
+	did you know? some fish are people.
+
+
+DIALOGUE fisherman_in_hut_8
+	fish are actually just as intelligent as humans...
+	but they just don't want to pay taxes.
+
+
+DIALOGUE fisherman_in_hut_9
+	aiosjdoijasodjasoidasoidj
+	i just walked into an electric fence!
+
+
+DIALOGUE fisherman_in_hut_10
+	did you know? fish are cold blooded killers.
+
+
+DIALOGUE fisherman_in_hut_11
+	did you know? you can pet fish.
+	but you might die.
+
+
+DIALOGUE fisherman_in_hut_12
+	did you know? like most animals, fish have souls.
+	unlike humans.
+
+
+DIALOGUE fisherman_in_hut_13
+	did you know? fish are speedy!
+
+
+DIALOGUE fisherman_in_hut_14
+	did you know? fish feel pleasure from your pain.
+
+
+DIALOGUE fisherman_in_hut_15
+	did you know? did you?
+
+
+DIALOGUE fisherman_in_hut_16
+	did you know? fish evolved to walk on land...
+	...just to kick your ass.
+
+
+DIALOGUE fisherman_in_hut_17
+	what is the mysterious fish?
+
+
+DIALOGUE fisherman_in_hut_18
+	did you know? fish are smiling.
+
+
+DIALOGUE fisherman_in_hut_19
+	did you know? all fish are trained with firearms.
+
+
+DIALOGUE fisherman_in_hut_20
+	did you know? fish love to munch on sand and rocks.
+
+
+DIALOGUE fisherman_in_hut_21
+	did you know? fish taste soooo goood.
+
+
+DIALOGUE fisherman_in_hut_22
+	did you know? fish taste awful.
+
+
+DIALOGUE fisherman_in_hut_23
+	did you know? fish like to feel pretty.
+
+
+DIALOGUE fisherman_in_hut_24
+	did you know? all fish are women.
+
+
+DIALOGUE fisherman_in_hut_25
+	did you know? fish have approximately 3.680.064 mouths?
+
+
+DIALOGUE fisherman_in_hut_26
+	did you know? fish have approximately 17.776 mouths?
+
+
+DIALOGUE fisherman_in_hut_27
+	what do you call a fish with no eyes?
+	a blind fish.
+
+
+DIALOGUE fisherman_in_hut_28
+	despite the saying, fish can actually climb trees.
+
+
+DIALOGUE fisherman_in_hut_29
+	did you know? all fish are born with human teeth.
+
+
+DIALOGUE fisherman_in_hut_30
+	did you know? if you were a fish, you'd be a clownfish.
+
+
+DIALOGUE fisherman_in_hut_31
+	did you know? if you were a fish, you'd be a suckerfish.
+
+
+DIALOGUE fisherman_in_hut_32
+	did you know? there are no venomous fish. i promise.
+
+
+DIALOGUE fisherman_in_hut_33
+	did you know? there are no poisonous fish. i promise.
+
+
+DIALOGUE fisherman_in_hut_34
+	did you know? fish have enough bite strength...
+	...to crush your skull.
+
+
+DIALOGUE fisherman_in_hut_35
+	did you know? we have no idea how fish reproduce.
+
+
+DIALOGUE fisherman_in_hut_36
+	did you know? we know exactly how fish reproduce.
+	but we won't tell you how.
+
+
+DIALOGUE fisherman_in_hut_37
+	did you know? fish are the first lifeform to ever exist.
+	before rna world, there was fish world.
+
+
+DIALOGUE fisherman_in_hut_38
+	did you know? fish are the basic building block...
+	...for all living creatures?
+
+
+DIALOGUE fisherman_in_hut_39
+	did you know? your mom is a fish.
+
+
+DIALOGUE fisherman_in_hut_40
+	did you know? the game will end by grandma revealing...
+	...that she is a fish. she will then bite off your head.
+
+
+DIALOGUE fisherman_in_hut_41
+	did you know? fish are very musical.
+
+
+DIALOGUE fisherman_in_hut_42
+	did you know? there's a particular place where my...
+	...back really hurts.
+
+
+DIALOGUE fisherman_in_hut_43
+	did you know? suffering is universal.
+	ow! ow! ow! ow! ow !
+
+
+DIALOGUE fisherman_in_hut_44
+	did you knouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+DIALOGUE fisherman_in_hut_45
+	did you know who lives in a fruit under the sea?
+	grandma does.
+
+
+DIALOGUE fisherman_in_hut_46
+	did you know? the first thermodynamic motor...
+	...used a fish and a slightly colder fish...
+	...as its hot and cold reservoirs.
+
+
+DIALOGUE fisherman_in_hut_47
+	did you know? fish were invented by curles fish in 1664.
+
+
+DIALOGUE fisherman_in_hut_48
+SOUND snd_fish_uuhhhhh
+	   
+
+DIALOGUE fisherman_in_hut_49
+	did you know? fish are currently swimming...
+	...in your body.
+
+
+DIALOGUE fisherman_in_hut_50
+	did you know? you make a perfect fishbowl.
+
+
+DIALOGUE fisherman_in_hut_51
+	babygirl, call me fish, because you are an aquarium!
+
+
+DIALOGUE fisherman_in_hut_52
+	fish fish fish fish fish fish fish fish fish
+
+
+DIALOGUE fisherman_in_hut_53
+	did you know? i love you
+
+
+DIALOGUE fisherman_in_hut_54
+	fun fact: fish really hate you.
+
+
+DIALOGUE fisherman_in_hut_55
+	babygirl, if you were a fish, i would take you...
+	...out of the water.
+
+
+DIALOGUE fisherman_in_hut_56
+	babygirl, if you were a fish, you oo o iw
+	i just walked into an electric fence!
+
+
+DIALOGUE fisherman_in_hut_57
+	did you know? i am actually a fish.
+
+
+DIALOGUE fisherman_in_hut_58
+	did you know? fish are funny as hell.
+
+
+DIALOGUE fisherman_in_hut_59
+	did you know? there are 23 pairs of fish in your body's cells.
+
+
+DIALOGUE fisherman_in_hut_60
+	did you know? i haven't gone through a day without thinking of fish.
+
+
+DIALOGUE fisherman_in_hut_end
+	there are no more fish facts.
 
 
 DIALOGUE phg_1

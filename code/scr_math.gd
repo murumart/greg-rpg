@@ -50,3 +50,12 @@ static func süsarv() -> float:
 	return stri.length() / nr
 
 
+static func determ_shuffle(arr : Array, rng: RandomNumberGenerator) -> Array:
+	var new_array := []
+	for i in arr.size():
+		var x = arr[rng.randi() % arr.size()]
+		new_array.append(x)
+		arr.erase(x)
+	return new_array
+
+
