@@ -19,6 +19,9 @@ size = Vector2(12, 8)
 [node name="FisherHut" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ksuj6")
+music = "fisher_hut"
+music_save_progress = false
+music_play_from_beginning = true
 
 [node name="Camera" parent="." instance=ExtResource("6_0pvhh")]
 position = Vector2(0, -5)

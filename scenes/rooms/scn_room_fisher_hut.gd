@@ -11,6 +11,7 @@ const FISH_LINE := "fisherman_in_hut_%s"
 
 
 func _ready() -> void:
+	super._ready()
 	if not DAT.get_data("fish_warning_given", false):
 		SOL.dialogue("fisherman_in_hut_warning")
 		DAT.set_data("fish_warning_given", true)
@@ -39,3 +40,5 @@ func _on_fisherman_interacted(which: int) -> void:
 		set("line_progress_%s" % which, line_progress + 1)
 	else:
 		SOL.dialogue("fisherman_in_hut_end")
+
+

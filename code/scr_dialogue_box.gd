@@ -13,8 +13,6 @@ signal finished_speaking
 @onready var finished_marker := $DialogueBoxPanel/FinishedMarker
 @onready var dialogue_sound : AudioStreamPlayer = get_node_or_null("DialogueSound")
 
-@export var dialogues : Array[Dialogue]
-
 @export var dont_close := false
 
 const PORTRAIT_DIR := "res://sprites/characters/portraits/spr_portrait_%s.png"
@@ -55,9 +53,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func load_dialogue_dict() -> void:
 	dialogues_dict =\
-	DialogueParser.new().parse_dialogue_from_file(DIR.get_dialogue_file())
-	for i in dialogues_dict:
-		dialogues.append(dialogues_dict[i])
+	DialogueParser.parse_dialogue_from_file(DIR.get_dialogue_file())
+	
+	var fish_dialogues := DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_fisher_dialogue.txt", FileAccess.READ).get_as_text())
+	for i in fish_dialogues.keys():
+		dialogues_dict[i] = fish_dialogues[i]
 
 
 func prepare_dialogue(key: String) -> void:

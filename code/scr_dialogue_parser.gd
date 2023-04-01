@@ -19,7 +19,7 @@ const NEW_DATA_LINK := "DATA_LINK "
 const NEW_SET_DATA := "SET_DATA "
 
 
-func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
+static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	print("parsing dialogue...")
 	var time := Time.get_ticks_usec()
 	var lines := file_as_text.split("\n")

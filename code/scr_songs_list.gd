@@ -48,6 +48,10 @@ var songs := {
 		"link": "res://music/mus_favourable_silence.ogg",
 		"default_volume": -5,
 	},
+	"fisher_hut": {
+		"title": "radio & murumart - a smoke in the tropical paradise that is a fisherman's hut",
+		"link": "res://music/mus_fisher_hut.ogg",
+	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"
