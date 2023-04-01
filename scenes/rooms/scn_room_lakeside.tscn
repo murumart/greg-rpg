@@ -682,7 +682,7 @@ battle = SubResource("Resource_o50vv")
 player = NodePath("../../Greg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/EnemyEncounterArea"]
-polygon = PackedVector2Array(-318, -185, 629, 28, 491, 299, -1, 295, -404, 172, -446, -16)
+polygon = PackedVector2Array(-313, -137, -96, -131, 164, -1, 443, -5, 640, 40, 641, 85, 457, 246, -1, 272, -363, 183, -425, -16)
 
 [node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
 position = Vector2(2, -342)
