@@ -24,7 +24,10 @@ func _physics_process(delta: float) -> void:
 	
 	if following:
 		var target : Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
-		if not is_instance_valid(target): return
+		if not is_instance_valid(target):
+			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
+			freeze = false
+			return
 		if $CollisionShape2D.disabled:
 			$CollisionShape2D.set_deferred("disabled", false)
 		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
@@ -39,5 +42,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(_body: Node) -> void:
+	if freeze: return
 	SND.play_sound(paper_sounds.pick_random(), {"volume": -16, "pitch": randf_range(0.9, 1.3)})
 	$CollisionShape2D.set_deferred("disabled", true)

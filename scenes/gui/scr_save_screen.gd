@@ -37,7 +37,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed(): return
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_menu") or event.is_action_pressed("escape"):
 		DAT.free_player("save_screen")
 		queue_free()
 	var move := Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")

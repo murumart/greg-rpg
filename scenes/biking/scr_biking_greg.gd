@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	if health <= 0.0 or paused: input = Vector2.ZERO
 	global_position += Vector2(input) * moving_speed * delta
 	global_position.x = clampf(global_position.x, BikingGame.ROAD_BOUNDARIES.position.x, BikingGame.ROAD_BOUNDARIES.size.x)
-	global_position.y = clampf(global_position.y, BikingGame.ROAD_BOUNDARIES.size.y, BikingGame.ROAD_BOUNDARIES.position.y)
+	global_position.y = clampf(global_position.y, BikingGame.ROAD_BOUNDARIES.size.y + 4, BikingGame.ROAD_BOUNDARIES.position.y - 3)
 	animation_tree["parameters/pedaling_speed/scale"] = (speed * delta) + input.x
 	for w in wheels:
 		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= BikingGame.ROAD_BOUNDARIES.size.x or global_position.x <= BikingGame.ROAD_BOUNDARIES.position.x) else 1.0))

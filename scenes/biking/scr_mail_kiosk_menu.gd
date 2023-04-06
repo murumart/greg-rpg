@@ -37,6 +37,7 @@ func _ready() -> void:
 	items_available = gen_items()
 	perks_available = gen_perks()
 	dlbox.prepare_dialogue(get_welcome_message())
+	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	await dlbox.dialogue_closed
 	if dlbox.current_choice == "browse":
 		dlbox.prepare_dialogue("biking_browse")
@@ -106,8 +107,15 @@ func _input(event: InputEvent) -> void:
 
 
 func get_welcome_message() -> String:
+	var kiosks_opened : int = game_get("kiosks_activated", 0)
+	print(kiosks_opened)
 	if ending:
+		SND.play_song("victory", 1.0, {"start_volume": 1.0})
 		return "biking_last_stop"
+	if kiosks_opened == 0:
+		return "biking_welcome_1"
+	if DAT.seconds - DAT.get_data("last_kiosk_open_second", 0) > 88:
+		return "biking_welcome_afterwhile"
 	return "biking_welcome_1"
 
 
@@ -255,7 +263,7 @@ func game_set(thing: String, to: Variant) -> void:
 
 
 func game_call(method: String, arguments : Array = []) -> void:
-	if ! game_reference:
+	if !game_reference:
 		print("no game")
 		return
 	game_reference.callv(method, arguments)

@@ -44,6 +44,7 @@ var kiosk_activated := false:
 		kiosk_activated = to
 		print("kiosk activated: ", to)
 var current_kiosk : BikingMovingObject
+var kiosks_activated := 0
 
 var inventory := []
 
@@ -190,13 +191,14 @@ func _on_mailbox_timer_timeout() -> void:
 func spawn_coin() -> void:
 	var coin : BikingMovingObject = COIN_LOAD.instantiate()
 	coin.randomise_position()
+	coin.position.x += randi_range(0, 16)
 	add_child(coin)
 	coin.speed = speed
 	coin.coin_got.connect(_on_coin_collected)
 
 
 func spawn_snail() -> void:
-	if current_perk == "snail_repel" and randf() >= 0.95: return
+	if current_perk == "snail_repel" and randf() <= 0.95: return
 	var snail : BikingMovingObject = SNAIL_LOAD.instantiate()
 	snail.randomise_position()
 	snail.will_delete.connect(_on_snail_hit)
@@ -249,6 +251,7 @@ func _on_mailman_approached() -> void:
 	if currently_hell: return
 	set_speed(0)
 	bike.paused = true
+	kiosks_activated += 1
 
 
 func _on_mail_menu_finished() -> void:

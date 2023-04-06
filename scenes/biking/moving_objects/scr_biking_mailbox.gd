@@ -22,6 +22,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		SND.play_sound(EAT_SOUND, {"volume": -10})
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
 		$AnimationPlayer.play("yum")
+		self.remove_from_group("biking_mailboxes")
 
 
 func checkmark_animation() -> void:

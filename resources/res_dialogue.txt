@@ -794,6 +794,14 @@ CHOICES browse,leave
 	i sell things that might aid you on your mission.
 
 
+DIALOGUE biking_welcome_afterwhile
+EMO
+CHAR mail_man
+	been a while, huh?
+CHOICES browse,leave
+	what do you wish to do.
+
+
 DIALOGUE biking_browse
 CHAR mail_man
 	don't waste too much time choosing!

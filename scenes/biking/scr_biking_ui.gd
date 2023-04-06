@@ -49,7 +49,7 @@ func display_health(new_value: float) -> void:
 
 
 func display_coins(new_value: int) -> void:
-	var old_value = int(coin_label.text)
+	var _old_value = int(coin_label.text)
 	var tw := create_tween()
 	tw.tween_property(coin_label, "text", str(new_value), 0.5)
 	coin_label.text = str(new_value)

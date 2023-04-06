@@ -160,7 +160,7 @@ func load_battle(info: BattleInfo) -> void:
 	set_background(info.get_("background", "bikeghost"))
 	death_reason = info.get_("death_reason", "default")
 	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0, play_from_beginning = true})
-	battle_rewards = info.get_("rewards", Reward.new()).duplicate(true)
+	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres").duplicate(true)
 	apply_cheats()
