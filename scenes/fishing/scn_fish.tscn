@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnml4e1ipm7jj"]
+
+[ext_resource type="Script" path="res://scenes/fishing/scr_fish.gd" id="1_uv0y4"]
+[ext_resource type="Texture2D" uid="uid://ckqqgopvkjqog" path="res://sprites/fishing/spr_fish1.png" id="2_nads7"]
+[ext_resource type="Shader" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_yqy35"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wlj8a"]
+shader = ExtResource("2_yqy35")
+shader_parameter/speed = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wy81p"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8485c"]
+radius = 7.0
+
+[node name="Fish" type="Node2D"]
+script = ExtResource("1_uv0y4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wlj8a")
+texture = ExtResource("2_nads7")
+
+[node name="HookArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
+shape = SubResource("CircleShape2D_wy81p")
+
+[node name="WallrunArea" type="Area2D" parent="."]
+collision_layer = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallrunArea"]
+shape = SubResource("CircleShape2D_8485c")
+
+[connection signal="area_entered" from="HookArea" to="." method="_on_hook_area_hooked"]
+[connection signal="body_entered" from="WallrunArea" to="." method="_on_wall_hit"]
