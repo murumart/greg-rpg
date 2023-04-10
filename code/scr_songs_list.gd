@@ -52,6 +52,10 @@ var songs := {
 		"title": "radio & murumart - a smoke in the tropical paradise that is a fisherman's hut",
 		"link": "res://music/mus_fisher_hut.ogg",
 	},
+	"fishing_game": {
+		"title": "i will dip you in saurce",
+		"link": "res://music/mus_fishing_game.ogg",
+	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"

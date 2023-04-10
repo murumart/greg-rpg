@@ -5,6 +5,10 @@ var state : States = States.STOP
 
 const FISH_LOAD := preload("res://scenes/fishing/scn_fish.tscn")
 
+const SND_CATCH := preload("res://sounds/fishing/snd_catch.ogg")
+const SND_CRASH := preload("res://sounds/fishing/snd_crash.ogg")
+const SND_HISCR := preload("res://sounds/fishing/snd_highscore.ogg")
+
 @onready var tilemap := $Blocks
 var processed_ypos := 1
 @onready var noise : FastNoiseLite = $NoiseSprite.texture.noise
@@ -12,11 +16,23 @@ var processed_ypos := 1
 @onready var hook_animator := $Hook/HookAnimator
 @onready var line_drawer := $LineDrawer
 var hook_positions := [Vector2(0,-60)]
+var hook_speed := 80
 
 @onready var fish_parent := $FishParent
+@onready var ui := $Ui
+
+@onready var water_layers := $Layers.get_children()
 
 var speed := 60
 var depth := 0.0
+var points := 0
+var fish_caught := 0
+var recent_fish_caught := 0.0
+@onready var depth_label := $Ui/TopContainer/DepthLabel
+@onready var points_label := $Ui/TopContainer/PointsLabel
+@onready var combo_bar := $Ui/TopContainer/Combobar
+@onready var congrats_label := $Ui/Congrats
+@onready var after_crash_timer := $Ui/AfterCrashTimer
 
 @export var depth_fish_increase_curve : Curve
 
@@ -27,46 +43,72 @@ func _ready() -> void:
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
 	$Hook/HookCollision.area_entered.connect(_on_hook_collision)
 	line_drawer.draw.connect(_on_line_draw)
+	remove_child(ui)
+	SOL.add_ui_child(ui)
+	SND.play_song("fishing_game", 1.0, {start_volume = 0})
 
 
 func _physics_process(delta: float) -> void:
+	recent_fish_caught = maxf(recent_fish_caught - delta * pow(2, recent_fish_caught * 0.6), 0.0)
+	combo_bar.value = recent_fish_caught
+	depth_label.text = str("depth: %s m" % roundi(depth / 100.0))
 	match state:
 		States.MOVE:
 			hook_movement(delta)
-			
+			line_movement(delta)
 			tilemap.position.y -= speed * delta
 			noise.offset.y += (speed * delta) / 16.0
 			depth += delta * speed
-			$DepthLabel.text = str("depth: %s m" % snappedi(depth / 100.0, 0))
 			process_tilemap()
+			set_water_color(Color("#0054b549").lerp(Color("000e1c49"), remap(depth, 0, 60000, 0.0, 1.0)))
 
 
 func hook_movement(delta: float) -> void:
-	for pos in hook_positions:
-		var i := hook_positions.find(pos)
-		pos.y -= speed * delta
-		pos.x = move_toward(pos.x, hook.global_position.x, delta * randf_range(2, 4))
-		if pos.y < -66:
-			hook_positions.remove_at(i)
-		else:
-			hook_positions[i] = pos
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	hook.global_position += input * speed * 1 * delta
+	hook.global_position += input * hook_speed * 1 * delta
 	hook.global_position.y = clampf(hook.global_position.y, -60, 60)
-	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
+	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, hook_speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
 	if Engine.get_physics_frames() % 4 == 0:
 		hook_positions.append(hook.global_position)
 	line_drawer.queue_redraw()
 
 
+func line_movement(delta : float) -> void:
+	for pos in hook_positions:
+		var i := hook_positions.find(pos)
+		pos.y -= speed * delta * randf_range(0.8, 1.2)
+		pos.x = move_toward(pos.x, hook.global_position.x, delta * randf_range(2, 4))
+		if pos.y < -66:
+			hook_positions.remove_at(i)
+		else:
+			hook_positions[i] = pos
+
+
 func _on_hook_collision(node: Node2D) -> void:
-	if node is TileMap:
-		return
+	var wiggle := func():
+		hook_animator.advance(0)
+		hook_animator.play("hit")
+		SOL.shake(0.2)
+	if state == States.STOP: return
+	if node is TileMap or node.get("hazardous"):
 		#get_tree().reload_current_scene()
 		state = States.STOP
+		SND.play_song("", 1100.0)
+		SND.play_sound(SND_CRASH)
+		after_crash_timer.start(2)
+		SOL.shake(0.4)
+		wiggle.call()
 	elif node is Area2D and node.get_parent() is FishingFish:
-		node.get_parent().queue_free()
-	hook_animator.play("hit")
+		node = node.get_parent() as FishingFish
+		if node.moving and not node.decor:
+			var combo := roundi(recent_fish_caught)
+			points += node.value + combo
+			points_label.text = str("points: ", points)
+			SOL.vfx("damage_number", node.global_position, {"text": str("combo!" if combo else "", "+", node.value + roundi(recent_fish_caught)), "color": Color(1, 1, 1, 0.5) if not combo else Color(1.0, 0.8, 0.6, 0.8)})
+			node.caught()
+			recent_fish_caught += 1.3
+			SND.play_sound(SND_CATCH, {"pitch": remap(node.value, 1, 11, 1.0, 0.66)})
+			wiggle.call()
 
 
 func _on_line_draw() -> void:
@@ -113,15 +155,22 @@ func process_tilemap() -> void:
 		var cell := Vector2i(x - 6, -ypos + 4)
 		if not tilemap.get_cell_tile_data(1, cell):
 			if randf() < depth_fish_increase_curve.sample(depth / 10_000.0) / 2.0: spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
+			if randf() < depth_fish_increase_curve.sample(depth / 80_000.0): spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
 	
 	processed_ypos = ypos
-	
 
 
-func spawn_fish(coords : Vector2) -> void:
+func spawn_fish(coords : Vector2, background := false) -> void:
 	var fish := FISH_LOAD.instantiate()
 	fish.global_position = coords
 	fish.depth = roundi(depth / 100.0)
+	if background:
+		fish.z_index = -8
+		fish.decor = true
+		var fishsc := randf_range(0.2, 0.8)
+		fish.scale = Vector2(fishsc, fishsc)
+		fish.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
+		fish.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
 	fish_parent.add_child(fish)
 
 
@@ -129,3 +178,49 @@ func delete_offscreen_tiles(ypos: int) -> void:
 	for x in 12:
 		var cell := Vector2i(x - 6, -ypos - 6)
 		tilemap.erase_cell(0, cell)
+		tilemap.erase_cell(1, cell)
+
+
+func _on_after_crash_timer_timeout() -> void:
+	var rewards := BattleRewards.new()
+	
+	var score := roundi(depth / 100.0) + points
+	var bad_job_text := "you tried!"
+	var good_job_text := "good job!"
+	var high_score_text := "[color=#88ff00]high score![/color]"
+	var high_score : bool = score > DAT.get_data("fishing_high_score", 0)
+	
+	var srew := Reward.new()
+	srew.type = BattleRewards.Types.SILVER
+	srew.property = str(roundi(score * 0.19))
+	
+	var xrew := Reward.new()
+	xrew.type = BattleRewards.Types.EXP
+	xrew.property = str(roundi(score * 0.088))
+	
+	rewards.rewards.append(srew)
+	rewards.rewards.append(xrew)
+	if high_score:
+		DAT.set_data("fishing_high_score", score)
+		var hsrew := Reward.new()
+		hsrew.type = BattleRewards.Types.SILVER
+		hsrew.property = "2"
+		rewards.rewards.append(hsrew)
+	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/snd_misc_click.ogg"))
+	
+	congrats_label.text = str("[center]", high_score_text if high_score else "", "\n", good_job_text if score > 9 else bad_job_text, "\n", "score: ", score)
+	rewards.granted.connect(func():
+		SOL.dialogue_closed.connect(self.end, CONNECT_ONE_SHOT)
+		, CONNECT_ONE_SHOT)
+	rewards.grant()
+
+
+func end() -> void:
+	LTS.gate_id = LTS.GATE_EXIT_FISHING
+	LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+
+
+func set_water_color(to: Color) -> void:
+	for x in water_layers:
+		var layer := x as ColorRect
+		layer.color = to

@@ -8,7 +8,8 @@ var gate_id : StringName
 const GATE_LOADING := &"loading"
 const GATE_EXIT_BATTLE := &"battle_exit"
 const GATE_EXIT_BIKING := &"bike_exit"
-const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING]
+const GATE_EXIT_FISHING := &"fishing_exit"
+const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING]
 const GATE_BIKE_TRAVEL := &"bike_travel"
 
 var entering_battle := false

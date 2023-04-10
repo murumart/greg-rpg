@@ -1,13 +1,36 @@
-[gd_scene load_steps=16 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=21 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_mb35u"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="4_s301t"]
+[ext_resource type="Texture2D" uid="uid://q4juphcg852w" path="res://sprites/fishing/spr_hook_important.png" id="5_5lcx3"]
 
 [sub_resource type="Curve" id="Curve_itjb6"]
 _data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.50594, 0.184609), 0.718393, 0.718393, 0, 0, Vector2(1, 0.433812), 1.93172, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Environment" id="Environment_3gpcx"]
+background_mode = 3
+ambient_light_source = 1
+glow_enabled = true
+glow_levels/1 = 16.0
+glow_levels/2 = 16.0
+glow_levels/3 = 16.0
+glow_levels/4 = 16.0
+glow_levels/5 = 0.0
+glow_intensity = 1.35
+glow_strength = 1.05
+glow_bloom = 0.01
+glow_hdr_threshold = 0.79
+glow_hdr_scale = 0.44
+glow_hdr_luminance_cap = 4.47
+adjustment_enabled = true
+adjustment_contrast = 0.97
+adjustment_saturation = 1.09
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6q45r"]
+resource_local_to_scene = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6afx4"]
 resource_name = "foreground"
@@ -1025,9 +1048,50 @@ _data = {
 "hit": SubResource("Animation_5qvrl")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l3rk"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.168627)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arky4"]
+bg_color = Color(0.6, 0.898039, 0.6, 1)
+
 [node name="FishingMinigame" type="Node2D"]
 script = ExtResource("1_v6q63")
 depth_fish_increase_curve = SubResource("Curve_itjb6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3gpcx")
+
+[node name="Layers" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bgest" type="ColorRect" parent="Layers"]
+z_index = -6
+material = SubResource("ShaderMaterial_6q45r")
+offset_left = -83.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = 64.0
+color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
+
+[node name="Bg" type="ColorRect" parent="Layers"]
+material = SubResource("ShaderMaterial_6q45r")
+offset_left = -83.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = 64.0
+color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
+
+[node name="Fg" type="ColorRect" parent="Layers"]
+z_index = 1
+material = SubResource("ShaderMaterial_6q45r")
+offset_left = -83.0
+offset_top = -63.0
+offset_right = 83.0
+offset_bottom = 64.0
+color = Color(0, 0.329412, 0.709804, 0.286275)
 
 [node name="Blocks" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_rupt7")
@@ -1035,9 +1099,10 @@ format = 2
 layer_0/name = "background"
 layer_0/modulate = Color(0.172549, 0.360784, 0.490196, 1)
 layer_0/z_index = -5
+layer_0/tile_data = PackedInt32Array(262141, 262145, 17, 196605, 458753, 15, 196604, 327681, 17, 131068, 262145, 16, 65532, 720897, 17, -4, 983041, 15, -5, 524289, 16, -65541, 262145, 15, 65531, 786433, 18, 196612, 458753, 18, 196611, 393217, 17, 196610, 327681, 18, 131075, 262145, 15)
 layer_1/name = "foreground"
 layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/modulate = Color(1, 1.29, 1.07, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
@@ -1065,6 +1130,13 @@ texture = ExtResource("4_s301t")
 centered = false
 offset = Vector2(-7.96791, 0)
 
+[node name="Look2" type="Sprite2D" parent="Hook/Look"]
+self_modulate = Color(8.49, 10.38, 9.12, 1)
+position = Vector2(4, 8)
+texture = ExtResource("5_5lcx3")
+centered = false
+offset = Vector2(-7.96791, 0)
+
 [node name="HookCollision" type="Area2D" parent="Hook"]
 position = Vector2(0, 11)
 collision_layer = 2
@@ -1078,9 +1150,48 @@ libraries = {
 "": SubResource("AnimationLibrary_qnjc6")
 }
 
-[node name="DepthLabel" type="Label" parent="."]
-offset_left = -78.0
-offset_top = -58.0
-offset_right = -38.0
-offset_bottom = -50.0
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 120.0
+
+[node name="TopContainer" type="HBoxContainer" parent="Ui"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 160.0
+offset_bottom = 13.0
+
+[node name="DepthLabel" type="Label" parent="Ui/TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "depth: %sm"
+
+[node name="Combobar" type="ProgressBar" parent="Ui/TopContainer"]
+custom_minimum_size = Vector2(24, 3)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_6l3rk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_arky4")
+max_value = 2.0
+show_percentage = false
+
+[node name="PointsLabel" type="Label" parent="Ui/TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "points: 0"
+horizontal_alignment = 2
+
+[node name="AfterCrashTimer" type="Timer" parent="Ui"]
+
+[node name="Congrats" type="RichTextLabel" parent="Ui"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 80.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+
+[connection signal="timeout" from="Ui/AfterCrashTimer" to="." method="_on_after_crash_timer_timeout" flags=6]
