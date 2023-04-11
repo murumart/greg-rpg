@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://drkh16pddftbs"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_nyj1h"]
+[ext_resource type="Texture2D" uid="uid://dtxhcst1a4wlq" path="res://sprites/characters/portraits/spr_portrait_fisherwoman.png" id="1_y26vu"]
+
+[resource]
+script = ExtResource("1_nyj1h")
+name_in_file = &""
+name = "fisherwoman"
+info = "imagine being a fish next to her! 😳"
+portrait = ExtResource("1_y26vu")
+max_health = 165.0
+health = 165.0
+max_magic = 180.0
+magic = 180.0
+level = 65
+experience = 0
+attack = 65.0
+defense = 65.0
+speed = 65.0
+defeated_characters = Array[String](["fish_23818"])
+inventory = Array[String]([])
+spirits = Array[String](["fish_attack"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = "fish"

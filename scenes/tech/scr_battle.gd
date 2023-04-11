@@ -7,7 +7,7 @@ signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["bike_ghost",]).\
-set_music("bike_spirit").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_music("bike_spirit").set_party(["greg", "fisherwoman"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -18,7 +18,10 @@ const BACK_PITCH := 0.75
 enum Teams {PARTY, ENEMIES}
 
 enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
-var doing := Doings.NOTHING
+var doing := Doings.NOTHING:
+	set(to):
+		doing = to
+		print("doing set to ", to)
 var action_history := []
 
 var loading_battle := true
@@ -327,6 +330,7 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 
 func _reference_button_pressed(reference) -> void:
 	if SOL.dialogue_open: return
+	if if_end(): return
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
@@ -357,14 +361,14 @@ func _on_button_reference_received(reference) -> void:
 
 
 func _on_act_requested(actor: BattleActor) -> void:
-	if doing == Doings.END: return
+	if if_end(): return
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
 
 
 func _on_act_finished(actor: BattleActor) -> void:
-	if doing == Doings.END: return
+	if if_end(): return
 	if actor.player_controlled:
 		player_finished_acting.emit()
 	open_party_info_screen()
@@ -416,7 +420,7 @@ func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
 
 
 func check_end(force := false) -> void:
-	if doing == Doings.END: return
+	if if_end(): return
 	var end_condition := party.size() < 1 or enemies.size() < 1
 	if end_condition or force:
 		doing = Doings.END
@@ -718,4 +722,8 @@ func append_action_history(type: String, parameters := {}) -> void:
 	dict["parameters"] = parameters
 	dict["time"] = Time.get_time_string_from_system()
 	action_history.append(dict)
+
+
+func if_end() -> bool:
+	return doing == Doings.END or doing == Doings.DONE
 

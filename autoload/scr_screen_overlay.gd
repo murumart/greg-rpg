@@ -5,7 +5,7 @@ extends CanvasLayer
 signal fade_finished
 signal dialogue_closed
 
-const SCREEN_SIZE := Vector2i(160, 120)
+const SCREEN_SIZE := Vector2(160, 120)
 
 @export var show_fps := false
 var fps_label : Label

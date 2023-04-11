@@ -9,8 +9,8 @@ shader = ExtResource("2_yqy35")
 shader_parameter/speed = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcg6s"]
-radius = 14.0
-height = 34.0
+radius = 16.0
+height = 42.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8485c"]
 radius = 7.0
@@ -88,6 +88,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_s8j6f"]
@@ -178,6 +202,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:self_modulate")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.545098, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l3i56"]
 _data = {
@@ -185,7 +233,7 @@ _data = {
 "catch": SubResource("Animation_s8j6f")
 }
 
-[node name="Fish" type="Node2D"]
+[node name="Fish" type="Node2D" groups=["fishing_fish"]]
 script = ExtResource("1_uv0y4")
 
 [node name="Sprite" type="Sprite2D" parent="."]

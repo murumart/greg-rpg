@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=23 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
@@ -960,7 +960,7 @@ color_ramp = SubResource("Gradient_ssjbk")
 noise = SubResource("FastNoiseLite_1ws5r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3be8"]
-size = Vector2(2, 4)
+size = Vector2(2, 3)
 
 [sub_resource type="Animation" id="Animation_tdrb4"]
 length = 0.001
@@ -1054,6 +1054,12 @@ bg_color = Color(0.117647, 0.117647, 0.117647, 0.168627)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arky4"]
 bg_color = Color(0.6, 0.898039, 0.6, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0nga"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.839216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4e5s6"]
+bg_color = Color(0.309804, 0.556863, 0.435294, 1)
+
 [node name="FishingMinigame" type="Node2D"]
 script = ExtResource("1_v6q63")
 depth_fish_increase_curve = SubResource("Curve_itjb6")
@@ -1070,6 +1076,7 @@ offset_bottom = 40.0
 [node name="Bgest" type="ColorRect" parent="Layers"]
 z_index = -6
 material = SubResource("ShaderMaterial_6q45r")
+layout_mode = 0
 offset_left = -83.0
 offset_top = -63.0
 offset_right = 83.0
@@ -1078,6 +1085,7 @@ color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
 
 [node name="Bg" type="ColorRect" parent="Layers"]
 material = SubResource("ShaderMaterial_6q45r")
+layout_mode = 0
 offset_left = -83.0
 offset_top = -63.0
 offset_right = 83.0
@@ -1087,6 +1095,7 @@ color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
 [node name="Fg" type="ColorRect" parent="Layers"]
 z_index = 1
 material = SubResource("ShaderMaterial_6q45r")
+layout_mode = 0
 offset_left = -83.0
 offset_top = -63.0
 offset_right = 83.0
@@ -1143,6 +1152,7 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hook/HookCollision"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_i3be8")
 
 [node name="HookAnimator" type="AnimationPlayer" parent="Hook"]
@@ -1193,5 +1203,18 @@ offset_bottom = 80.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 bbcode_enabled = true
+
+[node name="Timebar" type="ProgressBar" parent="Ui"]
+custom_minimum_size = Vector2(24, 3)
+layout_mode = 2
+offset_top = 117.0
+offset_right = 160.0
+offset_bottom = 120.0
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_h0nga")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4e5s6")
+max_value = 10.0
+value = 10.0
+show_percentage = false
 
 [connection signal="timeout" from="Ui/AfterCrashTimer" to="." method="_on_after_crash_timer_timeout" flags=6]

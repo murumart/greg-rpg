@@ -12,7 +12,6 @@ size = Vector2(12, 6)
 
 [node name="Fisherman" type="Node2D" groups=["fishermen"]]
 script = ExtResource("1_0spjj")
-randomise_men = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 8
