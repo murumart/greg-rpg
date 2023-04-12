@@ -228,7 +228,9 @@ func get_current_scene() -> Node:
 func get_character(key: String) -> Character:
 	if not key in character_dict:
 		print("char ", key, " not found")
-		return load("res://resources/characters/res_default_character.tres")
+		var charc : Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
+		charc.name = key
+		return charc
 	return character_dict[key]
 
 

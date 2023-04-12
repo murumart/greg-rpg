@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dpu3mwtmn3lqt"]
+[gd_scene load_steps=68 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -17,6 +17,7 @@
 [ext_resource type="SpriteFrames" uid="uid://clewd4hw0hige" path="res://resources/characters/sfr_grandma.tres" id="14_lyhr5"]
 [ext_resource type="SpriteFrames" uid="uid://dn7o24r8k120d" path="res://resources/characters/sfr_cashier_mean.tres" id="15_a8rvo"]
 [ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="15_aavnk"]
+[ext_resource type="SpriteFrames" uid="uid://b088b0hsl14wt" path="res://resources/characters/sfr_vampire_girl.tres" id="17_5k2lu"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="18_3uegb"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="18_mktvr"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="19_gb7yw"]
@@ -591,6 +592,19 @@ save_position = true
 [node name="CashierSprite" type="AnimatedSprite2D" parent="MDPS/Cashier"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_038a8")
+animation = &"walk_down"
+
+[node name="VampireGirl" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]
+position = Vector2(530, -54)
+animated_sprite = NodePath("VGSprite")
+speed = 2000
+movement_wait = 1.0
+random_movement = true
+save_position = true
+
+[node name="VGSprite" type="AnimatedSprite2D" parent="MDPS/VampireGirl"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("17_5k2lu")
 animation = &"walk_down"
 
 [node name="Cashier2" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]

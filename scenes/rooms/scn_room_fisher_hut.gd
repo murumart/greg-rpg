@@ -29,7 +29,6 @@ func _ready() -> void:
 	rand.seed = roundi(DAT.get_data("nr", 0.0) * 100)
 	fish_1 = Math.determ_shuffle(fish_1, rand)
 	fish_2 = Math.determ_shuffle(fish_2, rand)
-	
 
 
 func _on_fisherman_interacted(which: int) -> void:

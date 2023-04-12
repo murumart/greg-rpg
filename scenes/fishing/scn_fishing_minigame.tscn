@@ -1,14 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=27 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_mb35u"]
+[ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="4_ohvva"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="4_s301t"]
 [ext_resource type="Texture2D" uid="uid://q4juphcg852w" path="res://sprites/fishing/spr_hook_important.png" id="5_5lcx3"]
+[ext_resource type="Texture2D" uid="uid://madwfefthwfd" path="res://sprites/fishing/spr_cow_ant.png" id="5_e8u18"]
+[ext_resource type="Texture2D" uid="uid://caxtnijbq1v7k" path="res://sprites/photos/spr_shopping_cart.png" id="6_jrqy2"]
+[ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_thb0r"]
 
 [sub_resource type="Curve" id="Curve_itjb6"]
-_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.50594, 0.184609), 0.718393, 0.718393, 0, 0, Vector2(1, 0.433812), 1.93172, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.26293, 0.204545), 0.718393, 0.718393, 0, 0, Vector2(0.49994, 0.294258), 1.93172, 0.0, 0, 0, Vector2(1, 0.0151516), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Environment" id="Environment_3gpcx"]
 background_mode = 3
@@ -1129,6 +1133,45 @@ centered = false
 
 [node name="FishParent" type="Node2D" parent="."]
 
+[node name="MailKiosk" type="Sprite2D" parent="FishParent"]
+modulate = Color(0.513726, 0.670588, 0.541176, 1)
+z_index = -1
+position = Vector2(-71, 122)
+rotation = 0.321204
+scale = Vector2(3, 3)
+texture = ExtResource("4_ohvva")
+region_enabled = true
+region_rect = Rect2(0, 28, 24, 36)
+
+[node name="CowAnt" type="Sprite2D" parent="FishParent"]
+editor_description = "i was forced to add this against my will
+"
+modulate = Color(0.513726, 0.670588, 0.541176, 1)
+z_index = -1
+position = Vector2(-71, 219)
+rotation = 0.321204
+texture = ExtResource("5_e8u18")
+region_rect = Rect2(0, 28, 24, 36)
+
+[node name="Fisherman" type="Sprite2D" parent="FishParent"]
+self_modulate = Color(0, 0.309804, 0.533333, 1)
+z_index = -3
+position = Vector2(61, 97)
+rotation = -2.6772
+scale = Vector2(3, 3)
+texture = ExtResource("7_thb0r")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="ShoppingCart" type="Sprite2D" parent="FishParent"]
+self_modulate = Color(0.384314, 0.603922, 0.564706, 1)
+z_index = -3
+position = Vector2(48, 119)
+rotation = -0.340145
+scale = Vector2(0.223, 0.223)
+texture = ExtResource("6_jrqy2")
+region_rect = Rect2(0, 0, 16, 16)
+
 [node name="LineDrawer" type="Sprite2D" parent="."]
 
 [node name="Hook" type="Node2D" parent="."]
@@ -1165,6 +1208,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 120.0
+metadata/_edit_lock_ = true
 
 [node name="TopContainer" type="HBoxContainer" parent="Ui"]
 layout_mode = 0

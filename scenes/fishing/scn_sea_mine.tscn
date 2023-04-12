@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://x1o51mb3ov33"]
+
+[ext_resource type="Script" path="res://scenes/fishing/scr_fish.gd" id="1_803tt"]
+[ext_resource type="Texture2D" uid="uid://u28qdmce8gse" path="res://sprites/fishing/spr_blurry_sea_mine.png" id="2_efmaa"]
+[ext_resource type="Shader" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_mgsme"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udhu3"]
+shader = ExtResource("2_mgsme")
+shader_parameter/speed = 2.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_832m1"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvnuf"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_styve"]
+resource_name = "catch"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"explode"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hoqcx"]
+_data = {
+"catch": SubResource("Animation_styve")
+}
+
+[node name="FishingSeaMine" type="Node2D" groups=["fishing_fish"]]
+script = ExtResource("1_803tt")
+hazardous = true
+is_fish = false
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_udhu3")
+texture = ExtResource("2_efmaa")
+
+[node name="HookArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
+editor_description = "among us
+"
+shape = SubResource("CapsuleShape2D_832m1")
+
+[node name="WallrunArea" type="Area2D" parent="."]
+collision_layer = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallrunArea"]
+shape = SubResource("CircleShape2D_lvnuf")
+
+[node name="CatchAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hoqcx")
+}
+
+[connection signal="body_entered" from="WallrunArea" to="." method="_on_wall_hit"]

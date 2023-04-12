@@ -7,7 +7,7 @@ signal player_finished_acting
 
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["bike_ghost",]).\
-set_music("bike_spirit").set_party(["greg", "fisherwoman"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_music("bike_spirit").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -21,7 +21,6 @@ enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM
 var doing := Doings.NOTHING:
 	set(to):
 		doing = to
-		print("doing set to ", to)
 var action_history := []
 
 var loading_battle := true

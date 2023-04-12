@@ -9,8 +9,8 @@ shader = ExtResource("2_yqy35")
 shader_parameter/speed = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcg6s"]
-radius = 16.0
-height = 42.0
+radius = 19.0
+height = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8485c"]
 radius = 7.0
