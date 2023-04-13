@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://c166s6wclejou"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_dialtest.gd" id="1_6l3xu"]
+
+[node name="Dialtest" type="Node2D"]
+script = ExtResource("1_6l3xu")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 160.0
+offset_bottom = 11.0
+text = "welcome to the dialogue test! eat my ass"
+clip_text = true
+
+[node name="SearchMenu" type="LineEdit" parent="."]
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 149.0
+offset_bottom = 21.0
+placeholder_text = "search dialogue name"
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 2.0
+offset_top = 23.0
+offset_right = 159.0
+offset_bottom = 118.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="text_submitted" from="SearchMenu" to="." method="_on_text_edit_text_submitted"]

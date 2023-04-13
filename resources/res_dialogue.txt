@@ -1173,6 +1173,10 @@ CHOICE_LINK fishing
 	also, you can't take too long.
 	i can't, like, stand being away from fish for too long.
 	sorry. lmao. such a life ruiner.
+	also! that fishing pole uses new spirit-powered tech.
+	it'll be super illegal once legis- lation catches up!
+	but you can catch many, many fish with one cast.
+	try it out if you haven't already!
 
 
 DIALOGUE fisherwoman_pole_tutorial

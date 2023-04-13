@@ -595,7 +595,7 @@ sprite_frames = SubResource("SpriteFrames_038a8")
 animation = &"walk_down"
 
 [node name="VampireGirl" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]
-position = Vector2(530, -54)
+position = Vector2(529, -60)
 animated_sprite = NodePath("VGSprite")
 speed = 2000
 movement_wait = 1.0
