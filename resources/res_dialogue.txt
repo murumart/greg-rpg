@@ -597,7 +597,6 @@ CHOICE_LINK bye
 CHAR cashier_mean
 	goodbye! we hope your experience at [color=#88aaff]yuku[/color] has been great!!
 	(even wider smile, smile)
-	
 
 
 DIALOGUE cashier_nice_tally
@@ -938,7 +937,7 @@ CHAR mail_man
 
 
 DIALOGUE thug_catch_1
-	you %s. prepare to engage in a %s.
+	you %s. prepare to %s in a %s.
 
 
 DIALOGUE neighbour_wife_talk_1

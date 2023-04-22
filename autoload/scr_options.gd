@@ -100,6 +100,9 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_2:
 				print(get_viewport().gui_get_focus_owner())
 			KEY_KP_3:
+				if not get_viewport().get_camera_2d():
+					var cam := preload("res://scenes/tech/scn_camera.tscn").instantiate()
+					add_child(cam)
 				if get_viewport().get_camera_2d() and "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
 			KEY_KP_4:

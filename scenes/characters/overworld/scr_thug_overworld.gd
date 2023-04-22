@@ -1,6 +1,7 @@
 extends OverworldCharacter
 
 const TWERP_SYNONYMS := ["twerp", "twerp", "twerp", "nitwit", "nincompoop", "sucker", "moron", "nullity", "insect"]
+const ENGAGE_SYNONYMS := ["engage", "engage", "engage", "feature", "be involved", "be engrossed", "lose", "ENGAGE_SYNONYMS.pick_random()"]
 const TUSSLE_SYNONYMS := ["tussle", "tussle", "tussle", "struggle", "scuffle", "brawl", "scramble"]
 
 const C := "chimney"
@@ -15,12 +16,12 @@ const M := "moron"
 func _ready() -> void:
 	super._ready()
 	battle_info = BattleInfo.new().set_enemies(gen_enemies()).set_music("daylightthief").set_background("town")
-	battle_info.set_rewards(preload("res://resources/battle_rewards/res_thug_reward.tres"))
+	battle_info.set_rewards(preload("res://resources/battle_rewards/res_thug_reward.tres")).set_start_text("various guy(s) accost you.")
 
 
 func chase(body) -> void:
 	super.chase(body)
-	SOL.dialogue_box.dial_concat("thug_catch_1", 0, [TWERP_SYNONYMS.pick_random(), TUSSLE_SYNONYMS.pick_random()])
+	SOL.dialogue_box.dial_concat("thug_catch_1", 0, [TWERP_SYNONYMS.pick_random(), ENGAGE_SYNONYMS.pick_random(), TUSSLE_SYNONYMS.pick_random()])
 
 
 func gen_enemies() -> Array[String]:
@@ -79,6 +80,7 @@ func gen_enemies() -> Array[String]:
 	enemies.shuffle()
 	if M in enemies:
 		enemies.push_front(enemies.pop_at(enemies.find(M)))
+		battle_info.set_death_reason("moron")
 	if enemies.size() > 4:
 		enemies.resize(4)
 	return enemies

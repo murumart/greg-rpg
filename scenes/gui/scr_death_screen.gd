@@ -26,6 +26,10 @@ const DEATH_REASONS := {
 	"lakeside": {
 		"picture": "drinking",
 		"text": "[center]drowning in sadness!"
+	},
+	"moron": {
+		"picture": "moron",
+		"text": ""
 	}
 }
 
