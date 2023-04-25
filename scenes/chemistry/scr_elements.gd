@@ -1,19 +1,26 @@
 class_name Elements extends RefCounted
 
-var used_element_names := []
-var used_element_symbols := []
+# do NOT show ANY of this to ANY of my chemistry teachers
+
 const ELEMENT_AMOUNT := 54
 const PERIOD_LENGTHS := [2, 8, 8, 18, 18, 32, 32]
+
+const RYDBERG := 9.1127e-06
+const PLANCK := 4.135667696e-15
+const C := 299_792_458
 
 var element_names := PackedStringArray()
 var element_abbrs := PackedStringArray()
 var element_masses := PackedFloat32Array()
 var periods : Array[PackedInt32Array] = [[], [], [], [], [], [], []]
 
+var in_by_sym := {}
+
 var rng := RandomNumberGenerator.new()
 
 
 func _init() -> void:
+	print(PLANCK)
 	rng.seed = roundi(DAT.get_data("nr", 0.0) * 100)
 	gen_elements()
 
@@ -59,9 +66,14 @@ func get_group(index: int) -> int:
 
 func get_element(index: int) -> Element:
 	var el := Element.new()
+	el.protons = index + 1
 	el.name = element_names[index]
 	el.mass = element_masses[index]
 	el.symbol = element_abbrs[index]
+	el.valence = get_valence(index)
+	el.period = get_period(index)
+	el.group = get_group(index)
+	el.electronegativity = get_electronegativity(index)
 	return el
 
 
@@ -76,11 +88,23 @@ func gen_elements() -> void:
 		element_abbrs.append(gen_element_symbol(name))
 		element_masses.append(snappedf((index) * 2 + rng.randf() * sqrt(index), 0.01))
 		periods[period].append(e)
+		in_by_sym[element_abbrs[e]] = e
 		
 		if counter >= PERIOD_LENGTHS[period] - 1:
 			period += 1
 			counter = 0
 		else: counter += 1
+
+
+func get_electronegativity(index: int) -> float:
+	# this is fucked up
+	var valence := get_valence(index)
+	var period := get_period(index)
+	var p := maxi(valence - 2, 0)
+	var s := maxi(valence - p, 0)
+	var energy := PLANCK * C * RYDBERG * (pow(index + 1, 2) / pow(period, 2))
+	var return_value := (((energy * s) + (energy * p)) / (s + p)) * 1750000000
+	return return_value
 
 
 func random_element_name(index: int) -> String:
@@ -93,14 +117,24 @@ func random_element_name(index: int) -> String:
 	var gen := func generation():
 		var n := ""
 		var prd := get_period(index)
-		for i in randi_range(maxi(prd, 1), maxi(prd, 2)):
+		for i in rng.randi_range(maxi(prd, 1), maxi(prd, 2)):
 			if rng.randf() <= 0.33:
 				n += consonants.pick_random() + vowels.pick_random()
 			elif rng.randf() <= 0.66:
 				n += plosives.pick_random() + vowels.pick_random()
 			else:
 				n += vowels.pick_random() + consonants.pick_random()
-		end = ends.get(get_group(index), "ium")
+		end = ends.get(get_group(index), [
+			"ium",
+			"", 
+			"uth",
+			"ygen", 
+			"ium",
+			"ium",
+			"ium",
+			"ium",
+			"ium"
+			].pick_random())
 		if n.right(1) in consonants or n.right(1) in plosives:
 			n += end
 		else:
@@ -108,22 +142,64 @@ func random_element_name(index: int) -> String:
 		return n
 	for i in 10:
 		name = gen.call()
-		if not name in used_element_names:
+		var free_of_unwanted := true
+		var dontwantthese := ["uu", "mm"]
+		for n in dontwantthese:
+			if name.contains(n): free_of_unwanted = false
+		if not name in element_names and free_of_unwanted == true:
 			break
-	used_element_names.append(name)
 	return name
 
 
 func gen_element_symbol(name: String) -> String:
-	var symbol := ""
-	for i in 10:
-		symbol = name[0] + (name[rng.randi() % name.length()] if randf() < 0.88 else "")
-		if not symbol in used_element_symbols and ((not symbol.left(1) == symbol.right(1)) if symbol.length() > 1 else true):
-			break
+	var symbol := name[0]
+	if not symbol in element_abbrs and rng.randf() <= 0.8:
+		return symbol
+	for j in name.right(name.length() - 1):
+		var temp := symbol + j
+		if not temp in element_abbrs:
+			return temp
+	print("not enough symbols for ", name)
 	return symbol
 
 
+func table_string() -> String:
+	var text := ""
+	var previous_pd := 0
+	var previous_gp := 0
+	for i in ELEMENT_AMOUNT:
+		var pd := get_period(i)
+		var gp := get_group(i)
+		var sym := element_abbrs[i]
+		var gp_diff := gp - previous_gp
+		if pd > previous_pd:
+			text += "\n"
+		if gp_diff > 2:
+			text += "   ".repeat(gp_diff - 1)
+		text += (sym + " " if sym.length() > 1 else sym + "  ")
+		previous_pd = pd
+		previous_gp = gp
+	
+	return text
+
+
 class Element extends RefCounted:
+	var protons : int
 	var name : String
 	var symbol : String
 	var mass : float
+	var period : int
+	var group : int
+	var valence : int
+	var electronegativity : float
+	
+	
+	func tostr() -> String:
+		return "protons: %s
+name: %s
+symbol: %s
+mass: %s
+period: %s
+group: %s
+valence: %s
+electronegativity: %s" % [protons, name, symbol, mass, period, group, valence, electronegativity]
