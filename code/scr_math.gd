@@ -2,6 +2,7 @@ extends RefCounted
 class_name Math
 
 # math operations that can be useful
+# most of these are only used in like 1 place forever lol
 
 
 static func num_string_type(input: String) -> int:
@@ -12,6 +13,7 @@ static func num_string_type(input: String) -> int:
 	else: return TYPE_STRING
 
 
+# get either -1, 0, 1, 2 to represent the 4 cardinal directions
 static func dir_from_rot(rotation_radians: float) -> int:
 	return wrapi(int(roundi(rotation_radians/PI*2)), -1, 3)
 
@@ -30,11 +32,13 @@ static func sign_symbol(x) -> String:
 	return "+" if x > 0 else "-"
 
 
+# append to an array and return that array
 static func reaap(a : Array, b: Variant) -> Array:
 	a.append(b)
 	return a
 
 
+# i guess it's not actually shorter than writing it out
 static func inrange(x, a, b) -> bool:
 	return x >= a and x <= b
 
@@ -50,6 +54,7 @@ static func süsarv() -> float:
 	return stri.length() / nr
 
 
+# shuffle an array using an rng's seed value
 static func determ_shuffle(arr : Array, rng: RandomNumberGenerator) -> Array:
 	var new_array := []
 	for i in arr.size():

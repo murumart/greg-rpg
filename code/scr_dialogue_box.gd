@@ -1,6 +1,8 @@
 extends Node2D
 class_name DialogueBox
 
+# main game dialogue box
+
 signal dialogue_closed
 signal started_speaking
 signal changed_dialogue
@@ -13,7 +15,7 @@ signal finished_speaking
 @onready var finished_marker := $DialogueBoxPanel/FinishedMarker
 @onready var dialogue_sound : AudioStreamPlayer = get_node_or_null("DialogueSound")
 
-@export var dont_close := false
+@export var dont_close := false # used in mail man kiosk mostly
 
 const PORTRAIT_DIR := "res://sprites/characters/portraits/spr_portrait_%s.png"
 
@@ -47,10 +49,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not is_speaking() and not choices_open:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
+	# pressing z or x allows skipping the babbling
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		skip()
 
 
+# load the dialogues from files
 func load_dialogue_dict() -> void:
 	dialogues_dict =\
 	DialogueParser.parse_dialogue_from_file(DIR.get_dialogue_file())
@@ -65,12 +69,18 @@ func prepare_dialogue(key: String) -> void:
 		load_dialogue_dict()
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	if is_instance_valid(loaded_dialogue):
+		# if a dialogue is loaded, add the new one to the queue
+		# first we duplicate the new dialogue
 		var dial_to_append : Dialogue = dialogues_dict.get(key, Dialogue.new()).duplicate(true)
+		# then assign a new typed array variable.
 		var new_lines : Array[DialogueLine] = []
+		# and put the lines of the new dialogue... inside this array...
 		for l in dial_to_append.lines:
 			var line : DialogueLine = l.duplicate(true)
 			new_lines.append(line)
+		# and then set the new dialogue's lines like this.
 		dial_to_append.lines = new_lines
+		# why all this? ha ha ha! typed array jank!!!!  god dannnnnnnn
 		dialogue_queue.append(dial_to_append)
 		return
 	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
@@ -92,7 +102,7 @@ func load_dialogue(dial : Dialogue) -> void:
 
 
 func speak_this_dialogue_part(part: DialogueLine) -> void:
-	# get the data from the dialogue array
+	# get the data from the dialogue resource
 	loaded_dialogue_line = null
 	var text := part.text
 	var character_load : String = part.character
@@ -102,6 +112,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var data_link : StringName = part.data_link
 	var choices : PackedStringArray = part.choices
 	var emotion : String = part.emotion
+	# if the line is linked to a choice or bool data, skip to the next one
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
@@ -111,6 +122,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if part.sound:
 		SND.play_sound(part.sound)
 	
+	# the false here means that you shouldn't speak the default granting dialogue!
 	if part.item_to_give:
 		DAT.grant_item(part.item_to_give, 0, false)
 	if part.spirit_to_give:
@@ -123,6 +135,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		var read : String = part.set_data[1]
 		var value : Variant = 0
 		if read.is_valid_float(): value = float(read)
+		# gryyh
 		elif read == "true": value = true
 		elif read == "false": value = false
 		else: value = read
@@ -131,7 +144,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	loaded_dialogue_line = part
 	
 	portrait.texture = null
-	load_reference_buttons([], [choices_container])
+	load_reference_buttons([], choices_container)
 	choices_container.get_parent().hide()
 	choices_open = false
 	
@@ -151,6 +164,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	show()
 	textbox.set_text(text)
 	started_speaking.emit()
+	# speaking takes as much time as many there are letters to speak
 	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed * text.length() * 0.05})
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
@@ -165,7 +179,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
 	
 	if choices:
-		load_reference_buttons(choices, [choices_container])
+		load_reference_buttons(choices, choices_container)
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).call_deferred("grab_focus")
@@ -177,8 +191,10 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 func next_dialogue_requested() -> void:
 	current_dialogue += 1
 	if is_instance_valid(loaded_dialogue_line) and loaded_dialogue_line.loop > -1:
+		# looping back to an earlier dialogue
 		current_dialogue = loaded_dialogue_line.loop
 	if not current_dialogue < loaded_dialogue.size():
+		# if that was the last line
 		loaded_dialogue = null
 		loaded_dialogue_line = null
 		current_dialogue = 0
@@ -191,6 +207,7 @@ func next_dialogue_requested() -> void:
 		DAT.call_deferred("free_player", "dialogue")
 		call_deferred("emit_signal", "dialogue_closed")
 	else:
+		# if there are more lines
 		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 
 
@@ -201,13 +218,15 @@ func skip() -> void:
 		get_viewport().set_input_as_handled()
 
 
+# the size of the text area changes based on whether
+# there's a portrait to display or not
 func set_textbox_width_to_full(which: bool) -> void:
 	if not which:
 		textbox.size = default_textbox_size - Vector2(25, 0)
 		textbox.position = default_textbox_position + Vector2(25, 0)
-	else:
-		textbox.size = default_textbox_size
-		textbox.position = default_textbox_position
+		return
+	textbox.size = default_textbox_size
+	textbox.position = default_textbox_position
 
 
 func is_speaking() -> bool:
@@ -222,26 +241,26 @@ func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
 	dialogues_dict.get(key).get_line(line_id).set(param, to)
 
 
+# replace the %s in dialogue strings with something else
 func dial_concat(key: String, line_id: int, params: Array) -> void:
 	var get_key := key + "_" + str(line_id)
 	if not unmodified_dialogue_lines.get(get_key, false):
+		# if the line has not been modified yet:
 		var line := DialogueLine.new()
 		line = dialogues_dict.get(key).get_line(line_id).duplicate()
+		# we store the unmodified form
 		unmodified_dialogue_lines[get_key] = line
+	# and then copy the unmodified form and modify it
 	var line : DialogueLine = dialogues_dict.get(key).get_line(line_id)
+	# and store it in the regular dialogues
 	line.text = unmodified_dialogue_lines.get(get_key).text % params
 
 
-func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
+# for dialogue options
+func load_reference_buttons(array: Array, container: Node, clear := true) -> void:
 	if clear:
-		for container in containers:
-			for c in container.get_children():
-				if c.is_connected("return_reference", _reference_button_pressed):
-					c.disconnect("return_reference", _reference_button_pressed)
-				if c.is_connected("selected_return_reference", _on_button_reference_received):
-					c.disconnect("selected_return_reference", _on_button_reference_received)
-				c.queue_free()
-	var container_nr := 0
+		for c in container.get_children():
+			c.queue_free()
 	for i in array.size():
 		var reference = array[i]
 		var refbutton := reference_button.duplicate()
@@ -249,16 +268,16 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		refbutton.text = str(reference)
 		refbutton.connect("return_reference", _reference_button_pressed)
 		refbutton.connect("selected_return_reference", _on_button_reference_received)
-		containers[container_nr].add_child(refbutton)
+		container.add_child(refbutton)
 		refbutton.show()
-		container_nr = wrapi(container_nr + 1, 0, containers.size())
 	# cool moment here where I decide that there are no more than 1 container.
-	for c in containers[0].get_child_count():
-		var child : Control = containers[0].get_child(c)
-		child.focus_neighbor_top = containers[0].get_child(c - 1).get_path()
-		child.focus_neighbor_bottom = containers[0].get_child(wrapi(c + 1, 0, containers[0].get_child_count())).get_path()
+	for c in container.get_child_count():
+		var child : Control = container.get_child(c)
+		child.focus_neighbor_top = container.get_child(c - 1).get_path()
+		child.focus_neighbor_bottom = container.get_child(wrapi(c + 1, 0, container.get_child_count())).get_path()
 
 
+# selecting choices
 func _reference_button_pressed(reference) -> void:
 	current_choice = reference
 	SOL.dialogue_choice = reference
@@ -266,6 +285,7 @@ func _reference_button_pressed(reference) -> void:
 	get_viewport().set_input_as_handled()
 
 
+# the little triangle or box at the corner
 func set_finished_marker(to: int) -> void:
 	if to < 1:
 		finished_marker.hide()

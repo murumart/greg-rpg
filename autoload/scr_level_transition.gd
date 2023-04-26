@@ -4,12 +4,13 @@ extends Node
 
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
+# this specifies the type of change between scenes
 var gate_id : StringName
 const GATE_LOADING := &"loading"
 const GATE_EXIT_BATTLE := &"battle_exit"
 const GATE_EXIT_BIKING := &"bike_exit"
 const GATE_EXIT_FISHING := &"fishing_exit"
-const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING]
+const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING] # player position gets set to one in data if gate is one of these
 const GATE_BIKE_TRAVEL := &"bike_travel"
 
 var entering_battle := false
@@ -19,6 +20,7 @@ func _init() -> void:
 	pass
 
 
+# instead of get_tree().change_scene() or whatever
 func change_scene_to(path: String, options := {}) -> void:
 	get_tree().root.get_child(-1).queue_free()
 	var free_us := get_tree().get_nodes_in_group("free_on_scene_change")
@@ -35,6 +37,7 @@ func change_scene_to(path: String, options := {}) -> void:
 		DAT.free_player("level_transition")
 
 
+# change level with fancy fade
 func level_transition(path: String, op := {}) -> void:
 	DAT.capture_player("level_transition")
 	get_tree().call_group("free_on_level_transition", "queue_free")
@@ -76,6 +79,7 @@ func enter_battle(info: BattleInfo) -> void:
 	DAT.free_player("entering_battle")
 
 
+# this matters when exiting the store
 func handle_stolen_items() -> void:
 	var stolen_items : Array = DAT.A.get("unpaid_items", [])
 	if stolen_items.is_empty(): return

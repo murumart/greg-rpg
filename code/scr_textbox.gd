@@ -1,13 +1,15 @@
 extends RichTextLabel
 class_name TextBox
 
+# this is a basic scrolling text box
+
 signal speak_finished
 
 var tween_reference : Tween
 
 
 func _ready() -> void:
-	visible_ratio = 0
+	visible_ratio = 0 # we use builtin visible_ratio to do the blablbalb
 	visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
 	bbcode_enabled = true
 

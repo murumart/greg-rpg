@@ -3,7 +3,7 @@ extends CanvasLayer
 # screen layer over everything else. used for things like UI
 
 signal fade_finished
-signal dialogue_closed
+signal dialogue_closed # this is used very often
 
 const SCREEN_SIZE := Vector2(160, 120)
 
@@ -40,9 +40,11 @@ func _input(_event: InputEvent) -> void:
 		fps_label.text = str(Engine.get_frames_per_second())
 
 
+# speak a dialogue
 func dialogue(key: String) -> void:
 	var player : PlayerOverworld = get_tree().get_first_node_in_group("player")
 	if is_instance_valid(player):
+		# position the dialogue box up or down so the player is visible
 		var pos := player.get_global_transform_with_canvas().origin
 		if pos.y < 65:
 			dialogue_low_position()
@@ -53,10 +55,11 @@ func dialogue(key: String) -> void:
 
 func _on_dialogue_closed() -> void:
 	print("dialogue closed")
-	dialogue_closed.emit()
+	dialogue_closed.emit() # so much logic hinges on this single line
 	dialogue_open = false
 
 
+# these are used in some places i guess
 func _on_speaking_started() -> void:
 	#print("started speaking")
 	speaking = true
@@ -68,10 +71,13 @@ func _on_speaking_stopped() -> void:
 	speaking = false
 
 
+# when a node needs to be at the top of the world
 func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := true) -> void:
 	var node2d := Node2D.new()
 	add_child(node2d)
 	node2d.z_index = custom_z_index
+	# remove them on scene change since they are no longer attached to their
+	# original scenes
 	if delete_on_scene_change: node2d.add_to_group("free_on_scene_change")
 	node2d.add_child(node)
 
@@ -96,6 +102,7 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 	tw.tween_callback(emit_signal.bind("fade_finished"))
 
 
+# simpler access to shake the camera
 func shake(amt: float) -> void:
 	var cam := get_viewport().get_camera_2d()
 	if not is_instance_valid(cam): return
@@ -103,6 +110,7 @@ func shake(amt: float) -> void:
 		cam.add_trauma(amt)
 
 
+# opening the saving/loading menu
 func save_menu(loading := false, options := {}) -> void:
 	var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
 	savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
@@ -112,28 +120,31 @@ func save_menu(loading := false, options := {}) -> void:
 	DAT.capture_player("save_screen")
 
 
-func vfx_dustpuff(pos: Vector2) -> void:
-	vfx("dustpuff", pos)
-
-
-func vfx_bangspark(pos: Vector2) -> void:
-	vfx("bangspark", pos, {"random_rotation": true})
-
-
 func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0) -> void:
 	vfx("damage_number", pos, {"text": text, "size": size, "color": color})
 
 
+# spawn vfx effects
 func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
+	# the nomen must be the filename
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = 100
+	# can specify custom parent node to the effect, defaults to this here SOL
 	var parent : Node = options.get("parent", self)
 	parent.add_child(effect)
+	# some effects have scripts, this is where they are called
 	if effect.has_method(&"init"):
 		effect.init(options)
+	# this solution was found after much testing.
+	# not perfect...
 	effect.global_position = pos + SCREEN_SIZE / 2.0 if not "global_position" in parent else pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)
+	# most effects have queue_free() calls built into their animations
 	if options.get("free_time", -1.0) > 0:
-		await get_tree().create_timer(options.get("free_time")).timeout
-		effect.queue_free()
+		
+		get_tree().create_timer(options.get("free_time")).timeout.connect(
+			func():
+				effect.queue_free()
+				
+		, CONNECT_ONE_SHOT)

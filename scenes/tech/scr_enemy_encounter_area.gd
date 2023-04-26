@@ -1,5 +1,7 @@
 extends Area2D
 
+# random enemy encounters happen in this area
+
 var detection := 0.0
 @export var battle : BattleInfo
 @export_range(0, 1) var required_for_detection : float = 0.5
@@ -49,6 +51,7 @@ func _on_timer_timeout() -> void:
 		detection = maxf(detection - increase, 0.0)
 	if debug: print(detection)
 	
+	# if detection over threshold (which is also random :dace:), enter battle
 	if detection >= required_for_detection and randf() >= detection:
 		battles_initiated += 1
 		detection = 0

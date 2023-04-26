@@ -1,6 +1,8 @@
 extends Resource
 class_name DialogueLine
 
+# this stores dialogue text and such
+
 const MAX_TEXT_LENGTH := 66
 
 @export_multiline var text := ""

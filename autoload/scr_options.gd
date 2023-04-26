@@ -1,11 +1,13 @@
 extends Node
 
 # options menu
+
+# all options are stored inside this dict
 var IONS := {
 	"screen_shake_intensity": {
-		"value": 1.0,
-		"range": [0.0, 2.0],
-		"default_value": 1.0
+		"value": 1.0, # used for storing the value
+		"range": [0.0, 2.0], # min value and max value
+		"default_value": 1.0 # what it is when reset
 	},
 	"text_speak_time": {
 		"value": 0.75,
@@ -16,7 +18,7 @@ var IONS := {
 		"value": 0,
 		"range": [0, 1],
 		"default_value": 0,
-		"step": 1.0,
+		"step": 1.0, # by what increment the value can go up or down
 	},
 	"master_volume": {
 		"value": 0.0,
@@ -50,6 +52,7 @@ var IONS := {
 	},
 	"reset": {}
 }
+# sorting the options
 const CATEGORIES := {
 	"sound": ["master_volume", "music_volume"],
 	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time",  "max_fps"],
@@ -64,7 +67,7 @@ const OPTION_PATH := "user://greg_rpg/options.ini"
 var top_text := 0
 
 # nodes
-@onready var root := $Root
+@onready var root := $Root # confusing name but not the same as get_tree().root
 @onready var main_container := $Root/Panel/ScrollContainer/MainContainer
 @onready var base_option := $Root/BaseOption
 @onready var top_text_label := $Root/Panel/TopTextLabel
@@ -75,8 +78,9 @@ var options_length := 0
 
 
 func _init() -> void:
+	# if we don't have an options file yet, create it
 	if not DIR.file_exists(OPTION_PATH, true):
-		opt.set_value("promo", "website", "https://murumart.neocities.org/")
+		opt.set_value("promo", "website", "https://murumart.neocities.org/") # :3
 		opt.save(OPTION_PATH)
 	opt.load(OPTION_PATH)
 
@@ -84,13 +88,15 @@ func _init() -> void:
 func _ready() -> void:
 	gen_option_nodes()
 	remove_child(root)
-	SOL.add_ui_child(root, 128, false)
+	SOL.add_ui_child(root, 128, false) # options gotta be on top
 	root.hide()
 	load_options()
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
+		# for debugging purposes
+		# remember to remove this when releasing the game
 		match event.keycode:
 			KEY_KP_1:
 				SOL.vfx_damage_number(get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), "9999", Color.WHITE, randi()%3 + 1)
@@ -107,6 +113,7 @@ func _input(event: InputEvent) -> void:
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
 			KEY_KP_4:
 				pass
+		# the options menu is shown and hidden when esc is pressed
 		if event.is_action_pressed("escape"):
 			if not root.visible:
 				root.show()
@@ -120,6 +127,7 @@ func _input(event: InputEvent) -> void:
 				root.hide()
 				get_tree().paused = false
 		if not root.visible: return
+		# moving around the menu
 		var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var last_opt := cur_opt
 		cur_opt = wrapi(cur_opt + int(move.y), 0, options_length)
@@ -151,6 +159,9 @@ func select(opti: int) -> void:
 	for c in opt_contain:
 		c.modulate = Color.WHITE
 	opt_contain[opti].modulate = Color.CYAN
+	# this is the custom scrolling implementation since scrollcontainer
+	# would've needed me to use the default focus system as well
+	# which i find unreliable at this point sadly
 	var location : Vector2 = opt_contain[opti].get_global_transform_with_canvas().origin
 	while location.y > 103:
 		main_container.position.y -= 1
@@ -160,6 +171,7 @@ func select(opti: int) -> void:
 		location = opt_contain[opti].get_global_transform_with_canvas().origin
 
 
+# changing the value of an option
 func modify(a: float, reset := false, ifset := false) -> void:
 	var amt := signf(a)
 	var opt_contain := get_option_nodes()
@@ -172,7 +184,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		set_opt(type, get_opt_default(type))
 		prev_opt = get_opt(type)
 	update(container)
-	# here we go
+	# here we go changing the actual things
 	AudioServer.set_bus_volume_db(0, get_opt("master_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
@@ -197,6 +209,9 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			SND.play_sound(menu_sound, {pitch = 1.36})
 
 
+# all visual option nodes are stored in a container node
+# the first child is the name of the option
+# the second one is the value of the option
 func update(container: Container) -> void:
 	container.get_child(0).text = str(container.get_meta("type")).replace("_", " ")
 	container.get_child(1).text = str(snapped(get_opt(container.get_meta("type")), 0.01))
@@ -218,6 +233,7 @@ func gen_option_nodes() -> void:
 			options_length += 1
 
 
+# get all option visual containers, ignoring the category section labels
 func get_option_nodes() -> Array[Node]:
 	var opt_contain := main_container.get_children()
 	for o in opt_contain:
@@ -226,6 +242,7 @@ func get_option_nodes() -> Array[Node]:
 	return opt_contain
 
 
+# get various aspects of the stored option value
 func get_opt(key: String) -> Variant:
 	return IONS.get(key, {}).get("value", 0)
 
@@ -246,6 +263,7 @@ func get_opt_step(key: String) -> float:
 	return IONS.get(key, {}).get("step", 0.1)
 
 
+# and set options
 func set_opt(key: String, to: Variant) -> void:
 	IONS[key]["value"] = to
 
@@ -256,6 +274,7 @@ func reset_options() -> void:
 		modify(-1, true)
 
 
+# display interesting stuff at the top of the options menu
 func _on_top_text_switcher_timeout() -> void:
 	if not root.visible: return
 	top_text = wrapi(top_text + 1, 0, 3)

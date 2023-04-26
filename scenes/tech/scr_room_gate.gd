@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+# gates between rooms in the overworld
+
 signal entered
 
 @export_group("Technical")
@@ -32,19 +34,24 @@ func _ready() -> void:
 	var area : Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
+	# auuuuuuauguuauauuauuuuu
 	await get_tree().process_frame
 	await get_tree().process_frame
+	# if the player exists and the gate is associated with the way the player
+	# entered the level, uh, teleport the player here!
 	if LTS.gate_id == gate_id:
 		if player and get_node_or_null(spawn_point_path):
 			player.global_position = get_node(spawn_point_path).global_position
 
 
+# when the player enters the gate area
 func _on_area_entered(body: Node2D) -> void:
 	if body == player:
-		print(player.state)
 		if player.state == PlayerOverworld.States.NOT_FREE_MOVE: return
 		if DIR.room_exists(destination):
+			# set the gate id
 			LTS.gate_id = gate_id
+			# and off we go
 			LTS.level_transition(DIR.room_scene_path(destination))
 		entered.emit()
 

@@ -1,6 +1,9 @@
 extends RefCounted
 class_name DialogueParser
 
+# this parses the dialogue files into the resources that the game uses
+# i didn't want to do a long dictionary/json file again...
+
 const NEW_DIAL := "DIALOGUE "
 const NEW_CHAR := "CHAR "
 const NEW_TXT_SPD := "SPEED "
@@ -21,7 +24,7 @@ const NEW_SET_DATA := "SET_DATA "
 
 static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	print("parsing dialogue...")
-	var time := Time.get_ticks_usec()
+	var time := Time.get_ticks_usec() # measuring the time that this takes to run
 	var lines := file_as_text.split("\n")
 	var dialogue_dictionary : Dictionary = {}
 	var dial : Dialogue
@@ -41,14 +44,18 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	var set_data_to_set := PackedStringArray()
 	var l := -1
 	
+	# going trhough the string line by line
 	for line in lines:
 		l += 1
-		if line.length() < 3:
+		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
 		if line.begins_with(NEW_DIAL):
 			if not dial == null:
+				# if we have a dialogue at hand, we store a duplicate of it
 				dialogue_dictionary[dial.name] = dial.duplicate()
+				# and then reset the var
 				dial = null
+			# resetting stuff that should be reset when beginning new dialogue
 			char_to_set = ""
 			text_speed_to_set = 1.0
 			choices_to_set = []
@@ -58,6 +65,7 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			loop_to_set = -1
 			dial = Dialogue.new()
 			dial.name = line.trim_prefix(NEW_DIAL)
+		# storing dialogue line properties...
 		elif line.begins_with(NEW_ALIAS):
 			dial.alias = line.trim_prefix(NEW_ALIAS)
 		elif line.begins_with(NEW_CHAR):
@@ -87,6 +95,7 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 		elif line.begins_with(NEW_SET_DATA):
 			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
 		elif line.begins_with(NEW_LINE):
+			# ...and applying them only when a new line begins
 			dial_line = DialogueLine.new()
 			dial_line.text = line.trim_prefix(NEW_LINE)
 			dial_line.character = char_to_set
@@ -105,6 +114,7 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 				dial_line.choices = choices_to_set
 				choices_to_set = []
 			dial.lines.append(dial_line.duplicate())
+			# and some will be reset
 			dial_line = null
 			instaskip_to_set = false
 			loop_to_set = -1

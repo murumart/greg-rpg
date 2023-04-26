@@ -2,12 +2,16 @@ extends Node2D
 class_name Battle
 
 # the battle screen. what did you expect?
+# battles consist of actors lowering their cooldown based on their speed
+# (speedier = faster cooldown) and then acting, during which time
+# others cannot act. once one team is defeated, the battle ends.
 
 signal player_finished_acting
 
+# this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["bike_ghost",]).\
-set_music("bike_spirit").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_enemies(["cashier_mean",]).\
+set_music("bike_spirit").set_party(["greg","zerma","mail_man"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -17,6 +21,7 @@ const BACK_PITCH := 0.75
 
 enum Teams {PARTY, ENEMIES}
 
+# states of the battle
 enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
 var doing := Doings.NOTHING:
 	set(to):
@@ -24,6 +29,8 @@ var doing := Doings.NOTHING:
 var action_history := []
 
 var loading_battle := true
+
+# many nodes
 
 @onready var ui := $UI
 
@@ -59,10 +66,12 @@ var spirit_speak_timer_wait := 2.0
 
 var held_item_id : String = ""
 
+# storing battle members
 var actors : Array[BattleActor]
 var dead_actors : Array[BattleActor]
 var party : Array[BattleActor]
 var dead_party : Array[BattleActor]
+var ever_has_been_party : Array[BattleActor]
 var enemies : Array[BattleActor]
 var dead_enemies : Array[BattleActor]
 
@@ -121,6 +130,7 @@ func _physics_process(_delta: float) -> void:
 	f += 1
 	match doing:
 		Doings.SPIRIT_NAME:
+			# match the timer with the progress bar
 			spirit_speak_timer_progress.value = remap(spirit_speak_timer.time_left, 0.0, spirit_speak_timer_wait, 0.0, 100.0)
 
 
@@ -134,6 +144,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		go_back_a_menu()
 	if event.is_action_pressed("ui_accept"):
 		if doing == Doings.DONE:
+			# leave the battle
 			LTS.gate_id = LTS.GATE_EXIT_BATTLE
 			var looper :Array[BattleActor]= []
 			looper.append_array(party)
@@ -155,6 +166,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func load_battle(info: BattleInfo) -> void:
+	# second argument of info.get_ is the default value
 	for m in info.get_("party", DAT.A.get("party", ["greg"])):
 		add_party_member(m)
 	for e in info.get_("enemies", []):
@@ -195,6 +207,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	match team:
 		Teams.PARTY:
 			party.append(node)
+			ever_has_been_party.append(node)
 			node.player_controlled = true
 			node.player_input_requested.connect(_on_player_input_requested)
 			node.reference_to_team_array = party
@@ -261,14 +274,12 @@ func set_background(id: String) -> void:
 		background_container.add_child(load("res://scenes/battle_backgrounds/scn_bikeghost.tscn").instantiate())
 
 
+# update the panel visuals
 func update_party() -> void:
 	for child in party_member_panel_container.get_children():
 		child.hide()
-	var array := []
-	array.append_array(party)
-	array.append_array(dead_party)
-	for i in array.size():
-		var member : BattleActor = array[i]
+	for i in ever_has_been_party.size():
+		var member : BattleActor = ever_has_been_party[i]
 		party_member_panel_container.get_child(i).update(member)
 		party_member_panel_container.get_child(i).show()
 
@@ -297,6 +308,7 @@ func go_back_a_menu() -> void:
 	highlight_selected_enemy()
 
 
+# fill menus with buttons (menus to select actors and items and such)
 func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
 	if clear:
 		for container in containers:
@@ -327,6 +339,7 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		container_nr = wrapi(container_nr + 1, 0, containers.size())
 
 
+# something is selected
 func _reference_button_pressed(reference) -> void:
 	if SOL.dialogue_open: return
 	if if_end(): return
@@ -351,6 +364,7 @@ func _reference_button_pressed(reference) -> void:
 			open_party_info_screen()
 
 
+# descriptions for items and such
 func _on_button_reference_received(reference) -> void:
 	if doing == Doings.ATTACK or doing == Doings.SPIRIT or doing == Doings.ITEM:
 		selected_guy_display.update(reference)
@@ -359,6 +373,7 @@ func _on_button_reference_received(reference) -> void:
 		item_info_label.text = str(DAT.get_item(reference).get_effect_description(),"\n[color=#888888]", DAT.get_item(reference).description)
 
 
+# some actor wants to act!
 func _on_act_requested(actor: BattleActor) -> void:
 	if if_end(): return
 	open_party_info_screen()
@@ -366,6 +381,7 @@ func _on_act_requested(actor: BattleActor) -> void:
 	actor.act()
 
 
+# some actor has finished their act
 func _on_act_finished(actor: BattleActor) -> void:
 	if if_end(): return
 	if actor.player_controlled:
@@ -376,6 +392,7 @@ func _on_act_finished(actor: BattleActor) -> void:
 	set_actor_states(BattleActor.States.COOLDOWN)
 
 
+# some actor has been killed
 func _on_actor_died(actor: BattleActor) -> void:
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
@@ -390,6 +407,7 @@ func _on_actor_died(actor: BattleActor) -> void:
 	update_party()
 
 
+# some actor has fled the fight
 func _on_actor_fled(actor: BattleActor) -> void:
 	if actor in party:
 		pass
@@ -403,6 +421,7 @@ func _on_actor_fled(actor: BattleActor) -> void:
 	update_party()
 
 
+# more enemies are requested by a spirit perhaps
 func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
 	if actor in enemies:
 		if enemies.size() < MAX_ENEMIES:
@@ -431,12 +450,14 @@ func _on_message_received(msg: String) -> void:
 	log_text.append_text(msg + "\n")
 
 
+# when a player-controllect character requests act
 func _on_player_input_requested(actor: BattleActor) -> void:
 	current_guy = actor
 	open_main_actions_screen()
 	listening_to_player_input = true
 
 
+# choice between fighting, spirits and items
 func open_main_actions_screen() -> void:
 	held_item_id = ""
 	current_target = null
@@ -446,6 +467,7 @@ func open_main_actions_screen() -> void:
 	screen_spirit_name.hide()
 	screen_end.hide()
 	resize_panel(44)
+	# sparkle on, it's wednesday! don't forget to be yourself!
 	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05:
 		attack_button.text = "slay"
 	else:
@@ -467,6 +489,7 @@ func open_main_actions_screen() -> void:
 	doing = Doings.NOTHING
 
 
+# item/actor listing screens
 func open_list_screen() -> void:
 	$%ScreenMainActions.hide()
 	screen_item_select.hide()
@@ -506,6 +529,7 @@ func open_list_screen() -> void:
 			else: item_list_container[0].get_child(0).grab_focus()
 
 
+# the one between player acts
 func open_party_info_screen() -> void:
 	listening_to_player_input = false
 	doing = Doings.NOTHING
@@ -541,6 +565,7 @@ func open_spirit_name_screen() -> void:
 	spirit_name.grab_focus()
 
 
+# you didn't type the spirit name fast enough
 func _on_spirit_speak_timer_timeout() -> void:
 	listening_to_player_input = false
 	SND.play_sound(preload("res://sounds/snd_error.ogg"), {pitch = 0.7, bus = "ECHO"})
@@ -554,7 +579,7 @@ func _on_spirit_speak_timer_timeout() -> void:
 
 
 func _on_spirit_name_changed(to: String) -> void:
-	to = to.to_lower()
+	to = to.to_lower() # no uppercase
 	spirit_name.text = to
 	spirit_name.caret_column = to.length()
 	spirit_name.add_theme_font_size_override("font_size", 16)
@@ -598,6 +623,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 	open_party_info_screen()
 
 
+# horrible function
 func open_end_screen(victory: bool) -> void:
 	if screen_end.visible: return
 	set_actor_states(BattleActor.States.IDLE)
@@ -634,7 +660,7 @@ func _grant_rewards() -> void:
 	await get_tree().process_frame
 	battle_rewards.grant()
 
-
+# main screen buttons wired to these
 func _on_attack_pressed() -> void:
 	if SOL.dialogue_open: return
 	doing = Doings.ATTACK
@@ -664,7 +690,7 @@ func _on_item_pressed() -> void:
 func set_description(text: String) -> void:
 	description_text.text = text
 	if text.ends_with("%s"):
-		description_text.text = text % (current_guy.character.weapon if current_guy.character.weapon else "hands")
+		description_text.text = text % (DAT.get_item(current_guy.character.weapon).name if current_guy.character.weapon else "hands")
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:
@@ -683,6 +709,7 @@ func resize_panel(new_y: int, wait := 0.2) -> void:
 	tw.tween_property(panel, "position:y", SCREEN_SIZE.y - new_y, wait)
 
 
+# update the party faces not every frame
 func _on_update_timer_timeout() -> void:
 	if screen_party_info.visible:
 		update_party()
@@ -711,10 +738,12 @@ func apply_cheats() -> void:
 				i.character.spirits.append(j)
 
 
+# load info from battle info
 func _option_init(options := {}) -> void:
 	load_options = options.get("battle_info")
 
 
+# woh
 func append_action_history(type: String, parameters := {}) -> void:
 	var dict := {}
 	dict["type"] = type

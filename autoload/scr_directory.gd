@@ -8,7 +8,7 @@ const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 const BATTLE_BACKGROUND_SCENE_PATH := "res://scenes/battle_backgrounds/scn_%s.tscn"
 const TSCN := ".tscn"
 
-# file path constants
+# absolute file path constants
 const CHAR_PATH := "res://resources/characters/res_%s"
 const ITEM_PATH := "res://resources/items/res_%s"
 const SPIRIT_PATH := "res://resources/spirits/res_%s"
@@ -25,6 +25,8 @@ func standalone() -> bool:
 	return not OS.has_feature("editor")
 
 
+# dicts are stored to file in the format provided by var2bytes
+# rather unreadable
 func write_dict_to_file(data: Dictionary, filename : String) -> void:
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.WRITE)
 	file.store_var(var_to_bytes(data))
@@ -45,6 +47,7 @@ func enemy_scene_exists(name_in_file: String) -> bool:
 	return name_in_file in dir
 
 
+# this feels a bit redundant but the complain functionality might be useful
 func file_exists(path, complain := false) -> bool:
 	if FileAccess.file_exists(path):
 		return true
@@ -52,6 +55,7 @@ func file_exists(path, complain := false) -> bool:
 	return false
 
 
+# these are all shorter than calling DIR.CHAR_PATH % charname. I think.
 func get_char_path(charname : String) -> String:
 	return CHAR_PATH % charname + ".tres"
 
@@ -96,6 +100,7 @@ func portrait_exists(id: String) -> bool:
 	return "spr_portrait_" + id in dir
 
 
+# copied from somewhere and adjusted a bit
 func get_dir_contents(path: String, trim: String = "") -> Array[String]:
 	var contents : Array[String] = []
 	var dir := DirAccess.open(path)

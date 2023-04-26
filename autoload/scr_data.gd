@@ -22,6 +22,8 @@ var player_capturers := []
 @onready var game_timer := $GameTimer
 var seconds := 0
 var last_save_second := 0
+
+# periods of time during which stuff changes
 const NEIGHBOUR_WIFE_CYCLE := 470
 const PHG_CYCLE := 1200
 
@@ -37,7 +39,7 @@ var süs := 0.0
 
 
 func _init() -> void:
-	randomize()
+	randomize() # only place where this is called
 
 
 func _ready() -> void:
@@ -45,12 +47,16 @@ func _ready() -> void:
 	load_items()
 	load_spirits()
 	init_data()
+	# if i accidentally run the dat scene by itself
 	if get_current_scene().get_script() == self.get_script():
 		var libel := Label.new()
 		libel.text = "Hello world, DAT"
 		add_child(libel)
 
 
+# loading chars items spirits use those export strings
+# relies on there being files with the same names as those strings
+# then storing the loaded files inside dicts
 func load_characters() -> void:
 	for s in character_list.split("\n"):
 		character_dict[s] = load(DIR.get_char_path(s)) as Character
@@ -70,11 +76,13 @@ func load_spirits() -> void:
 
 
 # entry point for a new game.
+# the architecture for this is iffy
 func start_game() -> void:
 	init_data()
 	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 
 
+# set a data key to a value
 func set_data(key, value) -> void:
 	if log_dat_chgs():
 		if key == check_for_key:
@@ -84,16 +92,19 @@ func set_data(key, value) -> void:
 	A[key] = value
 
 
+# get a key from the data dict, use this instead of DAT.A.get()
 func get_data(key: String, default = null):
 	if log_dat_chgs(): print("requested key %s from data" % key)
 	return A.get(key, default)
 
 
+# incrementing a float in the data dict
 func incrf(key: String, amount: float) -> void:
 	if log_dat_chgs(): print("floatcrementing: ")
 	set_data(key, A.get(key, 0.0) + amount)
 
 
+# incrementing an int in the data dict
 func incri(key: String, amount: int) -> void:
 	if log_dat_chgs(): print("intcrementing: ")
 	set_data(key, A.get(key, 0) + amount)
@@ -109,6 +120,9 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 	last_save_second = seconds
 	
 	var stuff := {}
+	# technical possibility of not replacing the entire dict but only
+	# replacing existing keys and keeping ones that are not in the new one.
+	# that explanation sucks
 	if not overwrite:
 		stuff = DIR.get_dict_from_file(filename)
 		for k in A.keys():
@@ -119,6 +133,7 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 	DIR.write_dict_to_file(stuff, filename)
 
 
+# change some key inside the actual save file
 func force_data(key: String, value: Variant, filename := "") -> void:
 	if not filename.length():
 		filename = get_data("save_file", "save.grs")
@@ -130,12 +145,11 @@ func force_data(key: String, value: Variant, filename := "") -> void:
 	print("forced key %s and value %s to file %s" % [key, value, filename])
 
 
+# loop through all nodes that have persistent data between scenes
 func save_nodes_data() -> void:
 	print("saving nodes...")
 	var saveables := get_tree().get_nodes_in_group("save_me")
-	for node in saveables:
-		if is_instance_valid(node) and node.has_method("_save_me"):
-			node._save_me()
+	get_tree().call_group("save_me", "_save_me")
 	print("node saving end.")
 
 
@@ -145,6 +159,7 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	
 	print("overwriting data...")
 	if not overwrite:
+		# again option to not overwrite everything
 		for k in loaded.keys():
 			A[k] = loaded[k]
 	else:
@@ -154,30 +169,41 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	
 	load_chars_from_data()
 	
+	# change the scene to the one inside the save file
+	# this resets everything and allows nodes that
+	# have persistent data to load their stuff.
 	var room_to_load : String = loaded.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
+	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
 
 
+# put the save data inside a JSON string and add it to clipboard
 func copy_data() -> void:
 	DisplayServer.clipboard_set(JSON.stringify(A, "\t"))
 
 
+# this is for the overworld greg
+# if greg is captured, he cannot be moved around by the player
 func capture_player(type := "", overlap := true) -> void:
 	if not overlap and type in player_capturers: return
 	print(type, " captured player")
+	# multiple things can capture the player
+	# they are stored as strings inside this array
 	player_capturers.append(type)
 	var player := get_tree().get_first_node_in_group("players")
 	if is_instance_valid(player):
 		player.state = PlayerOverworld.States.NOT_FREE_MOVE
 
 
+# allowing the player to move again
 func free_player(type := "") -> void:
 	print("freed player from ", type)
 	player_capturers.erase(type)
 	if type == "all":
 		player_capturers.clear()
+	# the player can only move if the capturers array is empty
 	if player_capturers.size() > 0: return
 	var player := get_tree().get_first_node_in_group("players")
 	if is_instance_valid(player):
@@ -206,9 +232,11 @@ func grant_silver(amount: int, dialogue := true) -> void:
 
 func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> void:
 	var charc : Character = get_character(A.get("party", ["greg"])[party_index])
+	# this implementation looks so kooky because typed arrays if i remember right
 	var uuspirits : Array[String] = charc.unused_sprits.duplicate()
 	uuspirits.append(spirit)
 	charc.unused_sprits = uuspirits
+	# horrible but necessary with the current implementation of characters
 	if DAT.get_current_scene().name == "Battle":
 		var battle = DAT.get_current_scene()
 		if !battle.party.is_empty():
@@ -221,6 +249,7 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 	SOL.dialogue("getspirit")
 
 
+# this should be a default gdscript function cmon
 func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
 
@@ -238,6 +267,8 @@ func char_save_string_key(which: String, key: String) -> String:
 	return str("char_", which, "_", key)
 
 
+# saving and loading characters is handled here instead of inside the character
+# script itself, ulike most other things with persistent data
 func save_chars_to_data() -> void:
 	print("saving characters...")
 	for c in character_dict:
@@ -267,11 +298,14 @@ func get_spirit(id: String) -> Spirit:
 		return preload("res://resources/res_default_spirit.tres")
 	return spirit_dict[id]
 
+# default spirit/item/character is gleebungus
+
 
 func _on_game_timer_timeout() -> void:
 	seconds += 1
 
 
+# storing the level up spirit names here
 func get_levelup_spirit(level: int) -> String:
 	var dict := {
 		11: "hotel",
@@ -286,6 +320,7 @@ func get_levelup_spirit(level: int) -> String:
 	return dict.get(level, "")
 
 
+# if we should be logging data changes
 func log_dat_chgs() -> bool:
 	return bool(OPT.get_opt("log_data_changes"))
 

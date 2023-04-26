@@ -8,7 +8,7 @@ var current_song : Dictionary
 var old_song : Dictionary
 var previously_played_song_key : String = ""
 var current_song_key : String = ""
-var list := SongsList.new()
+var list := SongsList.new() # stored data about songs
 
 const DEFAULT_VOLUME := 0.0
 const DEFAULT_WAIT_SPEED := 1.0
@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(sound_clear_timer)
 	sound_clear_timer.connect("timeout", _on_sound_clear_timer_timeout)
 	sound_clear_timer.start()
-	sound_clear_timer.process_mode = Node.PROCESS_MODE_ALWAYS
+	sound_clear_timer.process_mode = Node.PROCESS_MODE_ALWAYS # sounds shan't pause
 
 
 func play_song(song: String, fade_speed := 1.0, options := {}):
@@ -47,6 +47,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	
 	var song_dict : Dictionary = list.songs.get(song, {})
 	
+	# if the music requested is the same as current music, do nothing
 	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
 		return
 	
@@ -57,6 +58,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	
 	fade_out_song_player(current_song_player, fade_speed, options)
 	
+	# silence
 	if song_dict.keys().size() < 1:
 		return
 	
@@ -142,8 +144,8 @@ func menusound(pitch := 1.0, options := {}) -> void:
 	play_sound(preload("res://sounds/snd_gui.ogg"), options)
 
 
+# clearing silent audio players
 func _on_sound_clear_timer_timeout() -> void:
-	
 	for s in playing_sounds:
 		if not is_instance_valid(s): continue
 		var player := s as AudioStreamPlayer
