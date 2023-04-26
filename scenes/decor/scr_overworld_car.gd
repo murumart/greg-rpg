@@ -1,6 +1,9 @@
 extends Node2D
 
+# cars that drive around and hit people (you (greg))
+
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
+# different rotations are in the same sprite sheet
 const REGIONS := [Rect2i(42, 0, 14, 28), Rect2i(0, 0, 28, 14), Rect2i(28, 0, 14, 28), Rect2i(0, 14, 28, 14)]
 const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 
@@ -32,8 +35,8 @@ func _ready() -> void:
 	if not moves:
 		$VroomVroom.stop()
 	collision_area.body_entered.connect(_on_collided_with_player)
-	position = DAT.A.get(save_key_name("position"), position)
-	target = DAT.A.get(save_key_name("target"), target)
+	position = DAT.get_data(save_key_name("position"), position)
+	target = DAT.get_data(save_key_name("target"), target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
 	.set_music("overrun").set_death_reason("car")
 	set_color(color)
@@ -42,8 +45,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if moves:
+		# moving towards the target
 		global_position = global_position.move_toward(target, delta * speed)
 		turn(int(global_position.angle_to_point(target)))
+		# once reached the target
 		if global_position.distance_squared_to(target) < 2:
 			new_target()
 
@@ -58,6 +63,9 @@ func new_target() -> void:
 		target = (path_points[next_index].global_position)
 
 
+# this implementation means there should be plenty of nodes in the path
+# since the previous node or an unrelated node might be closer than the next node
+# this matters when loading the scene
 func at_which_path_point() -> Node2D:
 	var path_points := path_container.get_children()
 	if path_points:
@@ -69,7 +77,7 @@ func at_which_path_point() -> Node2D:
 func _on_collided_with_player(_player) -> void:
 	if not moves: return
 	moves = false
-	DAT.set_data("last_hit_car_color", color)
+	DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
 	DAT.set_data(save_key_name("fought"), true)
 	LTS.enter_battle(battle_info)
 
@@ -96,7 +104,8 @@ func save_key_name(key: String) -> String:
 
 func set_moves(to: bool):
 	moves = to
-	var vroom := get_node_or_null("VroomVroom")
+	var vroom := get_node_or_null("VroomVroom") # did i really name it that
+	# goddamn vroom
 	if vroom:
 		vroom.playing = to
 

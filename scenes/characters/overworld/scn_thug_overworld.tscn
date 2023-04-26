@@ -164,6 +164,9 @@ default_lines = Array[StringName]([&"thug_catch_1"])
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_mv4y4")
 
+[node name="InteractionArea" parent="." index="1"]
+monitoring = true
+
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 shape = SubResource("RectangleShape2D_pnoga")
 

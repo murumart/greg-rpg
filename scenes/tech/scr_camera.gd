@@ -1,5 +1,7 @@
 extends Camera2D
 
+# all cameras should have this script
+
 # screen shake variables
 const SHAKE_DECAY := 0.8
 const SHAKE_MAX_OFFSET := Vector2(100, 75)
@@ -12,6 +14,7 @@ var free_cam := false
 
 
 func _ready() -> void:
+	# needed due to godot 4 beta somethingsomething camera changes
 	make_current()
 
 
@@ -26,5 +29,6 @@ func _physics_process(delta: float) -> void:
 	offset.x = SHAKE_MAX_OFFSET.x * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
 	offset.y = SHAKE_MAX_OFFSET.y * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
 	
+	# free cam cheat (toggle in OPT)
 	if free_cam:
 		global_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

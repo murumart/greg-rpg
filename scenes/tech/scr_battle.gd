@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["cashier_mean",]).\
-set_music("bike_spirit").set_party(["greg","zerma","mail_man"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_enemies(["grass"]).\
+set_music("touch_me").set_party(["zerma","mail_man"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -26,6 +26,7 @@ enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM
 var doing := Doings.NOTHING:
 	set(to):
 		doing = to
+		print("doing ", Doings.find_key(to))
 var action_history := []
 
 var loading_battle := true
@@ -167,7 +168,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func load_battle(info: BattleInfo) -> void:
 	# second argument of info.get_ is the default value
-	for m in info.get_("party", DAT.A.get("party", ["greg"])):
+	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
 	for e in info.get_("enemies", []):
 		add_enemy(e)
@@ -626,11 +627,11 @@ func _on_spirit_name_submitted(submission: String) -> void:
 # horrible function
 func open_end_screen(victory: bool) -> void:
 	if screen_end.visible: return
+	screen_end.show()
 	set_actor_states(BattleActor.States.IDLE)
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_spirit_name.hide()
-	screen_end.show()
 	victory_text.visible = victory
 	defeat_text.visible = !victory
 	await get_tree().create_timer(1.0).timeout

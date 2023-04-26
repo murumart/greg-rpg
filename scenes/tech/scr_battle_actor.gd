@@ -1,6 +1,8 @@
 extends Node2D
 class_name BattleActor
 
+# base class for battle actors
+
 const WAIT_AFTER_ATTACK := 1.0
 const WAIT_AFTER_SPIRIT := 1.0
 const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
@@ -36,10 +38,12 @@ var player_controlled := false
 @export var wait := 1.0
 
 
+# battle script accesses actors through the group
 func _init() -> void:
 	self.add_to_group("battle_actors")
 
 
+# the character is loaded before _ready()
 func _ready() -> void:
 	if not is_instance_valid(character):
 		character = Character.new()
@@ -48,11 +52,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not character: return
-	if SOL.dialogue_open: return
+	if SOL.dialogue_open: return # don't run logic if dialogue is open
 	match state:
 		States.IDLE:
 			pass
 		States.COOLDOWN:
+			# cooldown between 1 and 0 usually
 			wait = maxf(wait - sqrt(delta * get_speed() * 0.1), 0.0)
 			if wait == 0.0:
 				act_requested.emit(self)
@@ -77,25 +82,38 @@ func set_state(to: States) -> void:
 
 
 func heal(amount: float) -> void:
+	# limit healing to max health
 	character.health = minf(character.health + absf(amount), character.max_health)
-	SOL.vfx("damage_number", get_effect_center(self), {text = absf(amount), color=Color.GREEN_YELLOW})
+	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
 func hurt(amount: float) -> void:
+	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
 		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5, "volume": 4})
 		died.emit(self)
 	else:
-		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1), "volume": randi_range(4, 7)})
-	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.RED})
+		# hurt sound
+		SND.play_sound(
+			preload("res://sounds/snd_hurt.ogg"),
+			{"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1),
+			"volume": randi_range(4, 7)})
+	# damage number
+	SOL.vfx(
+		"damage_number",
+		get_effect_center(self),
+		{text = absf(roundi(amount)),
+		color=Color.RED})
+	# shake the screen (not visible unless high damage)
 	SOL.shake(sqrt(amount)/15.0)
 
 
 func flee() -> void:
 	SND.play_sound(preload("res://sounds/snd_flee.ogg"))
 	SOL.vfx("damage_number", get_effect_center(self), {text = "bye!", color=Color.WHITE})
+	# so that it won't be acting anymore
 	set_state(States.DEAD)
 	fled.emit(self)
 	emit_message("%s vacates the scene" % [actor_name])
@@ -131,31 +149,33 @@ static func calc_attack_damage(atk: float, random := true) -> float:
 	var x := 0.0
 	x += atk
 	if random: x += randf() * 2
+	# funny level-based damage calculation
 	var y := roundf(Math.method_29193(x))
 	return y
 
 
+# the square root of defense is subtracted from the attack damage
 func account_defense(x: float) -> float:
 	var def := get_defense()
-	var result := maxf(abs(x) - sqrt(def), 1)
+	var result := maxf(abs(x) - sqrt(def), 0)
 	return roundf(result)
 
 
 func attack(subject: BattleActor) -> void:
+	# manual construction of payload
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
+	var weapon : Item
 	if character.weapon:
-		var weapon : Item = DAT.get_item(character.weapon)
+		# manually copy over stuff from the item's payload
+		weapon = DAT.get_item(character.weapon)
 		pld.set_defense_pierce(weapon.payload.pierce_defense)
 		pld.set_confusion(weapon.payload.confusion_time)
 		pld.set_coughing(weapon.payload.coughing_level, weapon.payload.coughing_time)
 		pld.set_poison(weapon.payload.poison_level, weapon.payload.poison_time)
-	subject.handle_payload(pld)
-	if character.weapon:
-		var weapon : Item = DAT.get_item(character.weapon)
-		if weapon.attack_animation:
-			SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
-		else:
-			blunt_visuals(subject)
+	subject.handle_payload(pld) # the actual attack
+	# animations
+	if weapon != null and weapon.attack_animation.length() > 0:
+		SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
 	else:
 		blunt_visuals(subject)
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
@@ -180,15 +200,16 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		targets = reference_to_actor_array.duplicate()
 	else:
 		targets = [subject]
-	# all targets
+	# loop through all targets
 	for receiver in targets:
 		if spirit.receive_animation:
 			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
-			receiver.handle_payload(spirit.payload.set_sender(self).set_defense_pierce(1.0))
+			receiver.handle_payload(spirit.payload.set_sender(self).set_defense_pierce(1.0)\
+			.set_type(BattlePayload.Types.SPIRIT))
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
-					(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
+				(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
 			).timeout
 	
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
@@ -200,12 +221,14 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 func use_item(id: String, subject: BattleActor) -> void:
 	var item : Item = DAT.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
-		subject.handle_payload(item.payload.set_sender(self))
+		subject.handle_payload(item.payload.set_sender(self).\
+		set_type(BattlePayload.Types.ITEM)) # using the item
 		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture, silent = item.play_sound != null})
 		if item.play_sound:
 			SND.play_sound(item.play_sound)
 		
 	else:
+		# if it's weapon or armour, equip it
 		subject.character.handle_item(id)
 	if item.consume_on_use:
 		character.inventory.erase(id)
@@ -215,8 +238,10 @@ func use_item(id: String, subject: BattleActor) -> void:
 	turn_finished()
 
 
+# squeeze empty the payload, copy everything over
 func handle_payload(pld: BattlePayload) -> void:
-	print(actor_name, " handling payload!")
+	print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
+	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
 	if character.health <= 0: return
 	
@@ -261,11 +286,13 @@ func handle_payload(pld: BattlePayload) -> void:
 func status_effect_update() -> void:
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
+		# effects run out
 		effect["duration"] = effect.get("duration", 1) - 1
 		if effect.get("duration", 1) < 1:
 			status_effects[e] = {}
 		
 		if e == "coughing" and effect.get("duration") > 0:
+			# coughing damage is applied by a separate battle actor because why not
 			var cougher := BattleActor.new()
 			cougher.character = Character.new()
 			cougher.character.attack = effect.get("strength") * 2
@@ -282,12 +309,15 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		status_effects[nomen] = {}
 	var old_strength : float = status_effects[nomen].get("strength", 0)
 	var old_duration : int = status_effects[nomen].get("duration", 0)
+	# if the effect already existed, the new strength and length are the averages
+	# between the old effect strength and length and the new effect -"-
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
 	var new_duration : int = 0 if duration < 0 else roundi((old_duration + duration / 2.0)) if old_duration != 0 else duration
 	status_effects[nomen] = {
 		"strength": new_strength,
 		"duration": new_duration
 	}
+	# notify of an effect with this
 	if strength and duration:
 		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen], color = Color.YELLOW, speed = 0.5})
 
@@ -303,13 +333,15 @@ func load_character(id: String) -> void:
 	character = charc
 
 
+# at the end of the fight, the party will update changes to their characters
+# so that the health and other information will get saved between battles
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
 	var basechar : Character = DAT.character_dict[character.name_in_file]
 	basechar.health = character.health
 	basechar.magic = character.magic
 	basechar.inventory = character.inventory
-	basechar.defeated_characters = character.defeated_characters
+	basechar.add_defeated_characters(character.defeated_characters) 
 
 
 func payload() -> BattlePayload:

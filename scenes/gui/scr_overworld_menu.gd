@@ -1,5 +1,7 @@
 extends Control
 
+# overworld menu - items and character information and such
+
 signal close_requested
 
 const TIME_AFTER_WARN_SAVE := 300
@@ -40,12 +42,15 @@ func _ready() -> void:
 	update_tabs()
 
 
+# ugly
 func _unhandled_input(event: InputEvent) -> void:
+	# open the save menu (no idea why this is controlled here)
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
 		if DAT.player_capturers.is_empty() and not "overworld_menu" in DAT.player_capturers:
 			SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 	if not visible: return
 	get_viewport().set_input_as_handled()
+	# going back a menu level
 	if event.is_action_pressed("ui_cancel"):
 		match doing:
 			Doings.INNER:
@@ -60,6 +65,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				close_requested.emit()
 	match doing:
 		Doings.PARTY:
+			
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)
 			var old_tab = current_tab
 			current_tab = wrapi(current_tab + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size())
@@ -113,6 +119,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				grab_item_focus()
 
 
+# tabs in question are the items-spirits tabs
 func update_tabs() -> void:
 	var i := 0
 	for tab in tab_container.get_children():
@@ -129,6 +136,7 @@ func update_tabs() -> void:
 		side_load_character_data()
 
 
+# print character data to the side
 func side_load_character_data() -> void:
 	var charct : Character = party(current_tab)
 	mem_portrait.texture = charct.portrait
@@ -144,6 +152,7 @@ func side_load_character_data() -> void:
 	mem_infotext.position = MEM_INFO_DEF_POS
 
 
+# print item data to the side
 func side_load_item_data(id: String) -> void:
 	var item : Item = DAT.get_item(id)
 	mem_portrait.texture = item.texture
@@ -158,6 +167,7 @@ func side_load_item_data(id: String) -> void:
 	mem_infotext.position = MEM_INFO_DEF_POS
 
 
+# print spirit data to the side
 func side_load_spirit_data(id: String) -> void:
 	var spirit : Spirit = DAT.get_spirit(id)
 	mem_portrait.texture = null
@@ -172,6 +182,8 @@ func side_load_spirit_data(id: String) -> void:
 	mem_infotext.position = MEM_INFO_BIG_POS
 
 
+# load items from the inventory of current character 
+# + weapon and armour at the top of the list
 func load_items() -> void:
 	var item_array := []
 	if party(current_tab).armour:
@@ -180,9 +192,10 @@ func load_items() -> void:
 		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
 	load_reference_buttons(item_array, [item_container], {"item": true})
-	silver_counter.text = str("party silver:\n", DAT.A.get("silver", 0))
+	silver_counter.text = str("party silver:\n", DAT.get_data("silver", 0))
 
 
+# display the character's used and unused spirits
 func load_spirits() -> void:
 	var spirit_array := []
 	var unused_spirit_array := []
@@ -213,6 +226,7 @@ func load_using_menu() -> void:
 	using_menu.show()
 
 
+# highlighting the portraits in the using item menu level
 func update_using_portraits() -> void:
 	for i in using_portraits.get_child_count():
 		using_portraits.get_child(i).modulate = Color(1, 1, 1, 1)
@@ -220,6 +234,7 @@ func update_using_portraits() -> void:
 			using_portraits.get_child(i).modulate = Color(1.4, 1.4, 1.4, 1)
 
 
+# see other functions called the same
 func load_reference_buttons(array: Array, containers: Array, options = {}) -> void:
 	if options.get("clear", true):
 		for container in containers:
@@ -304,14 +319,15 @@ func _on_button_reference_received(reference) -> void:
 
 
 func party_size() -> int:
-	return DAT.A.get("party", [0]).size()
+	return DAT.get_data("party", [0]).size()
 
 
+# return either a party memeber or the party array
 func party(index: int = -1):
 	if index > -1 and index < party_size():
-		return DAT.get_character(DAT.A.get("party", ["greg"])[index])
+		return DAT.get_character(DAT.get_data("party", ["greg"])[index])
 	else:
-		return (DAT.A.get("party", ["greg"]))
+		return (DAT.get_data("party", ["greg"]))
 
 
 func showme():

@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(sound_clear_timer)
 	sound_clear_timer.connect("timeout", _on_sound_clear_timer_timeout)
 	sound_clear_timer.start()
-	sound_clear_timer.process_mode = Node.PROCESS_MODE_ALWAYS # sounds shan't pause
+	sound_clear_timer.process_mode = Node.PROCESS_MODE_ALWAYS # sounds cleanup shan't pause
 
 
 func play_song(song: String, fade_speed := 1.0, options := {}):

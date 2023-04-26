@@ -24,11 +24,12 @@ func _ready() -> void:
 	SOL.add_ui_child(menu)
 	menu.hide()
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
-		position = DAT.A.get(save_key_name("position"), position)
+		position = DAT.get_data(save_key_name("position"), position)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
+		# opening the menu
 		if event.is_action_pressed("ui_menu"):
 			if (not menu.visible) and DAT.player_capturers.is_empty():
 				menu.call_deferred("showme")
@@ -83,6 +84,7 @@ func interact() -> void:
 	raycast.force_raycast_update()
 	var collider := raycast.get_collider()
 	#print(collider)
+	# the interaction areas have the interacted function that this calls
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 

@@ -1,8 +1,7 @@
 @tool
 extends Node2D
 
-# who the fuck wrote this? I did. sometime in the late summer of last year.
-# maybe I should've written a new system from scratch... . noooo... no. . .. 
+# shelves in the store. copied over from old greg
 
 signal item_taken
 
@@ -32,6 +31,7 @@ func set_type(to: int):
 
 
 # this sure is one of the functions in greg
+# edit 26.04.23: there are worse ones :blush:
 func _on_interaction_area_on_interact() -> void:
 	print(self.name, ": ", inventory)
 	var name_keys_dict := {}

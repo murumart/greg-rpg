@@ -19,7 +19,7 @@ set_rewards(preload("res://resources/battle_rewards/res_zerma_tut_rewards.tres")
 func _ready() -> void:
 	super._ready()
 	zerma.inspected.connect(_on_zerma_inspected)
-	intro_dialogue_progress = DAT.A.get("intro_dialogue_progress", 0) if not DAT.A.get("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
+	intro_dialogue_progress = DAT.get_data("intro_dialogue_progress", 0) if not DAT.get_data("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
 	door_area.destination = ""
 	if DAT.get_data("intro_cutscene_finished", false):
 		intro_animator.play("RESET")

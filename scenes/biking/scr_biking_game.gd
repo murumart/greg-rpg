@@ -388,7 +388,7 @@ func calculate_rewards() -> BattleRewards:
 		rew.property = str(i)
 		rewd.rewards.append(rew)
 	# special conditional rewards
-	if DAT.A.get("biking_games_finished", 0) < 1:
+	if DAT.get_data("biking_games_finished", 0) < 1:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str("bike_helmet")

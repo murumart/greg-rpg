@@ -1,6 +1,8 @@
 extends Resource
 class_name Item
 
+# resource for storing item data
+
 enum Uses {NONE = -1, HEALING, HURTING, BUFFING, DEBUFFING, WEAPON, ARMOUR}
 const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 

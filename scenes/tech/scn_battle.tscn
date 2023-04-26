@@ -57,8 +57,6 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-enable_testing_cheats = true
-party_cheat_levelup = 9
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_l1rx6")

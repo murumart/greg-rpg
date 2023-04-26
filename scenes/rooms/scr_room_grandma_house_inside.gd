@@ -7,7 +7,7 @@ func _ready() -> void:
 	super._ready()
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
 	
-	var fought_grandma : bool = DAT.A.get("fought_grandma", false)
+	var fought_grandma : bool = DAT.get_data("fought_grandma", false)
 	if fought_grandma:
 		SOL.dialogue("grandma_fight_end")
 		await SOL.dialogue_closed

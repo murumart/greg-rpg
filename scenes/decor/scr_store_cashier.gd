@@ -1,6 +1,9 @@
 extends RefCounted
 class_name StoreCashier
 
+# cashier dialogue and interaction logic
+# copied over from old greg i think
+
 signal finished
 signal dothething
 
@@ -53,7 +56,7 @@ func speak():
 		DAT.set_data("silver", silver - price) # deduct money
 		DAT.incri("%s_silver_spent" % cashier, price)
 		for p in unpaid_items: # add unpaid items to real inventory
-			DAT.get_character(DAT.A.get("party", ["greg"]).front()).inventory.append(p)
+			DAT.get_character(DAT.get_data("party", ["greg"]).front()).inventory.append(p)
 		unpaid_items.clear()
 		SOL.call_deferred("dialogue", "cashier_%s_finish" % cashier) # thanks
 		DAT.incri("%s_transactions_done" % cashier, 1)
@@ -65,14 +68,16 @@ func speak():
 	finished.emit()
 
 
+# if trying to waltz out while having unpaid items
 func warn() -> void:
 	if cashier == "dead": return
 	var stolen_profit := 0
-	for i in DAT.A.get("unpaid_items", []):
+	for i in DAT.get_data("unpaid_items", []):
 		var price := DAT.get_item(i).price
 		stolen_profit += price
 	if stolen_profit < 1: return
 	if cashier == "nice":
+		# just warn you
 		if Math.inrange(stolen_profit, 10, 99):
 			SOL.dialogue("cashier_nice_notinterrupt")
 		elif Math.inrange(stolen_profit, 100, 199):
@@ -82,6 +87,7 @@ func warn() -> void:
 			SOL.dialogue_box.dial_concat("cashier_nice_warning", 0, [stolen_profit])
 			SOL.dialogue("cashier_nice_warning")
 	else:
+		# just murder you
 		SND.play_song("")
 		DAT.capture_player("cashier_revenge")
 		SOL.dialogue_box.dial_concat("cashier_mean_notice", 3, [stolen_profit])
@@ -92,6 +98,8 @@ func warn() -> void:
 
 
 func addrepeat() -> String:
-	if DAT.A.get("mean_cashier_saw_you_steal", false):
+	# if you've gotten the cutscene already it should be shorter
+	# not fully/goodly implemented
+	if DAT.get_data("mean_cashier_saw_you_steal", false):
 		return "_repeat"
 	return ""

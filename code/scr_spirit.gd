@@ -1,6 +1,8 @@
 extends Resource
 class_name Spirit
 
+# resource for storing spirit data
+
 enum Uses {NONE = -1, HEALING, HURTING, BUFFING, DEBUFFING}
 enum Reach {LOCAL, ALL, TEAM}
 

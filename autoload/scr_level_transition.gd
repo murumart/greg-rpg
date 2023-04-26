@@ -81,7 +81,7 @@ func enter_battle(info: BattleInfo) -> void:
 
 # this matters when exiting the store
 func handle_stolen_items() -> void:
-	var stolen_items : Array = DAT.A.get("unpaid_items", [])
+	var stolen_items : Array = DAT.get_data("unpaid_items", [])
 	if stolen_items.is_empty(): return
 	DAT.set_data("unpaid_items", [])
 	for i in stolen_items:

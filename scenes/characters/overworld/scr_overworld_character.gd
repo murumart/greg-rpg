@@ -61,10 +61,10 @@ func _ready() -> void:
 	if save_position:
 		set_position(DAT.get_data(save_key_name("position"), position))
 	if save_convo_progess:
-		convo_progress = DAT.A.get(save_key_name("convo_progress"), 0)
+		convo_progress = DAT.get_data(save_key_name("convo_progress"), 0)
 	if permanently_defeated:
 		if character_link:
-			if character_link in DAT.A.get("defeated_characters", []):
+			if character_link in DAT.get_data("defeated_characters", []):
 				global_position = Vector2i(129731, 120947912)
 				set_physics_process(false)
 				hide()
@@ -105,11 +105,13 @@ func _physics_process(delta: float) -> void:
 				set_state(States.IDLE)
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed
+			# move as long as distance > 6 and hasn't moved for too long
 			if global_position.distance_squared_to(target) > 6 and time_moved < 5:
 				time_moved += delta * 2
 				var _collided := move_and_slide()
 			else:
 				set_state(States.IDLE)
+		# moving towards target
 		States.WANDER:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
 			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
@@ -118,6 +120,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				target_reached.emit()
 				set_state(States.IDLE)
+		# moving along a path
 		States.PATH:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
 			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
@@ -131,6 +134,7 @@ func _physics_process(delta: float) -> void:
 	direct_walking_animation(velocity)
 
 
+# this is also called when "interact on collide" is turned on
 func interacted() -> void:
 	if DAT.player_capturers.size() > 0: return
 	interactions += 1
@@ -176,6 +180,7 @@ func _on_talking_finished() -> void:
 func _on_random_movement_timer_timeout() -> void:
 	if not state == States.IDLE: return
 	if not random_movement: return
+	# test if random target position is reachable
 	for i in RANDOM_MOVEMENT_TRIES:
 		set_target(global_position + Vector2(randi_range(-random_movement_distance, random_movement_distance), randi_range(-random_movement_distance, random_movement_distance)))
 		detection_raycast.target_position = to_local(target)
@@ -244,6 +249,7 @@ func set_target(to: Vector2) -> void:
 	target = to
 
 
+# setting target with a randomised offset
 func set_target_offset(to: Vector2, random := 5) -> void:
 	target = to + Vector2(randf_range(-random, random), randf_range(-random, random))
 

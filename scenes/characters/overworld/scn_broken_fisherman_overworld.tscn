@@ -164,6 +164,9 @@ save = false
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_7ulo7")
 
+[node name="InteractionArea" parent="." index="1"]
+monitoring = true
+
 [node name="CollisionShape2D" parent="InteractionArea" index="0"]
 shape = SubResource("RectangleShape2D_d7dg6")
 

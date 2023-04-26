@@ -1,5 +1,7 @@
 extends Button
 
+# button that returns assigned data when pressed (usually using focus system)
+
 signal return_reference(reference)
 signal selected(message: String)
 signal selected_return_reference(reference)
@@ -19,15 +21,12 @@ func _ready() -> void:
 		call_deferred("grab_focus")
 
 
-func _unhandled_key_input(_event: InputEvent) -> void:
-	pass
-
-
 func _focus_entered() -> void:
 	selected.emit(description)
 	selected_return_reference.emit(reference)
 
 
+# moving to another button plays the menu sound
 func _focus_exited() -> void:
 	if visible:
 		SND.menusound(1.5)

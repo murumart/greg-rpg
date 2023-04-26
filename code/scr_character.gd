@@ -3,6 +3,7 @@ class_name Character
 
 signal leveled_up
 
+# resource for storing character data
 # this will be interpreted by the battle system and dialogue system
 
 const UPGRADE_MIN := {
@@ -62,6 +63,8 @@ func get_saveable_dict() -> Dictionary:
 	}
 
 
+# load character changes from save file
+# this is used for saving health and such
 func load_from_dict(dict: Dictionary) -> void:
 	for k in dict.keys():
 		var value : Variant = dict[k]
@@ -72,21 +75,25 @@ func load_from_dict(dict: Dictionary) -> void:
 		set(k, value)
 
 
+# base stat + armour + weapon increases for it
 func get_stat(nimi: String) -> int:
 	var stat := roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
 	return stat
 
 
+# actually does not return a percentage. literally unplayable
 func health_perc() -> float:
 	return health / max_health
 
 
+# xp to get to the specified level
 func xp2lvl(lvl: int) -> float:
 	var lvlpow := lvl**1.8
 	var lvldiv := lvlpow/55.0
 	return lvl * 1.3 + lvldiv
 
 
+# currently only greg can functionally gain xp and level up
 func add_experience(amount: int, speak := false) -> void:
 	var _old_level := level
 	print("\texp amount: ", amount)
@@ -98,9 +105,10 @@ func add_experience(amount: int, speak := false) -> void:
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
-			if name_in_file in DAT.A.get("party", ["greg"]):
+			if name_in_file in DAT.get_data("party", ["greg"]):
 				var dialogue_key := "levelup"
 				if name_in_file == "greg":
+					# get a new spirit every 11 levels
 					if level % 11 == 0:
 						dialogue_key = "levelup_with_spirit"
 						DAT.grant_spirit(DAT.get_levelup_spirit(level), 0, false)
@@ -113,11 +121,13 @@ func add_experience(amount: int, speak := false) -> void:
 func level_up(by := 1, overflow := false) -> void:
 	if by < 1: return
 	for t in by:
+		# max level is 99
 		if level >= 99 and not overflow: return
 		level += 1
 		var upgrades := {
 			"attack": 0, "defense": 0, "speed": 0, "max_health": 0, "max_magic": 0
 		}
+		# less chance of gaining a point in a stat as level gets higher
 		var upgrade_chance := maxf(((99 - pow(level, 2)/167.0)/100.0) - randf()*0.33, 0)
 		for k in upgrades:
 			
@@ -126,6 +136,7 @@ func level_up(by := 1, overflow := false) -> void:
 				(UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0 * level
 			) + UPGRADE_MIN[k] - 1
 			
+			# except every 11 levels, missed points catch up then
 			if level % 11 == 0:
 				set(k, roundf(perfect_stat))
 			else:
@@ -150,6 +161,7 @@ func handle_item(id: String) -> void:
 		handle_payload(item.payload)
 
 
+# no status effects in the overworld for characters
 func handle_payload(pld: BattlePayload) -> void:
 	var health_change := 0.0
 	health_change += pld.health
@@ -183,6 +195,8 @@ func set_experience(to: int) -> void:
 	experience = to
 
 
+# defeated characters are stored in the format name_amount
+# like [grass_2, chimney_3, greg_220]
 func add_defeated_character(nimi : StringName) -> void:
 	var found_in_array := false
 	for i in defeated_characters:
@@ -195,6 +209,16 @@ func add_defeated_character(nimi : StringName) -> void:
 		defeated_characters.append(nimi + &"_1")
 
 
+func add_defeated_characters(them: Array) -> void:
+	for a in them:
+		var string := a as String
+		var nimi := ""
+		for i in string:
+			if i == "_": break
+			nimi += i
+		add_defeated_character(nimi)
+
+
 func get_defeated_character(nimi: StringName) -> int:
 	for i in defeated_characters:
 		if i.contains(nimi):
@@ -204,9 +228,5 @@ func get_defeated_character(nimi: StringName) -> int:
 
 
 func has_spirit(type: String) -> bool:
-	if type in unused_sprits:
-		return true
-	if type in unused_sprits:
-		return true
-	return false
+	return type in spirits or type in unused_sprits
 

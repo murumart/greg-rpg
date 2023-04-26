@@ -65,7 +65,36 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			loop_to_set = -1
 			dial = Dialogue.new()
 			dial.name = line.trim_prefix(NEW_DIAL)
-		# storing dialogue line properties...
+		elif line.begins_with(NEW_LINE):
+			# applying dialogue line properties
+			dial_line = DialogueLine.new()
+			dial_line.text = line.trim_prefix(NEW_LINE)
+			dial_line.character = char_to_set
+			dial_line.text_speed = text_speed_to_set
+			dial_line.choice_link = choice_link_to_set
+			dial_line.data_link = data_link_to_set
+			dial_line.instaskip = instaskip_to_set
+			dial_line.loop = loop_to_set
+			dial_line.item_to_give = item_to_give
+			dial_line.spirit_to_give = spirit_to_give
+			dial_line.silver_to_give = silver_to_give
+			dial_line.sound = sound_to_set
+			dial_line.emotion = emotion_to_set
+			dial_line.set_data = set_data_to_set
+			if choices_to_set:
+				dial_line.choices = choices_to_set
+				choices_to_set = []
+			dial.lines.append(dial_line.duplicate())
+			# and some will be reset
+			dial_line = null
+			instaskip_to_set = false
+			loop_to_set = -1
+			item_to_give = &""
+			spirit_to_give = &""
+			silver_to_give = 0
+			sound_to_set = null
+			set_data_to_set = []
+		# storing dialogue line properties
 		elif line.begins_with(NEW_ALIAS):
 			dial.alias = line.trim_prefix(NEW_ALIAS)
 		elif line.begins_with(NEW_CHAR):
@@ -94,35 +123,6 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			emotion_to_set = line.trim_prefix(NEW_EMOTION)
 		elif line.begins_with(NEW_SET_DATA):
 			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
-		elif line.begins_with(NEW_LINE):
-			# ...and applying them only when a new line begins
-			dial_line = DialogueLine.new()
-			dial_line.text = line.trim_prefix(NEW_LINE)
-			dial_line.character = char_to_set
-			dial_line.text_speed = text_speed_to_set
-			dial_line.choice_link = choice_link_to_set
-			dial_line.data_link = data_link_to_set
-			dial_line.instaskip = instaskip_to_set
-			dial_line.loop = loop_to_set
-			dial_line.item_to_give = item_to_give
-			dial_line.spirit_to_give = spirit_to_give
-			dial_line.silver_to_give = silver_to_give
-			dial_line.sound = sound_to_set
-			dial_line.emotion = emotion_to_set
-			dial_line.set_data = set_data_to_set
-			if choices_to_set:
-				dial_line.choices = choices_to_set
-				choices_to_set = []
-			dial.lines.append(dial_line.duplicate())
-			# and some will be reset
-			dial_line = null
-			instaskip_to_set = false
-			loop_to_set = -1
-			item_to_give = &""
-			spirit_to_give = &""
-			silver_to_give = 0
-			sound_to_set = null
-			set_data_to_set = []
 		if l + 1 >= lines.size():
 			dialogue_dictionary[dial.name] = dial
 	

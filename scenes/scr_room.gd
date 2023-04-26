@@ -1,6 +1,8 @@
 extends Node2D
 class_name Room
 
+# overworld room scenes
+
 @export var music := ""
 @export var music_fade_time := 1.0
 @export var music_save_progress := true
@@ -9,6 +11,7 @@ class_name Room
 
 
 func _init() -> void:
+	# so i don't have to manually :dace:
 	self.add_to_group("save_me")
 
 
@@ -18,6 +21,7 @@ func _ready() -> void:
 	var visited_rooms : Array = DAT.get_data("visited_rooms", [])
 	if not sname in visited_rooms: visited_rooms.append(sname)
 	DAT.set_data("visited_rooms", visited_rooms)
+	
 	SND.play_song(music, music_fade_time,
 		{
 			"start_volume": music_start_volume,

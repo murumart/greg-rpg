@@ -1,6 +1,8 @@
 extends RefCounted
 class_name SongsList
 
+# list of all music
+
 var songs := {
 	"air_conditioning": {
 		"title": "air conditioning",

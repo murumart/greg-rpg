@@ -1,11 +1,16 @@
 extends Room
 
+# the store room scene
+# copied over from old greg and adjusted
+
 const WAIT_UNTIL_RESTOCK := 300
 const WAIT_UNTIL_CASHIER_SWITCH := 420
 
 var item_storage = []
 
 @onready var shelves = $Shelves.get_children()
+# this is a dictionary containing a huge list of all shelves in the store
+# which are stored as dictionaries that store the item type and count and such
 var store_data := {}
 
 var store_cashier := StoreCashier.new()
@@ -35,7 +40,7 @@ func _ready():
 
 func set_store_wall_colours():
 	var store_wall = $Wall
-	var mn = DAT.A.get("nr", 0)/100.0
+	var mn = DAT.get_data("nr", 0)/100.0
 	
 	var color = Color(mn, 0.5, 0.8).lightened(0.2)
 	
@@ -49,7 +54,7 @@ func _on_item_taken(ittype: String):
 
 
 func load_store_data():
-	store_data = DAT.A.get("store_data", {})
+	store_data = DAT.get_data("store_data", {})
 	check_restock()
 	check_cashier_switch()
 	if store_data.is_empty():
@@ -60,17 +65,20 @@ func load_store_data():
 		shelves[s].set_type(shelf["type"])
 
 
+# put items on the shelves
 func restock() -> void:
+	# if the cashier has been fought and won against, don't
 	if DAT.get_data("fighting_cashier", false): return
 	var store_shelf_count := shelves.size()
 	
+	# item types stored here
 	var healing_items := ["medkit", "plaster", "pills"]
 	var food_items := ["muesli", "mueslibar", "bread"]
-	var building_items := []
+	var building_items := ["tape", "brick"]
 	var arrays := [healing_items, food_items, building_items]
 	
 	store_data["shelves"] = []
-	store_data["shelves"].clear()
+	store_data["shelves"].clear() # for good measure i guess :dace:
 	for i in store_shelf_count:
 		var inventory = []
 		var from : Array = arrays.pick_random()
@@ -111,18 +119,20 @@ func save_me():
 
 
 func check_restock() -> void:
-	if DAT.seconds - DAT.A.get("store_restock_second", -30000000) >= WAIT_UNTIL_RESTOCK:
+	if DAT.seconds - DAT.get_data("store_restock_second", -30000000) >= WAIT_UNTIL_RESTOCK:
 		restock()
 
 
 func check_cashier_switch() -> void:
+	# oops....
 	if DAT.get_data("fighting_cashier", false):
 		cashier.global_position.x = -3314412
 		cashier.set_physics_process(false)
 		cashier.hide()
-		store_cashier.cashier = "dead"
+		store_cashier.cashier = "dead" # happens
 		return
 	print("cashier second: ", (wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2)))
+	# load the current cashier based on their schedule
 	if wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH:
 		store_cashier.cashier = "mean"
 		cashier_sprite.sprite_frames = load("res://resources/characters/sfr_cashier_mean.tres")
@@ -139,6 +149,7 @@ func _on_kassa_finished() -> void:
 	update_shopping_list()
 
 
+# display shopping cart items in the top right of the screen
 func update_shopping_list() -> void:
 	var unpaid_items : Array = DAT.get_data("unpaid_items", [])
 	var temp_dict := {}
@@ -153,17 +164,19 @@ func update_shopping_list() -> void:
 	shopping_list.text = text
 
 
+# final warning. unless you go back and run into the area again
 func _on_stealing_area_entered(_body: Node2D) -> void:
 	store_cashier.warn()
 
 
 func _on_room_gate_entered() -> void:
 	var stolen_profit := 0
-	for i in DAT.A.get("unpaid_items", []):
+	for i in DAT.get_data("unpaid_items", []):
 		stolen_profit += DAT.get_item(i).price
 	DAT.incri("%s_profit_stolen" % store_cashier.cashier, stolen_profit)
 
 
+# mean cashier steal cutscene
 func dothethingthething() -> void:
 	var particles := $Kassa/Cashier/WLIParticles
 	SND.play_song("ac_scary", 0.2, {pitch_scale = 0.56})
@@ -192,6 +205,7 @@ func dothethingthething() -> void:
 	DAT.set_data("fighting_cashier", true)
 
 
+# the neighbour wife can appear in the store
 func neighbour_wife_position() -> void:
 	var neighbour_wife := $NeighbourWife
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
