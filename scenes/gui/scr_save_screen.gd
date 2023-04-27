@@ -1,10 +1,11 @@
 extends Control
 class_name SaveScreen
 
+# little save and load popup
+
 enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
 const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
-
 
 @onready var file_container := $Panel/FileContainer
 @onready var tab_container := $Panel/TabContainer
@@ -13,10 +14,11 @@ var mode : int = SAVE
 var restricted_mode := -1
 var current_button := 0
 
-var menu_sound := preload("res://sounds/snd_gui.ogg")
-
 
 func init(opt := {}):
+	# restricted means either restricted to saving or loading
+	# used to create screens that you can only use for loading
+	# like after a game over or in the main menu
 	restricted_mode = opt.get("restrict", -1)
 
 
@@ -27,6 +29,7 @@ func _ready() -> void:
 		button.return_reference.connect(_on_button_pressed)
 	set_mode(mode)
 	set_current_button(0)
+	# find current save file number to highlight it
 	var save_file_name : String = DAT.get_data("save_file", "")
 	print(save_file_name)
 	var save_file_nr := save_file_name.trim_prefix("greg_save_").trim_suffix(".grs")
@@ -35,24 +38,31 @@ func _ready() -> void:
 		set_current_button(int(save_file_nr))
 
 
+# i just bit an apple and its skin got stuck between my two front teeth
+# how do i get it ou
+# welp
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed(): return
+	# exiting the save menu
+	# by popular demand: you can use multiple keys to do it
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_menu") or event.is_action_pressed("escape"):
 		DAT.free_player("save_screen")
 		queue_free()
+	# i like this input scheme i've devised.
 	var move := Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
 	var old_mode := mode
 	var old_button := current_button
 	set_mode(wrapi(mode + int(move.x), 0, 2))
 	set_current_button(wrapi(current_button - int(move.y), 0, 3))
 	if old_mode != mode:
-		SND.play_sound(menu_sound)
+		SND.menusound()
 	if old_button != current_button:
-		SND.play_sound(menu_sound, {pitch = 2.0})
+		SND.menusound(2.0)
 	if event.is_action_pressed("ui_accept"):
 		_on_button_pressed(current_button)
 
 
+# current selected button
 func set_current_button(to: int) -> void:
 	current_button = to
 	for b in file_container.get_children():
@@ -72,6 +82,7 @@ func set_current_button(to: int) -> void:
 	info_label.set_text(text)
 
 
+# saving and loading are different modes
 func set_mode(to: int) -> void:
 	if restricted_mode > -1:
 		to = restricted_mode
@@ -102,7 +113,7 @@ func _on_button_pressed(reference: Variant) -> void:
 	match mode:
 		SAVE:
 			DAT.save_data(SAVE_PATH % reference)
-			SND.play_sound(menu_sound)
+			SND.menusound()
 			set_current_button(reference)
 			SOL.vfx_damage_number(file_container.get_child(current_button).global_position - Vector2(SOL.SCREEN_SIZE) / 2.0 + file_container.get_child(current_button).size / 2.0, "saved!")
 		LOAD:

@@ -1,5 +1,8 @@
 extends Node2D
 
+# bikes that can be used for fast travel 
+# (eventually)
+
 enum Ghosts {ALPHA, BETA, GAMMA}
 
 @export var ghost : Ghosts = Ghosts.ALPHA
@@ -39,6 +42,7 @@ func _interacted() -> void:
 			, CONNECT_ONE_SHOT)
 		else:
 			SOL.dialogue("bike_ghost_afterdefeat")
+	# elif...
 
 
 func load_ghosts() -> void:

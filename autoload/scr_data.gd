@@ -269,9 +269,10 @@ func char_save_string_key(which: String, key: String) -> String:
 
 # saving and loading characters is handled here instead of inside the character
 # script itself, ulike most other things with persistent data
-func save_chars_to_data() -> void:
+# usually save only characters in the player's party (usually only greg)
+func save_chars_to_data(all := false) -> void:
 	print("saving characters...")
-	for c in character_dict:
+	for c in (character_dict if all else get_data("party", ["greg"])):
 		var charc : Character = character_dict[c]
 		set_data(char_save_string_key(c, "save"), charc.get_saveable_dict())
 	print("finished saving characters.")

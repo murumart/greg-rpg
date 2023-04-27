@@ -132,6 +132,16 @@ func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 	# can specify custom parent node to the effect, defaults to this here SOL
 	var parent : Node = options.get("parent", self)
 	parent.add_child(effect)
+	effect.add_to_group("vfx")
+	# option to silence
+	if options.get("silent", false):
+		for i in get_all_children_of_type(effect, "AudioStreamPlayer"):
+			i = i as AudioStreamPlayer
+			i.volume_db = -80
+		for i in get_all_children_of_type(effect, "AudioStreamPlayer2D"):
+			i.queue_free()
+			i = i as AudioStreamPlayer2D
+			i.volume_db = -80
 	# some effects have scripts, this is where they are called
 	if effect.has_method(&"init"):
 		effect.init(options)
@@ -148,3 +158,19 @@ func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 				effect.queue_free()
 				
 		, CONNECT_ONE_SHOT)
+
+
+func clear_vfx() -> void:
+	for i in get_tree().get_nodes_in_group("vfx"):
+		i.queue_free()
+
+
+func get_all_children_of_type(node: Node, type: String) -> Array:
+	var nods := []
+	for c in node.get_children():
+		if c.get_class() == type:
+			nods.append(c)
+		if c.get_child_count() > 0:
+			nods.append_array(get_all_children_of_type(c, type))
+	return nods
+

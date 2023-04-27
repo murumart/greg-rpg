@@ -1,5 +1,8 @@
 extends Control
 
+# mail man kiosk again
+# i',m not commenting this any more than it already is. good lcuk
+
 const MAX_INV_SIZE := 3
 
 signal closed

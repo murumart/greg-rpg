@@ -1,5 +1,7 @@
 extends BikingMovingObject
 
+# it's the mail mannnn!!!! iosk
+
 signal approached
 signal finished
 
@@ -19,6 +21,7 @@ func open_menu() -> void:
 	SOL.add_ui_child(menu)
 
 
+# sliiiiiiiiiiiiiiiide to the left
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	emit_signal("approached")
 	animator.play("enter")

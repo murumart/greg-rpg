@@ -1,6 +1,8 @@
 extends Resource
 class_name BattleInfo
 
+# resource to store info about battles
+
 @export var enemies : Array[String] = []
 @export var background := "town"
 @export var music := ""

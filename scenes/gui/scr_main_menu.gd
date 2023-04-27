@@ -1,5 +1,7 @@
 extends Control
 
+# the main menu. surprise surprise
+
 var pos := 0
 var menusound := preload("res://sounds/snd_gui.ogg")
 var starting := false
@@ -8,7 +10,7 @@ var starting := false
 func _ready() -> void:
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
-	if randf() >= 0.5:
+	if randf() >= 0.5 and DAT.seconds > 2:
 		$Label.text = "[center]" + str(get_funny_messages().pick_random())
 		if $Label.text.ends_with("[/url]"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -28,6 +30,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_new_game_button_pressed() -> void:
 	DAT.start_game()
+	# wow! chord
 	SND.play_sound(menusound, {"bus": "ECHO"})
 	SND.play_sound(menusound, {"bus": "ECHO", "pitch": 1.33})
 	SND.play_sound(menusound, {"bus": "ECHO", "pitch": 1.96})
@@ -37,7 +40,7 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_load_game_button_pressed() -> void:
-	SOL.save_menu(true, {"restrict": 1})
+	SOL.save_menu(true, {"restrict": 1}) # only allow loading
 
 
 func _on_quit_button_pressed() -> void:
@@ -48,6 +51,7 @@ func _on_label_meta_clicked(meta) -> void:
 	OS.shell_open(str(meta))
 
 
+# play only the first 2 menu themes on game start up
 func choose_music() -> void:
 	if DAT.seconds < 10:
 		SND.play_song("menu_%s" % (randi() % 2 + 1))

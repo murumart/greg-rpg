@@ -1,6 +1,8 @@
 extends Area2D
 class_name InspectArea
 
+# interaction area with convenient dialogue attached
+
 signal inspected
 
 const INTERACTION_DIALOGUE_BASE := "insp_"

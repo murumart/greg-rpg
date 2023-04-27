@@ -1,6 +1,9 @@
 extends Resource
 class_name BattlePayload
 
+# resource that stores attack info in battles
+# interpreted and exchanged by battle actors
+
 enum Types {ATTACK, SPIRIT, ITEM}
 var type := Types.ATTACK
 

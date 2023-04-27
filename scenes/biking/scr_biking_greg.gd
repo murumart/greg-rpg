@@ -1,5 +1,7 @@
 extends Node2D
 
+# biking player
+
 signal health_changed(to: float)
 signal died
 
@@ -44,10 +46,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if health <= 0.0 or paused: input = Vector2.ZERO
+	# movement clamped to the road
 	global_position += Vector2(input) * moving_speed * delta
 	global_position.x = clampf(global_position.x, BikingGame.ROAD_BOUNDARIES.position.x, BikingGame.ROAD_BOUNDARIES.size.x)
 	global_position.y = clampf(global_position.y, BikingGame.ROAD_BOUNDARIES.size.y + 4, BikingGame.ROAD_BOUNDARIES.position.y - 3)
 	animation_tree["parameters/pedaling_speed/scale"] = (speed * delta) + input.x
+	# https://cdn.discordapp.com/attachments/1065785853017862144/1101131203689586782/gregexplains_wheels.png for explanation
 	for w in wheels:
 		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= BikingGame.ROAD_BOUNDARIES.size.x or global_position.x <= BikingGame.ROAD_BOUNDARIES.position.x) else 1.0))
 	
@@ -55,16 +59,19 @@ func _physics_process(delta: float) -> void:
 	(Input.is_action_pressed("ui_accept") and super_mail)):
 		if speed > 0 and not paused:
 			lob()
+	# what
 	if Input.is_action_pressed("ui_text_backspace"):
 		head_sprite.region_rect.position.y = 10.0
 	if Input.is_action_just_released("ui_text_backspace"):
 		head_sprite.region_rect.position.y = 0.0
 	
+	# do stuff but only sometimes
 	if Engine.get_physics_frames() % 16 == 0:
 		for e in effects.keys():
 			if e == "coin_magnet":
 				get_tree().set_group("biking_coins", "following", true)
 			
+			# reduce effect durations
 			var effect : Dictionary = effects[e]
 			var time : float = effect.get("time", 0.0)
 			time = max(time - delta * 16, 0.0) if speed > 5 else time
@@ -75,6 +82,7 @@ func _physics_process(delta: float) -> void:
 	nodes.modulate.a = 1 - (int(invincibility_timer.time_left > 0.0) * 0.5)
 
 
+# (lego crumble sound)
 func set_ragdoll_enabled(to: bool) -> void:
 	for node in nodes.get_children():
 		if node is PhysicsBody2D:
@@ -87,6 +95,7 @@ func set_ragdoll_enabled(to: bool) -> void:
 		animation_tree.active = false
 
 
+# fling em
 func add_ragdoll_force(force: Vector2) -> void:
 	for node in nodes.get_children():
 		if node is RigidBody2D:
@@ -134,20 +143,24 @@ func _on_collision_area_area_entered(area: Area2D) -> void:
 		invincibility_timer.start()
 
 
+# controls lobbing animation
 func lob() -> void:
-	if super_mail:
-		animation_tree.set("parameters/lobbing_speed/scale", 2.0)
+	if super_mail: # cool secret perk activated
+		animation_tree.set("parameters/lobbing_speed/scale", 2.0) # speed faster
 		if animation_tree.get("parameters/play_lob/active") == true:
-			throw_mail()
-		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+			throw_mail() # throw if the animation is active
+		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE) # if it isn't make it active
 		return
+	# normal throwing
 	animation_tree.set("parameters/lobbing_speed/scale", 1.0)
 	if animation_tree.get("parameters/play_lob/active") == true:
-		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT) # cancel animation if  active
 	else:
+		# start animation if active
 		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
+# this is called from the animation
 func throw_mail() -> void:
 	var mail := MAIL_LOAD.instantiate()
 	DAT.get_current_scene().add_child(mail)
@@ -155,7 +168,7 @@ func throw_mail() -> void:
 	mail.apply_impulse(Vector2(
 		randf_range(100, 200),
 		randf_range(-300, -100)
-	))
+	)) # whee
 	mail.following = following_mail
 	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * ((int(super_mail) * 1.3) + 1)
 	paper_throw_audio.play()

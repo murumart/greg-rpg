@@ -1,5 +1,7 @@
 extends Control
 
+# ui in the biking game
+
 var game : BikingGame
 
 @onready var road_parts := $RoadParts
@@ -29,6 +31,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	# choosing items in the inventory
 	if inventory_open:
 		var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		chosen_item = wrapi(chosen_item + int(move.x), 0, game.inventory.size())
@@ -41,6 +44,7 @@ func _input(event: InputEvent) -> void:
 
 func display_health(new_value: float) -> void:
 	var old_value : float = health_bar.value
+	# cool slide
 	var tw := create_tween()
 	var tw2 := create_tween()
 	tw.tween_property(health_bar, "value", new_value, absf(new_value - old_value) * 0.007)
@@ -50,6 +54,7 @@ func display_health(new_value: float) -> void:
 
 func display_coins(new_value: int) -> void:
 	var _old_value = int(coin_label.text)
+	# no cool slide because str :(
 	var tw := create_tween()
 	tw.tween_property(coin_label, "text", str(new_value), 0.5)
 	coin_label.text = str(new_value)
@@ -95,7 +100,7 @@ func update_item_menu() -> void:
 			child.texture = DAT.get_item(game.inventory[mike_from_game_from_scracth]).texture
 
 
-# pure barbarism
+# pure barbarism <- old comment but true
 func use_item(item: String) -> void:
 	game.inventory.erase(item)
 	update_item_menu()

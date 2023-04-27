@@ -1,5 +1,7 @@
 class_name BattleRewards extends Resource
 
+# rewards system manager for battles and minigames and such
+
 signal granted
 
 enum Types {SILVER, ITEM, SPIRIT, EXP}
@@ -12,6 +14,7 @@ func grant(speak := true) -> void:
 	var spirit_pool : Array[String] = []
 	var item_pool : Array[String] = []
 	var exp_pool : int = 0
+	# interpret rewards' properties and store results in pools
 	for reward in rewards:
 		var prp := reward.property
 		if not prp.length(): continue
@@ -29,6 +32,7 @@ func grant(speak := true) -> void:
 			Types.EXP:
 				if randf() <= reward.chance:
 					exp_pool += prop
+	# then go through the pools and give stuff. to the player
 	if silver_pool:
 		DAT.grant_silver(silver_pool, speak)
 	if exp_pool:
@@ -44,6 +48,7 @@ func grant(speak := true) -> void:
 	granted.emit()
 
 
+# interpreting the string reward property of a reward
 func process_property(prp: String) -> Variant:
 	if prp.is_valid_float():
 		return float(prp)
@@ -56,9 +61,7 @@ func process_property(prp: String) -> Variant:
 		var range_0 := float(split[0])
 		var range_1 := float(split[1])
 		return float(roundi(randf_range(range_0, range_1)))
-	elif prp in DAT.item_dict.keys():
-		return prp
-	elif prp in DAT.spirit_dict.keys():
+	elif prp in DAT.item_dict.keys() or prp in DAT.spirit_dict.keys():
 		return prp
 	push_error("invalid reward property")
 	return 0

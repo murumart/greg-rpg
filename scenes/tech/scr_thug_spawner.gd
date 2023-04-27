@@ -1,5 +1,7 @@
 extends Node2D
 
+# overworld npc spawner node
+
 @export var spawn_enemy : PackedScene
 @export var max_enemies := 8
 var enemy_amount := 0
@@ -26,6 +28,7 @@ func _on_timer_timeout() -> void:
 		if player:
 			thug.chase_target = player
 		add_child(thug)
+		# cool fade in when the enemy spawns
 		thug.modulate.a = 0
 		var tw := create_tween()
 		tw.tween_property(thug, "modulate:a", 1.0, 0.33)

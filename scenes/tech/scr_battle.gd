@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["grass"]).\
-set_music("touch_me").set_party(["zerma","mail_man"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_enemies(["stabbing_fella"]).\
+set_music("entirely_just").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("store")
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -635,10 +635,10 @@ func open_end_screen(victory: bool) -> void:
 	victory_text.visible = victory
 	defeat_text.visible = !victory
 	await get_tree().create_timer(1.0).timeout
-	resize_panel(60)
 	screen_party_info.show()
 	victory_text.speak_text()
 	if victory:
+		resize_panel(60)
 		SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
 		var xp_reward := Reward.new()
 		xp_reward.type = BattleRewards.Types.EXP
@@ -653,7 +653,9 @@ func open_end_screen(victory: bool) -> void:
 		doing = Doings.DONE
 		listening_to_player_input = true
 	else:
+		SOL.clear_vfx()
 		DAT.death_reason = death_reason
+		await get_tree().create_timer(1.0).timeout
 		LTS.to_game_over_screen()
 
 

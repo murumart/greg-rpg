@@ -1,5 +1,7 @@
 class_name FishingFish extends Node2D
 
+# also known as the swimmy ones
+
 const FISH_TEXTURE_PATH := "res://sprites/fishing/spr_fish%s.png"
 
 var yspeed := 60
@@ -21,6 +23,7 @@ var value := 0
 func _ready() -> void:
 	sprite.flip_h = bool(direction)
 	if sprite.material:
+		# have to duplicate to make the wave animation speeds not be the same across all fish
 		sprite.material = sprite.material.duplicate(true)
 		sprite.material["shader_parameter/speed"] = speed * 0.08
 	assign_value()
@@ -39,6 +42,7 @@ func caught() -> void:
 	$CatchAnimation.play("catch")
 
 
+# bouncing
 func _on_wall_hit(_body: Node2D) -> void:
 	if decor: return
 	direction = int(not bool(direction))
@@ -46,6 +50,7 @@ func _on_wall_hit(_body: Node2D) -> void:
 
 
 func assign_value() -> void:
+	# hehehe
 	var rarity := str(((randi() % maxi(depth, 1)) + depth) / float(depth)).count("8")
 	value = mini(roundi(pow(2, rarity / 2.0)), 11)
 	if !is_fish: return

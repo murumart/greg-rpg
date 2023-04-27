@@ -15,7 +15,8 @@ const M := "moron"
 
 func _ready() -> void:
 	super._ready()
-	battle_info = BattleInfo.new().set_enemies(gen_enemies()).set_music("daylightthief").set_background("town")
+	battle_info = BattleInfo.new()
+	battle_info.set_enemies(gen_enemies()).set_music("daylightthief").set_background("town")
 	battle_info.set_rewards(preload("res://resources/battle_rewards/res_thug_reward.tres")).set_start_text("various guy(s) accost you.")
 
 

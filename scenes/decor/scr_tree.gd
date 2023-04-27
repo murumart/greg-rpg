@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+# trees in the overworld
+
 @export_enum("kuusk", "mänd", "tooming", "kadak", "toone") var type : int = 0 : set = set_type
 const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
@@ -18,6 +20,7 @@ func set_type(to: int) -> void:
 
 
 func activate_randomise_trees(_to: bool) -> void:
+	# randomise all trees in the current scene
 	if not Engine.is_editor_hint(): return
 	if not is_visible_in_tree(): return
 	if not is_inside_tree(): return

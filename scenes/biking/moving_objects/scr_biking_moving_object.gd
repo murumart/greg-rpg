@@ -1,5 +1,7 @@
 class_name BikingMovingObject extends Node2D
 
+# moving objects in the biking game
+
 signal will_delete
 signal coin_got
 
@@ -27,12 +29,13 @@ func _physics_process(delta: float) -> void:
 	if moving:
 		global_position.x -= speed * delta
 		if following:
+			# following the player
 			var target : Node2D = get_tree().get_first_node_in_group("biking_players")
 			if not is_instance_valid(target): return
 			var target_position := Vector2(target.global_position.x, target.global_position.y)
 			look_at(target_position)
 			global_position = global_position.move_toward(target_position, delta * speed)
-	
+	# delete behaviour when offscreen
 	if global_position.x < -60:
 		if screen_exit_behaviour == 1:
 			will_delete.emit()

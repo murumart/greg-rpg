@@ -1,5 +1,7 @@
 class_name BikingGame extends Node2D
 
+# biking minigame
+
 const ROAD_BOUNDARIES := Rect2(Vector2(2, 116), Vector2(158, 72))
 
 const ROAD_LENGTH := 800.0
@@ -73,10 +75,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# road moves backward - illusion of forward movement
 	road.global_position.x = wrapf(road.global_position.x - (speed * delta), -16, 32)
 	distance += speed * delta * int(not currently_hell)
 	ui.set_pointer_pos(get_meter() / ROAD_LENGTH)
 	
+	# the kiosk appears every INTERVAL "meters"
 	if (roundi(get_meter() + 20) % MAIL_KIOSK_INTERVAL) == 0:
 		current_perk = ""
 		set_speed(60)
@@ -84,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		bike.following_mail = false
 		the_kiosk()
 	
+	# at the end of the road, do some testing and fixing if necess
 	if roundi(get_meter()) >= ROAD_LENGTH:
 		set_speed(0)
 		check_if_kiosk_has_made_it()
@@ -94,10 +99,11 @@ func _physics_process(delta: float) -> void:
 	if (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_menu")) and ui.inventory_open:
 		close_inventory()
 	
+	# parallax background
 	background_trees.region_rect.position.x = wrapf(background_trees.region_rect.position.x + speed * delta * 0.22, 0.0, background_trees.region_rect.size.x * 2.0)
 	background_town.region_rect.position.x = wrapf(background_town.region_rect.position.x + speed * delta * 0.33, 0.0, background_town.region_rect.size.x)
 	
-	# debug
+	# debug (rememmber to remove)
 	if Input.is_action_pressed("ui_end"):
 		distance += 60
 
@@ -109,10 +115,12 @@ func set_speed(to: int) -> void:
 
 
 func _on_died() -> void:
+	# setting the death reason only if it hasn't been set already
 	if not DAT.death_reason.length():
 		DAT.death_reason = "bikecry" if randf() <= 0.95 else "mail_disappointment"
 	set_speed(0)
 	if currently_hell:
+		# funny
 		for s in get_tree().get_nodes_in_group("biking_snails"):
 			var tw := create_tween()
 			tw.tween_property(s, "global_position", bike.global_position + Vector2(
@@ -123,8 +131,9 @@ func _on_died() -> void:
 	LTS.to_game_over_screen()
 
 
+# spawning obstacles
 func _on_obstacle_timer_timeout() -> void:
-	if speed < 5: return
+	if speed < 5: return # don't while stopped
 	# obstacle
 	var obstacle_positions := []
 	obstacle_timer.start(1.5 * 1.0 if not currently_hell else 0.75)
@@ -255,7 +264,7 @@ func _on_mailman_approached() -> void:
 
 
 func _on_mail_menu_finished() -> void:
-	
+	# if at the end of the road
 	if get_meter() >= ROAD_LENGTH - 15:
 		var rew := calculate_rewards()
 		rew.grant()
@@ -268,6 +277,7 @@ func _on_mail_menu_finished() -> void:
 	bike.paused = false
 	kiosk_activated = false
 	set_speed(60)
+	# applying perks
 	if current_perk == "fast_earner":
 		set_speed(80)
 	elif current_perk == "super_mail":
@@ -306,6 +316,7 @@ func update_ui() -> void:
 		ui.display_hell_time(hell_time)
 
 
+# once the kiosk goes offscreen
 func _on_kiosk_will_delete() -> void:
 	kiosk_activated = false
 
@@ -364,6 +375,7 @@ func _on_punishment_timer_timeout() -> void:
 	update_ui()
 
 
+# giving rewards after biking
 func calculate_rewards() -> BattleRewards:
 	var rewd := BattleRewards.new()
 	# usual rewards

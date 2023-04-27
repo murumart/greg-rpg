@@ -1,5 +1,7 @@
 extends Node2D
 
+# fishing minigame
+
 enum States {STOP, MOVE}
 var state : States = States.STOP
 
@@ -64,15 +66,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# combo stuff
 	recent_fish_caught = maxf(recent_fish_caught - delta * pow(2, recent_fish_caught * 0.6), 0.0)
 	combo_bar.value = recent_fish_caught
+	# depth and time display
 	depth_label.text = str("depth: %s m" % roundi(depth / 100.0))
 	time_bar.value = time_left
 	line_movement(delta)
 	match state:
 		States.MOVE:
 			hook_movement(delta)
+			# world moves to give illusion of going deeper
 			tilemap.position.y -= speed * delta
+			# decorations
 			if kiosk_enabled: mail_kiosk.position.y -= speed * delta
 			if fisherman_enabled: fisherman.position.y -= speed * delta
 			if shopping_cart_enabled: shopping_cart.position.y -= speed * delta
@@ -80,6 +86,7 @@ func _physics_process(delta: float) -> void:
 			noise.offset.y += (speed * delta) / 16.0
 			depth += delta * speed
 			process_tilemap()
+			# darker as it gets deeper
 			set_water_color(Color("#0054b549").lerp(Color("000e1c49"), remap(depth, 0, 30000, 0.0, 1.0)))
 			time_left -= maxf(delta * (time_left * 0.66), delta * 0.5) * float(bool(fish_caught))
 			time_left = minf(time_left, 40.0)
@@ -92,12 +99,14 @@ func hook_movement(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	hook.global_position += input * hook_speed * 1 * delta
 	hook.global_position.y = clampf(hook.global_position.y, -60, 60)
+	# swaying left-right
 	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, hook_speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
 	if Engine.get_physics_frames() % 4 == 0:
 		hook_positions.append(hook.global_position)
 
 
 func line_movement(delta : float) -> void:
+	# slowly sway as the water moves
 	for pos in hook_positions:
 		var i := hook_positions.find(pos)
 		pos.y -= (speed * delta * randf_range(0.8, 1.2)) if state == States.MOVE else 0.0
@@ -115,6 +124,7 @@ func _on_hook_collision(node: Node2D) -> void:
 		hook_animator.play("hit")
 		SOL.shake(0.2)
 	if state == States.STOP: return
+	# hitting an obstacle
 	if node is TileMap or node.get_parent().get("hazardous"):
 		#get_tree().reload_current_scene()
 		if node.get_parent().has_method("caught"):
@@ -124,6 +134,7 @@ func _on_hook_collision(node: Node2D) -> void:
 		SOL.shake(0.4)
 		wiggle.call()
 		stop_game()
+	# hitting a nice fish
 	elif node is Area2D and node.get_parent() is FishingFish:
 		node = node.get_parent() as FishingFish
 		if node.moving and not node.decor:
@@ -178,16 +189,20 @@ func _on_line_draw() -> void:
 
 
 func process_tilemap() -> void:
+	# the tilemap actually continuously 
 	var ypos := roundi(tilemap.position.y / 16.0)
 	if ypos == processed_ypos: return
 	var path_noise_value := roundi((remap(noise.get_noise_1d(tilemap.position.y / 8000.0), -1, 1, -6, 6) + remap(noise.get_noise_1d((tilemap.position.y + 1) / 8000.0), -1, 1, -6, 6)) / 2.0)
 	
+	# this might optimise things. i hope
 	delete_offscreen_tiles(ypos)
 	
 	var rock_array := []
+	# tilemap width is 12
 	for x in 12:
 		var cell := Vector2i(x - 6, -ypos + 5)
 		var noise_value := noise.get_noise_2d(x, 10)
+		# random caves
 		if (
 				!(noise_value > -0.2 and noise_value < 0.2) and 
 				!(absi(cell.x - path_noise_value) <= 2) and 
@@ -195,7 +210,7 @@ func process_tilemap() -> void:
 			) or (
 				cell.x <= -5 or cell.x >= 4
 			): rock_array.append(cell)
-	
+	# background
 	var bg_rock_array := []
 	for x in 12:
 		var cell := Vector2i(x - 6, -ypos + 5)
@@ -206,6 +221,7 @@ func process_tilemap() -> void:
 	tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
 	tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
 	
+	# adding fish and such
 	for x in 12:
 		var cell := Vector2i(x - 6, -ypos + 4)
 		if not tilemap.get_cell_tile_data(1, cell):
@@ -214,6 +230,7 @@ func process_tilemap() -> void:
 				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 16.0: spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
 		if randf() < depth_fish_increase_curve.sample(depth / 20_000.0): spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
 	
+	# decorations random
 	if randf() <= 0.002: kiosk_enabled = true
 	if randf() <= 0.0002: fisherman_enabled = true
 	if randf() <= 0.001: shopping_cart_enabled = true
@@ -226,6 +243,7 @@ func spawn_fish(coords : Vector2, background := false) -> void:
 	var fish := FISH_LOAD.instantiate()
 	fish.global_position = coords
 	fish.depth = roundi(depth / 100.0)
+	# background fish for decoration
 	if background:
 		fish.z_index = -8
 		fish.decor = true
@@ -236,10 +254,12 @@ func spawn_fish(coords : Vector2, background := false) -> void:
 	fish_parent.add_child(fish)
 
 
+# sea mines that you can run into to lose
 func spawn_mine(coords: Vector2, background := false) -> void:
 	var mine := MINE_LOAD.instantiate()
 	mine.global_position = coords
 	mine.depth = roundi(depth / 100.0)
+	# background mines...
 	if background:
 		mine.z_index = -8
 		mine.decor = true
@@ -257,6 +277,7 @@ func delete_offscreen_tiles(ypos: int) -> void:
 		tilemap.erase_cell(1, cell)
 
 
+# game ends here
 func _on_after_crash_timer_timeout() -> void:
 	var score := roundi(depth / 100.0) + points
 	var high_score : bool = score > DAT.get_data("fishing_high_score", 0)

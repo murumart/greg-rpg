@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+# the envelopes that fly about
+
 var lifetime := 0.0
 const MAX_LIFETIME := 2.0
 
@@ -22,6 +24,7 @@ func _physics_process(delta: float) -> void:
 	if lifetime > MAX_LIFETIME:
 		call_deferred("queue_free")
 	
+	# follow the mailboxes (when you have that one perk)
 	if following:
 		var target : Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
 		if not is_instance_valid(target):
@@ -30,6 +33,7 @@ func _physics_process(delta: float) -> void:
 			return
 		if $CollisionShape2D.disabled:
 			$CollisionShape2D.set_deferred("disabled", false)
+		# manually move it, not using physics
 		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 		freeze = true
 		var target_position := Vector2(target.global_position.x, target.global_position.y - 15)

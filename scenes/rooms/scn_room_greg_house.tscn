@@ -776,10 +776,10 @@ tracks/0/path = NodePath("Zerma:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-15, 196), Vector2(-18, 218), Vector2(-22, 221)]
+"values": [Vector2(-15, 196), Vector2(-18, 218), Vector2(-22, 221), Vector2(-22000, 221)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

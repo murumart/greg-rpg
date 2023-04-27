@@ -1,5 +1,7 @@
 extends Node2D
 
+# damage number vfx
+
 var move := Vector2()
 var gravity := 80
 var xrange := 1.0
@@ -9,7 +11,7 @@ var clamp_zone_max := Vector2()
 
 func init(options := {}) -> void:
 	var label := $Label
-	var size : float = options.get("size", 1.0)
+	var size : float = options.get("size", 1.0) # font size in multiples of 8
 	label.text = str(options.get("text", ""))
 	label.modulate = options.get("color", Color.WHITE)
 	label["theme_override_font_sizes/font_size"] = 8 * size
@@ -23,6 +25,7 @@ func _ready() -> void:
 	pass
 
 
+# movement physics
 func _physics_process(delta: float) -> void:
 	move.y = move_toward(move.y, gravity, delta * 2)
 	move.x = move_toward(move.x, 0.0, delta * 1.5)

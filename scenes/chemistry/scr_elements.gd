@@ -1,5 +1,6 @@
 class_name Elements extends RefCounted
 
+# generating and storing chemical elements here
 # do NOT show ANY of this to ANY of my chemistry teachers
 
 const ELEMENT_AMOUNT := 54
@@ -20,11 +21,11 @@ var rng := RandomNumberGenerator.new()
 
 
 func _init() -> void:
-	print(PLANCK)
 	rng.seed = roundi(DAT.get_data("nr", 0.0) * 100)
 	gen_elements()
 
 
+# the period of the element
 func get_period(index: int) -> int:
 	var period := 0
 	var counter := 0
@@ -36,6 +37,7 @@ func get_period(index: int) -> int:
 	return period
 
 
+# the valence shell of the element
 func get_valence(index: int) -> int:
 	var period := 0
 	var counter := 0
@@ -49,6 +51,7 @@ func get_valence(index: int) -> int:
 	return counter - 9
 
 
+# the group of the element.
 func get_group(index: int) -> int:
 	var period := 0
 	var counter := 0
@@ -80,6 +83,7 @@ func get_element(index: int) -> Element:
 func gen_elements() -> void:
 	var counter := 0
 	var period := 0
+	# only this many elements. any more i'd have to deal with lanthanoids and s
 	for e in ELEMENT_AMOUNT:
 		var index := e + 1
 		
@@ -163,6 +167,7 @@ func gen_element_symbol(name: String) -> String:
 	return symbol
 
 
+# all elements in a nice formatted string
 func table_string() -> String:
 	var text := ""
 	var previous_pd := 0

@@ -45,7 +45,7 @@ normal = Vector2(-1, 0)
 size = Vector2(21, 21.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhndr"]
-size = Vector2(26, 5)
+size = Vector2(26, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n25ss"]
 size = Vector2(30, 20)
@@ -394,7 +394,7 @@ color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 [node name="StaticBody2D" type="StaticBody2D" parent="Houses/NeighbourHouse/Car"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/Car/StaticBody2D"]
-position = Vector2(0, 3.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fhndr")
 
 [node name="InspectArea" type="Area2D" parent="Houses/NeighbourHouse/Car"]

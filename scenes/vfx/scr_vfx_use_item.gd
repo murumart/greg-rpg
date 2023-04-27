@@ -6,4 +6,3 @@ func init(options := {}) -> void:
 	item_texture = options.get("item_texture", null)
 	
 	if item_texture: $Sprite2D.texture = item_texture
-	if options.get("silent", false): $AudioStreamPlayer.volume_db = -80

@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+# fishermen npcs in the lake area
+
 @export_enum("green", "blue", "yellow", "red", "bikeghost") var type: int = 0: set = _set_type
 @export var line_length := 30: set = _set_line_lenght
 @export var flip := false: set = _set_flip
@@ -20,6 +22,8 @@ func _set_type(to: int) -> void:
 	
 	var sprite : Sprite2D = get_node_or_null("Face")
 	if not is_instance_valid(sprite): return
+	# all fishermen looks are in this one file.
+	# but if they weren't, i could still use this match statement
 	match to:
 		0:
 			sprite.region_rect = Rect2i(0, 0, 16, 16)
@@ -46,6 +50,7 @@ func _set_flip(to: bool) -> void:
 
 
 func _on_interact() -> void:
+	# the dialogue progress just loops around forever
 	var dialpr : int = DAT.get_data("fisher_progress", 0)
 	dialpr = wrapi(dialpr + 1, 1, 6)
 	DAT.set_data("fisher_progress", dialpr)

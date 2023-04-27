@@ -1,11 +1,14 @@
 extends Node2D
 
+# chemistry lab scene
+
 var elements := Elements.new()
 
 var solution : Array[Dictionary]
 
 
 func _ready() -> void:
+	SOL.vfx("isotoxin", SOL.SCREEN_SIZE / 16.0, {"silent": true})
 	var el := 13
 	print(elements.get_element(el).tostr())
 	print(elements.get_valence(el))
@@ -39,6 +42,7 @@ class Compound extends Node2D:
 		elements = el
 	
 	
+	# loop through all branches and add masses
 	func calculate_mass(arr: Array) -> float:
 		var sum := 0.0
 		for a in arr:
