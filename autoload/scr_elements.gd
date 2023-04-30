@@ -1,4 +1,4 @@
-class_name Elements extends RefCounted
+extends Node
 
 # generating and storing chemical elements here
 # do NOT show ANY of this to ANY of my chemistry teachers
@@ -6,14 +6,13 @@ class_name Elements extends RefCounted
 const ELEMENT_AMOUNT := 54
 const PERIOD_LENGTHS := [2, 8, 8, 18, 18, 32, 32]
 
-const RYDBERG := 9.1127e-06
-const PLANCK := 4.135667696e-15
-const C := 299_792_458
-
 var element_names := PackedStringArray()
 var element_abbrs := PackedStringArray()
 var element_masses := PackedFloat32Array()
+var element_colours := PackedColorArray()
 var periods : Array[PackedInt32Array] = [[], [], [], [], [], [], []]
+
+var solmass : float
 
 var in_by_sym := {}
 
@@ -22,7 +21,12 @@ var rng := RandomNumberGenerator.new()
 
 func _init() -> void:
 	rng.seed = roundi(DAT.get_data("nr", 0.0) * 100)
+
+
+func gen() -> void:
 	gen_elements()
+	
+	solmass = element_masses[0] + element_masses[0] + element_masses[7]
 
 
 # the period of the element
@@ -67,6 +71,10 @@ func get_group(index: int) -> int:
 	return counter + 10 if counter > 1 else counter
 
 
+func has_d_valence(index: int) -> bool:
+	return index in range(2, 12)
+
+
 func get_element(index: int) -> Element:
 	var el := Element.new()
 	el.protons = index + 1
@@ -76,7 +84,6 @@ func get_element(index: int) -> Element:
 	el.valence = get_valence(index)
 	el.period = get_period(index)
 	el.group = get_group(index)
-	el.electronegativity = get_electronegativity(index)
 	return el
 
 
@@ -87,12 +94,16 @@ func gen_elements() -> void:
 	for e in ELEMENT_AMOUNT:
 		var index := e + 1
 		
-		var name := random_element_name(e)
-		element_names.append(name)
-		element_abbrs.append(gen_element_symbol(name))
+		var ename := random_element_name(e)
+		element_names.append(ename)
+		element_abbrs.append(gen_element_symbol(ename))
 		element_masses.append(snappedf((index) * 2 + rng.randf() * sqrt(index), 0.01))
 		periods[period].append(e)
 		in_by_sym[element_abbrs[e]] = e
+		
+		var color := Color(rng.randf(), rng.randf(), rng.randf())
+		color = color.lightened((5 - period) * 0.1)
+		element_colours.append(color)
 		
 		if counter >= PERIOD_LENGTHS[period] - 1:
 			period += 1
@@ -100,25 +111,13 @@ func gen_elements() -> void:
 		else: counter += 1
 
 
-func get_electronegativity(index: int) -> float:
-	# this is fucked up
-	var valence := get_valence(index)
-	var period := get_period(index)
-	var p := maxi(valence - 2, 0)
-	var s := maxi(valence - p, 0)
-	var energy := PLANCK * C * RYDBERG * (pow(index + 1, 2) / pow(period, 2))
-	var return_value := (((energy * s) + (energy * p)) / (s + p)) * 1750000000
-	return return_value
-
-
 func random_element_name(index: int) -> String:
-	var name := ""
 	var vowels := ["a", "e", "i", "o", "u"]
 	var plosives := ["ch", "p", "t", "g", "b", "d", "f"]
 	var consonants := ["m", "n", "l", "s", "r", "z", "m", "n"]
 	var end := ""
 	var ends := {16: "ine", 17: "on"}
-	var gen := func generation():
+	var gene := func generation():
 		var n := ""
 		var prd := get_period(index)
 		for i in rng.randi_range(maxi(prd, 1), maxi(prd, 2)):
@@ -144,26 +143,27 @@ func random_element_name(index: int) -> String:
 		else:
 			n += plosives.pick_random() + end
 		return n
+	var ename := ""
 	for i in 10:
-		name = gen.call()
+		ename = gene.call()
 		var free_of_unwanted := true
 		var dontwantthese := ["uu", "mm"]
 		for n in dontwantthese:
-			if name.contains(n): free_of_unwanted = false
-		if not name in element_names and free_of_unwanted == true:
+			if ename.contains(n): free_of_unwanted = false
+		if not ename in element_names and free_of_unwanted == true:
 			break
-	return name
+	return ename
 
 
-func gen_element_symbol(name: String) -> String:
-	var symbol := name[0]
+func gen_element_symbol(ename: String) -> String:
+	var symbol := ename[0]
 	if not symbol in element_abbrs and rng.randf() <= 0.8:
 		return symbol
-	for j in name.right(name.length() - 1):
+	for j in ename.right(ename.length() - 1):
 		var temp := symbol + j
 		if not temp in element_abbrs:
 			return temp
-	print("not enough symbols for ", name)
+	print("not enough symbols for ", ename)
 	return symbol
 
 
@@ -188,6 +188,10 @@ func table_string() -> String:
 	return text
 
 
+func is_more_active(a: int, b: int) -> bool:
+	return a < b
+
+
 class Element extends RefCounted:
 	var protons : int
 	var name : String
@@ -196,10 +200,9 @@ class Element extends RefCounted:
 	var period : int
 	var group : int
 	var valence : int
-	var electronegativity : float
 	
 	
-	func tostr() -> String:
+	func _to_string() -> String:
 		return "protons: %s
 name: %s
 symbol: %s
@@ -207,4 +210,4 @@ mass: %s
 period: %s
 group: %s
 valence: %s
-electronegativity: %s" % [protons, name, symbol, mass, period, group, valence, electronegativity]
+" % [protons, name, symbol, mass, period, group, valence]

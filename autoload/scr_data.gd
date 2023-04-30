@@ -148,7 +148,6 @@ func force_data(key: String, value: Variant, filename := "") -> void:
 # loop through all nodes that have persistent data between scenes
 func save_nodes_data() -> void:
 	print("saving nodes...")
-	var saveables := get_tree().get_nodes_in_group("save_me")
 	get_tree().call_group("save_me", "_save_me")
 	print("node saving end.")
 

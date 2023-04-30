@@ -27,6 +27,7 @@ SOL="*res://autoload/scn_screen_overlay.tscn"
 OPT="*res://autoload/scn_options.tscn"
 LTS="*res://autoload/scn_level_transition.tscn"
 SND="*res://autoload/scr_sound.gd"
+ELM="*res://autoload/scr_elements.gd"
 
 [debug]
 
@@ -114,6 +115,11 @@ move_right={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+mouse_left={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -123,6 +129,14 @@ move_right={
 2d_physics/layer_4="npc"
 2d_physics/layer_5="biking_obstacle"
 2d_physics/layer_6="biking_mail"
+
+[physics]
+
+2d/sleep_threshold_linear=0.2
+2d/sleep_threshold_angular=0.1
+2d/time_before_sleep=2.0
+2d/solver/solver_iterations=32
+2d/solver/contact_max_allowed_penetration=0.01
 
 [rendering]
 
