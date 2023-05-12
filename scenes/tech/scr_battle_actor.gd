@@ -22,6 +22,8 @@ var state : States = States.IDLE : set = set_state
 
 var turn := 0
 
+var hurt_sound := preload("res://sounds/snd_hurt.ogg")
+
 var actor_name : StringName
 @onready var character : Character
 
@@ -97,7 +99,7 @@ func hurt(amount: float) -> void:
 	else:
 		# hurt sound
 		SND.play_sound(
-			preload("res://sounds/snd_hurt.ogg"),
+			preload("res://sounds/snd_eek.ogg") if randf() < 0.0001 and actor_name == "greg" else hurt_sound,
 			{"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1),
 			"volume": randi_range(4, 7)})
 	# damage number
