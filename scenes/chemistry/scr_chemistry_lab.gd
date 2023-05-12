@@ -19,31 +19,25 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	solution = [
 		{
-			"struct": [14, [7, 0]],
+			"struct": [14, 7, 0],
 			"mol": 3.0
 		},
 		{
-			"struct": [20, [7, 0]],
+			"struct": [20, 7, 0],
 			"mol": 3.0
 		},
 		{
-			"struct": [30, [7, 0]],
+			"struct": [30, 7, 0],
 			"mol": 3.0
 		},
 	]
 	for i in 6:
 		solution.append({
-			"struct": [14, [7, 0]],
+			"struct": [14, 7, 0, 36],
 			"mol": 3.0
 		})
 	germinate()
 	
-	var s := c([[15, [[7], [[7], [[[[[[[[[7, 0]]]]], [7, 0]]]]]]]]])
-	print(s.find_chain([7, 0]))
-	print(s.get_chain(s.find_chain([7, 0]).get("index")))
-	s.set_chain(s.find_chain([7, 0]).index, [8, 0])
-	print(s.get_chain([0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]))
-
 
 
 func germinate() -> void:
@@ -66,45 +60,51 @@ func del(d: Species) -> void:
 		species.erase(d)
 
 
-func react(c1: Species, c2: Species) -> void:
-	pass
-
-
 # not how it works in real life dear god not at all
 func dissoc_reaction(s: Species) -> void:
-	var suc := s.struct.duplicate(true)
-	var split := mini(randi() % suc.size() + 1, suc.size() - 1)
-	var a := suc.slice(0, split, 1, true)
-	var b := suc.slice(split, suc.size(), 1, true)
+	if s.struct.size() < 3: return
 	var pos := s.position
-	a.push_front([0])
-	b.push_front([7, 0])
-	print(a)
-	print(b)
+	var split := clampi(randi() % s.struct.size(), 1, s.struct.size() - 1)
+	var a := s.struct.slice(split)
+	var b := s.struct.slice(0, split)
+	a.append_array([0])
+	b.append_array([0, 7])
 	del(s)
 	c(a, pos)
 	c(b, pos)
 
 
 # chemistry treachers weep
-# todo: make not freeze the game completely
 func replacement_reaction(s1: Species, s2: Species, pos : Vector2) -> void:
-	var o : int =  mini(randi() % s1.struct.size() + 1, s1.struct.size() - 1)
-	var p : int = mini(randi() % s2.struct.size() + 1, s2.struct.size() - 1)
-	var q1 := s1.struct.slice(0, o, 1, true) if s1.struct.size() > 2 else s1.struct
-	var q2 := s1.struct.slice(o, s1.struct.size(), 1, true) if s1.struct.size() > 2 else s1.struct
-	var w1 := s2.struct.slice(0, p, 1, true) if s2.struct.size() > 2 else s2.struct
-	var w2 := s2.struct.slice(o, s2.struct.size(), 1, true) if s2.struct.size() > 2 else s2.struct
-	var m := []
-	m.append_array(q1)
-	m.append_array(w1)
-	var n := []
-	n.append_array(q2)
-	n.append_array(w2)
+	if s1.struct.is_empty() or s2.struct.is_empty(): return
+	var at : int = 0
+	if s1.struct.size() > s2.struct.size():
+		at = randi() % s2.struct.size()
+	else:
+		at = randi() % s1.struct.size()
+	var a1 : int = s1.struct.pop_at(at)
+	var a2 : int = s2.struct.pop_at(at)
+	if a1 == a2:
+		c([a1, a2], pos)
+	else:
+		s1.struct.insert(at, a2)
+		s2.struct.insert(at, a1)
+	s1.aspects()
+	s2.aspects()
+
+
+func union_reaction(s1: Species, s2: Species, pos: Vector2) -> void:
+	if s1.struct.is_empty() or s2.struct.is_empty(): return
+	if not (0 in s1.struct and 7 in s1.struct and 0 in s2.struct): return
+	s1.struct.erase(0)
+	s2.struct.erase(0)
+	s1.struct.erase(7)
+	c([0, 0, 7], pos)
+	var news := s1.struct.duplicate()
+	news.append_array(s2.struct)
+	c(news, pos)
 	del(s1)
 	del(s2)
-	c(m, pos)
-	c(n, pos)
 
 
 func _input(event: InputEvent) -> void:
@@ -119,36 +119,43 @@ func _physics_process(delta: float) -> void:
 	var rand := 0.2
 	var edgedef := 0.5
 	for s in species:
+		if s.struct.is_empty():
+			del(s)
+			return
 		
 		if species.size() > 80:
 			if Engine.get_physics_frames() % 2 != 0: continue
 		
 		# damping
 		s.move.y = move_toward(s.move.y, (s.mass - ELM.solmass) * 0.06, delta * 6)
+		# delete stuff rising tot he top (it evepaorates away)
+		if (s.mass < ELM.solmass or absf(s.mass - ELM.solmass) < 0.1) and randf() < 0.007:
+			del(s)
 		s.move.x = move_toward(s.move.x, 0.0, delta)
 		
 		# randomising
 		s.move += Vector2(randf_range(-rand, rand), randf_range(-rand, rand))
 		
 		# collision with others
-		var coll := false
 		if species.size() < 25:
 			for ss in range(species.size()):
+				if ss >= species.size(): continue
 				var sp1 := species[ss]
 				for zz in species.size():
 					if zz == ss: continue
+					if zz >= species.size(): continue
 					var sp2 := species[zz]
-					coll = specs_collision(sp1, sp2)
+					specs_collision(sp1, sp2)
 		# if there's too many species simulated, do this instead
 		# because this is faster
 		# yeah
 		else:
 			for i in 200:
-				coll = specs_collision(species.pick_random(), species.pick_random())
+				specs_collision(species.pick_random(), species.pick_random())
 		
-		#
-		if not coll and randf() < 0.0002 and species.size() < 25:
-			dissoc_reaction(species.pick_random())
+		# dissoc checking
+		if s.mass / 900.0 > randf() and randf() < 0.002 and species.size() < 40:
+			dissoc_reaction(s)
 		
 		# edges collision
 		if s.position.x - s.radius <= clamp_zone_min.x:
@@ -157,27 +164,35 @@ func _physics_process(delta: float) -> void:
 			s.move.x = -edgedef -s.move.x * damp
 		if s.position.y - s.radius <= clamp_zone_min.y:
 			s.move.y += delta * 8
-			#s.move.y = edgedef -s.move.y * damp
 		if s.position.y + s.radius >= clamp_zone_max.y:
 			s.move.y = -edgedef -s.move.y * damp
 		s.position = s.position.clamp(clamp_zone_min, clamp_zone_max)
 		
 		s.position += s.move
+		
+		# clicking debug stuff
+		if Input.is_action_just_pressed("mouse_left"):
+			var mpos := get_global_mouse_position()
+			if mpos.distance_to(s.position) < s.radius:
+				print(s)
 	
+	if randf() < 0.08:
+		c([0, 7, 0], Vector2(randf_range(clamp_zone_min.x, clamp_zone_max.x), randf_range(clamp_zone_min.y, clamp_zone_max.y)))
 	queue_redraw()
 
 
-func specs_collision(s1: Species, s2: Species) -> bool:
-	if s1 == s2: return false
+func specs_collision(s1: Species, s2: Species) -> void:
+	if s1 == s2: return
 	var damp := 0.005
 	if s1.position.distance_squared_to(s2.position) <= (s1.radius + s2.radius) ** 2:
 		var mid := (s1.position + s2.position) / 2.0
 		s1.move += (s1.position - s2.position) * damp * s2.mass/s1.mass
 		s2.move += (s2.position - s1.position) * damp * s1.mass/s2.mass
-		if randf() < 0.25:
+		if randf() < 0.0025:
 			replacement_reaction(s1, s2, mid)
-		return true
-	return false
+		if randf() < 0.0025:
+			union_reaction(s1, s2, mid)
+		return
 
 
 func _draw() -> void:
@@ -203,6 +218,8 @@ class Species extends RefCounted:
 	
 	
 	func aspects() -> void:
+		if struct.is_empty():
+			return
 		radius = calculate_radius(struct)
 		mass = calculate_mass(struct)
 		color = calculate_colour(struct)
@@ -247,39 +264,5 @@ class Species extends RefCounted:
 		return col
 	
 	
-	func find_chain(what: Variant, inwhat: Array = struct) -> Dictionary:
-		var index := []
-		for n in inwhat:
-			# if we find what we're looking for
-			if typeof(what) == typeof(n) and what == n:
-				index.append(inwhat.find(n))
-				return {"found": true, "index": index}
-			# otherwise enter array and search it as well
-			elif n is Array:
-				var rec := find_chain(what, n)
-				if rec.get("found", false):
-					index.append(inwhat.find(n))
-					index.append_array(rec.get("index"))
-					return {"found": true, "index": index}
-		return {"found": false}
-	
-	
-	func get_chain(index: Array, inwhat: Array = struct) -> Variant:
-		var i : int = index.pop_front()
-		if not index.is_empty():
-			return get_chain(index, inwhat[i])
-		else:
-			return inwhat[i]
-		return null
-	
-	
-	func set_chain(index: Array, towhat: Variant, inwhat: Array = struct) -> void:
-		var i : int = index.pop_front()
-		if not index.is_empty():
-			set_chain(index, towhat, inwhat[i])
-		else:
-			inwhat[i] = towhat
-	
-	
 	func _to_string() -> String:
-		return "%s, %s" % [position, radius]
+		return "%s: %s" % [id, struct]
