@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["stabbing_fella"]).\
+set_enemies(["sun_spirit"]).\
 set_music("entirely_just").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("store")
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -693,7 +693,9 @@ func _on_item_pressed() -> void:
 func set_description(text: String) -> void:
 	description_text.text = text
 	if text.ends_with("%s"):
-		description_text.text = text % (DAT.get_item(current_guy.character.weapon).name if current_guy.character.weapon else "hands")
+		description_text.text = text % "hands"
+		if current_guy.character.weapon:
+			description_text.text = text % DAT.get_item(current_guy.character.weapon).name
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:

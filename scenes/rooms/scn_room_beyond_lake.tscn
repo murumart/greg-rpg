@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=38 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vb5rp"]
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/snd_water_river.ogg" id="5_vkt48"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_e61yp"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="6_y1l2p"]
+[ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 
 [sub_resource type="Gradient" id="Gradient_np4ve"]
@@ -58,6 +60,141 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hcipo"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_127te"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7ri"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t28yq"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21plk"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an44c"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1syr"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8b56"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8xjo"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxjul"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpl8h"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1xxx"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brhdy"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb7dm"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6bju"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg5ix"]
+atlas = ExtResource("7_y64ye")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a56qu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgjl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_127te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t28yq")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21plk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an44c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1syr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8b56")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8xjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxjul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpl8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1xxx")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brhdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb7dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6bju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg5ix")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq4ig"]
 size = Vector2(52, 53)
 
@@ -104,6 +241,7 @@ position = Vector2(1415, 62)
 shape = SubResource("WorldBoundaryShape2D_hcipo")
 
 [node name="Areas" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("4_janow")]
 position = Vector2(-450, -1)
@@ -191,6 +329,21 @@ position = Vector2(1316, 260)
 stream = ExtResource("5_vkt48")
 autoplay = true
 max_distance = 200.0
+
+[node name="SunSpirit" parent="Areas" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("6_y1l2p")]
+position = Vector2(216, -59)
+animated_sprite = NodePath("SunLook")
+collision_extents = Vector2i(16, 6)
+speed = 8000
+movement_wait = 0.5
+chase_target = NodePath("../../Greg")
+chase_distance = 256
+interact_on_touch = true
+
+[node name="SunLook" type="AnimatedSprite2D" parent="Areas/SunSpirit"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_a56qu")
+animation = &"walk_left"
 
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
 position = Vector2(-373, 21)
