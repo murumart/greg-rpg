@@ -75,6 +75,9 @@ width = 1.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="InteractionArea" type="Area2D" parent="Fisherman"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
 script = ExtResource("7_67ble")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fisherman/InteractionArea"]
@@ -116,6 +119,9 @@ width = 1.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="InteractionArea" type="Area2D" parent="Fisherman2"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
 script = ExtResource("7_67ble")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fisherman2/InteractionArea"]

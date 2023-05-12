@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dpu3mwtmn3lqt"]
+[gd_scene load_steps=86 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_h3jbg"]
 [ext_resource type="SpriteFrames" uid="uid://cv74f40g5op00" path="res://resources/characters/sfr_bike_ghost.tres" id="22_78dn4"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="24_1hqpd"]
+[ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="24_6r8ny"]
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="25_kt1if"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
@@ -330,6 +331,141 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 rewards = SubResource("Resource_i8jei")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_127te"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld7ri"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t28yq"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21plk"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an44c"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1syr"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8b56"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8xjo"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxjul"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpl8h"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1xxx"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brhdy"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb7dm"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6bju"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg5ix"]
+atlas = ExtResource("24_6r8ny")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fqop"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgjl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_127te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld7ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t28yq")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21plk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an44c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1syr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8b56")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8xjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxjul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpl8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1xxx")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brhdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb7dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6bju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg5ix")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
 
 [node name="TestRoom" type="Node2D"]
 y_sort_enabled = true
@@ -663,6 +799,21 @@ save_position = true
 position = Vector2(0, -8)
 sprite_frames = ExtResource("22_78dn4")
 animation = &"walk_down"
+
+[node name="SunSpirit" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("12_h5o38")]
+position = Vector2(445, -12)
+animated_sprite = NodePath("SunLook")
+collision_extents = Vector2i(16, 6)
+speed = 8000
+movement_wait = 0.5
+chase_target = NodePath("../../Greg")
+chase_distance = 256
+interact_on_touch = true
+
+[node name="SunLook" type="AnimatedSprite2D" parent="MDPS/SunSpirit"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_3fqop")
+animation = &"walk_left"
 
 [node name="Car2Path" type="Node2D" parent="."]
 position = Vector2(-119, 150)
