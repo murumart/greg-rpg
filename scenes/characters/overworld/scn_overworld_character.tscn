@@ -15,12 +15,12 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="OverworldCharacter" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "interaction_area", "detection_area", "detection_raycast") groups=["save_me"]]
-collision_layer = 8
+[node name="OverworldCharacter" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
+collision_layer = 12
 motion_mode = 1
 script = ExtResource("1_j2mdd")
 collision_shape = NodePath("CollisionShape")
-interaction_area = NodePath("InteractionArea")
+collision_detection_area = NodePath("CollisionDetectionArea")
 detection_area = NodePath("DetectionArea")
 detection_raycast = NodePath("DetectionArea/DetectionRaycast")
 chase_distance = 64
@@ -29,12 +29,13 @@ chase_distance = 64
 shape = SubResource("RectangleShape2D_wj6rh")
 debug_color = Color(0.152941, 1, 1, 0.419608)
 
-[node name="InteractionArea" parent="." instance=ExtResource("2_meflg")]
+[node name="CollisionDetectionArea" parent="." instance=ExtResource("2_meflg")]
 modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 8
 input_pickable = false
-monitoring = false
+script = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea"]
 shape = SubResource("RectangleShape2D_ka84t")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -51,5 +52,4 @@ self_modulate = Color(1, 1, 0.435294, 0.207843)
 target_position = Vector2(0, 32)
 collision_mask = 11
 
-[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interacted"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

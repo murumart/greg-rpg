@@ -8,7 +8,7 @@
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7dg6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8mvl"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
@@ -164,11 +164,8 @@ save = false
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_7ulo7")
 
-[node name="InteractionArea" parent="." index="1"]
-monitoring = true
-
-[node name="CollisionShape2D" parent="InteractionArea" index="0"]
-shape = SubResource("RectangleShape2D_d7dg6")
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_n8mvl")
 
 [node name="DetectionShape" parent="DetectionArea" index="0"]
 shape = SubResource("CircleShape2D_v11g1")
