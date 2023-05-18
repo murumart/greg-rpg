@@ -180,7 +180,13 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 
 # put the save data inside a JSON string and add it to clipboard
 func copy_data() -> void:
-	DisplayServer.clipboard_set(JSON.stringify(A, "\t"))
+	DisplayServer.clipboard_set(var_to_str(DAT.A))
+
+
+func set_copied_data() -> void:
+	var newd = str_to_var(DisplayServer.clipboard_get())
+	if newd:
+		DAT.A = newd
 
 
 # this is for the overworld greg

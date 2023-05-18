@@ -98,11 +98,12 @@ func _input(event: InputEvent) -> void:
 		# for debugging purposes
 		# remember to remove this when releasing the game
 		match event.keycode:
-			KEY_KP_1:
-				SOL.vfx_damage_number(get_viewport().get_mouse_position() - Vector2(SOL.SCREEN_SIZE / 2), "9999", Color.WHITE, randi()%3 + 1)
 			KEY_KP_0:
 				DAT.copy_data()
 				SOL.vfx_damage_number(Vector2.ZERO, "copied data", Color.WHITE, 2)
+			KEY_KP_1:
+				DAT.set_copied_data()
+				SOL.vfx_damage_number(Vector2.ZERO, "replaced data", Color.WHITE, 2)
 			KEY_KP_2:
 				print(get_viewport().gui_get_focus_owner())
 			KEY_KP_3:
