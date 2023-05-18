@@ -24,6 +24,9 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +35,7 @@ name_in_file = &"gummy_worm"
 name = &"gummy worm"
 description = "it looks quite realistic"
 texture = ExtResource("3_7ajk2")
+attack_animation = ""
 price = 30
 use = 0
 consume_on_use = true

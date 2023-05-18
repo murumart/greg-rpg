@@ -24,6 +24,9 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +35,7 @@ name_in_file = &"bike_helmet"
 name = &"bike helmet"
 description = "protects your mushy head"
 texture = ExtResource("3_xqhvh")
+attack_animation = ""
 price = 180
 use = 5
 consume_on_use = true

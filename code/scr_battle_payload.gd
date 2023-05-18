@@ -29,6 +29,7 @@ var type := Types.ATTACK
 @export var coughing_time: int
 @export var poison_level: int
 @export var poison_time: int
+@export var fire_time: int
 
 @export_group("Other")
 @export var summon_enemy := ""

@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://dme3biuc853mm"]
+
+[ext_resource type="Texture2D" uid="uid://5m1le3nirur1" path="res://sprites/vfx/spr_fire.png" id="1_bj6dc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tp1s6"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 4
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_5oawr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.122878, 0.86244), 0.0, 0.0, 0, 0, Vector2(0.534213, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.264354), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_n8m36"]
+curve = SubResource("Curve_5oawr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nt11s"]
+lifetime_randomness = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(1, 0, 0)
+emission_ring_height = 8.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 0.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, 10, 0)
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_n8m36")
+anim_speed_min = 2.81
+anim_speed_max = 4.75
+
+[sub_resource type="Animation" id="Animation_ty0gp"]
+resource_name = "defauly"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_i7u2p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8yst"]
+_data = {
+"RESET": SubResource("Animation_i7u2p"),
+"defauly": SubResource("Animation_ty0gp")
+}
+
+[node name="VfxBattleBurning" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_tp1s6")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_nt11s")
+texture = ExtResource("1_bj6dc")
+lifetime = 3.0
+explosiveness = 1.0
+randomness = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "defauly"
+libraries = {
+"": SubResource("AnimationLibrary_e8yst")
+}

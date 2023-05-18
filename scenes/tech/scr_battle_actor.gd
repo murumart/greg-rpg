@@ -36,6 +36,7 @@ var reference_to_actor_array : Array[BattleActor] = []
 var player_controlled := false
 
 @export_group("Other")
+@export var effect_immunities : Array[String] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
 
@@ -55,6 +56,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not character: return
 	if SOL.dialogue_open: return # don't run logic if dialogue is open
+	if randf() <= 0.02 and on_fire():
+		SOL.vfx("battle_burning", global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20)))
+		var tw := create_tween().set_trans(Tween.TRANS_QUINT)
+		var rand := randf_range(0.5, 1.0)
+		tw.tween_property(self, "modulate", Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
 	match state:
 		States.IDLE:
 			pass
@@ -84,12 +90,14 @@ func set_state(to: States) -> void:
 
 
 func heal(amount: float) -> void:
+	if state == States.DEAD: return
 	# limit healing to max health
 	character.health = minf(character.health + absf(amount), character.max_health)
 	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
 func hurt(amount: float) -> void:
+	if state == States.DEAD: return
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
@@ -175,6 +183,11 @@ func attack(subject: BattleActor) -> void:
 		pld.set_coughing(weapon.payload.coughing_level, weapon.payload.coughing_time)
 		pld.set_poison(weapon.payload.poison_level, weapon.payload.poison_time)
 	subject.handle_payload(pld) # the actual attack
+	# functions just in case
+	if self.has_method("_attacked_%s" % subject.character.name_in_file):
+		call("_attacked_%s" % subject.character.name_in_file)
+	if subject.has_method("_hurt_by_%s" % character.name_in_file):
+		call("_hurt_by_%s" % character.name_in_file)
 	# animations
 	if weapon != null and weapon.attack_animation.length() > 0:
 		SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
@@ -202,17 +215,25 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		targets = reference_to_actor_array.duplicate()
 	else:
 		targets = [subject]
+	# functions
+	if self.has_method("_used_spirit_%s" % id):
+		call("_used_spirit_%s" % id)
 	# loop through all targets
 	for receiver in targets:
 		if spirit.receive_animation:
 			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
-			receiver.handle_payload(spirit.payload.set_sender(self).set_defense_pierce(1.0)\
-			.set_type(BattlePayload.Types.SPIRIT))
+			receiver.handle_payload(
+				spirit.payload.set_sender(self).set_defense_pierce(1.0)\
+				.set_type(BattlePayload.Types.SPIRIT)
+			)
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
 				(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
 			).timeout
+		# function
+		if receiver.has_method("_spirit_%s_used_on" % id):
+			receiver.call("_spirit_%s_used_on" % id)
 	
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
 	if SOL.dialogue_open:
@@ -235,6 +256,9 @@ func use_item(id: String, subject: BattleActor) -> void:
 	if item.consume_on_use:
 		character.inventory.erase(id)
 	emit_message("%s used %s" % [actor_name, item.name] if subject == self else "%s used %s on %s" % [actor_name, item.name, subject.actor_name])
+	# function
+	if subject.has_method("_item_%s_used_on" % id):
+		subject.call("_item_%s_used_on" % id)
 	
 	await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 	turn_finished()
@@ -270,6 +294,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	introduce_status_effect("confusion", 1, pld.confusion_time)
 	introduce_status_effect("coughing", pld.coughing_level, pld.coughing_time)
 	introduce_status_effect("poison", pld.poison_level, pld.poison_time)
+	introduce_status_effect("fire", 1, pld.fire_time)
 	
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
@@ -288,11 +313,15 @@ func handle_payload(pld: BattlePayload) -> void:
 func status_effect_update() -> void:
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
+		# remove if immune
+		if e in effect_immunities:
+			status_effects[e] = {}
 		# effects run out
 		effect["duration"] = effect.get("duration", 1) - 1
 		if effect.get("duration", 1) < 1:
 			status_effects[e] = {}
 		
+		# apply damage from damaging effects
 		if e == "coughing" and effect.get("duration") > 0:
 			# coughing damage is applied by a separate battle actor because why not
 			var cougher := BattleActor.new()
@@ -304,6 +333,10 @@ func status_effect_update() -> void:
 			cougher.queue_free()
 		if e == "poison" and effect.get("duration") > 0:
 			hurt(effect.get("strength", 1) * 1.3)
+		if e == "fire" and effect.get("duration") > 0:
+			hurt(clampf(character.health * 0.08, 1, 25))
+			SOL.vfx("battle_burning", global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2)))
+			SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
@@ -315,6 +348,10 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	# between the old effect strength and length and the new effect -"-
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
 	var new_duration : int = 0 if duration < 0 else roundi((old_duration + duration / 2.0)) if old_duration != 0 else duration
+	# if immune, don't apply the effect
+	if nomen in effect_immunities and duration > 0:
+		SOL.vfx("damage_number", get_effect_center(self), {text = "immune!", color = Color.YELLOW, speed = 0.5})
+		return
 	status_effects[nomen] = {
 		"strength": new_strength,
 		"duration": new_duration
@@ -364,8 +401,13 @@ func get_team() -> Array[BattleActor]:
 
 func is_confused() -> bool:
 	if status_effects.get("confusion", {}):
-		if status_effects.get("confusion", {}).get("duration", 0) > 0:
-			return true
+		return status_effects.get("confusion", {}).get("duration", 0) > 0
+	return false
+
+
+func on_fire() -> bool:
+	if status_effects.get("fire", {}):
+			return status_effects.get("fire", {}).get("duration", 0) > 0
 	return false
 
 
