@@ -176,6 +176,8 @@ func _on_snail_timer_timeout() -> void:
 	spawn_snail()
 
 
+var mails_wo_box := 0
+
 func _on_mailbox_timer_timeout() -> void:
 	if speed < 5: return
 	mailbox_timer.start(0.5)
@@ -189,7 +191,9 @@ func _on_mailbox_timer_timeout() -> void:
 		add_child(house)
 		house.global_position.x = randi_range(200, 248)
 		house.global_position.y = randi_range(48, 52)
-	if randf() <= 0.11:
+		mails_wo_box += 1
+	if randf() <= 0.11 or mails_wo_box > 5:
+		mails_wo_box = 0
 		var mailbox : BikingMovingObject = MAIL_BOX_LOAD.instantiate()
 		mailbox.global_position = Vector2(176, 68)
 		mailbox.speed = speed
