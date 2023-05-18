@@ -1181,13 +1181,13 @@ CHOICE_LINK fishing
 DIALOGUE fisherwoman_pole_tutorial
 CHAR fisherwoman
 	oh, you're, like, going fishing?
-CHOICES yes,no
+CHOICES no,yes
 	do you need advice?
 CHOICE_LINK yes
 	it's easy, bestie:
 	use arrow keys to direct the hook...
 	...try to run into fish!
-	do not, run into walls however. you'll get stuck!
+	do not run into walls, however. you'll get stuck!
 	and don't take too long without catching anything.
 	there are others (me) waiting in line.
 	good luck!

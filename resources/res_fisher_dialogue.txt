@@ -266,5 +266,24 @@ DIALOGUE fisherman_in_hut_62
 	...you just walk into an invisible electric fence.
 
 
+DIALOGUE fisherman_in_hut_63
+	did you know? fish are just like grass.
+	as long as you are high enough level.
+
+
+DIALOGUE fisherman_in_hut_64
+	did you know? fishermen can get sad.
+
+
+DIALOGUE fisherman_in_hut_65
+	did you know? calling multiple fish "fishes" is incorrect.
+	there can only be one.
+
+
+DIALOGUE fisherman_in_hut_66
+	did you know? calling multiple fish "fishes" is incorrect.
+	"fishes" is actually the singular.
+
+
 DIALOGUE fisherman_in_hut_end
 	there are no more fish facts.
