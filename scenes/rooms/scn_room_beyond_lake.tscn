@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=41 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_siyrm"]
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
+[ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/snd_ambient_loop.ogg" id="9_4afe5"]
 
 [sub_resource type="Gradient" id="Gradient_np4ve"]
 offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
@@ -356,6 +357,13 @@ battle_info = SubResource("Resource_e7d5m")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_a56qu")
 animation = &"walk_left"
+
+[node name="AmbientLoop" type="AudioStreamPlayer2D" parent="Areas/SunSpirit"]
+stream = ExtResource("9_4afe5")
+volume_db = 2.0
+autoplay = true
+max_distance = 230.0
+attenuation = 1.51572
 
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
 position = Vector2(-373, 21)
@@ -874,3 +882,5 @@ position = Vector2(-181, 119)
 [node name="Tree115" parent="Trees" instance=ExtResource("4_qfqq5")]
 position = Vector2(114, 108)
 type = 1
+
+[connection signal="inspected" from="Areas/SunSpirit" to="." method="_on_sun_spirit_inspected"]

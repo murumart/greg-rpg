@@ -1,0 +1,212 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4afoxkfersnc"]
+
+[ext_resource type="Texture2D" uid="uid://plui5dnb4250" path="res://sprites/vfx/coolexplosion.png" id="1_qri25"]
+[ext_resource type="AudioStream" uid="uid://crv3ecsoy46a5" path="res://sounds/spirit/solar/snd_nebula.ogg" id="2_nydp2"]
+
+[sub_resource type="Gradient" id="Gradient_n2lj5"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.572148)
+colors = PackedColorArray(24.53, 21.07, 24.21, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gojon"]
+gradient = SubResource("Gradient_n2lj5")
+width = 16
+height = 16
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_wnv4h"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.209185, 0.431407, 0.498074, 0.605481, 0.679555)
+colors = PackedColorArray(1, 1, 1, 0, 4.71, 0.65, 11.64, 0.85, 0.73, 10.38, 7.86, 0.86, 0.8, 17.3, 0.61, 0.73, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nx8gd"]
+gradient = SubResource("Gradient_wnv4h")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_biqrw"]
+resource_name = "default"
+length = 10.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_nydp2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RingAround:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.034, 0.034), Vector2(1, 1), Vector2(8, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CentreStar:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.1, 1.5, 2, 2.5, 2.8, 3.3, 3.5, 3.9, 4.4, 4.9, 5.2, 5.41977, 5.61977, 6.01977, 6.51977, 7.01977, 7.31977, 7.6, 7.8, 8.2, 8.7, 9.2, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.104, 0.104), Vector2(1, 1), Vector2(0.924, 0.924), Vector2(1.121, 1.121), Vector2(0.959, 0.959), Vector2(1.134, 1.134), Vector2(0.941, 0.941), Vector2(1, 1), Vector2(0.924, 0.924), Vector2(1.121, 1.121), Vector2(0.959, 0.959), Vector2(1.134, 1.134), Vector2(0.941, 0.941), Vector2(1, 1), Vector2(0.924, 0.924), Vector2(1.121, 1.121), Vector2(0.959, 0.959), Vector2(1.134, 1.134), Vector2(0.941, 0.941), Vector2(1, 1), Vector2(0.924, 0.924), Vector2(1.121, 1.121), Vector2(0.959, 0.959), Vector2(1.134, 1.134), Vector2(0.941, 0.941), Vector2(0.104, 0.104)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RingAround:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.236508), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explode:frame")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 15]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explode:modulate")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.6, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_x1qyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingAround:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CentreStar:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.104, 0.104)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RingAround:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explode:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Explode:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vrqe"]
+_data = {
+"RESET": SubResource("Animation_x1qyd"),
+"default": SubResource("Animation_biqrw")
+}
+
+[node name="VfxStarNebula" type="Node2D"]
+
+[node name="CentreStar" type="Sprite2D" parent="."]
+scale = Vector2(0.104, 0.104)
+texture = SubResource("GradientTexture2D_gojon")
+
+[node name="Explode" type="Sprite2D" parent="."]
+texture = ExtResource("1_qri25")
+hframes = 4
+vframes = 4
+region_rect = Rect2(143, 143, 100, 101)
+
+[node name="RingAround" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_nx8gd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_0vrqe")
+}

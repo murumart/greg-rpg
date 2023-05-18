@@ -1,8 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dknu48mwph60"]
+[gd_scene load_steps=14 format=3 uid="uid://dknu48mwph60"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_0hgwu"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
 [ext_resource type="Texture2D" uid="uid://dgr3wuk3enp53" path="res://sprites/characters/battle/sunspirit/spr_sunspirit.png" id="2_sivrd"]
 [ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="3_g30y0"]
+
+[sub_resource type="Gradient" id="Gradient_ln5vb"]
+offsets = PackedFloat32Array(0, 0.191111, 0.534248, 0.828366, 0.949281, 0.952549)
+colors = PackedColorArray(1, 1, 1, 1, 1.19, 1.36, 0.35, 1, 4.71, 0, 0, 1, 5.97, 0, 0.01, 1, 1.23, 0.27, 0.22, 1, 2.83, 2.21, 2.2, 1)
+
+[sub_resource type="Curve" id="Curve_m7siq"]
+max_value = 4.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.922957, 4), 8.41718, 8.41718, 0, 0, Vector2(0.947, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_8g0h2"]
 offsets = PackedFloat32Array(0, 0.380194, 1)
@@ -403,82 +412,70 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Puppet/Pivot:scale")
+tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(-6, -13)]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
+tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-6, -13)]
+"values": [0.0]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
+tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
 }
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
+tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [32.0]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
+tracks/36/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:skew")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [32.0]
+"values": [0.0]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:skew")
+tracks/37/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:scale")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/38/type = "value"
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:scale")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -863,58 +860,46 @@ tracks/30/keys = {
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("Puppet/Pivot:scale")
+tracks/31/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
 tracks/31/interp = 2
 tracks/31/loop_wrap = true
 tracks/31/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/32/type = "value"
-tracks/32/imported = false
-tracks/32/enabled = true
-tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
-tracks/32/interp = 2
-tracks/32/loop_wrap = true
-tracks/32/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-6, -13), Vector2(-2, -14), Vector2(-10, -9), Vector2(-7, -13), Vector2(-6, -13)]
 }
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
-tracks/33/interp = 4
-tracks/33/loop_wrap = true
-tracks/33/keys = {
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
+tracks/32/interp = 4
+tracks/32/loop_wrap = true
+tracks/32/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.25374, -0.466753, -0.0489361, 0.0]
 }
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
-tracks/34/interp = 2
-tracks/34/loop_wrap = true
-tracks/34/keys = {
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
+tracks/33/interp = 2
+tracks/33/loop_wrap = true
+tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
-tracks/35/interp = 2
-tracks/35/loop_wrap = true
-tracks/35/keys = {
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
+tracks/34/interp = 2
+tracks/34/loop_wrap = true
+tracks/34/keys = {
 "times": PackedFloat32Array(0, 0.52, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -1312,58 +1297,46 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Puppet/Pivot:scale")
+tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
 tracks/32/interp = 2
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
-tracks/33/interp = 2
-tracks/33/loop_wrap = true
-tracks/33/keys = {
 "times": PackedFloat32Array(0, 0.9, 2.7, 3.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-6, -13), Vector2(-6, -13.3505), Vector2(-6, -10.3104), Vector2(-6, -10.5443)]
 }
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
-tracks/34/interp = 4
-tracks/34/loop_wrap = true
-tracks/34/keys = {
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
+tracks/33/interp = 4
+tracks/33/loop_wrap = true
+tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
-tracks/35/interp = 2
-tracks/35/loop_wrap = true
-tracks/35/keys = {
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
+tracks/34/interp = 2
+tracks/34/loop_wrap = true
+tracks/34/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/36/type = "value"
-tracks/36/imported = false
-tracks/36/enabled = true
-tracks/36/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
-tracks/36/interp = 2
-tracks/36/loop_wrap = true
-tracks/36/keys = {
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
+tracks/35/interp = 2
+tracks/35/loop_wrap = true
+tracks/35/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1759,22 +1732,10 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Puppet/Pivot:scale")
+tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
 tracks/32/interp = 2
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
-tracks/33/interp = 2
-tracks/33/loop_wrap = true
-tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -2171,82 +2132,70 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Puppet/Pivot:scale")
+tracks/32/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
 tracks/32/interp = 2
 tracks/32/loop_wrap = true
 tracks/32/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray/Rotator:speed")
-tracks/33/interp = 2
-tracks/33/loop_wrap = true
-tracks/33/keys = {
 "times": PackedFloat32Array(0, 1.1, 2),
 "transitions": PackedFloat32Array(1, 3.4822, 1),
 "update": 0,
 "values": [32.0, 400.0, 32.0]
 }
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:skew")
-tracks/34/interp = 4
-tracks/34/loop_wrap = true
-tracks/34/keys = {
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:skew")
+tracks/33/interp = 4
+tracks/33/loop_wrap = true
+tracks/33/keys = {
 "times": PackedFloat32Array(0, 0.7, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.729548, 0.0]
 }
-tracks/35/type = "value"
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:scale")
-tracks/35/interp = 2
-tracks/35/loop_wrap = true
-tracks/35/keys = {
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray:scale")
+tracks/34/interp = 2
+tracks/34/loop_wrap = true
+tracks/34/keys = {
 "times": PackedFloat32Array(0.5, 1.2, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(3, 1), Vector2(1, 1)]
 }
-tracks/36/type = "value"
-tracks/36/imported = false
-tracks/36/enabled = true
-tracks/36/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
-tracks/36/interp = 2
-tracks/36/loop_wrap = true
-tracks/36/keys = {
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Puppet/Pivot/Pelvis/Blublub:position")
+tracks/35/interp = 2
+tracks/35/loop_wrap = true
+tracks/35/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-6, -13), Vector2(-5, -16.625), Vector2(-7, -12.2381), Vector2(-4, -14.0259), Vector2(-6, -13)]
 }
-tracks/37/type = "value"
-tracks/37/imported = false
-tracks/37/enabled = true
-tracks/37/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
-tracks/37/interp = 1
-tracks/37/loop_wrap = true
-tracks/37/keys = {
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Puppet/Pivot/Pelvis/Blublub:rotation")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-tracks/38/type = "value"
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/keys = {
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Puppet/Pivot/Pelvis/Blublub:scale")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -2263,11 +2212,14 @@ _data = {
 }
 
 [node name="SunSpirit" type="Node2D" node_paths=PackedStringArray("animator")]
-script = ExtResource("1_0hgwu")
+script = ExtResource("1_l2g0k")
+mod_gradient = SubResource("Gradient_ln5vb")
+size_curve = SubResource("Curve_m7siq")
 animator = NodePath("Animations")
 toughness = 1.0
 altruism = 0.0
 xp_multiplier = 4.0
+effect_immunities = Array[String](["fire"])
 
 [node name="Puppet" type="Node2D" parent="."]
 
