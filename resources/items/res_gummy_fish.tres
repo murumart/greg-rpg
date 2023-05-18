@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cv50112idaadk"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_aw1dr"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_k3eld"]
+[ext_resource type="Texture2D" uid="uid://dklac6eupx7id" path="res://sprites/items/spr_item_gummy_fish.png" id="3_f8mt3"]
+
+[sub_resource type="Resource" id="Resource_dr2tg"]
+script = ExtResource("1_k3eld")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 10.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 27.0
+attack_increase = 0.0
+attack_increase_time = 0
+defense_increase = 0.0
+defense_increase_time = 0
+speed_increase = 0.0
+speed_increase_time = 0
+confusion_time = 0
+coughing_level = 0
+coughing_time = 0
+poison_level = 0
+poison_time = 0
+fire_time = 0
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_aw1dr")
+name_in_file = &""
+name = &"gummy fish"
+description = "it glows in the dark!"
+texture = ExtResource("3_f8mt3")
+attack_animation = ""
+price = 60
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_dr2tg")
