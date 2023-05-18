@@ -202,6 +202,7 @@ emitting = false
 amount = 24
 process_material = SubResource("ParticleProcessMaterial_gsq6i")
 texture = ExtResource("2_kl3y2")
+local_coords = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0qawy")
