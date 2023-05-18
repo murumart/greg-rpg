@@ -87,10 +87,10 @@ func health_perc() -> float:
 
 
 # xp to get to the specified level
-func xp2lvl(lvl: int) -> float:
+func xp2lvl(lvl: int) -> int:
 	var lvlpow := lvl**1.8
 	var lvldiv := lvlpow/55.0
-	return lvl * 1.3 + lvldiv
+	return roundi(lvl * 1.3 + lvldiv)
 
 
 # currently only greg can functionally gain xp and level up
@@ -195,18 +195,18 @@ func set_experience(to: int) -> void:
 	experience = to
 
 
-# defeated characters are stored in the format name_amount
-# like [grass_2, chimney_3, greg_220]
+# defeated characters are stored in the format name:amount
+# like [grass:2, chimney:3, greg:220]
 func add_defeated_character(nimi : StringName) -> void:
 	var found_in_array := false
 	for i in defeated_characters:
 		if i.contains(nimi):
 			found_in_array = true
-			var number = int(i.lstrip(nimi).lstrip(&"_"))
+			var number = int(i.lstrip(nimi).lstrip(&":"))
 			defeated_characters.erase(i)
-			defeated_characters.append(StringName(nimi + &"_" + str(number + 1)))
+			defeated_characters.append(StringName(nimi + &":" + str(number + 1)))
 	if not found_in_array:
-		defeated_characters.append(nimi + &"_1")
+		defeated_characters.append(nimi + &":1")
 
 
 func add_defeated_characters(them: Array) -> void:
@@ -214,7 +214,7 @@ func add_defeated_characters(them: Array) -> void:
 		var string := a as String
 		var nimi := ""
 		for i in string:
-			if i == "_": break
+			if i == ":": break
 			nimi += i
 		add_defeated_character(nimi)
 
@@ -222,7 +222,7 @@ func add_defeated_characters(them: Array) -> void:
 func get_defeated_character(nimi: StringName) -> int:
 	for i in defeated_characters:
 		if i.contains(nimi):
-			var number := int(i.lstrip(nimi).lstrip(&"_"))
+			var number := int(i.lstrip(nimi).lstrip(&":"))
 			return number
 	return 0
 
