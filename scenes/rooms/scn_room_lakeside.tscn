@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=53 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -81,9 +81,15 @@ type = 0
 property = "range 2,16"
 chance = 0.392
 
+[sub_resource type="Resource" id="Resource_mc386"]
+script = ExtResource("7_7ppah")
+type = 1
+property = "gummy_fish"
+chance = 0.3
+
 [sub_resource type="Resource" id="Resource_k01d4"]
 script = ExtResource("8_ecjdo")
-rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt")])
+rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt"), SubResource("Resource_mc386")])
 
 [sub_resource type="Resource" id="Resource_o50vv"]
 script = ExtResource("9_8d332")
@@ -1002,7 +1008,7 @@ type = 1
 line_length = 25
 
 [node name="Fisherman9" parent="Fishermen" instance=ExtResource("8_j6fv8")]
-position = Vector2(-344, -121)
+position = Vector2(-345, -121)
 type = 2
 line_length = 34
 flip = true

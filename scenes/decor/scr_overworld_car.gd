@@ -20,6 +20,7 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @export_color_no_alpha var color := Color(1, 1, 1, 1)
 
 var target := Vector2()
+var current_target := 0
 var velocity := Vector2()
 
 var battle_info : BattleInfo
@@ -36,11 +37,11 @@ func _ready() -> void:
 		$VroomVroom.stop()
 	collision_area.body_entered.connect(_on_collided_with_player)
 	position = DAT.get_data(save_key_name("position"), position)
-	target = DAT.get_data(save_key_name("target"), target)
+	current_target = DAT.get_data(save_key_name("current_target"), current_target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
 	.set_music("overrun").set_death_reason("car")
 	set_color(color)
-	new_target()
+	set_target(0)
 
 
 func _physics_process(delta: float) -> void:
@@ -50,17 +51,16 @@ func _physics_process(delta: float) -> void:
 		turn(int(global_position.angle_to_point(target)))
 		# once reached the target
 		if global_position.distance_squared_to(target) < 2:
-			new_target()
+			set_target(1)
 
 
-func new_target() -> void:
+func set_target(add: int) -> void:
 	if not moves: return
 	var path_points := path_container.get_children()
 	if path_points:
-		var current := at_which_path_point()
-		var current_index := path_points.find(current)
-		var next_index := wrapi(current_index + 1, 0, path_points.size())
-		target = (path_points[next_index].global_position)
+		var current := path_points[current_target]
+		current_target = wrapi(current_target + add, 0, path_points.size())
+		target = (path_points[current_target].global_position)
 
 
 # this implementation means there should be plenty of nodes in the path
@@ -95,7 +95,7 @@ func set_color(to: Color) -> void:
 
 func _save_me() -> void:
 	DAT.set_data(save_key_name("position"), position)
-	DAT.set_data(save_key_name("target"), target)
+	DAT.set_data(save_key_name("current_target"), current_target)
 
 
 func save_key_name(key: String) -> String:

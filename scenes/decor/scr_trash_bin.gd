@@ -29,6 +29,7 @@ func _on_interaction_area_on_interact() -> void:
 			DAT.grant_silver(silver)
 		if (item.length() < 1) and (not bool(silver)):
 			SOL.dialogue("nothing")
+		DAT.incri("trashcans_emptied", 1)
 
 
 func set_full(to: bool) -> void:

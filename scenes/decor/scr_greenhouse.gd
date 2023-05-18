@@ -4,7 +4,7 @@ extends Node2D
 
 var zoom := 1.0
 
-@export var grows_in_seconds := 300
+@export var grows_in_seconds := 600
 
 var player : PlayerOverworld
 
@@ -74,6 +74,7 @@ func pleasant() -> void:
 			SOL.dialogue("greenhouse_heal_greg_big")
 			set_vegetables(false)
 			DAT.set_data(save_key_name("vegs_eaten_second"), DAT.seconds)
+			DAT.incri("greenhouses_eaten", 1)
 	else:
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).mostly_heal()
@@ -83,6 +84,7 @@ func pleasant() -> void:
 			SOL.dialogue("greenhouse_heal_party_small")
 		else:
 			SOL.dialogue("greenhouse_heal_greg_small")
+		DAT.incri("greenhouses_slept", 1)
 
 
 func set_vegetables(to: bool) -> void:
