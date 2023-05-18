@@ -10,6 +10,7 @@ altruism = 0.0
 vaimulembesus = 0.361
 default_intent = 3
 can_flee = true
+effect_immunities = Array[String](["fire"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-11, -8)

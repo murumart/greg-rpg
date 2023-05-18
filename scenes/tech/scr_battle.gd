@@ -100,6 +100,7 @@ var f := 0
 @export var party_cheat_defense := 0.0
 @export var party_cheat_speed := 0.0
 @export var party_add_spirits : Array[String] = []
+@export var party_add_items : Array[String] = []
 
 
 func _ready() -> void:
@@ -395,6 +396,7 @@ func _on_act_finished(actor: BattleActor) -> void:
 
 # some actor has been killed
 func _on_actor_died(actor: BattleActor) -> void:
+	if if_end(): return
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
@@ -410,6 +412,7 @@ func _on_actor_died(actor: BattleActor) -> void:
 
 # some actor has fled the fight
 func _on_actor_fled(actor: BattleActor) -> void:
+	if if_end(): return
 	if actor in party:
 		pass
 	if actor in enemies:
@@ -726,6 +729,8 @@ func apply_cheats() -> void:
 	print("applying cheats")
 	for i in party:
 		i.character.level_up(party_cheat_levelup)
+		i.character.health = i.character.max_health
+		i.character.magic = i.character.max_magic
 		if party_cheat_attack:
 			i.character.attack = party_cheat_attack
 		if party_cheat_defense:
@@ -741,6 +746,9 @@ func apply_cheats() -> void:
 		if party_add_spirits:
 			for j in party_add_spirits:
 				i.character.spirits.append(j)
+		if party_add_items:
+			for j in party_add_items:
+				i.character.inventory.append(j)
 
 
 # load info from battle info

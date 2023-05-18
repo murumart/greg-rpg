@@ -8,6 +8,7 @@ script = ExtResource("1_kkb43")
 effect_center = Vector2i(0, -20)
 toughness = 0.755
 altruism = 0.098
+effect_immunities = Array[String](["coughing"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
