@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 			process_tilemap()
 			# darker as it gets deeper
 			set_water_color(Color("#0054b549").lerp(Color("000e1c49"), remap(depth, 0, 30000, 0.0, 1.0)))
-			time_left -= maxf(delta * (time_left * 0.66), delta * 0.5) * float(bool(fish_caught))
+			time_left -= maxf(delta * (time_left * 0.55), delta * 0.5) * float(bool(fish_caught))
 			time_left = minf(time_left, 40.0)
 			if time_left <= 0.0:
 				SND.play_sound(SND_TMOUT)

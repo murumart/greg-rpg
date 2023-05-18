@@ -9,8 +9,8 @@ shader = ExtResource("2_yqy35")
 shader_parameter/speed = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcg6s"]
-radius = 19.0
-height = 50.0
+radius = 23.0
+height = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8485c"]
 radius = 7.0
@@ -248,7 +248,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
 editor_description = "among us
 "
-position = Vector2(0, 5)
+position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_qcg6s")
 
 [node name="WallrunArea" type="Area2D" parent="."]
