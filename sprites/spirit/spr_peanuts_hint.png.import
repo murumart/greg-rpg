@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6u4gnen30tqb"
-path="res://.godot/imported/battle.png-62af06e7c0f1174693cb2c06c29ccf16.ctex"
+uid="uid://4p8hh8jjuuro"
+path="res://.godot/imported/spr_peanuts_hint.png-0a94bca634ac468bcd8d4494d1294c1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/battle/grandma/battle.png"
-dest_files=["res://.godot/imported/battle.png-62af06e7c0f1174693cb2c06c29ccf16.ctex"]
+source_file="res://sprites/spirit/spr_peanuts_hint.png"
+dest_files=["res://.godot/imported/spr_peanuts_hint.png-0a94bca634ac468bcd8d4494d1294c1a.ctex"]
 
 [params]
 

@@ -59,7 +59,7 @@ loop = true
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
 party_cheat_levelup = 60
-party_cheat_health = 87667.0
+party_add_spirits = Array[String](["peanuts"])
 party_add_items = Array[String](["lighter"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

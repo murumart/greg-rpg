@@ -1,16 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://dknu48mwph60"]
+[gd_scene load_steps=15 format=3 uid="uid://dknu48mwph60"]
 
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
 [ext_resource type="Texture2D" uid="uid://dgr3wuk3enp53" path="res://sprites/characters/battle/sunspirit/spr_sunspirit.png" id="2_sivrd"]
 [ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="3_g30y0"]
 
 [sub_resource type="Gradient" id="Gradient_ln5vb"]
-offsets = PackedFloat32Array(0, 0.191111, 0.534248, 0.828366, 0.949281, 0.952549)
-colors = PackedColorArray(1, 1, 1, 1, 1.19, 1.36, 0.35, 1, 4.71, 0, 0, 1, 5.97, 0, 0.01, 1, 1.23, 0.27, 0.22, 1, 2.83, 2.21, 2.2, 1)
+offsets = PackedFloat32Array(0, 0.191111, 0.814676, 0.861439, 0.949281, 0.952549)
+colors = PackedColorArray(1, 1, 1, 1, 1.19, 1.36, 0.35, 1, 4.71, 0, 0, 1, 31.13, 0, 0.01, 1, 1.23, 0.27, 0.22, 1, 2.83, 2.21, 2.2, 1)
 
 [sub_resource type="Curve" id="Curve_m7siq"]
 max_value = 4.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.922957, 4), 8.41718, 8.41718, 0, 0, Vector2(0.947, 0.2), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.95, 4), 0.0, 0.0, 0, 0, Vector2(1, 0.459331), 8.41718, 8.41718, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_m4gfb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.745578, 0.842504), -0.560638, -0.560638, 0, 0, Vector2(1, 0.513557), -2.2591, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_8g0h2"]
@@ -2215,6 +2219,7 @@ _data = {
 script = ExtResource("1_l2g0k")
 mod_gradient = SubResource("Gradient_ln5vb")
 size_curve = SubResource("Curve_m7siq")
+music_pitch_curve = SubResource("Curve_m4gfb")
 animator = NodePath("Animations")
 toughness = 1.0
 altruism = 0.0

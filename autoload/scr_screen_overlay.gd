@@ -125,7 +125,7 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 
 
 # spawn vfx effects
-func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
+func vfx(nomen: String, pos := Vector2(), options := {}) -> Node:
 	# the nomen must be the filename
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = 100
@@ -158,6 +158,7 @@ func vfx(nomen: String, pos := Vector2(), options := {}) -> void:
 				effect.queue_free()
 				
 		, CONNECT_ONE_SHOT)
+	return effect
 
 
 func clear_vfx() -> void:

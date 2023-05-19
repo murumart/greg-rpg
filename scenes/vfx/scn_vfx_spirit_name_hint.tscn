@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn42modbosehc"]
+
+[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_spirit_name_hint.gd" id="1_s5mtt"]
+[ext_resource type="SpriteFrames" uid="uid://ddek65mauc7ec" path="res://scenes/vfx/sfr_spirit_peanuts.tres" id="3_fqoer"]
+[ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ogb4b"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lkvja"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_wd4ws"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.189163, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7chpf"]
+gradient = SubResource("Gradient_wd4ws")
+width = 16
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y2785"]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 3.54
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 33.11
+angular_velocity_min = -57.22
+angular_velocity_max = 57.22
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+color_ramp = SubResource("GradientTexture1D_7chpf")
+anim_speed_min = 1.0
+anim_speed_max = 3.0
+
+[node name="SpiritNameHint" type="Node2D"]
+script = ExtResource("1_s5mtt")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_lkvja")
+process_material = SubResource("ParticleProcessMaterial_y2785")
+texture = ExtResource("3_ogb4b")
+fixed_fps = 6
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("3_fqoer")
+frame_progress = 0.628228
+
+[node name="Label" type="Label" parent="."]
+offset_left = -56.0
+offset_top = 2.0
+offset_right = 56.0
+offset_bottom = 13.0
+text = "hi"
+horizontal_alignment = 1

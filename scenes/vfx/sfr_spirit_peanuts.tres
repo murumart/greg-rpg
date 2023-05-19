@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://ddek65mauc7ec"]
+
+[ext_resource type="Texture2D" uid="uid://4p8hh8jjuuro" path="res://sprites/spirit/spr_peanuts_hint.png" id="1_h7xmd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ketld"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ol5c"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1de47"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byxqf"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvyxv"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a4nt"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jp5d"]
+atlas = ExtResource("1_h7xmd")
+region = Rect2(0, 96, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ketld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ol5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1de47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byxqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvyxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a4nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jp5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]

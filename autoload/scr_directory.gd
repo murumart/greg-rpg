@@ -47,6 +47,11 @@ func enemy_scene_exists(name_in_file: String) -> bool:
 	return name_in_file in dir
 
 
+func spirit_hint_exists(name_in_file: String) -> bool:
+	var dir := get_dir_contents("res://scenes/vfx/", "sfr_spirit_")
+	return name_in_file in dir
+
+
 # this feels a bit redundant but the complain functionality might be useful
 func file_exists(path, complain := false) -> bool:
 	if FileAccess.file_exists(path):

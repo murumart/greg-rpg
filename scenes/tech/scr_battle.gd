@@ -11,7 +11,9 @@ signal player_finished_acting
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["sun_spirit"]).\
-set_music("entirely_just").set_party(["greg"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("store")
+set_music("preturberance").set_party(["greg", "abiss"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("store")
+
+var play_victory_music := true
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -171,16 +173,17 @@ func load_battle(info: BattleInfo) -> void:
 	# second argument of info.get_ is the default value
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
-	for e in info.get_("enemies", []):
+	for e in info.enemies:
 		add_enemy(e)
-	set_background(info.get_("background", "bikeghost"))
-	death_reason = info.get_("death_reason", "default")
-	SND.play_song(info.get_("music", ""), 1.0, {start_volume = 0, play_from_beginning = true})
+	set_background(info.background)
+	death_reason = info.death_reason
+	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres").duplicate(true)
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
+	play_victory_music = info.victory_music
 	loading_battle = false
 
 
@@ -308,6 +311,7 @@ func go_back_a_menu() -> void:
 			open_list_screen()
 			SND.menusound(BACK_PITCH)
 	highlight_selected_enemy()
+	erase_floating_spirits()
 
 
 # fill menus with buttons (menus to select actors and items and such)
@@ -481,6 +485,7 @@ func open_main_actions_screen() -> void:
 	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
 	$%ScreenMainActions.show()
 	attack_button.grab_focus()
+	erase_floating_spirits()
 	match doing:
 		Doings.NOTHING:
 			attack_button.grab_focus()
@@ -520,6 +525,7 @@ func open_list_screen() -> void:
 		Doings.SPIRIT:
 			load_reference_buttons(actors, list_containers, true)
 			screen_list_select.show()
+			load_floating_spirits()
 	resize_panel(60)
 	await get_tree().process_frame # <---- of course this needs to be here
 	var deferred : int = OPT.get_opt("list_button_focus_deferred")
@@ -547,6 +553,7 @@ func open_party_info_screen() -> void:
 	resize_panel(25)
 	update_party()
 	highlight_selected_enemy()
+	erase_floating_spirits()
 
 
 func open_spirit_name_screen() -> void:
@@ -625,6 +632,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 	await get_tree().create_timer(0.5).timeout
 	current_guy.turn_finished()
 	open_party_info_screen()
+	erase_floating_spirits()
 
 
 # horrible function
@@ -767,4 +775,16 @@ func append_action_history(type: String, parameters := {}) -> void:
 
 func if_end() -> bool:
 	return doing == Doings.END or doing == Doings.DONE
+
+
+func load_floating_spirits() -> void:
+	for i in current_guy.character.spirits:
+		var s := SOL.vfx("spirit_name_hint", Vector2(), {spirit = i})
+		s.add_to_group("floating_spirits")
+
+
+func erase_floating_spirits() -> void:
+	for i in get_tree().get_nodes_in_group("floating_spirits"):
+		i.del()
+
 

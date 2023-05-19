@@ -10,6 +10,7 @@ class_name BattleInfo
 @export var death_reason := "default"
 @export var start_text := ""
 @export var rewards : BattleRewards = null
+@export var victory_music := true
 
 
 func set_enemies(x: Array[String]) -> BattleInfo:

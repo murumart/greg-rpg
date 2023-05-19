@@ -50,6 +50,8 @@ func get_effect_description() -> String:
 	if payload.speed_increase:
 		text += "%s%s spd" % [Math.sign_symbol(payload.speed_increase), absf(payload.speed_increase)]
 		text += (" for %s turns\n" % payload.speed_increase_time)
+	if payload.fire_time:
+		text += "on fire for %s\n" % payload.fire_time
 	if payload.confusion_time:
 		text += "confusion for %s\n" % payload.confusion_time
 	if payload.poison_time:

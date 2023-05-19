@@ -109,7 +109,7 @@ func hurt(amount: float) -> void:
 		SND.play_sound(
 			preload("res://sounds/snd_eek.ogg") if randf() < 0.0001 and actor_name == "greg" else hurt_sound,
 			{"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1),
-			"volume": randi_range(4, 7)})
+			"volume": randi_range(-4, 1)})
 	# damage number
 	SOL.vfx(
 		"damage_number",
@@ -370,6 +370,7 @@ func turn_finished() -> void:
 func load_character(id: String) -> void:
 	var charc : Character = DAT.get_character(id).duplicate(true)
 	character = charc
+	charc.defeated_characters.clear()
 
 
 # at the end of the fight, the party will update changes to their characters

@@ -33,7 +33,7 @@ const UPGRADE_MAX := {
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
-@export var defeated_characters : Array[String] = []
+@export var defeated_characters : Dictionary
 
 @export_group("Items and Spirits")
 @export var inventory : Array[String] = []
@@ -195,28 +195,15 @@ func set_experience(to: int) -> void:
 	experience = to
 
 
-# defeated characters are stored in the format name:amount
-# like [grass:2, chimney:3, greg:220]
+# defeated characters are stored in dictionaries. i give up.
 func add_defeated_character(nimi : StringName) -> void:
-	var found_in_array := false
-	for i in defeated_characters:
-		if i.contains(nimi):
-			found_in_array = true
-			var number = int(i.lstrip(nimi).lstrip(&":"))
-			defeated_characters.erase(i)
-			defeated_characters.append(StringName(nimi + &":" + str(number + 1)))
-	if not found_in_array:
-		defeated_characters.append(nimi + &":1")
+	print("adding defeated character ", nimi)
+	defeated_characters[nimi] = defeated_characters.get(nimi, 0) + 1
 
 
-func add_defeated_characters(them: Array) -> void:
-	for a in them:
-		var string := a as String
-		var nimi := ""
-		for i in string:
-			if i == ":": break
-			nimi += i
-		add_defeated_character(nimi)
+func add_defeated_characters(them: Dictionary) -> void:
+	for a in them.keys():
+		defeated_characters[a] = defeated_characters.get(a, 0) + them[a]
 
 
 func get_defeated_character(nimi: StringName) -> int:

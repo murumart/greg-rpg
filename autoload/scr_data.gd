@@ -52,6 +52,7 @@ func _ready() -> void:
 		var libel := Label.new()
 		libel.text = "Hello world, DAT"
 		add_child(libel)
+	
 
 
 # loading chars items spirits use those export strings
@@ -180,6 +181,11 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 
 # put the save data inside a JSON string and add it to clipboard
 func copy_data() -> void:
+	save_nodes_data()
+	save_chars_to_data()
+	set_data("playtime", seconds)
+	set_data("date", Time.get_date_string_from_system())
+	set_data("time", Time.get_time_string_from_system())
 	DisplayServer.clipboard_set(var_to_str(DAT.A))
 
 

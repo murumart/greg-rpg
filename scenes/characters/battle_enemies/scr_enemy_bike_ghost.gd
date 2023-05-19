@@ -1,6 +1,7 @@
 extends BattleEnemy
 
 var said_healing_line := false
+var dead := false
 
 
 func act() -> void:
@@ -29,8 +30,10 @@ func act() -> void:
 
 
 func hurt(amount: float) -> void:
+	if dead: return
 	super.hurt(amount)
 	if is_zero_approx(character.health_perc()):
+		dead = true
 		SOL.dialogue("bike_ghost_defeat")
 		SOL.dialogue_box.changed_dialogue.connect(
 			func():

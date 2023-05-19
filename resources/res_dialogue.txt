@@ -64,6 +64,10 @@ SOUND spirit/snd_spirit_get
 	[center][color=#7799ff]%s[/color][/center]
 
 
+DIALOGUE emptyreward
+	you are not fit for a reward.
+
+
 DIALOGUE test2talk
 CHAR 
 	[color=#00ff00]blaabl blaalb blaalb.[/color]
@@ -209,7 +213,7 @@ CHAR grandma
 DIALOGUE intro_grandma_2
 CHAR grandma
 	ah, you've made a choice?
-	or you need help?
+	well? or do you need some other help?
 CHOICES bye,flowers,aboutyou,house
 	ask away!
 CHOICE_LINK bye
@@ -233,6 +237,7 @@ CHOICE_LINK aboutyou
 	i've taken the job of the town's florist...
 	every town needs one, you see.
 	and this spot, this house...
+LOOP 1
 	it was made for me!
 CHOICE_LINK house
 	i bought this house recently. what a lovely spot!
@@ -1254,7 +1259,7 @@ DIALOGUE insp_neighbour_car_2
 
 
 DIALOGUE insp_trash_road
-	the road condition looks terrible up ahead.
+	the road conditions look terrible up ahead.
 
 
 DIALOGUE insp_trashguy_1

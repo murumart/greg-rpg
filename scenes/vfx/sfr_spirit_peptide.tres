@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://de5m272bonmq0"]
+
+[ext_resource type="Texture2D" uid="uid://cm7hvwn4yjdt" path="res://sprites/spirit/spr_peptide_hint.png" id="1_5urtg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is2pl"]
+atlas = ExtResource("1_5urtg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3g25"]
+atlas = ExtResource("1_5urtg")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5s5bh"]
+atlas = ExtResource("1_5urtg")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcmdt"]
+atlas = ExtResource("1_5urtg")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km6on"]
+atlas = ExtResource("1_5urtg")
+region = Rect2(0, 64, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is2pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3g25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5s5bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcmdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km6on")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
