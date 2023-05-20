@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["sun_spirit"]).\
-set_music("preturberance").set_party(["greg", "abiss"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("store")
+set_enemies(["cat", "zerma"]).\
+set_music("catfight").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("greghouse")
 
 var play_victory_music := true
 

@@ -30,6 +30,10 @@ const DEATH_REASONS := {
 	"moron": {
 		"picture": "moron",
 		"text": ""
+	},
+	"cats": {
+		"picture": "cats",
+		"text": "meow all you want, there is no one to save you."
 	}
 }
 

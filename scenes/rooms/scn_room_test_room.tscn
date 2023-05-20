@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://dpu3mwtmn3lqt"]
+[gd_scene load_steps=87 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -28,6 +28,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cv74f40g5op00" path="res://resources/characters/sfr_bike_ghost.tres" id="22_78dn4"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="24_1hqpd"]
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="24_6r8ny"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="25_3ihr5"]
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="25_kt1if"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
@@ -41,6 +42,7 @@ music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+victory_music = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qm7cp"]
 atlas = ExtResource("13_35l7x")
@@ -331,6 +333,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 rewards = SubResource("Resource_i8jei")
+victory_music = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
 atlas = ExtResource("24_6r8ny")
@@ -801,7 +804,7 @@ sprite_frames = ExtResource("22_78dn4")
 animation = &"walk_down"
 
 [node name="SunSpirit" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("12_h5o38")]
-position = Vector2(445, -12)
+position = Vector2(199, -216)
 animated_sprite = NodePath("SunLook")
 collision_extents = Vector2i(16, 6)
 speed = 300
@@ -814,6 +817,9 @@ interact_on_touch = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_3fqop")
 animation = &"walk_left"
+
+[node name="Cat" parent="MDPS" instance=ExtResource("25_3ihr5")]
+position = Vector2(399, -50)
 
 [node name="Car2Path" type="Node2D" parent="."]
 position = Vector2(-119, 150)

@@ -10,6 +10,8 @@ extends Room
 @onready var car := $Cutscenes/ZermCar
 @onready var cutscene_node := $Cutscenes
 
+@onready var cat_spawners := [$Areas/Cats1, $Areas/Cats2, $Areas/Cats3, $Areas/Cats4,$Areas/Cats5,$Areas/Cats6,]
+
 var zerma_battle := BattleInfo.new().set_music("greg_battle").set_enemies(["zerma"]).\
 set_background("greghouse").set_start_text("you will be so educated!").\
 set_rewards(preload("res://resources/battle_rewards/res_zerma_tut_rewards.tres"))
@@ -18,6 +20,10 @@ set_rewards(preload("res://resources/battle_rewards/res_zerma_tut_rewards.tres")
 # fantastic function.
 func _ready() -> void:
 	super._ready()
+	if not (DAT.get_data("intro_cutscene_finished") and DAT.get_data("zerma_left")):
+		for i in cat_spawners:
+			i.queue_free()
+			cat_spawners.erase(i)
 	zerma.inspected.connect(_on_zerma_inspected)
 	intro_dialogue_progress = DAT.get_data("intro_dialogue_progress", 0) if not DAT.get_data("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
 	door_area.destination = ""

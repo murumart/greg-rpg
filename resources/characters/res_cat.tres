@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://drecwfro0vq7c"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_hceo8"]
+
+[resource]
+script = ExtResource("1_hceo8")
+name_in_file = &""
+name = "cat"
+info = "heeeeere kitty kitty!"
+max_health = 100.0
+health = 100.0
+max_magic = 30.0
+magic = 30.0
+level = 66
+experience = 0
+attack = 60.0
+defense = 45.0
+speed = 95.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

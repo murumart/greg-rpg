@@ -124,3 +124,33 @@ func get_dir_contents(path: String, trim: String = "") -> Array[String]:
 		printerr("path %s not good!" % path)
 		return contents
 
+
+# custom cat names can be loaded from user://greg/custom/cats.txt
+func load_cat_names() -> Array:
+	var path_internal = "res://resources/res_cats.txt"
+	var path_external = "user://greg_rpg/cats.txt"
+	var F := FileAccess
+	var fail : FileAccess
+	if F.file_exists(path_external):
+		print_debug("custom cats.txt exists")
+		fail = F.open(path_external, FileAccess.READ)
+	else: # if cats.txt in custom doesn't exist, create it
+		print_debug("custom cats.txt does not exist")
+		if not F.file_exists(path_internal):
+			printerr("cat names file does not exist")
+			return []
+		fail = F.open(path_internal, FileAccess.READ)
+		var string = fail.get_as_text()
+		fail = F.open(path_external, FileAccess.WRITE)
+		print(error_string(F.get_open_error()))
+		fail.store_string(string)
+		fail = F.open(path_external, FileAccess.READ)
+	var list := fail.get_as_text()
+	if len(list) < 1:
+		print_debug("no cat names available.")
+		return []
+	var names := list.split("\r\n")
+	print_debug("found %s cat names" % names.size())
+	return Array(names)
+
+

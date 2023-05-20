@@ -24,6 +24,10 @@ var songs := {
 		"title": "birdsong",
 		"link": "res://music/mus_birds.ogg"
 	},
+	"catfight": {
+		"title": "catfight",
+		"link": "res://music/mus_catfight.ogg"
+	},
 	"daylightthief": {
 		"title": "daylightthief",
 		"link": "res://music/mus_daylightthief.ogg",

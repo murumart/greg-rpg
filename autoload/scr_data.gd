@@ -31,6 +31,8 @@ const PHG_CYCLE := 1200
 var death_reason := "default"
 var last_save_file := 0
 
+var cat_names := []
+
 # debug
 var check_for_key := ""
 
