@@ -967,7 +967,7 @@ DIALOGUE neighbour_wife_talk_4
 DIALOGUE neighbour_wife_talk_store_1
 	yes, i'm visiting the store in my bathrobe.
 	you're the weird one for pointing it out.
-	because noone else does.
+	because no one else does.
 	it's easy to tell you're not a local.
 
 

@@ -100,6 +100,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 rewards = SubResource("Resource_k01d4")
+victory_music = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu707"]
 size = Vector2(12, 20)

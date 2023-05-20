@@ -69,7 +69,7 @@ func _ready() -> void:
 	SOL.add_ui_child(ui)
 	ui.health_bar.max_value = bike.max_health
 	bike.health_changed.connect(ui.display_health)
-	ui.display_health(bike.max_health)
+	ui.display_health(bike.health)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
 	DAT.death_reason = ""
 

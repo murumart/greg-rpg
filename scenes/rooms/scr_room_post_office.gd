@@ -45,7 +45,7 @@ func mail_man_welcome_after_biking() -> void:
 func pink_haired_girl_setup(force := false) -> void:
 	var time := wrapi(DAT.seconds, 0, DAT.PHG_CYCLE)
 	var phg := $Decoration/PHG
-	if not Math.inrange(time / 4, 300, 600) and not force:
+	if not Math.inrange(time / 4.0, 300, 600) and not force:
 		phg.queue_free()
 		return
 	if DAT.get_data("phg_progress", 0) > 3:

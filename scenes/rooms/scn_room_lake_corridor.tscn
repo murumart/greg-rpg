@@ -29,6 +29,7 @@ music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+victory_music = true
 
 [node name="LakeCorridor" type="Node2D"]
 y_sort_enabled = true

@@ -125,6 +125,7 @@ music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+victory_music = true
 
 [sub_resource type="Resource" id="Resource_jm0jg"]
 script = ExtResource("11_dsxoc")
@@ -134,6 +135,7 @@ music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+victory_music = true
 
 [sub_resource type="Resource" id="Resource_u30p0"]
 script = ExtResource("11_dsxoc")
@@ -143,6 +145,7 @@ music = "touch_me"
 party = Array[String]([])
 death_reason = "default"
 start_text = ""
+victory_music = true
 
 [node name="Town" type="Node2D"]
 y_sort_enabled = true

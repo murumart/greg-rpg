@@ -70,6 +70,7 @@ music = "preturberance"
 party = Array[String]([])
 death_reason = "default"
 start_text = "les pommes sont mures."
+victory_music = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
 atlas = ExtResource("7_y64ye")

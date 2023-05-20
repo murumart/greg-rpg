@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=29 format=3 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="8_7g8ll"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="8_gp7pc"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_qoivq"]
+[ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="9_xism4"]
 [ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_70heg"]
@@ -1083,6 +1085,7 @@ layer_4/y_sort_enabled = false
 position = Vector2(-184, -51)
 
 [node name="Areas" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
 position = Vector2(339, 232)
@@ -1112,6 +1115,46 @@ shape = SubResource("RectangleShape2D_wi2j2")
 
 [node name="Node2D" type="Node2D" parent="Areas/HouseDoor"]
 position = Vector2(0, 16)
+
+[node name="Cats1" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-24, 88)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 3
+player = NodePath("../../Greg")
+
+[node name="Cats2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-182, -37)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 4
+player = NodePath("../../Greg")
+active_range = Vector2i(10, 99)
+
+[node name="Cats3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(207, -49)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 1
+player = NodePath("../../Greg")
+
+[node name="Cats4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-26, 258)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../Greg")
+active_range = Vector2i(10, 99)
+
+[node name="Cats5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(124, 154)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../Greg")
+active_range = Vector2i(20, 99)
+
+[node name="Cats6" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(133, 29)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../Greg")
+active_range = Vector2i(20, 99)
 
 [node name="Cutscenes" type="Node2D" parent="."]
 y_sort_enabled = true

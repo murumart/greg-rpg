@@ -114,6 +114,7 @@ func heal(amount: int) -> void:
 
 
 func hurt(amount: int) -> void:
+	print(amount)
 	health = clamp(health - absi(amount), 0, max_health)
 	if health <= 0:
 		die()
