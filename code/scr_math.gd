@@ -4,6 +4,8 @@ class_name Math
 # math operations that can be useful
 # most of these are only used in like 1 place forever lol
 
+const LEVEL_UP_CURVE := preload("res://resources/res_levelup_curve.tres")
+
 
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():
@@ -62,5 +64,12 @@ static func determ_shuffle(arr : Array, rng: RandomNumberGenerator) -> Array:
 		new_array.append(x)
 		arr.erase(x)
 	return new_array
+
+
+static func mult_arr(arr: Array, x: int) -> Array:
+	var a := []
+	for i in x: a.append_array(arr)
+	return a
+	
 
 

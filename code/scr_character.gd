@@ -88,9 +88,7 @@ func health_perc() -> float:
 
 # xp to get to the specified level
 func xp2lvl(lvl: int) -> int:
-	var lvlpow := lvl**1.8
-	var lvldiv := lvlpow/55.0
-	return roundi(lvl * 1.3 + lvldiv)
+	return roundi(Math.LEVEL_UP_CURVE.sample(remap(lvl, 1, 99, 0.0, 1.0)) * lvl)
 
 
 # currently only greg can functionally gain xp and level up
