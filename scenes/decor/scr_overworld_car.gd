@@ -58,7 +58,6 @@ func set_target(add: int) -> void:
 	if not moves: return
 	var path_points := path_container.get_children()
 	if path_points:
-		var current := path_points[current_target]
 		current_target = wrapi(current_target + add, 0, path_points.size())
 		target = (path_points[current_target].global_position)
 

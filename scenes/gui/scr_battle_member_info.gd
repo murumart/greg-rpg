@@ -12,6 +12,7 @@ class_name PartyMemberInfoPanel
 
 func update(actor: BattleActor) -> void:
 	var charc := actor.character
+	portrait.modulate = actor.modulate
 	portrait.modulate.a = 1.0
 	portrait.texture = charc.portrait
 	name_label.text = str(charc.name)

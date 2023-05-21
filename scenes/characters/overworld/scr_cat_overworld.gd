@@ -1,10 +1,12 @@
 extends OverworldCharacter
 
 @onready var sprite := $CatSprite
+@export var friendly := false
 
 
 func _ready() -> void:
 	super._ready()
+	if friendly: return
 	var enemis : Array[String] = []
 	enemis.append_array(Math.mult_arr(["cat"], randi_range(1, 3)))
 	battle_info = BattleInfo.new().set_enemies(enemis).\

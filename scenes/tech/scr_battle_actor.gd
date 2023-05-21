@@ -224,7 +224,8 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
 			receiver.handle_payload(
-				spirit.payload.set_sender(self).set_defense_pierce(1.0)\
+				spirit.payload.set_sender(self).\
+				set_defense_pierce(spirit.payload.pierce_defense if spirit.payload.pierce_defense else 1.0)\
 				.set_type(BattlePayload.Types.SPIRIT)
 			)
 			# we wait a bit before applying the payload again

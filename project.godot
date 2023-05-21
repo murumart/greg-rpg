@@ -31,7 +31,10 @@ ELM="*res://autoload/scr_elements.gd"
 
 [debug]
 
+settings/crash_handler/message="Please include this when reporting the bug to Murumart."
 gdscript/warnings/standalone_expression=2
+gdscript/warnings/integer_division=0
+gdscript/warnings/standalone_ternary=2
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 [display]

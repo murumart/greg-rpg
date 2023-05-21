@@ -22,7 +22,7 @@ func _on_radio_interaction_on_interact() -> void:
 	else:
 		if randf() >= 0.95:
 			musicplayer.stream = load([
-				"res://music/mus_bike_spirit.ogg",
+				"res://music/mus_catfight.ogg",
 				"res://music/mus_arent_you_excited.ogg",
 				"res://music/mus_birds.ogg",
 				"res://music/mus_birds.ogg",

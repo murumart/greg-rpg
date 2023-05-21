@@ -58,7 +58,7 @@ loop = true
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
-party_cheat_levelup = 20
+party_cheat_levelup = 19
 party_add_spirits = Array[String](["peanuts"])
 party_add_items = Array[String](["lighter"])
 
@@ -104,7 +104,6 @@ offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -280,6 +279,7 @@ offset_bottom = 54.0
 
 [node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0

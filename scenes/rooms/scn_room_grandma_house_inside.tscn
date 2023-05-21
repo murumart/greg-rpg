@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=22 format=3 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_yjyxo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="11_b4a8j"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="12_363c6"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u00gj"]
 size = Vector2(32, 18)
@@ -99,6 +100,7 @@ panning_strength = 0.45
 bus = &"Radio Music"
 
 [node name="RadioInteraction" type="Area2D" parent="Radio"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 4
 collision_mask = 0
 input_pickable = false
@@ -392,5 +394,22 @@ gate_id = &"greghouse_inside-outside"
 player = NodePath("../../Greg")
 extents = Vector2i(7, 8)
 spawnpoint = Vector2i(0, -13)
+
+[node name="Cats" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Cat" parent="Cats" instance=ExtResource("13_wcuw7")]
+position = Vector2(25, -38)
+friendly = true
+
+[node name="Cat2" parent="Cats" instance=ExtResource("13_wcuw7")]
+position = Vector2(111, -2)
+friendly = true
+
+[node name="Cat3" parent="Cats" node_paths=PackedStringArray("chase_target") instance=ExtResource("13_wcuw7")]
+position = Vector2(167, 1)
+friendly = true
+speed = 400
+chase_target = NodePath("../../Grandma")
 
 [connection signal="on_interact" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]

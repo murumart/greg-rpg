@@ -118,6 +118,7 @@ func add_experience(amount: int, speak := false) -> void:
 
 func level_up(by := 1, overflow := false) -> void:
 	if by < 1: return
+	var curve := preload("res://resources/res_stat_add_curve.tres")
 	for t in by:
 		# max level is 99
 		if level >= 99 and not overflow: return
@@ -126,7 +127,7 @@ func level_up(by := 1, overflow := false) -> void:
 			"attack": 0, "defense": 0, "speed": 0, "max_health": 0, "max_magic": 0
 		}
 		# less chance of gaining a point in a stat as level gets higher
-		var upgrade_chance := maxf(((99 - pow(level, 2)/167.0)/100.0) - randf()*0.33, 0)
+		var upgrade_chance := curve.sample(remap(level, 1, 99, 0.0, 1.0))
 		for k in upgrades:
 			
 			var perfect_inc : float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0

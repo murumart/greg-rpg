@@ -3,6 +3,7 @@ extends Room
 @onready var intro_animator := $Cutscenes/InitialIntro
 @export var intro_dialogue_progress := 0
 @onready var room_gate := $Areas/RoomGate
+@onready var room_gate_2 := $Areas/RoomGate2
 @onready var door_area := $Areas/HouseDoor
 @onready var door_destination := "grandma_house_inside"
 
@@ -57,6 +58,7 @@ func _ready() -> void:
 		intro_animator.advance(3000)
 		zerma.global_position = Vector2(-24, 96)
 		room_gate.global_position = Vector2(3399, 232)
+		room_gate_2.global_position = Vector2(3399, 232)
 		SOL.dialogue("zerma_after_fight")
 		await SOL.dialogue_closed
 		zerma.move_to(Vector2(-15, 196))
@@ -78,6 +80,7 @@ func _on_zerma_inspected() -> void:
 				intro_animator.play("zerma_leaves")
 				DAT.set_data("zerma_left", true)
 				room_gate.global_position = Vector2(339, 232)
+				room_gate_2.global_position = Vector2(333, -168)
 				DAT.set_data("intro_cutscene_finished", true)
 				SOL.dialogue_choice = ""
 		4, 5:
@@ -86,6 +89,7 @@ func _on_zerma_inspected() -> void:
 			DAT.set_data("zerma_left", true)
 			DAT.set_data("intro_cutscene_finished", true)
 			room_gate.global_position = Vector2(339, 232)
+			room_gate_2.global_position = Vector2(333, -168)
 
 
 func intro_cutscene_dialogue() -> void:

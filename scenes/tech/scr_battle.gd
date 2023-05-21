@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["cat", "zerma"]).\
-set_music("catfight").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("greghouse")
+set_enemies(["bike_ghost",]).\
+set_music("preturberance").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 var play_victory_music := true
 
@@ -481,6 +481,12 @@ func open_main_actions_screen() -> void:
 	else:
 		attack_button.text = "tussle"
 	$%CharPortrait.texture = current_guy.character.portrait
+	# set the current guy actor node position to the portrait's position
+	# so that visual effects get displayed in a more correct position
+	party_member_panel_container.get_child(party.find(current_guy)).\
+	remote_transform.update_position = false
+	current_guy.global_position = $%CharPortrait.global_position
+	$%CharPortrait.modulate = current_guy.modulate
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
 	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
 	$%ScreenMainActions.show()
@@ -542,6 +548,8 @@ func open_list_screen() -> void:
 # the one between player acts
 func open_party_info_screen() -> void:
 	listening_to_player_input = false
+	for i in party_member_panel_container.get_children():
+		i.remote_transform.update_position = true
 	doing = Doings.NOTHING
 	held_item_id = ""
 	$%ScreenMainActions.hide()
@@ -664,9 +672,9 @@ func open_end_screen(victory: bool) -> void:
 		doing = Doings.DONE
 		listening_to_player_input = true
 	else:
-		SOL.clear_vfx()
 		DAT.death_reason = death_reason
 		await get_tree().create_timer(1.0).timeout
+		SOL.clear_vfx()
 		LTS.to_game_over_screen()
 
 

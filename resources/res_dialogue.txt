@@ -213,9 +213,8 @@ CHAR grandma
 DIALOGUE intro_grandma_2
 CHAR grandma
 	ah, you've made a choice?
-	well? or do you need some other help?
 CHOICES bye,flowers,aboutyou,house
-	ask away!
+	well? or do you need some other help?
 CHOICE_LINK bye
 	oh... i see you did not choose to buy anything.
 	but i hope to see you again soon! goodbye!
@@ -1010,7 +1009,7 @@ CHAR bike_ghost
 	one final thing.
 	you look reaaaal ugly.
 	i am doing the world a service here.
-	my task, apparently, reaches far beyond simple payment.
+	i understand my task perfectly now.
 	that is all. goodbye.
 
 
@@ -1035,6 +1034,35 @@ CHAR bike_ghost
 	you will live in guilt forever.
 	but i can help... by reducing your lifespan!
 	radiation attack!
+
+
+DIALOGUE bike_ghost_powerfulenemy_1
+CHAR bike_ghost
+	hello! hello! hi! uh, you hit quite hard!
+	but i am the [color=#aaffff]bike ghost[/color].
+	i will prevail.
+
+
+DIALOGUE bike_ghost_powerfulenemy_2
+CHAR bike_ghost
+	ow! ow!!
+	i can see why the old crone warned me about you!
+	you really are quite something!
+	but i fear her more than i fear you.
+
+
+DIALOGUE bike_ghost_powerfulenemy_3
+CHAR bike_ghost
+	i didn't want to do this...
+	but holding back is useless!
+	that's why i'm not holding back anymore!
+	this is your cue to escape! ha ha ha!
+
+
+DIALOGUE bike_ghost_powerfulenemy_outofmagic
+CHAR bike_ghost
+	...i'm out of [color=#00ffff]sp[/color].
+	[expletive redacted]
 
 
 DIALOGUE bike_ghost_afterdefeat

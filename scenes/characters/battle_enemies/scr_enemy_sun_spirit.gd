@@ -44,3 +44,7 @@ func heal(amt: float) -> void:
 	color(character.health_perc())
 
 
+func _used_spirit_flare() -> void:
+	heal(10)
+
+

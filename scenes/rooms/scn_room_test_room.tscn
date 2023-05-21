@@ -820,6 +820,7 @@ animation = &"walk_left"
 
 [node name="Cat" parent="MDPS" instance=ExtResource("25_3ihr5")]
 position = Vector2(399, -50)
+friendly = false
 
 [node name="Car2Path" type="Node2D" parent="."]
 position = Vector2(-119, 150)
