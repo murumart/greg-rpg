@@ -11,7 +11,7 @@ var IONS := {
 	},
 	"text_speak_time": {
 		"value": 0.75,
-		"range": [0.25, 2.0],
+		"range": [0.25, 1.0],
 		"default_value": 0.75
 	},
 	"content_scale_mode": {
