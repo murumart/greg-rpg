@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://cg2ohfgm6dbg3"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_gereh"]
+
+[resource]
+script = ExtResource("1_gereh")
+name_in_file = &""
+name = "naturalist"
+info = "he would like to study you under a microscope."
+max_health = 140.0
+health = 140.0
+max_magic = 100.0
+magic = 100.0
+level = 40
+experience = 0
+attack = 20.0
+defense = 60.0
+speed = 40.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

@@ -1,6 +1,7 @@
 extends Room
 
 @onready var store_door := $Houses/Store/DoorArea
+@onready var bike := $Houses/NeighbourHouse/Bike
 
 
 func _ready() -> void:
@@ -9,11 +10,17 @@ func _ready() -> void:
 	if DAT.get_data("stolen_from_store", 0) > 199:
 		store_door.destination = ""
 	
+	if not DAT.get_data("zerma_left", false):
+		DAT.set_data("intro_cutscene_finished", true)
+		DAT.set_data("zerma_left", true)
+	
 	neighbour_wife_position()
 	tarikas_lines()
 	pink_haired_girl_setup()
+	naturalist_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
+	if DAT.get_character("greg").level < 5: bike.queue_free()
 
 
 func neighbour_wife_position() -> void:
@@ -68,7 +75,12 @@ func _on_phg_inspected() -> void:
 		phg.default_lines.append("phg_%s" % progress)
 		return
 	phg.default_lines.append("phg_%s" % progress)
-	
+
+
+func naturalist_setup() -> void:
+	var left := $Other/NatureGuyLeft/NatureGuy
+	if DAT.get_character("greg").get_defeated_character("grass") > 0:
+		left.queue_free()
 
 
 func _on_trash_guy_inspected() -> void:

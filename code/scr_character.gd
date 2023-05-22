@@ -206,11 +206,7 @@ func add_defeated_characters(them: Dictionary) -> void:
 
 
 func get_defeated_character(nimi: StringName) -> int:
-	for i in defeated_characters:
-		if i.contains(nimi):
-			var number := int(i.lstrip(nimi).lstrip(&":"))
-			return number
-	return 0
+	return defeated_characters.get(nimi, 0)
 
 
 func has_spirit(type: String) -> bool:

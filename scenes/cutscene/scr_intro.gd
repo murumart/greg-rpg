@@ -12,6 +12,7 @@ var car_load := preload("res://scenes/decor/scn_overworld_car.tscn")
 @onready var ui := $UiGroup
 @onready var logo := $UiGroup/UI/Logo
 @onready var title := $UiGroup/UI/Title
+@onready var animator := $BeginningAnimation
 
 
 func _ready() -> void:
@@ -21,12 +22,27 @@ func _ready() -> void:
 	
 	SND.play_song("arent_you_excited", 2931, {play_from_beginning = true, save_audio_position = false})
 	
-	await $BeginningAnimation.animation_finished
+	await animator.animation_finished
 	
 	var tw := create_tween()
 	tw.tween_property(car, "position:y", 0.0, 1.0)
 	await tw.step_finished
-	SOL.dialogue("intro_convo")
+	SOL.dialogue("intro_convo_0")
+	await SOL.dialogue_closed
+	intro_part_2()
+
+
+func intro_part_2() -> void:
+	animator.play("part2")
+	SOL.dialogue("intro_spection_1")
+	await SOL.dialogue_closed
+	animator.play("part3")
+	SOL.dialogue("intro_spection_2")
+	await SOL.dialogue_closed
+	animator.play("part4")
+	await animator.animation_finished
+	
+	SOL.dialogue("intro_convo_1")
 	await SOL.dialogue_closed
 	exit_intro()
 
@@ -35,7 +51,7 @@ func exit_intro() -> void:
 	var tw := create_tween()
 	tw.tween_property(car, "position:y", 180, 2.0)
 	await tw.step_finished
-	SND.play_song("birds", 0.2)
+	SND.play_song("birds", 0.05)
 	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
 
 

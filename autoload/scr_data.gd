@@ -7,7 +7,7 @@ extends Node
 var A : Dictionary
 
 # loadable resources
-var character_list := ["greg", "grandma", "mail_man", "zerma", "tarikas", "cashier_nice", "cashier_mean", "fisherwoman", "bike_ghost", "grass", "car", "chimney", "kor_sten", "well", "abiss", "stabbing_fella", "shopping_cart", "moron", "fish", "sopping", "broken_fisherman", "not_fish", "sun_spirit", "cat"]
+var character_list := ["greg", "grandma", "mail_man", "zerma", "tarikas", "cashier_nice", "cashier_mean", "fisherwoman", "naturalist", "bike_ghost", "grass", "car", "chimney", "kor_sten", "well", "abiss", "stabbing_fella", "shopping_cart", "moron", "fish", "sopping", "broken_fisherman", "not_fish", "sun_spirit", "cat"]
 var character_dict := {}
 var item_list := ["bike_helmet", "rain_boot", "gummy_worm", "gummy_fish", "milkshake", "plaster", "sugar_lemon", "lighter", "tumbler", "porridge", "pocket_candy", "muesli", "mueslibar", "bread", "pills", "tape", "magnet", "bike_bell", "brick", "knife", "fish", "bike_ghost_arm", "shovel"]
 var item_dict := {}
@@ -49,12 +49,7 @@ func _ready() -> void:
 	load_items()
 	load_spirits()
 	init_data()
-	# if i accidentally run the dat scene by itself
-	if get_current_scene().get_script() == self.get_script():
-		var libel := Label.new()
-		libel.text = "Hello world, DAT"
-		add_child(libel)
-	
+	print("DAT is ready!")
 
 
 # loading chars items spirits use those export strings

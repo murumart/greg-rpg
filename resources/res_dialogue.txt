@@ -155,15 +155,31 @@ DIALOGUE battle_inspect
 	%s
 
 
-DIALOGUE intro_convo
+DIALOGUE intro_convo_0
 CHAR zerma
 	greg, wake up!
 	we are getting close to your destination!
 CHAR greg
 SPEED 0.5
 	...?
+
+
+DIALOGUE intro_spection_1
+	i had a dream this one time...
+	being driven back to a familiar place...
+	but finding things foreign there.
+
+
+DIALOGUE intro_spection_2
+	greg will be a stranger in his own home.
+	can you help him?
+	will you help him?
+	will he find his place again?
+	it all rests in your hands.
+
+
+DIALOGUE intro_convo_1
 CHAR zerma
-SPEED 1.0
 	your childhood town, greg!
 	that's where i'm taking you.
 	it's been a while, right?
@@ -172,6 +188,7 @@ INSTASKIP
 	i think 
 CHAR zerma
 	how many people can you still remember?
+	can they still remember you?
 	aren't you excited?
 	hey, look, we're almost there...
 
@@ -968,6 +985,28 @@ DIALOGUE neighbour_wife_talk_store_1
 	you're the weird one for pointing it out.
 	because no one else does.
 	it's easy to tell you're not a local.
+
+
+DIALOGUE naturalist_grass_1
+CHAR naturalist
+	hush! be careful!
+	the grass in these lands is tender.
+	causing a racket in tall grass is sure to stress it out.
+	the grass, i mean.
+	and stressed out grass might attack you.
+
+
+DIALOGUE naturalist_grass_2
+CHAR naturalist
+	i mean, it won't hurt that much...
+	in fact, it might prove to be useful practice.
+	fighting grass, i mean.
+	but i'm sure you prefer to preserve the natural beauty of this land.
+
+
+DIALOGUE naturalist_grass_3
+CHAR naturalist
+	the grass... the grass...
 
 
 DIALOGUE bike_alpha_interact_1
