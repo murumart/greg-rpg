@@ -1,214 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://lvdqg7mjwheo"]
+[gd_scene load_steps=9 format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_xetbm"]
-[ext_resource type="Script" path="res://code/scr_dialogue_line.gd" id="3_02o1n"]
 [ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="3_jg0vj"]
-[ext_resource type="Script" path="res://code/scr_dialogue.gd" id="3_kwk5e"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_so1p4"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="6_jp2ib"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_3q5xl"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="9_aaeqr"]
-
-[sub_resource type="Resource" id="Resource_m7o2u"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]hello world![/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_s4wuy"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]just kidding. dumbass[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_yjxsy"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]remember last time?[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_yugxp"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]working on the game logic was fun...[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_vjws4"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]but you ground to a halt when you had to make actual gameplay.[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_b5bui"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]what makes you think this time will be any different?[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_b2l4m"]
-script = ExtResource("3_kwk5e")
-name = &"test"
-lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_m7o2u"), SubResource("Resource_s4wuy"), SubResource("Resource_yjxsy"), SubResource("Resource_yugxp"), SubResource("Resource_vjws4"), SubResource("Resource_b5bui")])
-alias = ""
-
-[sub_resource type="Resource" id="Resource_2tu0x"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]no, i'm not talking to you, greg.[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_tcwnb"]
-script = ExtResource("3_02o1n")
-text = "[color=#00ff00]why would i ever talk to you?[/color]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_l1vqh"]
-script = ExtResource("3_kwk5e")
-name = &"test2be"
-lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_2tu0x"), SubResource("Resource_tcwnb")])
-alias = ""
-
-[sub_resource type="Resource" id="Resource_offmx"]
-script = ExtResource("3_02o1n")
-text = "[center]victory![/center]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_m10ek"]
-script = ExtResource("3_kwk5e")
-name = &"battle_victory"
-lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_offmx")])
-alias = ""
-
-[sub_resource type="Resource" id="Resource_6lgx5"]
-script = ExtResource("3_02o1n")
-text = "[center]level up![/center]"
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_3r8jb"]
-script = ExtResource("3_02o1n")
-text = "x leveled up to x."
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = &""
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-set_data = []
-
-[sub_resource type="Resource" id="Resource_3xhxu"]
-script = ExtResource("3_kwk5e")
-name = &"levelup"
-lines = Array[ExtResource("3_02o1n")]([SubResource("Resource_6lgx5"), SubResource("Resource_3r8jb")])
-alias = ""
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3s8v"]
 bg_color = Color(0, 0, 0, 1)
@@ -220,7 +18,6 @@ script = ExtResource("1_3f4vq")
 z_index = 11
 position = Vector2(0, 92)
 script = ExtResource("3_jg0vj")
-dialogues = Array[ExtResource("3_kwk5e")]([SubResource("Resource_b2l4m"), SubResource("Resource_l1vqh"), SubResource("Resource_m10ek"), SubResource("Resource_3xhxu")])
 
 [node name="DialogueBoxPanel" type="Panel" parent="DialogueBoxOrderer"]
 offset_left = 10.0
@@ -277,6 +74,7 @@ region_enabled = true
 region_rect = Rect2(16, 1, 3, 3)
 
 [node name="DialogueSound" type="AudioStreamPlayer" parent="DialogueBoxOrderer"]
+max_polyphony = 32
 bus = &"Speech"
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
