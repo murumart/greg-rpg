@@ -43,6 +43,9 @@ var convo_progress := 0
 @export var battle_info : BattleInfo
 @export var transport_to_scene := ""
 var interactions := 0
+# collision disabling
+var player_colliding := false
+var player_collision_timer := Timer.new()
 
 @export_group("Save Information")
 @export var save := true
@@ -89,8 +92,11 @@ func _ready() -> void:
 		path_timer.one_shot = true
 		path_timer.timeout.connect(_on_path_target_reached)
 		path_timer.start(movement_wait)
-	if interact_on_touch:
-		collision_detection_area.body_entered.connect(interacted.unbind(1))
+	collision_detection_area.body_entered.connect(_on_collision)
+	collision_detection_area.body_exited.connect(_on_collision_ended)
+	add_child(player_collision_timer)
+	player_collision_timer.timeout.connect(_on_collision_timer_timeout)
+	player_collision_timer.one_shot = true
 	detection_area.get_child(0).shape.radius = chase_distance
 	detection_raycast.add_exception(detection_area)
 	detection_raycast.add_exception(collision_detection_area)
@@ -131,7 +137,8 @@ func _physics_process(delta: float) -> void:
 				target_reached.emit()
 				path_timer.start(movement_wait)
 				set_state(States.IDLE)
-	
+	if player_colliding:
+		if interact_on_touch: interacted()
 	direct_walking_animation(velocity)
 
 
@@ -159,9 +166,11 @@ func interacted() -> void:
 	if battle_info:
 		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 			LTS.enter_battle(battle_info)
+			set_physics_process(false)
 			return
 	if transport_to_scene:
 		LTS.level_transition(transport_to_scene)
+		set_physics_process(false)
 		return
 
 
@@ -244,6 +253,24 @@ func _set_collision_extents(to: Vector2i) -> void:
 			var interaction_collision : CollisionShape2D = collision_detection_area.get_child(0)
 			interaction_collision.shape.size.x = to.x + 2
 			interaction_collision.shape.size.y = to.y + 2
+
+
+func _on_collision(_body: Node2D) -> void:
+	if interact_on_touch:
+		interacted()
+	player_colliding = true
+	player_collision_timer.start(2.0)
+
+
+func _on_collision_ended(_body: Node2D) -> void:
+	player_colliding = false
+	player_collision_timer.stop()
+	set_collision_layer_value(4, true)
+
+
+func _on_collision_timer_timeout() -> void:
+	set_collision_layer_value(4, not player_colliding)
+	if interact_on_touch and player_colliding: interacted()
 
 
 func set_target(to: Vector2) -> void:

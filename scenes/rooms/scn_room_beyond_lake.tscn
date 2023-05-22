@@ -345,7 +345,6 @@ max_distance = 200.0
 [node name="SunSpirit" parent="Areas" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("6_y1l2p")]
 position = Vector2(216, -59)
 animated_sprite = NodePath("SunLook")
-collision_extents = Vector2i(16, 6)
 speed = 8000
 movement_wait = 0.1
 chase_target = NodePath("../../Greg")
