@@ -168,7 +168,9 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed * text.length() * 0.05})
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
-		dialogue_sound.play()
+	else:
+		dialogue_sound.stream = preload("res://sounds/talking/snd_telegram.ogg")
+	dialogue_sound.play()
 	await textbox.speak_finished
 	if dialogue_sound:
 		dialogue_sound.stop()
