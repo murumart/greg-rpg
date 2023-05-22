@@ -2,6 +2,8 @@ extends Node
 
 # handles changing scenes
 
+signal scene_changed
+
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
 # this specifies the type of change between scenes
@@ -35,6 +37,7 @@ func change_scene_to(path: String, options := {}) -> void:
 	
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
+	scene_changed.emit()
 
 
 # change level with fancy fade
@@ -50,6 +53,7 @@ func level_transition(path: String, op := {}) -> void:
 	await SOL.fade_finished
 	DAT.save_nodes_data()
 	change_scene_to(path, op)
+	await scene_changed
 	SOL.fade_screen(
 		op.get("end_color", Color.BLACK),
 		op.get("start_color", Color(0, 0, 0, 0)),
@@ -75,6 +79,7 @@ func enter_battle(info: BattleInfo) -> void:
 	await get_tree().create_timer(3.0).timeout
 	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
+	await scene_changed
 	entering_battle = false
 	DAT.free_player("entering_battle")
 
