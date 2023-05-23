@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://djlbpod4bg6ws"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://djlbpod4bg6ws"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_12ja4"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_g6o4l"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_yee2r"]
+
+[sub_resource type="Resource" id="Resource_cnnlh"]
+script = ExtResource("1_g6o4l")
+name = "speed"
+strength = -2
+duration = 2.0
 
 [sub_resource type="Resource" id="Resource_nffp2"]
 script = ExtResource("1_12ja4")
@@ -23,6 +30,12 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_g6o4l")]([SubResource("Resource_cnnlh")])
+summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
 

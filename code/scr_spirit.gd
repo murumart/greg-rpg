@@ -41,21 +41,19 @@ func get_effect_description() -> String:
 	if payload.max_magic_percent:
 		text += "%s%s " % [Math.sign_symbol(payload.max_magic_percent), absf(payload.max_magic_percent)]
 		text += "% max sp\n"
-	if payload.attack_increase:
-		text += "%s%s atk" % [Math.sign_symbol(payload.attack_increase), absf(payload.attack_increase)]
-		text += (" for %s turns\n" % payload.attack_increase_time)
-	if payload.defense_increase:
-		text += "%s%s def" % [Math.sign_symbol(payload.defense_increase), absf(payload.defense_increase)]
-		text += (" for %s turns\n" % payload.defense_increase_time)
-	if payload.speed_increase:
-		text += "%s%s spd" % [Math.sign_symbol(payload.speed_increase), absf(payload.speed_increase)]
-		text += (" for %s turns\n" % payload.speed_increase_time)
-	if payload.fire_time:
-		text += "on fire for %s\n" % payload.fire_time
-	if payload.confusion_time:
-		text += "confusion for %s\n" % payload.confusion_time
-	if payload.poison_time:
-		text += "poison %s for %s\n" % [payload.poison_level, payload.poison_time] if payload.poison_time > 0 else "cures poison"
-	if payload.coughing_time:
-		text += "coughing %s for %s\n" % [payload.coughing_level, payload.coughing_time] if payload.coughing_time > 0 else "cures coughing"
+	for eff in payload.effects:
+		var fname := eff.name.replace("_", " ")
+		var criptions := {
+			"fire": "on fire"
+		}
+		var immuniscriptions := {}
+		var curescriptions := {
+			"fire": "fire extinguished"
+		}
+		if eff.duration < -1:
+			text += immuniscriptions.get(eff.name, fname + " immunity") + " for %s\n" % absi(eff.duration)
+		elif eff.duration == -1:
+			text += curescriptions.get(eff.name, "cures " + fname + "\n")
+		else:
+			text += criptions.get(eff.name, fname) + (" "+str(eff.strength)+" " if eff.strength != 1 else "") + " for %s\n" % eff.duration
 	return text

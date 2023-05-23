@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://b3mi0c3ckmh50"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://b3mi0c3ckmh50"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_1mvc2"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_3053g"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_vq4pm"]
+
+[sub_resource type="Resource" id="Resource_odv2u"]
+script = ExtResource("1_3053g")
+name = "poison"
+strength = 4
+duration = 8.0
 
 [sub_resource type="Resource" id="Resource_u4rop"]
 script = ExtResource("1_1mvc2")
@@ -23,6 +30,13 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 4
 poison_time = 8
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_3053g")]([SubResource("Resource_odv2u")])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]

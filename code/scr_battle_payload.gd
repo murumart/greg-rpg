@@ -19,17 +19,9 @@ var type := Types.ATTACK
 
 @export_group("Effects")
 @export var attack_increase: float
-@export var attack_increase_time: int
 @export var defense_increase: float
-@export var defense_increase_time: int
 @export var speed_increase: float
-@export var speed_increase_time: int
-@export var confusion_time: int
-@export var coughing_level: int
-@export var coughing_time: int
-@export var poison_level: int
-@export var poison_time: int
-@export var fire_time: int
+@export var effects : Array[StatusEffect] = []
 
 @export_group("Other")
 @export var summon_enemy := ""
@@ -80,38 +72,18 @@ func set_max_magic_percent(x: float) -> BattlePayload:
 	return self
 
 
-func set_attack_increase(amount: float, time: int) -> BattlePayload:
+func set_attack_increase(amount: float) -> BattlePayload:
 	attack_increase = amount
-	attack_increase_time = time
 	return self
 
 
-func set_defense_increase(amount: float, time: int) -> BattlePayload:
+func set_defense_increase(amount: float) -> BattlePayload:
 	defense_increase = amount
-	defense_increase_time = time
 	return self
 
 
-func set_speed_increase(amount: float, time: int) -> BattlePayload:
+func set_speed_increase(amount: float) -> BattlePayload:
 	speed_increase = amount
-	speed_increase_time = time
-	return self
-
-
-func set_confusion(time: int) -> BattlePayload:
-	confusion_time = time
-	return self
-
-
-func set_coughing(amount: int, time: int) -> BattlePayload:
-	coughing_level = amount
-	coughing_time = time
-	return self
-
-
-func set_poison(amount: int, time: int) -> BattlePayload:
-	poison_level = amount
-	poison_time = time
 	return self
 
 
@@ -143,3 +115,4 @@ func set_animation_on_receive(x: String) -> BattlePayload:
 func set_summon_enemy(x: String) -> BattlePayload:
 	summon_enemy = x
 	return self
+

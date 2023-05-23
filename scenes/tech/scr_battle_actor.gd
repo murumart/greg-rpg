@@ -289,13 +289,9 @@ func handle_payload(pld: BattlePayload) -> void:
 	
 	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
 	
-	introduce_status_effect("attack", pld.attack_increase, pld.attack_increase_time)
-	introduce_status_effect("defense", pld.defense_increase, pld.defense_increase_time)
-	introduce_status_effect("speed", pld.speed_increase, pld.speed_increase_time)
-	introduce_status_effect("confusion", 1, pld.confusion_time)
-	introduce_status_effect("coughing", pld.coughing_level, pld.coughing_time)
-	introduce_status_effect("poison", pld.poison_level, pld.poison_time)
-	introduce_status_effect("fire", 1, pld.fire_time)
+	for en in pld.effects:
+		if en.name.length() and en.duration:
+			introduce_status_effect(en.name, en.strength, en.duration)
 	
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
@@ -315,7 +311,7 @@ func status_effect_update() -> void:
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
 		# remove if immune
-		if e in effect_immunities:
+		if is_immune_to(e):
 			status_effects[e] = {}
 		# effects run out
 		effect["duration"] = effect.get("duration", 1) - 1
@@ -341,6 +337,9 @@ func status_effect_update() -> void:
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
+	if not nomen.length():
+		printerr("empty effect name")
+		return
 	if not nomen in status_effects.keys():
 		status_effects[nomen] = {}
 	var old_strength : float = status_effects[nomen].get("strength", 0)
@@ -349,8 +348,12 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	# between the old effect strength and length and the new effect -"-
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
 	var new_duration : int = 0 if duration < 0 else roundi((old_duration + duration / 2.0)) if old_duration != 0 else duration
+	# add immunity
+	if duration < -1:
+		introduce_status_effect(nomen + "_immunity", 1, absi(duration))
+		return
 	# if immune, don't apply the effect
-	if nomen in effect_immunities and duration > 0:
+	if is_immune_to(nomen) and duration > 0:
 		SOL.vfx("damage_number", get_effect_center(self), {text = "immune!", color = Color.YELLOW, speed = 0.5})
 		return
 	status_effects[nomen] = {
@@ -359,7 +362,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	}
 	# notify of an effect with this
 	if strength and duration:
-		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen], color = Color.YELLOW, speed = 0.5})
+		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
 
 
 func turn_finished() -> void:
@@ -409,8 +412,18 @@ func is_confused() -> bool:
 
 func on_fire() -> bool:
 	if status_effects.get("fire", {}):
-			return status_effects.get("fire", {}).get("duration", 0) > 0
+		return status_effects.get("fire", {}).get("duration", 0) > 0
 	return false
+
+
+func has_effect(what: String) -> bool:
+	if status_effects.get(what, {}):
+		return status_effects.get(what, {}).get("duration", 0) > 0
+	return false
+
+
+func is_immune_to(what: String) -> bool:
+	return what in effect_immunities or has_effect(what + "_immunity")
 
 
 func blunt_visuals(subject: BattleActor) -> void:

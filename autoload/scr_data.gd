@@ -9,7 +9,7 @@ var A : Dictionary
 # loadable resources
 var character_list := ["greg", "grandma", "mail_man", "zerma", "tarikas", "cashier_nice", "cashier_mean", "fisherwoman", "naturalist", "bike_ghost", "grass", "car", "chimney", "kor_sten", "well", "abiss", "stabbing_fella", "shopping_cart", "moron", "fish", "sopping", "broken_fisherman", "not_fish", "sun_spirit", "cat"]
 var character_dict := {}
-var item_list := ["bike_helmet", "rain_boot", "gummy_worm", "gummy_fish", "milkshake", "plaster", "sugar_lemon", "lighter", "tumbler", "porridge", "pocket_candy", "muesli", "mueslibar", "bread", "pills", "tape", "magnet", "bike_bell", "brick", "knife", "fish", "bike_ghost_arm", "shovel"]
+var item_list := ["bike_helmet", "rain_boot", "gummy_worm", "gummy_fish", "milkshake", "plaster", "sugar_lemon", "lighter", "tumbler", "porridge", "pocket_candy", "muesli", "mueslibar", "bread", "pills", "cough_syrup", "tape", "magnet", "bike_bell", "brick", "knife", "fish", "bike_ghost_arm", "shovel"]
 var item_dict := {}
 var spirit_list := ["sideeye", "hotel", "peptide", "jglove", "peanuts", "littleman", "personally", "roundup", "mooncity", "rev", "overrun", "airspace_violation", "bigger_airspace_violation", "isotoxin", "dreaming_in_green", "shopping_cart", "wli_attack", "fish_attack", "splash_attack", "hook_attack", "fish_spawn", "alpha_radio", "radiation_attack", "ghostpunches", "skystorm", "flare"]
 var spirit_dict := {}

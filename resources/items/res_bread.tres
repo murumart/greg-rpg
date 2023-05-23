@@ -24,6 +24,13 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[Resource]([])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +39,7 @@ name_in_file = &""
 name = &"bread"
 description = "a staple! but where are the toppings?"
 texture = ExtResource("3_knrfn")
+attack_animation = ""
 price = 38
 use = 0
 consume_on_use = true

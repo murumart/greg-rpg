@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://hvs1i7d4mw03"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://hvs1i7d4mw03"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_kbbrv"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_kpjo1"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="2_pj8la"]
+
+[sub_resource type="Resource" id="Resource_khoax"]
+script = ExtResource("1_kpjo1")
+name = "attack"
+strength = 12
+duration = 6.0
 
 [sub_resource type="Resource" id="Resource_5vjmp"]
 script = ExtResource("1_kbbrv")
@@ -23,6 +30,13 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_kpjo1")]([SubResource("Resource_khoax")])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]

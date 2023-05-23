@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://btyl8l6i55yng"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://btyl8l6i55yng"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_fjoe2"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_hasg6"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="2_3o6nw"]
 [ext_resource type="Texture2D" uid="uid://c885f836xxatc" path="res://sprites/items/spr_item_sugar_lemon.png" id="3_eyykw"]
+
+[sub_resource type="Resource" id="Resource_6y0xn"]
+script = ExtResource("1_hasg6")
+name = "defense"
+strength = -5
+duration = 2.0
+
+[sub_resource type="Resource" id="Resource_t54yq"]
+script = ExtResource("1_hasg6")
+name = "speed"
+strength = 16
+duration = 3.0
 
 [sub_resource type="Resource" id="Resource_cc1kh"]
 script = ExtResource("1_fjoe2")
@@ -24,6 +37,13 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_hasg6")]([SubResource("Resource_6y0xn"), SubResource("Resource_t54yq")])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -32,6 +52,7 @@ name_in_file = &"sugar_lemon"
 name = &"sugar lemon"
 description = "a lump of yellow... sugar?"
 texture = ExtResource("3_eyykw")
+attack_animation = ""
 price = 50
 use = 2
 consume_on_use = true

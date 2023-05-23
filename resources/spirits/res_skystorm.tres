@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://2jbnoyr7x16m"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://2jbnoyr7x16m"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_cbxgo"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_dfdb3"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_oxoa1"]
+
+[sub_resource type="Resource" id="Resource_yqcm0"]
+script = ExtResource("1_oxoa1")
+name = "fire"
+strength = 1
+duration = 1.0
 
 [sub_resource type="Resource" id="Resource_5ucl3"]
 script = ExtResource("1_cbxgo")
@@ -24,6 +31,10 @@ coughing_time = 0
 poison_level = 0
 poison_time = 0
 fire_time = 1
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_oxoa1")]([SubResource("Resource_yqcm0")])
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false

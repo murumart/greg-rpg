@@ -14,12 +14,11 @@ magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
 attack_increase = 0.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
@@ -28,6 +27,7 @@ name_in_file = &"pocket_candy"
 name = &"pocket candy"
 description = "from the bottom of your pocket"
 texture = ExtResource("3_ekoog")
+attack_animation = ""
 price = 12
 use = -1
 consume_on_use = true

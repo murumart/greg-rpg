@@ -24,6 +24,12 @@ coughing_level = 0
 coughing_time = 0
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[Resource]([])
+summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
 

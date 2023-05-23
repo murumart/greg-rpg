@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://dte03lofuv47r"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://dte03lofuv47r"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_1pylb"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_og4yn"]
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_oogd0"]
+
+[sub_resource type="Resource" id="Resource_thp26"]
+script = ExtResource("1_og4yn")
+name = "coughing"
+strength = 1
+duration = 4.0
 
 [sub_resource type="Resource" id="Resource_uvi0i"]
 script = ExtResource("1_1pylb")
@@ -23,6 +30,13 @@ coughing_level = 1
 coughing_time = 4
 poison_level = 0
 poison_time = 0
+fire_time = 0
+effect_name = ""
+effect_strength = 1.0
+effect_duration = 0
+effects = Array[ExtResource("1_og4yn")]([SubResource("Resource_thp26")])
+summon_enemy = ""
+animation_on_receive = ""
 reveal_enemy_info = false
 
 [resource]
