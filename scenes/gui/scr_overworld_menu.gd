@@ -98,7 +98,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					var item : Item = DAT.get_item(using_item)
 					if item.consume_on_use:
 						party(current_tab).inventory.erase(using_item)
-					SND.play_sound((item.play_sound if item.play_sound else preload("res://sounds/snd_use_item.ogg")), {volume = -10})
+					if not item.use in Item.USES_EQUIPABLE:
+						SND.play_sound((item.play_sound if item.play_sound else preload("res://sounds/snd_use_item.ogg")), {volume = -15})
 				
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit : Spirit = DAT.get_spirit(using_item)
@@ -201,8 +202,8 @@ func load_spirits() -> void:
 	var unused_spirit_array := []
 	spirit_array.append_array(party(current_tab).spirits)
 	unused_spirit_array.append_array(party(current_tab).unused_sprits)
-	load_reference_buttons(spirit_array, [used_spirit_container], {"spirit": true})
-	load_reference_buttons(unused_spirit_array, [unused_spirit_container], {"spirit": true})
+	load_reference_buttons(spirit_array, [used_spirit_container], {"spirit": true, "adjust_focus": false})
+	load_reference_buttons(unused_spirit_array, [unused_spirit_container], {"spirit": true, "adjust_focus": false})
 
 
 func grab_item_focus() -> void:
@@ -239,10 +240,6 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 	if options.get("clear", true):
 		for container in containers:
 			for c in container.get_children():
-				if c.is_connected("return_reference", _reference_button_pressed):
-					c.disconnect("return_reference", _reference_button_pressed)
-				if c.is_connected("selected_return_reference", _on_button_reference_received):
-					c.disconnect("selected_return_reference", _on_button_reference_received)
 				c.queue_free()
 	var container_nr := 0
 	for i in array.size():
@@ -265,6 +262,21 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 		containers[container_nr].add_child(refbutton)
 		refbutton.show()
 		container_nr = wrapi(container_nr + 1, 0, containers.size())
+	if not options.get("adjust_focus", true): return
+	await get_tree().process_frame
+	# loop through all buttons again
+	for i in containers.size():
+		var c = containers[i]
+		for j in c.get_child_count():
+			var k = c.get_child(j)
+			# if it's the first one in a column, make its top neighbour the
+			# last one in the previous column
+			if j == 0:
+				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
+			# if it's the last one in a column, make its top neighbour the
+			# first one in the previous column
+			if j + 1 >= c.get_child_count():
+				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
 
 
 func _reference_button_pressed(reference) -> void:

@@ -44,7 +44,7 @@ func grant(speak := true) -> void:
 	for i in spirit_pool:
 		if not DAT.get_character("greg").has_spirit(i):
 			DAT.grant_spirit(i, 0, speak)
-	if exp_pool < 1 and spirit_pool.is_empty() and item_pool.is_empty():
+	if exp_pool < 1 and spirit_pool.is_empty() and item_pool.is_empty() and silver_pool < 1:
 		print("rewards empty")
 		SOL.dialogue("emptyreward")
 	print("rewards granted :)")

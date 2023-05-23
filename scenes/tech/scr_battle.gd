@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["bike_ghost",]).\
+set_enemies(["chimney","chimney","sun_spirit"]).\
 set_music("preturberance").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
 
 var play_victory_music := true
@@ -38,7 +38,7 @@ var loading_battle := true
 @onready var ui := $UI
 
 @onready var panel : Panel = $UI/Panel
-@onready var reference_button : Button = preload("res://scenes/tech/scn_reference_button.tscn").instantiate()
+@onready var reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
 @onready var description_text : RichTextLabel = $%DescriptionText
 @onready var list_containers : Array = [$UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Left, $UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Right]
 @onready var item_list_container : Array = [$UI/Panel/ScreenItemSelect/ScrollContainer/List]
@@ -108,8 +108,6 @@ var f := 0
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start()
-	add_child(reference_button)
-	reference_button.hide()
 	for e in enemies_node.get_children():
 		e.queue_free()
 	for a in party_node.get_children():
@@ -319,10 +317,6 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 	if clear:
 		for container in containers:
 			for c in container.get_children():
-				if c.is_connected("return_reference", _reference_button_pressed):
-					c.disconnect("return_reference", _reference_button_pressed)
-				if c.is_connected("selected_return_reference", _on_button_reference_received):
-					c.disconnect("selected_return_reference", _on_button_reference_received)
 				c.queue_free()
 	var container_nr := 0
 	if current_guy.is_confused():
@@ -330,7 +324,7 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		containers.shuffle()
 	for i in array.size():
 		var reference = array[i]
-		var refbutton := reference_button.duplicate()
+		var refbutton := reference_button.instantiate()
 		refbutton.reference = reference
 		if reference is BattleActor:
 			refbutton.text = reference.actor_name
@@ -343,6 +337,16 @@ func load_reference_buttons(array: Array, containers: Array, clear := true) -> v
 		containers[container_nr].add_child(refbutton)
 		refbutton.show()
 		container_nr = wrapi(container_nr + 1, 0, containers.size())
+	container_nr = 0
+	await get_tree().process_frame
+	for i in containers.size():
+		var c = containers[i]
+		for j in c.get_child_count():
+			var k = c.get_child(j)
+			if j == 0:
+				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
+			if j + 1 >= c.get_child_count():
+				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
 
 
 # something is selected
