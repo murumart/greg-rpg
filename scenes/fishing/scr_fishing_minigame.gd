@@ -204,12 +204,25 @@ func process_tilemap() -> void:
 		var noise_value := noise.get_noise_2d(x, 10)
 		# random caves
 		if (
-				!(noise_value > -0.2 and noise_value < 0.2) and 
-				!(absi(cell.x - path_noise_value) <= 2) and 
-				randf() <= 0.95
-			) or (
-				cell.x <= -5 or cell.x >= 4
-			): rock_array.append(cell)
+			!(noise_value > -0.2 and noise_value < 0.2) and 
+			!(absi(cell.x - path_noise_value) <= 2) and 
+			randf() <= 0.95
+		) or (
+			cell.x <= -5 or cell.x >= 4
+		):
+			rock_array.append(cell)
+		else: #spawn fish
+			if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 2.0:
+				pass
+				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
+			if depth >= 7500:
+				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 16.0:
+					pass
+					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
+		# background fish
+		if randf() < depth_fish_increase_curve.sample(depth / 20_000.0):
+			pass
+			spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
 	# background
 	var bg_rock_array := []
 	for x in 12:
@@ -218,17 +231,11 @@ func process_tilemap() -> void:
 		if (noise_value > 0 and randf() <= 0.95) or (cell.x <= -5 or cell.x >= 4):
 			bg_rock_array.append(cell)
 	
+	#var time := Time.get_ticks_msec()
+	# this is a performance issue! yikes
 	tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
 	tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
-	
-	# adding fish and such
-	for x in 12:
-		var cell := Vector2i(x - 6, -ypos + 4)
-		if not tilemap.get_cell_tile_data(1, cell):
-			if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 2.0: spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
-			if depth >= 7500:
-				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 16.0: spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
-		if randf() < depth_fish_increase_curve.sample(depth / 20_000.0): spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
+	#prints(Time.get_ticks_msec() - time, "; frame ", Engine.get_frames_drawn())
 	
 	# decorations random
 	if randf() <= 0.002: kiosk_enabled = true

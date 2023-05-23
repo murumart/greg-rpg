@@ -2,7 +2,15 @@ class_name FishingFish extends Node2D
 
 # also known as the swimmy ones
 
-const FISH_TEXTURE_PATH := "res://sprites/fishing/spr_fish%s.png"
+const FISH_TEXTURES := [
+	preload("res://sprites/fishing/spr_fish1.png"),
+	preload("res://sprites/fishing/spr_fish2.png"),
+	preload("res://sprites/fishing/spr_fish3.png"),
+	preload("res://sprites/fishing/spr_fish4.png"),
+	preload("res://sprites/fishing/spr_fish5.png"),
+	preload("res://sprites/fishing/spr_fish6.png"),
+	preload("res://sprites/fishing/spr_fish7.png"),
+]
 
 var yspeed := 60
 var speed := randf_range(30, 90)
@@ -24,7 +32,7 @@ func _ready() -> void:
 	sprite.flip_h = bool(direction)
 	if sprite.material:
 		# have to duplicate to make the wave animation speeds not be the same across all fish
-		sprite.material = sprite.material.duplicate(true)
+		sprite.material = sprite.material.duplicate(false)
 		sprite.material["shader_parameter/speed"] = speed * 0.08
 	assign_value()
 
@@ -54,8 +62,8 @@ func assign_value() -> void:
 	var rarity := str(((randi() % maxi(depth, 1)) + depth) / float(depth)).count("8")
 	value = mini(roundi(pow(2, rarity / 2.0)), 11)
 	if !is_fish: return
-	if FileAccess.file_exists(FISH_TEXTURE_PATH % (rarity + 1)):
-		sprite.texture = load(FISH_TEXTURE_PATH % (rarity + 1))
+	if rarity < FISH_TEXTURES.size():
+		sprite.texture = FISH_TEXTURES[rarity]
 
 
 func explode() -> void:
