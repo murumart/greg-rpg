@@ -87,8 +87,8 @@ var songs := {
 		"link": "res://music/mus_mail_mission.ogg"
 	},
 	"preturberance": {
-		"title": "preturberance",
-		"link": "res://music/mus_preturberance.ogg"
+		"title": "perturberance",
+		"link": "res://music/mus_perturberance.ogg"
 	},
 	"overrun": {
 		"title": "overrun",
