@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://ca0jq7ubkca0l"]
+
+[ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_3qde5"]
+[ext_resource type="Texture2D" uid="uid://cubr172ay7b1l" path="res://sprites/photos/spr_sun.png" id="2_obota"]
+[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_ubha3"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qix36"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tqfuu"]
+source = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_gaxul"]
+default_input_values = [1, 0.2, 2, 0.0, 3, 0.05, 4, 0.02, 5, 1.0, 6, 0.0]
+initialized = true
+script = ExtResource("2_ubha3")
+
+[sub_resource type="VisualShader" id="VisualShader_p8wkl"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:7
+	float n_out7p0 = TIME;
+
+
+	vec2 n_out9p0;
+// DistortionUVAnimated:9
+	float n_in9p1 = 0.20000;
+	float n_in9p2 = 0.00000;
+	float n_in9p3 = 0.05000;
+	float n_in9p4 = 0.02000;
+	float n_in9p5 = 1.00000;
+	{
+		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_in9p5, n_out7p0);
+	}
+
+
+	vec4 n_out8p0;
+// Texture2D:8
+	n_out8p0 = texture(TEXTURE, n_out9p0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out8p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-379.494, 49.9367)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(420, 140)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_qix36")
+nodes/fragment/7/position = Vector2(-380, 260)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_tqfuu")
+nodes/fragment/8/position = Vector2(200, 180)
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_gaxul")
+nodes/fragment/9/position = Vector2(-80, 160)
+nodes/fragment/connections = PackedInt32Array(8, 0, 0, 0, 9, 0, 8, 0, 7, 0, 9, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abxv2"]
+shader = SubResource("VisualShader_p8wkl")
+
+[node name="BattleBackground" instance=ExtResource("1_3qde5")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_abxv2")
+position = Vector2(-31, 0)
+texture = ExtResource("2_obota")
+centered = false

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://denaopcpftxmv"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_t7jxv"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_vhkko"]
+
+[sub_resource type="Resource" id="Resource_ji8je"]
+script = ExtResource("1_t7jxv")
+health = -0.25
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_vhkko")
+name_in_file = &""
+name = &"nova"
+description = "welp! at least your death will look pretty."
+animation = &"nova"
+use_animation = &""
+receive_animation = &""
+cost = 128000
+use = 1
+reach = 1
+payload_reception_count = 2000
+payload = SubResource("Resource_ji8je")
