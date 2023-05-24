@@ -16,6 +16,12 @@ func grant(speak := true) -> void:
 	var exp_pool : int = 0
 	# interpret rewards' properties and store results in pools
 	for reward in rewards:
+		# unique rewards can only be gotten once
+		# hopefully this string key is good enough for storing them
+		if reward.unique:
+			if not str(reward) in DAT.get_data("unique_rewards", []):
+				DAT.appenda("unique_rewards", str(reward))
+			else: continue
 		var prp := reward.property
 		if not prp.length(): continue
 		var prop = process_property(prp)
