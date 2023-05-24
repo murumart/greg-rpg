@@ -74,18 +74,21 @@ script = ExtResource("7_7ppah")
 type = 0
 property = "8"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_277tt"]
 script = ExtResource("7_7ppah")
 type = 0
 property = "range 2,16"
 chance = 0.392
+unique = false
 
 [sub_resource type="Resource" id="Resource_mc386"]
 script = ExtResource("7_7ppah")
 type = 1
 property = "gummy_fish"
 chance = 0.3
+unique = false
 
 [sub_resource type="Resource" id="Resource_k01d4"]
 script = ExtResource("8_ecjdo")

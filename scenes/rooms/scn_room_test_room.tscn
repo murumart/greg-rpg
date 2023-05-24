@@ -319,6 +319,7 @@ script = ExtResource("20_3p5bt")
 type = 0
 property = ""
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_i8jei"]
 script = ExtResource("20_84hul")

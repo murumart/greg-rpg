@@ -9,7 +9,7 @@ shader = ExtResource("2_7k2wn")
 
 [node name="Grass" instance=ExtResource("1_in7mf")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_512c8")
 texture = ExtResource("2_cnoo2")
