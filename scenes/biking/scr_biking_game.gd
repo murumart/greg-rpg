@@ -7,19 +7,21 @@ const ROAD_BOUNDARIES := Rect2(Vector2(2, 116), Vector2(158, 72))
 const ROAD_LENGTH := 800.0
 const MAIL_KIOSK_INTERVAL := 200
 
-const SNAILS_UNTIL_HELL := 10
-const SNAILS_TO_ESCAPE_HELL := 120
-
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees
 @onready var background_town := $Background/Town
 @onready var background_snail_hell := $Background/SnailHellBackground
+
+@onready var debug := $UI/debug
 
 @onready var road := $Road
 var speed := 60
 
 var speed_before_inv := 0
 var speed_before_snail := 0
+
+var snails_until_hell := 10
+var snails_to_escape_hell := 120
 
 @onready var bike := $Bike
 
@@ -72,6 +74,7 @@ func _ready() -> void:
 	ui.display_health(bike.health)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
 	DAT.death_reason = ""
+	update_ui()
 
 
 func _physics_process(delta: float) -> void:
@@ -106,6 +109,10 @@ func _physics_process(delta: float) -> void:
 	# debug (rememmber to remove)
 	if Input.is_action_pressed("ui_end"):
 		distance += 60
+	
+#	debug.text = "dist: %s
+#meter: %s
+#perc: %s" % [distance, roundf(get_meter()), snappedf(get_meter() / ROAD_LENGTH, 0.01)]
 
 
 func set_speed(to: int) -> void:
@@ -303,9 +310,9 @@ func _on_snail_hit() -> void:
 	snails_hit += 1
 	update_ui()
 	SND.play_sound(preload("res://sounds/snd_biking_snail_crush.ogg"), {"pitch": randf_range(0.9, 1.2)})
-	if snails_hit >= SNAILS_UNTIL_HELL and not currently_hell:
+	if snails_hit >= snails_until_hell and not currently_hell:
 		enter_hell()
-	if currently_hell and snails_hit >= SNAILS_TO_ESCAPE_HELL:
+	if currently_hell and snails_hit >= snails_to_escape_hell:
 		print("exiting hell")
 		exit_hell()
 
@@ -364,6 +371,8 @@ func exit_hell() -> void:
 	set_speed(speed_before_snail)
 	ui.close_hell_menu()
 	snails_hit = 0
+	snails_until_hell += 10
+	snails_to_escape_hell += 20
 	SND.play_song("mail_mission", 4.0, {"skip_to": SND.get_music_playback_position()})
 	set_deferred("currently_hell", false)
 	punishment_timer.stop()

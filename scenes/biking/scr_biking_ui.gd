@@ -65,11 +65,12 @@ func display_mail(new_value: float) -> void:
 
 
 func display_snail(new_value: float) -> void:
-	snail_label.text = str(new_value)
+	snail_label.text = "%s/%s" % [new_value, game.snails_until_hell]
+	snail_label.get_parent().modulate = Color(1, 1, 1).lerp(Color(1, 0, 0), new_value / game.snails_until_hell)
 
 
 func display_hell_snail(new_value: float) -> void:
-	hell_snail_label.text = "%s/%s" % [new_value, game.SNAILS_TO_ESCAPE_HELL]
+	hell_snail_label.text = "%s/%s" % [new_value, game.snails_to_escape_hell]
 
 
 func display_hell_time(new_value: float) -> void:
@@ -77,7 +78,7 @@ func display_hell_time(new_value: float) -> void:
 
 
 func set_pointer_pos(percent: float) -> void:
-	pointer.global_position.x = remap(percent, 0.0, 1.0, road.position.x, road.position.x + road.size.x)
+	pointer.position.x = remap(percent, 0.0, 1.0, 6, 154) - 5 # nice -5 that'smy grade for this code
 	meter_counter.text = str(roundi(percent * 800))
 
 

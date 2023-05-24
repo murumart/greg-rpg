@@ -1111,6 +1111,18 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(33, 0, 14, 16)
 
+[node name="debug" type="RichTextLabel" parent="UI"]
+visible = false
+layout_mode = 0
+offset_top = 77.0
+offset_right = 60.0
+offset_bottom = 117.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "dist: 
+meter: 
+perc: "
+
 [connection signal="area_entered" from="Bike/CollisionArea" to="Bike" method="_on_collision_area_area_entered"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
