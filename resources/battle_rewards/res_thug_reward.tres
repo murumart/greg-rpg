@@ -8,24 +8,28 @@ script = ExtResource("1_e6fb7")
 type = 0
 property = "12"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_w0vb5"]
 script = ExtResource("1_e6fb7")
 type = 0
 property = "range 8,16"
 chance = 0.36
+unique = false
 
 [sub_resource type="Resource" id="Resource_knw01"]
 script = ExtResource("1_e6fb7")
 type = 1
 property = "gummy_worm"
 chance = 0.247
+unique = false
 
 [sub_resource type="Resource" id="Resource_r48nf"]
 script = ExtResource("1_e6fb7")
 type = 1
 property = "plaster"
 chance = 0.137
+unique = false
 
 [resource]
 script = ExtResource("1_1qtej")

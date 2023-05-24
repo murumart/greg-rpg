@@ -8,30 +8,35 @@ script = ExtResource("1_pd5p8")
 type = 0
 property = "12"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_f2hp2"]
 script = ExtResource("1_pd5p8")
 type = 0
 property = "range 0,12"
 chance = 0.721
+unique = false
 
 [sub_resource type="Resource" id="Resource_0v8c3"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "bread"
 chance = 0.167
+unique = false
 
 [sub_resource type="Resource" id="Resource_ccxbs"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "bread"
 chance = 0.095
+unique = false
 
 [sub_resource type="Resource" id="Resource_35lja"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "gummy_fish"
 chance = 0.224
+unique = false
 
 [resource]
 script = ExtResource("1_temya")

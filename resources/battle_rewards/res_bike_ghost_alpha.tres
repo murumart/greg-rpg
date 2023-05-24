@@ -8,12 +8,14 @@ script = ExtResource("1_xjrq1")
 type = 0
 property = "42"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_wuqat"]
 script = ExtResource("1_xjrq1")
 type = 1
 property = "bike_bell"
 chance = 1.0
+unique = false
 
 [resource]
 script = ExtResource("1_hbl6b")
