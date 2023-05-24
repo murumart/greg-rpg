@@ -11,7 +11,7 @@ var character_list := ["greg", "grandma", "mail_man", "zerma", "tarikas", "cashi
 var character_dict := {}
 var item_list := ["bike_helmet", "rain_boot", "gummy_worm", "gummy_fish", "milkshake", "plaster", "sugar_lemon", "lighter", "tumbler", "porridge", "pocket_candy", "muesli", "mueslibar", "bread", "pills", "cough_syrup", "tape", "magnet", "bike_bell", "brick", "knife", "fish", "bike_ghost_arm", "shovel"]
 var item_dict := {}
-var spirit_list := ["sideeye", "hotel", "peptide", "jglove", "peanuts", "littleman", "personally", "roundup", "mooncity", "rev", "overrun", "airspace_violation", "bigger_airspace_violation", "isotoxin", "dreaming_in_green", "shopping_cart", "wli_attack", "fish_attack", "splash_attack", "hook_attack", "fish_spawn", "alpha_radio", "radiation_attack", "ghostpunches", "skystorm", "flare"]
+var spirit_list := ["sideeye", "hotel", "peptide", "jglove", "peanuts", "littleman", "personally", "roundup", "mooncity", "rev", "overrun", "airspace_violation", "bigger_airspace_violation", "isotoxin", "dreaming_in_green", "shopping_cart", "wli_attack", "fish_attack", "splash_attack", "hook_attack", "fish_spawn", "alpha_radio", "radiation_attack", "ghostpunches", "skystorm", "flare", "nova"]
 var spirit_dict := {}
 const MAX_SPIRITS := 3
 
@@ -106,6 +106,11 @@ func incrf(key: String, amount: float) -> void:
 func incri(key: String, amount: int) -> void:
 	if log_dat_chgs(): print("intcrementing: ")
 	set_data(key, A.get(key, 0) + amount)
+
+
+func appenda(key: String, thing: Variant) -> void:
+	if log_dat_chgs(): print("adding element %s to key %s" % [thing, key])
+	set_data(key, Math.reaap(get_data(key, []), thing))
 
 
 func save_data(filename := "save.grs", overwrite := true) -> void:

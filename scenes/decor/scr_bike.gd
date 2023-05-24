@@ -37,7 +37,7 @@ func _interacted() -> void:
 					SOL.dialogue_closed.connect(
 						func():
 							LTS.enter_battle(alpha_battle_info)
-							DAT.set_data("bike_ghosts_fought", Math.reaap(fought, int(Ghosts.ALPHA)))
+							DAT.appenda("bike_ghosts_fought", int(Ghosts.ALPHA))
 					)
 			, CONNECT_ONE_SHOT)
 		else:

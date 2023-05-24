@@ -49,7 +49,7 @@ func set_store_wall_colours():
 
 func _on_item_taken(ittype: String):
 	if ittype in DAT.item_dict:
-		DAT.set_data("unpaid_items", Math.reaap(DAT.get_data("unpaid_items", []), ittype))
+		DAT.appenda("unpaid_items", ittype)
 	update_shopping_list()
 
 
