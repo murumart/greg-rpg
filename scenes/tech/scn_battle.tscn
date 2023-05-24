@@ -58,9 +58,9 @@ loop = true
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
-party_cheat_levelup = 20
+party_cheat_levelup = 60
 party_add_spirits = Array[String](["peanuts"])
-party_add_items = Array[String](["lighter", "cough_syrup"])
+party_add_items = Array[String](["lighter", "cough_syrup", "mueslibar", "mueslibar"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_l1rx6")
@@ -108,6 +108,48 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 44.0
+
+[node name="CurrentInfo" parent="UI/Panel/ScreenMainActions" instance=ExtResource("7_is2uq")]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 25.0
+
+[node name="Portrait" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="0"]
+offset_left = 2.0
+offset_right = 24.0
+texture = ExtResource("5_kl5pr")
+
+[node name="Name" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="1"]
+offset_top = 81.0
+offset_bottom = 92.0
+
+[node name="HealthBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="3"]
+self_modulate = Color(1, 1, 1, 0.388235)
+offset_left = 43.0
+offset_top = 25.0
+offset_right = 116.0
+offset_bottom = 31.0
+
+[node name="MagicBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="4"]
+self_modulate = Color(1, 1, 1, 0.388235)
+offset_left = 43.0
+offset_top = 33.0
+offset_right = 116.0
+offset_bottom = 39.0
+
+[node name="WaitBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="5"]
+offset_left = 23.0
+offset_top = 77.0
+offset_right = 53.0
+offset_bottom = 79.0
+
+[node name="EffectsContainer" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="7"]
+offset_left = 92.0
+offset_right = 127.0
 
 [node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
@@ -172,11 +214,6 @@ text_overrun_behavior = 3
 clip_text = true
 script = ExtResource("4_ht2pp")
 description = "dig through your pockets"
-
-[node name="CharPortrait" type="Sprite2D" parent="UI/Panel/ScreenMainActions"]
-unique_name_in_owner = true
-position = Vector2(56, 13)
-texture = ExtResource("5_kl5pr")
 
 [node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
@@ -276,6 +313,12 @@ offset_left = -163.0
 offset_top = 53.0
 offset_right = -5.0
 offset_bottom = 54.0
+
+[node name="EffectsContainer" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="7"]
+offset_left = -28.0
+offset_top = 28.0
+offset_right = -6.0
+offset_bottom = 50.0
 
 [node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
@@ -420,7 +463,14 @@ stream = SubResource("AudioStreamOggVorbis_m7oim")
 max_polyphony = 66
 bus = &"ECHO"
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 4
+
 [node name="SlowUpdateTimer" type="Timer" parent="."]
 wait_time = 0.07
 
+[editable path="UI/Panel/ScreenMainActions/CurrentInfo"]
 [editable path="UI/Panel/ScreenListSelect/SelectedGuy"]

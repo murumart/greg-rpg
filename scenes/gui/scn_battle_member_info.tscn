@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsrntxiwcuv2v"]
+[gd_scene load_steps=5 format=3 uid="uid://bsrntxiwcuv2v"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_qos12"]
 [ext_resource type="Script" path="res://scenes/gui/scr_battle_member_info.gd" id="2_kv8cv"]
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="3_4g8c8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oscw"]
+atlas = ExtResource("3_4g8c8")
+region = Rect2(0, 6, 6, 6)
 
 [node name="MemberInfo" type="Panel"]
 custom_minimum_size = Vector2(56, 24)
@@ -61,3 +66,37 @@ show_percentage = false
 
 [node name="RemoteTransform" type="RemoteTransform2D" parent="."]
 position = Vector2(12, 12)
+
+[node name="EffectsContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 23.0
+offset_bottom = 23.0
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")
+
+[node name="TextureRect2" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")
+
+[node name="TextureRect3" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")
+
+[node name="TextureRect4" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")
+
+[node name="TextureRect5" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")
+
+[node name="TextureRect6" type="TextureRect" parent="EffectsContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6oscw")

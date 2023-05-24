@@ -8,8 +8,8 @@
 [sub_resource type="Resource" id="Resource_abky5"]
 script = ExtResource("1_5r2v8")
 name = "coughing"
-strength = 1
-duration = -5.0
+strength = 1.0
+duration = -15
 
 [sub_resource type="Resource" id="Resource_nsjep"]
 script = ExtResource("1_udgv0")
@@ -21,20 +21,8 @@ magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
 attack_increase = 0.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
-coughing_level = 0
-coughing_time = -5
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = "coughing"
-effect_strength = 1.0
-effect_duration = -5
 effects = Array[ExtResource("1_5r2v8")]([SubResource("Resource_abky5")])
 summon_enemy = ""
 animation_on_receive = ""

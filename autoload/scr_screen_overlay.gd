@@ -128,7 +128,7 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 func vfx(nomen: String, pos := Vector2(), options := {}) -> Node:
 	# the nomen must be the filename
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
-	effect.z_index = 100
+	effect.z_index = options.get("z_index", 100)
 	# can specify custom parent node to the effect, defaults to this here SOL
 	var parent : Node = options.get("parent", self)
 	parent.add_child(effect)

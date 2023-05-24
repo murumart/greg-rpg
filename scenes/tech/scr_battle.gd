@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["chimney","chimney","sun_spirit"]).\
-set_music("preturberance").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town")
+set_enemies(["sun_spirit"]).\
+set_music("preturberance").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("sun")
 
 var play_victory_music := true
 
@@ -126,6 +126,7 @@ func _ready() -> void:
 	set_actor_states(BattleActor.States.COOLDOWN, true)
 	open_party_info_screen()
 	check_end()
+	DAT.death_reason = death_reason
 
 
 func _physics_process(_delta: float) -> void:
@@ -471,6 +472,7 @@ func _on_player_input_requested(actor: BattleActor) -> void:
 
 # choice between fighting, spirits and items
 func open_main_actions_screen() -> void:
+	var info := $%CurrentInfo
 	held_item_id = ""
 	current_target = null
 	screen_item_select.hide()
@@ -484,13 +486,12 @@ func open_main_actions_screen() -> void:
 		attack_button.text = "slay"
 	else:
 		attack_button.text = "tussle"
-	$%CharPortrait.texture = current_guy.character.portrait
 	# set the current guy actor node position to the portrait's position
 	# so that visual effects get displayed in a more correct position
 	party_member_panel_container.get_child(party.find(current_guy)).\
 	remote_transform.update_position = false
-	current_guy.global_position = $%CharPortrait.global_position
-	$%CharPortrait.modulate = current_guy.modulate
+	current_guy.global_position = info.remote_transform.global_position
+	info.update(current_guy)
 	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
 	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
 	$%ScreenMainActions.show()
@@ -676,7 +677,8 @@ func open_end_screen(victory: bool) -> void:
 		doing = Doings.DONE
 		listening_to_player_input = true
 	else:
-		DAT.death_reason = death_reason
+		if DAT.death_reason == "default":
+			DAT.death_reason = death_reason
 		await get_tree().create_timer(1.0).timeout
 		SOL.clear_vfx()
 		LTS.to_game_over_screen()
@@ -749,6 +751,9 @@ func apply_cheats() -> void:
 	print("applying cheats")
 	for i in party:
 		i.character.level_up(party_cheat_levelup)
+		for n in party_cheat_levelup:
+			if DAT.get_levelup_spirit(n):
+				i.character.spirits.append(DAT.get_levelup_spirit(n))
 		i.character.health = i.character.max_health
 		i.character.magic = i.character.max_magic
 		if party_cheat_attack:

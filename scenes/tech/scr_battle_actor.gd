@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	if not character: return
 	if SOL.dialogue_open: return # don't run logic if dialogue is open
 	if randf() <= 0.02 and on_fire():
-		SOL.vfx("battle_burning", global_position + Vector2(randf_range(-20, 20), randf_range(-20, 20)))
+		SOL.vfx("battle_burning", global_position + Vector2(randf_range(-4, 4), randf_range(-8, 16)))
 		var tw := create_tween().set_trans(Tween.TRANS_QUINT)
 		var rand := randf_range(0.5, 1.0)
 		tw.tween_property(self, "modulate", Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
@@ -220,9 +220,12 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		call("_used_spirit_%s" % id)
 	# loop through all targets
 	for receiver in targets:
+		if character.health <= 0: break
 		if spirit.receive_animation:
 			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
+			if character.health <= 0: break
+			if receiver.character.health <= 0: break
 			receiver.handle_payload(
 				spirit.payload.set_sender(self).\
 				set_defense_pierce(spirit.payload.pierce_defense if spirit.payload.pierce_defense else 1.0)\
@@ -230,7 +233,8 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			)
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
-				(maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) / float(spirit.payload_reception_count)
+				maxf((maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) /
+				float(spirit.payload_reception_count), 0.01)
 			).timeout
 		# function
 		if receiver.has_method("_spirit_%s_used_on" % id):
@@ -332,7 +336,7 @@ func status_effect_update() -> void:
 			hurt(effect.get("strength", 1) * 1.3)
 		if e == "fire" and effect.get("duration") > 0:
 			hurt(clampf(character.health * 0.08, 1, 25))
-			SOL.vfx("battle_burning", global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2)))
+			SOL.vfx("battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)))
 			SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
 
 
