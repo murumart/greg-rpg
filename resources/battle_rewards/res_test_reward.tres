@@ -8,18 +8,21 @@ script = ExtResource("1_i8w45")
 type = 0
 property = "3"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_utd52"]
 script = ExtResource("1_i8w45")
 type = 1
 property = "gummy_worm"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_x8227"]
 script = ExtResource("1_i8w45")
 type = 3
-property = "30"
+property = "30000"
 chance = 1.0
+unique = false
 
 [resource]
 script = ExtResource("1_t7do5")

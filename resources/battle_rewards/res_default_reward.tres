@@ -8,24 +8,28 @@ script = ExtResource("1_npo82")
 type = 0
 property = "1"
 chance = 1.0
+unique = false
 
 [sub_resource type="Resource" id="Resource_r8wog"]
 script = ExtResource("1_npo82")
 type = 0
 property = "1"
 chance = 0.5
+unique = false
 
 [sub_resource type="Resource" id="Resource_p2to7"]
 script = ExtResource("1_npo82")
 type = 0
 property = "1"
 chance = 0.331
+unique = false
 
 [sub_resource type="Resource" id="Resource_e5gvf"]
 script = ExtResource("1_npo82")
 type = 0
 property = ""
 chance = 0.245
+unique = false
 
 [resource]
 script = ExtResource("1_ntg3i")
