@@ -41,9 +41,7 @@ func hurt(amt: float) -> void:
 			SOL.vfx("star_nebula")
 			super.hurt(3000)
 			dead = true
-			await get_tree().create_timer(0.5).timeout
-			SND.play_song("")
-	nova_process(pow(amt, 1.5) / character.max_health)
+	nova_process(pow(amt, 1.35) / character.max_health)
 
 
 func heal(amt: float) -> void:
