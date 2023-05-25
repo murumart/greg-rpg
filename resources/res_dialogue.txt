@@ -40,7 +40,7 @@ SOUND snd_level_up
 SPEED 1
 	%s leveled up to %s.
 SOUND spirit/snd_spirit_get
-	[center][color=#7799ff]%s[/color][/center]
+	[center]the spirit [color=#7799ff]%s[/color] was found.[/center]
 
 
 DIALOGUE getitem
@@ -61,7 +61,7 @@ DIALOGUE losesilver
 
 DIALOGUE getspirit
 SOUND spirit/snd_spirit_get
-	[center][color=#7799ff]%s[/color][/center]
+	[center]the spirit [color=#7799ff]%s[/color] was found.[/center]
 
 
 DIALOGUE emptyreward
