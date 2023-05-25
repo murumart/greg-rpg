@@ -33,11 +33,15 @@ const DEATH_REASONS := {
 	},
 	"cats": {
 		"picture": "cats",
-		"text": "meow all you want, there is no one to save you."
+		"text": "[center]meow all you want, there is no one to save you."
+	},
+	"solar": {
+		"picture": "solar",
+		"text": "[center]don't fly too close."
 	},
 	"nova": {
 		"picture": "nova",
-		"text": "almost worth dying for a sight like this.",
+		"text": "[center]almost worth dying for a sight like this.",
 		"sound": ""
 	}
 }

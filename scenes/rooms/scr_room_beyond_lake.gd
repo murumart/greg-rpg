@@ -12,3 +12,7 @@ func _ready() -> void:
 func _on_sun_spirit_inspected() -> void:
 	$Areas/SunSpirit/AmbientLoop.playing = false
 	DAT.set_data("sun_spirit_engaged", true)
+
+
+
+

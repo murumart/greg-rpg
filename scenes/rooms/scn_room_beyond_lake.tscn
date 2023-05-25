@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=42 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/snd_ambient_loop.ogg" id="9_4afe5"]
+[ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
 
 [sub_resource type="Gradient" id="Gradient_np4ve"]
 offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
@@ -65,10 +66,10 @@ normal = Vector2(-1, 0)
 [sub_resource type="Resource" id="Resource_e7d5m"]
 script = ExtResource("7_siyrm")
 enemies = Array[String](["sun_spirit"])
-background = "town"
+background = "sun"
 music = "preturberance"
 party = Array[String]([])
-death_reason = "default"
+death_reason = "solar"
 start_text = "les pommes sont mures."
 victory_music = false
 
@@ -392,6 +393,15 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Building/StatueBase/StaticBody2D"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_oq4ig")
+
+[node name="Tarikas" parent="Building/StatueBase" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_y1l2p")]
+position = Vector2(-32, 31)
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Building/StatueBase/Tarikas"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("13_nkm1r")
+animation = &"walk_down"
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
