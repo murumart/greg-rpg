@@ -99,6 +99,7 @@ func add_experience(amount: int, speak := false) -> void:
 		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
 		SOL.dialogue("get_experience")
 	for i in amount:
+		if level >= 99: break
 		experience = experience + 1
 		if experience >= xp2lvl(level):
 			experience = 0
@@ -107,10 +108,15 @@ func add_experience(amount: int, speak := false) -> void:
 				var dialogue_key := "levelup"
 				if name_in_file == "greg":
 					# get a new spirit every 11 levels
-					if level % 11 == 0:
+					var sp : String = DAT.get_levelup_spirit(level)
+					if sp.length():
 						dialogue_key = "levelup_with_spirit"
-						DAT.grant_spirit(DAT.get_levelup_spirit(level), 0, false)
-						SOL.dialogue_box.dial_concat(dialogue_key, 2, [DAT.get_spirit(DAT.get_levelup_spirit(level)).name])
+						DAT.grant_spirit(sp, 0, false)
+						SOL.dialogue_box.dial_concat(
+							dialogue_key,
+							2,
+							[DAT.get_spirit(sp).name]
+						)
 				SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
 				SOL.dialogue(dialogue_key)
 	leveled_up.emit()
