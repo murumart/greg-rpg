@@ -75,6 +75,8 @@ func at_which_path_point() -> Node2D:
 
 func _on_collided_with_player(_player) -> void:
 	if not moves: return
+	# cars don't spawncamp
+	if DAT.seconds - DAT.load_second < 2: return
 	moves = false
 	DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
 	DAT.set_data(save_key_name("fought"), true)
