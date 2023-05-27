@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=42 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -247,145 +247,6 @@ tracks/15/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_vfbms"]
-resource_name = "lob"
-length = 0.75
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Torso:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(2.38419e-07, -11), Vector2(2.38419e-07, -10), Vector2(0, -10), Vector2(1, -10), Vector2(2.38419e-07, -11)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Torso:rotation")
-tracks/1/interp = 4
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0345346, -0.132422, 0.370559, 0.0345346]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Torso:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head:position")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -17), Vector2(-1, -16), Vector2(-2, -16), Vector2(3, -16), Vector2(0, -17)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head:rotation")
-tracks/4/interp = 4
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Head:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Rarm:position")
-tracks/6/interp = 2
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.6, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -14), Vector2(-3, -14), Vector2(-3, -16), Vector2(5, -15), Vector2(-1, -14), Vector2(0, -14)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Rarm:rotation")
-tracks/7/interp = 4
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.616667, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [-1.08941, 0.461722, 3.72171, 2.38501, 4.61446, 5.55468, -1.08941]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Rarm:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Rarm/MailSprite:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.1002, 0.416667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("..")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0.4008),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"throw_mail"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_58k4y"]
 resource_name = "pedaling"
 length = 1.2
@@ -571,18 +432,297 @@ tracks/14/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_vfbms"]
+resource_name = "lob_prepare"
+length = 3.0
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2.38419e-07, -11), Vector2(2.38419e-07, -10), Vector2(0, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Torso:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0345346, -0.132422]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -17), Vector2(-1, -16), Vector2(-2, -16)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rarm:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(-3, -14), Vector2(-3, -16)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rarm:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.08941, 0.461722, 3.72171, 2.38501]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rarm:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rarm/MailSprite:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_nakyj"]
+resource_name = "lob_lob"
+length = 0.75
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2004, 0.3841),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(1, -10), Vector2(2.38419e-07, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Torso:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2004, 0.3841),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.370559, 0.0345346]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1002, 0.4008),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, -16), Vector2(0, -17)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rarm:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2004, 0.3006, 0.4509),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -16), Vector2(5, -15), Vector2(-1, -14), Vector2(0, -14)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rarm:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1002, 0.3173, 0.4509),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.38501, 4.61446, 5.55468, -1.08941]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rarm:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rarm/MailSprite:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1169),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("..")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1002),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"throw_mail"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl418"]
 _data = {
 "RESET": SubResource("Animation_s2qva"),
-"lob": SubResource("Animation_vfbms"),
+"lob_lob": SubResource("Animation_nakyj"),
+"lob_prepare": SubResource("Animation_vfbms"),
 "pedaling": SubResource("Animation_58k4y")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tnvd6"]
 animation = &"pedaling"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpd5g"]
+animation = &"lob_prepare"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqmx1"]
-animation = &"lob"
+animation = &"lob_lob"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_h1m0i"]
 
@@ -592,19 +732,28 @@ animation = &"lob"
 filter_enabled = true
 filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vrtda"]
+filter_enabled = true
+filters = ["..", "Head:position", "Head:rotation", "Rarm/MailSprite:visible", "Rarm:position", "Rarm:rotation", "Torso:position", "Torso:rotation"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_l5sbn"]
+graph_offset = Vector2(-196.194, -64.5889)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bqmx1")
-nodes/Animation/position = Vector2(108.696, 152.174)
+nodes/Animation/position = Vector2(43.4783, 304.348)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_tnvd6")
-"nodes/Animation 2/position" = Vector2(21.7391, 0)
+"nodes/Animation 2/position" = Vector2(-43.4783, 0)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_lpd5g")
+"nodes/Animation 3/position" = Vector2(173.913, 195.652)
 nodes/lobbing_speed/node = SubResource("AnimationNodeTimeScale_h1m0i")
-nodes/lobbing_speed/position = Vector2(282.609, 173.913)
-nodes/output/position = Vector2(630.435, 86.9565)
+nodes/lobbing_speed/position = Vector2(239.13, 326.087)
+nodes/output/position = Vector2(869.565, 86.9565)
 nodes/pedaling_speed/node = SubResource("AnimationNodeTimeScale_t33lf")
-nodes/pedaling_speed/position = Vector2(239.13, 21.7391)
+nodes/pedaling_speed/position = Vector2(173.913, 43.4783)
 nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
-nodes/play_lob/position = Vector2(434.783, 43.4783)
-node_connections = [&"output", 0, &"play_lob", &"lobbing_speed", 0, &"Animation", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"pedaling_speed", &"play_lob", 1, &"lobbing_speed"]
+nodes/play_lob/position = Vector2(673.913, 173.913)
+nodes/play_lob_in/node = SubResource("AnimationNodeOneShot_vrtda")
+nodes/play_lob_in/position = Vector2(478.261, 43.4783)
+node_connections = [&"output", 0, &"play_lob", &"lobbing_speed", 0, &"Animation", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"play_lob_in", &"play_lob", 1, &"lobbing_speed", &"play_lob_in", 0, &"pedaling_speed", &"play_lob_in", 1, &"Animation 3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -876,10 +1025,13 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
 tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
 anim_player = NodePath("../PedalingAnimation")
+active = true
 parameters/lobbing_speed/scale = 1.0
 parameters/pedaling_speed/scale = 1.0
 parameters/play_lob/active = false
 parameters/play_lob/request = 0
+parameters/play_lob_in/active = false
+parameters/play_lob_in/request = 0
 
 [node name="CollisionArea" type="Area2D" parent="Bike"]
 modulate = Color(1, 0.235294, 1, 1)

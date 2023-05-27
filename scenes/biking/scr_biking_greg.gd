@@ -43,6 +43,7 @@ func _ready() -> void:
 	health = roundi(DAT.get_character("greg").health)
 
 
+var fire_held := 0.0
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if health <= 0.0 or paused: input = Vector2.ZERO
@@ -55,10 +56,15 @@ func _physics_process(delta: float) -> void:
 	for w in wheels:
 		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= BikingGame.ROAD_BOUNDARIES.size.x or global_position.x <= BikingGame.ROAD_BOUNDARIES.position.x) else 1.0))
 	
-	if (Input.is_action_just_pressed("ui_accept") or
-	(Input.is_action_pressed("ui_accept") and super_mail)):
-		if speed > 0 and not paused:
-			lob()
+	if speed > 0 and not paused:
+		print(fire_held)
+		if Input.is_action_pressed("ui_accept"):
+			if super_mail: lob(2.0)
+			else: fire_held = clampf(fire_held + delta, 1.0, 3.0)
+			lob_in()
+		if Input.is_action_just_released("ui_accept"):
+			lob(fire_held)
+			fire_held = 0.0
 	# what
 	if Input.is_action_pressed("ui_text_backspace"):
 		head_sprite.region_rect.position.y = 10.0
@@ -114,7 +120,6 @@ func heal(amount: int) -> void:
 
 
 func hurt(amount: int) -> void:
-	print(amount)
 	health = clamp(health - absi(amount), 0, max_health)
 	if health <= 0:
 		die()
@@ -144,32 +149,47 @@ func _on_collision_area_area_entered(area: Area2D) -> void:
 		invincibility_timer.start()
 
 
+func lob_in() -> void:
+	var req := AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	var abor := AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+	var spd := func set_lob_speed(to: float) -> void:
+		animation_tree.set("parameters/lobbing_speed/scale", to)
+	if not animation_tree.get("parameters/play_lob_in/active"):
+		animation_tree.set("parameters/play_lob_in/request", req)
+	if animation_tree.get("parameters/play_lob/active"):
+		animation_tree.set("parameters/play_lob/request", abor)
+
+
 # controls lobbing animation
-func lob() -> void:
+func lob(speed: float) -> void:
+	var req := AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	var abor := AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+	var spd := func set_lob_speed(to: float) -> void:
+		animation_tree.set("parameters/lobbing_speed/scale", to)
+	mail_speed = speed
+	animation_tree.set("parameters/play_lob_in/request", abor)
 	if super_mail: # cool secret perk activated
-		animation_tree.set("parameters/lobbing_speed/scale", 2.0) # speed faster
+		spd.call(2.0) # speed faster
 		if animation_tree.get("parameters/play_lob/active") == true:
 			throw_mail() # throw if the animation is active
-		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE) # if it isn't make it active
+		animation_tree.set("parameters/play_lob/request", req) # if it isn't make it active
 		return
 	# normal throwing
-	animation_tree.set("parameters/lobbing_speed/scale", 1.0)
+	spd.call(1.0)
 	if animation_tree.get("parameters/play_lob/active") == true:
-		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT) # cancel animation if  active
+		animation_tree.set("parameters/play_lob/request", abor) # cancel animation if  active
 	else:
 		# start animation if active
-		animation_tree.set("parameters/play_lob/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_tree.set("parameters/play_lob/request", req)
 
 
 # this is called from the animation
+var mail_speed := 0.0
 func throw_mail() -> void:
 	var mail := MAIL_LOAD.instantiate()
 	DAT.get_current_scene().add_child(mail)
 	mail.global_position = mail_sprite.global_position
-	mail.apply_impulse(Vector2(
-		randf_range(100, 200),
-		randf_range(-300, -100)
-	)) # whee
+	mail.apply_impulse(Vector2(100 * mail_speed, -100 * mail_speed)) # whee
 	mail.following = following_mail
 	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * ((int(super_mail) * 1.3) + 1)
 	paper_throw_audio.play()
