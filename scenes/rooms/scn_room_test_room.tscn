@@ -494,7 +494,7 @@ layer_5/z_index = 0
 layer_5/tile_data = PackedInt32Array(-458730, 327681, 11, -458729, 327681, 11, -458731, 262145, 11, -458728, 327681, 11, -458727, 327681, 11, -458726, 327681, 11, -458725, 327681, 11, -458724, 393217, 11, -524261, 327681, 10, -524262, 327681, 10, -524260, 393217, 10, -524263, 327681, 10, -524264, 327681, 10, -524265, 327681, 10, -524266, 327681, 10, -524267, 262145, 10, -589802, 327681, 10, -589803, 262145, 10, -589801, 327681, 10, -589800, 327681, 10, -589799, 327681, 10, -589798, 327681, 10, -589797, 327681, 10, -589796, 393217, 10, -655338, 327681, 9, -655337, 327681, 9, -655339, 262145, 9, -655336, 327681, 9, -655335, 327681, 9, -655334, 327681, 9, -655333, 327681, 9, -655332, 393217, 9, -720869, 327681, 8, -720868, 393217, 8, -720870, 327681, 8, -720871, 327681, 8, -720872, 327681, 8, -720873, 327681, 8, -720874, 327681, 8, -720875, 262145, 8)
 
 [node name="Greg" parent="." instance=ExtResource("3_lknet")]
-position = Vector2(754, -46)
+position = Vector2(71, 33)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_bxb8t")]
 position = Vector2(0, -11)
@@ -775,7 +775,7 @@ sprite_frames = ExtResource("18_mktvr")
 animation = &"walk_down"
 
 [node name="Mailmanlol" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("12_h5o38")]
-position = Vector2(481, -4)
+position = Vector2(-76, -33)
 animated_sprite = NodePath("Mailman")
 speed = 1000
 movement_wait = 1.0

@@ -98,12 +98,13 @@ scroll_following = true
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0
-offset_top = 60.0
+offset_top = 112.0
 offset_right = 160.0
 offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0

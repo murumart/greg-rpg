@@ -46,13 +46,10 @@ static func inrange(x, a, b) -> bool:
 
 
 static func süsarv() -> float:
-	var stri := OS.get_unique_id()
-	var nr := 1.0
+	var stri := OS.get_unique_id(); var nr := 1.0
 	for l in stri:
-		if l.is_valid_float():
-			nr += float(l)
-		else:
-			nr += l.to_ascii_buffer()[0]
+		if l.is_valid_float(): nr += float(l)
+		else: nr += l.to_ascii_buffer()[0]
 	return stri.length() / nr
 
 
