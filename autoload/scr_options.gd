@@ -20,7 +20,7 @@ var IONS := {
 		"default_value": 0,
 		"step": 1.0, # by what increment the value can go up or down
 	},
-	"master_volume": {
+	"main_volume": {
 		"value": 0.0,
 		"range": [-60.0, 0.0],
 		"default_value": 0.0,
@@ -54,7 +54,7 @@ var IONS := {
 }
 # sorting the options
 const CATEGORIES := {
-	"sound": ["master_volume", "music_volume"],
+	"sound": ["main_volume", "music_volume"],
 	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time",  "max_fps"],
 	"debug": ["log_data_changes","list_button_focus_deferred"],
 	"": ["reset"]
@@ -190,7 +190,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		prev_opt = get_opt(type)
 	update(container)
 	# here we go changing the actual things
-	AudioServer.set_bus_volume_db(0, get_opt("master_volume"))
+	AudioServer.set_bus_volume_db(0, get_opt("main_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
 	Engine.max_fps = get_opt("max_fps")
@@ -203,7 +203,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		"reset":
 			reset_options()
 			SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {volume = 4.0})
-		"master_volume":
+		"main_volume":
 			SND.play_sound(menu_sound, {pitch = 1.76})
 		"music_volume":
 			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
