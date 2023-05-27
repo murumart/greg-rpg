@@ -22,6 +22,7 @@ var player_capturers := []
 @onready var game_timer := $GameTimer
 var seconds := 0
 var last_save_second := 0
+var load_second := 0
 
 # periods of time during which stuff changes
 const NEIGHBOUR_WIFE_CYCLE := 470
@@ -174,8 +175,10 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	# change the scene to the one inside the save file
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.
+	capture_player("level_transition")
 	var room_to_load : String = loaded.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
+	load_second = seconds
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
@@ -205,6 +208,7 @@ func capture_player(type := "", overlap := true) -> void:
 	# multiple things can capture the player
 	# they are stored as strings inside this array
 	player_capturers.append(type)
+	if type != "dialogue": SOL.dialogue_box.close()
 	var player := get_tree().get_first_node_in_group("players")
 	if is_instance_valid(player):
 		player.state = PlayerOverworld.States.NOT_FREE_MOVE
@@ -343,6 +347,5 @@ func init_data() -> void:
 	A.clear()
 	set_data("party", ["greg"])
 	set_data("nr", randf())
-	süs = Math.süsarv()
 
 

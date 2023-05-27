@@ -197,17 +197,7 @@ func next_dialogue_requested() -> void:
 		current_dialogue = loaded_dialogue_line.loop
 	if not current_dialogue < loaded_dialogue.size():
 		# if that was the last line
-		loaded_dialogue = null
-		loaded_dialogue_line = null
-		current_dialogue = 0
-		if dialogue_queue.size() > 0:
-			print("queue in action")
-			load_dialogue(dialogue_queue.pop_front())
-			return
-		if not dont_close:
-			hide()
-		DAT.call_deferred("free_player", "dialogue")
-		call_deferred("emit_signal", "dialogue_closed")
+		close()
 	else:
 		# if there are more lines
 		speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
@@ -218,6 +208,20 @@ func skip() -> void:
 		textbox.skip_to_end()
 		textbox.speak_finished.emit() # yeah
 		get_viewport().set_input_as_handled()
+
+
+func close() -> void:
+	loaded_dialogue = null
+	loaded_dialogue_line = null
+	current_dialogue = 0
+	if dialogue_queue.size() > 0:
+		print("queue in action")
+		load_dialogue(dialogue_queue.pop_front())
+		return
+	if not dont_close:
+		hide()
+	DAT.call_deferred("free_player", "dialogue")
+	call_deferred("emit_signal", "dialogue_closed")
 
 
 # the size of the text area changes based on whether

@@ -20,3 +20,7 @@ func get_line(index: int) -> DialogueLine:
 		push_error("dialogue %s: index out of bounds" % name)
 		return DialogueLine.new()
 	return lines[index]
+
+
+func _to_string() -> String:
+	return "%s, %s lines" % [name, lines.size()]
