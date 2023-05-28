@@ -43,21 +43,24 @@ func _ready() -> void:
 	health = roundi(DAT.get_character("greg").health)
 
 
+var rbpx := BikingGame.ROAD_BOUNDARIES.position.x
+var rbsx := BikingGame.ROAD_BOUNDARIES.size.x
+var rbpy := BikingGame.ROAD_BOUNDARIES.position.y
+var rbsy := BikingGame.ROAD_BOUNDARIES.size.y
 var fire_held := 0.0
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if health <= 0.0 or paused: input = Vector2.ZERO
 	# movement clamped to the road
 	global_position += Vector2(input) * moving_speed * delta
-	global_position.x = clampf(global_position.x, BikingGame.ROAD_BOUNDARIES.position.x, BikingGame.ROAD_BOUNDARIES.size.x)
-	global_position.y = clampf(global_position.y, BikingGame.ROAD_BOUNDARIES.size.y + 4, BikingGame.ROAD_BOUNDARIES.position.y - 3)
+	global_position.x = clampf(global_position.x, rbpx, rbsx)
+	global_position.y = clampf(global_position.y, rbsy + 4, rbpy - 3)
 	animation_tree["parameters/pedaling_speed/scale"] = (speed * delta) + input.x
 	# https://cdn.discordapp.com/attachments/1065785853017862144/1101131203689586782/gregexplains_wheels.png for explanation
 	for w in wheels:
-		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= BikingGame.ROAD_BOUNDARIES.size.x or global_position.x <= BikingGame.ROAD_BOUNDARIES.position.x) else 1.0))
+		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= rbsx or global_position.x <= rbpx) else 1.0))
 	
 	if speed > 0 and not paused:
-		print(fire_held)
 		if Input.is_action_pressed("ui_accept"):
 			if super_mail: lob(2.0)
 			else: fire_held = clampf(fire_held + delta, 1.0, 3.0)
@@ -171,6 +174,7 @@ func lob(speed: float) -> void:
 	if super_mail: # cool secret perk activated
 		spd.call(2.0) # speed faster
 		if animation_tree.get("parameters/play_lob/active") == true:
+			mail_speed = randf_range(1.0, 3.0)
 			throw_mail() # throw if the animation is active
 		animation_tree.set("parameters/play_lob/request", req) # if it isn't make it active
 		return
