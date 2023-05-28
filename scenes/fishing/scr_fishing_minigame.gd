@@ -288,12 +288,15 @@ func delete_offscreen_tiles(ypos: int) -> void:
 func _on_after_crash_timer_timeout() -> void:
 	var score := roundi(depth / 100.0) + points
 	var high_score : bool = score > DAT.get_data("fishing_high_score", 0)
+	DAT.incri("fishings_finished", 1)
+	DAT.incri("fish_caught", fish_caught)
 	if high_score:
 		DAT.set_data("fishing_high_score", score)
 	if battle_info:
 		LTS.enter_battle(battle_info)
 		return
 	
+	# setting rewards
 	var rewards := BattleRewards.new()
 	
 	var bad_job_text := "you tried!"
@@ -313,10 +316,24 @@ func _on_after_crash_timer_timeout() -> void:
 	if high_score:
 		var hsrew := Reward.new()
 		hsrew.type = BattleRewards.Types.SILVER
-		hsrew.property = "2"
+		hsrew.property = str(roundi(score * 0.02))
 		rewards.rewards.append(hsrew)
-	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/snd_misc_click.ogg"))
 	
+	if randf() < 0.2:
+		var fishrew := Reward.new()
+		fishrew.type = BattleRewards.Types.ITEM
+		fishrew.property = "fish"
+		fishrew.unique = true
+		rewards.rewards.append(fishrew)
+	if randf() < 0.1:
+		var boot := Reward.new()
+		boot.type = BattleRewards.Types.ITEM
+		boot.property = "rain_boot"
+		boot.unique = true
+		rewards.rewards.append(boot)
+	
+	# granting rewards
+	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/snd_misc_click.ogg"))
 	congrats_label.text = str("[center]", high_score_text if high_score else "", "\n", good_job_text if score > 9 else bad_job_text, "\n", "score: ", score)
 	rewards.granted.connect(func():
 		SOL.dialogue_closed.connect(self.end, CONNECT_ONE_SHOT)
