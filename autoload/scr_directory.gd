@@ -21,6 +21,8 @@ func _init() -> void:
 	# assure that a greg_rpg folder exists in user data
 	if not DirAccess.dir_exists_absolute(GREG_USER_FOLDER_PATH):
 		DirAccess.make_dir_absolute(GREG_USER_FOLDER_PATH)
+	if not FileAccess.file_exists(GREG_USER_FOLDER_PATH + "/pers"):
+		write_dict_to_file({}, "pers")
 
 
 func standalone() -> bool:
@@ -160,3 +162,31 @@ func load_cat_names() -> Array:
 	return Array(list)
 
 
+func gej(k: int,
+d: Variant = null) \
+-> Variant: return\
+get_dict_from_file("pers")\
+.get(k, d)
+
+
+func sej(
+k: int, t: Variant) -> void: var o :\
+= get_dict_from_file("pers"); o\
+[k] = t; write_dict_to_file(o, "pers")
+
+
+func incj(k: int, a: int
+) -> void:
+	var o:\
+	= get_dict_from_file("pers"); o[k] = o.get(k, 0) + a\
+	; write_dict_to_file(o, "pers")
+
+
+func appj(k: int, t: Variant)\
+ -> void: var o := get_dict_from_file("pers");\
+			  o\
+	[k] = Math.reaap(
+			  o.get(k, []),
+	t);write_dict_to_file(
+			  o,
+	"pers")

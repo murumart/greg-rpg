@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=43 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/snd_ambient_loop.ogg" id="9_4afe5"]
+[ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
 
 [sub_resource type="Gradient" id="Gradient_np4ve"]
@@ -366,8 +367,16 @@ autoplay = true
 max_distance = 230.0
 attenuation = 1.51572
 
+[node name="BikeGhostFishing" parent="Areas" instance=ExtResource("10_ijxpm")]
+position = Vector2(1365, 204)
+type = 4
+line_length = 51
+flip = true
+custom_lines = PackedStringArray("bike_ghost_fishing_1", "bike_ghost_fishing_2")
+
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
-position = Vector2(-373, 21)
+position = Vector2(1254, -66)
+saving_disabled = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("6_e61yp")]
 position = Vector2(0, -9)
@@ -397,6 +406,8 @@ shape = SubResource("RectangleShape2D_oq4ig")
 [node name="Tarikas" parent="Building/StatueBase" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("6_y1l2p")]
 position = Vector2(-32, 31)
 animated_sprite = NodePath("AnimatedSprite2D")
+default_lines = Array[StringName]([&"tarikas_beyond_lake_1", &"tarikas_beyond_lake_2", &"tarikas_beyond_lake_3"])
+save_convo_progess = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Building/StatueBase/Tarikas"]
 position = Vector2(0, -8)
@@ -894,3 +905,4 @@ position = Vector2(114, 108)
 type = 1
 
 [connection signal="inspected" from="Areas/SunSpirit" to="." method="_on_sun_spirit_inspected"]
+[connection signal="inspected" from="Building/StatueBase/Tarikas" to="." method="_on_tarikas_inspected"]

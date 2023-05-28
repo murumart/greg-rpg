@@ -51,6 +51,7 @@ func _ready() -> void:
 	load_spirits()
 	init_data()
 	print("DAT is ready!")
+	DIR.incj(1, 1)
 
 
 # loading chars items spirits use those export strings

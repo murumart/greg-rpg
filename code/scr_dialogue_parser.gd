@@ -41,12 +41,10 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var sound_to_set : AudioStream = null
 	var emotion_to_set := ""
 	var set_data_to_set := PackedStringArray()
-	var l := -1
 	
 	# going trhough the file line by line
 	while not file.eof_reached():
 		var line := file.get_line()
-		l += 1
 		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
 		if line.begins_with(NEW_DIAL):

@@ -23,10 +23,11 @@ func gen_enemies() -> Array[String]:
 	else:
 		enemies.append(B)
 		if randf() <= 0.75: enemies.append(S)
-		if randf() <= 0.2: enemies.append(N)
-		if randf() <= 0.15: enemies.append(S)
-		if randf() <= 0.15: enemies.append(F)
+		if randf() <= 0.3: enemies.append(N)
+		if randf() <= 0.2: enemies.append(S)
+		if randf() <= 0.2: enemies.append(F)
 		if randf() <= 0.05: enemies.append(B)
 	if enemies.size() > 4:
 		enemies.resize(4)
+	enemies.shuffle()
 	return enemies

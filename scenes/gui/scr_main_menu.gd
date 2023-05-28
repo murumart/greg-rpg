@@ -10,10 +10,11 @@ var starting := false
 func _ready() -> void:
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
-	if randf() >= 0.5 and DAT.seconds > 2:
+	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
 		$Label.text = "[center]" + str(get_funny_messages().pick_random())
 		if $Label.text.ends_with("[/url]"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	DIR.incj(0, 1)
 
 
 func _input(event: InputEvent) -> void:
@@ -68,13 +69,13 @@ func get_funny_messages() -> Array:
 		"the soulless snail",
 		"new!",
 		"in the flesh",
-		SND.list.songs.get(SND.list.songs.keys().pick_random(), {}).get("title"),
+		SND.list.songs[SND.list.songs.keys().pick_random()]["title"],
 		SND.current_song.get("title"),
 		"",
 		"thank you webcat!",
 		"thank you radio!",
 		"newspaper boy...",
-		"don't eat the soap.",
+		"don't eat the soap." if randf() > 0.25 else "don't eat the soup" if randf() > 0.5 else "don't eat the saup" if randf() > 0.75 else "don't eat the soeuüp",
 		"histories of mail and man",
 		"greg",
 		"[color=#8888ff][u][url=https://www.google.com/search?q=greg+merch]buy cool merch! ->[/url]"

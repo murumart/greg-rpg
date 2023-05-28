@@ -35,6 +35,7 @@ var using_item : String
 @onready var save_warning_label := $SaveWarningLabel
 
 @onready var reference_button := $ReferenceButton
+var saving_disabled := false
 
 
 func _ready() -> void:
@@ -47,7 +48,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	# open the save menu (no idea why this is controlled here)
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
 		if DAT.player_capturers.is_empty() and not "overworld_menu" in DAT.player_capturers:
-			SOL.save_menu(Input.is_action_just_pressed("quick_load"))
+			if not saving_disabled:
+				SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 	if not visible: return
 	get_viewport().set_input_as_handled()
 	# going back a menu level

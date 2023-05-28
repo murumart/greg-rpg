@@ -748,6 +748,7 @@ func _on_update_timer_timeout() -> void:
 func apply_cheats() -> void:
 	if not enable_testing_cheats: return
 	if LTS.gate_id: return
+	if DAT.seconds > 1: return
 	print("applying cheats")
 	for i in party:
 		i.character.level_up(party_cheat_levelup)

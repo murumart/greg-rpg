@@ -34,6 +34,7 @@ func _ready() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = ceili(Math.süsarv() * 1000)
 	heroes = rng.randi_range(4, 8)
+	DIR.sej(2003, 1)
 
 
 var talking_about_metal := false

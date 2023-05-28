@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
+[ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="2_4rgq8"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
-[ext_resource type="Texture2D" uid="uid://bcdj7lnnje8bf" path="res://sprites/characters/battle/car/spr_car_battle.png" id="2_idwge"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_t0r6d"]
 [ext_resource type="PackedScene" uid="uid://emxihek3ybla" path="res://scenes/decor/scn_store_shelf.tscn" id="5_hc7sm"]
@@ -85,11 +85,11 @@ music_play_from_beginning = true
 music_start_volume = 0.0
 
 [node name="Wall" type="Sprite2D" parent="."]
-position = Vector2(0.124998, -97.125)
-scale = Vector2(223.75, 11.4167)
-texture = ExtResource("2_idwge")
+position = Vector2(14.5, -100.5)
+scale = Vector2(351, 20.5)
+texture = ExtResource("2_4rgq8")
 region_enabled = true
-region_rect = Rect2(48, 24, 1, 3)
+region_rect = Rect2(55, 36, 1, 2)
 
 [node name="InteriorTiles" parent="." instance=ExtResource("2_bdr84")]
 z_index = -1
@@ -242,6 +242,8 @@ libraries = {
 }
 
 [node name="KassaSpeak" parent="Kassa" instance=ExtResource("10_nn5u3")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kassa/KassaSpeak"]
 position = Vector2(0, -7)
