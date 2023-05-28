@@ -140,17 +140,18 @@ func load_cat_names() -> Array:
 			printerr("cat names file does not exist")
 			return []
 		fail = F.open(path_internal, FileAccess.READ)
-		var string = fail.get_as_text()
+		var string := fail.get_as_text()
 		fail = F.open(path_external, FileAccess.WRITE)
 		print(error_string(F.get_open_error()))
 		fail.store_string(string)
 		fail = F.open(path_external, FileAccess.READ)
-	var list := fail.get_as_text()
+	var list := []
+	while not fail.eof_reached():
+		list.append(fail.get_line().replace("\t", "").replace("\n", ""))
 	if len(list) < 1:
 		print_debug("no cat names available.")
 		return []
-	var names := list.split("\r\n")
-	print_debug("found %s cat names" % names.size())
-	return Array(names)
+	print_debug("found %s cat names" % list.size())
+	return Array(list)
 
 
