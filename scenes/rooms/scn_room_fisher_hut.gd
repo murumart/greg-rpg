@@ -7,7 +7,7 @@ var line_progress_2 := 0
 var fish_1 := []
 var fish_2 := []
 
-const FISH_LINE := "fisherman_in_hut_%s"
+const FISH_LINE := "fish_fact_%s"
 
 
 func _ready() -> void:
@@ -38,6 +38,6 @@ func _on_fisherman_interacted(which: int) -> void:
 		SOL.dialogue(r[which][line_progress])
 		set("line_progress_%s" % which, line_progress + 1)
 	else:
-		SOL.dialogue("fisherman_in_hut_end")
+		SOL.dialogue(FISH_LINE % "end")
 
 

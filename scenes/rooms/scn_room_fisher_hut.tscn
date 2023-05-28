@@ -45,6 +45,7 @@ position = Vector2(-9, 23)
 [node name="Fisherman" type="Node2D" parent="." groups=["fishermen"]]
 position = Vector2(-32, 2)
 script = ExtResource("5_m48fe")
+custom_lines = PackedStringArray()
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Fisherman"]
 collision_layer = 8
@@ -87,6 +88,7 @@ shape = SubResource("RectangleShape2D_c03j4")
 [node name="Fisherman2" type="Node2D" parent="." groups=["fishermen"]]
 position = Vector2(32, 2)
 script = ExtResource("5_m48fe")
+custom_lines = PackedStringArray()
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Fisherman2"]
 collision_layer = 8

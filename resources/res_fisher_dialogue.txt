@@ -1,289 +1,318 @@
-DIALOGUE fisherman_in_hut_1
+DIALOGUE fish_fact_1
 	man i love fish
 
 
-DIALOGUE fisherman_in_hut_2
+DIALOGUE fish_fact_2
 	MAAAAN I LOVE FISH!!!
 
 
-DIALOGUE fisherman_in_hut_3
+DIALOGUE fish_fact_3
 	did you know? fish's hair is long and auburn.
 
 
-DIALOGUE fisherman_in_hut_4
+DIALOGUE fish_fact_4
 	did you know? fish are actually bugs.
 
 
-DIALOGUE fisherman_in_hut_5
+DIALOGUE fish_fact_5
 	did you know? fish are actually plants.
 
 
-DIALOGUE fisherman_in_hut_6
+DIALOGUE fish_fact_6
 	did you know? fish live up to one minute.
 
 
-DIALOGUE fisherman_in_hut_7
+DIALOGUE fish_fact_7
 	did you know? some fish are people.
 
 
-DIALOGUE fisherman_in_hut_8
+DIALOGUE fish_fact_8
 	fish are actually just as intelligent as humans...
 	but they just don't want to pay taxes.
 
 
-DIALOGUE fisherman_in_hut_9
+DIALOGUE fish_fact_9
 	aiosjdoijasodjasoidasoidj
 	i just walked into an electric fence!
 
 
-DIALOGUE fisherman_in_hut_10
+DIALOGUE fish_fact_10
 	did you know? fish are cold blooded killers.
 
 
-DIALOGUE fisherman_in_hut_11
+DIALOGUE fish_fact_11
 	did you know? you can pet fish.
 	but you might die.
 
 
-DIALOGUE fisherman_in_hut_12
+DIALOGUE fish_fact_12
 	did you know? like most animals, fish have souls.
 	unlike humans.
 
 
-DIALOGUE fisherman_in_hut_13
+DIALOGUE fish_fact_13
 	did you know? fish are speedy!
 
 
-DIALOGUE fisherman_in_hut_14
+DIALOGUE fish_fact_14
 	did you know? fish feel pleasure from your pain.
 
 
-DIALOGUE fisherman_in_hut_15
+DIALOGUE fish_fact_15
 	did you know? did you?
 
 
-DIALOGUE fisherman_in_hut_16
+DIALOGUE fish_fact_16
 	did you know? fish evolved to walk on land...
 	...just to kick your ass.
 
 
-DIALOGUE fisherman_in_hut_17
+DIALOGUE fish_fact_17
 	what is the mysterious fish?
 
 
-DIALOGUE fisherman_in_hut_18
+DIALOGUE fish_fact_18
 	did you know? fish are smiling.
 
 
-DIALOGUE fisherman_in_hut_19
+DIALOGUE fish_fact_19
 	did you know? all fish are trained with firearms.
 
 
-DIALOGUE fisherman_in_hut_20
+DIALOGUE fish_fact_20
 	did you know? fish love to munch on sand and rocks.
 
 
-DIALOGUE fisherman_in_hut_21
+DIALOGUE fish_fact_21
 	did you know? fish taste soooo goood.
 
 
-DIALOGUE fisherman_in_hut_22
+DIALOGUE fish_fact_22
 	did you know? fish taste awful.
 
 
-DIALOGUE fisherman_in_hut_23
+DIALOGUE fish_fact_23
 	did you know? fish like to feel pretty.
 
 
-DIALOGUE fisherman_in_hut_24
+DIALOGUE fish_fact_24
 	did you know? all fish are women.
 
 
-DIALOGUE fisherman_in_hut_25
+DIALOGUE fish_fact_25
 	did you know? fish have approximately 3.680.064 mouths?
 
 
-DIALOGUE fisherman_in_hut_26
+DIALOGUE fish_fact_26
 	did you know? fish have approximately 17.776 mouths?
 
 
-DIALOGUE fisherman_in_hut_27
+DIALOGUE fish_fact_27
 	what do you call a fish with no eyes?
 	a blind fish.
 
 
-DIALOGUE fisherman_in_hut_28
+DIALOGUE fish_fact_28
 	despite the saying, fish can actually climb trees.
 
 
-DIALOGUE fisherman_in_hut_29
+DIALOGUE fish_fact_29
 	did you know? all fish are born with human teeth.
 
 
-DIALOGUE fisherman_in_hut_30
+DIALOGUE fish_fact_30
 	did you know? if you were a fish, you'd be a clownfish.
 
 
-DIALOGUE fisherman_in_hut_31
+DIALOGUE fish_fact_31
 	did you know? if you were a fish, you'd be a suckerfish.
 
 
-DIALOGUE fisherman_in_hut_32
+DIALOGUE fish_fact_32
 	did you know? there are no venomous fish. i promise.
 
 
-DIALOGUE fisherman_in_hut_33
+DIALOGUE fish_fact_33
 	did you know? there are no poisonous fish. i promise.
 
 
-DIALOGUE fisherman_in_hut_34
+DIALOGUE fish_fact_34
 	did you know? fish have enough bite strength...
 	...to crush your skull.
 
 
-DIALOGUE fisherman_in_hut_35
+DIALOGUE fish_fact_35
 	did you know? we have no idea how fish reproduce.
 
 
-DIALOGUE fisherman_in_hut_36
+DIALOGUE fish_fact_36
 	did you know? we know exactly how fish reproduce.
 	but we won't tell you how.
 
 
-DIALOGUE fisherman_in_hut_37
+DIALOGUE fish_fact_37
 	did you know? fish are the first lifeform to ever exist.
 	before rna world, there was fish world.
 
 
-DIALOGUE fisherman_in_hut_38
+DIALOGUE fish_fact_38
 	did you know? fish are the basic building block...
 	...for all living creatures?
 
 
-DIALOGUE fisherman_in_hut_39
+DIALOGUE fish_fact_39
 	did you know? your mom is a fish.
 
 
-DIALOGUE fisherman_in_hut_40
+DIALOGUE fish_fact_40
 	did you know? the game will end by grandma revealing...
 	...that she is a fish. she will then bite off your head.
 
 
-DIALOGUE fisherman_in_hut_41
+DIALOGUE fish_fact_41
 	did you know? fish are very musical.
 
 
-DIALOGUE fisherman_in_hut_42
+DIALOGUE fish_fact_43
 	did you know? there's a particular place where my...
 	...back really hurts.
 
 
-DIALOGUE fisherman_in_hut_43
+DIALOGUE fish_fact_42
 	did you know? suffering is universal.
 	ow! ow! ow! ow! ow !
 
 
-DIALOGUE fisherman_in_hut_44
+DIALOGUE fish_fact_44
 	did you knouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
 
 
-DIALOGUE fisherman_in_hut_45
+DIALOGUE fish_fact_45
 	did you know who lives in a fruit under the sea?
 	grandma does.
 
 
-DIALOGUE fisherman_in_hut_46
+DIALOGUE fish_fact_46
 	did you know? the first thermodynamic motor...
 	...used a fish and a slightly colder fish...
 	...as its hot and cold reservoirs.
 
 
-DIALOGUE fisherman_in_hut_47
+DIALOGUE fish_fact_47
 	did you know? fish were invented by curles fish in 1664.
 
 
-DIALOGUE fisherman_in_hut_48
+DIALOGUE fish_fact_48
 SOUND snd_fish_uuhhhhh
 	   
 
-DIALOGUE fisherman_in_hut_49
+DIALOGUE fish_fact_49
 	did you know? fish are currently swimming...
 	...in your body.
 
 
-DIALOGUE fisherman_in_hut_50
+DIALOGUE fish_fact_50
 	did you know? you make a perfect fishbowl.
 
 
-DIALOGUE fisherman_in_hut_51
+DIALOGUE fish_fact_51
 	babygirl, call me fish, because you are an aquarium!
 
 
-DIALOGUE fisherman_in_hut_52
+DIALOGUE fish_fact_52
 	fish fish fish fish fish fish fish fish fish
 
 
-DIALOGUE fisherman_in_hut_53
+DIALOGUE fish_fact_53
 	did you know? i love you
 
 
-DIALOGUE fisherman_in_hut_54
+DIALOGUE fish_fact_54
 	fun fact: fish really hate you.
 
 
-DIALOGUE fisherman_in_hut_55
+DIALOGUE fish_fact_55
 	babygirl, if you were a fish, i would take you...
 	...out of the water.
 
 
-DIALOGUE fisherman_in_hut_56
+DIALOGUE fish_fact_56
 	babygirl, if you were a fish, you oo o iw
 	i just walked into an electric fence!
 
 
-DIALOGUE fisherman_in_hut_57
+DIALOGUE fish_fact_57
 	did you know? i am actually a fish.
 
 
-DIALOGUE fisherman_in_hut_58
+DIALOGUE fish_fact_58
 	did you know? fish are funny as hell.
 
 
-DIALOGUE fisherman_in_hut_59
+DIALOGUE fish_fact_59
 	did you know? there are 23 pairs of fish in your body's cells.
 
 
-DIALOGUE fisherman_in_hut_60
+DIALOGUE fish_fact_60
 	did you know? i haven't gone through a day without thinking of fish.
 
 
-DIALOGUE fisherman_in_hut_61
+DIALOGUE fish_fact_61
 	did you know? fish only do this when they're extremely stressed.
 
 
-DIALOGUE fisherman_in_hut_62
+DIALOGUE fish_fact_62
 	did you know? eels do not actually shock you...
 	...you just walk into an invisible electric fence.
 
 
-DIALOGUE fisherman_in_hut_63
+DIALOGUE fish_fact_63
 	did you know? fish are just like grass.
 	as long as you are high enough level.
 
 
-DIALOGUE fisherman_in_hut_64
+DIALOGUE fish_fact_64
 	did you know? fishermen can get sad.
 
 
-DIALOGUE fisherman_in_hut_65
+DIALOGUE fish_fact_65
 	did you know? calling multiple fish "fishes" is incorrect.
 	there can only be one.
 
 
-DIALOGUE fisherman_in_hut_66
+DIALOGUE fish_fact_66
 	did you know? calling multiple fish "fishes" is incorrect.
 	"fishes" is actually the singular.
 
 
-DIALOGUE fisherman_in_hut_end
+DIALOGUE fish_fact_67
+	did you know? some fish (like you) have no bones.
+
+
+DIALOGUE fish_fact_68
+	did you know? the wondrous world is full of joy and whimsy.
+
+
+DIALOGUE fish_fact_69
+	did you know?
+
+
+DIALOGUE fish_fact_69
+	did you know? fish are whimsical creatures!
+	my heart is fluttering!
+
+
+DIALOGUE fish_fact_70
+	did you know? bears don't exist.
+
+
+DIALOGUE fish_fact_71
+	did you know? fishermen barely receive a living wage.
+
+
+DIALOGUE fish_fact_72
+	did you know? fish barely receive a living wage.
+
+
+DIALOGUE fish_fact_end
 	there are no more fish facts.
