@@ -292,6 +292,60 @@ CHAR
 	see you then, little man.
 
 
+DIALOGUE prank_call_0
+	prank calls are always funny.
+	dialing the number %s...
+
+
+DIALOGUE prank_call_1
+CHAR stabbing_fella
+	zzz... huh ?
+	oh, thank you for calling. i was sleeping in.
+	almost missed stabbing time!
+	speaking of! it's stabbing time!
+	see ya!
+
+
+DIALOGUE prank_call_2
+CHAR abiss
+	oooooooooooo
+CHAR 
+	(you can smell cheap booze through the receiver)
+	(somehow)
+CHAR abiss
+	*hic*
+
+
+DIALOGUE prank_call_4
+CHAR mail_man
+EMO serious
+	hello? it's the mail man speaking.
+	...what?
+	is my refrigerator running?
+EMO intimidating
+	...
+	you will regret making this call.
+
+
+DIALOGUE prank_call_5
+	(...)
+	(you get the feeling you're being recorded.)
+	(...)
+
+
+DIALOGUE prank_call_else
+SPEED 2.0
+	this prank call is sponsored by [color=#88aaff]yuku[/color] brand department stores!!!
+
+
+DIALOGUE prank_call_enough
+	you already made a prank call.
+
+
+DIALOGUE prank_call_over
+	(they hung up.)
+
+
 DIALOGUE zerma_fight_preface
 CHAR zerma
 	oh dear... looks like you were just lifted out!
@@ -370,7 +424,9 @@ CHAR zerma
 	you're a natural! ahaha!
 	here comes your final lesson.
 	see that big [color=#00ffff]spirit[/color] button?
-	press it and select me.
+SPEED 1.5
+	press it and [color=#ff00ff]select me[/color].
+SPEED 1
 	you need to chant the name of the spirit...
 	...whom you want to summon to be used!
 	do you understand?
@@ -451,7 +507,7 @@ ACTUALLY zerma_fight_3_attack_zerma
 
 
 DIALOGUE zerma_fight_4_attack_greg
-ACTUALLY zerma_fight_4_attack_greg
+ACTUALLY zerma_fight_3_attack_greg
 
 
 DIALOGUE zerma_fight_4_spirit_fail_
@@ -1149,6 +1205,141 @@ CHAR tarikas
 	and step out of the way of the sun.
 
 
+DIALOGUE tarikas_beyond_lake_1
+CHAR tarikas
+	mh? you got past that rogue spirit?
+	that's scary to think about.
+
+
+DIALOGUE tarikas_beyond_lake_2
+CHAR tarikas
+	we don't get many foreigners here.
+	so initially we thought you were a government man.
+	sent here to inspect us, you see.
+	to check if we're behaving.
+
+
+DIALOGUE tarikas_beyond_lake_3
+CHAR tarikas
+	...but you look genuinely clueless.
+	though your raw power is on par...
+	...with the townspeople.
+
+
+DIALOGUE tarikas_beyond_lake_4
+CHAR tarikas
+CHOICES no,yes
+	do you know why this statue base is empty?
+CHOICE_LINK yes
+SET_DATA you_know_of_anu,true
+	mh. of course, the statue was made of metal.
+CHOICE_LINK no
+CHOICES no!,yes!
+	any guesses?
+CHOICE_LINK yes!
+SET_DATA you_know_of_anu,true
+	you can thank anu for making it step down from there.
+CHOICE_LINK no!
+	...mh.
+	you really are clueless. very interesting.
+	would you like me to tell you how it came to be?
+CHOICES yes!!,no!!
+	i'm an old man, i love telling stories.
+CHOICE_LINK yes!!
+	oh joy. mh, so...
+CHOICE_LINK no!!
+SET_DATA dont_care_about_tarikas_story,true
+	...mh, well, leave me be then.
+
+
+DIALOGUE tarikas_beyond_lake_again
+CHAR tarikas
+CHOICES no!!,yes!!
+	would you like me to tell the story again?
+CHOICE_LINK no!!
+	mh. a shame. i liked telling it.
+CHOICE_LINK yes!!
+	oh joy. mh, so...
+	
+
+DIALOGUE tarikas_beyond_lake_bother
+CHAR tarikas
+	you didn't want to hear the story.
+CHOICES no!!,yes!!
+	unless you changed your mind?
+CHOICE_LINK no!!
+	mh. then begone.
+CHOICE_LINK yes!!
+	oh joy. mh, so...
+
+
+DIALOGUE tarikas_beyond_lake_offerstory
+CHAR tarikas
+	mh. i'm an old man, i love telling stories.
+CHOICES no!!,yes!!
+	would you like me to tell you one?
+CHOICE_LINK yes!!,no!!
+	you already know it. it's about anu and the war.
+CHOICE_LINK no!!
+	mh. it was worth a try.
+CHOICE_LINK yes!!
+	oh joy. mh, so...
+
+
+DIALOGUE bike_ghost_fishing_1
+CHAR bike_ghost
+	hello, my nemesis!
+	it's a good day for fishing!
+	i have caught so much old trash!
+CHOICES yes,no
+	you want some?
+CHOICE_LINK yes
+ITEM gummy_fish
+	here you go.
+CHAR 
+	(you got something.)
+CHAR bike_ghost
+CHOICE_LINK no
+	too bad, i guess...
+
+
+DIALOGUE bike_ghost_fishing_2
+CHAR bike_ghost
+CHOICES you,me,spirits
+	did you want to talk about anything else?
+CHOICE_LINK you
+	about me? i am klack. that's what i'm called.
+	i "worked" as a transport spirit. until... you know.
+	thinking about becoming a fishing ghost instead.
+CHOICE_LINK me
+	about you? ha ha, you're terrifying.
+	...you'll find out... who you are...
+	...soon enough, hopefully.
+CHOICE_LINK spirits
+	what are spirits? quaint question.
+	power given mind.
+	souls in purgatory.
+	angels of hell.
+	the human essence.
+	everything not human.
+	pick one, or pick many. whichever you like.
+CHOICES power,souls,angels,human,inhuman
+	contradictions are fun.
+CHOICE_LINK power
+	don't get too comfortable.
+CHOICE_LINK souls
+	i'm already in hell so why bother?
+CHOICE_LINK angels
+	you're already in hell so why bother?
+CHOICE_LINK human
+	it's like looking into a mirror.
+CHOICE_LINK inhuman
+	we will never be one and the same.
+CHOICE_LINK 
+	...didn't ask you to answer there... but have fun!
+	this is a funny game after all.
+
+
 DIALOGUE fisherman_1
 	i love fishing!
 
@@ -1166,7 +1357,7 @@ DIALOGUE fisherman_4
 
 
 DIALOGUE fisherman_5
-	it is a defining moment of my life.
+	it was a defining moment of my life.
 
 
 DIALOGUE fisherman_attack
