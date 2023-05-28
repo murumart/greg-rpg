@@ -17,16 +17,16 @@ func gen_enemies() -> Array[String]:
 	var level := DAT.get_character("greg").level
 	if level < 25:
 		enemies.append(B)
-		if randf() <= 0.75: enemies.append(S)
-		if randf() <= 0.25: enemies.append(F)
-		if randf() <= 0.25: enemies.append(B)
+		if randf() <= 0.5: enemies.append(S)
+		if randf() <= 0.05: enemies.append(F)
+		if randf() <= 0.05: enemies.append(B)
 	else:
 		enemies.append(B)
 		if randf() <= 0.75: enemies.append(S)
-		if randf() <= 0.5: enemies.append(N)
-		if randf() <= 0.25: enemies.append(S)
-		if randf() <= 0.25: enemies.append(F)
-		if randf() <= 0.25: enemies.append(B)
+		if randf() <= 0.2: enemies.append(N)
+		if randf() <= 0.15: enemies.append(S)
+		if randf() <= 0.15: enemies.append(F)
+		if randf() <= 0.05: enemies.append(B)
 	if enemies.size() > 4:
 		enemies.resize(4)
 	return enemies

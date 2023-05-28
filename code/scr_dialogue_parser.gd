@@ -22,10 +22,9 @@ const NEW_DATA_LINK := "DATA_LINK "
 const NEW_SET_DATA := "SET_DATA "
 
 
-static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
+static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	print("parsing dialogue...")
 	var time := Time.get_ticks_usec() # measuring the time that this takes to run
-	var lines := file_as_text.split("\n")
 	var dialogue_dictionary : Dictionary = {}
 	var dial : Dialogue
 	var dial_line : DialogueLine
@@ -44,8 +43,9 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 	var set_data_to_set := PackedStringArray()
 	var l := -1
 	
-	# going trhough the string line by line
-	for line in lines:
+	# going trhough the file line by line
+	while not file.eof_reached():
+		var line := file.get_line()
 		l += 1
 		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
@@ -123,9 +123,9 @@ static func parse_dialogue_from_file(file_as_text: String) -> Dictionary:
 			emotion_to_set = line.trim_prefix(NEW_EMOTION)
 		elif line.begins_with(NEW_SET_DATA):
 			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
-		if l + 1 >= lines.size():
-			dialogue_dictionary[dial.name] = dial
 	
+	if file.eof_reached():
+		dialogue_dictionary[dial.name] = dial
 	print("parsing finished. %s ms" % ((Time.get_ticks_usec() - time) / 1000.0))
 	return dialogue_dictionary
 

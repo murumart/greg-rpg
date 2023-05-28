@@ -4,6 +4,8 @@ class_name PlayerOverworld
 enum States {FREE_MOVE, NOT_FREE_MOVE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
+@export var saving_disabled := false: set = set_saving_disabled
+
 const SPEED := 2600
 const INTERACTION_LENGTH := 8
 const ROTS = [&"up", &"right", &"down", &"left"]
@@ -100,3 +102,8 @@ func save_key_name(key: String) -> String:
 func _on_menu_close_requested() -> void:
 	menu.call_deferred("hideme")
 	DAT.free_player("overworld_menu")
+
+
+func set_saving_disabled(to: bool) -> void:
+	saving_disabled = to
+	menu.saving_disabled = to

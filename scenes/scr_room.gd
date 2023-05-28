@@ -21,6 +21,7 @@ func _ready() -> void:
 	var visited_rooms : Array = DAT.get_data("visited_rooms", [])
 	if not sname in visited_rooms: visited_rooms.append(sname)
 	DAT.set_data("visited_rooms", visited_rooms)
+	SOL.dialogue_choice = ""
 	
 	SND.play_song(music, music_fade_time,
 		{

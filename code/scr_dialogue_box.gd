@@ -57,9 +57,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 # load the dialogues from files
 func load_dialogue_dict() -> void:
 	dialogues_dict =\
-	DialogueParser.parse_dialogue_from_file(DIR.get_dialogue_file())
+	DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_dialogue.txt", FileAccess.READ))
 	
-	var fish_dialogues := DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_fisher_dialogue.txt", FileAccess.READ).get_as_text())
+	var fish_dialogues := DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_fisher_dialogue.txt", FileAccess.READ))
 	for i in fish_dialogues.keys():
 		dialogues_dict[i] = fish_dialogues[i]
 
@@ -210,7 +210,7 @@ func skip() -> void:
 		get_viewport().set_input_as_handled()
 
 
-func close() -> void:
+func close(sig := true) -> void:
 	loaded_dialogue = null
 	loaded_dialogue_line = null
 	current_dialogue = 0
@@ -221,7 +221,7 @@ func close() -> void:
 	if not dont_close:
 		hide()
 	DAT.call_deferred("free_player", "dialogue")
-	call_deferred("emit_signal", "dialogue_closed")
+	if sig: call_deferred("emit_signal", "dialogue_closed")
 
 
 # the size of the text area changes based on whether

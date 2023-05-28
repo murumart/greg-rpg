@@ -6,6 +6,8 @@ extends Node2D
 @export_enum("green", "blue", "yellow", "red", "bikeghost") var type: int = 0: set = _set_type
 @export var line_length := 30: set = _set_line_lenght
 @export var flip := false: set = _set_flip
+@export var custom_lines : PackedStringArray = []
+var cusdialpro := 0
 @export var randomise_men := false: set = _randomise_men
 
 
@@ -51,6 +53,10 @@ func _set_flip(to: bool) -> void:
 
 func _on_interact() -> void:
 	# the dialogue progress just loops around forever
+	if not custom_lines.is_empty():
+		SOL.dialogue(custom_lines[mini(cusdialpro, custom_lines.size() - 1)])
+		cusdialpro += 1
+		return
 	var dialpr : int = DAT.get_data("fisher_progress", 0)
 	dialpr = wrapi(dialpr + 1, 1, 6)
 	DAT.set_data("fisher_progress", dialpr)

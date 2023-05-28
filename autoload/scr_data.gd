@@ -82,7 +82,7 @@ func start_game() -> void:
 
 
 # set a data key to a value
-func set_data(key, value) -> void:
+func set_data(key: StringName, value) -> void:
 	if log_dat_chgs():
 		if key == check_for_key:
 			SND.play_sound(preload("res://sounds/snd_error.ogg"))
@@ -92,24 +92,24 @@ func set_data(key, value) -> void:
 
 
 # get a key from the data dict, use this instead of DAT.A.get()
-func get_data(key: String, default = null):
+func get_data(key: StringName, default = null):
 	if log_dat_chgs(): print("requested key %s from data" % key)
 	return A.get(key, default)
 
 
 # incrementing a float in the data dict
-func incrf(key: String, amount: float) -> void:
+func incrf(key: StringName, amount: float) -> void:
 	if log_dat_chgs(): print("floatcrementing: ")
 	set_data(key, A.get(key, 0.0) + amount)
 
 
 # incrementing an int in the data dict
-func incri(key: String, amount: int) -> void:
+func incri(key: StringName, amount: int) -> void:
 	if log_dat_chgs(): print("intcrementing: ")
 	set_data(key, A.get(key, 0) + amount)
 
 
-func appenda(key: String, thing: Variant) -> void:
+func appenda(key: StringName, thing: Variant) -> void:
 	if log_dat_chgs(): print("adding element %s to key %s" % [thing, key])
 	set_data(key, Math.reaap(get_data(key, []), thing))
 
@@ -119,8 +119,8 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 	save_chars_to_data()
 	set_data("playtime", seconds)
 	set_data("save_file", filename)
-	set_data("date", Time.get_date_string_from_system())
-	set_data("time", Time.get_time_string_from_system())
+	set_data("date", Time.get_date_string_from_system().replace("-", "."))
+	set_data("time", Time.get_time_string_from_system().replace(":", "."))
 	last_save_second = seconds
 	
 	var stuff := {}
@@ -205,10 +205,11 @@ func set_copied_data() -> void:
 func capture_player(type := "", overlap := true) -> void:
 	if not overlap and type in player_capturers: return
 	print(type, " captured player")
+	var noncap := ["dialogue", "greenhouse"]
 	# multiple things can capture the player
 	# they are stored as strings inside this array
 	player_capturers.append(type)
-	if type != "dialogue": SOL.dialogue_box.close()
+	if not type in noncap: SOL.dialogue_box.close(false)
 	var player := get_tree().get_first_node_in_group("players")
 	if is_instance_valid(player):
 		player.state = PlayerOverworld.States.NOT_FREE_MOVE

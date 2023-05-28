@@ -61,7 +61,7 @@ func get_effect_description() -> String:
 		elif eff.duration == -1:
 			text += curescriptions.get(eff.name, "cures " + fname + "\n")
 		else:
-			text += criptions.get(eff.name, fname) + (" "+str(eff.strength)+" " if eff.strength != 1 else "") + " for %s\n" % eff.duration
+			text += criptions.get(eff.name, fname) + (" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" " if eff.strength != 1 else "") + " for %s\n" % eff.duration
 	if use == Uses.ARMOUR:
 		text += "armour\n"
 	if use == Uses.WEAPON:

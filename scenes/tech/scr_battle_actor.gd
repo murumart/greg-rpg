@@ -363,7 +363,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		"duration": new_duration
 	}
 	# notify of an effect with this
-	if strength and duration:
+	if strength and duration and duration != -1:
 		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
 
 

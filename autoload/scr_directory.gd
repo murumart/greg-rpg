@@ -2,6 +2,8 @@ extends Node
 
 # handles access to files
 
+var R := ResourceLoader
+
 const GREG_USER_FOLDER_PATH := "user://greg_rpg"
 const ENEMY_SCENE_PATH := "res://scenes/characters/battle_enemies/scn_enemy_%s.tscn"
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
@@ -86,13 +88,15 @@ func battle_background_scene_path(id: String) -> String:
 
 
 func battle_background_scene_exists(id: String) -> bool:
-	var dir := get_dir_contents("res://scenes/battle_backgrounds/", "scn_")
-	return id in dir
+	return R.exists(battle_background_scene_path(id), "PackedScene")
+#	var dir := get_dir_contents("res://scenes/battle_backgrounds/", "scn_")
+#	return id in dir
 
 
 func room_exists(id: String) -> bool:
-	var dir := get_dir_contents("res://scenes/rooms/", "scn_room_")
-	return id in dir
+	return R.exists(ROOM_SCENE_PATH % id, "PackedScene")
+#	var dir := get_dir_contents("res://scenes/rooms/", "scn_room_")
+#	return id in dir
 
 
 func get_dialogue_file() -> String:
@@ -101,8 +105,9 @@ func get_dialogue_file() -> String:
 
 
 func portrait_exists(id: String) -> bool:
-	var dir := get_dir_contents("res://sprites/characters/portraits/")
-	return "spr_portrait_" + id in dir
+	return R.exists("res://sprites/characters/portraits/spr_portrait_%s.png" % id)
+#	var dir := get_dir_contents("res://sprites/characters/portraits/")
+#	return "spr_portrait_" + id in dir
 
 
 # copied from somewhere and adjusted a bit

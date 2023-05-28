@@ -55,7 +55,7 @@ func get_effect_description() -> String:
 		elif eff.duration == -1:
 			text += curescriptions.get(eff.name, "cures " + fname + "\n")
 		else:
-			text += criptions.get(eff.name, fname) + (" "+str(eff.strength)+" " if eff.strength != 1 else "") + " for %s\n" % eff.duration
+			text += criptions.get(eff.name, fname) + (" "+Math.sign_symbol(eff.strength)+str(eff.strength)+" " if eff.strength != 1 else "") + " for %s\n" % eff.duration
 	match reach:
 		Reach.LOCAL: pass
 		Reach.ALL:text += "@ all\n"

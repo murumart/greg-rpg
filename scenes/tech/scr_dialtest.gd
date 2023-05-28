@@ -9,7 +9,7 @@ const reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
 
 func _ready() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	load_reference_buttons(dialdict().keys(), containers)
+	load_reference_buttons(dialdict().keys(),)
 
 
 func _on_text_edit_text_submitted(new_text: String) -> void:
@@ -22,10 +22,10 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 				array2.append(i)
 	else:
 		array2 = array
-	load_reference_buttons(array2, containers)
+	load_reference_buttons(array2,)
 
 
-func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
+func load_reference_buttons(array: Array, clear := true) -> void:
 	if clear:
 		for container in containers:
 			for c in container.get_children():
@@ -54,7 +54,7 @@ func _reference_button_pressed(reference) -> void:
 	get_window().gui_release_focus()
 
 
-func _on_button_reference_received(reference) -> void:
+func _on_button_reference_received(_reference) -> void:
 	pass
 
 

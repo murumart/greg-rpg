@@ -32,7 +32,7 @@ texture = ExtResource("3_fmde4")
 visible = false
 position = Vector2(80, 64)
 script = ExtResource("5_t1ndu")
-radius = null
+radius = 100.0
 
 [node name="Image2" type="Sprite2D" parent="Images"]
 self_modulate = Color(1, 1, 1, 0)
