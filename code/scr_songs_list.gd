@@ -118,6 +118,11 @@ var songs := {
 		"title": "so guys, we did it",
 		"link": "res://music/mus_victory.ogg",
 		"loop": false
+	},
+	"warstory": {
+		"title": "stood down and greeted us",
+		"link": "res://music/mus_warstory.ogg",
+		"loop": false
 	}
 }
 
