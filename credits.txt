@@ -1,3 +1,6 @@
 music authors marked in songs_list.gd
 if not mentioned, then it's by Murumart
 
+explosion noises https://www.freesoundeffects.com/free-sounds/explosion-10070/
+explosion graphic https://mebiusbox.github.io/contents/EffectTextureMaker/
+
