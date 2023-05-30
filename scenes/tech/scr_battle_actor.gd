@@ -321,21 +321,7 @@ func status_effect_update() -> void:
 			status_effects[e] = {}
 		
 		# apply damage from damaging effects
-		if e == "coughing" and effect.get("duration") > 0:
-			# coughing damage is applied by a separate battle actor because why not
-			var cougher := BattleActor.new()
-			cougher.character = Character.new()
-			cougher.character.attack = effect.get("strength") * 2
-			add_child(cougher)
-			cougher.attack(self)
-			SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
-			cougher.queue_free()
-		if e == "poison" and effect.get("duration") > 0:
-			hurt(effect.get("strength", 1) * 1.3)
-		if e == "fire" and effect.get("duration") > 0:
-			hurt(clampf(character.health * 0.08, 1, 25))
-			SOL.vfx("battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
-			SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
+		effect_action(e, effect)
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
@@ -365,6 +351,26 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	# notify of an effect with this
 	if strength and duration and duration != -1:
 		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
+
+
+func effect_action(nomen: String, effect: Dictionary) -> void:
+	if nomen == "coughing" and effect.get("duration") > 0:
+		# coughing damage is applied by a separate battle actor because why not
+		var cougher := BattleActor.new()
+		cougher.character = Character.new()
+		cougher.character.attack = effect.get("strength") * 2
+		add_child(cougher)
+		cougher.attack(self)
+		SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
+		cougher.queue_free()
+	if nomen == "poison" and effect.get("duration") > 0:
+		hurt(effect.get("strength", 1) * 1.3)
+	if nomen == "fire" and effect.get("duration") > 0:
+		hurt(clampf(character.health * 0.08, 1, 25))
+		SOL.vfx("battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
+		SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
+	if nomen == "regen" and effect.get("duration") > 0:
+		heal(effect.get("strength", 1) * 5)
 
 
 func turn_finished() -> void:

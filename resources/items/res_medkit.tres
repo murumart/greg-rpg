@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dviusjpvdsjgp"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_c3cja"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_fqh4f"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_8h23i"]
+[ext_resource type="Texture2D" uid="uid://cl86376dduh8" path="res://sprites/items/spr_item_medkit.png" id="4_7h1vw"]
+
+[sub_resource type="Resource" id="Resource_rpw7p"]
+script = ExtResource("1_c3cja")
+name = "regen"
+strength = 1.0
+duration = 10
+
+[sub_resource type="Resource" id="Resource_phduw"]
+script = ExtResource("1_c3cja")
+name = "poison"
+strength = 1.0
+duration = -1
+
+[sub_resource type="Resource" id="Resource_h1edd"]
+script = ExtResource("2_8h23i")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+effects = Array[ExtResource("1_c3cja")]([SubResource("Resource_rpw7p"), SubResource("Resource_phduw")])
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_fqh4f")
+name_in_file = &""
+name = &"medkit"
+description = "heals you for a while"
+texture = ExtResource("4_7h1vw")
+attack_animation = ""
+price = 400
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_h1edd")

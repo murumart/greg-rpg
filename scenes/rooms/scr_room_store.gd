@@ -72,7 +72,7 @@ func restock() -> void:
 	var store_shelf_count := shelves.size()
 	
 	# item types stored here
-	var healing_items := ["medkit", "plaster", "pills"]
+	var healing_items := ["medkit", "plaster", "pills", "cough_syrup"]
 	var food_items := ["muesli", "mueslibar", "bread"]
 	var building_items := ["tape", "brick"]
 	var arrays := [healing_items, food_items, building_items]
