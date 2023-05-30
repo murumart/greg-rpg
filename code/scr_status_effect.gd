@@ -2,6 +2,8 @@ class_name StatusEffect extends Resource
 
 # quick thing to store status effect applying in BattlePayload
 
+
+
 const ICONS := {
 	"poison": Rect2(0, 0, 6, 6),
 	"coughing": Rect2(6, 0, 6, 6),
@@ -12,6 +14,7 @@ const ICONS := {
 	"defense": Rect2(6, 6, 6, 6),
 	"speed": Rect2(12, 6, 6, 6),
 	"magnet": Rect2(18, 6, 6, 6),
+	"regen": Rect2(0, 12, 6, 6),
 }
 
 @export var name := ""

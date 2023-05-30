@@ -43,6 +43,7 @@ func _on_dialogue_closed() -> void:
 		LTS.level_transition("res://scenes/cutscene/scn_warstory.tscn")
 	elif SOL.dialogue_choice in ["power", "souls", "angels", "human", "inhuman"]:
 		DAT.set_data("spirit_definition", SOL.dialogue_choice)
+		DIR.sej(14, SOL.dialogue_choice)
 		SOL.dialogue_choice = ""
 		
 
