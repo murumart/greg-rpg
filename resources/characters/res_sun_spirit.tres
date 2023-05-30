@@ -6,7 +6,7 @@
 script = ExtResource("1_etq4m")
 name_in_file = &""
 name = "solar protuberance"
-info = "you are bathed in radiant glow."
+info = "hurt is heat. heal is defeat. you are bathed in radiant glow."
 max_health = 500.0
 health = 500.0
 max_magic = 30000.0
