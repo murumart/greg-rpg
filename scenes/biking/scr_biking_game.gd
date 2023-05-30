@@ -86,13 +86,15 @@ func _physics_process(delta: float) -> void:
 	# the kiosk appears every INTERVAL "meters"
 	if (roundi(get_meter() + 20) % MAIL_KIOSK_INTERVAL) == 0:
 		current_perk = ""
+		if currently_syrup: stop_syrup()
 		set_speed(60)
 		bike.super_mail = false
 		bike.following_mail = false
 		the_kiosk()
 	
 	# at the end of the road, do some testing and fixing if necess
-	if roundi(get_meter()) >= ROAD_LENGTH:
+	if roundi(get_meter()) >= ROAD_LENGTH - 1:
+		if currently_syrup: stop_syrup()
 		set_speed(0)
 		check_if_kiosk_has_made_it()
 	
@@ -109,6 +111,9 @@ func _physics_process(delta: float) -> void:
 	# debug (rememmber to remove)
 	if Input.is_action_pressed("ui_end"):
 		distance += 60
+	
+	if currently_syrup and get_meter() >= syrup_stop_meter:
+		stop_syrup()
 	
 #	debug.text = "dist: %s
 #meter: %s
@@ -420,4 +425,18 @@ func calculate_rewards() -> BattleRewards:
 		rewd.rewards.append(rew)
 	return rewd
 
+
+# skip 100m of road
+var currently_syrup := false
+var syrup_stop_meter := 0
+func syrup():
+	syrup_stop_meter = get_meter() + 100
+	currently_syrup = true
+	set_speed(speed + 800)
+	bike.invincibility_timer.start(5)
+
+func stop_syrup():
+	currently_syrup = false
+	set_speed(speed - 800)
+	bike.invincibility_timer.stop()
 

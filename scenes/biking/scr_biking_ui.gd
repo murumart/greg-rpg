@@ -109,6 +109,9 @@ func use_item(item: String) -> void:
 		game.bike.heal(roundi(45/2.0))
 	elif item == "magnet":
 		game.bike.effects["coin_magnet"] = {"time": 20.0}
+	elif item == "cough_syrup":
+		game.close_inventory()
+		game.syrup()
 
 
 func open_hell_menu() -> void:

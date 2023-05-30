@@ -19,7 +19,7 @@ const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 var stage := -1
 var ending := false
 
-var possible_items := ["tape", "magnet"]
+var possible_items := ["tape", "magnet", "cough_syrup"]
 var items_available := []
 var possible_perks := [
 	"snail_repel",
@@ -157,6 +157,8 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 			refbutton.text = reference.name
 		elif reference is String and options.get("item", false) and reference != "leave":
 			refbutton.text = DAT.get_item(reference).name
+			refbutton.custom_minimum_size.x = 42
+			refbutton.clip_text = true
 		else:
 			refbutton.text = str(reference).replace("_", " ")
 		if reference == "leave":
