@@ -7,11 +7,8 @@ extends Node
 var A : Dictionary
 
 # loadable resources
-var character_list := ["greg", "grandma", "mail_man", "zerma", "tarikas", "cashier_nice", "cashier_mean", "fisherwoman", "naturalist", "bike_ghost", "grass", "car", "chimney", "kor_sten", "well", "abiss", "stabbing_fella", "shopping_cart", "moron", "fish", "sopping", "broken_fisherman", "not_fish", "sun_spirit", "cat"]
 var character_dict := {}
-var item_list := ["bike_helmet", "rain_boot", "gummy_worm", "gummy_fish", "milkshake", "plaster", "sugar_lemon", "lighter", "tumbler", "porridge", "pocket_candy", "muesli", "mueslibar", "bread", "pills", "cough_syrup", "medkit", "tape", "magnet", "bike_bell", "brick", "knife", "fish", "bike_ghost_arm", "shovel"]
 var item_dict := {}
-var spirit_list := ["sideeye", "hotel", "peptide", "jglove", "peanuts", "littleman", "personally", "roundup", "mooncity", "rev", "overrun", "airspace_violation", "bigger_airspace_violation", "isotoxin", "dreaming_in_green", "shopping_cart", "wli_attack", "fish_attack", "splash_attack", "hook_attack", "fish_spawn", "alpha_radio", "radiation_attack", "ghostpunches", "skystorm", "flare", "nova"]
 var spirit_dict := {}
 const MAX_SPIRITS := 3
 
@@ -46,36 +43,34 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	load_characters()
-	load_items()
-	load_spirits()
+	load_resources()
 	init_data()
 	print("DAT is ready!")
 	DIR.incj(1, 1)
 
 
-# loading chars items spirits use those export strings
+# loading chars items spirits use those string arrays
 # relies on there being files with the same names as those strings
 # then storing the loaded files inside dicts
-func load_characters() -> void:
-	for s in character_list:
+func load_resources() -> void:
+	for s in DIR.get_dir_contents("res://resources/characters/"):
+		if not s.begins_with("res"): continue
+		s = s.trim_prefix("res_")
 		character_dict[s] = load(DIR.get_char_path(s)) as Character
 		character_dict[s].name_in_file = s
-
-
-func load_items() -> void:
-	for s in item_list:
+	for s in DIR.get_dir_contents("res://resources/items/"):
+		if not s.begins_with("res"): continue
+		s = s.trim_prefix("res_")
 		item_dict[s] = load(DIR.get_item_path(s)) as Item
 		item_dict[s].name_in_file = s
-
-
-func load_spirits() -> void:
-	for s in spirit_list:
+	for s in DIR.get_dir_contents("res://resources/spirits/"):
+		if not s.begins_with("res"): continue
+		s = s.trim_prefix("res_")
 		spirit_dict[s] = load(DIR.get_spirit_path(s)) as Spirit
 		spirit_dict[s].name_in_file = s
 
 
-# entry point for a new game.
+# entry point for a new game
 # the architecture for this is iffy
 func start_game() -> void:
 	init_data()
