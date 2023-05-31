@@ -51,13 +51,15 @@ func _ready() -> void:
 
 func load_items() -> void:
 	stage = 1
-	load_reference_buttons(items_available, [button_container], {"item": true})
+	#load_reference_buttons(items_available, [button_container], {"item": true})
+	Math.load_reference_buttons(items_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": leave_colour, "text_left": 8})
 	button_container.get_child(0).call_deferred("grab_focus")
 
 
 func load_perks() -> void:
 	stage = 2
-	load_reference_buttons(perks_available, [button_container])
+	#load_reference_buttons(perks_available, [button_container])
+	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": leave_colour})
 
 
 # this is horrible but I do not have the mental capacity at the moment
@@ -65,6 +67,7 @@ func load_perks() -> void:
 # fuck you past me
 # go to hell
 # future future me also go to hell lol I'm not improving this
+# future future me here. this could be a lot worse. not touching it tho
 func bye(choseperk := false) -> void:
 	if ending:
 		dlbox.prepare_dialogue("biking_end")
@@ -168,6 +171,12 @@ func load_reference_buttons(array: Array, containers: Array, options = {}) -> vo
 		containers[container_nr].add_child(refbutton)
 		refbutton.show()
 		container_nr = wrapi(container_nr + 1, 0, containers.size())
+
+
+func leave_colour(_inp: String, button: Button) -> void:
+	if button.reference == "leave":
+		button.text = "leave"
+		button.modulate = Color("#888888")
 
 
 func _reference_button_pressed(reference) -> void:

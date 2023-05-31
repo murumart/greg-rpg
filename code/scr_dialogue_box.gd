@@ -144,7 +144,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	loaded_dialogue_line = part
 	
 	portrait.texture = null
-	load_reference_buttons([], choices_container)
+	Math.load_reference_buttons([], [choices_container], _reference_button_pressed, _on_button_reference_received)
 	choices_container.get_parent().hide()
 	choices_open = false
 	
@@ -181,7 +181,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
 	
 	if choices:
-		load_reference_buttons(choices, choices_container)
+		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received)
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).call_deferred("grab_focus")
@@ -260,27 +260,6 @@ func dial_concat(key: String, line_id: int, params: Array) -> void:
 	var line : DialogueLine = dialogues_dict.get(key).get_line(line_id)
 	# and store it in the regular dialogues
 	line.text = unmodified_dialogue_lines.get(get_key).text % params
-
-
-# for dialogue options
-func load_reference_buttons(array: Array, container: Node, clear := true) -> void:
-	if clear:
-		for c in container.get_children():
-			c.queue_free()
-	for i in array.size():
-		var reference = array[i]
-		var refbutton := reference_button.duplicate()
-		refbutton.reference = reference
-		refbutton.text = str(reference)
-		refbutton.connect("return_reference", _reference_button_pressed)
-		refbutton.connect("selected_return_reference", _on_button_reference_received)
-		container.add_child(refbutton)
-		refbutton.show()
-	# cool moment here where I decide that there are no more than 1 container.
-	for c in container.get_child_count():
-		var child : Control = container.get_child(c)
-		child.focus_neighbor_top = container.get_child(c - 1).get_path()
-		child.focus_neighbor_bottom = container.get_child(wrapi(c + 1, 0, container.get_child_count())).get_path()
 
 
 # selecting choices

@@ -194,7 +194,7 @@ func load_items() -> void:
 	if party(current_tab).weapon:
 		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
-	load_reference_buttons(item_array, [item_container], {"item": true})
+	Math.load_reference_buttons(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true})
 	silver_counter.text = str("party silver:\n", DAT.get_data("silver", 0))
 
 
@@ -204,8 +204,8 @@ func load_spirits() -> void:
 	var unused_spirit_array := []
 	spirit_array.append_array(party(current_tab).spirits)
 	unused_spirit_array.append_array(party(current_tab).unused_sprits)
-	load_reference_buttons(spirit_array, [used_spirit_container], {"spirit": true, "adjust_focus": false})
-	load_reference_buttons(unused_spirit_array, [unused_spirit_container], {"spirit": true, "adjust_focus": false})
+	Math.load_reference_buttons(spirit_array, [used_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false})
+	Math.load_reference_buttons(unused_spirit_array, [unused_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false})
 
 
 func grab_item_focus() -> void:

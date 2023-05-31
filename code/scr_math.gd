@@ -67,6 +67,82 @@ static func mult_arr(arr: Array, x: int) -> Array:
 	var a := []
 	for i in x: a.append_array(arr)
 	return a
-	
 
+
+static func party(tab: int) -> Character:
+	return DAT.get_character(DAT.get_data("party", ["greg"])[tab])
+
+
+static func load_reference_buttons(
+		array: Array,
+		containers: Array,
+		reference_button_press_function: Callable,
+		button_reference_receive_function: Callable,
+		options = {}
+	) -> void:
+	var REFERENCE_BUTTON := preload("res://scenes/tech/scn_reference_button.tscn")
+	var party_char := options.get("party_char", 0) as int
+	var mouse_interaction := options.get("mouse_interaction", false) as bool
+	var text_left := options.get("text_left", 2147483647) as int
+	var custom_pass_function : Callable = options.get("custom_pass_function", func(_a, _b): pass)
+	var us2space := options.get("us2space", false) as bool
+	var keystore := {}
+	if options.get("clear", true):
+		for container in containers:
+			for c in container.get_children():
+				c.queue_free()
+	var container_nr := 0
+	var ar2 := array.duplicate(false)
+	ar2.sort()
+	for o in ar2:
+		if o in keystore: continue
+		
+	for i in array.size():
+		var ref = array[i]
+		var refbutton := REFERENCE_BUTTON.instantiate() as Button
+		refbutton.reference = ref
+		if ref is Character:
+			refbutton.text = ref.name.left(text_left)
+		elif ref is BattleActor:
+			refbutton.text = ref.actor_name.left(text_left)
+		elif ref is String and options.get("item", false):
+			refbutton.text = DAT.get_item(ref).name.left(text_left)
+			if i < 2 and (
+				ref == Math.party(party_char).armour or
+				ref == Math.party(party_char).weapon
+			):
+				refbutton.modulate = Color(1.0, 0.6, 0.3)
+				refbutton.set_meta(&"equipped", true)
+		elif ref is String and options.get("spirit", false):
+			refbutton.text = DAT.get_spirit(ref).name.left(text_left)
+		else:
+			refbutton.text = str(ref).left(text_left)
+			if us2space:
+				refbutton.text = refbutton.text.replace("_", " ")
+		if custom_pass_function:
+			custom_pass_function.call(refbutton.text, refbutton)
+		refbutton.connect("return_reference", reference_button_press_function)
+		refbutton.connect("selected_return_reference", button_reference_receive_function)
+		if mouse_interaction:
+			refbutton.mouse_filter = Control.MOUSE_FILTER_STOP
+			refbutton.button_mask = MOUSE_BUTTON_MASK_LEFT
+		containers[container_nr].add_child(refbutton)
+		refbutton.show()
+		container_nr = wrapi(container_nr + 1, 0, containers.size())
+	if not options.get("adjust_focus", true): return
+	# awaiting in a static function
+	await DAT.get_tree().process_frame
+	# loop through all buttons again
+	for i in containers.size():
+		var c = containers[i]
+		for j in c.get_child_count():
+			var k = c.get_child(j)
+			# if it's the first one in a column, make its top neighbour the
+			# last one in the previous column
+			if j == 0:
+				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
+			# if it's the last one in a column, make its top neighbour the
+			# first one in the previous column
+			if j + 1 >= c.get_child_count():
+				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
 
