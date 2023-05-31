@@ -1327,15 +1327,22 @@ CHOICES power,souls,angels,human,inhuman
 	contradictions are fun.
 CHOICE_LINK power
 	don't get too comfortable.
+	...didn't ask you to answer there... but have fun!
+	this is a funny game after all.
 CHOICE_LINK souls
 	i'm already in hell so why bother?
+	...didn't ask you to answer there... but have fun!
+	this is a funny game after all.
 CHOICE_LINK angels
 	you're already in hell so why bother?
+	...didn't ask you to answer there... but have fun!
+	this is a funny game after all.
 CHOICE_LINK human
 	it's like looking into a mirror.
+	...didn't ask you to answer there... but have fun!
+	this is a funny game after all.
 CHOICE_LINK inhuman
 	we will never be one and the same.
-CHOICE_LINK 
 	...didn't ask you to answer there... but have fun!
 	this is a funny game after all.
 

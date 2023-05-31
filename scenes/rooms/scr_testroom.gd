@@ -5,6 +5,7 @@ var speed := 60.0
 
 
 func _ready() -> void:
+	music = SND.list.songs.keys().pick_random()
 	super._ready()
 	
 	var button_functions := [save_pressed, load_pressed, shake_pressed, trash_pressed, speak_pressed, dialogue_speak_pressed, play_music_pressed, fade_screen_pressed, leave_pressed]
@@ -12,6 +13,9 @@ func _ready() -> void:
 		var callable := button_functions[i] as Callable
 		var button := $Buttons.get_child(i) as Button
 		button.pressed.connect(callable)
+	for i in DAT.item_dict.keys():
+		for n in randi_range(1, 4):
+			Math.party(0).inventory.append(i)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

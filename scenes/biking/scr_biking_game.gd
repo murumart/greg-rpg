@@ -363,6 +363,8 @@ func enter_hell() -> void:
 	snails_hit = 0
 	ui.display_hell_snail(snails_hit)
 	set_speed(80)
+	if currently_syrup:
+		stop_syrup()
 	ui.open_hell_menu()
 	SND.play_song("snail_mourning", 4.0, {"skip_to": SND.get_music_playback_position()})
 	hell_time = 0
@@ -430,6 +432,9 @@ func calculate_rewards() -> BattleRewards:
 var currently_syrup := false
 var syrup_stop_meter := 0
 func syrup():
+	if currently_hell:
+		bike.heal(20)
+		return
 	syrup_stop_meter = get_meter() + 100
 	currently_syrup = true
 	set_speed(speed + 800)

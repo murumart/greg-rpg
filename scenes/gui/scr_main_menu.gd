@@ -14,6 +14,14 @@ func _ready() -> void:
 		$Label.text = "[center]" + str(get_funny_messages().pick_random())
 		if $Label.text.ends_with("[/url]"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	# mail message
+	if randf() <= 0.01:
+		$VBoxContainer/MailButton/MailPanel/RichTextLabel.text = HateMail.letter()
+		$VBoxContainer/MailButton.visible = true
+		$VBoxContainer/LoadGameButton.focus_neighbor_bottom = $VBoxContainer/MailButton.get_path()
+		$VBoxContainer/MailButton.focus_neighbor_top = $VBoxContainer/LoadGameButton.get_path()
+		$VBoxContainer/MailButton.focus_neighbor_bottom = $VBoxContainer/QuitButton.get_path()
+		$VBoxContainer/QuitButton.focus_neighbor_top = $VBoxContainer/MailButton.get_path()
 	DIR.incj(0, 1)
 
 
@@ -26,6 +34,7 @@ func _input(event: InputEvent) -> void:
 	if pos != oldpos:
 		SND.play_sound(menusound)
 	if event.is_action_pressed("ui_cancel"):
+		$VBoxContainer/MailButton/MailPanel.hide()
 		$VBoxContainer/NewGameButton.grab_focus()
 
 
@@ -75,9 +84,20 @@ func get_funny_messages() -> Array:
 		"thank you webcat!",
 		"thank you radio!",
 		"newspaper boy...",
-		"don't eat the soap." if randf() > 0.25 else "don't eat the soup" if randf() > 0.5 else "don't eat the saup" if randf() > 0.75 else "don't eat the soeuüp",
+		"don't eat the soap." if randf() < 0.75 else "don't eat the soup" if randf() < 0.5 else "don't eat the saup" if randf() < 0.25 else "don't eat the soeuüp",
 		"histories of mail and man",
 		"greg",
 		"[color=#8888ff][u][url=https://www.google.com/search?q=greg+merch]buy cool merch! ->[/url]"
 	]
+
+
+var read_messages := false
+func _on_mail_button_pressed() -> void:
+	$VBoxContainer/MailButton/MailPanel.visible = not $VBoxContainer/MailButton/MailPanel.visible
+	$VBoxContainer/MailButton.text = " messages"
+	$VBoxContainer/MailButton/Sprite2D.hide()
+	if not read_messages:
+		DIR.incj(120, 1)
+	read_messages = true
+
 

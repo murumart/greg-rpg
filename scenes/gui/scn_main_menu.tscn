@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=9 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
 [ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -36,6 +37,7 @@ metadata/_edit_lock_ = true
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_0obdr")
+layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
@@ -90,6 +92,48 @@ button_mask = 0
 text = " load game"
 alignment = 0
 
+[node name="MailButton" type="Button" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../NewGameButton")
+mouse_filter = 2
+button_mask = 0
+text = " messages (1)"
+alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/MailButton"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(91, 1)
+scale = Vector2(4.5, 5)
+texture = ExtResource("5_rqmy0")
+centered = false
+
+[node name="MailPanel" type="Panel" parent="VBoxContainer/MailButton"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -27.0
+offset_top = -81.0
+offset_right = 124.0
+offset_bottom = 23.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MailButton/MailPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 149.0
+offset_bottom = 102.0
+text = "undesirable hate
+
+you are my repugnance abominable: my avoided animus. you are my repulsion beloathed: my anathematised hate. my undesirable odium disgracefully strangles your avoided anathema. my repulsive dislike loathes your shunned resentment. you are my malevolence undesirable: my despised spite.
+
+yours unforgivably,
+m.d.p."
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -114,4 +158,5 @@ text = "press esc for options any time"
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MailButton" to="." method="_on_mail_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
