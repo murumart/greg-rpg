@@ -51,15 +51,14 @@ func _ready() -> void:
 
 func load_items() -> void:
 	stage = 1
-	#load_reference_buttons(items_available, [button_container], {"item": true})
-	Math.load_reference_buttons(items_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": leave_colour, "text_left": 8})
+	Math.load_reference_buttons(items_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 	button_container.get_child(0).call_deferred("grab_focus")
 
 
 func load_perks() -> void:
 	stage = 2
 	#load_reference_buttons(perks_available, [button_container])
-	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": leave_colour})
+	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": item_names})
 
 
 # this is horrible but I do not have the mental capacity at the moment
@@ -146,37 +145,12 @@ func gen_perks() -> Array:
 	return arr
 
 
-func load_reference_buttons(array: Array, containers: Array, options = {}) -> void:
-	if options.get("clear", true):
-		for container in containers:
-			for c in container.get_children():
-				c.queue_free()
-	var container_nr := 0
-	for i in array.size():
-		var reference = array[i]
-		var refbutton := REF_BUTTON_LOAD.instantiate()
-		refbutton.reference = reference
-		if reference is Character:
-			refbutton.text = reference.name
-		elif reference is String and options.get("item", false) and reference != "leave":
-			refbutton.text = DAT.get_item(reference).name
-			refbutton.custom_minimum_size.x = 42
-			refbutton.clip_text = true
-		else:
-			refbutton.text = str(reference).replace("_", " ")
-		if reference == "leave":
-			refbutton.modulate = Color("#888888")
-		refbutton.connect("return_reference", _reference_button_pressed)
-		refbutton.connect("selected_return_reference", _on_button_reference_received)
-		containers[container_nr].add_child(refbutton)
-		refbutton.show()
-		container_nr = wrapi(container_nr + 1, 0, containers.size())
-
-
-func leave_colour(_inp: String, button: Button) -> void:
-	if button.reference == "leave":
-		button.text = "leave"
-		button.modulate = Color("#888888")
+func item_names(opt := {}) -> void:
+	if opt.button.reference == "leave":
+		opt.button.text = "leave"
+		opt.button.modulate = Color("#888888")
+		return
+	opt.button.text = DAT.get_item(opt.reference).name.left(8)
 
 
 func _reference_button_pressed(reference) -> void:

@@ -73,6 +73,8 @@ static func party(tab: int) -> Character:
 	return DAT.get_character(DAT.get_data("party", ["greg"])[tab])
 
 
+# this is one ugly funtion
+# populates an array of containers with reference button children
 static func load_reference_buttons(
 		array: Array,
 		containers: Array,
@@ -81,46 +83,27 @@ static func load_reference_buttons(
 		options = {}
 	) -> void:
 	var REFERENCE_BUTTON := preload("res://scenes/tech/scn_reference_button.tscn")
-	var party_char := options.get("party_char", 0) as int
 	var mouse_interaction := options.get("mouse_interaction", false) as bool
 	var text_left := options.get("text_left", 2147483647) as int
-	var custom_pass_function : Callable = options.get("custom_pass_function", func(_a, _b): pass)
+	var custom_pass_function : Callable = options.get("custom_pass_function", func(_a): pass)
 	var us2space := options.get("us2space", false) as bool
-	var keystore := {}
 	if options.get("clear", true):
 		for container in containers:
 			for c in container.get_children():
 				c.queue_free()
 	var container_nr := 0
-	var ar2 := array.duplicate(false)
-	ar2.sort()
-	for o in ar2:
-		if o in keystore: continue
-		
 	for i in array.size():
 		var ref = array[i]
 		var refbutton := REFERENCE_BUTTON.instantiate() as Button
 		refbutton.reference = ref
-		if ref is Character:
-			refbutton.text = ref.name.left(text_left)
-		elif ref is BattleActor:
-			refbutton.text = ref.actor_name.left(text_left)
-		elif ref is String and options.get("item", false):
-			refbutton.text = DAT.get_item(ref).name.left(text_left)
-			if i < 2 and (
-				ref == Math.party(party_char).armour or
-				ref == Math.party(party_char).weapon
-			):
-				refbutton.modulate = Color(1.0, 0.6, 0.3)
-				refbutton.set_meta(&"equipped", true)
-		elif ref is String and options.get("spirit", false):
-			refbutton.text = DAT.get_spirit(ref).name.left(text_left)
-		else:
-			refbutton.text = str(ref).left(text_left)
-			if us2space:
-				refbutton.text = refbutton.text.replace("_", " ")
+		refbutton.text = str(ref).left(text_left)
+		if us2space: refbutton.text = refbutton.text.replace("_", " ")
 		if custom_pass_function:
-			custom_pass_function.call(refbutton.text, refbutton)
+			custom_pass_function.call({
+					"button": refbutton,
+					"reference": ref,
+					"nr": i
+				})
 		refbutton.connect("return_reference", reference_button_press_function)
 		refbutton.connect("selected_return_reference", button_reference_receive_function)
 		if mouse_interaction:
@@ -146,3 +129,31 @@ static func load_reference_buttons(
 			if j + 1 >= c.get_child_count():
 				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
 
+
+static func item_name_array(inp: Array) -> Array:
+	var ret := []
+	for i in inp:
+		ret.append(DAT.get_item(i).name)
+	return ret
+
+
+static func spirit_name_array(inp: Array) -> Array:
+	var ret := []
+	for i in inp:
+		ret.append(DAT.get_spirit(i).name)
+	return ret
+
+
+static func character_name_array(inp: Array) -> Array:
+	var ret := []
+	for i in inp:
+		ret.append(DAT.get_character(i).name)
+	return ret
+
+
+static func battle_actor_name_array(inp: Array) -> Array:
+	var ret := []
+	for i in inp:
+		i = i as BattleActor
+		ret.append(i.actor_name)
+	return ret

@@ -194,8 +194,23 @@ func load_items() -> void:
 	if party(current_tab).weapon:
 		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
-	Math.load_reference_buttons(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true})
+	Math.load_reference_buttons(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 	silver_counter.text = str("party silver:\n", DAT.get_data("silver", 0))
+
+
+func item_names(opt := {}) -> void:
+	# for displaying armour and weapons in char inventory
+	if opt.nr < 2 and (
+		opt.reference == party(current_tab).armour or
+		opt.reference == party(current_tab).weapon
+	):
+		opt.button.modulate = Color(1.0, 0.6, 0.3)
+		opt.button.set_meta(&"equipped", true)
+	opt.button.text = DAT.get_item(opt.reference).name.left(13)
+
+
+func spirit_names(opt := {}) -> void:
+	opt.button.text = DAT.get_spirit(opt.reference).name.left(12)
 
 
 # display the character's used and unused spirits
@@ -204,8 +219,8 @@ func load_spirits() -> void:
 	var unused_spirit_array := []
 	spirit_array.append_array(party(current_tab).spirits)
 	unused_spirit_array.append_array(party(current_tab).unused_sprits)
-	Math.load_reference_buttons(spirit_array, [used_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false})
-	Math.load_reference_buttons(unused_spirit_array, [unused_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false})
+	Math.load_reference_buttons(spirit_array, [used_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false, "custom_pass_function": spirit_names})
+	Math.load_reference_buttons(unused_spirit_array, [unused_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false, "custom_pass_function": spirit_names})
 
 
 func grab_item_focus() -> void:

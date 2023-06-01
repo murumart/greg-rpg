@@ -523,22 +523,18 @@ func open_list_screen() -> void:
 			array.append_array(enemies)
 			array.append_array(party)
 			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
-			#load_reference_buttons(array, list_containers, true)
 			screen_list_select.show()
 		Doings.ITEM_MENU:
-			Math.load_reference_buttons(current_guy.character.inventory, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true})
-			#load_reference_buttons(current_guy.character.inventory, item_list_container, true)
+			Math.load_reference_buttons(current_guy.character.inventory, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
 			array.append_array(party)
 			array.append_array(enemies)
 			Math.load_reference_buttons(actors, list_containers, _reference_button_pressed, _on_button_reference_received)
-			#load_reference_buttons(array, list_containers, true)
 			screen_list_select.show()
 		Doings.SPIRIT:
 			Math.load_reference_buttons(actors, list_containers, _reference_button_pressed, _on_button_reference_received)
-			#load_reference_buttons(actors, list_containers, true)
 			screen_list_select.show()
 			load_floating_spirits()
 	resize_panel(60)
@@ -809,4 +805,7 @@ func erase_floating_spirits() -> void:
 	for i in get_tree().get_nodes_in_group("floating_spirits"):
 		i.del()
 
+
+func item_names(opt := {}) -> void:
+	opt.button.text = DAT.get_item(opt.reference).name.left(13)
 

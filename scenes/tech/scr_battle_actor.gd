@@ -440,3 +440,7 @@ func blunt_visuals(subject: BattleActor) -> void:
 	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
 	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
+
+
+func _to_string() -> String:
+	return actor_name
