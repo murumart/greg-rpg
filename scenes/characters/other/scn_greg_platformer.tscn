@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca56k2yykgyfs"]
+
+[ext_resource type="Script" path="res://scenes/characters/other/scr_greg_platformer.gd" id="1_hj66a"]
+[ext_resource type="Texture2D" uid="uid://ba7j8ayhal8sw" path="res://sprites/mining/spr_platformer_greg.png" id="2_dnayx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dttm6"]
+radius = 3.0
+height = 12.0
+
+[node name="GregPlatform" type="CharacterBody2D"]
+collision_layer = 2
+floor_constant_speed = true
+script = ExtResource("1_hj66a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_dttm6")
+
+[node name="Puppet" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Puppet"]
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-4, -5)
+region_enabled = true
+region_rect = Rect2(0, 16, 7, 5)
+
+[node name="Head" type="Sprite2D" parent="Puppet"]
+position = Vector2(-2, -9)
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-4, -5)
+region_enabled = true
+region_rect = Rect2(0, 0, 14, 10)
+
+[node name="RightLeg" type="Sprite2D" parent="Puppet"]
+position = Vector2(0, -1)
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-2, 0)
+region_enabled = true
+region_rect = Rect2(1, 22, 4, 4)
+
+[node name="LeftLeg" type="Sprite2D" parent="Puppet"]
+z_index = -1
+position = Vector2(2, -1)
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-2, 0)
+region_enabled = true
+region_rect = Rect2(1, 22, 4, 4)
+
+[node name="RightArm" type="Sprite2D" parent="Puppet"]
+position = Vector2(-1, -4)
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-2, 0)
+region_enabled = true
+region_rect = Rect2(9, 16, 4, 5)
+
+[node name="LeftArm" type="Sprite2D" parent="Puppet"]
+z_index = -1
+position = Vector2(4, -4)
+texture = ExtResource("2_dnayx")
+centered = false
+offset = Vector2(-2, 0)
+region_enabled = true
+region_rect = Rect2(9, 16, 4, 5)
+
+[node name="PuppetAnimator" type="AnimationPlayer" parent="Puppet"]
