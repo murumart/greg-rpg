@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://jiwivi764dxc"]
+
+[ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
+[ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
+[ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/characters/other/scn_greg_platformer.tscn" id="3_hjwtw"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
+[ext_resource type="Script" path="res://code/scr_looping_component.gd" id="5_tbuai"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xn8s"]
+texture = ExtResource("2_3h1uj")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/probability = 0.25
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSet" id="TileSet_ivaes"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "rock"
+terrain_set_0/terrain_0/color = Color(0.552941, 0.529412, 0.505882, 1)
+sources/0 = SubResource("TileSetAtlasSource_0xn8s")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ykqe"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cgu8p"]
+width = 160
+height = 120
+generate_mipmaps = false
+normalize = false
+noise = SubResource("FastNoiseLite_3ykqe")
+
+[node name="MiningGame" type="Node2D"]
+script = ExtResource("1_0eiox")
+
+[node name="Tiles" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ivaes")
+cell_quadrant_size = 8
+format = 2
+
+[node name="NoiseDisplay" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("NoiseTexture2D_cgu8p")
+centered = false
+
+[node name="GregPlatform" parent="." instance=ExtResource("3_hjwtw")]
+position = Vector2(62, 97)
+
+[node name="Camera" parent="GregPlatform" instance=ExtResource("4_khxvi")]
+limit_left = 0
+limit_right = 160
+position_smoothing_enabled = true
+
+[node name="LoopingComponent" type="Node" parent="GregPlatform" node_paths=PackedStringArray("target")]
+script = ExtResource("5_tbuai")
+target = NodePath("..")
