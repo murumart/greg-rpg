@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=71 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -29,6 +29,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
 [ext_resource type="Texture2D" uid="uid://c13xom5nym4pk" path="res://sprites/characters/overworld/spr_nature_guy_overworld.png" id="24_al1vt"]
+[ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -1237,6 +1238,40 @@ position = Vector2(189, -208)
 
 [node name="Node2D9" type="Node2D" parent="Other/NatureGuyLeft/Path"]
 position = Vector2(104, -160)
+
+[node name="Birds" type="Node2D" parent="Other"]
+y_sort_enabled = true
+position = Vector2(-16, 240)
+
+[node name="Bird" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(-351, 72)
+
+[node name="Bird2" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(809, -257)
+
+[node name="Bird3" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(821, -268)
+
+[node name="Bird4" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(828, -255)
+
+[node name="Bird5" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(998, -3)
+
+[node name="Bird6" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(983, 6)
+
+[node name="Bird7" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(973, 1)
+
+[node name="Bird8" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(-270, -416)
+
+[node name="Bird9" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(-268, -441)
+
+[node name="Bird10" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
+position = Vector2(-307, -430)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true

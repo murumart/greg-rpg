@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dpu3mwtmn3lqt"]
+[gd_scene load_steps=106 format=3 uid="uid://dpu3mwtmn3lqt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_testroom.gd" id="1_5d1ki"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_jxegg"]
@@ -17,6 +17,7 @@
 [ext_resource type="SpriteFrames" uid="uid://clewd4hw0hige" path="res://resources/characters/sfr_grandma.tres" id="14_lyhr5"]
 [ext_resource type="SpriteFrames" uid="uid://dn7o24r8k120d" path="res://resources/characters/sfr_cashier_mean.tres" id="15_a8rvo"]
 [ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="15_aavnk"]
+[ext_resource type="Texture2D" uid="uid://ehb4lduody71" path="res://sprites/characters/overworld/spr_stray_pet.png" id="15_ppeir"]
 [ext_resource type="SpriteFrames" uid="uid://b088b0hsl14wt" path="res://resources/characters/sfr_vampire_girl.tres" id="17_5k2lu"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="18_3uegb"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="18_mktvr"]
@@ -30,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="24_6r8ny"]
 [ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="25_3ihr5"]
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="25_kt1if"]
+[ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="32_xs1rp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ipc4"]
 size = Vector2(66, 20)
@@ -173,6 +175,141 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vkjci")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x00gp"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51sto"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc7aa"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag8yb"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3anp"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kftij"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue04k"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74www"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pstls"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afuo8"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66ic6"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfblr"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7plh"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd7u2"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wryne"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckh5y"]
+atlas = ExtResource("15_ppeir")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aermf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x00gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51sto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc7aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag8yb")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3anp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kftij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue04k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74www")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pstls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afuo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66ic6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfblr")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7plh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd7u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wryne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckh5y")
 }],
 "loop": true,
 "name": &"walk_up",
@@ -709,6 +846,19 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("14_lyhr5")
 animation = &"walk_down"
 
+[node name="StrayPet" parent="MDPS" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("12_h5o38")]
+position = Vector2(619, -98)
+animated_sprite = NodePath("Sprite")
+random_movement = true
+chase_target = NodePath("../../Greg")
+default_lines = Array[StringName]([&"choicestest"])
+save_position = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="MDPS/StrayPet"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_aermf")
+animation = &"walk_left"
+
 [node name="Zerma" parent="MDPS" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("12_h5o38")]
 position = Vector2(728, -120)
 animated_sprite = NodePath("Sprite")
@@ -992,3 +1142,24 @@ layer_0/tile_data = PackedInt32Array(42, 131072, 11, 43, 0, 11, 65579, 131072, 1
 position = Vector2(407, -61)
 spawn_enemy = ExtResource("25_kt1if")
 player = NodePath("../Greg")
+
+[node name="Birds" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Bird" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(172, 32)
+
+[node name="Bird2" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(159, 26)
+
+[node name="Bird3" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(146, 46)
+
+[node name="Bird4" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(302, 32)
+
+[node name="Bird5" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(289, 26)
+
+[node name="Bird6" parent="Birds" instance=ExtResource("32_xs1rp")]
+position = Vector2(276, 46)
