@@ -62,6 +62,10 @@ var songs := {
 		"title": "i will dip you in saurce",
 		"link": "res://music/mus_fishing_game.ogg",
 	},
+	"foreign_fauna": {
+		"title": "foreign fauna",
+		"link": "res://music/mus_animal_fight.ogg",
+	},
 	"greenhouse": {
 		"title": "webcat - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"

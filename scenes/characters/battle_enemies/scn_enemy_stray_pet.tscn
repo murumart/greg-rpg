@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbro1keakaf1s"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_f6op6"]
+[ext_resource type="Texture2D" uid="uid://fmaqg7p3k17q" path="res://sprites/characters/battle/animals/spr_stray_pet.png" id="2_rd1sb"]
+
+[node name="StrayPet" type="Node2D"]
+script = ExtResource("1_f6op6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_rd1sb")

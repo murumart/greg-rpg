@@ -24,6 +24,7 @@ var type := Types.ATTACK
 @export var effects : Array[StatusEffect] = []
 
 @export_group("Other")
+@export var delay := 0.0
 @export var summon_enemy := ""
 @export var animation_on_receive := ""
 var equip_as_weapon := false
