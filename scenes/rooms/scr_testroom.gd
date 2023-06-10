@@ -16,6 +16,13 @@ func _ready() -> void:
 	for i in DAT.item_dict.keys():
 		for n in randi_range(1, 4):
 			Math.party(0).inventory.append(i)
+	for j in DAT.spirit_dict.keys():
+		Math.party(0).unused_sprits.append(j)
+	
+	
+	var array := ["a", "b", "c"]
+	var object := RefCounted.new()
+	ready.connect(object.set)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
