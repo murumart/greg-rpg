@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1v25nxnyuccu"]
+
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
+[ext_resource type="SpriteFrames" uid="uid://cyg0y3sekatxh" path="res://resources/characters/sfr_stray_pet.tres" id="2_bjidh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r02ng"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bauq7"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_81hvx"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="OverworldCharacter" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
+script = ExtResource("2_4ypex")
+animated_sprite = NodePath("AnimatedSprite2D")
+speed = 4200
+random_movement = true
+interact_on_touch = true
+save = false
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_r02ng")
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bauq7")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_81hvx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_bjidh")
+animation = &"walk_down"
