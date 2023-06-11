@@ -12,6 +12,7 @@ var state := States.STAND: set = set_state
 
 var movtarget := Vector2()
 var speed := 10
+var fear := false
 
 
 func _ready() -> void:
@@ -66,11 +67,14 @@ func on_screen_changed(to: bool) -> void:
 
 
 func disturbed() -> void:
+	if fear: return
 	for i in get_tree().get_nodes_in_group("birds"):
 		if i.is_physics_processing():
+			i.fear = true
 			i.timer.stop()
 			i.state = States.FLY
 			i.flapsound.play()
+			DAT.incri("birds_scared", 1)
 
 
 

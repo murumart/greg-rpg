@@ -16,6 +16,7 @@ attack_increase = null
 defense_increase = null
 speed_increase = null
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
