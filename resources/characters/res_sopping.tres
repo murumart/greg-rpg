@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://bnjr8hj76l4jr"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bnjr8hj76l4jr"]
 
+[ext_resource type="Texture2D" uid="uid://r2hessd2pjhl" path="res://sprites/characters/battle/lakeside/spr_sopping.png" id="1_2pxp6"]
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_q6kpp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6obp"]
+atlas = ExtResource("1_2pxp6")
+region = Rect2(14, 16, 22, 22)
 
 [resource]
 script = ExtResource("1_q6kpp")
 name_in_file = &""
 name = "sopper"
 info = "they're wet and now want to watch the world bur- i mean drown."
+portrait = SubResource("AtlasTexture_r6obp")
 max_health = 75.0
 health = 75.0
 max_magic = 45.0

@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://qjfylimgrqw6"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://qjfylimgrqw6"]
 
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_fn82s"]
+[ext_resource type="Texture2D" uid="uid://dbduaoa67tnbc" path="res://sprites/characters/battle/thugs/spr_kor_sten.png" id="1_nul8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn1ug"]
+atlas = ExtResource("1_nul8t")
+region = Rect2(12, 11, 22, 22)
 
 [resource]
 script = ExtResource("1_fn82s")
 name_in_file = &""
 name = "kor sten"
 info = "are you jealous of their success?"
+portrait = SubResource("AtlasTexture_rn1ug")
 max_health = 90.0
 health = 90.0
 max_magic = 300.0

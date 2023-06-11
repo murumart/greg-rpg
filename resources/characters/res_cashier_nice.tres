@@ -7,6 +7,7 @@
 script = ExtResource("1_mibj7")
 name_in_file = &"cashier_nice"
 name = "cashier"
+info = ""
 portrait = ExtResource("1_7eli8")
 max_health = 121.0
 health = 76.0
@@ -17,7 +18,7 @@ experience = 0
 attack = 12.0
 defense = 28.0
 speed = 14.0
-defeated_characters = Array[String]([])
+defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
 unused_sprits = Array[String]([])

@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://bqdp2105jm13k"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bqdp2105jm13k"]
 
+[ext_resource type="Texture2D" uid="uid://dhb0fkeaohjl4" path="res://sprites/characters/battle/spr_grass_battle.png" id="1_j6ojr"]
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_wcc1b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox14d"]
+atlas = ExtResource("1_j6ojr")
+region = Rect2(16, 37, 14, 22)
 
 [resource]
 script = ExtResource("1_wcc1b")
 name_in_file = &""
 name = "turf"
 info = "very mobile, and very violent! listen to that snarl!"
+portrait = SubResource("AtlasTexture_ox14d")
 max_health = 17.0
 health = 17.0
 max_magic = 40.0
@@ -16,7 +22,7 @@ experience = 0
 attack = 1.0
 defense = 1.0
 speed = 1.0
-defeated_characters = Array[String]([])
+defeated_characters = {}
 inventory = null
 spirits = null
 unused_sprits = null

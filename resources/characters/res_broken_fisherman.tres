@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://bqvfcbbdppq14"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bqvfcbbdppq14"]
 
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_h75vc"]
+[ext_resource type="Texture2D" uid="uid://dks81pirhibbb" path="res://sprites/characters/battle/lakeside/spr_broken_fisherman.png" id="1_ypfme"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eamf3"]
+atlas = ExtResource("1_ypfme")
+region = Rect2(19, 2, 22, 22)
 
 [resource]
 script = ExtResource("1_h75vc")
 name_in_file = &""
 name = "broken fisherman"
 info = "they must have not caught a fish or something."
+portrait = SubResource("AtlasTexture_eamf3")
 max_health = 130.0
 health = 75.0
 max_magic = 60.0
