@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["stray_pet", "chimney"]).\
-set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("sun").set_death_reason("solar")
+set_enemies(["rainbird", "stray_pet"]).\
+set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
 
 var play_victory_music := true
 
@@ -313,43 +313,6 @@ func go_back_a_menu() -> void:
 	erase_floating_spirits()
 
 
-# fill menus with buttons (menus to select actors and items and such)
-func load_reference_buttons(array: Array, containers: Array, clear := true) -> void:
-	if clear:
-		for container in containers:
-			for c in container.get_children():
-				c.queue_free()
-	var container_nr := 0
-	if current_guy.is_confused():
-		array.shuffle()
-		containers.shuffle()
-	for i in array.size():
-		var reference = array[i]
-		var refbutton := reference_button.instantiate()
-		refbutton.reference = reference
-		if reference is BattleActor:
-			refbutton.text = reference.actor_name
-		elif reference is String and doing == Doings.ITEM_MENU:
-			refbutton.text = DAT.get_item(reference).name
-		else:
-			refbutton.text = str(reference)
-		refbutton.connect("return_reference", _reference_button_pressed)
-		refbutton.connect("selected_return_reference", _on_button_reference_received)
-		containers[container_nr].add_child(refbutton)
-		refbutton.show()
-		container_nr = wrapi(container_nr + 1, 0, containers.size())
-	container_nr = 0
-	await get_tree().process_frame
-	for i in containers.size():
-		var c = containers[i]
-		for j in c.get_child_count():
-			var k = c.get_child(j)
-			if j == 0:
-				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
-			if j + 1 >= c.get_child_count():
-				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
-
-
 # something is selected
 func _reference_button_pressed(reference) -> void:
 	if SOL.dialogue_open: return
@@ -525,7 +488,7 @@ func open_list_screen() -> void:
 			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
 			screen_list_select.show()
 		Doings.ITEM_MENU:
-			Math.load_reference_buttons(current_guy.character.inventory, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+			Math.load_reference_buttons_groups(current_guy.character.inventory, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
@@ -807,5 +770,10 @@ func erase_floating_spirits() -> void:
 
 
 func item_names(opt := {}) -> void:
-	opt.button.text = DAT.get_item(opt.reference).name.left(13)
+	var count : int = current_guy.character.inventory.count(opt.reference)
+	opt.button.text = str(
+		str(count, "x ") if count > 1 else "",
+		DAT.get_item(opt.reference).name
+		).left(15)
+
 

@@ -58,9 +58,9 @@ loop = true
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
-party_cheat_levelup = 3
+party_cheat_levelup = 6
 party_add_spirits = Array[String](["peanuts"])
-party_add_items = Array[String](["lighter", "cough_syrup", "sugar_lemon", "medkit"])
+party_add_items = Array[String](["lighter", "cough_syrup", "sugar_lemon", "medkit", "medkit", "medkit", "medkit"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_l1rx6")

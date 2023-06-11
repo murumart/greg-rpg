@@ -27,6 +27,8 @@ var hurt_sound := preload("res://sounds/snd_hurt.ogg")
 var actor_name : StringName
 @onready var character : Character
 
+var accessible := true
+
 var status_effects : Dictionary = {}
 
 var reference_to_team_array : Array[BattleActor] = []
@@ -172,6 +174,12 @@ func account_defense(x: float) -> float:
 
 
 func attack(subject: BattleActor) -> void:
+	if not subject.accessible:
+		SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
+		await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
+		turn_finished()
+		return
 	# manual construction of payload
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	var weapon : Item
@@ -247,6 +255,12 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 
 
 func use_item(id: String, subject: BattleActor) -> void:
+	if not subject.accessible:
+		SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
+		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
+		turn_finished()
+		return
 	var item : Item = DAT.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self).\
@@ -314,6 +328,8 @@ func handle_payload(pld: BattlePayload) -> void:
 func status_effect_update() -> void:
 	for e in status_effects.keys():
 		var effect : Dictionary = status_effects[e]
+		# apply damage from damaging effects
+		effect_action(e, effect)
 		# remove if immune
 		if is_immune_to(e):
 			status_effects[e] = {}
@@ -321,9 +337,6 @@ func status_effect_update() -> void:
 		effect["duration"] = effect.get("duration", 1) - 1
 		if effect.get("duration", 1) < 1:
 			status_effects[e] = {}
-		
-		# apply damage from damaging effects
-		effect_action(e, effect)
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
@@ -365,13 +378,13 @@ func effect_action(nomen: String, effect: Dictionary) -> void:
 		cougher.attack(self)
 		SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
 		cougher.queue_free()
-	if nomen == "poison" and effect.get("duration") > 0:
+	if nomen == "poison" and effect.get("duration", 0) > 0:
 		hurt(effect.get("strength", 1) * 1.3)
-	if nomen == "fire" and effect.get("duration") > 0:
+	if nomen == "fire" and effect.get("duration", 0) > 0:
 		hurt(clampf(character.health * 0.08, 1, 25))
 		SOL.vfx("battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
 		SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
-	if nomen == "regen" and effect.get("duration") > 0:
+	if nomen == "regen" and effect.get("duration", 0) > 0:
 		heal(effect.get("strength", 1) * 5)
 
 
