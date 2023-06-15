@@ -5,9 +5,9 @@ var time_away := 0
 
 
 func set_here(to: bool) -> void:
-	print("set here to ", to)
 	here = to
 	accessible = to
+	xp_multiplier = 2.0 if not to else 1.0
 	animate("swoop_in" if to else "swoop_out")
 	time_away = 0
 	emit_message(("%s swoops in!" if to else "%s swoops out!") % actor_name)
