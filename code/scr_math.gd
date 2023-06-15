@@ -80,13 +80,14 @@ static func load_reference_buttons(
 		containers: Array,
 		reference_button_press_function: Callable,
 		button_reference_receive_function: Callable,
-		options = {}
+		options := {}
 	) -> void:
 	var REFERENCE_BUTTON := preload("res://scenes/tech/scn_reference_button.tscn")
 	var mouse_interaction := options.get("mouse_interaction", false) as bool
 	var text_left := options.get("text_left", 2147483647) as int
 	var custom_pass_function : Callable = options.get("custom_pass_function", func(_a): pass)
 	var us2space := options.get("us2space", false) as bool
+	var name_overwrite_array := options.get("name_overwrite_array", []) as Array
 	if options.get("clear", true):
 		for container in containers:
 			for c in container.get_children():
@@ -97,6 +98,8 @@ static func load_reference_buttons(
 		var refbutton := REFERENCE_BUTTON.instantiate() as Button
 		refbutton.reference = ref
 		refbutton.text = str(ref).left(text_left)
+		if name_overwrite_array:
+			refbutton.text = str(name_overwrite_array[i]).left(text_left)
 		if us2space: refbutton.text = refbutton.text.replace("_", " ")
 		if custom_pass_function:
 			custom_pass_function.call({
@@ -128,6 +131,24 @@ static func load_reference_buttons(
 			# first one in the previous column
 			if j + 1 >= c.get_child_count():
 				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
+
+
+static func load_reference_buttons_groups(
+		array: Array,
+		containers: Array,
+		reference_button_press_function: Callable,
+		button_reference_receive_function: Callable,
+		options := {}
+	) -> void:
+	var conglor := []
+	var dict := {}
+	for i in array:
+		if i in dict.keys(): continue
+		dict[i] = array.count(i)
+	for i in dict.keys():
+		conglor.append(str(dict[i]) + "x " + i)
+	options.merge({"name_overwrite_array": conglor}, true)
+	load_reference_buttons(dict.keys(), containers, reference_button_press_function, button_reference_receive_function, options)
 
 
 static func item_name_array(inp: Array) -> Array:

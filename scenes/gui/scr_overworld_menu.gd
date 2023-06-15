@@ -189,24 +189,30 @@ func side_load_spirit_data(id: String) -> void:
 # + weapon and armour at the top of the list
 func load_items() -> void:
 	var item_array := []
-	if party(current_tab).armour:
-		item_array.append(party(current_tab).armour)
-	if party(current_tab).weapon:
-		item_array.append(party(current_tab).weapon)
 	item_array.append_array(party(current_tab).inventory)
-	Math.load_reference_buttons(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+	item_array.sort()
+	if party(current_tab).armour:
+		item_array.push_front(party(current_tab).armour)
+	if party(current_tab).weapon:
+		item_array.push_front(party(current_tab).weapon)
+	Math.load_reference_buttons_groups(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 	silver_counter.text = str("party silver:\n", DAT.get_data("silver", 0))
 
 
 func item_names(opt := {}) -> void:
 	# for displaying armour and weapons in char inventory
-	if opt.nr < 2 and (
+	var equipped : bool = opt.nr < 2 and (
 		opt.reference == party(current_tab).armour or
 		opt.reference == party(current_tab).weapon
-	):
+	)
+	if equipped:
 		opt.button.modulate = Color(1.0, 0.6, 0.3)
 		opt.button.set_meta(&"equipped", true)
-	opt.button.text = DAT.get_item(opt.reference).name.left(13)
+	var count : int = party(current_tab).inventory.count(opt.reference)
+	opt.button.text = str(
+		str(count, "x ") if count > 1 else "",
+		DAT.get_item(opt.reference).name
+		).left(13)
 
 
 func spirit_names(opt := {}) -> void:
@@ -250,50 +256,6 @@ func update_using_portraits() -> void:
 		using_portraits.get_child(i).modulate = Color(1, 1, 1, 1)
 		if using_menu_choice == i:
 			using_portraits.get_child(i).modulate = Color(1.4, 1.4, 1.4, 1)
-
-
-# see other functions called the same
-func load_reference_buttons(array: Array, containers: Array, options = {}) -> void:
-	if options.get("clear", true):
-		for container in containers:
-			for c in container.get_children():
-				c.queue_free()
-	var container_nr := 0
-	for i in array.size():
-		var reference = array[i]
-		var refbutton := reference_button.duplicate()
-		refbutton.reference = reference
-		if reference is Character:
-			refbutton.text = reference.name
-		elif reference is String and options.get("item", false):
-			refbutton.text = DAT.get_item(reference).name
-			if i < 2 and (reference == party(current_tab).armour or reference == party(current_tab).weapon):
-				refbutton.modulate = Color(1.0, 0.6, 0.3)
-				refbutton.set_meta(&"equipped", true)
-		elif reference is String and options.get("spirit", false):
-			refbutton.text = DAT.get_spirit(reference).name
-		else:
-			refbutton.text = str(reference)
-		refbutton.connect("return_reference", _reference_button_pressed)
-		refbutton.connect("selected_return_reference", _on_button_reference_received)
-		containers[container_nr].add_child(refbutton)
-		refbutton.show()
-		container_nr = wrapi(container_nr + 1, 0, containers.size())
-	if not options.get("adjust_focus", true): return
-	await get_tree().process_frame
-	# loop through all buttons again
-	for i in containers.size():
-		var c = containers[i]
-		for j in c.get_child_count():
-			var k = c.get_child(j)
-			# if it's the first one in a column, make its top neighbour the
-			# last one in the previous column
-			if j == 0:
-				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
-			# if it's the last one in a column, make its top neighbour the
-			# first one in the previous column
-			if j + 1 >= c.get_child_count():
-				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
 
 
 func _reference_button_pressed(reference) -> void:
