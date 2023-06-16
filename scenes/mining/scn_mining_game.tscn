@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://jiwivi764dxc"]
+[gd_scene load_steps=12 format=3 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
 [ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/characters/other/scn_greg_platformer.tscn" id="3_hjwtw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
 [ext_resource type="Script" path="res://code/scr_looping_component.gd" id="5_tbuai"]
+[ext_resource type="Script" path="res://scenes/mining/scr_mining_component.gd" id="6_qjefl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xn8s"]
 texture = ExtResource("2_3h1uj")
@@ -53,6 +54,20 @@ generate_mipmaps = false
 normalize = false
 noise = SubResource("FastNoiseLite_3ykqe")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gpg1"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
 [node name="MiningGame" type="Node2D"]
 script = ExtResource("1_0eiox")
 
@@ -77,3 +92,16 @@ position_smoothing_enabled = true
 [node name="LoopingComponent" type="Node" parent="GregPlatform" node_paths=PackedStringArray("target")]
 script = ExtResource("5_tbuai")
 target = NodePath("..")
+
+[node name="MiningComponent" type="Node2D" parent="GregPlatform" node_paths=PackedStringArray("target", "display", "tilemap")]
+top_level = true
+script = ExtResource("6_qjefl")
+target = NodePath("..")
+display = NodePath("Panel")
+tilemap = NodePath("../../Tiles")
+
+[node name="Panel" type="Panel" parent="GregPlatform/MiningComponent"]
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(0, 8)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1gpg1")

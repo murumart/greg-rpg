@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 		change_state(S.JUMP)
 	
 	move_and_slide()
-	last_input = input
+	if input: last_input = input
 
 
 func change_state(to: States) -> void:
