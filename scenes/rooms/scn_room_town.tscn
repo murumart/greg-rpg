@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=72 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
 [ext_resource type="Texture2D" uid="uid://c13xom5nym4pk" path="res://sprites/characters/overworld/spr_nature_guy_overworld.png" id="24_al1vt"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
+[ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -1630,6 +1631,30 @@ spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 5
 player = NodePath("../../Greg")
 active_range = Vector2i(20, 30)
+wait_time = 2.0
+
+[node name="AnimalSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+position = Vector2(-91, -273)
+spawn_enemy = ExtResource("31_itqdw")
+max_enemies = 1
+player = NodePath("../../Greg")
+active_range = Vector2i(7, 99)
+wait_time = 2.0
+
+[node name="AnimalSpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+position = Vector2(467, -496)
+spawn_enemy = ExtResource("31_itqdw")
+max_enemies = 2
+player = NodePath("../../Greg")
+active_range = Vector2i(7, 99)
+wait_time = 2.0
+
+[node name="AnimalSpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+position = Vector2(-402, -405)
+spawn_enemy = ExtResource("31_itqdw")
+max_enemies = 4
+player = NodePath("../../Greg")
+active_range = Vector2i(7, 99)
 wait_time = 2.0
 
 [node name="RoomGate3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_0hylv")]
