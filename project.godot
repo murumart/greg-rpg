@@ -45,7 +45,6 @@ window/size/always_on_top=true
 window/size/extend_to_title=true
 window/size/window_width_override=639
 window/size/window_height_override=480
-window/stretch/aspect="expand"
 
 [editor]
 
