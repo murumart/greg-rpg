@@ -139,8 +139,7 @@ func play_sound(sound: AudioStream, options := {}):
 
 
 func menusound(pitch := 1.0, options := {}) -> void:
-	options["pitch"] = pitch
-	options["volume"] = -8
+	options.merge({"pitch": pitch, "volume": -8}, true)
 	play_sound(preload("res://sounds/snd_gui.ogg"), options)
 
 

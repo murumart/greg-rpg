@@ -28,7 +28,7 @@ func _focus_entered() -> void:
 
 # moving to another button plays the menu sound
 func _focus_exited() -> void:
-	if visible:
+	if is_visible_in_tree():
 		SND.menusound(1.5)
 
 
