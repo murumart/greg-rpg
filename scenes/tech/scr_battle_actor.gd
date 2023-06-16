@@ -369,11 +369,11 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 
 
 func effect_action(nomen: String, effect: Dictionary) -> void:
-	if nomen == "coughing" and effect.get("duration") > 0:
+	if nomen == "coughing" and effect.get("duration", 0) > 0:
 		# coughing damage is applied by a separate battle actor because why not
 		var cougher := BattleActor.new()
 		cougher.character = Character.new()
-		cougher.character.attack = effect.get("strength") * 2
+		cougher.character.attack = effect.get("strength", 1) * 2
 		add_child(cougher)
 		cougher.attack(self)
 		SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
