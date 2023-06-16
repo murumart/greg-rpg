@@ -76,15 +76,11 @@ z_index = -88
 position = Vector2(-80, -60)
 
 [node name="UI" type="Control" parent="."]
-z_index = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = -80.0
-offset_top = -60.0
-offset_right = 80.0
-offset_bottom = 60.0
+offset_right = 160.0
+offset_bottom = 120.0
 theme = ExtResource("3_v2dlj")
-metadata/_edit_lock_ = true
 
 [node name="LogText" type="RichTextLabel" parent="UI"]
 unique_name_in_owner = true

@@ -178,3 +178,7 @@ static func battle_actor_name_array(inp: Array) -> Array:
 		i = i as BattleActor
 		ret.append(i.actor_name)
 	return ret
+
+
+static func v2(from: float) -> Vector2:
+	return Vector2(from, from)

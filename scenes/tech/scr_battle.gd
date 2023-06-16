@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["rainbird", "stray_pet"]).\
-set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
+set_enemies(["rainbird", "sun_spirit"]).\
+set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
 
 var play_victory_music := true
 
@@ -47,20 +47,23 @@ var loading_battle := true
 @onready var update_timer : Timer = $SlowUpdateTimer
 @onready var background_container : Node2D = $Background
 
-@onready var screen_list_select := $%ScreenListSelect
-@onready var screen_item_select := $%ScreenItemSelect
+@onready var screen_main_actions := %ScreenMainActions
+@onready var screen_list_select := %ScreenListSelect
+@onready var screen_item_select := %ScreenItemSelect
 @onready var item_info_label := $UI/Panel/ScreenItemSelect/ItemInfoLabel
-@onready var screen_party_info := $%ScreenPartyInfo
-@onready var screen_spirit_name := $%ScreenSpiritName
+
+@onready var screen_party_info := %ScreenPartyInfo
+@onready var screen_spirit_name := %ScreenSpiritName
 @onready var screen_end := %ScreenEnd
+@onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var victory_text := %VictoryText
 @onready var defeat_text := %DefeatText
-@onready var attack_button := $%AttackButton
-@onready var spirit_button := $%SpiritButton
-@onready var item_button := $%ItemButton
-@onready var selected_guy_display := $%SelectedGuy
-@onready var log_text := $%LogText
-@onready var spirit_name := $%SpiritName
+@onready var attack_button := %AttackButton
+@onready var spirit_button := %SpiritButton
+@onready var item_button := %ItemButton
+@onready var selected_guy_display := %SelectedGuy
+@onready var log_text := %LogText
+@onready var spirit_name := %SpiritName
 @onready var spirit_speak_timer := %SpiritSpeakTimer
 @onready var spirit_speak_timer_progress := %SpiritSpeakTimerProgress
 var spirit_speak_timer_wait := 2.0
@@ -91,8 +94,6 @@ var current_target : BattleActor
 var death_reason := "default"
 var battle_rewards : BattleRewards
 
-var f := 0
-
 @export var enable_testing_cheats := false
 @export_group("Cheat Stats")
 @export var party_cheat_levelup := 0
@@ -121,6 +122,10 @@ func _ready() -> void:
 	spirit_name.text_changed.connect(_on_spirit_name_changed)
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+	remove_child(ui)
+	SOL.add_ui_child(ui)
+	remove_child(party_node)
+	SOL.add_ui_child(party_node)
 	await get_tree().process_frame
 	load_battle(load_options)
 	set_actor_states(BattleActor.States.COOLDOWN, true)
@@ -130,7 +135,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	f += 1
 	match doing:
 		Doings.SPIRIT_NAME:
 			# match the timer with the progress bar
@@ -145,27 +149,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if not listening_to_player_input: return
 	if event.is_action_pressed("ui_cancel"):
 		go_back_a_menu()
-	if event.is_action_pressed("ui_accept"):
-		if doing == Doings.DONE:
-			# leave the battle
-			LTS.gate_id = LTS.GATE_EXIT_BATTLE
-			var looper :Array[BattleActor]= []
-			looper.append_array(party)
-			looper.append_array(dead_party)
-			for p in looper:
-				p.offload_character()
-			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
-			set_process_unhandled_key_input(false)
-		else:
-			var _deferred := bool(OPT.get_opt("list_button_focus_deferred"))
-#			if screen_list_select.visible:
-#				if list_containers[0].get_children().size() > 0:
-#					if deferred: list_containers[0].get_child(0).call_deferred("grab_focus")
-#					else: list_containers[0].get_child(0).grab_focus()
-#			elif screen_item_select.visible:
-#				if item_list_container[0].get_children().size() > 0:
-#					if deferred: item_list_container[0].get_child(0).call_deferred("grab_focus")
-#					else: item_list_container[0].get_child(0).grab_focus()
+	if event.is_action_pressed("ui_accept") and doing == Doings.DONE:
+		# leave the battle
+		LTS.gate_id = LTS.GATE_EXIT_BATTLE
+		var looper :Array[BattleActor]= []
+		looper.append_array(party)
+		looper.append_array(dead_party)
+		for p in looper:
+			p.offload_character()
+		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		set_process_unhandled_key_input(false)
 
 
 func load_battle(info: BattleInfo) -> void:
@@ -217,8 +210,6 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			node.reference_to_team_array = party
 			node.reference_to_opposing_array = enemies
 			party_node.add_child(node)
-			party_member_panel_container.\
-			get_child(party.find(node)).remote_transform.remote_path = node.get_path()
 		Teams.ENEMIES:
 			node.wait += 0.5
 			enemies.append(node)
@@ -435,7 +426,8 @@ func _on_player_input_requested(actor: BattleActor) -> void:
 
 # choice between fighting, spirits and items
 func open_main_actions_screen() -> void:
-	var info := $%CurrentInfo
+	var inf1 := screen_main_actions.get_child(-2)
+	var inf2 := screen_main_actions.get_child(-1)
 	held_item_id = ""
 	current_target = null
 	screen_item_select.hide()
@@ -445,19 +437,12 @@ func open_main_actions_screen() -> void:
 	screen_end.hide()
 	resize_panel(44)
 	# sparkle on, it's wednesday! don't forget to be yourself!
-	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05:
-		attack_button.text = "slay"
-	else:
-		attack_button.text = "tussle"
-	# set the current guy actor node position to the portrait's position
-	# so that visual effects get displayed in a more correct position
-	party_member_panel_container.get_child(party.find(current_guy)).\
-	remote_transform.update_position = false
-	current_guy.global_position = info.remote_transform.global_position
-	info.update(current_guy)
-	$%CharInfo1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
-	$%CharInfo2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
-	$%ScreenMainActions.show()
+	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05: attack_button.text = "slay"
+	else: attack_button.text = "tussle"
+	current_info.update(current_guy)
+	inf1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
+	inf2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
+	screen_main_actions.show()
 	attack_button.grab_focus()
 	erase_floating_spirits()
 	match doing:
@@ -470,11 +455,16 @@ func open_main_actions_screen() -> void:
 		Doings.SPIRIT:
 			spirit_button.grab_focus()
 	doing = Doings.NOTHING
+	remote_transforms(false)
+	#await get_tree().process_frame
+	current_info.remote_transform.remote_path = current_guy.get_path()
+	#current_info.remote_transform.force_update_cache()
+	#current_guy.global_position = current_info.remote_transform.get_global_transform_with_canvas().origin
 
 
 # item/actor listing screens
 func open_list_screen() -> void:
-	$%ScreenMainActions.hide()
+	screen_main_actions.hide()
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.hide()
@@ -520,7 +510,7 @@ func open_party_info_screen() -> void:
 		i.remote_transform.update_position = true
 	doing = Doings.NOTHING
 	held_item_id = ""
-	$%ScreenMainActions.hide()
+	screen_main_actions.hide()
 	screen_item_select.hide()
 	screen_list_select.hide()
 	screen_party_info.show()
@@ -530,6 +520,8 @@ func open_party_info_screen() -> void:
 	update_party()
 	highlight_selected_enemy()
 	erase_floating_spirits()
+	current_info.remote_transform.remote_path = NodePath()
+	remote_transforms(true)
 
 
 func open_spirit_name_screen() -> void:
@@ -537,7 +529,7 @@ func open_spirit_name_screen() -> void:
 	doing = Doings.SPIRIT_NAME
 	held_item_id = ""
 	resize_panel(4, 0.1)
-	$%ScreenMainActions.hide()
+	screen_main_actions.hide()
 	spirit_name.text = ""
 	spirit_name.editable = true
 	screen_item_select.hide()
@@ -775,5 +767,15 @@ func item_names(opt := {}) -> void:
 		str(count, "x ") if count > 1 else "",
 		DAT.get_item(opt.reference).name
 		).left(15)
+
+
+func remote_transforms(yes: bool) -> void:
+	for i in party_node.get_child_count():
+		var node := party_node.get_child(i) as BattleActor
+		var inf := screen_party_info.get_child(0).get_child(i) as PartyMemberInfoPanel
+		inf.remote_transform.remote_path = node.get_path() if yes else NodePath()
+		inf.remote_transform.set_physics_process(yes)
+		inf.remote_transform.force_update_cache()
+		if not yes: node.global_position.y += 100
 
 

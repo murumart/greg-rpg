@@ -6,6 +6,7 @@ signal fade_finished
 signal dialogue_closed # this is used very often
 
 const SCREEN_SIZE := Vector2(160, 120)
+const HALF_SCREEN_SIZE := Vector2(80, 60)
 
 @export var show_fps := false
 var fps_label : Label
@@ -128,6 +129,7 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 
 # spawn vfx effects
 func vfx(nomen: String, pos := Vector2(), options := {}) -> Node:
+	#print(nomen, " ", pos, " ")
 	# the nomen must be the filename
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = options.get("z_index", 100)
@@ -149,16 +151,19 @@ func vfx(nomen: String, pos := Vector2(), options := {}) -> Node:
 		effect.init(options)
 	# this solution was found after much testing.
 	# not perfect...
-	effect.global_position = pos + SCREEN_SIZE / 2.0 if not "global_position" in parent else pos
+	if not "global_position" in parent:
+		effect.global_position = pos + SCREEN_SIZE / 2.0
+	else:
+		effect.global_position = pos
+	
+	#effect.global_position = pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)
 	# most effects have queue_free() calls built into their animations
 	if options.get("free_time", -1.0) > 0:
-		
 		get_tree().create_timer(options.get("free_time")).timeout.connect(
 			func():
 				effect.queue_free()
-				
 		, CONNECT_ONE_SHOT)
 	return effect
 

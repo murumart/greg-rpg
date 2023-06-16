@@ -95,7 +95,7 @@ func heal(amount: float) -> void:
 	if state == States.DEAD: return
 	# limit healing to max health
 	character.health = minf(character.health + absf(amount), character.max_health)
-	SOL.vfx("damage_number", get_effect_center(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
+	SOL.vfx("damage_number", get_effect_center(self) - SOL.HALF_SCREEN_SIZE, {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
 func hurt(amount: float) -> void:
@@ -115,9 +115,11 @@ func hurt(amount: float) -> void:
 	# damage number
 	SOL.vfx(
 		"damage_number",
-		get_effect_center(self),
+		parentless_effcenter(self),
 		{text = absf(roundi(amount)),
-		color=Color.RED})
+		color = Color.RED,
+		})
+	#SOL.vfx("airspace_violation", get_effect_center(self))
 	# shake the screen (not visible unless high damage)
 	SOL.shake(sqrt(amount)/15.0)
 
@@ -357,7 +359,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		return
 	# if immune, don't apply the effect
 	if is_immune_to(nomen) and duration > 0:
-		SOL.vfx("damage_number", get_effect_center(self), {text = "immune!", color = Color.YELLOW, speed = 0.5})
+		SOL.vfx("damage_number", parentless_effcenter(), {text = "immune!", color = Color.YELLOW, speed = 0.5})
 		return
 	status_effects[nomen] = {
 		"strength": new_strength,
@@ -365,7 +367,7 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 	}
 	# notify of an effect with this
 	if strength and duration and duration != -1:
-		SOL.vfx("damage_number", get_effect_center(self), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
+		SOL.vfx("damage_number", parentless_effcenter(), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
 
 
 func effect_action(nomen: String, effect: Dictionary) -> void:
@@ -417,8 +419,21 @@ func payload() -> BattlePayload:
 	return BattlePayload.new().set_sender(self)
 
 
-func get_effect_center(subject: BattleActor) -> Vector2i:
-	return subject.effect_center + Vector2i(subject.global_position) if "effect_center" in subject else Vector2i(subject.global_position)
+# for positioning visual effects
+func get_effect_center(subject: BattleActor = self) -> Vector2:
+	return Vector2(subject.effect_center) + Vector2(subject.global_position) if has_effcenter(subject) else subject.get_global_transform_with_canvas().origin
+	#return subject.get_global_transform_with_canvas().origin
+
+
+func has_effcenter(subject: BattleActor = self) -> bool:
+	return "effect_center" in subject
+
+
+# for properly positioning visual effects when not parenting to the actor
+func parentless_effcenter(subject: BattleActor = self) -> Vector2:
+	if has_effcenter(subject):
+		return get_effect_center(subject)
+	return get_effect_center(subject) - (SOL.HALF_SCREEN_SIZE)
 
 
 func emit_message(msg: String) -> void:

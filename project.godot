@@ -42,9 +42,10 @@ shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 window/size/viewport_width=160
 window/size/viewport_height=120
 window/size/always_on_top=true
+window/size/extend_to_title=true
 window/size/window_width_override=639
 window/size/window_height_override=480
-window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor]
 

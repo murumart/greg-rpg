@@ -8,7 +8,7 @@ class_name PartyMemberInfoPanel
 @onready var magic_bar := $MagicBar
 @onready var wait_bar := $WaitBar
 @onready var effects_container := $EffectsContainer
-@onready var remote_transform := $RemoteTransform
+@onready var remote_transform : RemoteTransform2D = $RemoteTransform
 
 
 func update(actor: BattleActor) -> void:
@@ -23,7 +23,7 @@ func update(actor: BattleActor) -> void:
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
 	wait_bar.value = actor.wait
-	remote_transform.position = Vector2(12, 12)
+	#remote_transform.position = Vector2(12, 12)
 	if charc.health <= 0.0:
 		portrait.modulate.a = 0.5
 	effects_display(actor)
