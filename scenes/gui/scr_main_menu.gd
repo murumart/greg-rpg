@@ -31,7 +31,7 @@ func _input(event: InputEvent) -> void:
 	var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var oldpos = pos
 	pos += int(move.y)
-	if pos != oldpos:
+	if pos != oldpos and not SOL.save_menu_open:
 		SND.play_sound(menusound)
 	if event.is_action_pressed("ui_cancel"):
 		$VBoxContainer/MailButton/MailPanel.hide()

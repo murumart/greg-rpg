@@ -13,6 +13,8 @@ var fps_label : Label
 var speaking := false
 var dialogue_open := false
 
+var save_menu_open := false
+
 @onready var dialogue_box : DialogueBox = $DialogueBoxOrderer
 @onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
 

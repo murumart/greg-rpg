@@ -23,6 +23,8 @@ func init(opt := {}):
 
 
 func _ready() -> void:
+	SOL.save_menu_open = true
+	tree_exiting.connect(_tree_exiting)
 	for i in file_container.get_child_count():
 		var button : Button = file_container.get_child(i)
 		button.reference = i
@@ -31,11 +33,10 @@ func _ready() -> void:
 	set_current_button(0)
 	# find current save file number to highlight it
 	var save_file_name : String = DAT.get_data("save_file", "")
-	print(save_file_name)
 	var save_file_nr := save_file_name.trim_prefix("greg_save_").trim_suffix(".grs")
-	print(save_file_nr)
 	if save_file_nr.is_valid_float():
 		set_current_button(int(save_file_nr))
+	get_window().gui_release_focus()
 
 
 # i just bit an apple and its skin got stuck between my two front teeth
@@ -121,3 +122,7 @@ func _on_button_pressed(reference: Variant) -> void:
 			set_current_button(12839)
 			DAT.free_player("save_screen")
 			queue_free()
+
+
+func _tree_exiting() -> void:
+	SOL.save_menu_open = false
