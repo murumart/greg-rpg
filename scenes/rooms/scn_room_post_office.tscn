@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="4_yvmmt"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_ddw70"]
 [ext_resource type="SpriteFrames" uid="uid://b0qk4w2yp3ta" path="res://resources/characters/sfr_mail_man.tres" id="5_iohbj"]
-[ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_phg_overworld.png" id="7_rt88i"]
+[ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="7_rt88i"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="8_s7rb1"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="10_j37ws"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="11_ojfnp"]
@@ -444,7 +444,7 @@ position = Vector2(23, 1)
 [node name="Node2D2" type="Node2D" parent="Decoration/MailManPath"]
 position = Vector2(44, 0)
 
-[node name="PHG" parent="Decoration" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_nlmcd")]
+[node name="Atgirl" parent="Decoration" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_nlmcd")]
 position = Vector2(75, -52)
 animated_sprite = NodePath("Animator")
 speed = 2500
@@ -453,7 +453,7 @@ random_movement = true
 random_movement_distance = 32
 default_lines = Array[StringName]([&"phg_at_postoffice_1", &"phg_at_postoffice_2"])
 
-[node name="Animator" type="AnimatedSprite2D" parent="Decoration/PHG"]
+[node name="Animator" type="AnimatedSprite2D" parent="Decoration/Atgirl"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_xwda5")
 animation = &"walk_left"

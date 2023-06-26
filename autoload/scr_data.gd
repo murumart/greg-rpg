@@ -25,7 +25,7 @@ var load_second := 0
 
 # periods of time during which stuff changes
 const NEIGHBOUR_WIFE_CYCLE := 470
-const PHG_CYCLE := 1200
+const ATGIRL_CYCLE := 1200
 
 # on death
 var death_reason := "default"

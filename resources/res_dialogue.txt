@@ -1375,33 +1375,33 @@ DIALOGUE fisherman_in_hut_warning
 	one tells only truth, the other tells only lies.
 
 
-DIALOGUE phg_1
+DIALOGUE atgirl_1
 	what a dull day.
 
 
-DIALOGUE phg_2
+DIALOGUE atgirl_2
 	still dull, thanks for asking.
 
 
-DIALOGUE phg_3
+DIALOGUE atgirl_3
 	...
 
 
-DIALOGUE phg_4
+DIALOGUE atgirl_4
 	as dull as ever.
 
 
-DIALOGUE phg_at_postoffice_1
+DIALOGUE atgirl_at_postoffice_1
 	i'm waiting for a letter from my sister.
 	she said she'd send one once she safely makes it to the mainland.
 	i hope she's fine.
 
 
-DIALOGUE phg_at_postoffice_2
+DIALOGUE atgirl_at_postoffice_2
 	no, you don't look like a person that would receive any letters.
 
 
-DIALOGUE phg_postoffice_explain
+DIALOGUE atgirl_postoffice_explain
 	it's been a month...
 	...
 	has she forgotten about me?

@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="14_cftpx"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
-[ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_phg_overworld.png" id="15_rfpc5"]
+[ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
 [ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="16_ndfvs"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
@@ -750,12 +750,12 @@ replenish_minutes = 9999
 replenish_seconds = 599940
 item = &"tumbler"
 
-[node name="PHG" parent="Houses/HousingBlock" instance=ExtResource("10_dem56")]
+[node name="Atgirl" parent="Houses/HousingBlock" instance=ExtResource("10_dem56")]
 position = Vector2(6, 81)
 
-[node name="Sprite2D" type="Sprite2D" parent="Houses/HousingBlock/PHG"]
+[node name="Sprite2D" type="Sprite2D" parent="Houses/HousingBlock/Atgirl"]
 position = Vector2(0, -8)
-texture = ExtResource("15_rfpc5")
+texture = ExtResource("16_lcsjq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
@@ -1666,5 +1666,5 @@ extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-31, -15)
 
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
-[connection signal="inspected" from="Houses/HousingBlock/PHG" to="." method="_on_phg_inspected"]
+[connection signal="inspected" from="Houses/HousingBlock/Atgirl" to="." method="_on_atgirl_inspected"]
 [connection signal="inspected" from="Other/BackPark/Tarikas" to="." method="_on_tarikas_inspected"]

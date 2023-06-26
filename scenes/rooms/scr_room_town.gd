@@ -57,24 +57,25 @@ func _on_tarikas_inspected() -> void:
 
 
 func pink_haired_girl_setup() -> void:
-	var phg := $Houses/HousingBlock/PHG
-	var time := wrapi(DAT.seconds, 0, DAT.PHG_CYCLE)
-	if not time / 4.0 <= 300:
-		phg.queue_free()
-		DAT.set_data("has_interacted_with_phg", false)
+	var atgirl := $Houses/HousingBlock/Atgirl
+	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
+	print("atgirl time: ", time)
+	if time > DAT.ATGIRL_CYCLE / 4.0:
+		atgirl.queue_free()
+		DAT.set_data("has_interacted_with_atgirl", false)
 		return
 
-func _on_phg_inspected() -> void:
-	var phg := $Houses/HousingBlock/PHG
-	phg.default_lines.clear()
-	var progress : int = DAT.get_data("phg_progress", 0)
-	if not DAT.get_data("has_interacted_with_phg", false):
-		DAT.set_data("has_interacted_with_phg", true)
-		progress += 1 if SOL.dialogue_box.dialogues_dict.has("phg_%s" % str(progress + 1)) else 0
-		DAT.set_data("phg_progress", progress)
-		phg.default_lines.append("phg_%s" % progress)
+func _on_atgirl_inspected() -> void:
+	var atgirl := $Houses/HousingBlock/Atgirl
+	atgirl.default_lines.clear()
+	var progress : int = DAT.get_data("atgirl_progress", 0)
+	if not DAT.get_data("has_interacted_with_atgirl", false):
+		DAT.set_data("has_interacted_with_atgirl", true)
+		progress += (1 if SOL.dialogue_box.dialogues_dict.has("atgirl_%s" % str(progress + 1)) else 0)
+		DAT.set_data("atgirl_progress", progress)
+		atgirl.default_lines.append("atgirl_%s" % progress)
 		return
-	phg.default_lines.append("phg_%s" % progress)
+	atgirl.default_lines.append("atgirl_%s" % progress)
 
 
 func naturalist_setup() -> void:
