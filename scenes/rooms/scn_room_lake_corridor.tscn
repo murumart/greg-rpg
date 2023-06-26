@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://q4xw2dche40p"]
+[gd_scene load_steps=16 format=3 uid="uid://q4xw2dche40p"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_i4onh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_clenx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="6_ntlyd"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="7_6kw6p"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_bkiuy"]
+[ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="10_y2oa7"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uudyh"]
 
@@ -176,3 +177,14 @@ position = Vector2(53, 177)
 [node name="Tree17" parent="Trees" instance=ExtResource("6_ntlyd")]
 position = Vector2(77, 91)
 type = 1
+
+[node name="Birds" type="Node2D" parent="."]
+
+[node name="Bird" parent="Birds" instance=ExtResource("10_y2oa7")]
+position = Vector2(43, 125)
+
+[node name="Bird2" parent="Birds" instance=ExtResource("10_y2oa7")]
+position = Vector2(25, 136)
+
+[node name="Bird3" parent="Birds" instance=ExtResource("10_y2oa7")]
+position = Vector2(29, 117)
