@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://jiwivi764dxc"]
+[gd_scene load_steps=11 format=3 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
 [ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/characters/other/scn_greg_platformer.tscn" id="3_hjwtw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
-[ext_resource type="Script" path="res://code/scr_looping_component.gd" id="5_tbuai"]
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_component.gd" id="6_qjefl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xn8s"]
@@ -88,10 +87,6 @@ position = Vector2(62, 97)
 limit_left = 0
 limit_right = 160
 position_smoothing_enabled = true
-
-[node name="LoopingComponent" type="Node" parent="GregPlatform" node_paths=PackedStringArray("target")]
-script = ExtResource("5_tbuai")
-target = NodePath("..")
 
 [node name="MiningComponent" type="Node2D" parent="GregPlatform" node_paths=PackedStringArray("target", "display", "tilemap")]
 top_level = true
