@@ -78,9 +78,9 @@ func next_bar(bar: int) -> void:
 			fadein(imgs[1])
 			move(imgs[1], Vector2(80, 40), 8.0)
 		7:
-			talk("anu's ambition, however, extended beyond his homeland.")
+			talk("anu's ambition, however, extended beyond his homeland.", 11)
 		8:
-			talk("so one day, the statue that once stood here")
+			talk("so one day, statues, buildings, all of metal")
 			imgs[0].position.y = 36
 			imgs[0].texture = texs["statue"]
 			fadeout(imgs[1])
@@ -93,7 +93,7 @@ func next_bar(bar: int) -> void:
 			fadein(imgs[1])
 			fadeout(imgs[0])
 		10:
-			talk("cursed metal maiming, destroying, now worldwide.")
+			talk("cursed iron maiming, destroying, now worldwide.")
 			imgs[0].texture = texs["cursed"]
 			imgs[0].position.x = 195
 			imgs[0].position.y = 56
@@ -101,14 +101,14 @@ func next_bar(bar: int) -> void:
 			fadein(imgs[0])
 			move(imgs[0], Vector2(0, 56), 14.0)
 		11:
-			talk("around the globe, everyone - powerless to stop it.")
+			talk("around the globe, everyone - powerless to stop it.", 11)
 		12:
-			talk("i mean, how could we, with our metal guns and blades?", 14)
+			talk("i mean, how could we, with our guns and blades?", 11)
 		13:
-			talk("thus the world fell.")
+			talk("this was the end of the world...")
 			fadeout(imgs[0])
 		14:
-			talk("it is in dire times like these")
+			talk("but it is in dire times like these")
 			imgs[0].position.x = 80
 			imgs[1].position.x = 80
 			imgs[1].texture = texs["hero"]
@@ -128,7 +128,7 @@ func next_bar(bar: int) -> void:
 			talk("%s powerful spirit masters banded together" % heroes)
 			imgs[1].texture = texs["redback"]
 		17:
-			talk("to end anu's rule of terror over the world.")
+			talk("to end anu's reign of terror over the world.")
 			fadein(imgs[1])
 		18:
 			talk("")
@@ -142,20 +142,20 @@ func next_bar(bar: int) -> void:
 			talk("to his lair, unguarded by humans")
 			imgs[1].texture = texs["sitting"]
 		21:
-			talk("and found him in self-induced asphyxiation.")
+			talk("and found him vulnerable.")
 			fadein(imgs[1])
 		22:
-			talk("it was how he kept his power under his control", 12)
+			talk("his own power allowed him to die there", 11)
 			imgs[0].texture = texs["spirits"]
 		23:
 			talk("for bloodshed and suffering are what spirits crave.", 12)
 			fadeout(imgs[1])
 		24:
-			talk("with his death, all metal was freed from the curse")
+			talk("with his death, all metal was unbound from the curse", 11)
 			fadeout(imgs[0])
 			imgs[1].texture = texs["liberation"]
 		25:
-			talk("and the world liberated.")
+			talk("[center]and the world could breathe free once more.[/center]", 12)
 			fadein(imgs[1])
 		26:
 			talk("")
@@ -163,12 +163,12 @@ func next_bar(bar: int) -> void:
 			fadeout(imgs[0], 0.0001)
 			imgs[0].texture = texs["nostatue"]
 		27:
-			talk("it has been 20 years since the horror ended.")
+			talk("it has been 20 years since the horror ended")
 			imgs[0].position.y = 36
 			move(imgs[0], Vector2(80, 72), 4.0)
 			fadein(imgs[0])
 		28:
-			talk("the world is still being mended.")
+			talk("and people are starting to forget, already.")
 		29:
 			talk("")
 		30:
