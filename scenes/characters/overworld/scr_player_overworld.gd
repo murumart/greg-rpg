@@ -20,6 +20,7 @@ var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instant
 
 
 func _ready() -> void:
+	DAT.player_captured.connect(_update_capture)
 	if DAT.player_capturers.size() > 0:
 		state = States.NOT_FREE_MOVE
 	menu.close_requested.connect(_on_menu_close_requested)
@@ -89,6 +90,13 @@ func interact() -> void:
 	# the interaction areas have the interacted function that this calls
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
+
+
+func _update_capture(capture: bool) -> void:
+	if capture:
+		state = States.NOT_FREE_MOVE
+		return
+	state = States.FREE_MOVE
 
 
 func _save_me() -> void:

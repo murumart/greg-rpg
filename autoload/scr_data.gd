@@ -3,6 +3,8 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
+signal player_captured(capture: bool)
+
 # DATA
 var A : Dictionary
 
@@ -207,9 +209,7 @@ func capture_player(type := "", overlap := true) -> void:
 	# they are stored as strings inside this array
 	player_capturers.append(type)
 	if not type in noncap: SOL.dialogue_box.close(false)
-	var player := get_tree().get_first_node_in_group("players")
-	if is_instance_valid(player):
-		player.state = PlayerOverworld.States.NOT_FREE_MOVE
+	emit_signal("player_captured", true)
 
 
 # allowing the player to move again
@@ -220,9 +220,7 @@ func free_player(type := "") -> void:
 		player_capturers.clear()
 	# the player can only move if the capturers array is empty
 	if player_capturers.size() > 0: return
-	var player := get_tree().get_first_node_in_group("players")
-	if is_instance_valid(player):
-		player.state = PlayerOverworld.States.FREE_MOVE
+	emit_signal("player_captured", false)
 
 
 func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
