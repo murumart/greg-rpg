@@ -2,6 +2,9 @@ extends Node2D
 
 # cars that drive around and hit people (you (greg))
 
+signal paused
+signal resumed
+
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 # different rotations are in the same sprite sheet
 const REGIONS := [Rect2i(42, 0, 14, 28), Rect2i(0, 0, 28, 14), Rect2i(28, 0, 14, 28), Rect2i(0, 14, 28, 14)]
@@ -57,6 +60,13 @@ func _physics_process(delta: float) -> void:
 func set_target(add: int) -> void:
 	if not moves: return
 	var path_points := path_container.get_children()
+	var pause := path_container.get_child(
+		current_target).get_meta("pause", 0) as int
+	if pause:
+		moves = false
+		paused.emit()
+		get_tree().create_timer(pause).timeout.connect(
+			func(): moves = true; resumed.emit())
 	if path_points:
 		current_target = wrapi(current_target + add, 0, path_points.size())
 		target = (path_points[current_target].global_position)
