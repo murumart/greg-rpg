@@ -90,6 +90,10 @@ var songs := {
 		"title": "mail mission",
 		"link": "res://music/mus_mail_mission.ogg"
 	},
+	"police": {
+		"title": "poosetajad",
+		"link": "res://music/mus_police.ogg"
+	},
 	"preturberance": {
 		"title": "perturberance",
 		"link": "res://music/mus_perturberance.ogg"

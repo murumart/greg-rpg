@@ -1539,6 +1539,18 @@ DIALOGUE insp_trashguy_2
 	*hic*
 
 
+DIALOGUE insp_jailed_trashguy
+	ah! the young man!
+	i apologise for it must come as quite a shock for you...
+	...to see me in such a sorry state.
+	but fret not, young man... here i live quite opulently!
+
+
+DIALOGUE insp_jailed_trashguy_help
+CHOICES no,
+	do you have need for some sort of advice? i am here to help!
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.

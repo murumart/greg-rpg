@@ -5,6 +5,8 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("1_0wpuh")
 0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 3
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
@@ -1953,6 +1955,8 @@ terrain_set_0/terrain_1/name = "woodenfloor"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 terrain_set_0/terrain_2/name = "opulentfloor"
 terrain_set_0/terrain_2/color = Color(0.435294, 0.184314, 0.121569, 1)
+terrain_set_0/terrain_3/name = "tiles"
+terrain_set_0/terrain_3/color = Color(0.654902, 0.878431, 0.921569, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "bluewall"
 terrain_set_1/terrain_0/color = Color(0.266667, 0.32549, 0.654902, 1)

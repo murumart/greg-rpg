@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://l3bq5b3qrfgl"]
+
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_cnwlk"]
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="2_micmi"]
+
+[node name="Cell" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Bottom" type="Sprite2D" parent="."]
+self_modulate = Color(0.341176, 0.341176, 0.341176, 1)
+position = Vector2(0, -7)
+scale = Vector2(16, 16)
+texture = ExtResource("1_cnwlk")
+offset = Vector2(0, 0.4375)
+
+[node name="BackBars" type="Sprite2D" parent="."]
+modulate = Color(0.686275, 0.686275, 0.686275, 1)
+position = Vector2(0, -20)
+texture = ExtResource("2_micmi")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(112, 88, 16, 24)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 5, 5, 5, 5, -5, -5, -5, -5, 5, 8, 5, 8, 8, -8, 8)
+
+[node name="FrontBars" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_micmi")
+offset = Vector2(0, -12)
+region_enabled = true
+region_rect = Rect2(112, 88, 16, 24)
+
+[node name="Top" type="Sprite2D" parent="."]
+self_modulate = Color(0.564706, 0.564706, 0.564706, 1)
+position = Vector2(0, 7)
+scale = Vector2(16, 16)
+texture = ExtResource("1_cnwlk")
+offset = Vector2(0, -1.9375)
