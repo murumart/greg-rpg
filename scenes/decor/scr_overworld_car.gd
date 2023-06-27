@@ -7,7 +7,7 @@ signal resumed
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 # different rotations are in the same sprite sheet
-const REGIONS := [Rect2i(42, 0, 14, 28), Rect2i(0, 0, 28, 14), Rect2i(28, 0, 14, 28), Rect2i(0, 14, 28, 14)]
+var regions := []
 const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 
 @onready var sprite: Sprite2D = $Sprite
@@ -16,10 +16,11 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 
 @export var path_container : Node
 @export var moves := true: set = set_moves
-	
+
 @export var speed := 100.0
 
 @export_group("Appearance")
+@export var custom_texture : Texture2D
 @export_color_no_alpha var color := Color(1, 1, 1, 1)
 
 var target := Vector2()
@@ -30,6 +31,7 @@ var battle_info : BattleInfo
 
 
 func _ready() -> void:
+	texture_setup()
 	if DAT.get_data(save_key_name("fought"), false):
 		self.global_position = Vector2(293123, 819474)
 		set_physics_process(false)
@@ -89,13 +91,14 @@ func _on_collided_with_player(_player) -> void:
 	if DAT.seconds - DAT.load_second < 2: return
 	moves = false
 	DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
+	DAT.set_data("last_hit_car_name", name.to_snake_case())
 	DAT.set_data(save_key_name("fought"), true)
 	LTS.enter_battle(battle_info)
 
 
 func turn(rot: int) -> void:
 	var dir := Math.dir_from_rot(rot)
-	sprite.region_rect = REGIONS[dir + 1]
+	sprite.region_rect = regions[dir + 1]
 	collision_shape.shape.size = SHAPE_SIZES[int((dir + 1) % 2 == 0)]
  
 
@@ -123,3 +126,17 @@ func set_moves(to: bool):
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:
 	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
+
+
+func texture_setup() -> void:
+	if custom_texture:
+		sprite.texture = custom_texture
+	var sx := sprite.texture.get_width()
+	var sy := sprite.texture.get_height()
+	regions = [
+		Rect2i((sx / 4) * 3, 0, sx / 4, sy),
+		Rect2i(0, 0, sx / 2, sy / 2),
+		Rect2i(sx / 2, 0, sx / 4, sy),
+		Rect2i(0, sy / 2, sx / 2, sy / 2)]
+	
+
