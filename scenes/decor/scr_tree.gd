@@ -3,7 +3,7 @@ extends Node2D
 
 # trees in the overworld
 
-@export_enum("kuusk", "mänd", "tooming", "kadak", "toone") var type : int = 0 : set = set_type
+@export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type : int = 0 : set = set_type
 const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
 

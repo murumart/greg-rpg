@@ -162,7 +162,7 @@ position = Vector2(-87, 24)
 [node name="Tree13" parent="Trees" instance=ExtResource("6_ntlyd")]
 position = Vector2(-66, 167)
 scale = Vector2(-1, 1)
-type = 3
+type = 5
 
 [node name="Tree14" parent="Trees" instance=ExtResource("6_ntlyd")]
 position = Vector2(-113, 215)

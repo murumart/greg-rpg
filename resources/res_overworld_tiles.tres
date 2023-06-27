@@ -2103,6 +2103,20 @@ use_texture_padding = false
 5:21/0/physics_layer_0/angular_velocity = 0.0
 5:21/0/terrains_peering_bit/right_side = 0
 5:21/0/terrains_peering_bit/top_side = 0
+0:22/size_in_atlas = Vector2i(1, 2)
+0:22/0 = 0
+0:22/0/texture_origin = Vector2i(0, 16)
+0:22/0/terrain_set = 6
+0:22/0/terrain = 1
+0:22/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:22/0/physics_layer_0/angular_velocity = 0.0
+1:22/size_in_atlas = Vector2i(1, 2)
+1:22/0 = 0
+1:22/0/texture_origin = Vector2i(0, 16)
+1:22/0/terrain_set = 6
+1:22/0/terrain = 1
+1:22/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:22/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m4cjl"]
 texture = ExtResource("2_diqnv")
@@ -3109,6 +3123,14 @@ texture = ExtResource("2_diqnv")
 9:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:10/0/physics_layer_0/angular_velocity = 0.0
 9:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8)
+12:0/0 = 0
+12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:0/0/physics_layer_0/angular_velocity = 0.0
+11:2/size_in_atlas = Vector2i(1, 2)
+11:2/0 = 0
+11:2/0/texture_origin = Vector2i(0, 8)
+11:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s2w4c"]
 texture = ExtResource("3_o0xh6")
@@ -3870,6 +3892,8 @@ terrain_set_5/terrain_5/color = Color(1, 1, 1, 1)
 terrain_set_6/mode = 2
 terrain_set_6/terrain_0/name = "grass"
 terrain_set_6/terrain_0/color = Color(0.227451, 0.443137, 0.243137, 1)
+terrain_set_6/terrain_1/name = "reeds"
+terrain_set_6/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 terrain_set_7/mode = 2
 terrain_set_7/terrain_0/name = "bridge"
 terrain_set_7/terrain_0/color = Color(0.576471, 0.301961, 0.0745098, 1)

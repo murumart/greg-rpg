@@ -1432,7 +1432,6 @@ scale = Vector2(-1, 1)
 
 [node name="Tree49" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(373, -474)
-scale = Vector2(-1, 1)
 
 [node name="Tree50" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(285, -390)
@@ -1440,7 +1439,6 @@ scale = Vector2(-1, 1)
 
 [node name="Tree51" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(319, -357)
-scale = Vector2(-1, 1)
 
 [node name="Tree52" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(460, -317)
