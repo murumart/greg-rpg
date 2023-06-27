@@ -7,7 +7,8 @@ extends Room
 func _ready() -> void:
 	super._ready()
 	
-	if DAT.get_data("stolen_from_store", 0) > 199:
+	if DAT.get_data("stolen_from_store", 0) > 199 and\
+	not DAT.get_data("fighting_cashier", false):
 		store_door.destination = ""
 	
 	if not DAT.get_data("zerma_left", false):
@@ -27,9 +28,7 @@ func neighbour_wife_position() -> void:
 	var neighbour_wife := $Houses/NeighbourHouse/NeighbourWife
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
 	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0):
-		neighbour_wife.position.x = -32767
-		neighbour_wife.set_physics_process(false)
-		neighbour_wife.hide()
+		neighbour_wife.queue_free()
 
 
 func tarikas_lines() -> void:

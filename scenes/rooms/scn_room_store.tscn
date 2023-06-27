@@ -79,10 +79,6 @@ size = Vector2(30, 15)
 [node name="Store" type="Node2D" groups=["save_me"]]
 y_sort_enabled = true
 script = ExtResource("1_4louq")
-music = "air_conditioning"
-music_save_progress = false
-music_play_from_beginning = true
-music_start_volume = 0.0
 
 [node name="Wall" type="Sprite2D" parent="."]
 position = Vector2(14.5, -100.5)

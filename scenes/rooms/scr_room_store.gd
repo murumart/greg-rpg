@@ -36,6 +36,11 @@ func _ready():
 	update_shopping_list()
 	load_store_data()
 	neighbour_wife_position()
+	if not store_cashier.cashier == "dead":
+		SND.play_song("air_conditioning", 1.0, {
+			play_from_beginning = true,
+			start_volume = 0,
+		})
 
 
 func set_store_wall_colours():
@@ -68,7 +73,9 @@ func load_store_data():
 # put items on the shelves
 func restock() -> void:
 	# if the cashier has been fought and won against, don't
-	if DAT.get_data("fighting_cashier", false): return
+	if DAT.get_data("fighting_cashier", false):
+		DAT.set_data("noticed_cashier_gone", DAT.seconds)
+		return
 	var store_shelf_count := shelves.size()
 	
 	# item types stored here
@@ -126,10 +133,9 @@ func check_restock() -> void:
 func check_cashier_switch() -> void:
 	# oops....
 	if DAT.get_data("fighting_cashier", false):
-		cashier.global_position.x = -3314412
-		cashier.set_physics_process(false)
-		cashier.hide()
+		cashier.queue_free()
 		store_cashier.cashier = "dead" # happens
+		DIR.sej(144, 1)
 		return
 	print("cashier second: ", (wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2)))
 	# load the current cashier based on their schedule
@@ -208,9 +214,10 @@ func dothethingthething() -> void:
 # the neighbour wife can appear in the store
 func neighbour_wife_position() -> void:
 	var neighbour_wife := $NeighbourWife
+	if store_cashier.cashier == "dead":
+		neighbour_wife.queue_free()
+		return
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
 	if time < DAT.NEIGHBOUR_WIFE_CYCLE / 2:
-		neighbour_wife.position.x = -32767
-		neighbour_wife.set_physics_process(false)
-		neighbour_wife.hide()
+		neighbour_wife.queue_free()
 

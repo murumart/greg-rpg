@@ -11,6 +11,7 @@ var cashier := "nice"
 
 
 func speak():
+	if cashier == "dead": return
 	var dat := DAT.A
 	var unpaid_items : Array = dat.get("unpaid_items", [])
 	
