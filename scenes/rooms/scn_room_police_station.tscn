@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=21 format=3 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_7ck5m"]
@@ -12,12 +12,26 @@
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="9_pwyr1"]
 [ext_resource type="SpriteFrames" uid="uid://dslpwewsl8apr" path="res://resources/characters/sfr_popo_1.tres" id="10_bwn17"]
 [ext_resource type="SpriteFrames" uid="uid://bw2gjwik133e1" path="res://resources/characters/sfr_popo_2.tres" id="12_j788g"]
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="13_tbltf"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="14_3kw1r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_snmx5"]
 size = Vector2(20, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apysc"]
 size = Vector2(20, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw6b3"]
+size = Vector2(32, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlgm7"]
+size = Vector2(10, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btwww"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bcp4"]
+size = Vector2(14, 14)
 
 [node name="PoliceStation" type="Node2D"]
 y_sort_enabled = true
@@ -40,7 +54,8 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-3, 851969, 12, -2, 917505, 12, -1, 917505, 12, -65536, 983041, 12)
 
 [node name="Greg" parent="." instance=ExtResource("3_uu3hw")]
-position = Vector2(-11, 13)
+position = Vector2(24, -15)
+metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
 limit_left = -280
@@ -85,6 +100,7 @@ texture = ExtResource("7_rnkj8")
 
 [node name="TrashInspect" parent="Cells/Cell" instance=ExtResource("9_pwyr1")]
 keys = Array[String](["jailed_trashguy", "jailed_trashguy_help"])
+save_progress = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/Cell/TrashInspect"]
 position = Vector2(0, 8)
@@ -157,4 +173,136 @@ position = Vector2(54, -1)
 [node name="Node2D8" type="Node2D" parent="Npcs/P2Path"]
 position = Vector2(5, -5)
 
+[node name="Decor" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-80, 0)
+
+[node name="BountyBoard" type="Sprite2D" parent="Decor"]
+position = Vector2(128, -45)
+texture = ExtResource("13_tbltf")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 16)
+
+[node name="BountyInteract" type="Area2D" parent="Decor/BountyBoard"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("6_enl1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/BountyBoard/BountyInteract"]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_kw6b3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor"]
+position = Vector2(104, -48)
+texture = ExtResource("13_tbltf")
+region_enabled = true
+region_rect = Rect2(80, 32, 10, 8)
+
+[node name="InspectArea" type="Area2D" parent="Decor/Sprite2D"]
+position = Vector2(0, 4)
+script = ExtResource("14_3kw1r")
+key = "police_paper"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Sprite2D/InspectArea"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_qlgm7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Decor"]
+position = Vector2(9, -44)
+texture = ExtResource("13_tbltf")
+region_enabled = true
+region_rect = Rect2(70, 40, 10, 8)
+
+[node name="InspectArea2" type="Area2D" parent="Decor/Sprite2D2"]
+script = ExtResource("14_3kw1r")
+key = "police_calendar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Sprite2D2/InspectArea2"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_qlgm7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Decor"]
+position = Vector2(100, -35)
+texture = ExtResource("13_tbltf")
+centered = false
+offset = Vector2(-1, -8)
+region_enabled = true
+region_rect = Rect2(69, 31, 11, 9)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Decor"]
+position = Vector2(86, -44)
+texture = ExtResource("13_tbltf")
+centered = false
+offset = Vector2(-1, -8)
+region_enabled = true
+region_rect = Rect2(69, 31, 11, 9)
+
+[node name="Drawer" type="Sprite2D" parent="Decor"]
+position = Vector2(153, -31)
+texture = ExtResource("13_tbltf")
+offset = Vector2(-1, -8)
+region_enabled = true
+region_rect = Rect2(113, 42, 14, 22)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decor/Drawer"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer/StaticBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_btwww")
+
+[node name="InspectArea" type="Area2D" parent="Decor/Drawer"]
+script = ExtResource("14_3kw1r")
+key = "police_drawer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer/InspectArea"]
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_1bcp4")
+
+[node name="Drawer2" type="Sprite2D" parent="Decor"]
+position = Vector2(73, -31)
+texture = ExtResource("13_tbltf")
+offset = Vector2(-1, -8)
+region_enabled = true
+region_rect = Rect2(113, 42, 14, 22)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decor/Drawer2"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer2/StaticBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_btwww")
+
+[node name="InspectArea2" type="Area2D" parent="Decor/Drawer2"]
+script = ExtResource("14_3kw1r")
+key = "police_drawer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer2/InspectArea2"]
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_1bcp4")
+
+[node name="Drawer3" type="Sprite2D" parent="Decor"]
+position = Vector2(57, -31)
+texture = ExtResource("13_tbltf")
+offset = Vector2(-1, -8)
+region_enabled = true
+region_rect = Rect2(113, 42, 14, 22)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Decor/Drawer3"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer3/StaticBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_btwww")
+
+[node name="InspectArea3" type="Area2D" parent="Decor/Drawer3"]
+script = ExtResource("14_3kw1r")
+key = "police_drawer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer3/InspectArea3"]
+position = Vector2(-1, -3)
+shape = SubResource("RectangleShape2D_1bcp4")
+
 [connection signal="on_interact" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
+[connection signal="on_interact" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]
