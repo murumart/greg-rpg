@@ -40,6 +40,26 @@ static func reaap(a : Array, b: Variant) -> Array:
 	return a
 
 
+# merge to a dict and return it
+static func dmerg(a: Dictionary, b: Dictionary) -> Dictionary:
+	a.merge(b, true)
+	return a
+
+
+# return the difference between two dictionaries
+static func dictdiff(a: Dictionary, b: Dictionary) -> Dictionary:
+	var ret := {}
+	var aks := a.keys()
+	var bks := b.keys()
+	for key in aks:
+		if not key in bks:
+			ret[key] = a[key]
+			continue
+		if typeof(a[key]) == typeof(b[key]):
+			ret[key] = a[key] - b[key]
+	return ret
+
+
 # i guess it's not actually shorter than writing it out
 static func inrange(x, a, b) -> bool:
 	return x >= a and x <= b
@@ -121,6 +141,7 @@ static func load_reference_buttons(
 	# loop through all buttons again
 	for i in containers.size():
 		var c = containers[i]
+		if c.get_child_count() < 2: return
 		for j in c.get_child_count():
 			var k = c.get_child(j)
 			# if it's the first one in a column, make its top neighbour the
