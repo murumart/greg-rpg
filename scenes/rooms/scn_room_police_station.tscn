@@ -1,14 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=15 format=3 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_7ck5m"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_uu3hw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_prdld"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_gqxff"]
+[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="6_enl1v"]
 [ext_resource type="PackedScene" uid="uid://l3bq5b3qrfgl" path="res://scenes/decor/scn_police_cell.tscn" id="6_y0r06"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="7_rnkj8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="7_wtpef"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="9_pwyr1"]
+[ext_resource type="SpriteFrames" uid="uid://dslpwewsl8apr" path="res://resources/characters/sfr_popo_1.tres" id="10_bwn17"]
+[ext_resource type="SpriteFrames" uid="uid://bw2gjwik133e1" path="res://resources/characters/sfr_popo_2.tres" id="12_j788g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snmx5"]
+size = Vector2(20, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apysc"]
 size = Vector2(20, 4)
@@ -31,9 +37,10 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array()
+layer_2/tile_data = PackedInt32Array(-3, 851969, 12, -2, 917505, 12, -1, 917505, 12, -65536, 983041, 12)
 
 [node name="Greg" parent="." instance=ExtResource("3_uu3hw")]
+position = Vector2(-11, 13)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
 limit_left = -280
@@ -50,6 +57,17 @@ gate_id = &"town-police"
 player = NodePath("../../Greg")
 extents = Vector2i(7, 8)
 spawnpoint = Vector2i(0, -12)
+
+[node name="Popo1Interact" type="Area2D" parent="Areas"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+position = Vector2(-17, -12)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("6_enl1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Popo1Interact"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_snmx5")
 
 [node name="Cells" type="Node2D" parent="."]
 
@@ -72,4 +90,71 @@ keys = Array[String](["jailed_trashguy", "jailed_trashguy_help"])
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_apysc")
 
-[editable path="Cells/Cell"]
+[node name="Npcs" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Popo1" parent="Npcs" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("7_wtpef")]
+position = Vector2(-17, -12)
+animated_sprite = NodePath("AnimatedSprite2D")
+speed = 2000
+movement_wait = 2.0
+path_container = NodePath("../P1Path")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Npcs/Popo1"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("10_bwn17")
+animation = &"walk_down"
+
+[node name="Popo2" parent="Npcs" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("7_wtpef")]
+position = Vector2(-251, 34)
+animated_sprite = NodePath("AnimatedSprite2D")
+path_container = NodePath("../P2Path")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Npcs/Popo2"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("12_j788g")
+animation = &"walk_down"
+
+[node name="P1Path" type="Node2D" parent="Npcs"]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="Npcs/P1Path"]
+position = Vector2(-24, -15)
+
+[node name="Node2D2" type="Node2D" parent="Npcs/P1Path"]
+position = Vector2(-17, -12)
+
+[node name="Node2D3" type="Node2D" parent="Npcs/P1Path"]
+position = Vector2(-10, -13)
+
+[node name="P2Path" type="Node2D" parent="Npcs"]
+visible = false
+position = Vector2(-256, 48)
+
+[node name="Node2D" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(0, -32)
+
+[node name="Node2D2" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(32, -32)
+
+[node name="Node2D3" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(64, -32)
+
+[node name="Node2D4" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(96, -32)
+
+[node name="Node2D5" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(128, -32)
+
+[node name="Node2D6" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(112, -1)
+
+[node name="Node2D7" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(54, -1)
+
+[node name="Node2D8" type="Node2D" parent="Npcs/P2Path"]
+position = Vector2(5, -5)
+
+[connection signal="on_interact" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
