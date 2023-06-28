@@ -31,12 +31,12 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var char_to_set := ""
 	var text_speed_to_set := 1.0
 	var choices_to_set : PackedStringArray = []
-	var choice_link_to_set : StringName = &""
-	var data_link_to_set := &""
+	var choice_link_to_set := ""
+	var data_link_to_set := ""
 	var instaskip_to_set := false
 	var loop_to_set := -1
-	var item_to_give := &""
-	var spirit_to_give := &""
+	var item_to_give := ""
+	var spirit_to_give := ""
 	var silver_to_give := 0
 	var sound_to_set : AudioStream = null
 	var emotion_to_set := ""
@@ -57,8 +57,8 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			char_to_set = ""
 			text_speed_to_set = 1.0
 			choices_to_set = []
-			choice_link_to_set = &""
-			data_link_to_set = &""
+			choice_link_to_set = ""
+			data_link_to_set = ""
 			instaskip_to_set = false
 			loop_to_set = -1
 			dial = Dialogue.new()
@@ -87,8 +87,8 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			dial_line = null
 			instaskip_to_set = false
 			loop_to_set = -1
-			item_to_give = &""
-			spirit_to_give = &""
+			item_to_give = ""
+			spirit_to_give = ""
 			silver_to_give = 0
 			sound_to_set = null
 			set_data_to_set = []
@@ -96,7 +96,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 		elif line.begins_with(NEW_ALIAS):
 			dial.alias = line.trim_prefix(NEW_ALIAS)
 		elif line.begins_with(NEW_CHAR):
-			char_to_set = String(line.trim_prefix(NEW_CHAR))
+			char_to_set = line.trim_prefix(NEW_CHAR)
 		elif line.begins_with(NEW_TXT_SPD):
 			text_speed_to_set = float(line.trim_prefix(NEW_TXT_SPD))
 		elif line.begins_with(NEW_CHOICES):

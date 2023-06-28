@@ -38,7 +38,7 @@ var default_textbox_position := Vector2()
 
 func _ready() -> void:
 	hide()
-	load_dialogue_dict()
+	#load_dialogue_dict()
 	default_textbox_size = textbox.size
 	default_textbox_position = textbox.position
 
@@ -249,6 +249,8 @@ func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
 
 # replace the %s in dialogue strings with something else
 func dial_concat(key: String, line_id: int, params: Array) -> void:
+	if dialogues_dict.is_empty():
+		load_dialogue_dict()
 	var get_key := key + "_" + str(line_id)
 	if not unmodified_dialogue_lines.get(get_key, false):
 		# if the line has not been modified yet:

@@ -8,12 +8,14 @@ const reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
 
 
 func _ready() -> void:
+	SOL.dialogue_box.load_dialogue_dict()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, {"mouse_interaction": true, "text_left": 14})
 
 
 func _on_text_edit_text_submitted(new_text: String) -> void:
 	print(new_text)
+	SOL.dialogue_box.load_dialogue_dict()
 	var array := dialdict().keys().duplicate()
 	var array2 := []
 	if new_text:
