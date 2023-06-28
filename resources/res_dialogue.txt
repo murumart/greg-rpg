@@ -1316,11 +1316,11 @@ CHOICE_LINK me
 	...soon enough, hopefully.
 CHOICE_LINK spirits
 	what are spirits? quaint question.
-	power given mind.
-	souls in purgatory.
-	angels of hell.
-	the human essence.
-	everything not human.
+	power given mind?
+	souls in purgatory?
+	angels of hell?
+	the human essence?
+	everything not human?
 	pick one, or pick many. whichever you like.
 CHOICES power,souls,angels,human,inhuman
 	contradictions are fun.
@@ -1464,6 +1464,65 @@ CHOICE_LINK no
 	good luck!
 
 
+DIALOGUE police_greeting
+CHAR popo_1
+CHOICES you,me,bounty,bye
+	greetings, citizen! how can the law serve you today?
+CHOICE_LINK you
+LOOP 0
+	about us? we are the police.
+CHOICE_LINK me
+	about you?
+	you're not in the police record...
+LOOP 0
+	...so you must be a good, law-abiding citizen.
+CHOICE_LINK bounty
+	about the bounty system?
+	there are dangerous criminals about in this town.
+	you can help make the town safer by, well...
+	...taking care of them.
+	and you'll be rewarded for it! sounds good, right?
+LOOP 0
+	check the bounty board to see your current status.
+CHOICE_LINK bye
+	goodbye citizen! stay up to yes good!
+
+
+# i just scratched my head too much and now i think it's bleeding
+
+
+DIALOGUE bounty_board
+CHOICES exit,thugs,bike ghost,stray animals,broken fishermen,sun spirit
+	which bounty to check out in detail?
+CHOICE_LINK thugs
+	there are plenty of petty criminals running around town.
+	catch them! lock em up! put them in jail!
+	%s out of %s thugs fought.
+CHOICE_LINK bike ghost
+	there's a mean spirit haunting a bike in town...
+	how about you teach it some lessons in human resilience?
+	you have%sdefeated the bike ghost.
+CHOICE_LINK stray animals
+	some pet owners really need to keep their pets inside...
+	as long as they don't, they're a safety issue for you to solve.
+	%s out of %s stray pets fought.
+CHOICE_LINK broken fishermen
+	some people really can't handle losing their loved ones.
+	others can't handle losing a fish off their hook.
+	%s out of %s sorry sods put in place.
+CHOICE_LINK sun spirit
+	rumor has it that a rogue spirit from the sun is in the forest somewhere.
+	it attacks on sight... but surely you can take care of it?
+	you have%sdefeated the [color=#ffaa00]solar protuberance[/color].
+
+
+DIALOGUE bounty_complete_thugs
+CHAR popo_1
+	i can scarcely believe it... all of the thugs in town...
+	...locked up! no longer able to, uh, disturb the good citizens.
+	whatever. good work... here is your reward.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
@@ -1547,8 +1606,44 @@ DIALOGUE insp_jailed_trashguy
 
 
 DIALOGUE insp_jailed_trashguy_help
-CHOICES no,
+CHOICES no,strength,magic,progress
 	do you have need for some sort of advice? i am here to help!
+CHOICE_LINK no
+	splendid! but know that i am here if you do need any!
+CHOICE_LINK strength
+	different opponents will have different levels of strength...
+	you seem to be able to become stronger by defeating opponents, no?
+	the stronger the opponent...
+	...the more experienced you will leave the fight.
+	so, to gain strength... participate in tussles!
+CHOICE_LINK magic
+	spirits are a mysterious force that permeate the world...
+	people with powerful wills, spirit masters, can utilise them!
+	it is draining for the mind, however. eating sweets helps with that.
+CHOICE_LINK progress
+	how to progress in life? well...
+	some people amass power.
+	...
+	you are also one of "some people", i reckon.
+	new opportunities are likely to open up as you get stronger...
+	opponents who once were mighty crumble before your will.
+	places you couldn't think of open up before your eyes.
+	and so on...
+
+
+DIALOGUE insp_police_paper
+	newspaper clipping.
+	"cyclists urged to avoid biking during snail mating season."
+
+
+DIALOGUE insp_police_calendar
+	a calendar.
+	today is a good day!
+
+
+DIALOGUE insp_police_drawer
+	a drawer full of police documents and stuff.
+	a bunch of the photos have moustaches drawn on them.
 
 
 DIALOGUE end_of_the_line
