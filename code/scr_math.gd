@@ -203,3 +203,23 @@ static func battle_actor_name_array(inp: Array) -> Array:
 
 static func v2(from: float) -> Vector2:
 	return Vector2(from, from)
+
+
+# weighted random function i found online for python
+static func weighted_random(items: Array, weights: Array) -> Variant:
+	if items.size() != weights.size():
+		printerr("items and weights not equivalent in size.")
+		return null
+	if items.is_empty() or weights.is_empty():
+		printerr("items and/or weights empty.")
+		return null
+	var cum_weigths := []
+	var sum := 0
+	for i in weights:
+		sum += i
+		cum_weigths.append(sum)
+	var rand := (randi() % sum) + 1
+	var index := cum_weigths.bsearch(rand)
+	return items[index]
+	
+
