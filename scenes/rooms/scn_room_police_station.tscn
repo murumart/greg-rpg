@@ -1,24 +1,296 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=53 format=3 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
+[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_7ck5m"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_uu3hw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_prdld"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_gqxff"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="6_enl1v"]
 [ext_resource type="PackedScene" uid="uid://l3bq5b3qrfgl" path="res://scenes/decor/scn_police_cell.tscn" id="6_y0r06"]
+[ext_resource type="Script" path="res://code/scr_even_spread.gd" id="7_qmjry"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="7_rnkj8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="7_wtpef"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="9_pwyr1"]
 [ext_resource type="SpriteFrames" uid="uid://dslpwewsl8apr" path="res://resources/characters/sfr_popo_1.tres" id="10_bwn17"]
+[ext_resource type="SpriteFrames" uid="uid://boh7vhsy0h6yl" path="res://resources/characters/sfr_thug_overworld.tres" id="11_cu1ip"]
 [ext_resource type="SpriteFrames" uid="uid://bw2gjwik133e1" path="res://resources/characters/sfr_popo_2.tres" id="12_j788g"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="13_tbltf"]
+[ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="14_3gwec"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="14_3kw1r"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="15_8e2iq"]
+[ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="16_ro10j"]
+[ext_resource type="Texture2D" uid="uid://cmqrw5vtp48wc" path="res://sprites/cutscene/spr_sun_spirit_rage.png" id="20_8g7l1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_snmx5"]
 size = Vector2(20, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apysc"]
+size = Vector2(20, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff6mw"]
+size = Vector2(20, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h6cq"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmeo4"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqx6a"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jofv2"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3x8i"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37bdc"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knjqm"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnvpk"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m1f3"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85urs"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgs6r"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71e7"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsf7w"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmmxk"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqd65"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cbnq"]
+atlas = ExtResource("16_ro10j")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yd2uh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h6cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmeo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqx6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jofv2")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3x8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37bdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knjqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnvpk")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m1f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85urs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgs6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71e7")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsf7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmmxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqd65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cbnq")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1eno2"]
+size = Vector2(20, 4)
+
+[sub_resource type="Gradient" id="Gradient_usbtl"]
+offsets = PackedFloat32Array(0, 0.627663)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cgx7m"]
+gradient = SubResource("Gradient_usbtl")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_cevt3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spirit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spirit:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spirit:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spirit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r4m7c"]
+resource_name = "default"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spirit:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.2, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 3), Vector2(5, -2), Vector2(1, -3), Vector2(-4, 0), Vector2(-3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spirit:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spirit:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spirit:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 1.2, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(17.3, 19.18, 21.07, 1), Color(1, 1, 1, 1), Color(57.55, 51.88, 53.78, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0cpah"]
+_data = {
+"RESET": SubResource("Animation_cevt3"),
+"default": SubResource("Animation_r4m7c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_378vf"]
 size = Vector2(20, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kw6b3"]
@@ -39,6 +311,9 @@ script = ExtResource("1_43mws")
 music = "police"
 music_play_from_beginning = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_1r0ek")
+
 [node name="InteriorTiles" parent="." instance=ExtResource("2_7ck5m")]
 layer_0/tile_data = PackedInt32Array(-65541, 1, 0, -65540, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -65532, 1, 0, -65533, 1, 0, -65534, 1, 0, -65535, 1, 0, -65536, 1, 0, -1, 1, 0, -2, 1, 0, -3, 1, 0, -4, 1, 0, -5, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 65540, 1, 0, 65539, 1, 0, 65538, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, 131070, 1, 0, 131069, 1, 0, 131068, 1, 0, 131067, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131066, 1, 0, 131065, 1, 0, 65529, 1, 0, -7, 1, 0, -8, 1, 0, -9, 1, 0, -10, 1, 0, -11, 1, 0, -12, 1, 0, -13, 1, 0, -14, 1, 0, -15, 1, 0, -16, 1, 0, -17, 1, 0, 65519, 1, 0, 131055, 1, 0, 196591, 1, 0, 262127, 1, 0, 262128, 1, 0, 196592, 1, 0, 131056, 1, 0, 131057, 1, 0, 65521, 1, 0, 65522, 1, 0, 65523, 1, 0, 131059, 1, 0, 131058, 1, 0, 65520, 1, 0, 262129, 1, 0, 262130, 1, 0, 262131, 1, 0, 262132, 1, 0, 262133, 1, 0, 262134, 1, 0, 262135, 1, 0, 262136, 1, 0, 262137, 1, 0, 196601, 1, 0, 196600, 1, 0, 196599, 1, 0, 196598, 1, 0, 196597, 1, 0, 196596, 1, 0, 196595, 1, 0, 196594, 1, 0, 196593, 1, 0, 131060, 1, 0, 131061, 1, 0, 131062, 1, 0, 131063, 1, 0, 131064, 1, 0, 65528, 1, 0, 65527, 1, 0, 65526, 1, 0, 65525, 1, 0, 65524, 1, 0, 262142, 1, 0)
 layer_1/modulate = Color(0.34902, 0.607843, 0.815686, 1)
@@ -54,14 +329,15 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-3, 851969, 12, -2, 917505, 12, -1, 917505, 12, -65536, 983041, 12)
 
 [node name="Greg" parent="." instance=ExtResource("3_uu3hw")]
-position = Vector2(24, -15)
+position = Vector2(-24, 39)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
+visible = false
 limit_left = -280
 limit_top = -64
 limit_right = 96
-limit_bottom = 80
+limit_bottom = 72
 
 [node name="Areas" type="Node2D" parent="."]
 
@@ -85,26 +361,108 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_snmx5")
 
 [node name="Cells" type="Node2D" parent="."]
+position = Vector2(-184, 0)
+script = ExtResource("7_qmjry")
+radius = 170.0
 
-[node name="Cell" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(-256, 0)
+[node name="TrashGuy" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(-74, 0)
 
-[node name="TrashGuy" parent="Cells/Cell" instance=ExtResource("7_wtpef")]
+[node name="TrashGuy" parent="Cells/TrashGuy" instance=ExtResource("7_wtpef")]
 position = Vector2(0, 3)
 random_movement = true
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Cells/Cell/TrashGuy"]
+[node name="Sprite2D" type="Sprite2D" parent="Cells/TrashGuy/TrashGuy"]
 position = Vector2(0, -8)
 texture = ExtResource("7_rnkj8")
 
-[node name="TrashInspect" parent="Cells/Cell" instance=ExtResource("9_pwyr1")]
+[node name="TrashInspect" parent="Cells/TrashGuy" instance=ExtResource("9_pwyr1")]
 keys = Array[String](["jailed_trashguy", "jailed_trashguy_help"])
 save_progress = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/Cell/TrashInspect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/TrashGuy/TrashInspect"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_apysc")
+
+[node name="Thugs" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(-53, 0)
+
+[node name="Thug" parent="Cells/Thugs" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_wtpef")]
+position = Vector2(0, 3)
+animated_sprite = NodePath("Sprite2D")
+random_movement = true
+save = false
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Cells/Thugs/Thug"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("11_cu1ip")
+animation = &"walk_down"
+
+[node name="ThugInspect" parent="Cells/Thugs" instance=ExtResource("9_pwyr1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/Thugs/ThugInspect"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_apysc")
+
+[node name="StrayAnimals" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(-32, 0)
+
+[node name="OverworldCharacter" parent="Cells/StrayAnimals" instance=ExtResource("14_3gwec")]
+script = ExtResource("15_8e2iq")
+
+[node name="InspectArea" type="Area2D" parent="Cells/StrayAnimals"]
+script = ExtResource("14_3kw1r")
+key = "cell_animal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/StrayAnimals/InspectArea"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_ff6mw")
+
+[node name="BrokenFishermen" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(-11, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cells/BrokenFishermen"]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_yd2uh")
+animation = &"walk_down"
+
+[node name="InspectArea" parent="Cells/BrokenFishermen" instance=ExtResource("9_pwyr1")]
+key = "cell_broken_fisherman"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/BrokenFishermen/InspectArea"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1eno2")
+
+[node name="SunSpirit" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(11, 0)
+
+[node name="Spirit" type="Sprite2D" parent="Cells/SunSpirit"]
+position = Vector2(0, -7)
+texture = SubResource("GradientTexture2D_cgx7m")
+offset = Vector2(0, -8)
+
+[node name="SunSpiritAnimator" type="AnimationPlayer" parent="Cells/SunSpirit"]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_0cpah")
+}
+
+[node name="SunSpiritInspect" type="Area2D" parent="Cells/SunSpirit"]
+script = ExtResource("14_3kw1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/SunSpirit/SunSpiritInspect"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_378vf")
+
+[node name="President" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(32, 0)
+
+[node name="Vampire" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(53, 0)
+
+[node name="Circus" parent="Cells" instance=ExtResource("6_y0r06")]
+position = Vector2(74, 0)
 
 [node name="Npcs" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -303,6 +661,21 @@ key = "police_drawer"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Drawer3/InspectArea3"]
 position = Vector2(-1, -3)
 shape = SubResource("RectangleShape2D_1bcp4")
+
+[node name="SunSpiritRage" type="Node2D" parent="."]
+visible = false
+position = Vector2(80, 65)
+
+[node name="ColorRect" type="ColorRect" parent="SunSpiritRage"]
+offset_left = -80.0
+offset_top = -65.0
+offset_right = 80.0
+offset_bottom = 64.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="SunSpiritRage"]
+position = Vector2(0, -17)
+texture = ExtResource("20_8g7l1")
 
 [connection signal="on_interact" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
 [connection signal="on_interact" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]
