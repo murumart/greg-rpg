@@ -292,7 +292,6 @@ layer_4/z_index = -1
 layer_4/tile_data = PackedInt32Array(-458767, 327680, 20, -393231, 327680, 20, -327695, 327680, 20, -458766, 458752, 20, -393230, 458752, 20, -327694, 458752, 20, -262158, 458752, 21, -262159, 327680, 21, -524302, 393216, 20, -524303, 393216, 20, -524301, 458752, 21, -524304, 327680, 21, -589840, 327680, 19, -589839, 393216, 19, -589838, 393216, 19, -589837, 458752, 19)
 
 [node name="Areas" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
 
 [node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("4_ab10q")]

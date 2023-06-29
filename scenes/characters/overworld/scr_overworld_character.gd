@@ -338,3 +338,7 @@ func save_key_name(key: String) -> String:
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:
 	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
+
+
+
+

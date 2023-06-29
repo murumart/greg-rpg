@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 		SND.play_sound(menusound)
 	if event.is_action_pressed("ui_cancel"):
 		$VBoxContainer/MailButton/MailPanel.hide()
-		$VBoxContainer/NewGameButton.grab_focus()
+		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
 
 
 func _on_new_game_button_pressed() -> void:

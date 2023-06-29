@@ -169,6 +169,7 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="ArmorLayer" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_58jt5")
 animation = &"walk_down"

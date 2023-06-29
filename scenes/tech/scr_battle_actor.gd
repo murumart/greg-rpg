@@ -95,7 +95,7 @@ func heal(amount: float) -> void:
 	if state == States.DEAD: return
 	# limit healing to max health
 	character.health = minf(character.health + absf(amount), character.max_health)
-	SOL.vfx("damage_number", get_effect_center(self) - SOL.HALF_SCREEN_SIZE, {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
+	SOL.vfx("damage_number", parentless_effcenter(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
 func hurt(amount: float) -> void:
