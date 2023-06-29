@@ -796,10 +796,10 @@ CHOICES you,me,job,bye
 	so, why are you here?
 
 CHOICE_LINK bye
-DATA_LINK has_not_asked_about_mail_man_job
+DATA_LINK asked_about_mail_man_job,false
 EMO content
 	ah, finally, you're leaving me alone. goodbye.
-DATA_LINK asked_about_mail_man_job
+DATA_LINK asked_about_mail_man_job,true
 	see you again soon!
 
 DATA_LINK 
@@ -865,7 +865,11 @@ EMO serious
 DIALOGUE biking_welcome_1
 EMO 
 CHAR mail_man
+DATA_LINK mail_heard_name,true
 	hello, greg! you made it to my checkpoint.
+DATA_LINK mail_heard_name,false
+	hello, newspaper boy! you made it to my checkpoint.
+DATA_LINK 
 CHOICES browse,leave
 	i sell things that might aid you on your mission.
 
@@ -912,7 +916,11 @@ CHAR mail_man
 
 DIALOGUE biking_last_stop
 CHAR mail_man
+DATA_LINK mail_heard_name,true
 	well done, greg! you have reached the end of the road.
+DATA_LINK mail_heard_name,false
+	well done! you have reached the end of the road.
+DATA_LINK 
 	you will be rewarded according to your performance.
 
 
@@ -1466,8 +1474,18 @@ CHOICE_LINK no
 
 DIALOGUE police_greeting
 CHAR popo_1
+	greetings, citizen! 
+
+
+DIALOGUE police_greeting_happy
+CHAR popo_2
+	it's great to see you, agent!
+
+
+DIALOGUE police_main
+CHAR popo_1
 CHOICES you,me,bounty,bye
-	greetings, citizen! how can the law serve you today?
+	how can the law serve you today?
 CHOICE_LINK you
 LOOP 0
 	about us? we are the police.
@@ -1492,35 +1510,49 @@ CHOICE_LINK bye
 
 
 DIALOGUE bounty_board
-CHOICES exit,thugs,bike ghost,stray animals,broken fishermen,sun spirit
+CHOICES exit,thugs,stryanmls,brknfishr,sunspirit,president,vampire,circus
 	which bounty to check out in detail?
 CHOICE_LINK thugs
 	there are plenty of petty criminals running around town.
 	catch them! lock em up! put them in jail!
 	%s out of %s thugs fought.
-CHOICE_LINK bike ghost
-	there's a mean spirit haunting a bike in town...
-	how about you teach it some lessons in human resilience?
-	you have%sdefeated the bike ghost.
-CHOICE_LINK stray animals
+CHOICE_LINK stryanmls
 	some pet owners really need to keep their pets inside...
 	as long as they don't, they're a safety issue for you to solve.
 	%s out of %s stray pets fought.
-CHOICE_LINK broken fishermen
+CHOICE_LINK brknfishr
 	some people really can't handle losing their loved ones.
 	others can't handle losing a fish off their hook.
 	%s out of %s sorry sods put in place.
-CHOICE_LINK sun spirit
+CHOICE_LINK sunspirit
 	rumor has it that a rogue spirit from the sun is in the forest somewhere.
 	it attacks on sight... but surely you can take care of it?
 	you have%sdefeated the [color=#ffaa00]solar protuberance[/color].
+CHOICE_LINK president
+	a citizen claiming to be the president of some- where is shopping in town.
+	this sounds like a security issue... please remove him.
+	you have%sdefeated [color=#00aaff]president frankling[/color].
+CHOICE_LINK circus
+	an illegal circus has set up shop in town, housing illegal spirits!
+	uproot them... if you can find them in the first place.
+	you have%scompleted [color=#aa2200]the circus[/color].
+CHOICE_LINK vampire
+	there is talk of a vampire in this town... that's horrible!
+	vampires are unlicensed spirit users, which is illegal.
+	you have%sdefeated the vampire.
+
+
+DIALOGUE bounty_complete_pre
+CHAR popo_1
+	hello! you have cleared some bounties!
 
 
 DIALOGUE bounty_complete_thugs
 CHAR popo_1
 	i can scarcely believe it... all of the thugs in town...
-	...locked up! no longer able to, uh, disturb the good citizens.
+	...locked up! no longer able to, uh, disturb the peace.
 	whatever. good work... here is your reward.
+	it's uuh... a jacket from one of the guys.
 
 
 DIALOGUE insp_snowdrops
@@ -1545,6 +1577,15 @@ DIALOGUE insp_zerma_car
 
 DIALOGUE insp_campfire_site
 	a campfire spot. hasn't been used in a while.
+
+
+DIALOGUE insp_campfire_has_lighter
+CHOICES yes,no
+	you have a lighter. would you like to light this?
+
+
+DIALOGUE insp_lit_campfire
+	this campfire is alight.
 
 
 DIALOGUE insp_postboxes
@@ -1644,6 +1685,72 @@ DIALOGUE insp_police_calendar
 DIALOGUE insp_police_drawer
 	a drawer full of police documents and stuff.
 	a bunch of the photos have moustaches drawn on them.
+
+
+DIALOGUE insp_cell_thugs_1
+CHAR popo_2
+	all of the thugs turned out to be led by this one guy.
+	so he's going to serve all of their sentences.
+	since, uh, he's the only one left.
+
+
+DIALOGUE insp_cell_thugs_2_disabled
+DATA_LINK thugs_enabled,false
+	psst... hey, you, collaborator.
+	i still have my connections to my guys...
+	they have not all been defeated, you see.
+CHOICES yes!,no!
+	would you like me to summon them so they can beat your ass?
+CHOICE_LINK no!
+	you suck!
+CHOICE_LINK yes!
+SET_DATA thugs_enabled,true
+	well, you asked for it.
+
+DIALOGUE insp_cell_thugs_2_enabled
+DATA_LINK thugs_enabled,true
+	well? are you enjoying the ass beating?
+CHOICES yes,no
+	do you want me to call the guys back?
+CHOICE_LINK yes
+SET_DATA thugs_enabled,false
+	well... okay. but only because you look threatening enough...
+CHOICE_LINK no
+	good! good...
+
+
+DIALOGUE insp_cell_animal
+CHAR popo_2
+	this is the last animal in town...
+	probably not, actually, but you did do a clean job.
+
+
+DIALOGUE insp_cell_broken_fisherman
+CHAR popo_2
+	this one is actually dead. yeah.
+	seems to be well preserved, though...
+	wonder what they ate when alive.
+
+
+DIALOGUE insp_sun_spirit_rage_1
+	[color=#ffbb99]congratulations, you absolute fool.
+	[color=#ffbb99]you have drained me of the energy to escape this world.
+	[color=#ffbb99]very well done! and what is your reward?
+
+DIALOGUE insp_sun_spirit_rage_2
+	...
+	[color=#ffbb99]...well, i don't want to ruin the surprise...
+	[color=#ffbb99]...actually, i do want to ruin the surprise.
+	[color=#ffbb99]you will not survive "grandma's" true attack.
+	[color=#ffbb99]enjoy the fleeting moments. you have my curse.
+
+
+DIALOGUE insp_sun_spirit
+CHAR popo_2
+	it's no use talking to that one.
+	i don't think it can even speak. i've tried...
+	by the way. good job with defeating it...
+	quite a nasty spirit, with history...
 
 
 DIALOGUE end_of_the_line
