@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
+[ext_resource type="PackedScene" uid="uid://d1bw3nluoktrc" path="res://scenes/decor/scn_campfire.tscn" id="24_375rx"]
 [ext_resource type="Texture2D" uid="uid://c13xom5nym4pk" path="res://sprites/characters/overworld/spr_nature_guy_overworld.png" id="24_al1vt"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
@@ -108,9 +109,6 @@ size = Vector2(14, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3utb"]
 size = Vector2(12, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0drw"]
-size = Vector2(31, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6yajp"]
 size = Vector2(18, 7)
@@ -1163,22 +1161,6 @@ texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 24)
 
-[node name="Campfire" type="Sprite2D" parent="Other/CampfireSite"]
-position = Vector2(-9, 8.00003)
-texture = ExtResource("9_8v8jp")
-offset = Vector2(0, 6)
-region_enabled = true
-region_rect = Rect2(16, 32, 32, 16)
-
-[node name="InspectArea" type="Area2D" parent="Other/CampfireSite/Campfire"]
-position = Vector2(1, 5)
-script = ExtResource("10_fbdk7")
-key = "campfire_site"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/Campfire/InspectArea"]
-position = Vector2(-0.5, 2.5)
-shape = SubResource("RectangleShape2D_q0drw")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Other/CampfireSite"]
 position = Vector2(-8, 15)
 
@@ -1251,6 +1233,9 @@ key = "trash_road"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/InspectArea"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_ab04q")
+
+[node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
+position = Vector2(-9, 17)
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true

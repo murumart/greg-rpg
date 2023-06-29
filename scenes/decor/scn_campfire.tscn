@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1bw3nluoktrc"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_2fmfa"]
+[ext_resource type="Script" path="res://scenes/decor/scr_campfire.gd" id="2_02woc"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_mwsdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0drw"]
+size = Vector2(31, 15)
+
+[node name="Campfire" type="Node2D"]
+script = ExtResource("2_02woc")
+
+[node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(1, -1)
+script = ExtResource("2_mwsdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_q0drw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-15, -6)
+texture = ExtResource("1_2fmfa")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 33, 33, 16)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="inspected" from="InspectArea" to="." method="_on_inspected"]
