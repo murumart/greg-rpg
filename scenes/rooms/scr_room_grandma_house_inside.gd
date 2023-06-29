@@ -46,11 +46,11 @@ func _on_phone_interacted() -> void:
 		SOL.dialogue("prank_call_enough")
 		return
 	var number : float = DAT.get_data("nr", 0.0) * 10.0 + 1
-	var call := "prank_call_%s"
+	var call_name := "prank_call_%s"
 	SOL.dialogue_box.dial_concat("prank_call_0", 1, [floorf(number)])
 	SOL.dialogue("prank_call_0")
-	if call % floorf(number) in SOL.dialogue_box.dialogues_dict.keys():
-		SOL.dialogue(call % floorf(number))
+	if call_name % floorf(number) in SOL.dialogue_box.dialogues_dict.keys():
+		SOL.dialogue(call_name % floorf(number))
 	else:
 		SOL.dialogue("prank_call_else")
 	SOL.dialogue("prank_call_over")
