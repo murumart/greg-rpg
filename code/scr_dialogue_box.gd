@@ -109,16 +109,19 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var character : Character = null
 	var text_speed : float = part.text_speed
 	var choice_link : StringName = part.choice_link
-	var data_link : StringName = part.data_link
+	var data_link : PackedStringArray = part.data_link
 	var choices : PackedStringArray = part.choices
 	var emotion : String = part.emotion
 	# if the line is linked to a choice or bool data, skip to the next one
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
-	if data_link != &"" and not DAT.get_data(data_link, false):
-		next_dialogue_requested()
-		return
+	if data_link.size() > 1:
+		var dcond := (DAT.get_data(data_link[0], false) ==
+			Math.toexp(data_link[1]) as bool)
+		if not (dcond):
+			next_dialogue_requested()
+			return
 	if part.sound:
 		SND.play_sound(part.sound)
 	
@@ -134,10 +137,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		var key : String = part.set_data[0]
 		var read : String = part.set_data[1]
 		var value : Variant = 0
-		if read.is_valid_float(): value = float(read)
-		# gryyh
-		elif read == "true": value = true
-		elif read == "false": value = false
+		if Math.toexp(read) != null: value = Math.toexp(read)
 		else: value = read
 		DAT.set_data(key, value)
 	
@@ -181,7 +181,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
 	
 	if choices:
-		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received)
+		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received, {"text_left": 9})
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).call_deferred("grab_focus")
@@ -252,9 +252,9 @@ func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if dialogues_dict.is_empty():
 		load_dialogue_dict()
 	var get_key := key + "_" + str(line_id)
-	if not unmodified_dialogue_lines.get(get_key, false):
+	if not get_key in unmodified_dialogue_lines:
 		# if the line has not been modified yet:
-		var line := DialogueLine.new()
+		var line : DialogueLine
 		line = dialogues_dict.get(key).get_line(line_id).duplicate()
 		# we store the unmodified form
 		unmodified_dialogue_lines[get_key] = line

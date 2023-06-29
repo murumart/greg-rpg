@@ -205,6 +205,15 @@ static func v2(from: float) -> Vector2:
 	return Vector2(from, from)
 
 
+# convert a string to a usable type
+static func toexp(string: String) -> Variant:
+	if string == "true": return true
+	elif string == "false": return false
+	elif string.is_valid_int(): return int(string)
+	elif string.is_valid_float(): return float(string)
+	return null
+
+
 # weighted random function i found online for python
 static func weighted_random(items: Array, weights: Array) -> Variant:
 	if items.size() != weights.size():

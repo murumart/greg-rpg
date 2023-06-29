@@ -32,7 +32,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var text_speed_to_set := 1.0
 	var choices_to_set : PackedStringArray = []
 	var choice_link_to_set := ""
-	var data_link_to_set := ""
+	var data_link_to_set := PackedStringArray()
 	var instaskip_to_set := false
 	var loop_to_set := -1
 	var item_to_give := ""
@@ -58,7 +58,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			text_speed_to_set = 1.0
 			choices_to_set = []
 			choice_link_to_set = ""
-			data_link_to_set = ""
+			data_link_to_set = []
 			instaskip_to_set = false
 			loop_to_set = -1
 			dial = Dialogue.new()
@@ -97,16 +97,20 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			dial.alias = line.trim_prefix(NEW_ALIAS)
 		elif line.begins_with(NEW_CHAR):
 			char_to_set = line.trim_prefix(NEW_CHAR)
-		elif line.begins_with(NEW_TXT_SPD):
-			text_speed_to_set = float(line.trim_prefix(NEW_TXT_SPD))
 		elif line.begins_with(NEW_CHOICES):
 			choices_to_set = line.trim_prefix(NEW_CHOICES).split(",")
 		elif line.begins_with(NEW_CHOICE_LINK):
 			choice_link_to_set = line.trim_prefix(NEW_CHOICE_LINK)
 		elif line.begins_with(NEW_DATA_LINK):
-			data_link_to_set = line.trim_prefix(NEW_DATA_LINK)
+			data_link_to_set = line.trim_prefix(NEW_DATA_LINK).split(",")
+		elif line.begins_with(NEW_EMOTION):
+			emotion_to_set = line.trim_prefix(NEW_EMOTION)
+		elif line.begins_with(NEW_SET_DATA):
+			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
 		elif line.begins_with(NEW_INSTASKIP):
 			instaskip_to_set = true
+		elif line.begins_with(NEW_TXT_SPD):
+			text_speed_to_set = float(line.trim_prefix(NEW_TXT_SPD))
 		elif line.begins_with(NEW_LOOP):
 			loop_to_set = int(line.trim_prefix(NEW_LOOP))
 		elif line.begins_with(NEW_ITEM):
@@ -117,10 +121,6 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			silver_to_give = int(line.trim_prefix(NEW_SPIRIT))
 		elif line.begins_with(NEW_SOUND):
 			sound_to_set = load("res://sounds/%s.ogg" % line.trim_prefix(NEW_SOUND))
-		elif line.begins_with(NEW_EMOTION):
-			emotion_to_set = line.trim_prefix(NEW_EMOTION)
-		elif line.begins_with(NEW_SET_DATA):
-			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
 	
 	if file.eof_reached():
 		dialogue_dictionary[dial.name] = dial
