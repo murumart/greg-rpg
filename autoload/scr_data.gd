@@ -51,9 +51,7 @@ func _ready() -> void:
 	DIR.incj(1, 1)
 
 
-# loading chars items spirits use those string arrays
-# relies on there being files with the same names as those strings
-# then storing the loaded files inside dicts
+# loading characters, items, spirits from folders
 func load_resources() -> void:
 	for s in DIR.get_dir_contents("res://resources/characters/"):
 		if not s.begins_with("res"): continue
