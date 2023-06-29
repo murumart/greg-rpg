@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://b3cfwun3f5x4r"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_3aqc5"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_bcncu"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_p0fje"]
+[ext_resource type="Texture2D" uid="uid://eu1h3bhv5er4" path="res://sprites/items/spr_item_meat_cooked.png" id="3_ts2n4"]
+
+[sub_resource type="Resource" id="Resource_xlvor"]
+script = ExtResource("1_3aqc5")
+name = "attack"
+strength = 1.0
+duration = 10
+
+[sub_resource type="Resource" id="Resource_ywmpl"]
+script = ExtResource("1_p0fje")
+health = 130.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+effects = Array[ExtResource("1_3aqc5")]([SubResource("Resource_xlvor")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("1_bcncu")
+name_in_file = &""
+name = &"cooked meat"
+description = "cooked meat! no flatworms, but less manly!"
+texture = ExtResource("3_ts2n4")
+attack_animation = ""
+price = 260
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_ywmpl")
