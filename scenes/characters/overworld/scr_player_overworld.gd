@@ -1,5 +1,4 @@
-extends CharacterBody2D
-class_name PlayerOverworld
+class_name PlayerOverworld extends CharacterBody2D
 
 enum States {FREE_MOVE, NOT_FREE_MOVE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
@@ -16,6 +15,9 @@ var state : int: set = set_state
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
 
+@onready var armour := $ArmorLayer
+var updating_armour := false
+
 var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
 
 
@@ -23,11 +25,12 @@ func _ready() -> void:
 	DAT.player_captured.connect(_update_capture)
 	if DAT.player_capturers.size() > 0:
 		state = States.NOT_FREE_MOVE
-	menu.close_requested.connect(_on_menu_close_requested)
+	menu.close_requested.connect(close_menu)
 	SOL.add_ui_child(menu)
 	menu.hide()
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
 		position = DAT.get_data(save_key_name("position"), position)
+	load_armour()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,8 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				menu.call_deferred("showme")
 				DAT.capture_player("overworld_menu")
 			else:
-				menu.call_deferred("hideme")
-				DAT.free_player("overworld_menu")
+				close_menu()
 
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +54,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
 		direct_animation()
+	if updating_armour:
+		armour.animation = sprite.animation
+		armour.frame = sprite.frame
 
 
 func set_state(to: States) -> void:
@@ -107,11 +112,24 @@ func save_key_name(key: String) -> String:
 	return str("player_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
 
 
-func _on_menu_close_requested() -> void:
+func close_menu() -> void:
 	menu.call_deferred("hideme")
 	DAT.free_player("overworld_menu")
+	load_armour()
 
 
 func set_saving_disabled(to: bool) -> void:
 	saving_disabled = to
 	menu.saving_disabled = to
+
+
+func load_armour() -> void:
+	armour.hide()
+	updating_armour = false
+	var greg := DAT.get_character("greg") as Character
+	var path := "res://resources/armours/sfr_%s.tres" % greg.armour
+	if greg.armour:
+		if ResourceLoader.exists(path):
+			armour.sprite_frames = load(path)
+			updating_armour = true
+			armour.show()
