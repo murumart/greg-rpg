@@ -51,4 +51,4 @@ func load_ghosts() -> void:
 		set_enemies(["bike_ghost"]).\
 		set_music("bike_spirit").\
 		set_start_text("toute phrase en langue etrangere.").\
-		set_rewards(preload("res://resources/battle_rewards/res_bike_ghost_alpha.tres"))
+		set_rewards(preload("res://resources/rewards/res_bike_ghost_alpha.tres"))

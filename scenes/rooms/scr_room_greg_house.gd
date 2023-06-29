@@ -15,7 +15,7 @@ extends Room
 
 var zerma_battle := BattleInfo.new().set_music("greg_battle").set_enemies(["zerma"]).\
 set_background("greghouse").set_start_text("you will be so educated!").\
-set_rewards(preload("res://resources/battle_rewards/res_zerma_tut_rewards.tres"))
+set_rewards(preload("res://resources/rewards/res_zerma_tut_rewards.tres"))
 
 
 # fantastic function.

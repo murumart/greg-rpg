@@ -53,7 +53,7 @@ func get_info() -> BattleInfo:
 	
 	inf.set_background("town").set_music("foreign_fauna")
 	inf.set_enemies(enmis)
-	inf.set_rewards(preload("res://resources/battle_rewards/res_animal_fight_rewards.tres"))
+	inf.set_rewards(preload("res://resources/rewards/res_animal_fight_rewards.tres"))
 	
 	return inf
 

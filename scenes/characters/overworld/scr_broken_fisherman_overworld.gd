@@ -9,7 +9,7 @@ const N := "not_fish"
 func _ready() -> void:
 	super._ready()
 	battle_info = BattleInfo.new().set_background("lakeside").set_music("lake_battle").\
-	set_enemies(gen_enemies()).set_rewards(preload("res://resources/battle_rewards/res_lakeside_reward.tres")).set_death_reason("lakeside")
+	set_enemies(gen_enemies()).set_rewards(preload("res://resources/rewards/res_lakeside_reward.tres")).set_death_reason("lakeside")
 
 
 func gen_enemies() -> Array[String]:

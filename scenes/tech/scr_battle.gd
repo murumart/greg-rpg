@@ -11,7 +11,7 @@ signal player_finished_acting
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["rainbird", "sun_spirit"]).\
-set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/battle_rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
+set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
 
 var play_victory_music := true
 
@@ -172,7 +172,7 @@ func load_battle(info: BattleInfo) -> void:
 	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
-		battle_rewards = load("res://resources/battle_rewards/res_default_reward.tres").duplicate(true)
+		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
 	play_victory_music = info.victory_music
