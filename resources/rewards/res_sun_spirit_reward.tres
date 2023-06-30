@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=6 format=3 uid="uid://ci0y06otl0yar"]
+
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_iu01u"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_kx6qh"]
+
+[sub_resource type="Resource" id="Resource_rfh07"]
+script = ExtResource("1_iu01u")
+type = 0
+property = "100"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_5in1e"]
+script = ExtResource("1_iu01u")
+type = 2
+property = "skystorm"
+chance = 1.0
+unique = true
+
+[sub_resource type="Resource" id="Resource_0c776"]
+script = ExtResource("1_iu01u")
+type = 3
+property = "50"
+chance = 1.0
+unique = false
+
+[resource]
+script = ExtResource("1_kx6qh")
+rewards = Array[ExtResource("1_iu01u")]([SubResource("Resource_rfh07"), SubResource("Resource_5in1e"), SubResource("Resource_0c776")])

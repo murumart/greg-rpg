@@ -7,8 +7,8 @@
 [sub_resource type="Resource" id="Resource_yqcm0"]
 script = ExtResource("1_oxoa1")
 name = "fire"
-strength = 1
-duration = 1.0
+strength = 1.0
+duration = 1
 
 [sub_resource type="Resource" id="Resource_5ucl3"]
 script = ExtResource("1_cbxgo")
@@ -20,21 +20,10 @@ magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
 attack_increase = 0.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 1
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
 effects = Array[ExtResource("1_oxoa1")]([SubResource("Resource_yqcm0")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
@@ -42,12 +31,12 @@ reveal_enemy_info = false
 [resource]
 script = ExtResource("1_dfdb3")
 name_in_file = &""
-name = &"orbital disturbance"
+name = &"skystorm"
 description = "rain hell upon your foes."
 animation = &"skystorm"
 use_animation = &""
 receive_animation = &""
-cost = 128
+cost = 99
 use = 1
 reach = 2
 payload_reception_count = 4

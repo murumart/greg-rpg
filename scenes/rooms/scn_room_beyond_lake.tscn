@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=44 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_e61yp"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="6_y1l2p"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_siyrm"]
+[ext_resource type="Resource" uid="uid://ci0y06otl0yar" path="res://resources/rewards/res_sun_spirit_reward.tres" id="7_uirxy"]
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/snd_ambient_loop.ogg" id="9_4afe5"]
@@ -72,6 +73,7 @@ music = "preturberance"
 party = Array[String]([])
 death_reason = "solar"
 start_text = "les pommes sont mures."
+rewards = ExtResource("7_uirxy")
 victory_music = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
