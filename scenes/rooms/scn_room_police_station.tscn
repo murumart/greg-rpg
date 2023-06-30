@@ -329,7 +329,7 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-3, 851969, 12, -2, 917505, 12, -1, 917505, 12, -65536, 983041, 12)
 
 [node name="Greg" parent="." instance=ExtResource("3_uu3hw")]
-position = Vector2(-24, 39)
+position = Vector2(-110, 9)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
@@ -361,7 +361,7 @@ position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_snmx5")
 
 [node name="Cells" type="Node2D" parent="."]
-position = Vector2(-184, 0)
+position = Vector2(-184, -10)
 script = ExtResource("7_qmjry")
 radius = 170.0
 

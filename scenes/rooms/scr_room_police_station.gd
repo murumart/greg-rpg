@@ -41,7 +41,9 @@ func _on_popo_1_interact_on_interact() -> void:
 		if is_bounty_fulfilled(b):
 			if not DAT.get_data("fulfilled_bounty_%s" % b, false):
 				if not newbounts:
-					SOL.dialogue("bounty_complete_pre")
+					SOL.dialogue("bounty_complete_pre" if DAT.get_data(
+						"has_talked_with_police", false
+					) else "bounty_complete_pre_first_interaction")
 					newbounts = true
 				var complete_dial := ("bounty_complete_%s" % b) as String
 				var reward_path := (
@@ -59,6 +61,7 @@ func _on_popo_1_interact_on_interact() -> void:
 	if DAT.get_data("police_standing", 0) < 1:
 		DAT.set_data("police_standing", 1)
 		DAT.set_data("police_sitting", 0)
+	DAT.set_data("has_talked_with_police", true)
 
 
 func _bounty_interacted() -> void:
@@ -120,6 +123,7 @@ func get_bounty_info() -> void:
 
 func get_greeting() -> String:
 	var standing := DAT.get_data("police_standing", 0) as int
+	print("standing: ", standing)
 	if Math.inrange(standing, 0, 2):
 		return "police_greeting"
 	elif Math.inrange(standing, 3, 5):
