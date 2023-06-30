@@ -43,6 +43,10 @@ const DEATH_REASONS := {
 		"picture": "nova",
 		"text": "[center]almost worth dying for a sight like this.",
 		"sound": ""
+	},
+	"sus": {
+		"picture": "zerma",
+		"text": "[center]why did it have to end this way... so young...",
 	}
 }
 
