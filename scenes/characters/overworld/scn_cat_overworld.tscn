@@ -80,6 +80,7 @@ animations = [{
 [node name="Cat" instance=ExtResource("1_4qwvp")]
 y_sort_enabled = true
 script = ExtResource("2_f3b8l")
+friendly = false
 speed = 4000
 movement_wait = 3.5
 random_movement = true
@@ -97,8 +98,8 @@ shape = SubResource("RectangleShape2D_a5p2c")
 shape = SubResource("CircleShape2D_0h7is")
 
 [node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
-position = Vector2(0, 1)
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_hvoy4")
 animation = &"idle"
 frame_progress = 0.397401
-offset = Vector2(0, -9)
+offset = Vector2(0, -1)
