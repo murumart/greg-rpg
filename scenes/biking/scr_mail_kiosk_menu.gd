@@ -58,7 +58,7 @@ func load_items() -> void:
 func load_perks() -> void:
 	stage = 2
 	#load_reference_buttons(perks_available, [button_container])
-	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": item_names})
+	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": perk_names})
 
 
 # this is horrible but I do not have the mental capacity at the moment
@@ -150,7 +150,17 @@ func item_names(opt := {}) -> void:
 		opt.button.text = "leave"
 		opt.button.modulate = Color("#888888")
 		return
-	opt.button.text = DAT.get_item(opt.reference).name.left(8)
+	opt.button.text = opt.reference.left(8)
+	if opt.reference in DAT.item_dict:
+		opt.button.text = DAT.get_item(opt.reference).name.left(8)
+
+
+func perk_names(opt := {}) -> void:
+	if opt.button.reference == "leave":
+		opt.button.text = "leave"
+		opt.button.modulate = Color("#888888")
+		return
+	opt.button.text = opt.reference.replace("_", " ")
 
 
 func _reference_button_pressed(reference) -> void:
