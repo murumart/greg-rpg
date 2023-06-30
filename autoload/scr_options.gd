@@ -113,7 +113,9 @@ func _input(event: InputEvent) -> void:
 				if get_viewport().get_camera_2d() and "free_cam" in get_viewport().get_camera_2d():
 					get_viewport().get_camera_2d().free_cam = !get_viewport().get_camera_2d().free_cam
 			KEY_KP_4:
-				pass
+				get_tree().debug_collisions_hint = !get_tree().debug_collisions_hint
+				print("collisions ", "showing" if
+				get_tree().debug_collisions_hint else "hidden")
 			KEY_F12:
 				DIR.screenshot()
 		# the options menu is shown and hidden when esc is pressed
