@@ -20,6 +20,8 @@ const NEW_SOUND := "SOUND "
 const NEW_EMOTION := "EMO "
 const NEW_DATA_LINK := "DATA_LINK "
 const NEW_SET_DATA := "SET_DATA "
+const LB := "
+"
 
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
@@ -66,7 +68,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 		elif line.begins_with(NEW_LINE):
 			# applying dialogue line properties
 			dial_line = DialogueLine.new()
-			dial_line.text = line.trim_prefix(NEW_LINE)
+			dial_line.text = line.trim_prefix(NEW_LINE).replace("LB", LB)
 			dial_line.character = char_to_set
 			dial_line.text_speed = text_speed_to_set
 			dial_line.choice_link = choice_link_to_set

@@ -155,6 +155,30 @@ DIALOGUE battle_inspect
 	%s
 
 
+DIALOGUE exchange_success
+	exchange successful!
+
+
+DIALOGUE exchange_item
+	you acquired %s.
+
+
+DIALOGUE exchange_missing_input
+	you are missing required items.
+
+
+DIALOGUE exchange_criteria_title
+	this exchange requires: LB%s LB%s
+
+
+DIALOGUE exchange_returns_title
+	this exchange returns: LB%s LB%s
+
+
+DIALOGUE exchange_criteria_sisu
+	%s LB%s LB%s LB
+
+
 DIALOGUE intro_convo_0
 CHAR zerma
 	greg, wake up!
@@ -1547,12 +1571,50 @@ CHAR popo_1
 	hello! you have cleared some bounties!
 
 
+DIALOGUE bounty_complete_pre_first_interaction
+CHAR popo_1
+	hello, esteemed citizen!
+	you may not know this, but you are eligible for rewards!
+	...given your past actions helping quell criminals.
+
+
 DIALOGUE bounty_complete_thugs
 CHAR popo_1
 	i can scarcely believe it... all of the thugs in town...
 	...locked up! no longer able to, uh, disturb the peace.
 	whatever. good work... here is your reward.
 	it's uuh... a jacket from one of the guys.
+
+
+DIALOGUE bounty_complete_stray_animals
+CHAR popo_1
+	the stray animals causing issues... vanquished!
+	don't worry, we won't let pet owners come at you legally.
+	here's some meat... no, no, unrelated to the animals...
+
+
+DIALOGUE bounty_complete_broken_fishermen
+CHAR popo_1
+	well done! you have put the sobbing sopping fishermen...
+	...in their place. in jail. you see, my dad was also...
+	...a fisherman. and he often asked me to go fishing...
+	...with him, when i was little. and, like, old man?...
+	...you're so annoying! gah! so i kind of hate him...
+	...forever now.
+	hm? your reward? oh, here... a spirit for you.
+
+
+DIALOGUE bounty_complete_sun_spirit
+CHAR popo_1
+	...well... isn't this remarkable...
+	you got rid of the rogue spirit in the forest.
+	...thank you. you will be rewarded well.
+
+
+DIALOGUE inside_police_cell
+	you seem to be stuck inside a jail cell.
+CHOICES yes,no
+	would you like to break out?
 
 
 DIALOGUE insp_snowdrops
@@ -1586,6 +1648,18 @@ CHOICES yes,no
 
 DIALOGUE insp_lit_campfire
 	this campfire is alight.
+CHOICES yes,no
+	you could use the fire to make things. do you want to look closer?
+
+
+DIALOGUE campfire_exchanges
+CHOICES 
+	what would you like to do?
+
+
+DIALOGUE campfire_exchange_confirm
+CHOICES yes,no,info
+	you really want to %s?
 
 
 DIALOGUE insp_postboxes
