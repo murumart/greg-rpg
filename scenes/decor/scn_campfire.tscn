@@ -9,6 +9,7 @@ size = Vector2(31, 15)
 
 [node name="Campfire" type="Node2D"]
 script = ExtResource("2_02woc")
+lit = null
 
 [node name="InspectArea" type="Area2D" parent="."]
 position = Vector2(1, -1)
