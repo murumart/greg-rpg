@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://ctut0bfashx50"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_88anu"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="2_sa7qu"]
+[ext_resource type="Texture2D" uid="uid://dl72j7rgp2yqb" path="res://sprites/items/spr_eggshell.png" id="3_ithwb"]
+
+[sub_resource type="Resource" id="Resource_gn6gu"]
+script = ExtResource("1_88anu")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+reveal_enemy_info = false
+
+[resource]
+script = ExtResource("2_sa7qu")
+name_in_file = &""
+name = &"eggshell"
+description = "it's an animal's egg's shell's wall's shards."
+texture = ExtResource("3_ithwb")
+attack_animation = ""
+price = 94
+use = -1
+consume_on_use = true
+payload = SubResource("Resource_gn6gu")
