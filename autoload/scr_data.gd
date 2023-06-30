@@ -49,6 +49,8 @@ func _ready() -> void:
 	init_data()
 	print("DAT is ready!")
 	DIR.incj(1, 1)
+	await get_tree().process_frame
+	test()
 
 
 # loading characters, items, spirits from folders
@@ -235,7 +237,7 @@ func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
 func grant_silver(amount: int, dialogue := true) -> void:
 	var dialid := "getsilver"
 	if amount < 0: dialid = "losesilver"
-	set_data("silver", A.get("silver", 0) + amount)
+	incri("silver", amount)
 	if not dialogue: return
 	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
 	SOL.dialogue(dialid)
@@ -341,5 +343,9 @@ func init_data() -> void:
 	A.clear()
 	set_data("party", ["greg"])
 	set_data("nr", randf())
+
+
+func test() -> void:
+	pass
 
 

@@ -1236,6 +1236,7 @@ shape = SubResource("RectangleShape2D_ab04q")
 
 [node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
 position = Vector2(-9, 17)
+lit = null
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true

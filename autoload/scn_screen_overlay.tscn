@@ -32,6 +32,7 @@ offset_top = 3.0
 offset_right = 136.0
 offset_bottom = 28.0
 theme = ExtResource("2_xetbm")
+text = "\\nfefw\\nijiji"
 scroll_active = false
 script = ExtResource("3_so1p4")
 
