@@ -190,3 +190,12 @@ func appj(k: int, t: Variant)\
 	t);write_dict_to_file(
 			  o,
 	"pers")
+
+
+func screenshot() -> void:
+	if not DirAccess.dir_exists_absolute("user://greg_rpg/screenshots"):
+		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
+	var img := get_viewport().get_texture().get_image()
+	img.save_png(
+		"user://greg_rpg/screenshots/" + str(hash(img)) + ".png"
+	)
