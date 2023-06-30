@@ -435,7 +435,7 @@ func syrup():
 	if currently_hell:
 		bike.heal(20)
 		return
-	syrup_stop_meter = get_meter() + 100
+	syrup_stop_meter = int(get_meter() + 100)
 	currently_syrup = true
 	set_speed(speed + 800)
 	bike.invincibility_timer.start(5)

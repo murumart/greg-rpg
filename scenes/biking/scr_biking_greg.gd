@@ -155,8 +155,6 @@ func _on_collision_area_area_entered(area: Area2D) -> void:
 func lob_in() -> void:
 	var req := AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	var abor := AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
-	var spd := func set_lob_speed(to: float) -> void:
-		animation_tree.set("parameters/lobbing_speed/scale", to)
 	if not animation_tree.get("parameters/play_lob_in/active"):
 		animation_tree.set("parameters/play_lob_in/request", req)
 	if animation_tree.get("parameters/play_lob/active"):
@@ -164,12 +162,12 @@ func lob_in() -> void:
 
 
 # controls lobbing animation
-func lob(speed: float) -> void:
+func lob(speede: float) -> void:
 	var req := AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	var abor := AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
 	var spd := func set_lob_speed(to: float) -> void:
 		animation_tree.set("parameters/lobbing_speed/scale", to)
-	mail_speed = speed
+	mail_speed = speede
 	animation_tree.set("parameters/play_lob_in/request", abor)
 	if super_mail: # cool secret perk activated
 		spd.call(2.0) # speed faster

@@ -8,6 +8,7 @@ var enemy_amount := 0
 
 @export var player : PlayerOverworld
 @export var active_range := Vector2i(1, 99)
+@export var bounty_link := ""
 @export var wait_time := 1.0
 
 @onready var timer := $Timer

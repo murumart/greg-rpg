@@ -11,7 +11,7 @@ signal player_finished_acting
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["sun_spirit", ]).\
-set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("")
+set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
 
 var play_victory_music := true
 

@@ -25,7 +25,7 @@ size = Vector2(15, 12)
 size = Vector2(14, 17.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrqee"]
-size = Vector2(17, 18)
+size = Vector2(17, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3svxc"]
 size = Vector2(14, 21)
@@ -33,13 +33,13 @@ size = Vector2(14, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csciw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcnh"]
-size = Vector2(18, 16.5)
+size = Vector2(18, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8uv5b"]
 size = Vector2(9.5, 16.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw0su"]
-size = Vector2(18, 11)
+size = Vector2(18, 11.375)
 
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
@@ -73,6 +73,7 @@ layer_1/tile_data = PackedInt32Array(-262137, 851969, 7, -262136, 917505, 8, -26
 [node name="Grandma" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_wdbgc")]
 position = Vector2(145, -73)
 animated_sprite = NodePath("AnimatedSprite2D")
+collision_extents = Vector2i(10, 6)
 speed = 2000
 movement_wait = 3.0
 random_movement = true
@@ -130,7 +131,7 @@ modulate = Color(0.905882, 0.639216, 1, 1)
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Phone/PhoneInteraction"]
-position = Vector2(-0.5, -3)
+position = Vector2(-0.5, -2.5)
 shape = SubResource("RectangleShape2D_jrqee")
 
 [node name="Decor" type="Node2D" parent="."]
@@ -350,7 +351,7 @@ position = Vector2(182, -11)
 key = "snowdrops"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers2"]
-position = Vector2(2, 2.75)
+position = Vector2(2, 3)
 shape = SubResource("RectangleShape2D_0bcnh")
 
 [node name="Flowers3" parent="Areas" instance=ExtResource("11_b4a8j")]
@@ -366,7 +367,7 @@ position = Vector2(132, -26)
 key = "other_flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers4"]
-position = Vector2(4, 1)
+position = Vector2(4, 0.875)
 shape = SubResource("RectangleShape2D_dw0su")
 
 [node name="Flowers5" parent="Areas" instance=ExtResource("11_b4a8j")]
@@ -390,7 +391,7 @@ position = Vector2(180, -26)
 key = "other_flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers7"]
-position = Vector2(4, 1)
+position = Vector2(4, 0.6875)
 shape = SubResource("RectangleShape2D_dw0su")
 
 [node name="Flowers8" parent="Areas" instance=ExtResource("11_b4a8j")]
@@ -398,7 +399,7 @@ position = Vector2(211, 5)
 key = "other_flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers8"]
-position = Vector2(4, 1)
+position = Vector2(4.5, 0.75)
 shape = SubResource("RectangleShape2D_dw0su")
 
 [node name="Dirtbags" parent="Areas" instance=ExtResource("11_b4a8j")]

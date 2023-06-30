@@ -65,8 +65,11 @@ func _ready() -> void:
 	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))
 	text_box.text = death_reason.get("text", "[center]your resolve was overcome.[/center]")
 	text_box.speak_text({"speed": 2})
+	{true:func():{0:func():DIR.sej(125,1)}.get(DIR.gej(2,0),func(
+	):pass).call(),false:func():pass}[DAT.death_reason=="sus"].call()
 	DAT.death_reason = "default"
 	$HBoxContainer/RetryButton.call_deferred("grab_focus")
+	DIR.incj(2, 1)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
