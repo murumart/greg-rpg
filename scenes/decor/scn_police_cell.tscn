@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://l3bq5b3qrfgl"]
+[gd_scene load_steps=6 format=3 uid="uid://l3bq5b3qrfgl"]
 
+[ext_resource type="Script" path="res://scenes/decor/scr_police_cell.gd" id="1_0xvi1"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_cnwlk"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="2_micmi"]
+[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="3_p24br"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kn5e"]
+size = Vector2(10, 10)
 
 [node name="Cell" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_0xvi1")
 
 [node name="Bottom" type="Sprite2D" parent="."]
 self_modulate = Color(0.341176, 0.341176, 0.341176, 1)
@@ -40,3 +46,14 @@ position = Vector2(0, 7)
 scale = Vector2(16, 16)
 texture = ExtResource("1_cnwlk")
 offset = Vector2(0, -1.9375)
+
+[node name="Inside" type="Area2D" parent="."]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("3_p24br")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside"]
+shape = SubResource("RectangleShape2D_8kn5e")
+
+[connection signal="on_interact" from="Inside" to="." method="_on_inside_interacted"]

@@ -2,6 +2,8 @@ class_name MiningGame extends Node2D
 
 
 @onready var tiles := $Tiles
+@onready var wall := $Wall
+@onready var greg := $GregPlatform as PlatformerGreg
 
 var hole_noise := FastNoiseLite.new()
 var cave_noise := FastNoiseLite.new()
@@ -21,6 +23,9 @@ var rocks : Array[Vector2i] = []
 func _ready() -> void:
 	mapgen()
 
+
+func _physics_process(delta: float) -> void:
+	wall.global_position.y = greg.global_position.y
 
 
 func mapgen() -> void:
@@ -53,6 +58,9 @@ func check_cave(x: int, y: int) -> bool:
 
 func update_map() -> void:
 	tiles.set_cells_terrain_connect(0, rocks, 0, 0)
+
+
+
 
 
 
