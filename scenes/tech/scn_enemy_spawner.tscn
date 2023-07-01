@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ou1blsidn1su"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_thug_spawner.gd" id="1_jv8nd"]
+[ext_resource type="Script" path="res://scenes/tech/scr_enemy_spawner.gd" id="1_jv8nd"]
 
 [node name="EnemySpawner" type="Node2D" groups=["thug_spawners"]]
 y_sort_enabled = true

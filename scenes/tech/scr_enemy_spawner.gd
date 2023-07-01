@@ -1,4 +1,4 @@
-extends Node2D
+class_name EnemySpawner extends Node2D
 
 # overworld npc spawner node
 
@@ -8,7 +8,6 @@ var enemy_amount := 0
 
 @export var player : PlayerOverworld
 @export var active_range := Vector2i(1, 99)
-@export var bounty_link := ""
 @export var wait_time := 1.0
 
 @onready var timer := $Timer
@@ -16,6 +15,7 @@ var level : int
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	level = DAT.get_character("greg").level
 
 
