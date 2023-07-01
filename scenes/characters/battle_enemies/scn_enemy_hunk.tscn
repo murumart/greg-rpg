@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck3rp3iml5dfs"]
+
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_hunk.gd" id="1_lenhi"]
+[ext_resource type="Texture2D" uid="uid://bx1j5co2ybr38" path="res://sprites/characters/battle/thugs/spr_thug_buff_m.png" id="2_qtden"]
+
+[node name="Hunk" type="Node2D"]
+script = ExtResource("1_lenhi")
+effect_center = Vector2i(0, -17)
+toughness = 1.0
+vaimulembesus = 0.355
+xp_multiplier = 1.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qtden")

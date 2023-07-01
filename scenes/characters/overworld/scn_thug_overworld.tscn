@@ -1,8 +1,36 @@
-[gd_scene load_steps=24 format=3 uid="uid://ci7bf33nl7ufb"]
+[gd_scene load_steps=31 format=3 uid="uid://ci7bf33nl7ufb"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
 [ext_resource type="Texture2D" uid="uid://ccux1unnbr2jb" path="res://sprites/characters/overworld/spr_thug_overworld.png" id="3_26wux"]
+
+[sub_resource type="Curve" id="Curve_361hw"]
+_data = [Vector2(0, 1), 0.0, -1.7326, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1hldi"]
+_data = [Vector2(0, 0.134769), 0.0, 0.0, 0, 0, Vector2(0.206668, 0.802631), 2.10269, 2.10269, 0, 0, Vector2(1, 0.483652), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_deob2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125281, 0.28429), 5.7224, 5.7224, 0, 0, Vector2(0.495734, 0.692982), 0.0, 0.0, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_v43yn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.663078), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lwlro"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0972159, 0.0350876), 0.0, 0.0, 0, 0, Vector2(0.248765, 0.543461), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_rf7mf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.128087, 0.0350876), 0.0, 0.0, 0, 0, Vector2(0.254378, 0.473684), 0.0, 0.0, 0, 0, Vector2(1, 0.792663), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_wjsfi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.017), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv4y4"]
 resource_local_to_scene = true
@@ -153,6 +181,13 @@ animations = [{
 
 [node name="OverworldCharacter" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")
+chimney_probability = SubResource("Curve_361hw")
+well_probability = SubResource("Curve_1hldi")
+shopping_cart_probability = SubResource("Curve_deob2")
+stabbing_fella_probability = SubResource("Curve_v43yn")
+kor_sten_probability = SubResource("Curve_lwlro")
+abiss_probability = SubResource("Curve_rf7mf")
+moron_probability = SubResource("Curve_wjsfi")
 animated_sprite = NodePath("ThugSprite")
 speed = 4500
 random_movement = true

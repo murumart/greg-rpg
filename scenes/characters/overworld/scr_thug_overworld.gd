@@ -12,6 +12,24 @@ const KS := "kor_sten"
 const A := "abiss"
 const M := "moron"
 
+@export var chimney_probability : Curve
+@export var well_probability : Curve
+@export var shopping_cart_probability : Curve
+@export var stabbing_fella_probability : Curve
+@export var kor_sten_probability : Curve
+@export var abiss_probability : Curve
+@export var moron_probability : Curve
+
+@onready var probabilities := {
+	C: chimney_probability,
+	W: well_probability,
+	SC: shopping_cart_probability,
+	SF: stabbing_fella_probability,
+	KS: kor_sten_probability,
+	A: abiss_probability,
+	M: moron_probability,
+}
+
 
 func _ready() -> void:
 	super._ready()
@@ -27,58 +45,18 @@ func chase(body) -> void:
 
 func gen_enemies() -> Array[String]:
 	var enemies : Array[String] = []
-	var level := DAT.get_character("greg").level
-	if level < 3:
-		enemies.append(C)
-	elif Math.inrange(level, 3, 5):
-		enemies.append(C)
-		if randf() <= 0.33: enemies.append(W)
-		if randf() <= 0.25: enemies.append(SC)
-	elif Math.inrange(level, 6, 8):
-		enemies.append(C)
-		if randf() <= 0.25: enemies.append(C)
-		if randf() <= 0.33: enemies.append(W)
-		if randf() <= 0.1: enemies.append(W)
-		if randf() <= 0.1: enemies.append(SF)
-		if randf() <= 0.2: enemies.append(SC)
-	elif Math.inrange(level, 8, 12):
-		enemies.append(C)
-		if randf() <= 0.5: enemies.append(C)
-		if randf() <= 0.5: enemies.append(W)
-		if randf() <= 0.25: enemies.append(A)
-		if randf() <= 0.15: enemies.append(W)
-		if randf() <= 0.05: enemies.append(SF)
-		if randf() <= 0.05: enemies.append(SC)
-		if randf() <= 0.05: enemies.append(KS)
-	elif Math.inrange(level, 12, 20):
-		enemies.append(C)
-		enemies.append(SF)
-		enemies.append(W)
-		enemies.append(SC)
-		if randf() <= 0.5: enemies.append(C)
-		if randf() <= 0.5: enemies.append(W)
-		if randf() <= 0.5: enemies.append(KS)
-		if randf() <= 0.25: enemies.append(A)
-		if randf() <= 0.15: enemies.append(W)
-		if randf() <= 0.15: enemies.append(SF)
-		if randf() <= 0.25: enemies.append(SC)
-	elif Math.inrange(level, 20, 25):
-		enemies.append(C)
-		enemies.append(SF)
-		enemies.append(W)
-		enemies.append(SC)
-		if randf() <= 0.75: enemies.append(W)
-		if randf() <= 0.75: enemies.append(SF)
-		if randf() <= 0.75: enemies.append(KS)
-		if randf() <= 0.75: enemies.append(A)
-		if randf() <= 0.05: enemies.append(M)
+	var level := remap(DAT.get_character("greg").level, 1, 99, 0.001, 1.0)
+	if not DAT.get_data("hunks_enabled", false):
+		for i in ceili(level / 10.0) + 1:
+			for k in probabilities.keys():
+				var curve := probabilities[k] as Curve
+				if curve.sample(level) >= randf():
+					enemies.append(k)
 	else:
-		enemies.append(KS)
-		enemies.append(SF)
-		enemies.append(A)
-		enemies.append(SC)
-		if randf() <= 0.1: enemies.append(M)
+		for i in level * 5:
+			enemies.append("hunk")
 	enemies.shuffle()
+	if enemies.size() < 1: enemies.append(M)
 	if M in enemies:
 		enemies.push_front(enemies.pop_at(enemies.find(M)))
 		battle_info.set_death_reason("moron")
