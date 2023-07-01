@@ -8,13 +8,13 @@
 script = ExtResource("1_nrd11")
 name = "attack"
 strength = -20
-duration = 6.0
+duration = 7
 
 [sub_resource type="Resource" id="Resource_ise6q"]
 script = ExtResource("1_nrd11")
 name = "defense"
-strength = -20
-duration = 6.0
+strength = -30.0
+duration = 7
 
 [sub_resource type="Resource" id="Resource_476qf"]
 script = ExtResource("1_yjsnq")
@@ -25,22 +25,11 @@ pierce_defense = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
-attack_increase = -20.0
-attack_increase_time = 6
-defense_increase = -20.0
-defense_increase_time = 6
-speed_increase = null
-speed_increase_time = null
-confusion_time = null
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
 effects = Array[ExtResource("1_nrd11")]([SubResource("Resource_hvl7u"), SubResource("Resource_ise6q")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
@@ -53,7 +42,7 @@ description = "crumbs everywhere"
 animation = &"peanuts_screen"
 use_animation = &""
 receive_animation = &""
-cost = 41
+cost = 39
 use = 3
 reach = 0
 payload_reception_count = 1

@@ -22,11 +22,7 @@ static func dir_from_rot(rotation_radians: float) -> int:
 
 # y = 138.3066 + (2.146303 - 138.3066)/(1 + (x/160.4427)^1.068135)
 static func method_29193(x: float):
-	var var_1 := 138.3066
-	var var_2 := 2.146303
-	var var_3 := 160.4427
-	var var_4 := 1.068135
-	var y := var_1 + (var_2 - var_1)/(1 + pow(x/var_3, var_4))
+	var y := 138.3066 + (2.146303 - 138.3066)/(1 + pow(x/160.4427, 1.068135))
 	return y
 
 
