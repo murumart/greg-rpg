@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["sun_spirit", ]).\
-set_music("foreign_fauna").set_party(["greg", "zerma"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
+set_enemies(["hunk", "hunk"]).\
+set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
 
 var play_victory_music := true
 
@@ -200,6 +200,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	node.died.connect(_on_actor_died)
 	node.fled.connect(_on_actor_fled)
 	node.teammate_requested.connect(_on_summon_enemy_requested)
+	node.critically_hitted.connect(_on_crit_received)
 	actors.append(node)
 	match team:
 		Teams.PARTY:
@@ -779,3 +780,7 @@ func remote_transforms(yes: bool) -> void:
 		if not yes: node.global_position.y += 100
 
 
+func _on_crit_received() -> void:
+	var tw := create_tween().set_trans(Tween.TRANS_BOUNCE)
+	tw.tween_property(background_container, "modulate", Color(2, 2, 2), 0.5)
+	tw.tween_property(background_container, "modulate", Color(1, 1, 1), 0.5)

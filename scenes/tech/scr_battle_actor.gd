@@ -16,6 +16,7 @@ signal player_input_requested(by_whom: BattleActor)
 signal died(who: BattleActor)
 signal fled(who: BattleActor)
 signal teammate_requested(who: BattleActor, whom: String)
+signal critically_hitted
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state : States = States.IDLE : set = set_state
@@ -168,10 +169,10 @@ static func calc_attack_damage(atk: float, random := true) -> float:
 	return y
 
 
-# the square root of defense is subtracted from the attack damage
+# the half of defense is subtracted from the attack damage
 func account_defense(x: float) -> float:
 	var def := get_defense()
-	var result := maxf(abs(x) - sqrt(def), 0)
+	var result := maxf(abs(x) - (def**0.77), 0)
 	return roundf(result)
 
 
@@ -183,7 +184,9 @@ func attack(subject: BattleActor) -> void:
 		turn_finished()
 		return
 	# manual construction of payload
+	var crit := randf() <= 0.05
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
+	if crit: pld.health *= 2
 	var weapon : Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
@@ -193,6 +196,15 @@ func attack(subject: BattleActor) -> void:
 		pld.delay = weapon.payload.delay
 		pld.animation_on_receive = weapon.payload.animation_on_receive
 	subject.handle_payload(pld) # the actual attack
+	if crit:
+		SOL.vfx(
+		"damage_number",
+		parentless_effcenter(subject),
+		{text = "crit!!!",
+		color = Color(1.0, 0.3, 0.2),
+		})
+		SND.play_sound(preload("res://sounds/snd_critical_hit.ogg"), {"volume": 5})
+		critically_hitted.emit()
 	# functions just in case
 	if self.has_method("_attacked_%s" % subject.character.name_in_file):
 		call("_attacked_%s" % subject.character.name_in_file)
