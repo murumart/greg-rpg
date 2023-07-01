@@ -159,7 +159,7 @@ func setup_cells() -> void:
 				set_meta("thug_inspected", true)
 				return
 			SOL.dialogue(str("insp_cell_thugs_2_",
-			"enabled" if DAT.get_data("thugs_enabled", false) else "disabled")))
+			"enabled" if DAT.get_data("hunks_enabled", false) else "disabled")))
 	if is_bounty_fulfilled("sun_spirit"):
 		$Cells/SunSpirit/SunSpiritInspect.inspected.connect(art_sun_spirit_rage)
 

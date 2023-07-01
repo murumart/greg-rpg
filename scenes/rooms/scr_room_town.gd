@@ -3,6 +3,9 @@ extends Room
 @onready var store_door := $Houses/Store/DoorArea
 @onready var bike := $Houses/NeighbourHouse/Bike
 
+@onready var thug_spawners := $Areas.find_children("ThugSpawner*")
+@onready var animal_spawners := $Areas.find_children("AnimalSpawner*")
+
 
 func _ready() -> void:
 	super._ready()
@@ -22,6 +25,14 @@ func _ready() -> void:
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if DAT.get_character("greg").level < 5: bike.queue_free()
+	# disable thugs if bounty fulfilled
+	if DAT.get_data("fulfilled_bounty_thugs", false) and\
+	not DAT.get_data("hunks_enabled", false):
+		for i in thug_spawners:
+			i.queue_free()
+	if DAT.get_data("fulfilled_bounty_stray_animals", false):
+		for i in animal_spawners:
+			i.queue_free()
 
 
 func neighbour_wife_position() -> void:

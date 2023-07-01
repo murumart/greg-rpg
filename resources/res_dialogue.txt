@@ -1769,7 +1769,7 @@ CHAR popo_2
 
 
 DIALOGUE insp_cell_thugs_2_disabled
-DATA_LINK thugs_enabled,false
+DATA_LINK hunks_enabled,false
 	psst... hey, you, collaborator.
 	i still have my connections to my guys...
 	they have not all been defeated, you see.
@@ -1778,16 +1778,16 @@ CHOICES yes!,no!
 CHOICE_LINK no!
 	you suck!
 CHOICE_LINK yes!
-SET_DATA thugs_enabled,true
+SET_DATA hunks_enabled,true
 	well, you asked for it.
 
 DIALOGUE insp_cell_thugs_2_enabled
-DATA_LINK thugs_enabled,true
+DATA_LINK hunks_enabled,true
 	well? are you enjoying the ass beating?
 CHOICES yes,no
 	do you want me to call the guys back?
 CHOICE_LINK yes
-SET_DATA thugs_enabled,false
+SET_DATA hunks_enabled,false
 	well... okay. but only because you look threatening enough...
 CHOICE_LINK no
 	good! good...

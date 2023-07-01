@@ -1236,7 +1236,6 @@ shape = SubResource("RectangleShape2D_ab04q")
 
 [node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
 position = Vector2(-9, 17)
-lit = null
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true
@@ -1709,28 +1708,36 @@ player = NodePath("../../Greg")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/2Grass"]
 polygon = PackedVector2Array(-23, 136, 11, 128, 11, -169, -29, -179)
 
-[node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+[node name="ThugSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(792, 28)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
-active_range = Vector2i(2, 30)
+active_range = Vector2i(2, 99)
 wait_time = 3.0
 
-[node name="EnemySpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+[node name="ThugSpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(465, 64)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
-active_range = Vector2i(2, 30)
+active_range = Vector2i(2, 99)
 wait_time = 7.0
 
-[node name="EnemySpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+[node name="ThugSpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(226, -471)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 5
 player = NodePath("../../Greg")
-active_range = Vector2i(20, 30)
+active_range = Vector2i(20, 99)
+wait_time = 2.0
+
+[node name="ThugSpawner4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
+position = Vector2(1161, -455)
+spawn_enemy = ExtResource("14_cftpx")
+max_enemies = 10
+player = NodePath("../../Greg")
+active_range = Vector2i(10, 99)
 wait_time = 2.0
 
 [node name="AnimalSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
