@@ -15,6 +15,7 @@ func _ready() -> void:
 	).set_output(["meat_cooked"])
 	exchanges["cookegg"] = Exchange.new().set_input(["egg"]
 	).set_output(["eggshell", "egg_cooked"])
+	lit = DAT.get_data(save_key("lit"), false)
 
 
 func _on_inspected() -> void:
@@ -59,3 +60,12 @@ func light() -> void:
 func process() -> void:
 	if lit:
 		add_child(flames.instantiate())
+
+
+func save_me() -> void:
+	DAT.set_data(save_key("lit"), lit)
+
+
+func save_key(key: String) -> String:
+	return "campfire_%s_in_%s_%s" % [name.to_snake_case(), DAT.get_data("current_room"), key]
+
