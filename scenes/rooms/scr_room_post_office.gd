@@ -1,12 +1,20 @@
 extends Room
 
 @export var force_atgirl := false
+@onready var ugc := Math.child_dict($Decoration/UshankaGuyCutscene) as Dictionary
 
 
 func _ready() -> void:
 	super._ready()
+	DAT.set_data("mail_heard_name", true)
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
+		return
+	if can_ushanka_guy_cutscene():
+		ugc.animator.play("cutscene_1")
+	else:
+		$Decoration/UshankaGuyCutscene.queue_free()
+		ugc.clear()
 	pink_haired_girl_setup(force_atgirl)
 
 
@@ -17,6 +25,9 @@ func _on_interaction_area_on_interact() -> void:
 		mail_man_talk()
 	else:
 		mail_man_jobtalk()
+	if LTS.gate_id == "town-postoffice" and not get_meta("interacted", false):
+		DAT.incri("post_office_enters", 1)
+		set_meta("interacted", true)
 
 
 func mail_man_welcome() -> void:
@@ -51,4 +62,20 @@ func pink_haired_girl_setup(force := false) -> void:
 	if DAT.get_data("atgirl_progress", 0) > 3:
 		atgirl.default_lines.clear()
 		atgirl.default_lines.append("atgirl_postoffice_explain")
+
+
+func can_ushanka_guy_cutscene() -> bool:
+	return true
+	if not DAT.get_data("has_talked_to_mail_man", false): return false
+	if DAT.get_data("biking_games_finished", 0) < 2: return false
+	if DAT.get_data("post_office_enters", 0) < 3: return false
+	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
+	if DAT.get_data("witnessed_ushanka_guy_cutscene", false): return false
+	return true
+
+
+func dial(key: String) -> void:
+	SOL.dialogue(key)
+	ugc.animator.pause()
+	SOL.dialogue_closed.connect(func():ugc.animator.play())
 

@@ -163,6 +163,10 @@ DIALOGUE exchange_item
 	you acquired %s.
 
 
+DIALOGUE exchange_silver
+	you received %s silver.
+
+
 DIALOGUE exchange_missing_input
 	you are missing required items.
 
@@ -913,6 +917,7 @@ CHAR mail_man
 
 DIALOGUE biking_browse_2
 CHAR mail_man
+EMO serious
 	well? which is it then?
 
 
@@ -924,12 +929,14 @@ CHAR mail_man
 
 DIALOGUE biking_bye_1
 CHAR mail_man
-CHOICES OK,no
+CHOICES ok,no
+EMO 
 	leaving already? perhaps consider trying a perk?
 
 
 DIALOGUE biking_bye_2
 CHAR mail_man
+EMO serious
 	get back to work, then.
 
 
@@ -1009,6 +1016,28 @@ CHAR mail_man
 	uuh, this perk... how did it get here?
 
 
+DIALOGUE biking_end_reward_nohit
+CHAR mail_man
+EMO 
+	remarkable! you managed to not...
+	...damage my bike at all this time...
+	you will be especially rewarded.
+
+
+DIALOGUE biking_end_reward_hat
+CHAR mail_man
+EMO content
+DATA_LINK mail_heard_name,true
+	greg! i am very happy with your work thus far.
+DATA_LINK mail_heard_name,false
+	newspaper boy! i am very happy with your work thus far.
+DATA_LINK 
+	i wish to reward you with a valuable item...
+	a mail man hat of your own!
+EMO 
+	wear it and be reminded of your true calling.
+
+
 DIALOGUE mail_man_face_test
 CHAR mail_man
 	hey, check this out.
@@ -1043,6 +1072,96 @@ DIALOGUE mail_man_afterbiking
 CHAR mail_man
 	another successful venture on the job market for you, no?
 	come back another time!
+
+
+DIALOGUE pocutscene_1
+	...and then the koond guys said "are you going to eat that?"
+CHAR mail_man
+EMO serious
+	...that was a great joke.
+CHAR 
+	i know right?! i love it when my daughter sends me jokes!
+	she is doing well in the city, by the way.
+	found a job worthy of her degree!
+CHAR mail_man
+	...great.
+CHAR 
+	though i sometimes worry for her...
+	who knows what those city slickers have planned!
+	it's hard enough for people from here to make it there...
+	i'm sure city people won't be making her life easier.
+CHAR mail_man
+	...for sure.
+CHAR 
+	speaking of easy life... is the felon still sending those...
+	...envelopes full of red sauce?
+CHAR mail_man
+	...yeah.
+CHAR 
+	man, i wish i could help you! i asked everyone if they knew...
+	...who it was, but no one knew anything.
+	and the police still know nothing?
+CHAR mail_man
+	...yeah.
+EMO 
+DATA_LINK mail_heard_name,false
+	by the way, newspaper boy...
+DATA_LINK mail_heard_name,true
+	by the way, greg...
+DATA_LINK 
+	do you happen to know anything about this?
+	envelopes full of red sauce arriving at the post office...
+	...that ruin entire bags of mail?
+	come forward. don't be shy.
+
+
+DIALOGUE pocutscene_2
+DATA_LINK mail_heard_name,true
+	why, greg! what a strange name!
+
+DATA_LINK mail_heard_name,false
+	why, the newspaper boy!
+CHOICES tell,don't
+	do you have a name? what's your name?
+CHOICE_LINK tell
+SET_DATA mail_heard_name,true
+	so, greg? greg, was it?
+CHOICE_LINK don't
+	...okay!
+
+DATA_LINK 
+CHOICE_LINK 
+	nice to meet you!
+	very interesting! so this foreigner just appeared one day?
+CHAR mail_man
+	yeah.
+CHAR 
+	and you immediately put him to work?
+CHAR mail_man
+EMO content
+	yeah.
+EMO 
+CHAR 
+	true entrepeneurship is rare to see in this town!
+	how glad i am that you are here, mail man!
+CHAR mail_man
+EMO serious
+	...yeah.
+CHAR 
+	hey, have you heard of the vampire in town?
+	supposedly, one recently arrived.
+	pretty scary! i've been carrying some salt with me.
+CHAR mail_man
+	...salt?
+CHAR 
+	yes! it's supposed to help against vampires.
+	...
+
+
+DIALOGUE pocutscene_3
+	mail man... are you thinking... what i'm thinking?
+	
+	
 
 
 DIALOGUE thug_catch_1
@@ -1615,6 +1734,37 @@ DIALOGUE inside_police_cell
 	you seem to be stuck inside a jail cell.
 CHOICES yes,no
 	would you like to break out?
+
+
+DIALOGUE kid_hi
+CHAR kid
+CHOICES yes,no
+	yo! you interested in some goods?
+CHOICE_LINK yes
+CHOICES 
+	here's what i have to offer...
+CHOICE_LINK nvm
+	you dare deny me?
+CHOICE_LINK no
+	i hate stingy people.
+
+
+DIALOGUE kid_trade_confirmation
+CHAR kid
+CHOICES yes,no
+	we makin' this trade or not?
+CHOICE_LINK no
+	oh come on!!!
+
+
+DIALOGUE kid_trade_success
+CHAR kid
+	pleasure doing business with you, adult.
+
+
+DIALOGUE kid_trade_fail
+CHAR kid
+	make sure you have the stuff next time!!!!
 
 
 DIALOGUE insp_snowdrops

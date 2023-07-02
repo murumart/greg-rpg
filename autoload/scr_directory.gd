@@ -183,12 +183,12 @@ func incj(k: int, a: int
 
 
 func appj(k: int, t: Variant)\
- -> void: var o := get_dict_from_file("pers");\
-			  o\
+ ->void:var o := get_dict_from_file("pers");\
+			o\
 	[k] = Math.reaap(
-			  o.get(k, []),
+			o.get(k, []),
 	t);write_dict_to_file(
-			  o,
+			o,
 	"pers")
 
 
