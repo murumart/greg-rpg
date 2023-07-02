@@ -87,6 +87,14 @@ func direct_animation() -> void:
 		sprite.stop()
 
 
+# for cutscenes and such
+func animate(animation_name: String) -> void:
+	if not animation_name.length():
+		sprite.stop()
+	sprite.play(animation_name)
+	sprite.speed_scale = 1.0
+
+
 func interact() -> void:
 	if DAT.player_capturers.size() > 0: return
 	raycast.force_raycast_update()
