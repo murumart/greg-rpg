@@ -3,9 +3,12 @@ class_name Exchange extends Resource
 
 enum Statements {CRITERIA, RETURNS}
 
+@export var title := ""
+
 @export var silver_required := 0
-@export var input : PackedStringArray = []
-@export var output : PackedStringArray = []
+@export var input : Array[String] = []
+@export var silver_granted := 0
+@export var output : Array[String] = []
 
 
 func exchange(inventory: Array) -> bool:
@@ -27,6 +30,10 @@ func exchange(inventory: Array) -> bool:
 		inventory.append(i)
 		SOL.dialogue_box.dial_concat("exchange_item", 0, [DAT.get_item(i).name])
 		SOL.dialogue("exchange_item")
+	if silver_granted:
+		DAT.incri("silver", silver_granted)
+		SOL.dialogue_box.dial_concat("exchange_silver", 0, [silver_granted])
+		SOL.dialogue("exchange_silver")
 	return true
 
 
@@ -39,6 +46,8 @@ func state(what: Statements) -> void:
 		for i in input:
 			informations.append("- %s" % DAT.get_item(i).name)
 	elif what == Statements.RETURNS:
+		if silver_granted:
+			informations.append("- %s silver" % silver_granted)
 		for i in output:
 			informations.append("- %s" % DAT.get_item(i).name)
 	
@@ -66,12 +75,18 @@ func state(what: Statements) -> void:
 			SOL.dialogue("exchange_criteria_sisu")
 
 
-func set_input(to: PackedStringArray) -> Exchange:
-	input = to
+func _to_string() -> String:
+	return title
+
+
+func set_input(to: Array) -> Exchange:
+	input.clear()
+	input.append_array(to)
 	return self
 
 
-func set_output(to: PackedStringArray) -> Exchange:
-	output = to
+func set_output(to: Array) -> Exchange:
+	output.clear()
+	output.append_array(to)
 	return self
 

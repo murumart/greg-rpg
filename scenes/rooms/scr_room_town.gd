@@ -33,6 +33,8 @@ func _ready() -> void:
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
 		for i in animal_spawners:
 			i.queue_free()
+	if not $Other/CampfireSite/Campfire.lit:
+		$Other/CampfireSite/CampsiteKid.queue_free()
 
 
 func neighbour_wife_position() -> void:

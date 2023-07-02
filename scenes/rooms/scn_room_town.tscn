@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=77 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://d1bw3nluoktrc" path="res://scenes/decor/scn_campfire.tscn" id="24_375rx"]
 [ext_resource type="Texture2D" uid="uid://c13xom5nym4pk" path="res://sprites/characters/overworld/spr_nature_guy_overworld.png" id="24_al1vt"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
+[ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
+[ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
@@ -118,6 +120,14 @@ size = Vector2(10, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ab04q"]
 size = Vector2(71, 20)
+
+[sub_resource type="Resource" id="Resource_xq6fg"]
+script = ExtResource("26_ac4pt")
+title = "sellshell"
+silver_required = 0
+input = Array[String](["eggshell"])
+silver_granted = 20
+output = Array[String]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
@@ -1236,6 +1246,10 @@ shape = SubResource("RectangleShape2D_ab04q")
 
 [node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
 position = Vector2(-9, 17)
+
+[node name="CampsiteKid" parent="Other/CampfireSite" instance=ExtResource("25_ffcbh")]
+position = Vector2(29, -6)
+trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_xq6fg")])
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true

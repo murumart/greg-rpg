@@ -137,6 +137,7 @@ static func load_reference_buttons(
 	# loop through all buttons again
 	for i in containers.size():
 		var c = containers[i]
+		if not is_instance_valid(c): return
 		if c.get_child_count() < 2: return
 		for j in c.get_child_count():
 			var k = c.get_child(j)
@@ -226,5 +227,12 @@ static func weighted_random(items: Array, weights: Array) -> Variant:
 	var rand := (randi() % sum) + 1
 	var index := cum_weigths.bsearch(rand)
 	return items[index]
-	
+
+
+# put children of a node in a dictionary
+static func child_dict(node: Node) -> Dictionary:
+	var dict := {}
+	for i in node.get_children():
+		dict[i.name.to_snake_case()] = i
+	return dict
 
