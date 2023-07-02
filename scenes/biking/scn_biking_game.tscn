@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=43 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
 [ext_resource type="Texture2D" uid="uid://dirs0ik1uh6lm" path="res://sprites/biking/background/spr_town.png" id="5_0mqsj"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
+[ext_resource type="Texture2D" uid="uid://dtohpnauf33ph" path="res://sprites/biking/background/spr_field.png" id="6_hnhb3"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="7_pxwvr"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
@@ -814,6 +815,14 @@ texture = ExtResource("5_0mqsj")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 288, 16)
+
+[node name="Field" type="Sprite2D" parent="Background"]
+z_index = 8
+texture_repeat = 3
+position = Vector2(128, 42)
+texture = ExtResource("6_hnhb3")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 16)
 
 [node name="SnailHellBackground" type="Node2D" parent="Background"]
 position = Vector2(0, 119)

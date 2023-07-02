@@ -24,5 +24,5 @@ defeated_characters = null
 inventory = null
 spirits = null
 unused_sprits = null
-armour = ""
+armour = "mail_hat"
 weapon = ""

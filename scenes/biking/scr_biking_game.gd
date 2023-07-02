@@ -10,6 +10,7 @@ const MAIL_KIOSK_INTERVAL := 200
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees
 @onready var background_town := $Background/Town
+@onready var background_field := $Background/Field
 @onready var background_snail_hell := $Background/SnailHellBackground
 
 @onready var debug := $UI/debug
@@ -72,6 +73,7 @@ func _ready() -> void:
 	ui.health_bar.max_value = bike.max_health
 	bike.health_changed.connect(ui.display_health)
 	ui.display_health(bike.health)
+	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
 	DAT.death_reason = ""
 	update_ui()
@@ -107,6 +109,7 @@ func _physics_process(delta: float) -> void:
 	# parallax background
 	background_trees.region_rect.position.x = wrapf(background_trees.region_rect.position.x + speed * delta * 0.22, 0.0, background_trees.region_rect.size.x * 2.0)
 	background_town.region_rect.position.x = wrapf(background_town.region_rect.position.x + speed * delta * 0.33, 0.0, background_town.region_rect.size.x)
+	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
 	
 	# debug (rememmber to remove)
 	if Input.is_action_pressed("ui_end"):
@@ -146,6 +149,7 @@ func _on_died() -> void:
 # spawning obstacles
 func _on_obstacle_timer_timeout() -> void:
 	if speed < 5: return # don't while stopped
+	if kiosk_activated: return
 	# obstacle
 	var obstacle_positions := []
 	obstacle_timer.start(1.5 * 1.0 if not currently_hell else 0.75)
@@ -172,6 +176,7 @@ func _on_obstacle_timer_timeout() -> void:
 func _on_coin_timer_timeout() -> void:
 	if speed < 5: return
 	if currently_hell: return
+	if kiosk_activated: return
 	coin_timer.start(2)
 	for i in 1 + (int(current_perk == "fast_earner") * randi() % 3):
 		if randf() <= 0.5:
@@ -184,6 +189,7 @@ func _on_coin_timer_timeout() -> void:
 
 func _on_snail_timer_timeout() -> void:
 	if speed < 5: return
+	if kiosk_activated: return
 	snail_timer.start(randf_range(2, 5) * 0.1 if currently_hell else 1.0)
 	spawn_snail()
 
@@ -202,8 +208,9 @@ func _on_mailbox_timer_timeout() -> void:
 		house.z_index = roundi(remap(house.speed, 30, 60,-11, -14))
 		add_child(house)
 		house.global_position.x = randi_range(200, 248)
-		house.global_position.y = randi_range(48, 52)
+		house.global_position.y = randi_range(44, 48)
 		mails_wo_box += 1
+	if kiosk_activated: return
 	if randf() <= 0.11 or mails_wo_box > 5:
 		mails_wo_box = 0
 		var mailbox : BikingMovingObject = MAIL_BOX_LOAD.instantiate()
@@ -420,11 +427,30 @@ func calculate_rewards() -> BattleRewards:
 		rew.property = str(i)
 		rewd.rewards.append(rew)
 	# special conditional rewards
-	if DAT.get_data("biking_games_finished", 0) < 1:
+	if true:
+		# first time finishing
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str("bike_helmet")
 		rewd.rewards.append(rew)
+		rew.unique = true
+	if bike.hits < 1:
+		SOL.dialogue("biking_end_reward_nohit")
+		var rew := Reward.new()
+		rew.type = BattleRewards.Types.SILVER
+		rew.property = str(100)
+		rewd.rewards.append(rew)
+		DAT.incri("no_hit_biking_runs", 1)
+	if DAT.get_data("biking_games_finished", 0) > 11 and\
+	DAT.get_data("no_hit_biking_runs", 0) > 0 and\
+	not DAT.get_data("got_mail_hat", false):
+		SOL.dialogue("biking_end_reward_hat")
+		DAT.set_data("got_mail_hat", true)
+		var rew := Reward.new() as Reward
+		rew.type = BattleRewards.Types.ITEM
+		rew.property = str("mail_hat")
+		rewd.rewards.append(rew)
+		rew.unique = true
 	return rewd
 
 

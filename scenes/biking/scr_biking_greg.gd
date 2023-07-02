@@ -11,6 +11,7 @@ var paused := false
 
 var max_health := 100
 var health := 100
+var hits := 0
 
 @onready var nodes := $Greg
 @onready var wheels := [$Lwheel, $Rwheel]
@@ -132,6 +133,7 @@ func hurt(amount: int) -> void:
 	else:
 		SND.play_sound(HURT_SOUND)
 	health_changed.emit(health)
+	hits += 1
 	peas.emitting = true
 	peas.set_deferred("emitting", false)
 	SOL.vfx_damage_number(head_sprite.global_position - Vector2(SOL.SCREEN_SIZE / 2), str(absi(amount)), Color.RED)
