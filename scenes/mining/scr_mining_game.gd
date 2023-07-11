@@ -24,7 +24,7 @@ func _ready() -> void:
 	mapgen()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	wall.global_position.y = greg.global_position.y
 
 
@@ -45,7 +45,10 @@ func mapgen() -> void:
 			if not check_cave(x, y):
 				rocks.append(Vector2i(x, y))
 	
-	tiles.set_cells_terrain_connect(0, rocks, 0, 0)
+	for i in rocks:
+		tiles.set_cell(0, i, 0, Vector2i(
+			roundi(randf()), roundi(randf())))
+	update_map()
 
 
 func check_cave(x: int, y: int) -> bool:
@@ -57,8 +60,9 @@ func check_cave(x: int, y: int) -> bool:
 
 
 func update_map() -> void:
-	tiles.set_cells_terrain_connect(0, rocks, 0, 0)
-
+	var time := Time.get_ticks_msec()
+	
+	print("finished map update: ", Time.get_ticks_msec() - time)
 
 
 

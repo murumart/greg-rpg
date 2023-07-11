@@ -17,6 +17,15 @@ var state : States
 
 var last_input := Vector2()
 
+const FIRE := AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+const ABOR := AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
+@onready var atree := $Puppet/AnimationTree as AnimationTree
+@onready var puppet := $Puppet as Node2D
+
+
+func _ready() -> void:
+	atree.active = true
+
 
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -32,7 +41,7 @@ func _physics_process(delta: float) -> void:
 			jump_buffer -= delta
 		S.JUMP:
 			velocity.x = move_toward(velocity.x, 0.0, delta * air_friction)
-			velocity.y = move_toward(velocity.y, jump_gravity * delta,jump_gravity * delta)
+			velocity.y = move_toward(velocity.y, jump_gravity * delta, jump_gravity * delta)
 			velocity.x = move_toward(velocity.x, input.x * speed, delta * accel)
 			if not Input.is_action_pressed("ui_accept") or velocity.y > 0:
 				change_state(S.FALL)
@@ -51,7 +60,16 @@ func _physics_process(delta: float) -> void:
 		change_state(S.JUMP)
 	
 	move_and_slide()
-	if input: last_input = input
+	
+	# animation
+	if input.x: last_input = input
+	var lor := (int(last_input.x > 0) * 2) - 1
+	puppet.scale.x = lor
+	atree.set("parameters/walkornot/blend_amount", move_toward(
+		atree.get("parameters/walkornot/blend_amount"), 0.0, delta * 4))
+	if state == S.WALK and input.x:
+		atree.set("parameters/walkornot/blend_amount", move_toward(
+			atree.get("parameters/walkornot/blend_amount"), 1.0, delta * 7))
 
 
 func change_state(to: States) -> void:
@@ -60,3 +78,13 @@ func change_state(to: States) -> void:
 		velocity.y -= jump
 		coyote += 100.0
 		jump_buffer = -100
+		atree.set("parameters/jumpshot/request", FIRE)
+	elif to == S.FALL or to == S.JUMP:
+		var tw := create_tween()
+		tw.tween_property(atree, "parameters/fallornot/add_amount", 1.0, 0.2).from(0.0)
+		atree.set("parameters/walkornot/blend_amount", 0.0)
+	elif to == S.WALK:
+		var tw := create_tween()
+		tw.tween_property(atree, "parameters/fallornot/add_amount", 0.0, 0.3).from(1.0)
+
+

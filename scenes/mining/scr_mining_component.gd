@@ -38,8 +38,13 @@ func _physics_process(delta: float) -> void:
 	if display:
 		manage_display(target_pos, direction, delta)
 	if Input.is_action_just_pressed("ui_cancel"):
-		print(get_tile(target_pos / 8))
-		tilemap.erase_cell(0, target_pos / 8)
+		tile_action(target_pos / TSIZE)
+
+
+func tile_action(pos: Vector2) -> void:
+	print(get_tile(pos))
+	tilemap.erase_cell(0, pos)
+	target.atree.set("parameters/hitshot/request", PlatformerGreg.FIRE)
 
 
 func tpos() -> Vector2:

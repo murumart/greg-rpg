@@ -1038,8 +1038,10 @@ active = true
 parameters/lobbing_speed/scale = 1.0
 parameters/pedaling_speed/scale = 1.0
 parameters/play_lob/active = false
+parameters/play_lob/internal_active = false
 parameters/play_lob/request = 0
 parameters/play_lob_in/active = false
+parameters/play_lob_in/internal_active = false
 parameters/play_lob_in/request = 0
 
 [node name="CollisionArea" type="Area2D" parent="Bike"]
