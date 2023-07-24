@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=3 uid="uid://ycujm54lg8r5"]
+
+[ext_resource type="Script" path="res://scenes/pennistong/penni_stong.gd" id="1_l60sq"]
+[ext_resource type="Texture2D" uid="uid://ewqspdu3o3op" path="res://sprites/penni_stong/rps.png" id="2_r0guw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3xgc5"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g0q2j"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cakyq"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nxp4l"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_otdd7"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qagis"]
+size = Vector2(32, 4)
+
+[sub_resource type="Gradient" id="Gradient_2g1w0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.577819, 0.805234)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_18kcn"]
+gradient = SubResource("Gradient_2g1w0")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qs8"]
+size = Vector2(8, 8)
+
+[node name="PenniStong" type="Node2D"]
+script = ExtResource("1_l60sq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="Edges" type="StaticBody2D" parent="."]
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_3xgc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Edges"]
+shape = SubResource("WorldBoundaryShape2D_g0q2j")
+
+[node name="TOP" type="CollisionShape2D" parent="Edges"]
+position = Vector2(0, -8)
+shape = SubResource("WorldBoundaryShape2D_cakyq")
+
+[node name="BOTTOM" type="CollisionShape2D" parent="Edges"]
+position = Vector2(160, 128)
+shape = SubResource("WorldBoundaryShape2D_nxp4l")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Edges"]
+position = Vector2(160, 120)
+shape = SubResource("WorldBoundaryShape2D_otdd7")
+
+[node name="Paddles" type="Node2D" parent="."]
+
+[node name="Upper" type="AnimatableBody2D" parent="Paddles"]
+position = Vector2(80, 8)
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_3xgc5")
+
+[node name="ColorRect" type="ColorRect" parent="Paddles/Upper"]
+offset_left = -16.0
+offset_top = -2.0
+offset_right = 16.0
+offset_bottom = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Upper"]
+shape = SubResource("RectangleShape2D_qagis")
+
+[node name="Lower" type="AnimatableBody2D" parent="Paddles"]
+position = Vector2(80, 112)
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_3xgc5")
+
+[node name="ColorRect2" type="ColorRect" parent="Paddles/Lower"]
+offset_left = -16.0
+offset_top = -2.0
+offset_right = 16.0
+offset_bottom = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Lower"]
+shape = SubResource("RectangleShape2D_qagis")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(80, 60)
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = SubResource("GradientTexture2D_18kcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_p6qs8")
+
+[node name="RpsUi" type="Node2D" parent="."]
+visible = false
+position = Vector2(47, 53)
+
+[node name="Rock" type="Sprite2D" parent="RpsUi"]
+position = Vector2(16, -9)
+texture = ExtResource("2_r0guw")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Paper" type="Sprite2D" parent="RpsUi"]
+position = Vector2(0, 19)
+texture = ExtResource("2_r0guw")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="Scissors" type="Sprite2D" parent="RpsUi"]
+position = Vector2(-16, -9)
+texture = ExtResource("2_r0guw")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_right = 156.0
+offset_bottom = 119.0
+
+[node name="S" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Player" type="VBoxContainer" parent="UI/S"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Score" type="Label" parent="UI/S/Player"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "score: "
+
+[node name="Lives" type="Label" parent="UI/S/Player"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "lives: "
+
+[node name="Enemy" type="VBoxContainer" parent="UI/S"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Score" type="Label" parent="UI/S/Enemy"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "score: "
+
+[node name="Lives" type="Label" parent="UI/S/Enemy"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "lives: "
