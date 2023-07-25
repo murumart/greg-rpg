@@ -82,7 +82,7 @@ func direct_animation() -> void:
 	var animation_name := str("walk_", ROTS[Math.dir_from_rot(raycast.target_position.angle()) + 1])
 	sprite.play(animation_name)
 	sprite.speed_scale = 1.0
-	sprite.speed_scale = velocity.length_squared() * 0.0006
+	sprite.speed_scale = velocity.length_squared() * 0.0009
 	if is_zero_approx(velocity.length_squared()):
 		sprite.stop()
 
