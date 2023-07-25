@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=11 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
@@ -11,6 +11,22 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dwt2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwejt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_371id"]
 bg_color = Color(0, 0, 0, 1)
@@ -158,10 +174,13 @@ offset_left = 71.0
 offset_top = 3.0
 offset_right = 144.0
 offset_bottom = 104.0
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_2dwt2")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_cwejt")
 theme_override_styles/panel = SubResource("StyleBoxFlat_371id")
 tab_alignment = 1
 
 [node name="items" type="Panel" parent="Panel/ItemSpiritTabs"]
+visible = false
 layout_mode = 2
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/items"]
@@ -169,7 +188,7 @@ layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 69.0
-offset_bottom = 67.0
+offset_bottom = 60.0
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -181,21 +200,20 @@ theme_override_constants/separation = 1
 [node name="SilverCounterLabel" type="Label" parent="Panel/ItemSpiritTabs/items"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 70.0
-offset_right = 66.0
-offset_bottom = 92.0
+offset_top = 63.0
+offset_right = 67.0
+offset_bottom = 85.0
 text = "party silver:
 35"
 
 [node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/items"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 67.0
+offset_top = 61.0
 offset_right = 70.0
-offset_bottom = 68.0
+offset_bottom = 62.0
 
 [node name="spirits" type="Panel" parent="Panel/ItemSpiritTabs"]
-visible = false
 layout_mode = 2
 
 [node name="UsedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits"]
@@ -203,14 +221,14 @@ layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 69.0
-offset_bottom = 45.0
+offset_bottom = 42.0
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 66.0
-offset_bottom = 42.0
+offset_bottom = 39.0
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -223,16 +241,16 @@ theme_override_constants/separation = 1
 [node name="UnusedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 46.0
+offset_top = 43.0
 offset_right = 69.0
-offset_bottom = 88.0
+offset_bottom = 81.0
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 66.0
-offset_bottom = 41.0
+offset_bottom = 37.0
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
