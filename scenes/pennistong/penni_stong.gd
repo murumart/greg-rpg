@@ -10,7 +10,9 @@ const SOUNDS := [preload("res://sounds/pennistong/bounce.ogg"),
 	preload("res://sounds/pennistong/epos.ogg"),
 	preload("res://sounds/pennistong/ppos.ogg"),
 	preload("res://sounds/pennistong/tie.ogg"),
-	preload("res://sounds/pennistong/pongend.ogg")
+	preload("res://sounds/pennistong/pennistongend.ogg"),
+	preload("res://sounds/pennistong/pennistong_lose.ogg"),
+	preload("res://sounds/pennistong/pennistong_win.ogg")
 ]
 
 @onready var paddle_u := $Paddles/Upper as AnimatableBody2D
@@ -28,17 +30,36 @@ var score := 0:
 	set(to):
 		score = to
 		$UI/S/Player/Score.text = "score: " + str(score)
+		if to >= 3000:
+			win()
 var enscore := 0:
 	set(to):
 		enscore = to
 		$UI/S/Enemy/Score.text = "score: " + str(enscore)
+		if to >= 3000:
+			lose()
+var lives := 0:
+	set(to):
+		lives = to
+		$UI/S/Player/Lives.text = "lives: " + str(lives)
+var enlives := 0:
+	set(to):
+		enlives = to
+		$UI/S/Enemy/Lives.text = "lives: " + str(enlives)
 
 
 func _ready() -> void:
+	set_physics_process(false)
 	for p in paddles:
 		((p.get_child(1) as CollisionShape2D).shape
 		as RectangleShape2D).size.x = paddle_width
-	bdir = Vector2.DOWN
+	score = 0
+	enscore = 0
+	lives = 3
+	enlives = 3
+	bdir = v2dou()
+	await get_tree().create_timer(2.0).timeout
+	set_physics_process(true)
 
 
 func _physics_process(delta: float) -> void:
@@ -51,7 +72,7 @@ func _physics_process(delta: float) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if rps_open:
 		var old_choice := rps_choice
-		var input := Input.get_axis("ui_left", "ui_right")
+		var input := int(Input.get_axis("ui_left", "ui_right"))
 		rps_choice = wrapi(rps_choice + input, 0, 3)
 		rps_select(rps_choice)
 		if old_choice != rps_choice:
@@ -67,6 +88,25 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				SND.play_sound(SOUNDS[3])
 			ball_stored_choice = rps_choice
 			close_rps()
+
+
+func reset() -> void:
+	print("reset!")
+	ignored_shape = null
+	ball.global_position = Vector2(80, 60)
+	bdir = v2dou()
+	ball.velocity = Vector2()
+	paddle_l.global_position.x = 80
+	paddle_u.global_position.x = 80
+	close_rps()
+	if lives <= 0:
+		lose()
+		return
+	elif enlives <= 0:
+		win()
+		return
+	await get_tree().process_frame
+	set_physics_process(true)
 
 
 func _paddle_movement(delta: float) -> void:
@@ -87,10 +127,12 @@ func _ai_paddle(delta: float) -> void:
 var ignored_shape
 var stuck := 0.0
 func _ball_movement(delta: float) -> void:
-	ball.modulate.r = 1 - stuck / 10
+	ball.modulate.b = 1 - stuck / 10
+	ball.modulate.g = 1 - stuck / 10
 	var bpos := ball.global_position
 	var bvos := bdir * paddle_speed * delta
 	var coll := ball.move_and_collide(bvos, false, 0.01, true)
+	if ball.velocity.length() < 20: ball.velocity *= 1.2
 	if bpos == ball.global_position:
 		ball.global_position +=  Vector2(randf_range(-1, 1), randf_range(-1, 1)) * stuck
 	if coll:
@@ -99,7 +141,12 @@ func _ball_movement(delta: float) -> void:
 			bdir += Vector2(randf_range(-1, 1), randf_range(-1, 1) * 2) * stuck
 		elif bpos.y > 120 or bpos.y < 0:
 			set_physics_process(false)
+			if bpos.y > 60:
+				lives -= 1
+			else:
+				enlives -= 1
 			SND.play_sound(SOUNDS[4])
+			get_tree().create_timer(2.5).timeout.connect(reset)
 		elif (coll.get_normal().is_equal_approx(Vector2.UP) or
 		coll.get_normal().is_equal_approx(Vector2.DOWN)):
 			bdir = Vector2((randf_range(-1, 1) * 1 if randf() <= 0.95 else
@@ -128,6 +175,7 @@ func _ball_movement(delta: float) -> void:
 
 
 func open_rps(where := Vector2(80, 60)) -> void:
+	rps_choice = ROCK
 	rps_open = true
 	rps_ui.show()
 	rps_ui.global_position = where
@@ -159,4 +207,42 @@ func rps_a_wins(a: int, b: int) -> bool:
 		return true
 	return false
 
+
+func v2dou() -> Vector2:
+	return Vector2.DOWN if randf() <= 0.5 else Vector2.UP
+
+
+func win() -> void:
+	SND.play_sound(SOUNDS[6])
+	SOL.vfx("damage_number", Vector2(), {
+		"text": "you win!",
+		"size": 2
+		})
+	DAT.set_data("last_pennistong_game_win", true)
+	var rewards := BattleRewards.new()
+	var reward := Reward.new()
+	reward.type = BattleRewards.Types.EXP
+	reward.property = str(maxi(score - enscore, 0) / 27.0)
+	rewards.rewards.append(reward)
+	rewards.grant()
+	end()
+
+
+func lose() -> void:
+	SND.play_sound(SOUNDS[5])
+	SOL.vfx("damage_number", Vector2(), {
+		"text": "you lose!",
+		"size": 2
+		})
+	DAT.set_data("last_pennistong_game_win", false)
+	end()
+
+
+func end() -> void:
+	set_physics_process(false)
+	DAT.incri("pennistongs_played", 1)
+	get_tree().create_timer(2.0).timeout.connect(func():
+		LTS.gate_id = LTS.GATE_EXIT_GAMING
+		LTS.level_transition("res://scenes/rooms/scn_room_super_gaming_house.tscn")
+		, CONNECT_ONE_SHOT)
 

@@ -40,7 +40,6 @@ size = Vector2(8, 8)
 script = ExtResource("1_l60sq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)

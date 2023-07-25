@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=78 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
 [ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="16_ndfvs"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_o4xvl"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
@@ -269,7 +270,7 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_etbem"]
 script = ExtResource("11_dsxoc")
-enemies = Array[String](["grass", "grass", "grass", "grass", "grass", "grass"])
+enemies = Array[String](["turf", "turf", "turf", "turf", "turf", "turf"])
 background = "grass"
 music = "touch_me"
 party = Array[String]([])
@@ -279,7 +280,7 @@ victory_music = true
 
 [sub_resource type="Resource" id="Resource_jm0jg"]
 script = ExtResource("11_dsxoc")
-enemies = Array[String](["grass", "grass", "grass", "grass"])
+enemies = Array[String](["turf", "turf", "turf", "turf"])
 background = "grass"
 music = "touch_me"
 party = Array[String]([])
@@ -289,7 +290,7 @@ victory_music = true
 
 [sub_resource type="Resource" id="Resource_u30p0"]
 script = ExtResource("11_dsxoc")
-enemies = Array[String](["grass", "grass"])
+enemies = Array[String](["turf", "turf"])
 background = "grass"
 music = "touch_me"
 party = Array[String]([])
@@ -730,13 +731,19 @@ position = Vector2(-88, -159)
 position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_jv1pm")
 
-[node name="DoorArea2" parent="Houses/Pairhouse" instance=ExtResource("7_ce3xq")]
+[node name="DoorArea2" parent="Houses/Pairhouse" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
 z_index = 1
 position = Vector2(24, 1)
+gate_id = &"town-gaming"
+spawn_point = NodePath("Node2D")
+player = NodePath("../../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/DoorArea2"]
 position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_jv1pm")
+
+[node name="Node2D" type="Node2D" parent="Houses/Pairhouse/DoorArea2"]
+position = Vector2(0, 22)
 
 [node name="PairhouseGreenhouse" parent="Houses/Pairhouse" instance=ExtResource("6_peamb")]
 position = Vector2(-160, -128)
@@ -756,6 +763,19 @@ position = Vector2(79, -182)
 replenish_minutes = 88
 replenish_seconds = 5280
 item = &"sugar_lemon"
+
+[node name="Guy" parent="Houses/Pairhouse" instance=ExtResource("10_dem56")]
+position = Vector2(24, 21)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Pairhouse/Guy"]
+position = Vector2(0, -8)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="HousingBlock" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1000,9 +1020,10 @@ region_enabled = true
 region_rect = Rect2(34, 114, 36, 14)
 
 [node name="MailLogo" type="Sprite2D" parent="Houses/PostOffice"]
-position = Vector2(32, 10)
+position = Vector2(25, 9)
 texture = ExtResource("9_8v8jp")
-offset = Vector2(0, -12)
+centered = false
+offset = Vector2(0, -17)
 region_enabled = true
 region_rect = Rect2(17, 116, 14, 11)
 
@@ -1755,7 +1776,7 @@ active_range = Vector2i(10, 99)
 wait_time = 2.0
 
 [node name="AnimalSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
-position = Vector2(-91, -273)
+position = Vector2(-102, -302)
 spawn_enemy = ExtResource("31_itqdw")
 max_enemies = 1
 player = NodePath("../../Greg")

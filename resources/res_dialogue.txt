@@ -1560,6 +1560,113 @@ DIALOGUE atgirl_postoffice_explain
 	why won't she write back?...
 
 
+DIALOGUE ph_guy_hello
+	hello. you are the new guy in town, correct?
+	i have a quest for you, just like in a "video game".
+	my pet, jooky, has had a stomachache for a while.
+	it's because of those stray grass blades.
+	she just can't resist eating them!
+	my mission for you is to murder [color=#aaff88] 30 turf[/color].
+	then she won't want to eat them, she only eats things that still wriggle.
+	if you do that, i'll show you something cool...
+
+
+DIALOGUE ph_guy_checkup
+	hello. how is your quest going?
+	%s turf murdered, you say?
+	excellent. keep going.
+
+
+DIALOGUE ph_guy_turfwin
+	hello. i see that you have murdered the 30 turf, as i asked.
+	very well. follow me inside.
+
+
+DIALOGUE ph_guy_jooky_missing_1
+	hello. have you seen my pet jooky anywhere?
+	i'm rather concerned. she seems to be missing...
+
+
+DIALOGUE ph_guy_jooky_missing_2
+	oh jooky... oh dear...
+
+
+DIALOGUE ph_guy_inhouse_1
+	what an awesome machine!
+	new spirit-powered tech is truly out of this world.
+	this is an entertainment system. you can play "video games" on it.
+	perhaps you'd like to try one with me?
+
+
+DIALOGUE ph_computer
+	this is the new revolutionary game "penni stong".
+CHOICES yes,no,help
+	would you like to play it with me?
+CHOICE_LINK no
+	maybe some other time...
+CHOICE_LINK yes
+	i will grind you to dust!
+CHOICE_LINK help
+	how to play?
+	use the right and left arrows to move your "paddle".
+	you control the bottom paddle.
+	you must catch the "ball" with your paddle and bounce it back to me.
+	if you don't, you'll lose a "life".
+	furthermore, to gain points, you must win in a game of...
+	..."rock paper scissors". you navigate between choices with arrows.
+CHOICES no!!,yes!!
+	do you need help with "rock paper scissors"?
+CHOICE_LINK no!!
+	great. whoever gains 3000 points wins.
+	whoever loses 3 lives, loses!
+LOOP 1
+	that's it.
+CHOICE_LINK yes!!
+	in essence, "rock paper scissors" is a game of luck.
+	it is played between two players. both players make a choice.
+	they spontaneously choose between "rock", "paper", and "scissors".
+	they both display their choice using a hand sign:
+	"rock" is a closed fist,
+	"paper" is a flat hand,
+	"scissors" is signed with your index and middle finger standing...
+	...upright, but your other fingers curled.
+	can you do that? i hope you understood.
+	then, a victor is decided between the two players.
+	the hand signs go in pairs - one wins over the other.
+	the scissors cut paper, thus the player with scissors...
+	...wins, if the other player picked paper.
+	the rock breaks scissors! rock wins over scissors.
+	and paper, well... this never made too much sense to me.
+	but the paper covers the rock, thus winning.
+	as you might have noticed, the relations are in a "loop".
+	scissors triumph over paper, which trumps rock, which trumps scissors.
+	in the game, when the ball bounces on your paddle...
+	...you can gain points when you win the game of rock paper scissors.
+	and whatever you chose as your hand...
+	...that choice is played at the enemy's paddle, too.
+LOOP 0
+	i hope i cleared some things up.
+
+
+DIALOGUE after_pennistong_first
+	...what a revolutionary game...
+	i need to cry a bit after this.
+	also, thank you for playing the game with me...
+	i was getting too used to playing against myself...
+
+
+DIALOGUE after_pennistong_win
+	you won. i hope you're happy with yourself.
+
+
+DIALOGUE after_pennistong_lose
+	i win! the months of practice have paid off very well.
+
+
+DIALOGUE after_pennistong_finish
+	let's play again sometime.
+
+
 DIALOGUE fisherwoman_hello_lake
 CHAR fisherwoman
 	hey, check out this huge fish i caught.
@@ -1975,6 +2082,11 @@ CHAR popo_2
 	i don't think it can even speak. i've tried...
 	by the way. good job with defeating it...
 	quite a nasty spirit, with history...
+
+
+DIALOGUE insp_guy_house_bed
+	his bed. the only furniture in this room.
+	damn... he lives like this?
 
 
 DIALOGUE end_of_the_line

@@ -23,9 +23,10 @@ var seconds := 0
 var last_save_second := 0
 var load_second := 0
 
-# periods of time during which stuff changes
+# periods of time during which stuff changes in the world
 const NEIGHBOUR_WIFE_CYCLE := 470
 const ATGIRL_CYCLE := 1200
+const PH_GUY_WAIT := 600
 
 # on death
 var death_reason := "default"

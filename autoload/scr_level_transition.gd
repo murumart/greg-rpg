@@ -12,9 +12,10 @@ const GATE_LOADING := &"loading"
 const GATE_EXIT_BATTLE := &"battle_exit"
 const GATE_EXIT_BIKING := &"bike_exit"
 const GATE_EXIT_FISHING := &"fishing_exit"
-const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING, GATE_EXIT_CUTSCENE] # player position gets set to one saved in data if gate is one of these
+const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING, GATE_EXIT_CUTSCENE, GATE_EXIT_GAMING] # player position gets set to one saved in data if gate is one of these
 const GATE_BIKE_TRAVEL := &"bike_travel"
 const GATE_EXIT_CUTSCENE := &"curscene_exit"
+const GATE_EXIT_GAMING := &"gaming_exit"
 
 var entering_battle := false
 
@@ -55,11 +56,14 @@ func level_transition(path: String, op := {}) -> void:
 	DAT.save_nodes_data()
 	change_scene_to(path, op)
 	await scene_changed
-	SOL.fade_screen(
-		op.get("end_color", Color.BLACK),
-		op.get("start_color", Color(0, 0, 0, 0)),
-		fadetime
-	)
+	if not op.get("abrupt_end", false):
+		SOL.fade_screen(
+			op.get("end_color", Color.BLACK),
+			op.get("start_color", Color(0, 0, 0, 0)),
+			fadetime
+		)
+	else:
+		SOL.fade_screen(Color.TRANSPARENT, Color.TRANSPARENT, 0.1)
 	if op.get("stealing_enabled", true):
 		handle_stolen_items()
 

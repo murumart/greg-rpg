@@ -66,8 +66,12 @@ var songs := {
 		"title": "foreign fauna",
 		"link": "res://music/mus_animal_fight.ogg",
 	},
+	"gaming": {
+		"title": "gaming",
+		"link": "res://music/mus_gaming.ogg"
+	},
 	"greenhouse": {
-		"title": "webcat - greenhouse",
+		"title": "webcatz - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"
 	},
 	"greg_battle": {

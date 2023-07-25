@@ -22,12 +22,13 @@ func _ready() -> void:
 	tarikas_lines()
 	pink_haired_girl_setup()
 	naturalist_setup()
+	pairhouse_guy_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if DAT.get_character("greg").level < 5: bike.queue_free()
 	# disable thugs if bounty fulfilled
-	if DAT.get_data("fulfilled_bounty_thugs", false) and\
-	not DAT.get_data("hunks_enabled", false):
+	if (DAT.get_data("fulfilled_bounty_thugs", false) and
+	not DAT.get_data("hunks_enabled", false)):
 		for i in thug_spawners:
 			i.queue_free()
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
@@ -40,7 +41,7 @@ func _ready() -> void:
 func neighbour_wife_position() -> void:
 	var neighbour_wife := $Houses/NeighbourHouse/NeighbourWife
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
-	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0):
+	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0) and not LTS.gate_id == &"house-town":
 		neighbour_wife.queue_free()
 
 
@@ -71,7 +72,6 @@ func _on_tarikas_inspected() -> void:
 func pink_haired_girl_setup() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
 	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
-	print("atgirl time: ", time)
 	if time > DAT.ATGIRL_CYCLE / 4.0:
 		atgirl.queue_free()
 		DAT.set_data("has_interacted_with_atgirl", false)
@@ -92,8 +92,56 @@ func _on_atgirl_inspected() -> void:
 
 func naturalist_setup() -> void:
 	var left := $Other/NatureGuyLeft/NatureGuy
-	if DAT.get_character("greg").get_defeated_character("grass") > 0:
+	if DAT.get_character("greg").get_defeated_character("turf") > 0:
 		left.queue_free()
+
+
+func pairhouse_guy_setup() -> void:
+	var guy := $Houses/Pairhouse/Guy as OverworldCharacter
+	var door := $Houses/Pairhouse/DoorArea2
+	if DAT.get_data("turf_mission_fulfilled", false):
+		door.destination = "super_gaming_house"
+	if ((DAT.seconds < DAT.PH_GUY_WAIT and not
+			DAT.get_data("fulfilled_bounty_stray_animals", false)) or 
+		DAT.get_data("turf_mission_fulfilled", false) or
+		DAT.get_data("expressed_jooky_concern", false)):
+		guy.queue_free()
+		return
+	guy.inspected.connect(_on_ph_guy_inspected)
+
+var int_disabled := false
+func _on_ph_guy_inspected() -> void:
+	var guy := $Houses/Pairhouse/Guy as OverworldCharacter
+	var door := $Houses/Pairhouse/DoorArea2
+	guy.default_lines.clear()
+	if int_disabled: return
+	var turf_killed : int = (DAT.get_character("greg").get_defeated_character(
+		"turf") - DAT.get_data("mission_start_turf_killed", 0))
+	if DAT.get_data("fulfilled_bounty_stray_animals", false):
+		guy.default_lines = ["ph_guy_jooky_missing_1", "ph_guy_jooky_missing_2"]
+		DAT.set_data("expressed_jooky_concern", true)
+		return
+	if not DAT.get_data("turf_mission_active", false):
+		guy.default_lines = ["ph_guy_hello"]
+		DAT.set_data("turf_mission_active", true)
+		DAT.set_data("mission_start_turf_killed",
+			DAT.get_character("greg").get_defeated_character("turf"))
+		return
+	if turf_killed >= 30:
+		int_disabled = true
+		guy.default_lines = ["ph_guy_turfwin"]
+		DAT.set_data("turf_mission_fulfilled", true)
+		DAT.set_data("turf_mission_active", false)
+		door.destination = "super_gaming_house"
+		SOL.dialogue_closed.connect(
+			func():
+				var tw := create_tween()
+				tw.tween_property(guy, "modulate:a", 0.0, 1.0)
+				tw.tween_callback(guy.queue_free)
+		, CONNECT_ONE_SHOT)
+		return
+	SOL.dialogue_box.dial_concat("ph_guy_checkup", 1, [turf_killed])
+	guy.default_lines = ["ph_guy_checkup"]
 
 
 func _on_trash_guy_inspected() -> void:
