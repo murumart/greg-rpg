@@ -81,7 +81,7 @@ func get_funny_messages() -> Array:
 		SND.list.songs[SND.list.songs.keys().pick_random()]["title"],
 		SND.current_song.get("title"),
 		"",
-		"thank you webcat!",
+		"thank you webcatz!",
 		"thank you radio!",
 		"newspaper boy...",
 		"don't eat the soap." if randf() < 0.75 else "don't eat the soup" if randf() < 0.5 else "don't eat the saup" if randf() < 0.25 else "don't eat the soeuüp",
