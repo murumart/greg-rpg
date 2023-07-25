@@ -24,7 +24,7 @@ normal = Vector2(1, 0)
 
 [sub_resource type="Resource" id="Resource_svjui"]
 script = ExtResource("7_bkiuy")
-enemies = Array[String](["grass", "grass"])
+enemies = Array[String](["turf", "turf"])
 background = "grass"
 music = "touch_me"
 party = Array[String]([])
