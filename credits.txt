@@ -1,8 +1,11 @@
-music authors marked in songs_list.gd
-if not mentioned, then music by Murumart
+menu music by radio
+greenhouse music by webcatz
+fisher hut theme by radio and murumart
+if not mentioned, then music by murumart
 
 explosion noises https://www.freesoundeffects.com/free-sounds/explosion-10070/
 explosion graphic https://mebiusbox.github.io/contents/EffectTextureMaker/
 water shader https://godotshaders.com/shader/perlin-procedural-water/
 shopping cart photo https://pixabay.com/illustrations/shopping-venture-shopping-1019925/
+jack and aric skaters by aiden https://troy-sucks.neocities.org/
 

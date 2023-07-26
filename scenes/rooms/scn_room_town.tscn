@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=61 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -31,10 +31,10 @@
 [ext_resource type="SpriteFrames" uid="uid://bpaix0qqs0ctw" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
 [ext_resource type="PackedScene" uid="uid://d1bw3nluoktrc" path="res://scenes/decor/scn_campfire.tscn" id="24_375rx"]
-[ext_resource type="Texture2D" uid="uid://c13xom5nym4pk" path="res://sprites/characters/overworld/spr_nature_guy_overworld.png" id="24_al1vt"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
+[ext_resource type="SpriteFrames" uid="uid://buc0rlaymoir0" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
@@ -133,141 +133,6 @@ output = Array[String]([])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7uy1"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7dvg"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0insg"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ybfw"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vm43"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_618ao"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f567h"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oe6yd"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pt7kf"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3cyd"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bti3e"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j48ot"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y61t4"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6f64"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xhg2"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k17a8"]
-atlas = ExtResource("24_al1vt")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ibqq4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q7uy1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s7dvg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0insg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ybfw")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5vm43")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_618ao")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f567h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oe6yd")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pt7kf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r3cyd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bti3e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j48ot")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y61t4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f6f64")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7xhg2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k17a8")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
-
 [sub_resource type="Resource" id="Resource_etbem"]
 script = ExtResource("11_dsxoc")
 enemies = Array[String](["turf", "turf", "turf", "turf", "turf", "turf"])
@@ -329,7 +194,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(423, -469)
+position = Vector2(962, -190)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1110,6 +975,22 @@ layer_0/y_sort_origin = 1166
 layer_0/z_index = -1
 layer_0/tile_data = PackedInt32Array(-196612, 458753, 10, -262148, 458753, 8, -262147, 524289, 8, -262146, 524289, 8, -262145, 524289, 8, -327680, 589825, 8, -262144, 589825, 10, -196609, 524289, 10, -196610, 524289, 10, -196611, 524289, 10)
 
+[node name="SkateWorry" parent="Houses/Skatepark" instance=ExtResource("10_dem56")]
+position = Vector2(-104, 99)
+default_lines = Array[StringName]([&"skate_worry_1", &"skate_worry_2", &"skate_worry_3"])
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Skatepark/SkateWorry"]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(17, 0, 14, 16)
+
+[node name="Goodness" type="Node2D" parent="Houses/Skatepark"]
+y_sort_enabled = true
+
+[node name="Nice" type="AnimationPlayer" parent="Houses/Skatepark/Goodness"]
+
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(1312, -224)
@@ -1324,6 +1205,7 @@ silver = 8
 
 [node name="Tarikas" parent="Other/BackPark" instance=ExtResource("10_dem56")]
 position = Vector2(-151, -32)
+save = false
 
 [node name="TarikasSprite" type="AnimatedSprite2D" parent="Other/BackPark/Tarikas"]
 position = Vector2(0, -8)
@@ -1344,7 +1226,7 @@ save_convo_progess = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/NatureGuyLeft/NatureGuy"]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_ibqq4")
+sprite_frames = ExtResource("29_25qm4")
 animation = &"walk_down"
 
 [node name="Path" type="Node2D" parent="Other/NatureGuyLeft"]
