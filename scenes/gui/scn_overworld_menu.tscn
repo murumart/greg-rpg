@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=13 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="3_cuvke"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_srch7"]
+[ext_resource type="Texture2D" uid="uid://dy0hfc570u4w0" path="res://sprites/gui/spr_delete_item.png" id="5_buhag"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fklov"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,6 +45,9 @@ corner_radius_bottom_left = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmo2u"]
 bg_color = Color(0, 0, 0, 1)
 expand_margin_top = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e3uhd"]
+blend_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c61xy"]
 bg_color = Color(0, 0, 0, 1)
@@ -180,7 +184,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_371id")
 tab_alignment = 1
 
 [node name="items" type="Panel" parent="Panel/ItemSpiritTabs"]
-visible = false
 layout_mode = 2
 
 [node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/items"]
@@ -214,6 +217,7 @@ offset_right = 70.0
 offset_bottom = 62.0
 
 [node name="spirits" type="Panel" parent="Panel/ItemSpiritTabs"]
+visible = false
 layout_mode = 2
 
 [node name="UsedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits"]
@@ -272,7 +276,6 @@ alignment = 0
 script = ExtResource("3_srch7")
 
 [node name="UsingMenu" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
@@ -305,18 +308,27 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Portrait" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 3
 
 [node name="Portrait2" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 3
 
 [node name="Portrait3" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
+stretch_mode = 3
+
+[node name="Trash" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+material = SubResource("CanvasItemMaterial_e3uhd")
+layout_mode = 2
+texture = ExtResource("5_buhag")
 stretch_mode = 3
 
 [node name="SaveWarningLabel" type="Label" parent="."]

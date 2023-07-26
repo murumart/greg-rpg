@@ -47,7 +47,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# open the save menu (no idea why this is controlled here)
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
-		if DAT.player_capturers.is_empty() and not "overworld_menu" in DAT.player_capturers:
+		if DAT.player_capturers.is_empty():
 			if not saving_disabled:
 				SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 	if not visible: return
@@ -89,30 +89,36 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 		Doings.USING:
 			var old_choice := using_menu_choice
-			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size())
+			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size() + 1)
 			update_using_portraits()
 			if old_choice != using_menu_choice:
 				SND.menusound(1.35)
 			if event.is_action_pressed("ui_accept"):
 				
 				if item_spirit_tabs.current_tab == 0:
-					party(using_menu_choice).handle_item(using_item)
-					var item : Item = DAT.get_item(using_item)
-					if item.consume_on_use:
+					if using_menu_choice == party_size(): # trashcan
 						party(current_tab).inventory.erase(using_item)
-					if not item.use in Item.USES_EQUIPABLE:
-						SND.play_sound((item.play_sound if item.play_sound else preload("res://sounds/snd_use_item.ogg")), {volume = -15})
+						SND.play_sound(preload("res://sounds/snd_trashbin.ogg"))
+					else:
+						party(using_menu_choice).handle_item(using_item)
+						var item : Item = DAT.get_item(using_item)
+						if item.consume_on_use:
+							party(current_tab).inventory.erase(using_item)
+						if not item.use in Item.USES_EQUIPABLE:
+							SND.play_sound((item.play_sound if item.play_sound
+							else preload("res://sounds/snd_use_item.ogg")),
+							{volume = -15})
 				
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit : Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
 						SND.play_sound(load("res://sounds/snd_error.ogg"))
 						using_label.text = "not enough magic!"
-						return
-					party(using_menu_choice).handle_payload(spirit.payload)
-					party(current_tab).magic = party(current_tab).magic - spirit.cost
-					if spirit.animation:
-						SOL.vfx(spirit.animation, Vector2())
+					else:
+						party(using_menu_choice).handle_payload(spirit.payload)
+						party(current_tab).magic = party(current_tab).magic - spirit.cost
+						if spirit.animation:
+							SOL.vfx(spirit.animation, Vector2())
 				
 				doing = Doings.INNER
 				load_items()
@@ -212,7 +218,7 @@ func item_names(opt := {}) -> void:
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
 		DAT.get_item(opt.reference).name
-		).left(13)
+		).left(12)
 
 
 func spirit_names(opt := {}) -> void:
@@ -245,17 +251,23 @@ func load_using_menu() -> void:
 		if party(p) is Character:
 			child.texture = party(p).portrait
 		else:
-			child.texture = null
+			child.hide()
+		if p == 3:
+			child.show()
 	using_menu_choice = current_tab
 	using_menu.show()
 
 
 # highlighting the portraits in the using item menu level
 func update_using_portraits() -> void:
+	var c := 0
 	for i in using_portraits.get_child_count():
 		using_portraits.get_child(i).modulate = Color(1, 1, 1, 1)
-		if using_menu_choice == i:
+		if not using_portraits.get_child(i).visible:
+			continue
+		if using_menu_choice == c:
 			using_portraits.get_child(i).modulate = Color(1.4, 1.4, 1.4, 1)
+		c += 1
 
 
 func _reference_button_pressed(reference) -> void:
