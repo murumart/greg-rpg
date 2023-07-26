@@ -61,6 +61,13 @@ func tarikas_lines() -> void:
 	elif Math.inrange(level, 16, 25):
 		if DAT.get_data("biking_games_finished", 0) > 0:
 			lines_to_set.append("tarikas_25")
+	elif Math.inrange(level, 26, 35):
+		lines_to_set.append("tarikas_30")
+	elif level == 36:
+		lines_to_set.append("tarikas_36")
+	elif Math.inrange(level, 37, 42):
+		if DAT.get_data("fulfilled_bounty_thugs", false):
+			lines_to_set.append("tarikas_40")
 	lines_to_set.append("tarikas_finish")
 	tarikas.default_lines = lines_to_set
 

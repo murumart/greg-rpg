@@ -1216,6 +1216,27 @@ CHAR naturalist
 	the grass... the grass...
 
 
+DIALOGUE naturalist_lake_underleveled
+CHAR naturalist
+	this path takes you to the lake.
+	but looking at you right now...
+	you are only level %s, correct?
+	i mean, the wildlife at the lake is exciting for sure...
+	...but you are not ready.
+
+
+DIALOGUE naturalist_lake_underleveled_2
+CHAR naturalist
+	i mean, you will be killed.
+	at such a low level.
+	maybe even by the exciting wildlife.
+
+
+DIALOGUE naturalist_lake_birds
+CHAR naturalist
+	shh! don't frighten the birds!
+
+
 DIALOGUE bike_alpha_interact_1
 	hmm?
 	you look like you want to steal my bike.
@@ -1348,6 +1369,27 @@ CHAR tarikas
 	...back when i still had a garden.
 	but getting rid of them... difficult.
 	they really know how to get to your head.
+
+
+DIALOGUE tarikas_30
+CHAR tarikas
+	have you been to the lakeside yet?
+	mh, it's nice on sunny days.
+	just have to watch out not to tread too close to water.
+	because fish may jump out and attack.
+	mh, the usual.
+
+
+DIALOGUE tarikas_36
+CHAR tarikas
+	mh, you're level 36?
+	that's my favourite number.
+
+
+DIALOGUE tarikas_40
+CHAR tarikas
+	mh, the thugs in this town seem to have disappeared.
+	i guess that's connected to you somehow.
 
 
 DIALOGUE tarikas_finish
@@ -1862,6 +1904,20 @@ CHOICES yes,no
 	we makin' this trade or not?
 CHOICE_LINK no
 	oh come on!!!
+
+
+DIALOGUE skate_worry_1
+	man, we would love spending time in the skatepark...
+	...if it weren't for all the dang thugs that loiter here...
+	...i wish the police did something...
+
+
+DIALOGUE skate_worry_2
+	aw man, are you a thug too?
+
+
+DIALOGUE skate_worry_3
+	aw man...
 
 
 DIALOGUE kid_trade_success
