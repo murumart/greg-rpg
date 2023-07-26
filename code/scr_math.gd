@@ -144,11 +144,13 @@ static func load_reference_buttons(
 			# if it's the first one in a column, make its top neighbour the
 			# last one in the previous column
 			if j == 0:
-				k.focus_neighbor_top = containers[wrapi(i - 1, 0, containers.size())].get_child(-1).get_path()
+				k.focus_neighbor_top = containers[wrapi(i - 1, 0,
+					containers.size())].get_child(-1).get_path()
 			# if it's the last one in a column, make its top neighbour the
 			# first one in the previous column
 			if j + 1 >= c.get_child_count():
-				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0, containers.size())].get_child(0).get_path()
+				k.focus_neighbor_bottom = containers[wrapi(i + 1, 0,
+					containers.size())].get_child(0).get_path()
 
 
 static func load_reference_buttons_groups(

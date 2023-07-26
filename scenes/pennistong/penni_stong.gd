@@ -25,6 +25,7 @@ var rps_open := false
 @onready var rps_ui: Node2D = $RpsUi
 var rps_choice := 0
 var ball_stored_choice := 0
+var over := false
 
 var score := 0:
 	set(to):
@@ -63,14 +64,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not rps_open:
+	if not rps_open and not over:
 		_paddle_movement(delta)
 		_ai_paddle(delta)
 		_ball_movement(delta)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if rps_open:
+	if rps_open and not over:
 		var old_choice := rps_choice
 		var input := int(Input.get_axis("ui_left", "ui_right"))
 		rps_choice = wrapi(rps_choice + input, 0, 3)
@@ -213,6 +214,7 @@ func v2dou() -> Vector2:
 
 
 func win() -> void:
+	over = true
 	SND.play_sound(SOUNDS[6])
 	SOL.vfx("damage_number", Vector2(), {
 		"text": "you win!",
@@ -225,10 +227,12 @@ func win() -> void:
 	reward.property = str(maxi(score - enscore, 0) / 27.0)
 	rewards.rewards.append(reward)
 	rewards.grant()
+	await SOL.dialogue_closed
 	end()
 
 
 func lose() -> void:
+	over = true
 	SND.play_sound(SOUNDS[5])
 	SOL.vfx("damage_number", Vector2(), {
 		"text": "you lose!",
@@ -239,9 +243,10 @@ func lose() -> void:
 
 
 func end() -> void:
+	over = true
 	set_physics_process(false)
 	DAT.incri("pennistongs_played", 1)
-	get_tree().create_timer(2.0).timeout.connect(func():
+	get_tree().create_timer(0.5).timeout.connect(func():
 		LTS.gate_id = LTS.GATE_EXIT_GAMING
 		LTS.level_transition("res://scenes/rooms/scn_room_super_gaming_house.tscn")
 		, CONNECT_ONE_SHOT)

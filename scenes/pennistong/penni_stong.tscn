@@ -96,6 +96,7 @@ shape = SubResource("RectangleShape2D_qagis")
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(80, 60)
 collision_layer = 2
+motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
 texture = SubResource("GradientTexture2D_18kcn")
