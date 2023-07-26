@@ -44,12 +44,12 @@ func _ready():
 
 
 func set_store_wall_colours():
-	var store_wall = $Wall
+	var store_wall := $InteriorTiles as TileMap
 	var mn = DAT.get_data("nr", 0)/100.0
 	
 	var color = Color(mn, 0.5, 0.8).lightened(0.2)
 	
-	store_wall.modulate = color
+	store_wall.set_layer_modulate(1, color)
 
 
 func _on_item_taken(ittype: String):
