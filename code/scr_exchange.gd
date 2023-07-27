@@ -61,13 +61,13 @@ func state(what: Statements) -> void:
 		else:
 			if (i + 1) % 3 == 0: divisions.append([])
 			divisions[floori((i + 1) / 3.0)].append(criterion)
-	var title := "exchange_criteria_title" if what == Statements.CRITERIA else "exchange_returns_title"
+	var dial_title := "exchange_criteria_title" if what == Statements.CRITERIA else "exchange_returns_title"
 	for i in divisions.size():
 		if i == 0:
 			while divisions[i].size() < 2:
 				divisions[i].append("") # need empty string to make %s disappear
-			SOL.dialogue_box.dial_concat(title, 0, divisions[i])
-			SOL.dialogue(title)
+			SOL.dialogue_box.dial_concat(dial_title, 0, divisions[i])
+			SOL.dialogue(dial_title)
 		else:
 			while divisions[i].size() < 3:
 				divisions[i].append("")
