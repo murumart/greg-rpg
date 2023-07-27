@@ -7,7 +7,7 @@ enum Ghosts {ALPHA, BETA, GAMMA}
 
 @export var ghost : Ghosts = Ghosts.ALPHA
 
-var alpha_battle_info := BattleInfo.new()
+@export var alpha_battle_info : BattleInfo
 
 @export var player : PlayerOverworld
 
@@ -29,7 +29,7 @@ func _interacted() -> void:
 			SND.play_song("")
 			SOL.dialogue("bike_alpha_interact_1")
 			SOL.dialogue_closed.connect( 
-				func speak_2():
+				func():
 					$AnimationPlayer.play("emerge")
 					SND.play_song("bike_spirit", 0.20, {pitch_scale = 0.75, volume = -5})
 					SND.play_sound(load("res://sounds/spirit/bikeghost/snd_alpha_appear.ogg"), {bus = "ECHO"})
@@ -46,9 +46,5 @@ func _interacted() -> void:
 
 
 func load_ghosts() -> void:
-	if not 0 in DAT.get_data("bike_ghosts_fought", []):
-		alpha_battle_info = alpha_battle_info.set_background("town").\
-		set_enemies(["bike_ghost"]).\
-		set_music("bike_spirit").\
-		set_start_text("toute phrase en langue etrangere.").\
-		set_rewards(preload("res://resources/rewards/res_bike_ghost_alpha.tres"))
+	if not int(Ghosts.ALPHA) in DAT.get_data("bike_ghosts_fought", []):
+		pass

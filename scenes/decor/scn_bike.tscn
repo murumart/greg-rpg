@@ -1,9 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkuu3x2gw38ch"]
+[gd_scene load_steps=16 format=3 uid="uid://bkuu3x2gw38ch"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
+[ext_resource type="Resource" uid="uid://bw7dha6ubypya" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="2_dhrtd"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="3_77748"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
 [ext_resource type="SpriteFrames" uid="uid://cv74f40g5op00" path="res://resources/characters/sfr_bike_ghost.tres" id="4_ks0h0"]
+
+[sub_resource type="Resource" id="Resource_1ki2y"]
+script = ExtResource("3_77748")
+enemies = Array[String](["bike_ghost"])
+background = "town"
+music = "bike_spirit"
+party = Array[String]([])
+death_reason = "default"
+start_text = "toute phrase en langue etrangere."
+rewards = ExtResource("2_dhrtd")
+victory_music = true
 
 [sub_resource type="Gradient" id="Gradient_rurkq"]
 interpolation_mode = 2
@@ -310,6 +323,7 @@ _data = {
 
 [node name="Bike" type="Node2D"]
 script = ExtResource("1_hdwvo")
+alpha_battle_info = SubResource("Resource_1ki2y")
 
 [node name="Gradient" type="Sprite2D" parent="."]
 position = Vector2(-16, -32)
@@ -330,6 +344,8 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_732j1")
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_x7yb1")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, -0.5)
