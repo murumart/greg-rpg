@@ -1920,6 +1920,23 @@ DIALOGUE skate_worry_3
 	aw man...
 
 
+DIALOGUE skate_worry_good
+	all the thugs seem to have disappeared...
+	we can skate again! how cool is that!
+	unfortunately, i remembered that i can't skate.
+	or partake in social situations. aw man...
+
+
+DIALOGUE skate_worry_bad
+	the thugs are back?!
+	and they are all buff?!
+	the skaters return underground.
+
+
+DIALOGUE skaters
+	sk8 4 lyfe !!!
+
+
 DIALOGUE kid_trade_success
 CHAR kid
 	pleasure doing business with you, adult.
