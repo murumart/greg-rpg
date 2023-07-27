@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=64 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -109,6 +109,164 @@ size = Vector2(24, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0kbj"]
 size = Vector2(14, 18)
+
+[sub_resource type="Animation" id="Animation_cnwtd"]
+resource_name = "nice"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Aric:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-73, -54), Vector2(-41, -72), Vector2(-3, -72), Vector2(26, -51), Vector2(27, -32), Vector2(-71, -34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Aric:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785397, -0.785397, 0.0, 0.0, 0.0, 0.785397, 0.785397, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Aric:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.8, 2, 3, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1.2, 1.4, 1.7, 1.9, 2.3, 2.7, 2.9, 3.2, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-36, 29), Vector2(-8, 14), Vector2(0, 13), Vector2(22, 32), Vector2(64, -7.99999), Vector2(74, -28), Vector2(59.9999, -40), Vector2(48, -4), Vector2(22, 32), Vector2(0, 13), Vector2(-8, 14), Vector2(-36, 29), Vector2(-44, 29)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Jack:rotation")
+tracks/4/interp = 3
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.8, 0.9, 1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2, 2.1, 2.2, 2.4, 2.7, 3, 3.1, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785397, -0.785397, 0.0, 0.785397, 0.785397, 0.0, -0.785397, -0.785397, -1.13064, -3.77692, -5.86623, -6.9324, -6.12323, -0.785398, -0.785398, 0.0, 0.785397, 0.0, -0.785397, -1.0472, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Jack:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t87sn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Aric:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, -56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Aric:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Aric:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, 29)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Jack:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Jack:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfdhj"]
+_data = {
+"RESET": SubResource("Animation_t87sn"),
+"nice": SubResource("Animation_cnwtd")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3utb"]
 size = Vector2(12, 12)
@@ -455,8 +613,8 @@ shape = SubResource("RectangleShape2D_jv1pm")
 
 [node name="NTrashbin" parent="Houses/NeighbourHouse" instance=ExtResource("12_rk0rd")]
 position = Vector2(33, 93)
-replenish_minutes = 30
-replenish_seconds = 1800
+replenish_minutes = 45
+replenish_seconds = 2700
 item = &"plaster"
 
 [node name="NTrashbin2" parent="Houses/NeighbourHouse" instance=ExtResource("12_rk0rd")]
@@ -538,8 +696,8 @@ replenish_seconds = 120
 [node name="BNtrash4" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
 position = Vector2(-69, 113)
 full = false
-replenish_minutes = 1231231231
-replenish_seconds = 73873873860
+replenish_minutes = -1
+replenish_seconds = -60
 
 [node name="BNtrash3" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
 position = Vector2(-109, -74)
@@ -616,6 +774,7 @@ position = Vector2(-160, -128)
 [node name="Ptrash" parent="Houses/Pairhouse" instance=ExtResource("12_rk0rd")]
 position = Vector2(22, 116)
 full = false
+silver = 1
 
 [node name="Ptrash2" parent="Houses/Pairhouse" instance=ExtResource("12_rk0rd")]
 position = Vector2(35, 116)
@@ -685,8 +844,8 @@ item = &"bread"
 
 [node name="Btrash2" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
 position = Vector2(72, 83)
-replenish_minutes = 999
-replenish_seconds = 59940
+replenish_minutes = -1
+replenish_seconds = -60
 item = &"brick"
 
 [node name="Btrash3" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
@@ -695,14 +854,14 @@ silver = 11
 
 [node name="Btrash4" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
 position = Vector2(153, -70)
-replenish_minutes = 26
-replenish_seconds = 1560
+replenish_minutes = 27
+replenish_seconds = 1620
 item = &"gummy_worm"
 
 [node name="Btrash5" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
 position = Vector2(134, -67)
-replenish_minutes = 9999
-replenish_seconds = 599940
+replenish_minutes = 9999999
+replenish_seconds = 599999940
 item = &"tumbler"
 
 [node name="Atgirl" parent="Houses/HousingBlock" instance=ExtResource("10_dem56")]
@@ -820,12 +979,14 @@ item = &"gummy_worm"
 
 [node name="Strash2" parent="Houses/Store" instance=ExtResource("12_rk0rd")]
 position = Vector2(88, 52)
+replenish_minutes = 30
+replenish_seconds = 1800
 item = &"bread"
 
 [node name="Strash3" parent="Houses/Store" instance=ExtResource("12_rk0rd")]
 position = Vector2(105, 52)
-replenish_minutes = 45
-replenish_seconds = 2700
+replenish_minutes = 60
+replenish_seconds = 3600
 item = &"mueslibar"
 
 [node name="PostOffice" type="Node2D" parent="Houses"]
@@ -973,7 +1134,7 @@ tile_set = ExtResource("15_1u67x")
 format = 2
 layer_0/y_sort_origin = 1166
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(-196612, 458753, 10, -262148, 458753, 8, -262147, 524289, 8, -262146, 524289, 8, -262145, 524289, 8, -327680, 589825, 8, -262144, 589825, 10, -196609, 524289, 10, -196610, 524289, 10, -196611, 524289, 10)
+layer_0/tile_data = PackedInt32Array(-196612, 458753, 10, -262148, 458753, 8, -262147, 524289, 8, -262146, 524289, 8, -262145, 524289, 8, -327680, 589825, 8, -262144, 589825, 10, -196609, 524289, 10, -196610, 524289, 10, -196611, 524289, 10, 1, 524289, 9, 65537, 524289, 9, 131073, 524289, 9, -65534, 458753, 8, -65533, 458753, 9, -2, 458753, 8, 65534, 458753, 9, 131070, 458753, 9, 196606, 458753, 9, 262142, 458753, 10, -1, 524289, 8, 65535, 524289, 9, 131071, 524289, 9, 196607, 524289, 9, 262143, 524289, 10, -65536, 589825, 8, 0, 589825, 9, 65536, 589825, 9, 131072, 589825, 9, 196608, 589825, 10, 196609, 524289, 9, 196610, 458753, 10, -65532, 589825, 9, 4, 589825, 9, 65540, 589825, 9, 131076, 589825, 10, 196612, 524289, 10, 196611, 524289, 10, 131074, 458753, 9, 65538, 458753, 9, 2, 458753, 9, 131075, 458753, 10, 65539, 458753, 9, 3, 458753, 9, -131069, 458753, 8, 196613, 589825, 10, -131068, 589825, 8, -65531, 589825, 8, 5, 589825, 9, 65541, 589825, 9, 131077, 589825, 9)
 
 [node name="SkateWorry" parent="Houses/Skatepark" instance=ExtResource("10_dem56")]
 position = Vector2(-104, 99)
@@ -990,6 +1151,49 @@ region_rect = Rect2(17, 0, 14, 16)
 y_sort_enabled = true
 
 [node name="Nice" type="AnimationPlayer" parent="Houses/Skatepark/Goodness"]
+autoplay = "nice"
+libraries = {
+"": SubResource("AnimationLibrary_gfdhj")
+}
+
+[node name="Aric" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
+position = Vector2(-73, -56)
+default_lines = Array[StringName]([&"skaters"])
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Skatepark/Goodness/Aric"]
+position = Vector2(0, -7)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Jack" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
+position = Vector2(-36, 29)
+default_lines = Array[StringName]([&"skaters"])
+save = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack"]
+position = Vector2(0, -8)
+scale = Vector2(0.90971, 1)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)
+
+[node name="Jack2" parent="Houses/Skatepark/Goodness" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") instance=ExtResource("10_dem56")]
+position = Vector2(-2, -46)
+collision_shape = NodePath("../Jack/CollisionShape")
+collision_detection_area = NodePath("../Jack/CollisionDetectionArea")
+detection_area = NodePath("../Jack/DetectionArea")
+detection_raycast = NodePath("../Jack/DetectionArea/DetectionRaycast")
+default_lines = Array[StringName]([&"skaters"])
+save = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack2"]
+position = Vector2(0, -8)
+scale = Vector2(0.90971, 1)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
 
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1044,6 +1248,13 @@ shape = SubResource("RectangleShape2D_b3utb")
 
 [node name="Node2D" type="Node2D" parent="Houses/Police/DoorArea"]
 position = Vector2(0, 6)
+
+[node name="TrashBin" parent="Houses/Police" instance=ExtResource("12_rk0rd")]
+position = Vector2(-29, -222)
+full = false
+replenish_minutes = 120
+replenish_seconds = 7200
+item = &"porridge"
 
 [node name="Other" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1199,8 +1410,8 @@ item = &"gummy_worm"
 
 [node name="ParkTrash2" parent="Other/BackPark" instance=ExtResource("12_rk0rd")]
 position = Vector2(153, -32)
-replenish_minutes = 10
-replenish_seconds = 600
+replenish_minutes = 16
+replenish_seconds = 960
 silver = 8
 
 [node name="Tarikas" parent="Other/BackPark" instance=ExtResource("10_dem56")]

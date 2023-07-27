@@ -23,6 +23,7 @@ func _ready() -> void:
 	pink_haired_girl_setup()
 	naturalist_setup()
 	pairhouse_guy_setup()
+	skatepark_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if DAT.get_character("greg").level < 5: bike.queue_free()
@@ -149,6 +150,19 @@ func _on_ph_guy_inspected() -> void:
 		return
 	SOL.dialogue_box.dial_concat("ph_guy_checkup", 1, [turf_killed])
 	guy.default_lines = ["ph_guy_checkup"]
+
+
+func skatepark_setup() -> void:
+	var skate_worry := $Houses/Skatepark/SkateWorry as OverworldCharacter
+	if not DAT.get_data("fulfilled_bounty_thugs", false) or \
+	DAT.get_data("hunks_enabled", false):
+		$Houses/Skatepark/Goodness.queue_free()
+		return
+	skate_worry.default_lines.clear()
+	if DAT.get_data("hunks_enabled", false):
+		skate_worry.default_lines = ["skate_worry_bad", "skate_worry_3"]
+	else:
+		skate_worry.default_lines = ["skate_worry_good", "skate_worry_3"]
 
 
 func _on_trash_guy_inspected() -> void:
