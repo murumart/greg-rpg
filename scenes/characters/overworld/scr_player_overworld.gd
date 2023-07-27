@@ -1,6 +1,7 @@
 class_name PlayerOverworld extends CharacterBody2D
 
 enum States {FREE_MOVE, NOT_FREE_MOVE}
+enum MoveModes {WALK, SKATE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
 @export var saving_disabled := false: set = set_saving_disabled
@@ -11,6 +12,7 @@ const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
 var state : int: set = set_state
+var move_mode : MoveModes = MoveModes.SKATE
 
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
@@ -47,7 +49,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	velocity = Vector2()
 	if state == States.FREE_MOVE:
 		movement(delta)
 		if input: direct_raycast()
@@ -66,12 +67,23 @@ func set_state(to: States) -> void:
 
 
 func movement(delta: float) -> void:
-	velocity = input * SPEED * delta
-	
-	var _collided := move_and_slide()
-	
-	global_position.x = roundi(global_position.x)
-	global_position.y = roundi(global_position.y)
+	match move_mode:
+		MoveModes.WALK:
+			velocity = Vector2()
+			velocity = input * SPEED * delta
+			
+			var _collided := move_and_slide()
+			
+			global_position.x = roundi(global_position.x)
+			global_position.y = roundi(global_position.y)
+		MoveModes.SKATE:
+			if input:
+				velocity = velocity.move_toward(input * SPEED * 4 * delta, delta * 64)
+			else:
+				velocity = velocity.move_toward(Vector2(), delta * 64)
+			move_and_slide()
+			global_position.x = roundi(global_position.x)
+			global_position.y = roundi(global_position.y)
 
 
 func direct_raycast() -> void:
