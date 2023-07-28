@@ -1,17 +1,21 @@
-extends Node
+class_name Elements extends Node
 
 # generating and storing chemical elements here
 # do NOT show ANY of this to ANY of my chemistry teachers
 
+enum Effects {SAFE, HEALTHY, POISONOUS, HARMFUL}
+
 const ELEMENT_AMOUNT := 54
 const PERIOD_LENGTHS := [2, 8, 8, 18, 18, 32, 32]
+const CURVES : Array[Curve] = [preload("res://scenes/chemistry/harmful_curve.tres"), preload("res://scenes/chemistry/healthy_curve.tres"), preload("res://scenes/chemistry/poison_curve.tres")]
+enum {HARM_CURVE, HEALTH_CURVE, POISON_CURVE}
 
 var element_names := PackedStringArray()
 var element_abbrs := PackedStringArray()
 var element_masses := PackedFloat32Array()
 var element_colours := PackedColorArray()
+var element_effects := PackedInt32Array()
 var periods : Array[PackedInt32Array] = [[], [], [], [], [], [], []]
-
 var solmass : float
 
 var in_by_sym := {}
@@ -84,6 +88,7 @@ func get_element(index: int) -> Element:
 	el.valence = get_valence(index)
 	el.period = get_period(index)
 	el.group = get_group(index)
+	el.effect = element_effects[index]
 	return el
 
 
@@ -101,6 +106,17 @@ func gen_elements() -> void:
 		periods[period].append(e)
 		in_by_sym[element_abbrs[e]] = e
 		
+		var effect : Effects = Effects.SAFE
+		var rand := rng.randf()
+		var sample := e / float(ELEMENT_AMOUNT)
+		if rand < CURVES[POISON_CURVE].sample_baked(sample):
+			effect = Effects.POISONOUS
+		elif rand < CURVES[HARM_CURVE].sample_baked(sample):
+			effect = Effects.HARMFUL
+		elif rand < CURVES[HEALTH_CURVE].sample_baked(sample):
+			effect = Effects.HEALTHY
+		element_effects.append(effect)
+		
 		var color := Color(rng.randf(), rng.randf(), rng.randf())
 		color = color.lightened((5 - period) * 0.1)
 		element_colours.append(color)
@@ -117,7 +133,7 @@ func random_element_name(index: int) -> String:
 	var consonants := ["m", "n", "l", "s", "r", "z", "m", "n"]
 	var end := ""
 	var ends := {16: "ine", 17: "on"}
-	var gene := func generation():
+	var gene := func():
 		var n := ""
 		var prd := get_period(index)
 		for i in rng.randi_range(maxi(prd, 1), maxi(prd, 2)):
@@ -127,17 +143,8 @@ func random_element_name(index: int) -> String:
 				n += plosives.pick_random() + vowels.pick_random()
 			else:
 				n += vowels.pick_random() + consonants.pick_random()
-		end = ends.get(get_group(index), [
-			"ium",
-			"", 
-			"uth",
-			"ygen", 
-			"ium",
-			"ium",
-			"ium",
-			"ium",
-			"ium"
-			].pick_random())
+		end = ends.get(get_group(index),
+			Math.weighted_random(["ium", "", "uth", "ygen"], [8, 1, 1, 1]))
 		if n.right(1) in consonants or n.right(1) in plosives:
 			n += end
 		else:
@@ -200,6 +207,7 @@ class Element extends RefCounted:
 	var period : int
 	var group : int
 	var valence : int
+	var effect: Elements.Effects
 	
 	
 	func _to_string() -> String:
@@ -210,4 +218,5 @@ mass: %s
 period: %s
 group: %s
 valence: %s
-" % [protons, name, symbol, mass, period, group, valence]
+effect: %s
+" % [protons, name, symbol, mass, period, group, valence, Elements.Effects.find_key(effect)]
