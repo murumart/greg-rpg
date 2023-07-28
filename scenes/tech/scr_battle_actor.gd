@@ -314,6 +314,9 @@ func handle_payload(pld: BattlePayload) -> void:
 		else:
 			health_change = absf(health_change)
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
+			if has_effect("shield"):
+				health_change *= 0.25
+				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 			hurt(health_change)
 			if character.health <= 0:
 				if is_instance_valid(pld.sender):
@@ -348,8 +351,8 @@ func status_effect_update() -> void:
 		if is_immune_to(e):
 			status_effects[e] = {}
 		# effects run out
-		effect["duration"] = effect.get("duration", 1) - 1
-		if effect.get("duration", 1) < 1:
+		effect[&"duration"] = effect.get(&"duration", 1) - 1
+		if effect.get(&"duration", 1) < 1:
 			status_effects[e] = {}
 
 
@@ -359,8 +362,8 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		return
 	if not nomen in status_effects.keys():
 		status_effects[nomen] = {}
-	var old_strength : float = status_effects[nomen].get("strength", 0)
-	var old_duration : int = status_effects[nomen].get("duration", 0)
+	var old_strength : float = status_effects[nomen].get(&"strength", 0)
+	var old_duration : int = status_effects[nomen].get(&"duration", 0)
 	# if the effect already existed, the new strength and length are the averages
 	# between the old effect strength and length and the new effect -"-
 	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
@@ -374,8 +377,8 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		SOL.vfx("damage_number", parentless_effcenter(), {text = "immune!", color = Color.YELLOW, speed = 0.5})
 		return
 	status_effects[nomen] = {
-		"strength": new_strength,
-		"duration": new_duration
+		&"strength": new_strength,
+		&"duration": new_duration
 	}
 	# notify of an effect with this
 	if strength and duration and duration != -1:
@@ -383,23 +386,23 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 
 
 func effect_action(nomen: String, effect: Dictionary) -> void:
-	if nomen == "coughing" and effect.get("duration", 0) > 0:
+	if nomen == &"coughing" and effect.get(&"duration", 0) > 0:
 		# coughing damage is applied by a separate battle actor because why not
 		var cougher := BattleActor.new()
 		cougher.character = Character.new()
-		cougher.character.attack = effect.get("strength", 1) * 2
+		cougher.character.attack = effect.get(&"strength", 1) * 2
 		add_child(cougher)
 		cougher.attack(self)
 		SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
 		cougher.queue_free()
-	if nomen == "poison" and effect.get("duration", 0) > 0:
-		hurt(effect.get("strength", 1) * 1.3)
-	if nomen == "fire" and effect.get("duration", 0) > 0:
+	if nomen == &"poison" and effect.get(&"duration", 0) > 0:
+		hurt(effect.get(&"strength", 1) * 1.3)
+	if nomen == &"fire" and effect.get(&"duration", 0) > 0:
 		hurt(clampf(character.health * 0.08, 1, 25))
-		SOL.vfx("battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
+		SOL.vfx(&"battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
 		SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
-	if nomen == "regen" and effect.get("duration", 0) > 0:
-		heal(effect.get("strength", 1) * 5)
+	if nomen == &"regen" and effect.get(&"duration", 0) > 0:
+		heal(effect.get(&"strength", 1) * 5)
 
 
 func turn_finished() -> void:
@@ -408,7 +411,7 @@ func turn_finished() -> void:
 	turn += 1
 
 
-func load_character(id: String) -> void:
+func load_character(id: StringName) -> void:
 	var charc : Character = DAT.get_character(id).duplicate(true)
 	character = charc
 	charc.defeated_characters.clear()
@@ -468,13 +471,13 @@ func on_fire() -> bool:
 	return false
 
 
-func has_effect(what: String) -> bool:
+func has_effect(what: StringName) -> bool:
 	if status_effects.get(what, {}):
 		return status_effects.get(what, {}).get("duration", 0) > 0
 	return false
 
 
-func is_immune_to(what: String) -> bool:
+func is_immune_to(what: StringName) -> bool:
 	return what in effect_immunities or has_effect(what + "_immunity")
 
 

@@ -6,9 +6,9 @@
 
 [sub_resource type="Resource" id="Resource_1rl0a"]
 script = ExtResource("1_t3dcq")
-name = "defense"
-strength = 40
-duration = 3.0
+name = "shield"
+strength = 1.0
+duration = 5
 
 [sub_resource type="Resource" id="Resource_lat8r"]
 script = ExtResource("1_gkq12")
@@ -19,22 +19,11 @@ pierce_defense = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
-attack_increase = null
-attack_increase_time = null
-defense_increase = 40.0
-defense_increase_time = 3
-speed_increase = null
-speed_increase_time = null
-confusion_time = null
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
 effects = Array[ExtResource("1_t3dcq")]([SubResource("Resource_1rl0a")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
 reveal_enemy_info = false
