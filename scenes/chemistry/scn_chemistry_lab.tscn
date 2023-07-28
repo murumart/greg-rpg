@@ -1,7 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://jvivx8ktkdi"]
+[gd_scene load_steps=11 format=3 uid="uid://jvivx8ktkdi"]
 
 [ext_resource type="Script" path="res://scenes/chemistry/scr_chemistry_lab.gd" id="1_of27d"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_6lcp7"]
+[ext_resource type="AudioStream" uid="uid://c71koev3un26b" path="res://sounds/chemistry/union.ogg" id="3_n0vct"]
+[ext_resource type="AudioStream" uid="uid://8xof22v267qw" path="res://sounds/chemistry/replacement.ogg" id="4_501vh"]
+[ext_resource type="AudioStream" uid="uid://dk7quokjibfmg" path="res://sounds/chemistry/dissociate.ogg" id="5_tubo6"]
+[ext_resource type="AudioStream" uid="uid://63vckcp1s5gh" path="res://sounds/chemistry/evaporate.ogg" id="6_7tbg5"]
+[ext_resource type="AudioStream" uid="uid://7l2tvhh72nko" path="res://sounds/chemistry/bounce.ogg" id="7_nolgl"]
+[ext_resource type="AudioStream" uid="uid://s36snqcay7dr" path="res://sounds/pennistong/bounce.ogg" id="8_rkrs4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_34tnl"]
+streams_count = 1
+playback_mode = 1
+random_pitch = 3.67
+random_volume_offset_db = 8.21
+stream_0/stream = ExtResource("6_7tbg5")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2m34m"]
+streams_count = 2
+stream_0/stream = ExtResource("7_nolgl")
+stream_0/weight = 9.0
+stream_1/stream = ExtResource("8_rkrs4")
+stream_1/weight = 1.0
 
 [node name="ChemistryLab" type="Node2D"]
 script = ExtResource("1_of27d")
@@ -18,3 +39,31 @@ offset_right = 72.0
 offset_bottom = 56.0
 mouse_filter = 2
 color = Color(0.321569, 0.729412, 0.913725, 0.305882)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="UnionSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_n0vct")
+volume_db = -5.0
+max_polyphony = 30
+
+[node name="ReplacementSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_501vh")
+volume_db = -5.0
+max_polyphony = 30
+
+[node name="DissociateSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_tubo6")
+max_polyphony = 30
+
+[node name="EvaporationSound" type="AudioStreamPlayer" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_34tnl")
+pitch_scale = 2.0
+max_polyphony = 30
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_2m34m")
+volume_db = -10.0
+attenuation = 3.13834
+max_polyphony = 60
+panning_strength = 1.61

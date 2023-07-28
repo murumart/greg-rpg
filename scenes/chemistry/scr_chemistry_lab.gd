@@ -11,11 +11,23 @@ var spec_id := 0
 var gravity := 9.8
 
 @onready var solution_area : ColorRect = $SolutionRect
+@onready var union_sound: AudioStreamPlayer = $Audio/UnionSound
+@onready var replacement_sound: AudioStreamPlayer = $Audio/ReplacementSound
+@onready var dissociate_sound: AudioStreamPlayer = $Audio/DissociateSound
+@onready var evaporation_sound: AudioStreamPlayer = $Audio/EvaporationSound
+@onready var bounce_sound: AudioStreamPlayer2D = $Audio/BounceSound
+
+const COOK_TIME := 10
+var cook := 0.0
+var cooking_finished := false
 
 
 func _ready() -> void:
 	if ELM.element_names.is_empty():
 		ELM.gen()
+		for i in Elements.ELEMENT_AMOUNT:
+			print(ELM.get_element(i))
+			print(" ")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	solution = [
 		{
@@ -72,6 +84,7 @@ func dissoc_reaction(s: Species) -> void:
 	del(s)
 	c(a, pos)
 	c(b, pos)
+	dissociate_sound.play()
 
 
 # chemistry treachers weep
@@ -91,6 +104,7 @@ func replacement_reaction(s1: Species, s2: Species, pos : Vector2) -> void:
 		s2.struct.insert(at, a1)
 	s1.aspects()
 	s2.aspects()
+	replacement_sound.play()
 
 
 func union_reaction(s1: Species, s2: Species, pos: Vector2) -> void:
@@ -105,6 +119,7 @@ func union_reaction(s1: Species, s2: Species, pos: Vector2) -> void:
 	c(news, pos)
 	del(s1)
 	del(s2)
+	union_sound.play()
 
 
 func _input(event: InputEvent) -> void:
@@ -118,66 +133,80 @@ func _physics_process(delta: float) -> void:
 	var damp := 0.44
 	var rand := 0.2
 	var edgedef := 0.5
-	for s in species:
-		if s.struct.is_empty():
-			del(s)
-			return
+	if cook < COOK_TIME:
+		for s in species:
+			if s.struct.is_empty():
+				del(s)
+				return
+			
+			if species.size() > 80:
+				if Engine.get_physics_frames() % 2 != 0: continue
+			
+			# damping
+			s.move.y = move_toward(s.move.y, (s.mass - ELM.solmass) * 0.06, delta * 6)
+			# delete stuff rising tot he top (it evepaorates away)
+			if (s.mass < ELM.solmass or absf(s.mass - ELM.solmass) < 0.1) and randf() < 0.007:
+				del(s)
+				evaporation_sound.play()
+			s.move.x = move_toward(s.move.x, 0.0, delta)
+			
+			# randomising
+			s.move += Vector2(randf_range(-rand, rand), randf_range(-rand, rand))
+			
+			# collision with others
+			if species.size() < 25:
+				for ss in range(species.size()):
+					if ss >= species.size(): continue
+					var sp1 := species[ss]
+					for zz in species.size():
+						if zz == ss: continue
+						if zz >= species.size(): continue
+						var sp2 := species[zz]
+						specs_collision(sp1, sp2)
+			# if there's too many species simulated, do this instead
+			# because this is faster
+			# yeah
+			else:
+				for i in 200:
+					specs_collision(species.pick_random(), species.pick_random())
+			
+			# dissoc checking
+			if s.mass / 900.0 > randf() and randf() < 0.002 and species.size() < 40:
+				dissoc_reaction(s)
+			
+			# edges collision
+			if s.position.x - s.radius <= clamp_zone_min.x:
+				s.move.x = edgedef -s.move.x * damp
+				bounce_sound.play()
+			if s.position.x + s.radius >= clamp_zone_max.x:
+				s.move.x = -edgedef -s.move.x * damp
+				bounce_sound.play()
+			if s.position.y - s.radius <= clamp_zone_min.y:
+				s.move.y += delta * 8
+			if s.position.y + s.radius >= clamp_zone_max.y:
+				s.move.y = -edgedef -s.move.y * damp
+				bounce_sound.play()
+			bounce_sound.position.x = s.position.x
+			s.position = s.position.clamp(clamp_zone_min, clamp_zone_max)
+			
+			s.position += s.move
+			
+			# clicking debug stuff
+			if Input.is_action_just_pressed("mouse_left"):
+				var mpos := get_global_mouse_position()
+				if mpos.distance_to(s.position) < s.radius:
+					print(s)
 		
-		if species.size() > 80:
-			if Engine.get_physics_frames() % 2 != 0: continue
-		
-		# damping
-		s.move.y = move_toward(s.move.y, (s.mass - ELM.solmass) * 0.06, delta * 6)
-		# delete stuff rising tot he top (it evepaorates away)
-		if (s.mass < ELM.solmass or absf(s.mass - ELM.solmass) < 0.1) and randf() < 0.007:
-			del(s)
-		s.move.x = move_toward(s.move.x, 0.0, delta)
-		
-		# randomising
-		s.move += Vector2(randf_range(-rand, rand), randf_range(-rand, rand))
-		
-		# collision with others
-		if species.size() < 25:
-			for ss in range(species.size()):
-				if ss >= species.size(): continue
-				var sp1 := species[ss]
-				for zz in species.size():
-					if zz == ss: continue
-					if zz >= species.size(): continue
-					var sp2 := species[zz]
-					specs_collision(sp1, sp2)
-		# if there's too many species simulated, do this instead
-		# because this is faster
-		# yeah
-		else:
-			for i in 200:
-				specs_collision(species.pick_random(), species.pick_random())
-		
-		# dissoc checking
-		if s.mass / 900.0 > randf() and randf() < 0.002 and species.size() < 40:
-			dissoc_reaction(s)
-		
-		# edges collision
-		if s.position.x - s.radius <= clamp_zone_min.x:
-			s.move.x = edgedef -s.move.x * damp
-		if s.position.x + s.radius >= clamp_zone_max.x:
-			s.move.x = -edgedef -s.move.x * damp
-		if s.position.y - s.radius <= clamp_zone_min.y:
-			s.move.y += delta * 8
-		if s.position.y + s.radius >= clamp_zone_max.y:
-			s.move.y = -edgedef -s.move.y * damp
-		s.position = s.position.clamp(clamp_zone_min, clamp_zone_max)
-		
-		s.position += s.move
-		
-		# clicking debug stuff
-		if Input.is_action_just_pressed("mouse_left"):
-			var mpos := get_global_mouse_position()
-			if mpos.distance_to(s.position) < s.radius:
-				print(s)
-	
-	if randf() < 0.08:
-		c([0, 7, 0], Vector2(randf_range(clamp_zone_min.x, clamp_zone_max.x), randf_range(clamp_zone_min.y, clamp_zone_max.y)))
+		if randf() < 0.08:
+			c([0, 7, 0], Vector2(randf_range(clamp_zone_min.x, clamp_zone_max.x),
+			randf_range(clamp_zone_min.y, clamp_zone_max.y)))
+		cook += delta
+	else:
+		if not cooking_finished:
+			for i in species:
+				if not i.is_water():
+					print(i)
+			cooking_finished = true
 	queue_redraw()
 
 
@@ -262,6 +291,10 @@ class Species extends RefCounted:
 		for i in cols:
 			col = col.lerp(i, 0.1)
 		return col
+	
+	
+	func is_water() -> bool:
+		return struct.size() == 3 and struct.count(0) == 2 and struct.has(7)
 	
 	
 	func _to_string() -> String:
