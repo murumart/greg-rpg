@@ -24,6 +24,7 @@ func _ready() -> void:
 	naturalist_setup()
 	pairhouse_guy_setup()
 	skatepark_setup()
+	kid_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if DAT.get_character("greg").level < 5: bike.queue_free()
@@ -42,7 +43,7 @@ func _ready() -> void:
 func neighbour_wife_position() -> void:
 	var neighbour_wife := $Houses/NeighbourHouse/NeighbourWife
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
-	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0) and not LTS.gate_id == &"house-town":
+	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0) and LTS.gate_id != &"house-town":
 		neighbour_wife.queue_free()
 
 
@@ -91,7 +92,8 @@ func _on_atgirl_inspected() -> void:
 	var progress : int = DAT.get_data("atgirl_progress", 0)
 	if not DAT.get_data("has_interacted_with_atgirl", false):
 		DAT.set_data("has_interacted_with_atgirl", true)
-		progress += (1 if SOL.dialogue_box.dialogues_dict.has("atgirl_%s" % str(progress + 1)) else 0)
+		progress += (1 if SOL.dialogue_box.dialogues_dict.has("atgirl_%s" %
+			str(progress + 1)) else 0)
 		DAT.set_data("atgirl_progress", progress)
 		atgirl.default_lines.append("atgirl_%s" % progress)
 		return
@@ -163,6 +165,23 @@ func skatepark_setup() -> void:
 		skate_worry.default_lines = ["skate_worry_bad", "skate_worry_3"]
 	else:
 		skate_worry.default_lines = ["skate_worry_good", "skate_worry_3"]
+
+
+func kid_setup() -> void:
+	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
+	first_encounter.inspected.connect(kid_first_encounter, CONNECT_ONE_SHOT)
+	if DAT.get_data("kid_encountered", false):
+		first_encounter.queue_free()
+
+func kid_first_encounter() -> void:
+	var first_encounter: OverworldCharacter = $Houses/NeighbourHouse/KidEncounter
+	print("yp")
+	DAT.set_data("kid_encountered", true)
+	SOL.dialogue_closed.connect(func():
+		var tw := create_tween()
+		tw.tween_property(first_encounter, "global_position:y", 400, 1.0)
+		tw.tween_callback(first_encounter.queue_free)
+	, CONNECT_ONE_SHOT)
 
 
 func _on_trash_guy_inspected() -> void:
