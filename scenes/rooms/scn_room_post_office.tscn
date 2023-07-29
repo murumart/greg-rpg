@@ -1055,7 +1055,6 @@ sprite_frames = ExtResource("8_0mleu")
 animation = &"walk_up"
 
 [node name="Picture" type="Node2D" parent="Decoration/UshankaGuyCutscene"]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Decoration/UshankaGuyCutscene/Picture"]
 offset_right = 160.0

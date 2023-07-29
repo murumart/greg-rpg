@@ -1099,8 +1099,8 @@ CHAR mail_man
 	...yeah.
 CHAR 
 	man, i wish i could help you! i asked everyone if they knew...
-	...who it was, but no one knew anything.
-	and the police still know nothing?
+	...anything about it, but no one did.
+	and the police are still of no help?
 CHAR mail_man
 	...yeah.
 EMO 
@@ -1341,7 +1341,7 @@ CHAR bike_ghost
 DIALOGUE tarikas_hello
 CHAR tarikas
 	mh. you're blocking the sunlight.
-	you don't look like a local.
+	...you don't look like a local.
 	i'm interested in seeing what you'll do.
 
 
@@ -1770,7 +1770,7 @@ CHAR popo_1
 
 
 DIALOGUE police_greeting_happy
-CHAR popo_2
+CHAR popo_1
 	it's great to see you, agent!
 
 
@@ -1883,6 +1883,15 @@ DIALOGUE inside_police_cell
 	you seem to be stuck inside a jail cell.
 CHOICES yes,no
 	would you like to break out?
+
+
+DIALOGUE kid_firstencounter
+CHAR kid
+	yo! you interested in some goods?
+	because i got goods.
+	uh, not right now though.
+	but remember me...
+	and find me once you have money... cheers...
 
 
 DIALOGUE kid_hi
