@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=66 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="12_rk0rd"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="13_a4qs7"]
 [ext_resource type="PackedScene" uid="uid://ci7bf33nl7ufb" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="14_cftpx"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="14_gpjks"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
@@ -110,6 +111,81 @@ size = Vector2(24, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0kbj"]
 size = Vector2(14, 18)
 
+[sub_resource type="Animation" id="Animation_t87sn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Aric:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, -56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Aric:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Aric:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jack:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-36, 29)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Jack:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Jack:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_cnwtd"]
 resource_name = "nice"
 length = 3.5
@@ -187,86 +263,19 @@ tracks/5/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_t87sn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Aric:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-73, -56)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Aric:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Aric:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Jack:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-36, 29)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Jack:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Jack:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gfdhj"]
 _data = {
 "RESET": SubResource("Animation_t87sn"),
 "nice": SubResource("Animation_cnwtd")
 }
+
+[sub_resource type="Resource" id="Resource_nubog"]
+script = ExtResource("26_ac4pt")
+title = "skateboard"
+silver_required = 550
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"skateboard"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3utb"]
 size = Vector2(12, 12)
@@ -286,7 +295,7 @@ title = "sellshell"
 silver_required = 0
 input = Array[String](["eggshell"])
 silver_granted = 20
-output = Array[String]([])
+output = Array[StringName]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
@@ -352,7 +361,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(962, -190)
+position = Vector2(-484, 272)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -651,6 +660,12 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("11_g1geq")
 animation = &"walk_down"
 frame_progress = 0.826367
+
+[node name="KidEncounter" parent="Houses/NeighbourHouse" instance=ExtResource("25_ffcbh")]
+position = Vector2(158, 96)
+script = ExtResource("14_gpjks")
+default_lines = Array[StringName]([&"kid_firstencounter"])
+save = false
 
 [node name="Bike" parent="Houses/NeighbourHouse" node_paths=PackedStringArray("player") instance=ExtResource("12_8ipa6")]
 position = Vector2(194, 97)
@@ -1189,11 +1204,16 @@ default_lines = Array[StringName]([&"skaters"])
 save = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack2"]
-position = Vector2(0, -8)
+position = Vector2(-8, -15)
 scale = Vector2(0.90971, 1)
 texture = ExtResource("16_o4xvl")
+centered = false
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
+
+[node name="KidOverworld" parent="Houses/Skatepark/Goodness" instance=ExtResource("25_ffcbh")]
+position = Vector2(35, 75)
+trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_nubog")])
 
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true

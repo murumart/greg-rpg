@@ -159,6 +159,7 @@ func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
 	#effect.global_position = pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)
+	effect.scale = options.get("scale", Vector2(1, 1))
 	# most effects have queue_free() calls built into their animations
 	if options.get("free_time", -1.0) > 0:
 		get_tree().create_timer(options.get("free_time")).timeout.connect(

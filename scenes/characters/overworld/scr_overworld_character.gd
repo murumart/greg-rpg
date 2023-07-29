@@ -165,7 +165,7 @@ func interacted() -> void:
 			return
 	if battle_info:
 		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-			LTS.enter_battle(battle_info)
+			LTS.enter_battle(battle_info, true)
 			set_physics_process(false)
 			return
 	if transport_to_scene:
@@ -182,7 +182,8 @@ func _on_talking_finished() -> void:
 	if action_right_after_dialogue:
 		if battle_info:
 			if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-				LTS.enter_battle(battle_info)
+				LTS.enter_battle(battle_info, true)
+				set_physics_process(false)
 		if transport_to_scene:
 			LTS.level_transition(transport_to_scene)
 
@@ -288,7 +289,8 @@ func move_to(to: Vector2) -> void:
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	chase(body)
+	if chase_target:
+		chase(body)
 
 
 func chase(body: CollisionObject2D) -> void:

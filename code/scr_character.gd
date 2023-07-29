@@ -2,6 +2,7 @@ extends Resource
 class_name Character
 
 signal leveled_up
+signal message_owner
 
 # resource for storing character data
 # this will be interpreted by the battle system and dialogue system
@@ -174,6 +175,9 @@ func handle_payload(pld: BattlePayload) -> void:
 	health_change += pld.max_health_percent / 100.0 * max_health
 	health = minf(health + health_change, max_health)
 	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
+	if pld.meta.get("skateboard", false):
+		print("item is skateboard!!!")
+		message_owner.emit(&"skateboard_equipped")
 
 
 func fully_heal() -> void:

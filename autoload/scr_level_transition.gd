@@ -73,8 +73,9 @@ func to_game_over_screen() -> void:
 	level_transition("res://scenes/gui/scn_death_screen.tscn", {"stealing_enabled": false})
 
 
-func enter_battle(info: BattleInfo) -> void:
+func enter_battle(info: BattleInfo, sbcheck := false) -> void:
 	if entering_battle: return
+	if sbcheck and skateboard_check(): return
 	entering_battle = true
 	gate_id = "entering_battle"
 	get_tree().call_group("free_on_level_transition", "queue_free")
@@ -98,3 +99,14 @@ func handle_stolen_items() -> void:
 		DAT.grant_item(i)
 		DAT.incri("stolen_from_store", DAT.get_item(i).price)
 		await SOL.dialogue_closed
+
+
+func skateboard_check() -> bool:
+	var greg := get_tree().get_first_node_in_group("players") as PlayerOverworld
+	if greg.move_mode == PlayerOverworld.MoveModes.SKATE:
+		greg.move_mode = greg.MoveModes.WALK
+		SOL.vfx("explosion", greg.get_global_transform_with_canvas().origin
+		- SOL.SCREEN_SIZE / 2, {scale = Vector2(0.25, 0.25)})
+		return true
+		
+	return false

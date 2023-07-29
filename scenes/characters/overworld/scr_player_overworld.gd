@@ -12,10 +12,14 @@ const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
 var state : int: set = set_state
-var move_mode : MoveModes = MoveModes.SKATE
+var move_mode : MoveModes = MoveModes.SKATE:
+	set(to):
+		move_mode = to
+		skateboard.visible = bool(int(to))
 
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
+@onready var skateboard: Sprite2D = $Skateboard
 
 @onready var armour := $ArmorLayer
 var updating_armour := false
@@ -25,8 +29,10 @@ var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instant
 
 func _ready() -> void:
 	DAT.player_captured.connect(_update_capture)
+	DAT.get_character("greg").message_owner.connect(_character_message_received)
 	if DAT.player_capturers.size() > 0:
 		state = States.NOT_FREE_MOVE
+	move_mode = DAT.get_data("player_move_mode", 0) as MoveModes
 	menu.close_requested.connect(close_menu)
 	SOL.add_ui_child(menu)
 	menu.hide()
@@ -78,12 +84,14 @@ func movement(delta: float) -> void:
 			global_position.y = roundi(global_position.y)
 		MoveModes.SKATE:
 			if input:
-				velocity = velocity.move_toward(input * SPEED * 4 * delta, delta * 64)
+				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 64)
 			else:
 				velocity = velocity.move_toward(Vector2(), delta * 64)
-			move_and_slide()
+			var collided := move_and_slide()
 			global_position.x = roundi(global_position.x)
 			global_position.y = roundi(global_position.y)
+			if collided:
+				velocity *= 0.5
 
 
 func direct_raycast() -> void:
@@ -91,12 +99,16 @@ func direct_raycast() -> void:
 
 
 func direct_animation() -> void:
-	var animation_name := str("walk_", ROTS[Math.dir_from_rot(raycast.target_position.angle()) + 1])
+	var dir := Math.dir_from_rot(raycast.target_position.angle())
+	var animation_name := str("walk_", ROTS[dir + 1])
 	sprite.play(animation_name)
-	sprite.speed_scale = 1.0
-	sprite.speed_scale = velocity.length_squared() * 0.0009
-	if is_zero_approx(velocity.length_squared()):
-		sprite.stop()
+	sprite.speed_scale = 0.0
+	if move_mode != MoveModes.SKATE:
+		sprite.speed_scale = velocity.length_squared() * 0.0009
+		if is_zero_approx(velocity.length_squared()):
+			sprite.stop()
+	else:
+		skateboard.region_rect.position.y = 0 if absi(dir) != 1 else 16
 
 
 # for cutscenes and such
@@ -124,8 +136,16 @@ func _update_capture(capture: bool) -> void:
 	state = States.FREE_MOVE
 
 
+func _character_message_received(msg := &"") -> void:
+	match msg:
+		&"skateboard_equipped":
+			move_mode = MoveModes.SKATE
+			close_menu()
+
+
 func _save_me() -> void:
 	DAT.set_data(save_key_name("position"), position)
+	DAT.set_data("player_move_mode", int(move_mode))
 
 
 func save_key_name(key: String) -> String:

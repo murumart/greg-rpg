@@ -331,12 +331,15 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
 	
-	if pld.reveal_enemy_info and pld.sender.player_controlled:
+	if pld.meta.get("reveal_enemy_info", false) and pld.sender.player_controlled:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
 		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
 		SOL.dialogue_box.dial_concat("battle_inspect", 3, [get_attack(), get_defense(), get_speed()])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
+	
+	if pld.meta.get("skateboard", false):
+		message.emit("woah! skateboard!! so cool!!")
 	
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})

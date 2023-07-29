@@ -90,10 +90,16 @@ func _on_collided_with_player(_player) -> void:
 	# cars don't spawncamp
 	if DAT.seconds - DAT.load_second < 2: return
 	moves = false
-	DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
-	DAT.set_data("last_hit_car_name", name.to_snake_case())
-	DAT.set_data(save_key_name("fought"), true)
-	LTS.enter_battle(battle_info)
+	var skateboard_check := LTS.skateboard_check()
+	if not skateboard_check:
+		DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
+		DAT.set_data("last_hit_car_name", name.to_snake_case())
+		DAT.set_data(save_key_name("fought"), true)
+		LTS.enter_battle(battle_info)
+	else:
+		var tw := create_tween()
+		tw.tween_property(self, "modulate:a", 1.0, 2.0).from(0.5)
+		tw.tween_callback(func(): moves = true)
 
 
 func turn(rot: int) -> void:

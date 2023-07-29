@@ -29,7 +29,7 @@ var type := Types.ATTACK
 @export var animation_on_receive := ""
 var equip_as_weapon := false
 var equip_as_armour := false
-@export var reveal_enemy_info := false
+@export var meta := {}
 
 var sender : BattleActor
 
