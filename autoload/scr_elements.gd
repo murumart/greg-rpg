@@ -88,7 +88,7 @@ func get_element(index: int) -> Element:
 	el.valence = get_valence(index)
 	el.period = get_period(index)
 	el.group = get_group(index)
-	el.effect = element_effects[index]
+	el.effect = element_effects[index as Effects]
 	return el
 
 

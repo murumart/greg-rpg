@@ -293,7 +293,7 @@ size = Vector2(71, 20)
 script = ExtResource("26_ac4pt")
 title = "sellshell"
 silver_required = 0
-input = Array[String](["eggshell"])
+input = Array[StringName]([&"eggshell"])
 silver_granted = 20
 output = Array[StringName]([])
 
