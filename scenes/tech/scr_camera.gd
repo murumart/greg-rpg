@@ -32,4 +32,4 @@ func _physics_process(delta: float) -> void:
 	# free cam cheat (toggle in OPT)
 	if free_cam:
 		global_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		zoom += Math.v2(Input.get_axis("ui_page_down", "ui_page_up"))
+		zoom += Math.v2(Input.get_axis("ui_page_down", "ui_page_up")) / 10.0
