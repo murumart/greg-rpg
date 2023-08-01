@@ -1,10 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=17 format=3 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_2kpjx"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_g7xsi"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="3_q2vky"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_255qu"]
+
+[sub_resource type="Curve" id="Curve_g5h5i"]
+max_value = 20.0
+_data = [Vector2(0, 3.37031), 0.0, 0.0, 0, 0, Vector2(0.37542, 10.3375), 0.0, 0.0, 0, 0, Vector2(0.746091, 11.9556), -32.6554, -32.6554, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_ams8o"]
+_data = [Vector2(0, 0.505316), 0.0, 0.0, 0, 0, Vector2(0.384107, 0.30883), 0.0, 0.0, 0, 0, Vector2(1, 0.100786), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_wmt8h"]
 colors = PackedColorArray(0, 0.0156863, 0.00784314, 1, 0.909804, 0.972549, 0.909804, 1)
@@ -40,6 +49,9 @@ size = Vector2(8, 48)
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_8ih16")
+trash_amount_curve = SubResource("Curve_g5h5i")
+trash_silver_item_chance_curve = SubResource("Curve_ams8o")
+music = "lion"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_e2h23")
@@ -122,7 +134,6 @@ layer_6/tile_data = PackedInt32Array(983041, 196608, 2, 917505, 196608, 2, 85196
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_255qu")]
 position = Vector2(0, -10)
-zoom = Vector2(0.325, 0.325)
 limit_left = -288
 limit_top = -256
 limit_right = 288

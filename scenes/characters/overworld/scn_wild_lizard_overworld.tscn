@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://eof23vq2xau7"]
+
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
+[ext_resource type="SpriteFrames" uid="uid://d2xcgwoc2a7cx" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
+
+[sub_resource type="Curve" id="Curve_6c0rn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gwndq"]
+_data = [Vector2(0, 0.0661118), 0.0, 0.0, 0, 0, Vector2(0.139313, 0.36662), 0.0, 0.0, 0, 0, Vector2(0.492928, 0.690245), 0.0, 0.0, 0, 0, Vector2(1, 0.493759), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmsf5"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ii6u"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
+script = ExtResource("2_4xx1x")
+wild_lizard_probability = SubResource("Curve_6c0rn")
+freebird_probability = SubResource("Curve_gwndq")
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_wait = 0.5
+random_movement = true
+interact_on_touch = true
+save = false
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_viuke")
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bmsf5")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_7ii6u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_3eeu5")
+animation = &"walk_down"

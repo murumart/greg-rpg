@@ -90,6 +90,10 @@ var songs := {
 		"title": "lily lesson",
 		"link": "res://music/mus_lily_lesson.ogg"
 	},
+	"lion": {
+		"title": "lion",
+		"link": "res://music/mus_lion.ogg"
+	},
 	"mail_mission": {
 		"title": "mail mission",
 		"link": "res://music/mus_mail_mission.ogg"
