@@ -2,6 +2,8 @@ extends BattleEnemy
 
 var here := true: set = set_here
 var time_away := 0
+@export var max_time_away := 2
+@export var min_time_here := 2
 
 
 func set_here(to: bool) -> void:
@@ -22,7 +24,7 @@ func ai_action() -> void:
 	if here: time_away -= 1
 	else: time_away += 1
 	
-	if time_away > 2 and not here:
+	if time_away >= max_time_away and not here:
 		here = true
-	elif here and randf() < 0.85 and time_away < -1:
+	elif here and randf() < 0.85 and time_away < -min_time_here:
 		here = false
