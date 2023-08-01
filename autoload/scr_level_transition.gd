@@ -73,16 +73,19 @@ func to_game_over_screen() -> void:
 	level_transition("res://scenes/gui/scn_death_screen.tscn", {"stealing_enabled": false})
 
 
-func enter_battle(info: BattleInfo, sbcheck := false) -> void:
+func enter_battle(info: BattleInfo, options := {}) -> void:
 	if entering_battle: return
-	if sbcheck and skateboard_check(): return
+	if options.get("sbcheck", false) and skateboard_check(): return
 	entering_battle = true
 	gate_id = "entering_battle"
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
-	SND.play_song("", 100.0, {save_audio_position = true})
-	SOL.vfx("battle_enter", Vector2())
-	await get_tree().create_timer(3.0).timeout
+	if options.get("kill_music", true):
+		SND.play_song("", 100.0, {save_audio_position = true})
+	if options.get("play_fanfare", true):
+		SND.play_sound(preload("res://sounds/snd_enter_battle.ogg"))
+	SOL.vfx("battle_enter", Vector2(), {"wait_time": options.get("wait_time", 3.0)})
+	await create_tween().tween_interval(options.get("wait_time", 3.0)).finished
 	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
 	await scene_changed

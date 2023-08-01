@@ -58,7 +58,7 @@ func _on_timer_timeout() -> void:
 		if not battles_initiated >= max_battles or max_battles == 0:
 			if debug: print("BOO! %s battles initiated" % battles_initiated)
 			else:
-				LTS.enter_battle(battle, true)
+				LTS.enter_battle(battle, {"sbcheck": true})
 
 
 func _save_me() -> void:

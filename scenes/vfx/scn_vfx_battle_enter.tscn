@@ -2,12 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="1_in0ua"]
 [ext_resource type="Shader" uid="uid://fr6t6fx74m15" path="res://scenes/vfx/shd_vfx_battle_enter.tres" id="1_uldgb"]
-[ext_resource type="AudioStream" uid="uid://dkojmriy30e8p" path="res://sounds/snd_enter_battle.ogg" id="3_ap2gs"]
+
+[sub_resource type="GDScript" id="GDScript_pql6w"]
+resource_name = "scr_battle_enter"
+script/source = "extends Node2D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func init(options := {}) -> void:
+	animation_player.speed_scale = 3.0 / options.get(\"wait_time\", 3.0)
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a16h0"]
 shader = ExtResource("1_uldgb")
 shader_parameter/zoom = 1.0
-shader_parameter/white = 0.01
+shader_parameter/white = 0.0
 
 [sub_resource type="Animation" id="Animation_1q67w"]
 length = 0.001
@@ -39,51 +49,37 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_rnits"]
 resource_name = "enter_battle"
 length = 3.6
-tracks/0/type = "audio"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("3_ap2gs")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:material:shader_parameter/zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 1.5, 3.2, 3.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [1.0, 1.0, 0.1, 0.1, 1.0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect:material:shader_parameter/white")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/white")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.5, 3.2, 3.6),
 "transitions": PackedFloat32Array(2.92817, 1, 1, 2.92817),
 "update": 0,
 "values": [0.01, 1.0, 1.0, 0.01]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(3.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -99,6 +95,7 @@ _data = {
 }
 
 [node name="BattleEnter" type="Node2D"]
+script = SubResource("GDScript_pql6w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -119,7 +116,3 @@ autoplay = "enter_battle"
 libraries = {
 "": SubResource("AnimationLibrary_m64q3")
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_ap2gs")
-volume_db = -1.763

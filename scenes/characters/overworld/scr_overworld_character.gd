@@ -165,7 +165,7 @@ func interacted() -> void:
 			return
 	if battle_info:
 		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-			LTS.enter_battle(battle_info, true)
+			LTS.enter_battle(battle_info, {"sbcheck": true})
 			set_physics_process(false)
 			return
 	if transport_to_scene:
@@ -182,7 +182,7 @@ func _on_talking_finished() -> void:
 	if action_right_after_dialogue:
 		if battle_info:
 			if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-				LTS.enter_battle(battle_info, true)
+				LTS.enter_battle(battle_info, {"sbcheck": true})
 				set_physics_process(false)
 		if transport_to_scene:
 			LTS.level_transition(transport_to_scene)

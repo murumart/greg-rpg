@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["hunk", "hunk"]).\
+set_enemies(["freebird", "freebird"]).\
 set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
 
 var play_victory_music := true
@@ -267,7 +267,7 @@ func set_background(id: String) -> void:
 	if DIR.battle_background_scene_exists(id):
 		background_container.add_child(load(path).instantiate())
 	else:
-		background_container.add_child(load("res://scenes/battle_backgrounds/scn_bikeghost.tscn").instantiate())
+		background_container.add_child(load("res://scenes/battle_backgrounds/scn_town.tscn").instantiate())
 
 
 # update the panel visuals

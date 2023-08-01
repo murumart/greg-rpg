@@ -11,7 +11,7 @@ var type := Types.ATTACK
 @export var health : float
 @export var health_percent := 0.0
 @export var max_health_percent := 0.0
-@export var pierce_defense := 0.0
+@export_range(0.0, 1.0) var pierce_defense := 0.0
 
 @export var magic : float
 @export var magic_percent: float

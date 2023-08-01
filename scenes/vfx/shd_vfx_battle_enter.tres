@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://fr6t6fx74m15"]
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://fr6t6fx74m15"]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_uqcwa"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, 0.5]
@@ -29,13 +29,10 @@ parameter_name = "white"
 hint = 1
 default_value_enabled = true
 
-[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_rx3ku"]
-output_port_for_preview = 0
-default_input_values = [0, Vector2(0, 0)]
-op_type = 0
-
 [resource]
 code = "shader_type canvas_item;
+render_mode blend_mix;
+
 uniform float zoom = 1;
 uniform float white : hint_range(0, 1) = 0;
 uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
@@ -56,16 +53,13 @@ void fragment() {
 	vec2 n_out4p0 = (UV - n_in4p2) * n_out6p0 + n_in4p2;
 
 
-// VectorFunc:9
-	vec2 n_out9p0 = normalize(n_out4p0);
-
-
 // FloatParameter:8
 	float n_out8p0 = white;
 
 
 // Mix:10
-	vec3 n_out10p0 = mix(vec3(n_out4p0, 0.0), vec3(n_out9p0, 0.0), n_out8p0);
+	vec3 n_in10p1 = vec3(1.00000, 1.00000, 1.00000);
+	vec3 n_out10p0 = mix(vec3(n_out4p0, 0.0), n_in10p1, n_out8p0);
 
 
 	vec4 n_out3p0;
@@ -84,6 +78,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-406.214, -32.3261)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(740, 140)
@@ -99,8 +94,6 @@ nodes/fragment/7/node = SubResource("VisualShaderNodeMix_bkf4q")
 nodes/fragment/7/position = Vector2(600, 120)
 nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_fon3w")
 nodes/fragment/8/position = Vector2(-400, 380)
-nodes/fragment/9/node = SubResource("VisualShaderNodeVectorFunc_rx3ku")
-nodes/fragment/9/position = Vector2(0, 220)
 nodes/fragment/10/node = SubResource("VisualShaderNodeMix_uqcwa")
-nodes/fragment/10/position = Vector2(200, 40)
-nodes/fragment/connections = PackedInt32Array(5, 0, 6, 0, 5, 0, 6, 1, 6, 0, 4, 1, 3, 0, 7, 0, 7, 0, 0, 0, 8, 0, 7, 2, 4, 0, 9, 0, 4, 0, 10, 0, 9, 0, 10, 1, 10, 0, 3, 0, 8, 0, 10, 2)
+nodes/fragment/10/position = Vector2(180, 40)
+nodes/fragment/connections = PackedInt32Array(5, 0, 6, 0, 5, 0, 6, 1, 6, 0, 4, 1, 3, 0, 7, 0, 7, 0, 0, 0, 8, 0, 7, 2, 4, 0, 10, 0, 10, 0, 3, 0, 8, 0, 10, 2)
