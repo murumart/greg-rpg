@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name TrashBin extends Node2D
 
 # trash bins in overworld that contain loot
 
@@ -11,16 +11,19 @@ extends Node2D
 @export var replenish_seconds := 1500
 @export var item := &""
 @export var silver := 0
+@export var save := true
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	check_full_time_passed()
+	if save:
+		check_full_time_passed()
 
 
 func _on_interaction_area_on_interact() -> void:
 	if full:
-		DAT.set_data(save_key("emptied_second"), DAT.seconds)
+		if save:
+			DAT.set_data(save_key("emptied_second"), DAT.seconds)
 		full = false
 		SND.play_sound(preload("res://sounds/snd_trashbin.ogg"))
 		if item:
