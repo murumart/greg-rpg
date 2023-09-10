@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name TreeDecor extends Node2D
 
 # trees in the overworld
 

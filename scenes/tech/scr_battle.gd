@@ -10,9 +10,10 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["freebird", "freebird"]).\
+set_enemies(["freebird", "fox"]).\
 set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
 
+var stop_music_before_end := true
 var play_victory_music := true
 
 const SCREEN_SIZE := Vector2i(160, 120)
@@ -176,6 +177,7 @@ func load_battle(info: BattleInfo) -> void:
 	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
 	play_victory_music = info.victory_music
+	stop_music_before_end = info.stop_music_before_end
 	loading_battle = false
 
 
@@ -410,7 +412,8 @@ func check_end(force := false) -> void:
 	var end_condition := party.size() < 1 or enemies.size() < 1
 	if end_condition or force:
 		doing = Doings.END
-		SND.play_song("")
+		if stop_music_before_end:
+			SND.play_song("")
 		open_end_screen(party.size() > 0)
 
 
@@ -619,7 +622,8 @@ func open_end_screen(victory: bool) -> void:
 	victory_text.speak_text()
 	if victory:
 		resize_panel(60)
-		SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
+		if play_victory_music:
+			SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
 		var xp_reward := Reward.new()
 		xp_reward.type = BattleRewards.Types.EXP
 		xp_reward.property = str(xp_pool)

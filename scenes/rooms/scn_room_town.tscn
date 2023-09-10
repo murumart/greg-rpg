@@ -309,6 +309,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 victory_music = true
+stop_music_before_end = true
 
 [sub_resource type="Resource" id="Resource_jm0jg"]
 script = ExtResource("11_dsxoc")
@@ -319,6 +320,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 victory_music = true
+stop_music_before_end = true
 
 [sub_resource type="Resource" id="Resource_u30p0"]
 script = ExtResource("11_dsxoc")
@@ -329,6 +331,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 victory_music = true
+stop_music_before_end = true
 
 [node name="Town" type="Node2D"]
 y_sort_enabled = true

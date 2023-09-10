@@ -32,7 +32,7 @@ effects = Array[ExtResource("1_nrd11")]([SubResource("Resource_hvl7u"), SubResou
 delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_fvi5h")

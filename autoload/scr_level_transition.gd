@@ -9,6 +9,7 @@ const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 # this specifies the type of change between scenes
 var gate_id : StringName
 const GATE_LOADING := &"loading"
+const GATE_ENTER_BATTLE := &"entering_battle"
 const GATE_EXIT_BATTLE := &"battle_exit"
 const GATE_EXIT_BIKING := &"bike_exit"
 const GATE_EXIT_FISHING := &"fishing_exit"
@@ -77,7 +78,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	if entering_battle: return
 	if options.get("sbcheck", false) and skateboard_check(): return
 	entering_battle = true
-	gate_id = "entering_battle"
+	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
 	if options.get("kill_music", true):

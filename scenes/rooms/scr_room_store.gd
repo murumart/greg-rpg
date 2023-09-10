@@ -110,7 +110,7 @@ func restock() -> void:
 	DAT.set_data("store_restock_second", DAT.seconds)
 
 
-func save_me():
+func _save_me():
 	print("store saving data!")
 	store_data["shelves"].clear()
 	for s in shelves.size():

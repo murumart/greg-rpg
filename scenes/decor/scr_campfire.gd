@@ -62,7 +62,7 @@ func process() -> void:
 		add_child(flames.instantiate())
 
 
-func save_me() -> void:
+func _save_me() -> void:
 	DAT.set_data(save_key("lit"), lit)
 
 
