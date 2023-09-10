@@ -37,15 +37,25 @@ func _ready() -> void:
 		($Gates.get_child(i) as Area2D).body_entered.connect(gate_entered.bind(
 			i).unbind(1))
 		if DAT.get_data("forest_last_gate_entered", -1) == i:
-			greg.global_position = $Gates.get_child(dir_oppos(i)).get_child(
-				1).global_position
-	load_layout()
-	trees()
-	bins()
-	enemies()
+			if not LTS.gate_id == LTS.GATE_EXIT_BATTLE:
+				greg.global_position = $Gates.get_child(dir_oppos(i)).get_child(
+					1).global_position
+	if not LTS.gate_id == LTS.GATE_EXIT_BATTLE:
+		load_layout()
+		trees()
+		bins()
+		enemies()
+	else:
+		load_from_save()
+	
+	# debug
+	if DAT.get_character("greg").level == 1:
+		DAT.get_character("greg").level_up(59)
 
 
 func gate_entered(which: int) -> void:
+	print("gate ", which)
+	LTS.gate_id = &"forest_transition"
 	if which != dir_oppos(DAT.get_data("forest_last_gate_entered", -1)):
 		DAT.set_data("forest_last_gate_entered", which)
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
@@ -72,6 +82,31 @@ func load_layout() -> void:
 			inversion = true
 	paths.set_layer_enabled(layout, true)
 	enabled_layer = layout
+
+
+func load_from_save() -> void:
+	var d := DAT.get_data("forest_save", {}) as Dictionary
+	for i in paths.get_layers_count():
+		paths.set_layer_enabled(i, false)
+	paths.set_layer_enabled(d.layout, true)
+	paths.scale = d.pscale
+	for t in d.trees.keys():
+		var tree := TREE.instantiate()
+		add_child(tree)
+		tree.type = d.trees[t]
+		tree.global_position = t
+	for b in d.bins.keys():
+		var bin := TRASH.instantiate()
+		add_child(bin)
+		bin.global_position = b
+		bin.item = d.bins[b].item
+		bin.silver = d.bins[b].silver
+		bin.full = d.bins[b].full
+		bin.add_to_group("bins")
+	# do not load enemies after a fight
+	for e in d.enemies:
+		pass
+	current_room = d.room_nr
 
 
 func rand_pos() -> Vector2:
@@ -109,7 +144,7 @@ func bins() -> void:
 
 
 func enemies() -> void:
-	enemy_count = 10
+	enemy_count = clampi(current_room / 12, 1, 12)
 	for i in enemy_count:
 		var enemy := ENEMY.instantiate()
 		enemy.difficulty = current_room / 100.0
@@ -117,6 +152,7 @@ func enemies() -> void:
 		add_child(enemy)
 		var pos := rand_pos().floor()
 		enemy.global_position = pos * 16
+		enemy.add_to_group("enemies")
 
 
 func dir_oppos(which: int) -> int:
@@ -129,6 +165,8 @@ func dir_oppos(which: int) -> int:
 
 func bin_loot(bin: TrashBin) -> void:
 	bin.replenish_seconds = -1
+	bin.save = false
+	bin.add_to_group("bins")
 	if randf() <= 0.25: return
 	if randf() <= 0.25:
 		bin.full = false
@@ -146,4 +184,37 @@ func leave() -> void:
 	DAT.set_data("last_forest_gate_entered", -1)
 	DAT.set_data("current_forest_rooms_traveled", 0)
 	LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
+
+
+func _save_me() -> void:
+	if LTS.gate_id == LTS.GATE_ENTER_BATTLE:
+		print("forest saving data!")
+		var forest_save := {}
+		var trees_dict := {}
+		var bins_dict := {}
+		var enemies_dict := {}
+		for tree in get_tree().get_nodes_in_group("trees"):
+			tree = tree as TreeDecor
+			trees_dict[tree.global_position] = tree.type
+		for bin in get_tree().get_nodes_in_group("bins"):
+			bin = bin as TrashBin
+			bins_dict[bin.global_position] = {
+				"item": bin.item,
+				"silver": bin.silver,
+				"full": bin.full
+			}
+		for enemy in get_tree().get_nodes_in_group("enemies"):
+			enemy = enemy as OverworldCharacter
+			enemies_dict[enemy.name] = {
+				"pos": enemy.global_position,
+			}
+		forest_save = {
+			"layout": enabled_layer,
+			"pscale": paths.scale,
+			"room_nr": current_room,
+			"trees": trees_dict,
+			"bins": bins_dict,
+			"enemies": enemies_dict
+		}
+		DAT.set_data("forest_save", forest_save)
 

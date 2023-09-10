@@ -14,6 +14,8 @@ var difficulty := 0.0
 func _ready() -> void:
 	super._ready()
 	battle_info = BattleInfo.new()
+	battle_info.stop_music_before_end = false
+	battle_info.victory_music = false
 	battle_info.set_enemies(gen_enemies()).set_music("lion").set_background("forest")
 	battle_info.set_rewards(preload("res://resources/rewards/res_thug_reward.tres"
 	)).set_start_text(["ravenous.", "hungry.", "wild.", "rampaging.",

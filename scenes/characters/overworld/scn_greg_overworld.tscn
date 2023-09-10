@@ -176,6 +176,7 @@ sprite_frames = ExtResource("3_58jt5")
 animation = &"walk_down"
 
 [node name="Skateboard" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -6)
 texture = ExtResource("4_pnyn0")
 region_enabled = true
