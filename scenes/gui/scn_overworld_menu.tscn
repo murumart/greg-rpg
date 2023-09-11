@@ -301,7 +301,7 @@ offset_bottom = 73.0
 [node name="Portraits" type="HBoxContainer" parent="UsingMenu/Panel"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 1.0
+offset_top = 8.0
 offset_right = 127.0
 offset_bottom = 40.0
 theme_override_constants/separation = 10
@@ -311,25 +311,25 @@ alignment = 1
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
-stretch_mode = 3
+stretch_mode = 4
 
 [node name="Portrait2" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
-stretch_mode = 3
+stretch_mode = 4
 
 [node name="Portrait3" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
-stretch_mode = 3
+stretch_mode = 4
 
 [node name="Trash" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("5_buhag")
-stretch_mode = 3
+stretch_mode = 4
 
 [node name="SaveWarningLabel" type="Label" parent="."]
 visible = false
