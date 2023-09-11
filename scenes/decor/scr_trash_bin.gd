@@ -48,7 +48,10 @@ func save_key(key: String) -> String:
 
 # save the time when the bin was last emptied, then compare with current time
 func check_full_time_passed() -> void:
-	if replenish_minutes < 0 or replenish_seconds < 0: return
+	if replenish_minutes < 0 or replenish_seconds < 0:
+		if DAT.get_data(save_key("emptied_second"), false):
+			full = false
+		return
 	emptied_second = DAT.get_data(save_key("emptied_second"), -3999999999)
 	if DAT.seconds - emptied_second > replenish_seconds:
 		full = true
