@@ -81,7 +81,7 @@ func restock() -> void:
 	# item types stored here
 	var healing_items := ["medkit", "plaster", "pills", "cough_syrup"]
 	var food_items := ["muesli", "mueslibar", "bread"]
-	var building_items := ["tape", "brick"]
+	var building_items := ["tape",]
 	var arrays := [healing_items, food_items, building_items]
 	
 	store_data["shelves"] = []
@@ -100,9 +100,8 @@ func restock() -> void:
 			if itemcount < 1: continue
 			inventory.append({"item": item,"count": itemcount})
 		var itemtype = 0
-		if from == healing_items: itemtype = 1
-		elif from == food_items: itemtype = 2
-		elif from == building_items: itemtype = 3
+		if from in arrays:
+			itemtype = arrays.find(from) + 1
 		else: itemtype = 0
 		if inventory.size() < 1: itemtype = 0
 		store_data["shelves"].append({"inventory": inventory, "type": itemtype})
