@@ -6,7 +6,6 @@ extends Room
 
 func _ready() -> void:
 	super._ready()
-	DAT.set_data("mail_heard_name", true)
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
 		return
@@ -65,12 +64,12 @@ func pink_haired_girl_setup(force := false) -> void:
 
 
 func can_ushanka_guy_cutscene() -> bool:
-	return true #debug
 	if not DAT.get_data("has_talked_to_mail_man", false): return false
 	if DAT.get_data("biking_games_finished", 0) < 2: return false
 	if DAT.get_data("post_office_enters", 0) < 3: return false
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
 	if DAT.get_data("witnessed_ushanka_guy_cutscene", false): return false
+	DAT.set_data("witnessed_ushanka_guy_cutscene", true)
 	return true
 
 
@@ -78,4 +77,12 @@ func dial(key: String) -> void:
 	SOL.dialogue(key)
 	ugc.animator.pause()
 	SOL.dialogue_closed.connect(func():ugc.animator.play(), CONNECT_ONE_SHOT)
+
+
+func stop_music() -> void:
+	SND.play_song("", 0.5)
+
+
+func play_music() -> void:
+	SND.play_song(music)
 

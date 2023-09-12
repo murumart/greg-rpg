@@ -875,7 +875,7 @@ SET_DATA asked_about_mail_man_job,true
 	don't worry, you will be paid...
 	well, what do you say, newspaper boy?
 LOOP 0
-	talk to me again if you wish to run this errand.
+	talk to me again later if you wish to run this errand.
 
 
 DIALOGUE mail_man_jobtalk
@@ -1075,7 +1075,7 @@ CHAR mail_man
 
 
 DIALOGUE pocutscene_1
-	...and then the koond guys said "are you going to eat that?"
+	...and then the koonders said "are you going to eat that?"
 CHAR mail_man
 EMO serious
 	...that was a great joke.
@@ -1160,9 +1160,66 @@ CHAR
 
 DIALOGUE pocutscene_3
 	mail man... are you thinking... what i'm thinking?
-	
-	
+CHAR mail_man
+EMO exasperated
+	...
+	guy whose name i never learned...
+	...are you thinking what i'm thinking?
+CHAR 
+	...
+	...
+	...a vampire recently appeared...
+	...and this guy... also did that...
+CHAR mail_man
+	...
+EMO serious
+	...are you kidding me?
+INSTASKIP
+	this guy is the loserest person ever,      
+INSTASKIP
+EMO 
+	no offense,      
+EMO serious
+	if he was a vampire he would have been found out...
+	...and pitchforked to death many times over by now.
 
+
+DIALOGUE pocutscene_4
+	oh?
+	then what were you thinking about...
+CHAR mail_man
+EMO content
+	your talk of salt made me hungry.
+EMO 
+	anyway, it's about time we got going home.
+	it's late, a good workday was had by all.
+CHAR 
+INSTASKIP
+	but it's barely past noon........
+CHAR mail_man
+EMO serious
+	don't question it.
+CHAR 
+	oh okay! bye then!
+# he leaves
+
+
+DIALOGUE pocutscene_5
+CHAR mail_man
+EMO serious
+DATA_LINK mail_heard_name,true
+	truth be told, greg...
+DATA_LINK mail_heard_name,false
+	truth be told, newspaper boy...
+DATA_LINK 
+	i always work. i also live here.
+	not one moment is spared for me to rest.
+EMO 
+	such is the life of a mail man.
+	hey, yours isn't much better.
+	let me cut you a deal: you deliver mail for me...
+	...and i let you sleep on the floor. deal?
+	
 
 DIALOGUE thug_catch_1
 	you %s. prepare to %s in a %s.
