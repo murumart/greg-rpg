@@ -1,4 +1,4 @@
-extends BattleEnemy
+extends EnemyAnimal
 
 var here := true: set = set_here
 var time_away := 0

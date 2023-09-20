@@ -7,7 +7,10 @@ var menusound := preload("res://sounds/snd_gui.ogg")
 var starting := false
 
 
+
+
 func _ready() -> void:
+	load_all_effects()
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
 	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
@@ -101,3 +104,18 @@ func _on_mail_button_pressed() -> void:
 	read_messages = true
 
 
+# maybe it caches them somewhere so it will be less laggy than loading it during runtime
+func load_all_effects() -> void:
+	AudioServer.set_bus_mute(0, true)
+	var path := "res://scenes/vfx/"
+	var names := DIR.get_dir_contents(path)
+	for file in names:
+		var fpath := path + file + ".tscn"
+		if ResourceLoader.exists(fpath):
+			var scene := SOL.vfx(file.trim_prefix("scn_vfx_"), Vector2(), {"silent": true})
+			scene.hide()
+			scene.queue_free()
+	SND.kill_sounds()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	AudioServer.set_bus_mute(0, false)

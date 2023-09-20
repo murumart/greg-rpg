@@ -144,7 +144,10 @@ offset_top = 77.0
 offset_right = 53.0
 offset_bottom = 79.0
 
-[node name="EffectsContainer" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="7"]
+[node name="AnimalBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="6"]
+visible = false
+
+[node name="EffectsContainer" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="8"]
 offset_left = 92.0
 offset_right = 127.0
 
@@ -311,7 +314,13 @@ offset_top = 53.0
 offset_right = -5.0
 offset_bottom = 54.0
 
-[node name="EffectsContainer" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="7"]
+[node name="AnimalBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="6"]
+offset_left = -163.0
+offset_top = 50.0
+offset_right = -5.0
+offset_bottom = 51.0
+
+[node name="EffectsContainer" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="8"]
 offset_left = -28.0
 offset_top = 28.0
 offset_right = -6.0

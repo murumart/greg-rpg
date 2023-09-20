@@ -142,10 +142,12 @@ func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
 		for i in get_all_children_of_type(effect, "AudioStreamPlayer"):
 			i = i as AudioStreamPlayer
 			i.volume_db = -80
+			i.bus = "Master"
 		for i in get_all_children_of_type(effect, "AudioStreamPlayer2D"):
 			i.queue_free()
 			i = i as AudioStreamPlayer2D
 			i.volume_db = -80
+			i.bus = "Master"
 	# some effects have scripts, this is where they are called
 	if effect.has_method(&"init"):
 		effect.init(options)

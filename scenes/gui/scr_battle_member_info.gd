@@ -7,6 +7,8 @@ class_name PartyMemberInfoPanel
 @onready var health_bar := $HealthBar
 @onready var magic_bar := $MagicBar
 @onready var wait_bar := $WaitBar
+@onready var animal_bar: ProgressBar = $AnimalBar
+
 @onready var effects_container := $EffectsContainer
 @onready var remote_transform : RemoteTransform2D = $RemoteTransform
 
@@ -23,6 +25,9 @@ func update(actor: BattleActor) -> void:
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
 	wait_bar.value = actor.wait
+	animal_bar.visible = actor is EnemyAnimal
+	if actor is EnemyAnimal:
+		animal_bar.value = actor.soul
 	#remote_transform.position = Vector2(12, 12)
 	if charc.health <= 0.0:
 		portrait.modulate.a = 0.5

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://g6h0jepyhdep"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_m6jch"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_c5qhk"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_7p2rh"]
 
 [sub_resource type="Animation" id="Animation_uab4r"]
@@ -1024,9 +1024,8 @@ _data = {
 "idle": SubResource("Animation_tna21")
 }
 
-[node name="Fox" type="Node2D" node_paths=PackedStringArray("animator")]
-script = ExtResource("1_m6jch")
-animator = NodePath("AnimationPlayer")
+[node name="Fox" type="Node2D"]
+script = ExtResource("1_c5qhk")
 
 [node name="Puppet" type="Node2D" parent="."]
 z_index = -1
@@ -1051,7 +1050,6 @@ region_rect = Rect2(80, 77, 47, 31)
 
 [node name="T5Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(2, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 2, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1067,7 +1065,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1098,7 +1095,6 @@ region_rect = Rect2(5, 144, 14, 4)
 
 [node name="T2Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(18, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 18, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1114,7 +1110,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1145,7 +1140,6 @@ region_rect = Rect2(5, 144, 14, 4)
 
 [node name="TBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(-16, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -16, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1161,7 +1155,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1207,7 +1200,6 @@ region_rect = Rect2(22, 69, 57, 23)
 
 [node name="HeadBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(-21, -3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -21, -3)
 auto_calculate_length_and_angle = false
 length = 10.644
@@ -1223,7 +1215,6 @@ region_rect = Rect2(0, 72, 21, 38)
 
 [node name="T3Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(-6, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -6, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1239,7 +1230,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1270,7 +1260,6 @@ region_rect = Rect2(5, 144, 14, 4)
 
 [node name="T4Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(11, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 11, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1286,7 +1275,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1317,7 +1305,6 @@ region_rect = Rect2(5, 144, 14, 4)
 
 [node name="T6Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(23, 3)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 23, 3)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1333,7 +1320,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0

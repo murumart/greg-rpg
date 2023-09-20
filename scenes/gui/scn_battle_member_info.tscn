@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsrntxiwcuv2v"]
+[gd_scene load_steps=6 format=3 uid="uid://bsrntxiwcuv2v"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_qos12"]
 [ext_resource type="Script" path="res://scenes/gui/scr_battle_member_info.gd" id="2_kv8cv"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="3_4g8c8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nw40l"]
+blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oscw"]
 atlas = ExtResource("3_4g8c8")
@@ -63,6 +66,18 @@ offset_left = 24.0
 offset_top = 17.0
 offset_right = 54.0
 offset_bottom = 19.0
+allow_greater = true
+show_percentage = false
+
+[node name="AnimalBar" type="ProgressBar" parent="."]
+modulate = Color(3.14902, 0.45098, 3.23529, 0.882353)
+material = SubResource("CanvasItemMaterial_nw40l")
+layout_mode = 1
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 54.0
+offset_bottom = 22.0
+value = 31.0
 allow_greater = true
 show_percentage = false
 

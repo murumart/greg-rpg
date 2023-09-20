@@ -1,4 +1,4 @@
-extends BattleEnemy
+extends EnemyAnimal
 
 var hiding := false: set = set_hiding
 const IMM_LIST : Array[String] = ["poison", "coughing"]

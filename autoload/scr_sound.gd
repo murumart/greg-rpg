@@ -154,3 +154,10 @@ func _on_sound_clear_timer_timeout() -> void:
 	for s in playing_sounds:
 		if not is_instance_valid(s):
 			playing_sounds.erase(s)
+
+
+func kill_sounds() -> void:
+	for s in playing_sounds:
+		var p := s as AudioStreamPlayer
+		if not p == current_song_player:
+			p.stop()

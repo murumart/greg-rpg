@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7kiypobvkptg"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_whip6"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_a8phl"]
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="2_1cvso"]
 
 [sub_resource type="Animation" id="Animation_reqq0"]
@@ -43,7 +43,7 @@ _data = {
 }
 
 [node name="Fish" type="Node2D"]
-script = ExtResource("1_whip6")
+script = ExtResource("1_a8phl")
 altruism = 0.199
 can_flee = true
 
