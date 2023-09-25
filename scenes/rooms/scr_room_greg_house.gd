@@ -12,11 +12,7 @@ extends Room
 @onready var cutscene_node := $Cutscenes
 
 @onready var cat_spawners := [$Areas/Cats1, $Areas/Cats2, $Areas/Cats3, $Areas/Cats4,$Areas/Cats5,$Areas/Cats6,]
-
-var zerma_battle := BattleInfo.new().set_music("greg_battle").set_enemies(["zerma"]
-).set_background("greghouse").set_start_text("you will be so educated!"
-).set_rewards(preload("res://resources/rewards/res_zerma_tut_rewards.tres")
-).set_death_reason("sus")
+@export var zerma_battle : BattleInfo = null
 
 
 # fantastic function.
@@ -35,24 +31,29 @@ func _ready() -> void:
 		cutscene_node.visible = false
 		cutscene_node.global_position = Vector2(29999, 29999)
 		room_gate.global_position = Vector2(339, 232)
+		room_gate_2.global_position = Vector2(333, -168)
 		return
 	
 	if intro_dialogue_progress < 2:
 		intro_animator.play("intro")
 		zerma.default_lines.clear()
 		zerma.default_lines.append("intro_inspect_zerma_1")
+		room_gate.global_position = Vector2(3399, 232)
+		room_gate_2.global_position = Vector2(3399, 232)
 		door_area.destination = door_destination
 	elif intro_dialogue_progress == 2:
 		intro_animator.play("zerm_is_outside")
 		zerma.default_lines.clear()
 		zerma.default_lines.append("intro_inspect_zerma_1")
 		room_gate.global_position = Vector2(3399, 232)
+		room_gate_2.global_position = Vector2(3399, 232)
 		door_area.destination = door_destination
 	elif intro_dialogue_progress == 3:
 		intro_animator.play("zerm_is_outside")
 		intro_animator.advance(3000)
 		zerma.move_to(Vector2(-24, 96))
 		room_gate.global_position = Vector2(3399, 232)
+		room_gate_2.global_position = Vector2(3399, 232)
 		zerma.default_lines.append("zerma_fight_preface")
 	elif intro_dialogue_progress >= 4:
 		intro_animator.play("zerm_is_outside")
@@ -64,6 +65,7 @@ func _ready() -> void:
 		await SOL.dialogue_closed
 		zerma.move_to(Vector2(-15, 196))
 		await zerma.target_reached
+		$Greg.saving_disabled = false
 		zerma.default_lines.append("zerma_goodbye")
 
 
