@@ -19,17 +19,16 @@ func get_info() -> BattleInfo:
 	
 	if Math.inrange(level, 0, 10):
 		enmis.append(SP)
-		c(0.25, M)
 		c(0.25, SP)
 		c(0.1, RB)
 	elif Math.inrange(level, 10, 16):
 		enmis.append(SP)
-		c(0.33, M)
+		c(0.11, M)
 		c(0.25, SP)
 		c(0.25, RB)
 	elif Math.inrange(level, 16, 24):
 		enmis.append(SP)
-		c(0.5, M)
+		c(0.33, M)
 		c(0.25, SP)
 		c(0.25, RB)
 		c(0.15, M)
@@ -37,7 +36,7 @@ func get_info() -> BattleInfo:
 	elif Math.inrange(level, 24, 32):
 		enmis.append(SP)
 		enmis.append(M)
-		c(0.5, M)
+		c(0.33, M)
 		c(0.5, SP)
 		c(0.15, WL)
 		c(0.25, RB)
