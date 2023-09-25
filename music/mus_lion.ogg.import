@@ -14,6 +14,6 @@ dest_files=["res://.godot/imported/mus_lion.ogg-ce3a45e45d679b2505ae5fe0aefc14fb
 
 loop=true
 loop_offset=0.0
-bpm=0.0
+bpm=110.0
 beat_count=0
 bar_beats=4

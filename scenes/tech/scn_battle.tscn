@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=17 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
 [ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="7_is2uq"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
+[ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyurf"]
 bg_color = Color(0, 0, 0, 1)
@@ -463,6 +464,10 @@ text = "[center][color=#ff2244]defeat.[/color]
 your resolve was overcome.[/center]"
 visible_characters_behavior = 1
 script = ExtResource("7_qtl4a")
+
+[node name="ScreenDanceBattle" parent="UI/Panel" instance=ExtResource("9_sbskt")]
+offset_top = 0.0
+offset_bottom = 44.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
 stream = SubResource("AudioStreamOggVorbis_m7oim")

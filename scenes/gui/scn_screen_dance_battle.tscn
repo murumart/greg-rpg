@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cami7pi4o2hiw"]
+
+[ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/vfx/spr_dancer.png" id="1_0tnya"]
+[ext_resource type="Script" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
+[ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/vfx/spr_animal_dancer.png" id="2_6imck"]
+[ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
+
+[node name="ScreenDanceBattle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 76.0
+offset_right = 160.0
+offset_bottom = 120.0
+script = ExtResource("1_c1kpb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 44.0
+
+[node name="Dancer" type="Sprite2D" parent="."]
+position = Vector2(21, 22)
+texture = ExtResource("1_0tnya")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimalDancer" type="Sprite2D" parent="."]
+position = Vector2(137, 22)
+texture = ExtResource("2_6imck")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="InTheRye" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 15.0
+offset_right = 58.0
+offset_bottom = 31.0
+
+[node name="EnCatcher" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 15.0
+offset_right = 118.0
+offset_bottom = 31.0
+
+[node name="FallingArrows" type="Node2D" parent="."]
+position = Vector2(50, -76)
+
+[node name="MusBarCounter" type="Node" parent="."]
+script = ExtResource("4_sifqe")
+bpm = 150.0
+
+[node name="debug" type="Label" parent="."]
+layout_mode = 0
+offset_top = -76.0
+offset_right = 40.0
+offset_bottom = -68.0
