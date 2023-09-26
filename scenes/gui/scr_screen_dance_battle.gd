@@ -96,7 +96,7 @@ func create_arrow(alignment := 0) -> void:
 	var arrow := Arrow.new()
 	arrow.accuracy_curve = accuracy_curve
 	falling_arrows.add_child(arrow)
-	arrow.speed = mbc.bpm
+	arrow.speed = 60
 	var trail := SOL.vfx("dance_arrow_trail", Vector2(50, 0), 
 		{"parent": arrow, "z_index": -1})
 	if alignment == 1:

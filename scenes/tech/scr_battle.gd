@@ -693,8 +693,8 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	var pwin := pscore > enscore
 	var wscore := pscore if pwin else enscore
 	var lscore := enscore if pwin else pscore
-	var winner := current_guy if pwin else actor
-	var loser := actor if pwin else current_guy
+	var winner := (current_guy if pwin else actor) as BattleActor
+	var loser := (actor if pwin else current_guy) as BattleActor
 	if is_instance_valid(SND.current_song_player):
 		create_tween().tween_property(
 				SND.current_song_player,
