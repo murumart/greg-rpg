@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cami7pi4o2hiw"]
+[gd_scene load_steps=7 format=3 uid="uid://cami7pi4o2hiw"]
 
 [ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/vfx/spr_dancer.png" id="1_0tnya"]
 [ext_resource type="Script" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
 [ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/vfx/spr_animal_dancer.png" id="2_6imck"]
 [ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
+
+[sub_resource type="Curve" id="Curve_g0gmc"]
+max_value = 3.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.0854271, 1.09697), 0.0, 0.0, 0, 0, Vector2(1, 0.709091), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqmis"]
+bg_color = Color(0, 0, 0, 0.305882)
 
 [node name="ScreenDanceBattle" type="Control"]
 layout_mode = 3
@@ -12,6 +20,7 @@ offset_top = 76.0
 offset_right = 160.0
 offset_bottom = 120.0
 script = ExtResource("1_c1kpb")
+accuracy_curve = SubResource("Curve_g0gmc")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -33,16 +42,16 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="InTheRye" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 42.0
-offset_top = 15.0
+offset_top = 13.0
 offset_right = 58.0
-offset_bottom = 31.0
+offset_bottom = 29.0
 
 [node name="EnCatcher" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 102.0
-offset_top = 15.0
+offset_top = 13.0
 offset_right = 118.0
-offset_bottom = 31.0
+offset_bottom = 29.0
 
 [node name="FallingArrows" type="Node2D" parent="."]
 position = Vector2(50, -76)
@@ -56,3 +65,15 @@ layout_mode = 0
 offset_top = -76.0
 offset_right = 40.0
 offset_bottom = -68.0
+
+[node name="ScoreText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = -40.0
+offset_right = 141.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqmis")
+bbcode_enabled = true
+text = "[center]õnnitl.[/center]
+
+[left]33[/left] [right]44[/right]"
+scroll_active = false

@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["mole", "mole"]).\
-set_music("lion").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
+set_enemies(["mole", "wild_lizard"]).\
+set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -124,6 +124,7 @@ func _ready() -> void:
 	spirit_name.text_changed.connect(_on_spirit_name_changed)
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+	screen_dance_battle.end.connect(_dance_battle_ended)
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	remove_child(party_node)
@@ -662,12 +663,17 @@ func _on_item_pressed() -> void:
 	SND.menusound()
 
 
-func open_dance_battle_screen() -> void:
+func open_dance_battle_screen(actor: EnemyAnimal) -> void:
+	doing = Doings.DANCE_BATTLE
 	listening_to_player_input = true
 	hide_screens()
+	screen_dance_battle.reset()
 	screen_dance_battle.show()
 	resize_panel(44)
 	screen_dance_battle.active = true
+	screen_dance_battle.enemy_level = actor.character.attack
+	screen_dance_battle.greg_level = party[0].character.attack
+	screen_dance_battle.enemy_reference = actor
 	if is_instance_valid(SND.current_song_player):
 		var bpm := screen_dance_battle.mbc.bpm
 		var stream := SND.current_song_player.stream
@@ -678,6 +684,31 @@ func open_dance_battle_screen() -> void:
 			calculated_pitch,
 			0.5
 		)
+
+
+func _dance_battle_ended(data: Dictionary) -> void:
+	var actor : EnemyAnimal = data.get("enemy_reference", null)
+	var pscore := data.get("player_score") as float
+	var enscore := data.get("enemy_score") as float
+	var pwin := pscore > enscore
+	var wscore := pscore if pwin else enscore
+	var lscore := enscore if pwin else pscore
+	var winner := current_guy if pwin else actor
+	var loser := actor if pwin else current_guy
+	if is_instance_valid(SND.current_song_player):
+		create_tween().tween_property(
+				SND.current_song_player,
+				"pitch_scale",
+				1.0,
+				0.5
+		)
+	loser.handle_payload(BattlePayload.new().set_sender(actor).set_health(-(wscore - 0.333 * lscore
+		)).set_defense_pierce(1).set_effects(
+			[StatusEffect.new().set_effect_name("defense").set_duration(8).set_strength(-55)]))
+	_on_message_received("%s punished %s" % [winner.character.name, loser.character.name])
+	open_party_info_screen()
+	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
+	
 
 
 func set_description(text: String) -> void:
@@ -805,6 +836,6 @@ func _on_crit_received() -> void:
 	tw.tween_property(background_container, "modulate", Color(1, 1, 1), 0.5)
 
 
-func _on_dance_battle_requested() -> void:
+func _on_dance_battle_requested(actor: EnemyAnimal) -> void:
 	set_actor_states(BattleActor.States.IDLE, true)
-	open_dance_battle_screen()
+	open_dance_battle_screen(actor)

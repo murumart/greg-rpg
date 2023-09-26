@@ -1,6 +1,6 @@
 class_name EnemyAnimal extends BattleEnemy
 
-signal dance_battle_requested
+signal dance_battle_requested(ba: EnemyAnimal)
 
 var soul := 0.0
 
@@ -12,13 +12,14 @@ func _ready() -> void:
 
 func act() -> void:
 	if soul >= 100:
-		dance_battle_requested.emit()
+		dance_battle_requested.emit(self)
+		soul = 0.0
 		return
 	super.act()
-	soul += 5
+	soul += 8.5
 
 
 func hurt(amount: float) -> void:
 	super.hurt(amount)
 	if state != States.DEAD:
-		soul += absf(amount)
+		soul += 5

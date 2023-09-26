@@ -21,3 +21,19 @@ const ICONS := {
 @export var name := ""
 @export var strength := 1.0
 @export var duration := 1
+
+
+func _init() -> void:
+	pass
+
+
+func set_effect_name(x: String) -> StatusEffect:
+	name = x; return self
+
+
+func set_strength(x: float) -> StatusEffect:
+	strength = x; return self
+	
+
+func set_duration(x: int) -> StatusEffect:
+	duration = x; return self
