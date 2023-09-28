@@ -1,11 +1,19 @@
 menu music by radio
 greenhouse music by webcatz
 fisher hut theme by radio and murumart
-if not mentioned, then music by murumart
+other music made by murumart
 
 explosion noises https://www.freesoundeffects.com/free-sounds/explosion-10070/
 explosion graphic https://mebiusbox.github.io/contents/EffectTextureMaker/
 water shader https://godotshaders.com/shader/perlin-procedural-water/
 shopping cart photo https://pixabay.com/illustrations/shopping-venture-shopping-1019925/
+water rushing and some other nature sounds by freetousesounds https://freetousesounds.bandcamp.com/
 jack and aric skaters by aiden https://troy-sucks.neocities.org/
+
+thank you very much for ideas aiden, alan, ardenna, benny, julian, kin, radio, webcatz...
+fish facts provided by alan, ardenna, radio, webcatz
+
+thank you to play testers alan, kin, radio, webcatz
+
+with special thanks to free software gimp, audacity, godot, piskel, jummbox, lmms
 
