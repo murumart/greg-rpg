@@ -11,7 +11,7 @@ signal player_finished_acting
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
 set_enemies(["mole", "wild_lizard"]).\
-set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
+set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -145,7 +145,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.keycode == KEY_0:
+	if event.keycode == KEY_0:
 		ui.visible = ! event.is_pressed()
 		if not event.is_pressed():
 			attack_button.grab_focus()
@@ -687,6 +687,7 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
+	print_stack()
 	var actor : EnemyAnimal = data.get("enemy_reference", null)
 	var pscore := data.get("player_score") as float
 	var enscore := data.get("enemy_score") as float
@@ -803,7 +804,7 @@ func if_end() -> bool:
 
 func load_floating_spirits() -> void:
 	for i in current_guy.character.spirits:
-		var s := SOL.vfx("spirit_name_hint", Vector2(), {spirit = i})
+		var s := SOL.vfx("spirit_name_hint", Vector2(), {spirit = i}) as Node
 		s.add_to_group("floating_spirits")
 
 

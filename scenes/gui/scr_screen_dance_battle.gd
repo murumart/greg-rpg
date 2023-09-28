@@ -25,7 +25,7 @@ var enemy_level := 1
 var greg_level := 1
 
 var beat := 0
-var beats_to_play := 32
+var beats_to_play := 40
 
 var hits := 0
 var streak := 0
@@ -33,15 +33,6 @@ var score := 0.0
 var enemy_hits := 0
 var enemy_streak := 0
 var enemy_score := 0.0
-
-
-# TODO
-# figure out scoring.
-# connect enemy level and greg level
-# make game finite
-# figure out loser
-# apply damage to loser
-# exit back into battle
 
 
 func _ready() -> void:
@@ -55,8 +46,9 @@ func _physics_process(delta: float) -> void:
 		score -= delta * 0.5
 		enemy_score -= delta * 0.5
 	
-	if Input.is_key_pressed(KEY_9):
-		active = true
+#	if Input.is_key_pressed(KEY_9):
+#		reset()
+#		active = true
 
 
 func reset() -> void:
@@ -82,6 +74,7 @@ func _new_beat() -> void:
 	if beat > beats_to_play:
 		return
 	if beat % 2 == 0:
+		create_tween().tween_property(score_text, "modulate", Color.WHITE, 0.2).from(Color.YELLOW)
 		create_arrow()
 		create_arrow(1)
 	else:
@@ -96,8 +89,12 @@ func create_arrow(alignment := 0) -> void:
 	var arrow := Arrow.new()
 	arrow.accuracy_curve = accuracy_curve
 	falling_arrows.add_child(arrow)
-	arrow.speed = 60
-	var trail := SOL.vfx("dance_arrow_trail", Vector2(50, 0), 
+	var bps := mbc.bpm / 60.0
+	arrow.speed = randf_range(120, 150) # pixels per sec
+	var box_from_top := 97.0
+	arrow.position.y = -arrow.speed * bps
+	print(arrow.position.y)
+	var trail := SOL.vfx("dance_arrow_trail", arrow.position, 
 		{"parent": arrow, "z_index": -1})
 	if alignment == 1:
 		arrow.enemy = true
