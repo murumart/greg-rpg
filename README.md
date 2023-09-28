@@ -9,7 +9,7 @@ I started developing this game with a clear idea in my head. A crudely drawn, sh
 
 Then I started caring about Greg. So in April of 2024, it'll have been 2 years since the very start of the whole project. The current project folder was created in January of 2023, and is nowhere near complete. Maybe because I keep adding nonsensical features that do not progress the story. Maybe... snif.. maybe.
 
-More info about Greg RPG can be found [here]("https://murumart.neocities.org").
+More info about Greg RPG can be found [here](https://murumart.neocities.org).
 
 
 ## Running the game from Github source
