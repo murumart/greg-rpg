@@ -322,16 +322,16 @@ texture = ExtResource("7_662qt")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="EntertainmerntSystem" type="Node2D" parent="."]
+[node name="EntertainmentSystem" type="Node2D" parent="."]
 position = Vector2(0, -24)
 
-[node name="Sprite" type="Sprite2D" parent="EntertainmerntSystem"]
+[node name="Sprite" type="Sprite2D" parent="EntertainmentSystem"]
 position = Vector2(0, -8)
 texture = ExtResource("8_ooa3x")
 region_enabled = true
 region_rect = Rect2(64, 58, 16, 22)
 
-[node name="Glow" type="Sprite2D" parent="EntertainmerntSystem"]
+[node name="Glow" type="Sprite2D" parent="EntertainmentSystem"]
 modulate = Color(1, 0, 1, 1)
 self_modulate = Color(22.95, 0, 19.81, 0.25)
 show_behind_parent = true
@@ -342,13 +342,13 @@ texture = ExtResource("8_ooa3x")
 region_enabled = true
 region_rect = Rect2(64, 58, 16, 22)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EntertainmerntSystem"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EntertainmentSystem"]
 autoplay = "computer_loop"
 libraries = {
 "": SubResource("AnimationLibrary_lbxdy")
 }
 
-[node name="WhiteFlash" type="ColorRect" parent="EntertainmerntSystem"]
+[node name="WhiteFlash" type="ColorRect" parent="EntertainmentSystem"]
 visible = false
 offset_left = -5.0
 offset_top = -12.0
@@ -356,24 +356,24 @@ offset_right = 5.0
 offset_bottom = -8.0
 color = Color(17.29, 15.72, 16.35, 1)
 
-[node name="LightBeam" type="Sprite2D" parent="EntertainmerntSystem/WhiteFlash"]
+[node name="LightBeam" type="Sprite2D" parent="EntertainmentSystem/WhiteFlash"]
 material = SubResource("CanvasItemMaterial_mysui")
 position = Vector2(5, 17.5)
 scale = Vector2(1, 0.546875)
 texture = SubResource("GradientTexture2D_861ut")
 
-[node name="Dot" type="Sprite2D" parent="EntertainmerntSystem"]
+[node name="Dot" type="Sprite2D" parent="EntertainmentSystem"]
 visible = false
 modulate = Color(14.15, 14.78, 11.63, 1)
 position = Vector2(-5, -12)
 texture = ExtResource("9_d51s5")
 centered = false
 
-[node name="ComputerInteract" parent="EntertainmerntSystem" instance=ExtResource("10_m0abn")]
+[node name="ComputerInteract" parent="EntertainmentSystem" instance=ExtResource("10_m0abn")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntertainmerntSystem/ComputerInteract"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntertainmentSystem/ComputerInteract"]
 position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_35ejv")
 
