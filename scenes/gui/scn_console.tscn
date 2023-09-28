@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bip8066h1vkjp"]
+
+[ext_resource type="Script" path="res://scenes/gui/scr_console.gd" id="1_emplj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4w8y"]
+bg_color = Color(0, 0, 0, 0.686275)
+
+[node name="Console" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emplj")
+
+[node name="Line" type="LineEdit" parent="."]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 160.0
+offset_bottom = 70.0
+placeholder_text = "command..."
+context_menu_enabled = false
+
+[node name="Log" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0.968627)
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 59.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_q4w8y")
+bbcode_enabled = true
+text = "welcome to the debug console."
+scroll_active = false
+scroll_following = true
+
+[connection signal="text_submitted" from="Line" to="." method="_on_text_submitted"]

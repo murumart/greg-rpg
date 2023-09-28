@@ -91,14 +91,10 @@ func battle_background_scene_path(id: String) -> String:
 
 func battle_background_scene_exists(id: String) -> bool:
 	return R.exists(battle_background_scene_path(id), "PackedScene")
-#	var dir := get_dir_contents("res://scenes/battle_backgrounds/", "scn_")
-#	return id in dir
 
 
 func room_exists(id: String) -> bool:
 	return R.exists(ROOM_SCENE_PATH % id, "PackedScene")
-#	var dir := get_dir_contents("res://scenes/rooms/", "scn_room_")
-#	return id in dir
 
 
 func get_dialogue_file() -> String:
@@ -108,8 +104,6 @@ func get_dialogue_file() -> String:
 
 func portrait_exists(id: String) -> bool:
 	return R.exists("res://sprites/characters/portraits/spr_portrait_%s.png" % id)
-#	var dir := get_dir_contents("res://sprites/characters/portraits/")
-#	return "spr_portrait_" + id in dir
 
 
 # copied from somewhere and adjusted a bit
