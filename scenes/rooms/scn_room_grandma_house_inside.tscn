@@ -58,6 +58,7 @@ shape = SubResource("RectangleShape2D_8xnu1")
 
 [node name="Greg" parent="." instance=ExtResource("3_06sfg")]
 position = Vector2(7, 34)
+saving_disabled = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_rlixq")]
 position = Vector2(0, -10)

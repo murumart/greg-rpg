@@ -28,7 +28,7 @@ func _ready() -> void:
 	DIR.incj(0, 1)
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if starting: return
 	if not event is InputEventKey: return
 	var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

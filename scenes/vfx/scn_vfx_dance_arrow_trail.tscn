@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0umt1phbxj5t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3bgy3"]
+
+[sub_resource type="Curve" id="Curve_4nkj3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0550239, 1), 0.0, 0.0, 0, 0, Vector2(0.784689, 0.874748), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ca8o"]
+width = 32
+curve = SubResource("Curve_4nkj3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2ng6"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 45.25
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.25
+scale_curve = SubResource("CurveTexture_7ca8o")
+
+[sub_resource type="Gradient" id="Gradient_xr35p"]
+offsets = PackedFloat32Array(0.5, 0.681102)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67lgd"]
+gradient = SubResource("Gradient_xr35p")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="VfxDanceArrowTrail" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_3bgy3")
+process_material = SubResource("ParticleProcessMaterial_e2ng6")
+texture = SubResource("GradientTexture2D_67lgd")
+lifetime = 0.25

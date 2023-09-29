@@ -123,6 +123,14 @@ func save_menu(loading := false, options := {}) -> void:
 	DAT.capture_player("save_screen")
 
 
+func debug_console() -> void:
+	if "debug_console" in DAT.player_capturers: return
+	var cnsole := load("res://scenes/gui/scn_console.tscn").instantiate() as DebugConsole
+	#cnsole.position += Vector2(SOL.SCREEN_SIZE / 2)
+	add_ui_child(cnsole)
+	DAT.capture_player("debug_console")
+
+
 func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0) -> void:
 	vfx("damage_number", pos, {"text": text, "size": size, "color": color})
 

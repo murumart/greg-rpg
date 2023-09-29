@@ -1,6 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 
+# stutid temp files
+*.tmp
+
 # other
 desktop.ini
 .exports/

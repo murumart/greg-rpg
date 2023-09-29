@@ -116,12 +116,14 @@ func _input(event: InputEvent) -> void:
 				get_tree().debug_collisions_hint = !get_tree().debug_collisions_hint
 				print("collisions ", "showing" if
 				get_tree().debug_collisions_hint else "hidden")
+			KEY_KP_7:
+				SOL.debug_console()
 			KEY_F12:
 				DIR.screenshot()
 		# the options menu is shown and hidden when esc is pressed
 		if event.is_action_pressed("escape"):
 			# just close the save screen and not open OPT when save screen is open
-			for i in ["save_screen"]:
+			for i in ["save_screen", "debug_console"]:
 				if i in DAT.player_capturers:
 					return
 			if not root.visible:

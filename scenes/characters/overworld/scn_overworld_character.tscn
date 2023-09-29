@@ -32,6 +32,7 @@ debug_color = Color(0.152941, 1, 1, 0.419608)
 [node name="CollisionDetectionArea" parent="." instance=ExtResource("2_meflg")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 8
+collision_priority = 3.0
 input_pickable = false
 script = null
 

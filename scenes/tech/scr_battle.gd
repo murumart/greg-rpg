@@ -10,8 +10,8 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["freebird", "fox"]).\
-set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("sus")
+set_enemies(["mole", "wild_lizard"]).\
+set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -25,7 +25,7 @@ const BACK_PITCH := 0.75
 enum Teams {PARTY, ENEMIES}
 
 # states of the battle
-enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE}
+enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE, DANCE_BATTLE}
 var doing := Doings.NOTHING:
 	set(to):
 		doing = to
@@ -55,6 +55,7 @@ var loading_battle := true
 
 @onready var screen_party_info := %ScreenPartyInfo
 @onready var screen_spirit_name := %ScreenSpiritName
+@onready var screen_dance_battle : ScreenDanceBattle = $UI/Panel/ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var victory_text := %VictoryText
@@ -123,6 +124,7 @@ func _ready() -> void:
 	spirit_name.text_changed.connect(_on_spirit_name_changed)
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+	screen_dance_battle.end.connect(_dance_battle_ended)
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	remove_child(party_node)
@@ -143,7 +145,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.keycode == KEY_0:
+	if event.keycode == KEY_0:
 		ui.visible = ! event.is_pressed()
 		if not event.is_pressed():
 			attack_button.grab_focus()
@@ -203,6 +205,8 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	node.fled.connect(_on_actor_fled)
 	node.teammate_requested.connect(_on_summon_enemy_requested)
 	node.critically_hitted.connect(_on_crit_received)
+	if node is EnemyAnimal:
+		node.dance_battle_requested.connect(_on_dance_battle_requested)
 	actors.append(node)
 	match team:
 		Teams.PARTY:
@@ -357,7 +361,8 @@ func _on_act_finished(actor: BattleActor) -> void:
 	open_party_info_screen()
 	check_end()
 	await get_tree().create_timer(0.25).timeout
-	set_actor_states(BattleActor.States.COOLDOWN)
+	if not doing == Doings.DANCE_BATTLE:
+		set_actor_states(BattleActor.States.COOLDOWN)
 
 
 # some actor has been killed
@@ -434,14 +439,10 @@ func open_main_actions_screen() -> void:
 	var inf2 := screen_main_actions.get_child(-1)
 	held_item_id = ""
 	current_target = null
-	screen_item_select.hide()
-	screen_list_select.hide()
-	screen_party_info.hide()
-	screen_spirit_name.hide()
-	screen_end.hide()
+	hide_screens()
 	resize_panel(44)
 	# sparkle on, it's wednesday! don't forget to be yourself!
-	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.05: attack_button.text = "slay"
+	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.02: attack_button.text = "slay"
 	else: attack_button.text = "tussle"
 	current_info.update(current_guy)
 	inf1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
@@ -468,12 +469,7 @@ func open_main_actions_screen() -> void:
 
 # item/actor listing screens
 func open_list_screen() -> void:
-	screen_main_actions.hide()
-	screen_item_select.hide()
-	screen_list_select.hide()
-	screen_party_info.hide()
-	screen_spirit_name.hide()
-	screen_end.hide()
+	hide_screens()
 	match doing:
 		Doings.ATTACK:
 			var array := []
@@ -514,12 +510,8 @@ func open_party_info_screen() -> void:
 		i.remote_transform.update_position = true
 	doing = Doings.NOTHING
 	held_item_id = ""
-	screen_main_actions.hide()
-	screen_item_select.hide()
-	screen_list_select.hide()
+	hide_screens()
 	screen_party_info.show()
-	screen_spirit_name.hide()
-	screen_end.hide()
 	resize_panel(25)
 	update_party()
 	highlight_selected_enemy()
@@ -533,12 +525,9 @@ func open_spirit_name_screen() -> void:
 	doing = Doings.SPIRIT_NAME
 	held_item_id = ""
 	resize_panel(4, 0.1)
-	screen_main_actions.hide()
 	spirit_name.text = ""
 	spirit_name.editable = true
-	screen_item_select.hide()
-	screen_list_select.hide()
-	screen_party_info.hide()
+	hide_screens()
 	screen_spirit_name.show()
 	spirit_speak_timer.paused = false
 	spirit_speak_timer.start(spirit_speak_timer_wait)
@@ -610,11 +599,9 @@ func _on_spirit_name_submitted(submission: String) -> void:
 # horrible function
 func open_end_screen(victory: bool) -> void:
 	if screen_end.visible: return
-	screen_end.show()
 	set_actor_states(BattleActor.States.IDLE)
-	screen_item_select.hide()
-	screen_list_select.hide()
-	screen_spirit_name.hide()
+	hide_screens()
+	screen_end.show()
 	victory_text.visible = victory
 	defeat_text.visible = !victory
 	await get_tree().create_timer(1.0).timeout
@@ -648,6 +635,7 @@ func _grant_rewards() -> void:
 	await get_tree().process_frame
 	battle_rewards.grant()
 
+
 # main screen buttons wired to these
 func _on_attack_pressed() -> void:
 	if SOL.dialogue_open: return
@@ -673,6 +661,55 @@ func _on_item_pressed() -> void:
 	doing = Doings.ITEM_MENU
 	open_list_screen()
 	SND.menusound()
+
+
+func open_dance_battle_screen(actor: EnemyAnimal) -> void:
+	doing = Doings.DANCE_BATTLE
+	listening_to_player_input = true
+	hide_screens()
+	screen_dance_battle.reset()
+	screen_dance_battle.show()
+	resize_panel(44)
+	screen_dance_battle.active = true
+	screen_dance_battle.enemy_level = actor.character.attack as int
+	screen_dance_battle.greg_level = party[0].character.attack as int
+	screen_dance_battle.enemy_reference = actor
+	if is_instance_valid(SND.current_song_player):
+		var bpm := screen_dance_battle.mbc.bpm
+		var stream := SND.current_song_player.stream
+		var calculated_pitch := bpm / float(stream.bpm)
+		create_tween().tween_property(
+			SND.current_song_player,
+			"pitch_scale",
+			calculated_pitch,
+			0.5
+		)
+
+
+func _dance_battle_ended(data: Dictionary) -> void:
+	print_stack()
+	var actor : EnemyAnimal = data.get("enemy_reference", null)
+	var pscore := data.get("player_score") as float
+	var enscore := data.get("enemy_score") as float
+	var pwin := pscore > enscore
+	var wscore := pscore if pwin else enscore
+	var lscore := enscore if pwin else pscore
+	var winner := (current_guy if pwin else actor) as BattleActor
+	var loser := (actor if pwin else current_guy) as BattleActor
+	if is_instance_valid(SND.current_song_player):
+		create_tween().tween_property(
+				SND.current_song_player,
+				"pitch_scale",
+				1.0,
+				0.5
+		)
+	loser.handle_payload(BattlePayload.new().set_sender(actor).set_health(-(wscore - 0.333 * lscore
+		)).set_defense_pierce(1).set_effects(
+			[StatusEffect.new().set_effect_name("defense").set_duration(8).set_strength(-55)]))
+	_on_message_received("%s punished %s" % [winner.character.name, loser.character.name])
+	open_party_info_screen()
+	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
+	
 
 
 func set_description(text: String) -> void:
@@ -737,6 +774,16 @@ func apply_cheats() -> void:
 				i.character.inventory.append(j)
 
 
+func hide_screens() -> void:
+	screen_dance_battle.hide()
+	screen_end.hide()
+	screen_item_select.hide()
+	screen_list_select.hide()
+	screen_main_actions.hide()
+	screen_party_info.hide()
+	screen_spirit_name.hide()
+
+
 # load info from battle info
 func _option_init(options := {}) -> void:
 	load_options = options.get("battle_info")
@@ -757,7 +804,7 @@ func if_end() -> bool:
 
 func load_floating_spirits() -> void:
 	for i in current_guy.character.spirits:
-		var s := SOL.vfx("spirit_name_hint", Vector2(), {spirit = i})
+		var s := SOL.vfx("spirit_name_hint", Vector2(), {spirit = i}) as Node
 		s.add_to_group("floating_spirits")
 
 
@@ -788,3 +835,8 @@ func _on_crit_received() -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_BOUNCE)
 	tw.tween_property(background_container, "modulate", Color(2, 2, 2), 0.5)
 	tw.tween_property(background_container, "modulate", Color(1, 1, 1), 0.5)
+
+
+func _on_dance_battle_requested(actor: EnemyAnimal) -> void:
+	set_actor_states(BattleActor.States.IDLE, true)
+	open_dance_battle_screen(actor)

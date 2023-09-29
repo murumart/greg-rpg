@@ -30,9 +30,10 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 effects = Array[ExtResource("1_ok4l0")]([SubResource("Resource_wm78g"), SubResource("Resource_naprc")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_grfca")

@@ -103,6 +103,7 @@ func load_dialogue(dial : Dialogue) -> void:
 
 func speak_this_dialogue_part(part: DialogueLine) -> void:
 	# get the data from the dialogue resource
+	if not is_instance_valid(loaded_dialogue): return
 	loaded_dialogue_line = null
 	var text := part.text
 	var character_load : String = part.character

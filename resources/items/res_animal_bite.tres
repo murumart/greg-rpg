@@ -16,10 +16,10 @@ attack_increase = 2.0
 defense_increase = 0.0
 speed_increase = 0.0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
-delay = 0.2
+delay = 0.1
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_og31p")

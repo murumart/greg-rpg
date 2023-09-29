@@ -117,3 +117,8 @@ func set_summon_enemy(x: String) -> BattlePayload:
 	summon_enemy = x
 	return self
 
+
+func set_effects(x: Array[StatusEffect]) -> BattlePayload:
+	effects = x
+	return self
+
