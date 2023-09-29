@@ -671,8 +671,8 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 	screen_dance_battle.show()
 	resize_panel(44)
 	screen_dance_battle.active = true
-	screen_dance_battle.enemy_level = actor.character.attack
-	screen_dance_battle.greg_level = party[0].character.attack
+	screen_dance_battle.enemy_level = actor.character.attack as int
+	screen_dance_battle.greg_level = party[0].character.attack as int
 	screen_dance_battle.enemy_reference = actor
 	if is_instance_valid(SND.current_song_player):
 		var bpm := screen_dance_battle.mbc.bpm
