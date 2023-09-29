@@ -311,9 +311,10 @@ _data = {
 "swoop_out": SubResource("Animation_fbupd")
 }
 
-[node name="Bird" type="Node2D"]
+[node name="Bird" type="Node2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_dcebe")
 effect_center = Vector2i(0, -24)
+animator = NodePath("Animator")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -19)
