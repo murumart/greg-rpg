@@ -120,13 +120,25 @@ func animate(animation_name: String) -> void:
 
 
 func interact() -> void:
+	var collider : Object
 	if DAT.player_capturers.size() > 0: return
+	raycast.set_collision_mask_value(3, false)
+	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
-	var collider := raycast.get_collider()
-	#print(collider)
-	# the interaction areas have the interacted function that this calls
+	collider = raycast.get_collider()
+	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
+		return
+	raycast.set_collision_mask_value(3, true)
+	raycast.set_collision_mask_value(4, false)
+	raycast.force_raycast_update()
+	collider = raycast.get_collider()
+	print(collider)
+	if is_instance_valid(collider) and collider.has_method("interacted"):
+		collider.call("interacted")
+	#print(collider)
+	# the interaction areas have the interacted function that this calls
 
 
 func _update_capture(capture: bool) -> void:
