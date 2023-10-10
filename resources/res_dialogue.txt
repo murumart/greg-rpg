@@ -61,7 +61,7 @@ DIALOGUE losesilver
 
 DIALOGUE getspirit
 SOUND spirit/snd_spirit_get
-	[center]the spirit [color=#7799ff]%s[/color] was found.[/center]
+	[center]the spirit [color=#7799ff]%s[/color] joins you.[/center]
 
 
 DIALOGUE emptyreward

@@ -1,6 +1,8 @@
 extends Room
 
 @onready var musicplayer := $Radio/RadioMusic
+var music_last_position := 0.0
+var music_last_song : String
 
 
 func _ready() -> void:
@@ -17,6 +19,7 @@ func _ready() -> void:
 func _on_radio_interaction_on_interact() -> void:
 	SND.play_sound(preload("res://sounds/snd_misc_click.ogg"))
 	if musicplayer.playing:
+		music_last_position = musicplayer.get_playback_position()
 		musicplayer.stop()
 		SND.play_song("favourable_silence" if randf() <= 0.95 else "development_hell", 3.0, {"play_from_beginning": true})
 	else:
@@ -27,7 +30,9 @@ func _on_radio_interaction_on_interact() -> void:
 				"res://music/mus_birds.ogg",
 				"res://music/mus_dry_summer.ogg"
 			], [1, 1, 3, 2]))
-		else: musicplayer.stream = preload("res://music/mus_grandma_radio.ogg")
+		else:
+			musicplayer.stream = preload("res://music/mus_grandma_radio.ogg")
+			musicplayer.seek(music_last_position)
 		musicplayer.play()
 		SND.play_song("", 1727)
 
