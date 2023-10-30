@@ -16,7 +16,8 @@ const ICONS := {
 	"magnet": Rect2(18, 6, 6, 6),
 	"regen": Rect2(0, 12, 6, 6),
 	"shield": Rect2(6, 12, 6, 6),
-	"sleepy": Rect2(12, 12, 6, 6)
+	"sleepy": Rect2(12, 12, 6, 6),
+	"sopping": Rect2(18, 12, 6, 6)
 }
 
 @export var name := ""
