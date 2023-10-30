@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://ch0hb6mlxy6gy"]
 
-[ext_resource type="AudioStream" uid="uid://bf3ho31c5q6uh" path="res://sounds/spirit/solar/snd_flare.ogg" id="1_3lgmb"]
+[ext_resource type="AudioStream" uid="uid://bf3ho31c5q6uh" path="res://sounds/spirit/solar/flare.ogg" id="1_3lgmb"]
 [ext_resource type="Texture2D" uid="uid://cqdvmopkyxcun" path="res://sprites/spirit/spr_flare.png" id="2_3f317"]
 
 [sub_resource type="Animation" id="Animation_wmteb"]

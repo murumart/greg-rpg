@@ -26,7 +26,7 @@ func _on_interaction_area_on_interact() -> void:
 		if save:
 			DAT.set_data(save_key("emptied_second"), DAT.seconds)
 		full = false
-		SND.play_sound(preload("res://sounds/snd_trashbin.ogg"))
+		SND.play_sound(preload("res://sounds/trashbin.ogg"))
 		if item:
 			DAT.grant_item(item)
 		if silver:

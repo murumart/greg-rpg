@@ -8,10 +8,10 @@ var state : States = States.STOP
 const FISH_LOAD := preload("res://scenes/fishing/scn_fish.tscn")
 const MINE_LOAD := preload("res://scenes/fishing/scn_sea_mine.tscn")
 
-const SND_CATCH := preload("res://sounds/fishing/snd_catch.ogg")
-const SND_CRASH := preload("res://sounds/fishing/snd_crash.ogg")
-const SND_HISCR := preload("res://sounds/fishing/snd_highscore.ogg")
-const SND_TMOUT := preload("res://sounds/fishing/snd_timeout.ogg")
+const SND_CATCH := preload("res://sounds/fishing/catch.ogg")
+const SND_CRASH := preload("res://sounds/fishing/crash.ogg")
+const SND_HISCR := preload("res://sounds/fishing/highscore.ogg")
+const SND_TMOUT := preload("res://sounds/fishing/timeout.ogg")
 
 @onready var tilemap := $Blocks
 var processed_ypos := 1
@@ -166,7 +166,7 @@ func _on_hook_collision(node: Node2D) -> void:
 			recent_fish_caught += 1.3
 			fish_caught += 1
 			SND.play_sound(SND_CATCH, {"pitch": remap(node.value, 1, 11, 1.0, 0.66)})
-			SND.play_sound(preload("res://sounds/spirit/snd_fish_attack.ogg"), {pitch = randf_range(0.9, 1.4)})
+			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch = randf_range(0.9, 1.4)})
 			wiggle.call()
 
 
@@ -333,7 +333,7 @@ func _on_after_crash_timer_timeout() -> void:
 		rewards.rewards.append(boot)
 	
 	# granting rewards
-	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/snd_misc_click.ogg"))
+	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/misc_click.ogg"))
 	congrats_label.text = str("[center]", high_score_text if high_score else "", "\n", good_job_text if score > 9 else bad_job_text, "\n", "score: ", score)
 	rewards.granted.connect(func():
 		SOL.dialogue_closed.connect(self.end, CONNECT_ONE_SHOT)

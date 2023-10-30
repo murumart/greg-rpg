@@ -32,7 +32,7 @@ func _interacted() -> void:
 				func():
 					$AnimationPlayer.play("emerge")
 					SND.play_song("bike_spirit", 0.20, {pitch_scale = 0.75, volume = -5})
-					SND.play_sound(load("res://sounds/spirit/bikeghost/snd_alpha_appear.ogg"), {bus = "ECHO"})
+					SND.play_sound(load("res://sounds/spirit/bikeghost/alpha_appear.ogg"), {bus = "ECHO"})
 					SOL.dialogue("bike_alpha_interact_2")
 					SOL.dialogue_closed.connect(
 						func():

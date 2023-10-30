@@ -33,8 +33,8 @@ var following_mail := false
 
 var effects := {}
 
-const HURT_SOUND := preload("res://sounds/snd_biking_tumble.ogg")
-const CRASH_SOUND := preload("res://sounds/snd_biking_crash.ogg")
+const HURT_SOUND := preload("res://sounds/biking_tumble.ogg")
+const CRASH_SOUND := preload("res://sounds/biking_crash.ogg")
 
 
 func _ready() -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://djchcmdudkeqr"]
 
-[ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/snd_isotoxin.ogg" id="1_0oigh"]
+[ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/isotoxin.ogg" id="1_0oigh"]
 [ext_resource type="Texture2D" uid="uid://cruhdhnud3hhs" path="res://sprites/spirit/spr_isotoxin.png" id="1_h3sdh"]
 
 [sub_resource type="Animation" id="Animation_iu4uw"]

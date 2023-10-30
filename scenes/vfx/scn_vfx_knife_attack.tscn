@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c348l7nltijck"]
 
-[ext_resource type="AudioStream" uid="uid://d3v3ed6ei2grt" path="res://sounds/snd_attack_sharp.ogg" id="1_8cm1h"]
+[ext_resource type="AudioStream" uid="uid://d3v3ed6ei2grt" path="res://sounds/attack_sharp.ogg" id="1_8cm1h"]
 [ext_resource type="Texture2D" uid="uid://hxguedhaaixk" path="res://sprites/vfx/spr_knifeattack.png" id="1_8sk7t"]
 [ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="3_ukjrb"]
 

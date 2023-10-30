@@ -67,7 +67,7 @@ func pleasant() -> void:
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).fully_heal()
 		DAT.set_data(save_key_name("eats"), DAT.get_data(save_key_name("eats"), 0) + 1)
-		SND.play_sound(preload("res://sounds/snd_greenhouse_heal_big.ogg"))
+		SND.play_sound(preload("res://sounds/greenhouse_heal_big.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_big")
 		else:
@@ -79,7 +79,7 @@ func pleasant() -> void:
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).mostly_heal()
 		DAT.set_data(save_key_name("sleeps"), DAT.get_data(save_key_name("sleeps"), 0) + 1)
-		SND.play_sound(preload("res://sounds/snd_greenhouse_heal.ogg"))
+		SND.play_sound(preload("res://sounds/greenhouse_heal.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_small")
 		else:

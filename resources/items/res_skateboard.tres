@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_24lo1"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_e5prb"]
-[ext_resource type="AudioStream" uid="uid://cd2w7robs7dgc" path="res://sounds/snd_skateboard_equip.ogg" id="2_dcyb7"]
+[ext_resource type="AudioStream" uid="uid://cd2w7robs7dgc" path="res://sounds/skateboard_equip.ogg" id="2_dcyb7"]
 [ext_resource type="Texture2D" uid="uid://bqflelgtlbtam" path="res://sprites/items/spr_skateboard.png" id="4_quqoe"]
 
 [sub_resource type="Resource" id="Resource_udg8p"]

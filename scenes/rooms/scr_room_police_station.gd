@@ -168,7 +168,7 @@ func setup_cells() -> void:
 func art_sun_spirit_rage()->void:{false:func():rage.show();var twe:=\
 create_tween();rage.get_child(1).modulate.a=0.0;twe.tween_property(rage.\
 get_child(1),"modulate:a",1.0,0.4);SND.play_song("");SND.play_sound(preload\
-("res://sounds/spirit/solar/snd_flare.ogg"),{"pitch":0.5,"volume":-10});SOL.\
+("res://sounds/spirit/solar/flare.ogg"),{"pitch":0.5,"volume":-10});SOL.\
 dialogue("insp_sun_spirit_rage_1");DAT.set_data("suspirit_inspected",true);SOL.\
 dialogue_closed.connect(func():SOL.dialogue("insp_sun_spirit_rage_2");rage.\
 get_child(1).queue_free();SOL.dialogue_closed.connect(func():var tw:=\

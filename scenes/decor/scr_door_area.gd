@@ -29,7 +29,9 @@ func interacted() -> void:
 	# otherwise just uselessly knock on the door
 	else:
 		DAT.capture_player("knocking_on_door")
-		var knock_sound : AudioStreamPlayer = SND.play_sound(preload("res://sounds/snd_door_knock.ogg"), {"autofree": false, "return": true})
+		var knock_sound : AudioStreamPlayer = SND.play_sound(
+			preload("res://sounds/door_knock.ogg"),
+			{"autofree": false, "return": true})
 		await knock_sound.finished
 		DAT.free_player("knocking_on_door")
 		SOL.dialogue(fail_dialogue)

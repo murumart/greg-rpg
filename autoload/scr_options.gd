@@ -63,7 +63,7 @@ const CATEGORIES := {
 # tools
 var opt := ConfigFile.new()
 const OPTION_PATH := "user://greg_rpg/options.ini"
-@onready var menu_sound := preload("res://sounds/snd_gui.ogg")
+@onready var menu_sound := preload("res://sounds/gui.ogg")
 var top_text := 0
 
 # nodes
@@ -208,7 +208,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	match type:
 		"reset":
 			reset_options()
-			SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {volume = 4.0})
+			SND.play_sound(preload("res://sounds/hurt.ogg"), {volume = 4.0})
 		"main_volume":
 			SND.play_sound(menu_sound, {pitch = 1.76})
 		"music_volume":

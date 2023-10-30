@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cgmfhuny42714"]
 
-[ext_resource type="AudioStream" uid="uid://d1lbyytg3bgst" path="res://sounds/spirit/bikeghost/snd_beatdown.ogg" id="1_s20dg"]
+[ext_resource type="AudioStream" uid="uid://d1lbyytg3bgst" path="res://sounds/spirit/bikeghost/beatdown.ogg" id="1_s20dg"]
 [ext_resource type="Texture2D" uid="uid://b7quo0c4kecdb" path="res://sprites/spirit/spr_ghostfist.png" id="2_5c47j"]
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="2_f05if"]
 

@@ -84,7 +84,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	if options.get("kill_music", true):
 		SND.play_song("", 100.0, {save_audio_position = true})
 	if options.get("play_fanfare", true):
-		SND.play_sound(preload("res://sounds/snd_enter_battle.ogg"))
+		SND.play_sound(preload("res://sounds/enter_battle.ogg"))
 	SOL.vfx("battle_enter", Vector2(), {"wait_time": options.get("wait_time", 3.0)})
 	await create_tween().tween_interval(options.get("wait_time", 3.0)).finished
 	DAT.save_nodes_data()

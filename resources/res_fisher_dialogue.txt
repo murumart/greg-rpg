@@ -203,7 +203,7 @@ DIALOGUE fish_fact_47
 
 
 DIALOGUE fish_fact_48
-SOUND snd_fish_uuhhhhh
+	  
 	   
 
 DIALOGUE fish_fact_49

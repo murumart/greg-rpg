@@ -27,7 +27,7 @@ DIALOGUE get_experience
 
 DIALOGUE levelup
 SPEED 0.75
-SOUND snd_level_up
+SOUND level_up
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
@@ -35,11 +35,11 @@ SPEED 1
 
 DIALOGUE levelup_with_spirit
 SPEED 0.75
-SOUND snd_level_up
+SOUND level_up
 	[center]level up![center]
 SPEED 1
 	%s leveled up to %s.
-SOUND spirit/snd_spirit_get
+SOUND spirit/spirit_get
 	[center]the spirit [color=#7799ff]%s[/color] was found.[/center]
 
 
@@ -60,7 +60,7 @@ DIALOGUE losesilver
 
 
 DIALOGUE getspirit
-SOUND spirit/snd_spirit_get
+SOUND spirit/spirit_get
 	[center]the spirit [color=#7799ff]%s[/color] joins you.[/center]
 
 

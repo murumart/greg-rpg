@@ -170,7 +170,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
 	else:
-		dialogue_sound.stream = preload("res://sounds/talking/snd_telegram.ogg")
+		dialogue_sound.stream = preload("res://sounds/talking/telegram.ogg")
 	dialogue_sound.play()
 	await textbox.speak_finished
 	if dialogue_sound:

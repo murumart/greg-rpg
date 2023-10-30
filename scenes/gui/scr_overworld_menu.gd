@@ -98,7 +98,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if item_spirit_tabs.current_tab == 0:
 					if using_menu_choice == party_size(): # trashcan
 						party(current_tab).inventory.erase(using_item)
-						SND.play_sound(preload("res://sounds/snd_trashbin.ogg"))
+						SND.play_sound(preload("res://sounds/trashbin.ogg"))
 					else:
 						party(using_menu_choice).handle_item(using_item)
 						var item : Item = DAT.get_item(using_item)
@@ -106,13 +106,13 @@ func _unhandled_input(event: InputEvent) -> void:
 							party(current_tab).inventory.erase(using_item)
 						if not item.use in Item.USES_EQUIPABLE:
 							SND.play_sound((item.play_sound if item.play_sound
-							else preload("res://sounds/snd_use_item.ogg")),
+							else preload("res://sounds/use_item.ogg")),
 							{volume = -15})
 				
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit : Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
-						SND.play_sound(load("res://sounds/snd_error.ogg"))
+						SND.play_sound(load("res://sounds/error.ogg"))
 						using_label.text = "not enough magic!"
 					else:
 						party(using_menu_choice).handle_payload(spirit.payload)
@@ -299,7 +299,7 @@ func _reference_button_pressed(reference) -> void:
 				party(current_tab).unused_sprits.erase(reference)
 				party(current_tab).spirits.append(reference)
 				load_spirits()
-				SND.play_sound(preload("res://sounds/spirit/snd_spirit_equip.ogg"))
+				SND.play_sound(preload("res://sounds/spirit/spirit_equip.ogg"))
 				await get_tree().process_frame
 				grab_item_focus()
 			else:
@@ -309,7 +309,7 @@ func _reference_button_pressed(reference) -> void:
 			party(current_tab).spirits.erase(reference)
 			party(current_tab).unused_sprits.append(reference)
 			load_spirits()
-			SND.play_sound(preload("res://sounds/spirit/snd_spirit_dequip.ogg"))
+			SND.play_sound(preload("res://sounds/spirit/spirit_dequip.ogg"))
 			await get_tree().process_frame
 			grab_item_focus()
 

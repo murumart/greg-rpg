@@ -185,7 +185,7 @@ func _on_room_gate_entered() -> void:
 func dothethingthething() -> void:
 	var particles := $Kassa/Cashier/WLIParticles
 	SND.play_song("ac_scary", 0.2, {pitch_scale = 0.56})
-	SND.play_sound(preload("res://sounds/spirit/snd_wli_up.ogg"))
+	SND.play_sound(preload("res://sounds/spirit/wli_up.ogg"))
 	$Kassa/Cashier/HoverAnimation.play("hover")
 	particles.show()
 	var movewt := create_tween()
@@ -200,7 +200,7 @@ func dothethingthething() -> void:
 	await tw2.step_finished
 	SOL.dialogue("cashier_mean_mean" + store_cashier.addrepeat())
 	await SOL.dialogue_closed
-	SND.play_sound(preload("res://sounds/spirit/snd_wli_down.ogg"))
+	SND.play_sound(preload("res://sounds/spirit/wli_down.ogg"))
 	SND.play_song("", 2000)
 	await get_tree().create_timer(2.0).timeout
 	LTS.enter_battle(BattleInfo.new().set_background("store")\

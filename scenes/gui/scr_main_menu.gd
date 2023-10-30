@@ -3,10 +3,8 @@ extends Control
 # the main menu. surprise surprise
 
 var pos := 0
-var menusound := preload("res://sounds/snd_gui.ogg")
+var menusound := preload("res://sounds/gui.ogg")
 var starting := false
-
-
 
 
 func _ready() -> void:

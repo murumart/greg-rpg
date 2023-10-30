@@ -23,7 +23,7 @@ var state : States = States.IDLE : set = set_state
 
 var turn := 0
 
-var hurt_sound := preload("res://sounds/snd_hurt.ogg")
+var hurt_sound := preload("res://sounds/hurt.ogg")
 
 var actor_name : StringName
 @onready var character : Character
@@ -105,12 +105,12 @@ func hurt(amount: float) -> void:
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
-		SND.play_sound(preload("res://sounds/snd_hurt.ogg"), {"pitch": 0.5, "volume": 4})
+		SND.play_sound(preload("res://sounds/hurt.ogg"), {"pitch": 0.5, "volume": 4})
 		died.emit(self)
 	else:
 		# hurt sound
 		SND.play_sound(
-			preload("res://sounds/snd_eek.ogg") if randf() < 0.0001 and actor_name == "greg" else hurt_sound,
+			preload("res://sounds/eek.ogg") if randf() < 0.0001 and actor_name == "greg" else hurt_sound,
 			{"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1),
 			"volume": randi_range(-4, 1)})
 	# damage number
@@ -126,7 +126,7 @@ func hurt(amount: float) -> void:
 
 
 func flee() -> void:
-	SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+	SND.play_sound(preload("res://sounds/flee.ogg"))
 	SOL.vfx("damage_number", get_effect_center(self), {text = "bye!", color=Color.WHITE})
 	# so that it won't be acting anymore
 	set_state(States.DEAD)
@@ -178,7 +178,7 @@ func account_defense(x: float) -> float:
 
 func attack(subject: BattleActor) -> void:
 	if not subject.accessible:
-		SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+		SND.play_sound(preload("res://sounds/flee.ogg"))
 		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 		turn_finished()
@@ -203,7 +203,7 @@ func attack(subject: BattleActor) -> void:
 		{text = "crit!!!",
 		color = Color(1.0, 0.3, 0.2),
 		})
-		SND.play_sound(preload("res://sounds/snd_critical_hit.ogg"), {"volume": 5})
+		SND.play_sound(preload("res://sounds/critical_hit.ogg"), {"volume": 5})
 		critically_hitted.emit()
 	# functions just in case
 	if self.has_method("_attacked_%s" % subject.character.name_in_file):
@@ -270,7 +270,7 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 
 func use_item(id: String, subject: BattleActor) -> void:
 	if not subject.accessible:
-		SND.play_sound(preload("res://sounds/snd_flee.ogg"))
+		SND.play_sound(preload("res://sounds/flee.ogg"))
 		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 		turn_finished()
@@ -396,14 +396,14 @@ func effect_action(nomen: String, effect: Dictionary) -> void:
 		cougher.character.attack = effect.get(&"strength", 1) * 2
 		add_child(cougher)
 		cougher.attack(self)
-		SND.play_sound(preload("res://sounds/spirit/snd_airspace_violation.ogg"), {"volume": -3})
+		SND.play_sound(preload("res://sounds/spirit/airspace_violation.ogg"), {"volume": -3})
 		cougher.queue_free()
 	if nomen == &"poison" and effect.get(&"duration", 0) > 0:
 		hurt(effect.get(&"strength", 1) * 1.3)
 	if nomen == &"fire" and effect.get(&"duration", 0) > 0:
 		hurt(clampf(character.health * 0.08, 1, 25))
 		SOL.vfx(&"battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
-		SND.play_sound(preload("res://sounds/snd_fire.ogg"), {pitch = 2.0})
+		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch = 2.0})
 	if nomen == &"regen" and effect.get(&"duration", 0) > 0:
 		heal(effect.get(&"strength", 1) * 5)
 
@@ -487,7 +487,7 @@ func is_immune_to(what: StringName) -> bool:
 func blunt_visuals(subject: BattleActor) -> void:
 	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
-	SND.play_sound(preload("res://sounds/snd_attack_blunt.ogg"))
+	SND.play_sound(preload("res://sounds/attack_blunt.ogg"))
 
 
 func _to_string() -> String:

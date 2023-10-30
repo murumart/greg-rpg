@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _on_radio_interaction_on_interact() -> void:
-	SND.play_sound(preload("res://sounds/snd_misc_click.ogg"))
+	SND.play_sound(preload("res://sounds/misc_click.ogg"))
 	if musicplayer.playing:
 		music_last_position = musicplayer.get_playback_position()
 		musicplayer.stop()

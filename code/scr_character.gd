@@ -157,12 +157,12 @@ func handle_item(id: String) -> void:
 		if armour:
 			inventory.append(armour)
 		armour = id
-		SND.play_sound(load("res://sounds/snd_equip.ogg"))
+		SND.play_sound(load("res://sounds/equip.ogg"))
 	elif item.use == Item.Uses.WEAPON:
 		if weapon:
 			inventory.append(weapon)
 		weapon = id
-		SND.play_sound(load("res://sounds/snd_equip.ogg"))
+		SND.play_sound(load("res://sounds/equip.ogg"))
 	else:
 		handle_payload(item.payload)
 

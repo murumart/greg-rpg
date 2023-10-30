@@ -84,7 +84,7 @@ func start_game() -> void:
 func set_data(key: StringName, value) -> void:
 	if log_dat_chgs():
 		if key == check_for_key:
-			SND.play_sound(preload("res://sounds/snd_error.ogg"))
+			SND.play_sound(preload("res://sounds/error.ogg"))
 			SOL.vfx_damage_number(Vector2(SOL.SCREEN_SIZE / 2), str(value), Color.WHITE, 2)
 		print("data key %s set to %s" % [key, value])
 	A[key] = value
