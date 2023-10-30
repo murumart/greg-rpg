@@ -59,11 +59,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not character: return
 	if SOL.dialogue_open: return # don't run logic if dialogue is open
-	if randf() <= 0.02 and on_fire():
-		SOL.vfx("battle_burning", global_position + Vector2(randf_range(-4, 4), randf_range(-8, 16)), {"parent": self})
-		var tw := create_tween().set_trans(Tween.TRANS_QUINT)
-		var rand := randf_range(0.5, 1.0)
-		tw.tween_property(self, "modulate", Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
+	effect_visuals()
 	match state:
 		States.IDLE:
 			pass
@@ -71,9 +67,22 @@ func _physics_process(delta: float) -> void:
 			# cooldown between 1 and 0 usually
 			wait = maxf(wait - sqrt(delta * get_speed() * 0.1), 0.0)
 			if wait == 0.0:
-				act_requested.emit(self)
-				set_state(States.ACTING)
-				wait = 1.0
+				if not has_effect("sleepy"):
+					act_requested.emit(self)
+					set_state(States.ACTING)
+					wait = 1.0
+				else:
+					status_effect_update()
+					SOL.vfx(
+						"sleepy",
+						global_position + Vector2(randf_range(-4, 4),
+							randf_range(-16, 0)), {"parent": self})
+					wait = 1.0
+					if has_effect("sleepy"):
+						message.emit("%s is sleeping..." % actor_name)
+						SND.play_sound(preload("res://sounds/sleepy.ogg"))
+					else:
+						message.emit("%s woke up." % actor_name)
 		States.ACTING:
 			pass
 		States.DEAD:
@@ -101,6 +110,10 @@ func heal(amount: float) -> void:
 
 func hurt(amount: float) -> void:
 	if state == States.DEAD: return
+	if has_effect("sleepy"):
+		status_effects["sleepy"] = {}
+		message.emit("%s woke up!" % actor_name)
+		amount *= 1.2
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
@@ -488,6 +501,22 @@ func blunt_visuals(subject: BattleActor) -> void:
 	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
 	SND.play_sound(preload("res://sounds/attack_blunt.ogg"))
+
+
+func effect_visuals() -> void:
+	if randf() <= 0.02 and on_fire():
+		SOL.vfx("battle_burning",
+			global_position + Vector2(randf_range(-4, 4),
+				randf_range(-8, 16)), {"parent": self})
+		var tw := create_tween().set_trans(Tween.TRANS_QUINT)
+		var rand := randf_range(0.5, 1.0)
+		tw.tween_property(self, "modulate", 
+			Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
+	if randf() <= 0.03 and has_effect("sleepy"):
+		SOL.vfx(
+			"sleepy",
+			global_position + Vector2(randf_range(-4, 4),
+				randf_range(-16, 0)), {"parent": self})
 
 
 func _to_string() -> String:
