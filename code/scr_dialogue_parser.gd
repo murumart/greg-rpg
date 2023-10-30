@@ -4,22 +4,22 @@ class_name DialogueParser
 # this parses the dialogue files into the resources that the game uses
 # i didn't want to do a long dictionary/json file again...
 
-const NEW_DIAL := "DIALOGUE "
-const NEW_CHAR := "CHAR "
-const NEW_TXT_SPD := "SPEED "
-const NEW_LINE := "\t"
-const NEW_CHOICES := "CHOICES "
-const NEW_CHOICE_LINK := "CHOICE_LINK "
-const NEW_INSTASKIP := "INSTASKIP"
-const NEW_ALIAS := "ACTUALLY "
-const NEW_LOOP := "LOOP "
-const NEW_ITEM := "ITEM "
-const NEW_SPIRIT := "SPIRIT "
-const NEW_SILVER := "SILVER "
-const NEW_SOUND := "SOUND "
-const NEW_EMOTION := "EMO "
-const NEW_DATA_LINK := "DATA_LINK "
-const NEW_SET_DATA := "SET_DATA "
+const NEW_DIAL := &"DIALOGUE "
+const NEW_CHAR := &"CHAR "
+const NEW_TXT_SPD := &"SPEED "
+const NEW_LINE := &"\t"
+const NEW_CHOICES := &"CHOICES "
+const NEW_CHOICE_LINK := &"CHOICE_LINK "
+const NEW_INSTASKIP := &"INSTASKIP"
+const NEW_ALIAS := &"ACTUALLY "
+const NEW_LOOP := &"LOOP "
+const NEW_ITEM := &"ITEM "
+const NEW_SPIRIT := &"SPIRIT "
+const NEW_SILVER := &"SILVER "
+const NEW_SOUND := &"SOUND "
+const NEW_EMOTION := &"EMO "
+const NEW_DATA_LINK := &"DATA_LINK "
+const NEW_SET_DATA := &"SET_DATA "
 const LB := "
 "
 
@@ -49,6 +49,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 		var line := file.get_line()
 		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
+		line = line.replace("\r\n", "\n")
 		if line.begins_with(NEW_DIAL):
 			if not dial == null:
 				# if we have a dialogue at hand, we store a duplicate of it
