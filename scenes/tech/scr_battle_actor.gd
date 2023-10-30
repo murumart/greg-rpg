@@ -109,12 +109,19 @@ func heal(amount: float) -> void:
 	SOL.vfx("damage_number", parentless_effcenter(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
-func hurt(amount: float) -> void:
+func hurt(amt: float) -> void:
+	var amount := amt
 	if state == States.DEAD: return
 	if has_effect("sleepy"):
 		status_effects["sleepy"] = {}
 		message.emit("%s woke up!" % actor_name)
 		amount *= 1.8
+	if has_effect("sopping"):
+		amount += amt * 0.5
+		SOL.vfx(
+			"sopping",
+			global_position + Vector2(randf_range(-4, 4), -16),
+			{"parent": self})
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
@@ -200,7 +207,7 @@ func attack(subject: BattleActor) -> void:
 	# manual construction of payload
 	var crit := randf() <= 0.05
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
-	if crit: pld.health *= 2
+	if crit: pld.health *= 2.5
 	var weapon : Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
@@ -397,6 +404,8 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		&"strength": new_strength,
 		&"duration": new_duration
 	}
+	if nomen == "sopping" and on_fire():
+		status_effects["fire"] = {}
 	# notify of an effect with this
 	if strength and duration and duration != -1:
 		SOL.vfx("damage_number", parentless_effcenter(), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
@@ -495,6 +504,8 @@ func has_effect(what: StringName) -> bool:
 
 
 func is_immune_to(what: StringName) -> bool:
+	if has_effect("sopping") and what == "fire":
+		return true
 	return what in effect_immunities or has_effect(what + "_immunity")
 
 
@@ -516,6 +527,11 @@ func effect_visuals() -> void:
 	if randf() <= 0.03 and has_effect("sleepy"):
 		SOL.vfx(
 			"sleepy",
+			global_position + Vector2(randf_range(-4, 4),
+				randf_range(-16, 0)), {"parent": self})
+	if randf() <= 0.04 and has_effect("sopping"):
+		SOL.vfx(
+			"sopping",
 			global_position + Vector2(randf_range(-4, 4),
 				randf_range(-16, 0)), {"parent": self})
 
