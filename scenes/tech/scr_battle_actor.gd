@@ -80,7 +80,8 @@ func _physics_process(delta: float) -> void:
 					wait = 1.0
 					if has_effect("sleepy"):
 						message.emit("%s is sleeping..." % actor_name)
-						SND.play_sound(preload("res://sounds/sleepy.ogg"))
+						SND.play_sound(preload("res://sounds/sleepy.ogg"),
+						 {"volume": 3})
 					else:
 						message.emit("%s woke up." % actor_name)
 		States.ACTING:
@@ -113,7 +114,7 @@ func hurt(amount: float) -> void:
 	if has_effect("sleepy"):
 		status_effects["sleepy"] = {}
 		message.emit("%s woke up!" % actor_name)
-		amount *= 1.2
+		amount *= 1.8
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
