@@ -33,6 +33,7 @@ party = Array[String]([])
 death_reason = "default"
 start_text = ""
 victory_music = true
+stop_music_before_end = true
 
 [node name="LakeCorridor" type="Node2D"]
 y_sort_enabled = true

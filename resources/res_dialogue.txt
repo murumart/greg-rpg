@@ -1289,6 +1289,13 @@ CHAR naturalist
 	maybe even by the exciting wildlife.
 
 
+DIALOGUE naturalist_lake_underleveled_but_went_and_survived_anyway
+CHAR naturalist
+	oh, you just came from the lake...
+	at your level...
+	well, i hope the wildlife is still okay.
+
+
 DIALOGUE naturalist_lake_birds
 CHAR naturalist
 	shh! don't frighten the birds!
@@ -1782,7 +1789,7 @@ CHOICE_LINK you
 	who am i? hahaha! like, who knows?
 	i fish, pal. it's like what i do.
 	i discovered fishing one day...
-	...and life has never been the same since.
+	...and life hasn't been the same since.
 CHOICE_LINK me
 	you? i don't know you.
 	why don't you, like, introduce yourself?
