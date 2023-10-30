@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://cxuv88lgssoo8"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_0nt86"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_qsjqq"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_fdn5q"]
+[ext_resource type="Texture2D" uid="uid://c0tclfmp77fkd" path="res://sprites/items/spr_sleepy_flower.png" id="4_0elsu"]
+
+[sub_resource type="Resource" id="Resource_f0mw7"]
+script = ExtResource("1_0nt86")
+name = "sleep"
+strength = 1.0
+duration = 3
+
+[sub_resource type="Resource" id="Resource_fpesc"]
+script = ExtResource("2_fdn5q")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+effects = Array[ExtResource("1_0nt86")]([SubResource("Resource_f0mw7")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_qsjqq")
+name_in_file = &""
+name = &"sleepy flower"
+description = "yaaawn...
+zzzzzzz..."
+texture = ExtResource("4_0elsu")
+attack_animation = ""
+price = 999
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_fpesc")
