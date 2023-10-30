@@ -111,7 +111,9 @@ func load_all_effects() -> void:
 		var fpath := path + file + ".tscn"
 		if ResourceLoader.exists(fpath):
 			var scene := SOL.vfx(file.trim_prefix("scn_vfx_"), Vector2(), {"silent": true})
-			scene.hide()
+			#scene.hide()
+			scene.modulate.a = 0.0
+			await get_tree().process_frame
 			scene.queue_free()
 	SND.kill_sounds()
 	await get_tree().process_frame
