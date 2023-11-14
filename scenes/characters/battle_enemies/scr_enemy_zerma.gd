@@ -8,8 +8,8 @@ var progress := 0
 
 func _ready() -> void:
 	remove_from_group("battle_actors")
-	if DAT.get_current_scene() is Battle:
-		battle_reference = DAT.get_current_scene()
+	if LTS.get_current_scene() is Battle:
+		battle_reference = LTS.get_current_scene()
 		battle_reference.player_finished_acting.connect(_on_player_act_finished)
 		battle_reference.battle_rewards = rewards
 	super._ready()

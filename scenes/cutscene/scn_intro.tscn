@@ -285,6 +285,7 @@ layer_1/tile_data = PackedInt32Array(1048576, 262146, 2, 983040, 262146, 2, 9175
 [node name="ZermCar" parent="." instance=ExtResource("2_6a7ua")]
 position = Vector2(-27, 2)
 moves = false
+disable_saving = true
 color = Color(0.270588, 0.337255, 0.486275, 1)
 
 [node name="Camera" parent="." instance=ExtResource("3_lb5fr")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=67 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -37,6 +37,7 @@
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
 [ext_resource type="SpriteFrames" uid="uid://buc0rlaymoir0" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
+[ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -1525,6 +1526,12 @@ position = Vector2(-268, -441)
 
 [node name="Bird10" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
 position = Vector2(-307, -430)
+
+[node name="Men" type="Node2D" parent="Other"]
+
+[node name="EscapingBusiness" parent="Other/Men" instance=ExtResource("32_lci3r")]
+position = Vector2(1453, 301)
+escape_offset = Vector2(60, 0)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true

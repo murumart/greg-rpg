@@ -19,6 +19,8 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 
 @export var speed := 100.0
 
+@export var disable_saving := false
+
 @export_group("Appearance")
 @export var custom_texture : Texture2D
 @export_color_no_alpha var color := Color(1, 1, 1, 1)
@@ -32,7 +34,7 @@ var battle_info : BattleInfo
 
 func _ready() -> void:
 	texture_setup()
-	if DAT.get_data(save_key_name("fought"), false):
+	if DAT.get_data(get_save_key("fought"), false):
 		self.global_position = Vector2(293123, 819474)
 		set_physics_process(false)
 		collision_area.monitoring = false
@@ -41,8 +43,8 @@ func _ready() -> void:
 	if not moves:
 		$VroomVroom.stop()
 	collision_area.body_entered.connect(_on_collided_with_player)
-	position = DAT.get_data(save_key_name("position"), position)
-	current_target = DAT.get_data(save_key_name("current_target"), current_target)
+	position = DAT.get_data(get_save_key("position"), position)
+	current_target = DAT.get_data(get_save_key("current_target"), current_target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
 	.set_music("overrun").set_death_reason("car")
 	set_color(color)
@@ -94,7 +96,7 @@ func _on_collided_with_player(_player) -> void:
 	if not skateboard_check:
 		DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
 		DAT.set_data("last_hit_car_name", name.to_snake_case())
-		DAT.set_data(save_key_name("fought"), true)
+		DAT.set_data(get_save_key("fought"), true)
 		LTS.enter_battle(battle_info)
 	else:
 		var tw := create_tween()
@@ -114,12 +116,13 @@ func set_color(to: Color) -> void:
 
 
 func _save_me() -> void:
-	DAT.set_data(save_key_name("position"), position)
-	DAT.set_data(save_key_name("current_target"), current_target)
+	if disable_saving: return
+	DAT.set_data(get_save_key("position"), position)
+	DAT.set_data(get_save_key("current_target"), current_target)
 
 
-func save_key_name(key: String) -> String:
-	return str("car_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+func get_save_key(key: String) -> String:
+	return str("car_", name, "_in_", LTS.get_current_scene().name.to_snake_case(), "_", key)
 
 
 func set_moves(to: bool):

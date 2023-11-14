@@ -7,7 +7,7 @@ const SPEED := 95
 @onready var trees := $Trees
 var tree_load := preload("res://scenes/decor/scn_tree.tscn")
 @onready var cars := $Cars
-var car_load := preload("res://scenes/decor/scn_overworld_car.tscn")
+const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 @onready var ui := $UiGroup
 @onready var logo := $UiGroup/UI/Logo
@@ -83,9 +83,10 @@ func spawn_tree() -> void:
 	tree.type = randi() % tree.TYPES_SIZE
 	
 	if randf() < 0.1:
-		var c := car_load.instantiate()
+		var c := CAR.instantiate()
 		c.color = Color(randf()/2.0, randf()/2.0, randf()/2.0)
 		c.moves = false
+		c.disable_saving = true
 		cars.add_child(c)
 		c.turn(PI * 1.5)
 		c.position.y = 180

@@ -67,4 +67,4 @@ func _save_me() -> void:
 
 
 func save_key(key: String) -> String:
-	return str("enemy_encounter_area_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+	return str("enemy_encounter_area_", name, "_in_", LTS.get_current_scene().name.to_snake_case(), "_", key)

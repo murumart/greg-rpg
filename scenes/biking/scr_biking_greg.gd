@@ -191,7 +191,7 @@ func lob(speede: float) -> void:
 var mail_speed := 0.0
 func throw_mail() -> void:
 	var mail := MAIL_LOAD.instantiate()
-	DAT.get_current_scene().add_child(mail)
+	LTS.get_current_scene().add_child(mail)
 	mail.global_position = mail_sprite.global_position
 	mail.apply_impulse(Vector2(100 * mail_speed, -100 * mail_speed)) # whee
 	mail.following = following_mail

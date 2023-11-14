@@ -43,7 +43,7 @@ func set_full(to: bool) -> void:
 
 
 func save_key(key: String) -> String:
-	return "trash_bin_%s_in_%s_%s" % [name, DAT.get_current_scene().name, key]
+	return "trash_bin_%s_in_%s_%s" % [name, LTS.get_current_scene().name, key]
 
 
 # save the time when the bin was last emptied, then compare with current time

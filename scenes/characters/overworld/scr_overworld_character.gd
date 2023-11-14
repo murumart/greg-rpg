@@ -62,9 +62,9 @@ func _ready() -> void:
 	if LTS.gate_id == LTS.GATE_LOADING:
 		pass
 	if save_position:
-		set_position(DAT.get_data(save_key_name("position"), position))
+		set_position(DAT.get_data(get_save_key("position"), position))
 	if save_convo_progess:
-		convo_progress = DAT.get_data(save_key_name("convo_progress"), 0)
+		convo_progress = DAT.get_data(get_save_key("convo_progress"), 0)
 	if permanently_defeated:
 		if character_link:
 			if character_link in DAT.get_data("defeated_characters", []):
@@ -330,13 +330,15 @@ func _save_me() -> void:
 	if not save: return
 	debprint("saving!")
 	if save_position:
-		DAT.set_data(save_key_name("position"), position)
+		DAT.set_data(get_save_key("position"), position)
 	if save_convo_progess:
-		DAT.set_data(save_key_name("convo_progress"), convo_progress)
+		DAT.set_data(get_save_key("convo_progress"), convo_progress)
 
 
-func save_key_name(key: String) -> String:
-	return str("npc_", name, "_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+func get_save_key(key: String) -> StringName:
+	return StringName(
+		str("npc_", name, "_in_",
+		LTS.get_current_scene().name.to_snake_case(), "_", key))
 
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:

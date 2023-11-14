@@ -50,7 +50,7 @@ func parse_command() -> void:
 		&"bset":
 			battle_set(args)
 		&"help":
-			output("available commands are: greg,bset,help,ex,clear,history,vfx,7\ntype command without args to get help")
+			output("available commands are: greg,bset,help,ex,clear,history,vfx,printdata,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -59,6 +59,8 @@ func parse_command() -> void:
 			print(history)
 		&"vfx":
 			vfx(args)
+		&"printdata":
+			print(DAT.A)
 		&"7":
 			output("7")
 		_:
@@ -71,7 +73,7 @@ func output(s: String, error := false) -> void:
 
 
 func battle_set(args: PackedStringArray) -> void:
-	var cs := DAT.get_current_scene()
+	var cs : Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
 		output("needs to be used in battle", true)
 		return

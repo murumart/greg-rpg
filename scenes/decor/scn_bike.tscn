@@ -17,6 +17,7 @@ death_reason = "default"
 start_text = "toute phrase en langue etrangere."
 rewards = ExtResource("2_dhrtd")
 victory_music = true
+stop_music_before_end = true
 
 [sub_resource type="Gradient" id="Gradient_rurkq"]
 interpolation_mode = 2

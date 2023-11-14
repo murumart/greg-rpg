@@ -43,6 +43,11 @@ func change_scene_to(path: String, options := {}) -> void:
 	scene_changed.emit()
 
 
+# this should be a default gdscript function cmon
+func get_current_scene() -> Node:
+	return get_tree().root.get_child(-1)
+
+
 # change level with fancy fade
 func level_transition(path: String, op := {}) -> void:
 	DAT.capture_player("level_transition")

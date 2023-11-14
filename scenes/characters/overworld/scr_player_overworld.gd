@@ -37,7 +37,7 @@ func _ready() -> void:
 	SOL.add_ui_child(menu)
 	menu.hide()
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
-		position = DAT.get_data(save_key_name("position"), position)
+		position = DAT.get_data(get_save_key("position"), position)
 	load_armour()
 
 
@@ -156,12 +156,12 @@ func _character_message_received(msg := &"") -> void:
 
 
 func _save_me() -> void:
-	DAT.set_data(save_key_name("position"), position)
+	DAT.set_data(get_save_key("position"), position)
 	DAT.set_data("player_move_mode", int(move_mode))
 
 
-func save_key_name(key: String) -> String:
-	return str("player_in_", DAT.get_current_scene().name.to_snake_case(), "_", key)
+func get_save_key(key: String) -> String:
+	return str("player_in_", LTS.get_current_scene().name.to_snake_case(), "_", key)
 
 
 func close_menu() -> void:

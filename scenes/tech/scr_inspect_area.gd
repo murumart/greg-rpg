@@ -35,4 +35,4 @@ func interacted() -> void:
 
 
 func save_key(n: String) -> String:
-	return str("inspect_area_%s_in_%s_%s" % [name, DAT.get_current_scene().name, n])
+	return str("inspect_area_%s_in_%s_%s" % [name, LTS.get_current_scene().name, n])

@@ -226,8 +226,8 @@ func free_player(type := "") -> void:
 
 func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
 	get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
-	if DAT.get_current_scene().name == "Battle":
-		var battle = DAT.get_current_scene()
+	if LTS.get_current_scene().name == "Battle":
+		var battle = LTS.get_current_scene()
 		if battle.party.is_empty(): return
 		battle.party[party_index].character.inventory.append(item)
 	if not dialogue: return
@@ -251,8 +251,8 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 	uuspirits.append(spirit)
 	charc.unused_sprits = uuspirits
 	# horrible but necessary with the current implementation of characters
-	if DAT.get_current_scene().name == "Battle":
-		var battle = DAT.get_current_scene()
+	if LTS.get_current_scene().name == "Battle":
+		var battle = LTS.get_current_scene()
 		if !battle.party.is_empty():
 			var character_is : Character = battle.party[party_index].character
 			var list : Array[String] = character_is.unused_sprits.duplicate()
@@ -261,11 +261,6 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 	if not dialogue: return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
-
-
-# this should be a default gdscript function cmon
-func get_current_scene() -> Node:
-	return get_tree().root.get_child(-1)
 
 
 func get_character(key: String) -> Character:

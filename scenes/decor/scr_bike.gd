@@ -30,12 +30,15 @@ func _interacted() -> void:
 			SOL.dialogue("bike_alpha_interact_1")
 			SOL.dialogue_closed.connect( 
 				func():
+					DAT.capture_player("cutscene")
 					$AnimationPlayer.play("emerge")
 					SND.play_song("bike_spirit", 0.20, {pitch_scale = 0.75, volume = -5})
 					SND.play_sound(load("res://sounds/spirit/bikeghost/alpha_appear.ogg"), {bus = "ECHO"})
+					await get_tree().create_timer(1.0).timeout
 					SOL.dialogue("bike_alpha_interact_2")
 					SOL.dialogue_closed.connect(
 						func():
+							DAT.free_player("cutscene")
 							LTS.enter_battle(alpha_battle_info)
 							DAT.appenda("bike_ghosts_fought", int(Ghosts.ALPHA))
 					)
