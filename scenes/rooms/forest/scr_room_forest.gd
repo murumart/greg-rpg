@@ -24,7 +24,7 @@ var greenhouse: SCR_GREENHOUSE = null
 @onready var greg := $Greg as PlayerOverworld
 @onready var paths: TileMap = $Tilemaps/Paths
 var enabled_layer := 0
-var used_poses := PackedVector2Array()
+var used_poses := []
 
 @onready var current_room := DAT.get_data(
 	"current_forest_rooms_traveled", 0) as int
@@ -151,13 +151,12 @@ func rand_pos() -> Vector2:
 		pos.y = randf_range(-16, 15)
 		if valid_placement_spot(pos):
 			break
-	used_poses.append(pos)
 	return pos
 
 
 func valid_placement_spot(pos: Vector2) -> bool:
-	if pos in used_poses: return false
 	var vpos := Vector2i((pos * paths.scale).floor())
+	if vpos in used_poses: return false
 	var tds := [
 		paths.get_cell_tile_data(enabled_layer, vpos),
 		paths.get_cell_tile_data(
@@ -167,6 +166,7 @@ func valid_placement_spot(pos: Vector2) -> bool:
 		if not (not td or (
 			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
 			return false
+	used_poses.append(vpos)
 	return true
 
 
