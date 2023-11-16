@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://code/scr_item.gd" id="2_sa7qu"]
 [ext_resource type="Texture2D" uid="uid://dl72j7rgp2yqb" path="res://sprites/items/spr_eggshell.png" id="3_ithwb"]
 
-[sub_resource type="Resource" id="Resource_gn6gu"]
+[sub_resource type="Resource" id="Resource_khvp2"]
 script = ExtResource("1_88anu")
 health = 0.0
 health_percent = 0.0
@@ -20,7 +20,7 @@ effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_sa7qu")
@@ -31,5 +31,5 @@ texture = ExtResource("3_ithwb")
 attack_animation = ""
 price = 94
 use = -1
-consume_on_use = true
-payload = SubResource("Resource_gn6gu")
+consume_on_use = false
+payload = SubResource("Resource_khvp2")

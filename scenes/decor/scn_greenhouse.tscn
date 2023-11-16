@@ -57,6 +57,4 @@ shape = SubResource("RectangleShape2D_ugha4")
 wait_time = 10.0
 autostart = true
 
-[connection signal="body_entered" from="InsideArea" to="." method="_on_inside_area_body_entered"]
-[connection signal="body_exited" from="InsideArea" to="." method="_on_inside_area_body_exited"]
 [connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

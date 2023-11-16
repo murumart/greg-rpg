@@ -1,8 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://csllo4xtpli3h"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://csllo4xtpli3h"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_c1y6m"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_kr12n"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_qnagr"]
 [ext_resource type="Texture2D" uid="uid://dn3uilfi7bhas" path="res://sprites/items/spr_item_mueslibar.png" id="3_3c0fs"]
+
+[sub_resource type="Resource" id="Resource_d6s51"]
+script = ExtResource("1_qnagr")
+name = "inspiration"
+strength = 1.0
+duration = 10
 
 [sub_resource type="Resource" id="Resource_e6csg"]
 script = ExtResource("1_c1y6m")
@@ -16,10 +23,11 @@ max_magic_percent = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_qnagr")]([SubResource("Resource_d6s51")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_kr12n")

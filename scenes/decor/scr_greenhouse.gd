@@ -5,18 +5,25 @@ extends Node2D
 var zoom := 1.0
 
 @export var grows_in_seconds := 600
+@onready var inside_area: Area2D = $InsideArea
 
 var player : PlayerOverworld
 
 var previous_song_key := ""
 
 @export var has_vegetables := true
+@export var save := true
 
 
 func _ready() -> void:
 	set_physics_process(false)
 	set_vegetables(DAT.get_data(get_save_key("has_vegetables"), has_vegetables))
 	check_vegetables_regrown()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
+	inside_area.body_entered.connect(_on_inside_area_body_entered)
+	inside_area.body_exited.connect(_on_inside_area_body_exited)
 
 
 func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
@@ -66,7 +73,7 @@ func pleasant() -> void:
 	if SOL.dialogue_choice == "eat":
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).fully_heal()
-		DAT.set_data(get_save_key("eats"), DAT.get_data(get_save_key("eats"), 0) + 1)
+		DAT.incri(get_save_key("eats"), 1)
 		SND.play_sound(preload("res://sounds/greenhouse_heal_big.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_big")
@@ -78,7 +85,7 @@ func pleasant() -> void:
 	else:
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).mostly_heal()
-		DAT.set_data(get_save_key("sleeps"), DAT.get_data(get_save_key("sleeps"), 0) + 1)
+		DAT.incri(get_save_key("sleeps"), 1)
 		SND.play_sound(preload("res://sounds/greenhouse_heal.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:
 			SOL.dialogue("greenhouse_heal_party_small")
@@ -90,7 +97,8 @@ func pleasant() -> void:
 func set_vegetables(to: bool) -> void:
 	has_vegetables = to
 	$SprVegetables.visible = to
-	DAT.set_data(get_save_key("has_vegetables"), to)
+	if save:
+		DAT.set_data(get_save_key("has_vegetables"), to)
 
 
 func get_save_key(key: String) -> String:
@@ -102,6 +110,7 @@ func get_save_key(key: String) -> String:
 # the second on which vegs were eaten is saved
 # and then later compared to the current second.
 func check_vegetables_regrown() -> void:
+	if not save: return
 	$SprVegetables.visible = has_vegetables
 	if DAT.seconds - DAT.get_data(
 			get_save_key("vegs_eaten_second"), 0) >= grows_in_seconds:

@@ -117,6 +117,8 @@ func hurt(amt: float) -> void:
 		message.emit("%s woke up!" % actor_name)
 		amount *= 1.8
 	if has_effect("sopping"):
+		SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
+			{"pitch": 1.3, "volume": 1.5})
 		amount += amt * 0.5
 		SOL.vfx(
 			"sopping",
@@ -347,7 +349,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	
 	for en in pld.effects:
 		if en.name.length() and en.duration:
-			introduce_status_effect(en.name, en.strength, en.duration)
+			introduce_status_effect(en.name, en.strength, en.duration + 1)
 	
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
@@ -429,6 +431,9 @@ func effect_action(nomen: String, effect: Dictionary) -> void:
 		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch = 2.0})
 	if nomen == &"regen" and effect.get(&"duration", 0) > 0:
 		heal(effect.get(&"strength", 1) * 5)
+	if nomen == &"inspiration" and effect.get(&"duration", 0) > 0:
+		var mincrease : float = effect.get(&"strength", 1) * 2
+		character.magic += mincrease
 
 
 func turn_finished() -> void:
@@ -449,7 +454,7 @@ func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
 	var basechar : Character = DAT.character_dict[character.name_in_file]
 	basechar.health = character.health
-	basechar.magic = character.magic
+	basechar.magic = clampf(character.magic, 0.0, basechar.max_magic)
 	basechar.inventory = character.inventory
 	basechar.weapon = character.weapon
 	basechar.armour = character.armour

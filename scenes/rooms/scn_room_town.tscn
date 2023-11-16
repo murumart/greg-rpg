@@ -1138,7 +1138,7 @@ shape = SubResource("RectangleShape2D_h0kbj")
 
 [node name="UhhHouse2Trash" parent="Houses/UhhHouse2" instance=ExtResource("12_rk0rd")]
 position = Vector2(8, 19)
-silver = 5
+item = &"sleepy_flower"
 
 [node name="Tree" parent="Houses/UhhHouse2" instance=ExtResource("8_l27gf")]
 position = Vector2(-86, -12)
@@ -1273,7 +1273,7 @@ shape = SubResource("RectangleShape2D_b3utb")
 [node name="Node2D" type="Node2D" parent="Houses/Police/DoorArea"]
 position = Vector2(0, 6)
 
-[node name="TrashBin" parent="Houses/Police" instance=ExtResource("12_rk0rd")]
+[node name="PopoTrash" parent="Houses/Police" instance=ExtResource("12_rk0rd")]
 position = Vector2(-29, -222)
 full = false
 replenish_minutes = 120

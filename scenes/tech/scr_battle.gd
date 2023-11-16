@@ -9,9 +9,8 @@ class_name Battle
 signal player_finished_acting
 
 # this is the default for testing
-var load_options : BattleInfo = BattleInfo.new().\
-set_enemies(["sopping",]).\
-set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
+var load_options : BattleInfo = BattleInfo.new(
+).set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -106,6 +105,7 @@ var battle_rewards : BattleRewards
 @export var party_cheat_speed := 0.0
 @export var party_add_spirits : Array[String] = []
 @export var party_add_items : Array[String] = []
+@export var test_enemies : Array[String] = []
 
 
 func _ready() -> void:
@@ -168,6 +168,7 @@ func load_battle(info: BattleInfo) -> void:
 	# second argument of info.get_ is the default value
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
+	apply_cheats()
 	for e in info.enemies:
 		add_enemy(e)
 	set_background(info.background)
@@ -176,7 +177,6 @@ func load_battle(info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
-	apply_cheats()
 	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
@@ -314,7 +314,7 @@ func go_back_a_menu() -> void:
 # something is selected
 func _reference_button_pressed(reference) -> void:
 	if SOL.dialogue_open: return
-	if if_end(): return
+	if is_end(): return
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
@@ -347,7 +347,7 @@ func _on_button_reference_received(reference) -> void:
 
 # some actor wants to act!
 func _on_act_requested(actor: BattleActor) -> void:
-	if if_end(): return
+	if is_end(): return
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
@@ -355,7 +355,7 @@ func _on_act_requested(actor: BattleActor) -> void:
 
 # some actor has finished their act
 func _on_act_finished(actor: BattleActor) -> void:
-	if if_end(): return
+	if is_end(): return
 	if actor.player_controlled:
 		player_finished_acting.emit()
 	open_party_info_screen()
@@ -367,7 +367,7 @@ func _on_act_finished(actor: BattleActor) -> void:
 
 # some actor has been killed
 func _on_actor_died(actor: BattleActor) -> void:
-	if if_end(): return
+	if is_end(): return
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
@@ -383,7 +383,7 @@ func _on_actor_died(actor: BattleActor) -> void:
 
 # some actor has fled the fight
 func _on_actor_fled(actor: BattleActor) -> void:
-	if if_end(): return
+	if is_end(): return
 	if actor in party:
 		pass
 	if actor in enemies:
@@ -413,7 +413,7 @@ func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
 
 
 func check_end(force := false) -> void:
-	if if_end(): return
+	if is_end(): return
 	var end_condition := party.size() < 1 or enemies.size() < 1
 	if end_condition or force:
 		doing = Doings.END
@@ -772,6 +772,8 @@ func apply_cheats() -> void:
 		if party_add_items:
 			for j in party_add_items:
 				i.character.inventory.append(j)
+		if test_enemies:
+			load_options.set_enemies(test_enemies)
 
 
 func hide_screens() -> void:
@@ -798,7 +800,7 @@ func append_action_history(type: String, parameters := {}) -> void:
 	action_history.append(dict)
 
 
-func if_end() -> bool:
+func is_end() -> bool:
 	return doing == Doings.END or doing == Doings.DONE
 
 

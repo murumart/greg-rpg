@@ -14,6 +14,7 @@ const ICONS := {
 	"defense": Rect2(6, 6, 6, 6),
 	"speed": Rect2(12, 6, 6, 6),
 	"magnet": Rect2(18, 6, 6, 6),
+	"inspiration": Rect2(24, 6, 6, 6),
 	"regen": Rect2(0, 12, 6, 6),
 	"shield": Rect2(6, 12, 6, 6),
 	"sleepy": Rect2(12, 12, 6, 6),
