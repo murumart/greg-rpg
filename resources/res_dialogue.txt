@@ -2020,6 +2020,44 @@ CHAR kid
 	make sure you have the stuff next time!!!!
 
 
+DIALOGUE woods_guy_0
+	the woods
+CHOICES no,ok
+	teleport to the woods
+
+
+DIALOGUE woods_guy_1
+CHOICES no,to the woods
+	teleport?
+
+
+DIALOGUE woods_guy_2
+CHOICES no,me
+	woods time for...
+
+
+DIALOGUE woods_guy_3
+CHOICES no,ok
+	woods time for you
+
+
+DIALOGUE woods_guy_4
+CHOICES no,yes
+	teleport to the woods
+
+
+DIALOGUE woods_guy_5
+	the woods
+	teleport to the woods
+CHOICES no,yes
+	it's woods time for you
+
+
+DIALOGUE woods_guy_tooearly
+CHOICES darn
+	it's not woods time for you yet.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

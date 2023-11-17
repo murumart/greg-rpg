@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=68 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -38,6 +38,7 @@
 [ext_resource type="SpriteFrames" uid="uid://buc0rlaymoir0" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
+[ext_resource type="Script" path="res://scenes/rooms/scr_town_woods_guy.gd" id="33_73ctx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -1532,6 +1533,32 @@ position = Vector2(-307, -430)
 [node name="EscapingBusiness" parent="Other/Men" instance=ExtResource("32_lci3r")]
 position = Vector2(1453, 301)
 escape_offset = Vector2(60, 0)
+
+[node name="WoodsGuy" type="Node2D" parent="Other"]
+y_sort_enabled = true
+script = ExtResource("33_73ctx")
+
+[node name="Spots" type="Node2D" parent="Other/WoodsGuy"]
+
+[node name="Marker2D" type="Marker2D" parent="Other/WoodsGuy/Spots"]
+position = Vector2(470, -168)
+
+[node name="Marker2D2" type="Marker2D" parent="Other/WoodsGuy/Spots"]
+position = Vector2(1004, -185)
+
+[node name="Marker2D3" type="Marker2D" parent="Other/WoodsGuy/Spots"]
+position = Vector2(1015, 248)
+
+[node name="Marker2D4" type="Marker2D" parent="Other/WoodsGuy/Spots"]
+position = Vector2(306, 263)
+
+[node name="WoodsGuy" parent="Other/WoodsGuy" instance=ExtResource("10_dem56")]
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/WoodsGuy/WoodsGuy"]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
