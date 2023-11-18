@@ -18,6 +18,9 @@ func update(actor: BattleActor) -> void:
 	portrait.modulate = actor.modulate
 	portrait.modulate.a = 1.0
 	portrait.texture = charc.portrait
+	portrait.scale = Vector2.ONE
+	if actor.has_effect("little"):
+		portrait.scale = Vector2(0.5, 0.5)
 	name_label.text = str(charc.name)
 	health_bar.max_value = charc.max_health
 	health_bar.value = charc.health

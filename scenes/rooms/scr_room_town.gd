@@ -27,7 +27,7 @@ func _ready() -> void:
 	kid_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
-	if DAT.get_character("greg").level < 5: bike.queue_free()
+	if DAT.get_character("greg").level < 9: bike.queue_free()
 	# disable thugs if bounty fulfilled
 	if (DAT.get_data("fulfilled_bounty_thugs", false) and
 	not DAT.get_data("hunks_enabled", false)):

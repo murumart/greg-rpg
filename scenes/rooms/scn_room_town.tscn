@@ -37,7 +37,7 @@
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
 [ext_resource type="SpriteFrames" uid="uid://buc0rlaymoir0" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://b1v25nxnyuccu" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
-[ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" path="res://scenes/rooms/scr_town_woods_guy.gd" id="33_73ctx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]

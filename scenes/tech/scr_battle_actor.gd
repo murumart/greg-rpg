@@ -180,6 +180,8 @@ func get_speed() -> float:
 	x += character.get_stat("speed")
 	if status_effects.get("speed", {}):
 		x += status_effects.get("speed").get("strength")
+	if has_effect("little"):
+		x *= 0.25
 	return maxf(x, 1) * stat_multiplier
 
 
@@ -221,10 +223,10 @@ func attack(subject: BattleActor) -> void:
 	subject.handle_payload(pld) # the actual attack
 	if crit:
 		SOL.vfx(
-		"damage_number",
-		parentless_effcenter(subject),
-		{text = "crit!!!",
-		color = Color(1.0, 0.3, 0.2),
+			"damage_number",
+			parentless_effcenter(subject),
+			{text = "crit!!!",
+			color = Color(1.0, 0.3, 0.2),
 		})
 		SND.play_sound(preload("res://sounds/critical_hit.ogg"), {"volume": 5})
 		critically_hitted.emit()
@@ -341,6 +343,11 @@ func handle_payload(pld: BattlePayload) -> void:
 				health_change *= 0.25
 				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 			hurt(health_change)
+			if pld.steal_health and is_instance_valid(pld.sender):
+				pld.sender.heal(health_change * pld.steal_health)
+			if pld.steal_magic and is_instance_valid(pld.sender):
+				pld.sender.character.magic += pld.steal_magic
+				character.magic = maxf(character.magic - pld.steal_magic, 0.0)
 			if character.health <= 0:
 				if is_instance_valid(pld.sender):
 					pld.sender.character.add_defeated_character(character.name_in_file)
@@ -380,6 +387,8 @@ func status_effect_update() -> void:
 		effect[&"duration"] = effect.get(&"duration", 1) - 1
 		if effect.get(&"duration", 1) < 1:
 			status_effects[e] = {}
+			if e == &"little":
+				self.scale = Vector2.ONE
 
 
 func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
@@ -406,8 +415,10 @@ func introduce_status_effect(nomen: String, strength: float, duration: int) -> v
 		&"strength": new_strength,
 		&"duration": new_duration
 	}
-	if nomen == "sopping" and on_fire():
+	if nomen == &"sopping" and on_fire():
 		status_effects["fire"] = {}
+	if nomen == &"little":
+		self.scale = Vector2(0.25, 0.25)
 	# notify of an effect with this
 	if strength and duration and duration != -1:
 		SOL.vfx("damage_number", parentless_effcenter(), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})

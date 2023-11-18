@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_lbtgy"]
 script = ExtResource("1_2j658")
-name = "speed"
-strength = -20
+name = "little"
+strength = 1.0
 duration = 4
 
 [sub_resource type="Resource" id="Resource_6notv"]
@@ -16,9 +16,11 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
@@ -26,7 +28,7 @@ effects = Array[ExtResource("1_2j658")]([SubResource("Resource_lbtgy")])
 delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_oyou4")

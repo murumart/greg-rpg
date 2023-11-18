@@ -206,32 +206,37 @@ func animate(what: String) -> void:
 				animator.queue("idle")
 			return
 	# default animations using tweens
+	# we animate the first child if it exists
+	var animatable : Node2D
+	if self.get_child(0) is Node2D:
+		animatable = self.get_child(0)
+	if not is_instance_valid(animatable): return
 	match what:
 		"hurt":
 			var tw := create_tween()
 			var tw2 := create_tween()
-			tw.tween_property(self, "modulate", Color(1.2, 0.8, 0.8), 0.1)
-			tw2.tween_property(self, "scale:y", 0.9, 0.1)
-			tw.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
-			tw2.tween_property(self, "scale:y", 1.1, 0.1)
-			tw2.tween_property(self, "scale:y", 1, 0.2)
+			tw.tween_property(animatable, "modulate", Color(1.2, 0.8, 0.8), 0.1)
+			tw2.tween_property(animatable, "scale:y", 0.9, 0.1)
+			tw.tween_property(animatable, "modulate", Color(1, 1, 1), 0.1)
+			tw2.tween_property(animatable, "scale:y", 1.1, 0.1)
+			tw2.tween_property(animatable, "scale:y", 1, 0.2)
 		"heal":
 			var tw := create_tween()
-			tw.tween_property(self, "modulate", Color(0.8, 1.2, 0.8), 0.1)
-			tw.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+			tw.tween_property(animatable, "modulate", Color(0.8, 1.2, 0.8), 0.1)
+			tw.tween_property(animatable, "modulate", Color(1, 1, 1), 0.1)
 		"attack", "use_spirit", "use_item":
 			var tw := create_tween()
-			tw.tween_property(self, "scale:y", 0.9, 0.04)
-			tw.tween_property(self, "scale:y", 1.1, 0.1)
-			tw.tween_property(self, "scale:y", 1.0, 0.2)
+			tw.tween_property(animatable, "scale:y", 0.9, 0.04)
+			tw.tween_property(animatable, "scale:y", 1.1, 0.1)
+			tw.tween_property(animatable, "scale:y", 1.0, 0.2)
 		"death":
 			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_parallel(true)
-			tw.tween_property(self, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
-			tw.tween_property(self, "global_position:y", 200, 3.0)
+			tw.tween_property(animatable, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
+			tw.tween_property(animatable, "global_position:y", 200, 3.0)
 		"flee":
 			var tw := create_tween()
-			tw.tween_property(self, "scale", Vector2(-1.2, 0.8), 0.4)
-			tw.tween_property(self, "global_position:x", -300, 0.7)
+			tw.tween_property(animatable, "scale", Vector2(-1.2, 0.8), 0.4)
+			tw.tween_property(animatable, "global_position:x", -300, 0.7)
 
 
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:
