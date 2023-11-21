@@ -21,7 +21,7 @@ const ICONS := {
 	"sopping": Rect2(18, 12, 6, 6)
 }
 
-@export var name := ""
+@export var name := &""
 @export var strength := 1.0
 @export var duration := 1
 
@@ -30,7 +30,7 @@ func _init() -> void:
 	pass
 
 
-func set_effect_name(x: String) -> StatusEffect:
+func set_effect_name(x: StringName) -> StatusEffect:
 	name = x; return self
 
 

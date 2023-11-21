@@ -2977,7 +2977,8 @@ animator = NodePath("Puppet/AnimationPlayer")
 toughness = 0.509
 altruism = 0.592
 vaimulembesus = 0.511
-xp_multiplier = 5.0
+xp_multiplier = 7.0
+gender = 4
 effect_immunities = Array[String](["poison"])
 
 [node name="Puppet" type="CanvasGroup" parent="." index="0"]

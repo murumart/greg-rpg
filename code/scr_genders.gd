@@ -1,0 +1,20 @@
+class_name Genders extends RefCounted
+
+enum {
+	NONE,
+	ELECTRIC,
+	SOPPING,
+	FLAMING,
+	GHOST,
+	BRAIN,
+	VAST
+}
+
+const CIRCLE := {
+	ELECTRIC: SOPPING,
+	SOPPING: FLAMING,
+	FLAMING: GHOST,
+	GHOST: BRAIN,
+	BRAIN: VAST,
+	VAST: ELECTRIC
+}

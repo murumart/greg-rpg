@@ -88,16 +88,14 @@ func pink_haired_girl_setup() -> void:
 
 func _on_atgirl_inspected() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
-	atgirl.default_lines.clear()
 	var progress : int = DAT.get_data("atgirl_progress", 1)
 	if not DAT.get_data("has_interacted_with_atgirl", false):
+		atgirl.default_lines.clear()
 		DAT.set_data("has_interacted_with_atgirl", true)
 		atgirl.default_lines.append("atgirl_%s" % progress)
 		progress += (1 if SOL.dialogue_box.dialogues_dict.has("atgirl_%s" %
 			str(progress + 1)) else 0)
 		DAT.set_data("atgirl_progress", progress)
-		return
-	atgirl.default_lines.append("atgirl_%s" % progress)
 
 
 func naturalist_setup() -> void:

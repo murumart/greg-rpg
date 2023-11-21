@@ -29,12 +29,13 @@ func flee() -> void:
 	else: turn_finished()
 
 
-func hurt(amt: float) -> void:
-	super.hurt(amt)
+func hurt(amt: float, gnd: int) -> void:
+	super(amt, gnd)
 	if randf() <= 0.25 and not hiding:
 		hiding = true
 		emit_message("%s rolls up!" % actor_name)
-		introduce_status_effect("regen", 1.0, 1)
+		add_status_effect(
+	StatusEffect.new().set_strength(1).set_duration(1).set_effect_name(&"regen"))
 
 
 func attack(who: BattleActor) -> void:

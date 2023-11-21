@@ -30,7 +30,7 @@ var actor_name : StringName
 
 var accessible := true
 
-var status_effects : Dictionary = {}
+var status_effects : Array[BattleStatusEffect]
 
 var reference_to_team_array : Array[BattleActor] = []
 var reference_to_opposing_array : Array[BattleActor] = []
@@ -39,6 +39,11 @@ var reference_to_actor_array : Array[BattleActor] = []
 var player_controlled := false
 
 @export_group("Other")
+@export_enum(
+	"None", "Electric",
+	"Sopping", "Burning",
+	"Ghost", "Brain", "Vast"
+	) var gender: int = 0
 @export var effect_immunities : Array[String] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
@@ -57,6 +62,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var sleepy := has_status_effect(&"sleepy")
 	if not character: return
 	if SOL.dialogue_open: return # don't run logic if dialogue is open
 	effect_visuals()
@@ -67,7 +73,7 @@ func _physics_process(delta: float) -> void:
 			# cooldown between 1 and 0 usually
 			wait = maxf(wait - sqrt(delta * get_speed() * 0.1), 0.0)
 			if wait == 0.0:
-				if not has_effect("sleepy"):
+				if not sleepy:
 					act_requested.emit(self)
 					set_state(States.ACTING)
 					wait = 1.0
@@ -78,10 +84,10 @@ func _physics_process(delta: float) -> void:
 						global_position + Vector2(randf_range(-4, 4),
 							randf_range(-16, 0)), {"parent": self})
 					wait = 1.0
-					if has_effect("sleepy"):
+					if sleepy:
 						message.emit("%s is sleeping..." % actor_name)
 						SND.play_sound(preload("res://sounds/sleepy.ogg"),
-						 {"volume": 3})
+						 {"volume": 6})
 					else:
 						message.emit("%s woke up." % actor_name)
 		States.ACTING:
@@ -109,14 +115,16 @@ func heal(amount: float) -> void:
 	SOL.vfx("damage_number", parentless_effcenter(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
 
 
-func hurt(amt: float) -> void:
+func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
+	if gendr == Genders.CIRCLE.get(gender, -1):
+		amount *= 1.5
 	if state == States.DEAD: return
-	if has_effect("sleepy"):
-		status_effects["sleepy"] = {}
+	if has_status_effect(&"sleepy"):
+		remove_status_effect(&"sleepy")
 		message.emit("%s woke up!" % actor_name)
 		amount *= 1.8
-	if has_effect("sopping"):
+	if has_status_effect(&"sopping"):
 		SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
 			{"pitch": 1.3, "volume": 1.5})
 		amount += amt * 0.5
@@ -132,10 +140,16 @@ func hurt(amt: float) -> void:
 		died.emit(self)
 	else:
 		# hurt sound
-		SND.play_sound(
-			preload("res://sounds/eek.ogg") if randf() < 0.0001 and actor_name == "greg" else hurt_sound,
-			{"pitch": maxf(lerpf(2.0, 0.5, remap(amount, 1, 90, 0.1, 1)), 0.1),
-			"volume": randi_range(-4, 1)})
+		if randf() < 0.0001 and actor_name == "greg":
+			SND.play_sound(preload("res://sounds/eek.ogg"))
+		else:
+			SND.play_sound(
+				hurt_sound,
+				{"pitch": maxf(lerpf(2.0, 0.5, remap(
+					amount, 1, 90, 0.1, 1)), 0.1),
+				"volume": randi_range(-4, 1)}
+			)
+			
 	# damage number
 	SOL.vfx(
 		"damage_number",
@@ -143,7 +157,6 @@ func hurt(amt: float) -> void:
 		{text = absf(roundi(amount)),
 		color = Color.RED,
 		})
-	#SOL.vfx("airspace_violation", get_effect_center(self))
 	# shake the screen (not visible unless high damage)
 	SOL.shake(sqrt(amount)/15.0)
 
@@ -162,25 +175,25 @@ func flee() -> void:
 func get_attack() -> float:
 	var x := 0.0
 	x += character.get_stat("attack")
-	if status_effects.get("attack", {}):
-		x += status_effects.get("attack").get("strength")
+	if has_status_effect(&"attack"):
+		x += get_status_effect(&"attack").strength
 	return maxf(x, 1) * stat_multiplier
 
 
 func get_defense() -> float:
 	var x := 0.0
 	x += character.get_stat("defense")
-	if status_effects.get("defense", {}):
-		x += status_effects.get("defense").get("strength")
+	if has_status_effect(&"defense"):
+		x += get_status_effect(&"defense").strength
 	return maxf(x, 1) * stat_multiplier
 
 
 func get_speed() -> float:
 	var x := 0.0
 	x += character.get_stat("speed")
-	if status_effects.get("speed", {}):
-		x += status_effects.get("speed").get("strength")
-	if has_effect("little"):
+	if has_status_effect(&"speed"):
+		x += get_status_effect(&"speed").strength
+	if has_status_effect(&"little"):
 		x *= 0.25
 	return maxf(x, 1) * stat_multiplier
 
@@ -339,10 +352,10 @@ func handle_payload(pld: BattlePayload) -> void:
 		else:
 			health_change = absf(health_change)
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
-			if has_effect("shield"):
+			if has_status_effect(&"shield"):
 				health_change *= 0.25
 				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
-			hurt(health_change)
+			hurt(health_change, pld.gender)
 			if pld.steal_health and is_instance_valid(pld.sender):
 				pld.sender.heal(health_change * pld.steal_health)
 			if pld.steal_magic and is_instance_valid(pld.sender):
@@ -356,7 +369,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	
 	for en in pld.effects:
 		if en.name.length() and en.duration:
-			introduce_status_effect(en.name, en.strength, en.duration + 1)
+			add_status_effect(en)
 	
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
@@ -374,77 +387,64 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
 
+# STATUS EFFECTS
+
+
+func add_status_effect(eff: StatusEffect) -> void:
+	var effect := BattleStatusEffect.add(self, eff)
+	if effect:
+		status_effects.append(effect)
+		print("added effect ", effect, " to ", self)
+
+
+func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> void:
+	add_status_effect(
+		StatusEffect.new().set_effect_name(nimi).set_strength(strength).set_duration(duration)
+	)
+
+
+func has_status_effect(nimi: StringName) -> bool:
+	for eff in status_effects:
+		if nimi == eff.name:
+			return true
+	return false
+
+
+func get_status_effect(nimi: StringName) -> BattleStatusEffect:
+	for eff in status_effects:
+		if nimi == eff.name:
+			return eff
+	return null
+
+
+func remove_status_effect(nimi: StringName) -> void:
+	for eff in status_effects:
+		if nimi == eff.name:
+			eff.removed(self)
+			status_effects.erase(eff)
+			print("removed effect ", eff, " from ", self)
+
 
 func status_effect_update() -> void:
-	for e in status_effects.keys():
-		var effect : Dictionary = status_effects[e]
-		# apply damage from damaging effects
-		effect_action(e, effect)
+	for eff in status_effects:
+		eff.turn(self)
 		# remove if immune
-		if is_immune_to(e):
-			status_effects[e] = {}
-		# effects run out
-		effect[&"duration"] = effect.get(&"duration", 1) - 1
-		if effect.get(&"duration", 1) < 1:
-			status_effects[e] = {}
-			if e == &"little":
-				self.scale = Vector2.ONE
+		if is_immune_to(eff.name):
+			remove_status_effect(eff.name)
+		print(eff)
 
 
-func introduce_status_effect(nomen: String, strength: float, duration: int) -> void:
-	if not nomen.length():
-		printerr("empty effect name")
-		return
-	if not nomen in status_effects.keys():
-		status_effects[nomen] = {}
-	var old_strength : float = status_effects[nomen].get(&"strength", 0)
-	var old_duration : int = status_effects[nomen].get(&"duration", 0)
-	# if the effect already existed, the new strength and length are the averages
-	# between the old effect strength and length and the new effect -"-
-	var new_strength : float = (old_strength + strength / 2.0) if old_strength != 0 else strength
-	var new_duration : int = 0 if duration < 0 else roundi((old_duration + duration / 2.0)) if old_duration != 0 else duration
-	# add immunity
-	if duration < -1:
-		introduce_status_effect(nomen + "_immunity", 1, absi(duration))
-		return
-	# if immune, don't apply the effect
-	if is_immune_to(nomen) and duration > 0:
-		SOL.vfx("damage_number", parentless_effcenter(), {text = "immune!", color = Color.YELLOW, speed = 0.5})
-		return
-	status_effects[nomen] = {
-		&"strength": new_strength,
-		&"duration": new_duration
-	}
-	if nomen == &"sopping" and on_fire():
-		status_effects["fire"] = {}
-	if nomen == &"little":
-		self.scale = Vector2(0.25, 0.25)
-	# notify of an effect with this
-	if strength and duration and duration != -1:
-		SOL.vfx("damage_number", parentless_effcenter(), {text = "%s%s %s" % [Math.sign_symbol(strength), str(absf(strength)) if strength != 1 else "", nomen.replace("_", " ")], color = Color.YELLOW, speed = 0.5})
+func is_immune_to(what: StringName) -> bool:
+	if has_status_effect(&"sopping") and what == &"fire":
+		return true
+	return what in effect_immunities or has_status_effect(what + &"_immunity")
 
 
-func effect_action(nomen: String, effect: Dictionary) -> void:
-	if nomen == &"coughing" and effect.get(&"duration", 0) > 0:
-		# coughing damage is applied by a separate battle actor because why not
-		var cougher := BattleActor.new()
-		cougher.character = Character.new()
-		cougher.character.attack = effect.get(&"strength", 1) * 2
-		add_child(cougher)
-		cougher.attack(self)
-		SND.play_sound(preload("res://sounds/spirit/airspace_violation.ogg"), {"volume": -3})
-		cougher.queue_free()
-	if nomen == &"poison" and effect.get(&"duration", 0) > 0:
-		hurt(effect.get(&"strength", 1) * 1.3)
-	if nomen == &"fire" and effect.get(&"duration", 0) > 0:
-		hurt(clampf(character.health * 0.08, 1, 25))
-		SOL.vfx(&"battle_burning", global_position + SOL.SCREEN_SIZE / 2 + Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": self})
-		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch = 2.0})
-	if nomen == &"regen" and effect.get(&"duration", 0) > 0:
-		heal(effect.get(&"strength", 1) * 5)
-	if nomen == &"inspiration" and effect.get(&"duration", 0) > 0:
-		var mincrease : float = effect.get(&"strength", 1) * 2
-		character.magic += mincrease
+func effect_visuals() -> void:
+	for eff in status_effects:
+		eff.visuals(self)
+
+# HELPERS
 
 
 func turn_finished() -> void:
@@ -501,55 +501,10 @@ func get_team() -> Array[BattleActor]:
 	return reference_to_team_array
 
 
-func is_confused() -> bool:
-	if status_effects.get("confusion", {}):
-		return status_effects.get("confusion", {}).get("duration", 0) > 0
-	return false
-
-
-func on_fire() -> bool:
-	if status_effects.get("fire", {}):
-		return status_effects.get("fire", {}).get("duration", 0) > 0
-	return false
-
-
-func has_effect(what: StringName) -> bool:
-	if status_effects.get(what, {}):
-		return status_effects.get(what, {}).get("duration", 0) > 0
-	return false
-
-
-func is_immune_to(what: StringName) -> bool:
-	if has_effect("sopping") and what == "fire":
-		return true
-	return what in effect_immunities or has_effect(what + "_immunity")
-
-
 func blunt_visuals(subject: BattleActor) -> void:
 	SOL.vfx("dustpuff", get_effect_center(subject), {parent = subject})
 	SOL.vfx("bangspark", get_effect_center(subject), {parent = subject, random_rotation = true})
 	SND.play_sound(preload("res://sounds/attack_blunt.ogg"))
-
-
-func effect_visuals() -> void:
-	if randf() <= 0.02 and on_fire():
-		SOL.vfx("battle_burning",
-			global_position + Vector2(randf_range(-4, 4),
-				randf_range(-8, 16)), {"parent": self})
-		var tw := create_tween().set_trans(Tween.TRANS_QUINT)
-		var rand := randf_range(0.5, 1.0)
-		tw.tween_property(self, "modulate", 
-			Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
-	if randf() <= 0.03 and has_effect("sleepy"):
-		SOL.vfx(
-			"sleepy",
-			global_position + Vector2(randf_range(-4, 4),
-				randf_range(-16, 0)), {"parent": self})
-	if randf() <= 0.04 and has_effect("sopping"):
-		SOL.vfx(
-			"sopping",
-			global_position + Vector2(randf_range(-4, 4),
-				randf_range(-16, 0)), {"parent": self})
 
 
 func _to_string() -> String:

@@ -229,7 +229,7 @@ class Arrow extends Sprite2D:
 			var dir := cyc as Dirs
 			var input := Input.is_action_pressed(INPUTS[cyc])
 			var succ_hit := (dir == direction and input and
-				(ypos > yspace - 8 and ypos < yspace + 8))
+				(ypos > yspace - 14 and ypos < yspace + 14))
 			
 			if input and not succ_hit:
 				received_input = true

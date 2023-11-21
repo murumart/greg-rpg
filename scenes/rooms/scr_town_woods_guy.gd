@@ -8,9 +8,6 @@ const DONT_TELEPORT := ["no", "darn"]
 
 
 func _ready() -> void:
-	# DEBUG
-	DAT.get_character("greg").level_up(59)
-	
 	var level := DAT.get_character("greg").level
 	if level < 55:
 		woods_guy.queue_free()
@@ -23,9 +20,6 @@ func _ready() -> void:
 	else:
 		woods_guy.default_lines.append("woods_guy_tooearly")
 	woods_guy.inspected.connect(_on_inspected)
-	
-	# DEBUG
-	$"../../Greg".global_position = woods_guy.global_position
 
 
 func _on_inspected() -> void:

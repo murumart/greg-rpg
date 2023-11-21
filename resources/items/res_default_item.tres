@@ -18,6 +18,7 @@ steal_magic = 0.0
 attack_increase = 89.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
