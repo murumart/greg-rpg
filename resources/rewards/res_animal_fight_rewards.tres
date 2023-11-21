@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleRewards" load_steps=7 format=3 uid="uid://22rwdfiyynho"]
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=8 format=3 uid="uid://22rwdfiyynho"]
 
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_g8wap"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_ss23c"]
@@ -31,6 +31,13 @@ property = "egg"
 chance = 0.322
 unique = false
 
+[sub_resource type="Resource" id="Resource_fa4ib"]
+script = ExtResource("1_g8wap")
+type = 1
+property = "gummy_worm"
+chance = 0.638
+unique = false
+
 [resource]
 script = ExtResource("1_ss23c")
-rewards = Array[ExtResource("1_g8wap")]([SubResource("Resource_wwkwx"), SubResource("Resource_sa4e4"), SubResource("Resource_ciy5v"), SubResource("Resource_nf4uo")])
+rewards = Array[ExtResource("1_g8wap")]([SubResource("Resource_wwkwx"), SubResource("Resource_sa4e4"), SubResource("Resource_ciy5v"), SubResource("Resource_nf4uo"), SubResource("Resource_fa4ib")])

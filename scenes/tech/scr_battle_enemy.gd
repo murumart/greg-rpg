@@ -120,7 +120,7 @@ func ai_action() -> void:
 			Intents.HEAL:
 				# lowest health in front
 				team.sort_custom(sort_by_health)
-				target = team[0] if not is_confused() else pick_target()
+				target = team[0] if not has_status_effect(&"confusion") else pick_target()
 				# if too tough, don't heal
 				if target == self and target.character.health_perc() > 1.0 - toughness:
 					continue
@@ -151,8 +151,8 @@ func ai_action() -> void:
 	turn_finished()
 
 
-func hurt(amount: float) -> void:
-	super.hurt(amount)
+func hurt(amount: float, gnd: int) -> void:
+	super(amount, gnd)
 	if state != States.DEAD:
 		animate("hurt")
 	else:
@@ -186,7 +186,7 @@ func flee() -> void:
 
 # random targets (and account for confusion)
 func pick_target(who: int = 0) -> BattleActor:
-	if is_confused():
+	if has_status_effect(&"confusion"):
 		return reference_to_actor_array.pick_random()
 	if who == TEAM:
 		return reference_to_team_array.pick_random()
@@ -232,7 +232,7 @@ func animate(what: String) -> void:
 		"death":
 			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_parallel(true)
 			tw.tween_property(animatable, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
-			tw.tween_property(animatable, "global_position:y", 200, 3.0)
+			tw.tween_property(self, "global_position:y", 200, 3.0)
 		"flee":
 			var tw := create_tween()
 			tw.tween_property(animatable, "scale", Vector2(-1.2, 0.8), 0.4)

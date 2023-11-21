@@ -12,18 +12,18 @@ func act() -> void:
 		if character.health_perc() < 0.8:
 			enemy_powerful = true
 		SOL.dialogue("bike_ghost_welcome" if not enemy_powerful else "bike_ghost_powerfulenemy_1")
-		if enemy_powerful: introduce_status_effect("speed", 16, 16)
+		if enemy_powerful: add_status_effect_s(&"speed", 16, 16)
 		h = true
 	elif turn == 2:
 		SOL.dialogue("bike_ghost_convo_1" if not enemy_powerful else "bike_ghost_powerfulenemy_2")
-		if enemy_powerful: introduce_status_effect("speed", 32, 16)
+		if enemy_powerful: add_status_effect_s(&"speed", 32, 16)
 		h = true
 	elif turn == 4:
 		SOL.dialogue("bike_ghost_convo_2" if not enemy_powerful else "bike_ghost_powerfulenemy_3")
 		if enemy_powerful and character.magic < 99:
 			SOL.dialogue("bike_ghost_powerfulenemy_outofmagic")
 		if enemy_powerful:
-			introduce_status_effect("speed", 64, 16)
+			add_status_effect_s(&"speed", 64, 16)
 			hurting_spirits.append("radiation_attack")
 		vaimulembesus = 0.98
 		h = true
@@ -40,9 +40,9 @@ func act() -> void:
 	super.act()
 
 
-func hurt(amount: float) -> void:
+func hurt(amount: float, gnd: int) -> void:
 	if dead: return
-	super.hurt(amount)
+	super.hurt(amount, gnd)
 	if is_zero_approx(character.health_perc()):
 		dead = true
 		SOL.dialogue("bike_ghost_defeat")

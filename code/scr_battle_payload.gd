@@ -23,6 +23,11 @@ var type := Types.ATTACK
 @export var attack_increase: float
 @export var defense_increase: float
 @export var speed_increase: float
+@export_enum(
+	"None", "Electric",
+	"Sopping", "Burning",
+	"Ghost", "Brain", "Vast"
+	) var gender: int
 @export var effects : Array[StatusEffect] = []
 
 @export_group("Other")
@@ -122,5 +127,10 @@ func set_summon_enemy(x: String) -> BattlePayload:
 
 func set_effects(x: Array[StatusEffect]) -> BattlePayload:
 	effects = x
+	return self
+
+
+func set_gender(x: int) -> BattlePayload:
+	gender = x
 	return self
 

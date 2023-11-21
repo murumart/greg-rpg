@@ -1,6 +1,7 @@
 class_name Genders extends RefCounted
 
 enum {
+	NONE,
 	ELECTRIC,
 	SOPPING,
 	FLAMING,

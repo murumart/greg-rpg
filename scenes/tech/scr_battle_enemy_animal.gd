@@ -19,7 +19,7 @@ func act() -> void:
 	soul += 8.5
 
 
-func hurt(amount: float) -> void:
-	super.hurt(amount)
+func hurt(amount: float, gnd: int) -> void:
+	super(amount, gnd)
 	if state != States.DEAD:
 		soul += 5

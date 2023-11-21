@@ -388,7 +388,7 @@ func _on_actor_fled(actor: BattleActor) -> void:
 		pass
 	if actor in enemies:
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
-		xp_pool += roundi(actor.character.level * 0.33)
+		xp_pool += roundi(actor.character.level * 0.5)
 	dead_actors.append(actors.pop_at(actors.find(actor)))
 	arrange_enemies()
 	check_end()
@@ -709,6 +709,8 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	_on_message_received("%s punished %s" % [winner.character.name, loser.character.name])
 	open_party_info_screen()
 	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
+	if pwin:
+		xp_pool += ceili((pscore - enscore) / 3.0)
 	
 
 

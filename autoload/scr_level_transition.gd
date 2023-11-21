@@ -60,6 +60,7 @@ func level_transition(path: String, op := {}) -> void:
 	)
 	await SOL.fade_finished
 	DAT.save_nodes_data()
+	print("changing scene")
 	change_scene_to(path, op)
 	await scene_changed
 	if not op.get("abrupt_end", false):

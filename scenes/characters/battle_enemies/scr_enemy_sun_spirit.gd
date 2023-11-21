@@ -27,19 +27,19 @@ func color(amt: float) -> void:
 
 
 func ai_action() -> void:
-	hurt(2)
+	hurt(2, Genders.FLAMING)
 	super.ai_action()
 
 
-func hurt(amt: float) -> void:
+func hurt(amt: float, gnd: int) -> void:
 	if dead: return
-	super.hurt(amt)
+	super(amt, gnd)
 	color(character.health_perc())
 	if character.health_perc() <= 0.05:
 		if nova < 0.99:
 			nova = -200
 			SOL.vfx("star_nebula")
-			super.hurt(3000)
+			super.hurt(3000, Genders.VAST)
 			dead = true
 	nova_process(pow(amt, 1.35) / character.max_health)
 

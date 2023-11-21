@@ -19,7 +19,7 @@ func update(actor: BattleActor) -> void:
 	portrait.modulate.a = 1.0
 	portrait.texture = charc.portrait
 	portrait.scale = Vector2.ONE
-	if actor.has_effect("little"):
+	if actor.has_status_effect(&"little"):
 		portrait.scale = Vector2(0.5, 0.5)
 	name_label.text = str(charc.name)
 	health_bar.max_value = charc.max_health
@@ -40,16 +40,15 @@ func update(actor: BattleActor) -> void:
 func effects_display(actor: BattleActor) -> void:
 	for i in effects_container.get_children():
 		i.queue_free()
-	for e in actor.status_effects.keys():
-		var effect : Dictionary = actor.status_effects[e]
-		if effect.is_empty(): continue
+	for e in actor.status_effects:
+		var nimi := e.name
 		var rect := TextureRect.new()
 		rect.texture = AtlasTexture.new()
 		rect.texture.atlas = preload("res://sprites/gui/spr_effects.png")
-		rect.texture.region = StatusEffect.ICONS.get(e, Rect2(18, 0, 6, 6))
+		rect.texture.region = StatusEffect.ICONS.get(nimi, Rect2(18, 0, 6, 6))
 		effects_container.add_child(rect)
-		if effect.duration <= 1:
+		if e.duration <= 1:
 			rect.modulate = Color(1, 1, 1, 0.75)
-		if effect.strength < 0:
+		if e.strength < 0:
 			rect.flip_v = true
 	
