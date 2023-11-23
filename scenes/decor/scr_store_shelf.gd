@@ -73,7 +73,7 @@ func _on_interaction_area_on_interact() -> void:
 		SOL.call_deferred("dialogue", "store_shelf_confirm")
 		
 		await SOL.dialogue_closed
-		
+		choice = SOL.dialogue_box.current_choice
 		if not choice == "no": # another chance to not take the item
 			take_item(name_keys_dict.get(choice))
 			# remove item from the shelf inventory
