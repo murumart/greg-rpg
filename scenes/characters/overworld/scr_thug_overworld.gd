@@ -12,6 +12,8 @@ const KS := "kor_sten"
 const A := "abiss"
 const M := "moron"
 
+static var thugs_battled_changed := false
+
 @export var chimney_probability : Curve
 @export var well_probability : Curve
 @export var shopping_cart_probability : Curve
@@ -41,6 +43,15 @@ func _ready() -> void:
 func chase(body) -> void:
 	super.chase(body)
 	SOL.dialogue_box.dial_concat("thug_catch_1", 0, [TWERP_SYNONYMS.pick_random(), ENGAGE_SYNONYMS.pick_random(), TUSSLE_SYNONYMS.pick_random()])
+
+
+func interacted() -> void:
+	super()
+	if not thugs_battled_changed:
+		DAT.incri("thugs_battled", battle_info.enemies.size())
+		thugs_battled_changed = true
+		LTS.scene_changed.connect(func(): thugs_battled_changed = false,
+			CONNECT_ONE_SHOT)
 
 
 func gen_enemies() -> Array[String]:

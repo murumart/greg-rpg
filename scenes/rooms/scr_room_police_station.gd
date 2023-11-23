@@ -79,8 +79,7 @@ func load_bounties() -> void:
 	bounty["circus"] = 0
 	for p in DAT.get_data("party", ["greg"]):
 		var charc := DAT.get_character(p) as Character
-		for i in thugs:
-			bounty["thugs"] += cd(charc, i)
+		bounty["thugs"] += DAT.get_data("thugs_battled", 0)
 		for i in broken:
 			bounty["broken_fishermen"] += cd(charc, i)
 		for i in animals:

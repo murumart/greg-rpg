@@ -1,5 +1,6 @@
 class_name DebugConsole extends Control
 
+enum DataCommands {SET, INCRI,}
 
 var current_command : String
 var last_command : String
@@ -61,6 +62,8 @@ func parse_command() -> void:
 			vfx(args)
 		&"printdata":
 			print(DAT.A)
+		&"setdata":
+			setdata(args)
 		&"7":
 			output("7")
 		_:
@@ -99,6 +102,34 @@ func battle_set(args: PackedStringArray) -> void:
 	var value := args[3]
 	get_team[nr].set(variant, value)
 	output("set %s %s property %s to %s" % ["enemy" if team == 1 else "party member", str(get_team[nr]), variant, value])
+
+
+func setdata(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: setdata key value")
+		return
+	if args.size() != 2:
+		output("needs two arguments", true)
+		return
+	var key := args[0]
+	var value : Variant = args[1]
+	_data_change(DataCommands.SET, key, value)
+
+
+func _data_change(type: DataCommands, key: StringName, value: Variant) -> void:
+	if value == "true":
+		value = true
+	elif value == "false":
+		value = false
+	elif str(value).is_valid_int():
+		value = int(value)
+	elif str(value).is_valid_float():
+		value = float(value)
+	match type:
+		DataCommands.SET:
+			DAT.set_data(key, value)
+		DataCommands.INCRI:
+			DAT.incri(key, value)
 
 
 func ex(args: PackedStringArray) -> void:
