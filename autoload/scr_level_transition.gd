@@ -84,6 +84,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	if entering_battle: return
 	if options.get("sbcheck", false) and skateboard_check(): return
 	entering_battle = true
+	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")

@@ -23,45 +23,7 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 
 
 func get_effect_description() -> String:
-	var text := ""
-	if not payload: return text
-	if payload.health:
-		text += "%s%s hp\n" % [Math.sign_symbol(payload.health), absf(payload.health)]
-	if payload.health_percent:
-		text += "%s%s" % [Math.sign_symbol(payload.health_percent), absf(payload.health_percent)]
-		text += "% hp\n"
-	if payload.max_health_percent:
-		text += "%s%s" % [Math.sign_symbol(payload.max_health_percent), absf(payload.max_health_percent)]
-		text += "% max hp\n"
-	if payload.magic:
-		text += "%s%s sp\n" % [Math.sign_symbol(payload.magic), absf(payload.magic)]
-	if payload.magic_percent:
-		text += "%s%s" % [Math.sign_symbol(payload.magic_percent), absf(payload.magic_percent)]
-		text += "% sp\n"
-	if payload.max_magic_percent:
-		text += "%s%s" % [Math.sign_symbol(payload.max_magic_percent), absf(payload.max_magic_percent)]
-		text += "% max sp\n"
-	if payload.attack_increase:
-		text += "%s%s atk\n" % [Math.sign_symbol(payload.attack_increase), absf(payload.attack_increase)]
-	if payload.defense_increase:
-		text += "%s%s def\n" % [Math.sign_symbol(payload.defense_increase), absf(payload.defense_increase)]
-	if payload.speed_increase:
-		text += "%s%s spd\n" % [Math.sign_symbol(payload.speed_increase), absf(payload.speed_increase)]
-	for eff in payload.effects:
-		var fname := eff.name.replace("_", " ")
-		var criptions := {
-			"fire": "on fire"
-		}
-		var immuniscriptions := {}
-		var curescriptions := {
-			"fire": "fire extinguished"
-		}
-		if eff.duration < -1:
-			text += immuniscriptions.get(eff.name, fname + " immunity") + " for %s\n" % absi(eff.duration)
-		elif eff.duration == -1:
-			text += curescriptions.get(eff.name, "cures " + fname + "\n")
-		else:
-			text += criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s\n" % eff.duration
+	var text := Math.get_effect_description(self)
 	if use == Uses.ARMOUR:
 		text += "armour\n"
 	if use == Uses.WEAPON:

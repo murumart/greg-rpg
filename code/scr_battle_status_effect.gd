@@ -27,6 +27,8 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		return null
 	neweff._add_text(actor)
 	neweff.added(actor)
+	if not neweff.name in DAT.get_data("known_status_effects", []):
+		DAT.appenda("known_status_effects", neweff.name)
 	return neweff
 
 

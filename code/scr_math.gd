@@ -238,3 +238,48 @@ static func child_dict(node: Node) -> Dictionary:
 		dict[i.name.to_snake_case()] = i
 	return dict
 
+
+static func get_effect_description(item) -> String:
+	var text := ""
+	if not item.payload: return text
+	if item.payload.health:
+		text += "%s%s hp\n" % [Math.sign_symbol(item.payload.health), absf(item.payload.health)]
+	if item.payload.health_percent:
+		text += "%s%s" % [Math.sign_symbol(item.payload.health_percent), absf(item.payload.health_percent)]
+		text += "% hp\n"
+	if item.payload.max_health_percent:
+		text += "%s%s" % [Math.sign_symbol(item.payload.max_health_percent), absf(item.payload.max_health_percent)]
+		text += "% max hp\n"
+	if item.payload.magic:
+		text += "%s%s sp\n" % [Math.sign_symbol(item.payload.magic), absf(item.payload.magic)]
+	if item.payload.magic_percent:
+		text += "%s%s" % [Math.sign_symbol(item.payload.magic_percent), absf(item.payload.magic_percent)]
+		text += "% sp\n"
+	if item.payload.max_magic_percent:
+		text += "%s%s" % [Math.sign_symbol(item.payload.max_magic_percent), absf(item.payload.max_magic_percent)]
+		text += "% max sp\n"
+	if item.payload.attack_increase:
+		text += "%s%s atk\n" % [Math.sign_symbol(item.payload.attack_increase), absf(item.payload.attack_increase)]
+	if item.payload.defense_increase:
+		text += "%s%s def\n" % [Math.sign_symbol(item.payload.defense_increase), absf(item.payload.defense_increase)]
+	if item.payload.speed_increase:
+		text += "%s%s spd\n" % [Math.sign_symbol(item.payload.speed_increase), absf(item.payload.speed_increase)]
+	for eff in item.payload.effects:
+		var fname := eff.name.replace("_", " ") as String
+		var criptions := {
+			&"fire": "on fire",
+			&"magnet": "magnetic"
+		}
+		var immuniscriptions := {
+			&"fire": "fireproof"
+		}
+		var curescriptions := {
+			&"fire": "fire extinguished"
+		}
+		if eff.duration < -1:
+			text += immuniscriptions.get(eff.name, fname + " immunity") + " for %s\n" % absi(eff.duration)
+		elif eff.duration == -1:
+			text += curescriptions.get(eff.name, "cures " + fname + "\n")
+		else:
+			text += criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s\n" % eff.duration
+	return text

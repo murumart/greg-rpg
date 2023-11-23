@@ -59,7 +59,7 @@ func _on_interaction_area_on_interact() -> void:
 		# we show the item's name and price
 		text += "%s - %s silver" % [tr(item_name), item_price]
 	SOL.dialogue_box.adjust("store_shelf_start", 1, "text", text)
-	choices.append("cancel") # add a cancel choosing option
+	choices.append(&"cancel") # add a cancel choosing option
 	SOL.dialogue_box.adjust("store_shelf_start", 1, "choices", choices)
 	
 	SOL.dialogue("store_shelf_start")
@@ -67,14 +67,14 @@ func _on_interaction_area_on_interact() -> void:
 	await SOL.dialogue_closed
 	
 	var choice := SOL.dialogue_box.current_choice
-	if not (choice == "cancel" or choice == "no"):
+	if not (choice == &"cancel" or choice == &"no"):
 		SOL.dialogue_box.dial_concat("store_shelf_confirm", 0, [choice])
 		
 		SOL.call_deferred("dialogue", "store_shelf_confirm")
 		
 		await SOL.dialogue_closed
-		choice = SOL.dialogue_box.current_choice
-		if not choice == "no": # another chance to not take the item
+		#choice = SOL.dialogue_box.current_choice
+		if SOL.dialogue_choice != &"no": # another chance to not take the item
 			take_item(name_keys_dict.get(choice))
 			# remove item from the shelf inventory
 			for i in inventory:

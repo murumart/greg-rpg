@@ -179,6 +179,7 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	var room_to_load : String = loaded.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
+	#print("")
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)

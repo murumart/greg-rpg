@@ -19,7 +19,6 @@ func _ready() -> void:
 		DAT.set_data("zerma_left", true)
 	
 	neighbour_wife_position()
-	tarikas_lines()
 	pink_haired_girl_setup()
 	naturalist_setup()
 	pairhouse_guy_setup()
@@ -45,37 +44,6 @@ func neighbour_wife_position() -> void:
 	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
 	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0) and LTS.gate_id != &"house-town":
 		neighbour_wife.queue_free()
-
-
-func tarikas_lines() -> void:
-	var tarikas : OverworldCharacter = $Other/BackPark/Tarikas
-	var level := DAT.get_character("greg").level
-	var lines_to_set : Array[StringName] = []
-	tarikas.convo_progress = 0
-	if not DAT.get_data("tarikas_talked_to", false):
-		lines_to_set.append("tarikas_hello")
-	if level < 5:
-		pass
-	elif Math.inrange(level, 6, 10):
-		lines_to_set.append("tarikas_10")
-	elif Math.inrange(level, 11, 15):
-		lines_to_set.append("tarikas_15")
-	elif Math.inrange(level, 16, 25):
-		if DAT.get_data("biking_games_finished", 0) > 0:
-			lines_to_set.append("tarikas_25")
-	elif Math.inrange(level, 26, 35):
-		lines_to_set.append("tarikas_30")
-	elif level == 36:
-		lines_to_set.append("tarikas_36")
-	elif Math.inrange(level, 37, 42):
-		if DAT.get_data("fulfilled_bounty_thugs", false):
-			lines_to_set.append("tarikas_40")
-	lines_to_set.append("tarikas_finish")
-	tarikas.default_lines = lines_to_set
-
-func _on_tarikas_inspected() -> void:
-	tarikas_lines()
-	DAT.set_data("tarikas_talked_to", true)
 
 
 func pink_haired_girl_setup() -> void:

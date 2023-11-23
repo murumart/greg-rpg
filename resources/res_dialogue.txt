@@ -2058,6 +2058,29 @@ CHOICES darn
 	it's not woods time for you yet.
 
 
+DIALOGUE effect_guru_noeffects
+	come to me once you have some more battle experience.
+	i can help you.
+	see you then.
+
+
+DIALOGUE effect_guru_hi
+	hello, greg.
+	yes, i know your name. i heard it from the spirits.
+	do not be afraid, greg, for i am a peaceful man.
+	have you ever felt lost with the various ailments and effects...
+	...that play a part in your battles? well, greg...
+	that is why i'm here. i am the status effect guru.
+	if you want advice regarding status effects, come to me.
+
+
+DIALOGUE effect_guru
+CHOICES bye
+	ask me anything...
+CHOICE_LINK bye
+	goodbye. i will remain here.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

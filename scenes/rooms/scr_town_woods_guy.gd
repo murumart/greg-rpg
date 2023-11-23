@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var woods_guy: OverworldCharacter = $WoodsGuy
-@onready var spots: Node2D = $Spots
+@onready var spots: Node = $Spots
 
 const LINE := "woods_guy_"
 const DONT_TELEPORT := ["no", "darn"]

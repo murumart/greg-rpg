@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://dwg8xicq7jpuu"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dwg8xicq7jpuu"]
 
 [ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_0c350"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_teo7q"]
@@ -11,22 +11,32 @@ name = "speed"
 strength = 5
 duration = 10.0
 
+[sub_resource type="Resource" id="Resource_uqx6c"]
+script = ExtResource("1_0c350")
+name = &"inspiration"
+strength = 2.0
+duration = 10
+
 [sub_resource type="Resource" id="Resource_k8uvg"]
 script = ExtResource("1_teo7q")
 health = 75.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
-effects = Array[ExtResource("1_0c350")]([SubResource("Resource_p88dq")])
+gender = 0
+effects = Array[ExtResource("1_0c350")]([SubResource("Resource_p88dq"), SubResource("Resource_uqx6c")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_jqfpd")
