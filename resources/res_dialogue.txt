@@ -64,6 +64,11 @@ SOUND spirit/spirit_get
 	[center]the spirit [color=#7799ff]%s[/color] joins you.[/center]
 
 
+DIALOGUE spirit_equip_tutorial
+	your new spirit is now available to be equipped in your inventory.
+	remember to equip it to use it in battle.
+
+
 DIALOGUE emptyreward
 	you are not fit for a reward.
 
@@ -2079,6 +2084,38 @@ CHOICES bye
 	ask me anything...
 CHOICE_LINK bye
 	goodbye. i will remain here.
+
+
+DIALOGUE tutguy_intro
+SPEED 0.75
+SET_DATA talked_to_tutguy,true
+	hey... you look new here!
+	you're lucky that i'm here. i am very helpful.
+
+
+DIALOGUE tutguy_open_inventory
+	did you know that you can open your inventory by pressing [color=#ffcccc]c[/color]?
+SPEED 0.75
+	you can then view your status, use healing items and even equip spirits!
+
+
+DIALOGUE tutguy_equip_items
+	did you know that you can [color=#ffcccc]equip items[/color]?
+SPEED 0.75
+	open your inventory and use an equipable item on yourself!
+	they can help a great deal with increasing your stats.
+
+
+DIALOGUE tutguy_greenhouses
+	did you know that around town there are [color=#ccffcc]greenhouses[/color]?
+SPEED 0.75
+	you can sleep in them or even eat the vegetables to recover health!
+	i haven't had the need to buy food for months.
+
+
+DIALOGUE tutguy_bye
+SPEED 0.65
+	i am very helpful!
 
 
 DIALOGUE insp_snowdrops

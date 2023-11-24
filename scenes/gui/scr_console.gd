@@ -51,7 +51,7 @@ func parse_command() -> void:
 		&"bset":
 			battle_set(args)
 		&"help":
-			output("available commands are: greg,bset,help,ex,clear,history,vfx,printdata,7\ntype command without args to get help")
+			output("available commands are: greg,bset,help,ex,clear,history,vfx,printdata,xp,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -64,6 +64,8 @@ func parse_command() -> void:
 			print(DAT.A)
 		&"setdata":
 			setdata(args)
+		&"xp":
+			xp(args)
 		&"7":
 			output("7")
 		_:
@@ -151,6 +153,18 @@ func ex(args: PackedStringArray) -> void:
 	else:
 		output("execution failed:", true)
 		output(expr.get_error_text(), true)
+
+
+func xp(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: xp charname amount")
+		return
+	if args.size() != 2:
+		output("need 2 arguments", true)
+	var charname := args[0]
+	var amount := int(args[1])
+	DAT.get_character(charname).add_experience(amount)
+	output("gave %s exp to %s" % [amount, charname])
 
 
 func vfx(args: PackedStringArray) -> void:

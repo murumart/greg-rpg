@@ -48,6 +48,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if (not menu.visible) and DAT.player_capturers.is_empty():
 				menu.call_deferred("showme")
 				DAT.capture_player("overworld_menu")
+				DAT.set_data("has_opened_inventory", true)
 			else:
 				close_menu()
 

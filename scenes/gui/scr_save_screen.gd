@@ -77,7 +77,7 @@ func set_current_button(to: int) -> void:
 	var text := "[center]save file info[/center]\n"
 	text += "\ndate: %s\n" % data.get("date", "?")
 	text += "time: %s\n" % data.get("time", "?")
-	text += "playtime: %s min\n" % round(data.get("playtime", 0) / 60.0)
+	text += "playtime: %s\n" % get_playtime(data)
 	text += "\nparty: %s\n" % data.get("party", "?")
 	text += "level: %s\n" % data.get("char_greg_save", {}).get("level", "?")
 	info_label.set_text(text)
@@ -107,6 +107,26 @@ func update_buttons() -> void:
 				child.disabled = false
 			LOAD:
 				child.disabled = !DIR.file_exists(ABSOLUTE_SAVE_PATH % i)
+
+
+func get_playtime(data: Dictionary) -> String:
+	var s = ""
+	var secs := data.get("playtime", 0) as int
+	var mins := floori(secs / 60.0)
+	var hrs := floori(mins / 60.0)
+	
+	if secs <= 0:
+		return "?"
+	if mins < 1:
+		s += str(secs) + " sec"
+		return s
+	if hrs < 1:
+		s += str(mins) + " min"
+		return s
+	else:
+		s += str(hrs) + "h " + str(mins - hrs * 60) + "min "
+	
+	return s
 
 
 func _on_button_pressed(reference: Variant) -> void:

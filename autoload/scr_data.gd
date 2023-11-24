@@ -20,6 +20,7 @@ var player_capturers := []
 # counting playtime
 @onready var game_timer := $GameTimer
 var seconds := 0
+var playtime := 0
 var last_save_second := 0
 var load_second := 0
 
@@ -116,8 +117,9 @@ func appenda(key: StringName, thing: Variant) -> void:
 func save_data(filename := "save.grs", overwrite := true) -> void:
 	save_nodes_data()
 	save_chars_to_data()
-	set_data("playtime", seconds)
+	set_data("playtime", playtime)
 	set_data("save_file", filename)
+	set_data("seconds", seconds)
 	# get estonianised
 	set_data("date", Time.get_date_string_from_system().replace("-", "."))
 	set_data("time", Time.get_time_string_from_system().replace(":", "."))
@@ -167,7 +169,10 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 			A[k] = loaded[k]
 	else:
 		A = loaded
-	seconds = loaded.get("playtime", 0)
+	seconds = loaded.get("seconds", 0)
+	if get_data("save_file", "") == filename:
+		playtime = maxi(playtime, get_data("playtime", 0))
+		set_data("playtime", playtime)
 	print("finished overwriting data.")
 	
 	load_chars_from_data()
@@ -189,7 +194,8 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 func copy_data() -> void:
 	save_nodes_data()
 	save_chars_to_data()
-	set_data("playtime", seconds)
+	set_data("playtime", playtime)
+	set_data("seconds", seconds)
 	set_data("date", Time.get_date_string_from_system())
 	set_data("time", Time.get_time_string_from_system())
 	DisplayServer.clipboard_set(var_to_str(DAT.A))
@@ -262,6 +268,9 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 	if not dialogue: return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
+	if not DAT.get_data("spirits_gotten", 0):
+		SOL.dialogue("spirit_equip_tutorial")
+	DAT.incri("spirits_gotten", 1)
 
 
 func get_character(key: String) -> Character:
@@ -314,6 +323,7 @@ func get_spirit(id: String) -> Spirit:
 
 func _on_game_timer_timeout() -> void:
 	seconds += 1
+	playtime += 1
 
 
 # storing the level up spirit names here

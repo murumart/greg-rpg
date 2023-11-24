@@ -106,12 +106,12 @@ func add_experience(amount: int, speak := false) -> void:
 			experience = 0
 			level_up()
 			if name_in_file in DAT.get_data("party", ["greg"]):
-				var dialogue_key := "levelup"
-				if name_in_file == "greg":
+				var dialogue_key := &"levelup"
+				if name_in_file == &"greg":
 					# get a new spirit every 11 levels
 					var sp : String = DAT.get_levelup_spirit(level)
 					if sp.length():
-						dialogue_key = "levelup_with_spirit"
+						dialogue_key = &"levelup_with_spirit"
 						DAT.grant_spirit(sp, 0, false)
 						SOL.dialogue_box.dial_concat(
 							dialogue_key,
@@ -120,6 +120,10 @@ func add_experience(amount: int, speak := false) -> void:
 						)
 				SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
 				SOL.dialogue(dialogue_key)
+				if dialogue_key == &"levelup_with_spirit":
+					if not DAT.get_data("spirits_gotten", 0):
+						SOL.dialogue("spirit_equip_tutorial")
+					DAT.incri("spirits_gotten", 1)
 	leveled_up.emit()
 
 
@@ -158,11 +162,13 @@ func handle_item(id: String) -> void:
 			inventory.append(armour)
 		armour = id
 		SND.play_sound(load("res://sounds/equip.ogg"))
+		DAT.set_data("equipped_item", true)
 	elif item.use == Item.Uses.WEAPON:
 		if weapon:
 			inventory.append(weapon)
 		weapon = id
 		SND.play_sound(load("res://sounds/equip.ogg"))
+		DAT.set_data("equipped_item", true)
 	else:
 		handle_payload(item.payload)
 

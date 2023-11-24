@@ -17,10 +17,10 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		neweff.name += &"_immunity"
 		neweff.duration = -neweff.duration
 		actor.remove_status_effect(eff.name)
+	if eff.duration == -1:
+		actor.remove_status_effect(eff.name)
+		return null
 	if actor.has_status_effect(neweff.name):
-		if eff.duration == -1:
-			actor.remove_status_effect(eff.name)
-			return null
 		var oldeff : BattleStatusEffect = actor.get_status_effect(neweff.name)
 		oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
 		oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)

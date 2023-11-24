@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=70 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="14_gpjks"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
+[ext_resource type="PackedScene" uid="uid://dc8ogd0l1n7gn" path="res://scenes/characters/overworld/scn_tutorial_guy.tscn" id="16_2feir"]
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
 [ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="16_ndfvs"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_o4xvl"]
@@ -367,7 +368,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(430, -4)
+position = Vector2(-390, 268)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -677,6 +678,9 @@ save = false
 position = Vector2(194, 97)
 player = NodePath("../../../Greg")
 
+[node name="TutorialGUy" parent="Houses/NeighbourHouse" instance=ExtResource("16_2feir")]
+position = Vector2(-98, 105)
+
 [node name="BlockNeighbours" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(160, 128)
@@ -894,6 +898,10 @@ texture = ExtResource("16_lcsjq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="EquipBrick" parent="Houses/HousingBlock" instance=ExtResource("16_2feir")]
+position = Vector2(95, 85)
+tutorial_type = 1
+
 [node name="Store" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(880, 176)
@@ -1009,6 +1017,10 @@ position = Vector2(105, 52)
 replenish_minutes = 60
 replenish_seconds = 3600
 item = &"mueslibar"
+
+[node name="Greenhouse" parent="Houses/Store" instance=ExtResource("16_2feir")]
+position = Vector2(-34, 63)
+tutorial_type = 2
 
 [node name="PostOffice" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1462,7 +1474,7 @@ region_rect = Rect2(16, 32, 16, 16)
 
 [node name="NatureGuyLeft" type="Node2D" parent="Other"]
 y_sort_enabled = true
-position = Vector2(-576, 0)
+position = Vector2(-475, -440)
 
 [node name="NatureGuy" parent="Other/NatureGuyLeft" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("10_dem56")]
 position = Vector2(12, 242)
@@ -1478,33 +1490,22 @@ sprite_frames = ExtResource("29_25qm4")
 animation = &"walk_down"
 
 [node name="Path" type="Node2D" parent="Other/NatureGuyLeft"]
+position = Vector2(35, 266)
 
 [node name="Node2D" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(11, 252)
+position = Vector2(-7, -10)
 
 [node name="Node2D2" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(20, 173)
+position = Vector2(6, -31)
 
 [node name="Node2D3" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(16, -33)
+position = Vector2(-18, -62)
 
 [node name="Node2D4" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(-4, -36)
+position = Vector2(-36, -43)
 
 [node name="Node2D5" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(15, -163)
-
-[node name="Node2D6" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(113, -208)
-
-[node name="Node2D7" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(165, -271)
-
-[node name="Node2D8" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(189, -208)
-
-[node name="Node2D9" type="Node2D" parent="Other/NatureGuyLeft/Path"]
-position = Vector2(104, -160)
+position = Vector2(-29, -6)
 
 [node name="Birds" type="Node2D" parent="Other"]
 y_sort_enabled = true

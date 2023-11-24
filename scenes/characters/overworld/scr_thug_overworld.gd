@@ -12,7 +12,10 @@ const KS := "kor_sten"
 const A := "abiss"
 const M := "moron"
 
-static var thugs_battled_changed := false
+static var thugs_battled_changed := false:
+	set(t):
+		thugs_battled_changed = t
+		#print("thugs_battled_changed is now ", t)
 
 @export var chimney_probability : Curve
 @export var well_probability : Curve
@@ -50,8 +53,6 @@ func interacted() -> void:
 	if not thugs_battled_changed:
 		DAT.incri("thugs_battled", battle_info.enemies.size())
 		thugs_battled_changed = true
-		LTS.scene_changed.connect(func(): thugs_battled_changed = false,
-			CONNECT_ONE_SHOT)
 
 
 func gen_enemies() -> Array[String]:
