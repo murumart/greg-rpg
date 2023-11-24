@@ -94,6 +94,7 @@ func xp2lvl(lvl: int) -> int:
 
 # currently only greg can functionally gain xp and level up
 func add_experience(amount: int, speak := false) -> void:
+	SOL.dialogue_box.dial_concat("levelup", 1, ["0", "0"])
 	var _old_level := level
 	print("\texp amount: ", amount)
 	if speak:
@@ -105,31 +106,14 @@ func add_experience(amount: int, speak := false) -> void:
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
-			if name_in_file in DAT.get_data("party", ["greg"]):
-				var dialogue_key := &"levelup"
-				if name_in_file == &"greg":
-					# get a new spirit every 11 levels
-					var sp : String = DAT.get_levelup_spirit(level)
-					if sp.length():
-						dialogue_key = &"levelup_with_spirit"
-						DAT.grant_spirit(sp, 0, false)
-						SOL.dialogue_box.dial_concat(
-							dialogue_key,
-							2,
-							[DAT.get_spirit(sp).name]
-						)
-				SOL.dialogue_box.dial_concat(dialogue_key, 1, [name, level])
-				SOL.dialogue(dialogue_key)
-				if dialogue_key == &"levelup_with_spirit":
-					if not DAT.get_data("spirits_gotten", 0):
-						SOL.dialogue("spirit_equip_tutorial")
-					DAT.incri("spirits_gotten", 1)
+			
 	leveled_up.emit()
 
 
 func level_up(by := 1, overflow := false) -> void:
 	if by < 1: return
 	var curve := preload("res://resources/res_stat_add_curve.tres")
+	var spirits_to_add := []
 	for t in by:
 		# max level is 99
 		if level >= 99 and not overflow: return
@@ -153,6 +137,18 @@ func level_up(by := 1, overflow := false) -> void:
 				set(k, roundf(get(k) + (perfect_inc * upgrade_chance)))
 			if level == 99:
 				set(k, roundf(UPGRADE_MAX[k]))
+		# spirits
+		if level % 11 == 0:
+			var sp : String = DAT.get_levelup_spirit(level)
+			if sp.length():
+				spirits_to_add.append(sp)
+		
+	SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
+	SOL.dialogue("levelup")
+	for sp in spirits_to_add:
+		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file))
+		
+				
 
 
 func handle_item(id: String) -> void:

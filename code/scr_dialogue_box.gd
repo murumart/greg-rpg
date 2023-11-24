@@ -64,22 +64,24 @@ func load_dialogue_dict() -> void:
 		dialogues_dict[i] = fish_dialogues[i]
 
 
+func copy_dial(dial: Dialogue) -> Dialogue:
+	var nd := dial.duplicate(true)
+	var new_lines : Array[DialogueLine] = []
+	for l in dial.lines:
+		var line : DialogueLine = l.duplicate(true)
+		new_lines.append(line)
+	nd.lines = new_lines
+	return nd
+
+
 func prepare_dialogue(key: String) -> void:
 	if dialogues_dict.is_empty():
 		load_dialogue_dict()
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	if is_instance_valid(loaded_dialogue):
 		# if a dialogue is loaded, add the new one to the queue
-		# first we duplicate the new dialogue
-		var dial_to_append : Dialogue = dialogues_dict.get(key, Dialogue.new()).duplicate(true)
-		# then assign a new typed array variable.
-		var new_lines : Array[DialogueLine] = []
-		# and put the lines of the new dialogue... inside this array...
-		for l in dial_to_append.lines:
-			var line : DialogueLine = l.duplicate(true)
-			new_lines.append(line)
-		# and then set the new dialogue's lines like this.
-		dial_to_append.lines = new_lines
+		# we duplicate the new dialogue
+		var dial_to_append := copy_dial(dialogues_dict.get(key, Dialogue.new()))
 		# why all this? ha ha ha! typed array jank!!!!  god dannnnnnnn
 		dialogue_queue.append(dial_to_append)
 		return
@@ -88,7 +90,7 @@ func prepare_dialogue(key: String) -> void:
 
 
 func load_dialogue(dial : Dialogue) -> void:
-	loaded_dialogue = dial
+	loaded_dialogue = copy_dial(dial)
 	changed_dialogue.emit()
 	if loaded_dialogue.alias != "":
 		var alias := loaded_dialogue.alias
