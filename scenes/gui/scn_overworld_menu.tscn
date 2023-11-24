@@ -276,6 +276,7 @@ alignment = 0
 script = ExtResource("3_srch7")
 
 [node name="UsingMenu" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0

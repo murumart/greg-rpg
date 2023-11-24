@@ -161,6 +161,7 @@ func xp(args: PackedStringArray) -> void:
 		return
 	if args.size() != 2:
 		output("need 2 arguments", true)
+		return
 	var charname := args[0]
 	var amount := int(args[1])
 	DAT.get_character(charname).add_experience(amount)

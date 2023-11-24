@@ -303,7 +303,7 @@ func _reference_button_pressed(reference) -> void:
 				await get_tree().process_frame
 				grab_item_focus()
 			else:
-				SND.play_sound(load("res://sounds/snd_error.ogg"), {"volume": -10})
+				SND.play_sound(load("res://sounds/error.ogg"), {"volume": -10})
 				mem_infotext.text = "can only equip %s spirits at a time" % DAT.MAX_SPIRITS
 		elif reference in party(current_tab).spirits:
 			party(current_tab).spirits.erase(reference)
