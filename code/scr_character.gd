@@ -148,8 +148,6 @@ func level_up(by := 1, overflow := false) -> void:
 	for sp in spirits_to_add:
 		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file))
 		
-				
-
 
 func handle_item(id: String) -> void:
 	var item = DAT.get_item(id)
