@@ -154,6 +154,20 @@ offset_right = 150.0
 offset_bottom = 124.0
 text = "press esc for options any time"
 
+[node name="LoadingScreen" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="LoadingScreen"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 13.0
+text = "loading."
+
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]

@@ -9,6 +9,7 @@ var starting := false
 
 func _ready() -> void:
 	load_all_effects()
+	$LoadingScreen.hide()
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
 	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
