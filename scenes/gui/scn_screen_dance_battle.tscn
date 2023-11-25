@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cami7pi4o2hiw"]
 
-[ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/vfx/spr_dancer.png" id="1_0tnya"]
 [ext_resource type="Script" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
-[ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/vfx/spr_animal_dancer.png" id="2_6imck"]
+[ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/gui/spr_dancer.png" id="2_i1uev"]
+[ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/gui/spr_animal_dancer.png" id="3_nyl0p"]
 [ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
 
 [sub_resource type="Curve" id="Curve_g0gmc"]
@@ -29,13 +29,13 @@ offset_bottom = 44.0
 
 [node name="Dancer" type="Sprite2D" parent="."]
 position = Vector2(21, 22)
-texture = ExtResource("1_0tnya")
+texture = ExtResource("2_i1uev")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="AnimalDancer" type="Sprite2D" parent="."]
 position = Vector2(137, 22)
-texture = ExtResource("2_6imck")
+texture = ExtResource("3_nyl0p")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 

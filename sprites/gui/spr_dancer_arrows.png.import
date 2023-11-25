@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0je3kqmsb7g7"
-path="res://.godot/imported/spr_dancer_arrows.png-455573ed240434f98534b033a35006c0.ctex"
+path="res://.godot/imported/spr_dancer_arrows.png-3506d8641d9edd6cd4b8136bc91c41be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/vfx/spr_dancer_arrows.png"
-dest_files=["res://.godot/imported/spr_dancer_arrows.png-455573ed240434f98534b033a35006c0.ctex"]
+source_file="res://sprites/gui/spr_dancer_arrows.png"
+dest_files=["res://.godot/imported/spr_dancer_arrows.png-3506d8641d9edd6cd4b8136bc91c41be.ctex"]
 
 [params]
 

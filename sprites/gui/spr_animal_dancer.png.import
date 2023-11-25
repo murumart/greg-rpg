@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs5vehuo4aavq"
-path="res://.godot/imported/spr_animal_dancer.png-ac8a2059f6e8667953ce4436b7408e1b.ctex"
+path="res://.godot/imported/spr_animal_dancer.png-bb6b6622e1542bca012f5ef4e457bd5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/vfx/spr_animal_dancer.png"
-dest_files=["res://.godot/imported/spr_animal_dancer.png-ac8a2059f6e8667953ce4436b7408e1b.ctex"]
+source_file="res://sprites/gui/spr_animal_dancer.png"
+dest_files=["res://.godot/imported/spr_animal_dancer.png-bb6b6622e1542bca012f5ef4e457bd5f.ctex"]
 
 [params]
 

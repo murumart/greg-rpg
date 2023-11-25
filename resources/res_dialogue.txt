@@ -2108,6 +2108,16 @@ SPEED 0.65
 	i am very helpful!
 
 
+DIALOGUE dance_battle_tutorial
+	oh no! this animal has grown bored and has challenged you...
+SPEED 1.2
+	...to a [color="88ff99"]dance battle!!!
+SPEED 1.0
+	let's take it slower this time, because it's the first time for you.
+	follow your instructed moves quickly by using arrow keys.
+	be nimble about it, because losing to an animal is humiliating.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

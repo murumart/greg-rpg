@@ -33,6 +33,7 @@ var score := 0.0
 var enemy_hits := 0
 var enemy_streak := 0
 var enemy_score := 0.0
+var tutorial := false
 
 
 func _ready() -> void:
@@ -46,9 +47,10 @@ func _physics_process(delta: float) -> void:
 		score -= delta * 0.5
 		enemy_score -= delta * 0.5
 	
-#	if Input.is_key_pressed(KEY_9):
-#		reset()
-#		active = true
+	# debug
+	if Input.is_key_pressed(KEY_9):
+		reset()
+		active = true
 
 
 func reset() -> void:
@@ -65,19 +67,30 @@ func reset() -> void:
 
 
 func _new_beat() -> void:
-	if not active: return
-	beat += 1
+	if not active:
+		return
+	if not DAT.get_data("dance_battle_tutorialed", false):
+		SOL.dialogue("dance_battle_tutorial")
+		DAT.set_data("dance_battle_tutorialed", true)
+		tutorial = true
+	if not SOL.dialogue_open:
+		beat += 1
 	if streak > 0:
 		player_dance()
 	if enemy_streak > 0:
 		enemy_dance()
 	if beat > beats_to_play:
 		return
-	if beat % 2 == 0:
+	var beat_to_test := 2 * (2 * int(tutorial))
+	if beat % beat_to_test == 0:
 		create_tween().tween_property(score_text, "modulate", Color.WHITE, 0.2).from(Color.YELLOW)
+		if SOL.dialogue_open:
+			return
 		create_arrow()
 		create_arrow(1)
 	else:
+		if SOL.dialogue_open:
+			return
 		if randf() <= 0.22:
 			if randf() <= 0.5:
 				create_arrow()
@@ -91,11 +104,12 @@ func create_arrow(alignment := 0) -> void:
 	falling_arrows.add_child(arrow)
 	var bps := mbc.bpm / 60.0
 	arrow.speed = randf_range(120, 150) # pixels per sec
+	if tutorial:
+		arrow.speed *= 0.75
 	var box_from_top := 97.0
 	arrow.position.y = -arrow.speed * bps
-	print(arrow.position.y)
-	var trail := SOL.vfx("dance_arrow_trail", arrow.position, 
-		{"parent": arrow, "z_index": -1})
+	var trail := preload("res://scenes/vfx/scn_vfx_dance_arrow_trail.tscn").instantiate()
+	arrow.add_child(trail)
 	if alignment == 1:
 		arrow.enemy = true
 		arrow.global_position.x = 110
@@ -129,6 +143,9 @@ func _fail_miss() -> void:
 func _enemy_action(success := true) -> void:
 	if not active: return
 	if success:
+		if tutorial and beat % 4 == 0:
+			_enemy_action(false)
+			return
 		enemy_dance()
 		enemy_streak += 1
 		enemy_score += 2.0 * maxi(enemy_streak, 1)
@@ -211,7 +228,7 @@ class Arrow extends Sprite2D:
 	
 	
 	func _ready() -> void:
-		texture = preload("res://sprites/vfx/spr_dancer_arrows.png")
+		texture = preload("res://sprites/gui/spr_dancer_arrows.png")
 		region_enabled = true
 		direction = (randi() % 4) as Dirs
 		region_rect = Rect2(0, int(direction) * 16, 16, 16)
