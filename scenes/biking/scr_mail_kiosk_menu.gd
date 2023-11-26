@@ -4,6 +4,7 @@ extends Control
 # i',m not commenting this any more than it already is. good lcuk
 
 const MAX_INV_SIZE := 3
+const BikingGreg := preload("res://scenes/biking/scr_biking_greg.gd")
 
 signal closed
 
@@ -113,14 +114,25 @@ func _input(event: InputEvent) -> void:
 
 func get_welcome_message() -> String:
 	var kiosks_opened : int = game_get("kiosks_activated", 0)
+	var bike = game_get("bike") as BikingGreg
+	var health : float = bike.health / float(bike.max_health)
+	print(health)
 	print(kiosks_opened)
 	if ending:
 		SND.play_song("victory", 1.0, {"start_volume": 1.0})
 		return "biking_last_stop"
-	if kiosks_opened == 0:
+	if health < 0.24:
+		return "biking_welcome_lowhealth"
+	if game_get("snails_hit", 0) > 7:
+		return "biking_welcome_snailwarning"
+	if kiosks_opened == 1:
 		return "biking_welcome_1"
-	if DAT.seconds - DAT.get_data("last_kiosk_open_second", 0) > 88:
+	if DAT.seconds - DAT.get_data("last_kiosk_open_second", 0) > 60 + 30 + 60:
 		return "biking_welcome_afterwhile"
+	if Math.inrange(kiosks_opened, 2, 3):
+		return "biking_welcome_" + str((randi() % 3) + 2)
+	if kiosks_opened == 4:
+		return "biking_welcome_beforelast"
 	return "biking_welcome_1"
 
 
@@ -247,8 +259,6 @@ func perk_reference_received(reference) -> void:
 
 func game_get(thing: String, default: Variant = null) -> Variant:
 	if !game_reference:
-		return default
-	if not thing in game_reference:
 		return default
 	return game_reference.get(thing)
 

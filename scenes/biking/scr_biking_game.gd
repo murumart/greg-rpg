@@ -6,6 +6,7 @@ const ROAD_BOUNDARIES := Rect2(Vector2(2, 116), Vector2(158, 72))
 
 const ROAD_LENGTH := 800.0
 const MAIL_KIOSK_INTERVAL := 200
+const KIOSK_BUFFER := 10
 
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees
@@ -59,6 +60,7 @@ var snails_hit := 0
 var current_perk := "": set = _set_perk
 var currently_hell := false
 var hell_time := 0
+var hells_survived := 0
 
 
 func _ready() -> void:
@@ -86,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	ui.set_pointer_pos(get_meter() / ROAD_LENGTH)
 	
 	# the kiosk appears every INTERVAL "meters"
-	if (roundi(get_meter() + 20) % MAIL_KIOSK_INTERVAL) == 0:
+	if (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
 		current_perk = ""
 		if currently_syrup: stop_syrup()
 		set_speed(60)
@@ -255,7 +257,7 @@ func the_kiosk() -> void:
 	kiosk.speed = speed
 	kiosk.global_position.y = 68
 	kiosk.global_position.x = 80
-	kiosk.global_position.x += speed * get_process_delta_time() * get_distance(20)
+	kiosk.global_position.x += speed * get_process_delta_time() * get_distance(KIOSK_BUFFER)
 
 
 func check_if_kiosk_has_made_it() -> void:
@@ -391,6 +393,7 @@ func exit_hell() -> void:
 	set_deferred("currently_hell", false)
 	punishment_timer.stop()
 	silver_collected += maxi(75 - maxi(hell_time - 60, 0), 0)
+	hells_survived += 1
 	update_ui()
 	var tw := create_tween().set_parallel()
 	tw.tween_property(background_snail_hell, "position:y", 120.0, 2.0)
@@ -409,12 +412,14 @@ func calculate_rewards() -> BattleRewards:
 	if mail_hits > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
-		rew.property = str(float(roundi(mail_hits * 0.89)))
+		rew.property = str(roundf(mail_hits * 0.89))
 		rewd.rewards.append(rew)
 	if mail_hits > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.EXP
-		rew.property = str(float(roundi(mail_hits * 0.25)))
+		var xp := mail_hits * 0.25
+		xp *= pow(hells_survived + 1, 2.3)
+		rew.property = str(roundf(xp))
 		rewd.rewards.append(rew)
 	if silver_collected > 0:
 		var rew := Reward.new()
@@ -464,7 +469,7 @@ func syrup():
 	syrup_stop_meter = int(get_meter() + 100)
 	currently_syrup = true
 	set_speed(speed + 800)
-	bike.invincibility_timer.start(5)
+	bike.invincibility_timer.start(8)
 
 func stop_syrup():
 	currently_syrup = false

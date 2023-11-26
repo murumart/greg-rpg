@@ -886,20 +886,77 @@ EMO serious
 
 
 DIALOGUE biking_welcome_1
-EMO 
 CHAR mail_man
+EMO 
 DATA_LINK mail_heard_name,true
 	hello, greg! you made it to my checkpoint.
 DATA_LINK mail_heard_name,false
 	hello, newspaper boy! you made it to my checkpoint.
 DATA_LINK 
-CHOICES browse,leave
+CHOICES what,browse,leave
 	i sell things that might aid you on your mission.
+CHOICE_LINK what
+EMO serious
+	confused? not surprised... you can buy items from me.
+	and then you use the items while biking. to help yourself.
+LOOP 2
+	better pick up all the silver on the road.
+
+
+DIALOGUE biking_welcome_2
+CHAR mail_man
+EMO 
+CHOICES browse,leave
+	hello again. buy items.
+
+
+DIALOGUE biking_welcome_3
+CHAR mail_man
+EMO serious
+CHOICES browse,leave
+	heeeey. not much new i can say.
+
+
+DIALOGUE biking_welcome_4
+CHAR mail_man
+EMO 
+CHOICES browse,leave
+	at least it's not raining!
+
+
+DIALOGUE biking_welcome_5
+CHAR mail_man
+EMO 
+	it's me, the mail man.
+CHOICES browse,leave
+	you should buy my items!
+
+
+DIALOGUE biking_welcome_beforelast
+CHAR mail_man
+EMO 
+	you're getting close to the end of the street!
+CHOICES browse,leave
+	final chance to give me your money.
+
+
+DIALOGUE biking_welcome_lowhealth
+CHAR mail_man
+	hey. watch it with your health over there.
+CHOICES browse,leave
+	you know what i'll do to you if you break my bike?
+
+
+DIALOGUE biking_welcome_snailwarning
+CHAR mail_man
+	i don't think running over this many snails is healthy.
+CHOICES browse,leave
+	you should avoid them more carefully.
 
 
 DIALOGUE biking_welcome_afterwhile
-EMO
 CHAR mail_man
+EMO 
 	been a while, huh?
 CHOICES browse,leave
 	what do you wish to do.
@@ -907,6 +964,7 @@ CHOICES browse,leave
 
 DIALOGUE biking_browse
 CHAR mail_man
+EMO 
 	don't waste too much time choosing!
 
 
@@ -918,6 +976,7 @@ EMO serious
 
 DIALOGUE biking_perks
 CHAR mail_man
+EMO 
 	perks will help you during the next section of road!
 	they are even free! (how kind of me.)
 
@@ -937,6 +996,7 @@ EMO serious
 
 DIALOGUE biking_bye_3
 CHAR mail_man
+EMO 
 	good! off you go.
 
 
@@ -957,22 +1017,26 @@ CHAR mail_man
 
 DIALOGUE biking_do_you_wish_to_buy
 CHAR mail_man
+EMO 
 CHOICES yes,no
 	do you wish to buy the %s?
 
 
 DIALOGUE biking_man_not_enough_money
 CHAR mail_man
+EMO serious
 	you haven't enough money for that!
 
 
 DIALOGUE biking_man_buy_item
 CHAR mail_man
+EMO 
 	nice! enjoy your %s!
 
 
 DIALOGUE biking_man_not_enough_space
 CHAR mail_man
+EMO serious
 	you can't carry more than %s items.
 
 
