@@ -2,11 +2,14 @@ class_name BikingGame extends Node2D
 
 # biking minigame
 
+const BikingGreg := preload("res://scenes/biking/scr_biking_greg.gd")
 const ROAD_BOUNDARIES := Rect2(Vector2(2, 116), Vector2(158, 72))
 
 const ROAD_LENGTH := 800.0
 const MAIL_KIOSK_INTERVAL := 200
 const KIOSK_BUFFER := 10
+
+const HELL_COLOUR := Color(0.765, 0.435, 0.439)
 
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees
@@ -25,7 +28,7 @@ var speed_before_snail := 0
 var snails_until_hell := 10
 var snails_to_escape_hell := 120
 
-@onready var bike := $Bike
+@onready var bike : BikingGreg = $Bike
 
 @onready var ui := $UI
 
@@ -61,6 +64,8 @@ var current_perk := "": set = _set_perk
 var currently_hell := false
 var hell_time := 0
 var hells_survived := 0
+
+@onready var hell_colours : Gradient = $Background/ColourChanger.environment.adjustment_color_correction.gradient
 
 
 func _ready() -> void:
@@ -381,6 +386,10 @@ func enter_hell() -> void:
 	var tw := create_tween().set_parallel()
 	tw.tween_property(background_snail_hell, "position:y", 50.0, 2.0)
 	tw.tween_property(background_sky, "modulate", Color.RED, 2.0)
+	tw.tween_method(
+		func(s: Color):
+			hell_colours.set_color(1, s)
+			, hell_colours.get_color(1), HELL_COLOUR, 2.0)
 
 
 func exit_hell() -> void:
@@ -398,6 +407,10 @@ func exit_hell() -> void:
 	var tw := create_tween().set_parallel()
 	tw.tween_property(background_snail_hell, "position:y", 120.0, 2.0)
 	tw.tween_property(background_sky, "modulate", Color("#8bc0ff"), 2.0)
+	tw.tween_method(
+		func(s: Color):
+			hell_colours.set_color(1, s)
+			, hell_colours.get_color(1), Color.WHITE, 2.0)
 
 
 func _on_punishment_timer_timeout() -> void:

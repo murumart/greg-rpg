@@ -102,16 +102,20 @@ func update_item_menu() -> void:
 
 
 # pure barbarism <- old comment but true
-func use_item(item: String) -> void:
+func use_item(item: StringName) -> void:
 	game.inventory.erase(item)
 	update_item_menu()
-	if item == "tape":
-		game.bike.heal(roundi(45/2.0))
-	elif item == "magnet":
+	if item == &"tape":
+		game.bike.heal(roundi(
+			DAT.get_item("tape").payload.health/2.0))
+	elif item == &"magnet":
 		game.bike.effects["coin_magnet"] = {"time": 20.0}
-	elif item == "cough_syrup":
+	elif item == &"cough_syrup":
 		game.close_inventory()
 		game.syrup()
+	elif item == &"milk":
+		game.close_inventory()
+		game.bike.invincibility_timer.start(2.0)
 
 
 func open_hell_menu() -> void:

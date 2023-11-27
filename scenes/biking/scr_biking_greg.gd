@@ -151,7 +151,7 @@ func _on_collision_area_area_entered(area: Area2D) -> void:
 	var obstacle : BikingObstacle = area.get_parent()
 	if invincibility_timer.time_left == 0.0:
 		hurt(obstacle.damage)
-		invincibility_timer.start()
+		invincibility_timer.start(1.0)
 
 
 func lob_in() -> void:

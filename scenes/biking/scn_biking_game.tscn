@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=46 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
@@ -15,6 +15,16 @@
 [ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
 [ext_resource type="AudioStream" uid="uid://ctje0ls4qog7u" path="res://sounds/paper/paper4.ogg" id="10_5fkpw"]
 [ext_resource type="Texture2D" uid="uid://dvsd0jvyaskrw" path="res://sprites/items/spr_item_masking_tape.png" id="12_hbmle"]
+
+[sub_resource type="Gradient" id="Gradient_0g5jk"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8hsjv"]
+gradient = SubResource("Gradient_0g5jk")
+
+[sub_resource type="Environment" id="Environment_2vges"]
+background_mode = 3
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_8hsjv")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sij3x"]
 
@@ -852,6 +862,9 @@ centered = false
 position = Vector2(-1, 0)
 texture = ExtResource("7_pxwvr")
 centered = false
+
+[node name="ColourChanger" type="WorldEnvironment" parent="Background"]
+environment = SubResource("Environment_2vges")
 
 [node name="Road" parent="." instance=ExtResource("1_fjpor")]
 position = Vector2(-4, 6)

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://e4g41sx208d8"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_be5it"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_e31e4"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_1pvw8"]
+[ext_resource type="Texture2D" uid="uid://bcgdto63oyltb" path="res://sprites/items/spr_milk.png" id="4_dw7wh"]
+
+[sub_resource type="Resource" id="Resource_acnnx"]
+script = ExtResource("1_be5it")
+name = &"poison"
+strength = 2.0
+duration = 5
+
+[sub_resource type="Resource" id="Resource_88a4q"]
+script = ExtResource("2_1pvw8")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_be5it")]([SubResource("Resource_acnnx")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_e31e4")
+name_in_file = &""
+name = &"milk"
+description = "a bag of... expired milk. didn't know milk was a thing here."
+texture = ExtResource("4_dw7wh")
+attack_animation = ""
+price = 45
+use = 1
+consume_on_use = true
+payload = SubResource("Resource_88a4q")

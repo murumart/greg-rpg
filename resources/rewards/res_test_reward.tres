@@ -20,7 +20,7 @@ unique = false
 [sub_resource type="Resource" id="Resource_x8227"]
 script = ExtResource("1_i8w45")
 type = 3
-property = "30000"
+property = "10"
 chance = 1.0
 unique = false
 

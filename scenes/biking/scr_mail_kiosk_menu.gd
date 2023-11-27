@@ -20,7 +20,7 @@ const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 var stage := -1
 var ending := false
 
-var possible_items := ["tape", "magnet", "cough_syrup"]
+var possible_items := ["tape", "magnet", "cough_syrup", "milk"]
 var items_available := []
 var possible_perks := [
 	"snail_repel",

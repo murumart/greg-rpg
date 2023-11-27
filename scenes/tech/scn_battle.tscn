@@ -61,8 +61,8 @@ script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
 party_cheat_levelup = 30
 party_add_spirits = Array[String](["peanuts", "littleman"])
-party_add_items = Array[String](["lighter", "cough_syrup", "sugar_lemon", "medkit", "medkit", "medkit", "medkit", "sleepy_flower", "sleepy_flower", "pills"])
-test_enemies = Array[String](["abiss"])
+party_add_items = Array[String](["lighter", "cough_syrup", "sugar_lemon", "magnet", "medkit", "medkit", "medkit", "sleepy_flower", "sleepy_flower", "pills"])
+test_enemies = Array[String](["well"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_l1rx6")
