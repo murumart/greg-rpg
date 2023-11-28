@@ -635,14 +635,14 @@ func open_end_screen(victory: bool) -> void:
 
 func _grant_rewards() -> void:
 	var BRT := BattleRewards.Types
-	var magnet := 1.0
+	var magnet := 0.0
 	for i in party:
 		if i.has_status_effect("magnet"):
 			print(i, " has magnet")
 			if not magnet:
 				magnet = 1.0
 			magnet = (i.get_status_effect("magnet").strength + magnet)
-	magnet = maxf(magnet, 3.5 )
+	magnet = minf(magnet, 3.5)
 	print("magnet: ", magnet)
 	if magnet:
 		for reward in battle_rewards.rewards:
