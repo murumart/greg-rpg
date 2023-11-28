@@ -642,7 +642,7 @@ func _grant_rewards() -> void:
 			if not magnet:
 				magnet = 1.0
 			magnet = (i.get_status_effect("magnet").strength + magnet)
-	magnet = maxf(magnet, 3.5)
+	magnet = maxf(magnet, 3.5 )
 	print("magnet: ", magnet)
 	if magnet:
 		for reward in battle_rewards.rewards:

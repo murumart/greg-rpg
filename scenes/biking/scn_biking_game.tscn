@@ -20,9 +20,22 @@
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8hsjv"]
 gradient = SubResource("Gradient_0g5jk")
+use_hdr = true
 
 [sub_resource type="Environment" id="Environment_2vges"]
 background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.12
+glow_levels/3 = 0.0
+glow_normalized = true
+glow_intensity = 2.08
+glow_strength = 0.43
+glow_bloom = 0.04
+glow_blend_mode = 0
+glow_hdr_threshold = 1.57
+glow_hdr_scale = 1.47
+glow_hdr_luminance_cap = 4.41
+glow_map_strength = 0.0
 adjustment_enabled = true
 adjustment_color_correction = SubResource("GradientTexture1D_8hsjv")
 
@@ -838,11 +851,11 @@ region_rect = Rect2(0, 0, 256, 16)
 position = Vector2(0, 119)
 
 [node name="Snail" type="Node2D" parent="Background/SnailHellBackground" groups=["biking_snails"]]
-modulate = Color(100, 0, 0.06, 1)
 position = Vector2(82, 1)
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/SnailHellBackground/Snail"]
+modulate = Color(1, 0, 0.156863, 1)
 position = Vector2(-5, -11)
 texture = ExtResource("9_a2fuc")
 centered = false
@@ -850,7 +863,7 @@ region_enabled = true
 region_rect = Rect2(2, 16, 9, 11)
 
 [node name="Eyes" type="Node2D" parent="Background/SnailHellBackground/Snail"]
-modulate = Color(86.48, 87.11, 85.85, 1)
+modulate = Color(125.459, 87.1098, 63.1098, 1)
 position = Vector2(1, -2)
 
 [node name="Eye" type="Sprite2D" parent="Background/SnailHellBackground/Snail/Eyes"]

@@ -9,7 +9,7 @@ const ROAD_LENGTH := 800.0
 const MAIL_KIOSK_INTERVAL := 200
 const KIOSK_BUFFER := 10
 
-const HELL_COLOUR := Color(0.765, 0.435, 0.439)
+const HELL_COLOUR := Color(0.96074420213699, 0.62273794412613, 0.68452841043472)
 
 @onready var background_sky := $Background/Sky
 @onready var background_trees := $Background/Trees

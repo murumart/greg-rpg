@@ -642,7 +642,7 @@ CHOICES you,me,other,bye
 	chatting... i suppose i can spare some time for that.
 CHOICE_LINK you
 	about me?
-	i live in the part of town where all the villas are.
+	i live in the part of town where all the houses are.
 	i work at the local [color=#88aaff]yuku[/color] brand department store.
 	i get home by 10pm at the latest.
 	i don't smoke, but i occasionally drink.
@@ -893,12 +893,13 @@ DATA_LINK mail_heard_name,true
 DATA_LINK mail_heard_name,false
 	hello, newspaper boy! you made it to my checkpoint.
 DATA_LINK 
-CHOICES what,browse,leave
+CHOICES browse,leave,help
 	i sell things that might aid you on your mission.
-CHOICE_LINK what
+CHOICE_LINK help
 EMO serious
 	confused? not surprised... you can buy items from me.
 	and then you use the items while biking. to help yourself.
+	do note that items here do not behave like you'd expect them to.
 LOOP 2
 	better pick up all the silver on the road.
 

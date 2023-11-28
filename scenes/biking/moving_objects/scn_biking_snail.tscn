@@ -18,7 +18,7 @@ region_enabled = true
 region_rect = Rect2(2, 16, 9, 11)
 
 [node name="Eyes" type="Node2D" parent="."]
-modulate = Color(86.48, 87.11, 85.85, 1)
+modulate = Color(107.212, 107.969, 109.49, 1)
 position = Vector2(1, -2)
 
 [node name="Eye" type="Sprite2D" parent="Eyes"]

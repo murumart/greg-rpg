@@ -115,6 +115,7 @@ func use_item(item: StringName) -> void:
 		game.syrup()
 	elif item == &"milk":
 		game.close_inventory()
+		SND.play_sound(preload("res://sounds/chemistry/dissociate.ogg"), {"volume": 4})
 		game.bike.invincibility_timer.start(2.0)
 
 

@@ -20,15 +20,15 @@ const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 var stage := -1
 var ending := false
 
-var possible_items := ["tape", "magnet", "cough_syrup", "milk"]
+var possible_items := [&"tape", &"magnet", &"cough_syrup", &"milk"]
 var items_available := []
 var possible_perks := [
-	"snail_repel",
-	"snail_bail",
-	"log_repel",
-	"nicer_roads",
-	"fast_earner",
-	"mail_attraction"]
+	&"snail_repel",
+	&"snail_bail",
+	&"log_repel",
+	&"nicer_roads",
+	&"fast_earner",
+	&"mail_attraction"]
 var perks_available := []
 
 
@@ -123,7 +123,7 @@ func get_welcome_message() -> String:
 		return "biking_last_stop"
 	if health < 0.24:
 		return "biking_welcome_lowhealth"
-	if game_get("snails_hit", 0) > 7:
+	if game_get("snails_hit", 0) / float(game_get("snails_until_hell")) > 0.8:
 		return "biking_welcome_snailwarning"
 	if kiosks_opened == 1:
 		return "biking_welcome_1"
@@ -158,8 +158,8 @@ func gen_perks() -> Array:
 
 
 func item_names(opt := {}) -> void:
-	if opt.button.reference == "leave":
-		opt.button.text = "leave"
+	if opt.button.reference == &"leave":
+		opt.button.text = &"leave"
 		opt.button.modulate = Color("#888888")
 		return
 	opt.button.text = opt.reference.left(8)
@@ -168,8 +168,8 @@ func item_names(opt := {}) -> void:
 
 
 func perk_names(opt := {}) -> void:
-	if opt.button.reference == "leave":
-		opt.button.text = "leave"
+	if opt.button.reference == &"leave":
+		opt.button.text = &"leave"
 		opt.button.modulate = Color("#888888")
 		return
 	opt.button.text = opt.reference.replace("_", " ")
