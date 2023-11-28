@@ -1,10 +1,14 @@
 class_name MiningComponent extends Node2D
 
+const TileDefinitions := preload("res://scenes/mining/resources/scr_tile_definitions.gd")
+
 @export var target : PlatformerGreg
 @export var display : Panel
 @export var tilemap : TileMap
 
 const TSIZE := 8
+
+const UNMINEABLE := [-1, 2]
 
 var input : Vector2 = Vector2()
 
@@ -32,7 +36,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		target_pos.x += TSIZE * direction
 	# catch higher tiles if no lower tiles exist
-	if get_tile(target_pos / 8 - Vector2(0, 1)) > -1 and get_tile(target_pos / 8) < 0:
+	if not get_tile(target_pos / 8 - Vector2(0, 1)
+		) in UNMINEABLE and get_tile(target_pos / 8) in UNMINEABLE:
 		target_pos.y -= TSIZE
 	
 	if display:
