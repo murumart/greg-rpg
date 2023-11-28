@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyjcd2w81thvw"]
+[gd_scene load_steps=12 format=3 uid="uid://dyjcd2w81thvw"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_xrpuv"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_ysg07"]
 [ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_k4axw"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="4_3esa6"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_0srwq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_ce38q"]
+[ext_resource type="SpriteFrames" uid="uid://b0t8ga0kjvhvl" path="res://resources/characters/sfr_mafia_1.tres" id="6_xapwm"]
+[ext_resource type="SpriteFrames" uid="uid://kykioywl8mt7" path="res://resources/characters/sfr_mafia_2.tres" id="7_fxb1w"]
+[ext_resource type="Script" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57vqo"]
 size = Vector2(8, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_girn8"]
+size = Vector2(111, 83)
 
 [node name="MafiaHouse" type="Node2D"]
 y_sort_enabled = true
@@ -18,6 +25,7 @@ layer_0/tile_data = PackedInt32Array(65535, 196609, 4, 65534, 131073, 5, 65533, 
 layer_1/tile_data = PackedInt32Array(131069, 851969, 9, 131070, 917505, 9, 131071, 917505, 9, 65536, 917505, 9, 65537, 983041, 9, 131072, 917505, 11, 196607, 917505, 11, 196606, 917505, 11, 196605, 851969, 11, 131073, 983041, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_k4axw")]
+position = Vector2(104, 7)
 
 [node name="Camera2D" type="Camera2D" parent="Greg"]
 limit_left = -80
@@ -42,7 +50,7 @@ position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_57vqo")
 
 [node name="Chair2" type="StaticBody2D" parent="Decorations"]
-position = Vector2(-41, 14)
+position = Vector2(-31, 14)
 
 [node name="Sprite2D" type="Sprite2D" parent="Decorations/Chair2"]
 position = Vector2(0, -5)
@@ -54,6 +62,22 @@ region_rect = Rect2(19, 68, 10, 12)
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_57vqo")
 
+[node name="Mafia" parent="Decorations" instance=ExtResource("5_0srwq")]
+position = Vector2(-17, 13)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/Mafia"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("6_xapwm")
+animation = &"walk_down"
+
+[node name="Mafia2" parent="Decorations" instance=ExtResource("5_0srwq")]
+position = Vector2(1, 13)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/Mafia2"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("7_fxb1w")
+animation = &"walk_down"
+
 [node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ce38q")]
 position = Vector2(104, 22)
 destination = &"town"
@@ -61,3 +85,18 @@ gate_id = &"mafiahouse-town"
 player = NodePath("../Greg")
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -15)
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="DiscoveryArea" type="Area2D" parent="Areas"]
+position = Vector2(-8, 30)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("9_fieed")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DiscoveryArea"]
+position = Vector2(0.5, -8.5)
+shape = SubResource("RectangleShape2D_girn8")
+
+[connection signal="body_entered" from="Areas/DiscoveryArea" to="Areas/DiscoveryArea" method="_area_entered" unbinds=1]

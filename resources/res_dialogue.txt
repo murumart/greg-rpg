@@ -2183,6 +2183,17 @@ SPEED 1.0
 	be nimble about it, because losing to an animal is humiliating.
 
 
+DIALOGUE mafia_mumbles_1
+	so... yes... the water...
+	...explosive soap... perfect...
+
+
+DIALOGUE mafia_interrupt
+	hey! intruder!
+	trespassing will be punished heavily.
+	you don't mess with the mafia, got that?
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
