@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d1kd2vft8bel2"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://ry2utnxe070w"]
 
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_lmp3f"]
 [ext_resource type="Texture2D" uid="uid://b0uc8205kntls" path="res://sprites/characters/portraits/spr_portrait_gleebungus.png" id="1_t1yav"]
-[ext_resource type="AudioStream" uid="uid://dh8a30881osvt" path="res://sounds/spirit/snd_spirit_dequip.ogg" id="3_iw6tg"]
+[ext_resource type="AudioStream" uid="uid://dh8a30881osvt" path="res://sounds/spirit/spirit_dequip.ogg" id="3_iw6tg"]
 
 [resource]
 script = ExtResource("1_lmp3f")
