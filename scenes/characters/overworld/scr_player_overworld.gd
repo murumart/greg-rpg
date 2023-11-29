@@ -15,13 +15,10 @@ var state : int: set = set_state
 var move_mode : MoveModes = MoveModes.SKATE:
 	set(to):
 		move_mode = to
-		skateboard.visible = bool(int(to))
 
 @onready var raycast : RayCast2D = $InteractionRay
 @onready var sprite : AnimatedSprite2D = $Sprite
-@onready var skateboard: Sprite2D = $Skateboard
 
-@onready var armour := $ArmorLayer
 var updating_armour := false
 
 var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
@@ -38,7 +35,6 @@ func _ready() -> void:
 	menu.hide()
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
 		position = DAT.get_data(get_save_key("position"), position)
-	load_armour()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -62,9 +58,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
 		direct_animation()
-	if updating_armour:
-		armour.animation = sprite.animation
-		armour.frame = sprite.frame
 
 
 func set_state(to: States) -> void:
@@ -108,8 +101,6 @@ func direct_animation() -> void:
 		sprite.speed_scale = velocity.length_squared() * 0.0009
 		if is_zero_approx(velocity.length_squared()):
 			sprite.stop()
-	else:
-		skateboard.region_rect.position.y = 0 if absi(dir) != 1 else 16
 
 
 # for cutscenes and such
@@ -168,7 +159,6 @@ func get_save_key(key: String) -> String:
 func close_menu() -> void:
 	menu.call_deferred("hideme")
 	DAT.free_player("overworld_menu")
-	load_armour()
 
 
 func set_saving_disabled(to: bool) -> void:
@@ -176,13 +166,3 @@ func set_saving_disabled(to: bool) -> void:
 	menu.saving_disabled = to
 
 
-func load_armour() -> void:
-	armour.hide()
-	updating_armour = false
-	var greg := DAT.get_character("greg") as Character
-	var path := "res://resources/armours/sfr_%s.tres" % greg.armour
-	if greg.armour:
-		if ResourceLoader.exists(path):
-			armour.sprite_frames = load(path)
-			updating_armour = true
-			armour.show()

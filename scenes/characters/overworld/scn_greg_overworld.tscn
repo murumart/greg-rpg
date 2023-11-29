@@ -1,9 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmhs50mol2dav"]
+[gd_scene load_steps=21 format=3 uid="uid://bmhs50mol2dav"]
 
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_player_overworld.gd" id="1_gx1l0"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_y11nw"]
-[ext_resource type="SpriteFrames" uid="uid://e5laj7sw1ujc" path="res://resources/armours/sfr_cool_jacket.tres" id="3_58jt5"]
-[ext_resource type="Texture2D" uid="uid://c6aqs76nq2oi1" path="res://sprites/characters/overworld/spr_greg_skateboard.png" id="4_pnyn0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
 atlas = ExtResource("2_y11nw")
@@ -168,16 +166,3 @@ target_position = Vector2(0, 8)
 collision_mask = 5
 hit_from_inside = true
 collide_with_areas = true
-
-[node name="ArmorLayer" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -8)
-sprite_frames = ExtResource("3_58jt5")
-animation = &"walk_down"
-
-[node name="Skateboard" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -6)
-texture = ExtResource("4_pnyn0")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
