@@ -1827,7 +1827,7 @@ save = false
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_c3ekp")
 animation = &"walk_right"
-frame_progress = 0.225296
+frame_progress = 0.145321
 
 [node name="Baller2" parent="Other/Football" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("10_dem56")]
 position = Vector2(66, 39)
