@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bmhs50mol2dav"]
+[gd_scene load_steps=23 format=3 uid="uid://dx3mkrjbqpref"]
 
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_player_overworld.gd" id="1_gx1l0"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_y11nw"]
