@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=16 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_l1rx6"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
-[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
 [ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="7_is2uq"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
@@ -102,7 +101,6 @@ offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -120,7 +118,6 @@ offset_bottom = 25.0
 [node name="Portrait" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="0"]
 offset_left = 2.0
 offset_right = 24.0
-texture = ExtResource("5_kl5pr")
 
 [node name="Name" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="1"]
 offset_top = 81.0
@@ -467,6 +464,7 @@ visible_characters_behavior = 1
 script = ExtResource("7_qtl4a")
 
 [node name="ScreenDanceBattle" parent="UI/Panel" instance=ExtResource("9_sbskt")]
+visible = false
 offset_top = 0.0
 offset_bottom = 44.0
 
