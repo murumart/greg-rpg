@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_post_office.gd" id="1_j8r7h"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2qwkk"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="3_y8swh"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_hetfh"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_hetfh"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="4_nlmcd"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="4_yvmmt"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_ddw70"]

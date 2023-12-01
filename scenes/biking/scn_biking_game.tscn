@@ -53,13 +53,11 @@ height = 8.0
 particle_flag_disable_z = true
 direction = Vector3(0, -2, 0)
 spread = 138.11
-gravity = Vector3(0, 98, 0)
 initial_velocity_min = 22.99
 initial_velocity_max = 91.95
 angular_velocity_min = -33.1
 angular_velocity_max = 74.48
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 98, 0)
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
@@ -777,7 +775,7 @@ nodes/play_lob/node = SubResource("AnimationNodeOneShot_u1c06")
 nodes/play_lob/position = Vector2(673.913, 173.913)
 nodes/play_lob_in/node = SubResource("AnimationNodeOneShot_vrtda")
 nodes/play_lob_in/position = Vector2(478.261, 43.4783)
-node_connections = [&"output", 0, &"play_lob", &"lobbing_speed", 0, &"Animation", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"play_lob_in", &"play_lob", 1, &"lobbing_speed", &"play_lob_in", 0, &"pedaling_speed", &"play_lob_in", 1, &"Animation 3"]
+node_connections = [&"lobbing_speed", 0, &"Animation", &"output", 0, &"play_lob", &"pedaling_speed", 0, &"Animation 2", &"play_lob", 0, &"play_lob_in", &"play_lob", 1, &"lobbing_speed", &"play_lob_in", 0, &"pedaling_speed", &"play_lob_in", 1, &"Animation 3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttsgc"]
 size = Vector2(5, 1)
@@ -968,7 +966,7 @@ explosiveness = 1.0
 show_behind_parent = true
 z_index = -1
 position = Vector2(1, -14)
-rotation = -1.22915
+rotation = 5.05404
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -986,7 +984,7 @@ shape = SubResource("CapsuleShape2D_2dj1p")
 
 [node name="Rarm" type="RigidBody2D" parent="Bike/Greg"]
 position = Vector2(0, -14)
-rotation = -1.08941
+rotation = 5.19378
 collision_layer = 2
 collision_mask = 3
 metadata/_edit_group_ = true
@@ -1052,15 +1050,17 @@ position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_p7ng5")
 
 [node name="PedalingAnimation" type="AnimationPlayer" parent="Bike/Greg"]
-autoplay = "pedaling"
 libraries = {
 "": SubResource("AnimationLibrary_tl418")
 }
+autoplay = "pedaling"
 
 [node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
+libraries = {
+"": SubResource("AnimationLibrary_tl418")
+}
 tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
 anim_player = NodePath("../PedalingAnimation")
-active = true
 parameters/lobbing_speed/scale = 1.0
 parameters/pedaling_speed/scale = 1.0
 parameters/play_lob/active = false

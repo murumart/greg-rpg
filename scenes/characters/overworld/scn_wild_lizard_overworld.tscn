@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
-[ext_resource type="SpriteFrames" uid="uid://d2xcgwoc2a7cx" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
+[ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
 
 [sub_resource type="Curve" id="Curve_6c0rn"]
