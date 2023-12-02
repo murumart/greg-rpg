@@ -7,9 +7,6 @@ var strength: float = 1.0
 
 static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 	var neweff := BattleStatusEffect.new()
-	if actor.is_immune_to(eff.name):
-		neweff._immune_text(actor)
-		return null
 	neweff.set_name(eff.name)
 	neweff.set_duration(eff.duration)
 	neweff.set_strength(eff.strength)
@@ -19,6 +16,9 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		actor.remove_status_effect(eff.name)
 	if eff.duration == -1:
 		actor.remove_status_effect(eff.name)
+		return null
+	if actor.is_immune_to(neweff.name):
+		neweff._immune_text(actor)
 		return null
 	if actor.has_status_effect(neweff.name):
 		var oldeff : BattleStatusEffect = actor.get_status_effect(neweff.name)
