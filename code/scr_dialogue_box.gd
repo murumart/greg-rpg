@@ -259,6 +259,7 @@ func dial_concat(key: String, line_id: int, params: Array) -> void:
 	var get_key := key + "_" + str(line_id)
 	if not get_key in unmodified_dialogue_lines:
 		# if the line has not been modified yet:
+		@warning_ignore("confusable_local_declaration")
 		var line : DialogueLine
 		line = dialogues_dict.get(key).get_line(line_id).duplicate()
 		# we store the unmodified form
