@@ -43,7 +43,6 @@ const FLOW_GAS_UP : Array[Vector2i] = [
 ]
 
 
-
 func _ready() -> void:
 	update_timer.timeout.connect(_update_timer)
 	update_timer.start(0.1)
@@ -70,12 +69,12 @@ func mapgen() -> void:
 				if not check_dirt(x, y):
 					set_cell(pos, TileDefinitions.STONE)
 				else:
-					set_cell_terrain(pos, 5)
+					set_cell(pos, TileDefinitions.DIRT)
 			else:
 				if water_noise.get_noise_2d(x, y) >= 0.8:
-					set_cell(pos, TileDefinitions.WATER)
+					set_cell(pos, TileDefinitions.WATER, 1)
 				elif gas_noise.get_noise_2d(x, y) >= 0.35 and y >= (map_height + start_height) * 0.65:
-					set_cell(pos, TileDefinitions.GAS)
+					set_cell(pos, TileDefinitions.GAS, 1)
 	camera.limit_bottom = map_height * TSIZE + 20 * TSIZE
 
 	for x in 400:
@@ -92,26 +91,24 @@ func check_cave(x: int, y: int) -> bool:
 
 
 func check_dirt(x: int, y: int) -> bool:
-	if y < 30: return true
+	var pos := Vector2i(x, y)
+	if y < 30 and (is_air(pos + Vector2i.UP) or is_air(pos + Vector2i(0, -2)) or is_air(pos + Vector2i(0, -3))):
+		return true
+	if y < map_height * 0.46 and (is_air(pos + Vector2i.UP)):
+		return true
 	return false
 
 
 func update_map() -> void:
 	var time := Time.get_ticks_msec()
 	
-#	for x in map_width:
-#		for y in map_height:
-#			x = x
-#			y += start_height
-#			var coord := Vector2i(x, y)
-	
-	for w in get_cells_by_definition(TileDefinitions.WATER):
+	for w in get_cells_by_definition(TileDefinitions.WATER, 1):
 		var pos := Vector2i(w)
 		tile_flowing(pos, TileDefinitions.WATER, FLOW_LIQUID_DOWN, [3, 4])
-	for w in get_cells_by_definition(TileDefinitions.GAS):
+	for w in get_cells_by_definition(TileDefinitions.GAS, 1):
 		var pos := Vector2i(w)
 		tile_flowing(pos, TileDefinitions.GAS, FLOW_GAS_UP)
-	for f in get_cells_by_definition(TileDefinitions.FIRE):
+	for f in get_cells_by_definition(TileDefinitions.FIRE, 1):
 		var pos := Vector2i(f)
 		fire_works(f)
 	
@@ -120,16 +117,16 @@ func update_map() -> void:
 
 func tile_flowing(pos: Vector2i, definition: TileDefinitions.Tile, neighbors: Array[Vector2i], extra_air := []) -> void:
 	if pos.y > map_height + start_height:
-		tiles.erase_cell(0, pos)
+		tiles.erase_cell(1, pos)
 		return
 	if pos.y < 0:
-		tiles.erase_cell(0, pos)
+		tiles.erase_cell(1, pos)
 		return
 	for n: Vector2i in neighbors:
-		if is_air(pos + n, extra_air):
-			tiles.erase_cell(0, pos)
+		if is_air(pos + n, extra_air, 0) and is_air(pos + n, extra_air, 1):
+			tiles.erase_cell(1, pos)
 			if randf() <= 0.01: return
-			set_cell(pos + n, definition)
+			set_cell(pos + n, definition, 1)
 			return
 
 
@@ -142,43 +139,39 @@ func fire_works(pos: Vector2i) -> void:
 	var neigs := NEIGHBOURS.duplicate()
 	neigs.shuffle()
 	for n in neigs:
-		var cell := get_cell(pos + n)
-		if randf() < cell.flammability:
-			set_cell(pos + n, TileDefinitions.FIRE)
-			break
-		if randf() <= 0.2 and cell == TileDefinitions.INVALID:
-			set_cell(pos + n, TileDefinitions.FIRE)
-			tiles.erase_cell(0, pos)
-			break
+		for layer in 2:
+			var cell := get_cell(pos + n, layer)
+			if randf() < cell.flammability:
+				set_cell(pos + n, TileDefinitions.FIRE, 1)
+				return
+			if randf() <= 0.2 and is_air(pos + n):
+				set_cell(pos + n, TileDefinitions.FIRE, 1)
+				tiles.erase_cell(0, pos)
+				return
 
 
 func _update_timer() -> void:
 	update_map()
 
 
-func set_cell(coords: Vector2i, tile: TileDefinitions.Tile) -> void:
-	tiles.set_cell(0, coords, 0, tile.atlas)
+func set_cell(coords: Vector2i, tile: TileDefinitions.Tile, layer := 0) -> void:
+	if tile.terrain > -1:
+		tiles.set_cells_terrain_connect(layer, [coords], 0, tile.terrain)
+		return
+	tiles.set_cell(layer, coords, tile.source, tile.atlas)
 
 
-func set_cell_terrain(coords: Vector2i, terrain_id: int) -> void:
-	tiles.set_cells_terrain_connect(0, [coords], 0, terrain_id)
+func get_cell(pos: Vector2i, layer := 0) -> TileDefinitions.Tile:
+	var tiledata := tiles.get_cell_source_id(layer, pos) as int
+	return TileDefinitions.tile(tiledata)
 
 
-func get_cell(pos: Vector2i) -> TileDefinitions.Tile:
-	var tiledata := tiles.get_cell_tile_data(0, pos) as TileData
-	var terrain := tiledata.terrain if tiledata else -1
-	return TileDefinitions.tile(terrain)
-
-
-func is_air(coords: Vector2i, extra_defs := []) -> bool:
+func is_air(coords: Vector2i, extra_defs := [], layer := 0) -> bool:
 	return (
-		tiles.get_cell_tile_data(0, coords) == null or
-		tiles.get_cell_tile_data(0, coords).terrain in extra_defs
+		tiles.get_cell_source_id(layer, coords) <= -1 or
+		tiles.get_cell_source_id(layer, coords) in extra_defs
 	)
 
 
-func get_cells_by_definition(tile: TileDefinitions.Tile) -> Array[Vector2i]:
-	var arr : Array[Vector2i]
-	for at in tile._random_atlases:
-		arr.append_array(tiles.get_used_cells_by_id(0, 0, at))
-	return arr
+func get_cells_by_definition(tile: TileDefinitions.Tile, layer: int) -> Array[Vector2i]:
+	return tiles.get_used_cells_by_id(layer, tile.source)

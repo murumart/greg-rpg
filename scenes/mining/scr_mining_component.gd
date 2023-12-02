@@ -8,7 +8,7 @@ const TileDefinitions := preload("res://scenes/mining/resources/scr_tile_definit
 
 const TSIZE := 8
 
-const UNMINEABLE := [-1, 2]
+const UNMINEABLE := [-1, 2, 3, 4]
 
 var input : Vector2 = Vector2()
 
@@ -57,9 +57,10 @@ func _physics_process(delta: float) -> void:
 
 
 func tile_action(pos: Vector2) -> void:
-	print(get_tile(pos))
-	tilemap.erase_cell(0, pos)
-	#tilemap.
+	var tile := get_tile(pos)
+	var def := get_tile_definition(tile)
+	if not tile in UNMINEABLE:
+		tilemap.set_cells_terrain_connect(0, [Vector2i(pos)], 0, -1)
 	target.atree.set("parameters/hitshot/request", PlatformerGreg.FIRE)
 
 
@@ -68,8 +69,11 @@ func tpos() -> Vector2:
 
 
 func get_tile(where: Vector2) -> int:
-	var tiledata := tilemap.get_cell_tile_data(0, Vector2i(where))
-	return tiledata.terrain if tiledata else -1
+	return tilemap.get_cell_source_id(0, Vector2i(where))
+
+
+func get_tile_definition(id: int) -> TileDefinitions.Tile:
+	return TileDefinitions.tile(id)
 
 
 func manage_display(target_pos : Vector2, _direction : int, delta : float) -> void:
