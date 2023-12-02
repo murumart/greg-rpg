@@ -18,6 +18,16 @@ func _ready() -> void:
 	assert(tilemap, "no tilemap available")
 
 
+func _input(event: InputEvent) -> void:
+	# DEBUG
+	if event is InputEventMouseButton and event.is_pressed():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		var pos := tilemap.local_to_map(tilemap.to_local(get_global_mouse_position()))
+		#print(tilemap.local_to_map(tilemap.to_local(get_global_mouse_position())))
+		#tilemap.set_cell(0, pos, 0, Vector2i(0, 3))
+		print(tilemap.get_cell_source_id(0, pos))
+
+
 func _physics_process(delta: float) -> void:
 	if target.last_input.x: input = target.last_input
 	var direction := 0
@@ -49,6 +59,7 @@ func _physics_process(delta: float) -> void:
 func tile_action(pos: Vector2) -> void:
 	print(get_tile(pos))
 	tilemap.erase_cell(0, pos)
+	#tilemap.
 	target.atree.set("parameters/hitshot/request", PlatformerGreg.FIRE)
 
 
