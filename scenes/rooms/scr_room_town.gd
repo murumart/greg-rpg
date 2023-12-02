@@ -140,10 +140,11 @@ func kid_setup() -> void:
 		first_encounter.queue_free()
 
 func kid_first_encounter() -> void:
-	var first_encounter: OverworldCharacter = $Houses/NeighbourHouse/KidEncounter
+	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
 	print("yp")
 	DAT.set_data("kid_encountered", true)
 	SOL.dialogue_closed.connect(func():
+		first_encounter.set_collision_layer_value(4, false)
 		var tw := create_tween()
 		tw.tween_property(first_encounter, "global_position:y", 400, 1.0)
 		tw.tween_callback(first_encounter.queue_free)
