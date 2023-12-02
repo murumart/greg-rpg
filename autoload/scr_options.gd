@@ -60,6 +60,9 @@ const CATEGORIES := {
 	"": ["reset"]
 }
 
+# are we open
+var options_open := false
+
 # tools
 var opt := ConfigFile.new()
 const OPTION_PATH := "user://greg_rpg/options.ini"
@@ -141,10 +144,12 @@ func _input(event: InputEvent) -> void:
 				get_tree().paused = true
 				cur_opt = 0
 				select(cur_opt)
+				options_open = true
 			else:
 				save_options()
 				root.hide()
 				get_tree().paused = false
+				options_open = false
 		if not root.visible: return
 		# moving around the menu
 		var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

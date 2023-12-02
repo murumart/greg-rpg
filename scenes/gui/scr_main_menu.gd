@@ -6,6 +6,10 @@ var pos := 0
 var menusound := preload("res://sounds/gui.ogg")
 var starting := false
 
+@onready var buttons := [
+	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/QuitButton
+]
+
 
 func _ready() -> void:
 	await load_all_effects()
@@ -17,6 +21,8 @@ func _ready() -> void:
 		if $Label.text.ends_with("[/url]"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# mail message
+	for b in buttons:
+		b.focus_exited.connect(_on_button_focus_exited.bind(b))
 	if randf() <= 0.01:
 		$VBoxContainer/MailButton/MailPanel/RichTextLabel.text = HateMail.letter()
 		$VBoxContainer/MailButton.visible = true
@@ -27,14 +33,17 @@ func _ready() -> void:
 	DIR.incj(0, 1)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if starting: return
 	if not event is InputEventKey: return
-	var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var oldpos = pos
-	pos += int(move.y)
-	if pos != oldpos and not SOL.save_menu_open:
-		SND.play_sound(menusound)
+	var hf := (
+		func buttons_have_focus() -> bool:
+			for b in buttons:
+				if b.has_focus(): return true
+			return false
+	)
+	if not hf.call() and not SOL.save_menu_open:
+		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
 	if event.is_action_pressed("ui_cancel"):
 		$VBoxContainer/MailButton/MailPanel.hide()
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
@@ -61,6 +70,11 @@ func _on_quit_button_pressed() -> void:
 
 func _on_label_meta_clicked(meta) -> void:
 	OS.shell_open(str(meta))
+
+
+func _on_button_focus_exited(_button: Button) -> void:
+	if OPT.options_open: return 
+	SND.play_sound(menusound)
 
 
 # play only the first 2 menu themes on game start up
@@ -117,6 +131,5 @@ func load_all_effects() -> void:
 			await get_tree().process_frame
 			scene.queue_free()
 	SND.kill_sounds()
-	await get_tree().process_frame
 	await get_tree().process_frame
 	AudioServer.set_bus_mute(0, false)
