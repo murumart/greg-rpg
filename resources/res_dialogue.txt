@@ -1376,7 +1376,7 @@ CHAR bike_ghost
 
 DIALOGUE bike_ghost_welcome
 CHAR bike_ghost
-	i am the [color=#aaffff]bike ghost[/color].
+	hello. i am the [color=#aaffff]bike ghost[/color].
 	it is my job to supervise this bicycle and...
 	make sure that it is not used for indecent activities.
 	activities such as fast travel.
@@ -1424,7 +1424,7 @@ CHAR bike_ghost
 	you fool. you asshole!
 	you will live in guilt forever.
 	but i can help... by reducing your lifespan!
-	radiation attack!
+	with the last of my power... radiation attack!
 
 
 DIALOGUE bike_ghost_powerfulenemy_1
