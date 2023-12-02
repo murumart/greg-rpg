@@ -117,8 +117,7 @@ func heal(amount: float) -> void:
 
 func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
-	if gendr == Genders.CIRCLE.get(gender, -1):
-		amount *= 1.5
+	amount = Genders.apply_gender_effects(amount, gender, gendr)
 	if state == States.DEAD: return
 	if has_status_effect(&"sleepy"):
 		remove_status_effect(&"sleepy")
