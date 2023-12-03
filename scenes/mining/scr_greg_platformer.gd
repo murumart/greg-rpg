@@ -3,13 +3,8 @@ class_name PlatformerGreg extends CharacterBody2D
 enum States {WALK, FALL, JUMP}
 const S := States
 
-var speed := 60.0
-var friction := 160.0
-var air_friction := 10.0
-var accel := 600.0
-var jump_gravity := 240.0
-var fall_gravity := 480.0
-var jump := 90.0
+var STATS := preload("res://scenes/mining/scr_platformer_stats.gd").new()
+
 var coyote := 0.0
 var jump_buffer := 0.0
 
@@ -32,22 +27,22 @@ func _physics_process(delta: float) -> void:
 	
 	match state:
 		S.FALL:
-			velocity.x = move_toward(velocity.x, 0.0, delta * air_friction)
-			velocity.y = move_toward(velocity.y, fall_gravity, fall_gravity * delta)
+			velocity.x = move_toward(velocity.x, 0.0, delta * STATS.AIR_FRICTION)
+			velocity.y = move_toward(velocity.y, STATS.FALL_GRAVITY, STATS.FALL_GRAVITY * delta)
 			if is_on_floor():
 				change_state(S.WALK)
-			velocity.x = move_toward(velocity.x, input.x * speed, delta * accel)
+			velocity.x = move_toward(velocity.x, input.x * STATS.SPEED, delta * STATS.ACCEL)
 			coyote += delta
 			jump_buffer -= delta
 		S.JUMP:
-			velocity.x = move_toward(velocity.x, 0.0, delta * air_friction)
-			velocity.y = move_toward(velocity.y, jump_gravity * delta, jump_gravity * delta)
-			velocity.x = move_toward(velocity.x, input.x * speed, delta * accel)
+			velocity.x = move_toward(velocity.x, 0.0, delta * STATS.AIR_FRICTION)
+			velocity.y = move_toward(velocity.y, STATS.JUMP_GRAVITY * delta, STATS.JUMP_GRAVITY * delta)
+			velocity.x = move_toward(velocity.x, input.x * STATS.SPEED, delta * STATS.ACCEL)
 			if not Input.is_action_pressed("ui_accept") or velocity.y > 0:
 				change_state(S.FALL)
 		S.WALK:
-			velocity.x = move_toward(velocity.x, 0.0, delta * friction)
-			velocity.x = move_toward(velocity.x, input.x * speed, delta * accel)
+			velocity.x = move_toward(velocity.x, 0.0, delta * STATS.FRICTION)
+			velocity.x = move_toward(velocity.x, input.x * STATS.SPEED, delta * STATS.ACCEL)
 			if not is_on_floor():
 				change_state(S.FALL)
 			coyote = 0
@@ -75,7 +70,7 @@ func _physics_process(delta: float) -> void:
 func change_state(to: States) -> void:
 	state = to
 	if to == S.JUMP:
-		velocity.y -= jump
+		velocity.y -= STATS.JUMP
 		coyote += 100.0
 		jump_buffer = -100
 		atree.set("parameters/jumpshot/request", FIRE)

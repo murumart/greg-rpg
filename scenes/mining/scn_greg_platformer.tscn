@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://ca56k2yykgyfs"]
 
-[ext_resource type="Script" path="res://scenes/characters/other/scr_greg_platformer.gd" id="1_hj66a"]
+[ext_resource type="Script" path="res://scenes/mining/scr_greg_platformer.gd" id="1_hj66a"]
 [ext_resource type="Texture2D" uid="uid://ba7j8ayhal8sw" path="res://sprites/mining/spr_platformer_greg.png" id="2_dnayx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dttm6"]
@@ -862,10 +862,11 @@ nodes/walking/node = SubResource("AnimationNodeAnimation_la3ra")
 nodes/walking/position = Vector2(503.456, 329.387)
 nodes/walkornot/node = SubResource("AnimationNodeBlend2_mb3vx")
 nodes/walkornot/position = Vector2(608.696, 130.435)
-node_connections = [&"output", 0, &"hitshot", &"fallornot", 0, &"jumpshot", &"fallornot", 1, &"falling", &"hitshot", 0, &"walkornot", &"hitshot", 1, &"swing", &"jumpshot", 0, &"idle", &"jumpshot", 1, &"jump", &"walkornot", 0, &"fallornot", &"walkornot", 1, &"walking"]
+node_connections = [&"fallornot", 0, &"jumpshot", &"fallornot", 1, &"falling", &"hitshot", 0, &"walkornot", &"hitshot", 1, &"swing", &"jumpshot", 0, &"idle", &"jumpshot", 1, &"jump", &"output", 0, &"hitshot", &"walkornot", 0, &"fallornot", &"walkornot", 1, &"walking"]
 
 [node name="GregPlatform" type="CharacterBody2D"]
 collision_layer = 2
+collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_hj66a")
 
@@ -930,12 +931,15 @@ region_enabled = true
 region_rect = Rect2(9, 16, 4, 5)
 
 [node name="PuppetAnimator" type="AnimationPlayer" parent="Puppet"]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_qv11b")
 }
+autoplay = "idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="Puppet"]
+libraries = {
+"": SubResource("AnimationLibrary_qv11b")
+}
 tree_root = SubResource("AnimationNodeBlendTree_xanbp")
 anim_player = NodePath("../PuppetAnimator")
 parameters/fallornot/add_amount = 0.0

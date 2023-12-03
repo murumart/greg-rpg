@@ -1,9 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://jiwivi764dxc"]
+[gd_scene load_steps=23 format=3 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
 [ext_resource type="Texture2D" uid="uid://ccdo56bo12oem" path="res://sprites/mining/spr_station_background.png" id="2_mm17a"]
-[ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/characters/other/scn_greg_platformer.tscn" id="3_hjwtw"]
+[ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/mining/scn_greg_platformer.tscn" id="3_hjwtw"]
 [ext_resource type="Texture2D" uid="uid://b43ogq1oinca3" path="res://sprites/mining/spr_tiles_grass.png" id="4_8ef0h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
 [ext_resource type="FastNoiseLite" uid="uid://cxil6cn3ygldh" path="res://scenes/mining/resources/gas_noise.tres" id="4_xuf81"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b5nsc0govxden" path="res://sprites/mining/spr_tiles_gas.png" id="6_p6bfi"]
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_component.gd" id="6_qjefl"]
 [ext_resource type="Texture2D" uid="uid://xfmuis2asrxq" path="res://sprites/mining/spr_tiles_fire.png" id="7_udqbk"]
+[ext_resource type="PackedScene" uid="uid://b18s2g8p0xnlj" path="res://scenes/mining/enemies/scn_underground_lizard.tscn" id="12_8071p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xn8s"]
 texture = ExtResource("2_3h1uj")
@@ -623,6 +624,7 @@ tile_set = SubResource("TileSet_ivaes")
 rendering_quadrant_size = 8
 format = 2
 layer_0/name = "solids"
+layer_0/tile_data = PackedInt32Array(851972, 131072, 0, 851973, 131072, 0, 851974, 131072, 0, 851975, 131072, 0, 851976, 131072, 0, 851977, 131072, 0, 851978, 131072, 0, 851979, 131072, 0, 655371, 131072, 0, 720907, 131072, 0, 786443, 131072, 0, 786444, 131072, 0, 786445, 131072, 0, 786446, 131072, 0, 786447, 131072, 0, 786448, 131072, 0, 786449, 131072, 0, 720913, 131072, 0, 655377, 131072, 0, 786442, 131072, 0)
 layer_1/name = "liquids"
 layer_1/tile_data = PackedInt32Array()
 
@@ -665,3 +667,7 @@ shape = SubResource("RectangleShape2D_1fnne")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
 position = Vector2(164, 0)
 shape = SubResource("RectangleShape2D_1fnne")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="UndergroundLizard" parent="Enemies" instance=ExtResource("12_8071p")]
