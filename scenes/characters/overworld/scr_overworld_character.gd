@@ -119,6 +119,9 @@ func _physics_process(delta: float) -> void:
 				var _collided := move_and_slide()
 			else:
 				set_state(States.IDLE)
+			# make diagonal movement faster to catch up with the player
+			global_position.x = roundi(global_position.x)
+			global_position.y = roundi(global_position.y)
 		# moving towards target
 		States.WANDER:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75

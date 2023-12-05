@@ -6,7 +6,7 @@ enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
 @export var saving_disabled := false: set = set_saving_disabled
 
-const SPEED := 2600
+const SPEED := 3800
 const INTERACTION_LENGTH := 8
 const ROTS = [&"up", &"right", &"down", &"left"]
 
@@ -78,21 +78,19 @@ func movement(delta: float) -> void:
 		MoveModes.WALK:
 			velocity = Vector2()
 			velocity = input * SPEED * delta
-			
 			var _collided := move_and_slide()
 			
-			global_position.x = roundi(global_position.x)
-			global_position.y = roundi(global_position.y)
 		MoveModes.SKATE:
 			if input:
 				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 64)
 			else:
 				velocity = velocity.move_toward(Vector2(), delta * 64)
 			var collided := move_and_slide()
-			global_position.x = roundi(global_position.x)
-			global_position.y = roundi(global_position.y)
 			if collided:
 				velocity *= 0.5
+	#if not input:
+	global_position.x = roundi(global_position.x)
+	global_position.y = roundi(global_position.y)
 
 
 func direct_raycast() -> void:
@@ -105,7 +103,7 @@ func direct_animation() -> void:
 	sprite.play(animation_name)
 	sprite.speed_scale = 0.0
 	if move_mode != MoveModes.SKATE:
-		sprite.speed_scale = velocity.length_squared() * 0.0009
+		sprite.speed_scale = velocity.length_squared() * 0.00056
 		if is_zero_approx(velocity.length_squared()):
 			sprite.stop()
 	else:
