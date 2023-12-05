@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
-[ext_resource type="Resource" uid="uid://bw7dha6ubypya" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="2_dhrtd"]
+[ext_resource type="Resource" uid="uid://bjdta44b75tuj" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="2_dhrtd"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="3_77748"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
-[ext_resource type="SpriteFrames" uid="uid://cv74f40g5op00" path="res://resources/characters/sfr_bike_ghost.tres" id="4_ks0h0"]
+[ext_resource type="SpriteFrames" uid="uid://bv8mdhbutisx4" path="res://resources/characters/sfr_bike_ghost.tres" id="4_ks0h0"]
 
 [sub_resource type="Resource" id="Resource_1ki2y"]
 script = ExtResource("3_77748")
@@ -360,10 +360,10 @@ sprite_frames = ExtResource("4_ks0h0")
 animation = &"walk_down"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_pcfhw")
 }
+autoplay = "RESET"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, 5)
