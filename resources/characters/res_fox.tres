@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://yi1ueucf8jpi"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dihxby72i37pc"]
 
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_5rmnw"]
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_p4u7d"]

@@ -98,7 +98,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		# for debugging purposes
+		# DEBUG
 		# remember to remove this when releasing the game
 		if not DIR.standalone():
 			match event.keycode:
@@ -112,7 +112,7 @@ func _input(event: InputEvent) -> void:
 						Vector2.ZERO, "replaced data", Color.WHITE, 2)
 				KEY_KP_2:
 					print(get_viewport().gui_get_focus_owner())
-				KEY_KP_3:
+				KEY_KP_3, KEY_3:
 					if not get_viewport().get_camera_2d():
 						var cam := preload(
 							"res://scenes/tech/scn_camera.tscn"

@@ -673,6 +673,18 @@ tracks/17/keys = {
 "update": 0,
 "values": [0.0, 0.166582, -0.244171]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Puppet:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_05sps"]
 resource_name = "swoop_in"
@@ -1131,10 +1143,10 @@ tracks/18/path = NodePath("Puppet:visible")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xprky"]
@@ -1228,8 +1240,8 @@ region_enabled = true
 region_rect = Rect2(54, 8, 59, 55)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-playback_default_blend_time = 0.1
 libraries = {
 "": SubResource("AnimationLibrary_xprky")
 }
+autoplay = "idle"
+playback_default_blend_time = 0.1

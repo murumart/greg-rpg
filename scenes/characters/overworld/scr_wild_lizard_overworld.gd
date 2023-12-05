@@ -2,10 +2,15 @@ extends OverworldCharacter
 
 @export var wild_lizard_probability : Curve
 @export var freebird_probability : Curve
+@export var fox_probability : Curve
+@export var worm_probability : Curve
 
 @onready var probabilities := {
 	&"wild_lizard": wild_lizard_probability,
 	&"freebird": freebird_probability,
+	&"fox": fox_probability,
+	&"worm": worm_probability
+	
 }
 
 var difficulty := 0.0

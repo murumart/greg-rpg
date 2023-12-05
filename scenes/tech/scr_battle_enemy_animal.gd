@@ -22,4 +22,4 @@ func act() -> void:
 func hurt(amount: float, gnd: int) -> void:
 	super(amount, gnd)
 	if state != States.DEAD:
-		soul += 5
+		soul += remap(amount, 1, 50, 5, 10)

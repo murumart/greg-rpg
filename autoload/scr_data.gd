@@ -4,6 +4,7 @@ extends Node
 # ...and a bunch of other things.
 
 signal player_captured(capture: bool)
+signal resources_loaded
 
 # DATA
 var A : Dictionary
@@ -72,6 +73,7 @@ func load_resources() -> void:
 		s = s.trim_prefix("res_")
 		spirit_dict[s] = load(DIR.get_spirit_path(s)) as Spirit
 		spirit_dict[s].name_in_file = s
+	resources_loaded.emit()
 
 
 # entry point for a new game

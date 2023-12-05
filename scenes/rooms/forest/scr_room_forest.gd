@@ -69,10 +69,6 @@ func _ready() -> void:
 		gen_greenhouse()
 	else:
 		load_from_save()
-	
-	# debug
-	if DAT.get_character("greg").level == 1:
-		DAT.get_character("greg").level_up(59)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -229,7 +225,7 @@ func bin_loot(bin: TrashBin) -> void:
 
 
 func gen_greenhouse() -> void:
-	if not current_room % GREENHOUSE_INTERVAL == 0 or current_room < 1: return
+	if not current_room % GREENHOUSE_INTERVAL == 0 or current_room < 2: return
 	greenhouse = GREENHOUSE.instantiate()
 	greenhouse.save = false
 	add_child(greenhouse)

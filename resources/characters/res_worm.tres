@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dqp6qew5ekqtf"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_7xbmv"]
+[ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_u0bup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_febfi"]
+atlas = ExtResource("1_u0bup")
+region = Rect2(121, 3, 22, 22)
+
+[resource]
+script = ExtResource("1_7xbmv")
+name_in_file = &""
+name = "worm"
+info = "a long creature zooming around the scene. its spines prickle."
+portrait = SubResource("AtlasTexture_febfi")
+max_health = 100.0
+health = 100.0
+max_magic = 30.0
+magic = 30.0
+level = 60
+experience = 0
+attack = 65.0
+defense = 60.0
+speed = 60.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""
