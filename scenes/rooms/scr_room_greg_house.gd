@@ -24,6 +24,7 @@ func _ready() -> void:
 			cat_spawners.erase(i)
 	zerma.inspected.connect(_on_zerma_inspected)
 	intro_dialogue_progress = DAT.get_data("intro_dialogue_progress", 0) if not DAT.get_data("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
+	print("intro progress: ", intro_dialogue_progress)
 	door_area.destination = ""
 	if DAT.get_data("intro_cutscene_finished", false):
 		intro_animator.play("RESET")
@@ -43,11 +44,15 @@ func _ready() -> void:
 		door_area.destination = door_destination
 	elif intro_dialogue_progress == 2:
 		intro_animator.play("zerm_is_outside")
+		intro_animator.advance(10)
 		zerma.default_lines.clear()
 		zerma.default_lines.append("intro_inspect_zerma_1")
 		room_gate.global_position = Vector2(3399, 232)
 		room_gate_2.global_position = Vector2(3399, 232)
 		door_area.destination = door_destination
+		#wawait intro_animator.animation_finished
+		print("prenis")
+		door_area.apply_spawn_point()
 	elif intro_dialogue_progress == 3:
 		intro_animator.play("zerm_is_outside")
 		intro_animator.advance(3000)

@@ -13,12 +13,12 @@ extends Area2D
 
 
 func _ready() -> void:
-	await get_tree().process_frame
-	await get_tree().process_frame
+	#await get_tree().process_frame
+	#await get_tree().process_frame
 	# teleport if identical gate id
-	if LTS.gate_id == gate_id:
-		if not player or not spawn_point: return
-		player.global_position = spawn_point.global_position
+	if player:
+		await player.ready
+		apply_spawn_point()
 
 
 func interacted() -> void:
@@ -36,3 +36,9 @@ func interacted() -> void:
 		DAT.free_player("knocking_on_door")
 		SOL.dialogue(fail_dialogue)
 		knock_sound.queue_free()
+
+
+func apply_spawn_point() -> void:
+	if LTS.gate_id == gate_id:
+		if not player or not spawn_point: return
+		player.global_position = spawn_point.global_position

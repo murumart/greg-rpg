@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_yjyxo"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_06sfg"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_06sfg"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_rlixq"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_wdbgc"]
-[ext_resource type="SpriteFrames" uid="uid://clewd4hw0hige" path="res://resources/characters/sfr_grandma.tres" id="6_etjmo"]
+[ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="6_etjmo"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="7_fqnfh"]
 [ext_resource type="AudioStream" uid="uid://hy3n726fcxds" path="res://music/mus_grandma_radio.ogg" id="8_cxs6r"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="9_r0b2n"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="11_b4a8j"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="12_363c6"]
-[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u00gj"]
 size = Vector2(32, 18)

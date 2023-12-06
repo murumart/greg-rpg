@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
-[ext_resource type="Resource" uid="uid://d3h8qcjqnxp3o" path="res://resources/rewards/res_zerma_tut_rewards.tres" id="2_tkuvq"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_bb2fy"]
+[ext_resource type="Resource" uid="uid://d166p4x3l8nls" path="res://resources/rewards/res_zerma_tut_rewards.tres" id="2_tkuvq"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_bb2fy"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="3_mfjyj"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="3_nfofm"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_24deu"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="8_gp7pc"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_qoivq"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="9_xism4"]
-[ext_resource type="SpriteFrames" uid="uid://b6pwnbt43ij6i" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
-[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
+[ext_resource type="SpriteFrames" uid="uid://o5esampj4xk6" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
 
 [sub_resource type="Resource" id="Resource_fd5xt"]
@@ -95,7 +95,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-31, 201)]
+"values": [Vector2(-50, 200)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1060,7 +1060,7 @@ scale = Vector2(-1, 1)
 type = 3
 
 [node name="Greg" parent="." instance=ExtResource("3_bb2fy")]
-position = Vector2(-31, 201)
+position = Vector2(-50, 200)
 saving_disabled = true
 
 [node name="Sprite" parent="Greg" index="0"]
@@ -1088,14 +1088,14 @@ y_sort_enabled = false
 layer_0/name = "roof layer 1"
 layer_0/z_index = 0
 layer_0/tile_data = PackedInt32Array(-131076, 65537, 10, -196611, 65537, 10, -196612, 65537, 9, -262146, 131073, 9, -196610, 131073, 10, -262147, 65537, 9, -196609, 131073, 9, -131073, 131073, 10, -262148, 65537, 9, -327684, 65537, 9, -327683, 65537, 9, -393220, 65537, 8, -393219, 65537, 9, -327682, 131073, 9, -262145, 131073, 9, -393218, 131073, 9, -327681, 131073, 9, -393217, 131073, 8, -458754, 131073, 8, -458755, 65537, 8, -131077, 1, 10, -196613, 1, 10, -262149, 1, 10, -327685, 1, 9, -65541, 1, 11)
-layer_1/name = "roof layer 2"
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(-131072, 327681, 11, -131071, 327681, 11, -65537, 262145, 11, -131070, 327681, 11, -131069, 327681, 11, -131068, 327681, 11, -131067, 327681, 10, -196603, 327681, 10, -196604, 327681, 10, -196605, 327681, 10, -196606, 327681, 10, -196607, 327681, 10, -196608, 327681, 10, -131073, 262145, 10, -262144, 327681, 10, -196609, 262145, 10, -262143, 327681, 10, -262142, 327681, 10, -262141, 327681, 10, -262140, 327681, 10, -262139, 327681, 10, -262138, 393217, 10, -196602, 393217, 10, -131066, 393217, 10, -327680, 327681, 9, -327679, 327681, 9, -262145, 262145, 9, -327678, 327681, 9, -327677, 327681, 9, -327676, 327681, 9, -327675, 327681, 9, -327674, 393217, 9, -393211, 327681, 8, -393210, 393217, 8, -393212, 327681, 8, -393213, 327681, 8, -393214, 327681, 8, -393215, 327681, 8, -393216, 327681, 8, -327681, 262145, 8)
+layer_1/name = "veg level"
+layer_1/enabled = false
+layer_1/y_sort_enabled = true
 layer_2/enabled = false
-layer_3/enabled = false
-layer_3/y_sort_enabled = false
+layer_2/y_sort_enabled = true
+layer_3/name = "roof layer 2"
+layer_3/tile_data = PackedInt32Array(-131072, 327681, 11, -131071, 327681, 11, -65537, 262145, 11, -131070, 327681, 11, -131069, 327681, 11, -131068, 327681, 11, -131067, 327681, 10, -196603, 327681, 10, -196604, 327681, 10, -196605, 327681, 10, -196606, 327681, 10, -196607, 327681, 10, -196608, 327681, 10, -131073, 262145, 10, -262144, 327681, 10, -196609, 262145, 10, -262143, 327681, 10, -262142, 327681, 10, -262141, 327681, 10, -262140, 327681, 10, -262139, 327681, 10, -262138, 393217, 10, -196602, 393217, 10, -131066, 393217, 10, -327680, 327681, 9, -327679, 327681, 9, -262145, 262145, 9, -327678, 327681, 9, -327677, 327681, 9, -327676, 327681, 9, -327675, 327681, 9, -327674, 393217, 9, -393211, 327681, 8, -393210, 393217, 8, -393212, 327681, 8, -393213, 327681, 8, -393214, 327681, 8, -393215, 327681, 8, -393216, 327681, 8, -327681, 262145, 8)
 layer_4/enabled = false
-layer_4/y_sort_enabled = false
 
 [node name="Greenhouse" parent="ActualHouse" instance=ExtResource("6_c7ycq")]
 position = Vector2(-184, -51)
@@ -1131,13 +1131,13 @@ spawnpoint = Vector2i(35, 0)
 position = Vector2(-23, 40)
 destination = &"grandma_house_inside"
 gate_id = &"greghouse_inside-outside"
-spawn_point = NodePath("Node2D")
+spawn_point = NodePath("SpawnPoint")
 player = NodePath("../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/HouseDoor"]
 shape = SubResource("RectangleShape2D_wi2j2")
 
-[node name="Node2D" type="Node2D" parent="Areas/HouseDoor"]
+[node name="SpawnPoint" type="Node2D" parent="Areas/HouseDoor"]
 position = Vector2(0, 16)
 
 [node name="Cats1" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
