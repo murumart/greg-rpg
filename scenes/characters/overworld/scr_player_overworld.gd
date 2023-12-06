@@ -36,10 +36,9 @@ func _ready() -> void:
 	menu.close_requested.connect(close_menu)
 	SOL.add_ui_child(menu)
 	menu.hide()
-	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
-		position = DAT.get_data(get_save_key("position"), position)
+	
 	load_armour()
-	gate_spawn()
+	spawn_position()
 	print("player ready")
 
 
@@ -188,5 +187,7 @@ func load_armour() -> void:
 			armour.show()
 
 
-func gate_spawn() -> void:
+func spawn_position() -> void:
+	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
+		position = DAT.get_data(get_save_key("position"), position)
 	get_tree().call_group("room_gates", "apply_spawn_point", self)

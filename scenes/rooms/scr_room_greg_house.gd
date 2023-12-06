@@ -8,6 +8,7 @@ extends Room
 @onready var door_destination := "grandma_house_inside"
 
 @onready var zerma := $Cutscenes/Zerma
+@onready var greg := $Greg
 @onready var car := $Cutscenes/ZermCar
 @onready var cutscene_node := $Cutscenes
 
@@ -24,15 +25,15 @@ func _ready() -> void:
 			cat_spawners.erase(i)
 	zerma.inspected.connect(_on_zerma_inspected)
 	intro_dialogue_progress = DAT.get_data("intro_dialogue_progress", 0) if not DAT.get_data("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
-	print("intro progress: ", intro_dialogue_progress)
+	#print("intro progress: ", intro_dialogue_progress)
 	door_area.destination = ""
 	if DAT.get_data("intro_cutscene_finished", false):
-		intro_animator.play("RESET")
 		cutscene_node.propagate_call("set_physics_process", [false])
 		cutscene_node.visible = false
 		cutscene_node.global_position = Vector2(29999, 29999)
 		room_gate.global_position = Vector2(339, 232)
 		room_gate_2.global_position = Vector2(333, -168)
+		greg.spawn_position()
 		return
 	
 	if intro_dialogue_progress < 2:
@@ -50,9 +51,7 @@ func _ready() -> void:
 		room_gate.global_position = Vector2(3399, 232)
 		room_gate_2.global_position = Vector2(3399, 232)
 		door_area.destination = door_destination
-		#wawait intro_animator.animation_finished
-		print("prenis")
-		door_area.apply_spawn_point()
+		greg.spawn_position()
 	elif intro_dialogue_progress == 3:
 		intro_animator.play("zerm_is_outside")
 		intro_animator.advance(3000)
@@ -60,12 +59,14 @@ func _ready() -> void:
 		room_gate.global_position = Vector2(3399, 232)
 		room_gate_2.global_position = Vector2(3399, 232)
 		zerma.default_lines.append("zerma_fight_preface")
+		greg.spawn_position()
 	elif intro_dialogue_progress >= 4:
 		intro_animator.play("zerm_is_outside")
 		intro_animator.advance(3000)
 		zerma.global_position = Vector2(-24, 96)
 		room_gate.global_position = Vector2(3399, 232)
 		room_gate_2.global_position = Vector2(3399, 232)
+		greg.spawn_position()
 		SOL.dialogue("zerma_after_fight")
 		await SOL.dialogue_closed
 		zerma.move_to(Vector2(-15, 196))

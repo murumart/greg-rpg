@@ -337,7 +337,7 @@ texture = ExtResource("7_lci3t")
 centered = false
 
 [node name="BeginningAnimation" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_s7w5v")
 }
+autoplay = "default"
