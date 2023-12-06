@@ -7,18 +7,12 @@ extends Area2D
 @export var gate_id := &""
 
 @export var spawn_point : Node2D
-@export var player : PlayerOverworld
 
 @export var fail_dialogue := "door_unanswer"
 
 
-func _ready() -> void:
-	#await get_tree().process_frame
-	#await get_tree().process_frame
-	# teleport if identical gate id
-	if player:
-		await player.ready
-		apply_spawn_point()
+func _enter_tree() -> void:
+	add_to_group("room_gates")
 
 
 func interacted() -> void:
@@ -38,7 +32,11 @@ func interacted() -> void:
 		knock_sound.queue_free()
 
 
-func apply_spawn_point() -> void:
+func apply_spawn_point(player: PlayerOverworld) -> void:
 	if LTS.gate_id == gate_id:
-		if not player or not spawn_point: return
+		print("gate id is equal")
+		if not spawn_point:
+			print("no spawn point")
+			return
+		print("setting position")
 		player.global_position = spawn_point.global_position

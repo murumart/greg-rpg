@@ -521,7 +521,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(644, 146)
+position = Vector2(325, -217)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -931,12 +931,11 @@ position = Vector2(-88, -159)
 position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_jv1pm")
 
-[node name="DoorArea2" parent="Houses/Pairhouse" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
+[node name="DoorArea2" parent="Houses/Pairhouse" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 z_index = 1
 position = Vector2(24, 1)
 gate_id = &"town-gaming"
 spawn_point = NodePath("Node2D")
-player = NodePath("../../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/DoorArea2"]
 position = Vector2(0, 5.25)
@@ -1112,12 +1111,11 @@ texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 80, 32, 16)
 
-[node name="DoorArea" parent="Houses/Store" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
+[node name="DoorArea" parent="Houses/Store" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 position = Vector2(16, 38)
 destination = &"store"
 gate_id = &"store_inside-outside"
 spawn_point = NodePath("SpawnPoint")
-player = NodePath("../../../Greg")
 fail_dialogue = "store_wont_let_you_in"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Store/DoorArea"]
@@ -1197,7 +1195,7 @@ layer_3/tile_data = PackedInt32Array(65532, 327681, 11, 65533, 327681, 11, 65531
 layer_4/name = "road level"
 layer_4/tile_data = PackedInt32Array(0, 65537, 10, 65535, 1, 10, -65535, 65537, 10, -65536, 65537, 9, -65532, 196609, 10, -65533, 131073, 9, 4, 196609, 10, 3, 131073, 10, 65540, 196609, 11, -65534, 131073, 10, -1, 1, 10, 131071, 1, 11, -262143, 65537, 9, -262142, 131073, 9, -196609, 1, 9, -327680, 65537, 8, -262144, 65537, 9, -393215, 65537, 8, -327679, 65537, 9, -393214, 131073, 8, -327678, 131073, 9, -327677, 131073, 8, -262141, 131073, 9, -262140, 196609, 9, -131072, 65537, 9, -196607, 65537, 9, -131071, 65537, 9, -196606, 131073, 9, -131069, 131073, 9, -131070, 131073, 9, -196605, 131073, 9, -196608, 65537, 9, -131073, 1, 10, -65537, 1, 10, -196604, 196609, 10, -131068, 196609, 10)
 
-[node name="DoorArea5" parent="Houses/PostOffice" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
+[node name="DoorArea5" parent="Houses/PostOffice" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 z_index = 1
 position = Vector2(39, 33)
 rotation = -3.14159
@@ -1205,7 +1203,6 @@ scale = Vector2(1, -1)
 destination = &"post_office"
 gate_id = &"town-postoffice"
 spawn_point = NodePath("Node2D")
-player = NodePath("../../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/PostOffice/DoorArea5"]
 position = Vector2(0, 5.25)
@@ -1416,12 +1413,11 @@ texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 112, 48, 16)
 
-[node name="DoorArea" parent="Houses/Police" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
+[node name="DoorArea" parent="Houses/Police" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 position = Vector2(40, 0)
 destination = &"police_station"
 gate_id = &"town-police"
 spawn_point = NodePath("Node2D")
-player = NodePath("../../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Police/DoorArea"]
 position = Vector2(0, -5)
@@ -1449,12 +1445,11 @@ layer_0/modulate = Color(0.67451, 0.533333, 0.243137, 1)
 layer_0/z_index = 0
 layer_0/tile_data = PackedInt32Array(-4, 327681, 11, -3, 327681, 11, -5, 262145, 11, -2, 327681, 11, -1, 327681, 11, -65536, 327681, 11, -65535, 327681, 11, -65534, 327681, 11, -65533, 327681, 11, -65532, 393217, 11, -131069, 327681, 10, -131070, 327681, 10, -131068, 327681, 11, -131071, 327681, 10, -131072, 327681, 10, -65537, 327681, 10, -65538, 327681, 10, -65539, 327681, 10, -65540, 327681, 10, -65541, 262145, 10, -131076, 327681, 10, -131077, 262145, 10, -131075, 327681, 10, -131074, 327681, 10, -131073, 327681, 10, -196608, 327681, 10, -196607, 327681, 10, -196606, 327681, 10, -196605, 327681, 10, -196604, 327681, 10, -196612, 327681, 9, -196611, 327681, 9, -196613, 262145, 9, -196610, 327681, 9, -196609, 327681, 9, -262144, 327681, 9, -262143, 327681, 9, -262142, 327681, 9, -262141, 327681, 9, -262140, 327681, 10, -327677, 327681, 8, -327676, 327681, 9, -327678, 327681, 8, -327679, 327681, 8, -327680, 327681, 8, -262145, 327681, 8, -262146, 327681, 8, -262147, 327681, 8, -262148, 327681, 8, -262149, 262145, 8, -131067, 327681, 11, -131066, 327681, 11, -131065, 327681, 11, -131064, 393217, 11, -196601, 327681, 10, -196602, 327681, 10, -196600, 393217, 10, -196603, 327681, 10, -262139, 327681, 10, -262138, 327681, 10, -262137, 327681, 10, -262136, 393217, 10, -327675, 327681, 9, -327674, 327681, 9, -327673, 327681, 9, -327672, 393217, 9, -393209, 327681, 8, -393208, 393217, 8, -393210, 327681, 8, -393211, 327681, 8, -393212, 327681, 8)
 
-[node name="DoorArea" parent="Houses/MafiaHouse" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("7_ce3xq")]
+[node name="DoorArea" parent="Houses/MafiaHouse" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 position = Vector2(88, 16)
 destination = &"mafia_house"
 gate_id = &"mafiahouse-town"
 spawn_point = NodePath("Marker2D")
-player = NodePath("../../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/MafiaHouse/DoorArea"]
 position = Vector2(0, -7.5)
@@ -2109,19 +2104,17 @@ layer_0/tile_data = PackedInt32Array(524286, 65536, 11, 458751, 131072, 11, 3276
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_0hylv")]
+[node name="RoomGate" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(-573, 313)
 destination = &"greg_house"
 gate_id = &"house-town"
-player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(18, 0)
 
-[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_0hylv")]
+[node name="RoomGate2" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(-579, -102)
 destination = &"greg_house"
 gate_id = &"house-town_up"
-player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(18, 0)
 
@@ -2231,11 +2224,10 @@ player = NodePath("../../Greg")
 active_range = Vector2i(7, 99)
 wait_time = 2.0
 
-[node name="LakeCorridorGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_0hylv")]
+[node name="LakeCorridorGate" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(1128, 354)
 destination = &"lake_corridor"
 gate_id = &"town-lake"
-player = NodePath("../../Greg")
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-31, -15)
 

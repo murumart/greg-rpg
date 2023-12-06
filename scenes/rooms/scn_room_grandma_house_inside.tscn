@@ -411,11 +411,10 @@ key = "dirtbags"
 position = Vector2(2, 2.25)
 shape = SubResource("RectangleShape2D_0bcnh")
 
-[node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("12_363c6")]
+[node name="RoomGate" parent="Areas" instance=ExtResource("12_363c6")]
 position = Vector2(8, 54)
 destination = &"greg_house"
 gate_id = &"greghouse_inside-outside"
-player = NodePath("../../Greg")
 extents = Vector2i(7, 8)
 spawnpoint = Vector2i(0, -13)
 

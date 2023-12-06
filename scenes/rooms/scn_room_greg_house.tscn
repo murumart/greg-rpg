@@ -1103,36 +1103,32 @@ position = Vector2(-184, -51)
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
+[node name="RoomGate" parent="Areas" instance=ExtResource("6_fm3do")]
 position = Vector2(339, 232)
 destination = &"town"
 gate_id = &"house-town"
-player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(-20, 0)
 
-[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
+[node name="RoomGate2" parent="Areas" instance=ExtResource("6_fm3do")]
 position = Vector2(333, -168)
 destination = &"town"
 gate_id = &"house-town_up"
-player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(-20, 0)
 
-[node name="RoomGate3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_fm3do")]
+[node name="RoomGate3" parent="Areas" instance=ExtResource("6_fm3do")]
 position = Vector2(-320, 69)
 destination = &"forest"
 gate_id = &"forest-house"
-player = NodePath("../../Greg")
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(35, 0)
 
-[node name="HouseDoor" parent="Areas" node_paths=PackedStringArray("spawn_point", "player") instance=ExtResource("8_7g8ll")]
+[node name="HouseDoor" parent="Areas" node_paths=PackedStringArray("spawn_point") instance=ExtResource("8_7g8ll")]
 position = Vector2(-23, 40)
 destination = &"grandma_house_inside"
 gate_id = &"greghouse_inside-outside"
 spawn_point = NodePath("SpawnPoint")
-player = NodePath("../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/HouseDoor"]
 shape = SubResource("RectangleShape2D_wi2j2")

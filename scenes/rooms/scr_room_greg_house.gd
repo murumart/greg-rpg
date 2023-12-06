@@ -108,6 +108,7 @@ func intro_cutscene_dialogue() -> void:
 		1:
 			SOL.dialogue("intro_convo_3")
 			intro_dialogue_progress = 2
+			DAT.free_player("intro")
 
 
 func intro_cutscene_first_pause() -> void:

@@ -39,6 +39,8 @@ func _ready() -> void:
 	if LTS.gate_id in LTS.PLAYER_POSITION_LOAD_GATES:
 		position = DAT.get_data(get_save_key("position"), position)
 	load_armour()
+	gate_spawn()
+	print("player ready")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -184,3 +186,7 @@ func load_armour() -> void:
 			armour.sprite_frames = load(path)
 			updating_armour = true
 			armour.show()
+
+
+func gate_spawn() -> void:
+	get_tree().call_group("room_gates", "apply_spawn_point", self)

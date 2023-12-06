@@ -13,7 +13,6 @@ signal entered
 @export_group("")
 @export var destination := &""
 @export var gate_id := &""
-@export var player : PlayerOverworld
 @export var extents := Vector2i(8, 8): set = set_extents
 
 @export var spawnpoint := Vector2i(0, 0):
@@ -29,24 +28,21 @@ func set_extents(to: Vector2i) -> void:
 		get_node(collision_shape_path).shape.extents = to
 
 
+func _enter_tree() -> void:
+	add_to_group("room_gates")
+
+
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	var area : Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
-	# auuuuuuauguuauauuauuuuu
-	await get_tree().process_frame
-	await get_tree().process_frame
-	# if the player exists and the gate is associated with the way the player
-	# entered the level, uh, teleport the player here!
-	if LTS.gate_id == gate_id:
-		if player and get_node_or_null(spawn_point_path):
-			player.global_position = get_node(spawn_point_path).global_position
 
 
 # when the player enters the gate area
 func _on_area_entered(body: Node2D) -> void:
-	if body == player:
+	if body is PlayerOverworld:
+		var player := body as PlayerOverworld
 		if player.state == PlayerOverworld.States.NOT_FREE_MOVE: return
 		if DIR.room_exists(destination):
 			# set the gate id
@@ -56,5 +52,6 @@ func _on_area_entered(body: Node2D) -> void:
 		entered.emit()
 
 
-func force_level_transition() -> void:
-	_on_area_entered(player)
+func apply_spawn_point(player: PlayerOverworld) -> void:
+	if LTS.gate_id == gate_id:
+		player.global_position = get_node(spawn_point_path).global_position
