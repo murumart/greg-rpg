@@ -88,9 +88,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				grab_item_focus()
 				
 		Doings.USING:
+			var item := DAT.get_item(using_item) as Item
 			var old_choice := using_menu_choice
 			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size() + 1)
 			update_using_portraits()
+			if using_menu_choice != party_size():
+				if item.use in Item.USES_EQUIPABLE:
+					using_label.text = "equipping " + item.name
+				else:
+					using_label.text = "using " + item.name
+			else:
+				using_label.text = "delete " + item.name + "?"
 			if old_choice != using_menu_choice:
 				SND.menusound(1.35)
 			if event.is_action_pressed("ui_accept"):
@@ -101,7 +109,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
 					else:
 						party(using_menu_choice).handle_item(using_item)
-						var item : Item = DAT.get_item(using_item)
+						
 						if item.consume_on_use:
 							party(current_tab).inventory.erase(using_item)
 						if not item.use in Item.USES_EQUIPABLE:
@@ -290,7 +298,6 @@ func _reference_button_pressed(reference) -> void:
 				call_deferred("grab_item_focus")
 				return
 		doing = Doings.USING
-		using_label.text = "using " + DAT.get_item(reference).name
 		using_item = reference
 		load_using_menu()
 	if item_spirit_tabs.current_tab == 1 and doing == Doings.INNER:
