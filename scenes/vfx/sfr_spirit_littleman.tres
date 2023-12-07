@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://s65kghjgst4r"]
+
+[ext_resource type="Texture2D" uid="uid://csxd1fcvxaa1f" path="res://sprites/spirit/spr_littleman_hint.png" id="1_bu2mi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7oib"]
+atlas = ExtResource("1_bu2mi")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkigb"]
+atlas = ExtResource("1_bu2mi")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4wwo"]
+atlas = ExtResource("1_bu2mi")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41oj2"]
+atlas = ExtResource("1_bu2mi")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvyw3"]
+atlas = ExtResource("1_bu2mi")
+region = Rect2(0, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7oib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkigb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4wwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41oj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvyw3")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

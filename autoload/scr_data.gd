@@ -255,6 +255,7 @@ func grant_silver(amount: int, dialogue := true) -> void:
 
 func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> void:
 	var charc : Character = get_character(A.get("party", ["greg"])[party_index])
+	if spirit in charc.unused_sprits or spirit in charc.spirits: return
 	# this implementation looks so kooky because typed arrays if i remember right
 	var uuspirits : Array[String] = charc.unused_sprits.duplicate()
 	uuspirits.append(spirit)

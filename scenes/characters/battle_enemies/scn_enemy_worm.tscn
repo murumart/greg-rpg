@@ -8,15 +8,16 @@
 [node name="Worm" type="Node2D"]
 script = ExtResource("1_pil78")
 
-[node name="Head" type="Sprite2D" parent="."]
-texture = ExtResource("2_tn5wl")
-region_enabled = true
-region_rect = Rect2(121, 3, 40, 34)
-
 [node name="Worm" type="Node2D" parent="."]
 top_level = true
 z_index = -1
 y_sort_enabled = true
+
+[node name="Head" type="Sprite2D" parent="Worm"]
+z_index = 1
+texture = ExtResource("2_tn5wl")
+region_enabled = true
+region_rect = Rect2(121, 3, 40, 34)
 
 [node name="Tail1" type="Sprite2D" parent="Worm"]
 scale = Vector2(1.2, 1.2)
