@@ -37,7 +37,7 @@ func change_scene_to(path: String, options := {}) -> void:
 	var new_scene : Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
 	if new_scene.has_method("_option_init"): new_scene._option_init(options)
-	
+	reset_flags()
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
 	scene_changed.emit()
@@ -121,3 +121,12 @@ func skateboard_check() -> bool:
 		return true
 		
 	return false
+
+
+func reset_flags() -> void:
+	preload("res://scenes/characters/overworld/scr_thug_overworld.gd"
+		).thugs_battled_changed = false
+	preload("res://scenes/characters/overworld/scr_stray_pet_overworld.gd"
+		).stray_animal_fought_changed = false
+	preload("res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd"
+		).broken_fishermen_fought_changed = false

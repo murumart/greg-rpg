@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://47jotnf2sqw3"]
+[gd_scene load_steps=24 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
@@ -163,6 +163,9 @@ save = false
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_7ulo7")
+
+[node name="CollisionDetectionArea" parent="." index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_n8mvl")

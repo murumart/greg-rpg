@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1v25nxnyuccu"]
+[gd_scene load_steps=7 format=3 uid="uid://jgjwvx47vp8i"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
-[ext_resource type="SpriteFrames" uid="uid://cyg0y3sekatxh" path="res://resources/characters/sfr_stray_pet.tres" id="2_bjidh"]
+[ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="2_bjidh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r02ng"]
 resource_local_to_scene = true
@@ -26,6 +26,9 @@ save = false
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_r02ng")
+
+[node name="CollisionDetectionArea" parent="." index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bauq7")

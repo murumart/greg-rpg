@@ -7,10 +7,19 @@ const RB := "rainbird"
 
 var enmis : Array[String] = []
 
+static var stray_animal_fought_changed: bool = false
+
 
 func _ready() -> void:
 	super._ready()
 	battle_info = get_info()
+
+
+func interacted() -> void:
+	if not stray_animal_fought_changed:
+		DAT.incri("stray_animals_fought", 1)
+		stray_animal_fought_changed = true
+	super()
 
 
 func get_info() -> BattleInfo:

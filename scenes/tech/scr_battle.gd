@@ -125,8 +125,6 @@ func _ready() -> void:
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
 	screen_dance_battle.end.connect(_dance_battle_ended)
-	preload("res://scenes/characters/overworld/scr_thug_overworld.gd"
-		).thugs_battled_changed = false
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	remove_child(party_node)
