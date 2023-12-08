@@ -174,7 +174,7 @@ func _on_obstacle_timer_timeout() -> void:
 	if currently_hell and randf() <= 0.25:
 		var beam_target : BikingObstacle = preload("res://scenes/biking/moving_objects/scn_sky_target.tscn").instantiate()
 		beam_target.randomise_position()
-		beam_target.position.x += randfn(10, 30) + 20
+		beam_target.position.x += randfn(20, 20) + 20
 		beam_target.speed = speed
 		add_child(beam_target)
 

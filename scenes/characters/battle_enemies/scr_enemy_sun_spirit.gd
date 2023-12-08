@@ -22,7 +22,7 @@ func color(amt: float) -> void:
 	$Puppet/Pivot.modulate = mod_gradient.sample(amt)
 	$Puppet/Pivot.scale.x = size_curve.sample(amt)
 	character.attack = remap(amt, 0.0, 1.0, 35, 85)
-	character.defense = remap(amt, 0.0, 1.0, 85, 20)
+	character.defense = remap(amt, 0.0, 1.0, 75, 20)
 	character.speed = remap(amt, 0.0, 1.0, 55, 20)
 
 
@@ -37,7 +37,7 @@ func hurt(amt: float, gnd: int) -> void:
 	color(character.health_perc())
 	if character.health_perc() <= 0.05:
 		if nova < 0.99:
-			nova = -200
+			nova = -2000
 			SOL.vfx("star_nebula")
 			super.hurt(3000, Genders.VAST)
 			dead = true
@@ -66,7 +66,7 @@ func nova_process(add : float) -> void:
 	if is_instance_valid(SND.current_song_player):
 		SND.current_song_player.pitch_scale = music_pitch_curve.sample(nova)
 	if nova >= 0.99:
-		if absf(nova) < 2:
+		if absf(nova) < 200:
 			nova = 200
 			use_spirit("nova", self)
 			SND.play_song("", 300)
