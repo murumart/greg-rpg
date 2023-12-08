@@ -23,7 +23,7 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 
 
 func get_effect_description() -> String:
-	var text := Math.get_effect_description(self)
+	var text := payload.get_effect_description() as String
 	if use == Uses.ARMOUR:
 		text += "armour\n"
 	if use == Uses.WEAPON:

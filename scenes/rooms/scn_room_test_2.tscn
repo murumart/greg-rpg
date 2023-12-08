@@ -1,10 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://c25n4cpx3uhni"]
+[gd_scene load_steps=7 format=3 uid="uid://c25n4cpx3uhni"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_ppnux"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_6f6gs"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_f7pq8"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_f7pq8"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_2ehx6"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_itj6j"]
+
+[sub_resource type="GDScript" id="GDScript_bt885"]
+resource_name = "test"
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	var pld := BattlePayload.new()
+	pld.set_health(10).set_max_health_percent(10).set_health_percent(20)
+	pld.set_magic(-20).set_magic_percent(-10).set_max_magic_percent(-30)
+	for sp in DAT.spirit_dict:
+		print(sp)
+		print_rich(DAT.spirit_dict[sp].payload)
+	for it in DAT.item_dict:
+		print(it)
+		print_rich(DAT.item_dict[it].payload)
+	print_rich(pld)
+"
 
 [node name="Test2" type="Node2D"]
 script = ExtResource("1_ppnux")
@@ -17,10 +35,12 @@ position = Vector2(-5, -57)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_2ehx6")]
 
-[node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_itj6j")]
+[node name="RoomGate" parent="." instance=ExtResource("5_itj6j")]
 position = Vector2(-72, -56)
 destination = &"test_room"
 gate_id = &"stump"
-player = NodePath("../Greg")
 extents = Vector2i(10, 10)
 spawnpoint = Vector2i(0, 16)
+
+[node name="Testing" type="Node2D" parent="."]
+script = SubResource("GDScript_bt885")

@@ -24,7 +24,7 @@ enum Reach {LOCAL, ALL, TEAM}
 
 
 func get_effect_description() -> String:
-	var text := Math.get_effect_description(self)
+	var text := payload.get_effect_description() as String
 	
 	match reach:
 		Reach.LOCAL: pass
