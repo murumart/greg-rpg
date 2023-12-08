@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://b3xx3aii4sif6"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://bljyuqjkv1tdl"]
 
 [ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_4ge8a"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_4psst"]
@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_p6dxe"]
 script = ExtResource("1_4ge8a")
 name = "confusion"
-strength = 1
+strength = 1.0
 duration = 5.0
 
 [sub_resource type="Resource" id="Resource_0w00j"]
@@ -17,28 +17,20 @@ health = null
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
+steal_magic = 0.0
 attack_increase = null
-attack_increase_time = null
 defense_increase = null
-defense_increase_time = null
 speed_increase = null
-speed_increase_time = null
-confusion_time = 5
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
+gender = 6
 effects = Array[ExtResource("1_4ge8a")]([SubResource("Resource_p6dxe")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_dyxa5")

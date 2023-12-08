@@ -175,6 +175,7 @@ innovation = null
 vaimulembesus = 0.441
 default_intent = null
 auto_ai = null
+gender = 4
 stat_multiplier = null
 wait = null
 

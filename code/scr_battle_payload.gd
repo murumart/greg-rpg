@@ -115,6 +115,10 @@ func get_effect_description() -> String:
 		else:
 			efftxt += "[color=#888866]%s[/color]\n" % (criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s" % eff.duration)
 		text += efftxt
+	if gender:
+		text += "effect type: [color=#%s]" % Genders.COLOURS[gender].to_html(false)
+		text += Genders.NAMES[gender]
+		text += "[/color]\n"
 	return text
 
 

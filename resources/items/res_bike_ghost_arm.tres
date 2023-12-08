@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://ct4fjbf2i3bkp"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://6ochmfrpo7bs"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_5bdkw"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_vo5fe"]
@@ -10,28 +10,20 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 1.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
-effects = Array[Resource]([])
+gender = 4
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_vo5fe")

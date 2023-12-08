@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://d3gtcd1lhjnq5"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bojh0k10quv45"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_2t53s"]
 [ext_resource type="AudioStream" uid="uid://bssnpugggvkmy" path="res://sounds/biking_bell.ogg" id="1_ljb42"]
@@ -11,16 +11,20 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 5
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_fi1eq")

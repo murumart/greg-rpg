@@ -16,17 +16,20 @@ health = null
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 4
 effects = Array[ExtResource("1_t3dcq")]([SubResource("Resource_1rl0a")])
 delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_elkte")

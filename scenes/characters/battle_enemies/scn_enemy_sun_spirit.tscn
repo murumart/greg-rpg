@@ -2231,6 +2231,7 @@ animator = NodePath("Animations")
 toughness = 1.0
 altruism = 0.0
 xp_multiplier = 4.0
+gender = 3
 effect_immunities = Array[String](["fire"])
 
 [node name="Puppet" type="Node2D" parent="."]
@@ -2416,10 +2417,10 @@ region_enabled = true
 region_rect = Rect2(37, 28, 26, 48)
 
 [node name="Animations" type="AnimationPlayer" parent="."]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_thwtv")
 }
+autoplay = "idle"
 
 [node name="NovaProspect" type="Control" parent="."]
 layout_mode = 3

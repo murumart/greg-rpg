@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://cu8owr6dbeo4a"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://b5vslg1vgi73o"]
 
 [ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_053kk"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_250ih"]
@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_7qwhf"]
 script = ExtResource("1_053kk")
 name = "fire"
-strength = 1
+strength = 1.0
 duration = 5.0
 
 [sub_resource type="Resource" id="Resource_5r82u"]
@@ -17,28 +17,20 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 5
-effect_name = "fire"
-effect_strength = 1.0
-effect_duration = 5
+gender = 3
 effects = Array[ExtResource("1_053kk")]([SubResource("Resource_7qwhf")])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_vr66l")

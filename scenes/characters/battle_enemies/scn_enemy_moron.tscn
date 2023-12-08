@@ -9,6 +9,7 @@ effect_center = Vector2i(3, -6)
 toughness = 0.087
 vaimulembesus = 0.0
 can_flee = true
+gender = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_u0koo")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://cjuceiqkqbgro"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dx8tjjcd3vrov"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_24lo1"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_e5prb"]
@@ -11,12 +11,15 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 1
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""

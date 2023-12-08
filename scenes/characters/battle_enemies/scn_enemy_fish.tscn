@@ -46,6 +46,7 @@ _data = {
 script = ExtResource("1_a8phl")
 altruism = 0.199
 can_flee = true
+gender = 2
 
 [node name="FishSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -13)
@@ -54,7 +55,7 @@ hframes = 5
 vframes = 3
 
 [node name="Animator" type="AnimationPlayer" parent="."]
-autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_078ep")
 }
+autoplay = "idle"

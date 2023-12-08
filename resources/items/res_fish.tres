@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dyjwhwgeidir"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://ce4yfyycyqs2e"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_bba6c"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_krq1w"]
@@ -10,16 +10,20 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 4.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 2
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s75my"]
 atlas = ExtResource("3_1ft1p")

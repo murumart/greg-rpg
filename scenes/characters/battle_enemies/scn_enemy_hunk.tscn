@@ -9,6 +9,7 @@ effect_center = Vector2i(0, -17)
 toughness = 1.0
 vaimulembesus = 0.355
 xp_multiplier = 1.1
+gender = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qtden")

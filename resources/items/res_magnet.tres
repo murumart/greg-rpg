@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://dxfhgo26w0jg1"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://bdtnkvw1ehlu5"]
 
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_aj028"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_k5nm4"]
@@ -25,7 +25,7 @@ steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
-gender = 0
+gender = 1
 effects = Array[ExtResource("1_r4s4m")]([SubResource("Resource_ikrrx")])
 delay = 0.0
 summon_enemy = ""

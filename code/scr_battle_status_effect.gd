@@ -97,6 +97,22 @@ func turn(actor: BattleActor) -> void:
 		actor.character.magic += strength * 2
 
 
+static func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
+	var amt := amount
+	if actor.has_status_effect(&"sleepy"):
+		actor.remove_status_effect(&"sleepy")
+		actor.message.emit("%s woke up!" % actor.actor_name)
+		amount *= 1.8
+	if actor.has_status_effect(&"sopping"):
+		SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
+			{"pitch": 1.3, "volume": 1.5})
+		amount += amt * 0.5
+		SOL.vfx(
+			"sopping",
+			actor.global_position + Vector2(randf_range(-4, 4), -16),
+			{"parent": actor})
+	return amount
+
 func removed(actor: BattleActor) -> void:
 	match name:
 		&"little":
