@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleRewards" load_steps=8 format=3 uid="uid://dj6asjxe3g3g6"]
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=9 format=3 uid="uid://dj6asjxe3g3g6"]
 
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_pd5p8"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_temya"]
@@ -35,9 +35,16 @@ unique = false
 script = ExtResource("1_pd5p8")
 type = 1
 property = "gummy_fish"
-chance = 0.224
+chance = 0.502
+unique = false
+
+[sub_resource type="Resource" id="Resource_wd1w2"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "water_balloon"
+chance = 0.405
 unique = false
 
 [resource]
 script = ExtResource("1_temya")
-rewards = Array[ExtResource("1_pd5p8")]([SubResource("Resource_mkvpt"), SubResource("Resource_f2hp2"), SubResource("Resource_0v8c3"), SubResource("Resource_ccxbs"), SubResource("Resource_35lja")])
+rewards = Array[ExtResource("1_pd5p8")]([SubResource("Resource_mkvpt"), SubResource("Resource_f2hp2"), SubResource("Resource_0v8c3"), SubResource("Resource_ccxbs"), SubResource("Resource_35lja"), SubResource("Resource_wd1w2")])

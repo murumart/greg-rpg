@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=93 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="10_dem56"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_fbdk7"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="10_orhm2"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="11_dsxoc"]
 [ext_resource type="SpriteFrames" uid="uid://du74aw0jrys3e" path="res://resources/characters/sfr_neighbour_wife.tres" id="11_g1geq"]
 [ext_resource type="PackedScene" uid="uid://bkuu3x2gw38ch" path="res://scenes/decor/scn_bike.tscn" id="12_8ipa6"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="12_rk0rd"]
@@ -43,6 +42,9 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Texture2D" uid="uid://bcbj5ae57nfcp" path="res://sprites/characters/overworld/spr_gleebungus_overworld.png" id="36_04fx3"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
+[ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
+[ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
+[ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -456,39 +458,6 @@ animations = [{
 "name": &"walk_up",
 "speed": 5.0
 }]
-
-[sub_resource type="Resource" id="Resource_etbem"]
-script = ExtResource("11_dsxoc")
-enemies = Array[String](["turf", "turf", "turf", "turf", "turf", "turf"])
-background = "grass"
-music = "touch_me"
-party = Array[String]([])
-death_reason = "default"
-start_text = ""
-victory_music = true
-stop_music_before_end = true
-
-[sub_resource type="Resource" id="Resource_jm0jg"]
-script = ExtResource("11_dsxoc")
-enemies = Array[String](["turf", "turf", "turf", "turf"])
-background = "grass"
-music = "touch_me"
-party = Array[String]([])
-death_reason = "default"
-start_text = ""
-victory_music = true
-stop_music_before_end = true
-
-[sub_resource type="Resource" id="Resource_u30p0"]
-script = ExtResource("11_dsxoc")
-enemies = Array[String](["turf", "turf"])
-background = "grass"
-music = "touch_me"
-party = Array[String]([])
-death_reason = "default"
-start_text = ""
-victory_music = true
-stop_music_before_end = true
 
 [node name="Town" type="Node2D"]
 y_sort_enabled = true
@@ -1044,8 +1013,8 @@ item = &"gummy_worm"
 
 [node name="Btrash5" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
 position = Vector2(137, -81)
-replenish_minutes = 9999999
-replenish_seconds = 599999940
+replenish_minutes = 1440
+replenish_seconds = 86400
 item = &"tumbler"
 
 [node name="Atgirl" parent="Houses/HousingBlock" instance=ExtResource("10_dem56")]
@@ -2120,7 +2089,7 @@ spawnpoint = Vector2i(18, 0)
 
 [node name="6Grass" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_orhm2")]
 position = Vector2(-401, -405)
-battle = SubResource("Resource_etbem")
+battle = ExtResource("40_n6uem")
 increase = 0.261
 player = NodePath("../../Greg")
 
@@ -2129,7 +2098,7 @@ polygon = PackedVector2Array(-228, 151, -173, -110, 139, -97, 65, 98)
 
 [node name="4Grass" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_orhm2")]
 position = Vector2(-346, -244)
-battle = SubResource("Resource_jm0jg")
+battle = ExtResource("41_7vjto")
 player = NodePath("../../Greg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/4Grass"]
@@ -2154,7 +2123,7 @@ polygon = PackedVector2Array(-131, 213, 144, 16, 144, -176, 304, -208, 224, 48, 
 
 [node name="2Grass" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_orhm2")]
 position = Vector2(-564, 122)
-battle = SubResource("Resource_u30p0")
+battle = ExtResource("42_pcrep")
 increase = 0.204
 player = NodePath("../../Greg")
 

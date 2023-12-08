@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_tnp6i"]
 script = ExtResource("1_n8fvb")
 name = "sopping"
-strength = 1.0
+strength = 3.0
 duration = 5
 
 [sub_resource type="Resource" id="Resource_1bpx5"]
@@ -16,12 +16,15 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 0
 effects = Array[ExtResource("1_n8fvb")]([SubResource("Resource_tnp6i")])
 delay = 0.0
 summon_enemy = ""

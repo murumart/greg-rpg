@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=6 format=3 uid="uid://bewy7ovucykch"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_7no3v"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_piuhu"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="2_swv77"]
+
+[sub_resource type="Resource" id="Resource_5e8fj"]
+script = ExtResource("1_piuhu")
+type = 1
+property = "gummy_worm"
+chance = 0.405
+unique = false
+
+[sub_resource type="Resource" id="Resource_2vy6v"]
+script = ExtResource("2_swv77")
+rewards = Array[ExtResource("1_piuhu")]([SubResource("Resource_5e8fj")])
+
+[resource]
+script = ExtResource("1_7no3v")
+enemies = Array[String](["turf", "turf"])
+background = "grass"
+music = "touch_me"
+party = Array[String]([])
+death_reason = "default"
+start_text = ""
+rewards = SubResource("Resource_2vy6v")
+victory_music = true
+stop_music_before_end = true
