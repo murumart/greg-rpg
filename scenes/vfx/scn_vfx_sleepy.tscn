@@ -11,14 +11,27 @@ width = 32
 curve = SubResource("Curve_vajfa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vrm5b"]
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 6.0
-particle_flag_disable_z = true
-gravity = Vector3(0, -2, 0)
 initial_velocity_max = 20.55
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, -2, 0)
 scale_curve = SubResource("CurveTexture_qky3v")
+
+[sub_resource type="Animation" id="Animation_c5klp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_xyigk"]
 resource_name = "default"
@@ -50,21 +63,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_c5klp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tphai"]
 _data = {
 "RESET": SubResource("Animation_c5klp"),
@@ -80,7 +78,7 @@ texture = ExtResource("1_6n42m")
 lifetime = 3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_tphai")
 }
+autoplay = "default"

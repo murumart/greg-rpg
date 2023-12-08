@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://b47u1h7c1jxpa"]
+[gd_scene load_steps=19 format=3 uid="uid://8yal2ay6tt2o"]
 
 [ext_resource type="Texture2D" uid="uid://din46a7xat7wh" path="res://sprites/spirit/spr_peanuts_screen.png" id="1_otd7j"]
-[ext_resource type="AudioStream" uid="uid://b06jeho5rq5o3" path="res://sounds/spirit/snd_peanuts.ogg" id="2_48wks"]
+[ext_resource type="AudioStream" uid="uid://b06jeho5rq5o3" path="res://sounds/spirit/peanuts.ogg" id="2_48wks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7sph"]
 atlas = ExtResource("1_otd7j")
@@ -95,6 +95,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_bvorb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_rciol"]
 resource_name = "default"
 length = 5.0
@@ -152,33 +179,6 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_bvorb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yahsl"]
 _data = {
 "RESET": SubResource("Animation_bvorb"),
@@ -192,9 +192,9 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_7oefj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_yahsl")
 }
+autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

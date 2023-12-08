@@ -156,10 +156,10 @@ blend_mode = 1
 [node name="VfxRibbedShield" type="Node2D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_5dt47")
 }
+autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)

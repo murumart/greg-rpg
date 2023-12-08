@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bco6bnue0s6j5"]
+[gd_scene load_steps=10 format=3 uid="uid://ck1xqs2ye7c1"]
 
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="1_7y64s"]
-[ext_resource type="AudioStream" uid="uid://x2ydnp02334l" path="res://sounds/spirit/snd_spawn_fish.ogg" id="2_kh2yr"]
+[ext_resource type="AudioStream" uid="uid://x2ydnp02334l" path="res://sounds/spirit/spawn_fish.ogg" id="2_kh2yr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_na75h"]
 particles_animation = true
@@ -17,22 +17,47 @@ point_count = 4
 curve = SubResource("Curve_n07l2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x3ps4"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(100, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(1, -2, 0)
 spread = 121.36
-gravity = Vector3(0, 300, 0)
 initial_velocity_min = 24.24
 initial_velocity_max = 103.03
 angular_velocity_min = -392.73
 angular_velocity_max = 322.91
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 300, 0)
 scale_curve = SubResource("CurveTexture_c7u5h")
 color = Color(0.701961, 0.807843, 0.901961, 1)
 anim_speed_min = 0.97
 anim_speed_max = 2.62
+
+[sub_resource type="Animation" id="Animation_etrih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FallingFish:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FallingFish:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nuh0s"]
 resource_name = "default"
@@ -91,33 +116,6 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_etrih"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FallingFish:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FallingFish:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1tx34"]
 _data = {
 "RESET": SubResource("Animation_etrih"),
@@ -144,7 +142,7 @@ local_coords = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_1tx34")
 }
+autoplay = "default"

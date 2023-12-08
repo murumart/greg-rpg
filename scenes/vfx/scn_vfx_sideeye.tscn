@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqwe05sebs5py"]
+[gd_scene load_steps=25 format=3 uid="uid://crf03tu0yt60"]
 
 [ext_resource type="Texture2D" uid="uid://cuannf2u0hxr5" path="res://sprites/spirit/spr_sideeye.png" id="1_2hkrd"]
-[ext_resource type="AudioStream" uid="uid://drnn43utwf0b" path="res://sounds/spirit/snd_sideeye.ogg" id="2_nqccs"]
+[ext_resource type="AudioStream" uid="uid://drnn43utwf0b" path="res://sounds/spirit/sideeye.ogg" id="2_nqccs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mxg5"]
 atlas = ExtResource("1_2hkrd")

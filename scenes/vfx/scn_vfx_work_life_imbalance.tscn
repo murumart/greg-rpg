@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj0qts00n5gn4"]
+[gd_scene load_steps=7 format=3 uid="uid://dhamt1n7cfv0i"]
 
 [ext_resource type="Texture2D" uid="uid://b4duli40gis6u" path="res://sprites/characters/battle/cashier_mean/spr_lunge.png" id="1_yoxtq"]
-[ext_resource type="AudioStream" uid="uid://b8bf1na1ejnko" path="res://sounds/spirit/snd_wli_up.ogg" id="2_1v3fs"]
-[ext_resource type="AudioStream" uid="uid://bpq4v02u5tm3x" path="res://sounds/spirit/snd_wli_down.ogg" id="3_w4fm0"]
+[ext_resource type="AudioStream" uid="uid://b8bf1na1ejnko" path="res://sounds/spirit/wli_up.ogg" id="2_1v3fs"]
+[ext_resource type="AudioStream" uid="uid://bpq4v02u5tm3x" path="res://sounds/spirit/wli_down.ogg" id="3_w4fm0"]
 
 [sub_resource type="Animation" id="Animation_6plfd"]
 length = 0.001
@@ -122,8 +122,6 @@ _data = {
 "default": SubResource("Animation_3jdeo")
 }
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_7q7og"]
-
 [node name="VfxWorkLifeImbalance" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -143,13 +141,12 @@ region_enabled = true
 region_rect = Rect2(0, 0, 640, 960)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_q0wug")
 }
+autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPolyphonic_7q7og")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"ECHO"

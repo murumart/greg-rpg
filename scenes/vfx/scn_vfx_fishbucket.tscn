@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://kijcn8ew6tl2"]
+[gd_scene load_steps=14 format=3 uid="uid://bb1oo53pfhnn6"]
 
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="1_wk0ju"]
-[ext_resource type="AudioStream" uid="uid://wjj6747ulvyr" path="res://sounds/spirit/snd_fish_attack.ogg" id="2_5ccn7"]
-[ext_resource type="AudioStream" uid="uid://txqte2kyap65" path="res://sounds/spirit/snd_fishbucket.ogg" id="3_bjptj"]
+[ext_resource type="AudioStream" uid="uid://wjj6747ulvyr" path="res://sounds/spirit/fish_attack.ogg" id="2_5ccn7"]
+[ext_resource type="AudioStream" uid="uid://txqte2kyap65" path="res://sounds/spirit/fishbucket.ogg" id="3_bjptj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4oxvp"]
 particles_animation = true
@@ -18,18 +18,16 @@ point_count = 4
 curve = SubResource("Curve_5381g")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7mov3"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(100, 1, 1)
-particle_flag_disable_z = true
 direction = Vector3(1, -2, 0)
 spread = 121.36
-gravity = Vector3(0, 300, 0)
 initial_velocity_min = 24.24
 initial_velocity_max = 103.03
 angular_velocity_min = -392.73
 angular_velocity_max = 322.91
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 300, 0)
 scale_curve = SubResource("CurveTexture_k2tkl")
 color = Color(0.701961, 0.807843, 0.901961, 1)
 anim_speed_min = 0.97
@@ -43,21 +41,19 @@ point_count = 4
 curve = SubResource("Curve_teesg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fc5ut"]
+particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 0.0
-particle_flag_disable_z = true
 direction = Vector3(1, -2, 0)
 spread = 121.36
-gravity = Vector3(0, 300, 0)
 initial_velocity_min = 24.24
 initial_velocity_max = 103.03
 angular_velocity_min = -392.73
 angular_velocity_max = 322.91
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 300, 0)
 scale_curve = SubResource("CurveTexture_tax6n")
 anim_speed_min = 0.97
 anim_speed_max = 2.62
@@ -300,10 +296,10 @@ stream = ExtResource("2_5ccn7")
 bus = &"ECHO"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_yjrw8")
 }
+autoplay = "default"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bjptj")

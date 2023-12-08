@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://rmm1xgc335h8"]
+[gd_scene load_steps=15 format=3 uid="uid://cq8rou1ns7gjp"]
 
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_utiuo"]
-[ext_resource type="AudioStream" uid="uid://dklpqnop7rwrw" path="res://sounds/spirit/bikeghost/snd_radiation_attack.ogg" id="2_0oica"]
+[ext_resource type="AudioStream" uid="uid://dklpqnop7rwrw" path="res://sounds/spirit/bikeghost/radiation_attack.ogg" id="2_0oica"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5j6of"]
 blend_mode = 1
@@ -32,25 +32,25 @@ curve = SubResource("Curve_7f4sx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d3u7d"]
 lifetime_randomness = 0.42
+particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 18.0
 emission_ring_inner_radius = 0.0
-particle_flag_disable_z = true
+angle_min = -139.6
+angle_max = 174.5
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 120.0
 initial_velocity_max = 120.0
 angular_velocity_min = 78.55
 angular_velocity_max = 78.55
 orbit_velocity_min = -1.0
 orbit_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
 linear_accel_min = 100.0
 linear_accel_max = 100.0
 linear_accel_curve = SubResource("CurveTexture_sknyu")
-angle_min = -139.6
-angle_max = 174.5
 scale_min = 2.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_o5k0q")
@@ -60,6 +60,69 @@ turbulence_noise_strength = 8.76
 turbulence_noise_speed_random = 2.12
 sub_emitter_mode = 1
 sub_emitter_frequency = 4.0
+
+[sub_resource type="Animation" id="Animation_xgt6k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_kc76t"]
 resource_name = "default"
@@ -154,69 +217,6 @@ tracks/6/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_xgt6k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ie1wd"]
 _data = {
 "RESET": SubResource("Animation_xgt6k"),
@@ -241,10 +241,10 @@ trail_enabled = true
 trail_lifetime = 0.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_ie1wd")
 }
+autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

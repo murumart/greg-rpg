@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjh5xvyx17m7n"]
+[gd_scene load_steps=13 format=3 uid="uid://bpvoqlngfupjb"]
 
 [ext_resource type="Texture2D" uid="uid://cruhdhnud3hhs" path="res://sprites/spirit/spr_isotoxin.png" id="1_jcwfd"]
-[ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/snd_isotoxin.ogg" id="2_2we3h"]
+[ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/isotoxin.ogg" id="2_2we3h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlsui"]
 atlas = ExtResource("1_jcwfd")
@@ -153,7 +153,7 @@ autoplay = "default"
 autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_hpt1j")
 }
+autoplay = "default"

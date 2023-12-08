@@ -12,7 +12,7 @@ var starting := false
 
 
 func _ready() -> void:
-	await load_all_effects()
+	#await load_all_effects()
 	$LoadingScreen.hide()
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
@@ -128,8 +128,8 @@ func load_all_effects() -> void:
 			var scene := SOL.vfx(file.trim_prefix("scn_vfx_"), Vector2(), {"silent": true})
 			#scene.hide()
 			scene.modulate.a = 0.0
-			await get_tree().process_frame
+			#await get_tree().process_frame
 			scene.queue_free()
 	SND.kill_sounds()
-	await get_tree().process_frame
+	#await get_tree().process_frame
 	AudioServer.set_bus_mute(0, false)

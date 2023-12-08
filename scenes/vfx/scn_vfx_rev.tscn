@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cbgrpf3kbo2jf"]
 
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_md42c"]
-[ext_resource type="AudioStream" uid="uid://5dyndyudoi4t" path="res://sounds/snd_carrev.ogg" id="2_6g07j"]
+[ext_resource type="AudioStream" uid="uid://5dyndyudoi4t" path="res://sounds/carrev.ogg" id="2_6g07j"]
 
 [sub_resource type="Gradient" id="Gradient_5en46"]
 offsets = PackedFloat32Array(0, 0.631781, 1)
@@ -21,24 +21,38 @@ curve = SubResource("Curve_1f3b1")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2bmf7"]
 lifetime_randomness = 0.71
 particle_flag_disable_z = true
+angle_min = -110.8
+angle_max = 230.8
 direction = Vector3(1, -0.5, 0)
 spread = 180.0
 flatness = 1.0
-gravity = Vector3(0, 98, 0)
 initial_velocity_min = 7.31
 initial_velocity_max = 24.85
 angular_velocity_min = -55.38
 angular_velocity_max = 276.92
-orbit_velocity_min = 0.0
 orbit_velocity_max = 1.0
+gravity = Vector3(0, 98, 0)
 linear_accel_min = 67.31
 linear_accel_max = 100.0
-angle_min = -110.8
-angle_max = 230.8
 scale_curve = SubResource("CurveTexture_jsqan")
 color_ramp = SubResource("GradientTexture1D_jrumg")
 turbulence_enabled = true
 turbulence_noise_strength = 6.73
+
+[sub_resource type="Animation" id="Animation_pqg0w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3pvms"]
 resource_name = "default"
@@ -57,6 +71,7 @@ tracks/0/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
+tracks/0/use_blend = true
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -84,21 +99,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_pqg0w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p35r"]
 _data = {
 "RESET": SubResource("Animation_pqg0w"),
@@ -115,10 +115,9 @@ texture = ExtResource("1_md42c")
 visibility_rect = Rect2(-300, -300, 600, 600)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
 "": SubResource("AnimationLibrary_7p35r")
 }
+autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_6g07j")
