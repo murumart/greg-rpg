@@ -231,11 +231,8 @@ func process_tilemap() -> void:
 		if (noise_value > 0 and randf() <= 0.95) or (cell.x <= -5 or cell.x >= 4):
 			bg_rock_array.append(cell)
 	
-	#var time := Time.get_ticks_msec()
-	# this is a performance issue! yikes
 	tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
 	tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
-	#prints(Time.get_ticks_msec() - time, "; frame ", Engine.get_frames_drawn())
 	
 	# decorations random
 	if randf() <= 0.002: kiosk_enabled = true

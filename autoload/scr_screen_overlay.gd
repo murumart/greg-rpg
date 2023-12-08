@@ -57,20 +57,17 @@ func dialogue(key: String) -> void:
 
 
 func _on_dialogue_closed() -> void:
-	print("dialogue closed")
 	dialogue_closed.emit() # so much logic hinges on this single line
 	dialogue_open = false
 
 
 # these are used in some places i guess
 func _on_speaking_started() -> void:
-	#print("started speaking")
 	speaking = true
 	dialogue_open = true
 
 
 func _on_speaking_stopped() -> void:
-	#print("stopped speaking")
 	speaking = false
 
 
@@ -137,7 +134,6 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 
 # spawn vfx effects
 func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
-	#print(nomen, " ", pos, " ")
 	# the nomen must be the filename
 	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = options.get("z_index", 100)

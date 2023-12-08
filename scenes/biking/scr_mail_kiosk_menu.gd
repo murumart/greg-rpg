@@ -116,8 +116,6 @@ func get_welcome_message() -> String:
 	var kiosks_opened : int = game_get("kiosks_activated", 0)
 	var bike = game_get("bike") as BikingGreg
 	var health : float = bike.health / float(bike.max_health)
-	print(health)
-	print(kiosks_opened)
 	if ending:
 		SND.play_song("victory", 1.0, {"start_volume": 1.0})
 		return "biking_last_stop"
@@ -265,14 +263,14 @@ func game_get(thing: String, default: Variant = null) -> Variant:
 
 func game_set(thing: String, to: Variant) -> void:
 	if !game_reference:
-		print("no game")
+		printerr("no game")
 		return
 	game_reference.set(thing, to)
 
 
 func game_call(method: String, arguments : Array = []) -> void:
 	if !game_reference:
-		print("no game")
+		printerr("no game")
 		return
 	game_reference.callv(method, arguments)
 

@@ -92,7 +92,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func reset() -> void:
-	print("reset!")
 	ignored_shape = null
 	ball.global_position = Vector2(80, 60)
 	bdir = v2dou()

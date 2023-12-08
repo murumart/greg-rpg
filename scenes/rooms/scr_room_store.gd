@@ -110,7 +110,6 @@ func restock() -> void:
 
 
 func _save_me():
-	print("store saving data!")
 	store_data["shelves"].clear()
 	for s in shelves.size():
 		store_data["shelves"].append(
@@ -136,7 +135,6 @@ func check_cashier_switch() -> void:
 		store_cashier.cashier = "dead" # happens
 		DIR.sej(144, 1)
 		return
-	print("cashier second: ", (wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2)))
 	# load the current cashier based on their schedule
 	if wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH:
 		store_cashier.cashier = "mean"

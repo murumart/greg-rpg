@@ -96,7 +96,6 @@ func xp2lvl(lvl: int) -> int:
 func add_experience(amount: int, speak := false) -> void:
 	SOL.dialogue_box.dial_concat("levelup", 1, ["0", "0"])
 	var _old_level := level
-	print("\texp amount: ", amount)
 	if speak:
 		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
 		SOL.dialogue("get_experience")
@@ -176,7 +175,6 @@ func handle_payload(pld: BattlePayload) -> void:
 	health = minf(health + health_change, max_health)
 	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
 	if pld.meta.get("skateboard", false):
-		print("item is skateboard!!!")
 		message_owner.emit(&"skateboard_equipped")
 
 
@@ -206,7 +204,6 @@ func set_experience(to: int) -> void:
 
 # defeated characters are stored in dictionaries. i give up.
 func add_defeated_character(nimi : StringName) -> void:
-	print("adding defeated character ", nimi)
 	defeated_characters[nimi] = defeated_characters.get(nimi, 0) + 1
 
 

@@ -141,7 +141,6 @@ func kid_setup() -> void:
 
 func kid_first_encounter() -> void:
 	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
-	print("yp")
 	DAT.set_data("kid_encountered", true)
 	SOL.dialogue_closed.connect(func():
 		first_encounter.set_collision_layer_value(4, false)

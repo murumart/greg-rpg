@@ -28,7 +28,6 @@ enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM
 var doing := Doings.NOTHING:
 	set(to):
 		doing = to
-		print("doing ", Doings.find_key(to))
 var action_history := []
 
 var loading_battle := true
@@ -85,7 +84,6 @@ var dead_enemies : Array[BattleActor]
 var xp_pool := 0:
 	set(to):
 		xp_pool = to
-		print("set xp pool to ", to)
 
 var listening_to_player_input := false
 var current_guy : BattleActor
@@ -617,9 +615,7 @@ func open_end_screen(victory: bool) -> void:
 		battle_rewards.rewards.append(xp_reward)
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
-			print("awaiting rewards grant")
 			await battle_rewards.granted
-		print("awaiting dialogue close")
 		await SOL.dialogue_closed
 		doing = Doings.DONE
 		listening_to_player_input = true
@@ -636,12 +632,10 @@ func _grant_rewards() -> void:
 	var magnet := 0.0
 	for i in party:
 		if i.has_status_effect("magnet"):
-			print(i, " has magnet")
 			if not magnet:
 				magnet = 1.0
 			magnet = (i.get_status_effect("magnet").strength + magnet)
 	magnet = minf(magnet, 3.5)
-	print("magnet: ", magnet)
 	if magnet:
 		for reward in battle_rewards.rewards:
 			if reward.type == BRT.EXP or reward.type == BRT.SILVER:
@@ -701,7 +695,6 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
-	print_stack()
 	var actor : EnemyAnimal = data.get("enemy_reference", null)
 	var pscore := data.get("player_score") as float
 	var enscore := data.get("enemy_score") as float

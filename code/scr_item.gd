@@ -32,5 +32,4 @@ func get_effect_description() -> String:
 
 
 func get_payload() -> BattlePayload:
-	#print(name, " payload accessed")
 	return payload

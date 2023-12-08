@@ -25,7 +25,6 @@ func open_menu() -> void:
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	emit_signal("approached")
 	animator.play("enter")
-	print(DAT.seconds)
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	await animator.animation_finished
 	open_menu()

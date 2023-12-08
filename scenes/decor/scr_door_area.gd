@@ -34,9 +34,6 @@ func interacted() -> void:
 
 func apply_spawn_point(player: PlayerOverworld) -> void:
 	if LTS.gate_id == gate_id:
-		print("gate id is equal")
 		if not spawn_point:
-			print("no spawn point")
 			return
-		print("setting position")
 		player.global_position = spawn_point.global_position

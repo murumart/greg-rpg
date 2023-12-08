@@ -128,7 +128,6 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
-	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 		return
@@ -136,10 +135,8 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, false)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
-	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
-	#print(collider)
 	# the interaction areas have the interacted function that this calls
 
 

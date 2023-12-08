@@ -186,7 +186,6 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	var room_to_load : String = loaded.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
-	#print("")
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
@@ -213,7 +212,6 @@ func set_copied_data() -> void:
 # if greg is captured, he cannot be moved around by the player
 func capture_player(type := "", overlap := true) -> void:
 	if not overlap and type in player_capturers: return
-	print(type, " captured player")
 	var noncap := ["dialogue", "greenhouse"]
 	# multiple things can capture the player
 	# they are stored as strings inside this array
@@ -224,7 +222,6 @@ func capture_player(type := "", overlap := true) -> void:
 
 # allowing the player to move again
 func free_player(type := "") -> void:
-	print("freed player from ", type)
 	player_capturers.erase(type)
 	if type == "all":
 		player_capturers.clear()
@@ -293,19 +290,15 @@ func char_save_string_key(which: String, key: String) -> String:
 # script itself, ulike most other things with persistent data
 # usually save only characters in the player's party (usually only greg)
 func save_chars_to_data(all := false) -> void:
-	print("saving characters...")
 	for c in (character_dict if all else get_data("party", ["greg"])):
 		var charc : Character = character_dict[c]
 		set_data(char_save_string_key(c, "save"), charc.get_saveable_dict())
-	print("finished saving characters.")
 
 
 func load_chars_from_data() -> void:
-	print("loading characters...")
 	for c in character_dict:
 		var charc : Character = character_dict[c]
 		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
-	print("finished loading characters.")
 
 
 func get_item(id: String) -> Item:

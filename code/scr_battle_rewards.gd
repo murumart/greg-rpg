@@ -42,7 +42,6 @@ func grant(speak := true) -> void:
 	if silver_pool:
 		DAT.grant_silver(silver_pool, speak)
 	if exp_pool:
-		print("\tadding xp pool ", exp_pool)
 		for c in DAT.get_data("party", ["greg"]):
 			DAT.get_character(c).add_experience(exp_pool, speak)
 	for i in item_pool:
@@ -51,9 +50,7 @@ func grant(speak := true) -> void:
 		if not DAT.get_character("greg").has_spirit(i):
 			DAT.grant_spirit(i, 0, speak)
 	if exp_pool < 1 and spirit_pool.is_empty() and item_pool.is_empty() and silver_pool < 1:
-		print("rewards empty")
 		SOL.dialogue("emptyreward")
-	print("rewards granted :)")
 	granted.emit()
 
 

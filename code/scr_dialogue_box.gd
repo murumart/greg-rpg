@@ -218,7 +218,6 @@ func close(sig := true) -> void:
 	loaded_dialogue_line = null
 	current_dialogue = 0
 	if dialogue_queue.size() > 0:
-		print("queue in action")
 		load_dialogue(dialogue_queue.pop_front())
 		return
 	if not dont_close:
@@ -296,5 +295,4 @@ func _on_button_reference_received(_reference) -> void:
 
 func _set_current_choice(to: StringName) -> void:
 	current_choice = to
-	print("setting current choice to  ", to)
 

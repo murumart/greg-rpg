@@ -46,7 +46,3 @@ func _talked() -> void:
 	elif tutorial_type == TutorialType.GREENHOUSES:
 		SOL.dialogue("tutguy_greenhouses")
 	SOL.dialogue("tutguy_bye")
-
-
-func _exit_tree() -> void:
-	print("bye")

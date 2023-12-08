@@ -120,7 +120,6 @@ func get_bounty_info() -> void:
 
 func get_greeting() -> String:
 	var standing := DAT.get_data("police_standing", 0) as int
-	print("standing: ", standing)
 	if Math.inrange(standing, 0, 2):
 		return "police_greeting"
 	elif Math.inrange(standing, 3, 5):

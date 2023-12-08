@@ -12,10 +12,7 @@ const KS := "kor_sten"
 const A := "abiss"
 const M := "moron"
 
-static var thugs_battled_changed := false:
-	set(t):
-		thugs_battled_changed = t
-		#print("thugs_battled_changed is now ", t)
+static var thugs_battled_changed := false
 
 @export var chimney_probability : Curve
 @export var well_probability : Curve

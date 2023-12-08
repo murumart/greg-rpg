@@ -51,7 +51,6 @@ var stop_meter := -1.0
 var kiosk_activated := false:
 	set(to):
 		kiosk_activated = to
-		print("kiosk activated: ", to)
 var current_kiosk : BikingMovingObject
 var kiosks_activated := 0
 
@@ -251,7 +250,6 @@ func spawn_snail() -> void:
 func the_kiosk() -> void:
 	if currently_hell: return
 	if kiosk_activated: return
-	print("kiosk starting")
 	kiosk_activated = true
 	var kiosk : BikingMovingObject = preload("res://scenes/biking/moving_objects/scn_mail_kiosk.tscn").instantiate()
 	current_kiosk = kiosk
@@ -332,7 +330,6 @@ func _on_snail_hit() -> void:
 	if snails_hit >= snails_until_hell and not currently_hell:
 		enter_hell()
 	if currently_hell and snails_hit >= snails_to_escape_hell:
-		print("exiting hell")
 		exit_hell()
 
 

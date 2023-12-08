@@ -170,7 +170,7 @@ func gen_element_symbol(ename: String) -> String:
 		var temp := symbol + j
 		if not temp in element_abbrs:
 			return temp
-	print("not enough symbols for ", ename)
+	printerr("not enough symbols for ", ename)
 	return symbol
 
 

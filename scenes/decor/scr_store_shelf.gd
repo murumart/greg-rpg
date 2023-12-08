@@ -33,7 +33,6 @@ func set_type(to: int):
 # this sure is one of the functions in greg
 # edit 26.04.23: there are worse ones :blush:
 func _on_interaction_area_on_interact() -> void:
-	print(self.name, ": ", inventory)
 	var name_keys_dict := {}
 	
 	# if there are no items on the shelf:
