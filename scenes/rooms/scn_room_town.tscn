@@ -1,6 +1,6 @@
 [gd_scene load_steps=94 format=3 uid="uid://d0ypwtjm1o5tg"]
 
-[ext_resource type="Script" path="res://scenes/rooms/scr_room_town.gd" id="1_mdes8"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_sx16h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fy0lb"]
@@ -36,13 +36,13 @@
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
-[ext_resource type="Script" path="res://scenes/rooms/scr_town_park.gd" id="29_1p6ww"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_town_park.gd" id="29_1p6ww"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
-[ext_resource type="Script" path="res://scenes/rooms/scr_town_woods_guy.gd" id="33_73ctx"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Texture2D" uid="uid://bcbj5ae57nfcp" path="res://sprites/characters/overworld/spr_gleebungus_overworld.png" id="36_04fx3"]
-[ext_resource type="Script" path="res://scenes/rooms/town_football.gd" id="36_44od8"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)

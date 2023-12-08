@@ -29,6 +29,7 @@ func _ready() -> void:
 func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 	player = body
 	player.menu_disabled = true
+	player.saving_disabled = true
 	cam_zoom(Vector2(2, 2), 1)
 	set_physics_process(true)
 	SND.play_song("greenhouse", 1.0, {play_from_beginning = true})
@@ -41,6 +42,7 @@ func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 	zoom = 1.0
 	SND.play_song(previous_song_key)
 	player.menu_disabled = false
+	player.saving_disabled = false
 
 
 func cam_zoom(to: Vector2, time: float) -> void:
