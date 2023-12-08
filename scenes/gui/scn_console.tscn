@@ -21,6 +21,7 @@ offset_right = 160.0
 offset_bottom = 70.0
 placeholder_text = "command..."
 context_menu_enabled = false
+middle_mouse_paste_enabled = false
 
 [node name="Log" type="RichTextLabel" parent="."]
 modulate = Color(1, 1, 1, 0.968627)

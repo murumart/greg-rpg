@@ -51,20 +51,20 @@ func parse_command() -> void:
 		&"bset":
 			battle_set(args)
 		&"help":
-			output("available commands are: greg,bset,help,ex,clear,history,vfx,printdata,xp,7\ntype command without args to get help")
-		&"ex":
+			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,7\ntype command without args to get help")
+		&"eks":
 			ex(args)
 		&"clear":
 			output("\n\n\n\n\n\n\n\n\n\n")
 		&"history":
 			print(history)
-		&"vfx":
+		&"vfks":
 			vfx(args)
 		&"printdata":
 			print(DAT.A)
 		&"setdata":
 			setdata(args)
-		&"xp":
+		&"ksp":
 			xp(args)
 		&"7":
 			output("7")
