@@ -46,6 +46,7 @@ func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 
 
 func cam_zoom(to: Vector2, time: float) -> void:
+	if not player: return
 	var tw := create_tween()
 	var camera := player.find_child("Camera") as Camera2D
 	tw.tween_property(camera, "zoom", to, time)

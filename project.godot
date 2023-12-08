@@ -48,6 +48,18 @@ window/size/window_height_override=480
 movie_writer/mix_rate=41000
 movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
 
+[file_customization]
+
+folder_colors={
+"res://resources/": "teal",
+"res://resources/characters/": "yellow",
+"res://resources/items/": "green",
+"res://resources/rewards/": "blue",
+"res://resources/spirits/": "purple",
+"res://scenes/": "blue",
+"res://scenes/rooms/": "orange"
+}
+
 [filesystem]
 
 import/blender/enabled=false

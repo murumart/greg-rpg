@@ -138,20 +138,19 @@ func gen_items() -> Array:
 	var arr := []
 	for i in randi_range(4, 6):
 		arr.append(possible_items.pick_random())
-	arr.append("leave")
+	arr.append(&"leave")
 	return arr
 
 
 func gen_perks() -> Array:
 	var reference := possible_perks.duplicate()
 	if randf() <= 0.1:
-		reference.append("super_mail")
+		reference.append(&"super_mail")
 	var arr := []
 	for i in 3:
-		var choice : String = reference.pick_random()
-		reference.erase(choice)
+		var choice := reference.pop_at(randi() % reference.size()) as StringName
 		arr.append(choice)
-	arr.append("leave")
+	arr.append(&"leave")
 	return arr
 
 

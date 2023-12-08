@@ -393,8 +393,8 @@ func exit_hell() -> void:
 	set_speed(speed_before_snail)
 	ui.close_hell_menu()
 	snails_hit = 0
-	snails_until_hell += 10
-	snails_to_escape_hell += 20
+	snails_until_hell += 15
+	snails_to_escape_hell += 30
 	SND.play_song("mail_mission", 4.0, {"skip_to": SND.get_music_playback_position()})
 	set_deferred("currently_hell", false)
 	punishment_timer.stop()
@@ -474,7 +474,7 @@ var currently_syrup := false
 var syrup_stop_meter := 0
 func syrup():
 	if currently_hell:
-		bike.heal(20)
+		bike.heal(12)
 		return
 	syrup_stop_meter = int(get_meter() + 100)
 	currently_syrup = true
