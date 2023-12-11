@@ -92,6 +92,9 @@ func cd(w: Character, c: StringName) -> int:
 
 
 func get_bounty_info() -> void:
+	var choices: PackedStringArray = ["exit"]
+	choices.append_array([
+		"thugs","stryanmls","brknfishr","president","vampire","circus"])
 	SOL.dialogue_box.dial_concat("bounty_board", 3, [
 		bounty.get("thugs", 0),
 		BOUNTY_CATCHES["thugs"]
@@ -104,6 +107,8 @@ func get_bounty_info() -> void:
 		bounty.get("broken_fishermen", 0),
 		BOUNTY_CATCHES["broken_fishermen"]
 	])
+	if is_bounty_fulfilled("sun_spirit"):
+		choices.append("sunspirit")
 	SOL.dialogue_box.dial_concat("bounty_board", 12, [
 		" not " if not is_bounty_fulfilled("sun_spirit") else " "
 	])
@@ -116,6 +121,7 @@ func get_bounty_info() -> void:
 	SOL.dialogue_box.dial_concat("bounty_board", 21, [
 		" not " if not is_bounty_fulfilled("vampire") else " "
 	])
+	SOL.dialogue_box.adjust("bounty_board", 0, "choices", choices)
 
 
 func get_greeting() -> String:
