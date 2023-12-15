@@ -8,7 +8,7 @@ func _ready() -> void:
 	tarikas.inspected.connect(_on_tarikas_inspected)
 	tarikas_lines()
 	guru.inspected.connect(_on_guru_inspected)
-	if DAT.get_data("battles", 0) < 25:
+	if DAT.get_data("battles", 0) < 2:
 		guru.queue_free()
 
 

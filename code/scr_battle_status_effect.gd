@@ -25,9 +25,9 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		if oldeff.strength < neweff.strength:
 			oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
 		else:
-			oldeff.duration += roundf(
+			oldeff.duration += roundi(
 				(neweff.duration + oldeff.duration) / 
-				oldeff.duration)
+				float(oldeff.duration))
 		#oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)
 		#oldeff.strength += roundf((oldeff.strength + neweff.strength) / 4.0)
 		if oldeff.strength - neweff.strength < 16:
