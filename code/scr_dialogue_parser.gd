@@ -27,12 +27,12 @@ const LB := "
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	print("parsing dialogue...")
 	var time := Time.get_ticks_usec() # measuring the time that this takes to run
-	var dialogue_dictionary : Dictionary = {}
-	var dial : Dialogue
-	var dial_line : DialogueLine
+	var dialogue_dictionary: Dictionary = {}
+	var dial: Dialogue
+	var dial_line: DialogueLine
 	var char_to_set := ""
 	var text_speed_to_set := 1.0
-	var choices_to_set : PackedStringArray = []
+	var choices_to_set: PackedStringArray = []
 	var choice_link_to_set := ""
 	var data_link_to_set := PackedStringArray()
 	var instaskip_to_set := false
@@ -40,7 +40,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var item_to_give := ""
 	var spirit_to_give := ""
 	var silver_to_give := 0
-	var sound_to_set : AudioStream = null
+	var sound_to_set: AudioStream = null
 	var emotion_to_set := ""
 	var set_data_to_set := PackedStringArray()
 	

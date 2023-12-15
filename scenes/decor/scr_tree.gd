@@ -3,7 +3,7 @@ class_name TreeDecor extends Node2D
 
 # trees in the overworld
 
-@export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type : int = 0 : set = set_type
+@export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type: int = 0: set = set_type
 const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func set_type(to: int) -> void:
-	var sprite : Sprite2D = $Sprite
+	var sprite: Sprite2D = $Sprite
 	sprite.region_rect.position.x = 16 + to * 48
 	type = to
 

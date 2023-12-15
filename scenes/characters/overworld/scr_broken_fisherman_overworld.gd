@@ -22,7 +22,7 @@ func interacted() -> void:
 
 
 func gen_enemies() -> Array[String]:
-	var enemies : Array[String] = []
+	var enemies: Array[String] = []
 	var level := DAT.get_character("greg").level
 	if level < 25:
 		enemies.append(B)

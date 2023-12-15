@@ -1,5 +1,5 @@
 shader_type canvas_item;
-uniform sampler2D Gradient : source_color;
+uniform sampler2D Gradient: source_color;
 
 
 // TransformUV

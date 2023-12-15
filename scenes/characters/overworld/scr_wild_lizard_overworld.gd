@@ -1,9 +1,9 @@
 extends OverworldCharacter
 
-@export var wild_lizard_probability : Curve
-@export var freebird_probability : Curve
-@export var fox_probability : Curve
-@export var worm_probability : Curve
+@export var wild_lizard_probability: Curve
+@export var freebird_probability: Curve
+@export var fox_probability: Curve
+@export var worm_probability: Curve
 
 @onready var probabilities := {
 	&"wild_lizard": wild_lizard_probability,
@@ -36,7 +36,7 @@ func interacted() -> void:
 
 
 func gen_enemies() -> Array[String]:
-	var enemies : Array[String] = []
+	var enemies: Array[String] = []
 	for i in ceili(difficulty / 10.0) + 1:
 		for k in probabilities.keys():
 			var curve := probabilities[k] as Curve

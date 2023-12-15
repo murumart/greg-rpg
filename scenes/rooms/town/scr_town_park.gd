@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _on_guru_inspected() -> void:
-	var list : ScrollContainer = SOL.get_node("DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer")
+	var list: ScrollContainer = SOL.get_node("DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer")
 	if not DAT.get_data("talked_to_guru", false):
 		DAT.set_data("talked_to_guru", true)
 		SOL.dialogue("effect_guru_hi")
@@ -23,7 +23,7 @@ func _on_guru_inspected() -> void:
 		return
 	var newchoices := PackedStringArray()
 	newchoices.append("bye")
-	var newlines : Array[DialogueLine] = []
+	var newlines: Array[DialogueLine] = []
 	for eff in DAT.get_data("known_status_effects", []):
 		var eff_name = eff.replace("_", " ")
 		newchoices.append(eff_name)
@@ -47,7 +47,7 @@ func _on_guru_inspected() -> void:
 
 func tarikas_lines() -> void:
 	var level := DAT.get_character("greg").level
-	var lines_to_set : Array[StringName] = []
+	var lines_to_set: Array[StringName] = []
 	tarikas.convo_progress = 0
 	if not DAT.get_data("tarikas_talked_to", false):
 		lines_to_set.append("tarikas_hello")

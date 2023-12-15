@@ -10,7 +10,7 @@ const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 @onready var file_container := $Panel/FileContainer
 @onready var tab_container := $Panel/TabContainer
 @onready var info_label := $InfoLabel
-var mode : int = SAVE
+var mode: int = SAVE
 var restricted_mode := -1
 var current_button := 0
 
@@ -26,13 +26,13 @@ func _ready() -> void:
 	SOL.save_menu_open = true
 	tree_exiting.connect(_tree_exiting)
 	for i in file_container.get_child_count():
-		var button : Button = file_container.get_child(i)
+		var button: Button = file_container.get_child(i)
 		button.reference = i
 		button.return_reference.connect(_on_button_pressed)
 	set_mode(mode)
 	set_current_button(0)
 	# find current save file number to highlight it
-	var save_file_name : String = DAT.get_data("save_file", "")
+	var save_file_name: String = DAT.get_data("save_file", "")
 	var save_file_nr := save_file_name.trim_prefix("greg_save_").trim_suffix(".grs")
 	if save_file_nr.is_valid_float():
 		set_current_button(int(save_file_nr))
@@ -71,7 +71,7 @@ func set_current_button(to: int) -> void:
 	if not Math.inrange(current_button, 0, 2): return
 	file_container.get_child(to).self_modulate = Color.CYAN
 	var path := SAVE_PATH % current_button
-	var data : Dictionary
+	var data: Dictionary
 	if DIR.file_exists(ABSOLUTE_SAVE_PATH % current_button):
 		data = DIR.get_dict_from_file(path)
 	var text := "[center]save file info[/center]\n"

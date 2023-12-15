@@ -6,14 +6,14 @@ signal granted
 
 enum Types {SILVER, ITEM, SPIRIT, EXP}
 
-@export var rewards : Array[Reward] = []
+@export var rewards: Array[Reward] = []
 
 
 func grant(speak := true) -> void:
-	var silver_pool : int = 0
-	var spirit_pool : Array[String] = []
-	var item_pool : Array[String] = []
-	var exp_pool : int = 0
+	var silver_pool: int = 0
+	var spirit_pool: Array[String] = []
+	var item_pool: Array[String] = []
+	var exp_pool: int = 0
 	# interpret rewards' properties and store results in pools
 	for reward in rewards:
 		# unique rewards can only be gotten once

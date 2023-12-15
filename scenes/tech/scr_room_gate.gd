@@ -6,9 +6,9 @@ extends Node2D
 signal entered
 
 @export_group("Technical")
-@export_node_path("Area2D") var area_path : NodePath
-@export_node_path("CollisionShape2D") var collision_shape_path : NodePath
-@export_node_path("Marker2D") var spawn_point_path : NodePath
+@export_node_path("Area2D") var area_path: NodePath
+@export_node_path("CollisionShape2D") var collision_shape_path: NodePath
+@export_node_path("Marker2D") var spawn_point_path: NodePath
 
 @export_group("")
 @export var destination := &""
@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	var area : Area2D = get_node_or_null(area_path)
+	var area: Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
 

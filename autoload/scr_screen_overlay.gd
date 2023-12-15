@@ -9,15 +9,15 @@ const SCREEN_SIZE := Vector2(160, 120)
 const HALF_SCREEN_SIZE := Vector2(80, 60)
 
 @export var show_fps := false
-var fps_label : Label
+var fps_label: Label
 
 var speaking := false
 var dialogue_open := false
 
 var save_menu_open := false
 
-@onready var dialogue_box : DialogueBox = $DialogueBoxOrderer as DialogueBox
-@onready var screen_fade : ColorRect = $ScreenFadeOrderer/ScreenFade
+@onready var dialogue_box: DialogueBox = $DialogueBoxOrderer as DialogueBox
+@onready var screen_fade: ColorRect = $ScreenFadeOrderer/ScreenFade
 
 var dialogue_choice := &""
 
@@ -45,7 +45,7 @@ func _input(_event: InputEvent) -> void:
 
 # speak a dialogue
 func dialogue(key: String) -> void:
-	var player : PlayerOverworld = get_tree().get_first_node_in_group("player")
+	var player: PlayerOverworld = get_tree().get_first_node_in_group("player")
 	if is_instance_valid(player):
 		# position the dialogue box up or down so the player is visible
 		var pos := player.get_global_transform_with_canvas().origin
@@ -135,10 +135,10 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 # spawn vfx effects
 func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
 	# the nomen must be the filename
-	var effect : Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
+	var effect: Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
 	effect.z_index = options.get("z_index", 100)
 	# can specify custom parent node to the effect, defaults to this here SOL
-	var parent : Node = options.get("parent", self)
+	var parent: Node = options.get("parent", self)
 	parent.add_child(effect)
 	effect.add_to_group("vfx")
 	# option to silence

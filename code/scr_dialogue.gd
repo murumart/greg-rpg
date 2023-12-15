@@ -4,8 +4,8 @@ class_name Dialogue
 # this stores dialogue lines
 
 @export var name := &""
-@export var lines : Array[DialogueLine]
-@export var alias : String = ""
+@export var lines: Array[DialogueLine]
+@export var alias: String = ""
 
 
 func size() -> int:

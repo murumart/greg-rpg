@@ -31,18 +31,18 @@ func standalone() -> bool:
 
 # dicts are stored to file in the format provided by var2bytes
 # rather unreadable
-func write_dict_to_file(data: Dictionary, filename : String) -> void:
+func write_dict_to_file(data: Dictionary, filename: String) -> void:
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.WRITE)
 	file.store_var(var_to_bytes(data))
 	file.flush()
 
 
-func get_dict_from_file(filename : String) -> Dictionary:
+func get_dict_from_file(filename: String) -> Dictionary:
 	if not FileAccess.file_exists(str(GREG_USER_FOLDER_PATH, "/", filename)):
 		printerr("no %s file exists" % filename)
 		return {}
 	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.READ)
-	var returnable : Dictionary = bytes_to_var(file.get_var())
+	var returnable: Dictionary = bytes_to_var(file.get_var())
 	return returnable
 
 
@@ -65,15 +65,15 @@ func file_exists(path, complain := false) -> bool:
 
 
 # these are all shorter than calling DIR.CHAR_PATH % charname. I think.
-func get_char_path(charname : String) -> String:
+func get_char_path(charname: String) -> String:
 	return CHAR_PATH % charname + ".tres"
 
 
-func get_item_path(itemname : String) -> String:
+func get_item_path(itemname: String) -> String:
 	return ITEM_PATH % itemname + ".tres"
 
 
-func get_spirit_path(spiritname : String) -> String:
+func get_spirit_path(spiritname: String) -> String:
 	return SPIRIT_PATH % spiritname + ".tres"
 
 
@@ -108,7 +108,7 @@ func portrait_exists(id: String) -> bool:
 
 # copied from somewhere and adjusted a bit
 func get_dir_contents(path: String, trim: String = "") -> Array[String]:
-	var contents : Array[String] = []
+	var contents: Array[String] = []
 	var dir := DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
@@ -131,7 +131,7 @@ func load_cat_names() -> Array:
 	var path_internal = "res://resources/res_cats.txt"
 	var path_external = "user://greg_rpg/cats.txt"
 	var F := FileAccess
-	var fail : FileAccess
+	var fail: FileAccess
 	if F.file_exists(path_external):
 		print_debug("custom cats.txt exists")
 		fail = F.open(path_external, FileAccess.READ)

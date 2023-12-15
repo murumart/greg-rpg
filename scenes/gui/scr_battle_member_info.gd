@@ -10,7 +10,7 @@ class_name PartyMemberInfoPanel
 @onready var animal_bar: ProgressBar = $AnimalBar
 
 @onready var effects_container := $EffectsContainer
-@onready var remote_transform : RemoteTransform2D = $RemoteTransform
+@onready var remote_transform: RemoteTransform2D = $RemoteTransform
 
 
 func update(actor: BattleActor) -> void:

@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func init(options := {}) -> void:
-	var srt : String = options.get("spirit", "unknown")
+	var srt: String = options.get("spirit", "unknown")
 	if DIR.spirit_hint_exists(srt):
 		sprite.sprite_frames = load(FRAMES_PATH % srt)
 	var nam := DAT.get_spirit(srt).name

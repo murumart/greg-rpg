@@ -14,13 +14,13 @@ const M := "moron"
 
 static var thugs_battled_changed := false
 
-@export var chimney_probability : Curve
-@export var well_probability : Curve
-@export var shopping_cart_probability : Curve
-@export var stabbing_fella_probability : Curve
-@export var kor_sten_probability : Curve
-@export var abiss_probability : Curve
-@export var moron_probability : Curve
+@export var chimney_probability: Curve
+@export var well_probability: Curve
+@export var shopping_cart_probability: Curve
+@export var stabbing_fella_probability: Curve
+@export var kor_sten_probability: Curve
+@export var abiss_probability: Curve
+@export var moron_probability: Curve
 
 @onready var probabilities := {
 	C: chimney_probability,
@@ -53,7 +53,7 @@ func interacted() -> void:
 
 
 func gen_enemies() -> Array[String]:
-	var enemies : Array[String] = []
+	var enemies: Array[String] = []
 	var level := remap(DAT.get_character("greg").level, 1, 99, 0.001, 1.0)
 	if not DAT.get_data("hunks_enabled", false):
 		for i in ceili(level / 10.0) + 1:

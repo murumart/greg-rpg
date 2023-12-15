@@ -3,7 +3,7 @@ class_name TrashBin extends Node2D
 
 # trash bins in overworld that contain loot
 
-@export var full := true : set = set_full
+@export var full := true: set = set_full
 @export var replenish_minutes := 25:
 	set(to):
 		replenish_minutes = to

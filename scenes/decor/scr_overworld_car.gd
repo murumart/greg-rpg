@@ -14,7 +14,7 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @onready var collision_area: Area2D = $CollisionArea
 @onready var collision_shape: CollisionShape2D = $CollisionArea/CollisionShape
 
-@export var path_container : Node
+@export var path_container: Node
 @export var moves := true: set = set_moves
 
 @export var speed := 100.0
@@ -22,14 +22,14 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @export var disable_saving := false
 
 @export_group("Appearance")
-@export var custom_texture : Texture2D
+@export var custom_texture: Texture2D
 @export_color_no_alpha var color := Color(1, 1, 1, 1)
 
 var target := Vector2()
 var current_target := 0
 var velocity := Vector2()
 
-var battle_info : BattleInfo
+var battle_info: BattleInfo
 
 
 func _ready() -> void:

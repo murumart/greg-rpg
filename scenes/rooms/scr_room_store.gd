@@ -88,7 +88,7 @@ func restock() -> void:
 	store_data["shelves"].clear() # for good measure i guess :dace:
 	for i in store_shelf_count:
 		var inventory = []
-		var from : Array = arrays.pick_random()
+		var from: Array = arrays.pick_random()
 		var fromremove := from.duplicate()
 		for J in randi()%4:
 			if fromremove.size() < 1: continue
@@ -154,7 +154,7 @@ func _on_kassa_finished() -> void:
 
 # display shopping cart items in the top right of the screen
 func update_shopping_list() -> void:
-	var unpaid_items : Array = DAT.get_data("unpaid_items", [])
+	var unpaid_items: Array = DAT.get_data("unpaid_items", [])
 	var temp_dict := {}
 	for i in unpaid_items:
 		if i in temp_dict:

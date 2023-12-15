@@ -8,14 +8,14 @@ const TEAM := 1
 const SELF := 2
 
 @export var effect_center := Vector2i()
-@export var animator : AnimationPlayer
+@export var animator: AnimationPlayer
 
 const FIND_SUITABLE_ACT_TRIES := 32
 
-var healing_spirits : Array[String]
-var hurting_spirits : Array[String]
-var buffing_spirits : Array[String]
-var debuffing_spirits : Array[String]
+var healing_spirits: Array[String]
+var hurting_spirits: Array[String]
+var buffing_spirits: Array[String]
+var debuffing_spirits: Array[String]
 
 @export_group("Behaviour")
 # how low the health can go before starts healing/fleeing
@@ -26,13 +26,13 @@ var debuffing_spirits : Array[String]
 @export_range(0.0, 1.0) var innovation := 0.75
 # how likely to use spirits instead of attacking or using items
 @export_range(0.0, 1.0) var vaimulembesus := 0.85
-@export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent : int = Intents.ATTACK
+@export_enum("Attack", "Buff", "Debuff", "Heal") var default_intent: int = Intents.ATTACK
 @export var auto_ai := true
 @export var can_flee := false
 @export_group("Other")
 @export_range(0.0, 10.0) var xp_multiplier := 1.0
 
-var last_intent : Intents
+var last_intent: Intents
 
 
 func _ready() -> void:
@@ -40,7 +40,7 @@ func _ready() -> void:
 	super._ready()
 	# sorting the spirits
 	for s in character.spirits:
-		var spirit : Spirit = DAT.get_spirit(s)
+		var spirit: Spirit = DAT.get_spirit(s)
 		if spirit.use == Spirit.Uses.BUFFING:
 			buffing_spirits.append(s)
 		elif spirit.use == Spirit.Uses.DEBUFFING:
@@ -67,9 +67,9 @@ func ai_action() -> void:
 	for i in FIND_SUITABLE_ACT_TRIES:
 		if randf() <= innovation:
 			intent = (randi() as Intents) % Intents.MAX_ACTION
-		var target : BattleActor
+		var target: BattleActor
 		# spirits are appended to and then selected from this
-		var spirit_pocket : Array[String] = []
+		var spirit_pocket: Array[String] = []
 		# first the enemy tries to choose a spirit to do the thing
 		# if it's too expensive/vaimulembesus check fails, it will do items
 		# (or attack, if currently attacking)
@@ -140,7 +140,7 @@ func ai_action() -> void:
 						return
 			Intents.FLEE:
 				if not can_flee: continue
-				var en : Character = reference_to_opposing_array.pick_random().character
+				var en: Character = reference_to_opposing_array.pick_random().character
 				if (character.health_perc() < 1.0 - toughness and
 				randf() < 1.0 - toughness and
 				character.health_perc() < en.health_perc() and
@@ -207,7 +207,7 @@ func animate(what: String) -> void:
 			return
 	# default animations using tweens
 	# we animate the first child if it exists
-	var animatable : Node2D
+	var animatable: Node2D
 	if self.get_child(0) is Node2D:
 		animatable = self.get_child(0)
 	if not is_instance_valid(animatable): return

@@ -1,7 +1,7 @@
 extends Room
 
 @onready var background: Sprite2D = $Background
-@onready var gradient : Gradient = background.material["shader_parameter/Gradient"].gradient
+@onready var gradient: Gradient = background.material["shader_parameter/Gradient"].gradient
 
 
 func _ready() -> void:

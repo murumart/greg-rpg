@@ -7,7 +7,7 @@ signal scene_changed
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
 # this specifies the type of change between scenes
-var gate_id : StringName
+var gate_id: StringName
 const GATE_LOADING := &"loading"
 const GATE_ENTER_BATTLE := &"entering_battle"
 const GATE_EXIT_BATTLE := &"battle_exit"
@@ -34,7 +34,7 @@ func change_scene_to(path: String, options := {}) -> void:
 		for node in free_us:
 			node.call_deferred("queue_free")
 	await get_tree().process_frame
-	var new_scene : Node = load(path).instantiate()
+	var new_scene: Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
 	if new_scene.has_method("_option_init"): new_scene._option_init(options)
 	reset_flags()
@@ -52,7 +52,7 @@ func get_current_scene() -> Node:
 func level_transition(path: String, op := {}) -> void:
 	DAT.capture_player("level_transition")
 	get_tree().call_group("free_on_level_transition", "queue_free")
-	var fadetime : float = op.get("fade_time", 0.4)
+	var fadetime: float = op.get("fade_time", 0.4)
 	SOL.fade_screen(
 		op.get("start_color", Color(0, 0, 0, 0)),
 		op.get("end_color", Color.BLACK),
@@ -103,7 +103,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 
 # this matters when exiting the store
 func handle_stolen_items() -> void:
-	var stolen_items : Array = DAT.get_data("unpaid_items", [])
+	var stolen_items: Array = DAT.get_data("unpaid_items", [])
 	if stolen_items.is_empty(): return
 	DAT.set_data("unpaid_items", [])
 	for i in stolen_items:

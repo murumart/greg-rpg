@@ -2,7 +2,7 @@
 extends Node2D
 
 @export var enabled_in_editor := true
-var affected_node : Node2D
+var affected_node: Node2D
 @export var speed := 1.0
 
 

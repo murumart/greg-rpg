@@ -1,8 +1,8 @@
 extends BattleEnemy
 
-@export var mod_gradient : Gradient
-@export var size_curve : Curve
-@export var music_pitch_curve : Curve
+@export var mod_gradient: Gradient
+@export var size_curve: Curve
+@export var music_pitch_curve: Curve
 
 var nova := 0.0
 @onready var nova_prospect := $NovaProspect
@@ -53,7 +53,7 @@ func heal(amt: float) -> void:
 
 # couldn't think of a better pun with Nova Prospekt
 # but I named the node that nice
-func nova_process(add : float) -> void:
+func nova_process(add: float) -> void:
 	var old_nova := nova
 	nova += add
 	var tw1 := create_tween()

@@ -45,7 +45,7 @@ func mail_man_jobtalk() -> void:
 		LTS.level_transition("res://scenes/biking/scn_biking_tutorial.tscn")
 
 func mail_man_welcome_after_biking() -> void:
-	var biked : int = DAT.get_data("biking_games_finished", 0)
+	var biked: int = DAT.get_data("biking_games_finished", 0)
 	if biked < 2:
 		SOL.dialogue("mail_man_welcomeback")
 	else:

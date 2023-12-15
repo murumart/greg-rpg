@@ -8,7 +8,7 @@ signal inspected
 const INTERACTION_DIALOGUE_BASE := "insp_"
 
 @export var key := ""
-@export var keys : Array[String]
+@export var keys: Array[String]
 var progress: int = 0
 @export var save_progress := false
 

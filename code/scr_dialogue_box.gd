@@ -8,22 +8,22 @@ signal started_speaking
 signal changed_dialogue
 signal finished_speaking
 
-@onready var textbox : TextBox = $DialogueBoxPanel/DialogueTextbox
-@onready var portrait : Sprite2D = $DialogueBoxPanel/PortraitSprite
+@onready var textbox: TextBox = $DialogueBoxPanel/DialogueTextbox
+@onready var portrait: Sprite2D = $DialogueBoxPanel/PortraitSprite
 @onready var reference_button := $DialogueBoxPanel/ReferenceButton
 @onready var choices_container := $DialogueBoxPanel/ScrollContainer/ChoicesContainer
 @onready var finished_marker := $DialogueBoxPanel/FinishedMarker
-@onready var dialogue_sound : AudioStreamPlayer = get_node_or_null("DialogueSound")
+@onready var dialogue_sound: AudioStreamPlayer = get_node_or_null("DialogueSound")
 
 @export var dont_close := false # used in mail man kiosk mostly
 
 const PORTRAIT_DIR := "res://sprites/characters/portraits/spr_portrait_%s.png"
 
-var dialogue_queue : Array[Dialogue] = []
+var dialogue_queue: Array[Dialogue] = []
 
-var loaded_dialogue : Dialogue
-var loaded_dialogue_line : DialogueLine
-var current_dialogue : int
+var loaded_dialogue: Dialogue
+var loaded_dialogue_line: DialogueLine
+var current_dialogue: int
 
 var current_choice := &"": set = _set_current_choice
 var choices_open := false
@@ -66,9 +66,9 @@ func load_dialogue_dict() -> void:
 
 func copy_dial(dial: Dialogue) -> Dialogue:
 	var nd := dial.duplicate(true)
-	var new_lines : Array[DialogueLine] = []
+	var new_lines: Array[DialogueLine] = []
 	for l in dial.lines:
-		var line : DialogueLine = l.duplicate(true)
+		var line: DialogueLine = l.duplicate(true)
 		new_lines.append(line)
 	nd.lines = new_lines
 	return nd
@@ -89,7 +89,7 @@ func prepare_dialogue(key: String) -> void:
 	set_finished_marker(0)
 
 
-func load_dialogue(dial : Dialogue) -> void:
+func load_dialogue(dial: Dialogue) -> void:
 	loaded_dialogue = copy_dial(dial)
 	changed_dialogue.emit()
 	if loaded_dialogue.alias != "":
@@ -108,13 +108,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if not is_instance_valid(loaded_dialogue): return
 	loaded_dialogue_line = null
 	var text := part.text
-	var character_load : String = part.character
-	var character : Character = null
-	var text_speed : float = part.text_speed
-	var choice_link : StringName = part.choice_link
-	var data_link : PackedStringArray = part.data_link
-	var choices : PackedStringArray = part.choices
-	var emotion : String = part.emotion
+	var character_load: String = part.character
+	var character: Character = null
+	var text_speed: float = part.text_speed
+	var choice_link: StringName = part.choice_link
+	var data_link: PackedStringArray = part.data_link
+	var choices: PackedStringArray = part.choices
+	var emotion: String = part.emotion
 	# if the line is linked to a choice or bool data, skip to the next one
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
@@ -137,9 +137,9 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		DAT.grant_silver(part.silver_to_give, false)
 	
 	if part.set_data.size() > 0:
-		var key : String = part.set_data[0]
-		var read : String = part.set_data[1]
-		var value : Variant = 0
+		var key: String = part.set_data[0]
+		var read: String = part.set_data[1]
+		var value: Variant = 0
 		if Math.toexp(read) != null: value = Math.toexp(read)
 		else: value = read
 		DAT.set_data(key, value)
@@ -259,12 +259,12 @@ func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if not get_key in unmodified_dialogue_lines:
 		# if the line has not been modified yet:
 		@warning_ignore("confusable_local_declaration")
-		var line : DialogueLine
+		var line: DialogueLine
 		line = dialogues_dict.get(key).get_line(line_id).duplicate()
 		# we store the unmodified form
 		unmodified_dialogue_lines[get_key] = line
 	# and then copy the unmodified form and modify it
-	var line : DialogueLine = dialogues_dict.get(key).get_line(line_id)
+	var line: DialogueLine = dialogues_dict.get(key).get_line(line_id)
 	# and store it in the regular dialogues
 	line.text = unmodified_dialogue_lines.get(get_key).text % params
 

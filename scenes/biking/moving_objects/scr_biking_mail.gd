@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	
 	# follow the mailboxes (when you have that one perk)
 	if following:
-		var target : Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
+		var target: Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
 		if not is_instance_valid(target):
 			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
 			freeze = false

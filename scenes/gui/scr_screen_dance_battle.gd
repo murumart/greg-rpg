@@ -12,7 +12,7 @@ const STREAK_CONGRATS := ["", "ok", "good!", "cool!", "wonderful!", "amazing!", 
 @onready var animal_dancer: Sprite2D = $AnimalDancer
 @onready var score_text: RichTextLabel = $ScoreText
 
-@export var accuracy_curve : Curve
+@export var accuracy_curve: Curve
 
 var active := false:
 	set(to):
@@ -159,7 +159,7 @@ func _enemy_action(success := true) -> void:
 
 func set_score_text() -> void:
 	var sz := STREAK_CONGRATS.size()
-	var congrats : String = STREAK_CONGRATS[mini(streak, sz - 1)]
+	var congrats: String = STREAK_CONGRATS[mini(streak, sz - 1)]
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
 	
@@ -213,7 +213,7 @@ class Arrow extends Sprite2D:
 	
 	const INPUTS := ["move_left", "move_right", "move_down", "move_up"]
 	
-	var accuracy_curve : Curve
+	var accuracy_curve: Curve
 	
 	var direction := Dirs.LEFT
 	var enemy := false

@@ -30,7 +30,7 @@ var current_tab := 0
 @onready var using_portraits := $UsingMenu/Panel/Portraits
 @onready var using_label := $UsingMenu/Label
 var using_menu_choice := 0
-var using_item : String
+var using_item: String
 
 @onready var save_warning_label := $SaveWarningLabel
 
@@ -118,7 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 							{volume = -15})
 				
 				elif item_spirit_tabs.current_tab == 1:
-					var spirit : Spirit = DAT.get_spirit(using_item)
+					var spirit: Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
 						SND.play_sound(load("res://sounds/error.ogg"))
 						using_label.text = "not enough magic!"
@@ -155,7 +155,7 @@ func update_tabs() -> void:
 
 # print character data to the side
 func side_load_character_data() -> void:
-	var charct : Character = party(current_tab)
+	var charct: Character = party(current_tab)
 	mem_portrait.texture = charct.portrait
 	mem_infotext.text = str("
 [color=#ff88ff]lvl: %s[/color]
@@ -171,7 +171,7 @@ func side_load_character_data() -> void:
 
 # print item data to the side
 func side_load_item_data(id: String) -> void:
-	var item : Item = DAT.get_item(id)
+	var item: Item = DAT.get_item(id)
 	mem_portrait.texture = item.texture
 	mem_infotext.text = str("[color=#888888]", item.description + "\n", "[/color]")
 	mem_infotext.text += item.get_effect_description()
@@ -186,7 +186,7 @@ func side_load_item_data(id: String) -> void:
 
 # print spirit data to the side
 func side_load_spirit_data(id: String) -> void:
-	var spirit : Spirit = DAT.get_spirit(id)
+	var spirit: Spirit = DAT.get_spirit(id)
 	mem_portrait.texture = null
 	mem_infotext.text = str("[color=#888888]", spirit.description + "\n", "[/color]")
 	mem_infotext.text += spirit.get_effect_description()

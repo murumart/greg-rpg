@@ -12,10 +12,10 @@ var state: States
 
 var direction := Vector2(1, 0)
 
-@export var target : CharacterBody2D
-@export var visual : Node2D
-@export var edge_shape_cast : ShapeCast2D
-@export var walk_speed : float
+@export var target: CharacterBody2D
+@export var visual: Node2D
+@export var edge_shape_cast: ShapeCast2D
+@export var walk_speed: float
 
 
 

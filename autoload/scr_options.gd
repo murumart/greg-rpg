@@ -170,7 +170,7 @@ func save_options() -> void:
 
 func load_options() -> void:
 	for o in IONS.keys():
-		var value : float = opt.get_value(o, "value", get_opt_default(o))
+		var value: float = opt.get_value(o, "value", get_opt_default(o))
 		set_opt(o, value)
 	for y in options_length:
 		cur_opt = y
@@ -186,7 +186,7 @@ func select(opti: int) -> void:
 	# this is the custom scrolling implementation since scrollcontainer
 	# would've needed me to use the default focus system as well
 	# which i find unreliable at this point sadly
-	var location : Vector2 = opt_contain[opti].get_global_transform_with_canvas().origin
+	var location: Vector2 = opt_contain[opti].get_global_transform_with_canvas().origin
 	while location.y > 103:
 		main_container.position.y -= 1
 		location = opt_contain[opti].get_global_transform_with_canvas().origin
@@ -200,8 +200,8 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	var amt := signf(a)
 	var opt_contain := get_option_nodes()
 	var container := opt_contain[cur_opt]
-	var type : String = container.get_meta("type", "")
-	var prev_opt : Variant = get_opt(type)
+	var type: String = container.get_meta("type", "")
+	var prev_opt: Variant = get_opt(type)
 	if not ifset:
 		set_opt(type, clamp(get_opt(type) + amt * get_opt_step(type), get_opt_min(type), get_opt_max(type)))
 	if reset:

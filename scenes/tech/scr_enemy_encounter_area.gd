@@ -3,18 +3,18 @@ extends Area2D
 # random enemy encounters happen in this area
 
 var detection := 0.0
-@export var battle : BattleInfo
-@export_range(0, 1) var required_for_detection : float = 0.5
-@export_range(0.1, 10) var check_time : float
-@export_range(0.01, 1) var increase : float = 0.1
-@export var max_battles : int
-var battles_initiated : int
+@export var battle: BattleInfo
+@export_range(0, 1) var required_for_detection: float = 0.5
+@export_range(0.1, 10) var check_time: float
+@export_range(0.01, 1) var increase: float = 0.1
+@export var max_battles: int
+var battles_initiated: int
 
-@export var player : PlayerOverworld
+@export var player: PlayerOverworld
 
 @export var debug := false
 
-var player_in_area : bool
+var player_in_area: bool
 
 var timer = Timer.new()
 

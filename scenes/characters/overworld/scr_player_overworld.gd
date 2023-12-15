@@ -12,20 +12,20 @@ const INTERACTION_LENGTH := 8
 const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
-var state : int: set = set_state
-var move_mode : MoveModes = MoveModes.SKATE:
+var state: int: set = set_state
+var move_mode: MoveModes = MoveModes.SKATE:
 	set(to):
 		move_mode = to
 		skateboard.visible = bool(int(to))
 
-@onready var raycast : RayCast2D = $InteractionRay
-@onready var sprite : AnimatedSprite2D = $Sprite
+@onready var raycast: RayCast2D = $InteractionRay
+@onready var sprite: AnimatedSprite2D = $Sprite
 @onready var skateboard: Sprite2D = $Skateboard
 
 @onready var armour := $ArmorLayer
 var updating_armour := false
 
-var menu : Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
+var menu: Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
 
 
 func _ready() -> void:
@@ -122,7 +122,7 @@ func animate(animation_name: String) -> void:
 
 
 func interact() -> void:
-	var collider : Object
+	var collider: Object
 	if DAT.player_capturers.size() > 0: return
 	raycast.set_collision_mask_value(3, false)
 	raycast.set_collision_mask_value(4, true)

@@ -31,8 +31,8 @@ var used_poses := []
 var inversion := false
 
 @export_group("Curves")
-@export var trash_amount_curve : Curve
-@export var trash_silver_item_chance_curve : Curve
+@export var trash_amount_curve: Curve
+@export var trash_silver_item_chance_curve: Curve
 
 var bin_item_loot := {
 	"gummy_worm": 30,

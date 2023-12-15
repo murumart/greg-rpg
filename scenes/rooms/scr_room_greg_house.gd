@@ -13,7 +13,7 @@ extends Room
 @onready var cutscene_node := $Cutscenes
 
 @onready var cat_spawners := [$Areas/Cats1, $Areas/Cats2, $Areas/Cats3, $Areas/Cats4,$Areas/Cats5,$Areas/Cats6,]
-@export var zerma_battle : BattleInfo = null
+@export var zerma_battle: BattleInfo = null
 
 
 # fantastic function.

@@ -6,7 +6,7 @@ extends Area2D
 @export var destination := &""
 @export var gate_id := &""
 
-@export var spawn_point : Node2D
+@export var spawn_point: Node2D
 
 @export var fail_dialogue := "door_unanswer"
 
@@ -23,7 +23,7 @@ func interacted() -> void:
 	# otherwise just uselessly knock on the door
 	else:
 		DAT.capture_player("knocking_on_door")
-		var knock_sound : AudioStreamPlayer = SND.play_sound(
+		var knock_sound: AudioStreamPlayer = SND.play_sound(
 			preload("res://sounds/door_knock.ogg"),
 			{"autofree": false, "return": true})
 		await knock_sound.finished

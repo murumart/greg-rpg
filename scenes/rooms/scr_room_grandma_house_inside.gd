@@ -2,14 +2,14 @@ extends Room
 
 @onready var musicplayer := $Radio/RadioMusic
 var music_last_position := 0.0
-var music_last_song : String
+var music_last_song: String
 
 
 func _ready() -> void:
 	super._ready()
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
 	
-	var fought_grandma : bool = DAT.get_data("fought_grandma", false)
+	var fought_grandma: bool = DAT.get_data("fought_grandma", false)
 	if fought_grandma:
 		SOL.dialogue("grandma_fight_end")
 		await SOL.dialogue_closed
@@ -50,7 +50,7 @@ func _on_phone_interacted() -> void:
 	if DAT.get_data("pranked", false):
 		SOL.dialogue("prank_call_enough")
 		return
-	var number : float = DAT.get_data("nr", 0.0) * 10.0 + 1
+	var number: float = DAT.get_data("nr", 0.0) * 10.0 + 1
 	var call_name := "prank_call_%s"
 	SOL.dialogue_box.dial_concat("prank_call_0", 1, [floorf(number)])
 	SOL.dialogue("prank_call_0")

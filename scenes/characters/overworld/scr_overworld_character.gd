@@ -13,12 +13,12 @@ enum States {IDLE, TALKING, WANDER, CHASE, PATH}
 var state := States.IDLE
 
 @export_group("Nodes")
-@export var animated_sprite : AnimatedSprite2D
-@export var collision_shape : CollisionShape2D
+@export var animated_sprite: AnimatedSprite2D
+@export var collision_shape: CollisionShape2D
 @export var collision_extents := Vector2i(8, 3): set = _set_collision_extents
-@export var collision_detection_area : Area2D
-@export var detection_area : Area2D
-@export var detection_raycast : RayCast2D
+@export var collision_detection_area: Area2D
+@export var detection_area: Area2D
+@export var detection_raycast: RayCast2D
 
 @export_group("Movement")
 @export var speed := 3500
@@ -26,21 +26,21 @@ var state := States.IDLE
 @export var random_movement := false
 var time_between_chase_updates := 0.25
 @export var random_movement_distance := 64
-var random_movement_timer : Timer
+var random_movement_timer: Timer
 const RANDOM_MOVEMENT_TRIES := 16
-var chase_timer : Timer
+var chase_timer: Timer
 var time_moved := 0.0
-@export var chase_target : Node2D
+@export var chase_target: Node2D
 @export var chase_distance := 32
-@export var path_container : Node2D
-var path_timer : Timer
+@export var path_container: Node2D
+var path_timer: Timer
 
 @export_group("Interaction")
 @export var action_right_after_dialogue := false
 @export var interact_on_touch := false
 var convo_progress := 0
-@export var default_lines : Array[StringName]
-@export var battle_info : BattleInfo
+@export var default_lines: Array[StringName]
+@export var battle_info: BattleInfo
 @export var transport_to_scene := ""
 var interactions := 0
 # collision disabling
@@ -50,11 +50,11 @@ var player_collision_timer := Timer.new()
 @export_group("Save Information")
 @export var save := true
 @export var character_link := &""
-@export var save_position : bool = false
-@export var save_convo_progess : bool = false
-@export var permanently_defeated : bool = false
+@export var save_position: bool = false
+@export var save_convo_progess: bool = false
+@export var permanently_defeated: bool = false
 
-var target : Vector2 : set = set_target
+var target: Vector2: set = set_target
 
 
 func _ready() -> void:
@@ -253,7 +253,7 @@ func _set_collision_extents(to: Vector2i) -> void:
 		collision_shape.shape.size = to
 	if collision_detection_area:
 		if collision_detection_area.get_child_count() > 0:
-			var interaction_collision : CollisionShape2D = collision_detection_area.get_child(0)
+			var interaction_collision: CollisionShape2D = collision_detection_area.get_child(0)
 			interaction_collision.shape.size.x = to.x + 4
 			interaction_collision.shape.size.y = to.y + 4
 

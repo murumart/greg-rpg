@@ -7,7 +7,7 @@ signal player_captured(capture: bool)
 signal resources_loaded
 
 # DATA
-var A : Dictionary
+var A: Dictionary
 
 # loadable resources
 var character_dict := {}
@@ -183,7 +183,7 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.
 	capture_player("level_transition")
-	var room_to_load : String = loaded.get("current_room", "test")
+	var room_to_load: String = loaded.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
@@ -230,7 +230,7 @@ func free_player(type := "") -> void:
 	emit_signal("player_captured", false)
 
 
-func grant_item(item : StringName, party_index := 0, dialogue := true) -> void:
+func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:
 	get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
@@ -250,19 +250,19 @@ func grant_silver(amount: int, dialogue := true) -> void:
 	SOL.dialogue(dialid)
 
 
-func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> void:
-	var charc : Character = get_character(A.get("party", ["greg"])[party_index])
+func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> void:
+	var charc: Character = get_character(A.get("party", ["greg"])[party_index])
 	if spirit in charc.unused_sprits or spirit in charc.spirits: return
 	# this implementation looks so kooky because typed arrays if i remember right
-	var uuspirits : Array[String] = charc.unused_sprits.duplicate()
+	var uuspirits: Array[String] = charc.unused_sprits.duplicate()
 	uuspirits.append(spirit)
 	charc.unused_sprits = uuspirits
 	# horrible but necessary with the current implementation of characters
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
 		if !battle.party.is_empty():
-			var character_is : Character = battle.party[party_index].character
-			var list : Array[String] = character_is.unused_sprits.duplicate()
+			var character_is: Character = battle.party[party_index].character
+			var list: Array[String] = character_is.unused_sprits.duplicate()
 			list.append(spirit)
 			character_is.unused_sprits = list
 	if not dialogue: return
@@ -276,7 +276,7 @@ func grant_spirit(spirit : StringName, party_index := 0, dialogue := true) -> vo
 func get_character(key: String) -> Character:
 	if not key in character_dict:
 		print("char ", key, " not found")
-		var charc : Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
+		var charc: Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
 		charc.name = key
 		return charc
 	return character_dict[key]
@@ -291,13 +291,13 @@ func char_save_string_key(which: String, key: String) -> String:
 # usually save only characters in the player's party (usually only greg)
 func save_chars_to_data(all := false) -> void:
 	for c in (character_dict if all else get_data("party", ["greg"])):
-		var charc : Character = character_dict[c]
+		var charc: Character = character_dict[c]
 		set_data(char_save_string_key(c, "save"), charc.get_saveable_dict())
 
 
 func load_chars_from_data() -> void:
 	for c in character_dict:
-		var charc : Character = character_dict[c]
+		var charc: Character = character_dict[c]
 		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
 
 

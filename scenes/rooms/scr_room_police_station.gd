@@ -48,7 +48,7 @@ func _on_popo_1_interact_on_interact() -> void:
 				var complete_dial := ("bounty_complete_%s" % b) as String
 				var reward_path := (
 					"res://resources/rewards/bounty/res_%s.tres" % b) as String
-				var reward : BattleRewards = null
+				var reward: BattleRewards = null
 				if ResourceLoader.exists(reward_path):
 					reward = load(reward_path)
 				if complete_dial in SOL.dialogue_box.dialogues_dict:

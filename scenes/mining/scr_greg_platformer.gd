@@ -8,7 +8,7 @@ var STATS := preload("res://scenes/mining/scr_platformer_stats.gd").new()
 var coyote := 0.0
 var jump_buffer := 0.0
 
-var state : States
+var state: States
 
 var last_input := Vector2()
 

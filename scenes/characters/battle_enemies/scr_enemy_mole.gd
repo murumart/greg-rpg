@@ -1,8 +1,8 @@
 extends EnemyAnimal
 
 var hiding := false: set = set_hiding
-const IMM_LIST : Array[String] = ["poison", "coughing"]
-const IMM_LIST_EMPTY : Array[String] = []
+const IMM_LIST: Array[String] = ["poison", "coughing"]
+const IMM_LIST_EMPTY: Array[String] = []
 var hiding_time := 0
 
 

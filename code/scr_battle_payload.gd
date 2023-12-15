@@ -8,13 +8,13 @@ enum Types {ATTACK, SPIRIT, ITEM}
 var type := Types.ATTACK
 
 @export_group("Resources")
-@export var health : float
+@export var health: float
 @export var health_percent := 0.0
 @export var max_health_percent := 0.0
 @export_range(0.0, 1.0) var pierce_defense := 0.0
 @export_range(0.0, 1.0) var steal_health := 0.0
 
-@export var magic : float
+@export var magic: float
 @export var magic_percent: float
 @export var max_magic_percent: float
 @export_range(0.0, 1.0) var steal_magic := 0.0
@@ -28,7 +28,7 @@ var type := Types.ATTACK
 	"Sopping", "Burning",
 	"Ghost", "Brain", "Vast"
 	) var gender: int
-@export var effects : Array[StatusEffect] = []
+@export var effects: Array[StatusEffect] = []
 
 @export_group("Other")
 @export var delay := 0.0
@@ -38,7 +38,7 @@ var equip_as_weapon := false
 var equip_as_armour := false
 @export var meta := {}
 
-var sender : BattleActor
+var sender: BattleActor
 
 
 func _init(_options := {}) -> void:

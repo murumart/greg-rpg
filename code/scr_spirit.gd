@@ -20,7 +20,7 @@ enum Reach {LOCAL, ALL, TEAM}
 @export var use := Uses.NONE
 @export var reach := Reach.LOCAL
 @export var payload_reception_count := 1
-@export var payload : BattlePayload
+@export var payload: BattlePayload
 
 
 func get_effect_description() -> String:

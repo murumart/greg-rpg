@@ -5,7 +5,7 @@ const WL := "wild_lizard"
 const M := "mole"
 const RB := "rainbird"
 
-var enmis : Array[String] = []
+var enmis: Array[String] = []
 
 static var stray_animal_fought_changed: bool = false
 

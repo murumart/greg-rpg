@@ -15,13 +15,13 @@ const UPGRADE_MAX := {
 	"attack": 99, "defense": 99, "speed": 99, "max_health": 200, "max_magic": 200
 }
 
-@export var name_in_file : StringName = &""
+@export var name_in_file: StringName = &""
 
 @export_group("Appearance")
 @export var name := ""
 @export_multiline var info := ""
-@export var voice_sound : AudioStream
-@export var portrait : Texture
+@export var voice_sound: AudioStream
+@export var portrait: Texture
 
 @export_group("Stats")
 @export var max_health := 100.0
@@ -30,18 +30,18 @@ const UPGRADE_MAX := {
 @export var magic := 30.0
 
 @export_range(1, 99) var level := 1
-@export var experience := 0 : set = set_experience
+@export var experience := 0: set = set_experience
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
 @export_range(1.0, 99.0) var speed := 1.0
-@export var defeated_characters : Dictionary
+@export var defeated_characters: Dictionary
 
 @export_group("Items and Spirits")
-@export var inventory : Array[String] = []
-@export var spirits : Array[String] = []
+@export var inventory: Array[String] = []
+@export var spirits: Array[String] = []
 @export var unused_sprits: Array[String] = []
-@export var armour : String = ""
-@export var weapon : String = ""
+@export var armour: String = ""
+@export var weapon: String = ""
 
 
 func get_saveable_dict() -> Dictionary:
@@ -68,9 +68,9 @@ func get_saveable_dict() -> Dictionary:
 # this is used for saving health and such
 func load_from_dict(dict: Dictionary) -> void:
 	for k in dict.keys():
-		var value : Variant = dict[k]
+		var value: Variant = dict[k]
 		if value is Array:
-			var typarray : Array[String] = []
+			var typarray: Array[String] = []
 			typarray.append_array(value)
 			value = typarray
 		set(k, value)
@@ -124,8 +124,8 @@ func level_up(by := 1, overflow := false) -> void:
 		var upgrade_chance := curve.sample(remap(level, 1, 99, 0.0, 1.0))
 		for k in upgrades:
 			
-			var perfect_inc : float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0
-			var perfect_stat : float = (
+			var perfect_inc: float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0
+			var perfect_stat: float = (
 				(UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0 * level
 			) + UPGRADE_MIN[k] - 1
 			
@@ -138,7 +138,7 @@ func level_up(by := 1, overflow := false) -> void:
 				set(k, roundf(UPGRADE_MAX[k]))
 		# spirits
 		if level % 11 == 0:
-			var sp : String = DAT.get_levelup_spirit(level)
+			var sp: String = DAT.get_levelup_spirit(level)
 			if sp.length():
 				spirits_to_add.append(sp)
 		
@@ -203,7 +203,7 @@ func set_experience(to: int) -> void:
 
 
 # defeated characters are stored in dictionaries. i give up.
-func add_defeated_character(nimi : StringName) -> void:
+func add_defeated_character(nimi: StringName) -> void:
 	defeated_characters[nimi] = defeated_characters.get(nimi, 0) + 1
 
 

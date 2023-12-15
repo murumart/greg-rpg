@@ -113,9 +113,9 @@ func _input(event: InputEvent) -> void:
 
 
 func get_welcome_message() -> String:
-	var kiosks_opened : int = game_get("kiosks_activated", 0)
+	var kiosks_opened: int = game_get("kiosks_activated", 0)
 	var bike = game_get("bike") as BikingGreg
-	var health : float = bike.health / float(bike.max_health)
+	var health: float = bike.health / float(bike.max_health)
 	if ending:
 		SND.play_song("victory", 1.0, {"start_volume": 1.0})
 		return "biking_last_stop"
@@ -185,8 +185,8 @@ func _reference_button_pressed(reference) -> void:
 func item_reference_pressed(reference) -> void:
 	var item := DAT.get_item(reference)
 	var price = roundi(item.price / 4.0)
-	var inventory : Array = game_get("inventory", [])
-	var silver : int = game_get("silver_collected", 0)
+	var inventory: Array = game_get("inventory", [])
+	var silver: int = game_get("silver_collected", 0)
 	dlbox.dial_concat("biking_do_you_wish_to_buy", 0, [item.name])
 	dlbox.prepare_dialogue("biking_do_you_wish_to_buy")
 	get_viewport().gui_release_focus()
@@ -246,7 +246,7 @@ func item_reference_received(reference) -> void:
 func perk_reference_received(reference) -> void:
 	item_info_label.text = ""
 	item_picture.get_parent().hide()
-	var dialogue_name : String = "biking_perk_%s" % reference
+	var dialogue_name: String = "biking_perk_%s" % reference
 	if !dialogue_name in dlbox.dialogues_dict.keys():
 		dialogue_name = "biking_perk_else"
 	dlbox.skip()
@@ -267,7 +267,7 @@ func game_set(thing: String, to: Variant) -> void:
 	game_reference.set(thing, to)
 
 
-func game_call(method: String, arguments : Array = []) -> void:
+func game_call(method: String, arguments: Array = []) -> void:
 	if !game_reference:
 		printerr("no game")
 		return

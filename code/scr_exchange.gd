@@ -6,9 +6,9 @@ enum Statements {CRITERIA, RETURNS}
 @export var title := ""
 
 @export var silver_required := 0
-@export var input : Array[StringName] = []
+@export var input: Array[StringName] = []
 @export var silver_granted := 0
-@export var output : Array[StringName] = []
+@export var output: Array[StringName] = []
 
 
 func exchange(inventory: Array) -> bool:

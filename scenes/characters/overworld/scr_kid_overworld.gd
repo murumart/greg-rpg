@@ -1,6 +1,6 @@
 extends OverworldCharacter
 
-@export var trades : Array[Exchange] = []
+@export var trades: Array[Exchange] = []
 @onready var trades_dict := (func():
 	var dict := {}
 	for i in trades:

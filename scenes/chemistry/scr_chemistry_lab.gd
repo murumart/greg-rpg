@@ -4,13 +4,13 @@ extends Node2D
 # please note that any "simulation" is awful and shitty and inaccurate
 # listen to C418 - life changing moments seem minor in pictures (the album)
 
-var solution : Array[Dictionary]
-var species : Array[Species] = []
+var solution: Array[Dictionary]
+var species: Array[Species] = []
 var spec_id := 0
 
 var gravity := 9.8
 
-@onready var solution_area : ColorRect = $SolutionRect
+@onready var solution_area: ColorRect = $SolutionRect
 @onready var union_sound: AudioStreamPlayer = $Audio/UnionSound
 @onready var replacement_sound: AudioStreamPlayer = $Audio/ReplacementSound
 @onready var dissociate_sound: AudioStreamPlayer = $Audio/DissociateSound
@@ -54,11 +54,11 @@ func _ready() -> void:
 
 func germinate() -> void:
 	for i in solution:
-		var st : Array = i.get("struct", [0])
+		var st: Array = i.get("struct", [0])
 		c(st)
 
 
-func c(arr : Array, pos := Vector2()) -> Species:
+func c(arr: Array, pos := Vector2()) -> Species:
 	var s := Species.new(arr, pos)
 	s.move.x += randf_range(-5, 5)
 	s.id = spec_id
@@ -88,15 +88,15 @@ func dissoc_reaction(s: Species) -> void:
 
 
 # chemistry treachers weep
-func replacement_reaction(s1: Species, s2: Species, pos : Vector2) -> void:
+func replacement_reaction(s1: Species, s2: Species, pos: Vector2) -> void:
 	if s1.struct.is_empty() or s2.struct.is_empty(): return
-	var at : int = 0
+	var at: int = 0
 	if s1.struct.size() > s2.struct.size():
 		at = randi() % s2.struct.size()
 	else:
 		at = randi() % s1.struct.size()
-	var a1 : int = s1.struct.pop_at(at)
-	var a2 : int = s2.struct.pop_at(at)
+	var a1: int = s1.struct.pop_at(at)
+	var a2: int = s2.struct.pop_at(at)
 	if a1 == a2:
 		c([a1, a2], pos)
 	else:
@@ -129,7 +129,7 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	var clamp_zone_min := solution_area.position
-	var clamp_zone_max : Vector2 = solution_area.position + solution_area.size
+	var clamp_zone_max: Vector2 = solution_area.position + solution_area.size
 	var damp := 0.44
 	var rand := 0.2
 	var edgedef := 0.5
@@ -231,10 +231,10 @@ func _draw() -> void:
 
 class Species extends RefCounted:
 	
-	var id : int
+	var id: int
 	var struct := []
-	var mass : float
-	var radius : float
+	var mass: float
+	var radius: float
 	var color := Color()
 	var move := Vector2()
 	var position := Vector2()
@@ -280,7 +280,7 @@ class Species extends RefCounted:
 
 
 	func calculate_colour(arr: Array) -> Color:
-		var col : Color
+		var col: Color
 		var cols := []
 		for a in arr:
 			if a is int:

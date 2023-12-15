@@ -16,7 +16,7 @@ float simplex2dN0iseFunc(vec2 v) {
 	vec2 x0 = v -   i + dot(i, C.xx);
 	
 	vec2 i1;
-	i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+	i1 = (x0.x > x0.y) ? vec2(1.0, 0.0): vec2(0.0, 1.0);
 	vec4 x12 = vec4(x0.xy, x0.xy) + C.xxzz;
 	x12.xy -= i1;
 	

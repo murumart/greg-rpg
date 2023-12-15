@@ -56,7 +56,7 @@ func pink_haired_girl_setup() -> void:
 
 func _on_atgirl_inspected() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
-	var progress : int = DAT.get_data("atgirl_progress", 1)
+	var progress: int = DAT.get_data("atgirl_progress", 1)
 	if not DAT.get_data("has_interacted_with_atgirl", false):
 		atgirl.default_lines.clear()
 		DAT.set_data("has_interacted_with_atgirl", true)
@@ -91,7 +91,7 @@ func _on_ph_guy_inspected() -> void:
 	var door := $Houses/Pairhouse/DoorArea2
 	guy.default_lines.clear()
 	if int_disabled: return
-	var turf_killed : int = (DAT.get_character("greg").get_defeated_character(
+	var turf_killed: int = (DAT.get_character("greg").get_defeated_character(
 		"turf") - DAT.get_data("mission_start_turf_killed", 0))
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
 		guy.default_lines = ["ph_guy_jooky_missing_1", "ph_guy_jooky_missing_2"]

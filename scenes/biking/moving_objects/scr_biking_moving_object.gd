@@ -8,12 +8,12 @@ signal coin_got
 @export var decorative := false
 
 var speed := 200
-var start_position : Vector2
+var start_position: Vector2
 
 var moving := true
 var following := false
 
-@export_enum("Delete", "Signal and delete") var screen_exit_behaviour : int = 0
+@export_enum("Delete", "Signal and delete") var screen_exit_behaviour: int = 0
 
 
 func _init() -> void:
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 		global_position.x -= speed * delta
 		if following:
 			# following the player
-			var target : Node2D = get_tree().get_first_node_in_group("biking_players")
+			var target: Node2D = get_tree().get_first_node_in_group("biking_players")
 			if not is_instance_valid(target): return
 			var target_position := Vector2(target.global_position.x, target.global_position.y)
 			look_at(target_position)

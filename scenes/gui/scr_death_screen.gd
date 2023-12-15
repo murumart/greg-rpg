@@ -59,7 +59,7 @@ const DEATH_REASONS := {
 func _ready() -> void:
 	if test_death.length() > 0 and DAT.seconds < 2:
 		DAT.death_reason = test_death
-	var death_reason : Dictionary = DEATH_REASONS.get(DAT.death_reason, {})
+	var death_reason: Dictionary = DEATH_REASONS.get(DAT.death_reason, {})
 	if death_reason.get("sound", "blblb"):
 		SND.play_sound(load(death_reason.get("sound", "res://music/mus_defeat.ogg")), {"bus": "Music"})
 	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))

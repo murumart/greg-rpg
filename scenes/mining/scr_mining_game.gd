@@ -21,7 +21,7 @@ var start_height := 15
 const TSIZE := 8
 
 # tile behaviour
-const NEIGHBOURS : Array[Vector2i] = [
+const NEIGHBOURS: Array[Vector2i] = [
 	Vector2i(0, 1),
 	Vector2i(0, -1),
 	Vector2i(1, 1),
@@ -31,12 +31,12 @@ const NEIGHBOURS : Array[Vector2i] = [
 	Vector2i(1, 0),
 	Vector2i(-1, 0),
 ]
-const FLOW_LIQUID_DOWN : Array[Vector2i] = [
+const FLOW_LIQUID_DOWN: Array[Vector2i] = [
 	Vector2i(0, 1),
 	Vector2i(1, 0),
 	Vector2i(-1, 0),
 ]
-const FLOW_GAS_UP : Array[Vector2i] = [
+const FLOW_GAS_UP: Array[Vector2i] = [
 	Vector2i(0, -1),
 	Vector2i(1, 0),
 	Vector2i(-1, 0),

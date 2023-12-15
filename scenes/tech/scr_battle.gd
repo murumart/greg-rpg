@@ -9,7 +9,7 @@ class_name Battle
 signal player_finished_acting
 
 # this is the default for testing
-var load_options : BattleInfo = BattleInfo.new(
+var load_options: BattleInfo = BattleInfo.new(
 ).set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
 
 var stop_music_before_end := true
@@ -36,15 +36,15 @@ var loading_battle := true
 
 @onready var ui := $UI
 
-@onready var panel : Panel = $UI/Panel
+@onready var panel: Panel = $UI/Panel
 @onready var reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
-@onready var description_text : RichTextLabel = $%DescriptionText
-@onready var list_containers : Array = [$UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Left, $UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Right]
-@onready var item_list_container : Array = [$UI/Panel/ScreenItemSelect/ScrollContainer/List]
-@onready var enemies_node : Node2D = $Enemies
-@onready var party_node : Node2D = $Party
-@onready var update_timer : Timer = $SlowUpdateTimer
-@onready var background_container : Node2D = $Background
+@onready var description_text: RichTextLabel = $%DescriptionText
+@onready var list_containers: Array = [$UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Left, $UI/Panel/ScreenListSelect/ScrollContainer/ListContainer/Right]
+@onready var item_list_container: Array = [$UI/Panel/ScreenItemSelect/ScrollContainer/List]
+@onready var enemies_node: Node2D = $Enemies
+@onready var party_node: Node2D = $Party
+@onready var update_timer: Timer = $SlowUpdateTimer
+@onready var background_container: Node2D = $Background
 
 @onready var screen_main_actions := %ScreenMainActions
 @onready var screen_list_select := %ScreenListSelect
@@ -53,7 +53,7 @@ var loading_battle := true
 
 @onready var screen_party_info := %ScreenPartyInfo
 @onready var screen_spirit_name := %ScreenSpiritName
-@onready var screen_dance_battle : ScreenDanceBattle = $UI/Panel/ScreenDanceBattle
+@onready var screen_dance_battle: ScreenDanceBattle = $UI/Panel/ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var victory_text := %VictoryText
@@ -70,28 +70,28 @@ var spirit_speak_timer_wait := 2.0
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
-var held_item_id : String = ""
+var held_item_id: String = ""
 
 # storing battle members
-var actors : Array[BattleActor]
-var dead_actors : Array[BattleActor]
-var party : Array[BattleActor]
-var dead_party : Array[BattleActor]
-var ever_has_been_party : Array[BattleActor]
-var enemies : Array[BattleActor]
-var dead_enemies : Array[BattleActor]
+var actors: Array[BattleActor]
+var dead_actors: Array[BattleActor]
+var party: Array[BattleActor]
+var dead_party: Array[BattleActor]
+var ever_has_been_party: Array[BattleActor]
+var enemies: Array[BattleActor]
+var dead_enemies: Array[BattleActor]
 
 var xp_pool := 0:
 	set(to):
 		xp_pool = to
 
 var listening_to_player_input := false
-var current_guy : BattleActor
+var current_guy: BattleActor
 var loaded_spirits := {}
-var current_target : BattleActor
+var current_target: BattleActor
 
 var death_reason := "default"
-var battle_rewards : BattleRewards
+var battle_rewards: BattleRewards
 
 @export var enable_testing_cheats := false
 @export_group("Cheat Stats")
@@ -101,9 +101,9 @@ var battle_rewards : BattleRewards
 @export var party_cheat_attack := 0.0
 @export var party_cheat_defense := 0.0
 @export var party_cheat_speed := 0.0
-@export var party_add_spirits : Array[String] = []
-@export var party_add_items : Array[String] = []
-@export var test_enemies : Array[String] = []
+@export var party_add_spirits: Array[String] = []
+@export var party_add_items: Array[String] = []
+@export var test_enemies: Array[String] = []
 
 
 func _ready() -> void:
@@ -224,8 +224,8 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 
 
 func add_enemy(character_id: String, ally := false) -> void:
-	var character : Character = DAT.get_character(character_id)
-	var node : BattleActor
+	var character: Character = DAT.get_character(character_id)
+	var node: BattleActor
 	if DIR.enemy_scene_exists(character.name_in_file) and not ally:
 		node = load(DIR.enemy_scene_path(character.name_in_file)).instantiate()
 		node.load_character(character_id)
@@ -245,7 +245,7 @@ func add_enemy(character_id: String, ally := false) -> void:
 
 
 func add_party_member(id: String) -> void:
-	var party_member : BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
+	var party_member: BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.load_character(id)
 	
 	add_actor(party_member, Teams.PARTY)
@@ -259,7 +259,7 @@ func arrange_enemies():
 	var tw := create_tween().set_parallel(true)
 	for e in len(enemies):
 		# space enemies evenly on the screen
-		var to : float = roundf(-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
+		var to: float = roundf(-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
 		tw.tween_property(enemies[e], "global_position:x", to, 0.2)
 		enemies[e].global_position.y = 0
 		if e % 2 != 0:
@@ -279,7 +279,7 @@ func update_party() -> void:
 	for child in party_member_panel_container.get_children():
 		child.hide()
 	for i in ever_has_been_party.size():
-		var member : BattleActor = ever_has_been_party[i]
+		var member: BattleActor = ever_has_been_party[i]
 		party_member_panel_container.get_child(i).update(member)
 		party_member_panel_container.get_child(i).show()
 
@@ -490,7 +490,7 @@ func open_list_screen() -> void:
 			load_floating_spirits()
 	resize_panel(60)
 	await get_tree().process_frame # <---- of course this needs to be here
-	var deferred : int = OPT.get_opt("list_button_focus_deferred")
+	var deferred: int = OPT.get_opt("list_button_focus_deferred")
 	if screen_list_select.visible:
 		if list_containers[0].get_children().size() > 0:
 			if deferred: list_containers[0].get_child(0).call_deferred("grab_focus")
@@ -530,7 +530,7 @@ func open_spirit_name_screen() -> void:
 	spirit_speak_timer.paused = false
 	spirit_speak_timer.start(spirit_speak_timer_wait)
 	for i in current_guy.character.spirits:
-		var spirit : Spirit = DAT.get_spirit(i)
+		var spirit: Spirit = DAT.get_spirit(i)
 		loaded_spirits[spirit.name] = i
 	spirit_name.grab_focus()
 
@@ -695,7 +695,7 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
-	var actor : EnemyAnimal = data.get("enemy_reference", null)
+	var actor: EnemyAnimal = data.get("enemy_reference", null)
 	var pscore := data.get("player_score") as float
 	var enscore := data.get("enemy_score") as float
 	var pwin := pscore > enscore
@@ -825,7 +825,7 @@ func erase_floating_spirits() -> void:
 
 
 func item_names(opt := {}) -> void:
-	var count : int = current_guy.character.inventory.count(opt.reference)
+	var count: int = current_guy.character.inventory.count(opt.reference)
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
 		DAT.get_item(opt.reference).name

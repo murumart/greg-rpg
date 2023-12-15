@@ -5,7 +5,7 @@ class_name TextBox
 
 signal speak_finished
 
-var tween_reference : Tween
+var tween_reference: Tween
 
 
 func _ready() -> void:

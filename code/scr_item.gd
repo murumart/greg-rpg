@@ -11,15 +11,15 @@ const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
 @export_group("Appearance")
 @export var name := &""
 @export_multiline var description := ""
-@export var texture : Texture
+@export var texture: Texture
 @export var attack_animation := ""
-@export var play_sound : AudioStream
+@export var play_sound: AudioStream
 
 @export_group("Behaviour")
 @export var price := 0
 @export var use := Uses.NONE
 @export var consume_on_use := true
-@export var payload : BattlePayload: get = get_payload
+@export var payload: BattlePayload: get = get_payload
 
 
 func get_effect_description() -> String:

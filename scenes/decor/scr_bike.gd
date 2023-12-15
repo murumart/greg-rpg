@@ -5,11 +5,11 @@ extends Node2D
 
 enum Ghosts {ALPHA, BETA, GAMMA}
 
-@export var ghost : Ghosts = Ghosts.ALPHA
+@export var ghost: Ghosts = Ghosts.ALPHA
 
-@export var alpha_battle_info : BattleInfo
+@export var alpha_battle_info: BattleInfo
 
-@export var player : PlayerOverworld
+@export var player: PlayerOverworld
 
 
 func _ready() -> void:
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _interacted() -> void:
-	var fought : Array = DAT.get_data("bike_ghosts_fought", [])
+	var fought: Array = DAT.get_data("bike_ghosts_fought", [])
 	if ghost == Ghosts.ALPHA:
 		if not int(Ghosts.ALPHA) in fought:
 			SND.play_song("")

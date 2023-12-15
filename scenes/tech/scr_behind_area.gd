@@ -3,7 +3,7 @@ extends Area2D
 # changes alpha of selected node when something enters this area
 # used to make trees transparent when going behind them
 
-@export var affected_node : Node2D
+@export var affected_node: Node2D
 @export_group("Technical")
 @export var change_time := 0.25
 @export var final_alpha := 0.5

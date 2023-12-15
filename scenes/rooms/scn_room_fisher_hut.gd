@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func _on_fisherman_interacted(which: int) -> void:
 	var r := ["garbage", fish_1, fish_2]
-	var line_progress : int = get("line_progress_%s" % (which))
+	var line_progress: int = get("line_progress_%s" % (which))
 	if line_progress < r[which].size():
 		SOL.dialogue(r[which][line_progress])
 		set("line_progress_%s" % which, line_progress + 1)

@@ -3,11 +3,11 @@ extends Node
 # handles playing sounds and music
 # copied over from old Greg
 
-var current_song_player : AudioStreamPlayer
-var current_song : Dictionary
-var old_song : Dictionary
-var previously_played_song_key : String = ""
-var current_song_key : String = ""
+var current_song_player: AudioStreamPlayer
+var current_song: Dictionary
+var old_song: Dictionary
+var previously_played_song_key: String = ""
+var current_song_key: String = ""
 var list := SongsList.new() # stored data about songs
 
 const DEFAULT_VOLUME := 0.0
@@ -31,21 +31,21 @@ func _ready() -> void:
 
 
 func play_song(song: String, fade_speed := 1.0, options := {}):
-	var _save_audio_position : bool = options.get("save_audio_position", true)
-	var play_from_beginning : bool = options.get("play_from_beginning", false)
-	var pitch_scale : float = options.get("pitch_scale", 1.0)
+	var _save_audio_position: bool = options.get("save_audio_position", true)
+	var play_from_beginning: bool = options.get("play_from_beginning", false)
+	var pitch_scale: float = options.get("pitch_scale", 1.0)
 	var volume_override := "volume" in options
-	var volume : float = options.get("volume", DEFAULT_VOLUME)
-	var bus : String = options.get("bus", "Music")
-	var trans_type : int = options.get("trans_type", Tween.TRANS_QUAD)
-	var fade_in_ease_type : int = options.get("fade_in_ease_type", Tween.EASE_OUT)
-	var _fade_out_ease_type : int = options.get("fade_out_ease_type", Tween.EASE_IN)
-	var start_volume : float = options.get("start_volume", -80.0)
-	var skip_to : float = options.get("skip_to", 0.0)
+	var volume: float = options.get("volume", DEFAULT_VOLUME)
+	var bus: String = options.get("bus", "Music")
+	var trans_type: int = options.get("trans_type", Tween.TRANS_QUAD)
+	var fade_in_ease_type: int = options.get("fade_in_ease_type", Tween.EASE_OUT)
+	var _fade_out_ease_type: int = options.get("fade_out_ease_type", Tween.EASE_IN)
+	var start_volume: float = options.get("start_volume", -80.0)
+	var skip_to: float = options.get("skip_to", 0.0)
 	var loop_override := "loop" in options
-	var loop : bool = options.get("loop", true)
+	var loop: bool = options.get("loop", true)
 	
-	var song_dict : Dictionary = list.songs.get(song, {})
+	var song_dict: Dictionary = list.songs.get(song, {})
 	
 	# if the music requested is the same as current music, do nothing
 	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
@@ -67,7 +67,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	new_audio_player.name = str("music_" + song)
 	playing_sounds.append(new_audio_player)
 	add_child(new_audio_player)
-	var audio_stream : AudioStream = load(song_dict.get("link"))
+	var audio_stream: AudioStream = load(song_dict.get("link"))
 	audio_stream.loop = song_dict.get("loop", true)
 	if loop_override: audio_stream.loop = loop
 	new_audio_player.stream = audio_stream
@@ -82,7 +82,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 		if skip_to != 0.0:
 			new_audio_player.seek(skip_to)
 	var tween := create_tween().set_ease(fade_in_ease_type).set_trans(trans_type)
-	var volume_to : float = song_dict.get("default_volume", DEFAULT_VOLUME) if not volume_override else volume
+	var volume_to: float = song_dict.get("default_volume", DEFAULT_VOLUME) if not volume_override else volume
 	tween.tween_property(new_audio_player, "volume_db", volume_to, DEFAULT_WAIT_SPEED/float(fade_speed))
 
 

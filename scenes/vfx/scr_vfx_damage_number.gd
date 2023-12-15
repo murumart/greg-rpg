@@ -11,7 +11,7 @@ var clamp_zone_max := Vector2()
 
 func init(options := {}) -> void:
 	var label := $Label
-	var size : float = options.get("size", 1.0) # font size in multiples of 8
+	var size: float = options.get("size", 1.0) # font size in multiples of 8
 	label.text = str(options.get("text", ""))
 	label.modulate = options.get("color", Color.WHITE)
 	label["theme_override_font_sizes/font_size"] = 8 * size

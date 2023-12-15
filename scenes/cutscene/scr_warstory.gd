@@ -1,9 +1,9 @@
 extends Node2D
 
 var metal := ["metal", "kitchen utensils", "gardening tools", "railroad tracks", "rebar", "vehicles", "mirrors", "statues", "girders", "lamp posts", "weapons", "money", "construction tools", "soup cans", "pens", "knives", "coins", "silver", "jewellery", "brooches", "pins", "rings"]
-var heroes : int
+var heroes: int
 
-@onready var textbox : TextBox = $Textbox
+@onready var textbox: TextBox = $Textbox
 @onready var spirit_masters := $Images/SpiritMasterDisplay
 
 @onready var imgs := [$Images/Image1, $Images/Image2]

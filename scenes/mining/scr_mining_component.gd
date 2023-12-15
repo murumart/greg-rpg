@@ -2,15 +2,15 @@ class_name MiningComponent extends Node2D
 
 const TileDefinitions := preload("res://scenes/mining/resources/scr_tile_definitions.gd")
 
-@export var target : PlatformerGreg
-@export var display : Panel
-@export var tilemap : TileMap
+@export var target: PlatformerGreg
+@export var display: Panel
+@export var tilemap: TileMap
 
 const TSIZE := 8
 
 const UNMINEABLE := [-1, 2, 3, 4]
 
-var input : Vector2 = Vector2()
+var input: Vector2 = Vector2()
 
 
 func _ready() -> void:
@@ -76,7 +76,7 @@ func get_tile_definition(id: int) -> TileDefinitions.Tile:
 	return TileDefinitions.tile(id)
 
 
-func manage_display(target_pos : Vector2, _direction : int, delta : float) -> void:
+func manage_display(target_pos: Vector2, _direction: int, delta: float) -> void:
 	#display.position = target_pos
 	display.position = display.position.lerp(target_pos, delta * 24)
 	display.position -= Math.v2(0.5)

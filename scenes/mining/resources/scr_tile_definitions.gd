@@ -22,8 +22,8 @@ static func tile(id: int) -> Tile:
 class Tile:
 	var source := -1
 	var terrain := -1
-	var _random_atlases : Array[Vector2i] = [Vector2i(0, 0)]
-	var atlas : Vector2i:
+	var _random_atlases: Array[Vector2i] = [Vector2i(0, 0)]
+	var atlas: Vector2i:
 		get:
 			return _random_atlases.pick_random()
 	var flammability := 0.0

@@ -7,7 +7,7 @@ var zoom := 1.0
 @export var grows_in_seconds := 600
 @onready var inside_area: Area2D = $InsideArea
 
-var player : PlayerOverworld
+var player: PlayerOverworld
 
 var previous_song_key := ""
 

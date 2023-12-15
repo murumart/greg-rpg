@@ -31,7 +31,7 @@ static func sign_symbol(x) -> String:
 
 
 # append to an array and return that array
-static func reaap(a : Array, b: Variant) -> Array:
+static func reaap(a: Array, b: Variant) -> Array:
 	a.append(b)
 	return a
 
@@ -70,7 +70,7 @@ static func süsarv() -> float:
 
 
 # shuffle an array using an rng's seed value
-static func determ_shuffle(arr : Array, rng: RandomNumberGenerator) -> Array:
+static func determ_shuffle(arr: Array, rng: RandomNumberGenerator) -> Array:
 	var new_array := []
 	for i in arr.size():
 		var x = arr[rng.randi() % arr.size()]

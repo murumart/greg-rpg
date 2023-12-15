@@ -28,7 +28,7 @@ var speed_before_snail := 0
 var snails_until_hell := 10
 var snails_to_escape_hell := 120
 
-@onready var bike : BikingGreg = $Bike
+@onready var bike: BikingGreg = $Bike
 
 @onready var ui := $UI
 
@@ -37,7 +37,7 @@ var snails_to_escape_hell := 120
 @onready var snail_timer := $SnailTimer
 @onready var mailbox_timer := $MailboxTimer
 @onready var punishment_timer := $PunishmentTimer
-const OBSTACLE_PACKED : Array[PackedScene] = [
+const OBSTACLE_PACKED: Array[PackedScene] = [
 	preload("res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn"),
 	preload("res://scenes/biking/moving_objects/scn_obstacle_log.tscn"),
 ]
@@ -51,7 +51,7 @@ var stop_meter := -1.0
 var kiosk_activated := false:
 	set(to):
 		kiosk_activated = to
-var current_kiosk : BikingMovingObject
+var current_kiosk: BikingMovingObject
 var kiosks_activated := 0
 
 var inventory := []
@@ -64,7 +64,7 @@ var currently_hell := false
 var hell_time := 0
 var hells_survived := 0
 
-@onready var hell_colours : Gradient = $Background/ColourChanger.environment.adjustment_color_correction.gradient
+@onready var hell_colours: Gradient = $Background/ColourChanger.environment.adjustment_color_correction.gradient
 
 
 func _ready() -> void:
@@ -159,7 +159,7 @@ func _on_obstacle_timer_timeout() -> void:
 	# obstacle
 	var obstacle_positions := []
 	obstacle_timer.start(1.5 * 1.0 if not currently_hell else 0.75)
-	var obstacle : BikingObstacle = OBSTACLE_PACKED.pick_random().instantiate()
+	var obstacle: BikingObstacle = OBSTACLE_PACKED.pick_random().instantiate()
 	obstacle.speed = speed
 	obstacle.randomise_position()
 	add_child(obstacle)
@@ -172,7 +172,7 @@ func _on_obstacle_timer_timeout() -> void:
 		if current_perk == "nicer_roads" and randf() <= 0.95:
 			obstacle.queue_free()
 	if currently_hell and randf() <= 0.25:
-		var beam_target : BikingObstacle = preload("res://scenes/biking/moving_objects/scn_sky_target.tscn").instantiate()
+		var beam_target: BikingObstacle = preload("res://scenes/biking/moving_objects/scn_sky_target.tscn").instantiate()
 		beam_target.randomise_position()
 		beam_target.position.x += randfn(20, 20) + 20
 		beam_target.speed = speed
@@ -209,7 +209,7 @@ func _on_mailbox_timer_timeout() -> void:
 	if randf() <= 0.89:
 		var house := HOUSE_LOAD.instantiate()
 		house.speed = speed - (0.25 * speed) + (randf() * 2)
-		var x : float = remap(house.speed, 30, 60, 0.1, 1.0)
+		var x: float = remap(house.speed, 30, 60, 0.1, 1.0)
 		house.modulate = Color(x, x, x)
 		house.z_index = roundi(remap(house.speed, 30, 60,-11, -14))
 		add_child(house)
@@ -219,7 +219,7 @@ func _on_mailbox_timer_timeout() -> void:
 	if kiosk_activated: return
 	if randf() <= 0.11 or mails_wo_box > 5:
 		mails_wo_box = 0
-		var mailbox : BikingMovingObject = MAIL_BOX_LOAD.instantiate()
+		var mailbox: BikingMovingObject = MAIL_BOX_LOAD.instantiate()
 		mailbox.global_position = Vector2(176, 68)
 		mailbox.speed = speed
 		mailbox.hit.connect(_on_mailbox_hit)
@@ -227,7 +227,7 @@ func _on_mailbox_timer_timeout() -> void:
 
 
 func spawn_coin() -> void:
-	var coin : BikingMovingObject = COIN_LOAD.instantiate()
+	var coin: BikingMovingObject = COIN_LOAD.instantiate()
 	coin.randomise_position()
 	coin.position.x += randi_range(0, 16)
 	add_child(coin)
@@ -237,7 +237,7 @@ func spawn_coin() -> void:
 
 func spawn_snail() -> void:
 	if current_perk == "snail_repel" and randf() <= 0.95: return
-	var snail : BikingMovingObject = SNAIL_LOAD.instantiate()
+	var snail: BikingMovingObject = SNAIL_LOAD.instantiate()
 	snail.randomise_position()
 	snail.will_delete.connect(_on_snail_hit)
 	add_child(snail)
@@ -251,7 +251,7 @@ func the_kiosk() -> void:
 	if currently_hell: return
 	if kiosk_activated: return
 	kiosk_activated = true
-	var kiosk : BikingMovingObject = preload("res://scenes/biking/moving_objects/scn_mail_kiosk.tscn").instantiate()
+	var kiosk: BikingMovingObject = preload("res://scenes/biking/moving_objects/scn_mail_kiosk.tscn").instantiate()
 	current_kiosk = kiosk
 	add_child(kiosk)
 	kiosk.approached.connect(_on_mailman_approached)

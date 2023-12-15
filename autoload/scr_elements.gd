@@ -7,7 +7,7 @@ enum Effects {SAFE, HEALTHY, POISONOUS, HARMFUL}
 
 const ELEMENT_AMOUNT := 54
 const PERIOD_LENGTHS := [2, 8, 8, 18, 18, 32, 32]
-const CURVES : Array[Curve] = [preload("res://scenes/chemistry/harmful_curve.tres"), preload("res://scenes/chemistry/healthy_curve.tres"), preload("res://scenes/chemistry/poison_curve.tres")]
+const CURVES: Array[Curve] = [preload("res://scenes/chemistry/harmful_curve.tres"), preload("res://scenes/chemistry/healthy_curve.tres"), preload("res://scenes/chemistry/poison_curve.tres")]
 enum {HARM_CURVE, HEALTH_CURVE, POISON_CURVE}
 
 var element_names := PackedStringArray()
@@ -15,8 +15,8 @@ var element_abbrs := PackedStringArray()
 var element_masses := PackedFloat32Array()
 var element_colours := PackedColorArray()
 var element_effects := PackedInt32Array()
-var periods : Array[PackedInt32Array] = [[], [], [], [], [], [], []]
-var solmass : float
+var periods: Array[PackedInt32Array] = [[], [], [], [], [], [], []]
+var solmass: float
 
 var in_by_sym := {}
 
@@ -106,7 +106,7 @@ func gen_elements() -> void:
 		periods[period].append(e)
 		in_by_sym[element_abbrs[e]] = e
 		
-		var effect : Effects = Effects.SAFE
+		var effect: Effects = Effects.SAFE
 		var rand := rng.randf()
 		var sample := e / float(ELEMENT_AMOUNT)
 		if rand < CURVES[POISON_CURVE].sample_baked(sample):
@@ -200,13 +200,13 @@ func is_more_active(a: int, b: int) -> bool:
 
 
 class Element extends RefCounted:
-	var protons : int
-	var name : String
-	var symbol : String
-	var mass : float
-	var period : int
-	var group : int
-	var valence : int
+	var protons: int
+	var name: String
+	var symbol: String
+	var mass: float
+	var period: int
+	var group: int
+	var valence: int
 	var effect: Elements.Effects
 	
 	

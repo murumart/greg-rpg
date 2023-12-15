@@ -82,8 +82,8 @@ func _physics_process(delta: float) -> void:
 				get_tree().set_group("biking_coins", "following", true)
 			
 			# reduce effect durations
-			var effect : Dictionary = effects[e]
-			var time : float = effect.get("time", 0.0)
+			var effect: Dictionary = effects[e]
+			var time: float = effect.get("time", 0.0)
 			time = max(time - delta * 16, 0.0) if speed > 5 else time
 			effect["time"] = time
 			if time <= 0:
@@ -148,7 +148,7 @@ func die() -> void:
 
 func _on_collision_area_area_entered(area: Area2D) -> void:
 	if not area.get_parent() is BikingObstacle: return
-	var obstacle : BikingObstacle = area.get_parent()
+	var obstacle: BikingObstacle = area.get_parent()
 	if invincibility_timer.time_left == 0.0:
 		hurt(obstacle.damage)
 		invincibility_timer.start(1.0)

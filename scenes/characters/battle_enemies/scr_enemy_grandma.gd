@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func act() -> void:
-	var greg : BattleActor = reference_to_opposing_array[0]
+	var greg: BattleActor = reference_to_opposing_array[0]
 	message.emit("grandma attacked greg!")
 	for i in 400:
 		greg.hurt(1, Genders.VAST)

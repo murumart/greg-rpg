@@ -19,22 +19,22 @@ signal teammate_requested(who: BattleActor, whom: String)
 signal critically_hitted
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
-var state : States = States.IDLE : set = set_state
+var state: States = States.IDLE: set = set_state
 
 var turn := 0
 
 var hurt_sound := preload("res://sounds/hurt.ogg")
 
-var actor_name : StringName
-@onready var character : Character
+var actor_name: StringName
+@onready var character: Character
 
 var accessible := true
 
-var status_effects : Array[BattleStatusEffect]
+var status_effects: Array[BattleStatusEffect]
 
-var reference_to_team_array : Array[BattleActor] = []
-var reference_to_opposing_array : Array[BattleActor] = []
-var reference_to_actor_array : Array[BattleActor] = []
+var reference_to_team_array: Array[BattleActor] = []
+var reference_to_opposing_array: Array[BattleActor] = []
+var reference_to_actor_array: Array[BattleActor] = []
 
 var player_controlled := false
 
@@ -44,7 +44,7 @@ var player_controlled := false
 	"Sopping", "Burning",
 	"Ghost", "Brain", "Vast"
 	) var gender: int = 0
-@export var effect_immunities : Array[String] = []
+@export var effect_immunities: Array[String] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
 
@@ -215,7 +215,7 @@ func attack(subject: BattleActor) -> void:
 	if crit: pld.health *= 2.5
 	if gender:
 		pld.gender = gender
-	var weapon : Item
+	var weapon: Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
 		weapon = DAT.get_item(character.weapon)
@@ -251,7 +251,7 @@ func attack(subject: BattleActor) -> void:
 
 
 func use_spirit(id: String, subject: BattleActor) -> void:
-	var spirit : Spirit = DAT.get_spirit(id)
+	var spirit: Spirit = DAT.get_spirit(id)
 	character.magic = max(character.magic - spirit.cost, 0)
 	emit_message("%s: %s!" % [actor_name, spirit.name])
 	# animating
@@ -260,7 +260,7 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 	if spirit.use_animation:
 		SOL.vfx(spirit.use_animation, get_effect_center(self))
 	# who should be targeted by the spirit
-	var targets : Array[BattleActor]
+	var targets: Array[BattleActor]
 	if spirit.reach == Spirit.Reach.TEAM:
 		targets = subject.get_team().duplicate()
 	elif spirit.reach == Spirit.Reach.ALL:
@@ -305,7 +305,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 		turn_finished()
 		return
-	var item : Item = DAT.get_item(id)
+	var item: Item = DAT.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self).\
 		set_type(BattlePayload.Types.ITEM)) # using the item
@@ -449,7 +449,7 @@ func turn_finished() -> void:
 
 
 func load_character(id: StringName) -> void:
-	var charc : Character = DAT.get_character(id).duplicate(true)
+	var charc: Character = DAT.get_character(id).duplicate(true)
 	character = charc
 	charc.defeated_characters.clear()
 
@@ -458,7 +458,7 @@ func load_character(id: StringName) -> void:
 # so that the health and other information will get saved between battles
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
-	var basechar : Character = DAT.character_dict[character.name_in_file]
+	var basechar: Character = DAT.character_dict[character.name_in_file]
 	basechar.health = character.health
 	basechar.magic = clampf(character.magic, 0.0, basechar.max_magic)
 	basechar.inventory = character.inventory

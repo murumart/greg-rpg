@@ -4,7 +4,7 @@ extends Node
 
 @export var loop_range_min := 0
 @export var loop_range_max := 160
-@export var target : Node2D
+@export var target: Node2D
 
 
 func _ready() -> void:

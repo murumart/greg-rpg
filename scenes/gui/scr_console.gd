@@ -2,10 +2,10 @@ class_name DebugConsole extends Control
 
 enum DataCommands {SET, INCRI,}
 
-var current_command : String
-var last_command : String
-var history : PackedStringArray
-var down_history : PackedStringArray
+var current_command: String
+var last_command: String
+var history: PackedStringArray
+var down_history: PackedStringArray
 @onready var clog: RichTextLabel = $Log
 @onready var line: LineEdit = $Line
 
@@ -78,7 +78,7 @@ func output(s: String, error := false) -> void:
 
 
 func battle_set(args: PackedStringArray) -> void:
-	var cs : Node = LTS.get_current_scene()
+	var cs: Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
 		output("needs to be used in battle", true)
 		return
@@ -114,7 +114,7 @@ func setdata(args: PackedStringArray) -> void:
 		output("needs two arguments", true)
 		return
 	var key := args[0]
-	var value : Variant = args[1]
+	var value: Variant = args[1]
 	_data_change(DataCommands.SET, key, value)
 
 
@@ -147,7 +147,7 @@ func ex(args: PackedStringArray) -> void:
 		output("error in expression:", true)
 		output(expr.get_error_text(), true)
 		return
-	var result : Variant = expr.execute([], self)
+	var result: Variant = expr.execute([], self)
 	if not expr.has_execute_failed():
 		output(str(result))
 	else:

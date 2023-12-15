@@ -2,7 +2,7 @@ extends Control
 
 # ui in the biking game
 
-var game : BikingGame
+var game: BikingGame
 
 @onready var road_parts := $RoadParts
 @onready var hell_menu := $HellMenu
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 
 
 func display_health(new_value: float) -> void:
-	var old_value : float = health_bar.value
+	var old_value: float = health_bar.value
 	# cool slide
 	var tw := create_tween()
 	var tw2 := create_tween()

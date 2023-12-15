@@ -18,7 +18,7 @@ func _init() -> void:
 func _ready() -> void:
 	var sname := name.to_snake_case()
 	DAT.set_data("current_room", sname)
-	var visited_rooms : Array = DAT.get_data("visited_rooms", [])
+	var visited_rooms: Array = DAT.get_data("visited_rooms", [])
 	if not sname in visited_rooms: visited_rooms.append(sname)
 	DAT.set_data("visited_rooms", visited_rooms)
 	SOL.dialogue_choice = ""

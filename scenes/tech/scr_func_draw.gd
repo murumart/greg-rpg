@@ -1,10 +1,10 @@
 @tool
 extends Node2D
 
-@export var funk : Callable = f
+@export var funk: Callable = f
 @export var range := 50
 @export var func_scale := Vector2(2, 2)
-@export var values : Array[float] = []
+@export var values: Array[float] = []
 @export var redraw: bool = false:
 	set(to):
 		queue_redraw()

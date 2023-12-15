@@ -3,7 +3,7 @@ extends Node2D
 # fishing minigame
 
 enum States {STOP, MOVE}
-var state : States = States.STOP
+var state: States = States.STOP
 
 const FISH_LOAD := preload("res://scenes/fishing/scn_fish.tscn")
 const MINE_LOAD := preload("res://scenes/fishing/scn_sea_mine.tscn")
@@ -15,7 +15,7 @@ const SND_TMOUT := preload("res://sounds/fishing/timeout.ogg")
 
 @onready var tilemap := $Blocks
 var processed_ypos := 1
-@onready var noise : FastNoiseLite = $NoiseSprite.texture.noise
+@onready var noise: FastNoiseLite = $NoiseSprite.texture.noise
 @onready var hook := $Hook
 @onready var hook_animator := $Hook/HookAnimator
 @onready var line_drawer := $LineDrawer
@@ -33,7 +33,7 @@ var points := 0
 var fish_caught := 0
 var recent_fish_caught := 0.0
 var time_left := 80.0
-var battle_info : BattleInfo
+var battle_info: BattleInfo
 @onready var depth_label := $Ui/TopContainer/DepthLabel
 @onready var points_label := $Ui/TopContainer/PointsLabel
 @onready var combo_bar := $Ui/TopContainer/Combobar
@@ -41,7 +41,7 @@ var battle_info : BattleInfo
 @onready var after_crash_timer := $Ui/AfterCrashTimer
 @onready var time_bar := $Ui/Timebar
 
-@export var depth_fish_increase_curve : Curve
+@export var depth_fish_increase_curve: Curve
 
 # funny
 var kiosk_enabled := false
@@ -105,7 +105,7 @@ func hook_movement(delta: float) -> void:
 		hook_positions.append(hook.global_position)
 
 
-func line_movement(delta : float) -> void:
+func line_movement(delta: float) -> void:
 	# slowly sway as the water moves
 	for pos in hook_positions:
 		var i := hook_positions.find(pos)
@@ -179,7 +179,7 @@ func stop_game() -> void:
 
 func _on_line_draw() -> void:
 	for i in hook_positions.size():
-		var pos : Vector2 = hook_positions[i]
+		var pos: Vector2 = hook_positions[i]
 		line_drawer.draw_line(
 			Vector2(0, -99) if i <= 0 else hook_positions[i - 1],
 			pos if i < hook_positions.size() - 1 else hook.global_position,
@@ -243,7 +243,7 @@ func process_tilemap() -> void:
 	processed_ypos = ypos
 
 
-func spawn_fish(coords : Vector2, background := false) -> void:
+func spawn_fish(coords: Vector2, background := false) -> void:
 	var fish := FISH_LOAD.instantiate()
 	fish.global_position = coords
 	fish.depth = roundi(depth / 100.0)
@@ -284,7 +284,7 @@ func delete_offscreen_tiles(ypos: int) -> void:
 # game ends here
 func _on_after_crash_timer_timeout() -> void:
 	var score := roundi(depth / 100.0) + points
-	var high_score : bool = score > DAT.get_data("fishing_high_score", 0)
+	var high_score: bool = score > DAT.get_data("fishing_high_score", 0)
 	DAT.incri("fishings_finished", 1)
 	DAT.incri("fish_caught", fish_caught)
 	if high_score:

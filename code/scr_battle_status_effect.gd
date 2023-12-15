@@ -21,7 +21,7 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		neweff._immune_text(actor)
 		return null
 	if actor.has_status_effect(neweff.name):
-		var oldeff : BattleStatusEffect = actor.get_status_effect(neweff.name)
+		var oldeff: BattleStatusEffect = actor.get_status_effect(neweff.name)
 		oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
 		oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)
 		print("changed effect ", oldeff)

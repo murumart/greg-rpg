@@ -1,6 +1,6 @@
 extends BattleEnemy
 
-var battle_reference : Battle
+var battle_reference: Battle
 var rewards := BattleRewards.new()
 
 var progress := 0

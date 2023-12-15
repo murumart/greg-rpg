@@ -15,7 +15,7 @@ var typenames := {
 
 const PRODUCT_PATH := "res://sprites/world/object/store_shelves/spr_%s_products.png"
 @export_enum("empty", "healing", "food", "building") var type := 0: set = set_type
-@export var inventory : Array = []
+@export var inventory: Array = []
 
 
 func set_type(to: int):
@@ -23,7 +23,7 @@ func set_type(to: int):
 	if to == types.EMPTY:
 		$Foreground.texture = null
 		return
-	var texture : Texture = load(PRODUCT_PATH % typenames.get(type))
+	var texture: Texture = load(PRODUCT_PATH % typenames.get(type))
 	if texture:
 		$Foreground.texture = texture
 	else:
