@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		if input: direct_raycast()
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
-		direct_animation()
+	direct_animation()
 	movement(delta)
 	if updating_armour:
 		armour.animation = sprite.animation
