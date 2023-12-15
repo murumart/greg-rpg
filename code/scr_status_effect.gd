@@ -18,7 +18,8 @@ const ICONS := {
 	&"regen": Rect2(0, 12, 6, 6),
 	&"shield": Rect2(6, 12, 6, 6),
 	&"sleepy": Rect2(12, 12, 6, 6),
-	&"sopping": Rect2(18, 12, 6, 6)
+	&"sopping": Rect2(18, 12, 6, 6),
+	&"appetising": Rect2(24, 12, 6, 6)
 }
 
 const DESCRIPTIONS := {
@@ -39,6 +40,7 @@ const DESCRIPTIONS := {
 	&"shield": "a good chunk of damage will be blocked.",
 	&"sleepy": "you cannot act. any damage will hurt more but also wake you.",
 	&"sopping": "you're wet and pathetic and receive extra damage for it.",
+	&"appetising": "animals will first attack anyone with this effect.",
 }
 
 @export var name := &""
