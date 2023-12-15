@@ -17,7 +17,7 @@ func init(options := {}) -> void:
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a16h0"]
 shader = ExtResource("1_uldgb")
 shader_parameter/zoom = 1.0
-shader_parameter/white = 0.0
+shader_parameter/white = 0.01
 
 [sub_resource type="Animation" id="Animation_1q67w"]
 length = 0.001
@@ -43,7 +43,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [null]
+"values": [0.01]
 }
 
 [sub_resource type="Animation" id="Animation_rnits"]
@@ -53,7 +53,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:material:shader_parameter/zoom")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 1.5, 3.2, 3.6),
@@ -61,31 +61,31 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 1.0, 0.1, 0.1, 1.0]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:material:shader_parameter/white")
-tracks/1/interp = 2
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 3.2, 3.6),
-"transitions": PackedFloat32Array(2.92817, 1, 1, 2.92817),
-"update": 0,
-"values": [0.01, 1.0, 1.0, 0.01]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(3.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/white")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.2, 3.58),
+"transitions": PackedFloat32Array(6.06287, 1, 1, 0.210224),
+"update": 0,
+"values": [0.01, 1.0, 1.0, 0.01]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m64q3"]
@@ -112,7 +112,7 @@ offset_right = 80.0
 offset_bottom = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "enter_battle"
 libraries = {
 "": SubResource("AnimationLibrary_m64q3")
 }
+autoplay = "enter_battle"
