@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bkuu3x2gw38ch" path="res://scenes/decor/scn_bike.tscn" id="12_8ipa6"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="12_rk0rd"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="13_a4qs7"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="14_cftpx"]
+[ext_resource type="PackedScene" uid="uid://cfs50oh5gonj4" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="14_cftpx"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="14_gpjks"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
