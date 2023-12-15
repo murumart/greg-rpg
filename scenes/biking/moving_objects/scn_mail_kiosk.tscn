@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwahvx465an55"]
+[gd_scene load_steps=9 format=3 uid="uid://cjmaxd7xmufyv"]
 
 [ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_mail_kiosk.gd" id="1_qiq00"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_tkq2f"]
-[ext_resource type="SpriteFrames" uid="uid://b0qk4w2yp3ta" path="res://resources/characters/sfr_mail_man.tres" id="4_gwts7"]
+[ext_resource type="SpriteFrames" uid="uid://bochwa4w0uny0" path="res://resources/characters/sfr_mail_man.tres" id="4_gwts7"]
 
 [sub_resource type="Animation" id="Animation_yae84"]
 length = 0.001

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lake_corridor.gd" id="1_0lfh4"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_clenx"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_ba3n7"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_ba3n7"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_n2n5i"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_5nos6"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_gmg23"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_bkiuy"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="10_y2oa7"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="11_o5atk"]
-[ext_resource type="SpriteFrames" uid="uid://buc0rlaymoir0" path="res://resources/characters/sfr_naturalist.tres" id="12_eb763"]
+[ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="12_eb763"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uudyh"]
 
@@ -76,19 +76,17 @@ limit_bottom = 192
 
 [node name="Areas" type="Node2D" parent="."]
 
-[node name="RoomGate" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("5_5nos6")]
+[node name="RoomGate" parent="Areas" instance=ExtResource("5_5nos6")]
 position = Vector2(-8, -98)
 destination = &"town"
 gate_id = &"town-lake"
-player = NodePath("../../Greg")
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-32, 16)
 
-[node name="RoomGate2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("5_5nos6")]
+[node name="RoomGate2" parent="Areas" instance=ExtResource("5_5nos6")]
 position = Vector2(-8, 192)
 destination = &"lakeside"
 gate_id = &"corridor-lake"
-player = NodePath("../../Greg")
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(0, -14)
 

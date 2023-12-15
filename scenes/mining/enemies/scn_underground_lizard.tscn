@@ -1,14 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://b18s2g8p0xnlj"]
 
 [ext_resource type="Script" path="res://scenes/mining/scr_platformer_enemy_moving_component.gd" id="1_8jsl8"]
-[ext_resource type="SpriteFrames" uid="uid://cyg0y3sekatxh" path="res://resources/characters/sfr_stray_pet.tres" id="2_aarm7"]
+[ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="2_aarm7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iok87"]
 radius = 4.0
 height = 8.0
 
 [node name="UndergroundLizard" type="CharacterBody2D"]
-position = Vector2(114, 86)
 collision_layer = 12
 
 [node name="ShapeCast" type="ShapeCast2D" parent="."]
