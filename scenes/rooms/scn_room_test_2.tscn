@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c25n4cpx3uhni"]
+[gd_scene load_steps=8 format=3 uid="uid://c25n4cpx3uhni"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_ppnux"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_6f6gs"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_f7pq8"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_2ehx6"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_itj6j"]
+[ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="6_pg5jw"]
 
 [sub_resource type="GDScript" id="GDScript_bt885"]
 resource_name = "test"
@@ -12,6 +13,7 @@ script/source = "extends Node2D
 
 
 func _ready() -> void:
+	DAT.grant_spirit(\"skystorm\")
 	var pld := BattlePayload.new()
 	pld.set_health(10).set_max_health_percent(10).set_health_percent(20)
 	pld.set_magic(-20).set_magic_percent(-10).set_max_magic_percent(-30)
@@ -25,6 +27,7 @@ func _ready() -> void:
 "
 
 [node name="Test2" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ppnux")
 
 [node name="OverworldTiles" parent="." instance=ExtResource("2_6f6gs")]
@@ -44,3 +47,31 @@ spawnpoint = Vector2i(0, 16)
 
 [node name="Testing" type="Node2D" parent="."]
 script = SubResource("GDScript_bt885")
+
+[node name="TrashBin" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(-71, -107)
+item = &"skateboard"
+
+[node name="TrashBin2" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(-52, -107)
+item = &"brick"
+
+[node name="TrashBin3" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(-36, -107)
+item = &"brick"
+
+[node name="TrashBin4" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(-21, -107)
+item = &"rain_boot"
+
+[node name="TrashBin5" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(-4, -106)
+item = &"rain_boot"
+
+[node name="TrashBin6" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(12, -106)
+item = &"bike_helmet"
+
+[node name="TrashBin7" parent="." instance=ExtResource("6_pg5jw")]
+position = Vector2(29, -105)
+item = &"bike_helmet"

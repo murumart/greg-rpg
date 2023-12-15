@@ -101,7 +101,7 @@ static func load_reference_buttons(
 	var REFERENCE_BUTTON := preload("res://scenes/tech/scn_reference_button.tscn")
 	var mouse_interaction := options.get("mouse_interaction", false) as bool
 	var text_left := options.get("text_left", 2147483647) as int
-	var custom_pass_function : Callable = options.get("custom_pass_function", func(_a): pass)
+	var custom_pass_function = options.get("custom_pass_function", null)
 	var us2space := options.get("us2space", false) as bool
 	var name_overwrite_array := options.get("name_overwrite_array", []) as Array
 	if options.get("clear", true):
@@ -167,7 +167,7 @@ static func load_reference_buttons_groups(
 		dict[i] = array.count(i)
 	for i in dict.keys():
 		conglor.append(str(dict[i]) + "x " + i)
-	options.merge({"name_overwrite_array": conglor}, true)
+	options["name_overwrite_array"] = conglor
 	load_reference_buttons(dict.keys(), containers, reference_button_press_function, button_reference_receive_function, options)
 
 

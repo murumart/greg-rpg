@@ -99,7 +99,6 @@ func get_effect_description() -> String:
 		var fname := eff.name.replace("_", " ") as String
 		var efftxt := ""
 		var criptions := {
-			&"fire": "on fire",
 			&"magnet": "magnetic"
 		}
 		var immuniscriptions := {

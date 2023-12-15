@@ -209,20 +209,22 @@ func load_items() -> void:
 		item_array.push_front(party(current_tab).armour)
 	if party(current_tab).weapon:
 		item_array.push_front(party(current_tab).weapon)
+	
 	Math.load_reference_buttons_groups(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
-	silver_counter.text = str("party silver:\n", DAT.get_data("silver", 0))
+	var silver_text := "p. silver:\n" if party_size() > 1 else "silver: "
+	silver_counter.text = str(silver_text, DAT.get_data("silver", 0))
 
 
 func item_names(opt := {}) -> void:
 	# for displaying armour and weapons in char inventory
-	var equipped : bool = opt.nr < 2 and (
-		opt.reference == party(current_tab).armour or
-		opt.reference == party(current_tab).weapon
+	var equipped: int = 0 + (
+		int(opt.reference == party(current_tab).armour) +
+		int(opt.reference == party(current_tab).weapon)
 	)
 	if equipped:
 		opt.button.modulate = Color(1.0, 0.6, 0.3)
 		opt.button.set_meta(&"equipped", true)
-	var count : int = party(current_tab).inventory.count(opt.reference)
+	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
 		DAT.get_item(opt.reference).name
@@ -279,8 +281,8 @@ func update_using_portraits() -> void:
 
 
 func _reference_button_pressed(reference) -> void:
-	if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
-		if party(current_tab).inventory.find(reference) < 2:
+	if reference in party(current_tab).inventory:
+		if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 			if (reference == party(current_tab).armour):
 				party(current_tab).armour = ""
 				party(current_tab).inventory.append(reference)
