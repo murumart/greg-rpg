@@ -108,7 +108,7 @@ var battle_rewards: BattleRewards
 
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
-	update_timer.start()
+	update_timer.start(0.08)
 	for e in enemies_node.get_children():
 		e.queue_free()
 	for a in party_node.get_children():
@@ -140,6 +140,8 @@ func _physics_process(_delta: float) -> void:
 		Doings.SPIRIT_NAME:
 			# match the timer with the progress bar
 			spirit_speak_timer_progress.value = remap(spirit_speak_timer.time_left, 0.0, spirit_speak_timer_wait, 0.0, 100.0)
+	if screen_party_info.visible:
+		update_party()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -346,6 +348,7 @@ func _on_button_reference_received(reference) -> void:
 # some actor wants to act!
 func _on_act_requested(actor: BattleActor) -> void:
 	if is_end(): return
+	print(actor, " requested act")
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()
@@ -747,8 +750,7 @@ func resize_panel(new_y: int, wait := 0.2) -> void:
 
 # update the party faces not every frame
 func _on_update_timer_timeout() -> void:
-	if screen_party_info.visible:
-		update_party()
+	pass
 
 
 func apply_cheats() -> void:

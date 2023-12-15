@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 			pass
 		States.COOLDOWN:
 			# cooldown between 1 and 0 usually
-			wait = maxf(wait - sqrt(delta * get_speed() * 0.1), 0.0)
+			wait = maxf(wait - delta * 0.30303 * get_speed(), 0.0)
 			if wait == 0.0:
 				if not sleepy:
 					act_requested.emit(self)
