@@ -21,9 +21,18 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		neweff._immune_text(actor)
 		return null
 	if actor.has_status_effect(neweff.name):
-		var oldeff: BattleStatusEffect = actor.get_status_effect(neweff.name)
-		oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
-		oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)
+		var oldeff := actor.get_status_effect(neweff.name)
+		if oldeff.strength < neweff.strength:
+			oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
+		else:
+			oldeff.duration += roundf(
+				(neweff.duration + oldeff.duration) / 
+				oldeff.duration)
+		#oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)
+		#oldeff.strength += roundf((oldeff.strength + neweff.strength) / 4.0)
+		if oldeff.strength - neweff.strength < 16:
+			oldeff.strength += roundf(
+				(oldeff.strength + neweff.strength) / maxf(oldeff.strength - 1, 2.0))
 		print("changed effect ", oldeff)
 		return null
 	neweff._add_text(actor)
@@ -58,7 +67,7 @@ func set_strength(x: float) -> BattleStatusEffect:
 
 func added(actor: BattleActor) -> void:
 	match name:
-		&"little:":
+		&"little":
 			actor.scale *= 0.25
 		&"ghostly":
 			self.set_meta(&"last_gender", actor.gender)
@@ -84,7 +93,9 @@ func turn(actor: BattleActor) -> void:
 		actor.hurt(strength * 1.3, Genders.NONE)
 	
 	if name == &"fire":
-		actor.hurt(clampf(actor.character.health * 0.08, 1, 25), Genders.FLAMING)
+		actor.hurt(
+			clampf(actor.character.health * 0.08 * ceilf(strength / 32.0), 1, 25),
+			Genders.FLAMING)
 		SOL.vfx(&"battle_burning",
 			actor.global_position + SOL.SCREEN_SIZE / 2 +
 			Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": actor})
@@ -97,21 +108,24 @@ func turn(actor: BattleActor) -> void:
 		actor.character.magic += strength * 2
 
 
-static func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
+func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 	var amt := amount
-	if actor.has_status_effect(&"sleepy"):
-		actor.remove_status_effect(&"sleepy")
-		actor.message.emit("%s woke up!" % actor.actor_name)
-		amount *= 1.8
-	if actor.has_status_effect(&"sopping"):
-		SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
-			{"pitch": 1.3, "volume": 1.5})
-		amount += amt * 0.5
-		SOL.vfx(
-			"sopping",
-			actor.global_position + Vector2(randf_range(-4, 4), -16),
-			{"parent": actor})
-	return amount
+	match name:
+		&"sleepy":
+			actor.remove_status_effect(&"sleepy")
+			actor.message.emit("%s woke up!" % actor.actor_name)
+			amount *= 1.8
+		&"sopping":
+			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
+				{"pitch": 1.3, "volume": 2})
+			amount += amt * (0.4 + (strength * 0.2))
+			SOL.vfx(
+				"sopping",
+				actor.global_position + Vector2(randf_range(-4, 4), -16),
+				{"parent": actor})
+	
+	return amount - amt
+
 
 func removed(actor: BattleActor) -> void:
 	match name:

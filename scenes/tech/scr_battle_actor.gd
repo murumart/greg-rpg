@@ -119,7 +119,8 @@ func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
 	amount = Genders.apply_gender_effects(amount, gender, gendr)
 	if state == States.DEAD: return
-	amount = BattleStatusEffect.hurt_damage(amount, gendr, self)
+	for x: BattleStatusEffect in status_effects:
+		amount += x.hurt_damage(amount, gendr, self)
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
@@ -348,7 +349,7 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change = absf(health_change)
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			if has_status_effect(&"shield"):
-				health_change *= 0.25
+				health_change *= 0.25 - (get_status_effect(&"shield").strength * 0.01)
 				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 			hurt(health_change, pld.gender)
 			if pld.steal_health and is_instance_valid(pld.sender):
