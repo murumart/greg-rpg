@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ci7bf33nl7ufb"]
+[gd_scene load_steps=31 format=3 uid="uid://cfs50oh5gonj4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
@@ -179,7 +179,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="OverworldCharacter" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
+[node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")
 chimney_probability = SubResource("Curve_361hw")
 well_probability = SubResource("Curve_1hldi")
