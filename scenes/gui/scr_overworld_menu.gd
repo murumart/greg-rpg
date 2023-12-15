@@ -3,6 +3,7 @@ extends Control
 # overworld menu - items and character information and such
 
 signal close_requested
+signal skateboard_dequipped
 
 const TIME_AFTER_WARN_SAVE := 300
 
@@ -205,6 +206,8 @@ func load_items() -> void:
 	var item_array := []
 	item_array.append_array(party(current_tab).inventory)
 	item_array.sort()
+	if DAT.get_data("player_move_mode", 0) == 1:
+		item_array.push_front(&"skateboard")
 	if party(current_tab).armour:
 		item_array.push_front(party(current_tab).armour)
 	if party(current_tab).weapon:
@@ -219,9 +222,14 @@ func item_names(opt := {}) -> void:
 	# for displaying armour and weapons in char inventory
 	var equipped: int = 0 + (
 		int(opt.reference == party(current_tab).armour) +
-		int(opt.reference == party(current_tab).weapon)
+		int(opt.reference == party(current_tab).weapon) +
+		int(opt.reference == &"skateboard" and
+			DAT.get_data("player_move_mode", 0) == 1)
 	)
 	if equipped:
+		opt.button.modulate = Color(1.0, 0.6, 0.3)
+		opt.button.set_meta(&"equipped", true)
+	if DAT.get_data("player_move_mode", 0) == 1 and opt.reference == &"skateboard":
 		opt.button.modulate = Color(1.0, 0.6, 0.3)
 		opt.button.set_meta(&"equipped", true)
 	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
@@ -299,6 +307,15 @@ func _reference_button_pressed(reference) -> void:
 				await get_tree().process_frame
 				call_deferred("grab_item_focus")
 				return
+		if reference == &"skateboard" and DAT.get_data("player_move_mode", 0) == 1:
+			DAT.set_data("player_move_mode", 0)
+			skateboard_dequipped.emit()
+			party(current_tab).inventory.append(reference)
+			SND.menusound(0.4)
+			load_items()
+			await get_tree().process_frame
+			call_deferred("grab_item_focus")
+			return
 		doing = Doings.USING
 		using_item = reference
 		load_using_menu()

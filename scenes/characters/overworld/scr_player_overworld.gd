@@ -35,6 +35,7 @@ func _ready() -> void:
 		state = States.NOT_FREE_MOVE
 	move_mode = DAT.get_data("player_move_mode", 0) as MoveModes
 	menu.close_requested.connect(close_menu)
+	menu.skateboard_dequipped.connect(func(): move_mode = MoveModes.WALK)
 	SOL.add_ui_child(menu)
 	menu.hide()
 	
@@ -57,14 +58,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	input = Vector2()
 	
 	if state == States.FREE_MOVE:
-		movement(delta)
+		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if input: direct_raycast()
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
 		direct_animation()
+	movement(delta)
 	if updating_armour:
 		armour.animation = sprite.animation
 		armour.frame = sprite.frame
@@ -85,9 +87,9 @@ func movement(delta: float) -> void:
 			
 		MoveModes.SKATE:
 			if input:
-				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 64)
+				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 128)
 			else:
-				velocity = velocity.move_toward(Vector2(), delta * 64)
+				velocity = velocity.move_toward(Vector2(), delta * 128)
 			var collided := move_and_slide()
 			if collided:
 				velocity *= 0.5
@@ -151,6 +153,7 @@ func _character_message_received(msg := &"") -> void:
 	match msg:
 		&"skateboard_equipped":
 			move_mode = MoveModes.SKATE
+			DAT.set_data("player_move_mode", int(move_mode))
 			close_menu()
 
 
