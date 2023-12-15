@@ -12,7 +12,7 @@ duration = 1
 
 [sub_resource type="Resource" id="Resource_5ucl3"]
 script = ExtResource("1_cbxgo")
-health = -4.0
+health = -8.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.6
@@ -39,7 +39,7 @@ description = "rain hell upon your foes."
 animation = &"skystorm"
 use_animation = &""
 receive_animation = &""
-cost = 99
+cost = 89
 use = 1
 reach = 2
 payload_reception_count = 4
