@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
-[ext_resource type="PackedScene" uid="uid://bmhs50mol2dav" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_t0r6d"]
 [ext_resource type="PackedScene" uid="uid://emxihek3ybla" path="res://scenes/decor/scn_store_shelf.tscn" id="5_hc7sm"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="7_em34h"]
@@ -13,7 +13,7 @@
 [ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="10_pghuq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_jnio5"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="12_mfggk"]
-[ext_resource type="SpriteFrames" uid="uid://bqkvljo71j37j" path="res://resources/characters/sfr_neighbour_wife.tres" id="15_70cgv"]
+[ext_resource type="SpriteFrames" uid="uid://du74aw0jrys3e" path="res://resources/characters/sfr_neighbour_wife.tres" id="15_70cgv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -257,11 +257,10 @@ shape = SubResource("WorldBoundaryShape2D_w00jd")
 position = Vector2(112, 7)
 shape = SubResource("WorldBoundaryShape2D_p35a2")
 
-[node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_jnio5")]
+[node name="RoomGate" parent="." instance=ExtResource("11_jnio5")]
 position = Vector2(0, 79)
 destination = &"town"
 gate_id = &"store_inside-outside"
-player = NodePath("../Greg")
 extents = Vector2i(12, 2)
 spawnpoint = Vector2i(0, -13)
 

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var is_visible: VisibleOnScreenNotifier2D = $"../IsFootballVisible"
+@onready var is_visible_notif: VisibleOnScreenNotifier2D = $"../IsFootballVisible"
 
 @onready var baller_1: CharacterBody2D = $"Baller1"
 @onready var baller_2: CharacterBody2D = $"Baller2"
@@ -9,8 +9,8 @@ extends Node2D
 
 
 func _ready() -> void:
-	is_visible.screen_exited.connect(_screen_exited)
-	is_visible.screen_entered.connect(_screen_entered)
+	is_visible_notif.screen_exited.connect(_screen_exited)
+	is_visible_notif.screen_entered.connect(_screen_entered)
 	#_screen_exited()
 
 
