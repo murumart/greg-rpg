@@ -53,7 +53,7 @@ var loading_battle := true
 
 @onready var screen_party_info := %ScreenPartyInfo
 @onready var screen_spirit_name := %ScreenSpiritName
-@onready var screen_dance_battle: ScreenDanceBattle = $UI/Panel/ScreenDanceBattle
+@onready var screen_dance_battle := $UI/Panel/ScreenDanceBattle as ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var victory_text := %VictoryText
@@ -674,7 +674,7 @@ func _on_item_pressed() -> void:
 	SND.menusound()
 
 
-func open_dance_battle_screen(actor: EnemyAnimal) -> void:
+func open_dance_battle_screen(actor: EnemyAnimal, target: BattleActor) -> void:
 	doing = Doings.DANCE_BATTLE
 	listening_to_player_input = true
 	hide_screens()
@@ -683,8 +683,9 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 	resize_panel(44)
 	screen_dance_battle.active = true
 	screen_dance_battle.enemy_level = actor.character.attack as int
-	screen_dance_battle.greg_level = party[0].character.attack as int
+	screen_dance_battle.target_level = target.character.attack as int
 	screen_dance_battle.enemy_reference = actor
+	screen_dance_battle.target_reference = target
 	if is_instance_valid(SND.current_song_player):
 		var bpm := screen_dance_battle.mbc.bpm
 		var stream := SND.current_song_player.stream
@@ -698,14 +699,15 @@ func open_dance_battle_screen(actor: EnemyAnimal) -> void:
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
-	var actor: EnemyAnimal = data.get("enemy_reference", null)
+	var actor: EnemyAnimal = data.get("enemy_reference")
+	var player := data.get("player_reference") as BattleActor
 	var pscore := data.get("player_score") as float
 	var enscore := data.get("enemy_score") as float
 	var pwin := pscore > enscore
 	var wscore := pscore if pwin else enscore
 	var lscore := enscore if pwin else pscore
-	var winner := (current_guy if pwin else actor) as BattleActor
-	var loser := (actor if pwin else current_guy) as BattleActor
+	var winner := (player if pwin else actor) as BattleActor
+	var loser := (actor if pwin else player) as BattleActor
 	if is_instance_valid(SND.current_song_player):
 		create_tween().tween_property(
 				SND.current_song_player,
@@ -719,7 +721,7 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	_on_message_received("%s punished %s" % [winner.character.name, loser.character.name])
 	open_party_info_screen()
 	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
-	if pwin:
+	if pwin and player in party:
 		xp_pool += ceili((pscore - enscore) / 3.0)
 	
 
@@ -850,6 +852,15 @@ func _on_crit_received() -> void:
 	tw.tween_property(background_container, "modulate", Color(1, 1, 1), 0.5)
 
 
-func _on_dance_battle_requested(actor: EnemyAnimal) -> void:
-	set_actor_states(BattleActor.States.IDLE, true)
-	open_dance_battle_screen(actor)
+func _on_dance_battle_requested(actor: EnemyAnimal, target: BattleActor) -> void:
+	_on_message_received("dance battle!!")
+	if target in party:
+		set_actor_states(BattleActor.States.IDLE, true)
+		open_dance_battle_screen(actor, target)
+	else:
+		_dance_battle_ended({
+			"enemy_reference": actor,
+			"player_reference": target,
+			"enemy_score": ceilf(randf() * actor.get_attack() * 3),
+			"player_score": ceilf(randf() * target.get_attack() * 3),
+		})

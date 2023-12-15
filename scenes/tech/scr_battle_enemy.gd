@@ -17,6 +17,8 @@ var hurting_spirits: Array[String]
 var buffing_spirits: Array[String]
 var debuffing_spirits: Array[String]
 
+var extra_targets: Array[BattleActor]
+
 @export_group("Behaviour")
 # how low the health can go before starts healing/fleeing
 @export_range(0.0, 1.0) var toughness := 0.25
@@ -57,6 +59,20 @@ func act() -> void:
 	if not auto_ai:
 		return
 	ai_action()
+
+
+func handle_payload(pld: BattlePayload) -> void:
+	if pld.type == pld.Types.ATTACK:
+		if (not pld.sender in reference_to_opposing_array) and (not pld.sender in extra_targets):
+			var vendetta := toughness * (1 - altruism)
+			if randf() <= vendetta and is_instance_valid(pld.sender) and pld.sender.character.name_in_file:
+				extra_targets.append(pld.sender)
+				SOL.vfx("damage_number", parentless_effcenter(self) - Vector2(0, 16), {
+					text=str(pld.sender.character.name, " has done it now!"),
+					color=Color.FIREBRICK,
+					speed=0.5
+				})
+	super(pld)
 
 
 func ai_action() -> void:
@@ -193,7 +209,14 @@ func pick_target(who: int = 0) -> BattleActor:
 	if who == SELF:
 		return self
 	if reference_to_opposing_array.size() > 0:
-		return reference_to_opposing_array.pick_random()
+		var target: BattleActor
+		if extra_targets.is_empty() or randf() <= 0.6667:
+			target = reference_to_opposing_array.pick_random()
+			if is_instance_valid(target):
+				return target
+		target = extra_targets.pick_random()
+		if is_instance_valid(target):
+			return target
 	return null
 
 

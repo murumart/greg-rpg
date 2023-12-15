@@ -13,16 +13,23 @@ const STREAK_CONGRATS := ["", "ok", "good!", "cool!", "wonderful!", "amazing!", 
 @onready var score_text: RichTextLabel = $ScoreText
 
 @export var accuracy_curve: Curve
+var tutorial := false
 
 var active := false:
 	set(to):
 		if not to:
 			kill_arrows.emit()
+		else:
+			tutorial = not DAT.get_data("dance_battle_tutorialed", false)
+			if tutorial:
+				SOL.dialogue("dance_battle_tutorial")
+				DAT.set_data("dance_battle_tutorialed", true)
 		active = to
 
 var enemy_reference: EnemyAnimal
 var enemy_level := 1
-var greg_level := 1
+var target_reference: BattleActor
+var target_level := 1
 
 var beat := 0
 var beats_to_play := 40
@@ -33,7 +40,6 @@ var score := 0.0
 var enemy_hits := 0
 var enemy_streak := 0
 var enemy_score := 0.0
-var tutorial := false
 
 
 func _ready() -> void:
@@ -69,10 +75,6 @@ func reset() -> void:
 func _new_beat() -> void:
 	if not active:
 		return
-	if not DAT.get_data("dance_battle_tutorialed", false):
-		SOL.dialogue("dance_battle_tutorial")
-		DAT.set_data("dance_battle_tutorialed", true)
-		tutorial = true
 	if not SOL.dialogue_open:
 		beat += 1
 	if streak > 0:
@@ -82,7 +84,7 @@ func _new_beat() -> void:
 	if beat > beats_to_play:
 		return
 	var beat_to_test := 2 * (2 * int(tutorial))
-	if beat % beat_to_test == 0:
+	if beat % (beat_to_test + 2) == 0:
 		create_tween().tween_property(score_text, "modulate", Color.WHITE, 0.2).from(Color.YELLOW)
 		if SOL.dialogue_open:
 			return
@@ -198,7 +200,8 @@ func _ended() -> void:
 	var end_data := {
 		"player_score": pscore,
 		"enemy_score": enscore,
-		"enemy_reference": enemy_reference
+		"enemy_reference": enemy_reference,
+		"player_reference": target_reference
 	}
 	end.emit(end_data)
 
