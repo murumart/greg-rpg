@@ -933,6 +933,33 @@ CHOICES browse,leave
 	you should buy my items!
 
 
+DIALOGUE biking_welcome_6
+CHAR mail_man
+EMO 
+	it's me, the mail man.
+	did you know i sell items cheaper than the store does?
+CHOICES browse,leave
+	what a bargain, huh!
+
+
+DIALOGUE biking_welcome_7
+CHAR mail_man
+EMO 
+	it's me, the mail man.
+	milk is good for your bones!
+CHOICES browse,leave
+	drink milk to not take damage for a while.
+
+
+DIALOGUE biking_welcome_7
+CHAR mail_man
+EMO 
+	it's me, the mail man.
+	have you ever wondered what they put in the cough syrup?
+CHOICES browse,leave
+	it's what gets me going in the morning, whatever it is.
+
+
 DIALOGUE biking_welcome_beforelast
 CHAR mail_man
 EMO 
@@ -961,6 +988,112 @@ EMO
 	been a while, huh?
 CHOICES browse,leave
 	what do you wish to do.
+
+
+DIALOGUE biking_welcome_hellmention
+CHAR mail_man
+EMO 
+	warned you! i told you to not crush the snails!
+CHOICES browse,leave
+	anyway. shopping.
+
+
+DIALOGUE biking_welcome_2hells
+CHAR mail_man
+EMO serious
+	...you're being ridiculous. risking everything just...
+	...to step on more snails?
+CHOICES browse,leave
+	you are very weird.
+
+
+DIALOGUE biking_welcome_3hells
+CHAR mail_man
+EMO 
+	clearly, crushing as many snails as possible is your goal.
+	maybe it actually helps you with some sort of internal problem.
+	i don't know.
+CHOICES browse,leave
+	you are very, very weird indeed.
+
+
+DIALOGUE biking_welcome_morehells
+CHAR mail_man
+EMO 
+	are you addicted to the snail fumes?
+	i never thought one could feel a high from the hallucinogen...
+	...that snails produce as self-defense.
+	i'll just take it as something normal from now on, i guess.
+CHOICES browse,leave
+	buy my items now.
+
+
+DIALOGUE biking_welcome_smalltalk_1
+CHAR mail_man
+EMO 
+	you come back here a lot.
+EMO serious
+	...
+	i think i appreciate it. hasn't been dull in a while.
+EMO 
+	always leave it to the weird foreigner to liven the place up.
+CHOICES browse,leave
+	right, i'm selling you items.
+
+
+DIALOGUE biking_welcome_smalltalk_2
+CHAR mail_man
+EMO 
+DATA_LINK mail_heard_name,true
+	so, greg... where exactly are you from?
+DATA_LINK mail_heard_name,false
+	so, unskilled foreign worker... where exactly are you from?
+DATA_LINK 
+	...
+CHOICES browse,leave
+	no answer? i have always liked your straightforwardness.
+
+
+DIALOGUE biking_welcome_smalltalk_3
+CHAR mail_man
+EMO 
+	remember my problem with the asshole mailing envelopes full of sauce?
+EMO serious
+	that is still an issue.
+	every few days, one of those envelopes appears in my bag...
+	...and subsequently smears red sauce over all the contents of the bag.
+	i have questioned many people, including the pink haired girl...
+	...that likes spending time in the post office, for some reason.
+	i guess she hopes to make a letter materialise out of desperation...
+	...after she rechecks her mailbox for the 10th time.
+	anyway, yeah. the red sauce.
+	i've tried talking to the police, but to no avail.
+EMO 
+	maybe you should try instead.
+	you look like someone the police would like.
+CHOICES browse,leave
+	in any case, buy items.
+
+
+DIALOGUE biking_welcome_smalltalk_4
+CHAR mail_man
+EMO 
+	before you showed up today, i was ambushed and attacked...
+	...and by "ambushed and attacked" i mean "approached"...
+	...by the man in the strange red hat, again.
+EMO serious
+	you look clueless, so let me tell you this.
+	this town is essentially cut off from the rest of the world.
+EMO 
+	"good people don't end up here", is what we're told.
+	it makes sense for people to go insane in this isolation.
+	his insanity is that infatuation with me and my job.
+	i thought a bit about what my insanity could be.
+	i did not like what i came up with. i don't think anyone would.
+	you could think about your own insanity, you know.
+	but if you don't, don't worry, we all have yours figured out.
+CHOICES browse,leave
+	have i mentioned i sell helpful items?
 
 
 DIALOGUE biking_browse
@@ -1510,10 +1643,31 @@ CHAR tarikas
 	that's my favourite number.
 
 
-DIALOGUE tarikas_40
+DIALOGUE tarikas_40_nomeet
+CHAR tarikas
+	have you been to the lakeside yet?
+	mh, it's nice on sunny days.
+	i like strolling to the east.
+	the forest is beautiful there.
+
+
+DIALOGUE tarikas_40_met
+CHAR tarikas
+	thank you for listening to my story.
+	you are very interesting.
+
+
+DIALOGUE tarikas_40_nothugs
 CHAR tarikas
 	mh, the thugs in this town seem to have disappeared.
 	i guess that's connected to you somehow.
+
+
+DIALOGUE tarikas_50
+CHAR tarikas
+	are you looking for things to do?
+	mh. look around town. go shopping. help the mailman.
+	at this point you have to look for trouble.
 
 
 DIALOGUE tarikas_finish

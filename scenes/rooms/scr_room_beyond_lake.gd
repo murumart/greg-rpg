@@ -22,6 +22,7 @@ func _on_sun_spirit_inspected() -> void:
 
 
 func _on_tarikas_inspected() -> void:
+	DAT.set_data("met_tarikas_beyond_lake", true)
 	if tarikas.convo_progress >= 3:
 		tarikas.default_lines.clear()
 		if DAT.get_data("dont_care_about_tarikas_story", false):

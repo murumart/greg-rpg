@@ -118,8 +118,11 @@ func _physics_process(delta: float) -> void:
 	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
 	
 	# debug (rememmber to remove)
-	if Input.is_action_pressed("ui_end"):
+	if Input.is_action_pressed("ui_page_down"):
 		distance += 60
+	if Input.is_action_just_pressed("ui_end"):
+		while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
+			distance += 1
 	
 	if currently_syrup and get_meter() >= syrup_stop_meter:
 		stop_syrup()
@@ -208,7 +211,7 @@ func _on_mailbox_timer_timeout() -> void:
 	if currently_hell: return
 	if randf() <= 0.89:
 		var house := HOUSE_LOAD.instantiate()
-		house.speed = speed - (0.25 * speed) + (randf() * 2)
+		house.speed = minf(speed - (0.25 * speed) + (randf() * 2), speed)
 		var x: float = remap(house.speed, 30, 60, 0.1, 1.0)
 		house.modulate = Color(x, x, x)
 		house.z_index = roundi(remap(house.speed, 30, 60,-11, -14))

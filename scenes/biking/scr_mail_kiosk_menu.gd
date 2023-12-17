@@ -17,6 +17,14 @@ const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 @onready var item_info_label := $ItemInfoLabel
 @onready var item_picture := $ItemPanel/Sprite2D
 
+const RESETTABLE_DAT_VARIABLES := [
+	"biking_hell_mentioned",
+	"biking_hells2_mentioned",
+	"biking_hells3_mentioned",
+	"biking_hellsmore_mentioned",
+	"biking_small_talked",
+]
+
 var stage := -1
 var ending := false
 
@@ -73,6 +81,8 @@ func bye(choseperk := false) -> void:
 		dlbox.prepare_dialogue("biking_end")
 		await dlbox.dialogue_closed
 		closed.emit()
+		for v in RESETTABLE_DAT_VARIABLES:
+			DAT.set_data(v, false)
 		queue_free()
 		return
 		
@@ -117,18 +127,37 @@ func get_welcome_message() -> String:
 	var bike = game_get("bike") as BikingGreg
 	var health: float = bike.health / float(bike.max_health)
 	if ending:
-		SND.play_song("victory", 1.0, {"start_volume": 1.0})
+		SND.play_song("victory", 1.0, {"start_volume": 1.0, "play_from_beginning": true})
 		return "biking_last_stop"
 	if health < 0.24:
 		return "biking_welcome_lowhealth"
-	if game_get("snails_hit", 0) / float(game_get("snails_until_hell")) > 0.8:
+	if game_get("snails_hit", 0) - float(game_get("snails_until_hell")) > -3:
 		return "biking_welcome_snailwarning"
+	if game_get("hells_survived", 0) == 1 and not DAT.get_data("biking_hell_mentioned", false):
+		DAT.set_data("biking_hell_mentioned", true)
+		return "biking_welcome_hellmention"
+	if game_get("hells_survived", 0) == 2 and not DAT.get_data("biking_hells2_mentioned", false):
+		DAT.set_data("biking_hells2_mentioned", true)
+		return "biking_welcome_2hells"
+	if game_get("hells_survived", 0) == 3 and not DAT.get_data("biking_hells3_mentioned", false):
+		DAT.set_data("biking_hells3_mentioned", true)
+		return "biking_welcome_3hells"
+	if game_get("hells_survived", 0) > 3 and not DAT.get_data("biking_hellsmore_mentioned", false):
+		DAT.set_data("biking_hellsmore_mentioned", true)
+		return "biking_welcome_morehells"
 	if kiosks_opened == 1:
 		return "biking_welcome_1"
 	if DAT.seconds - DAT.get_data("last_kiosk_open_second", 0) > 60 + 30 + 60:
 		return "biking_welcome_afterwhile"
 	if Math.inrange(kiosks_opened, 2, 3):
-		return "biking_welcome_" + str((randi() % 3) + 2)
+		if DAT.get_data("witnessed_ushanka_guy_cutscene", false) and not DAT.get_data("biking_small_talked"):
+			DAT.set_data("biking_small_talked", true)
+			var p := DAT.get_data("mail_man_smalltalk_progress", 0) as int
+			if SOL.dialogue_exists("biking_welcome_smalltalk_" + str(p + 1)):
+				p += 1
+				DAT.set_data("mail_man_smalltalk_progress", p)
+				return "biking_welcome_smalltalk_" + str(p)
+		return "biking_welcome_" + str((randi() % 6) + 2)
 	if kiosks_opened == 4:
 		return "biking_welcome_beforelast"
 	return "biking_welcome_1"

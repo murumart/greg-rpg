@@ -64,9 +64,16 @@ func tarikas_lines() -> void:
 		lines_to_set.append("tarikas_30")
 	elif level == 36:
 		lines_to_set.append("tarikas_36")
-	elif Math.inrange(level, 37, 42):
+	elif Math.inrange(level, 37, 49):
 		if DAT.get_data("fulfilled_bounty_thugs", false):
-			lines_to_set.append("tarikas_40")
+			lines_to_set.append("tarikas_40_nothugs")
+		else:
+			if DAT.get_data("met_tarikas_beyond_lake", false):
+				lines_to_set.append("tarikas_40_met")
+			else:
+				lines_to_set.append("tarikas_40_nomeet")
+	elif Math.inrange(level, 50, 59):
+		lines_to_set.append("tarikas_50")
 	lines_to_set.append("tarikas_finish")
 	tarikas.default_lines = lines_to_set
 

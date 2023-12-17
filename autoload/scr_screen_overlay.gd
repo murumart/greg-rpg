@@ -56,6 +56,10 @@ func dialogue(key: String) -> void:
 	dialogue_box.prepare_dialogue(key)
 
 
+func dialogue_exists(key: String) -> bool:
+	return key in dialogue_box.dialogues_dict
+
+
 func _on_dialogue_closed() -> void:
 	dialogue_closed.emit() # so much logic hinges on this single line
 	dialogue_open = false
