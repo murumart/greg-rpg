@@ -29,6 +29,7 @@ var load_second := 0
 const NEIGHBOUR_WIFE_CYCLE := 470
 const ATGIRL_CYCLE := 1200
 const PH_GUY_WAIT := 600
+const LAKE_HINT_CYCLE := 800
 
 # on death
 var death_reason := "default"

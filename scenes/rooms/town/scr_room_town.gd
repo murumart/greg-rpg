@@ -24,6 +24,7 @@ func _ready() -> void:
 	pairhouse_guy_setup()
 	skatepark_setup()
 	kid_setup()
+	lake_hint_npc_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if DAT.get_character("greg").level < 9: bike.queue_free()
@@ -153,5 +154,19 @@ func kid_first_encounter() -> void:
 
 func _on_trash_guy_inspected() -> void:
 	DAT.set_data("trash_guy_inspected", true)
+
+
+func lake_hint_npc_setup() -> void:
+	var npc := $Houses/Store/LakeHintNpc as OverworldCharacter
+	var time := DAT.seconds % DAT.LAKE_HINT_CYCLE as int
+	var cyc := DAT.LAKE_HINT_CYCLE as int
+	if not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
+		npc.queue_free()
+		return
+	var level := DAT.get_character("greg").level
+	if level >= 24:
+		npc.default_lines.append("lake_hint")
+		return
+	npc.default_lines.append("lake_hint_" + str((randi() % 4) + 1))
 
 

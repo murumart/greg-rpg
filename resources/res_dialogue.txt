@@ -2348,6 +2348,37 @@ DIALOGUE mafia_interrupt
 	you don't mess with the mafia, got that?
 
 
+DIALOGUE lake_hint_1
+	i always do my shopping at the [color=#88aaff]yuku[/color] brand department stores.
+	that's because they are the only store chain in this region.
+
+
+DIALOGUE lake_hint_2
+	as an old person, i find it convenient that [color=#88aaff]yuku[/color] brand department stores...
+	...sell medicine. i can buy healing items in case i trip and fall...
+	...on my way back home.
+
+
+DIALOGUE lake_hint_3
+	[color=#88aaff]yuku[/color] brand department stores have bought all the competition...
+	...in the local region. they rose their prices afterwards, but...
+	...at least it's convenient having a fixed price, i guess.
+
+
+DIALOGUE lake_hint_4
+	i remember how back in the day, people would sell things...
+	...they made at the town market.
+	nothing, however, could compare to the convenience...
+	...that a single [color=#88aaff]yuku[/color] brand department store poses.
+
+
+DIALOGUE lake_hint
+	have you been to the lakeside yet?
+	it's refreshing taking a walk in the green nature.
+	the [color=#88aaff]yuku[/color] brand department store gets fresh fish from there.
+	just walk down the road to the southeast from here.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
