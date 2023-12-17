@@ -179,9 +179,9 @@ func next_bar(bar: int) -> void:
 
 
 func talk(w: String, speeddiv := 10.0) -> void:
+	speeddiv += 4
 	textbox.text = w
 	textbox.speak_text({speed = w.length() / speeddiv})
-
 
 
 func talk_about_metal() -> void:
