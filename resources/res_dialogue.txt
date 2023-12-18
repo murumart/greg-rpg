@@ -2372,11 +2372,42 @@ DIALOGUE lake_hint_4
 	...that a single [color=#88aaff]yuku[/color] brand department store poses.
 
 
+DIALOGUE lake_hint_5
+	i really enjoy the new muesli available at... you guessed it...
+	[color=#88aaff]yuku[/color] brand department stores.
+	only, what, 450 silver or something?
+
+
+DIALOGUE lake_hint_6
+	my favourite customer service is at the local... yawn...
+	...[color=#88aaff]yuku[/color] brand department store. go spend money.
+
+
+DIALOGUE lake_hint_7
+	it is futile. [color=#88aaff]yuku[/color] brand department stores will sell you...
+	...the products you love.
+
+
+DIALOGUE lake_hint_8
+	[color=#88aaff]yuku[/color] brand department stores stocked new crowd favorites.
+	it was inevitable.
+
+
 DIALOGUE lake_hint
 	have you been to the lakeside yet?
 	it's refreshing taking a walk in the green nature.
 	the [color=#88aaff]yuku[/color] brand department store gets fresh fish from there.
 	just walk down the road to the southeast from here.
+
+
+DIALOGUE lake_hint_cutscene_1
+CHAR cashier_nice
+	hello... the company has decided to pay your wage this month.
+	it's as thanks for the rampant adver- tising. keep it up...
+CHAR 
+	splendid. with enough money, i can finally buy some [color=#88aaff]yuku[/color] brand muesli.
+CHAR cashier_nice
+	please don't say things like that to my face ever again.
 
 
 DIALOGUE insp_snowdrops

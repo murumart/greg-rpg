@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=98 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
+[ext_resource type="SpriteFrames" uid="uid://d1gv8oqbnw55i" path="res://resources/characters/sfr_cashier_nice.tres" id="23_nx27k"]
 [ext_resource type="PackedScene" uid="uid://d1bw3nluoktrc" path="res://scenes/decor/scn_campfire.tscn" id="24_375rx"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
@@ -111,6 +112,240 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_jlno2"),
 "glow": SubResource("Animation_6fjja")
+}
+
+[sub_resource type="Animation" id="Animation_ddthu"]
+resource_name = "cutscene_start"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CashierSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CashierSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 47), Vector2(17, 92), Vector2(88, 95)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CashierSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CashierSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"walk_down", &"walk_right"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CashierSprite:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CashierSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_fqrk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CashierSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CashierSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(897, 258)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CashierSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CashierSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk_down"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CashierSprite:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CashierSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yq7fl"]
+resource_name = "cutscene_end"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CashierSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CashierSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(88, 95), Vector2(17, 92), Vector2(16, 47)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CashierSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CashierSprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"walk_left", &"walk_up", &"walk_down"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CashierSprite:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CashierSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8mgoo"]
+_data = {
+"RESET": SubResource("Animation_fqrk0"),
+"cutscene_end": SubResource("Animation_yq7fl"),
+"cutscene_start": SubResource("Animation_ddthu")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_expa7"]
@@ -490,7 +725,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(880, 235)
+position = Vector2(904, 256)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1142,7 +1377,7 @@ position = Vector2(-34, 63)
 tutorial_type = 2
 
 [node name="LakeHintNpc" parent="Houses/Store" instance=ExtResource("10_dem56")]
-position = Vector2(170, 91)
+position = Vector2(108, 96)
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/Store/LakeHintNpc"]
@@ -1150,6 +1385,20 @@ position = Vector2(0, -8)
 texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
+
+[node name="CashierSprite" type="AnimatedSprite2D" parent="Houses/Store"]
+visible = false
+position = Vector2(897, 258)
+sprite_frames = ExtResource("23_nx27k")
+animation = &"walk_down"
+autoplay = "walk_down"
+speed_scale = 0.0
+offset = Vector2(0, -7)
+
+[node name="StoreCutscenePlayer" type="AnimationPlayer" parent="Houses/Store"]
+libraries = {
+"": SubResource("AnimationLibrary_8mgoo")
+}
 
 [node name="PostOffice" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1665,6 +1914,7 @@ position = Vector2(-29, -6)
 [node name="Birds" type="Node2D" parent="Other"]
 y_sort_enabled = true
 position = Vector2(-16, 240)
+metadata/_edit_lock_ = true
 
 [node name="Bird" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
 position = Vector2(-351, 72)
@@ -1679,13 +1929,13 @@ position = Vector2(412, -247)
 position = Vector2(419, -234)
 
 [node name="Bird5" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
-position = Vector2(998, -3)
+position = Vector2(1086, -13)
 
 [node name="Bird6" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
-position = Vector2(983, 6)
+position = Vector2(1071, -4)
 
 [node name="Bird7" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
-position = Vector2(973, 1)
+position = Vector2(1061, -9)
 
 [node name="Bird8" parent="Other/Birds" instance=ExtResource("25_ao4c1")]
 position = Vector2(-270, -416)

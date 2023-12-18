@@ -162,11 +162,30 @@ func lake_hint_npc_setup() -> void:
 	var cyc := DAT.LAKE_HINT_CYCLE as int
 	if not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
 		npc.queue_free()
+		DAT.set_data("lake_hint_received", false)
 		return
+	npc.inspected.connect(_on_lake_hint_received)
 	var level := DAT.get_character("greg").level
 	if level >= 24:
 		npc.default_lines.append("lake_hint")
 		return
-	npc.default_lines.append("lake_hint_" + str((randi() % 4) + 1))
+	npc.default_lines.append("lake_hint_" + str((randi() % 8) + 1))
+
+func _on_lake_hint_received(force_cutscene: bool = false) -> void:
+	var cs := $Houses/Store/StoreCutscenePlayer as AnimationPlayer
+	if not DAT.get_data("lake_hint_received", false):
+		DAT.incri("store_ad_progress", 1)
+	DAT.set_data("lake_hint_received", true)
+	if force_cutscene or DAT.get_data("store_ad_progress", 0) >= 3 and not DAT.get_data("saw_ad_cutscene", false):
+		DAT.set_data("saw_ad_cutscene", true)
+		DAT.capture_player("cutscene")
+		cs.play("cutscene_start")
+		cs.animation_finished.connect(func(_a):
+			SOL.dialogue("lake_hint_cutscene_1")
+			SOL.dialogue_closed.connect(func():
+				cs.play("cutscene_end")
+				DAT.free_player("cutscene")
+			, CONNECT_ONE_SHOT)
+		, CONNECT_ONE_SHOT)
 
 
