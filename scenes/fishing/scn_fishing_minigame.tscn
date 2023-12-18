@@ -29,12 +29,12 @@ weight = 25
 [sub_resource type="Resource" id="Resource_gk55d"]
 script = ExtResource("2_8qmcw")
 id = &"rain_boot"
-weight = 1
+weight = 16
 
 [sub_resource type="Resource" id="Resource_ylpm1"]
 script = ExtResource("2_8qmcw")
 id = &"fish"
-weight = 1
+weight = 26
 
 [sub_resource type="Resource" id="Resource_yawqg"]
 script = ExtResource("2_8qmcw")
