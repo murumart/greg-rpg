@@ -615,7 +615,7 @@ func open_end_screen(victory: bool) -> void:
 		var xp_reward := Reward.new()
 		xp_reward.type = BattleRewards.Types.EXP
 		xp_reward.property = str(xp_pool)
-		battle_rewards.rewards.append(xp_reward)
+		battle_rewards.add(xp_reward)
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
 			await battle_rewards.granted

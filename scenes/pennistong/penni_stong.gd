@@ -224,7 +224,7 @@ func win() -> void:
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP
 	reward.property = str(maxi(score - enscore, 0) / 27.0)
-	rewards.rewards.append(reward)
+	rewards.add(reward)
 	rewards.grant()
 	await SOL.dialogue_closed
 	end()

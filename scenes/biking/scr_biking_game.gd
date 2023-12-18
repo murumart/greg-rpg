@@ -426,38 +426,38 @@ func calculate_rewards() -> BattleRewards:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
 		rew.property = str(roundf(mail_hits * 0.89))
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 	if mail_hits > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.EXP
 		var xp := mail_hits * 0.25
 		xp *= pow(hells_survived + 1, 2.3)
 		rew.property = str(roundf(xp))
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 	if silver_collected > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
 		rew.property = str(float(silver_collected))
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 	for i in inventory:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str(i)
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 	# special conditional rewards
 	if true:
 		# first time finishing
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str("bike_helmet")
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 		rew.unique = true
 	if bike.hits < 1:
 		SOL.dialogue("biking_end_reward_nohit")
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
 		rew.property = str(100)
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 		DAT.incri("no_hit_biking_runs", 1)
 	if DAT.get_data("biking_games_finished", 0) > 11 and\
 	DAT.get_data("no_hit_biking_runs", 0) > 0 and\
@@ -467,7 +467,7 @@ func calculate_rewards() -> BattleRewards:
 		var rew := Reward.new() as Reward
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str("mail_hat")
-		rewd.rewards.append(rew)
+		rewd.add(rew)
 		rew.unique = true
 	return rewd
 

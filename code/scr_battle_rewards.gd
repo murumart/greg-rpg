@@ -1,12 +1,16 @@
 class_name BattleRewards extends Resource
 
-# rewards system manager for battles and minigames and such
+# rewards system resource for battles and minigames and such
 
 signal granted
 
 enum Types {SILVER, ITEM, SPIRIT, EXP}
 
 @export var rewards: Array[Reward] = []
+
+
+func add(reward: Reward):
+	rewards.append(reward)
 
 
 func grant(speak := true) -> void:
