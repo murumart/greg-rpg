@@ -13,7 +13,9 @@ const SND_CRASH := preload("res://sounds/fishing/crash.ogg")
 const SND_HISCR := preload("res://sounds/fishing/highscore.ogg")
 const SND_TMOUT := preload("res://sounds/fishing/timeout.ogg")
 
-@onready var tilemap := $Blocks
+const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
+
+@onready var tilemap := $Blocks as TileMap
 var processed_ypos := 1
 @onready var noise: FastNoiseLite = $NoiseSprite.texture.noise
 @onready var hook := $Hook
@@ -31,6 +33,8 @@ var speed := 60
 var depth := 0.0
 var points := 0
 var fish_caught := 0
+var items_caught: Array[StringName] = []
+var items_spawned: Array[StringName] = []
 var recent_fish_caught := 0.0
 var time_left := 80.0
 var battle_info: BattleInfo
@@ -42,6 +46,8 @@ var battle_info: BattleInfo
 @onready var time_bar := $Ui/Timebar
 
 @export var depth_fish_increase_curve: Curve
+@export var depth_item_increase_curve: Curve
+@export var random_items: WeightedRandomContainer
 
 # funny
 var kiosk_enabled := false
@@ -138,33 +144,45 @@ func _on_hook_collision(node: Node2D) -> void:
 	elif node is Area2D and node.get_parent() is FishingFish:
 		node = node.get_parent() as FishingFish
 		if node.moving and not node.decor:
-			var combo := roundi(recent_fish_caught)
-			points += node.value + combo
-			time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
-			points_label.text = str("points: ", points)
-			SOL.vfx(
-				"damage_number",
-				node.global_position,
-				{
-					"text": str("+", node.value + combo),
-					"color": Color(1, 1, 1, 0.5) if not combo else
-					Color(1.0, 0.8, 0.6, 0.8),
-					"speed": 3
-				}
-			)
-			if combo:
+			if not node.item:
+				var combo := roundi(recent_fish_caught)
+				points += node.value + combo
+				time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
+				points_label.text = str("points: ", points)
 				SOL.vfx(
 					"damage_number",
-					combo_bar.global_position + (Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2,
+					node.global_position,
 					{
-						"text": str("combo! +", combo),
-						"color": Color(1.0, 0.8, 0.6, 0.8),
-						"speed": 2
+						"text": str("+", node.value + combo),
+						"color": Color(1, 1, 1, 0.5) if not combo else
+						Color(1.0, 0.8, 0.6, 0.8),
+						"speed": 3
+					}
+				)
+				if combo:
+					SOL.vfx(
+						"damage_number",
+						combo_bar.global_position + (Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2,
+						{
+							"text": str("combo! +", combo),
+							"color": Color(1.0, 0.8, 0.6, 0.8),
+							"speed": 2
+						}
+					)
+				recent_fish_caught += 1.3
+				fish_caught += 1
+			else:
+				items_caught.append(node.item)
+				SOL.vfx(
+					"damage_number",
+					node.global_position,
+					{
+						"text": DAT.get_item(node.item).name,
+						"color": Color(0.3, 1, 0.4, 0.5),
+						"speed": 0.75
 					}
 				)
 			node.caught()
-			recent_fish_caught += 1.3
-			fish_caught += 1
 			SND.play_sound(SND_CATCH, {"pitch": remap(node.value, 1, 11, 1.0, 0.66)})
 			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch = randf_range(0.9, 1.4)})
 			wiggle.call()
@@ -212,13 +230,15 @@ func process_tilemap() -> void:
 		):
 			rock_array.append(cell)
 		else: #spawn fish
-			if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 2.0:
+			if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) * 0.5:
 				pass
 				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
 			if depth >= 7500:
-				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) / 16.0:
+				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) * 0.0625:
 					pass
 					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
+			if randf() < depth_item_increase_curve.sample(depth / 20_000.0) * 0.00285714:
+				spawn_item(random_items.get_random_id(), tilemap.to_global(tilemap.map_to_local(cell)))
 		# background fish
 		if randf() < depth_fish_increase_curve.sample(depth / 20_000.0):
 			pass
@@ -243,35 +263,45 @@ func process_tilemap() -> void:
 	processed_ypos = ypos
 
 
+func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> void:
+	node.global_position = coords
+	node.depth = roundi(depth / 100.0)
+	# background node for decoration
+	if background:
+		node.z_index = -8
+		node.decor = true
+		var fishsc := randf_range(0.2, 0.8)
+		node.scale = Vector2(fishsc, fishsc)
+		node.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
+		node.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
+	fish_parent.add_child(node)
+	if background:
+		node.wallrun_area.queue_free()
+		node.hook_area.queue_free()
+
+
 func spawn_fish(coords: Vector2, background := false) -> void:
 	var fish := FISH_LOAD.instantiate()
-	fish.global_position = coords
-	fish.depth = roundi(depth / 100.0)
-	# background fish for decoration
-	if background:
-		fish.z_index = -8
-		fish.decor = true
-		var fishsc := randf_range(0.2, 0.8)
-		fish.scale = Vector2(fishsc, fishsc)
-		fish.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
-		fish.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
-	fish_parent.add_child(fish)
+	spawn_swimmer(fish, coords, background)
 
 
 # sea mines that you can run into to lose
 func spawn_mine(coords: Vector2, background := false) -> void:
 	var mine := MINE_LOAD.instantiate()
-	mine.global_position = coords
-	mine.depth = roundi(depth / 100.0)
-	# background mines...
-	if background:
-		mine.z_index = -8
-		mine.decor = true
-		var fishsc := randf_range(0.2, 0.8)
-		mine.scale = Vector2(fishsc, fishsc)
-		mine.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
-		mine.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
-	fish_parent.add_child(mine)
+	spawn_swimmer(mine, coords, background)
+
+
+func spawn_item(item_id: StringName, coords: Vector2) -> void:
+	var rew_s := str(Reward.new({"property": item_id, "type": BattleRewards.Types.ITEM}))
+	if not rew_s in DAT.get_data("unique_rewards", []) and not (
+		(item_id in UNIQUE_REWARDS) and (item_id in items_spawned)
+	):
+		var item := FISH_LOAD.instantiate()
+		if not item_id in items_spawned:
+			items_spawned.append(item_id)
+		item.item = item_id
+		item.is_fish = false
+		spawn_swimmer(item, coords, false)
 
 
 func delete_offscreen_tiles(ypos: int) -> void:
@@ -308,26 +338,20 @@ func _on_after_crash_timer_timeout() -> void:
 	xrew.type = BattleRewards.Types.EXP
 	xrew.property = str(roundi(score * 0.088))
 	
-	rewards.rewards.append(srew)
-	rewards.rewards.append(xrew)
+	rewards.add(srew)
+	rewards.add(xrew)
 	if high_score:
 		var hsrew := Reward.new()
 		hsrew.type = BattleRewards.Types.SILVER
 		hsrew.property = str(roundi(score * 0.02))
-		rewards.rewards.append(hsrew)
+		rewards.add(hsrew)
 	
-	if randf() < 0.2:
-		var fishrew := Reward.new()
-		fishrew.type = BattleRewards.Types.ITEM
-		fishrew.property = "fish"
-		fishrew.unique = true
-		rewards.rewards.append(fishrew)
-	if randf() < 0.1:
-		var boot := Reward.new()
-		boot.type = BattleRewards.Types.ITEM
-		boot.property = "rain_boot"
-		boot.unique = true
-		rewards.rewards.append(boot)
+	for item in items_caught:
+		var rew := Reward.new()
+		rew.type = BattleRewards.Types.ITEM
+		rew.property = str(item)
+		rew.unique = item in UNIQUE_REWARDS
+		rewards.add(rew)
 	
 	# granting rewards
 	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/misc_click.ogg"))

@@ -1,7 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=36 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
+[ext_resource type="Script" path="res://code/scr_weighted_random_pair.gd" id="2_8qmcw"]
+[ext_resource type="Script" path="res://code/scr_weighted_random_container.gd" id="2_clupb"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_mb35u"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="4_ohvva"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="4_s301t"]
@@ -11,8 +13,42 @@
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_thb0r"]
 
 [sub_resource type="Curve" id="Curve_itjb6"]
-_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.26293, 0.204545), 0.718393, 0.718393, 0, 0, Vector2(0.49994, 0.294258), 1.93172, 0.0, 0, 0, Vector2(1, 0.0151516), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.268371, 0.152862), 0.718393, 0.718393, 0, 0, Vector2(0.533546, 0.279537), 1.93172, 0.0, 0, 0, Vector2(1, 0.0151516), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Curve" id="Curve_amim5"]
+bake_resolution = 32
+_data = [Vector2(0, 0.122293), 0.0, 0.0, 0, 0, Vector2(0.492013, 0.485384), 0.0, 0.0, 0, 0, Vector2(0.738019, 1), 0.560372, 0.560372, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_ak44i"]
+script = ExtResource("2_8qmcw")
+id = &"gummy_fish"
+weight = 25
+
+[sub_resource type="Resource" id="Resource_gk55d"]
+script = ExtResource("2_8qmcw")
+id = &"rain_boot"
+weight = 1
+
+[sub_resource type="Resource" id="Resource_ylpm1"]
+script = ExtResource("2_8qmcw")
+id = &"fish"
+weight = 1
+
+[sub_resource type="Resource" id="Resource_yawqg"]
+script = ExtResource("2_8qmcw")
+id = &"bread"
+weight = 15
+
+[sub_resource type="Resource" id="Resource_w2a5d"]
+script = ExtResource("2_8qmcw")
+id = &"water_balloon"
+weight = 12
+
+[sub_resource type="Resource" id="Resource_inxmd"]
+script = ExtResource("2_clupb")
+elements = Array[ExtResource("2_8qmcw")]([SubResource("Resource_ak44i"), SubResource("Resource_gk55d"), SubResource("Resource_ylpm1"), SubResource("Resource_yawqg"), SubResource("Resource_w2a5d")])
 
 [sub_resource type="Environment" id="Environment_3gpcx"]
 background_mode = 3
@@ -1067,6 +1103,8 @@ bg_color = Color(0.309804, 0.556863, 0.435294, 1)
 [node name="FishingMinigame" type="Node2D"]
 script = ExtResource("1_v6q63")
 depth_fish_increase_curve = SubResource("Curve_itjb6")
+depth_item_increase_curve = SubResource("Curve_amim5")
+random_items = SubResource("Resource_inxmd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3gpcx")
@@ -1114,11 +1152,7 @@ layer_0/modulate = Color(0.172549, 0.360784, 0.490196, 1)
 layer_0/z_index = -5
 layer_0/tile_data = PackedInt32Array(262141, 262145, 17, 196605, 458753, 15, 196604, 327681, 17, 131068, 262145, 16, 65532, 720897, 17, -4, 983041, 15, -5, 524289, 16, -65541, 262145, 15, 65531, 786433, 18, 196612, 458753, 18, 196611, 393217, 17, 196610, 327681, 18, 131075, 262145, 15)
 layer_1/name = "foreground"
-layer_1/enabled = true
 layer_1/modulate = Color(1, 1.29, 1.07, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131068, 983040, 15, 131067, 655360, 16, 65531, 983040, 15, 196603, 851968, 17, 196604, 983040, 17, 262140, 655360, 16, 262141, 983040, 15, 262139, 851968, 17, 262138, 786432, 16, -65542, 262144, 16, -6, 262144, 16, 65530, 524288, 16, 131066, 786432, 16, 196602, 786432, 16, 327674, 786432, 18, 327675, 851968, 18, 327676, 851968, 18, 327677, 983040, 18, 262146, 327680, 18, 262147, 589824, 18, 262148, 851968, 18, 262149, 983040, 18, 196613, 983040, 17, 196612, 589824, 16, 196611, 786432, 15, 131076, 786432, 16, 131077, 983040, 17, 65541, 983040, 17, 5, 720896, 16, 4, 786432, 15, 65539, 327680, 18, 65540, 786432, 17, -65531, 262144, 16, -131067, 262144, 15, -131078, 262144, 15)
 
 [node name="Camera" parent="." instance=ExtResource("2_mb35u")]

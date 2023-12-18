@@ -21,20 +21,23 @@ var decor := false
 @export var hazardous := false
 
 @export var is_fish := true
+@export var item := &""
 
 var depth := 0
 var value := 0
 
 @onready var sprite := $Sprite
+@onready var hook_area: Area2D = $HookArea
+@onready var wallrun_area: Area2D = $WallrunArea
 
 
 func _ready() -> void:
 	sprite.flip_h = bool(direction)
+	assign_value()
 	if sprite.material:
 		# have to duplicate to make the wave animation speeds not be the same across all fish
 		sprite.material = sprite.material.duplicate(false)
 		sprite.material["shader_parameter/speed"] = speed * 0.08
-	assign_value()
 
 
 func _physics_process(delta: float) -> void:
@@ -58,10 +61,14 @@ func _on_wall_hit(_body: Node2D) -> void:
 
 
 func assign_value() -> void:
+	if not is_fish:
+		if item:
+			sprite.texture = DAT.get_item(item).texture
+			sprite.material = null
+		return
 	# hehehe
 	var rarity := str(((randi() % maxi(depth, 1)) + depth) / float(depth)).count("8")
 	value = mini(roundi(pow(2, rarity / 2.0)), 11)
-	if !is_fish: return
 	if rarity < FISH_TEXTURES.size():
 		sprite.texture = FISH_TEXTURES[rarity]
 
