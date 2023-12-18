@@ -9,7 +9,15 @@ class_name Reward extends Resource
 @export var unique := false
 
 
-func _init() -> void:
+func _init(opt := {}) -> void:
+	if opt.get("type"):
+		type = opt.type
+	if opt.get("property"):
+		property = opt.property
+	if opt.get("chance"):
+		chance = opt.get(chance)
+	if opt.get("unique"):
+		unique = opt.get(unique)
 	pass
 
 
