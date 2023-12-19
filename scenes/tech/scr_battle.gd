@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
+).set_music("foreign_fauna").set_party(["greg","cashier_nice"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -375,6 +375,10 @@ func _on_actor_died(actor: BattleActor) -> void:
 		actor = actor as BattleEnemy
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
 		xp_pool += actor.character.level * actor.xp_multiplier
+	# delete from enemies' vendetta lists
+	# (because they can still attack dead people technically)
+	for enemy: BattleEnemy in enemies:
+		enemy.extra_targets.erase(actor)
 	dead_actors.append(actors.pop_at(actors.find(actor)))
 	arrange_enemies()
 	check_end()

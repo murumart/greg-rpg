@@ -166,7 +166,7 @@ func lake_hint_npc_setup() -> void:
 		return
 	npc.inspected.connect(_on_lake_hint_received)
 	var level := DAT.get_character("greg").level
-	if level >= 24:
+	if level >= 24 and not "lakeside" in DAT.get_data("visited_rooms", []):
 		npc.default_lines.append("lake_hint")
 		return
 	npc.default_lines.append("lake_hint_" + str((randi() % 8) + 1))

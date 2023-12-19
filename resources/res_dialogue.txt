@@ -2410,6 +2410,36 @@ CHAR cashier_nice
 	please don't say things like that to my face ever again.
 
 
+DIALOGUE girl_1
+	i love this little town!
+	i have been to many places, and this town...
+	...is already a favourite of mine.
+
+
+DIALOGUE girl_2
+	i love going to little towns such as this one!
+	the hustle and bustle of large towns is good...
+	...but something about the intimacy in places...
+	...like this make me gravitate towards them.
+
+
+DIALOGUE girl_3
+	traveling is one of my passions!
+	i have met many people on my trips.
+	you might be one of the ugliest of them. sorry...
+
+
+DIALOGUE girl_4
+	hello! what an interesting face you have!
+	i lost my appetite...
+
+
+DIALOGUE girl_5
+	hello! are you a local?
+	do you know when the cashiers in the store switch?
+	asking for a friend...
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
