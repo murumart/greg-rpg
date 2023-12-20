@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=100 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -43,6 +43,8 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Texture2D" uid="uid://bcbj5ae57nfcp" path="res://sprites/characters/overworld/spr_gleebungus_overworld.png" id="36_04fx3"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
+[ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
@@ -408,7 +410,7 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Jack:rotation")
-tracks/4/interp = 1
+tracks/4/interp = 4
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
@@ -2053,6 +2055,34 @@ save = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/Football/Baller2"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_c3ekp")
+animation = &"walk_down"
+
+[node name="VampireGirl" type="Node2D" parent="Other"]
+position = Vector2(-1040, 0)
+script = ExtResource("39_6m0tj")
+
+[node name="PositionMarkers" type="Node2D" parent="Other/VampireGirl"]
+
+[node name="Marker2D" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+position = Vector2(1624, -153)
+
+[node name="Marker2D2" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+position = Vector2(1352, -168)
+
+[node name="Marker2D3" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+position = Vector2(904, -392)
+
+[node name="Marker2D4" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+position = Vector2(1816, 280)
+
+[node name="Girl" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(10, 0)
+animated_sprite = NodePath("AnimatedSprite2D")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/VampireGirl/Girl"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("40_cl7gv")
 animation = &"walk_down"
 
 [node name="Trees" type="Node2D" parent="."]
