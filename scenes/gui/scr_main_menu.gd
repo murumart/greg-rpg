@@ -61,7 +61,8 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_load_game_button_pressed() -> void:
-	SOL.save_menu(true, {"restrict": 1}) # only allow loading
+	# only allow loading, enable deleting saves
+	SOL.save_menu(true, {"restrict": 1, "erasure_enabled": true})
 
 
 func _on_quit_button_pressed() -> void:

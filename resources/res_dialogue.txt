@@ -178,6 +178,15 @@ DIALOGUE exchange_criteria_sisu
 	%s LB%s LB%s LB
 
 
+DIALOGUE save_deletion_confirmation
+CHOICES no,yes
+	are you sure you want to erase this save file?
+CHOICE_LINK yes
+	so be it.
+CHOICE_LINK no
+	there's many memories here.
+
+
 DIALOGUE intro_convo_0
 CHAR zerma
 	greg, wake up!

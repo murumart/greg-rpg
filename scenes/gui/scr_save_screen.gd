@@ -13,6 +13,7 @@ const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 var mode: int = SAVE
 var restricted_mode := -1
 var current_button := 0
+var erasure_enabled := false
 
 
 func init(opt := {}):
@@ -20,6 +21,7 @@ func init(opt := {}):
 	# used to create screens that you can only use for loading
 	# like after a game over or in the main menu
 	restricted_mode = opt.get("restrict", -1)
+	erasure_enabled = opt.get("erasure_enabled", false)
 
 
 func _ready() -> void:
@@ -42,7 +44,7 @@ func _ready() -> void:
 # i just bit an apple and its skin got stuck between my two front teeth
 # how do i get it ou
 # welp
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed(): return
 	# exiting the save menu
 	# by popular demand: you can use multiple keys to do it
@@ -59,7 +61,17 @@ func _input(event: InputEvent) -> void:
 		SND.menusound()
 	if old_button != current_button:
 		SND.menusound(2.0)
+	if event.is_action_pressed("ui_text_delete"):
+		if erasure_enabled:
+			SOL.dialogue("save_deletion_confirmation")
+			SOL.dialogue_closed.connect(func():
+				if SOL.dialogue_choice != &"no":
+					DirAccess.remove_absolute(ABSOLUTE_SAVE_PATH % current_button)
+					update_buttons()
+			, CONNECT_ONE_SHOT)
 	if event.is_action_pressed("ui_accept"):
+		if SOL.dialogue_open:
+			return
 		_on_button_pressed(current_button)
 
 
@@ -80,6 +92,8 @@ func set_current_button(to: int) -> void:
 	text += "playtime: %s\n" % get_playtime(data)
 	text += "\nparty: %s\n" % data.get("party", "?")
 	text += "level: %s\n" % data.get("char_greg_save", {}).get("level", "?")
+	if erasure_enabled:
+		text += "\npress del to erase this file."
 	info_label.set_text(text)
 
 
