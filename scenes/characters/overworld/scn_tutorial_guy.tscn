@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc8ogd0l1n7gn"]
+[gd_scene load_steps=7 format=3 uid="uid://cyrwyy0hn2q3u"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_62a6f"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_8rkar"]
