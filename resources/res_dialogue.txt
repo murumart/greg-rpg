@@ -1672,6 +1672,13 @@ CHAR tarikas
 	i guess that's connected to you somehow.
 
 
+DIALOGUE tarikas_45
+CHAR tarikas
+	mh, have you heard of the vampire in town?
+	i'd recommend you to hurry and find them.
+	no reason, really.
+
+
 DIALOGUE tarikas_50
 CHAR tarikas
 	are you looking for things to do?

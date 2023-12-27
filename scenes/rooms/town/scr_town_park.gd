@@ -71,7 +71,12 @@ func tarikas_lines() -> void:
 			if DAT.get_data("met_tarikas_beyond_lake", false):
 				lines_to_set.append("tarikas_40_met")
 			else:
-				lines_to_set.append("tarikas_40_nomeet")
+				if Math.inrange(level, 45, 49):
+					if DAT.get_data("witnessed_ushanka_guy_cutscene", false):
+						lines_to_set.append("tarikas_45")
+				else:
+					lines_to_set.append("tarikas_40_nomeet")
+		
 	elif Math.inrange(level, 50, 59):
 		lines_to_set.append("tarikas_50")
 	lines_to_set.append("tarikas_finish")
