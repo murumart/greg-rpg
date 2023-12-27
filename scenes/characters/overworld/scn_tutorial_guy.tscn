@@ -16,7 +16,7 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="TutorialGUy" instance=ExtResource("1_62a6f")]
+[node name="TutorialGUy" groups=["tutguy"] instance=ExtResource("1_62a6f")]
 script = ExtResource("2_ujwv4")
 tutorial_type = 0
 save = false

@@ -67,6 +67,7 @@ func _ready() -> void:
 		trees()
 		enemies()
 		gen_greenhouse()
+		gen_us()
 	else:
 		load_from_save()
 
@@ -158,11 +159,22 @@ func valid_placement_spot(pos: Vector2) -> bool:
 		paths.get_cell_tile_data(
 			enabled_layer, vpos + Vector2i(paths.scale * Vector2.UP))
 	]
-	for td in tds:
+	for td: TileData in tds:
 		if not (not td or (
 			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
 			return false
 	used_poses.append(vpos)
+	return true
+
+
+func is_area_free(rect: Rect2i) -> bool:
+	print("checking rect ", rect)
+	for i in rect.size.x:
+		for j in rect.size.y:
+			var x := i + rect.position.x
+			var y := j + rect.position.y
+			if not valid_placement_spot(Vector2(x, y)):
+				return false
 	return true
 
 
@@ -230,6 +242,21 @@ func gen_greenhouse() -> void:
 	greenhouse.save = false
 	add_child(greenhouse)
 	greenhouse.set_vegetables(current_room % VEGET_GREENHOUSE_INTERVAL == 0)
+
+
+func gen_us() -> void:
+	var sze := 2
+	for i in range(-18, 17, sze):
+		for j in range(-16, 15, sze):
+			if is_area_free(Rect2i(i, j, sze, sze)):
+				var pos := Vector2(
+					i,
+					j
+				)
+				var g := preload("res://scenes/characters/overworld/scn_tutorial_guy.tscn").instantiate()
+				g.global_position = pos * 16
+				g.tutorial_type = g.TutorialType.FOREST
+				add_child(g)
 
 
 func leave() -> void:

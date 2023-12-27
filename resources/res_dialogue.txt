@@ -2338,6 +2338,10 @@ SPEED 0.75
 	i haven't had the need to buy food for months.
 
 
+DIALOGUE tutguy_forest
+	we are one. we are many.
+
+
 DIALOGUE tutguy_bye
 SPEED 0.65
 	i am very helpful!

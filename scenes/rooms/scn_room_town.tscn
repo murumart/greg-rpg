@@ -24,7 +24,7 @@
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="14_gpjks"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_tutorial_guy.tscn" id="16_2feir"]
+[ext_resource type="PackedScene" uid="uid://cyrwyy0hn2q3u" path="res://scenes/characters/overworld/scn_tutorial_guy.tscn" id="16_2feir"]
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
 [ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="16_ndfvs"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_o4xvl"]
