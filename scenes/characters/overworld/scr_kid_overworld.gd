@@ -19,7 +19,7 @@ func interacted() -> void:
 	Math.reaap(trades_dict.keys(), "nvm"))
 	super.interacted()
 	SOL.dialogue_closed.connect(func():
-		if SOL.dialogue_choice == "nvm": return
+		if SOL.dialogue_choice == "nvm" or SOL.dialogue_choice == "no": return
 		var key := SOL.dialogue_choice
 		trades_dict[key].state(Exchange.Statements.CRITERIA)
 		trades_dict[key].state(Exchange.Statements.RETURNS)
