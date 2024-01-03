@@ -250,6 +250,8 @@ func direct_walking_animation(direction: Vector2) -> void:
 		animated_sprite.stop()
 		return
 	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1])
+	if not animated_sprite.sprite_frames.has_animation(animation_name):
+		return
 	animated_sprite.play(animation_name)
 	animated_sprite.speed_scale = velocity.length() * 0.04
 	if is_zero_approx(velocity.length_squared()):
