@@ -2057,7 +2057,8 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_c3ekp")
 animation = &"walk_down"
 
-[node name="VampireGirl" type="Node2D" parent="Other"]
+[node name="VampireGirl" type="Node2D" parent="Other" groups=["save_me"]]
+y_sort_enabled = true
 position = Vector2(-1040, 0)
 script = ExtResource("39_6m0tj")
 
