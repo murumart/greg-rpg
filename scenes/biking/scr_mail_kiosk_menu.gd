@@ -157,7 +157,7 @@ func get_welcome_message() -> String:
 				p += 1
 				DAT.set_data("mail_man_smalltalk_progress", p)
 				return "biking_welcome_smalltalk_" + str(p)
-		return "biking_welcome_" + str((randi() % 6) + 2)
+		return "biking_welcome_" + str((randi() % 7) + 2)
 	if kiosks_opened == 4:
 		return "biking_welcome_beforelast"
 	return "biking_welcome_1"

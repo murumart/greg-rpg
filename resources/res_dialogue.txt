@@ -960,7 +960,7 @@ CHOICES browse,leave
 	drink milk to not take damage for a while.
 
 
-DIALOGUE biking_welcome_7
+DIALOGUE biking_welcome_8
 CHAR mail_man
 EMO 
 	it's me, the mail man.
