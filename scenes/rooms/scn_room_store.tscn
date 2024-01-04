@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://emxihek3ybla" path="res://scenes/decor/scn_store_shelf.tscn" id="5_hc7sm"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="7_em34h"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="8_0h0ea"]
-[ext_resource type="SpriteFrames" uid="uid://ddgq4gb8gdb8y" path="res://resources/characters/sfr_cashier_nice.tres" id="9_sx45w"]
+[ext_resource type="SpriteFrames" uid="uid://d1gv8oqbnw55i" path="res://resources/characters/sfr_cashier_nice.tres" id="9_sx45w"]
 [ext_resource type="Texture2D" uid="uid://vm5q5pq4pmlu" path="res://sprites/characters/overworld/spr_cashier_mean_overworld.png" id="10_dra8p"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_nn5u3"]
 [ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="10_pghuq"]
