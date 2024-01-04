@@ -311,28 +311,25 @@ func move_to(to: Vector2) -> void:
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if chase_target:
+	if chase_target == body:
 		chase(body)
 
 
-func chase(body: CollisionObject2D) -> void:
-	if body != chase_target:
-		chase_timer.start(time_between_chase_updates)
-		return
+func chase(body: Node2D) -> void:
 	# test if raycast can reach the target
 	detection_raycast.target_position = to_local(body.global_position)
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
+	var collider_is_target := collider == chase_target
 	
 	# test if the raycast is colliding with another npc who is chasing the same target
 	var same_target_as_collider_condition := false
 	same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)
-	
-	# we don't care if we collide with something that chases the same target
-	if collider == chase_target or same_target_as_collider_condition:
-		time_moved = 0.0
-		set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 2) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
-		set_state(States.CHASE) # this also restarts the timer
+	if not collider_is_target and not same_target_as_collider_condition:
+		return
+	time_moved = 0.0
+	set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 4) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
+	set_state(States.CHASE) # this also restarts the timer
 	chase_timer.start(time_between_chase_updates)
 
 
@@ -340,7 +337,8 @@ func _on_chase_timer_timeout() -> void:
 	var bodies := detection_area.get_overlapping_bodies()
 	bodies.erase(self)
 	for b in bodies:
-		chase(b)
+		if b == chase_target:
+			chase(b)
 	if bodies.size() < 1:
 		chase_timer.stop()
 

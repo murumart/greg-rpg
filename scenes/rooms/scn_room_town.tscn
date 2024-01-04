@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=83 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -41,8 +41,8 @@
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
-[ext_resource type="Texture2D" uid="uid://bcbj5ae57nfcp" path="res://sprites/characters/overworld/spr_gleebungus_overworld.png" id="36_04fx3"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
+[ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
@@ -561,141 +561,6 @@ bounce = 0.67
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
 radius = 4.47214
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qq25p"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_43y3d"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ey73y"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_se41i"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wc6bd"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_83y2s"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tf5n1"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2y66"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0gj04"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrrpr"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v8em6"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tl4v"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8ixi"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(32, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_em4o7"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m37cu"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_enx44"]
-atlas = ExtResource("36_04fx3")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c3ekp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qq25p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_43y3d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ey73y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_se41i")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wc6bd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83y2s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tf5n1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k2y66")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0gj04")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rrrpr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v8em6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tl4v")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y8ixi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_em4o7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m37cu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_enx44")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
-
 [node name="Town" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_mdes8")
@@ -727,7 +592,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(904, 256)
+position = Vector2(1178, 270)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2040,9 +1905,8 @@ save = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/Football/Baller1"]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_c3ekp")
+sprite_frames = ExtResource("38_nga16")
 animation = &"walk_right"
-frame_progress = 0.145321
 
 [node name="Baller2" parent="Other/Football" node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("10_dem56")]
 position = Vector2(66, 39)
@@ -2054,7 +1918,7 @@ save = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/Football/Baller2"]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_c3ekp")
+sprite_frames = ExtResource("38_nga16")
 animation = &"walk_down"
 
 [node name="VampireGirl" type="Node2D" parent="Other" groups=["save_me"]]
