@@ -159,7 +159,7 @@ func visuals(actor: BattleActor) -> void:
 func _add_text(actor: BattleActor) -> void:
 	SOL.vfx(
 		"damage_number",
-		actor.parentless_effcenter(),
+		actor.parentless_effcenter() - Vector2(0, 16),
 		{
 			text = "%s%s %s" % [
 				Math.sign_symbol(strength),
@@ -174,7 +174,7 @@ func _add_text(actor: BattleActor) -> void:
 func _immune_text(actor: BattleActor) -> void:
 	SOL.vfx(
 		"damage_number",
-		actor.parentless_effcenter(),
+		actor.parentless_effcenter() - Vector2(0, 16),
 		{
 			text = "immune!",
 			color = Color.YELLOW, speed = 0.5

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvdnvagmho443"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_7gf7s"]
+[ext_resource type="Texture2D" uid="uid://cjlkdo3wvxdud" path="res://sprites/characters/battle/vampire/spr_girl.png" id="2_cxoyq"]
+
+[node name="VampireGirl" type="Node2D"]
+script = ExtResource("1_7gf7s")
+effect_center = Vector2i(0, -25)
+toughness = 0.502
+altruism = 0.0
+gender = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cxoyq")

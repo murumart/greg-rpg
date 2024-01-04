@@ -62,7 +62,7 @@ enable_testing_cheats = true
 party_cheat_levelup = 10
 party_add_spirits = Array[String](["personally", "roundup", "littleman"])
 party_add_items = Array[String](["lighter", "cough_syrup", "sugar_lemon", "magnet", "medkit", "medkit", "mueslibar", "sleepy_flower", "mueslibar", "pills", "mueslibar", "mueslibar", "mueslibar", "berries", "berries", "mirror", "glue", "glue", "glue", "glue"])
-test_enemies = Array[String](["kor_sten", "stray_pet", "wild_lizard"])
+test_enemies = Array[String](["vampire"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_l1rx6")
