@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_qoivq"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="9_xism4"]
 [ext_resource type="SpriteFrames" uid="uid://o5esampj4xk6" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
 
 [sub_resource type="Resource" id="Resource_fd5xt"]
