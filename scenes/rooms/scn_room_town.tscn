@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=96 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -47,7 +47,11 @@
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
+[ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="41_q4dt7"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_leave_ending.gd" id="42_njd4g"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
+[ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -561,6 +565,76 @@ bounce = 0.67
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
 radius = 4.47214
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
+size = Vector2(77, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycxhg"]
+size = Vector2(20, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssv86"]
+size = Vector2(79, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2o7eh"]
+size = Vector2(22, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmry3"]
+size = Vector2(11, 82)
+
+[sub_resource type="Animation" id="Animation_6gj5p"]
+resource_name = "slide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cars:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-17, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cars/AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.53,
+"start_offset": 0.0,
+"stream": ExtResource("44_xhysj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_e08tp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cars:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ut0a6"]
+_data = {
+"RESET": SubResource("Animation_e08tp"),
+"slide": SubResource("Animation_6gj5p")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlv1q"]
+size = Vector2(14, 77)
+
 [node name="Town" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_mdes8")
@@ -578,7 +652,7 @@ position = Vector2(-576, 281)
 shape = SubResource("WorldBoundaryShape2D_o053r")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="EdgeCollision"]
-position = Vector2(1479, 250)
+position = Vector2(1479, -104)
 shape = SubResource("WorldBoundaryShape2D_kcvle")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="EdgeCollision"]
@@ -592,7 +666,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(1178, 270)
+position = Vector2(1423, -147)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1949,6 +2023,112 @@ save = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("40_cl7gv")
 animation = &"walk_down"
+
+[node name="BirdBlocker" type="Node2D" parent="Other"]
+position = Vector2(40, 344)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Other/BirdBlocker"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BirdBlocker/StaticBody2D"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_067aq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/BirdBlocker"]
+position = Vector2(-3, -4)
+texture = ExtResource("41_q4dt7")
+centered = false
+region_enabled = true
+region_rect = Rect2(4, 10, 7, 5)
+
+[node name="InspectArea" parent="Other/BirdBlocker" instance=ExtResource("18_4rtss")]
+position = Vector2(0, -5)
+key = "blocking_bird"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BirdBlocker/InspectArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ycxhg")
+
+[node name="LeaveEnding" type="Node2D" parent="Other"]
+position = Vector2(-184, -518)
+script = ExtResource("42_njd4g")
+
+[node name="ApproachArea" type="Area2D" parent="Other/LeaveEnding"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/LeaveEnding/ApproachArea"]
+position = Vector2(-0.5, 7)
+shape = SubResource("RectangleShape2D_ssv86")
+
+[node name="PoliceBlocker" type="Node2D" parent="Other"]
+position = Vector2(1467, -104)
+script = ExtResource("43_b736o")
+
+[node name="Cars" type="Node2D" parent="Other/PoliceBlocker"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/PoliceBlocker/Cars"]
+position = Vector2(32, -34)
+texture = ExtResource("6_ygtrw")
+region_enabled = true
+region_rect = Rect2(0, 14, 28, 14)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Other/PoliceBlocker/Cars"]
+position = Vector2(31, -19)
+texture = ExtResource("6_ygtrw")
+region_enabled = true
+region_rect = Rect2(0, 14, 28, 14)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Other/PoliceBlocker/Cars"]
+position = Vector2(32, -2)
+texture = ExtResource("6_ygtrw")
+region_enabled = true
+region_rect = Rect2(0, 14, 28, 14)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Other/PoliceBlocker/Cars"]
+position = Vector2(31, 15)
+texture = ExtResource("6_ygtrw")
+region_enabled = true
+region_rect = Rect2(0, 14, 28, 14)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Other/PoliceBlocker/Cars"]
+position = Vector2(33, 30)
+texture = ExtResource("6_ygtrw")
+region_enabled = true
+region_rect = Rect2(0, 14, 28, 14)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Other/PoliceBlocker/Cars"]
+volume_db = 16.0
+max_distance = 370.0
+attenuation = 1.62451
+
+[node name="DetectionArea" type="Area2D" parent="Other/PoliceBlocker"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PoliceBlocker/DetectionArea"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_2o7eh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Other/PoliceBlocker"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PoliceBlocker/StaticBody2D"]
+position = Vector2(4.5, -1)
+shape = SubResource("RectangleShape2D_dmry3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Other/PoliceBlocker"]
+libraries = {
+"": SubResource("AnimationLibrary_ut0a6")
+}
+
+[node name="InspectArea" parent="Other/PoliceBlocker" instance=ExtResource("18_4rtss")]
+key = "police_block"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PoliceBlocker/InspectArea"]
+position = Vector2(3, -1.5)
+shape = SubResource("RectangleShape2D_vlv1q")
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
