@@ -2675,6 +2675,11 @@ DIALOGUE insp_guy_house_bed
 	damn... he lives like this?
 
 
+DIALOGUE insp_carpile
+	this is probably where the townspeople dump their old vehicles.
+	it's also a convenient roadblock.
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.
