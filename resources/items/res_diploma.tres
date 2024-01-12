@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bd1wfqt2nrhec"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_7p8b2"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_68my1"]
+[ext_resource type="AudioStream" uid="uid://c5p17uasmly0i" path="res://sounds/paper/paper3.ogg" id="2_1ki4u"]
+[ext_resource type="Texture2D" uid="uid://dx0xr6hvogoyu" path="res://sprites/items/spr_certificate.png" id="2_5gv6a"]
+
+[sub_resource type="Resource" id="Resource_v4nn0"]
+script = ExtResource("1_7p8b2")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_68my1")
+name_in_file = &""
+name = &"diploma"
+description = "a crumpled diploma reading \"diploma for a 100% completion of greg rpg\"."
+texture = ExtResource("2_5gv6a")
+attack_animation = ""
+play_sound = ExtResource("2_1ki4u")
+price = 1
+use = -1
+consume_on_use = false
+payload = SubResource("Resource_v4nn0")
