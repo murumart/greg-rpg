@@ -117,7 +117,7 @@ func _physics_process(delta: float) -> void:
 	background_town.region_rect.position.x = wrapf(background_town.region_rect.position.x + speed * delta * 0.33, 0.0, background_town.region_rect.size.x)
 	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
 	
-	# debug (rememmber to remove)
+	# DEBUG (rememmber to remove)
 	if Input.is_action_pressed("ui_page_down"):
 		distance += 60
 	if Input.is_action_just_pressed("ui_end"):

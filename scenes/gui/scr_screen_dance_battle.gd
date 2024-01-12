@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		score -= delta * 0.5
 		enemy_score -= delta * 0.5
 	
-	# debug
+	# DEBUG
 	if Input.is_key_pressed(KEY_9):
 		reset()
 		active = true

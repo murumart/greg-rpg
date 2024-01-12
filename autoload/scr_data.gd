@@ -37,7 +37,7 @@ var last_save_file := 0
 
 var cat_names := []
 
-# debug
+# DEBUG
 var check_for_key := ""
 
 #
