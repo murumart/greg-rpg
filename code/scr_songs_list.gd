@@ -130,6 +130,10 @@ var songs := {
 		"title": "touch me",
 		"link": "res://music/mus_touch_me.ogg"
 	},
+	"vampire_fight": {
+		"title": "girl unboxing",
+		"link": "res://music/mus_vampire_fight.ogg",
+	},
 	"victory": {
 		"title": "so guys, we did it",
 		"link": "res://music/mus_victory.ogg",

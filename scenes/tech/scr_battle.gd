@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("foreign_fauna").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("town").set_death_reason("default")
+).set_music("vampire_fight").set_party(["greg","cashier_nice"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default")
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -168,6 +168,7 @@ func load_battle(info: BattleInfo) -> void:
 	# second argument of info.get_ is the default value
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
+	current_guy = party.front()
 	apply_cheats()
 	for e in info.enemies:
 		add_enemy(e)
@@ -177,7 +178,9 @@ func load_battle(info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
-	log_text.append_text(info.get_("start_text", "%s lunges at you!" % enemies.front().actor_name) + "\n")
+	log_text.append_text(info.get_("start_text", 
+		("%s lunges at you!" % enemies.front().actor_name) if enemies.size() else "no one is here."
+	) + "\n")
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
 	loading_battle = false
@@ -727,7 +730,6 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
 	if pwin and player in party:
 		xp_pool += ceili((pscore - enscore) / 3.0)
-	
 
 
 func set_description(text: String) -> void:
