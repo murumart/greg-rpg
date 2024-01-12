@@ -265,8 +265,8 @@ func _set_collision_extents(to: Vector2i) -> void:
 	if collision_detection_area:
 		if collision_detection_area.get_child_count() > 0:
 			var interaction_collision: CollisionShape2D = collision_detection_area.get_child(0)
-			interaction_collision.shape.size.x = to.x + 4
-			interaction_collision.shape.size.y = to.y + 4
+			interaction_collision.shape.size.x = to.x + 6
+			interaction_collision.shape.size.y = to.y + 6
 
 
 func _on_collision(_body: Node2D) -> void:

@@ -15,6 +15,7 @@ var level: int
 
 
 func _ready() -> void:
+	$Sprite2D.hide()
 	await get_tree().process_frame
 	level = DAT.get_character("greg").level
 
