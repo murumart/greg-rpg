@@ -23,6 +23,17 @@ func _process(delta: float) -> void:
 		bars += 1
 		new_bar.emit(bars)
 
+
+func reset_floats() -> void:
+	flbar = 0.0
+	flbeat = 0.0
+
+
+func reset_measures() -> void:
+	bars = 0
+	beats = 0
+
+
 "
 									   /
 									  /

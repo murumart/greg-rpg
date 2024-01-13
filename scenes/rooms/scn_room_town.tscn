@@ -538,9 +538,6 @@ size = Vector2(18, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlgoa"]
 size = Vector2(10, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab04q"]
-size = Vector2(71, 20)
-
 [sub_resource type="Resource" id="Resource_xq6fg"]
 script = ExtResource("26_ac4pt")
 title = "sellshell"
@@ -548,6 +545,9 @@ silver_required = 0
 input = Array[StringName]([&"eggshell"])
 silver_granted = 20
 output = Array[StringName]([])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab04q"]
+size = Vector2(71, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
@@ -580,6 +580,21 @@ size = Vector2(22, 82)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmry3"]
 size = Vector2(11, 82)
 
+[sub_resource type="Animation" id="Animation_e08tp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cars:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_6gj5p"]
 resource_name = "slide"
 length = 0.5
@@ -611,21 +626,6 @@ tracks/1/keys = {
 }
 tracks/1/use_blend = true
 
-[sub_resource type="Animation" id="Animation_e08tp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cars:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ut0a6"]
 _data = {
 "RESET": SubResource("Animation_e08tp"),
@@ -644,7 +644,7 @@ music = "dry_summer"
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeCollision"]
-position = Vector2(-169, -532)
+position = Vector2(383, -532)
 shape = SubResource("WorldBoundaryShape2D_gkqsn")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EdgeCollision"]
@@ -666,7 +666,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(1423, -147)
+position = Vector2(247, -360)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1682,70 +1682,98 @@ shape = SubResource("RectangleShape2D_jlgoa")
 position = Vector2(-29, 1)
 shape = SubResource("RectangleShape2D_jlgoa")
 
-[node name="Log4" parent="Other/CampfireSite" instance=ExtResource("15_8m0ks")]
-position = Vector2(146, -67)
-rotation = 0.624753
-decorative = true
-
-[node name="Log6" parent="Other/CampfireSite" instance=ExtResource("15_8m0ks")]
-position = Vector2(194, -67)
-rotation = 1.73287
-decorative = true
-
-[node name="Log7" parent="Other/CampfireSite" instance=ExtResource("15_8m0ks")]
-position = Vector2(134, -69)
-rotation = 1.15307
-decorative = true
-
-[node name="Log5" parent="Other/CampfireSite" instance=ExtResource("15_8m0ks")]
-position = Vector2(172, -69)
-rotation = 1.24027
-decorative = true
-
-[node name="Log8" parent="Other/CampfireSite" instance=ExtResource("15_8m0ks")]
-position = Vector2(195, -3)
-rotation = 2.53521
-decorative = true
-
-[node name="Pothole" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(148, -53)
-decorative = true
-
-[node name="Pothole2" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(178, -56)
-decorative = true
-
-[node name="Pothole3" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(180, -75)
-decorative = true
-
-[node name="Pothole4" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(170, -29)
-decorative = true
-
-[node name="Pothole5" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(152, 15)
-decorative = true
-
-[node name="Pothole6" parent="Other/CampfireSite" instance=ExtResource("16_ndfvs")]
-position = Vector2(183, 47)
-decorative = true
-
-[node name="InspectArea" type="Area2D" parent="Other/CampfireSite"]
-position = Vector2(165, -60)
-script = ExtResource("10_fbdk7")
-key = "trash_road"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/InspectArea"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_ab04q")
-
 [node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
 position = Vector2(-9, 17)
 
 [node name="CampsiteKid" parent="Other/CampfireSite" instance=ExtResource("25_ffcbh")]
 position = Vector2(29, -6)
 trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_xq6fg")])
+
+[node name="Roadblock" type="Node2D" parent="Other/CampfireSite"]
+
+[node name="Log4" parent="Other/CampfireSite/Roadblock" instance=ExtResource("15_8m0ks")]
+position = Vector2(146, -67)
+rotation = 0.624753
+decorative = true
+
+[node name="Log6" parent="Other/CampfireSite/Roadblock" instance=ExtResource("15_8m0ks")]
+position = Vector2(194, -67)
+rotation = 1.73287
+decorative = true
+
+[node name="Log7" parent="Other/CampfireSite/Roadblock" instance=ExtResource("15_8m0ks")]
+position = Vector2(134, -69)
+rotation = 1.15307
+decorative = true
+
+[node name="Log5" parent="Other/CampfireSite/Roadblock" instance=ExtResource("15_8m0ks")]
+position = Vector2(172, -69)
+rotation = 1.24027
+decorative = true
+
+[node name="Log8" parent="Other/CampfireSite/Roadblock" instance=ExtResource("15_8m0ks")]
+position = Vector2(195, -3)
+rotation = 2.53521
+decorative = true
+
+[node name="Pothole" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(148, -53)
+decorative = true
+
+[node name="Pothole2" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(178, -56)
+decorative = true
+
+[node name="Pothole3" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(180, -75)
+decorative = true
+
+[node name="Pothole4" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(170, -29)
+decorative = true
+
+[node name="Pothole5" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(152, 15)
+decorative = true
+
+[node name="Pothole6" parent="Other/CampfireSite/Roadblock" instance=ExtResource("16_ndfvs")]
+position = Vector2(183, 47)
+decorative = true
+
+[node name="InspectArea" type="Area2D" parent="Other/CampfireSite/Roadblock"]
+position = Vector2(165, -60)
+script = ExtResource("10_fbdk7")
+key = "trash_road"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/Roadblock/InspectArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ab04q")
+
+[node name="CampsiteTrash" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
+position = Vector2(-40, -51)
+silver = 16
+
+[node name="CampsiteTrash2" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
+position = Vector2(-26, -51)
+replenish_minutes = 10
+replenish_seconds = 600
+silver = 14
+
+[node name="CampsiteTrash3" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
+position = Vector2(-12, -49)
+replenish_minutes = 26
+replenish_seconds = 1560
+item = &"gummy_worm"
+
+[node name="CampsiteTrash4" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
+position = Vector2(1, -51)
+item = &"cough_syrup"
+
+[node name="CampsiteTrash5" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
+position = Vector2(28, -49)
+replenish_minutes = 24
+replenish_seconds = 1440
+item = &"glue"
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true
@@ -2014,6 +2042,9 @@ position = Vector2(904, -392)
 [node name="Marker2D4" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
 position = Vector2(1816, 280)
 
+[node name="Marker2D5" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+position = Vector2(1236, -249)
+
 [node name="Girl" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
 position = Vector2(10, 0)
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -2132,6 +2163,8 @@ shape = SubResource("RectangleShape2D_vlv1q")
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(-104, -335)
@@ -2442,7 +2475,7 @@ polygon = PackedVector2Array(-232, 119, -234, 15, 20, -31, 68, -159, 124, -173, 
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Areas/4Grass"]
 position = Vector2(529, -279)
-polygon = PackedVector2Array(-12, 153, -13, -5, 291, -7, 292, 6, 93, 12)
+polygon = PackedVector2Array(-10, -4, 98, 8, -5, 136)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Areas/4Grass"]
 position = Vector2(619, -188)

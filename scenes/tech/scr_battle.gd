@@ -767,10 +767,11 @@ func apply_cheats() -> void:
 	if DAT.seconds > 1: return
 	print("applying cheats")
 	for i in party:
-		i.character.level_up(party_cheat_levelup)
-		for n in party_cheat_levelup:
-			if DAT.get_levelup_spirit(n):
-				i.character.spirits.append(DAT.get_levelup_spirit(n))
+		if i.character.name_in_file != "cashier_nice":
+			i.character.level_up(party_cheat_levelup)
+			for n in party_cheat_levelup:
+				if DAT.get_levelup_spirit(n):
+					i.character.spirits.append(DAT.get_levelup_spirit(n))
 		i.character.health = i.character.max_health
 		i.character.magic = i.character.max_magic
 		if party_cheat_attack:

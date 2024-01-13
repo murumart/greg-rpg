@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5h558n0d3b1o"]
+
+[ext_resource type="Texture2D" uid="uid://c5hd8mnewpe8o" path="res://sprites/spirit/spr_powerpunch.png" id="1_dpqwa"]
+[ext_resource type="AudioStream" uid="uid://dyvrtv5g4jtsi" path="res://sounds/spirit/powerpunch.ogg" id="2_a3soo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioywv"]
+atlas = ExtResource("1_dpqwa")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wubmu"]
+atlas = ExtResource("1_dpqwa")
+region = Rect2(0, 22, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiyy1"]
+atlas = ExtResource("1_dpqwa")
+region = Rect2(0, 44, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlq3v"]
+atlas = ExtResource("1_dpqwa")
+region = Rect2(0, 66, 22, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upocs"]
+atlas = ExtResource("1_dpqwa")
+region = Rect2(0, 88, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vwf3i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioywv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wubmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiyy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlq3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upocs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="Animation" id="Animation_i8leo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g1sk3"]
+resource_name = "default"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_a3soo")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qae7x"]
+_data = {
+"RESET": SubResource("Animation_i8leo"),
+"default": SubResource("Animation_g1sk3")
+}
+
+[node name="VfxPowerpunch" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vwf3i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 3.0
+bus = &"ECHO"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qae7x")
+}
+autoplay = "default"

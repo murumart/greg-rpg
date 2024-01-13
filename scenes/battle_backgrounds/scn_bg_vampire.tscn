@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0hhsgn6wiug6"]
+[gd_scene load_steps=3 format=3 uid="uid://b0hhsgn6wiug6"]
 
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_bg_vampire.gd" id="1_w554i"]
+[ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="2_dows5"]
 
 [node name="VampireBackground" type="Node2D"]
 script = ExtResource("1_w554i")
@@ -19,3 +20,8 @@ offset_right = 42.0
 offset_bottom = 11.0
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="MusBarCounter" type="Node" parent="."]
+script = ExtResource("2_dows5")
+bpm = 180.0
+beats_per_bar = 5.0

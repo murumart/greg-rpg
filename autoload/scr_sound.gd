@@ -67,7 +67,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	new_audio_player.name = str("music_" + song)
 	playing_sounds.append(new_audio_player)
 	add_child(new_audio_player)
-	var audio_stream: AudioStream = load(song_dict.get("link"))
+	var audio_stream: AudioStream = song_dict["_stream"]
 	audio_stream.loop = song_dict.get("loop", true)
 	if loop_override: audio_stream.loop = loop
 	new_audio_player.stream = audio_stream
