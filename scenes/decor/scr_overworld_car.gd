@@ -97,7 +97,6 @@ func _on_collided_with_player(_player) -> void:
 		DAT.set_data("last_hit_car_color", color) # used in battle to set the car's colour
 		DAT.set_data("last_hit_car_name", name.to_snake_case())
 		DAT.set_data(get_save_key("fought"), true)
-		DAT.free_player("all")
 		LTS.enter_battle(battle_info)
 	else:
 		var tw := create_tween()
