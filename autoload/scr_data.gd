@@ -211,20 +211,21 @@ func set_copied_data() -> void:
 
 # this is for the overworld greg
 # if greg is captured, he cannot be moved around by the player
-func capture_player(type := "", overlap := true) -> void:
+func capture_player(type := &"", overlap := true) -> void:
 	if not overlap and type in player_capturers: return
-	var noncap := ["dialogue", "greenhouse"]
+	var noncap := [&"dialogue", &"greenhouse"]
 	# multiple things can capture the player
 	# they are stored as strings inside this array
 	player_capturers.append(type)
-	if not type in noncap: SOL.dialogue_box.close(false)
+	if not type in noncap:
+		SOL.dialogue_box.close()
 	emit_signal("player_captured", true)
 
 
 # allowing the player to move again
-func free_player(type := "") -> void:
+func free_player(type := &"") -> void:
 	player_capturers.erase(type)
-	if type == "all":
+	if type == &"all":
 		player_capturers.clear()
 	# the player can only move if the capturers array is empty
 	if player_capturers.size() > 0: return
