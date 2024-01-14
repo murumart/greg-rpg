@@ -1430,6 +1430,7 @@ bpm = 180.0
 beats_per_bar = 5.0
 
 [node name="Girl" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_cxoyq")
 
 [node name="Vampire" type="Node2D" parent="."]
