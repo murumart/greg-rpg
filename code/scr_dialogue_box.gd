@@ -213,7 +213,10 @@ func skip() -> void:
 		get_viewport().set_input_as_handled()
 
 
-func close(sig := true) -> void:
+func close() -> void:
+	SOL.speaking = false
+	textbox.skip_to_end()
+	dialogue_sound.stop()
 	loaded_dialogue = null
 	loaded_dialogue_line = null
 	current_dialogue = 0
@@ -223,7 +226,7 @@ func close(sig := true) -> void:
 	if not dont_close:
 		hide()
 	DAT.call_deferred("free_player", "dialogue")
-	if sig: call_deferred("emit_signal", "dialogue_closed")
+	call_deferred("emit_signal", "dialogue_closed")
 
 
 # the size of the text area changes based on whether

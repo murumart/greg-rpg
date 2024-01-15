@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://cn6bwhpq8b1rl"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_q7jnv"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_rpdfm"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_bsw6n"]
+[ext_resource type="Texture2D" uid="uid://bbesnh4a3y127" path="res://sprites/items/spr_soda.png" id="4_vx54q"]
+
+[sub_resource type="Resource" id="Resource_d2ry0"]
+script = ExtResource("1_rpdfm")
+name = &"speed"
+strength = 1.0
+duration = 5
+
+[sub_resource type="Resource" id="Resource_p1ufu"]
+script = ExtResource("2_bsw6n")
+health = 12.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 33.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 5
+effects = Array[ExtResource("1_rpdfm")]([SubResource("Resource_d2ry0")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_q7jnv")
+name_in_file = &""
+name = &"soda"
+description = "tastes sweeter than sugar."
+texture = ExtResource("4_vx54q")
+attack_animation = ""
+price = 130
+use = 2
+consume_on_use = true
+payload = SubResource("Resource_p1ufu")

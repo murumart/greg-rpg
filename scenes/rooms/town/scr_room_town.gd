@@ -36,6 +36,15 @@ func _ready() -> void:
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
 		for i in animal_spawners:
 			i.queue_free()
+	if Math.inrange(DAT.get_data("nr"), 0.5, 0.6):
+		if not DAT.get_data("saw_cool_bird_message", false):
+			$Other/BirdBlocker/InspectArea.key = "blocking_bird_2"
+			$Other/BirdBlocker/InspectArea.inspected.connect(
+				func():
+					DAT.set_data("saw_cool_bird_message", true)
+					await get_tree().process_frame
+					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
+			)
 	if not $Other/CampfireSite/Campfire.lit:
 		$Other/CampfireSite/CampsiteKid.queue_free()
 

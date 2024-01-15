@@ -40,8 +40,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func parse_command() -> void:
-	if current_command == "": output(""); return
+	if current_command == "":
+		output("")
+		return
 	var args := current_command.split(" ", false)
+	if args.size() < 1:
+		output("type a command", true)
+		return
 	var cmd := args[0]
 	args.remove_at(0)
 	
@@ -51,7 +56,7 @@ func parse_command() -> void:
 		&"bset":
 			battle_set(args)
 		&"help":
-			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,7\ntype command without args to get help")
+			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,lvup,7\ntype command without args to get help")
 		&"eks":
 			ex(args)
 		&"clear":
@@ -66,6 +71,8 @@ func parse_command() -> void:
 			setdata(args)
 		&"ksp":
 			xp(args)
+		&"lvup":
+			lvup(args)
 		&"7":
 			output("7")
 		_:
@@ -166,6 +173,19 @@ func xp(args: PackedStringArray) -> void:
 	var amount := int(args[1])
 	DAT.get_character(charname).add_experience(amount)
 	output("gave %s exp to %s" % [amount, charname])
+
+
+func lvup(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: lvup charname amount")
+		return
+	if args.size() != 2:
+		output("need 2 arguments", true)
+		return
+	var charname := args[0]
+	var amount := int(args[1])
+	DAT.get_character(charname).level_up(amount)
+	output("leveled %s to %s" % [charname, amount + 1])
 
 
 func vfx(args: PackedStringArray) -> void:

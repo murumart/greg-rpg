@@ -960,7 +960,7 @@ CHOICES browse,leave
 	drink milk to not take damage for a while.
 
 
-DIALOGUE biking_welcome_7
+DIALOGUE biking_welcome_8
 CHAR mail_man
 EMO 
 	it's me, the mail man.
@@ -2440,7 +2440,7 @@ DIALOGUE girl_2
 	i love going to little towns such as this one!
 	the hustle and bustle of large towns is good...
 	...but something about the intimacy in places...
-	...like this make me gravitate towards them.
+	...like this attracts me towards them.
 
 
 DIALOGUE girl_3
@@ -2450,14 +2450,87 @@ DIALOGUE girl_3
 
 
 DIALOGUE girl_4
-	hello! what an interesting face you have!
+	'ello! what an interesting face you have!
 	i lost my appetite...
 
 
 DIALOGUE girl_5
-	hello! are you a local?
+	'ello! are you a local?
 	do you know when the cashiers in the store switch?
 	asking for a friend...
+
+
+DIALOGUE vampire_battle_start
+	i can't have you two meddling in my dastardly plans...
+	all your spirits will belong to me. i am the vampire.
+	smelly man, i regret to say this - 
+	- but you are quite the snack. time to die. goodbye.
+
+
+DIALOGUE vampire_battle_70p
+	i was counting on this ending faster...
+	i'll just have to stamp you into the mud harder.
+
+
+DIALOGUE vampire_battle_70p2
+	this is my spirit power - ymxvb2q.
+	i will use a mere fraction of its power to demolish you.
+
+
+DIALOGUE vampire_battle_50p
+	ow!
+CHAR cashier_nice
+	i'm surprised we're still alive... let's keep doing...
+	...whatever it is that's keeping us that way.
+CHAR 
+	instead, consider keeling over and dying - it'll be less painful.
+
+
+DIALOGUE vampire_battle_30p
+CHAR cashier_nice
+	i'll be late to work at this pace. could we hurry up?
+CHAR 
+	shut up!!! i'm killing you! i'm killing you! i'm killing you!  i'm killing you! i'm killing you!
+
+
+DIALOGUE vampire_battle_30p2
+	ymxvb2q!!! grind these ██████ to ███████████ from ████████!!!
+	take their spirit powers now!!!
+
+
+DIALOGUE vampire_battle_dead
+	████████████!!!
+
+
+DIALOGUE vampire_after_battle
+	no.... my vampiric ability has been defeated...
+	now i will age up all the years i've spent as a vampire
+
+
+DIALOGUE blood_explosion
+	blood explosion
+
+
+DIALOGUE vampire_after_battle_2
+CHAR cashier_nice
+	you barely aged... i guess it's no wonder that...
+	...we survived against a rookie vampire.
+CHAR 
+	that is so mean...
+	if you'd mind, i'd like a moment for myself now.
+INSTASKIP
+	i need to reflect on
+
+
+DIALOGUE leave_ending_check
+	you remember that this is the road you drove in from.
+	you could walk all the way back.
+CHOICES no,yes
+	do you want to do that?
+CHOICE_LINK no
+	there's plenty of things to do here.
+CHOICE_LINK yes
+	can't wait to go home! see you there!
 
 
 DIALOGUE insp_snowdrops
@@ -2673,6 +2746,28 @@ CHAR popo_2
 DIALOGUE insp_guy_house_bed
 	his bed. the only furniture in this room.
 	damn... he lives like this?
+
+
+DIALOGUE insp_carpile
+	this is probably where the townspeople dump their old vehicles.
+	it's also a convenient roadblock.
+
+
+DIALOGUE insp_lonetire
+	there is a lone car tyre on the road, blocking your way forward.
+
+
+DIALOGUE insp_blocking_bird
+	the road is blocked here. you can't get past this bird.
+
+
+DIALOGUE insp_blocking_bird_2
+	the bird demands a ransom of your first born son should you want to pass.
+	you have no such thing. the road is blocked here.
+
+
+DIALOGUE insp_police_block
+	the police are blocking this road. unfortunate!
 
 
 DIALOGUE end_of_the_line

@@ -10,10 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://s36snqcay7dr" path="res://sounds/pennistong/bounce.ogg" id="8_rkrs4"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_34tnl"]
-streams_count = 1
 playback_mode = 1
 random_pitch = 3.67
 random_volume_offset_db = 8.21
+streams_count = 1
 stream_0/stream = ExtResource("6_7tbg5")
 stream_0/weight = 1.0
 

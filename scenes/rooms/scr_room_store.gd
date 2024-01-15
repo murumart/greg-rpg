@@ -3,6 +3,11 @@ extends Room
 # the store room scene
 # copied over from old greg and adjusted
 
+# item types stored here
+const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
+const FOOD_ITEMS := ["muesli", "mueslibar", "bread", "salt"]
+const BUILDING_ITEMS := ["tape", "glue"]
+
 const WAIT_UNTIL_RESTOCK := 300
 const WAIT_UNTIL_CASHIER_SWITCH := 420
 
@@ -77,12 +82,7 @@ func restock() -> void:
 		DAT.set_data("noticed_cashier_gone", DAT.seconds)
 		return
 	var store_shelf_count := shelves.size()
-	
-	# item types stored here
-	var healing_items := ["medkit", "plaster", "pills", "cough_syrup"]
-	var food_items := ["muesli", "mueslibar", "bread"]
-	var building_items := ["tape",]
-	var arrays := [healing_items, food_items, building_items]
+	var arrays := [HEALING_ITEMS, FOOD_ITEMS, BUILDING_ITEMS]
 	
 	store_data["shelves"] = []
 	store_data["shelves"].clear() # for good measure i guess :dace:

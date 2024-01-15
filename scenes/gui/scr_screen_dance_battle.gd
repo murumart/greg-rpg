@@ -7,7 +7,7 @@ const STREAK_CONGRATS := ["", "ok", "good!", "cool!", "wonderful!", "amazing!", 
 
 @onready var falling_arrows: Node2D = $FallingArrows
 @onready var debug: Label = $debug
-@onready var mbc: MusBarCounter = $MusBarCounter
+@onready var mbc := $MusBarCounter as MusBarCounter
 @onready var dancer: Sprite2D = $Dancer
 @onready var animal_dancer: Sprite2D = $AnimalDancer
 @onready var score_text: RichTextLabel = $ScoreText
@@ -43,7 +43,7 @@ var enemy_score := 0.0
 
 
 func _ready() -> void:
-	mbc.beat.connect(_new_beat)
+	mbc.new_beat.connect(_new_beat)
 	reset()
 
 
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		score -= delta * 0.5
 		enemy_score -= delta * 0.5
 	
-	# debug
+	# DEBUG
 	if Input.is_key_pressed(KEY_9):
 		reset()
 		active = true

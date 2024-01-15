@@ -108,7 +108,7 @@ func direct_animation() -> void:
 	sprite.play(animation_name)
 	sprite.speed_scale = 0.0
 	if move_mode != MoveModes.SKATE:
-		sprite.speed_scale = velocity.length_squared() * 0.00056
+		sprite.speed_scale = velocity.length() * 0.04
 		if is_zero_approx(velocity.length_squared()):
 			sprite.stop()
 	else:

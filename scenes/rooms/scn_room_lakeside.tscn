@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=64 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -20,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://ct0g7lwo7tapk" path="res://sprites/characters/overworld/spr_fisherwoman_overworld.png" id="13_fsvee"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="14_n53oy"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="15_w4l3t"]
+[ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="17_un030"]
+[ext_resource type="Script" path="res://code/scr_exchange.gd" id="18_7yl5j"]
+[ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="19_sytvq"]
+[ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
+[ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
 
 [sub_resource type="Gradient" id="Gradient_r8mui"]
 offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
@@ -247,6 +252,29 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88xhv"]
 size = Vector2(13, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d6pt"]
+size = Vector2(20, 7)
+
+[sub_resource type="Resource" id="Resource_n07d0"]
+script = ExtResource("18_7yl5j")
+title = "berries"
+silver_required = 100
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"berries"])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vb1q4"]
+size = Vector2(111, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttexd"]
+size = Vector2(24.5, 10.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryigj"]
+size = Vector2(25, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncnug"]
+size = Vector2(112, 20)
+
 [node name="Lakeside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rym7f")
@@ -272,7 +300,7 @@ position = Vector2(0, -367)
 shape = SubResource("WorldBoundaryShape2D_tr7m6")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldCollision"]
-position = Vector2(0, 399)
+position = Vector2(-476, 399)
 shape = SubResource("WorldBoundaryShape2D_7fu5p")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldCollision"]
@@ -333,7 +361,7 @@ max_enemies = 3
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(-438, 281)
+position = Vector2(-311, 390)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 3
 player = NodePath("../../Greg")
@@ -436,9 +464,64 @@ position = Vector2(-12, 35)
 [node name="Node2D4" type="Node2D" parent="Buildings/Pier/FisherwomanPath"]
 position = Vector2(8, 36)
 
+[node name="KidStand" type="Node2D" parent="Buildings"]
+y_sort_enabled = true
+position = Vector2(-920, 248)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Buildings/KidStand"]
+position = Vector2(0, 7)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/KidStand/StaticBody2D"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0d6pt")
+
+[node name="KidOverworld" parent="Buildings/KidStand" instance=ExtResource("17_un030")]
+position = Vector2(0, 1)
+trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_n07d0")])
+
+[node name="Stand" type="Sprite2D" parent="Buildings/KidStand"]
+position = Vector2(0, 6)
+texture = ExtResource("19_sytvq")
+offset = Vector2(0, -18)
+
+[node name="Carpile" type="Node2D" parent="Buildings"]
+position = Vector2(-969, 374)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/Carpile"]
+position = Vector2(-2, -13)
+texture = ExtResource("20_w7psx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Buildings/Carpile"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Carpile/StaticBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_vb1q4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Buildings/Carpile/StaticBody2D"]
+position = Vector2(43.75, -19)
+shape = SubResource("RectangleShape2D_ttexd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Buildings/Carpile/StaticBody2D"]
+position = Vector2(0, -13.75)
+shape = SubResource("RectangleShape2D_ttexd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Buildings/Carpile/StaticBody2D"]
+position = Vector2(-35.5, -20.5)
+shape = SubResource("RectangleShape2D_ryigj")
+
+[node name="InspectArea" parent="Buildings/Carpile" instance=ExtResource("21_85vv0")]
+position = Vector2(0, -11)
+key = "carpile"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Carpile/InspectArea"]
+shape = SubResource("RectangleShape2D_ncnug")
+
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("4_xwmth")]
 position = Vector2(-554, -277)
@@ -928,7 +1011,7 @@ scale = Vector2(-1, 1)
 type = 5
 
 [node name="Tree112" parent="Trees" instance=ExtResource("4_xwmth")]
-position = Vector2(-484, 330)
+position = Vector2(-461, 389)
 type = 1
 
 [node name="Tree113" parent="Trees" instance=ExtResource("4_xwmth")]

@@ -26,6 +26,7 @@ var state := States.IDLE
 @export var random_movement := false
 var time_between_chase_updates := 0.25
 @export var random_movement_distance := 64
+var idle_timer: Timer
 var random_movement_timer: Timer
 const RANDOM_MOVEMENT_TRIES := 16
 var chase_timer: Timer
@@ -49,10 +50,8 @@ var player_collision_timer := Timer.new()
 
 @export_group("Save Information")
 @export var save := true
-@export var character_link := &""
 @export var save_position: bool = false
 @export var save_convo_progess: bool = false
-@export var permanently_defeated: bool = false
 
 var target: Vector2: set = set_target
 
@@ -65,21 +64,12 @@ func _ready() -> void:
 		set_position(DAT.get_data(get_save_key("position"), position))
 	if save_convo_progess:
 		convo_progress = DAT.get_data(get_save_key("convo_progress"), 0)
-	if permanently_defeated:
-		if character_link:
-			if character_link in DAT.get_data("defeated_characters", []):
-				global_position = Vector2i(129731, 120947912)
-				set_physics_process(false)
-				hide()
-				return
 	# setup
 	if random_movement:
 		random_movement_timer = Timer.new()
 		add_child(random_movement_timer)
 		random_movement_timer.timeout.connect(_on_random_movement_timer_timeout)
 		random_movement_timer.start(movement_wait)
-	if not chase_target:
-		detection_area.monitoring = false
 	if chase_target:
 		time_between_chase_updates = movement_wait * 0.05
 		chase_timer = Timer.new()
@@ -92,13 +82,19 @@ func _ready() -> void:
 		path_timer.one_shot = true
 		path_timer.timeout.connect(_on_path_target_reached)
 		path_timer.start(movement_wait)
+	idle_timer = Timer.new()
+	add_child(idle_timer)
+	idle_timer.timeout.connect(_on_idle_timer_timeout)
+	idle_timer.start(8)
 	collision_detection_area.on_interact.connect(interacted)
 	collision_detection_area.body_entered.connect(_on_collision)
 	collision_detection_area.body_exited.connect(_on_collision_ended)
 	add_child(player_collision_timer)
 	player_collision_timer.timeout.connect(_on_collision_timer_timeout)
 	player_collision_timer.one_shot = true
-	detection_area.get_child(0).shape.radius = chase_distance
+	if detection_area:
+		detection_area.get_child(0).shape.radius = chase_distance
+		detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_raycast.add_exception(detection_area)
 	detection_raycast.add_exception(collision_detection_area)
 
@@ -151,6 +147,14 @@ func interacted() -> void:
 	if DAT.player_capturers.size() > 0: return
 	interactions += 1
 	inspected.emit()
+	if detection_area:
+		var bods := detection_area.get_overlapping_bodies()
+		bods.erase(self)
+		bods.sort_custom(func(a, b):
+			return (global_position.distance_squared_to(a.global_position) < 
+					global_position.distance_squared_to(b.global_position))
+			)
+		direct_walking_animation(bods[0].global_position - global_position)
 	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
 		set_state(States.TALKING)
 		velocity = Vector2()
@@ -190,6 +194,7 @@ func _on_talking_finished() -> void:
 				set_physics_process(false)
 		if transport_to_scene:
 			LTS.level_transition(transport_to_scene)
+	_on_idle_timer_timeout()
 
 
 func _on_random_movement_timer_timeout() -> void:
@@ -206,6 +211,7 @@ func _on_random_movement_timer_timeout() -> void:
 			break
 		else: break
 	set_state(States.WANDER)
+	random_movement_timer.start(randfn(movement_wait, movement_wait * 0.25))
 
 
 func _on_path_target_reached() -> void:
@@ -240,10 +246,15 @@ func set_state(to: States) -> void:
 
 func direct_walking_animation(direction: Vector2) -> void:
 	if not is_instance_valid(animated_sprite): return
-	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1]) if direction.length_squared() > 1 else "walk_down"
-	animated_sprite.play(animation_name)
-	animated_sprite.speed_scale = direction.length_squared() * 0.0009
 	if is_zero_approx(direction.length_squared()):
+		animated_sprite.stop()
+		return
+	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1])
+	if not animated_sprite.sprite_frames.has_animation(animation_name):
+		return
+	animated_sprite.play(animation_name)
+	animated_sprite.speed_scale = velocity.length() * 0.04
+	if is_zero_approx(velocity.length_squared()):
 		animated_sprite.stop()
 
 
@@ -254,8 +265,8 @@ func _set_collision_extents(to: Vector2i) -> void:
 	if collision_detection_area:
 		if collision_detection_area.get_child_count() > 0:
 			var interaction_collision: CollisionShape2D = collision_detection_area.get_child(0)
-			interaction_collision.shape.size.x = to.x + 4
-			interaction_collision.shape.size.y = to.y + 4
+			interaction_collision.shape.size.x = to.x + 6
+			interaction_collision.shape.size.y = to.x + 6
 
 
 func _on_collision(_body: Node2D) -> void:
@@ -276,6 +287,15 @@ func _on_collision_timer_timeout() -> void:
 	if interact_on_touch and player_colliding: interacted()
 
 
+func _on_idle_timer_timeout() -> void:
+	idle_timer.start(randfn(8, 3))
+	if animated_sprite:
+		if animated_sprite.animation != &"walk_down":
+			direct_walking_animation(Vector2.DOWN)
+		elif randf() < 0.33:
+			direct_walking_animation(Vector2(randf_range(-1, 1), randf_range(-1, 1)))
+
+
 func set_target(to: Vector2) -> void:
 	target = to
 
@@ -291,26 +311,25 @@ func move_to(to: Vector2) -> void:
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if chase_target:
+	if chase_target == body:
 		chase(body)
 
 
-func chase(body: CollisionObject2D) -> void:
-	if body != chase_target: chase_timer.start(time_between_chase_updates); return
+func chase(body: Node2D) -> void:
 	# test if raycast can reach the target
 	detection_raycast.target_position = to_local(body.global_position)
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
+	var collider_is_target := collider == chase_target
 	
 	# test if the raycast is colliding with another npc who is chasing the same target
 	var same_target_as_collider_condition := false
 	same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)
-	
-	# we don't care if we collide with something that chases the same target
-	if collider == chase_target or same_target_as_collider_condition:
-		time_moved = 0.0
-		set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 2) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
-		set_state(States.CHASE) # this also restarts the timer
+	if not collider_is_target and not same_target_as_collider_condition:
+		return
+	time_moved = 0.0
+	set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 4) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
+	set_state(States.CHASE) # this also restarts the timer
 	chase_timer.start(time_between_chase_updates)
 
 
@@ -318,7 +337,8 @@ func _on_chase_timer_timeout() -> void:
 	var bodies := detection_area.get_overlapping_bodies()
 	bodies.erase(self)
 	for b in bodies:
-		chase(b)
+		if b == chase_target:
+			chase(b)
 	if bodies.size() < 1:
 		chase_timer.stop()
 

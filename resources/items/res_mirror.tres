@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://b8sd7w8etqyb8"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_fx360"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_hut0d"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_r274j"]
+[ext_resource type="AudioStream" uid="uid://kj0itrrs7tm0" path="res://sounds/use_mirror.ogg" id="3_3kf14"]
+[ext_resource type="Texture2D" uid="uid://cfvono8ibnw8v" path="res://sprites/items/spr_mirror.png" id="5_w72mr"]
+
+[sub_resource type="Resource" id="Resource_yerl5"]
+script = ExtResource("1_fx360")
+name = &"defense"
+strength = -50.0
+duration = 5
+
+[sub_resource type="Resource" id="Resource_d6qma"]
+script = ExtResource("2_r274j")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 5
+effects = Array[ExtResource("1_fx360")]([SubResource("Resource_yerl5")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_hut0d")
+name_in_file = &""
+name = &"mirror"
+description = "look in to see what you're missing."
+texture = ExtResource("5_w72mr")
+attack_animation = ""
+play_sound = ExtResource("3_3kf14")
+price = 999
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_d6qma")

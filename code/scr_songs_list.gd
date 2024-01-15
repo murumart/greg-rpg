@@ -1,5 +1,4 @@
-extends RefCounted
-class_name SongsList
+class_name SongsList extends RefCounted
 
 # list of all music
 
@@ -130,6 +129,10 @@ var songs := {
 		"title": "touch me",
 		"link": "res://music/mus_touch_me.ogg"
 	},
+	"vampire_fight": {
+		"title": "girl unboxing",
+		"link": "res://music/mus_vampire_fight.ogg",
+	},
 	"victory": {
 		"title": "so guys, we did it",
 		"link": "res://music/mus_victory.ogg",
@@ -150,3 +153,7 @@ func _init() -> void:
 			"link": "res://music/menu/mus_menu%s.ogg" % (i + 1),
 			"loop": false
 		}
+	var time := Time.get_ticks_msec()
+	for k in songs:
+		songs[k]["_stream"] = load(songs[k]["link"])
+	print("loading songs took ", Time.get_ticks_msec() - time, "ms")
