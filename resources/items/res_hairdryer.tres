@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://c3lawe0ydqes3"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_fdi8q"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_felc0"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_qin3g"]
+[ext_resource type="AudioStream" uid="uid://b143ddbu76ssl" path="res://sounds/hairdryer.ogg" id="2_tsgex"]
+[ext_resource type="Texture2D" uid="uid://cfcyalwnl0e3x" path="res://sprites/items/spr_hairdryer.png" id="4_lsyo3"]
+
+[sub_resource type="Resource" id="Resource_8dxs7"]
+script = ExtResource("1_qin3g")
+name = &"sopping"
+strength = 1.0
+duration = -100
+
+[sub_resource type="Resource" id="Resource_4dlam"]
+script = ExtResource("1_fdi8q")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = -5.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 3
+effects = Array[ExtResource("1_qin3g")]([SubResource("Resource_8dxs7")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_felc0")
+name_in_file = &""
+name = &"hairdryer"
+description = "keeps you dry for the duration of a battle"
+texture = ExtResource("4_lsyo3")
+attack_animation = ""
+play_sound = ExtResource("2_tsgex")
+price = 1000
+use = 2
+consume_on_use = false
+payload = SubResource("Resource_4dlam")

@@ -60,7 +60,7 @@ loop = true
 script = ExtResource("1_5j3jy")
 enable_testing_cheats = true
 party_cheat_levelup = 45
-party_add_items = Array[String](["mueslibar", "sleepy_flower", "mueslibar", "pills", "mueslibar", "mueslibar", "mueslibar", "berries"])
+party_add_items = Array[String](["mueslibar", "sleepy_flower", "mueslibar", "pills", "mueslibar", "mueslibar", "mueslibar", "berries", "hairdryer"])
 test_enemies = Array[String](["vampire"])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

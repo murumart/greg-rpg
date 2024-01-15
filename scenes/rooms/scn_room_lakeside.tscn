@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=66 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -255,6 +255,14 @@ size = Vector2(13, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d6pt"]
 size = Vector2(20, 7)
 
+[sub_resource type="Resource" id="Resource_qe2fe"]
+script = ExtResource("18_7yl5j")
+title = "gmyfish"
+silver_required = 80
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"gummy_fish"])
+
 [sub_resource type="Resource" id="Resource_n07d0"]
 script = ExtResource("18_7yl5j")
 title = "berries"
@@ -262,6 +270,14 @@ silver_required = 100
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"berries"])
+
+[sub_resource type="Resource" id="Resource_xyn8f"]
+script = ExtResource("18_7yl5j")
+title = "hairdryer"
+silver_required = 2000
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"hairdryer"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vb1q4"]
 size = Vector2(111, 22)
@@ -478,7 +494,7 @@ shape = SubResource("RectangleShape2D_0d6pt")
 
 [node name="KidOverworld" parent="Buildings/KidStand" instance=ExtResource("17_un030")]
 position = Vector2(0, 1)
-trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_n07d0")])
+trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_qe2fe"), SubResource("Resource_n07d0"), SubResource("Resource_xyn8f")])
 
 [node name="Stand" type="Sprite2D" parent="Buildings/KidStand"]
 position = Vector2(0, 6)

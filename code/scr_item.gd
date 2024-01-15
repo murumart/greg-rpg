@@ -28,6 +28,8 @@ func get_effect_description() -> String:
 		text += "armour\n"
 	if use == Uses.WEAPON:
 		text += "weapon\n"
+	if not consume_on_use:
+		text += "no consume"
 	return text
 
 

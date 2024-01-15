@@ -2,8 +2,6 @@ class_name StatusEffect extends Resource
 
 # quick thing to store status effect applying in BattlePayload
 
-
-
 const ICONS := {
 	&"poison": Rect2(0, 0, 6, 6),
 	&"coughing": Rect2(6, 0, 6, 6),
@@ -19,7 +17,9 @@ const ICONS := {
 	&"shield": Rect2(6, 12, 6, 6),
 	&"sleepy": Rect2(12, 12, 6, 6),
 	&"sopping": Rect2(18, 12, 6, 6),
-	&"appetising": Rect2(24, 12, 6, 6)
+	&"appetising": Rect2(24, 12, 6, 6),
+	&"sopping_immunity": Rect2(0, 36, 6, 6),
+	&"little": Rect2(6, 36, 6, 6)
 }
 
 const DESCRIPTIONS := {
@@ -41,6 +41,7 @@ const DESCRIPTIONS := {
 	&"sleepy": "you cannot act. any damage will hurt more but also wake you.",
 	&"sopping": "you're wet and pathetic and receive extra damage for it.",
 	&"appetising": "animals will first attack anyone with this effect.",
+	&"little": "you're tiny, which makes you slower, but not any weaker."
 }
 
 @export var name := &""
