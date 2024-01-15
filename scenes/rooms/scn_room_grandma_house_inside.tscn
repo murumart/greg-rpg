@@ -79,6 +79,7 @@ speed = 2000
 movement_wait = 3.0
 random_movement = true
 default_lines = Array[StringName]([&"intro_grandma_1", &"intro_grandma_2"])
+save_convo_progess = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Grandma"]
 position = Vector2(0, -8)

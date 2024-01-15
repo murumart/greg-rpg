@@ -1,6 +1,6 @@
 extends Room
 
-@onready var intro_animator := $Cutscenes/InitialIntro
+@onready var intro_animator := $Cutscenes/InitialIntro as AnimationPlayer
 @export var intro_dialogue_progress := 0
 @onready var room_gate := $Areas/RoomGate
 @onready var room_gate_2 := $Areas/RoomGate2
