@@ -239,3 +239,7 @@ static func child_dict(node: Node) -> Dictionary:
 	return dict
 
 
+static func but(a: bool, b: bool) -> bool:
+	return (not a) and b
+
+

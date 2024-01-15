@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_cnnlh"]
 script = ExtResource("1_g6o4l")
 name = "speed"
-strength = -2
+strength = -2.0
 duration = 2.0
 
 [sub_resource type="Resource" id="Resource_nffp2"]
@@ -23,7 +23,7 @@ max_magic_percent = 0.0
 steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
-speed_increase = -2.0
+speed_increase = 0.0
 gender = 5
 effects = Array[ExtResource("1_g6o4l")]([SubResource("Resource_cnnlh")])
 delay = 0.0
@@ -39,7 +39,7 @@ description = "hooh"
 animation = &""
 use_animation = &"hook_attack_do"
 receive_animation = &"hook_attack_receive"
-cost = 15
+cost = 35
 use = 1
 reach = 2
 payload_reception_count = 3
