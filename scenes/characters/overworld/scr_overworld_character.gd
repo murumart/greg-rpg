@@ -144,7 +144,10 @@ func _physics_process(delta: float) -> void:
 
 # this is also called when "interact on collide" is turned on
 func interacted() -> void:
-	if DAT.player_capturers.size() > 0: return
+	if DAT.player_capturers.size() > 0:
+		if battle_info:
+			set_physics_process(false)
+		return
 	interactions += 1
 	inspected.emit()
 	if detection_area:
