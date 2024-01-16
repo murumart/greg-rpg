@@ -23,6 +23,8 @@ func _ready() -> void:
 			return
 		charac.level_up(level_gain)
 		charac.unused_sprits.append_array(new_spirits)
+		while charac.spirits.size() < Character.MAX_SPIRITS:
+			charac.spirits.append(charac.unused_sprits.pop_front())
 		charac.inventory.append_array(new_items)
 		charac.armour = replace_armour
 		charac.weapon = replace_weapon

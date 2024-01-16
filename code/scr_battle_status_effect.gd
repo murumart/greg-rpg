@@ -33,6 +33,7 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		if oldeff.strength - neweff.strength < 16:
 			oldeff.strength += roundf(
 				(oldeff.strength + neweff.strength) / maxf(oldeff.strength - 1, 2.0))
+			oldeff._add_text(actor)
 		print("changed effect ", oldeff)
 		return null
 	neweff._add_text(actor)
