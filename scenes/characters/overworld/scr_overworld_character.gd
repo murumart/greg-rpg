@@ -146,7 +146,7 @@ func _physics_process(delta: float) -> void:
 func interacted() -> void:
 	if DAT.player_capturers.size() > 0:
 		if battle_info:
-			set_physics_process(false)
+			set_collision_layer_value(4, false)
 		return
 	interactions += 1
 	inspected.emit()
