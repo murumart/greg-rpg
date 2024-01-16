@@ -18,17 +18,17 @@ func _ready() -> void:
 		printerr("CheatNode should be removed!")
 		return
 	for i in target_characters:
-		var char := DAT.get_character(i) as Character
-		if char.level != 1 and require_clean_char:
+		var charac := DAT.get_character(i) as Character
+		if charac.level != 1 and require_clean_char:
 			return
-		char.level_up(level_gain)
-		char.unused_sprits.append_array(new_spirits)
-		char.inventory.append_array(new_items)
-		char.armour = replace_armour
-		char.weapon = replace_weapon
+		charac.level_up(level_gain)
+		charac.unused_sprits.append_array(new_spirits)
+		charac.inventory.append_array(new_items)
+		charac.armour = replace_armour
+		charac.weapon = replace_weapon
 		if fill_resources:
-			char.health = char.max_health
-			char.magic = char.max_magic
+			charac.health = charac.max_health
+			charac.magic = charac.max_magic
 
 
 func _get_configuration_warnings() -> PackedStringArray:
