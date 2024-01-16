@@ -7,6 +7,8 @@ signal message_owner
 # resource for storing character data
 # this will be interpreted by the battle system and dialogue system
 
+const MAX_SPIRITS := 3
+
 const UPGRADE_MIN := {
 	"attack": 1, "defense": 1, "speed": 1, "max_health": 100, "max_magic": 30
 }

@@ -321,7 +321,7 @@ func _reference_button_pressed(reference) -> void:
 		load_using_menu()
 	if item_spirit_tabs.current_tab == 1 and doing == Doings.INNER:
 		if reference in party(current_tab).unused_sprits:
-			if used_spirit_container.get_child_count() < DAT.MAX_SPIRITS:
+			if used_spirit_container.get_child_count() < Character.MAX_SPIRITS:
 				party(current_tab).unused_sprits.erase(reference)
 				party(current_tab).spirits.append(reference)
 				load_spirits()
@@ -330,7 +330,7 @@ func _reference_button_pressed(reference) -> void:
 				grab_item_focus()
 			else:
 				SND.play_sound(load("res://sounds/error.ogg"), {"volume": -10})
-				mem_infotext.text = "can only equip %s spirits at a time" % DAT.MAX_SPIRITS
+				mem_infotext.text = "can only equip %s spirits at a time" % Character.MAX_SPIRITS
 		elif reference in party(current_tab).spirits:
 			party(current_tab).spirits.erase(reference)
 			party(current_tab).unused_sprits.append(reference)

@@ -13,7 +13,6 @@ var A: Dictionary
 var character_dict := {}
 var item_dict := {}
 var spirit_dict := {}
-const MAX_SPIRITS := 3
 
 # for forbidding player movement
 var player_capturers := []
