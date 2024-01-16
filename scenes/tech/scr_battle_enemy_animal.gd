@@ -28,7 +28,7 @@ func pick_target(who: int = 0) -> BattleActor:
 		var test_for_tasty := reference_to_actor_array.duplicate()
 		test_for_tasty.shuffle()
 		for actor: BattleActor in test_for_tasty:
-			if actor.has_status_effect(&"appetising"):
+			if actor.has_status_effect(&"appetising") and actor != self:
 				return actor
 	return super(who)
 
