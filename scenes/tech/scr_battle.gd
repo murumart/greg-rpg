@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("vampire_fight").set_party(["greg","cashier_nice"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default")
+).set_music("vampire_fight").set_party(["greg","cashier_nice"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default").set_enemies(["vampire"])
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -70,7 +70,7 @@ var spirit_speak_timer_wait := 2.0
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
-var held_item_id: String = ""
+var held_item_id: StringName = &""
 
 # storing battle members
 var actors: Array[BattleActor]
@@ -92,18 +92,6 @@ var current_target: BattleActor
 
 var death_reason := "default"
 var battle_rewards: BattleRewards
-
-@export var enable_testing_cheats := false
-@export_group("Cheat Stats")
-@export var party_cheat_levelup := 0
-@export var party_cheat_health := 0.0
-@export var party_cheat_magic := 0.0
-@export var party_cheat_attack := 0.0
-@export var party_cheat_defense := 0.0
-@export var party_cheat_speed := 0.0
-@export var party_add_spirits: Array[String] = []
-@export var party_add_items: Array[String] = []
-@export var test_enemies: Array[String] = []
 
 
 func _ready() -> void:
@@ -169,7 +157,6 @@ func load_battle(info: BattleInfo) -> void:
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
 	current_guy = party.front()
-	apply_cheats()
 	for e in info.enemies:
 		add_enemy(e)
 	set_background(info.background)
@@ -490,9 +477,14 @@ func open_list_screen() -> void:
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
-			array.append_array(party)
-			array.append_array(enemies)
-			Math.load_reference_buttons(actors, list_containers, _reference_button_pressed, _on_button_reference_received)
+			var item := DAT.get_item(held_item_id) as Item
+			if item.use in Item.USES_POSITIVE:
+				array.append_array(party)
+				array.append_array(enemies)
+			else:
+				array.append_array(enemies)
+				array.append_array(party)
+			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
 			screen_list_select.show()
 		Doings.SPIRIT:
 			Math.load_reference_buttons(actors, list_containers, _reference_button_pressed, _on_button_reference_received)
@@ -759,41 +751,6 @@ func resize_panel(new_y: int, wait := 0.2) -> void:
 # update the party faces not every frame
 func _on_update_timer_timeout() -> void:
 	pass
-
-
-func apply_cheats() -> void:
-	if not enable_testing_cheats: return
-	if LTS.gate_id: return
-	if DAT.seconds > 1: return
-	print("applying cheats")
-	for i in party:
-		if i.character.name_in_file != "cashier_nice":
-			i.character.level_up(party_cheat_levelup)
-			for n in party_cheat_levelup:
-				if DAT.get_levelup_spirit(n):
-					i.character.spirits.append(DAT.get_levelup_spirit(n))
-		i.character.health = i.character.max_health
-		i.character.magic = i.character.max_magic
-		if party_cheat_attack:
-			i.character.attack = party_cheat_attack
-		if party_cheat_defense:
-			i.character.defense = party_cheat_defense
-		if party_cheat_speed:
-			i.character.speed = party_cheat_speed
-		if party_cheat_health:
-			i.character.max_health = party_cheat_health
-			i.character.health = party_cheat_health
-		if party_cheat_magic:
-			i.character.max_magic = party_cheat_magic
-			i.character.magic = party_cheat_magic
-		if party_add_spirits:
-			for j in party_add_spirits:
-				i.character.spirits.append(j)
-		if party_add_items:
-			for j in party_add_items:
-				i.character.inventory.append(j)
-		if test_enemies:
-			load_options.set_enemies(test_enemies)
 
 
 func hide_screens() -> void:

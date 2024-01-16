@@ -1,6 +1,6 @@
 extends Node2D
 
-const SECTION_CHANGES : Array[float] = [
+const SECTION_CHANGES: Array[float] = [
 	13.333, # 0
 	26.667, # 1; pads come in
 	40.000, # 2

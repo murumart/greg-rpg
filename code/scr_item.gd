@@ -5,6 +5,8 @@ class_name Item
 
 enum Uses {NONE = -1, HEALING, HURTING, BUFFING, DEBUFFING, WEAPON, ARMOUR}
 const USES_EQUIPABLE := [Uses.WEAPON, Uses.ARMOUR]
+const USES_POSITIVE := [Uses.HEALING, Uses.BUFFING, Uses.WEAPON, Uses.ARMOUR]
+const USES_NEGATIVE := [Uses.HURTING, Uses.DEBUFFING]
 
 @export var name_in_file := &""
 
