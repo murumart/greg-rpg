@@ -15,6 +15,9 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		neweff.duration = -neweff.duration
 		actor.remove_status_effect(eff.name)
 	if eff.duration == -1:
+		var oldeff := actor.get_status_effect(neweff.name)
+		if oldeff:
+			oldeff._removed_text(actor)
 		actor.remove_status_effect(eff.name)
 		return null
 	if actor.is_immune_to(neweff.name):
@@ -22,8 +25,11 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		return null
 	if actor.has_status_effect(neweff.name):
 		var oldeff := actor.get_status_effect(neweff.name)
+		var olds := oldeff.strength
 		if oldeff.strength < neweff.strength:
 			oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
+		elif neweff.strength < 0:
+			oldeff.duration = maxi(oldeff.duration - neweff.duration, 0)
 		else:
 			oldeff.duration += roundi(
 				(neweff.duration + oldeff.duration) / 
@@ -33,7 +39,11 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		if oldeff.strength - neweff.strength < 16:
 			oldeff.strength += roundf(
 				(oldeff.strength + neweff.strength) / maxf(oldeff.strength - 1, 2.0))
-			oldeff._add_text(actor)
+		if oldeff.duration <= 0:
+			oldeff._removed_text(actor)
+			actor.remove_status_effect(eff.name)
+			return null
+		oldeff._adjusted_text(actor, oldeff.strength - olds)
 		print("changed effect ", oldeff)
 		return null
 	neweff._add_text(actor)
@@ -168,6 +178,34 @@ func _add_text(actor: BattleActor) -> void:
 				name.replace("_", " ")
 			],
 			color = Color.YELLOW, speed = 0.5
+		}
+	)
+
+
+func _adjusted_text(actor: BattleActor, streng: float) -> void:
+	SOL.vfx(
+		"damage_number",
+		actor.parentless_effcenter() - Vector2(0, 24),
+		{
+			text = "%s%s %s" % [
+				Math.sign_symbol(streng),
+				str(absf(streng)) if streng != 1 else "",
+				name.replace("_", " ")
+			],
+			color = Color.LIGHT_YELLOW, speed = 0.5
+		}
+	)
+
+
+func _removed_text(actor: BattleActor) -> void:
+	SOL.vfx(
+		"damage_number",
+		actor.parentless_effcenter() - Vector2(0, 8),
+		{
+			text = "no %s" % [
+				name.replace("_", " ")
+			],
+			color = Color.DIM_GRAY, speed = 0.5
 		}
 	)
 
