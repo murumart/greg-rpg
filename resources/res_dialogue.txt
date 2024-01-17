@@ -2290,8 +2290,7 @@ CHOICES darn
 
 DIALOGUE effect_guru_noeffects
 	come to me once you have some more battle experience.
-	i can help you.
-	see you then.
+	i can help you. see you then...
 
 
 DIALOGUE effect_guru_hi
@@ -2364,7 +2363,7 @@ DIALOGUE mafia_mumbles_1
 
 DIALOGUE mafia_interrupt
 	hey! intruder!
-	trespassing will be punished heavily.
+	trespassing will be punished severely.
 	you don't mess with the mafia, got that?
 
 
@@ -2434,6 +2433,7 @@ DIALOGUE girl_1
 	i love this little town!
 	i have been to many places, and this town...
 	...is already a favourite of mine.
+	a vampire's dream, tee hee!
 
 
 DIALOGUE girl_2
@@ -2441,23 +2441,56 @@ DIALOGUE girl_2
 	the hustle and bustle of large towns is good...
 	...but something about the intimacy in places...
 	...like this attracts me towards them.
+	must be my vampirism!
 
 
 DIALOGUE girl_3
 	traveling is one of my passions!
 	i have met many people on my trips.
 	you might be one of the ugliest of them. sorry...
+	as a vampire, i must not discriminate, though!
 
 
 DIALOGUE girl_4
 	'ello! what an interesting face you have!
-	i lost my appetite...
+	i lost my appetite... (i am a vampire)
 
 
 DIALOGUE girl_5
 	'ello! are you a local?
 	do you know when the cashiers in the store switch?
-	asking for a friend...
+	asking for a friend... totally no vampiric intentions...
+
+
+DIALOGUE uguy_1
+	have you heard this girl? she says she's a vampire.
+	how cute... how funny...
+
+
+DIALOGUE uguy_2
+	this girl says she's a vampire.
+	i think that's a really funny joke.
+
+
+DIALOGUE uguy_3
+	just so you know, girls can't be vampires.
+	that'd be not cool of them at all.
+
+
+DIALOGUE uguy_4
+	a girl who is also a vampire? i like her imagination!
+
+
+DIALOGUE uguy_lost
+	hey... have you seen this "vampire girl" anywhere?
+	she ran away after mumbling about "winter clothing" and "farts".
+	i think she ran towards the campsite up north in town...
+	let's go there! i'll follow you.
+
+
+DIALOGUE uguy_reminder
+	hey... remember where she went?
+	up north. around the campsite. go there!
 
 
 DIALOGUE vampire_battle_start

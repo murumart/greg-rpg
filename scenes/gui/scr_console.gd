@@ -56,7 +56,7 @@ func parse_command() -> void:
 		&"bset":
 			battle_set(args)
 		&"help":
-			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,lvup,7\ntype command without args to get help")
+			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,7\ntype command without args to get help")
 		&"eks":
 			ex(args)
 		&"clear":
@@ -73,6 +73,14 @@ func parse_command() -> void:
 			xp(args)
 		&"lvup":
 			lvup(args)
+		&"dial":
+			if args.size() < 1:
+				output("need dialogue key", true)
+				return
+			if not args[0] in SOL.dialogue_box.dialogues_dict.keys():
+				output("key doesn't exist", true)
+				return
+			SOL.dialogue(args[0])
 		&"7":
 			output("7")
 		_:

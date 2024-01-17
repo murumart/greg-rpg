@@ -6,6 +6,7 @@ class_name OverworldCharacter
 
 signal target_reached
 signal inspected
+signal cannot_reach_target
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 const ROTS := [&"up", &"right", &"down", &"left"]
@@ -22,7 +23,10 @@ var state := States.IDLE
 
 @export_group("Movement")
 @export var speed := 3500
-@export var movement_wait := 5.0
+@export var movement_wait := 5.0:
+	set(to):
+		movement_wait = to
+		time_between_chase_updates = to * 0.05
 @export var random_movement := false
 var time_between_chase_updates := 0.25
 @export var random_movement_distance := 64
@@ -33,6 +37,7 @@ var chase_timer: Timer
 var time_moved := 0.0
 @export var chase_target: Node2D
 @export var chase_distance := 32
+@export var chase_closeness := 6
 @export var path_container: Node2D
 var path_timer: Timer
 
@@ -61,26 +66,26 @@ func _ready() -> void:
 	if LTS.gate_id == LTS.GATE_LOADING:
 		pass
 	if save_position:
-		set_position(DAT.get_data(get_save_key("position"), position))
+		set_position(DAT.get_data(get_save_key("position"), global_position))
 	if save_convo_progess:
 		convo_progress = DAT.get_data(get_save_key("convo_progress"), 0)
 	# setup
+	random_movement_timer = Timer.new()
+	add_child(random_movement_timer)
+	random_movement_timer.timeout.connect(_on_random_movement_timer_timeout)
 	if random_movement:
-		random_movement_timer = Timer.new()
-		add_child(random_movement_timer)
-		random_movement_timer.timeout.connect(_on_random_movement_timer_timeout)
 		random_movement_timer.start(movement_wait)
+	chase_timer = Timer.new()
+	add_child(chase_timer)
+	time_between_chase_updates = movement_wait * 0.05
+	chase_timer.timeout.connect(_on_chase_timer_timeout)
 	if chase_target:
-		time_between_chase_updates = movement_wait * 0.05
-		chase_timer = Timer.new()
-		add_child(chase_timer)
-		chase_timer.timeout.connect(_on_chase_timer_timeout)
 		chase_timer.start(time_between_chase_updates)
+	path_timer = Timer.new()
+	add_child(path_timer)
+	path_timer.one_shot = true
+	path_timer.timeout.connect(_on_path_target_reached)
 	if path_container:
-		path_timer = Timer.new()
-		add_child(path_timer)
-		path_timer.one_shot = true
-		path_timer.timeout.connect(_on_path_target_reached)
 		path_timer.start(movement_wait)
 	idle_timer = Timer.new()
 	add_child(idle_timer)
@@ -110,10 +115,12 @@ func _physics_process(delta: float) -> void:
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed
 			# move as long as distance > 6 and hasn't moved for too long
-			if global_position.distance_squared_to(target) > 6 and time_moved < 5:
-				time_moved += delta * 2
+			if global_position.distance_squared_to(target) > chase_closeness and time_moved < 2.5:
+				time_moved += delta
 				var _collided := move_and_slide()
 			else:
+				if time_moved >= 2.5:
+					cannot_reach_target.emit()
 				set_state(States.IDLE)
 			# make diagonal movement faster to catch up with the player
 			global_position.x = roundi(global_position.x)
@@ -121,10 +128,12 @@ func _physics_process(delta: float) -> void:
 		# moving towards target
 		States.WANDER:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
-			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
-				time_moved += delta * 2
+			if global_position.distance_squared_to(target) > 4 and time_moved < 2.5:
+				time_moved += delta
 				var _collided := move_and_slide()
 			else:
+				if time_moved >= 2.5:
+					cannot_reach_target.emit()
 				target_reached.emit()
 				set_state(States.IDLE)
 		# moving along a path
@@ -186,7 +195,7 @@ func interacted() -> void:
 
 
 func _on_talking_finished() -> void:
-	if path_timer:
+	if path_container:
 		set_state(States.PATH)
 		path_timer.paused = false
 	SOL.dialogue_closed.disconnect(_on_talking_finished)
@@ -219,6 +228,7 @@ func _on_random_movement_timer_timeout() -> void:
 
 func _on_path_target_reached() -> void:
 	if not state == States.IDLE: return
+	if not path_container: return
 	var path_points := path_container.get_children()
 	if path_points:
 		var current := at_which_path_point()
@@ -329,6 +339,7 @@ func chase(body: Node2D) -> void:
 	var same_target_as_collider_condition := false
 	same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)
 	if not collider_is_target and not same_target_as_collider_condition:
+		cannot_reach_target.emit()
 		return
 	time_moved = 0.0
 	set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 4) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
@@ -354,7 +365,7 @@ func _save_me() -> void:
 	if not save: return
 	debprint("saving!")
 	if save_position:
-		DAT.set_data(get_save_key("position"), position)
+		DAT.set_data(get_save_key("position"), global_position)
 	if save_convo_progess:
 		DAT.set_data(get_save_key("convo_progress"), convo_progress)
 

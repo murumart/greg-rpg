@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=100 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -53,6 +53,7 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_leave_ending.gd" id="42_njd4g"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
+[ext_resource type="SpriteFrames" uid="uid://c1vqflismuh01" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
@@ -567,6 +568,10 @@ bounce = 0.67
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
 radius = 4.47214
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejp7m"]
+radius = 98.5
+height = 223.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
 size = Vector2(77, 15)
 
@@ -668,7 +673,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(-232, 278)
+position = Vector2(282, -148)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2045,29 +2050,62 @@ script = ExtResource("39_6m0tj")
 [node name="PositionMarkers" type="Node2D" parent="Other/VampireGirl"]
 
 [node name="Marker2D" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(1624, -153)
 
 [node name="Marker2D2" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(1352, -168)
 
 [node name="Marker2D3" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(904, -392)
 
 [node name="Marker2D4" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(1816, 280)
 
 [node name="Marker2D5" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(1236, -249)
 
-[node name="Girl" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
-position = Vector2(10, 0)
-animated_sprite = NodePath("AnimatedSprite2D")
+[node name="GGPos" type="Node2D" parent="Other/VampireGirl"]
+y_sort_enabled = true
+
+[node name="Girl" parent="Other/VampireGirl/GGPos" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(7, 0)
+animated_sprite = NodePath("GirlSprite")
 save = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/VampireGirl/Girl"]
+[node name="GirlSprite" type="AnimatedSprite2D" parent="Other/VampireGirl/GGPos/Girl"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("40_cl7gv")
 animation = &"walk_down"
+
+[node name="Guy" parent="Other/VampireGirl/GGPos" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(-7, 0)
+animated_sprite = NodePath("GuySprite")
+movement_wait = 3.0
+chase_distance = 300
+chase_closeness = 324
+save = false
+
+[node name="GuySprite" type="AnimatedSprite2D" parent="Other/VampireGirl/GGPos/Guy"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("43_n6mbw")
+animation = &"walk_down"
+
+[node name="CampsiteArea" type="Area2D" parent="Other/VampireGirl"]
+visible = false
+position = Vector2(1369, -438)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/CampsiteArea"]
+position = Vector2(13.5, -5.5)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_ejp7m")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 position = Vector2(40, 344)
