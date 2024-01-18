@@ -5,6 +5,7 @@ extends Room
 
 @onready var thug_spawners := $Areas.find_children("ThugSpawner*")
 @onready var animal_spawners := $Areas.find_children("AnimalSpawner*")
+@onready var vampire_cutscene: Node2D = $Other/CampfireSite/VampireCutscene
 
 
 func _ready() -> void:
@@ -45,8 +46,7 @@ func _ready() -> void:
 					await get_tree().process_frame
 					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
 			)
-	if not $Other/CampfireSite/Campfire.lit:
-		$Other/CampfireSite/CampsiteKid.queue_free()
+	vampire_cutscene.start()
 
 
 func neighbour_wife_position() -> void:
@@ -145,9 +145,13 @@ func skatepark_setup() -> void:
 
 func kid_setup() -> void:
 	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
-	first_encounter.inspected.connect(kid_first_encounter, CONNECT_ONE_SHOT)
+	if not $Other/CampfireSite/Campfire.lit:
+		$Other/CampfireSite/CampsiteKid.show()
+		$Other/CampfireSite/CampsiteKid.queue_free()
 	if DAT.get_data("kid_encountered", false):
 		first_encounter.queue_free()
+		return
+	first_encounter.inspected.connect(kid_first_encounter, CONNECT_ONE_SHOT)
 
 func kid_first_encounter() -> void:
 	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter

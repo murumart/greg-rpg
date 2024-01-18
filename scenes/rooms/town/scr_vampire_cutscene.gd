@@ -71,3 +71,4 @@ func start() -> void:
 	SOL.dialogue("vampire_cutscene_4")
 	await SOL.dialogue_closed
 	LTS.enter_battle(preload("res://resources/battle_infos/vampire_boss.tres"))
+

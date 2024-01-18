@@ -262,6 +262,7 @@ func direct_walking_animation(direction: Vector2) -> void:
 	if is_zero_approx(direction.length_squared()):
 		animated_sprite.stop()
 		return
+	idle_timer.start(randfn(8, 3))
 	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1])
 	if not animated_sprite.sprite_frames.has_animation(animation_name):
 		return

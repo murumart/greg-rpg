@@ -69,6 +69,10 @@ var songs := {
 		"title": "gaming",
 		"link": "res://music/mus_gaming.ogg"
 	},
+	"geezer": {
+		"title": "quit PISSING ME OFF GEEZER",
+		"link": "res://music/mus_geezer.ogg"
+	},
 	"greenhouse": {
 		"title": "webcatz - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"

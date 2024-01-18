@@ -2483,7 +2483,7 @@ DIALOGUE uguy_4
 
 DIALOGUE uguy_lost
 	hey... have you seen this "vampire girl" anywhere?
-	she ran away after mumbling about "winter clothing" and "farts".
+	she ran away after mumbling about "winter clothing" and "geezers".
 	i think she ran towards the campsite up north in town...
 	let's go there! i'll follow you.
 
@@ -2493,54 +2493,104 @@ DIALOGUE uguy_reminder
 	up north. around the campsite. go there!
 
 
+DIALOGUE vampire_cutscene_1
+	hey, girl vampire! don't go running off like that...
+INSTASKIP
+	you know how there's thugs in
+
+
+DIALOGUE vampire_cutscene_2
+CHAR vampire
+	quit pissing me off, geezer!
+	i'm working hard on my nefarious vampiric plans...!
+	...and you're just laughing at them!
+	and you... dodgy bugger in that ugly sweatshirt...
+	you're the biggest threat to my plot right now.
+	you're getting stronger just standing there...
+	i must take care of you, and then move on to the rest.
+	en guarde!
+
+
+DIALOGUE vampire_cutscene_3
+CHAR vampire
+	huh? who's there! i can sense your blood, you know?
+CHAR cashier_nice
+	i... uh... i must take my leave... you two have fun...
+CHAR vampire
+	not so fast!
+
+
+DIALOGUE vampire_cutscene_4
+CHAR cashier_nice
+	wough... ouhh...
+CHAR vampire
+	where do you think you're going, cashier lady?
+	off to the store to tattle to your magical bestie?
+	the other cashier who wields a very powerful spirit...
+	nuh-uh! i'll just get rid of you too.
+CHAR cashier_nice
+	oh. damn.
+
+
 DIALOGUE vampire_battle_start
+CHAR vampire
 	i can't have you two meddling in my dastardly plans...
 	all your spirits will belong to me. i am the vampire.
 	smelly man, i regret to say this - 
 	- but you are quite the snack. time to die. goodbye.
+CHAR cashier_nice
+	i wasn't expecting to die this way, that's for sure.
 
 
 DIALOGUE vampire_battle_70p
+CHAR vampire
 	i was counting on this ending faster...
 	i'll just have to stamp you into the mud harder.
 
 
 DIALOGUE vampire_battle_70p2
+CHAR vampire
 	this is my spirit power - ymxvb2q.
-	i will use a mere fraction of its power to demolish you.
+	i will use a mere fraction of its power to end you.
 
 
 DIALOGUE vampire_battle_50p
+CHAR vampire
 	ow!
 CHAR cashier_nice
 	i'm surprised we're still alive... let's keep doing...
 	...whatever it is that's keeping us that way.
-CHAR 
-	instead, consider keeling over and dying - it'll be less painful.
+CHAR vampire
+	instead, consider keeling over and dying -
+	- it'll be less painful.
 
 
 DIALOGUE vampire_battle_30p
 CHAR cashier_nice
 	i'll be late to work at this pace. could we hurry up?
-CHAR 
+CHAR vampire
 	shut up!!! i'm killing you! i'm killing you! i'm killing you!  i'm killing you! i'm killing you!
 
 
 DIALOGUE vampire_battle_30p2
+CHAR vampire
 	ymxvb2q!!! grind these ██████ to ███████████ from ████████!!!
 	take their spirit powers now!!!
 
 
 DIALOGUE vampire_battle_dead
+CHAR vampire
 	████████████!!!
 
 
 DIALOGUE vampire_after_battle
+CHAR vampire
 	no.... my vampiric ability has been defeated...
-	now i will age up all the years i've spent as a vampire
+	now i will age up all the years i've spent as a vampire.
 
 
 DIALOGUE blood_explosion
+CHAR vampire
 	blood explosion
 
 
@@ -2548,7 +2598,7 @@ DIALOGUE vampire_after_battle_2
 CHAR cashier_nice
 	you barely aged... i guess it's no wonder that...
 	...we survived against a rookie vampire.
-CHAR 
+CHAR vampire
 	that is so mean...
 	if you'd mind, i'd like a moment for myself now.
 INSTASKIP

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://dtrn4nlh3vsjx"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_dj1o2"]
+
+[resource]
+script = ExtResource("1_dj1o2")
+enemies = Array[String](["vampire"])
+background = "bg_vampire"
+music = "vampire_fight"
+party = Array[String](["greg", "cashier_nice"])
+death_reason = "default"
+start_text = ""
+victory_music = true
+stop_music_before_end = true

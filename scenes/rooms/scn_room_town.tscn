@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=101 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
@@ -673,7 +674,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(282, -148)
+position = Vector2(312, -445)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1665,46 +1666,50 @@ y_sort_enabled = true
 y_sort_enabled = true
 position = Vector2(370, -457)
 
-[node name="Log" type="Sprite2D" parent="Other/CampfireSite"]
-position = Vector2(-11, -1.99997)
-rotation = 1.57079
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(48, 32, 16, 24)
-
-[node name="Log2" type="Sprite2D" parent="Other/CampfireSite"]
-position = Vector2(20, 14)
-rotation = 3.14159
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(48, 32, 16, 24)
-
-[node name="Log3" type="Sprite2D" parent="Other/CampfireSite"]
-position = Vector2(-37, 13)
-rotation = 3.14159
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(48, 32, 16, 24)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Other/CampfireSite"]
+[node name="Logs" type="StaticBody2D" parent="Other/CampfireSite"]
+y_sort_enabled = true
 position = Vector2(-8, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampfireSite/Logs"]
 position = Vector2(-1, -14.5)
 shape = SubResource("RectangleShape2D_6yajp")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Other/CampfireSite/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Other/CampfireSite/Logs"]
 position = Vector2(28, 2)
 shape = SubResource("RectangleShape2D_jlgoa")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Other/CampfireSite/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Other/CampfireSite/Logs"]
 position = Vector2(-29, 1)
 shape = SubResource("RectangleShape2D_jlgoa")
+
+[node name="Log" type="Sprite2D" parent="Other/CampfireSite/Logs"]
+position = Vector2(-3, -17)
+rotation = 1.57079
+texture = ExtResource("9_8v8jp")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 24)
+
+[node name="Log2" type="Sprite2D" parent="Other/CampfireSite/Logs"]
+position = Vector2(28, -1)
+rotation = 3.14159
+texture = ExtResource("9_8v8jp")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 24)
+
+[node name="Log3" type="Sprite2D" parent="Other/CampfireSite/Logs"]
+position = Vector2(-29, -2)
+rotation = 3.14159
+texture = ExtResource("9_8v8jp")
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 24)
 
 [node name="Campfire" parent="Other/CampfireSite" instance=ExtResource("24_375rx")]
 position = Vector2(-9, 17)
 
 [node name="CampsiteKid" parent="Other/CampfireSite" instance=ExtResource("25_ffcbh")]
+visible = false
 position = Vector2(29, -6)
 trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_xq6fg")])
 
@@ -1793,6 +1798,58 @@ position = Vector2(28, -49)
 replenish_minutes = 24
 replenish_seconds = 1440
 item = &"glue"
+
+[node name="VampireCutscene" type="Node2D" parent="Other/CampfireSite"]
+y_sort_enabled = true
+script = ExtResource("33_v2bux")
+
+[node name="GregPos" type="Marker2D" parent="Other/CampfireSite/VampireCutscene"]
+position = Vector2(-58, 12)
+
+[node name="CamPos" type="Marker2D" parent="Other/CampfireSite/VampireCutscene"]
+position = Vector2(-1, -5)
+
+[node name="EndPos" type="Marker2D" parent="Other/CampfireSite/VampireCutscene"]
+position = Vector2(-45, -1)
+
+[node name="UGuy" parent="Other/CampfireSite/VampireCutscene" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(-58, -5)
+animated_sprite = NodePath("GuySprite")
+movement_wait = 3.0
+chase_distance = 300
+chase_closeness = 324
+save = false
+
+[node name="GuySprite" type="AnimatedSprite2D" parent="Other/CampfireSite/VampireCutscene/UGuy"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("43_n6mbw")
+animation = &"walk_down"
+
+[node name="VampireGirl" parent="Other/CampfireSite/VampireCutscene" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(26, -8)
+animated_sprite = NodePath("VampireSprite")
+movement_wait = 3.0
+chase_distance = 300
+chase_closeness = 324
+save = false
+
+[node name="VampireSprite" type="AnimatedSprite2D" parent="Other/CampfireSite/VampireCutscene/VampireGirl"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("40_cl7gv")
+animation = &"walk_down"
+
+[node name="Cashier" parent="Other/CampfireSite/VampireCutscene" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(-40, -52)
+animated_sprite = NodePath("CashierSprite")
+movement_wait = 3.0
+chase_distance = 300
+chase_closeness = 324
+save = false
+
+[node name="CashierSprite" type="AnimatedSprite2D" parent="Other/CampfireSite/VampireCutscene/Cashier"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("23_nx27k")
+animation = &"walk_down"
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true
@@ -2215,8 +2272,8 @@ shape = SubResource("RectangleShape2D_vlv1q")
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(-104, -335)
@@ -2261,7 +2318,7 @@ position = Vector2(474, -361)
 scale = Vector2(-1, 1)
 
 [node name="Tree46" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(415, -357)
+position = Vector2(428, -353)
 scale = Vector2(-1, 1)
 
 [node name="Tree47" parent="Trees" instance=ExtResource("8_l27gf")]
@@ -2273,14 +2330,14 @@ position = Vector2(315, -505)
 scale = Vector2(-1, 1)
 
 [node name="Tree49" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(373, -474)
+position = Vector2(383, -484)
 
 [node name="Tree50" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(285, -390)
+position = Vector2(272, -367)
 scale = Vector2(-1, 1)
 
 [node name="Tree51" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(319, -357)
+position = Vector2(301, -347)
 
 [node name="Tree52" parent="Trees" instance=ExtResource("8_l27gf")]
 position = Vector2(460, -317)
