@@ -25,7 +25,6 @@ const LB := "
 
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
-	print("parsing dialogue...")
 	var time := Time.get_ticks_usec() # measuring the time that this takes to run
 	var dialogue_dictionary: Dictionary = {}
 	var dial: Dialogue
@@ -127,6 +126,6 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	
 	if file.eof_reached():
 		dialogue_dictionary[dial.name] = dial
-	print("parsing finished. %s ms" % ((Time.get_ticks_usec() - time) / 1000.0))
+	print("parsing dialogue file took %s ms" % ((Time.get_ticks_usec() - time) / 1000.0))
 	return dialogue_dictionary
 

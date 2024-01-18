@@ -4,9 +4,9 @@ class_name DialogueBox
 # main game dialogue box
 
 signal dialogue_closed
-signal started_speaking
+signal started_speaking(line: int)
 signal changed_dialogue
-signal finished_speaking
+signal finished_speaking(line: int)
 
 @onready var textbox: TextBox = $DialogueBoxPanel/DialogueTextbox
 @onready var portrait: Sprite2D = $DialogueBoxPanel/PortraitSprite
@@ -166,7 +166,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	
 	show()
 	textbox.set_text(text)
-	started_speaking.emit()
+	started_speaking.emit(current_dialogue)
 	# speaking takes as much time as many there are letters to speak
 	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed * text.length() * 0.05})
 	if character and character.voice_sound and dialogue_sound:
@@ -190,7 +190,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		choices_container.get_child(0).call_deferred("grab_focus")
 		set_finished_marker(0)
 	
-	finished_speaking.emit()
+	finished_speaking.emit(current_dialogue)
 
 
 func next_dialogue_requested() -> void:

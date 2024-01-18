@@ -66,12 +66,12 @@ func _on_dialogue_closed() -> void:
 
 
 # these are used in some places i guess
-func _on_speaking_started() -> void:
+func _on_speaking_started(_line := 0) -> void:
 	speaking = true
 	dialogue_open = true
 
 
-func _on_speaking_stopped() -> void:
+func _on_speaking_stopped(_line := 0) -> void:
 	speaking = false
 
 
