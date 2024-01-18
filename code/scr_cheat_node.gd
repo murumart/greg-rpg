@@ -9,10 +9,14 @@ class_name CheatNode extends Node
 @export var replace_weapon: StringName = &""
 @export var fill_resources: bool = true
 @export var require_clean_char: bool = true
+@export var remove_when_gate_id := false
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
+		return
+	if remove_when_gate_id and LTS.gate_id != &"":
+		queue_free()
 		return
 	if DIR.standalone():
 		printerr("CheatNode should be removed!")
