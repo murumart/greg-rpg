@@ -12,6 +12,17 @@ class_name PartyMemberInfoPanel
 @onready var effects_container := $EffectsContainer
 @onready var remote_transform: RemoteTransform2D = $RemoteTransform
 
+var effect_textures := {}
+
+
+func _init() -> void:
+	for e in StatusEffect.ICONS.keys():
+		var rect := TextureRect.new()
+		var texture := AtlasTexture.new()
+		texture.atlas = preload("res://sprites/gui/spr_effects.png")
+		texture.region = StatusEffect.ICONS.get(e, Rect2(18, 0, 6, 6))
+		effect_textures[e] = texture
+
 
 func update(actor: BattleActor) -> void:
 	var charc := actor.character
@@ -39,16 +50,10 @@ func update(actor: BattleActor) -> void:
 
 func effects_display(actor: BattleActor) -> void:
 	for i in effects_container.get_children():
+		effects_container.remove_child(i)
 		i.queue_free()
 	for e in actor.status_effects:
 		var nimi := e.name
 		var rect := TextureRect.new()
-		rect.texture = AtlasTexture.new()
-		rect.texture.atlas = preload("res://sprites/gui/spr_effects.png")
-		rect.texture.region = StatusEffect.ICONS.get(nimi, Rect2(18, 0, 6, 6))
+		rect.texture = effect_textures.get(nimi, effect_textures["confusion"])
 		effects_container.add_child(rect)
-		if e.duration <= 1:
-			rect.modulate = Color(1, 1, 1, 0.75)
-		if e.strength < 0:
-			rect.flip_v = true
-	
