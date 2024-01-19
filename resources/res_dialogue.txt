@@ -2540,6 +2540,8 @@ CHAR vampire
 	- but you are quite the snack. time to die. goodbye.
 CHAR cashier_nice
 	i wasn't expecting to die this way, that's for sure.
+	i'm not good at fighting... but i have some stuff in...
+	...my pockets. maybe that's of some help?
 
 
 DIALOGUE vampire_battle_70p

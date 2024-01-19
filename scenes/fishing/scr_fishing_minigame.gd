@@ -183,8 +183,8 @@ func _on_hook_collision(node: Node2D) -> void:
 					}
 				)
 			node.caught()
-			SND.play_sound(SND_CATCH, {"pitch": remap(node.value, 1, 11, 1.0, 0.66)})
-			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch = randf_range(0.9, 1.4)})
+			SND.play_sound(SND_CATCH, {"pitch_scale": remap(node.value, 1, 11, 1.0, 0.66)})
+			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch_scale = randf_range(0.9, 1.4)})
 			wiggle.call()
 
 

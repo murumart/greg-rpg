@@ -314,7 +314,7 @@ func _reference_button_pressed(reference) -> void:
 		Doings.SPIRIT:
 			current_target = reference
 			open_spirit_name_screen()
-			SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch": 0.8})
+			SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch_scale": 0.8})
 		Doings.ITEM_MENU:
 			doing = Doings.ITEM
 			held_item_id = reference
@@ -540,7 +540,7 @@ func open_spirit_name_screen() -> void:
 # you didn't type the spirit name fast enough
 func _on_spirit_speak_timer_timeout() -> void:
 	listening_to_player_input = false
-	SND.play_sound(preload("res://sounds/error.ogg"), {pitch = 0.7, bus = "ECHO"})
+	SND.play_sound(preload("res://sounds/error.ogg"), {pitch_scale = 0.7, bus = "ECHO"})
 	spirit_name.text = "moment passed"
 	spirit_name.modulate = Color(2, 0.2, 0.4)
 	spirit_name.editable = false
@@ -561,7 +561,7 @@ func _on_spirit_name_changed(to: String) -> void:
 		_on_spirit_name_submitted(to)
 		return
 	
-	SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
+	SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch_scale": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(spirit_name, "modulate", Color(0.8, 0.8, 8.0, 2.0), 0.1)
 	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)

@@ -223,14 +223,14 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			reset_options()
 			SND.play_sound(preload("res://sounds/hurt.ogg"), {volume = 4.0})
 		"main_volume":
-			SND.play_sound(menu_sound, {pitch = 1.76})
+			SND.play_sound(menu_sound, {pitch_scale = 1.76})
 		"music_volume":
 			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
 		"screen_shake_intensity":
 			SOL.shake(1.0)
-			SND.play_sound(menu_sound, {pitch = 1.36})
+			SND.play_sound(menu_sound, {pitch_scale = 1.36})
 		_:
-			SND.play_sound(menu_sound, {pitch = 1.36})
+			SND.play_sound(menu_sound, {pitch_scale = 1.36})
 
 
 # all visual option nodes are stored in a container node

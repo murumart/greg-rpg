@@ -110,7 +110,7 @@ func turn(actor: BattleActor) -> void:
 		SOL.vfx(&"battle_burning",
 			actor.global_position + SOL.SCREEN_SIZE / 2 +
 			Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": actor})
-		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch = 2.0})
+		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch_scale = 2.0})
 	
 	if name == &"regen":
 		actor.heal(strength * 5)
@@ -128,7 +128,7 @@ func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 			amount *= 1.8
 		&"sopping":
 			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
-				{"pitch": 1.3, "volume": 2})
+				{"pitch_scale": 1.3, "volume": 2})
 			amount += amt * (0.4 + (strength * 0.2))
 			SOL.vfx(
 				"sopping",

@@ -131,7 +131,7 @@ func play_sound(sound: AudioStream, options := {}):
 	player.stream = sound
 	player.bus = options.get("bus", "Master")
 	player.volume_db = options.get("volume", 0.0)
-	player.pitch_scale = maxf(options.get("pitch", 1.0), 0.001)
+	player.pitch_scale = maxf(options.get("pitch_scale", 1.0), 0.001)
 	if options.get("autofree", true): playing_sounds.append(player)
 	add_child(player)
 	player.play()

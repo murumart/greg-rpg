@@ -53,8 +53,8 @@ func _on_new_game_button_pressed() -> void:
 	DAT.start_game()
 	# wow! chord
 	SND.play_sound(menusound, {"bus": "ECHO"})
-	SND.play_sound(menusound, {"bus": "ECHO", "pitch": 1.33})
-	SND.play_sound(menusound, {"bus": "ECHO", "pitch": 1.96})
+	SND.play_sound(menusound, {"bus": "ECHO", "pitch_scale": 1.33})
+	SND.play_sound(menusound, {"bus": "ECHO", "pitch_scale": 1.96})
 	SND.play_song("")
 	starting = true
 	get_viewport().gui_release_focus()

@@ -109,7 +109,7 @@ func _on_uguy_cannot_reach_target() -> void:
 	if not DAT.get_data(GUY_FOLLOW, false):
 		return
 	var tw := create_tween()
-	SND.play_sound(preload("res://sounds/teleport.ogg"), {"pitch": randf_range(0.9, 1.2)})
+	SND.play_sound(preload("res://sounds/teleport.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})
 	tw.tween_property(uguy, "global_position", greg.global_position, 0.1)
 
 

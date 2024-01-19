@@ -68,6 +68,7 @@ func start() -> void:
 	t3.tween_property(vampire_girl, "global_position:x", end_pos.global_position.x + 16, 0.5)
 	t3.tween_callback(vampire_girl.direct_walking_animation.bind(Vector2.DOWN))
 	await t3.finished
+	SND.play_song("vampire_fight", 0.5, {"pitch_scale": 0.75})
 	SOL.dialogue("vampire_cutscene_4")
 	await SOL.dialogue_closed
 	LTS.enter_battle(preload("res://resources/battle_infos/vampire_boss.tres"))

@@ -322,14 +322,14 @@ func _on_mail_menu_finished() -> void:
 
 func _on_coin_collected() -> void:
 	silver_collected += 1
-	SND.play_sound(preload("res://sounds/coin.ogg"), {"pitch": randf_range(0.9, 1.2)})
+	SND.play_sound(preload("res://sounds/coin.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})
 	update_ui()
 
 
 func _on_snail_hit() -> void:
 	snails_hit += 1
 	update_ui()
-	SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"), {"pitch": randf_range(0.9, 1.2)})
+	SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})
 	if snails_hit >= snails_until_hell and not currently_hell:
 		enter_hell()
 	if currently_hell and snails_hit >= snails_to_escape_hell:

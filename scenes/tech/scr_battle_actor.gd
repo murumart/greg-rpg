@@ -125,7 +125,7 @@ func hurt(amt: float, gendr: int) -> void:
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
-		SND.play_sound(preload("res://sounds/hurt.ogg"), {"pitch": 0.5, "volume": 4})
+		SND.play_sound(preload("res://sounds/hurt.ogg"), {"pitch_scale": 0.5, "volume": 4})
 		died.emit(self)
 	else:
 		# hurt sound
@@ -134,7 +134,7 @@ func hurt(amt: float, gendr: int) -> void:
 		else:
 			SND.play_sound(
 				hurt_sound,
-				{"pitch": maxf(lerpf(2.0, 0.5, remap(
+				{"pitch_scale": maxf(lerpf(2.0, 0.5, remap(
 					amount, 1, 90, 0.1, 1)), 0.1),
 				"volume": randi_range(-4, 1)}
 			)
