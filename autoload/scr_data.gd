@@ -347,7 +347,7 @@ func log_dat_chgs() -> bool:
 func init_data() -> void:
 	A.clear()
 	set_data("party", ["greg"])
-	#set_data("nr", randf())
+	set_data("nr", 0.0)
 
 
 func test() -> void:

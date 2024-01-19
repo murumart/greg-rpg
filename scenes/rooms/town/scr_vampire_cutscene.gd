@@ -15,10 +15,10 @@ func start() -> void:
 	DAT.capture_player("cutscene")
 	greg.animate("walk_right")
 	uguy.direct_walking_animation(Vector2.RIGHT)
+	greg.global_position = greg_pos.global_position
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, "global_position", cam_pos.global_position, 2)
 	await tw.step_finished
-	greg.global_position = greg_pos.global_position
 	uguy.move_to(vampire_girl.global_position - Vector2(20, 0))
 	await uguy.target_reached
 	vampire_girl.direct_walking_animation(Vector2.LEFT)
@@ -41,7 +41,7 @@ func start() -> void:
 	SOL.dialogue_box.started_speaking.connect(cam_change_during_dial_2_func)
 	SOL.dialogue("vampire_cutscene_2")
 	var ctw := create_tween()
-	ctw.tween_property(cashier, "position:x", cashier.position.x + 60, 20)
+	ctw.tween_property(cashier, "position:x", cashier.position.x + 60, 28)
 	await SOL.dialogue_closed
 	SOL.dialogue_box.started_speaking.disconnect(cam_change_during_dial_2_func)
 	SND.play_song("", 10)
@@ -68,8 +68,9 @@ func start() -> void:
 	t3.tween_property(vampire_girl, "global_position:x", end_pos.global_position.x + 16, 0.5)
 	t3.tween_callback(vampire_girl.direct_walking_animation.bind(Vector2.DOWN))
 	await t3.finished
-	SND.play_song("vampire_fight", 0.5, {"pitch_scale": 0.75})
+	SND.play_song("vampire_fight", 0.1, {"pitch_scale": 0.65})
 	SOL.dialogue("vampire_cutscene_4")
 	await SOL.dialogue_closed
+	SND.play_song("", 1000)
 	LTS.enter_battle(preload("res://resources/battle_infos/vampire_boss.tres"))
 
