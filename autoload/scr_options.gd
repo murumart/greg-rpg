@@ -55,7 +55,7 @@ var IONS := {
 # sorting the options
 const CATEGORIES := {
 	"sound": ["main_volume", "music_volume"],
-	"graphics": ["content_scale_mode", "screen_shake_intensity", "text_speak_time",  "max_fps"],
+	"graphics": ["screen_shake_intensity", "text_speak_time",  "max_fps"],
 	"debug": ["log_data_changes","list_button_focus_deferred"],
 	"": ["reset"]
 }
@@ -309,5 +309,5 @@ func _on_top_text_switcher_timeout() -> void:
 		1:
 			text = "music: %s" % SND.current_song.get("title", "nothing")
 		2:
-			text = "minutes played: %s" % roundi(DAT.seconds / 60.0)
+			text = "minutes played: %s" % roundi(DAT.playtime / 60.0)
 	top_text_label.text = text
