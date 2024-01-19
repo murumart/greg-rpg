@@ -7,6 +7,7 @@ class_name CheatNode extends Node
 @export var new_items: Array[StringName] = []
 @export var replace_armour: StringName = &""
 @export var replace_weapon: StringName = &""
+@export var force_spirits_into_use := false
 @export var fill_resources: bool = true
 @export var require_clean_char: bool = true
 @export var remove_when_gate_id := false
@@ -27,8 +28,12 @@ func _ready() -> void:
 			return
 		charac.level_up(level_gain)
 		charac.unused_sprits.append_array(new_spirits)
-		while charac.spirits.size() < Character.MAX_SPIRITS:
-			charac.spirits.append(charac.unused_sprits.pop_front())
+		if not force_spirits_into_use:
+			while charac.spirits.size() < Character.MAX_SPIRITS:
+				charac.spirits.append(charac.unused_sprits.pop_front())
+		else:
+			charac.spirits.append_array(charac.unused_sprits)
+			charac.unused_sprits.clear()
 		charac.inventory.append_array(new_items)
 		charac.armour = replace_armour
 		charac.weapon = replace_weapon
