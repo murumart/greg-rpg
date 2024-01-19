@@ -95,8 +95,7 @@ func ai_action() -> void:
 			Intents.ATTACK:
 				target = pick_target()
 				if hurting_spirits.size() > 0:
-					spirit_pocket.append_array(hurting_spirits)
-					spirit_pocket.shuffle()
+					spirit_pocket.append_array(Math.determ_shuffle(hurting_spirits, rng))
 					if rng.randf() <= vaimulembesus:
 						for s in spirit_pocket:
 							if DAT.get_spirit(s).cost <= character.magic:
@@ -112,8 +111,7 @@ func ai_action() -> void:
 				target = pick_target(SELF)
 				if rng.randf() <= altruism: target = pick_target(TEAM)
 				if rng.randf() <= vaimulembesus and buffing_spirits.size() > 0:
-					spirit_pocket.append_array(buffing_spirits)
-					spirit_pocket.shuffle()
+					spirit_pocket.append_array(Math.determ_shuffle(buffing_spirits, rng))
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -125,8 +123,7 @@ func ai_action() -> void:
 			Intents.DEBUFF:
 				target = pick_target()
 				if rng.randf() <= vaimulembesus and debuffing_spirits.size() > 0:
-					spirit_pocket.append_array(debuffing_spirits)
-					spirit_pocket.shuffle()
+					spirit_pocket.append_array(Math.determ_shuffle(debuffing_spirits, rng))
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -146,8 +143,7 @@ func ai_action() -> void:
 				if target != self and target.character.health_perc() > altruism:
 					continue
 				if rng.randf() <= vaimulembesus and healing_spirits.size() > 0:
-					spirit_pocket.append_array(healing_spirits)
-					spirit_pocket.shuffle()
+					spirit_pocket.append_array(Math.determ_shuffle(healing_spirits, rng))
 					for s in spirit_pocket:
 						if DAT.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
@@ -158,7 +154,7 @@ func ai_action() -> void:
 						return
 			Intents.FLEE:
 				if not can_flee: continue
-				var en: Character = reference_to_opposing_array.pick_random().character
+				var en := Math.determ_pick_random(reference_to_opposing_array, rng).character as Character 
 				if (character.health_perc() < 1.0 - toughness and
 				rng.randf() < 1.0 - toughness and
 				character.health_perc() < en.health_perc() and

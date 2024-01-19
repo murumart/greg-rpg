@@ -72,9 +72,12 @@ static func süsarv() -> float:
 # shuffle an array using an rng's seed value
 static func determ_shuffle(arr: Array, rng: RandomNumberGenerator) -> Array:
 	var new_array := []
-	for i in arr.size():
-		var x = arr.pop_at(rng.randi() % arr.size())
-		new_array.append(x)
+	var dup := arr.duplicate()
+	var sz := arr.size()
+	if sz <= 1:
+		return dup
+	var x = dup.pop_at(rng.randi() % dup.size())
+	new_array.append(x)
 	return new_array
 
 
