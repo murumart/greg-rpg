@@ -260,6 +260,12 @@ func animate(what: String) -> void:
 			tw.tween_property(animatable, "global_position:x", -300, 0.7)
 
 
+func emit_message(msg: String, options := {}) -> void:
+	if not options.has("alignment"):
+		options["alignment"] = HORIZONTAL_ALIGNMENT_RIGHT
+	super(msg, options)
+
+
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:
 	return a.character.health_perc() < b.character.health_perc()
 

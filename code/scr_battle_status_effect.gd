@@ -190,6 +190,12 @@ func _add_text(actor: BattleActor) -> void:
 			color = Color.YELLOW, speed = 0.5
 		}
 	)
+	actor.emit_message("@%s %s%s %s" % [
+		actor.actor_name,
+		Math.sign_symbol(strength),
+		str(absf(strength)) if strength != 1 else "",
+		name.replace("_", " ")
+	])
 
 
 func _adjusted_text(actor: BattleActor, streng: float) -> void:
@@ -205,6 +211,12 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 			color = Color.LIGHT_YELLOW, speed = 0.5
 		}
 	)
+	actor.emit_message("@%s %s%s %s" % [
+		actor.actor_name,
+		Math.sign_symbol(streng),
+		str(absf(streng)) if streng != 1 else "",
+		name.replace("_", " ")
+	])
 
 
 func _removed_text(actor: BattleActor) -> void:
@@ -218,6 +230,7 @@ func _removed_text(actor: BattleActor) -> void:
 			color = Color.DIM_GRAY, speed = 0.5
 		}
 	)
+	actor.emit_message("@%s no %s" % [actor.actor_name, name.replace("_", " ")])
 
 
 func _immune_text(actor: BattleActor) -> void:
@@ -229,6 +242,7 @@ func _immune_text(actor: BattleActor) -> void:
 			color = Color.YELLOW, speed = 0.5
 		}
 	)
+	actor.emit_message("@%s immune!" % actor.actor_name)
 
 
 func _to_string() -> String:

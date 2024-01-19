@@ -62,7 +62,8 @@ var loading_battle := true
 @onready var spirit_button := %SpiritButton
 @onready var item_button := %ItemButton
 @onready var selected_guy_display := %SelectedGuy
-@onready var log_text := %LogText
+@onready var log_text := %LogTextContainer
+@onready var log_timer := Timer.new()
 @onready var spirit_name := %SpiritName
 @onready var spirit_speak_timer := %SpiritSpeakTimer
 @onready var spirit_speak_timer_progress := %SpiritSpeakTimerProgress
@@ -97,6 +98,8 @@ var battle_rewards: BattleRewards
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start(0.08)
+	add_child(log_timer)
+	log_timer.one_shot = true
 	for e in enemies_node.get_children():
 		e.queue_free()
 	for a in party_node.get_children():
@@ -111,6 +114,10 @@ func _ready() -> void:
 	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
 	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
 	screen_dance_battle.end.connect(_dance_battle_ended)
+	OPT.battle_text_opacity_changed.connect(func():
+		log_text.modulate.a = OPT.get_opt("battle_text_opacity")
+	)
+	log_text.modulate.a = OPT.get_opt("battle_text_opacity")
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	remove_child(party_node)
@@ -165,9 +172,9 @@ func load_battle(info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
-	log_text.append_text(info.get_("start_text", 
+	message(info.get_("start_text", 
 		("%s lunges at you!" % enemies.front().actor_name) if enemies.size() else "no one is here."
-	) + "\n")
+	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
 	loading_battle = false
@@ -188,7 +195,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			push_error("too many party members")
 			return
 	node.reference_to_actor_array = actors
-	node.message.connect(_on_message_received)
+	node.message.connect(message)
 	node.act_requested.connect(_on_act_requested)
 	node.act_finished.connect(_on_act_finished)
 	node.died.connect(_on_actor_died)
@@ -396,15 +403,15 @@ func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
 	if actor in enemies:
 		if enemies.size() < MAX_ENEMIES:
 			add_enemy(req)
-			_on_message_received("%s joined the fight" % DAT.get_character(req).name)
+			message("%s joined the fight" % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			_on_message_received("%s did not fit into the fight." % DAT.get_character(req).name)
+			message("%s did not fit into the fight." % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	else:
 		if party.size() < MAX_PARTY_MEMBERS:
 			add_party_member(req)
-			_on_message_received("%s joined the fight" % DAT.get_character(req).name)
+			message("%s joined the fight" % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			_on_message_received("%s did not fit into the fight." % DAT.get_character(req).name)
+			message("%s did not fit into the fight." % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 
 
 func check_end(force := false) -> void:
@@ -417,8 +424,25 @@ func check_end(force := false) -> void:
 		open_end_screen(party.size() > 0)
 
 
-func _on_message_received(msg: String) -> void:
-	log_text.append_text(msg + "\n")
+func message(msg: String, options := {}) -> void:
+	log_timer.start(0.2)
+	if log_timer.time_left > 0:
+		await log_timer.timeout
+	var lab := Label.new()
+	lab.text = msg
+	lab["theme_override_constants/outline_size"] = 2
+	lab["theme_override_colors/font_outline_color"] = Color.BLACK
+	log_text.add_child(lab)
+	lab.horizontal_alignment = options.get("alignment", HORIZONTAL_ALIGNMENT_LEFT)
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_interval(2)
+	tw.tween_property(lab, "modulate:a", 0.1, 1)
+	tw.parallel().tween_property(log_text, "position:y", -7, 1)
+	tw.tween_callback(func():
+		lab.hide()
+		lab.queue_free()
+		log_text.position.y = 1
+	)
 
 
 # when a player-controllect character requests act
@@ -717,7 +741,7 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	loser.handle_payload(BattlePayload.new().set_sender(actor).set_health(-(wscore - 0.333 * lscore
 		)).set_defense_pierce(1).set_effects(
 			[StatusEffect.new().set_effect_name("defense").set_duration(8).set_strength(-55)]))
-	_on_message_received("%s punished %s" % [winner.character.name, loser.character.name])
+	message("%s punished %s" % [winner.character.name, loser.character.name], {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	open_party_info_screen()
 	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
 	if pwin and player in party:
@@ -817,7 +841,7 @@ func _on_crit_received() -> void:
 
 
 func _on_dance_battle_requested(actor: EnemyAnimal, target: BattleActor) -> void:
-	_on_message_received("dance battle!!")
+	message("dance battle!!")
 	if target in party:
 		set_actor_states(BattleActor.States.IDLE, true)
 		open_dance_battle_screen(actor, target)

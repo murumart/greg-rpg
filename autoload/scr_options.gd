@@ -1,6 +1,7 @@
 extends Node
 
 # options menu
+signal battle_text_opacity_changed
 
 # all options are stored inside this dict
 var IONS := {
@@ -50,12 +51,18 @@ var IONS := {
 		"default_value": 60.0,
 		"step": 1.0,
 	},
+	"battle_text_opacity": {
+		"value": 0.5,
+		"range": [0.0, 1.0],
+		"default_value": 0.5,
+		"step": 0.1,
+	},
 	"reset": {}
 }
 # sorting the options
 const CATEGORIES := {
 	"sound": ["main_volume", "music_volume"],
-	"graphics": ["screen_shake_intensity", "text_speak_time",  "max_fps"],
+	"graphics": ["screen_shake_intensity", "text_speak_time",  "max_fps", "battle_text_opacity"],
 	"debug": ["log_data_changes","list_button_focus_deferred"],
 	"": ["reset"]
 }
@@ -229,6 +236,9 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		"screen_shake_intensity":
 			SOL.shake(1.0)
 			SND.play_sound(menu_sound, {pitch_scale = 1.36})
+		"battle_text_opacity":
+			SND.play_sound(menu_sound, {pitch_scale = 1.36})
+			battle_text_opacity_changed.emit()
 		_:
 			SND.play_sound(menu_sound, {pitch_scale = 1.36})
 

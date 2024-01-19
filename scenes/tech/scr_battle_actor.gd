@@ -9,7 +9,7 @@ const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
 const WAIT_AFTER_ITEM := 1.00
 const WAIT_AFTER_FLEE := 1.0
 
-signal message(msg: String)
+signal message(msg: String, options: Dictionary)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
@@ -85,11 +85,11 @@ func _physics_process(delta: float) -> void:
 							randf_range(-16, 0)), {"parent": self})
 					wait = 1.0
 					if sleepy:
-						message.emit("%s is sleeping..." % actor_name)
+						emit_message("%s is sleeping..." % actor_name)
 						SND.play_sound(preload("res://sounds/sleepy.ogg"),
 						 {"volume": 6})
 					else:
-						message.emit("%s woke up." % actor_name)
+						emit_message("%s woke up." % actor_name)
 		States.ACTING:
 			pass
 		States.DEAD:
@@ -378,7 +378,7 @@ func handle_payload(pld: BattlePayload) -> void:
 		SOL.dialogue("battle_inspect")
 	
 	if pld.meta.get("skateboard", false):
-		message.emit("woah! skateboard!! so cool!!")
+		emit_message("woah! skateboard!! so cool!!")
 	
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
@@ -489,8 +489,8 @@ func parentless_effcenter(subject: BattleActor = self) -> Vector2:
 	return get_effect_center(subject) - (SOL.HALF_SCREEN_SIZE)
 
 
-func emit_message(msg: String) -> void:
-	message.emit(msg)
+func emit_message(msg: String, options := {}) -> void:
+	message.emit(msg, options)
 
 
 func get_team() -> Array[BattleActor]:

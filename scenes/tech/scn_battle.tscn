@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=16 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
@@ -9,9 +9,6 @@
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyurf"]
-bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -76,15 +73,14 @@ offset_right = 160.0
 offset_bottom = 120.0
 theme = ExtResource("3_v2dlj")
 
-[node name="LogText" type="RichTextLabel" parent="UI"]
+[node name="LogTextContainer" type="VBoxContainer" parent="UI"]
 unique_name_in_owner = true
-layout_mode = 0
+modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 2
+offset_top = 1.0
 offset_right = 160.0
-offset_bottom = 16.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_eyurf")
-bbcode_enabled = true
-scroll_active = false
-scroll_following = true
+offset_bottom = 25.0
+theme_override_constants/separation = 0
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0
