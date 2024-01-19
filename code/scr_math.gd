@@ -73,10 +73,14 @@ static func süsarv() -> float:
 static func determ_shuffle(arr: Array, rng: RandomNumberGenerator) -> Array:
 	var new_array := []
 	for i in arr.size():
-		var x = arr[rng.randi() % arr.size()]
+		var x = arr.pop_at(rng.randi() % arr.size())
 		new_array.append(x)
-		arr.erase(x)
 	return new_array
+
+
+static func determ_pick_random(arr: Array, rng: RandomNumberGenerator) -> Variant:
+	var nr := rng.randi() % arr.size()
+	return arr[nr]
 
 
 static func mult_arr(arr: Array, x: int) -> Array:

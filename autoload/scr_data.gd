@@ -80,6 +80,7 @@ func load_resources() -> void:
 # the architecture for this is iffy
 func start_game() -> void:
 	init_data()
+	set_data("nr", randf())
 	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 
 
@@ -346,7 +347,7 @@ func log_dat_chgs() -> bool:
 func init_data() -> void:
 	A.clear()
 	set_data("party", ["greg"])
-	set_data("nr", randf())
+	#set_data("nr", randf())
 
 
 func test() -> void:

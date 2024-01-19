@@ -7,7 +7,7 @@ var soul := 0.0
 
 func _ready() -> void:
 	super._ready()
-	soul = randf() * 25
+	soul = rng.randf() * 25
 
 
 func act() -> void:
@@ -25,8 +25,7 @@ func attack(target: BattleActor) -> void:
 
 func pick_target(who: int = 0) -> BattleActor:
 	if who != SELF:
-		var test_for_tasty := reference_to_actor_array.duplicate()
-		test_for_tasty.shuffle()
+		var test_for_tasty := Math.determ_shuffle(reference_to_actor_array.duplicate(), rng)
 		for actor: BattleActor in test_for_tasty:
 			if actor.has_status_effect(&"appetising") and actor != self:
 				return actor

@@ -35,11 +35,13 @@ var extra_targets: Array[BattleActor]
 @export_range(0.0, 10.0) var xp_multiplier := 1.0
 
 var last_intent: Intents
+var rng := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
 	animate("idle")
 	super._ready()
+	rng.seed = hash(actor_name) + DAT.get_data("nr", 0) * 1000
 	# sorting the spirits
 	for s in character.spirits:
 		var spirit: Spirit = DAT.get_spirit(s)
@@ -81,8 +83,8 @@ func ai_action() -> void:
 	var intent := default_intent
 	# try finding a suitable act
 	for i in FIND_SUITABLE_ACT_TRIES:
-		if randf() <= innovation:
-			intent = (randi() as Intents) % Intents.MAX_ACTION
+		if rng.randf() <= innovation:
+			intent = (rng.randi() as Intents) % Intents.MAX_ACTION
 		var target: BattleActor
 		# spirits are appended to and then selected from this
 		var spirit_pocket: Array[String] = []
@@ -95,7 +97,7 @@ func ai_action() -> void:
 				if hurting_spirits.size() > 0:
 					spirit_pocket.append_array(hurting_spirits)
 					spirit_pocket.shuffle()
-					if randf() <= vaimulembesus:
+					if rng.randf() <= vaimulembesus:
 						for s in spirit_pocket:
 							if DAT.get_spirit(s).cost <= character.magic:
 								use_spirit(s, target)
@@ -108,8 +110,8 @@ func ai_action() -> void:
 				return
 			Intents.BUFF:
 				target = pick_target(SELF)
-				if randf() <= altruism: target = pick_target(TEAM)
-				if randf() <= vaimulembesus and buffing_spirits.size() > 0:
+				if rng.randf() <= altruism: target = pick_target(TEAM)
+				if rng.randf() <= vaimulembesus and buffing_spirits.size() > 0:
 					spirit_pocket.append_array(buffing_spirits)
 					spirit_pocket.shuffle()
 					for s in spirit_pocket:
@@ -122,7 +124,7 @@ func ai_action() -> void:
 						return
 			Intents.DEBUFF:
 				target = pick_target()
-				if randf() <= vaimulembesus and debuffing_spirits.size() > 0:
+				if rng.randf() <= vaimulembesus and debuffing_spirits.size() > 0:
 					spirit_pocket.append_array(debuffing_spirits)
 					spirit_pocket.shuffle()
 					for s in spirit_pocket:
@@ -143,7 +145,7 @@ func ai_action() -> void:
 				# if target not self and not altruistic enough, don't heal them
 				if target != self and target.character.health_perc() > altruism:
 					continue
-				if randf() <= vaimulembesus and healing_spirits.size() > 0:
+				if rng.randf() <= vaimulembesus and healing_spirits.size() > 0:
 					spirit_pocket.append_array(healing_spirits)
 					spirit_pocket.shuffle()
 					for s in spirit_pocket:
@@ -158,7 +160,7 @@ func ai_action() -> void:
 				if not can_flee: continue
 				var en: Character = reference_to_opposing_array.pick_random().character
 				if (character.health_perc() < 1.0 - toughness and
-				randf() < 1.0 - toughness and
+				rng.randf() < 1.0 - toughness and
 				character.health_perc() < en.health_perc() and
 				character.level < en.level):
 					flee()
@@ -203,18 +205,18 @@ func flee() -> void:
 # random targets (and account for confusion)
 func pick_target(who: int = 0) -> BattleActor:
 	if has_status_effect(&"confusion"):
-		return reference_to_actor_array.pick_random()
+		return Math.determ_pick_random(reference_to_actor_array, rng)
 	if who == TEAM:
-		return reference_to_team_array.pick_random()
+		return Math.determ_pick_random(reference_to_team_array, rng)
 	if who == SELF:
 		return self
 	if reference_to_opposing_array.size() > 0:
 		var target: BattleActor
-		if extra_targets.is_empty() or randf() <= 0.6667:
-			target = reference_to_opposing_array.pick_random()
+		if extra_targets.is_empty() or rng.randf() <= 0.6667:
+			target = Math.determ_pick_random(reference_to_opposing_array, rng)
 			if is_instance_valid(target):
 				return target
-		target = extra_targets.pick_random()
+		target = Math.determ_pick_random(extra_targets, rng)
 		if is_instance_valid(target):
 			return target
 	return null
