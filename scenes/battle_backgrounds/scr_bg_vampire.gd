@@ -20,12 +20,13 @@ var fsec := 0.0
 var section := -1
 @onready var timer: Timer = $Timer
 @onready var label: Label = $Label
+@onready var anim := $Anim as AnimationPlayer
 @onready var mbc := $MusBarCounter as MusBarCounter
 
 
 func _ready() -> void:
 	timeout()
-	SND.play_song("vampire_fight")
+	SND.play_song("vampire_fight", 1.0, {start_volume = 0, play_from_beginning = true})
 
 
 func _process(delta: float) -> void:
@@ -44,20 +45,50 @@ func timeout() -> void:
 	print("section: ", section)
 	match section:
 		0:
+			anim.play("RESET")
+			anim.seek(99, true)
 			fsec = 0.0
 			mbc.reset_floats()
 			mbc.reset_measures()
 			mbc.beats_per_bar = 5
 			print("loop")
+			anim.play("sec1", 1.0)
+		1:
+			anim.play("sec2", 1.0)
+		2:
+			anim.play("sec3", 1.0)
+		3:
+			anim.play("RESET")
+			anim.play_backwards("sec1", 0.2)
+		4:
+			anim.play("sec4")
+		5:
+			anim.play_backwards("sec2", 0.2)
+		6:
+			anim.play("RESET")
+			anim.play("sec4", 0, 1.0)
 		7:
 			mbc.reset_floats()
 			mbc.reset_measures()
 			mbc.beats_per_bar = 4
+			anim.play("sec7")
+		8:
+			anim.play("sec3")
 		9:
+			anim.play("RESET")
+			anim.seek(99, true)
 			mbc.reset_floats()
 			mbc.reset_measures()
 			mbc.beats_per_bar = 5
+			anim.play("sec1")
+		10:
+			anim.play("sec2")
 		11:
 			mbc.reset_floats()
 			mbc.reset_measures()
 			mbc.beats_per_bar = 4
+			anim.play("sec2")
+			anim.seek(99, true)
+			anim.play("sec7")
+		12:
+			anim.play("sec3")
