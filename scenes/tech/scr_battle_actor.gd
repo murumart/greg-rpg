@@ -349,7 +349,7 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change = absf(health_change)
 			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
 			if has_status_effect(&"shield"):
-				health_change *= 0.25 - (get_status_effect(&"shield").strength * 0.01)
+				health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
 				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 			hurt(health_change, pld.gender)
 			if pld.steal_health and is_instance_valid(pld.sender):
@@ -427,7 +427,7 @@ func status_effect_update() -> void:
 		# remove if immune
 		if is_immune_to(eff.name):
 			remove_status_effect(eff.name)
-		print(eff)
+		print(self, ": ", eff)
 
 
 func is_immune_to(what: StringName) -> bool:

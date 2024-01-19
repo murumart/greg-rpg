@@ -10,41 +10,33 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 	neweff.set_name(eff.name)
 	neweff.set_duration(eff.duration)
 	neweff.set_strength(eff.strength)
-	if eff.duration < -1:
-		neweff.name += &"_immunity"
-		neweff.duration = -neweff.duration
-		actor.remove_status_effect(eff.name)
+	# duration -1 means curing or removing some sort of effect
 	if eff.duration == -1:
 		var oldeff := actor.get_status_effect(neweff.name)
 		if oldeff:
 			oldeff._removed_text(actor)
 		actor.remove_status_effect(eff.name)
 		return null
+	# duration < -1 means an immunity effect instead
+	if eff.duration < -1:
+		neweff.name += &"_immunity"
+		neweff.duration = -neweff.duration
+		actor.remove_status_effect(eff.name)
 	if actor.is_immune_to(neweff.name):
 		neweff._immune_text(actor)
 		return null
+	# we have both status effects
 	if actor.has_status_effect(neweff.name):
 		var oldeff := actor.get_status_effect(neweff.name)
 		var olds := oldeff.strength
-		if oldeff.strength < neweff.strength:
-			oldeff.duration = ceili((oldeff.duration + neweff.duration) / 2.0)
-		elif neweff.strength < 0 and oldeff.strength > 0:
-			oldeff.duration = maxi(oldeff.duration - neweff.duration, 0)
-		else:
-			oldeff.duration += roundi(
-				(neweff.duration + oldeff.duration) / 
-				float(oldeff.duration))
-		#oldeff.strength = floorf((oldeff.strength + neweff.strength) / 2.0)
-		#oldeff.strength += roundf((oldeff.strength + neweff.strength) / 4.0)
-		if oldeff.strength - neweff.strength < 16:
-			oldeff.strength += roundf(
-				(oldeff.strength + neweff.strength) / maxf(oldeff.strength - 1, 2.0))
-		if oldeff.duration <= 0:
-			oldeff._removed_text(actor)
+		var addition := BattleStatusEffect.plus(neweff, oldeff)
+		if not addition:
 			actor.remove_status_effect(eff.name)
+			oldeff._removed_text(actor)
 			return null
-		oldeff._adjusted_text(actor, oldeff.strength - olds)
-		print("changed effect ", oldeff)
+		oldeff._adjusted_text(actor, (addition.strength if addition else 0) - olds)
+		print(actor.actor_name, " changed effect ", oldeff, " -> ", addition)
+		oldeff = addition
 		return null
 	neweff._add_text(actor)
 	neweff.added(actor)
@@ -74,6 +66,24 @@ func set_duration(x: int) -> BattleStatusEffect:
 func set_strength(x: float) -> BattleStatusEffect:
 	strength = x
 	return self
+
+
+static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEffect:
+	var u := BattleStatusEffect.new()
+	if a.name != b.name:
+		return null
+	u.name = a.name
+	u.strength = ceilf((a.strength + b.strength) / 2.0)
+	if u.strength == 0:
+		return null
+	if u.strength == a.strength or u.strength == b.strength:
+		u.strength += sign(u.strength)
+	u.duration = ceili((a.duration + b.duration) / 2.0)
+	if u.duration <= 0:
+		return null
+	if u.duration == a.duration or u.duration == b.duration:
+		u.duration += sign(u.duration)
+	return u
 
 
 func added(actor: BattleActor) -> void:
