@@ -7,13 +7,13 @@
 [sub_resource type="Resource" id="Resource_hvl7u"]
 script = ExtResource("1_efrol")
 name = "attack"
-strength = -15.0
+strength = -12.0
 duration = 7
 
 [sub_resource type="Resource" id="Resource_ise6q"]
 script = ExtResource("1_efrol")
 name = "defense"
-strength = -25.0
+strength = -17.0
 duration = 7
 
 [sub_resource type="Resource" id="Resource_476qf"]

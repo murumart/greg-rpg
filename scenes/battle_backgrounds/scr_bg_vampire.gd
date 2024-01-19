@@ -18,8 +18,6 @@ const SECTION_CHANGES: Array[float] = [
 
 var fsec := 0.0
 var section := -1
-@onready var timer: Timer = $Timer
-@onready var label: Label = $Label
 @onready var anim := $Anim as AnimationPlayer
 @onready var mbc := $MusBarCounter as MusBarCounter
 
@@ -30,11 +28,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	label.text = "
-fsec: %s
-section: %s
-beat: %s/%s
-bar: %s/%s" % [fsec, section, mbc.beats, mbc.flbeat, mbc.bars, mbc.flbar]
 	if fsec >= SECTION_CHANGES[section]:
 		timeout()
 	fsec += delta
@@ -42,7 +35,6 @@ bar: %s/%s" % [fsec, section, mbc.beats, mbc.flbeat, mbc.bars, mbc.flbar]
 
 func timeout() -> void:
 	section = wrapi(section + 1, 0, 13)
-	print("section: ", section)
 	match section:
 		0:
 			anim.play("RESET")
@@ -51,7 +43,6 @@ func timeout() -> void:
 			mbc.reset_floats()
 			mbc.reset_measures()
 			mbc.beats_per_bar = 5
-			print("loop")
 			anim.play("sec1", 1.0)
 		1:
 			anim.play("sec2", 1.0)

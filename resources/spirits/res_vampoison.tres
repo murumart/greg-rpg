@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_2b6vh"]
 script = ExtResource("1_apx08")
 name = "poison"
-strength = 2.0
+strength = 6.0
 duration = 5.0
 
 [sub_resource type="Resource" id="Resource_tcd4v"]

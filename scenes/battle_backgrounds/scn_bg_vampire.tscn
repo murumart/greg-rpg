@@ -990,18 +990,6 @@ offset_right = 164.0
 offset_bottom = 123.0
 color = Color(0.262745, 0.0901961, 0.0901961, 1)
 
-[node name="Label" type="Label" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.345098)
-z_index = 1
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 42.0
-offset_bottom = 11.0
-text = "asfassaagasasa"
-
-[node name="Timer" type="Timer" parent="."]
-
 [node name="MusBarCounter" type="Node" parent="."]
 script = ExtResource("2_dows5")
 bpm = 180.0
@@ -1076,7 +1064,7 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec7"]
 material = SubResource("CanvasItemMaterial_oaks3")
 position = Vector2(80, 60)
-rotation = 3.40687
+rotation = 4.47267
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_3ghhq")
 
@@ -1087,7 +1075,7 @@ speed = 8.0
 modulate = Color(1, 1, 1, 0.235294)
 material = SubResource("CanvasItemMaterial_5330b")
 position = Vector2(80, 60)
-rotation = 0.370929
+rotation = 2.61444
 texture = ExtResource("9_f36h7")
 
 [node name="Rotator" parent="BGPieces/Sec7/Sprite2D2" instance=ExtResource("8_ky8u5")]
