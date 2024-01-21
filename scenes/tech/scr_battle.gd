@@ -128,7 +128,7 @@ func _ready() -> void:
 	DAT.death_reason = death_reason
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	match doing:
 		Doings.SPIRIT_NAME:
 			# match the timer with the progress bar

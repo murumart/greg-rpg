@@ -17,7 +17,6 @@ var effect_textures := {}
 
 func _init() -> void:
 	for e in StatusEffect.ICONS.keys():
-		var rect := TextureRect.new()
 		var texture := AtlasTexture.new()
 		texture.atlas = preload("res://sprites/gui/spr_effects.png")
 		texture.region = StatusEffect.ICONS.get(e, Rect2(18, 0, 6, 6))

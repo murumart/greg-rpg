@@ -108,7 +108,7 @@ func create_arrow(alignment := 0) -> void:
 	arrow.speed = randf_range(120, 150) # pixels per sec
 	if tutorial:
 		arrow.speed *= 0.75
-	var box_from_top := 97.0
+
 	arrow.position.y = -arrow.speed * bps
 	var trail := preload("res://scenes/vfx/scn_vfx_dance_arrow_trail.tscn").instantiate()
 	arrow.add_child(trail)
