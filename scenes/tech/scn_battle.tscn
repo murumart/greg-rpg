@@ -1,17 +1,23 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=19 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
+[ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="4_vhvdj"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
 [ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="7_is2uq"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="7_qtl4a"]
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="8_teagk"]
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfnon"]
+atlas = ExtResource("8_teagk")
+region = Rect2(0, 6, 6, 6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6aa0q"]
 bg_color = Color(0, 0, 0, 0)
@@ -73,24 +79,21 @@ offset_right = 160.0
 offset_bottom = 120.0
 theme = ExtResource("3_v2dlj")
 
-[node name="LogTextContainer" type="VBoxContainer" parent="UI"]
+[node name="MessageContainer" parent="UI" instance=ExtResource("4_vhvdj")]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.54902)
-layout_mode = 2
-offset_top = 1.0
-offset_right = 160.0
-offset_bottom = 25.0
-theme_override_constants/separation = 0
+offset_left = 8.0
+offset_top = -7.0
+offset_right = 153.0
+offset_bottom = 33.0
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0
-offset_top = 112.0
+offset_top = 76.0
 offset_right = 160.0
 offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -111,8 +114,10 @@ offset_right = 24.0
 texture = ExtResource("5_kl5pr")
 
 [node name="Name" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="1"]
-offset_top = 81.0
-offset_bottom = 92.0
+offset_left = -90.0
+offset_top = 56.0
+offset_right = -60.0
+offset_bottom = 67.0
 
 [node name="HealthBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="3"]
 self_modulate = Color(1, 1, 1, 0.388235)
@@ -129,10 +134,10 @@ offset_right = 116.0
 offset_bottom = 39.0
 
 [node name="WaitBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="5"]
-offset_left = 23.0
-offset_top = 77.0
-offset_right = 53.0
-offset_bottom = 79.0
+offset_left = -90.0
+offset_top = 65.0
+offset_right = -60.0
+offset_bottom = 67.0
 
 [node name="AnimalBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="6"]
 visible = false
@@ -204,6 +209,29 @@ text_overrun_behavior = 3
 clip_text = true
 script = ExtResource("4_ht2pp")
 description = "dig through your pockets"
+
+[node name="StatusEffectsList" type="VBoxContainer" parent="UI/Panel/ScreenMainActions"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 44.0
+offset_right = 163.0
+offset_bottom = 110.0
+theme_override_constants/separation = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/ScreenMainActions/StatusEffectsList"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_sfnon")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "inspiration lvl 33 for 33 turns"
+clip_text = true
 
 [node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
@@ -455,6 +483,7 @@ visible_characters_behavior = 1
 script = ExtResource("7_qtl4a")
 
 [node name="ScreenDanceBattle" parent="UI/Panel" instance=ExtResource("9_sbskt")]
+visible = false
 offset_top = 0.0
 offset_bottom = 44.0
 

@@ -56,4 +56,5 @@ func effects_display(actor: BattleActor) -> void:
 		var nimi := e.name
 		var rect := TextureRect.new()
 		rect.texture = effect_textures.get(nimi, effect_textures["confusion"])
+		rect.flip_v = e.strength < 0
 		effects_container.add_child(rect)

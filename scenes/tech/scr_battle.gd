@@ -56,14 +56,14 @@ var loading_battle := true
 @onready var screen_dance_battle := $UI/Panel/ScreenDanceBattle as ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
+@onready var status_effects_list := $UI/Panel/ScreenMainActions/StatusEffectsList
 @onready var victory_text := %VictoryText
 @onready var defeat_text := %DefeatText
 @onready var attack_button := %AttackButton
 @onready var spirit_button := %SpiritButton
 @onready var item_button := %ItemButton
 @onready var selected_guy_display := %SelectedGuy
-@onready var log_text := %LogTextContainer
-@onready var log_timer := Timer.new()
+@onready var log_text := %MessageContainer as MessageContainer
 @onready var spirit_name := %SpiritName
 @onready var spirit_speak_timer := %SpiritSpeakTimer
 @onready var spirit_speak_timer_progress := %SpiritSpeakTimerProgress
@@ -98,8 +98,6 @@ var battle_rewards: BattleRewards
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start(0.08)
-	add_child(log_timer)
-	log_timer.one_shot = true
 	for e in enemies_node.get_children():
 		e.queue_free()
 	for a in party_node.get_children():
@@ -130,7 +128,7 @@ func _ready() -> void:
 	DAT.death_reason = death_reason
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	match doing:
 		Doings.SPIRIT_NAME:
 			# match the timer with the progress bar
@@ -147,6 +145,24 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if not listening_to_player_input: return
 	if event.is_action_pressed("ui_cancel"):
 		go_back_a_menu()
+	if event.is_action_pressed("ui_menu") and doing == Doings.NOTHING:
+		for e: BattleStatusEffect in current_guy.status_effects:
+			var cont := HBoxContainer.new()
+			cont.add_theme_constant_override("separation", 0)
+			var tex := TextureRect.new()
+			tex.stretch_mode = TextureRect.STRETCH_KEEP
+			# lazy
+			tex.texture = current_info.effect_textures.get(e.name, current_info.effect_textures["confusion"])
+			tex.flip_v = e.strength < 0
+			var lab := Label.new()
+			lab.text = "%s lvl %s for %s turns" % [e.name.replace("_", " "), e.strength, e.duration]
+			cont.add_child(tex)
+			cont.add_child(lab)
+			status_effects_list.add_child(cont)
+		resize_panel(112)
+		set_description("status effect info")
+	if event.is_action_released("ui_menu") and doing == Doings.NOTHING:
+		open_main_actions_screen()
 	if event.is_action_pressed("ui_accept") and doing == Doings.DONE:
 		# leave the battle
 		LTS.gate_id = LTS.GATE_EXIT_BATTLE
@@ -425,24 +441,7 @@ func check_end(force := false) -> void:
 
 
 func message(msg: String, options := {}) -> void:
-	log_timer.start(0.2)
-	if log_timer.time_left > 0:
-		await log_timer.timeout
-	var lab := Label.new()
-	lab.text = msg
-	lab["theme_override_constants/outline_size"] = 2
-	lab["theme_override_colors/font_outline_color"] = Color.BLACK
-	log_text.add_child(lab)
-	lab.horizontal_alignment = options.get("alignment", HORIZONTAL_ALIGNMENT_LEFT)
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_interval(2)
-	tw.tween_property(lab, "modulate:a", 0.1, 1)
-	tw.parallel().tween_property(log_text, "position:y", -7, 1)
-	tw.tween_callback(func():
-		lab.hide()
-		lab.queue_free()
-		log_text.position.y = 1
-	)
+	log_text.push_message(msg, options)
 
 
 # when a player-controllect character requests act
@@ -469,6 +468,9 @@ func open_main_actions_screen() -> void:
 	screen_main_actions.show()
 	attack_button.grab_focus()
 	erase_floating_spirits()
+	for c in status_effects_list.get_children():
+		c.hide()
+		c.queue_free()
 	match doing:
 		Doings.NOTHING:
 			attack_button.grab_focus()
