@@ -34,7 +34,7 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		if not addition:
 			oldeff._removed_text(actor)
 			return null
-		oldeff._adjusted_text(actor, (addition.strength if addition else 0) - olds)
+		oldeff._adjusted_text(actor, (addition.strength if addition else 0.0) - olds)
 		print(actor.actor_name, " changed effect ", oldeff, " -> ", addition)
 		return addition
 	neweff._add_text(actor)
@@ -135,10 +135,16 @@ func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 			actor.remove_status_effect(&"sleepy")
 			actor.message.emit("%s woke up!" % actor.actor_name)
 			amount *= 1.8
+			if gender == Genders.BRAIN:
+				amount *= 1.8
 		&"sopping":
 			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
 				{"pitch_scale": 1.3, "volume": 2})
 			amount += amt * (0.4 + (strength * 0.2))
+			if gender == Genders.FLAMING:
+				amount *= 0.5
+			elif gender == Genders.ELECTRIC:
+				amount *= 1.5
 			SOL.vfx(
 				"sopping",
 				actor.global_position + Vector2(randf_range(-4, 4), -16),

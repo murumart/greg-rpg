@@ -22,28 +22,6 @@ const ICONS := {
 	&"little": Rect2(6, 36, 6, 6)
 }
 
-const DESCRIPTIONS := {
-	&"default": "i'm afraid i don't have the expertise for this one.",
-	&"default_immunity": "you are immune to %s.",
-	&"poison": "you will lose a bit of life every time you act.",
-	&"poison_immunity": "you are immune to poison.",
-	&"coughing": "you will painfully cough every once in a while.",
-	&"coughing_immunity": "you are immune to coughing.",
-	&"fire": "you're on fire, taking damage every time you act.",
-	&"confusion": "you're not quite sure whom you're going to hit...",
-	&"attack": "your natural attacks grow more powerful.",
-	&"defense": "you withstand natural blows better.",
-	&"speed": "you are more nimble, being able to act more often.",
-	&"magnet": "finishing a fight with this will give you more exp. and silver.",
-	&"inspiration": "you regain some [color=#00ffff]spirit power[/color] every time you act.",
-	&"regen": "you regain some life after every action.",
-	&"shield": "a good chunk of damage will be blocked.",
-	&"sleepy": "you cannot act. any damage will hurt more but also wake you.",
-	&"sopping": "you're wet and pathetic and receive extra damage for it.",
-	&"appetising": "animals will first attack anyone with this effect.",
-	&"little": "you're tiny, which makes you slower, but not any weaker."
-}
-
 @export var name := &""
 @export var strength := 1.0
 @export var duration := 1

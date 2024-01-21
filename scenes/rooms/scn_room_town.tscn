@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=102 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -45,6 +45,7 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
+[ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
@@ -1911,15 +1912,8 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
-[node name="StatusEffectGuru" parent="Other/BackPark" instance=ExtResource("10_dem56")]
-position = Vector2(104, -24)
-save = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Other/BackPark/StatusEffectGuru"]
-position = Vector2(0, -8)
-texture = ExtResource("16_o4xvl")
-region_enabled = true
-region_rect = Rect2(16, 32, 16, 16)
+[node name="StatusEffectGuru" parent="Other/BackPark" instance=ExtResource("38_a0o03")]
+position = Vector2(-87, 23)
 
 [node name="NatureGuyLeft" type="Node2D" parent="Other"]
 y_sort_enabled = true

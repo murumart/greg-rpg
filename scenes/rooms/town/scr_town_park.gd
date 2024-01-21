@@ -7,42 +7,9 @@ extends Node2D
 func _ready() -> void:
 	tarikas.inspected.connect(_on_tarikas_inspected)
 	tarikas_lines()
-	guru.inspected.connect(_on_guru_inspected)
 	if DAT.get_data("battles", 0) < 2:
+		pass
 		guru.queue_free()
-
-
-func _on_guru_inspected() -> void:
-	var list: ScrollContainer = SOL.get_node("DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer")
-	if not DAT.get_data("talked_to_guru", false):
-		DAT.set_data("talked_to_guru", true)
-		SOL.dialogue("effect_guru_hi")
-		return
-	if DAT.get_data("known_status_effects", []).size() < 1:
-		SOL.dialogue("effect_guru_noeffects")
-		return
-	var newchoices := PackedStringArray()
-	newchoices.append("bye")
-	var newlines: Array[DialogueLine] = []
-	for eff in DAT.get_data("known_status_effects", []):
-		var eff_name = eff.replace("_", " ")
-		newchoices.append(eff_name)
-		var newline := DialogueLine.new()
-		newline.choice_link = StringName(eff_name)
-		newline.text = StatusEffect.DESCRIPTIONS.get(
-			eff, StatusEffect.DESCRIPTIONS.default)
-		if "_immunity" in eff:
-			if not eff in StatusEffect.DESCRIPTIONS:
-				newline.text = StatusEffect.DESCRIPTIONS.default_immunity % eff_name
-		newline.loop = 0
-		newlines.append(newline)
-		
-	SOL.dialogue_box.adjust("effect_guru", 0, "choices", newchoices)
-	SOL.dialogue_box.dialogues_dict.effect_guru.lines.resize(2)
-	SOL.dialogue_box.dialogues_dict.effect_guru.lines.append_array(newlines)
-	list.size.y = 60
-	SOL.dialogue("effect_guru")
-	SOL.dialogue_closed.connect(func(): list.size.y = 35, CONNECT_ONE_SHOT)
 
 
 func tarikas_lines() -> void:

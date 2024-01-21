@@ -24,3 +24,14 @@ const MAX_TEXT_LENGTH := 66
 @export var sound: AudioStream
 
 @export var set_data: PackedStringArray = []
+
+
+func _to_string() -> String:
+	var string := text
+	if character:
+		string = character + ": " + string
+	if choices:
+		string += "(%s)" % choices
+	if choice_link:
+		string = ("(%s)" % choice_link) + string
+	return string

@@ -56,12 +56,17 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 # load the dialogues from files
 func load_dialogue_dict() -> void:
-	dialogues_dict =\
-	DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_dialogue.txt", FileAccess.READ))
-	
-	var fish_dialogues := DialogueParser.parse_dialogue_from_file(FileAccess.open("res://resources/res_fisher_dialogue.txt", FileAccess.READ))
-	for i in fish_dialogues.keys():
-		dialogues_dict[i] = fish_dialogues[i]
+	dialogues_dict = DialogueParser.parse_dialogue_from_file(
+		FileAccess.open("res://resources/res_dialogue.txt", FileAccess.READ))
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open("res://resources/res_fisher_dialogue.txt", FileAccess.READ)
+	))
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open("res://resources/res_status_effect_descriptions.txt", FileAccess.READ)
+	))
+
 
 
 func copy_dial(dial: Dialogue) -> Dialogue:

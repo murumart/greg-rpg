@@ -1,0 +1,77 @@
+DIALOGUE what_does_stefde_stand_for
+	it stands for status effect description.
+
+
+DIALOGUE stefde_default
+	i'm afraid i don't have the expertise for this one.
+
+
+DIALOGUE stefde_default_immunity
+	you are immune to %s.
+
+
+DIALOGUE stefde_poison
+	you will lose a bit of life every time you act.
+
+
+DIALOGUE stefde_poison_immunity
+	you are immune to the effects of poison.
+
+
+DIALOGUE stefde_coughing
+	you will painfully cough every once in a while.
+
+
+DIALOGUE stefde_fire
+	you're on fire, taking damage every time you act.
+
+
+DIALOGUE setefde_confusion
+	you're not quite sure whom you're going to hit...
+
+
+DIALOGUE stefde_attack
+	your natural attacks grow more powerful.
+
+
+DIALOGUE stefde_defense
+	you withstand natural blows better.
+
+
+DIALOGUE stefde_speed
+	you are more nimble, being able to act more often.
+
+
+DIALOGUE stefde_magnet
+	finishing a fight with this will give you more exp. and silver.
+
+
+DIALOGUE stefde_inspiration
+	you regain some [color=#00ffff]spirit power[/color] every time you act.
+
+
+DIALOGUE stefde_regen
+	you regain some life after every action.
+
+
+DIALOGUE stefde_shield
+	a third of dealt damage will be blocked.
+
+
+DIALOGUE stefde_sleepy
+	you cannot act. any damage will hurt more but also wake you.
+	brain type damage done to you will hurt much more.
+
+
+DIALOGUE stefde_sopping
+	you're wet and pathetic and receive extra damage for it.
+	electric type damage will hurt badly.
+	flaming type damage done to you will be weakened, though.
+
+
+DIALOGUE stefde_appetising
+	animals will first attack anyone with this effect.
+
+
+DIALOGUE stefde_little
+	you're tiny, which makes you slower, but not any weaker.
