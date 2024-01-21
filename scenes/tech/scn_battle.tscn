@@ -85,6 +85,7 @@ offset_left = 8.0
 offset_top = -7.0
 offset_right = 153.0
 offset_bottom = 33.0
+life_time = 1.5
 
 [node name="Panel" type="Panel" parent="UI"]
 layout_mode = 0

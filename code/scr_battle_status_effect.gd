@@ -30,14 +30,13 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		var oldeff := actor.get_status_effect(neweff.name)
 		var olds := oldeff.strength
 		var addition := BattleStatusEffect.plus(neweff, oldeff)
+		actor.remove_status_effect(eff.name)
 		if not addition:
-			actor.remove_status_effect(eff.name)
 			oldeff._removed_text(actor)
 			return null
 		oldeff._adjusted_text(actor, (addition.strength if addition else 0) - olds)
 		print(actor.actor_name, " changed effect ", oldeff, " -> ", addition)
-		oldeff = addition
-		return null
+		return addition
 	neweff._add_text(actor)
 	neweff.added(actor)
 	if not neweff.name in DAT.get_data("known_status_effects", []):
@@ -214,7 +213,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 	actor.emit_message("@%s %s%s %s" % [
 		actor.actor_name,
 		Math.sign_symbol(streng),
-		str(absf(streng)) if streng != 1 else "",
+		str(absf(strength)) if strength != 1 else "",
 		name.replace("_", " ")
 	])
 
