@@ -53,7 +53,7 @@ func _ready() -> void:
 		gg_pos.global_position = get_rand_pos()
 		DAT.set_data(POSITION, gg_pos.global_position)
 	else:
-		gg_pos.global_position = DAT.get_data(POSITION)
+		gg_pos.global_position = DAT.get_data(POSITION, gg_pos.global_position)
 
 
 # note that interacted signal is called before the npc's dialogue logic is ran.

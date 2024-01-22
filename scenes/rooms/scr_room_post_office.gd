@@ -69,6 +69,8 @@ func can_ushanka_guy_cutscene() -> bool:
 	if DAT.get_data("post_office_enters", 0) < 3: return false
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
 	if DAT.get_data("witnessed_ushanka_guy_cutscene", false): return false
+	if DAT.get_data("vampire_fought", false): return false
+	if DAT.get_character("greg").level > 39: return false
 	DAT.set_data("witnessed_ushanka_guy_cutscene", true)
 	return true
 

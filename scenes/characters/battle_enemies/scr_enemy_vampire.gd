@@ -25,6 +25,7 @@ func _ready() -> void:
 	reference_to_opposing_array[0].act_requested.connect(_comments)
 	SOL.dialogue("vampire_battle_start")
 	DAT.set_data("vampire_end_cutscene", true)
+	DAT.set_data("vampire_fought", true)
 
 
 func _physics_process(delta: float) -> void:
