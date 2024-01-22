@@ -40,8 +40,8 @@ shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 window/size/viewport_width=160
 window/size/viewport_height=120
 window/size/extend_to_title=true
-window/size/window_width_override=639
-window/size/window_height_override=480
+window/size/window_width_override=959
+window/size/window_height_override=720
 
 [editor]
 
