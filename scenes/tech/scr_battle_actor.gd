@@ -117,7 +117,7 @@ func heal(amount: float) -> void:
 
 func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
-	amount = Genders.apply_gender_effects(amount, gender, gendr)
+	amount = Genders.apply_gender_effects(amount, self, gendr)
 	if state == States.DEAD: return
 	for x: BattleStatusEffect in status_effects:
 		amount += x.hurt_damage(amount, gendr, self)
