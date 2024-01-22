@@ -20,6 +20,7 @@ var save_menu_open := false
 @onready var screen_fade: ColorRect = $ScreenFadeOrderer/ScreenFade
 
 var dialogue_choice := &""
+var effects_dict := {}
 
 
 func _init() -> void:
@@ -138,8 +139,8 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 
 # spawn vfx effects
 func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
-	# the nomen must be the filename
-	var effect: Node2D = load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate()
+	# the nomen must be the filenam
+	var effect: Node2D = effects_dict.get(nomen, load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen).instantiate())
 	effect.z_index = options.get("z_index", 100)
 	# can specify custom parent node to the effect, defaults to this here SOL
 	var parent: Node = options.get("parent", self)
@@ -193,3 +194,17 @@ func get_all_children_of_type(node: Node, type: String) -> Array:
 			nods.append_array(get_all_children_of_type(c, type))
 	return nods
 
+
+# maybe it caches them somewhere so it will be less laggy than loading it during runtime
+func load_all_effects() -> void:
+	var time := Time.get_ticks_msec()
+	var path := "res://scenes/vfx/"
+	var names := DIR.get_dir_contents(path)
+	for file in names:
+		if not file.begins_with("scn_vfx"):
+			continue
+		var fpath := path + file + ".tscn"
+		if ResourceLoader.exists(fpath):
+			var scene := load(fpath)
+			effects_dict[file.trim_prefix("scn_vfx_")] = scene
+	print("loading effects took ", Time.get_ticks_msec() - time, " ms")

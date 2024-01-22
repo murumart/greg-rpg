@@ -1847,7 +1847,7 @@ position = Vector2(0, -15)
 position = Vector2(-14, -12)
 sprite_frames = SubResource("SpriteFrames_0wdwq")
 autoplay = "default"
-frame_progress = 0.237402
+frame_progress = 0.867717
 centered = false
 
 [node name="LeftLeg" type="Node2D" parent="Vampire/Core"]
