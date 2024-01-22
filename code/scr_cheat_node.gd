@@ -5,6 +5,8 @@ class_name CheatNode extends Node
 @export var level_gain: int = 0
 @export var new_spirits: Array[StringName] = []
 @export var new_items: Array[StringName] = []
+@export var replace_spirits: Array[StringName] = []
+@export var replace_items: Array[StringName] = []
 @export var replace_armour: StringName = &""
 @export var replace_weapon: StringName = &""
 @export var force_spirits_into_use := false
@@ -26,7 +28,7 @@ func _ready() -> void:
 		var charac := DAT.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:
 			return
-		charac.level_up(level_gain)
+		charac.level_up(level_gain, false, false)
 		charac.unused_sprits.append_array(new_spirits)
 		if not force_spirits_into_use:
 			while charac.spirits.size() < Character.MAX_SPIRITS:
@@ -34,6 +36,13 @@ func _ready() -> void:
 		else:
 			charac.spirits.append_array(charac.unused_sprits)
 			charac.unused_sprits.clear()
+		if replace_spirits:
+			charac.spirits.clear()
+			if replace_spirits[0]:
+				charac.spirits.append_array(replace_spirits)
+		if replace_items:
+			charac.inventory.clear()
+			charac.inventory.append_array(replace_items)
 		charac.inventory.append_array(new_items)
 		charac.armour = replace_armour
 		charac.weapon = replace_weapon

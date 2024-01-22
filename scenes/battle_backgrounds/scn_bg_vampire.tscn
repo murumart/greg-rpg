@@ -1064,7 +1064,7 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec7"]
 material = SubResource("CanvasItemMaterial_oaks3")
 position = Vector2(80, 60)
-rotation = 4.47267
+rotation = 4.62858
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_3ghhq")
 
@@ -1075,7 +1075,7 @@ speed = 8.0
 modulate = Color(1, 1, 1, 0.235294)
 material = SubResource("CanvasItemMaterial_5330b")
 position = Vector2(80, 60)
-rotation = 2.61444
+rotation = 3.86177
 texture = ExtResource("9_f36h7")
 
 [node name="Rotator" parent="BGPieces/Sec7/Sprite2D2" instance=ExtResource("8_ky8u5")]

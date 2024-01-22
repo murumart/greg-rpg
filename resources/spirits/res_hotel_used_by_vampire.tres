@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://1blajux41c4w"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_lpoas"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_srdr6"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="2_gumge"]
+
+[sub_resource type="Resource" id="Resource_snt7m"]
+script = ExtResource("1_lpoas")
+name = &"regen"
+strength = 2.0
+duration = 5
+
+[sub_resource type="Resource" id="Resource_7mk4y"]
+script = ExtResource("1_srdr6")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 4
+effects = Array[ExtResource("1_lpoas")]([SubResource("Resource_snt7m")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("2_gumge")
+name_in_file = &""
+name = &"hotel"
+description = "recuperation"
+animation = &"hotel"
+use_animation = &""
+receive_animation = &"hotel_local"
+cost = 21
+use = 0
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_7mk4y")

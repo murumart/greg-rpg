@@ -111,7 +111,7 @@ func add_experience(amount: int, speak := false) -> void:
 	leveled_up.emit()
 
 
-func level_up(by := 1, overflow := false) -> void:
+func level_up(by := 1, overflow := false, talk := true) -> void:
 	if by < 1: return
 	var curve := preload("res://resources/res_stat_add_curve.tres")
 	var spirits_to_add := []
@@ -143,12 +143,13 @@ func level_up(by := 1, overflow := false) -> void:
 			var sp: String = DAT.get_levelup_spirit(level)
 			if sp.length():
 				spirits_to_add.append(sp)
-		
-	SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
-	SOL.dialogue("levelup")
+	
+	if talk:
+		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
+		SOL.dialogue("levelup")
 	for sp in spirits_to_add:
 		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file))
-		
+
 
 func handle_item(id: String) -> void:
 	var item = DAT.get_item(id)

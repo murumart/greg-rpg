@@ -5,6 +5,8 @@ class_name Spirit
 
 enum Uses {NONE = -1, HEALING, HURTING, BUFFING, DEBUFFING}
 enum Reach {LOCAL, ALL, TEAM}
+const USES_POSITIVE := [Uses.HEALING, Uses.BUFFING]
+const USES_NEGATIVE := [Uses.HURTING, Uses.DEBUFFING]
 
 @export var name_in_file := &""
 

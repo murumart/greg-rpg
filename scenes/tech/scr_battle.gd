@@ -166,7 +166,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and doing == Doings.DONE:
 		# leave the battle
 		LTS.gate_id = LTS.GATE_EXIT_BATTLE
-		var looper :Array[BattleActor]= []
+		var looper: Array[BattleActor] = []
 		looper.append_array(party)
 		looper.append_array(dead_party)
 		for p in looper:
@@ -177,12 +177,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func load_battle(info: BattleInfo) -> void:
 	# second argument of info.get_ is the default value
+	set_background(info.background)
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
 	current_guy = party.front()
 	for e in info.enemies:
 		add_enemy(e)
-	set_background(info.background)
 	death_reason = info.death_reason
 	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
