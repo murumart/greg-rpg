@@ -13,7 +13,7 @@ func _ready() -> void:
 	if fought_grandma:
 		SOL.dialogue("grandma_fight_end")
 		await SOL.dialogue_closed
-		$Areas/RoomGate.force_level_transition()
+		$Areas/RoomGate._on_area_entered($Greg)
 
 
 func _on_radio_interaction_on_interact() -> void:

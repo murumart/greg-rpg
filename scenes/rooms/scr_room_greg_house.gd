@@ -1,5 +1,6 @@
 extends Room
 
+var no_more := false
 @onready var intro_animator := $Cutscenes/InitialIntro as AnimationPlayer
 @export var intro_dialogue_progress := 0
 @onready var room_gate := $Areas/RoomGate
@@ -113,6 +114,8 @@ func intro_cutscene_dialogue() -> void:
 
 
 func intro_cutscene_first_pause() -> void:
+	if no_more:
+		return
 	intro_animator.pause()
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
@@ -120,6 +123,7 @@ func intro_cutscene_first_pause() -> void:
 	await SOL.dialogue_closed
 	intro_animator.play("intro")
 	DAT.free_player("intro_cutscene")
+	no_more = true
 
 
 func _save_me() -> void:
