@@ -22,7 +22,6 @@ var player_dir_timer: Timer
 
 
 func _ready() -> void:
-	DAT.set_data(INTERACTIONS, 3)
 	var level := DAT.get_character("greg").level
 	if level < 40 or level >= 50:
 		bad_condition = true
@@ -30,7 +29,7 @@ func _ready() -> void:
 		queue_free()
 		return
 	
-	if DAT.get_data(GUY_FOLLOW, false):
+	if DAT.get_data(GUY_FOLLOW, false) and LTS.gate_id != &"vampire_cutscene":
 		uguy_follow()
 		return
 	

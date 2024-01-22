@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=9 format=3 uid="uid://eanyhe3kwixp"]
+
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_lx7p4"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_puumy"]
+
+[sub_resource type="Resource" id="Resource_5ge7f"]
+script = ExtResource("1_puumy")
+type = 0
+property = "100"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_clud6"]
+script = ExtResource("1_puumy")
+type = 1
+property = "soda"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_m5fk7"]
+script = ExtResource("1_puumy")
+type = 1
+property = "soda"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_ylh06"]
+script = ExtResource("1_puumy")
+type = 1
+property = "soda"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_c5nrr"]
+script = ExtResource("1_puumy")
+type = 1
+property = "soda"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_smvsn"]
+script = ExtResource("1_puumy")
+type = 1
+property = "soda"
+chance = 1.0
+unique = false
+
+[resource]
+script = ExtResource("1_lx7p4")
+rewards = Array[ExtResource("1_puumy")]([SubResource("Resource_5ge7f"), SubResource("Resource_clud6"), SubResource("Resource_m5fk7"), SubResource("Resource_ylh06"), SubResource("Resource_c5nrr"), SubResource("Resource_smvsn")])

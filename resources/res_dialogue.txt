@@ -2173,6 +2173,18 @@ CHAR popo_1
 	...thank you. you will be rewarded well.
 
 
+DIALOGUE bounty_complete_vampire
+CHAR popo_1
+	the illegal vampire has been vanquished!
+	did you know they used to go out into the forests...
+	...and hunt vampires with sharp wooden sticks?
+	it was one of the ways to pass time for royalty.
+	they don't do that anymore, there's too few vampires.
+	so the few that exist are "well fed" and powerful.
+	anyway, thanks for that, king.
+	here's some soda we looted off the corpse!
+
+
 DIALOGUE inside_police_cell
 	you seem to be stuck inside a jail cell.
 CHOICES yes,no
@@ -2634,12 +2646,12 @@ CHAR vampire
 DIALOGUE vampire_steal_all_spirits
 CHAR cashier_nice
 	well, it looks like she owns all of your spirits now.
-	let's make peace with our deaths now.
+	let's make peace with our deaths while we can.
 
 
 DIALOGUE vampire_battle_dead
 CHAR vampire
-	████████████!!!
+	damn you!!! ████████████!!!
 
 
 DIALOGUE vampire_after_battle
@@ -2662,6 +2674,13 @@ CHAR vampire
 	if you'd mind, i'd like a moment for myself now.
 INSTASKIP
 	i need to reflect on
+
+
+DIALOGUE vampire_after_battle_3
+CHAR cashier_nice
+	...well then.
+	you better clean up here. i'm late for work.
+	goodbye.
 
 
 DIALOGUE leave_ending_check
@@ -2779,7 +2798,7 @@ DIALOGUE insp_jailed_trashguy
 
 
 DIALOGUE insp_jailed_trashguy_help
-CHOICES no,strength,magic,progress
+CHOICES no,strength,magic,stateff,progress
 	do you have need for some sort of advice? i am here to help!
 CHOICE_LINK no
 	splendid! but know that i am here if you do need any!
@@ -2793,6 +2812,13 @@ CHOICE_LINK magic
 	spirits are a mysterious force that permeate the world...
 	people with powerful wills, spirit masters, can utilise them!
 	it is draining for the mind, however. eating sweets helps with that.
+CHOICE_LINK stateff
+	status effects are buffs or ailments that you and...
+	...your enemies can employ in battles.
+	they last for some time and can be of different...
+	...levels of potency.
+	look for the status effect guru in the town to learn about...
+	...each status effect.
 CHOICE_LINK progress
 	how to progress in life? well...
 	some people amass power.
@@ -2883,6 +2909,21 @@ CHAR popo_2
 	i don't think it can even speak. i've tried...
 	by the way. good job with defeating it...
 	quite a nasty spirit, with history...
+
+
+DIALOGUE insp_vampire_cell
+CHAR popo_2
+	vampires crumble into ash when they die. boring!
+CHOICES yes,no
+	you can take the ash if you want to.
+
+
+DIALOGUE insp_vampire_cell_empty
+CHAR popo_2
+	sad that it looks this empty...
+	i guess the real trophies were the, uh,...
+	...bounties you fulfilled along the way.
+	or something.
 
 
 DIALOGUE insp_guy_house_bed

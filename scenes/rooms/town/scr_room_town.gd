@@ -46,7 +46,6 @@ func _ready() -> void:
 					await get_tree().process_frame
 					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
 			)
-	vampire_cutscene.start()
 
 
 func neighbour_wife_position() -> void:

@@ -47,6 +47,10 @@ const DEATH_REASONS := {
 	"sus": {
 		"picture": "zerma",
 		"text": "[center]why did it have to end this way... so young...",
+	},
+	"vampire": {
+		"picture": "vampire",
+		"text": "[center]looooooooseeeeeeeer!",
 	}
 }
 

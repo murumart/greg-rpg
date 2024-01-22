@@ -8,10 +8,26 @@ extends Node2D
 @onready var greg := $"../../../Greg" as PlayerOverworld
 @onready var vampire_girl := $VampireGirl as OverworldCharacter
 @onready var cashier := $Cashier as OverworldCharacter
+@onready var girl_old: Sprite2D = $VampireGirl/Old
+@onready var vampire_sprite: AnimatedSprite2D = $VampireGirl/VampireSprite
+@onready var thug_spawners := $"../../../Areas".find_children("ThugSpawner*")
+@onready var animal_spawners := $"../../../Areas".find_children("AnimalSpawner*")
+
+
+func _ready() -> void:
+	if LTS.gate_id == &"vampire_cutscene":
+		start()
+		return
+	if LTS.gate_id == LTS.GATE_EXIT_BATTLE and DAT.get_data("vampire_end_cutscene", false):
+		DAT.set_data("vampire_end_cutscene", false)
+		end()
+		return
+	queue_free()
 
 
 func start() -> void:
-	SND.play_song("")
+	end_nuisances()
+	SND.call_deferred("play_song", "")
 	DAT.capture_player("cutscene")
 	greg.animate("walk_right")
 	uguy.direct_walking_animation(Vector2.RIGHT)
@@ -74,3 +90,65 @@ func start() -> void:
 	SND.play_song("", 1000)
 	LTS.enter_battle(preload("res://resources/battle_infos/vampire_boss.tres"))
 
+
+func end() -> void:
+	end_nuisances()
+	SND.play_song("")
+	DAT.capture_player("cutscene")
+	uguy.queue_free()
+	greg.global_position = greg_pos.global_position
+	cashier.global_position = end_pos.global_position
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_interval(1)
+	tw.tween_callback(func():
+		cashier.direct_walking_animation(Vector2.RIGHT)
+		greg.animate("walk_right")
+	)
+	tw.tween_property(camera, "global_position", cam_pos.global_position, 1.0)
+	tw.tween_callback(func():
+		SOL.dialogue("vampire_after_battle")
+		vampire_girl.direct_walking_animation(Vector2.LEFT)
+		SOL.dialogue_closed.connect(func():
+			tw.play()
+		, CONNECT_ONE_SHOT)
+	)
+	tw.tween_callback(tw.pause)
+	tw.tween_interval(2)
+	tw.tween_callback(func():
+		cashier.direct_walking_animation(Vector2.RIGHT)
+		girl_old.show()
+		vampire_sprite.hide()
+		SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"))
+	)
+	tw.tween_interval(2)
+	tw.tween_callback(func():
+		SOL.dialogue("vampire_after_battle_2")
+		SOL.dialogue_closed.connect(func():
+			SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
+			SOL.vfx("explosion", camera.to_local(vampire_girl.global_position), {"scale": Vector2(0.3, 0.3)})
+			var tw2 := create_tween().set_trans(Tween.TRANS_CUBIC)
+			tw2.tween_property(vampire_girl, "global_position", Vector2(500, -650), 0.3)
+			tw2.tween_interval(4)
+			tw2.tween_callback(func():
+				SOL.dialogue("vampire_after_battle_3")
+				SOL.dialogue_closed.connect(func():
+					tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+					tw.tween_property(camera, "global_position", greg.global_position, 3.0)
+					cashier.move_to(Vector2(347, -465))
+					cashier.target_reached.connect(func():
+						cashier.move_to(cashier.global_position + Vector2(300, 0))
+					, CONNECT_DEFERRED)
+					tw.finished.connect(func():
+						LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
+					)
+				, CONNECT_ONE_SHOT)
+			)
+		, CONNECT_ONE_SHOT)
+	)
+
+
+func end_nuisances() -> void:
+	for i in thug_spawners:
+		i.queue_free()
+	for j in animal_spawners:
+		j.queue_free()

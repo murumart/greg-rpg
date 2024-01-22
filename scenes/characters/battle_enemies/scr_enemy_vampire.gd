@@ -24,6 +24,7 @@ func _ready() -> void:
 		background.mbc.new_beat.connect(_vampire_limb_flash)
 	reference_to_opposing_array[0].act_requested.connect(_comments)
 	SOL.dialogue("vampire_battle_start")
+	DAT.set_data("vampire_end_cutscene", true)
 
 
 func _physics_process(delta: float) -> void:

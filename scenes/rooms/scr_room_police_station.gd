@@ -83,6 +83,7 @@ func load_bounties() -> void:
 		bounty["stray_animals"] += DAT.get_data("stray_animals_fought", 0)
 		bounty["broken_fishermen"] += DAT.get_data("broken_fishermen_fought", 0)
 		bounty["sun_spirit"] += cd(charc, "sun_spirit")
+		bounty["vampire"] += cd(charc, "vampire")
 		bounty["president"] += cd(charc, "dish")
 		bounty["circus"] += cd(charc, "ringleader")
 
@@ -164,6 +165,20 @@ func setup_cells() -> void:
 			"enabled" if DAT.get_data("hunks_enabled", false) else "disabled")))
 	if is_bounty_fulfilled("sun_spirit"):
 		$Cells/SunSpirit/SunSpiritInspect.inspected.connect(art_sun_spirit_rage)
+	if is_bounty_fulfilled("vampire"):
+		if not DAT.get_data("got_ash_bucket", false):
+			$Cells/Vampire/VampireInspect.inspected.connect(func():
+				SOL.dialogue_closed.connect(func():
+					if SOL.dialogue_choice == "yes":
+						$Cells/Vampire/Sprite2D.hide()
+						DAT.grant_item("ash_bucket")
+						DAT.set_data("got_ash_bucket", true)
+						$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
+						SOL.dialogue_choice = ""
+				, CONNECT_ONE_SHOT)
+			)
+		else:
+			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
 
 
 # this is source code poetry
