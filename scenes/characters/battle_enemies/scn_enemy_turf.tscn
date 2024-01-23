@@ -70,7 +70,7 @@ animations = [{
 [node name="BattleEnemy" instance=ExtResource("1_i1psi")]
 altruism = 0.296
 innovation = 0.185
-vaimulembesus = 0.26
+vaimulembesus = 0.107
 stat_multiplier = 0.163
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]

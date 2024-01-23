@@ -348,6 +348,17 @@ CHAR abiss
 	*hic*
 
 
+DIALOGUE prank_call_3
+CHAR stray_pet
+	gnaw... gnaw...
+CHAR 
+	(you can hear the receiver being chewed by some animal)
+CHAR stray_pet
+	gnaw... gnaw... crack...
+CHAR 
+	jookie!!! nooooo!!!
+
+
 DIALOGUE prank_call_4
 CHAR mail_man
 EMO serious
@@ -363,6 +374,15 @@ DIALOGUE prank_call_5
 	(...)
 	(you get the feeling you're being recorded.)
 	(...)
+
+
+DIALOGUE prank_call_6
+	...greg?
+	ha ha ha, it's been so long!
+	i hope you still remember me!
+	...
+	hello?
+	...
 
 
 DIALOGUE prank_call_else
@@ -404,7 +424,7 @@ CHAR zerma
 	you will be here a lot, so let's get acquainted.
 	battles happen in turns!
 	faster fighters get to have more turns...
-	...that means they can act more.
+	...that means they can act more often.
 	you, however, will always get the first strike.
 	your turn is coming! press the [color=#00ffff]tussle[/color] button...
 	...and then select my name from the list.

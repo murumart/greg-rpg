@@ -37,7 +37,7 @@ func update(actor: BattleActor) -> void:
 	magic_bar.max_value = charc.max_magic
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
-	wait_bar.value = actor.wait
+	wait_bar.value = 1 - actor.wait
 	animal_bar.visible = actor is EnemyAnimal
 	if actor is EnemyAnimal:
 		animal_bar.value = actor.soul

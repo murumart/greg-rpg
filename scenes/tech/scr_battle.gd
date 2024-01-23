@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("vampire_fight").set_party(["greg","cashier_nice"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default").set_enemies(["vampire"])
+).set_music("vampire_fight").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default").set_enemies(["turf", "turf", "turf"])
 
 var stop_music_before_end := true
 var play_victory_music := true

@@ -28,7 +28,7 @@ func _ready() -> void:
 	DAT.set_data("vampire_fought", true)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	super(delta)
 	if progress == 4:
 		_vampire_limb_flash()

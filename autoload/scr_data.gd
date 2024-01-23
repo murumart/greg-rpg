@@ -306,7 +306,7 @@ func load_chars_from_data() -> void:
 func get_item(id: String) -> Item:
 	if not id in item_dict:
 		print("item ", id, " not found")
-		return preload("res://resources/items/res_default_item.tres")
+		return preload("res://resources/res_default_item.tres")
 	return item_dict[id]
 
 

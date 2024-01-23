@@ -61,7 +61,7 @@ func _ready() -> void:
 	actor_name = character.name
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var sleepy := has_status_effect(&"sleepy")
 	if not character: return
 	if SOL.dialogue_open: return # don't run logic if dialogue is open
@@ -71,7 +71,9 @@ func _physics_process(delta: float) -> void:
 			pass
 		States.COOLDOWN:
 			# cooldown between 1 and 0 usually
-			wait = maxf(wait - delta * 0.30303 * get_speed(), 0.0)
+			var wait_magic := delta * 0.30303
+			var min_speed := 12 * wait_magic
+			wait = maxf(wait - maxf(wait_magic * get_speed(), min_speed), 0.0)
 			if wait == 0.0:
 				if not sleepy:
 					act_requested.emit(self)

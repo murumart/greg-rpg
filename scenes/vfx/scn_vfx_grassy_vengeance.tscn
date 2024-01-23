@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://diglsek3ao8j"]
+
+[ext_resource type="Texture2D" uid="uid://dj7cianv5lksd" path="res://sprites/spirit/spr_grassy_vengeance.png" id="1_qb8kc"]
+[ext_resource type="AudioStream" uid="uid://gv3cwxlrc2ww" path="res://sounds/spirit/grassyvengeance.ogg" id="2_iho3l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myngf"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo34w"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_law6r"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8558p"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(0, 120, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr1s5"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(120, 120, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc1og"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(240, 120, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itqwb"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(0, 240, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d2fc"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(120, 240, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj4i1"]
+atlas = ExtResource("1_qb8kc")
+region = Rect2(240, 240, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sardw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myngf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo34w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_law6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8558p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr1s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc1og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itqwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d2fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj4i1")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="VfxGrassyVengeance" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sardw")
+autoplay = "default"
+frame = 9
+frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_iho3l")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="queue_free"]
