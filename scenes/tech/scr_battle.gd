@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("vampire_fight").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default").set_enemies(["turf", "turf", "turf"])
+).set_music("vampire_fight").set_party(["greg"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("bg_vampire").set_death_reason("default").set_enemies(["turf", "chimney"])
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -193,6 +193,7 @@ func load_battle(info: BattleInfo) -> void:
 	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
+	set_greg_speed()
 	loading_battle = false
 
 
@@ -231,7 +232,6 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			node.reference_to_opposing_array = enemies
 			party_node.add_child(node)
 		Teams.ENEMIES:
-			node.wait += 0.5
 			enemies.append(node)
 			node.reference_to_team_array = enemies
 			node.reference_to_opposing_array = party
@@ -491,6 +491,7 @@ func open_main_actions_screen() -> void:
 # item/actor listing screens
 func open_list_screen() -> void:
 	hide_screens()
+	set_greg_speed()
 	match doing:
 		Doings.ATTACK:
 			var array := []
@@ -854,3 +855,8 @@ func _on_dance_battle_requested(actor: EnemyAnimal, target: BattleActor) -> void
 			"enemy_score": ceilf(randf() * actor.get_attack() * 3),
 			"player_score": ceilf(randf() * target.get_attack() * 3),
 		})
+
+
+func set_greg_speed() -> void:
+	BattleActor.player_speed_modifier = 5.0 / float(party.map(func(a):
+		return a.character.speed).max())

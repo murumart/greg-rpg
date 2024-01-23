@@ -9,6 +9,8 @@ const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
 const WAIT_AFTER_ITEM := 1.00
 const WAIT_AFTER_FLEE := 1.0
 
+static var player_speed_modifier := 1.0
+
 signal message(msg: String, options: Dictionary)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
@@ -71,9 +73,10 @@ func _process(delta: float) -> void:
 			pass
 		States.COOLDOWN:
 			# cooldown between 1 and 0 usually
-			var wait_magic := delta * 0.30303
-			var min_speed := 12 * wait_magic
-			wait = maxf(wait - maxf(wait_magic * get_speed(), min_speed), 0.0)
+			# older system ported from old greg
+			# always calculated based on fastest party member
+			var ratio := delta * (player_speed_modifier)
+			wait = maxf(wait - maxf(ratio * get_speed(), 0.1 * delta), 0.0)
 			if wait == 0.0:
 				if not sleepy:
 					act_requested.emit(self)
