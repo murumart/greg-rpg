@@ -71,7 +71,7 @@ animations = [{
 altruism = 0.296
 innovation = 0.185
 vaimulembesus = 0.107
-stat_multiplier = 0.163
+stat_multiplier = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -7)
