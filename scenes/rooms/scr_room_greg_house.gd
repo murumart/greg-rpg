@@ -1,131 +1,111 @@
 extends Room
 
-var no_more := false
-@onready var intro_animator := $Cutscenes/InitialIntro as AnimationPlayer
-@export var intro_dialogue_progress := 0
-@onready var room_gate := $Areas/RoomGate
-@onready var room_gate_2 := $Areas/RoomGate2
-@onready var door_area := $Areas/HouseDoor
-@onready var door_destination := "grandma_house_inside"
+const CarType := preload("res://scenes/decor/scr_overworld_car.gd")
 
-@onready var zerma := $Cutscenes/Zerma
-@onready var greg := $Greg
-@onready var car := $Cutscenes/ZermCar
-@onready var cutscene_node := $Cutscenes
+var intro_progress := 0:
+	get:
+		return DAT.get_data("intro_progress", 0)
+	set(to):
+		DAT.set_data("intro_progress", to)
 
-@onready var cat_spawners := [$Areas/Cats1, $Areas/Cats2, $Areas/Cats3, $Areas/Cats4,$Areas/Cats5,$Areas/Cats6,]
-@export var zerma_battle: BattleInfo = null
+@onready var greg := $Greg as PlayerOverworld
+@onready var camera: Camera2D = $Greg/Camera
+@onready var zerma := $Cutscenes/Zerma as OverworldCharacter
+@onready var zerm_car := $Cutscenes/ZermCar as CarType
+@onready var car_stop_pos: Marker2D = $Cutscenes/CarStopPos
+@onready var zerma_walk_pos: Marker2D = $Cutscenes/ZermaWalkPos
+@onready var zerma_walk_pos_2: Marker2D = $Cutscenes/ZermaWalkPos2
+@onready var vroom_vroom: AudioStreamPlayer2D = $Cutscenes/ZermCar/VroomVroom
 
 
-# fantastic function.
 func _ready() -> void:
-	super._ready()
-	if not (DAT.get_data("intro_cutscene_finished") and DAT.get_data("zerma_left")):
-		for i in cat_spawners:
-			i.queue_free()
-			cat_spawners.erase(i)
-	zerma.inspected.connect(_on_zerma_inspected)
-	intro_dialogue_progress = DAT.get_data("intro_dialogue_progress", 0) if not DAT.get_data("intro_dialogue_progress", 0) == 0 else intro_dialogue_progress
-	#print("intro progress: ", intro_dialogue_progress)
-	door_area.destination = ""
-	if DAT.get_data("intro_cutscene_finished", false):
-		cutscene_node.propagate_call("set_physics_process", [false])
-		cutscene_node.visible = false
-		cutscene_node.global_position = Vector2(29999, 29999)
-		room_gate.global_position = Vector2(339, 232)
-		room_gate_2.global_position = Vector2(333, -168)
-		greg.spawn_position()
-		return
-	
-	if intro_dialogue_progress < 2:
-		intro_animator.play("intro")
-		zerma.default_lines.clear()
+	super()
+	if intro_progress == 0:
+		start()
+		SOL.dialogue("intro_convo_2")
+	elif intro_progress == 1:
+		leave_house()
+
+
+func _physics_process(delta: float) -> void:
+	pass
+
+
+func start() -> void:
+	delete_escape_routes()
+	delete_nuisances()
+	DAT.capture_player("cutscene")
+	greg.hide()
+	# camera follows car
+	greg.remove_child(camera)
+	zerm_car.add_child(camera)
+	zerm_car.turn(Math.ANGLE_LEFT)
+	camera.global_position = zerm_car.global_position
+	set_car_noise(true)
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(zerm_car, "global_position", car_stop_pos.global_position, 6.0)
+	tw.parallel().tween_property(vroom_vroom, "pitch_scale", 0.75, 6.0).from(1.3)
+	tw.tween_interval(0.5)
+	tw.tween_callback(func():
+		set_car_noise(false)
+		greg.show()
+		greg.global_position = zerm_car.global_position + Vector2(0, -5)
+		zerma.show()
+		zerma.global_position = zerm_car.global_position + Vector2(0, 10)
+		await create_tween().tween_interval(0.5).finished
+		zerm_car.remove_child(camera)
+		greg.add_child(camera)
+		zerma.move_to(zerma.global_position + Vector2(20, 0))
+		zerma.target_reached.connect(func():
+			zerma.move_to(zerma_walk_pos.global_position)
+			zerma.target_reached.disconnect(zerma.target_reached.get_connections()[0].callable)
+		, CONNECT_DEFERRED)
 		zerma.default_lines.append("intro_inspect_zerma_1")
-		room_gate.global_position = Vector2(3399, 232)
-		room_gate_2.global_position = Vector2(3399, 232)
-		door_area.destination = door_destination
-	elif intro_dialogue_progress == 2:
-		intro_animator.play("zerm_is_outside")
-		intro_animator.advance(10)
-		zerma.default_lines.clear()
-		zerma.default_lines.append("intro_inspect_zerma_1")
-		room_gate.global_position = Vector2(3399, 232)
-		room_gate_2.global_position = Vector2(3399, 232)
-		door_area.destination = door_destination
-		greg.spawn_position()
-	elif intro_dialogue_progress == 3:
-		intro_animator.play("zerm_is_outside")
-		intro_animator.advance(3000)
-		zerma.move_to(Vector2(-24, 96))
-		room_gate.global_position = Vector2(3399, 232)
-		room_gate_2.global_position = Vector2(3399, 232)
-		zerma.default_lines.append("zerma_fight_preface")
-		greg.spawn_position()
-	elif intro_dialogue_progress >= 4:
-		intro_animator.play("zerm_is_outside")
-		intro_animator.advance(3000)
-		zerma.global_position = Vector2(-24, 96)
-		room_gate.global_position = Vector2(3399, 232)
-		room_gate_2.global_position = Vector2(3399, 232)
-		greg.spawn_position()
-		SOL.dialogue("zerma_after_fight")
-		await SOL.dialogue_closed
-		zerma.move_to(Vector2(-15, 196))
-		await zerma.target_reached
-		$Greg.saving_disabled = false
-		zerma.default_lines.append("zerma_goodbye")
+		greg.animate("walk_up")
+		tw = create_tween()
+		tw.tween_property(greg, "global_position:y", greg.global_position.y - 20, 3.5)
+		SOL.dialogue("intro_convo_3")
+		SOL.dialogue_box.started_speaking.connect(line_by_line)
+		SOL.dialogue_closed.connect(func():
+			tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+			tw.tween_property(camera, "global_position", greg.global_position, 2.0)
+			tw.parallel().tween_property(camera, "position:y", -8, 2.0)
+			tw.tween_callback(func():
+				SOL.dialogue("intro_convo_4")
+				SOL.dialogue_closed.connect(func():
+					DAT.free_player("cutscene")
+					greg.direct_animation()
+					intro_progress = 1
+				, CONNECT_ONE_SHOT)
+			)
+		, CONNECT_ONE_SHOT)
+	)
 
 
-func _on_zerma_inspected() -> void:
-	await SOL.dialogue_closed
-	match intro_dialogue_progress:
-		3:
-			if SOL.dialogue_choice == "yes":
-				LTS.enter_battle(zerma_battle)
-				SOL.dialogue_choice = ""
-			elif SOL.dialogue_choice == "no":
-				zerma.move_to(Vector2(-15, 196))
-				zerma.default_lines.clear()
-				await zerma.target_reached
-				intro_animator.play("zerma_leaves")
-				DAT.set_data("zerma_left", true)
-				room_gate.global_position = Vector2(339, 232)
-				room_gate_2.global_position = Vector2(333, -168)
-				DAT.set_data("intro_cutscene_finished", true)
-				SOL.dialogue_choice = ""
-		4, 5:
-			await get_tree().process_frame
-			intro_animator.play("zerma_leaves")
-			DAT.set_data("zerma_left", true)
-			DAT.set_data("intro_cutscene_finished", true)
-			room_gate.global_position = Vector2(339, 232)
-			room_gate_2.global_position = Vector2(333, -168)
+func leave_house() -> void:
+	delete_escape_routes()
+	delete_nuisances()
+	zerma.global_position = zerma_walk_pos.global_position
+	zerma.default_lines.append("intro_inspect_zerma_2")
+	zerma.show()
+	zerm_car.global_position = car_stop_pos.global_position
+	zerm_car.turn(Math.ANGLE_LEFT)
 
 
-func intro_cutscene_dialogue() -> void:
-	match intro_dialogue_progress:
-		0:
-			SOL.dialogue("intro_convo_2")
-			intro_dialogue_progress = 1
-		1:
-			SOL.dialogue("intro_convo_3")
-			intro_dialogue_progress = 2
-			DAT.free_player("intro")
+func set_car_noise(b: bool) -> void:
+	vroom_vroom.playing = b
 
 
-func intro_cutscene_first_pause() -> void:
-	if no_more:
-		return
-	intro_animator.pause()
-	if SOL.dialogue_open:
-		await SOL.dialogue_closed
-	SOL.dialogue("intro_convo_4")
-	await SOL.dialogue_closed
-	intro_animator.play("intro")
-	DAT.free_player("intro_cutscene")
-	no_more = true
+func line_by_line(line: int) -> void:
+	if line == 1:
+		var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(camera, "global_position", Vector2(0, 48), 2)
+		SOL.dialogue_box.started_speaking.disconnect(line_by_line)
 
 
-func _save_me() -> void:
-	super._save_me()
-	DAT.set_data("intro_dialogue_progress", intro_dialogue_progress)
+func delete_nuisances() -> void:
+	[$Areas/CatSpawners/Cats1, $Areas/CatSpawners/Cats2, $Areas/CatSpawners/Cats3, $Areas/CatSpawners/Cats4, $Areas/CatSpawners/Cats5, $Areas/CatSpawners/Cats6].map(func(a): a.queue_free())
+
+
+func delete_escape_routes() -> void:
+	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.queue_free())

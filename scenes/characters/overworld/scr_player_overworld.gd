@@ -13,7 +13,7 @@ const ROTS = [&"up", &"right", &"down", &"left"]
 
 var input := Vector2()
 var state: int: set = set_state
-var move_mode: MoveModes = MoveModes.SKATE:
+var move_mode: MoveModes = MoveModes.WALK:
 	set(to):
 		move_mode = to
 		skateboard.visible = bool(int(to))
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 func set_state(to: States) -> void:
 	state = to
 	if not is_inside_tree(): return
-	direct_animation()
+	#direct_animation()
 
 
 func movement(delta: float) -> void:

@@ -14,6 +14,12 @@ func _ready() -> void:
 		SOL.dialogue("grandma_fight_end")
 		await SOL.dialogue_closed
 		$Areas/RoomGate._on_area_entered($Greg)
+	# long grandma lol
+	if Math.inrange(DAT.get_data("nr", 0), 0.15, 0.16):
+		$Grandma/AnimatedSprite2D.scale.y = 4.875
+		$Grandma.default_lines.clear()
+		$Grandma.default_lines.append(&"grandma_fight_1")
+		DAT.incrf("nr", 0.02)
 
 
 func _on_radio_interaction_on_interact() -> void:
@@ -41,8 +47,8 @@ func _on_dialogue_closed() -> void:
 	if SOL.dialogue_choice == "house":
 		LTS.enter_battle(
 			BattleInfo.new().set_background(
-				"house_inside").set_enemies(["grandma"]).set_music("lily_lesson")
-					)
+					"house_inside").set_enemies(["grandma"]).set_music("lily_lesson")
+			)
 		SOL.dialogue_choice = ""
 
 

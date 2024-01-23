@@ -35,6 +35,7 @@ var random_movement_timer: Timer
 const RANDOM_MOVEMENT_TRIES := 16
 var chase_timer: Timer
 var time_moved := 0.0
+var time_moved_limit := 2.5
 @export var chase_target: Node2D
 @export var chase_distance := 32
 @export var chase_closeness := 6
@@ -115,11 +116,11 @@ func _physics_process(delta: float) -> void:
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed
 			# move as long as distance > 6 and hasn't moved for too long
-			if global_position.distance_squared_to(target) > chase_closeness and time_moved < 2.5:
+			if global_position.distance_squared_to(target) > chase_closeness and time_moved < time_moved_limit:
 				time_moved += delta
 				var _collided := move_and_slide()
 			else:
-				if time_moved >= 2.5:
+				if time_moved >= time_moved_limit:
 					cannot_reach_target.emit()
 				set_state(States.IDLE)
 			# make diagonal movement faster to catch up with the player
@@ -128,19 +129,19 @@ func _physics_process(delta: float) -> void:
 		# moving towards target
 		States.WANDER:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
-			if global_position.distance_squared_to(target) > 4 and time_moved < 2.5:
+			if global_position.distance_squared_to(target) > 4 and time_moved < time_moved_limit:
 				time_moved += delta
 				var _collided := move_and_slide()
 			else:
-				if time_moved >= 2.5:
+				if time_moved >= time_moved_limit:
 					cannot_reach_target.emit()
 				target_reached.emit()
 				set_state(States.IDLE)
 		# moving along a path
 		States.PATH:
 			velocity = global_position.direction_to(target) * delta * speed * 0.75
-			if global_position.distance_squared_to(target) > 4 and time_moved < 5:
-				time_moved += delta * 2
+			if global_position.distance_squared_to(target) > 4 and time_moved < time_moved_limit:
+				time_moved += delta
 				var _collided := move_and_slide()
 			else:
 				target_reached.emit()

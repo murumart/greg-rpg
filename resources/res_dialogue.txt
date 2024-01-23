@@ -250,6 +250,19 @@ CHAR zerma
 	go and knock on the door.
 
 
+DIALOGUE intro_inspect_zerma_2
+CHAR zerma
+	how'd it go?
+CHAR greg
+INSTASKIP
+	i think
+CHAR zerma
+	you should talk to whoever you saw inside!
+	i'm sure they have things to tell you.
+	and you have things to tell them.
+	i'll wait here...
+
+
 DIALOGUE intro_grandma_1
 CHAR grandma
 	oh, hello there!
@@ -302,26 +315,25 @@ CHAR grandma
 	and now you want it back?
 	have you gone mad?!
 	...
-	kids these days...
+	youth these days...
 	you ought to be taught a lesson!
 # she fights you
 
 
 DIALOGUE grandma_fight_1
+PORTRAIT_SCALE 1,4.895
 CHAR grandma
-	get out of my house!!
+	get outta my hoooooooouuuuuuuuussssssse
 
 
 DIALOGUE grandma_fight_end
-CHAR 
-	you're weak.
-	i'll be honest: ...
-	i actually expected some sort of fight from you.
-	you little... man.
-	come back when you're a little stronger!
-	and by little, i mean when you're at least level 85.
-	you want my house? you'll have to take it by force.
-	see you then, little man.
+CHAR grandma
+	get off my floor! you're drooling all over it.
+	i didn't even push you that hard.
+	youth these days...
+	you should go and level up before you can get...
+	...what you want! that's how it works.
+	now get out.
 
 
 DIALOGUE prank_call_0

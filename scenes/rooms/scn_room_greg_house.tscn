@@ -1,10 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=31 format=3 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
-[ext_resource type="Resource" uid="uid://d166p4x3l8nls" path="res://resources/rewards/res_zerma_tut_rewards.tres" id="2_tkuvq"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_bb2fy"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="3_mfjyj"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="3_nfofm"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_24deu"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="6_c7ycq"]
@@ -21,18 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="13_bun5o"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="14_rld88"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="21_bcrgk"]
-
-[sub_resource type="Resource" id="Resource_fd5xt"]
-script = ExtResource("3_mfjyj")
-enemies = Array[String](["zerma"])
-background = "greghouse"
-music = "greg_battle"
-party = Array[String]([])
-death_reason = "sus"
-start_text = "you will be so educated!"
-rewards = ExtResource("2_tkuvq")
-victory_music = true
-stop_music_before_end = true
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_70heg"]
 normal = Vector2(-1, 0)
@@ -61,826 +47,6 @@ size = Vector2(19, 79)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wj7p"]
 size = Vector2(16, 67)
 
-[sub_resource type="Animation" id="Animation_6shni"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ZermCar/VroomVroom:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ZermCar:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(393, 219)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ZermCar:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Greg:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-50, 200)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Greg:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Greg:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Greg/Sprite:animation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_up"]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Greg/Sprite:speed_scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Zerma:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-21, 219)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Zerma:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Zerma:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Zerma/Sprite:animation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_up"]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../Greg/Camera:position")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -10)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../Greg/Camera:rotation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("../Areas/RoomGate:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(339, 232)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../Areas/RoomGate:rotation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_1xhoy"]
-resource_name = "intro"
-length = 11.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ZermCar")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [273],
-"method": &"turn"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ZermCar/VroomVroom:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ZermCar:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(362, 219), Vector2(-21, 220)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ZermCar:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Greg:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 3.4, 5.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(374, 221), Vector2(-21, 221), Vector2(-34, 208)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Greg:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Greg:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 3.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Greg")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 10.1, 10.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [false],
-"method": &"set_physics_process"
-}, {
-"args": [1],
-"method": &"set_state"
-}, {
-"args": [0],
-"method": &"set_state"
-}, {
-"args": [true],
-"method": &"set_physics_process"
-}]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Greg/Sprite:animation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(3.5, 5.2, 6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [&"walk_up", &"walk_down", &"walk_up"]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Greg/Sprite:speed_scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(3.5),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Zerma:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 3.5, 3.8, 4.1, 4.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-21, 219), Vector2(-31, 227), Vector2(-42, 219), Vector2(-40, 198), Vector2(-15, 196)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Zerma:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Zerma:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 3.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Zerma/Sprite:animation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(3.2, 4.1, 4.5, 6, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [&"walk_up", &"walk_right", &"walk_down", &"walk_up", &"walk_down"]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("../Greg/Camera:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0, 6, 8, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -10), Vector2(0, -10), Vector2(0, -147), Vector2(0, -10)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../Greg/Camera:rotation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/16/type = "method"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("..")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0.2, 6.5, 8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"intro_cutscene_dialogue"
-}, {
-"args": [],
-"method": &"intro_cutscene_dialogue"
-}, {
-"args": [],
-"method": &"intro_cutscene_first_pause"
-}]
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("..:intro_dialogue_progress")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(0, 6.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("../Areas/RoomGate:position")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(391, 234)]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("../Areas/RoomGate:rotation")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/20/type = "method"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("Zerma")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [false],
-"method": &"set_physics_process"
-}, {
-"args": [true],
-"method": &"set_physics_process"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_5om0d"]
-resource_name = "zerm_is_outside"
-length = 0.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ZermCar")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [273],
-"method": &"turn"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ZermCar/VroomVroom:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ZermCar:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-21, 220)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ZermCar:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Greg:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Greg:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Greg:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Greg")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Greg/Sprite:animation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_up"]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../Greg/Sprite:speed_scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Zerma:position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-15, 196)]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Zerma:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Zerma:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Zerma/Sprite:animation")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_down"]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("../Greg/Camera:position")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -10)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../Greg/Camera:rotation")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/16/type = "method"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("..")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/17/type = "value"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("..:intro_dialogue_progress")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_jrnc3"]
-resource_name = "zerm_walks_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Zerma:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-15, 196), Vector2(-24, 96)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Zerma:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Zerma/Sprite:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [&"walk_down", &"walk_up"]
-}
-
-[sub_resource type="Animation" id="Animation_hayxb"]
-resource_name = "zerma_leaves"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Zerma:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-15, 196), Vector2(-18, 218), Vector2(-22, 221), Vector2(-22000, 221)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Zerma:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Zerma:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ZermCar:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-21, 220), Vector2(-21, 220), Vector2(104, 243), Vector2(391, 245)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ZermCar:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("ZermCar/VroomVroom:playing")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.4, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1h4ef"]
-_data = {
-"RESET": SubResource("Animation_6shni"),
-"intro": SubResource("Animation_1xhoy"),
-"zerm_is_outside": SubResource("Animation_5om0d"),
-"zerm_walks_up": SubResource("Animation_jrnc3"),
-"zerma_leaves": SubResource("Animation_hayxb")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a8p1"]
 resource_local_to_scene = true
 size = Vector2(26, 10)
@@ -894,7 +60,6 @@ size = Vector2(26, 7)
 [node name="GregHouse" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_nk2dh")
-zerma_battle = SubResource("Resource_fd5xt")
 music = "birds"
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]
@@ -923,6 +88,8 @@ layer_2/tile_data = PackedInt32Array(393207, 851968, 3, 393208, 589824, 2, 39320
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("3_nfofm")]
 position = Vector2(-113, 94)
@@ -1077,10 +244,6 @@ type = 3
 position = Vector2(-50, 200)
 saving_disabled = true
 
-[node name="Sprite" parent="Greg" index="0"]
-animation = &"walk_up"
-frame_progress = 0.0
-
 [node name="Camera" parent="Greg" instance=ExtResource("4_24deu")]
 position = Vector2(0, -10)
 limit_left = -304
@@ -1163,46 +326,6 @@ shape = SubResource("RectangleShape2D_wi2j2")
 [node name="SpawnPoint" type="Node2D" parent="Areas/HouseDoor"]
 position = Vector2(0, 16)
 
-[node name="Cats1" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(-24, 88)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 3
-player = NodePath("../../Greg")
-
-[node name="Cats2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(-182, -37)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 4
-player = NodePath("../../Greg")
-active_range = Vector2i(10, 99)
-
-[node name="Cats3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(207, -49)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 1
-player = NodePath("../../Greg")
-
-[node name="Cats4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(-26, 258)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 2
-player = NodePath("../../Greg")
-active_range = Vector2i(10, 99)
-
-[node name="Cats5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(124, 154)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 2
-player = NodePath("../../Greg")
-active_range = Vector2i(20, 99)
-
-[node name="Cats6" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(133, 29)
-spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 2
-player = NodePath("../../Greg")
-active_range = Vector2i(20, 99)
-
 [node name="LoneTire" type="Node2D" parent="Areas"]
 y_sort_enabled = true
 position = Vector2(-291, -168)
@@ -1228,25 +351,68 @@ key = "lonetire"
 position = Vector2(-2, -1.5)
 shape = SubResource("RectangleShape2D_0wj7p")
 
-[node name="Cutscenes" type="Node2D" parent="."]
+[node name="CatSpawners" type="Node2D" parent="Areas"]
 y_sort_enabled = true
 
-[node name="InitialIntro" type="AnimationPlayer" parent="Cutscenes"]
-libraries = {
-"": SubResource("AnimationLibrary_1h4ef")
-}
+[node name="Cats1" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-64, 95)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 3
+player = NodePath("../../../Greg")
+
+[node name="Cats2" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-182, -37)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 4
+player = NodePath("../../../Greg")
+active_range = Vector2i(10, 99)
+
+[node name="Cats3" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(207, -49)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 1
+player = NodePath("../../../Greg")
+
+[node name="Cats4" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(-229, 262)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../../Greg")
+active_range = Vector2i(10, 99)
+
+[node name="Cats5" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(255, 12)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../../Greg")
+active_range = Vector2i(20, 99)
+
+[node name="Cats6" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
+position = Vector2(150, 16)
+spawn_enemy = ExtResource("10_20mcq")
+max_enemies = 2
+player = NodePath("../../../Greg")
+active_range = Vector2i(20, 99)
+
+[node name="Cutscenes" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="ZermCar" parent="Cutscenes" instance=ExtResource("8_gp7pc")]
 position = Vector2(393, 219)
 moves = false
+disable_saving = true
 color = Color(0.270588, 0.337255, 0.486275, 1)
 
 [node name="CollisionArea" parent="Cutscenes/ZermCar" index="1"]
+position = Vector2(0, 1)
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape" parent="Cutscenes/ZermCar/CollisionArea" index="0"]
 shape = SubResource("RectangleShape2D_3a8p1")
+
+[node name="VroomVroom" parent="Cutscenes/ZermCar" index="2"]
+volume_db = 4.0
 
 [node name="InspectArea" type="Area2D" parent="Cutscenes/ZermCar"]
 script = ExtResource("10_h38ha")
@@ -1258,7 +424,6 @@ shape = SubResource("RectangleShape2D_6fmsb")
 
 [node name="CarCollision" type="StaticBody2D" parent="Cutscenes/ZermCar"]
 modulate = Color(0.227451, 1, 1, 1)
-collision_layer = 9
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cutscenes/ZermCar/CarCollision"]
@@ -1266,19 +431,27 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_xq52v")
 
 [node name="Zerma" parent="Cutscenes" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("9_qoivq")]
-visible = false
-position = Vector2(-21, 219)
+position = Vector2(395, 247)
 animated_sprite = NodePath("Sprite")
 speed = 4400
+save = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Cutscenes/Zerma"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("10_8xtxa")
 animation = &"walk_up"
 
+[node name="CarStopPos" type="Marker2D" parent="Cutscenes"]
+position = Vector2(-26, 220)
+
+[node name="ZermaWalkPos" type="Marker2D" parent="Cutscenes"]
+position = Vector2(-2, 179)
+
+[node name="ZermaWalkPos2" type="Marker2D" parent="Cutscenes"]
+position = Vector2(-24, 106)
+
 [node name="EscapingBusiness" parent="." instance=ExtResource("21_bcrgk")]
 position = Vector2(298, -173)
 escape_offset = Vector2(100, 0)
 
-[editable path="Greg"]
 [editable path="Cutscenes/ZermCar"]

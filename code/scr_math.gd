@@ -6,6 +6,11 @@ class_name Math
 
 const LEVEL_UP_CURVE := preload("res://resources/res_levelup_curve.tres")
 
+const ANGLE_LEFT := 3.14159
+const ANGLE_RIGHT := 0.0
+const ANGLE_DOWN := 1.5708
+const ANGLE_UP := -1.5708
+
 
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():

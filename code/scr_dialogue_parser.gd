@@ -20,6 +20,7 @@ const NEW_SOUND := &"SOUND "
 const NEW_EMOTION := &"EMO "
 const NEW_DATA_LINK := &"DATA_LINK "
 const NEW_SET_DATA := &"SET_DATA "
+const NEW_PORTRAIT_SCALE := &"PORTRAIT_SCALE"
 const LB := "
 "
 
@@ -42,6 +43,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var sound_to_set: AudioStream = null
 	var emotion_to_set := ""
 	var set_data_to_set := PackedStringArray()
+	var portrait_scale_to_set := Vector2(1, 1)
 	
 	# going trhough the file line by line
 	while not file.eof_reached():
@@ -81,6 +83,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			dial_line.sound = sound_to_set
 			dial_line.emotion = emotion_to_set
 			dial_line.set_data = set_data_to_set
+			dial_line.portrait_scale = portrait_scale_to_set
 			if choices_to_set:
 				dial_line.choices = choices_to_set
 				choices_to_set = []
@@ -94,6 +97,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			silver_to_give = 0
 			sound_to_set = null
 			set_data_to_set = []
+			portrait_scale_to_set = Vector2(1, 1)
 		# storing dialogue line properties
 		elif line.begins_with(NEW_ALIAS):
 			dial.alias = line.trim_prefix(NEW_ALIAS)
@@ -123,7 +127,9 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			silver_to_give = int(line.trim_prefix(NEW_SPIRIT))
 		elif line.begins_with(NEW_SOUND):
 			sound_to_set = load("res://sounds/%s.ogg" % line.trim_prefix(NEW_SOUND))
-	
+		elif line.begins_with(NEW_PORTRAIT_SCALE):
+			var arr := line.trim_prefix(NEW_PORTRAIT_SCALE).split(",")
+			portrait_scale_to_set = Vector2(float(arr[0]), float(arr[1]))
 	if file.eof_reached():
 		dialogue_dictionary[dial.name] = dial
 	print("parsing dialogue file took %s ms" % ((Time.get_ticks_usec() - time) / 1000.0))

@@ -12,12 +12,12 @@
 offsets = PackedFloat32Array(0.121194, 1)
 colors = PackedColorArray(0.339497, 0.339497, 0.339497, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2ra4h"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gd0vc"]
 gradient = SubResource("Gradient_bkgfh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gp58o"]
 shader = ExtResource("2_la4kt")
-shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
+shader_parameter/Gradient = SubResource("GradientTexture1D_gd0vc")
 
 [sub_resource type="Animation" id="Animation_s6scb"]
 length = 0.001
@@ -124,10 +124,10 @@ region_enabled = true
 region_rect = Rect2(0, 16, 14, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "start_animation"
 libraries = {
 "": SubResource("AnimationLibrary_usldh")
 }
+autoplay = "start_animation"
 
 [node name="White" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)

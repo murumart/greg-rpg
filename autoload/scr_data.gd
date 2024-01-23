@@ -53,7 +53,6 @@ func _ready() -> void:
 	print("DAT is ready!")
 	DIR.incj(1, 1)
 	await get_tree().process_frame
-	test()
 
 
 # loading characters, items, spirits from folders
@@ -348,9 +347,4 @@ func init_data() -> void:
 	A.clear()
 	set_data("party", ["greg"])
 	set_data("nr", 0.0)
-
-
-func test() -> void:
-	pass
-
 

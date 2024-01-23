@@ -77,6 +77,10 @@ var songs := {
 		"title": "webcatz - greenhouse",
 		"link": "res://music/mus_greenhouse.ogg"
 	},
+	"grandma_scary": {
+		"title": "mental",
+		"link": "res://music/mus_grandma_scary.ogg"
+	},
 	"greg_battle": {
 		"title": "greg battle",
 		"link": "res://music/mus_greg_battle.ogg"

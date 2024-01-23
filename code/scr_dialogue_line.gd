@@ -22,6 +22,7 @@ const MAX_TEXT_LENGTH := 66
 @export var silver_to_give := 0
 
 @export var sound: AudioStream
+@export var portrait_scale := Vector2.ONE
 
 @export var set_data: PackedStringArray = []
 

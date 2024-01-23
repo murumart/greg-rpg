@@ -163,6 +163,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		portrait.texture = character.portrait
 		if DIR.portrait_exists(character.name_in_file + "_" + emotion):
 			portrait.texture = load(PORTRAIT_DIR % (character.name_in_file + "_" + emotion))
+		portrait.scale = part.portrait_scale
 	
 	portrait.visible = portrait.texture != null
 	set_textbox_width_to_full(not portrait.visible)
