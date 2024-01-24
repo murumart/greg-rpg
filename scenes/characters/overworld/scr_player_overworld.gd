@@ -38,9 +38,9 @@ func _ready() -> void:
 	menu.skateboard_dequipped.connect(func(): move_mode = MoveModes.WALK)
 	SOL.add_ui_child(menu)
 	menu.hide()
-	
 	load_armour()
 	spawn_position()
+	direct_animation()
 	print("player ready")
 
 

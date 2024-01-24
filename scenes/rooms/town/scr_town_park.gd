@@ -7,7 +7,7 @@ extends Node2D
 func _ready() -> void:
 	tarikas.inspected.connect(_on_tarikas_inspected)
 	tarikas_lines()
-	if DAT.get_data("battles", 0) < 2:
+	if DAT.get_data("battles", 0) < 3:
 		pass
 		guru.queue_free()
 

@@ -15,7 +15,7 @@ func act() -> void:
 			break
 	SND.play_song("")
 	DAT.set_data("fought_grandma", true)
-	DAT.incri("intro_progress", 1)
+	DAT.set_data("intro_progress", 2)
 	LTS.gate_id = LTS.GATE_EXIT_BATTLE
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.5).timeout
 	LTS.level_transition(LTS.ROOM_SCENE_PATH % "grandma_house_inside")

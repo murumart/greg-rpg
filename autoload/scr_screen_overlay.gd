@@ -129,7 +129,7 @@ func debug_console() -> void:
 	if "debug_console" in DAT.player_capturers: return
 	var cnsole := load("res://scenes/gui/scn_console.tscn").instantiate() as DebugConsole
 	#cnsole.position += Vector2(SOL.SCREEN_SIZE / 2)
-	add_ui_child(cnsole)
+	add_ui_child(cnsole, 0, false)
 	DAT.capture_player("debug_console")
 
 
@@ -197,6 +197,8 @@ func get_all_children_of_type(node: Node, type: String) -> Array:
 
 # maybe it caches them somewhere so it will be less laggy than loading it during runtime
 func load_all_effects() -> void:
+	if not effects_dict.is_empty():
+		return
 	var time := Time.get_ticks_msec()
 	var path := "res://scenes/vfx/"
 	var names := DIR.get_dir_contents(path)

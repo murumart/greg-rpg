@@ -460,6 +460,7 @@ shape = SubResource("RectangleShape2D_0bcnh")
 
 [node name="RoomGate" parent="Areas" instance=ExtResource("12_363c6")]
 position = Vector2(8, 54)
+disabled = false
 destination = &"greg_house"
 gate_id = &"greghouse_inside-outside"
 extents = Vector2i(7, 8)
@@ -486,7 +487,7 @@ chase_target = NodePath("../../Grandma")
 script = ExtResource("17_ey6yv")
 
 [node name="GregPos" type="Marker2D" parent="MentalCutscene"]
-position = Vector2(8, 16)
+position = Vector2(8, 32)
 
 [node name="GrandmaStartPos" type="Marker2D" parent="MentalCutscene"]
 position = Vector2(8, -32)
@@ -514,6 +515,8 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
 text = "you're weak."
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MentalCutscene/TextBoxes"]
 material = SubResource("CanvasItemMaterial_jn2ko")

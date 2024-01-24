@@ -55,8 +55,10 @@ func parse_command() -> void:
 			output("gregged.")
 		&"bset":
 			battle_set(args)
+		&"bend":
+			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,7\ntype command without args to get help")
 		&"eks":
 			ex(args)
 		&"clear":
@@ -119,6 +121,14 @@ func battle_set(args: PackedStringArray) -> void:
 	var value := args[3]
 	get_team[nr].set(variant, value)
 	output("set %s %s property %s to %s" % ["enemy" if team == 1 else "party member", str(get_team[nr]), variant, value])
+
+
+func battle_end(args: PackedStringArray) -> void:
+	var cs: Node = LTS.get_current_scene()
+	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+		output("needs to be used in battle", true)
+		return
+	(cs).check_end(true)
 
 
 func setdata(args: PackedStringArray) -> void:

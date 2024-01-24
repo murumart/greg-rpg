@@ -1,6 +1,7 @@
 extends Room
 
 const CarType := preload("res://scenes/decor/scr_overworld_car.gd")
+const DoorType := preload("res://scenes/decor/scr_door_area.gd")
 
 var intro_progress := 0:
 	get:
@@ -16,15 +17,27 @@ var intro_progress := 0:
 @onready var zerma_walk_pos: Marker2D = $Cutscenes/ZermaWalkPos
 @onready var zerma_walk_pos_2: Marker2D = $Cutscenes/ZermaWalkPos2
 @onready var vroom_vroom: AudioStreamPlayer2D = $Cutscenes/ZermCar/VroomVroom
+@onready var house_door := $Areas/HouseDoor as DoorType
+@onready var next_to_car_pos: Marker2D = $Cutscenes/NextToCarPos
+@onready var car_inspect: InspectArea = $Cutscenes/ZermCar/InspectArea
 
 
 func _ready() -> void:
 	super()
-	if intro_progress == 0:
-		start()
-		SOL.dialogue("intro_convo_2")
-	elif intro_progress == 1:
-		leave_house()
+	if LTS.gate_id == &"intro":
+		if intro_progress == 0:
+			start()
+			SOL.dialogue("intro_convo_2")
+		elif intro_progress == 1:
+			leave_house()
+		elif intro_progress == 2:
+			evicted()
+		elif intro_progress == 3:
+			after_battle()
+		else:
+			$Cutscenes.queue_free()
+	else:
+		$Cutscenes.queue_free()
 
 
 func _physics_process(delta: float) -> void:
@@ -90,6 +103,60 @@ func leave_house() -> void:
 	zerma.show()
 	zerm_car.global_position = car_stop_pos.global_position
 	zerm_car.turn(Math.ANGLE_LEFT)
+	zerma.time_moved_limit = 400
+
+
+func evicted() -> void:
+	leave_house()
+	house_door.destination = ""
+	zerma.default_lines.clear()
+	zerma.default_lines.append("zerma_fight_preface")
+	zerma.move_to(zerma_walk_pos_2.global_position)
+	zerma.inspected.connect(func():
+		SOL.dialogue_closed.connect(func():
+			if SOL.dialogue_choice == "yes":
+				SOL.dialogue_choice = ""
+				LTS.enter_battle(preload("res://resources/battle_infos/zerma_tutorial.tres"))
+				intro_progress += 1
+			elif SOL.dialogue_choice == "no":
+				SOL.dialogue_choice = ""
+				move_to_car()
+		, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
+
+
+func after_battle() -> void:
+	leave_house()
+	house_door.destination = ""
+	zerma.global_position = zerma_walk_pos_2.global_position
+	SOL.dialogue("zerma_after_fight")
+	SOL.dialogue_closed.connect(move_to_car, CONNECT_ONE_SHOT)
+
+
+func move_to_car() -> void:
+	zerma.default_lines.clear()
+	zerma.default_lines.append("zerma_goodbye")
+	zerma.move_to(next_to_car_pos.global_position)
+	car_inspect.queue_free()
+	enable_gates()
+	intro_progress = 4
+	zerma.inspected.connect(func():
+		SOL.dialogue_closed.connect(func():
+			zerma.move_to(car_stop_pos.global_position)
+			zerma.set_collision_mask_value(1, false)
+			zerma.target_reached.connect(func():
+				zerma.hide()
+				set_car_noise(true)
+				zerm_car.turn(Math.ANGLE_RIGHT)
+				var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+				tw.tween_property(zerm_car, "global_position", zerma.global_position + Vector2(429, 5), 2)
+				tw.parallel().tween_property(zerma, "global_position",
+						zerma.global_position + Vector2(429, 5), 2)
+				tw.parallel().tween_property(vroom_vroom, "pitch_scale", 1.2, 2).from(0.75)
+				tw.tween_callback(func(): set_car_noise(false))
+			)
+		, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
 
 
 func set_car_noise(b: bool) -> void:
@@ -108,4 +175,8 @@ func delete_nuisances() -> void:
 
 
 func delete_escape_routes() -> void:
-	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.queue_free())
+	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = true)
+
+
+func enable_gates() -> void:
+	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = false)

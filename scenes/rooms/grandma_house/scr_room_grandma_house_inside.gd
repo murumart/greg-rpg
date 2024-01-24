@@ -8,12 +8,6 @@ var music_last_song: String
 func _ready() -> void:
 	super._ready()
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
-	
-	var fought_grandma: bool = DAT.get_data("fought_grandma", false)
-	if fought_grandma:
-		SOL.dialogue("grandma_fight_end")
-		await SOL.dialogue_closed
-		$Areas/RoomGate._on_area_entered($Greg)
 	# long grandma lol
 	if Math.inrange(DAT.get_data("nr", 0), 0.15, 0.16):
 		$Grandma/AnimatedSprite2D.scale.y = 4.875

@@ -53,6 +53,7 @@ func exit_intro() -> void:
 	tw.tween_property(car, "position:y", 180, 2.0)
 	await tw.step_finished
 	SND.play_song("birds", 0.05)
+	LTS.gate_id = &"intro"
 	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
 
 

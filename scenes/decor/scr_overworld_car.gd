@@ -46,7 +46,7 @@ func _ready() -> void:
 	position = DAT.get_data(get_save_key("position"), position)
 	current_target = DAT.get_data(get_save_key("current_target"), current_target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
-	.set_music("overrun").set_death_reason("car")
+	.set_music("overrun").set_death_reason("car").set_start_text("hope you saved before this!")
 	set_color(color)
 	set_target(0)
 

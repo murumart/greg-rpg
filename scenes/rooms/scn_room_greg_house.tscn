@@ -444,6 +444,9 @@ animation = &"walk_up"
 [node name="CarStopPos" type="Marker2D" parent="Cutscenes"]
 position = Vector2(-26, 220)
 
+[node name="NextToCarPos" type="Marker2D" parent="Cutscenes"]
+position = Vector2(-20, 214)
+
 [node name="ZermaWalkPos" type="Marker2D" parent="Cutscenes"]
 position = Vector2(-2, 179)
 

@@ -1,7 +1,6 @@
 extends BattleEnemy
 
 var battle_reference: Battle
-var rewards := BattleRewards.new()
 
 var progress := 0
 
@@ -11,7 +10,6 @@ func _ready() -> void:
 	if LTS.get_current_scene() is Battle:
 		battle_reference = LTS.get_current_scene()
 		battle_reference.player_finished_acting.connect(_on_player_act_finished)
-		battle_reference.battle_rewards = rewards
 	super._ready()
 	progress = 2
 	SOL.dialogue("zerma_fight_1")
@@ -31,8 +29,10 @@ func _on_player_act_finished() -> void:
 	# he will attack you at this point so you have a reason to use healing
 	if dialogue_key == "zerma_fight_2_attack_zerma":
 		await SOL.dialogue_closed
+		SOL.set_deferred("dialogue_open", true)
+		await get_tree().create_timer(0.5)
 		attack(battle_reference.party[0])
-		await get_tree().process_frame
+		await get_tree().create_timer(0.5)
 		SOL.dialogue("zerma_fight_2_he_attacks")
 		await SOL.dialogue_closed
 	# if we can progress the dialogue
@@ -48,7 +48,7 @@ func _on_player_act_finished() -> void:
 	if progress > 4:
 		await SOL.dialogue_closed
 		DAT.set_data("zerma_fought", true)
-		DAT.incri("intro_dialogue_progress", 1)
+		DAT.set_data("intro_progress", 3)
 		battle_reference.check_end(true)
 
 

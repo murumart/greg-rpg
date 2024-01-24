@@ -9,6 +9,12 @@ signal entered
 @export_node_path("Area2D") var area_path: NodePath
 @export_node_path("CollisionShape2D") var collision_shape_path: NodePath
 @export_node_path("Marker2D") var spawn_point_path: NodePath
+@export var disabled := false:
+	set(to):
+		if get_node_or_null(area_path):
+			get_node(area_path).monitoring = !to
+			get_node(area_path).monitorable = !to
+			disabled = to
 
 @export_group("")
 @export var destination := &""

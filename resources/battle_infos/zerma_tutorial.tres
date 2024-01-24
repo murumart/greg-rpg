@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://wy2pad6a4u0h"]
+
+[ext_resource type="Resource" uid="uid://d166p4x3l8nls" path="res://resources/rewards/res_zerma_tut_rewards.tres" id="1_5mkkn"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_mc71a"]
+
+[resource]
+script = ExtResource("1_mc71a")
+enemies = Array[String](["zerma"])
+background = "greghouse"
+music = "greg_battle"
+party = Array[String]([])
+death_reason = "sus"
+start_text = "you will be so educated!"
+rewards = ExtResource("1_5mkkn")
+victory_music = true
+stop_music_before_end = true

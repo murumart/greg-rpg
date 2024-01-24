@@ -5,6 +5,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sub16"]
 shader = ExtResource("1_svy8x")
+shader_parameter/waveX = 0.018
+shader_parameter/waveY = 0.004
+shader_parameter/distortX = 0.046
+shader_parameter/distortY = -0.035
+shader_parameter/speed = 1.0
 
 [node name="Node2D" type="Node2D"]
 

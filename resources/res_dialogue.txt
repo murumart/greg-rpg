@@ -577,7 +577,7 @@ ACTUALLY zerma_fight_3_attack_greg
 DIALOGUE zerma_fight_4_spirit_fail_
 CHAR zerma
 	oh dear, try again!
-	type [color=#7799ff]sideeye[/color]!
+	select me and type [color=#7799ff]sideeye[/color]!
 	and be quick about it.
 
 
@@ -585,7 +585,7 @@ DIALOGUE zerma_fight_4_else
 CHAR zerma
 	oh dear, that's not quite right.
 	the spirit button, greg!
-	and type [color=#7799ff]sideeye[/color].
+	select me and type [color=#7799ff]sideeye[/color].
 
 
 DIALOGUE zerma_after_fight
