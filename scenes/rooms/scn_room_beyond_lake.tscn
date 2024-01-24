@@ -378,7 +378,7 @@ flip = true
 custom_lines = PackedStringArray("bike_ghost_fishing_1", "bike_ghost_fishing_2")
 
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
-position = Vector2(1254, -66)
+position = Vector2(-416, 6)
 saving_disabled = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("6_e61yp")]
@@ -734,7 +734,7 @@ scale = Vector2(-1, 1)
 type = 3
 
 [node name="Tree72" parent="Trees" instance=ExtResource("4_qfqq5")]
-position = Vector2(-29, -2)
+position = Vector2(-45, 4)
 type = 1
 
 [node name="Tree73" parent="Trees" instance=ExtResource("4_qfqq5")]
