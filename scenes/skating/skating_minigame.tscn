@@ -1,3 +1,105 @@
-[gd_scene format=3 uid="uid://ct32b3bmill01"]
+[gd_scene load_steps=9 format=3 uid="uid://ct32b3bmill01"]
+
+[ext_resource type="Script" path="res://scenes/skating/skating_minigame.gd" id="1_e2i3m"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_ern6p"]
+[ext_resource type="Texture2D" uid="uid://cwe4j13vtfj35" path="res://sprites/skating/bagground1.png" id="2_o68lv"]
+[ext_resource type="Script" path="res://scenes/skating/ui.gd" id="3_84nc0"]
+[ext_resource type="Script" path="res://scenes/skating/player.gd" id="3_i87m7"]
+[ext_resource type="Texture2D" uid="uid://s8cung1men77" path="res://sprites/skating/greg.png" id="4_e53a1"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="4_f883l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_auvad"]
+radius = 4.0
+height = 18.0
 
 [node name="SkatingMinigame" type="Node2D"]
+script = ExtResource("1_e2i3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o68lv")
+centered = false
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_84nc0")
+
+[node name="Panel" type="Panel" parent="UI"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 2.0
+offset_right = 157.0
+offset_bottom = 94.0
+
+[node name="Balance" type="Control" parent="UI/Panel"]
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 19.0
+
+[node name="Label" type="Label" parent="UI/Panel/Balance"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 45.0
+offset_bottom = 11.0
+text = "balance"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Panel/Balance"]
+position = Vector2(3.00001, 13)
+scale = Vector2(44, 3)
+texture = ExtResource("4_f883l")
+centered = false
+
+[node name="Pointer" type="Sprite2D" parent="UI/Panel/Balance"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(44, 11)
+scale = Vector2(3, 7)
+texture = ExtResource("4_f883l")
+centered = false
+
+[node name="MainCamera" parent="." instance=ExtResource("2_ern6p")]
+position = Vector2(80, 60)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(50, 46)
+collision_layer = 2
+floor_stop_on_slope = false
+floor_max_angle = 0.357792
+script = ExtResource("3_i87m7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_auvad")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0, -3)
+texture = ExtResource("4_e53a1")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 24)
+
+[node name="JumpCase" type="RayCast2D" parent="Player"]
+position = Vector2(0, 1)
+target_position = Vector2(0, 11)
+
+[node name="BalanceRight" type="RayCast2D" parent="Player"]
+position = Vector2(4, 3)
+target_position = Vector2(0, 13)
+
+[node name="BalanceLeft" type="RayCast2D" parent="Player"]
+position = Vector2(-4, 3)
+target_position = Vector2(0, 13)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("2_ern6p")]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_bottom = 120
+
+[node name="Ground" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(0, 43)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PackedVector2Array(48, 66, 63, 66, 78, 62, 89, 56, 95, 48, 98, 37, 98, -37, 19, -38, 19, -43, 160, -43, 160, 77, 0, 77, 0, -43, 19, -43, 18, 37, 20, 48, 25, 56, 34, 62)

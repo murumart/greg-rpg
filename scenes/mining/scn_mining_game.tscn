@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://jiwivi764dxc"]
+[gd_scene load_steps=22 format=3 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://b5nsc0govxden" path="res://sprites/mining/spr_tiles_gas.png" id="6_p6bfi"]
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_component.gd" id="6_qjefl"]
 [ext_resource type="Texture2D" uid="uid://xfmuis2asrxq" path="res://sprites/mining/spr_tiles_fire.png" id="7_udqbk"]
-[ext_resource type="PackedScene" uid="uid://b18s2g8p0xnlj" path="res://scenes/mining/enemies/scn_underground_lizard.tscn" id="12_8071p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xn8s"]
 texture = ExtResource("2_3h1uj")
@@ -669,6 +668,3 @@ position = Vector2(164, 0)
 shape = SubResource("RectangleShape2D_1fnne")
 
 [node name="Enemies" type="Node" parent="."]
-
-[node name="UndergroundLizard" parent="Enemies" instance=ExtResource("12_8071p")]
-position = Vector2(90, 59)
