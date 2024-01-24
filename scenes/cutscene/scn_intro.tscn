@@ -317,7 +317,7 @@ color = Color(0, 0, 0, 1)
 [node name="Logo" type="Sprite2D" parent="UiGroup/UI"]
 visible = false
 modulate = Color(1, 1, 1, 0)
-position = Vector2(80, 60)
+position = Vector2(80, 48)
 texture = ExtResource("6_ectdq")
 
 [node name="Title" type="Label" parent="UiGroup/UI"]
