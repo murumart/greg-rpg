@@ -86,9 +86,6 @@ size = Vector2(11, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3o4w"]
 size = Vector2(276, 52)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmmce"]
-size = Vector2(34, 22)
-
 [sub_resource type="Animation" id="Animation_jlno2"]
 length = 0.001
 tracks/0/type = "value"
@@ -125,6 +122,9 @@ _data = {
 "RESET": SubResource("Animation_jlno2"),
 "glow": SubResource("Animation_6fjja")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmmce"]
+size = Vector2(34, 22)
 
 [sub_resource type="Animation" id="Animation_fqrk0"]
 length = 0.001
@@ -1231,40 +1231,69 @@ layer_0/name = "roof layer"
 layer_0/z_index = 0
 layer_0/tile_data = PackedInt32Array(-65544, 327681, 11, -65543, 327681, 11, -65545, 262145, 11, -65542, 327681, 11, -65541, 327681, 11, -65540, 327681, 11, -65539, 327681, 11, -65538, 327681, 11, -65537, 327681, 11, -131072, 327681, 11, -131071, 327681, 11, -131070, 327681, 11, -131069, 327681, 11, -131068, 327681, 11, -131067, 327681, 11, -131066, 327681, 11, -131065, 327681, 11, -131064, 327681, 11, -131063, 327681, 11, -131062, 393217, 11, -196599, 327681, 10, -196600, 327681, 10, -196598, 393217, 10, -196601, 327681, 10, -196602, 327681, 10, -196603, 327681, 10, -196604, 327681, 10, -196605, 327681, 10, -196606, 327681, 10, -262142, 327681, 10, -262141, 327681, 10, -262143, 327681, 10, -262144, 327681, 10, -196609, 327681, 10, -196610, 327681, 10, -196611, 327681, 10, -196612, 327681, 10, -196613, 327681, 10, -196614, 327681, 10, -131078, 327681, 10, -131077, 327681, 10, -131079, 327681, 10, -131080, 327681, 10, -131081, 262145, 10, -196616, 327681, 10, -196617, 262145, 10, -196615, 327681, 10, -131076, 327681, 10, -131075, 327681, 10, -131074, 327681, 10, -131073, 327681, 10, -196608, 327681, 10, -196607, 327681, 10, -262137, 327681, 10, -262138, 327681, 10, -262136, 327681, 10, -262135, 327681, 10, -327673, 327681, 10, -327672, 327681, 10, -327674, 327681, 10, -327675, 327681, 10, -327676, 327681, 10, -262140, 327681, 10, -262139, 327681, 10, -262134, 393217, 10, -262145, 327681, 10, -327680, 327681, 10, -262146, 327681, 10, -262147, 327681, 10, -262148, 327681, 10, -262149, 327681, 10, -262150, 327681, 10, -262151, 327681, 10, -262152, 327681, 10, -262153, 262145, 10, -327679, 327681, 10, -327678, 327681, 10, -327677, 327681, 10, -327671, 327681, 10, -327670, 393217, 10, -327688, 327681, 10, -327687, 327681, 10, -327689, 262145, 10, -327686, 327681, 10, -327685, 327681, 10, -327684, 327681, 10, -327683, 327681, 10, -327682, 327681, 10, -327681, 327681, 10, -393216, 327681, 10, -393215, 327681, 10, -393214, 327681, 10, -393213, 327681, 10, -393212, 327681, 10, -393211, 327681, 10, -393210, 327681, 10, -393209, 327681, 10, -393208, 327681, 10, -393207, 327681, 10, -393206, 393217, 10, -458743, 327681, 10, -524279, 327681, 10, -589815, 327681, 8, -458744, 327681, 10, -524280, 327681, 10, -589816, 327681, 8, -458745, 327681, 10, -524281, 327681, 10, -589817, 327681, 8, -458746, 327681, 10, -524282, 327681, 10, -589818, 327681, 8, -458747, 327681, 10, -524283, 327681, 10, -589819, 327681, 8, -458748, 327681, 10, -524284, 327681, 10, -589820, 327681, 8, -458749, 327681, 10, -524285, 327681, 10, -589821, 327681, 8, -458750, 327681, 10, -524286, 327681, 10, -589822, 327681, 8, -458751, 327681, 10, -524287, 327681, 10, -589823, 327681, 8, -458752, 327681, 10, -524288, 327681, 10, -589824, 327681, 8, -393217, 327681, 10, -458753, 327681, 10, -524289, 327681, 8, -393218, 327681, 10, -458754, 327681, 10, -524290, 327681, 8, -393219, 327681, 10, -458755, 327681, 10, -524291, 327681, 8, -393220, 327681, 10, -458756, 327681, 10, -524292, 327681, 8, -393221, 327681, 10, -458757, 327681, 10, -524293, 327681, 8, -393222, 327681, 10, -458758, 327681, 10, -524294, 327681, 8, -393223, 327681, 10, -458759, 327681, 10, -524295, 327681, 8, -393224, 327681, 10, -458760, 327681, 10, -524296, 327681, 8, -458761, 262145, 10, -524297, 262145, 8, -393225, 262145, 10, -589814, 393217, 8, -524278, 393217, 10, -458742, 393217, 10)
 
-[node name="Door" type="Sprite2D" parent="Houses/Store"]
+[node name="Decor" type="Node2D" parent="Houses/Store"]
+
+[node name="Door" type="Sprite2D" parent="Houses/Store/Decor"]
 position = Vector2(0, 25)
 texture = ExtResource("9_8v8jp")
 centered = false
 region_enabled = true
 region_rect = Rect2(48, 89, 32, 23)
 
-[node name="FrameThing" type="Sprite2D" parent="Houses/Store"]
+[node name="FrameThing" type="Sprite2D" parent="Houses/Store/Decor"]
 modulate = Color(0.721569, 0.721569, 0.721569, 1)
 position = Vector2(6, -8)
 texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 80, 32, 16)
 
-[node name="FrameThing2" type="Sprite2D" parent="Houses/Store"]
+[node name="FrameThing2" type="Sprite2D" parent="Houses/Store/Decor"]
 modulate = Color(0.721569, 0.721569, 0.721569, 1)
 position = Vector2(6, 8)
 texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 80, 32, 16)
 
-[node name="FrameThing3" type="Sprite2D" parent="Houses/Store"]
+[node name="FrameThing3" type="Sprite2D" parent="Houses/Store/Decor"]
 modulate = Color(0.635294, 0.635294, 0.635294, 1)
 position = Vector2(28, 7)
 texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 80, 32, 16)
 
-[node name="FrameThing4" type="Sprite2D" parent="Houses/Store"]
+[node name="FrameThing4" type="Sprite2D" parent="Houses/Store/Decor"]
 modulate = Color(0.721569, 0.721569, 0.721569, 1)
 position = Vector2(28, -9)
 texture = ExtResource("9_8v8jp")
 region_enabled = true
 region_rect = Rect2(80, 80, 32, 16)
+
+[node name="Sign" type="Sprite2D" parent="Houses/Store/Decor"]
+z_index = 1
+position = Vector2(17, 0)
+texture = ExtResource("9_8v8jp")
+region_enabled = true
+region_rect = Rect2(0, 80, 48, 32)
+
+[node name="Shade" type="Sprite2D" parent="Houses/Store/Decor/Sign"]
+modulate = Color(0, 0, 0, 0.4)
+show_behind_parent = true
+position = Vector2(1, 1)
+texture = ExtResource("9_8v8jp")
+region_enabled = true
+region_rect = Rect2(0, 80, 48, 32)
+
+[node name="Glow" type="Sprite2D" parent="Houses/Store/Decor/Sign"]
+modulate = Color(1, 60.06, 49.06, 0.17)
+texture = ExtResource("9_8v8jp")
+region_enabled = true
+region_rect = Rect2(0, 80, 48, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Houses/Store/Decor/Sign"]
+libraries = {
+"": SubResource("AnimationLibrary_1313b")
+}
+autoplay = "glow"
 
 [node name="DoorArea" parent="Houses/Store" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 position = Vector2(16, 38)
@@ -1279,33 +1308,6 @@ shape = SubResource("RectangleShape2D_dmmce")
 
 [node name="SpawnPoint" type="Node2D" parent="Houses/Store/DoorArea"]
 position = Vector2(0, 17)
-
-[node name="Sign" type="Sprite2D" parent="Houses/Store"]
-z_index = 1
-position = Vector2(17, 0)
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(0, 80, 48, 32)
-
-[node name="Shade" type="Sprite2D" parent="Houses/Store/Sign"]
-modulate = Color(0, 0, 0, 0.4)
-show_behind_parent = true
-position = Vector2(1, 1)
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(0, 80, 48, 32)
-
-[node name="Glow" type="Sprite2D" parent="Houses/Store/Sign"]
-modulate = Color(1, 60.06, 49.06, 0.17)
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(0, 80, 48, 32)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Houses/Store/Sign"]
-libraries = {
-"": SubResource("AnimationLibrary_1313b")
-}
-autoplay = "glow"
 
 [node name="Strash" parent="Houses/Store" instance=ExtResource("12_rk0rd")]
 position = Vector2(72, 52)
@@ -1324,7 +1326,7 @@ replenish_seconds = 3600
 item = &"mueslibar"
 
 [node name="Greenhouse" parent="Houses/Store" instance=ExtResource("16_2feir")]
-position = Vector2(-34, 63)
+position = Vector2(-35, 57)
 tutorial_type = 2
 
 [node name="LakeHintNpc" parent="Houses/Store" instance=ExtResource("10_dem56")]

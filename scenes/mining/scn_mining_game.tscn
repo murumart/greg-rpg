@@ -671,3 +671,4 @@ shape = SubResource("RectangleShape2D_1fnne")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="UndergroundLizard" parent="Enemies" instance=ExtResource("12_8071p")]
+position = Vector2(90, 59)

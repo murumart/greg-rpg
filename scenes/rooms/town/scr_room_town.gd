@@ -188,7 +188,8 @@ func _on_lake_hint_received(force_cutscene: bool = false) -> void:
 	if not DAT.get_data("lake_hint_received", false):
 		DAT.incri("store_ad_progress", 1)
 	DAT.set_data("lake_hint_received", true)
-	if force_cutscene or DAT.get_data("store_ad_progress", 0) >= 3 and not DAT.get_data("saw_ad_cutscene", false):
+	if force_cutscene or (DAT.get_data("store_ad_progress", 0) >= 3 and
+			not DAT.get_data("saw_ad_cutscene", false)):
 		DAT.set_data("saw_ad_cutscene", true)
 		DAT.capture_player("cutscene")
 		cs.play("cutscene_start")
