@@ -16,7 +16,6 @@ const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 
 func _ready() -> void:
-	DAT.capture_player("intro")
 	car.turn(PI / 2)
 	car.moves = false
 	car.position.y = -80
