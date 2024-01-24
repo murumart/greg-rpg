@@ -24,18 +24,15 @@ var intro_progress := 0:
 
 func _ready() -> void:
 	super()
-	if LTS.gate_id == &"intro":
-		if intro_progress == 0:
-			start()
-			SOL.dialogue("intro_convo_2")
-		elif intro_progress == 1:
-			leave_house()
-		elif intro_progress == 2:
-			evicted()
-		elif intro_progress == 3:
-			after_battle()
-		else:
-			$Cutscenes.queue_free()
+	if intro_progress == 0 and LTS.gate_id == &"intro":
+		start()
+		SOL.dialogue("intro_convo_2")
+	elif intro_progress == 1:
+		leave_house()
+	elif intro_progress == 2:
+		evicted()
+	elif intro_progress == 3:
+		after_battle()
 	else:
 		$Cutscenes.queue_free()
 
