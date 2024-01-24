@@ -160,7 +160,6 @@ animator = NodePath("AnimationPlayer")
 toughness = 0.625
 altruism = 0.765
 innovation = 0.872
-stat_multiplier = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lahef")
