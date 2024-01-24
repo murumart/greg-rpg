@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,gitem,gspirit,7\ntype command without args to get help")
 		&"eks":
 			ex(args)
 		&"clear":
@@ -83,6 +83,10 @@ func parse_command() -> void:
 				output("key doesn't exist", true)
 				return
 			SOL.dialogue(args[0])
+		&"gitem":
+			give_item(args)
+		&"gspirit":
+			give_spirit(args)
 		&"7":
 			output("7")
 		_:
@@ -227,4 +231,20 @@ func vfx(args: PackedStringArray) -> void:
 		else:
 			output("position arguments faulty", true)
 	SOL.vfx(nomen, Vector2(posx, posy))
+
+
+func give_item(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: gitem itemname")
+		return
+	var itemname := args[0]
+	DAT.grant_item(itemname)
+
+
+func give_spirit(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: gspirit spiritname")
+		return
+	var spiritname := args[0]
+	DAT.grant_spirit(spiritname)
 
