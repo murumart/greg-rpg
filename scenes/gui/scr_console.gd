@@ -123,7 +123,7 @@ func battle_set(args: PackedStringArray) -> void:
 	output("set %s %s property %s to %s" % ["enemy" if team == 1 else "party member", str(get_team[nr]), variant, value])
 
 
-func battle_end(args: PackedStringArray) -> void:
+func battle_end(_args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
 		output("needs to be used in battle", true)

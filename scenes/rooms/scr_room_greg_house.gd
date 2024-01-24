@@ -40,10 +40,6 @@ func _ready() -> void:
 		$Cutscenes.queue_free()
 
 
-func _physics_process(delta: float) -> void:
-	pass
-
-
 func start() -> void:
 	delete_escape_routes()
 	delete_nuisances()
@@ -145,6 +141,7 @@ func move_to_car() -> void:
 			zerma.move_to(car_stop_pos.global_position)
 			zerma.set_collision_mask_value(1, false)
 			zerma.target_reached.connect(func():
+				greg.saving_disabled = false
 				zerma.hide()
 				set_car_noise(true)
 				zerm_car.turn(Math.ANGLE_RIGHT)

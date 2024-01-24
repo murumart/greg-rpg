@@ -12,7 +12,7 @@ var starting := false
 
 
 func _ready() -> void:
-	await SOL.load_all_effects()
+	SOL.load_all_effects()
 	$LoadingScreen.call_deferred("hide")
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()

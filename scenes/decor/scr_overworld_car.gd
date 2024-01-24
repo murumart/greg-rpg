@@ -104,7 +104,7 @@ func _on_collided_with_player(_player) -> void:
 		tw.tween_callback(func(): moves = true)
 
 
-func turn(rot: int) -> void:
+func turn(rot: float) -> void:
 	var dir := Math.dir_from_rot(rot)
 	sprite.region_rect = regions[dir + 1]
 	collision_shape.shape.size = SHAPE_SIZES[int((dir + 1) % 2 == 0)]
