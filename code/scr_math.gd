@@ -81,8 +81,9 @@ static func determ_shuffle(arr: Array, rng: RandomNumberGenerator) -> Array:
 	var sz := arr.size()
 	if sz <= 1:
 		return dup
-	var x = dup.pop_at(rng.randi() % dup.size())
-	new_array.append(x)
+	for i in sz:
+		var x = dup.pop_at(rng.randi() % dup.size())
+		new_array.append(x)
 	return new_array
 
 

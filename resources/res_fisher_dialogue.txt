@@ -203,8 +203,8 @@ DIALOGUE fish_fact_47
 
 
 DIALOGUE fish_fact_48
-	  
-	   
+	huh? where am i?
+
 
 DIALOGUE fish_fact_49
 	did you know? fish are currently swimming...
@@ -217,8 +217,6 @@ DIALOGUE fish_fact_50
 
 DIALOGUE fish_fact_51
 	babygirl, call me fish, because you are an aquarium!
-	
-
 
 
 DIALOGUE fish_fact_52
@@ -299,20 +297,20 @@ DIALOGUE fish_fact_69
 	did you know?
 
 
-DIALOGUE fish_fact_69
+DIALOGUE fish_fact_70
 	did you know? fish are whimsical creatures!
 	my heart is fluttering!
 
 
-DIALOGUE fish_fact_70
+DIALOGUE fish_fact_71
 	did you know? bears don't exist.
 
 
-DIALOGUE fish_fact_71
+DIALOGUE fish_fact_72
 	did you know? fishermen barely receive a living wage.
 
 
-DIALOGUE fish_fact_72
+DIALOGUE fish_fact_73
 	did you know? fish barely receive a living wage.
 
 
