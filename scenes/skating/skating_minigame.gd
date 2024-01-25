@@ -20,6 +20,7 @@ func _ready() -> void:
 	camera_timer.timeout.connect(_camera_timeout)
 	camera.make_current()
 	player.broadcast_balance.connect(ui.display_balance)
+	player.broadcast_boredom.connect(ui.display_boredom)
 
 
 func _camera_timeout() -> void:

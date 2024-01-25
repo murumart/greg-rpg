@@ -4,11 +4,13 @@ enum Poses {NORMAL, TRICK, TRACK, HEAD}
 
 signal did_trick(pts: int)
 signal broadcast_balance(balance: float)
+signal broadcast_boredom(boredom: float)
 
 var speed := 3000.0
 var friction := 30.0
 var jump_height := 15.0
 var balance := 0.0
+var boredom := 0.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.5
@@ -26,9 +28,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and test_floor():
-		velocity.y = -jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
-		velocity.x += Vector2.from_angle(balance * PI).x * jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
+	if Input.is_action_just_pressed("ui_accept") and can_jump():
+		jump()
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -47,6 +48,8 @@ func _physics_process(delta: float) -> void:
 	sprite_look()
 	
 	move_and_slide()
+	boredom = maxf(boredom + delta, 0.0)
+	broadcast_boredom.emit(boredom)
 
 
 func test_floor() -> bool:
@@ -55,6 +58,17 @@ func test_floor() -> bool:
 	if coll:
 		return true
 	return false
+
+
+func can_jump():
+	return test_floor() and absf(balance) < 0.4
+
+
+func jump() -> void:
+	velocity.y = -jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
+	velocity.x += Vector2.from_angle(balance * PI).x * jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
+	if velocity.y < -0.1:
+		boredom -= 3
 
 
 func mod_balance(delta: float) -> void:
