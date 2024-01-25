@@ -139,6 +139,7 @@ func end() -> void:
 						cashier.move_to(cashier.global_position + Vector2(300, 0))
 					, CONNECT_DEFERRED)
 					tw.finished.connect(func():
+						LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
 						LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
 					)
 				, CONNECT_ONE_SHOT)

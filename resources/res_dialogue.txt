@@ -1478,6 +1478,16 @@ DIALOGUE neighbour_wife_talk_4
 	go run along now.
 
 
+DIALOGUE neighbour_wife_ate_greenhouse
+	...were you at our greenhouse just now?
+	your clothes are muddy.
+	and your mouth.
+
+
+DIALOGUE neighbour_wife_ate_greenhouse_2
+	please never mention this again.
+
+
 DIALOGUE neighbour_wife_talk_store_1
 	yes, i'm visiting the store in my bathrobe.
 	you're the weird one for pointing it out.

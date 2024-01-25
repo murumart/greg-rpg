@@ -19,7 +19,6 @@ func _ready() -> void:
 		DAT.set_data("intro_cutscene_finished", true)
 		DAT.set_data("zerma_left", true)
 	
-	neighbour_wife_position()
 	pink_haired_girl_setup()
 	naturalist_setup()
 	pairhouse_guy_setup()
@@ -46,13 +45,6 @@ func _ready() -> void:
 					await get_tree().process_frame
 					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
 			)
-
-
-func neighbour_wife_position() -> void:
-	var neighbour_wife := $Houses/NeighbourHouse/NeighbourWife
-	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
-	if time > (DAT.NEIGHBOUR_WIFE_CYCLE / 2.0) and LTS.gate_id != &"house-town":
-		neighbour_wife.queue_free()
 
 
 func pink_haired_girl_setup() -> void:

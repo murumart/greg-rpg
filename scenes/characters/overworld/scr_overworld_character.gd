@@ -179,6 +179,9 @@ func interacted() -> void:
 			else:
 				convo_progress -= 1
 		if continuing:
+			# dialogues must have changed
+			if convo_progress >= default_lines.size():
+				convo_progress = 0
 			SOL.dialogue(default_lines[convo_progress])
 			if not SOL.dialogue_closed.is_connected(_on_talking_finished):
 				SOL.dialogue_closed.connect(_on_talking_finished)

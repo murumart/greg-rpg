@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and test_floor():
 		velocity.y = -jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
+		velocity.x += Vector2.from_angle(balance * PI).x * jump_height * sqrt(Vector2(velocity.x * 0.33, velocity.y).length())
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -39,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 	if Input.is_action_pressed("ui_menu"):
-		balance += direction * delta * absf(velocity.y) * 0.2 * absf(balance)
+		balance += direction * delta * absf(velocity.y) * 0.2 * maxf(absf(balance), 0.1)
 	if Input.is_action_just_pressed("ui_cancel"):
 		trick()
 	mod_balance(delta * 0.333)
