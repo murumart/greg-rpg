@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=105 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_skatepark.gd" id="28_f5xvh"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_park.gd" id="29_1p6ww"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="29_fx2ly"]
@@ -677,7 +678,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(-319, 266)
+position = Vector2(938, -172)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1485,6 +1486,7 @@ type = 1
 [node name="Skatepark" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(1008, -304)
+script = ExtResource("28_f5xvh")
 
 [node name="TileMap" type="TileMap" parent="Houses/Skatepark"]
 tile_set = ExtResource("15_1u67x")
@@ -1536,18 +1538,13 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
 
-[node name="Jack2" parent="Houses/Skatepark/Goodness" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") instance=ExtResource("10_dem56")]
+[node name="Jack2" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
 position = Vector2(-2, -46)
-collision_shape = NodePath("../Jack/CollisionShape")
-collision_detection_area = NodePath("../Jack/CollisionDetectionArea")
-detection_area = NodePath("../Jack/DetectionArea")
-detection_raycast = NodePath("../Jack/DetectionArea/DetectionRaycast")
-default_lines = Array[StringName]([&"skaters"])
+default_lines = Array[StringName]([&"skating_minigame_kid"])
 save = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack2"]
-position = Vector2(-8, -15)
-scale = Vector2(0.90971, 1)
+position = Vector2(-9, -15)
 texture = ExtResource("16_o4xvl")
 centered = false
 region_enabled = true

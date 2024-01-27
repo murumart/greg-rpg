@@ -133,8 +133,10 @@ func debug_console() -> void:
 	DAT.capture_player("debug_console")
 
 
-func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0) -> void:
-	vfx("damage_number", pos, {"text": text, "size": size, "color": color})
+func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0, options := {}) -> void:
+	var o := {"text": text, "size": size, "color": color}
+	o.merge(options)
+	vfx("damage_number", pos, o)
 
 
 # spawn vfx effects

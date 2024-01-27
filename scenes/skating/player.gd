@@ -62,7 +62,8 @@ func _physics_process(delta: float) -> void:
 				did_trick.emit(700)
 		did_flip_during_air = false
 		var new_pts := ceili(air_time * 10)
-		did_trick.emit(new_pts)
+		if new_pts:
+			did_trick.emit(new_pts)
 		if new_pts > 15:
 			text("unreal air!!!!", Color.GOLD)
 			SND.play_sound(S_15)

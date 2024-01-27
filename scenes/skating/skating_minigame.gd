@@ -67,7 +67,7 @@ func end() -> void:
 	var rews := BattleRewards.new()
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP
-	reward.property = str(floori(ui.points / 8000.0))
+	reward.property = str(floori(ui.points * 0.000166667))
 	rews.add(reward)
 	rews.grant()
 

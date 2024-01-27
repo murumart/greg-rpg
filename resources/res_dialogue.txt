@@ -2294,6 +2294,21 @@ DIALOGUE skaters
 	sk8 4 lyfe !!!
 
 
+DIALOGUE skating_minigame_kid
+	hey. what's uuup.
+	do you wanna skate? really cool people skate, you know.
+CHOICES yes,no
+	you could be cool too... what do you say?
+CHOICE_LINK yes
+	radical, yo.
+	press arrow keys to slide, z to jump and c to tilt.
+	try not to be boring. good luck...
+CHOICE_LINK no
+	uncool. sooner or later you'll come back.
+	or maybe you've already skated?
+	who knows...
+
+
 DIALOGUE kid_trade_success
 CHAR kid
 	pleasure doing business with you, adult.

@@ -16,6 +16,7 @@ const COMBO_MESSAGES:Array[String] = [
 var points := 0
 var displayed_points := 0
 var combo := 0.0
+var two_x_mode := false
 
 @onready var balance_pointer: Sprite2D = $Panel/Balance/Pointer
 @onready var boredom_pointer: Sprite2D = $Panel/Boredom/Pointer
@@ -38,6 +39,8 @@ func _physics_process(delta: float) -> void:
 			points_tallied_sound.set_meta("played", true)
 	combo = maxf(combo - delta * sqrt(ceilf(combo) * 0.5), 0.0)
 	combo_label.text = "combo " + str(maxi(ceili(combo), 1)) + "x"
+	if two_x_mode:
+		SOL.vfx_damage_number(Vector2(60, 10), "2x mode!!!", Color.RED, 1.5, {"parent": self, "speed": 4})
 
 
 func display_balance(balance: float) -> void:
@@ -49,6 +52,17 @@ func display_boredom(boredom: float) -> void:
 
 
 func add_points(amt: int) -> void:
+	if two_x_mode:
+		amt *= 2
+	else:
+		if randf() < 0.01:
+			two_x_mode = true
+			var tw := create_tween()
+			tw.tween_interval(4)
+			tw.tween_callback(func():
+				print("over")
+				two_x_mode = false
+			)
 	points += roundi(amt * (combo + 1))
 	if amt > 10:
 		combo += 1
