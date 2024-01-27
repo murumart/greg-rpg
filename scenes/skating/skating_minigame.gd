@@ -63,17 +63,13 @@ func jumpscare() -> void:
 func end() -> void:
 	SND.play_song("")
 	await create_tween().tween_interval(1).finished
-	print("POSS")
 	var rews := BattleRewards.new()
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP
 	reward.property = str(floori(ui.points * 0.000166667))
 	rews.add(reward)
 	rews.grant()
-
-	print("PISS")
 	SOL.dialogue_closed.connect(func():
-		print("PAASS")
 		LTS.gate_id = LTS.GATE_EXIT_GAMING
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "town"))
 	, CONNECT_ONE_SHOT)

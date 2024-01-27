@@ -60,7 +60,6 @@ func add_points(amt: int) -> void:
 			var tw := create_tween()
 			tw.tween_interval(4)
 			tw.tween_callback(func():
-				print("over")
 				two_x_mode = false
 			)
 	points += roundi(amt * (combo + 1))
