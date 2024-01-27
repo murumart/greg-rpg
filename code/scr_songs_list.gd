@@ -15,6 +15,10 @@ var songs := {
 		"title": "aren't you excited?",
 		"link": "res://music/mus_arent_you_excited.ogg"
 	},
+	"best": {
+		"title": "soundtrack highlight",
+		"link": "res://music/mus_best.ogg"
+	},
 	"bike_spirit": {
 		"title": "bike spirit",
 		"link": "res://music/mus_bike_spirit.ogg"

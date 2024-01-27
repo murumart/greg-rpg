@@ -1,19 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct32b3bmill01"]
+[gd_scene load_steps=23 format=3 uid="uid://ct32b3bmill01"]
 
 [ext_resource type="Script" path="res://scenes/skating/skating_minigame.gd" id="1_e2i3m"]
+[ext_resource type="Texture2D" uid="uid://c2pqp3l5n4wv0" path="res://sprites/skating/backgrouind.png" id="2_avmvn"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_ern6p"]
 [ext_resource type="Texture2D" uid="uid://cwe4j13vtfj35" path="res://sprites/skating/bagground1.png" id="2_o68lv"]
 [ext_resource type="Script" path="res://scenes/skating/ui.gd" id="3_84nc0"]
 [ext_resource type="Script" path="res://scenes/skating/player.gd" id="3_i87m7"]
 [ext_resource type="Texture2D" uid="uid://s8cung1men77" path="res://sprites/skating/greg.png" id="4_e53a1"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="4_f883l"]
+[ext_resource type="AudioStream" uid="uid://c1xi4uxrnbs18" path="res://sounds/skating/s12.ogg" id="5_m0kbv"]
+[ext_resource type="AudioStream" uid="uid://dqno5cq5eh7q3" path="res://sounds/skating/s13.ogg" id="6_k2w4j"]
+[ext_resource type="VideoStream" path="res://scenes/skating/output.ogv" id="8_6p0aw"]
+[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="9_nfu84"]
+[ext_resource type="AudioStream" uid="uid://c5rfklorfwi3t" path="res://sounds/skating/s1.ogg" id="10_tddx3"]
+[ext_resource type="Texture2D" uid="uid://cgvikoo32h15w" path="res://sprites/skating/jumpscare.png.png" id="12_g3s73"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="15_gc7jg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_auvad"]
 radius = 4.0
 height = 18.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o58em"]
+polygon = PackedVector2Array(18, 33, 23, 53, 37, 62, 60, 66, 84, 59, 96, 46, 98, 25, 110, 69, -3, 80, -3, 32)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vunw8"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_v5yiu"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.742169, 74.4546), 0.0, 0.0, 0, 0, Vector2(1, 98.6912), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7unhf"]
+curve = SubResource("Curve_v5yiu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q8ybc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+spread = 0.0
+initial_velocity_min = 95.3
+initial_velocity_max = 190.13
+angular_velocity_min = -148.97
+angular_velocity_max = 235.86
+gravity = Vector3(0, 98, 0)
+anim_speed_min = 0.1
+anim_speed_max = 0.1
+anim_speed_curve = SubResource("CurveTexture_7unhf")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp0j1"]
+atlas = ExtResource("15_gc7jg")
+region = Rect2(0, 0, 64, 16)
+
 [node name="SkatingMinigame" type="Node2D"]
 script = ExtResource("1_e2i3m")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_avmvn")
+centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o68lv")
@@ -62,16 +112,16 @@ centered = false
 
 [node name="Boredom" type="Control" parent="UI/Panel"]
 anchors_preset = 0
-offset_top = 72.0
+offset_top = 74.0
 offset_right = 50.0
-offset_bottom = 91.0
+offset_bottom = 93.0
 
 [node name="Label" type="Label" parent="UI/Panel/Boredom"]
 layout_mode = 0
 offset_left = 5.0
-offset_top = 3.0
+offset_top = 5.0
 offset_right = 45.0
-offset_bottom = 11.0
+offset_bottom = 13.0
 text = "boredom"
 horizontal_alignment = 1
 
@@ -87,6 +137,94 @@ position = Vector2(44, 13)
 scale = Vector2(1.99999, 3)
 texture = ExtResource("4_f883l")
 centered = false
+
+[node name="Points" type="Control" parent="UI/Panel"]
+anchors_preset = 0
+offset_top = 58.0
+offset_right = 50.0
+offset_bottom = 77.0
+
+[node name="Label" type="Label" parent="UI/Panel/Points"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 45.0
+offset_bottom = 12.0
+text = "points"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/Panel/Points"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 47.0
+offset_bottom = 20.0
+text = "0"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/Panel/Points"]
+stream = ExtResource("5_m0kbv")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="UI/Panel/Points"]
+stream = ExtResource("6_k2w4j")
+
+[node name="Combo" type="Control" parent="UI/Panel"]
+anchors_preset = 0
+offset_top = 49.0
+offset_right = 50.0
+offset_bottom = 68.0
+
+[node name="Label" type="Label" parent="UI/Panel/Combo"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 45.0
+offset_bottom = 12.0
+text = "combo x1"
+horizontal_alignment = 1
+
+[node name="Reaction" type="Control" parent="UI/Panel"]
+anchors_preset = 0
+offset_top = 18.0
+offset_right = 50.0
+offset_bottom = 37.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="UI/Panel/Reaction"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 331.0
+offset_bottom = 250.0
+scale = Vector2(0.09, 0.09)
+stream = ExtResource("8_6p0aw")
+autoplay = true
+loop = true
+
+[node name="Label" type="Label" parent="UI/Panel/Reaction"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 48.0
+offset_bottom = 10.0
+text = "reaction"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/Reaction"]
+visible = false
+layout_mode = 0
+offset_left = 18.0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 29.0
+texture = ExtResource("9_nfu84")
+stretch_mode = 1
+
+[node name="Jumpscare" type="Sprite2D" parent="UI"]
+z_index = 1
+position = Vector2(-30, 80)
+texture = ExtResource("12_g3s73")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 30, 40)
 
 [node name="MainCamera" parent="." instance=ExtResource("2_ern6p")]
 position = Vector2(80, 60)
@@ -122,12 +260,30 @@ target_position = Vector2(0, 13)
 [node name="PlayerCamera" parent="Player" instance=ExtResource("2_ern6p")]
 zoom = Vector2(2, 2)
 limit_left = 0
+limit_top = 0
 limit_bottom = 120
 
+[node name="JumpSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("10_tddx3")
+
+[node name="LandSound" type="AudioStreamPlayer" parent="Player"]
+
 [node name="Ground" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(0, 43)
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
 polygon = PackedVector2Array(48, 66, 63, 66, 78, 62, 89, 56, 95, 48, 98, 37, 98, -37, 19, -38, 19, -43, 160, -43, 160, 77, 0, 77, 0, -43, 19, -43, 18, 37, 20, 48, 25, 56, 34, 62)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Ground"]
+occluder = SubResource("OccluderPolygon2D_o58em")
+
+[node name="JackParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vunw8")
+position = Vector2(-24, 31)
+emitting = false
+amount = 21
+process_material = SubResource("ParticleProcessMaterial_q8ybc")
+texture = SubResource("AtlasTexture_kp0j1")
+lifetime = 2.0
+trail_lifetime = 1.82
