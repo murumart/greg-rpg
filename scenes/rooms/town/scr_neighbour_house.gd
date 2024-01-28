@@ -4,7 +4,7 @@ const NEIGHBOUR_WIFE_CYCLE := 470
 const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 
 @onready var neighbour_wife := $NeighbourWife as OverworldCharacter
-@onready var greenhouse := $NeighboursGreenhouse as  GreenhouseType
+@onready var greenhouse := $NeighboursGreenhouse as GreenhouseType
 
 
 func _ready() -> void:
@@ -13,6 +13,7 @@ func _ready() -> void:
 		var time_diff := DAT.seconds - DAT.get_data(
 				greenhouse.get_save_key("vegs_eaten_second"), -123812391) as int
 		if time_diff <= 15:
+			neighbour_wife.convo_progress = 0
 			neighbour_wife.default_lines.clear()
 			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse")
 			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse_2")
