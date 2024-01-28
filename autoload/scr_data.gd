@@ -125,7 +125,7 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 	set_data("date", Time.get_date_string_from_system().replace("-", "."))
 	set_data("time", Time.get_time_string_from_system().replace(":", "."))
 	last_save_second = seconds
-	
+
 	var stuff := {}
 	# technical possibility of not replacing the entire dict but only
 	# replacing existing keys and keeping ones that are not in the new one.
@@ -136,7 +136,7 @@ func save_data(filename := "save.grs", overwrite := true) -> void:
 			stuff[k] = A[k]
 	else:
 		stuff = A
-	
+
 	DIR.write_dict_to_file(stuff, filename)
 
 
@@ -145,10 +145,10 @@ func force_data(key: String, value: Variant, filename := "") -> void:
 	if not filename.length():
 		filename = get_data("save_file", "save.grs")
 	var stuff := DIR.get_dict_from_file(filename)
-	
+
 	stuff[key] = value
 	DIR.write_dict_to_file(stuff, filename)
-	
+
 	print("forced key %s and value %s to file %s" % [key, value, filename])
 
 
@@ -162,7 +162,7 @@ func save_nodes_data() -> void:
 func load_data(filename := "save.grs", overwrite := true) -> void:
 	var loaded := DIR.get_dict_from_file(filename)
 	if loaded.size() < 1: print("no data to load!"); return
-	
+
 	print("overwriting data...")
 	if not overwrite:
 		# again option to not overwrite everything
@@ -175,9 +175,9 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 		playtime = maxi(playtime, get_data("playtime", 0))
 		set_data("playtime", playtime)
 	print("finished overwriting data.")
-	
+
 	load_chars_from_data()
-	
+
 	# change the scene to the one inside the save file
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.

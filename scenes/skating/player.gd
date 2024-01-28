@@ -71,14 +71,14 @@ func _physics_process(delta: float) -> void:
 			text("air!!!")
 		air_time = 0.0
 		jump_sound.stop()
-	
+
 	# Handle jump.
 	if can_input and Input.is_action_just_pressed("ui_accept"):
 		if can_jump():
 			jump()
 		elif test_floor():
 			SND.play_sound(S_9)
-	
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 		trick()
 	mod_balance(delta * 0.333)
 	sprite_look()
-	
+
 	move_and_slide()
 	if can_input:
 		boredom = maxf(boredom + delta * playtime * 0.1, 0.0)
@@ -136,12 +136,12 @@ func mod_balance(delta: float) -> void:
 		balance -= delta
 	if lcol:
 		balance += delta
-	
+
 	if absf(balance) >= 1.0:
 		balance = -signf(balance) * 0.999
 		if not test_floor():
 			flip()
-	
+
 	broadcast_balance.emit(balance)
 
 

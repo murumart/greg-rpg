@@ -24,13 +24,13 @@ func add_trauma(amount: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	shake_trauma = move_toward(shake_trauma, 0.0, SHAKE_DECAY * delta)
-	
+
 	var shake_amount := pow(shake_trauma, shake_trauma_power)
 	offset.x = SHAKE_MAX_OFFSET.x * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
 	offset.y = SHAKE_MAX_OFFSET.y * shake_amount * randf_range(-1.0, 1.0) * OPT.get_opt("screen_shake_intensity") * SHAKE_REDUCTION_CONSTANT
-	
+
 	# free cam cheat (toggle in OPT)
 	if free_cam:
 		global_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		zoom += Math.v2(Input.get_axis("ui_page_down", "ui_page_up")) / 10.0
-	
+

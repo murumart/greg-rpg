@@ -29,7 +29,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	move.y = move_toward(move.y, gravity, delta * 2)
 	move.x = move_toward(move.x, 0.0, delta * 1.5)
-	
+
 	position += move
 	if (position.x <= clamp_zone_min.x or position.x >= clamp_zone_max.x): move.x = -move.x
 	if (position.y <= clamp_zone_min.y or position.y >= clamp_zone_max.y): move.y = -move.y

@@ -19,11 +19,11 @@ func _ready() -> void:
 	car.turn(PI / 2)
 	car.moves = false
 	car.position.y = -80
-	
+
 	SND.play_song("arent_you_excited", 2931, {play_from_beginning = true, save_audio_position = false})
-	
+
 	await animator.animation_finished
-	
+
 	var tw := create_tween()
 	tw.tween_property(car, "position:y", 0.0, 1.0)
 	await tw.step_finished
@@ -41,7 +41,7 @@ func intro_part_2() -> void:
 	await SOL.dialogue_closed
 	animator.play("part4")
 	await animator.animation_finished
-	
+
 	SOL.dialogue("intro_convo_1")
 	await SOL.dialogue_closed
 	exit_intro()
@@ -58,20 +58,20 @@ func exit_intro() -> void:
 
 func _physics_process(delta: float) -> void:
 	world.position.y = roundi(wrapf(world.position.y - SPEED * delta, 0, 16))
-	
+
 	for t in trees.get_children():
 		t.position.y -= SPEED * delta * 1.265
 		if t.position.y <= -64:
 			t.queue_free()
-	
+
 	for t in cars.get_children():
 		t.position.y -= SPEED * delta * 2
 		if t.position.y <= -80:
 			t.queue_free()
-	
+
 	if Engine.get_physics_frames() % 16 == 0:
 		spawn_tree()
-	
+
 	var input := Input.get_axis("ui_left", "ui_right")
 	car.position.x = clampf(car.position.x + input, -38, -16)
 
@@ -82,7 +82,7 @@ func spawn_tree() -> void:
 	tree.position.y = 180
 	tree.position.x = randf_range(-96, -56) if bool(randi() % 2) else randf_range(40, 80)
 	tree.type = randi() % tree.TYPES_SIZE
-	
+
 	if randf() < 0.1:
 		var c := CAR.instantiate()
 		c.color = Color(randf()/2.0, randf()/2.0, randf()/2.0)

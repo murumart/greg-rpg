@@ -41,7 +41,7 @@ func start() -> void:
 	SOL.dialogue("vampire_cutscene_1")
 	await SOL.dialogue_closed
 	var t2 := create_tween().set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	t2.tween_property(uguy, "global_position", uguy.global_position - Vector2(300, 20), 1) 
+	t2.tween_property(uguy, "global_position", uguy.global_position - Vector2(300, 20), 1)
 	t2.tween_property(vampire_girl, "position", vampire_girl.position - Vector2(30, 2), 0.2)
 	SOL.vfx("explosion", camera.to_local(uguy.global_position))
 	await get_tree().create_timer(1.6).timeout

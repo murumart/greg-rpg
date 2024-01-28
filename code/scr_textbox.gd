@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func speak_text(options := {}):
 	var speaking_speed := options.get("speed", 1.0) as float
-	
+
 	skip_to_end()
 	visible_ratio = 0.0
 	var tw := create_tween()

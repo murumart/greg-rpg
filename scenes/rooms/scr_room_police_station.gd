@@ -149,11 +149,11 @@ func fulfill_bounty(nomen: String) -> void:
 func setup_cells() -> void:
 	if not DAT.get_data("trash_guy_inspected", false):
 		cells["trash_guy"].queue_free()
-	
+
 	for i in tracked_bounties:
 		if i in cells and not is_bounty_fulfilled(i):
 			cells[i].queue_free()
-	
+
 	if is_bounty_fulfilled("thugs"):
 		$Cells/Thugs/ThugInspect.inspected.connect(
 			func():

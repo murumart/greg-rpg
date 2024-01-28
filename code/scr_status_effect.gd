@@ -37,7 +37,7 @@ func set_effect_name(x: StringName) -> StatusEffect:
 
 func set_strength(x: float) -> StatusEffect:
 	strength = x; return self
-	
+
 
 func set_duration(x: int) -> StatusEffect:
 	duration = x; return self

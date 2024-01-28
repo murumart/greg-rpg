@@ -29,7 +29,7 @@ func _init() -> void:
 
 func gen() -> void:
 	gen_elements()
-	
+
 	solmass = element_masses[0] + element_masses[0] + element_masses[7]
 
 
@@ -98,14 +98,14 @@ func gen_elements() -> void:
 	# only this many elements. any more i'd have to deal with lanthanoids and s
 	for e in ELEMENT_AMOUNT:
 		var index := e + 1
-		
+
 		var ename := random_element_name(e)
 		element_names.append(ename)
 		element_abbrs.append(gen_element_symbol(ename))
 		element_masses.append(snappedf((index) * 2 + rng.randf() * sqrt(index), 0.01))
 		periods[period].append(e)
 		in_by_sym[element_abbrs[e]] = e
-		
+
 		var effect: Effects = Effects.SAFE
 		var rand := rng.randf()
 		var sample := e / float(ELEMENT_AMOUNT)
@@ -116,11 +116,11 @@ func gen_elements() -> void:
 		elif rand < CURVES[HEALTH_CURVE].sample_baked(sample):
 			effect = Effects.HEALTHY
 		element_effects.append(effect)
-		
+
 		var color := Color(rng.randf(), rng.randf(), rng.randf())
 		color = color.lightened((5 - period) * 0.1)
 		element_colours.append(color)
-		
+
 		if counter >= PERIOD_LENGTHS[period] - 1:
 			period += 1
 			counter = 0
@@ -191,7 +191,7 @@ func table_string() -> String:
 		text += (sym + " " if sym.length() > 1 else sym + "  ")
 		previous_pd = pd
 		previous_gp = gp
-	
+
 	return text
 
 
@@ -208,8 +208,8 @@ class Element extends RefCounted:
 	var group: int
 	var valence: int
 	var effect: Elements.Effects
-	
-	
+
+
 	func _to_string() -> String:
 		return "protons: %s
 name: %s

@@ -48,11 +48,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
+
 	if active:
 		score -= delta * 0.5
 		enemy_score -= delta * 0.5
-	
+
 	# DEBUG
 	if Input.is_key_pressed(KEY_9):
 		reset()
@@ -164,11 +164,11 @@ func set_score_text() -> void:
 	var congrats: String = STREAK_CONGRATS[mini(streak, sz - 1)]
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
-	
+
 	var text := "[center]%s[/center]
 
 [left]%s[/left] [right]%s[/right]" % [congrats, pscore, enscore]
-	
+
 	score_text.text = text
 
 
@@ -187,7 +187,7 @@ func end_game() -> void:
 	active = false
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
-	
+
 	score_text.text =  "[center]dance off end!![/center]
 
 [left]%s[/left] [right]%s[/right]" % [pscore, enscore]
@@ -209,15 +209,15 @@ func _ended() -> void:
 
 class Arrow extends Sprite2D:
 	enum Dirs {LEFT, RIGHT, DOWN, UP}
-	
+
 	signal hit(accuracy: float)
 	signal miss
 	signal enemy_action(success: bool)
-	
+
 	const INPUTS := ["move_left", "move_right", "move_down", "move_up"]
-	
+
 	var accuracy_curve: Curve
-	
+
 	var direction := Dirs.LEFT
 	var enemy := false
 	var enemy_difficulty := 0.66
@@ -228,39 +228,39 @@ class Arrow extends Sprite2D:
 	var moving := true
 	var can_receive_input := true
 	var received_input := false
-	
-	
+
+
 	func _ready() -> void:
 		texture = preload("res://sprites/gui/spr_dancer_arrows.png")
 		region_enabled = true
 		direction = (randi() % 4) as Dirs
 		region_rect = Rect2(0, int(direction) * 16, 16, 16)
-	
-	
+
+
 	var cyc := 0
 	func _physics_process(delta: float) -> void:
 		if moving: global_position.y += delta * speed
 		var ypos := position.y
-		
+
 		if ypos >= 80 and not received_input:
 			active = true
-		
+
 		if can_receive_input and active:
 			var dir := cyc as Dirs
 			var input := Input.is_action_pressed(INPUTS[cyc])
 			var succ_hit := (dir == direction and input and
 				(ypos > yspace - 14 and ypos < yspace + 14))
-			
+
 			if input and not succ_hit:
 				received_input = true
 				get_miss()
 			elif succ_hit:
 				received_input = true
 				get_hit()
-		
+
 			if ypos > 112:
 				get_miss()
-			
+
 		elif enemy and ypos >= 99 and active:
 			var succ := randf() <= enemy_difficulty
 			if succ: get_hit()
@@ -268,14 +268,14 @@ class Arrow extends Sprite2D:
 			enemy_action.emit(succ)
 			active = false
 			received_input = true
-		
+
 		if position.y > 128:
 			modulate.a -= delta * 5
 			if modulate.a <= 0.0: queue_free()
-		
+
 		cyc = wrapi(cyc + 1, 0, 4)
-	
-	
+
+
 	func get_hit():
 		moving = false
 		active = false
@@ -287,8 +287,8 @@ class Arrow extends Sprite2D:
 		if not enemy:
 			hit.emit(accuracy)
 			can_receive_input = false
-	
-	
+
+
 	func get_miss():
 		modulate = Color.RED
 		active = false

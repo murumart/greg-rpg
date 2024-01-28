@@ -108,7 +108,7 @@ func turn(rot: float) -> void:
 	var dir := Math.dir_from_rot(rot)
 	sprite.region_rect = regions[dir + 1]
 	collision_shape.shape.size = SHAPE_SIZES[int((dir + 1) % 2 == 0)]
- 
+
 
 func set_color(to: Color) -> void:
 	color = to
@@ -147,5 +147,5 @@ func texture_setup() -> void:
 		Rect2i(0, 0, sx / 2, sy / 2),
 		Rect2i(sx / 2, 0, sx / 4, sy),
 		Rect2i(0, sy / 2, sx / 2, sy / 2)]
-	
+
 

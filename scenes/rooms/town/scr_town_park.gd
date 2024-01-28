@@ -43,7 +43,7 @@ func tarikas_lines() -> void:
 						lines_to_set.append("tarikas_45")
 				else:
 					lines_to_set.append("tarikas_40_nomeet")
-		
+
 	elif Math.inrange(level, 50, 59):
 		lines_to_set.append("tarikas_50")
 	lines_to_set.append("tarikas_finish")

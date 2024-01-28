@@ -44,7 +44,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var emotion_to_set := ""
 	var set_data_to_set := PackedStringArray()
 	var portrait_scale_to_set := Vector2(1, 1)
-	
+
 	# going trhough the file line by line
 	while not file.eof_reached():
 		var line := file.get_line()

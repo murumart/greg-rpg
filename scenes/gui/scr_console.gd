@@ -49,7 +49,7 @@ func parse_command() -> void:
 		return
 	var cmd := args[0]
 	args.remove_at(0)
-	
+
 	match StringName(cmd):
 		&"greg":
 			output("gregged.")
@@ -91,7 +91,7 @@ func parse_command() -> void:
 			output("7")
 		_:
 			output("no such command", true)
-		
+
 
 func output(s: String, error := false) -> void:
 	if error: s = "[color=#ff8888]%s[/color]" % s

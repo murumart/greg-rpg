@@ -84,7 +84,7 @@ func bye(choseperk := false) -> void:
 			DAT.set_data(v, false)
 		queue_free()
 		return
-		
+
 	if choseperk:
 		dlbox.skip()
 		dlbox.loaded_dialogue = null

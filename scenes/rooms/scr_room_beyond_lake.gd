@@ -46,7 +46,7 @@ func _on_dialogue_closed() -> void:
 		DAT.set_data("spirit_definition", SOL.dialogue_choice)
 		DIR.sej(14, SOL.dialogue_choice)
 		SOL.dialogue_choice = ""
-		
+
 
 
 

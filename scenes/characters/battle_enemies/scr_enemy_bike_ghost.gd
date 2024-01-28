@@ -17,7 +17,7 @@ func act() -> void:
 		await hnnng_____the_power()
 		super()
 		return
-	
+
 	if turn == 2:
 		SOL.dialogue("bike_ghost_convo_1")
 	elif turn == 4:

@@ -20,10 +20,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	lifetime += delta
-	
+
 	if lifetime > MAX_LIFETIME:
 		call_deferred("queue_free")
-	
+
 	# follow the mailboxes (when you have that one perk)
 	if following:
 		var target: Node2D = get_tree().get_first_node_in_group("biking_mailboxes")
@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		look_at(target_position)
 		global_position = global_position.move_toward(target_position, delta * 60)
 		lifetime -= delta * 0.5
-		
+
 		if global_position.is_equal_approx(target_position):
 			queue_free()
 

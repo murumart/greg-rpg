@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	road.global_position.x = wrapf(road.global_position.x - (speed * delta), -16, 32)
 	distance += speed * delta * int(not currently_hell)
 	ui.set_pointer_pos(get_meter() / ROAD_LENGTH)
-	
+
 	# the kiosk appears every INTERVAL "meters"
 	if (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
 		current_perk = ""
@@ -99,34 +99,34 @@ func _physics_process(delta: float) -> void:
 		bike.super_mail = false
 		bike.following_mail = false
 		the_kiosk()
-	
+
 	# at the end of the road, do some testing and fixing if necess
 	if roundi(get_meter()) >= ROAD_LENGTH - 1:
 		if currently_syrup: stop_syrup()
 		set_speed(0)
 		check_if_kiosk_has_made_it()
-	
+
 	if Input.is_action_just_pressed("ui_menu") and !ui.inventory_open:
 		open_inventory()
-	
+
 	if (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_menu")) and ui.inventory_open:
 		close_inventory()
-	
+
 	# parallax background
 	background_trees.region_rect.position.x = wrapf(background_trees.region_rect.position.x + speed * delta * 0.22, 0.0, background_trees.region_rect.size.x * 2.0)
 	background_town.region_rect.position.x = wrapf(background_town.region_rect.position.x + speed * delta * 0.33, 0.0, background_town.region_rect.size.x)
 	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
-	
+
 	# DEBUG (rememmber to remove)
 	if Input.is_action_pressed("ui_page_down"):
 		distance += 60
 	if Input.is_action_just_pressed("ui_end"):
 		while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
 			distance += 1
-	
+
 	if currently_syrup and get_meter() >= syrup_stop_meter:
 		stop_syrup()
-	
+
 #	debug.text = "dist: %s
 #meter: %s
 #perc: %s" % [distance, roundf(get_meter()), snappedf(get_meter() / ROAD_LENGTH, 0.01)]
@@ -304,7 +304,7 @@ func _on_mail_menu_finished() -> void:
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		DAT.incri("biking_games_finished", 1)
 		return
-	
+
 	bike.paused = false
 	kiosk_activated = false
 	set_speed(60)

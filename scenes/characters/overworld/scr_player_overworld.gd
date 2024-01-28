@@ -59,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	input = Vector2()
-	
+
 	if state == States.FREE_MOVE:
 		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if input: direct_raycast()
@@ -84,7 +84,7 @@ func movement(delta: float) -> void:
 			velocity = Vector2()
 			velocity = input * SPEED * delta
 			var _collided := move_and_slide()
-			
+
 		MoveModes.SKATE:
 			if input:
 				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 128)

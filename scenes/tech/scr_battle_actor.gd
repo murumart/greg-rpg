@@ -143,7 +143,7 @@ func hurt(amt: float, gendr: int) -> void:
 					amount, 1, 90, 0.1, 1)), 0.1),
 				"volume": randi_range(-4, 1)}
 			)
-			
+
 	# damage number
 	SOL.vfx(
 		"damage_number",
@@ -276,7 +276,7 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 	# functions
 	if self.has_method("_used_spirit_%s" % id):
 		call("_used_spirit_%s" % id)
-	# loop through all 
+	# loop through all
 	for receiver in targets:
 		if character.health <= 0: break
 		if spirit.receive_animation:
@@ -297,7 +297,7 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		# function
 		if receiver.has_method("_spirit_%s_used_on" % id):
 			receiver.call("_spirit_%s_used_on" % id)
-	
+
 	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
@@ -318,7 +318,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture, silent = item.play_sound != null})
 		if item.play_sound:
 			SND.play_sound(item.play_sound)
-		
+
 	else:
 		# if it's weapon or armour, equip it
 		subject.character.handle_item(id)
@@ -328,7 +328,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 	# function
 	if subject.has_method("_item_%s_used_on" % id):
 		subject.call("_item_%s_used_on" % id)
-	
+
 	await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 	turn_finished()
 
@@ -365,26 +365,26 @@ func handle_payload(pld: BattlePayload) -> void:
 			if character.health <= 0:
 				if is_instance_valid(pld.sender):
 					pld.sender.character.add_defeated_character(character.name_in_file)
-	
+
 	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
-	
+
 	for en in pld.effects:
 		if en.name.length() and en.duration:
 			add_status_effect(en)
-	
+
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
-	
+
 	if pld.meta.get("reveal_enemy_info", false) and pld.sender.player_controlled:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
 		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
 		SOL.dialogue_box.dial_concat("battle_inspect", 3, [get_attack(), get_defense(), get_speed()])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
-	
+
 	if pld.meta.get("skateboard", false):
 		emit_message("woah! skateboard!! so cool!!")
-	
+
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
 
@@ -470,7 +470,7 @@ func offload_character() -> void:
 	basechar.inventory = character.inventory
 	basechar.weapon = character.weapon
 	basechar.armour = character.armour
-	basechar.add_defeated_characters(character.defeated_characters) 
+	basechar.add_defeated_characters(character.defeated_characters)
 
 
 func payload() -> BattlePayload:

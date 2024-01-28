@@ -15,7 +15,7 @@ func _ready() -> void:
 	if not DAT.get_data("fish_warning_given", false):
 		SOL.dialogue("fisherman_in_hut_warning")
 		DAT.set_data("fish_warning_given", true)
-	
+
 	var i := 0
 	while FISH_LINE % (i + 1) in SOL.dialogue_box.dialogues_dict.keys():
 		fish_lines.append(FISH_LINE % (i + 1))

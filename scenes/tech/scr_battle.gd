@@ -188,7 +188,7 @@ func load_battle(info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
 	if not battle_rewards:
 		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
-	message(info.get_("start_text", 
+	message(info.get_("start_text",
 		("%s lunges at you!" % enemies.front().actor_name) if enemies.size() else "no one is here."
 	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
@@ -253,18 +253,18 @@ func add_enemy(character_id: String, ally := false) -> void:
 			node.add_child(sprite_new)
 			sprite_new.texture = preload("res://sprites/characters/battle/spr_enemy_battle.png")
 			node.effect_center = Vector2i(0, -20)
-	
+
 	add_actor(node, Teams.ENEMIES if not ally else Teams.PARTY)
-	
+
 	arrange_enemies()
 
 
 func add_party_member(id: String) -> void:
 	var party_member: BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.load_character(id)
-	
+
 	add_actor(party_member, Teams.PARTY)
-	
+
 	update_party()
 
 
@@ -587,7 +587,7 @@ func _on_spirit_name_changed(to: String) -> void:
 	if to in loaded_spirits.keys():
 		_on_spirit_name_submitted(to)
 		return
-	
+
 	SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch_scale": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(spirit_name, "modulate", Color(0.8, 0.8, 8.0, 2.0), 0.1)
@@ -606,7 +606,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 			SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"))
 			var tw := create_tween().set_trans(Tween.TRANS_QUART)
 			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 10), 1.5)
-			
+
 			await get_tree().create_timer(1.5).timeout
 			current_guy.use_spirit(spirit_id, current_target)
 			append_action_history("spirit", {"spirit": spirit_id, "target": current_target})
@@ -614,7 +614,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 			return
 		else:
 			spirit_name.text = "not enough magic!"
-			
+
 	SND.play_sound(preload("res://sounds/error.ogg"), {bus = "ECHO"})
 	append_action_history("spirit_fail")
 	await get_tree().create_timer(0.5).timeout

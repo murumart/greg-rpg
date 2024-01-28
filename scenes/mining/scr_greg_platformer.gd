@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
+
 	match state:
 		S.FALL:
 			velocity.x = move_toward(velocity.x, 0.0, delta * STATS.AIR_FRICTION)
@@ -47,15 +47,15 @@ func _physics_process(delta: float) -> void:
 				change_state(S.FALL)
 			coyote = 0
 			jump_buffer = move_toward(jump_buffer, delta, delta)
-	
+
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_buffer = delta * 9
-	
+
 	if coyote < delta * 4 and jump_buffer >= delta * 3:
 		change_state(S.JUMP)
-	
+
 	move_and_slide()
-	
+
 	# animation
 	if input.x: last_input = input
 	var lor := (int(last_input.x > 0) * 2) - 1

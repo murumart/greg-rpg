@@ -3,6 +3,8 @@ extends Room
 # the store room scene
 # copied over from old greg and adjusted
 
+const NEIGHBOUR_WIFE_CYCLE = 470
+
 # item types stored here
 const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
 const FOOD_ITEMS := ["muesli", "mueslibar", "bread", "salt"]
@@ -34,10 +36,10 @@ func _ready():
 	remove_child(ui)
 	SOL.add_ui_child(ui, -1)
 	set_store_wall_colours()
-	
+
 	for s in shelves:
 		s.item_taken.connect(_on_item_taken)
-	
+
 	update_shopping_list()
 	load_store_data()
 	neighbour_wife_position()
@@ -51,9 +53,9 @@ func _ready():
 func set_store_wall_colours():
 	var store_wall := $InteriorTiles as TileMap
 	var mn = DAT.get_data("nr", 0)/100.0
-	
+
 	var color = Color(mn, 0.5, 0.8).lightened(0.2)
-	
+
 	store_wall.set_layer_modulate(1, color)
 
 
@@ -83,7 +85,7 @@ func restock() -> void:
 		return
 	var store_shelf_count := shelves.size()
 	var arrays := [HEALING_ITEMS, FOOD_ITEMS, BUILDING_ITEMS]
-	
+
 	store_data["shelves"] = []
 	store_data["shelves"].clear() # for good measure i guess :dace:
 	for i in store_shelf_count:
@@ -214,7 +216,7 @@ func neighbour_wife_position() -> void:
 	if store_cashier.cashier == "dead":
 		neighbour_wife.queue_free()
 		return
-	var time := wrapi(DAT.seconds, 0, DAT.NEIGHBOUR_WIFE_CYCLE)
-	if time < DAT.NEIGHBOUR_WIFE_CYCLE / 2:
+	var time := wrapi(DAT.seconds, 0, NEIGHBOUR_WIFE_CYCLE)
+	if time < NEIGHBOUR_WIFE_CYCLE / 2:
 		neighbour_wife.queue_free()
 

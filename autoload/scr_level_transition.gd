@@ -119,7 +119,7 @@ func skateboard_check() -> bool:
 		SOL.vfx("explosion", greg.get_global_transform_with_canvas().origin
 		- SOL.SCREEN_SIZE / 2, {scale = Vector2(0.25, 0.25)})
 		return true
-		
+
 	return false
 
 

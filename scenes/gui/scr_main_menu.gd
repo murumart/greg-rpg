@@ -74,7 +74,7 @@ func _on_label_meta_clicked(meta) -> void:
 
 
 func _on_button_focus_exited(_button: Button) -> void:
-	if OPT.options_open: return 
+	if OPT.options_open: return
 	SND.play_sound(menusound)
 
 

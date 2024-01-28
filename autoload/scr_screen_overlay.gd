@@ -168,7 +168,7 @@ func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
 		effect.global_position = pos + SCREEN_SIZE / 2.0
 	else:
 		effect.global_position = pos
-	
+
 	#effect.global_position = pos
 	if options.get("random_rotation", false):
 		effect.rotation = randf_range(-TAU, TAU)

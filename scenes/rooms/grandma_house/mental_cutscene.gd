@@ -9,7 +9,7 @@ extends Node2D
 @onready var grandma_start_pos: Marker2D = $GrandmaStartPos
 @onready var radio: Node2D = $"../Radio"
 @onready var camera_final_pos: Marker2D = $CameraFinalPos
-@onready var background_gradient := (($"../Background".material as 
+@onready var background_gradient := (($"../Background".material as
 		ShaderMaterial).get_shader_parameter("Gradient") as GradientTexture1D).gradient
 @onready var labels := Math.child_dict($TextBoxes)
 @onready var grandma_voice: AudioStreamPlayer = $GrandmaVoice

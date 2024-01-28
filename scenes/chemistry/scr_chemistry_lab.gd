@@ -49,7 +49,7 @@ func _ready() -> void:
 			"mol": 3.0
 		})
 	germinate()
-	
+
 
 
 func germinate() -> void:
@@ -138,10 +138,10 @@ func _physics_process(delta: float) -> void:
 			if s.struct.is_empty():
 				del(s)
 				return
-			
+
 			if species.size() > 80:
 				if Engine.get_physics_frames() % 2 != 0: continue
-			
+
 			# damping
 			s.move.y = move_toward(s.move.y, (s.mass - ELM.solmass) * 0.06, delta * 6)
 			# delete stuff rising tot he top (it evepaorates away)
@@ -149,10 +149,10 @@ func _physics_process(delta: float) -> void:
 				del(s)
 				evaporation_sound.play()
 			s.move.x = move_toward(s.move.x, 0.0, delta)
-			
+
 			# randomising
 			s.move += Vector2(randf_range(-rand, rand), randf_range(-rand, rand))
-			
+
 			# collision with others
 			if species.size() < 25:
 				for ss in range(species.size()):
@@ -169,11 +169,11 @@ func _physics_process(delta: float) -> void:
 			else:
 				for i in 200:
 					specs_collision(species.pick_random(), species.pick_random())
-			
+
 			# dissoc checking
 			if s.mass / 900.0 > randf() and randf() < 0.002 and species.size() < 40:
 				dissoc_reaction(s)
-			
+
 			# edges collision
 			if s.position.x - s.radius <= clamp_zone_min.x:
 				s.move.x = edgedef -s.move.x * damp
@@ -188,15 +188,15 @@ func _physics_process(delta: float) -> void:
 				bounce_sound.play()
 			bounce_sound.position.x = s.position.x
 			s.position = s.position.clamp(clamp_zone_min, clamp_zone_max)
-			
+
 			s.position += s.move
-			
+
 			# clicking debug stuff
 			if Input.is_action_just_pressed("mouse_left"):
 				var mpos := get_global_mouse_position()
 				if mpos.distance_to(s.position) < s.radius:
 					print(s)
-		
+
 		if randf() < 0.08:
 			c([0, 7, 0], Vector2(randf_range(clamp_zone_min.x, clamp_zone_max.x),
 			randf_range(clamp_zone_min.y, clamp_zone_max.y)))
@@ -230,7 +230,7 @@ func _draw() -> void:
 
 
 class Species extends RefCounted:
-	
+
 	var id: int
 	var struct := []
 	var mass: float
@@ -238,22 +238,22 @@ class Species extends RefCounted:
 	var color := Color()
 	var move := Vector2()
 	var position := Vector2()
-	
-	
+
+
 	func _init(arr: Array, pos: Vector2 = Vector2(0, 0)) -> void:
 		struct = arr
 		position = pos
 		aspects()
-	
-	
+
+
 	func aspects() -> void:
 		if struct.is_empty():
 			return
 		radius = calculate_radius(struct)
 		mass = calculate_mass(struct)
 		color = calculate_colour(struct)
-	
-	
+
+
 	# loop through all branches and add masses
 	func calculate_mass(arr: Array) -> float:
 		var sum := 0.0
@@ -291,11 +291,11 @@ class Species extends RefCounted:
 		for i in cols:
 			col = col.lerp(i, 0.1)
 		return col
-	
-	
+
+
 	func is_water() -> bool:
 		return struct.size() == 3 and struct.count(0) == 2 and struct.has(7)
-	
-	
+
+
 	func _to_string() -> String:
 		return "%s: %s" % [id, struct]

@@ -207,14 +207,14 @@ func _on_line_draw() -> void:
 
 
 func process_tilemap() -> void:
-	# the tilemap actually continuously 
+	# the tilemap actually continuously
 	var ypos := roundi(tilemap.position.y / 16.0)
 	if ypos == processed_ypos: return
 	var path_noise_value := roundi((remap(noise.get_noise_1d(tilemap.position.y / 8000.0), -1, 1, -6, 6) + remap(noise.get_noise_1d((tilemap.position.y + 1) / 8000.0), -1, 1, -6, 6)) / 2.0)
-	
+
 	# this might optimise things. i hope
 	delete_offscreen_tiles(ypos)
-	
+
 	var rock_array := []
 	# tilemap width is 12
 	for x in 12:
@@ -222,8 +222,8 @@ func process_tilemap() -> void:
 		var noise_value := noise.get_noise_2d(x, 10)
 		# random caves
 		if (
-			!(noise_value > -0.2 and noise_value < 0.2) and 
-			!(absi(cell.x - path_noise_value) <= 2) and 
+			!(noise_value > -0.2 and noise_value < 0.2) and
+			!(absi(cell.x - path_noise_value) <= 2) and
 			randf() <= 0.95
 		) or (
 			cell.x <= -5 or cell.x >= 4
@@ -250,16 +250,16 @@ func process_tilemap() -> void:
 		var noise_value := noise.get_noise_2d(x + 384, 10)
 		if (noise_value > 0 and randf() <= 0.95) or (cell.x <= -5 or cell.x >= 4):
 			bg_rock_array.append(cell)
-	
+
 	tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
 	tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
-	
+
 	# decorations random
 	if randf() <= 0.002: kiosk_enabled = true
 	if randf() <= 0.0002: fisherman_enabled = true
 	if randf() <= 0.001: shopping_cart_enabled = true
 	if randf() <= 0.00001: cow_ant_enabled = true
-	
+
 	processed_ypos = ypos
 
 
@@ -322,22 +322,22 @@ func _on_after_crash_timer_timeout() -> void:
 	if battle_info:
 		LTS.enter_battle(battle_info)
 		return
-	
+
 	# setting rewards
 	var rewards := BattleRewards.new()
-	
+
 	var bad_job_text := "you tried!"
 	var good_job_text := "good job!"
 	var high_score_text := "[color=#88ff00]high score![/color]"
-	
+
 	var srew := Reward.new()
 	srew.type = BattleRewards.Types.SILVER
 	srew.property = str(roundi(score * 0.19))
-	
+
 	var xrew := Reward.new()
 	xrew.type = BattleRewards.Types.EXP
 	xrew.property = str(roundi(score * 0.088))
-	
+
 	rewards.add(srew)
 	rewards.add(xrew)
 	if high_score:
@@ -345,14 +345,14 @@ func _on_after_crash_timer_timeout() -> void:
 		hsrew.type = BattleRewards.Types.SILVER
 		hsrew.property = str(roundi(score * 0.02))
 		rewards.add(hsrew)
-	
+
 	for item in items_caught:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.ITEM
 		rew.property = str(item)
 		rew.unique = item in UNIQUE_REWARDS
 		rewards.add(rew)
-	
+
 	# granting rewards
 	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/misc_click.ogg"))
 	congrats_label.text = str("[center]", high_score_text if high_score else "", "\n", good_job_text if score > 9 else bad_job_text, "\n", "score: ", score)

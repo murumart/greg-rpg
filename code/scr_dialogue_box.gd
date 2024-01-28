@@ -132,7 +132,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 			return
 	if part.sound:
 		SND.play_sound(part.sound)
-	
+
 	# the false here means that you shouldn't speak the default granting dialogue!
 	if part.item_to_give:
 		DAT.grant_item(part.item_to_give, 0, false)
@@ -140,7 +140,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		DAT.grant_spirit(part.spirit_to_give, 0, false)
 	if part.silver_to_give:
 		DAT.grant_silver(part.silver_to_give, false)
-	
+
 	if part.set_data.size() > 0:
 		var key: String = part.set_data[0]
 		var read: String = part.set_data[1]
@@ -148,28 +148,28 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		if Math.toexp(read) != null: value = Math.toexp(read)
 		else: value = read
 		DAT.set_data(key, value)
-	
+
 	loaded_dialogue_line = part
-	
+
 	portrait.texture = null
 	Math.load_reference_buttons([], [choices_container], _reference_button_pressed, _on_button_reference_received)
 	choices_container.get_parent().hide()
 	choices_open = false
-	
+
 	if character_load:
 		character = DAT.get_character(character_load)
-	
+
 	if character and character.portrait:
 		portrait.texture = character.portrait
 		if DIR.portrait_exists(character.name_in_file + "_" + emotion):
 			portrait.texture = load(PORTRAIT_DIR % (character.name_in_file + "_" + emotion))
 		portrait.scale = part.portrait_scale
-	
+
 	portrait.visible = portrait.texture != null
 	set_textbox_width_to_full(not portrait.visible)
-	
+
 	set_finished_marker(0)
-	
+
 	show()
 	textbox.set_text(text)
 	started_speaking.emit(current_dialogue)
@@ -186,16 +186,16 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if part.instaskip:
 		next_dialogue_requested()
 		return
-	
+
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
-	
+
 	if choices:
 		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received, {"text_left": 9})
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).call_deferred("grab_focus")
 		set_finished_marker(0)
-	
+
 	finished_speaking.emit(current_dialogue)
 
 

@@ -50,7 +50,7 @@ func jumpscare() -> void:
 	)
 	tw.tween_method(
 		func(_ö: float):
-			var txt = SOL.vfx("damage_number", Vector2(15, 0), 
+			var txt = SOL.vfx("damage_number", Vector2(15, 0),
 				{"text": "jumpscare!!!", "color": Color.GRAY, "parent": jumpscare_sprite})
 			txt.z_as_relative = false
 			txt.z_index -= 1

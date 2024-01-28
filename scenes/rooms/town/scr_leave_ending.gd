@@ -15,5 +15,5 @@ func _ready() -> void:
 			if SOL.dialogue_choice == &"yes":
 				# TODO put something normal here
 				$"../../Greg".queue_free()
-		, CONNECT_ONE_SHOT) 
+		, CONNECT_ONE_SHOT)
 	)

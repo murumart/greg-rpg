@@ -47,7 +47,7 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 static func add_s(
 		actor: BattleActor, e_name: StringName, e_duration: int, e_strength: float
 	) -> BattleStatusEffect:
-	return BattleStatusEffect.add(actor, 
+	return BattleStatusEffect.add(actor,
 		StatusEffect.new().set_effect_name(
 			e_name).set_duration(e_duration).set_strength(e_strength))
 
@@ -98,7 +98,7 @@ func turn(actor: BattleActor) -> void:
 	duration -= 1
 	if duration <= 0:
 		actor.remove_status_effect(name)
-	
+
 	if name == &"coughing":
 		# coughing damage is applied by a separate battle actor because why not
 		var cougher := BattleActor.new()
@@ -108,10 +108,10 @@ func turn(actor: BattleActor) -> void:
 		cougher.attack(actor)
 		SND.play_sound(preload("res://sounds/spirit/airspace_violation.ogg"), {"volume": -3})
 		cougher.queue_free()
-	
+
 	if name == &"poison":
 		actor.hurt(strength * 1.3, Genders.NONE)
-	
+
 	if name == &"fire":
 		actor.hurt(
 			clampf(actor.character.health * 0.08 * ceilf(strength / 32.0), 1, 25),
@@ -120,10 +120,10 @@ func turn(actor: BattleActor) -> void:
 			actor.global_position + SOL.SCREEN_SIZE / 2 +
 			Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": actor})
 		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch_scale = 2.0})
-	
+
 	if name == &"regen":
 		actor.heal(strength * 5)
-	
+
 	if name == &"inspiration":
 		actor.character.magic += strength * 2
 
@@ -149,7 +149,7 @@ func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 				"sopping",
 				actor.global_position + Vector2(randf_range(-4, 4), -16),
 				{"parent": actor})
-	
+
 	return amount - amt
 
 
@@ -168,7 +168,7 @@ func visuals(actor: BattleActor) -> void:
 				randf_range(-8, 16)), {"parent": actor})
 		var tw := actor.create_tween().set_trans(Tween.TRANS_QUINT)
 		var rand := randf_range(0.5, 1.0)
-		tw.tween_property(actor, "modulate", 
+		tw.tween_property(actor, "modulate",
 			Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
 	if randf() <= 0.03 and name == &"sleepy":
 		SOL.vfx(

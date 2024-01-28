@@ -44,24 +44,24 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	var skip_to: float = options.get("skip_to", 0.0)
 	var loop_override := "loop" in options
 	var loop: bool = options.get("loop", true)
-	
+
 	var song_dict: Dictionary = list.songs.get(song, {})
-	
+
 	# if the music requested is the same as current music, do nothing
 	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
 		return
-	
+
 	previously_played_song_key = current_song_key
 	current_song_key = song
 	old_song = current_song
 	current_song = {}
-	
+
 	fade_out_song_player(current_song_player, fade_speed, options)
-	
+
 	# silence
 	if song_dict.keys().size() < 1:
 		return
-	
+
 	var new_audio_player := AudioStreamPlayer.new()
 	current_song_player = new_audio_player
 	new_audio_player.name = str("music_" + song)
@@ -75,7 +75,7 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	new_audio_player.pitch_scale = song_dict.get("default_pitch", 1.0) * pitch_scale
 	new_audio_player.bus = bus
 	current_song = list.songs[song]
-	
+
 	new_audio_player.play()
 	if not play_from_beginning:
 		new_audio_player.seek(current_song.get("progress", 0.01))
@@ -89,10 +89,10 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 	if not (is_instance_valid(player) and player.playing): return
 	player = player as AudioStreamPlayer
-	
+
 	var fade_out_ease_type = options.get("fade_out_ease_type", Tween.EASE_IN)
 	var trans_type = options.get("trans_type", Tween.TRANS_QUAD)
-	
+
 	var tween := create_tween().set_ease(fade_out_ease_type).set_trans(trans_type)
 	tween.tween_property(player, "volume_db", -80.0, DEFAULT_WAIT_SPEED/float(fade_speed))
 	tween.step_finished.connect(_on_fadeout_tween_step_finished.bind(player, options), CONNECT_ONE_SHOT)
@@ -101,10 +101,10 @@ func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 func _on_fadeout_tween_step_finished(_int_stupid: int, player, options := {}):
 	# _int_stupid is provided by the tween.step_finished signal, I don't need it for anything
 	var do_save_audio_position = options.get("save_audio_position", true)
-	
+
 	if not (is_instance_valid(player) and player.playing): return
 	player = player as AudioStreamPlayer
-	
+
 	var _err = save_audio_position(player, old_song) if do_save_audio_position else null
 	player.stop()
 	player.queue_free()

@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	
+
 	if velocity.length_squared() > 1:
 		sprite.play("running")
 		sprite.rotation = velocity.angle() - PI/2.0

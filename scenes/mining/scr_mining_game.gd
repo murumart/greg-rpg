@@ -59,7 +59,7 @@ func mapgen() -> void:
 	main_tunnel_noise.seed = randi()
 	water_noise.seed = randi()
 	gas_noise.seed = randi()
-	
+
 	for yi in map_height:
 		for xi in map_width:
 			var y := yi + start_height
@@ -101,7 +101,7 @@ func check_dirt(x: int, y: int) -> bool:
 
 func update_map() -> void:
 	var time := Time.get_ticks_msec()
-	
+
 	for w in get_cells_by_definition(TileDefinitions.WATER, 1):
 		var pos := Vector2i(w)
 		tile_flowing(pos, TileDefinitions.WATER, FLOW_LIQUID_DOWN, [3, 4])
@@ -111,7 +111,7 @@ func update_map() -> void:
 	for f in get_cells_by_definition(TileDefinitions.FIRE, 1):
 		var pos := Vector2i(f)
 		fire_works(f)
-	
+
 	#print("finished map update: ", Time.get_ticks_msec() - time)
 
 

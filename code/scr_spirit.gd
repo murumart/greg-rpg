@@ -27,7 +27,7 @@ const USES_NEGATIVE := [Uses.HURTING, Uses.DEBUFFING]
 
 func get_effect_description() -> String:
 	var text := payload.get_effect_description() as String
-	
+
 	match reach:
 		Reach.LOCAL: pass
 		Reach.ALL:text += "@ all\n"

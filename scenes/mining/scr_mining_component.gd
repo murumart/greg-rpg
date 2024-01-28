@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	var direction := 0
 	if input.x > 0: direction = 1
 	elif input.x < 0: direction = -1
-	
+
 	var target_pos := Vector2()
 	target_pos = tpos()
 	if Input.get_axis("move_up", "move_down"):
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	if not get_tile(target_pos / 8 - Vector2(0, 1)
 		) in UNMINEABLE and get_tile(target_pos / 8) in UNMINEABLE:
 		target_pos.y -= TSIZE
-	
+
 	if display:
 		manage_display(target_pos, direction, delta)
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -81,5 +81,5 @@ func manage_display(target_pos: Vector2, _direction: int, delta: float) -> void:
 	display.position = display.position.lerp(target_pos, delta * 24)
 	display.position -= Math.v2(0.5)
 	display.size = Math.v2(TSIZE + 2)
-	
+
 

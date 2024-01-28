@@ -34,12 +34,12 @@ func set_type(to: int):
 # edit 26.04.23: there are worse ones :blush:
 func _on_interaction_area_on_interact() -> void:
 	var name_keys_dict := {}
-	
+
 	# if there are no items on the shelf:
 	if type == types.EMPTY:
 		SOL.dialogue("store_shelf_empty")
 		return
-	
+
 	# updating dialogue to make sense in current context - stuffing type name in
 	SOL.dialogue_box.dial_concat("store_shelf_start", 0, [typenames[type]])
 	SOL.dialogue_box.dial_concat("store_shelf_start", 1, [typenames[type]])
@@ -60,17 +60,17 @@ func _on_interaction_area_on_interact() -> void:
 	SOL.dialogue_box.adjust("store_shelf_start", 1, "text", text)
 	choices.append(&"cancel") # add a cancel choosing option
 	SOL.dialogue_box.adjust("store_shelf_start", 1, "choices", choices)
-	
+
 	SOL.dialogue("store_shelf_start")
-	
+
 	await SOL.dialogue_closed
-	
+
 	var choice := SOL.dialogue_box.current_choice
 	if not (choice == &"cancel" or choice == &"no"):
 		SOL.dialogue_box.dial_concat("store_shelf_confirm", 0, [choice])
-		
+
 		SOL.call_deferred("dialogue", "store_shelf_confirm")
-		
+
 		await SOL.dialogue_closed
 		#choice = SOL.dialogue_box.current_choice
 		if SOL.dialogue_choice != &"no": # another chance to not take the item

@@ -68,13 +68,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				close_requested.emit()
 	match doing:
 		Doings.PARTY:
-			
+
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)
 			var old_tab = current_tab
 			current_tab = wrapi(current_tab + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size())
 			if current_tab != old_tab: SND.menusound(1.3)
 			update_tabs()
-			
+
 			if event.is_action_pressed("ui_accept"):
 				doing = Doings.INNER
 				SND.menusound()
@@ -87,7 +87,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if item_spirit_tabs.current_tab != old_tab:
 				SND.menusound(1.47)
 				grab_item_focus()
-				
+
 		Doings.USING:
 			var item := DAT.get_item(using_item) as Item
 			var old_choice := using_menu_choice
@@ -103,21 +103,21 @@ func _unhandled_input(event: InputEvent) -> void:
 			if old_choice != using_menu_choice:
 				SND.menusound(1.35)
 			if event.is_action_pressed("ui_accept"):
-				
+
 				if item_spirit_tabs.current_tab == 0:
 					if using_menu_choice == party_size(): # trashcan
 						party(current_tab).inventory.erase(using_item)
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
 					else:
 						party(using_menu_choice).handle_item(using_item)
-						
+
 						if item.consume_on_use:
 							party(current_tab).inventory.erase(using_item)
 						if not item.use in Item.USES_EQUIPABLE:
 							SND.play_sound((item.play_sound if item.play_sound
 							else preload("res://sounds/use_item.ogg")),
 							{volume = -15})
-				
+
 				elif item_spirit_tabs.current_tab == 1:
 					var spirit: Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
@@ -128,7 +128,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						party(current_tab).magic = party(current_tab).magic - spirit.cost
 						if spirit.animation:
 							SOL.vfx(spirit.animation, Vector2())
-				
+
 				doing = Doings.INNER
 				load_items()
 				load_spirits()
@@ -145,9 +145,9 @@ func update_tabs() -> void:
 		tab.z_index = -int(not current_tab == i)
 		tab.visible = i < party_size()
 		tab.get_child(0).text = party(i).name if i < party_size() else ""
-		
+
 		i += 1
-	
+
 	load_items()
 	load_spirits()
 	if doing == Doings.PARTY:
@@ -200,7 +200,7 @@ func side_load_spirit_data(id: String) -> void:
 	mem_infotext.position = MEM_INFO_BIG_POS
 
 
-# load items from the inventory of current character 
+# load items from the inventory of current character
 # + weapon and armour at the top of the list
 func load_items() -> void:
 	var item_array := []
@@ -212,7 +212,7 @@ func load_items() -> void:
 		item_array.push_front(party(current_tab).armour)
 	if party(current_tab).weapon:
 		item_array.push_front(party(current_tab).weapon)
-	
+
 	Math.load_reference_buttons_groups(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 	var silver_text := "p. silver:\n" if party_size() > 1 else "silver: "
 	silver_counter.text = str(silver_text, DAT.get_data("silver", 0))

@@ -48,10 +48,10 @@ func _physics_process(delta: float) -> void:
 				change_state(S.FALL)
 			coyote = 0
 			jump_buffer = move_toward(jump_buffer, delta, delta)
-	
+
 	if coyote < delta * 4 and jump_buffer >= delta * 3:
 		change_state(S.JUMP)
-	
+
 	target.move_and_slide()
 	if test_collision(Vector2.RIGHT):
 		direction.x = -1

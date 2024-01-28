@@ -27,21 +27,21 @@ class Tile:
 		get:
 			return _random_atlases.pick_random()
 	var flammability := 0.0
-	
+
 	func _init(_source: int) -> void:
 		source = _source
-	
+
 	func add_atlas(_atlas: Vector2i) -> Tile:
 		_random_atlases.append(_atlas)
 		return self
-	
+
 	func set_flammability(_flammability: float) -> Tile:
 		flammability = _flammability
 		return self
-	
+
 	func set_terrain(_terrain: int) -> Tile:
 		terrain = _terrain
 		return self
-	
+
 	func _to_string() -> String:
 		return str({"source": source, "terrain": terrain, "atlases": _random_atlases, "flammability": flammability})

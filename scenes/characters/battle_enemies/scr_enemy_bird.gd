@@ -20,10 +20,10 @@ func ai_action() -> void:
 		super.ai_action()
 	else:
 		turn_finished()
-	
+
 	if here: time_away -= 1
 	else: time_away += 1
-	
+
 	if time_away >= max_time_away and not here:
 		here = true
 	elif here and randf() < 0.85 and time_away < -min_time_here:

@@ -154,7 +154,7 @@ func ai_action() -> void:
 						return
 			Intents.FLEE:
 				if not can_flee: continue
-				var en := Math.determ_pick_random(reference_to_opposing_array, rng).character as Character 
+				var en := Math.determ_pick_random(reference_to_opposing_array, rng).character as Character
 				if (character.health_perc() < 1.0 - toughness and
 				rng.randf() < 1.0 - toughness and
 				character.health_perc() < en.health_perc() and

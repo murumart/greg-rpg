@@ -10,15 +10,15 @@ extends Room
 
 func _ready() -> void:
 	super._ready()
-	
+
 	if DAT.get_data("stolen_from_store", 0) > 199 and\
 	not DAT.get_data("fighting_cashier", false):
 		store_door.destination = ""
-	
+
 	if not DAT.get_data("zerma_left", false):
 		DAT.set_data("intro_cutscene_finished", true)
 		DAT.set_data("zerma_left", true)
-	
+
 	pink_haired_girl_setup()
 	naturalist_setup()
 	pairhouse_guy_setup()
@@ -78,7 +78,7 @@ func pairhouse_guy_setup() -> void:
 	if DAT.get_data("turf_mission_fulfilled", false):
 		door.destination = "super_gaming_house"
 	if ((DAT.seconds < DAT.PH_GUY_WAIT and not
-			DAT.get_data("fulfilled_bounty_stray_animals", false)) or 
+			DAT.get_data("fulfilled_bounty_stray_animals", false)) or
 		DAT.get_data("turf_mission_fulfilled", false) or
 		DAT.get_data("expressed_jooky_concern", false)):
 		guy.queue_free()

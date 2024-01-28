@@ -53,7 +53,7 @@ var bin_item_loot := {
 
 func _ready() -> void:
 	super._ready()
-	
+
 	for i in $Gates.get_child_count():
 		($Gates.get_child(i) as Area2D).body_entered.connect(gate_entered.bind(
 			i).unbind(1))

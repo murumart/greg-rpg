@@ -164,7 +164,7 @@ func interacted() -> void:
 		var bods := detection_area.get_overlapping_bodies()
 		bods.erase(self)
 		bods.sort_custom(func(a, b):
-			return (global_position.distance_squared_to(a.global_position) < 
+			return (global_position.distance_squared_to(a.global_position) <
 					global_position.distance_squared_to(b.global_position))
 			)
 		direct_walking_animation(bods[0].global_position - global_position)
@@ -339,7 +339,7 @@ func chase(body: Node2D) -> void:
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
 	var collider_is_target := collider == chase_target
-	
+
 	# test if the raycast is colliding with another npc who is chasing the same target
 	var same_target_as_collider_condition := false
 	same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)

@@ -28,18 +28,18 @@ func _ready() -> void:
 		DAT.set_data(GUY_FOLLOW, false)
 		queue_free()
 		return
-	
+
 	if DAT.get_data(GUY_FOLLOW, false) and LTS.gate_id != &"vampire_cutscene":
 		uguy_follow()
 		return
-	
+
 	if DAT.get_data(INTERACTIONS, 0) > 2:
 		girl.queue_free()
 		gg_pos.global_position = get_closest_pos()
 		uguy.inspected.connect(_on_uguy_interacted)
 		uguy.default_lines.append("uguy_lost")
 		return
-	
+
 	imminence = level - 40
 	if DAT.seconds % CYCLE > maxi((imminence + 1) * 30, CYCLE):
 		bad_condition = true

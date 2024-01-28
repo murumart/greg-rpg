@@ -107,7 +107,7 @@ func add_experience(amount: int, speak := false) -> void:
 		if experience >= xp2lvl(level):
 			experience = 0
 			level_up()
-			
+
 	leveled_up.emit()
 
 
@@ -125,12 +125,12 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 		# less chance of gaining a point in a stat as level gets higher
 		var upgrade_chance := curve.sample(remap(level, 1, 99, 0.0, 1.0))
 		for k in upgrades:
-			
+
 			var perfect_inc: float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0
 			var perfect_stat: float = (
 				(UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0 * level
 			) + UPGRADE_MIN[k] - 1
-			
+
 			# except every 11 levels, missed points catch up then
 			if level % 11 == 0:
 				set(k, roundf(perfect_stat))
@@ -143,7 +143,7 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 			var sp: String = DAT.get_levelup_spirit(level)
 			if sp.length():
 				spirits_to_add.append(sp)
-	
+
 	if talk:
 		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
 		SOL.dialogue("levelup")
