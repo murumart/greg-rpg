@@ -8,12 +8,9 @@
 		"pqrstuvwxyz[\\]^_",
 		"`õäöü{|}~█"
 	],
-	"glyph-color": "auto",
+	"glyph-color": "black",
 	"in-kerning": [
-		"w abcdefghijklmnopqrstuvwõäöüxyz 1",
-		"m abcdefghijklmnopqrstuvwõäöüxyz 1",
-		"i abcdefghijklmnopqrstuvwõäöüxyz -1",
-		". abcdefghijklmnopqrstuvwõäöüxyz -1"
+		"abcdefghijklmnopqrstuvwõäöüxyz i -1"
 	],
 	"glyph-width": 5,
 	"glyph-height": 8,
@@ -23,13 +20,15 @@
 	"glyph-sep-y": 0,
 	"glyph-base-x": 0,
 	"glyph-baseline": 7,
-	"glyph-spacing": 0,
-	"font-is-mono": true,
+	"glyph-spacing": 1,
+	"font-is-mono": false,
 	"font-em-square": 1024,
 	"font-line-gap": 0,
 	"font-ascend": 768,
 	"font-descend": -256,
 	"font-px-size": 128,
+	"contour-type": "pixel",
+	"font-type": "ttf",
 	"font-name": "gregfont",
 	"font-author": "Murumart",
 	"font-copy": "not really",
@@ -39,22 +38,9 @@
 	"font-license-url": "https://creativecommons.org/licenses/by/4.0/",
 	"font-sample-text": "...and the goblins said, \"are you going to eat that?\"",
 	"font-preview-text": [
-		"the quick brown fox jumps over the lazy dog",
-		"those who forget history",
-		"have no future",
-		"1234567810101010242048õäõäüüüõö",
-		"my ass (heavy)",
-		"",
-		"...and the goblins said, ",
-		"\"are you going to eat that?\"",
-		"",
-		"function poop() {",
-		"    you.kill()",
-		"    console.log(\"fuck\")",
-		"}",
-		"",
-		"not a quarter hour ago i slew",
-		"gleebungus in denferns.",
+		"lollus, lollus, lollus",
+		"rumalus. pimedus. valitsus.",
+		"wing wind why who wiiiwiii",
 		""
 	]
 }
