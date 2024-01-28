@@ -170,7 +170,7 @@ func interacted() -> void:
 		direct_walking_animation(bods[0].global_position - global_position)
 	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
 		set_state(States.TALKING)
-		velocity = Vector2()
+	velocity = Vector2()
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():

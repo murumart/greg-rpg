@@ -26,7 +26,7 @@ var store_cashier := StoreCashier.new()
 @onready var shopping_list := $StoreUi/ShoppingList
 
 @onready var cashier_sprite := $Kassa/Cashier/Sprite
-@onready var cashier := $Kassa/Cashier
+@onready var cashier := $Kassa/Cashier as OverworldCharacter
 
 
 func _ready():
@@ -148,6 +148,9 @@ func check_cashier_switch() -> void:
 
 func _on_kassa_speak_on_interact() -> void:
 	store_cashier.speak()
+	cashier.move_to(cashier.global_position)
+	cashier.direct_walking_animation(Vector2.RIGHT)
+	cashier.set_state(OverworldCharacter.States.TALKING)
 
 
 func _on_kassa_finished() -> void:
