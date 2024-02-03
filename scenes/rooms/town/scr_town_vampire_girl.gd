@@ -84,9 +84,11 @@ func uguy_follow() -> void:
 		SOL.dialogue("uguy_reminder")
 	)
 	for i in animal_spawners:
-		i.queue_free()
+		if is_instance_valid(i):
+			i.queue_free()
 	for i in thug_spawners:
-		i.queue_free()
+		if is_instance_valid(i):
+			i.queue_free()
 	uguy.default_lines.clear()
 	uguy.default_lines.append("uguy_reminder")
 	uguy.cannot_reach_target.connect(_on_uguy_cannot_reach_target)

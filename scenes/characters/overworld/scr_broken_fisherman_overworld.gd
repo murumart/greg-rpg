@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func interacted() -> void:
 	if not broken_fishermen_fought_changed:
-		DAT.incri("broken_fishermen_fought", 1)
+		DAT.incri("broken_fishermen_fought", battle_info.enemies.size())
 		broken_fishermen_fought_changed = true
 	super()
 

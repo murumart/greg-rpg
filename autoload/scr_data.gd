@@ -209,7 +209,7 @@ func set_copied_data() -> void:
 
 # this is for the overworld greg
 # if greg is captured, he cannot be moved around by the player
-func capture_player(type := &"", overlap := true) -> void:
+func capture_player(type := &"", overlap := false) -> void:
 	if not overlap and type in player_capturers: return
 	var noncap := [&"dialogue", &"greenhouse"]
 	# multiple things can capture the player

@@ -16,6 +16,7 @@ extends Node2D
 
 func _ready() -> void:
 	if LTS.gate_id == &"vampire_cutscene":
+		DAT.set_data("uguy_following", false)
 		start()
 		return
 	if LTS.gate_id == LTS.GATE_EXIT_BATTLE and DAT.get_data("vampire_end_cutscene", false):
@@ -139,6 +140,7 @@ func end() -> void:
 						cashier.move_to(cashier.global_position + Vector2(300, 0))
 					, CONNECT_DEFERRED)
 					tw.finished.connect(func():
+						DAT.free_player("cutscene")
 						LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
 						LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
 					)

@@ -61,6 +61,7 @@ const DEATH_REASONS := {
 
 
 func _ready() -> void:
+	DAT.free_player("all")
 	if test_death.length() > 0 and DAT.seconds < 2:
 		DAT.death_reason = test_death
 	var death_reason: Dictionary = DEATH_REASONS.get(DAT.death_reason, {})
