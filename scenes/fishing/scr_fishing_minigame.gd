@@ -148,7 +148,7 @@ func _on_hook_collision(node: Node2D) -> void:
 				var combo := roundi(recent_fish_caught)
 				points += node.value + combo
 				time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
-				points_label.text = str("points: ", points)
+				update_points_display()
 				SOL.vfx(
 					"damage_number",
 					node.global_position,
@@ -208,9 +208,11 @@ func _on_line_draw() -> void:
 
 func process_tilemap() -> void:
 	# the tilemap actually continuously
-	var ypos := roundi(tilemap.position.y / 16.0)
-	if ypos == processed_ypos: return
-	var path_noise_value := roundi((remap(noise.get_noise_1d(tilemap.position.y / 8000.0), -1, 1, -6, 6) + remap(noise.get_noise_1d((tilemap.position.y + 1) / 8000.0), -1, 1, -6, 6)) / 2.0)
+	var ypos := roundi(tilemap.position.y * 0.0625)
+	if ypos == processed_ypos:
+		return
+	update_points_display()
+	var path_noise_value := roundi((remap(noise.get_noise_1d(tilemap.position.y * 0.000125), -1, 1, -6, 6) + remap(noise.get_noise_1d((tilemap.position.y + 1) * 0.000125), -1, 1, -6, 6)) * 0.5)
 
 	# this might optimise things. i hope
 	delete_offscreen_tiles(ypos)
@@ -230,17 +232,17 @@ func process_tilemap() -> void:
 		):
 			rock_array.append(cell)
 		else: #spawn fish
-			if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) * 0.5:
+			if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.5:
 				pass
 				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
 			if depth >= 7500:
-				if randf() < depth_fish_increase_curve.sample(depth / 20_000.0) * 0.0625:
+				if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.0625:
 					pass
 					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
-			if randf() < depth_item_increase_curve.sample(depth / 20_000.0) * 0.00285714:
+			if randf() < depth_item_increase_curve.sample(depth * 5e-05) * 0.00285714:
 				spawn_item(random_items.get_random_id(), tilemap.to_global(tilemap.map_to_local(cell)))
 		# background fish
-		if randf() < depth_fish_increase_curve.sample(depth / 20_000.0):
+		if randf() < depth_fish_increase_curve.sample(depth * 5e-05):
 			pass
 			spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
 	# background
@@ -371,3 +373,7 @@ func set_water_color(to: Color) -> void:
 	for x in water_layers:
 		var layer := x as ColorRect
 		layer.color = to
+
+
+func update_points_display() -> void:
+	points_label.text = str("points: ", roundi(depth / 100.0) + points)
