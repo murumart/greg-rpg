@@ -63,6 +63,10 @@ DIALOGUE emptyreward
 	you are not fit for a reward.
 
 
+DIALOGUE magnet_used
+	the used magnet draws near more silver and exp!
+
+
 DIALOGUE test2talk
 CHAR 
 	[color=#00ff00]blaabl blaalb blaalb.[/color]

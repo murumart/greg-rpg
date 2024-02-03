@@ -13,7 +13,7 @@ unique = false
 [sub_resource type="Resource" id="Resource_7gjkx"]
 script = ExtResource("1_natb2")
 type = 3
-property = "34"
+property = "128"
 chance = 1.0
 unique = false
 

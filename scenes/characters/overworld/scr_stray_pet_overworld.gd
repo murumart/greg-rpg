@@ -25,7 +25,7 @@ func interacted() -> void:
 func get_info() -> BattleInfo:
 	var inf := BattleInfo.new()
 	var level := DAT.get_character("greg").level
-	
+
 	if Math.inrange(level, 0, 10):
 		enmis.append(SP)
 		c(0.25, SP)
@@ -54,15 +54,15 @@ func get_info() -> BattleInfo:
 		enmis.append(RB)
 		enmis.append(SP)
 		enmis.append(M)
-	
+
 	enmis.shuffle()
 	if enmis.size() > 4:
 		enmis.resize(4)
-	
-	inf.set_background("town").set_music("foreign_fauna")
+
+	inf.set_background("town_grass").set_music("foreign_fauna")
 	inf.set_enemies(enmis)
 	inf.set_rewards(preload("res://resources/rewards/res_animal_fight_rewards.tres"))
-	
+
 	return inf
 
 

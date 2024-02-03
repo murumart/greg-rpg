@@ -1580,9 +1580,9 @@ region_rect = Rect2(0, 16, 16, 16)
 position = Vector2(55, 76)
 trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_nubog")])
 
-[node name="Cat" type="Sprite2D" parent="Houses/Skatepark"]
+[node name="Cat" type="Sprite2D" parent="Houses/Skatepark/Goodness"]
 visible = false
-position = Vector2(-17, 40)
+position = Vector2(2, -144)
 texture = ExtResource("29_fx2ly")
 centered = false
 script = ExtResource("29_v4362")

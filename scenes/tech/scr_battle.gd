@@ -666,6 +666,7 @@ func _grant_rewards() -> void:
 			magnet = (i.get_status_effect("magnet").strength + magnet)
 	magnet = minf(magnet, 3.5)
 	if magnet:
+		SOL.dialogue("magnet_used")
 		for reward in battle_rewards.rewards:
 			if reward.type == BRT.EXP or reward.type == BRT.SILVER:
 				reward.property = str(float(reward.property) * (magnet + 1.0))

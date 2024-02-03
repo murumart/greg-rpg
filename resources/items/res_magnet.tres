@@ -40,6 +40,6 @@ description = "pulls silver toward it? curious."
 texture = ExtResource("3_w1cxb")
 attack_animation = ""
 price = 55
-use = -1
+use = 2
 consume_on_use = true
 payload = SubResource("Resource_litaq")

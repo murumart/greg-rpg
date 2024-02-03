@@ -167,7 +167,8 @@ func interacted() -> void:
 			return (global_position.distance_squared_to(a.global_position) <
 					global_position.distance_squared_to(b.global_position))
 			)
-		direct_walking_animation(bods[0].global_position - global_position)
+		if bods.size():
+			direct_walking_animation(bods[0].global_position - global_position)
 	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
 		set_state(States.TALKING)
 	velocity = Vector2()

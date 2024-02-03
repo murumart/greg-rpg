@@ -116,11 +116,17 @@ CHAR zerma
 
 DIALOGUE phone_town_skatepark
 CHAR zerma
+DATA_LINK fulfilled_bounty_thugs,false
 	hey hey! you're at the skatepark?
 	this place looks deserted. maybe by getting rid of...
 	...enough thugs, it could be lively once again?
 	have you ever tried skating?
 	toodles for now! good luck.
+DATA_LINK fulfilled_bounty_thugs,true
+	hey hey! you're at the skatepark?
+	and you got rid of the thugs? wonderful!
+	have you ever tried skating?
+	toodles for now!
 
 
 DIALOGUE phone_town_under46

@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://c55x0xxrsfwke"]
+
+[ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_ma210"]
+[ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="2_gmfnm"]
+[ext_resource type="Shader" uid="uid://dx54lbvrlmhrq" path="res://scenes/battle_backgrounds/shd_grass.tres" id="2_qx50v"]
+[ext_resource type="Texture2D" uid="uid://djk08qs5y3hri" path="res://sprites/photos/spr_grass.png" id="3_q1w5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jum3"]
+shader = ExtResource("2_qx50v")
+shader_parameter/waveX = 0.968
+shader_parameter/waveY = 0.094
+shader_parameter/distortX = 0.161
+shader_parameter/distortY = 1.25
+shader_parameter/speed = 0.22
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p4nni"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_1ioka"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SprTown1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SprTown1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SprTown1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SprTown1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.223529, 0.466667, 0.301961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bpvym"]
+resource_name = "default"
+length = 35.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SprTown1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.8, 7.3, 12.1, 14.6, 23.8, 31.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 60), Vector2(71, 56), Vector2(90, 57), Vector2(89, 59), Vector2(81, 63), Vector2(74, 58), Vector2(80, 63)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SprTown1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.8, 7.3, 12.1, 14.6, 23.8, 31.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SprTown1:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.8, 7.3, 12.1, 23.8, 31.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1.2756, 1.22005), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SprTown1:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5, 10.1, 13.9, 18, 22.3, 29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.223529, 0.466667, 0.301961, 0.286275), Color(0.470588, 0.4, 0.184314, 0.184314), Color(0.34902, 0.145098, 0.12549, 1), Color(0.67451, 0.470588, 0.752941, 1), Color(0.552941, 0.764706, 0.941176, 1), Color(1, 4.403, 8.805, 1), Color(0.184314, 0.619608, 0.701961, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qk8gv"]
+_data = {
+"RESET": SubResource("Animation_1ioka"),
+"default": SubResource("Animation_bpvym")
+}
+
+[node name="BattleBackground" instance=ExtResource("1_ma210")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7jum3")
+texture = ExtResource("3_q1w5d")
+centered = false
+
+[node name="SprTown1" type="Sprite2D" parent="." index="1"]
+self_modulate = Color(0.223529, 0.466667, 0.301961, 1)
+material = SubResource("CanvasItemMaterial_p4nni")
+position = Vector2(80, 60)
+texture = ExtResource("2_gmfnm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_qk8gv")
+}
+autoplay = "default"

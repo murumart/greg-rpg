@@ -289,7 +289,7 @@ func update_using_portraits() -> void:
 
 
 func _reference_button_pressed(reference) -> void:
-	if reference in party(current_tab).inventory:
+	if reference in party(current_tab).inventory or reference == party(current_tab).armour or reference == party(current_tab).weapon:
 		if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 			if (reference == party(current_tab).armour):
 				party(current_tab).armour = ""
