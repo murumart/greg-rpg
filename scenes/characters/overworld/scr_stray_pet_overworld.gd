@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func interacted() -> void:
 	if not stray_animal_fought_changed:
-		DAT.incri("stray_animals_fought", 1)
+		DAT.incri("stray_animals_fought", battle_info.enemies.size())
 		stray_animal_fought_changed = true
 	super()
 
