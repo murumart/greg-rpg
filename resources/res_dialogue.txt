@@ -338,6 +338,7 @@ CHAR grandma
 
 DIALOGUE prank_call_0
 	prank calls are always funny.
+SOUND phone/phone_call
 	dialing the number %s...
 
 
@@ -368,7 +369,7 @@ CHAR
 CHAR stray_pet
 	gnaw... gnaw... crack...
 CHAR 
-	jookie!!! nooooo!!!
+	jooky!!! nooooo!!!
 
 
 DIALOGUE prank_call_4
@@ -407,6 +408,7 @@ DIALOGUE prank_call_enough
 
 
 DIALOGUE prank_call_over
+SOUND phone/call_end
 	(they hung up.)
 
 
@@ -606,10 +608,14 @@ CHAR zerma
 	or something like that.
 	i'm getting the hell outta here!
 	oh, final thing.
-	greg...
-	don't forget to save.
+	if you need help... try calling me!
+	maybe i can help!
+	here's a cell phone.
+ITEM cellphone
 CHAR 
-	(press ctrl+s to save.)
+	cellphone was received.
+CHAR zerma
+	toodles!
 # he leaves
 
 
@@ -2409,7 +2415,7 @@ DIALOGUE effect_guru_hi
 
 DIALOGUE effect_guru
 CHOICES bye
-	ask me anything...
+	ask me about a status effect you've seen...
 CHOICE_LINK bye
 	goodbye. i will remain here.
 

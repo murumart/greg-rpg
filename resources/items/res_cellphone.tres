@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://b5u6jxs10wsp7"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_r8sk6"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_t3mrb"]
+[ext_resource type="Texture2D" uid="uid://py2cbbxelpag" path="res://sprites/items/spr_cellphone.png" id="2_syrgf"]
+[ext_resource type="AudioStream" uid="uid://bhf2b7po78mu5" path="res://sounds/phone/phone_call.ogg" id="2_tt0ma"]
+
+[sub_resource type="Resource" id="Resource_lytjt"]
+script = ExtResource("1_t3mrb")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {
+"cellphone": true
+}
+
+[resource]
+script = ExtResource("1_r8sk6")
+name_in_file = &""
+name = &"cellphone"
+description = "new tech you can use to bother your friends with questions."
+texture = ExtResource("2_syrgf")
+attack_animation = ""
+play_sound = ExtResource("2_tt0ma")
+price = 9999
+use = -1
+consume_on_use = false
+payload = SubResource("Resource_lytjt")

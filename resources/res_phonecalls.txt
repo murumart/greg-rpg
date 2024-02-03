@@ -1,0 +1,151 @@
+DIALOGUE phone_dial
+	dialing...
+
+
+DIALOGUE phone_dial_nr
+	dialing the number %s...
+
+
+DIALOGUE phone_test
+CHAR zerma
+	testing, testing, 1, 2, 3!
+	you will be killed soon.
+
+
+DIALOGUE phone_test_room_special_under60
+CHAR zerma
+	you found me!
+
+
+DIALOGUE phone_greghouse
+CHAR zerma
+DATA_LINK called_zerma_before_leaving_for_town,true
+	hello? i said i'm driving! this better be urgent...
+	...and not just you checking if there's extra dialogue.
+	toodles!
+DATA_LINK called_zerma_before_leaving_for_town,false
+	hey hey! the phone works!
+	i'm driving at the moment, so i'll have to make this quick.
+	if you wish to leave and go to see the town...
+	...follow the road exit down to the south-east.
+SET_DATA called_zerma_before_leaving_for_town,true
+	good luck! toodles!
+
+
+DIALOGUE phone_greghouse_under60
+CHAR zerma
+	hey hey! oh dear! are you at your house?
+	i think it's too dange- rous for you to be there at the moment!
+	you should go back to town to level up!
+	toodles!
+
+
+DIALOGUE phone_in_battle
+CHAR zerma
+	hey hey! oh dear, are you in a fight right now?
+	you should focus on the battle!!
+DATA_LINK got_battle_tutorial,true
+	try and remember what i taught you...
+DATA_LINK got_battle_tutorial,false
+	i wish i could have taught you what to do...
+	sadly, you're on your own.
+	uhm, try hitting the enemy? that might work...
+	good luck!
+DATA_LINK 
+	toodles!
+
+
+DIALOGUE phone_in_battle_other_character
+	%s has no one to call!
+
+
+DIALOGUE phone_town_under6
+CHAR zerma
+	hey! you're at the town?
+	there may be job opportunities here...
+	i've heard crime is high, so beware of the thugs...
+	though, they may be useful combat experience.
+	at your level, though...
+	i recommend scanning any tall grass you find!
+	there may be some experience to be found there.
+	toodles for now!
+
+
+DIALOGUE phone_town_under10
+CHAR zerma
+	hey! you're at the town?
+	do you think you're strong enough to engage some of those...
+	...uhh...thugs...?
+	be sure to have healing items at hand.
+	good luck! toodles!
+
+
+DIALOGUE phone_bike_ghost_call
+	...
+	(this call appears to be from an anonymous number.)
+	there is something important that you must see.
+	find the 'bicycle'...
+	in the southwest...
+
+
+DIALOGUE phone_bike_ghost_call_ignore
+	...
+	so... you've decided to ignore my call.
+	very well. if you can't move the mountain...
+	go to the mountain yourself.
+# it fucking gets you
+
+
+DIALOGUE phone_town_under20
+CHAR zerma
+	hey hey! you're at the town?
+	keep fighting those thugs!
+	you can buy healing items from the store...
+	...or find alternative meals. i mean ways...
+	...to heal.
+	good luck! toodles!
+
+
+DIALOGUE phone_town_under30
+CHAR zerma
+	hey hey! you're at the town?
+	say, have you gone any farther...
+	i heard there's a lake at your town. have you been there?
+	it's probably to the south somewhere...
+
+
+DIALOGUE phone_town_skatepark
+CHAR zerma
+	hey hey! you're at the skatepark?
+	this place looks deserted. maybe by getting rid of...
+	...enough thugs, it could be lively once again?
+	have you ever tried skating?
+	toodles for now! good luck.
+
+
+DIALOGUE phone_town_under46
+CHAR zerma
+	hey hey! you're in town? great...
+	i just heard some alarming news.
+	apparently there is a vampire at your town!
+	be careful! if you don't take care of them...
+	...who knows what they will do to some random person.
+	fingers crossed! toodles!
+
+
+DIALOGUE phone_town_under50
+CHAR zerma
+	hey hey! have you dealt with the vampire yet?
+	i'm sure they'll do something nefarious...
+	...if you don't stop them. be careful!
+	toodles...
+
+
+DIALOGUE phone_call_over
+SOUND phone/call_end
+	they hung up.
+
+
+DIALOGUE phone_call_not_found
+SOUND phone/call_end
+	no one answered your call.

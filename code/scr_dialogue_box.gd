@@ -66,6 +66,10 @@ func load_dialogue_dict() -> void:
 		DialogueParser.parse_dialogue_from_file(
 			FileAccess.open("res://resources/res_status_effect_descriptions.txt", FileAccess.READ)
 	))
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open("res://resources/res_phonecalls.txt", FileAccess.READ)
+	))
 
 
 

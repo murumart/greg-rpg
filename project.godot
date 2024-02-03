@@ -175,6 +175,7 @@ mouse_left={
 2d_physics/layer_4="npc"
 2d_physics/layer_5="biking_obstacle"
 2d_physics/layer_6="biking_mail"
+2d_physics/layer_7="phone_area"
 
 [physics]
 

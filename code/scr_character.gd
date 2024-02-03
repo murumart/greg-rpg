@@ -179,6 +179,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
 	if pld.meta.get("skateboard", false):
 		message_owner.emit(&"skateboard_equipped")
+	if pld.meta.get("cellphone", false):
+		message_owner.emit(&"cellphone_called")
 
 
 func fully_heal() -> void:
