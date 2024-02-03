@@ -64,6 +64,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			choice_link_to_set = ""
 			data_link_to_set = []
 			instaskip_to_set = false
+			emotion_to_set = ""
 			loop_to_set = -1
 			dial = Dialogue.new()
 			dial.name = line.trim_prefix(NEW_DIAL)
@@ -132,6 +133,6 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			portrait_scale_to_set = Vector2(float(arr[0]), float(arr[1]))
 	if file.eof_reached():
 		dialogue_dictionary[dial.name] = dial
-	print("parsing dialogue file took %s ms" % ((Time.get_ticks_usec() - time) / 1000.0))
+	print("parsing %s took %s ms" % [file.get_path().get_file(), ((Time.get_ticks_usec() - time) * 0.001)])
 	return dialogue_dictionary
 

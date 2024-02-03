@@ -460,7 +460,6 @@ shape = SubResource("RectangleShape2D_0bcnh")
 
 [node name="RoomGate" parent="Areas" instance=ExtResource("12_363c6")]
 position = Vector2(8, 54)
-disabled = false
 destination = &"greg_house"
 gate_id = &"greghouse_inside-outside"
 extents = Vector2i(7, 8)

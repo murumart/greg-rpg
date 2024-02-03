@@ -34,6 +34,7 @@ func _ready() -> void:
 	elif intro_progress == 3:
 		after_battle()
 	else:
+		DAT.set_data("intro_cutscene_over", true)
 		$Cutscenes.queue_free()
 
 
@@ -112,6 +113,7 @@ func evicted() -> void:
 				LTS.enter_battle(preload("res://resources/battle_infos/zerma_tutorial.tres"))
 				intro_progress += 1
 			elif SOL.dialogue_choice == "no":
+				DAT.set_data("got_battle_tutorial", false)
 				SOL.dialogue_choice = ""
 				move_to_car()
 		, CONNECT_ONE_SHOT)
