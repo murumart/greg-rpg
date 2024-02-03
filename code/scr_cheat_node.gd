@@ -13,6 +13,7 @@ class_name CheatNode extends Node
 @export var fill_resources: bool = true
 @export var require_clean_char: bool = true
 @export var remove_when_gate_id := false
+@export var data_overrides := {}
 
 
 func _ready() -> void:
@@ -24,6 +25,8 @@ func _ready() -> void:
 	if DIR.standalone():
 		printerr("CheatNode should be removed!")
 		return
+	for k in data_overrides:
+		DAT.set_data(k, data_overrides[k])
 	for i in target_characters:
 		var charac := DAT.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:

@@ -510,6 +510,7 @@ replace_armour = &"rain_boot"
 replace_weapon = &"fish"
 force_spirits_into_use = true
 remove_when_gate_id = true
+data_overrides = null
 
 [editable path="UI/Panel/ScreenMainActions/CurrentInfo"]
 [editable path="UI/Panel/ScreenListSelect/SelectedGuy"]

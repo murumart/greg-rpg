@@ -670,6 +670,15 @@ centered = false
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 7)
 
+[node name="Notes" type="Sprite2D" parent="Decoration/Paper"]
+visible = false
+position = Vector2(9, 24)
+texture = ExtResource("3_y8swh")
+centered = false
+offset = Vector2(-5, -7)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 7)
+
 [node name="Sprite2D6" type="Sprite2D" parent="Decoration/Paper"]
 position = Vector2(72, 3)
 texture = ExtResource("3_y8swh")

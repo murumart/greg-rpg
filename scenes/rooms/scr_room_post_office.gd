@@ -1,7 +1,10 @@
 extends Room
 
 @export var force_atgirl := false
+var hes_dead := false
 @onready var ugc := Math.child_dict($Decoration/UshankaGuyCutscene) as Dictionary
+@onready var mail_man: OverworldCharacter = $Decoration/MailMan
+@onready var notes: Sprite2D = $Decoration/Paper/Notes
 
 
 func _ready() -> void:
@@ -12,21 +15,26 @@ func _ready() -> void:
 	if can_ushanka_guy_cutscene():
 		ugc.animator.play("cutscene_1")
 	else:
-		$Decoration/UshankaGuyCutscene.queue_free()
-		ugc.clear()
+		$Decoration/UshankaGuyCutscene.position.x += 999
+	if not DAT.get_data("vampire_fought", false) and DAT.get_character("greg").level > 49:
+		consequences()
 	pink_haired_girl_setup(force_atgirl)
 
 
 func _on_interaction_area_on_interact() -> void:
-	if not DAT.get_data("has_talked_to_mail_man", false):
-		mail_man_welcome()
-	elif not DAT.get_data("asked_about_mail_man_job", false):
-		mail_man_talk()
-	else:
-		mail_man_jobtalk()
-	if LTS.gate_id == "town-postoffice" and not get_meta("interacted", false):
-		DAT.incri("post_office_enters", 1)
-		set_meta("interacted", true)
+	if not hes_dead:
+		if not DAT.get_data("has_talked_to_mail_man", false):
+			mail_man_welcome()
+		elif not DAT.get_data("asked_about_mail_man_job", false):
+			mail_man_talk()
+		else:
+			mail_man_jobtalk()
+		if LTS.gate_id == "town-postoffice" and not get_meta("interacted", false):
+			DAT.incri("post_office_enters", 1)
+			set_meta("interacted", true)
+		return
+	# he's dead
+	SOL.dialogue("vampire_note")
 
 
 func mail_man_welcome() -> void:
@@ -70,7 +78,8 @@ func can_ushanka_guy_cutscene() -> bool:
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
 	if DAT.get_data("witnessed_ushanka_guy_cutscene", false): return false
 	if DAT.get_data("vampire_fought", false): return false
-	if DAT.get_character("greg").level > 39: return false
+	if DAT.get_character("greg").level > 49: return false
+	if DAT.get_data("uguy_following", false): return false
 	DAT.set_data("witnessed_ushanka_guy_cutscene", true)
 	return true
 
@@ -87,4 +96,18 @@ func stop_music() -> void:
 
 func play_music() -> void:
 	SND.play_song(music)
+
+
+func consequences() -> void:
+	SND.call_deferred("play_song", "")
+	DAT.set_data("mail_man_dead", true)
+	hes_dead = true
+	DAT.set_data("uguy_following", false)
+	mail_man.queue_free()
+	notes.show()
+	ugc.guy.global_position = Vector2(-50, 0)
+	ugc.guy.default_lines.clear()
+	ugc.guy.show()
+	ugc.guy.default_lines.append("uguy_mail_house_no_vampire")
+	ugc.guy.default_lines.append("uguy_mail_house_no_vampire_2")
 
