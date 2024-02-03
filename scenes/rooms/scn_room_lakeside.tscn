@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=67 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -271,6 +271,14 @@ input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"berries"])
 
+[sub_resource type="Resource" id="Resource_gi2lg"]
+script = ExtResource("18_7yl5j")
+title = "balloon"
+silver_required = 125
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"water_balloon"])
+
 [sub_resource type="Resource" id="Resource_xyn8f"]
 script = ExtResource("18_7yl5j")
 title = "hairdryer"
@@ -494,7 +502,7 @@ shape = SubResource("RectangleShape2D_0d6pt")
 
 [node name="KidOverworld" parent="Buildings/KidStand" instance=ExtResource("17_un030")]
 position = Vector2(0, 1)
-trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_qe2fe"), SubResource("Resource_n07d0"), SubResource("Resource_xyn8f")])
+trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_qe2fe"), SubResource("Resource_n07d0"), SubResource("Resource_gi2lg"), SubResource("Resource_xyn8f")])
 collision_extents = Vector2i(8, 5)
 
 [node name="Stand" type="Sprite2D" parent="Buildings/KidStand"]

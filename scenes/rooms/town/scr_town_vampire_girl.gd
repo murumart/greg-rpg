@@ -5,6 +5,7 @@ const INTERACTED := &"vampire_girl_interaction"
 const INTERACTIONS := &"girl_interactions"
 const POSITION := &"vampire_girl_position_index"
 const GUY_FOLLOW := &"uguy_following"
+const VAMP_FOUGHT := &"vampire_fought"
 
 var imminence: int = 0
 var bad_condition := false
@@ -23,7 +24,7 @@ var player_dir_timer: Timer
 
 func _ready() -> void:
 	var level := DAT.get_character("greg").level
-	if level < 40 or level >= 50:
+	if level < 40 or level >= 50 or DAT.get_data(VAMP_FOUGHT, false):
 		bad_condition = true
 		DAT.set_data(GUY_FOLLOW, false)
 		queue_free()
