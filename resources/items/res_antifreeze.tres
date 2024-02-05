@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://bgn1ueuejs6pn"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_0gskp"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_jsyhm"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_eaorb"]
+[ext_resource type="Texture2D" uid="uid://d0qe3xh3sc41q" path="res://sprites/items/spr_antifreeze.png" id="4_ogsmp"]
+
+[sub_resource type="Resource" id="Resource_l8h46"]
+script = ExtResource("1_0gskp")
+name = &"inspiration"
+strength = 8.0
+duration = 8
+
+[sub_resource type="Resource" id="Resource_sqss2"]
+script = ExtResource("1_0gskp")
+name = &"poison"
+strength = 10.0
+duration = 16
+
+[sub_resource type="Resource" id="Resource_nastd"]
+script = ExtResource("2_eaorb")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 3
+effects = Array[ExtResource("1_0gskp")]([SubResource("Resource_l8h46"), SubResource("Resource_sqss2")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_jsyhm")
+name_in_file = &""
+name = &"antifreeze"
+description = "a canister of antifreeze."
+texture = ExtResource("4_ogsmp")
+attack_animation = ""
+price = 410
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_nastd")

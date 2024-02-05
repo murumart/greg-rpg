@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://dtrn4nlh3vsjx"]
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://dtrn4nlh3vsjx"]
 
+[ext_resource type="Resource" uid="uid://dym2y8rnqeset" path="res://resources/rewards/res_vampire_reward.tres" id="1_7mdua"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_dj1o2"]
 
 [resource]
@@ -10,5 +11,6 @@ music = "vampire_fight"
 party = Array[String](["greg", "cashier_nice"])
 death_reason = "vampire"
 start_text = "the girl who is also a vampire?"
+rewards = ExtResource("1_7mdua")
 victory_music = true
 stop_music_before_end = true

@@ -3085,6 +3085,14 @@ DIALOGUE insp_police_block
 	the police are blocking this road. unfortunate!
 
 
+DIALOGUE insp_store_products_pile
+	piles of products yet to be shelved.
+
+
+DIALOGUE insp_store_plant
+	you feel profound empathy for this plant.
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.

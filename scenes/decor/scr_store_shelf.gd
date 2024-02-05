@@ -16,6 +16,11 @@ var typenames := {
 const PRODUCT_PATH := "res://sprites/world/object/store_shelves/spr_%s_products.png"
 @export_enum("empty", "healing", "food", "building") var type := 0: set = set_type
 @export var inventory: Array = []
+@export var hide_image := false:
+	set(to):
+		hide_image = to
+		$Background.visible = not to
+@export var cold := false
 
 
 func set_type(to: int):

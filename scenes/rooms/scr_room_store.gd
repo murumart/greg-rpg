@@ -3,19 +3,21 @@ extends Room
 # the store room scene
 # copied over from old greg and adjusted
 
-const NEIGHBOUR_WIFE_CYCLE = 470
 
 # item types stored here
 const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
+const COLD_HEALING := []
 const FOOD_ITEMS := ["muesli", "mueslibar", "bread", "salt"]
+const COLD_FOOD := ["frozen_meat"]
 const BUILDING_ITEMS := ["tape", "glue"]
+const COLD_BUILDING := ["antifreeze"]
 
 const WAIT_UNTIL_RESTOCK := 300
 const WAIT_UNTIL_CASHIER_SWITCH := 420
 
-var item_storage = []
+var item_storage := []
 
-@onready var shelves = $Shelves.get_children()
+@onready var shelves := $Shelves.get_children()
 # this is a dictionary containing a huge list of all shelves in the store
 # which are stored as dictionaries that store the item type and count and such
 var store_data := {}
@@ -27,6 +29,7 @@ var store_cashier := StoreCashier.new()
 
 @onready var cashier_sprite := $Kassa/Cashier/Sprite
 @onready var cashier := $Kassa/Cashier as OverworldCharacter
+@onready var decor := $Decor
 
 
 func _ready():
@@ -42,12 +45,13 @@ func _ready():
 
 	update_shopping_list()
 	load_store_data()
-	neighbour_wife_position()
+	decor.store_cashier = store_cashier
 	if not store_cashier.cashier == "dead":
 		SND.play_song("air_conditioning", 1.0, {
 			play_from_beginning = true,
 			start_volume = 0,
 		})
+	decor.neighbour_wife_position()
 
 
 func set_store_wall_colours():
@@ -83,29 +87,34 @@ func restock() -> void:
 	if DAT.get_data("fighting_cashier", false):
 		DAT.set_data("noticed_cashier_gone", DAT.seconds)
 		return
+	decor.product_placement()
 	var store_shelf_count := shelves.size()
+	var cold_shelves := []
+	for x in store_shelf_count:
+		if shelves[x].cold:
+			cold_shelves.append(x)
 	var arrays := [HEALING_ITEMS, FOOD_ITEMS, BUILDING_ITEMS]
+	var cold_arrays := [COLD_HEALING, COLD_FOOD, COLD_BUILDING]
 
 	store_data["shelves"] = []
-	store_data["shelves"].clear() # for good measure i guess :dace:
 	for i in store_shelf_count:
 		var inventory = []
-		var from: Array = arrays.pick_random()
+		var type := randi() % 3
+		var cold := i in cold_shelves
+		var from: Array = arrays[type] if not cold else cold_arrays[type]
 		var fromremove := from.duplicate()
-		for J in randi()%4:
+		for J in randi() % 4:
 			if fromremove.size() < 1: continue
 			var item = fromremove.pick_random()
 			if item not in DAT.item_dict.keys(): continue
 			fromremove.erase(item)
 			var itemprice = DAT.get_item(item).price
-			var itemcount = roundi(minf(3000/pow(itemprice, 1.5) + 1, 8))
+			var itemcount = roundi(minf(3000 / pow(itemprice, 1.5) + 1, 8)) # ???
 			if itemcount < 1: continue
 			inventory.append({"item": item,"count": itemcount})
-		var itemtype = 0
-		if from in arrays:
-			itemtype = arrays.find(from) + 1
-		else: itemtype = 0
-		if inventory.size() < 1: itemtype = 0
+		var itemtype := type + 1
+		if inventory.size() < 1:
+			itemtype = 0
 		store_data["shelves"].append({"inventory": inventory, "type": itemtype})
 	DAT.set_data("store_data", store_data)
 	DAT.set_data("store_restock_second", DAT.seconds)
@@ -212,14 +221,4 @@ func dothethingthething() -> void:
 	DAT.free_player("cashier_revenge")
 	DAT.set_data("fighting_cashier", true)
 
-
-# the neighbour wife can appear in the store
-func neighbour_wife_position() -> void:
-	var neighbour_wife := $NeighbourWife
-	if store_cashier.cashier == "dead":
-		neighbour_wife.queue_free()
-		return
-	var time := wrapi(DAT.seconds, 0, NEIGHBOUR_WIFE_CYCLE)
-	if time < NEIGHBOUR_WIFE_CYCLE / 2:
-		neighbour_wife.queue_free()
 

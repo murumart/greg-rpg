@@ -186,7 +186,7 @@ func load_battle(info: BattleInfo) -> void:
 	death_reason = info.death_reason
 	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
 	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
-	if not battle_rewards:
+	if not battle_rewards.valid():
 		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
 	message(info.get_("start_text",
 		("%s lunges at you!" % enemies.front().actor_name) if enemies.size() else "no one is here."
@@ -644,7 +644,7 @@ func open_end_screen(victory: bool) -> void:
 		battle_rewards.add(xp_reward)
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
-			await battle_rewards.granted
+			#await battle_rewards.granted
 		await SOL.dialogue_closed
 		doing = Doings.DONE
 		listening_to_player_input = true

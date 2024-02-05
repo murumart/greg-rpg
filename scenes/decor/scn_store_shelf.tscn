@@ -13,6 +13,8 @@ size = Vector2(20, 5)
 
 [node name="StoreShelf" type="Node2D"]
 script = ExtResource("1_ysbrw")
+hide_image = null
+cold = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
@@ -22,7 +24,9 @@ texture = ExtResource("3_kbg3a")
 position = Vector2(0, -10)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-modulate = Color(1, 0.498039, 1, 1)
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
 script = ExtResource("2_ueb27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

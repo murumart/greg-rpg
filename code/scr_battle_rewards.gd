@@ -13,6 +13,10 @@ func add(reward: Reward):
 	rewards.append(reward)
 
 
+func valid() -> bool:
+	return rewards.size() > 0
+
+
 func grant(speak := true) -> void:
 	var silver_pool: int = 0
 	var spirit_pool: Array[String] = []
