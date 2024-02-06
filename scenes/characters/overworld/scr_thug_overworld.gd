@@ -12,8 +12,6 @@ const KS := "kor_sten"
 const A := "abiss"
 const M := "moron"
 
-static var thugs_battled_changed := false
-
 @export var chimney_probability: Curve
 @export var well_probability: Curve
 @export var shopping_cart_probability: Curve
@@ -47,9 +45,9 @@ func chase(body) -> void:
 
 func interacted() -> void:
 	super()
-	if not thugs_battled_changed:
+	if not RunFlags.thugs_battled_changed:
 		DAT.incri("thugs_battled", battle_info.enemies.size())
-		thugs_battled_changed = true
+		RunFlags.thugs_battled_changed = true
 
 
 func gen_enemies() -> Array[String]:

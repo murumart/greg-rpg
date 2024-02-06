@@ -10,7 +10,7 @@ extends OverworldCharacter
 	&"freebird": freebird_probability,
 	&"fox": fox_probability,
 	&"worm": worm_probability
-	
+
 }
 
 var difficulty := 0.0

@@ -27,7 +27,7 @@ func _init() -> void:
 
 # instead of get_tree().change_scene() or whatever
 func change_scene_to(path: String, options := {}) -> void:
-	get_tree().root.get_child(-1).queue_free()
+	get_current_scene().queue_free()
 	var free_us := get_tree().get_nodes_in_group("free_on_scene_change")
 	DAT.set_data("changing_scene_to", path)
 	if options.get("free_those_nodes", true):
@@ -36,15 +36,18 @@ func change_scene_to(path: String, options := {}) -> void:
 	await get_tree().process_frame
 	var new_scene: Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
-	if new_scene.has_method("_option_init"): new_scene._option_init(options)
-	reset_flags()
+	if new_scene.has_method("_option_init"):
+		new_scene._option_init(options)
+	RunFlags.reset_scene_flags()
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
 	scene_changed.emit()
 
 
 # this should be a default gdscript function cmon
+# turns out it kinda is already. damn
 func get_current_scene() -> Node:
+	#return get_tree().current_scene
 	return get_tree().root.get_child(-1)
 
 
@@ -122,11 +125,3 @@ func skateboard_check() -> bool:
 
 	return false
 
-
-func reset_flags() -> void:
-	preload("res://scenes/characters/overworld/scr_thug_overworld.gd"
-		).thugs_battled_changed = false
-	preload("res://scenes/characters/overworld/scr_stray_pet_overworld.gd"
-		).stray_animal_fought_changed = false
-	preload("res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd"
-		).broken_fishermen_fought_changed = false

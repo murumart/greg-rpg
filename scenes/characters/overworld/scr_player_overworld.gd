@@ -167,7 +167,8 @@ func _save_me() -> void:
 
 
 func get_save_key(key: String) -> String:
-	return str("player_in_", LTS.get_current_scene().name.to_snake_case(), "_", key)
+	var scene := LTS.get_current_scene() as Node
+	return str("player_in_", scene.name.to_snake_case(), "_", key)
 
 
 func close_menu() -> void:

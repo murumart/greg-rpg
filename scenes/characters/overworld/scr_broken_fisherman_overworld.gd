@@ -5,8 +5,6 @@ const S := "sopping"
 const F := "fish"
 const N := "not_fish"
 
-static var broken_fishermen_fought_changed := false
-
 
 func _ready() -> void:
 	super._ready()
@@ -15,9 +13,9 @@ func _ready() -> void:
 
 
 func interacted() -> void:
-	if not broken_fishermen_fought_changed:
+	if not RunFlags.fishermen_battled_changed:
 		DAT.incri("broken_fishermen_fought", battle_info.enemies.size())
-		broken_fishermen_fought_changed = true
+		RunFlags.fishermen_battled_changed = true
 	super()
 
 

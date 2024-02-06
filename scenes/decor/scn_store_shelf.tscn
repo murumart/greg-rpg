@@ -13,8 +13,6 @@ size = Vector2(20, 5)
 
 [node name="StoreShelf" type="Node2D"]
 script = ExtResource("1_ysbrw")
-hide_image = null
-cold = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -10)

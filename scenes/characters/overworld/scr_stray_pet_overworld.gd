@@ -7,8 +7,6 @@ const RB := "rainbird"
 
 var enmis: Array[String] = []
 
-static var stray_animal_fought_changed: bool = false
-
 
 func _ready() -> void:
 	super._ready()
@@ -16,9 +14,9 @@ func _ready() -> void:
 
 
 func interacted() -> void:
-	if not stray_animal_fought_changed:
+	if not RunFlags.animals_battled_changed:
 		DAT.incri("stray_animals_fought", battle_info.enemies.size())
-		stray_animal_fought_changed = true
+		RunFlags.animals_battled_changed = true
 	super()
 
 
