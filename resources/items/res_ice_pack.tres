@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://1hlxrwejdph4"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_hhlui"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_mex6q"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_45vps"]
+[ext_resource type="Texture2D" uid="uid://b1a60q1j28r1n" path="res://sprites/items/spr_icepack.png" id="4_gyp70"]
+
+[sub_resource type="Resource" id="Resource_428sp"]
+script = ExtResource("1_hhlui")
+name = &"fire"
+strength = 1.0
+duration = -7
+
+[sub_resource type="Resource" id="Resource_ap6gj"]
+script = ExtResource("2_45vps")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_hhlui")]([SubResource("Resource_428sp")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_mex6q")
+name_in_file = &""
+name = &"ice pack"
+description = "it's cold. not reusable"
+texture = ExtResource("4_gyp70")
+attack_animation = ""
+price = 300
+use = 2
+consume_on_use = true
+payload = SubResource("Resource_ap6gj")

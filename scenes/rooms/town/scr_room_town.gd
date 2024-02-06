@@ -12,7 +12,7 @@ func _ready() -> void:
 	super._ready()
 
 	if DAT.get_data("stolen_from_store", 0) > 199 and\
-	not DAT.get_data("fighting_cashier", false):
+	not DAT.get_data("cashier_dead", false):
 		store_door.destination = ""
 
 	if not DAT.get_data("zerma_left", false):

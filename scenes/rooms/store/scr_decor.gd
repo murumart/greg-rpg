@@ -3,6 +3,8 @@ extends Node2D
 const NEIGHBOUR_WIFE_CYCLE = 470
 
 var store_cashier: StoreCashier
+@onready var cashier := $"../Kassa/Cashier" as OverworldCharacter
+@onready var wli_particles: GPUParticles2D = $"../Kassa/Cashier/WLIParticles"
 
 @onready var products := get_tree().get_nodes_in_group("products")
 
@@ -29,3 +31,7 @@ func neighbour_wife_position() -> void:
 	var time := wrapi(DAT.seconds, 0, NEIGHBOUR_WIFE_CYCLE)
 	if time < NEIGHBOUR_WIFE_CYCLE / 2:
 		neighbour_wife.queue_free()
+
+
+func dothethingthething() -> void:
+	print("hiii")

@@ -12,8 +12,9 @@ class_name CheatNode extends Node
 @export var force_spirits_into_use := false
 @export var fill_resources: bool = true
 @export var require_clean_char: bool = true
-@export var remove_when_gate_id := false
+@export var remove_when_gate_id := true
 @export var data_overrides := {}
+@export var add_seconds := 0
 
 
 func _ready() -> void:
@@ -27,10 +28,11 @@ func _ready() -> void:
 		return
 	for k in data_overrides:
 		DAT.set_data(k, data_overrides[k])
+	DAT.seconds += add_seconds
 	for i in target_characters:
 		var charac := DAT.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:
-			return
+			continue
 		charac.level_up(level_gain, false, false)
 		charac.unused_sprits.append_array(new_spirits)
 		if not force_spirits_into_use and new_spirits:

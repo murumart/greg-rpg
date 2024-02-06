@@ -14,7 +14,7 @@ func speak():
 	if cashier == "dead": return
 	var dat := DAT.A
 	var unpaid_items: Array = dat.get("unpaid_items", [])
-	
+
 	# welcome and tutorial dialogue when not buying anything
 	if unpaid_items.size() < 1:
 		var cashier_welcomed: bool = DAT.get_data("cashier_%s_welcomed" % cashier, false)
@@ -35,10 +35,10 @@ func speak():
 				SOL.dialogue("cashier_%s_chat" % cashier)
 			else:
 				SOL.dialogue("cashier_%s_tutorial" % cashier)
-		
+
 		finished.emit()
 		return
-	
+
 	# dialogue if we're buying something
 	var price := 0
 	var silver = dat.get("silver", 0)
@@ -87,12 +87,11 @@ func warn() -> void:
 	else:
 		# just murder you
 		SND.play_song("")
-		DAT.capture_player("cashier_revenge")
+		DAT.capture_player("cashier_revenge", false, false)
 		SOL.dialogue_box.dial_concat("cashier_mean_notice", 3, [stolen_profit])
 		SOL.dialogue_box.dial_concat("cashier_mean_notice_repeat", 1, [stolen_profit])
 		SOL.dialogue("cashier_mean_notice" + addrepeat())
-		await SOL.dialogue_closed
-		dothething.emit()
+		SOL.dialogue_closed.connect(func(): dothething.emit(), CONNECT_ONE_SHOT)
 
 
 func addrepeat() -> String:

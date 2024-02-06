@@ -6,7 +6,7 @@ extends Room
 
 # item types stored here
 const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
-const COLD_HEALING := []
+const COLD_HEALING := ["ice_pack"]
 const FOOD_ITEMS := ["muesli", "mueslibar", "bread", "salt"]
 const COLD_FOOD := ["frozen_meat"]
 const BUILDING_ITEMS := ["tape", "glue"]
@@ -84,7 +84,7 @@ func load_store_data():
 # put items on the shelves
 func restock() -> void:
 	# if the cashier has been fought and won against, don't
-	if DAT.get_data("fighting_cashier", false):
+	if DAT.get_data("cashier_dead", false):
 		DAT.set_data("noticed_cashier_gone", DAT.seconds)
 		return
 	decor.product_placement()
@@ -141,7 +141,7 @@ func check_restock() -> void:
 
 func check_cashier_switch() -> void:
 	# oops....
-	if DAT.get_data("fighting_cashier", false):
+	if DAT.get_data("cashier_dead", false):
 		cashier.queue_free()
 		store_cashier.cashier = "dead" # happens
 		DIR.sej(144, 1)
@@ -157,6 +157,8 @@ func check_cashier_switch() -> void:
 
 func _on_kassa_speak_on_interact() -> void:
 	store_cashier.speak()
+	if not is_instance_valid(cashier):
+		return
 	cashier.move_to(cashier.global_position)
 	cashier.direct_walking_animation(Vector2.RIGHT)
 	cashier.set_state(OverworldCharacter.States.TALKING)
@@ -195,30 +197,6 @@ func _on_room_gate_entered() -> void:
 
 # mean cashier steal cutscene
 func dothethingthething() -> void:
-	var particles := $Kassa/Cashier/WLIParticles
-	SND.play_song("ac_scary", 0.2, {pitch_scale = 0.56})
-	SND.play_sound(preload("res://sounds/spirit/wli_up.ogg"))
-	$Kassa/Cashier/HoverAnimation.play("hover")
-	particles.show()
-	var movewt := create_tween()
-	var tw := create_tween()
-	var tw2 := create_tween()
-	movewt.tween_property(cashier, "global_position", Vector2(0, 48), 1.0)
-	cashier.self_modulate.a = 0.0
-	particles.modulate.a = 0.0
-	tw.tween_property(cashier, "self_modulate:a", 1.0, 3.0)
-	tw2.tween_property(particles, "modulate:a", 1.0, 1.0)
-	cashier.random_movement = false
-	await tw2.step_finished
-	SOL.dialogue("cashier_mean_mean" + store_cashier.addrepeat())
-	await SOL.dialogue_closed
-	SND.play_sound(preload("res://sounds/spirit/wli_down.ogg"))
-	SND.play_song("", 2000)
-	await get_tree().create_timer(2.0).timeout
-	LTS.enter_battle(BattleInfo.new().set_background("store")\
-	.set_enemies(["cashier_mean"]).set_music("entirely_just"))
-	DAT.force_data("mean_cashier_saw_you_steal", true)
-	DAT.free_player("cashier_revenge")
-	DAT.set_data("fighting_cashier", true)
+	decor.dothethingthething()
 
 

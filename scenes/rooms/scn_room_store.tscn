@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=36 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ceukg4w8cdlw0" path="res://sprites/world/object/store_shelves/spr_plant.png" id="18_aqsfi"]
 [ext_resource type="Texture2D" uid="uid://bnvnuppg0j2rd" path="res://sprites/world/object/store_shelves/spr_products_pile.png" id="19_d71lm"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="20_r2fhk"]
+[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="22_qf0t1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -498,6 +499,12 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("15_70cgv")
 animation = &"walk_down"
 frame_progress = 0.826367
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("22_qf0t1")
+level_gain = 39
+force_spirits_into_use = true
+add_seconds = 500
 
 [connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]

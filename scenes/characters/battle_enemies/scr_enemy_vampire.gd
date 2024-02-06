@@ -158,7 +158,8 @@ func _progress_check(damage: float) -> float:
 func _comments(actor: BattleActor) -> void:
 	if actor == reference_to_opposing_array[0]:
 		var greg := actor
-		if (comments_made == 0 and reference_to_opposing_array[1].character.health > 0 and
+		if (comments_made == 0 and reference_to_opposing_array.size() > 1 and
+				reference_to_opposing_array[1].character.health > 0 and
 				greg.character.spirits.size() < 1 and progress == 3):
 			SOL.dialogue("vampire_steal_all_spirits")
 			comments_made += 1

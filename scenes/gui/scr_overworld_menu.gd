@@ -108,6 +108,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					if using_menu_choice == party_size(): # trashcan
 						party(current_tab).inventory.erase(using_item)
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
+						if using_item == &"cellphone":
+							party(current_tab).inventory.append("cellphone")
+							DAT.get_item("cellphone").description = preload(
+									"res://code/res_cellphone_logic.gd").READD_DESC
 					else:
 						party(using_menu_choice).handle_item(using_item)
 
