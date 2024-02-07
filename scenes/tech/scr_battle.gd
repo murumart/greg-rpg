@@ -501,7 +501,9 @@ func open_list_screen() -> void:
 			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
 			screen_list_select.show()
 		Doings.ITEM_MENU:
-			Math.load_reference_buttons_groups(current_guy.character.inventory, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+			var items := current_guy.character.inventory.duplicate()
+			items.sort()
+			Math.load_reference_buttons_groups(items, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
