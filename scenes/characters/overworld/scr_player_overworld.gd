@@ -117,11 +117,11 @@ func direct_animation() -> void:
 
 
 # for cutscenes and such
-func animate(animation_name: String) -> void:
+func animate(animation_name: String, moving := false) -> void:
 	if not animation_name.length():
 		sprite.stop()
 	sprite.play(animation_name)
-	sprite.speed_scale = 1.0
+	sprite.speed_scale = 1.0 * float(moving)
 
 
 func interact() -> void:

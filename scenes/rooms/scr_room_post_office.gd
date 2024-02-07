@@ -2,9 +2,9 @@ extends Room
 
 @export var force_atgirl := false
 var hes_dead := false
-@onready var ugc := Math.child_dict($Decoration/UshankaGuyCutscene) as Dictionary
 @onready var mail_man: OverworldCharacter = $Decoration/MailMan
 @onready var notes: Sprite2D = $Decoration/Paper/Notes
+@onready var ushanka_guy_cutscene := $Decoration/UshankaGuyCutscene
 
 
 func _ready() -> void:
@@ -13,11 +13,13 @@ func _ready() -> void:
 		mail_man_welcome_after_biking()
 		return
 	if can_ushanka_guy_cutscene():
-		ugc.animator.play("cutscene_1")
+		ushanka_guy_cutscene.start()
 	else:
-		$Decoration/UshankaGuyCutscene.position.x += 999
+		ushanka_guy_cutscene.cleanup()
 	if not DAT.get_data("vampire_fought", false) and DAT.get_character("greg").level > 49:
-		consequences()
+		hes_dead = true
+		notes.show()
+		ushanka_guy_cutscene.consequences()
 	pink_haired_girl_setup(force_atgirl)
 
 
@@ -84,30 +86,5 @@ func can_ushanka_guy_cutscene() -> bool:
 	return true
 
 
-func dial(key: String) -> void:
-	SOL.dialogue(key)
-	ugc.animator.pause()
-	SOL.dialogue_closed.connect(func():ugc.animator.play(), CONNECT_ONE_SHOT)
 
-
-func stop_music() -> void:
-	SND.play_song("", 0.5)
-
-
-func play_music() -> void:
-	SND.play_song(music)
-
-
-func consequences() -> void:
-	SND.call_deferred("play_song", "")
-	DAT.set_data("mail_man_dead", true)
-	hes_dead = true
-	DAT.set_data("uguy_following", false)
-	mail_man.queue_free()
-	notes.show()
-	ugc.guy.global_position = Vector2(-50, 0)
-	ugc.guy.default_lines.clear()
-	ugc.guy.show()
-	ugc.guy.default_lines.append("uguy_mail_house_no_vampire")
-	ugc.guy.default_lines.append("uguy_mail_house_no_vampire_2")
 

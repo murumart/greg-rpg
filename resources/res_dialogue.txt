@@ -1426,9 +1426,7 @@ EMO
 EMO serious
 	if he was a vampire he would have been found out...
 	...and pitchforked to death many times over by now.
-
-
-DIALOGUE pocutscene_4
+CHAR 
 	oh?
 	then what were you thinking about...
 CHAR mail_man
@@ -1448,7 +1446,7 @@ CHAR
 # he leaves
 
 
-DIALOGUE pocutscene_5
+DIALOGUE pocutscene_4
 CHAR mail_man
 EMO serious
 DATA_LINK mail_heard_name,true
