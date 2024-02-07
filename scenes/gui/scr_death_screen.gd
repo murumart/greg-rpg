@@ -53,11 +53,12 @@ const DEATH_REASONS := {
 		"text": "[center]looooooooseeeeeeeer!",
 	}
 }
+@export var test_death := ""
 
 @onready var text_box := $TextBox
 @onready var picture := $Pictures
-
-@export var test_death := ""
+@onready var retry_button: Button = $HBoxContainer/RetryButton
+@onready var quit_button: Button = $HBoxContainer/QuitButton
 
 
 func _ready() -> void:
@@ -73,13 +74,16 @@ func _ready() -> void:
 	{true:func():{0:func():DIR.sej(125,1)}.get(DIR.gej(2,0),func(
 	):pass).call(),false:func():pass}[DAT.death_reason=="sus"].call()
 	DAT.death_reason = "default"
-	$HBoxContainer/RetryButton.call_deferred("grab_focus")
+	retry_button.call_deferred("grab_focus")
 	DIR.incj(2, 1)
+	if Math.inrange(DAT.get_data("nr"), 0.85, 0.86):
+		retry_button.text = "restry"
+		quit_button.text = "quite"
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		$HBoxContainer/RetryButton.grab_focus()
+		retry_button.grab_focus()
 
 
 func _on_retry_button_pressed() -> void:
