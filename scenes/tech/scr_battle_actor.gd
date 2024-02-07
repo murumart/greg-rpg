@@ -169,24 +169,24 @@ func flee() -> void:
 func get_attack() -> float:
 	var x := 0.0
 	x += character.get_stat("attack")
-	if has_status_effect(&"attack"):
-		x += get_status_effect(&"attack").strength
+	for e in status_effects:
+		x += e.attack_bonus(self)
 	return maxf(x, 1) * stat_multiplier
 
 
 func get_defense() -> float:
 	var x := 0.0
 	x += character.get_stat("defense")
-	if has_status_effect(&"defense"):
-		x += get_status_effect(&"defense").strength
+	for e in status_effects:
+		x += e.defense_bonus(self)
 	return maxf(x, 1) * stat_multiplier
 
 
 func get_speed() -> float:
 	var x := 0.0
 	x += character.get_stat("speed")
-	if has_status_effect(&"speed"):
-		x += get_status_effect(&"speed").strength
+	for e in status_effects:
+		x += e.speed_bonus(self)
 	if has_status_effect(&"little"):
 		x *= 0.25
 	return maxf(x, 1) * stat_multiplier
@@ -219,8 +219,6 @@ func attack(subject: BattleActor) -> void:
 	var crit := randf() <= 0.05
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	if crit: pld.health *= 2.5
-	if gender:
-		pld.gender = gender
 	var weapon: Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
@@ -231,6 +229,8 @@ func attack(subject: BattleActor) -> void:
 		pld.animation_on_receive = weapon.payload.animation_on_receive
 		if weapon.payload.gender:
 			pld.gender = weapon.payload.gender
+	if get_gender():
+		pld.gender = get_gender()
 	subject.handle_payload(pld) # the actual attack
 	if crit:
 		SOL.vfx(
@@ -251,6 +251,8 @@ func attack(subject: BattleActor) -> void:
 		SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
 	else:
 		blunt_visuals(subject)
+	if get_gender() == Genders.ELECTRIC:
+		SOL.vfx("electric_attack", get_effect_center(subject), {parent = subject})
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
@@ -518,3 +520,14 @@ func blunt_visuals(subject: BattleActor) -> void:
 
 func _to_string() -> String:
 	return actor_name
+
+
+func get_gender() -> int:
+	if has_status_effect("electric"):
+		return Genders.ELECTRIC
+	if has_status_effect("fire"):
+		return Genders.FLAMING
+	if has_status_effect("sopping"):
+		return Genders.SOPPING
+	return gender
+

@@ -89,9 +89,6 @@ func added(actor: BattleActor) -> void:
 	match name:
 		&"little":
 			actor.scale *= 0.25
-		&"ghostly":
-			self.set_meta(&"last_gender", actor.gender)
-			actor.gender = Genders.GHOST
 
 
 func turn(actor: BattleActor) -> void:
@@ -153,12 +150,30 @@ func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 	return amount - amt
 
 
+func attack_bonus(actor: BattleActor) -> float:
+	if name == &"attack":
+		return strength
+	if name == &"electric":
+		return 6 + strength
+	return 0
+
+
+func defense_bonus(actor: BattleActor) -> float:
+	if name == &"defense":
+		return strength
+	return 0
+
+
+func speed_bonus(actor: BattleActor) -> float:
+	if name == &"speed":
+		return strength
+	return 0
+
+
 func removed(actor: BattleActor) -> void:
 	match name:
 		&"little":
 			actor.scale *= 4
-		&"ghostly":
-			actor.gender = get_meta(&"last_gender")
 
 
 func visuals(actor: BattleActor) -> void:

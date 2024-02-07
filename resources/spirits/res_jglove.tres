@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_khoax"]
 script = ExtResource("1_kpjo1")
-name = "attack"
-strength = 12
+name = &"electric"
+strength = 3.0
 duration = 6.0
 
 [sub_resource type="Resource" id="Resource_5vjmp"]
@@ -21,9 +21,9 @@ magic = null
 magic_percent = null
 max_magic_percent = null
 steal_magic = 0.0
-attack_increase = 12.0
-defense_increase = null
-speed_increase = null
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
 gender = 1
 effects = Array[ExtResource("1_kpjo1")]([SubResource("Resource_khoax")])
 delay = 0.0
@@ -35,7 +35,7 @@ meta = {}
 script = ExtResource("2_pj8la")
 name_in_file = &"jglove"
 name = &"jglove"
-description = "angry hands"
+description = "electric hands"
 animation = &"jglove_screen"
 use_animation = &""
 receive_animation = &"jglove_local"

@@ -75,3 +75,8 @@ DIALOGUE stefde_appetising
 
 DIALOGUE stefde_little
 	you're tiny, which makes you slower, but not any weaker.
+
+
+DIALOGUE stefde_electric
+	you are a bit stronger! 
+	your physical attacks deal electric type damage.

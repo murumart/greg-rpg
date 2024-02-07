@@ -19,7 +19,8 @@ const ICONS := {
 	&"sopping": Rect2(18, 12, 6, 6),
 	&"appetising": Rect2(24, 12, 6, 6),
 	&"sopping_immunity": Rect2(0, 36, 6, 6),
-	&"little": Rect2(6, 36, 6, 6)
+	&"little": Rect2(6, 36, 6, 6),
+	&"electric": Rect2(12, 36, 6, 6)
 }
 
 @export var name := &""

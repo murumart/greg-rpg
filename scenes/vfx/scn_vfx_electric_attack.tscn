@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bajl0gp7tdhcy"]
+
+[ext_resource type="AudioStream" uid="uid://ccw34efjit2k" path="res://sounds/attack_electric.ogg" id="1_u3k2t"]
+[ext_resource type="Texture2D" uid="uid://duh04w84k0fve" path="res://sprites/vfx/spr_electric_attack.png" id="2_kd0qo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6jnp"]
+atlas = ExtResource("2_kd0qo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pks1"]
+atlas = ExtResource("2_kd0qo")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g222c"]
+atlas = ExtResource("2_kd0qo")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2rjs"]
+atlas = ExtResource("2_kd0qo")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff5sc"]
+atlas = ExtResource("2_kd0qo")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5ise"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6jnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pks1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g222c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2rjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff5sc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="VfxElectricAttack" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_u3k2t")
+volume_db = 2.0
+autoplay = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o5ise")
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="queue_free"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="hide"]
