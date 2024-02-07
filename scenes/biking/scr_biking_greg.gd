@@ -41,7 +41,7 @@ func _ready() -> void:
 	set_ragdoll_enabled(false)
 	animation_tree.active = true
 	max_health = roundi(DAT.get_character("greg").max_health)
-	health = roundi(DAT.get_character("greg").health)
+	health = max_health
 
 
 var rbpx := BikingGame.ROAD_BOUNDARIES.position.x
@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	# https://cdn.discordapp.com/attachments/1065785853017862144/1101131203689586782/gregexplains_wheels.png for explanation
 	for w in wheels:
 		w.rotation = w.rotation + (speed * delta * 0.25 * (Vector2(input.x + float(not paused), input.y).length() if not (global_position.x >= rbsx or global_position.x <= rbpx) else 1.0))
-	
+
 	if speed > 0 and not paused:
 		if Input.is_action_pressed("ui_accept"):
 			if super_mail: lob(2.0)
@@ -74,13 +74,13 @@ func _physics_process(delta: float) -> void:
 		head_sprite.region_rect.position.y = 10.0
 	if Input.is_action_just_released("ui_text_backspace"):
 		head_sprite.region_rect.position.y = 0.0
-	
+
 	# do stuff but only sometimes
 	if Engine.get_physics_frames() % 16 == 0:
 		for e in effects.keys():
 			if e == "coin_magnet":
 				get_tree().set_group("biking_coins", "following", true)
-			
+
 			# reduce effect durations
 			var effect: Dictionary = effects[e]
 			var time: float = effect.get("time", 0.0)
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 			effect["time"] = time
 			if time <= 0:
 				effects.erase(e)
-	
+
 	nodes.modulate.a = 1 - (int(invincibility_timer.time_left > 0.0) * 0.5)
 
 
