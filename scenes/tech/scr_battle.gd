@@ -10,7 +10,7 @@ signal player_finished_acting
 
 # this is the default for testing
 var load_options: BattleInfo = BattleInfo.new(
-).set_music("entirely_just").set_party(["greg",]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("store").set_death_reason("default").set_enemies(["cashier_mean"])
+).set_music("entirely_just").set_party(["greg","cashier_nice","zerma"]).set_rewards(load("res://resources/rewards/res_test_reward.tres")).set_background("store").set_death_reason("default").set_enemies(["cashier_mean"])
 
 var stop_music_before_end := true
 var play_victory_music := true
@@ -262,6 +262,7 @@ func add_enemy(character_id: String, ally := false) -> void:
 func add_party_member(id: String) -> void:
 	var party_member: BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.load_character(id)
+	DAT.save_char_to_data(id)
 
 	add_actor(party_member, Teams.PARTY)
 
