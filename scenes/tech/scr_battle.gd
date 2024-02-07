@@ -613,7 +613,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 			open_party_info_screen()
 			return
 		else:
-			spirit_name.text = "not enough magic!"
+			spirit_name.text = "not enough sp!"
 
 	SND.play_sound(preload("res://sounds/error.ogg"), {bus = "ECHO"})
 	append_action_history("spirit_fail")

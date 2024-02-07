@@ -126,7 +126,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					var spirit: Spirit = DAT.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
 						SND.play_sound(load("res://sounds/error.ogg"))
-						using_label.text = "not enough magic!"
+						using_label.text = "not enough sp!"
 					else:
 						party(using_menu_choice).handle_payload(spirit.payload)
 						party(current_tab).magic = party(current_tab).magic - spirit.cost

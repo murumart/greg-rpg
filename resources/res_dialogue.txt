@@ -3091,6 +3091,10 @@ DIALOGUE insp_store_plant
 	you feel profound empathy for this plant.
 
 
+DIALOGUE insp_ph_doghouse
+	a pet-sized house.
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.
