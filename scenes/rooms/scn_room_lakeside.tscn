@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=74 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -110,6 +110,27 @@ start_text = ""
 rewards = SubResource("Resource_k01d4")
 victory_music = true
 stop_music_before_end = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsg2b"]
+size = Vector2(218, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6bny"]
+size = Vector2(123, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgx62"]
+size = Vector2(142.5, 173.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbbnr"]
+size = Vector2(65.25, 67.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ajjd"]
+size = Vector2(88, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_of4l0"]
+size = Vector2(66, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3da"]
+size = Vector2(56, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu707"]
 size = Vector2(12, 20)
@@ -307,6 +328,8 @@ music = "lakeside"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ymw61")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11
 material = SubResource("ShaderMaterial_rsvj2")
@@ -357,8 +380,81 @@ spawnpoint = Vector2i(0, 14)
 battle = SubResource("Resource_o50vv")
 player = NodePath("../../Greg")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/EnemyEncounterArea"]
-polygon = PackedVector2Array(-313, -137, -256, -131, -256, -61, -195, -61, -195, -112, -21, -85, 164, -1, 443, -5, 640, 40, 641, 85, 457, 246, -1, 272, -363, 183, -425, -16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(25, 222)
+shape = SubResource("RectangleShape2D_qsg2b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(156, 238)
+shape = SubResource("RectangleShape2D_qsg2b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(325, 238)
+shape = SubResource("RectangleShape2D_qsg2b")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-128.5, -104)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-48, -62)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(49, -25)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(237, 18)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(361, 5)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(473, 23)
+shape = SubResource("RectangleShape2D_w6bny")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(428, 131)
+shape = SubResource("RectangleShape2D_hgx62")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(143, 16)
+shape = SubResource("RectangleShape2D_vbbnr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-128, 206)
+shape = SubResource("RectangleShape2D_2ajjd")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-206, 190)
+shape = SubResource("RectangleShape2D_of4l0")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-257, 174)
+shape = SubResource("RectangleShape2D_of4l0")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-292, 141)
+shape = SubResource("RectangleShape2D_of4l0")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-370, -40)
+shape = SubResource("RectangleShape2D_of4l0")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-327, 58)
+shape = SubResource("RectangleShape2D_fm3da")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(-358, -40)
+shape = SubResource("RectangleShape2D_fm3da")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(509, 106)
+shape = SubResource("RectangleShape2D_fm3da")
 
 [node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
 position = Vector2(2, -342)
@@ -1274,4 +1370,6 @@ type = 1
 line_length = 1
 custom_lines = PackedStringArray()
 
+[connection signal="body_entered" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_entered"]
+[connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]
 [connection signal="on_interact" from="Buildings/Pier/Pole/PoleInteraction" to="." method="_on_pole_interacted"]
