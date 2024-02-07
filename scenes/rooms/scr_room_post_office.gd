@@ -11,6 +11,7 @@ func _ready() -> void:
 	super._ready()
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
+		ushanka_guy_cutscene.cleanup()
 		return
 	if can_ushanka_guy_cutscene():
 		ushanka_guy_cutscene.start()
