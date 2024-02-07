@@ -187,10 +187,10 @@ func _on_coin_timer_timeout() -> void:
 	if currently_hell: return
 	if kiosk_activated: return
 	coin_timer.start(2)
-	for i in 1 + (int(current_perk == "fast_earner") * randi() % 3):
-		if randf() <= 0.5:
+	for i in 1 + (int(current_perk == "fast_earner") * randi_range(3, 6)):
+		if randf() <= 0.55:
 			spawn_coin()
-			if randf() <= 0.33:
+			if randf() <= 0.44:
 				spawn_coin()
 				if randf() <= 0.33:
 					spawn_coin()
