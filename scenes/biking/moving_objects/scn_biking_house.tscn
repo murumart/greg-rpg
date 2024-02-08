@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://8jbnp2sxu8sc"]
+[gd_scene load_steps=4 format=3 uid="uid://8jbnp2sxu8sc"]
 
 [ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_house.gd" id="1_jah46"]
 [ext_resource type="Texture2D" uid="uid://dmwde5xnn0j72" path="res://sprites/biking/background/spr_houses.png" id="2_u7ael"]
+[ext_resource type="PackedScene" uid="uid://cs4gy581cc8ok" path="res://scenes/biking/moving_objects/scn_biking_snail.tscn" id="3_nxgcu"]
 
 [node name="BikingHouse" type="Node2D"]
 z_index = -11
@@ -13,3 +14,8 @@ texture = ExtResource("2_u7ael")
 centered = false
 region_enabled = true
 region_rect = Rect2(48, 0, 48, 48)
+
+[node name="Snail" parent="." instance=ExtResource("3_nxgcu")]
+visible = false
+scale = Vector2(4.66208, 3.81887)
+decorative = true

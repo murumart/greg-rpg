@@ -16,6 +16,7 @@ const HELL_COLOUR := Color(0.96074420213699, 0.62273794412613, 0.68452841043472)
 @onready var background_town := $Background/Town
 @onready var background_field := $Background/Field
 @onready var background_snail_hell := $Background/SnailHellBackground
+@onready var colour_changer: CanvasModulate = $Background/ColourChanger
 
 @onready var debug := $UI/debug
 
@@ -63,8 +64,6 @@ var current_perk := "": set = _set_perk
 var currently_hell := false
 var hell_time := 0
 var hells_survived := 0
-
-@onready var hell_colours: Gradient = $Background/ColourChanger.environment.adjustment_color_correction.gradient
 
 
 func _ready() -> void:
@@ -160,13 +159,11 @@ func _on_obstacle_timer_timeout() -> void:
 	if speed < 5: return # don't while stopped
 	if kiosk_activated: return
 	# obstacle
-	var obstacle_positions := []
-	obstacle_timer.start(1.5 * 1.0 if not currently_hell else 0.75)
+	obstacle_timer.start(randfn(1.5, 1.5) * 1.0 if not currently_hell else 0.75)
 	var obstacle: BikingObstacle = OBSTACLE_PACKED.pick_random().instantiate()
 	obstacle.speed = speed
 	obstacle.randomise_position()
 	add_child(obstacle)
-	obstacle_positions.append(obstacle.global_position)
 	if obstacle.name.contains("Log"):
 		obstacle.rotation = randf_range(-TAU, TAU)
 		if current_perk == "log_repel" and randf() <= 0.95:
@@ -180,13 +177,19 @@ func _on_obstacle_timer_timeout() -> void:
 		beam_target.position.x += randfn(20, 20) + 20
 		beam_target.speed = speed
 		add_child(beam_target)
+		for node in get_tree().get_nodes_in_group("biking_obstacles"):
+			if node == beam_target:
+				continue
+			if node.global_position.distance_to(beam_target.global_position) < 10:
+				beam_target.queue_free()
+				break
 
 
 func _on_coin_timer_timeout() -> void:
 	if speed < 5: return
 	if currently_hell: return
 	if kiosk_activated: return
-	coin_timer.start(2)
+	coin_timer.start(randfn(2, 2))
 	for i in 1 + (int(current_perk == "fast_earner") * randi_range(3, 6)):
 		if randf() <= 0.55:
 			spawn_coin()
@@ -208,18 +211,34 @@ var mails_wo_box := 0
 func _on_mailbox_timer_timeout() -> void:
 	if speed < 5: return
 	mailbox_timer.start(0.5)
-	if currently_hell: return
+	mails_wo_box += 1
 	if randf() <= 0.89:
 		var house := HOUSE_LOAD.instantiate()
-		house.speed = minf(speed - (0.25 * speed) + (randf() * 2), speed)
-		var x: float = remap(house.speed, 30, 60, 0.1, 1.0)
+		house.speed_scale = randf_range(0.55, 0.77)
+		var x: float = remap(house.speed_scale, 0.5, 1.0, 0.1, 1.0)
 		house.modulate = Color(x, x, x)
-		house.z_index = roundi(remap(house.speed, 30, 60,-11, -14))
+		house.z_index = roundi(remap(house.speed_scale, 0.5, 1.0, -14, -11))
 		add_child(house)
 		house.global_position.x = randi_range(200, 248)
 		house.global_position.y = randi_range(44, 48)
-		mails_wo_box += 1
-	if kiosk_activated: return
+		if currently_hell:
+			house.set_snail(true)
+		if randf() < 0.1:
+			house.z_index = -10
+			house.scale = Vector2(2, 2)
+			house.speed_scale = 0.96
+			house.global_position.y += 5
+			house.global_position.x += randf_range(30, 40)
+			house.modulate = Color.WHITE
+		elif randf() < 0.4:
+			house.z_index = -16
+			house.scale = Vector2(0.5, 0.5)
+			house.speed_scale *= 0.5
+			house.modulate = house.modulate.darkened(0.3)
+	if kiosk_activated:
+		return
+	if currently_hell:
+		return
 	if randf() <= 0.11 or mails_wo_box > 5:
 		mails_wo_box = 0
 		var mailbox: BikingMovingObject = MAIL_BOX_LOAD.instantiate()
@@ -232,7 +251,7 @@ func _on_mailbox_timer_timeout() -> void:
 func spawn_coin() -> void:
 	var coin: BikingMovingObject = COIN_LOAD.instantiate()
 	coin.randomise_position()
-	coin.position.x += randi_range(0, 16)
+	coin.position.x += randi_range(0, 48)
 	add_child(coin)
 	coin.speed = speed
 	coin.coin_got.connect(_on_coin_collected)
@@ -386,10 +405,7 @@ func enter_hell() -> void:
 	var tw := create_tween().set_parallel()
 	tw.tween_property(background_snail_hell, "position:y", 50.0, 2.0)
 	tw.tween_property(background_sky, "modulate", Color.RED, 2.0)
-	tw.tween_method(
-		func(s: Color):
-			hell_colours.set_color(1, s)
-			, hell_colours.get_color(1), HELL_COLOUR, 2.0)
+	tw.tween_property(colour_changer, "color", HELL_COLOUR, 2.0)
 
 
 func exit_hell() -> void:
@@ -407,10 +423,9 @@ func exit_hell() -> void:
 	var tw := create_tween().set_parallel()
 	tw.tween_property(background_snail_hell, "position:y", 120.0, 2.0)
 	tw.tween_property(background_sky, "modulate", Color("#8bc0ff"), 2.0)
-	tw.tween_method(
-		func(s: Color):
-			hell_colours.set_color(1, s)
-			, hell_colours.get_color(1), Color.WHITE, 2.0)
+	tw.tween_property(colour_changer, "color", Color.WHITE, 2.0)
+	get_tree().get_nodes_in_group("snail_lasers").map(func(a): a.play_beam())
+	get_tree().get_nodes_in_group("biking_houses").map(func(a): a.set_snail(false))
 
 
 func _on_punishment_timer_timeout() -> void:

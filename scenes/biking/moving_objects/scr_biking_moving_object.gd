@@ -7,7 +7,8 @@ signal coin_got
 
 @export var decorative := false
 
-var speed := 200
+var speed := 60
+var speed_scale := 1.0
 var start_position: Vector2
 
 var moving := true
@@ -27,7 +28,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if moving:
-		global_position.x -= speed * delta
+		global_position.x -= speed * delta * speed_scale
 		if following:
 			# following the player
 			var target: Node2D = get_tree().get_first_node_in_group("biking_players")
