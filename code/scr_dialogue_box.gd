@@ -46,12 +46,17 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_instance_valid(loaded_dialogue): return
 	if loaded_dialogue.size() < 1: return
+	if not event.is_pressed():
+		return
 	if event.is_action_pressed("ui_accept") and not is_speaking() and not choices_open:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
 	# pressing z or x allows skipping the babbling
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		skip()
+	# grab focus on choics if it somehow got lost (spamming keys can do this)
+	if (event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel")) and choices_open:
+		choices_container.get_child(0).grab_focus.call_deferred()
 
 
 # load the dialogues from files
