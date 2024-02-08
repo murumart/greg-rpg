@@ -115,16 +115,20 @@ func appenda(key: StringName, thing: Variant) -> void:
 	set_data(key, Math.reaap(get_data(key, []), thing))
 
 
-func save_data(filename := "save.grs", overwrite := true) -> void:
+func save_to_dict() -> void:
 	save_nodes_data()
 	save_chars_to_data()
 	set_data("playtime", playtime)
-	set_data("save_file", filename)
 	set_data("seconds", seconds)
 	# get estonianised
 	set_data("date", Time.get_date_string_from_system().replace("-", "."))
 	set_data("time", Time.get_time_string_from_system().replace(":", "."))
 	last_save_second = seconds
+
+
+func save_data(filename := "save.grs", overwrite := true) -> void:
+	save_to_dict()
+	set_data("save_file", filename)
 
 	var stuff := {}
 	# technical possibility of not replacing the entire dict but only
@@ -192,12 +196,7 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 
 # put the save data inside a JSON string and add it to clipboard
 func copy_data() -> void:
-	save_nodes_data()
-	save_chars_to_data()
-	set_data("playtime", playtime)
-	set_data("seconds", seconds)
-	set_data("date", Time.get_date_string_from_system())
-	set_data("time", Time.get_time_string_from_system())
+	save_to_dict()
 	DisplayServer.clipboard_set(var_to_str(DAT.A))
 
 

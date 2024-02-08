@@ -3092,6 +3092,10 @@ DIALOGUE insp_store_plant
 	you feel profound empathy for this plant.
 
 
+DIALOGUE insp_wet_floor
+	the floor is wet here. watch out!
+
+
 DIALOGUE insp_ph_doghouse
 	a pet-sized house.
 

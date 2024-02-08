@@ -79,6 +79,13 @@ func _ready() -> void:
 	if Math.inrange(DAT.get_data("nr"), 0.85, 0.86):
 		retry_button.text = "restry"
 		quit_button.text = "quite"
+	if LTS.gate_id == &"fake_game_over":
+		retry_button.disabled = true
+		quit_button.disabled = true
+		create_tween().tween_interval(3.0).finished.connect(func():
+			LTS.gate_id = LTS.GATE_LOADING
+			LTS.change_scene_to(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

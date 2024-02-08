@@ -52,6 +52,7 @@ func _ready():
 			start_volume = 0,
 		})
 	decor.neighbour_wife_position()
+	decor.product_placement()
 
 
 func set_store_wall_colours():
@@ -87,7 +88,6 @@ func restock() -> void:
 	if DAT.get_data("cashier_dead", false):
 		DAT.set_data("noticed_cashier_gone", DAT.seconds)
 		return
-	decor.product_placement()
 	var store_shelf_count := shelves.size()
 	var cold_shelves := []
 	for x in store_shelf_count:
