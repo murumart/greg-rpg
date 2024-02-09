@@ -16,10 +16,12 @@ func interacted() -> void:
 		var eff_name = eff.replace("_", " ")
 		newchoices.append(eff_name)
 	SOL.dialogue_box.adjust("effect_guru", 0, "choices", newchoices)
-	list.size.y = 60
+	list.size = Vector2(80, 60)
+	list.position = Vector2(67, -60)
 	SOL.dialogue("effect_guru")
 	SOL.dialogue_closed.connect(func():
-		list.size.y = 35
+		list.size = Vector2(40, 35)
+		list.position = Vector2(98, -35)
 		if SOL.dialogue_choice == "bye":
 			return
 		var id := SOL.dialogue_choice.replace(" ", "_")

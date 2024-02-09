@@ -187,6 +187,7 @@ func side_load_item_data(id: String) -> void:
 			mem_infotext.append_text("equipped")
 	mem_infotext.size = MEM_INFO_DEF_SIZE
 	mem_infotext.position = MEM_INFO_DEF_POS
+	%MainInfoScroll.check.call_deferred()
 
 
 # print spirit data to the side
@@ -202,6 +203,7 @@ func side_load_spirit_data(id: String) -> void:
 		mem_infotext.append_text("\n[color=#888888]select to unequip")
 	mem_infotext.size = MEM_INFO_BIG_SIZE
 	mem_infotext.position = MEM_INFO_BIG_POS
+	%MainInfoScroll.check.call_deferred()
 
 
 # load items from the inventory of current character
@@ -379,7 +381,7 @@ func showme():
 
 
 func hideme():
-	if save_warning_tween.is_valid():
+	if is_instance_valid(save_warning_tween) and save_warning_tween.is_valid():
 		save_warning_tween.kill()
 	hide()
 	doing = Doings.INNER

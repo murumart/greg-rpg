@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=16 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="3_cuvke"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_srch7"]
+[ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="4_5yxy6"]
 [ext_resource type="Texture2D" uid="uid://dy0hfc570u4w0" path="res://sprites/gui/spr_delete_item.png" id="5_buhag"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fklov"]
@@ -176,9 +177,14 @@ text = "
 [color=#ffff88]spd: %s[/color]
 [color=#44ff44]hp: %s/%s[/color]
 [color=#88ffff]sp: %s/%s[/color]"
-fit_content = true
-scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="MainInfoScroll" type="Node" parent="Panel/InfoPanel/MemberInfo/MainInfoText" node_paths=PackedStringArray("target")]
+unique_name_in_owner = true
+script = ExtResource("4_5yxy6")
+target = NodePath("..")
+speed = 1.5
+read_time = 1.0
 
 [node name="ItemSpiritTabs" type="TabContainer" parent="Panel"]
 modulate = Color(0.533333, 0.533333, 0.533333, 1)
