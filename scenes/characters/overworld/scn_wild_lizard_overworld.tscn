@@ -1,24 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene load_steps=19 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
-
-[sub_resource type="Curve" id="Curve_6c0rn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_gwndq"]
-_data = [Vector2(0, 0.0661118), 0.0, 0.0, 0, 0, Vector2(0.139313, 0.36662), 0.0, 0.0, 0, 0, Vector2(0.492928, 0.690245), 0.0, 0.0, 0, 0, Vector2(1, 0.389451), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_3xq4p"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.322222, 0.107659), 0.0, 0.0, 0, 0, Vector2(0.707407, 0.614884), 0.0, 0.0, 0, 0, Vector2(1, 0.624277), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_emw14"]
-_data = [Vector2(0, 0), 0.0, -0.0670026, 0, 0, Vector2(0.533333, 0.1875), 0.0, 0.0, 0, 0, Vector2(0.818519, 0.296494), 0.0, 0.0, 0, 0, Vector2(1, 0.772104), 0.0, 0.0, 0, 0]
-point_count = 4
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_1wms1"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_krk2i"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="6_kdwyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
 resource_local_to_scene = true
@@ -32,12 +19,55 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
+[sub_resource type="Curve" id="Curve_6c0rn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_o4ych"]
+script = ExtResource("5_krk2i")
+key = &"wild_lizard"
+curve = SubResource("Curve_6c0rn")
+
+[sub_resource type="Curve" id="Curve_gwndq"]
+_data = [Vector2(0, 0.0661118), 0.0, 0.0, 0, 0, Vector2(0.139313, 0.36662), 0.0, 0.0, 0, 0, Vector2(0.492928, 0.690245), 0.0, 0.0, 0, 0, Vector2(1, 0.389451), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_0bny4"]
+script = ExtResource("5_krk2i")
+key = &"freebird"
+curve = SubResource("Curve_gwndq")
+
+[sub_resource type="Curve" id="Curve_3xq4p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.322222, 0.107659), 0.0, 0.0, 0, 0, Vector2(0.707407, 0.614884), 0.0, 0.0, 0, 0, Vector2(1, 0.624277), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_iq6ak"]
+script = ExtResource("5_krk2i")
+key = &"fox"
+curve = SubResource("Curve_3xq4p")
+
+[sub_resource type="Curve" id="Curve_emw14"]
+_data = [Vector2(0, 0), 0.0, -0.0670026, 0, 0, Vector2(0.533333, 0.1875), 0.0, 0.0, 0, 0, Vector2(0.818519, 0.296494), 0.0, 0.0, 0, 0, Vector2(1, 0.772104), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_1cllb"]
+script = ExtResource("5_krk2i")
+key = &"worm"
+curve = SubResource("Curve_emw14")
+
+[sub_resource type="Resource" id="Resource_5excg"]
+script = ExtResource("6_kdwyn")
+enemies = Array[String]([])
+background = "forest"
+music = "lion"
+party = Array[String]([])
+death_reason = "default"
+start_text = ""
+victory_music = false
+stop_music_before_end = false
+
 [node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
 script = ExtResource("2_4xx1x")
-wild_lizard_probability = SubResource("Curve_6c0rn")
-freebird_probability = SubResource("Curve_gwndq")
-fox_probability = SubResource("Curve_3xq4p")
-worm_probability = SubResource("Curve_emw14")
 animated_sprite = NodePath("AnimatedSprite2D")
 movement_wait = 0.5
 random_movement = true
@@ -60,3 +90,9 @@ shape = SubResource("CircleShape2D_7ii6u")
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_3eeu5")
 animation = &"walk_down"
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+script = ExtResource("4_1wms1")
+values = Array[ExtResource("5_krk2i")]([SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb")])
+default_battle = SubResource("Resource_5excg")
+inject_target = NodePath("..")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfs50oh5gonj4"]
+[gd_scene load_steps=40 format=3 uid="uid://cfs50oh5gonj4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
 [ext_resource type="Texture2D" uid="uid://ccux1unnbr2jb" path="res://sprites/characters/overworld/spr_thug_overworld.png" id="3_26wux"]
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_mqdei"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_7t3nr"]
 
 [sub_resource type="Curve" id="Curve_361hw"]
 _data = [Vector2(0, 1), 0.0, -1.7326, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
@@ -179,6 +181,41 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_1mbru"]
+script = ExtResource("5_7t3nr")
+key = &"chimney"
+curve = SubResource("Curve_361hw")
+
+[sub_resource type="Resource" id="Resource_1t6p2"]
+script = ExtResource("5_7t3nr")
+key = &"well"
+curve = SubResource("Curve_1hldi")
+
+[sub_resource type="Resource" id="Resource_j4nm3"]
+script = ExtResource("5_7t3nr")
+key = &"shopping_cart"
+curve = SubResource("Curve_deob2")
+
+[sub_resource type="Resource" id="Resource_yt7r7"]
+script = ExtResource("5_7t3nr")
+key = &"stabbing_fella"
+curve = SubResource("Curve_v43yn")
+
+[sub_resource type="Resource" id="Resource_a3o1a"]
+script = ExtResource("5_7t3nr")
+key = &"kor_sten"
+curve = SubResource("Curve_lwlro")
+
+[sub_resource type="Resource" id="Resource_8pvwv"]
+script = ExtResource("5_7t3nr")
+key = &"abiss"
+curve = SubResource("Curve_rf7mf")
+
+[sub_resource type="Resource" id="Resource_qsnbv"]
+script = ExtResource("5_7t3nr")
+key = &"moron"
+curve = SubResource("Curve_wjsfi")
+
 [node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")
 chimney_probability = SubResource("Curve_361hw")
@@ -212,3 +249,7 @@ shape = SubResource("CircleShape2D_3rax2")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_s6ii6")
 animation = &"walk_up"
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4"]
+script = ExtResource("4_mqdei")
+values = Array[ExtResource("5_7t3nr")]([SubResource("Resource_1mbru"), SubResource("Resource_1t6p2"), SubResource("Resource_j4nm3"), SubResource("Resource_yt7r7"), SubResource("Resource_a3o1a"), SubResource("Resource_8pvwv"), SubResource("Resource_qsnbv")])
