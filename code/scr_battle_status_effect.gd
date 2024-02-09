@@ -77,7 +77,10 @@ static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEf
 		return null
 	if u.strength == a.strength or u.strength == b.strength:
 		u.strength += sign(u.strength)
-	u.duration = ceili((a.duration + b.duration) / 2.0)
+	if a.duration != 1 and b.duration != 1:
+		u.duration = ceili((a.duration + b.duration) / 2.0)
+	else:
+		u.duration = maxi(a.duration, b.duration)
 	if u.duration <= 0:
 		return null
 	if u.duration == a.duration or u.duration == b.duration:
