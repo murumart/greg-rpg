@@ -153,7 +153,7 @@ func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 	return amount - amt
 
 
-func attack_bonus(actor: BattleActor) -> float:
+func attack_bonus(_actor: BattleActor) -> float:
 	if name == &"attack":
 		return strength
 	if name == &"electric":
@@ -161,13 +161,13 @@ func attack_bonus(actor: BattleActor) -> float:
 	return 0
 
 
-func defense_bonus(actor: BattleActor) -> float:
+func defense_bonus(_actor: BattleActor) -> float:
 	if name == &"defense":
 		return strength
 	return 0
 
 
-func speed_bonus(actor: BattleActor) -> float:
+func speed_bonus(_actor: BattleActor) -> float:
 	if name == &"speed":
 		return strength
 	return 0

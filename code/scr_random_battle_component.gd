@@ -10,13 +10,13 @@ var level := 0
 
 
 func _ready() -> void:
-	level = remap(DAT.get_character("greg").level, 1, 99, 0.001, 1.0)
+	level = roundi(remap(DAT.get_character("greg").level, 1, 99, 0.001, 1.0))
 	if inject_target:
 		inject_target.battle_info = get_battle()
 
 
 func gen_enemies() -> Array[StringName]:
-	var enemies: Array[StringName]
+	var enemies: Array[StringName] = []
 	enemies.append_array(default_battle.get_("enemies", []).duplicate())
 	for i in maxi(ceili(level / 10.0) + 1, minimum_enemy_tries):
 		for k in values:

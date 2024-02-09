@@ -4,9 +4,9 @@ class_name KeyCurve extends Resource
 @export var curve: Curve
 
 
-static func get_curve_by_key(pairs: Array[KeyCurve], key: StringName) -> Curve:
+static func get_curve_by_key(pairs: Array[KeyCurve], key_name: StringName) -> Curve:
 	for kkp in pairs:
-		if kkp.key == key:
+		if kkp.key == key_name:
 			return kkp.curve
 	return null
 

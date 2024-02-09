@@ -54,6 +54,7 @@ func _ready():
 	decor.neighbour_wife_position()
 	decor.product_placement()
 	if LTS.gate_id == &"exit_cashier_fight":
+		DAT.free_player("cashier_revenge")
 		decor.exit_cashier_fight()
 
 
