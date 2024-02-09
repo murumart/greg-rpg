@@ -273,6 +273,7 @@ func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
 func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if dialogues_dict.is_empty():
 		load_dialogue_dict()
+	assert(key in dialogues_dict, "can't concat nonexistent line")
 	var get_key := key + "_" + str(line_id)
 	if not get_key in unmodified_dialogue_lines:
 		# if the line has not been modified yet:

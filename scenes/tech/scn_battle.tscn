@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_cxq0n"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -11,6 +12,17 @@
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="8_teagk"]
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
+
+[sub_resource type="Resource" id="Resource_2huu4"]
+script = ExtResource("2_cxq0n")
+enemies = Array[String](["cashier_mean"])
+background = "store"
+music = "entirely_just"
+party = Array[String](["greg"])
+death_reason = "default"
+start_text = "sofnwoeaifaweoifj"
+victory_music = true
+stop_music_before_end = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -61,6 +73,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
+load_options = SubResource("Resource_2huu4")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 

@@ -172,6 +172,7 @@ func _on_kassa_finished() -> void:
 func update_shopping_list() -> void:
 	var unpaid_items: Array = DAT.get_data("unpaid_items", [])
 	var temp_dict := {}
+	var total := 0
 	for i in unpaid_items:
 		if i in temp_dict:
 			temp_dict[i] += 1
@@ -180,6 +181,8 @@ func update_shopping_list() -> void:
 	var text := "[right]"
 	for i in temp_dict:
 		text += "%s x %s\n" % [DAT.get_item(i).name, temp_dict[i]]
+		total += DAT.get_item(i).price * temp_dict[i]
+	text += "total: " + str(total)
 	shopping_list.text = text
 
 

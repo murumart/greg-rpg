@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=6 format=3 uid="uid://dexokqkyaehnb"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_0a05d"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_ntm8h"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="2_nsljy"]
+
+[sub_resource type="Resource" id="Resource_vnyro"]
+script = ExtResource("1_ntm8h")
+type = 0
+property = "1"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_gjsyr"]
+script = ExtResource("2_nsljy")
+rewards = Array[ExtResource("1_ntm8h")]([SubResource("Resource_vnyro")])
+
+[resource]
+script = ExtResource("1_0a05d")
+enemies = Array[String](["cashier_mean"])
+background = "store"
+music = "entirely_just"
+party = Array[String]([])
+death_reason = "default"
+start_text = "this will be painful!"
+rewards = SubResource("Resource_gjsyr")
+victory_music = true
+stop_music_before_end = true

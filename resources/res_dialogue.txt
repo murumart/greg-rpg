@@ -815,9 +815,9 @@ DIALOGUE store_wont_let_you_in
 DIALOGUE cashier_mean_notice
 CHAR cashier_mean
 	...you.
-	do you think i can't see you?
-	hiding all of that under your stupid hoodie?
-	the %s silver worth of products?
+	you're a bold vermin, aren't you?
+	strolling out with %s silver worth of products...
+	...stashed in your clothes? in broad daylight.
 CHAR 
 	...
 	(smile, smile)
@@ -828,6 +828,7 @@ DIALOGUE cashier_mean_mean
 SPEED 0.5
 	[color=#ff8888]work life imbalance
 SPEED 1.0
+	we are prepared for any such intrusion.
 	free of charge - i'll show you...
 	why i am still employee of the month.
 	(and thus how i can afford basic shopping)
@@ -835,19 +836,19 @@ SPEED 1.0
 # (she fights you)
 
 
-DIALOGUE cashier_mean_notice_repeat
+DIALOGUE cashier_fight_standstill
 CHAR cashier_mean
-	hey. do you think i can't see you?
-	hiding %s silver worth of products under your hoodie?
-	thieves like you [color=#ff8800]piss me off.
-
-
-DIALOGUE cashier_mean_mean_repeat
-SPEED 0.5
-	[color=#ff8888]work life imbalance
-SPEED 1.0
-	i'll make it painful. (smile, smile)
-# (she fights you)
+DATA_LINK cashier_defeated_thru_damage,false
+	it appears i'm out of [color=#00ffff]sp[/color]...
+DATA_LINK cashier_defeated_thru_damage,true
+	it appears i've been... badly beaten...
+DATA_LINK 
+	vermin... like you... can be hard to...
+	...exterminate sometimes...
+	[color=#ff8888]work life imbalance...
+	lend me more of your strength...
+	haaaaaaaaaaaaa.........
+	
 
 
 DIALOGUE mail_man_hello

@@ -529,6 +529,8 @@ key = "wet_floor"
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_dcyjw")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="Decor"]
+
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("22_qf0t1")
 level_gain = 39

@@ -88,15 +88,7 @@ func warn() -> void:
 		# just murder you
 		SND.play_song("")
 		DAT.capture_player("cashier_revenge", false, false)
-		SOL.dialogue_box.dial_concat("cashier_mean_notice", 3, [stolen_profit])
-		SOL.dialogue_box.dial_concat("cashier_mean_notice_repeat", 1, [stolen_profit])
-		SOL.dialogue("cashier_mean_notice" + addrepeat())
-		SOL.dialogue_closed.connect(func(): dothething.emit(), CONNECT_ONE_SHOT)
+		SOL.dialogue_box.dial_concat("cashier_mean_notice", 2, [stolen_profit])
+		SOL.dialogue("cashier_mean_notice")
+		dothething.emit()
 
-
-func addrepeat() -> String:
-	# if you've gotten the cutscene already it should be shorter
-	# not fully/goodly implemented
-	if DAT.get_data("mean_cashier_saw_you_steal", false):
-		return "_repeat"
-	return ""

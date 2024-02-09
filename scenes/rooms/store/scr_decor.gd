@@ -8,6 +8,9 @@ var store_cashier: StoreCashier
 
 @onready var products := get_tree().get_nodes_in_group("products")
 @onready var funny_area: Area2D = $FunnyArea
+@onready var greg: PlayerOverworld = $"../Greg"
+@onready var camera := $"../Greg/Camera"
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 
 func _ready() -> void:
@@ -37,7 +40,29 @@ func neighbour_wife_position() -> void:
 
 
 func dothethingthething() -> void:
-	print("hiii")
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, "global_position", cashier.global_position, 4.0)
+	SOL.dialogue_box.started_speaking.connect(_bits)
+	cashier.speed = 0
+	cashier.direct_walking_animation(greg.global_position - cashier.global_position)
+	tw.parallel().tween_property(canvas_modulate, "color",
+			(Color(0.51764708757401, 0.66666668653488, 0.59607845544815)), 10.0)
+	await SOL.dialogue_closed
+	SND.play_sound(preload("res://sounds/spirit/wli_up.ogg"))
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(cashier, "global_position", greg.global_position + Vector2(0, -18), 1.0)
+	tw.parallel().tween_property(camera, "global_position", greg.global_position + Vector2(0, -18), 1.6)
+	tw.finished.connect(func():
+		SOL.dialogue("cashier_mean_mean")
+		tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_loops()
+		tw.tween_property(camera, "zoom", Vector2(1.5, 1.5), 3.5)
+		tw.tween_property(camera, "zoom", Vector2.ONE, 3.5)
+		SOL.dialogue_closed.connect(func():
+			SND.play_sound(preload("res://sounds/spirit/wli_down.ogg"))
+			await create_tween().tween_interval(1.0).finished
+			LTS.enter_battle(preload("res://resources/battle_infos/cashier_fight.tres"))
+		, CONNECT_ONE_SHOT)
+	)
 
 
 func funny() -> void:
@@ -47,3 +72,12 @@ func funny() -> void:
 	DAT.save_to_dict()
 	LTS.gate_id = &"fake_game_over"
 	LTS.to_game_over_screen()
+
+
+func _bits(line: int) -> void:
+	if line == 4:
+		wli_particles.show()
+		create_tween().tween_property(wli_particles, "modulate:a", 1.0, 6.0).from(0.0)
+	elif line == 6:
+		SND.play_song("ac_scary")
+		SOL.dialogue_box.started_speaking.disconnect(_bits)

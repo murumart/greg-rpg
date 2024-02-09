@@ -17,6 +17,8 @@ source = 2
 
 [sub_resource type="VisualShader" id="VisualShader_xtqb0"]
 code = "shader_type canvas_item;
+render_mode blend_mix;
+
 
 
 // DistortionUVAnimated
@@ -88,6 +90,8 @@ function = 0
 
 [sub_resource type="VisualShader" id="VisualShader_4akf2"]
 code = "shader_type canvas_item;
+render_mode blend_mix;
+
 
 
 // DistortionUVAnimated
@@ -228,10 +232,10 @@ tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 8, 13.5, 22.4, 38.8, 59.1, 78, 93.7, 108, 112.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.6, 1.4, 8, 13.5, 14.3, 22.4, 38.8, 59.1, 78, 93.7, 105.9, 108, 112.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58)]
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, 0), Vector2(0, -58), Vector2(0, -10), Vector2(0, 0), Vector2(0, -58)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -276,16 +280,55 @@ tracks/4/path = NodePath("Sprite2D:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 1.4, 2, 14.3, 105.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0, 0.0, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkqxk"]
 _data = {
 "RESET": SubResource("Animation_acvmp"),
 "default": SubResource("Animation_08hhe")
+}
+
+[sub_resource type="Animation" id="Animation_dlwoi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("VisualShader_xtqb0")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_agjg7"]
@@ -342,45 +385,6 @@ tracks/3/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dlwoi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("VisualShader_xtqb0")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25ivg"]
 _data = {
 "RESET": SubResource("Animation_dlwoi"),
@@ -389,14 +393,14 @@ _data = {
 
 [node name="BattleBackground" instance=ExtResource("1_2tnge")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 modulate = Color(0.168627, 0.168627, 0.168627, 1)
 texture_repeat = 3
 material = SubResource("ShaderMaterial_5qybl")
 texture = ExtResource("2_ge82g")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="." index="3"]
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
 visible = false
 modulate = Color(0.168627, 0.168627, 0.168627, 1)
 texture_repeat = 3
@@ -405,13 +409,13 @@ texture = ExtResource("2_ge82g")
 centered = false
 flip_h = true
 
-[node name="DefaultAnimation" type="AnimationPlayer" parent="." index="4"]
+[node name="DefaultAnimation" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_nkqxk")
 }
 
-[node name="IntroAnimation" type="AnimationPlayer" parent="." index="5"]
-autoplay = "intro"
+[node name="IntroAnimation" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_25ivg")
 }
+autoplay = "intro"
