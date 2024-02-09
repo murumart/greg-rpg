@@ -143,6 +143,7 @@ func _progress_check(damage: float) -> float:
 	elif character.health - damage <= 0.0:
 		progress = 4
 		animate("death")
+		DAT.set_data("vampire_defeated", true)
 		SND.play_song("", 20)
 		SND.play_sound(preload("res://sounds/spirit/vampdeath.ogg"))
 		SOL.dialogue_open = true

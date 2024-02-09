@@ -25,7 +25,7 @@ const BOUNTY_CATCHES := {
 func _ready() -> void:
 	super._ready()
 	load_bounties()
-	if DAT.seconds < 1: fulfill_bounty("all") #DEBUG
+	#if DAT.seconds < 1 and not LTS.gate_id: fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
@@ -70,22 +70,13 @@ func _bounty_interacted() -> void:
 
 
 func load_bounties() -> void:
-	bounty["thugs"] = 0
-	bounty["stray_animals"] = 0
-	bounty["broken_fishermen"] = 0
-	bounty["sun_spirit"] = 0
-	bounty["president"] = 0
-	bounty["vampire"] = 0
-	bounty["circus"] = 0
-	for p in DAT.get_data("party", ["greg"]):
-		var charc := DAT.get_character(p) as Character
-		bounty["thugs"] += DAT.get_data("thugs_battled", 0)
-		bounty["stray_animals"] += DAT.get_data("stray_animals_fought", 0)
-		bounty["broken_fishermen"] += DAT.get_data("broken_fishermen_fought", 0)
-		bounty["sun_spirit"] += cd(charc, "sun_spirit")
-		bounty["vampire"] += cd(charc, "vampire")
-		bounty["president"] += cd(charc, "dish")
-		bounty["circus"] += cd(charc, "ringleader")
+	bounty["thugs"] = int(DAT.get_data("thugs_battled", 0))
+	bounty["stray_animals"] = int(DAT.get_data("stray_animals_fought", 0))
+	bounty["broken_fishermen"] = int(DAT.get_data("broken_fishermen_fought", 0))
+	bounty["sun_spirit"] = int(DAT.get_data("solar_protuberance_defeated", false))
+	bounty["vampire"] = int(DAT.get_data("vampire_defeated", false))
+	bounty["president"] = int(DAT.get_data("president_defeated", false))
+	bounty["circus"] = int(DAT.get_data("circus_defeated", false))
 
 
 func cd(w: Character, c: StringName) -> int:

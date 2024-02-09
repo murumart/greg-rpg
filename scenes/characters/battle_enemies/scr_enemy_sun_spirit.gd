@@ -41,6 +41,7 @@ func hurt(amt: float, gnd: int) -> void:
 			SOL.vfx("star_nebula")
 			super.hurt(3000, Genders.VAST)
 			dead = true
+			DAT.set_data("solar_protuberance_defeated", true)
 	nova_process(pow(amt, 1.35) / character.max_health)
 
 
