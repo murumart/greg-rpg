@@ -1,6 +1,6 @@
 [gd_scene load_steps=74 format=3 uid="uid://4qpg0d3p336g"]
 
-[ext_resource type="Script" path="res://scenes/rooms/scr_room_lakeside.gd" id="1_rym7f"]
+[ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_rbpn8"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
