@@ -21,16 +21,16 @@ func speak():
 		var transactions_done: int = DAT.get_data("%s_transactions_done" % cashier, 0)
 		var silver_spent: int = DAT.get_data("%s_silver_spent" % cashier, 0)
 		var profit_stolen: int = DAT.get_data("%s_profit_stolen" % cashier, 0)
-		var friend_score: float = silver_spent * pow(transactions_done, 2) - pow(profit_stolen, 1.6)
+		var friend_score: float = silver_spent - pow(profit_stolen, 1.1)
 		if not cashier_welcomed:
 			SOL.dialogue("cashier_%s_welcome" % cashier)
 			DAT.set_data("cashier_%s_welcomed" % cashier, true)
 		else:
 			if Math.inrange(friend_score, -10, 201):
 				SOL.dialogue("cashier_%s_tutorial" % cashier)
-			elif Math.inrange(friend_score, 201, 21000):
+			elif Math.inrange(friend_score, 201, 1999):
 				SOL.dialogue("cashier_%s_chat_notfriends" % cashier)
-			elif Math.inrange(friend_score, 21001, 100_000_000_000_000):
+			elif friend_score >= 2000:
 				SOL.dialogue_box.dial_concat("cashier_%s_chat" % cashier, 11, [silver_spent])
 				SOL.dialogue("cashier_%s_chat" % cashier)
 			else:
