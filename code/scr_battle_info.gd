@@ -3,10 +3,10 @@ class_name BattleInfo
 
 # resource to store info about battles
 
-@export var enemies: Array[String] = []
+@export var enemies: Array[StringName] = []
 @export var background := "town"
 @export var music := ""
-@export var party: Array[String] = []
+@export var party: Array[StringName] = []
 @export var death_reason := "default"
 @export var start_text := ""
 @export var rewards: BattleRewards = null
@@ -14,7 +14,7 @@ class_name BattleInfo
 @export var stop_music_before_end := true
 
 
-func set_enemies(x: Array[String]) -> BattleInfo:
+func set_enemies(x: Array[StringName]) -> BattleInfo:
 	enemies = x
 	return self
 
@@ -29,7 +29,7 @@ func set_music(x: String) -> BattleInfo:
 	return self
 
 
-func set_party(x: Array[String]) -> BattleInfo:
+func set_party(x: Array[StringName]) -> BattleInfo:
 	party = x
 	return self
 

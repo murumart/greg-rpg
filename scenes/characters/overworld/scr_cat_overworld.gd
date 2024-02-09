@@ -7,7 +7,7 @@ extends OverworldCharacter
 func _ready() -> void:
 	super._ready()
 	if friendly: return
-	var enemis: Array[String] = []
+	var enemis: Array[StringName] = []
 	enemis.append_array(Math.mult_arr(["cat"], randi_range(1, 3)))
 	battle_info = BattleInfo.new().set_enemies(enemis).\
 	set_background("greghouse").set_music("catfight").set_start_text("ravenous beasts!").\

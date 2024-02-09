@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://jgjwvx47vp8i"]
+[gd_scene load_steps=20 format=3 uid="uid://jgjwvx47vp8i"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
 [ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="2_bjidh"]
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_l5lw5"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_kb7wn"]
+[ext_resource type="Resource" uid="uid://conmwehiq2ivg" path="res://resources/rewards/res_animal_fight_rewards.tres" id="5_vwj65"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="6_2q67l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r02ng"]
 resource_local_to_scene = true
@@ -16,7 +20,58 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="OverworldCharacter" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
+[sub_resource type="Curve" id="Curve_cuyw6"]
+bake_resolution = 32
+_data = [Vector2(0, 0.287445), 0.0, 0.0, 0, 0, Vector2(0.199885, 0.348037), 0.0, 0.0, 0, 0, Vector2(0.243087, 0.60252), 0.0, 0.0, 0, 0, Vector2(0.334293, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_nn0xv"]
+script = ExtResource("5_kb7wn")
+key = &"stray_pet"
+curve = SubResource("Curve_cuyw6")
+
+[sub_resource type="Curve" id="Curve_i5jmh"]
+bake_resolution = 32
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137481, 0), 0.0, 0.0, 0, 0, Vector2(0.252688, 0.154144), 0.0, 0.0, 0, 0, Vector2(0.358295, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_txo5y"]
+script = ExtResource("5_kb7wn")
+key = &"wild_lizard"
+curve = SubResource("Curve_i5jmh")
+
+[sub_resource type="Curve" id="Curve_knvem"]
+bake_resolution = 32
+_data = [Vector2(0.0606758, 0), 0.0, 0.0, 0, 0, Vector2(0.118279, 0.11779), 0.0, 0.0, 0, 0, Vector2(0.199885, 0.481338), 0.0, 0.0, 0, 0, Vector2(0.329493, 0.505574), 0.0, 0.0, 0, 0, Vector2(0.372696, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_nxfnn"]
+script = ExtResource("5_kb7wn")
+key = &"mole"
+curve = SubResource("Curve_knvem")
+
+[sub_resource type="Curve" id="Curve_jbmfy"]
+_data = [Vector2(0, 0.105671), 0.0, 0.0, 0, 0, Vector2(0.156682, 0.263209), 0.0, 0.0, 0, 0, Vector2(0.300691, 0.311682), 0.0, 0.0, 0, 0, Vector2(0.377496, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_lha4a"]
+script = ExtResource("5_kb7wn")
+key = &"rainbird"
+curve = SubResource("Curve_jbmfy")
+
+[sub_resource type="Resource" id="Resource_q6wd0"]
+script = ExtResource("6_2q67l")
+enemies = Array[StringName]([&"stray_pet"])
+background = "town_grass"
+music = "foreign_fauna"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = ""
+rewards = ExtResource("5_vwj65")
+victory_music = true
+stop_music_before_end = true
+
+[node name="StrayPet" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
 script = ExtResource("2_4ypex")
 animated_sprite = NodePath("AnimatedSprite2D")
 speed = 4200
@@ -40,3 +95,9 @@ shape = SubResource("CircleShape2D_81hvx")
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_bjidh")
 animation = &"walk_down"
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+script = ExtResource("4_l5lw5")
+values = Array[ExtResource("5_kb7wn")]([SubResource("Resource_nn0xv"), SubResource("Resource_txo5y"), SubResource("Resource_nxfnn"), SubResource("Resource_lha4a")])
+default_battle = SubResource("Resource_q6wd0")
+inject_target = NodePath("..")

@@ -101,10 +101,10 @@ rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResou
 
 [sub_resource type="Resource" id="Resource_o50vv"]
 script = ExtResource("9_8d332")
-enemies = Array[String](["fish", "fish"])
+enemies = Array[StringName]([&"fish", &"fish"])
 background = "lakeside"
 music = "lake_battle"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "lakeside"
 start_text = ""
 rewards = SubResource("Resource_k01d4")

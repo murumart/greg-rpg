@@ -238,7 +238,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 			enemies_node.add_child(node)
 
 
-func add_enemy(character_id: String, ally := false) -> void:
+func add_enemy(character_id: StringName, ally := false) -> void:
 	var character: Character = DAT.get_character(character_id)
 	var node: BattleActor
 	if DIR.enemy_scene_exists(character.name_in_file) and not ally:

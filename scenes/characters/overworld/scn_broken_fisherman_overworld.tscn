@@ -1,8 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene load_steps=37 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
 [ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="2_23irk"]
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_txuqq"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_2m4wv"]
+[ext_resource type="Resource" uid="uid://dj6asjxe3g3g6" path="res://resources/rewards/res_lakeside_reward.tres" id="6_5ctlp"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="6_7wttt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ulo7"]
 resource_local_to_scene = true
@@ -151,7 +155,55 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="OverworldCharacter" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
+[sub_resource type="Curve" id="Curve_lwc41"]
+_data = [Vector2(0.262289, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.651114, 0.251091), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_jh7as"]
+script = ExtResource("5_2m4wv")
+key = &"broken_fisherman"
+curve = SubResource("Curve_lwc41")
+
+[sub_resource type="Curve" id="Curve_cpli7"]
+_data = [Vector2(0, 0.505574), 0.0, 0.0, 0, 0, Vector2(0.257488, 0.541929), 0.0, 0.0, 0, 0, Vector2(0.334293, 0.735821), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_7f55p"]
+script = ExtResource("5_2m4wv")
+key = &"sopping"
+curve = SubResource("Curve_cpli7")
+
+[sub_resource type="Curve" id="Curve_af0c2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.252688, 0.214736), 0.0, 0.0, 0, 0, Vector2(1, 0.590402), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_qgcim"]
+script = ExtResource("5_2m4wv")
+key = &"fish"
+curve = SubResource("Curve_af0c2")
+
+[sub_resource type="Curve" id="Curve_wtvfl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.28629, 0.335918), 0.0, 0.0, 0, 0, Vector2(1, 0.60252), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_e6gdb"]
+script = ExtResource("5_2m4wv")
+key = &"not_fish"
+curve = SubResource("Curve_wtvfl")
+
+[sub_resource type="Resource" id="Resource_v2hfp"]
+script = ExtResource("6_7wttt")
+enemies = Array[StringName]([&"broken_fisherman"])
+background = "lakeside"
+music = "lake_battle"
+party = Array[StringName]([])
+death_reason = "lakeside"
+start_text = ""
+rewards = ExtResource("6_5ctlp")
+victory_music = true
+stop_music_before_end = true
+
+[node name="BrokenFisherman" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
 script = ExtResource("2_1psk0")
 animated_sprite = NodePath("AnimatedSprite2D")
 random_movement = true
@@ -177,3 +229,9 @@ shape = SubResource("CircleShape2D_v11g1")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_yd2uh")
 animation = &"walk_down"
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+script = ExtResource("4_txuqq")
+values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb")])
+default_battle = SubResource("Resource_v2hfp")
+inject_target = NodePath("..")

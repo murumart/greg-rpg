@@ -57,10 +57,10 @@ curve = SubResource("Curve_emw14")
 
 [sub_resource type="Resource" id="Resource_5excg"]
 script = ExtResource("6_kdwyn")
-enemies = Array[String]([])
+enemies = Array[StringName]([])
 background = "forest"
 music = "lion"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 victory_music = false
@@ -95,4 +95,6 @@ animation = &"walk_down"
 script = ExtResource("4_1wms1")
 values = Array[ExtResource("5_krk2i")]([SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb")])
 default_battle = SubResource("Resource_5excg")
+minimum_enemy_tries = 2
 inject_target = NodePath("..")
+start_texts = Array[String](["ravenous.", "hungry.", "wild.", "rampaging.", "found you.", "life."])

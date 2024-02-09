@@ -272,7 +272,7 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 	DAT.incri("spirits_gotten", 1)
 
 
-func get_character(key: String) -> Character:
+func get_character(key: StringName) -> Character:
 	if not key in character_dict:
 		print("char ", key, " not found")
 		var charc: Character = load("res://resources/characters/res_default_character.tres").duplicate(true)

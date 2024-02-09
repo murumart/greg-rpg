@@ -7,8 +7,8 @@ var difficulty := 0.0
 
 func _ready() -> void:
 	super._ready()
-	battle_info.set_start_text(["ravenous.", "hungry.", "wild.", "rampaging.",
-	"found you.", "life."].pick_random())
+	random_battle_component.level = difficulty
+	battle_info = random_battle_component.get_battle()
 
 
 func interacted() -> void:
