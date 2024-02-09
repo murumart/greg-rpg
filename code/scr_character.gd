@@ -148,7 +148,7 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])
 		SOL.dialogue("levelup")
 	for sp in spirits_to_add:
-		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file))
+		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file), talk)
 
 
 func handle_item(id: String) -> void:

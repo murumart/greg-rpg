@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://u7av7wk05sg8"]
+[gd_scene load_steps=5 format=3 uid="uid://u7av7wk05sg8"]
 
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_cashier_mean.gd" id="1_fdxxy"]
 [ext_resource type="Texture2D" uid="uid://b4duli40gis6u" path="res://sprites/characters/battle/cashier_mean/spr_lunge.png" id="2_fk0q7"]
 [ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="3_5lyh2"]
+[ext_resource type="AudioStream" uid="uid://cyecx12mbsvaj" path="res://music/mus_ac_scary_overlay.ogg" id="4_2gudy"]
 
 [node name="MeanCashier" type="Node2D"]
 script = ExtResource("1_fdxxy")
@@ -21,3 +22,8 @@ process_material = ExtResource("3_5lyh2")
 texture = ExtResource("2_fk0q7")
 lifetime = 2.0
 fixed_fps = 60
+
+[node name="Overlay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2gudy")
+volume_db = -80.0
+bus = &"Music"

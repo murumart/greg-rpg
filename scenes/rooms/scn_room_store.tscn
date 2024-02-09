@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=38 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://bnvnuppg0j2rd" path="res://sprites/world/object/store_shelves/spr_products_pile.png" id="19_d71lm"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="20_r2fhk"]
 [ext_resource type="Texture2D" uid="uid://jp5n47pb8wf3" path="res://sprites/world/object/store_shelves/spr_wet_floor.png" id="22_5c2h3"]
-[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="22_qf0t1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -108,7 +107,7 @@ layer_0/tile_data = PackedInt32Array(-262150, 1, 0, -196614, 1, 0, -131078, 1, 0
 layer_1/tile_data = PackedInt32Array(-393223, 983041, 3, -393222, 983041, 3, -393221, 983041, 3, -393220, 983041, 3, -393219, 983041, 3, -393218, 983041, 3, -393217, 983041, 3, -458752, 983041, 3, -458751, 983041, 3, -458750, 983041, 3, -458749, 983041, 3, -458748, 983041, 3, -458747, 983041, 3, -458746, 983041, 3, -458745, 720897, 2, -393209, 917505, 1, -327673, 917505, 1, -262137, 917505, 1, -196601, 917505, 1, -131065, 917505, 1, -131064, 1114113, 2, -65528, 1114113, 2, 8, 1114113, 2, 65544, 1114113, 2, 65543, 917505, 1, 7, 917505, 1, -65529, 917505, 1, 131079, 917505, 1, 196615, 917505, 1, 262151, 917505, 1, 327687, 720897, 1, 327686, 1048577, 0, 327685, 1048577, 0, 327684, 1048577, 0, 327683, 1048577, 0, 327682, 1048577, 0, 327681, 1048577, 0, 327680, 786433, 1, 393215, 720897, 1, 393214, 1048577, 0, 393213, 1048577, 0, 393212, 1048577, 0, 393211, 1048577, 0, 393210, 1048577, 0, 393209, 1048577, 0, 393208, 786433, 1, 327672, 1114113, 2, 262136, 1114113, 2, 262135, 917505, 1, 327671, 917505, 1, 393207, 917505, 1, 458743, 917505, 3, 196599, 917505, 1, 131063, 917505, 1, 65527, 917505, 1, -9, 917505, 1, -65545, 917505, 1, -65544, 1114113, 2, -8, 1114113, 2, 65528, 1114113, 2, 131064, 1114113, 2, 196600, 1114113, 2, -131081, 917505, 1, -196617, 917505, 1, -262153, 917505, 1, -327689, 917505, 1, -393225, 917505, 1, -393224, 786433, 2, -327688, 1114113, 2, -262152, 1114113, 2, -196616, 1114113, 2, -131080, 1114113, 2, -458761, 917505, 0, -458760, 1048577, 0, -458759, 1048577, 0, -458758, 1048577, 0, -458757, 1048577, 0, -458756, 1048577, 0, -458755, 1048577, 0, -458754, 1048577, 0, -458753, 1048577, 0, -524288, 1048577, 0, -524287, 1048577, 0, -524286, 1048577, 0, -524285, 1048577, 0, -524284, 1048577, 0, -524283, 1048577, 0, -524282, 1048577, 0, -524281, 1048577, 0, -524280, 1114113, 0, -458744, 1114113, 2, -393208, 1114113, 2, -327672, 1114113, 2, -262136, 1114113, 2, -196600, 1114113, 2, 131080, 1114113, 2, 196616, 1114113, 2, 262152, 1114113, 2, 327688, 1114113, 2, 393224, 1114113, 3, 393223, 983041, 3, 393222, 983041, 3, 393221, 983041, 3, 393220, 983041, 3, 393219, 983041, 3, 393218, 983041, 3, 393217, 983041, 3, 393216, 983041, 3, 458751, 983041, 3, 458750, 983041, 3, 458749, 983041, 3, 458748, 983041, 3, 458747, 983041, 3, 458746, 983041, 3, 458745, 983041, 3, 458744, 983041, 3)
 
 [node name="Greg" parent="." instance=ExtResource("3_p4n0p")]
-position = Vector2(22, 40)
+position = Vector2(16, 32)
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_t0r6d")]
 position = Vector2(0, -11)
@@ -530,12 +529,6 @@ position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_dcyjw")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Decor"]
-
-[node name="CheatNode" type="Node" parent="."]
-script = ExtResource("22_qf0t1")
-level_gain = 39
-force_spirits_into_use = true
-add_seconds = 500
 
 [connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]

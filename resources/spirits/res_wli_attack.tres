@@ -5,32 +5,24 @@
 
 [sub_resource type="Resource" id="Resource_dd3ks"]
 script = ExtResource("1_oq2f7")
-health = -7.0
+health = 0.0
 health_percent = 0.0
-max_health_percent = 0.0
+max_health_percent = -7.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
-attack_increase_time = 0
 defense_increase = 0.0
-defense_increase_time = 0
 speed_increase = 0.0
-speed_increase_time = 0
-confusion_time = 0
-coughing_level = 0
-coughing_time = 0
-poison_level = 0
-poison_time = 0
-fire_time = 0
-effect_name = ""
-effect_strength = 1.0
-effect_duration = 0
+gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("1_la0wx")

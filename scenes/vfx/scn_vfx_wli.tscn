@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3 uid="uid://ty5n304plx50"]
+
+[ext_resource type="Texture2D" uid="uid://bbm4cj6mawtw3" path="res://sprites/characters/battle/cashier_mean/spr_wli.png" id="1_bjh2b"]
+[ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="2_45obo"]
+[ext_resource type="Material" uid="uid://lhbmu3wa1ggo" path="res://resources/characters/ppm_cashier_mean.tres" id="3_jr1ki"]
+
+[sub_resource type="Gradient" id="Gradient_nq0my"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.259428, 0.411809, 0.530857, 0.611809)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.147883, 1, 1, 1, 0, 1, 1, 1, 0.584734, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7s403"]
+gradient = SubResource("Gradient_nq0my")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwnx6"]
+blend_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8ifh"]
+atlas = ExtResource("1_bjh2b")
+region = Rect2(41, 42, 19, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv7kv"]
+atlas = ExtResource("1_bjh2b")
+region = Rect2(22, 71, 17, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnnfe"]
+atlas = ExtResource("1_bjh2b")
+region = Rect2(4, 44, 20, 25)
+
+[sub_resource type="Animation" id="Animation_5446m"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stalk/Eye:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 6), Vector2(2, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stalk/Eye:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.197594, -0.184551]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.4, 1.9, 2.5, 3.2, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.823529, 1, 1, 0.537255), Color(0.705882, 1, 1, 1), Color(0.823529, 0.882353, 1, 0.576471), Color(1, 0.701961, 1, 1), Color(1, 0.85098, 0.823529, 0.6), Color(1, 1, 0.643137, 1), Color(1, 1, 0.909804, 0.568627)]
+}
+
+[sub_resource type="Animation" id="Animation_vd70j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stalk/Eye:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stalk/Eye:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5lr5"]
+_data = {
+"RESET": SubResource("Animation_vd70j"),
+"default": SubResource("Animation_5446m")
+}
+
+[node name="VfxWLI" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = SubResource("GradientTexture2D_7s403")
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="Hand" type="Sprite2D" parent="Rays"]
+position = Vector2(-36, 32)
+texture = ExtResource("1_bjh2b")
+centered = false
+offset = Vector2(-9.6015, -12.373)
+region_enabled = true
+region_rect = Rect2(41, 42, 19, 24)
+
+[node name="Rotator" parent="Rays/Hand" instance=ExtResource("2_45obo")]
+enabled_in_editor = false
+speed = -40.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand"]
+modulate = Color(1, 1, 1, 0.368627)
+show_behind_parent = true
+z_index = -2
+material = SubResource("CanvasItemMaterial_gwnx6")
+process_material = ExtResource("3_jr1ki")
+texture = SubResource("AtlasTexture_u8ifh")
+fixed_fps = 60
+
+[node name="Hand2" type="Sprite2D" parent="Rays"]
+position = Vector2(34, 25)
+texture = ExtResource("1_bjh2b")
+centered = false
+offset = Vector2(-7.5071, -8.6855)
+region_enabled = true
+region_rect = Rect2(22, 71, 17, 25)
+
+[node name="Rotator" parent="Rays/Hand2" instance=ExtResource("2_45obo")]
+enabled_in_editor = false
+speed = -40.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand2"]
+modulate = Color(1, 1, 1, 0.368627)
+show_behind_parent = true
+z_index = -2
+material = SubResource("CanvasItemMaterial_gwnx6")
+process_material = ExtResource("3_jr1ki")
+texture = SubResource("AtlasTexture_qv7kv")
+fixed_fps = 60
+
+[node name="Hand3" type="Sprite2D" parent="Rays"]
+position = Vector2(-3, -37)
+texture = ExtResource("1_bjh2b")
+centered = false
+offset = Vector2(-10.1139, -11.6846)
+region_enabled = true
+region_rect = Rect2(4, 44, 20, 25)
+
+[node name="Rotator" parent="Rays/Hand3" instance=ExtResource("2_45obo")]
+enabled_in_editor = false
+speed = -40.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand3"]
+modulate = Color(1, 1, 1, 0.368627)
+show_behind_parent = true
+z_index = -2
+material = SubResource("CanvasItemMaterial_gwnx6")
+process_material = ExtResource("3_jr1ki")
+texture = SubResource("AtlasTexture_cnnfe")
+fixed_fps = 60
+
+[node name="Rotator" parent="Rays" instance=ExtResource("2_45obo")]
+enabled_in_editor = false
+speed = 40.0
+
+[node name="Stalk" type="Sprite2D" parent="."]
+position = Vector2(-2, -17)
+texture = ExtResource("1_bjh2b")
+centered = false
+region_enabled = true
+region_rect = Rect2(42, 9, 20, 20)
+
+[node name="Eye" type="Sprite2D" parent="Stalk"]
+position = Vector2(2, 6)
+texture = ExtResource("1_bjh2b")
+centered = false
+offset = Vector2(-11, 0)
+region_enabled = true
+region_rect = Rect2(15, 3, 21, 37)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e5lr5")
+}
+autoplay = "default"

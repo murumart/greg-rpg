@@ -651,6 +651,10 @@ DIALOGUE cashier_mean_welcome
 ACTUALLY cashier_mean_tutorial
 
 
+DIALOGUE cashier_absent_welcome
+	there's no cashier here at the moment.
+
+
 DIALOGUE cashier_nice_tutorial
 CHAR cashier_nice
 	get items from the shelves...
@@ -677,6 +681,10 @@ CHOICE_LINK bye
 	goodbye! we hope your experience was [color=#88aaff]yuku[/color]-tastic!!!!
 
 
+DIALOGUE cashier_absent_tutorial
+	if there was a cashier here, you could pay for items here.
+
+
 DIALOGUE cashier_nice_chat_notfriends
 CHAR cashier_nice
 	not in the mood for chatting.
@@ -685,6 +693,10 @@ CHAR cashier_nice
 
 DIALOGUE cashier_mean_chat_notfriends
 ACTUALLY cashier_mean_tutorial
+
+
+DIALOGUE cashier_absent_chat_notfriends
+ACTUALLY cashier_absent_tutorial
 
 
 DIALOGUE cashier_nice_chat
@@ -750,6 +762,10 @@ CHAR cashier_mean
 	(even wider smile, smile)
 
 
+DIALOGUE cashier_absent_chat
+ACTUALLY cashier_absent_tutorial
+
+
 DIALOGUE cashier_nice_tally
 CHAR cashier_nice
 	your total is %s silver.
@@ -758,6 +774,10 @@ CHAR cashier_nice
 DIALOGUE cashier_mean_tally
 CHAR cashier_mean
 	your total is %s silver!
+
+
+DIALOGUE cashier_absent_tally
+	your total is %s silver.
 
 
 DIALOGUE cashier_nice_tally_poor
@@ -777,6 +797,13 @@ CHAR cashier_mean
 	sounds great, doesn't it!?
 
 
+DIALOGUE cashier_absent_tally_poor
+	your total is %s silver.
+	unfortunately, you don't have that much money.
+	your shopping basket is suddenly emptied...
+	you feel a profound sadness.
+
+
 DIALOGUE cashier_nice_finish
 CHAR cashier_nice
 	thanks... have a great day.
@@ -785,6 +812,11 @@ CHAR cashier_nice
 DIALOGUE cashier_mean_finish
 CHAR cashier_mean
 	thank you! have a [color=#88aaff]yuku[/color]-tastic day!!!
+
+
+DIALOGUE cashier_absent_finish
+	you place the silver in the cash register...
+	...and take your items with you.
 
 
 DIALOGUE cashier_nice_notinterrupt
@@ -848,7 +880,35 @@ DATA_LINK
 	[color=#ff8888]work life imbalance...
 	lend me more of your strength...
 	haaaaaaaaaaaaa.........
-	
+
+
+DIALOGUE cashier_fight_interrupt
+	[color=#ff8888]no.
+	[color=#ff8888]i don't want to do this anymore.
+
+
+DIALOGUE cashier_fight_interrupt_2
+	[color=#ff8888]i know the type of person this "greg" is.
+	[color=#ff8888]it's pointless.
+	[color=#ff8888]he'd win.
+
+
+DIALOGUE cashier_fight_interrupt_3
+CHAR cashier_mean
+	...
+CHAR 
+	[color=#ff8888]the rules are in his favour. stop the battle.
+	[color=#ff8888]it's not fun. we're done.
+
+
+DIALOGUE cashier_after_fight
+CHAR cashier_mean
+	...i see. well then.
+	you're strong enough for [color=#ff8888]work life imbalance[/color]...
+	...to not want to deal with you.
+	...
+	i guess... i'll go take a nap...
+	goodbye... i hope you behave nicely.
 
 
 DIALOGUE mail_man_hello

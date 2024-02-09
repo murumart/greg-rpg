@@ -11,6 +11,7 @@ var store_cashier: StoreCashier
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var camera := $"../Greg/Camera"
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var room_gate: Node2D = $"../RoomGate"
 
 
 func _ready() -> void:
@@ -81,3 +82,31 @@ func _bits(line: int) -> void:
 	elif line == 6:
 		SND.play_song("ac_scary")
 		SOL.dialogue_box.started_speaking.disconnect(_bits)
+
+
+func exit_cashier_fight() -> void:
+	print("globus")
+	store_cashier.cashier = "absent"
+	DAT.set_data("cashier_mean_defeated", true)
+	SND.current_song_player.pitch_scale = 0.89
+	DAT.capture_player("cutscene")
+	canvas_modulate.color = Color(0.82942116, 0.92028677, 0.8864561)
+	cashier.global_position = greg.global_position - Vector2(20, 0)
+	cashier.speed = 0
+	greg.animate("walk_left")
+	cashier.direct_walking_animation(Vector2.RIGHT)
+	camera.position.x -= 10
+	await create_tween().tween_interval(2.0).finished
+	SOL.dialogue("cashier_after_fight")
+	await SOL.dialogue_closed
+	cashier.speed = 3000
+	cashier.time_moved_limit = 300.0
+	cashier.move_to(room_gate.global_position)
+	cashier.target_reached.connect(func():
+		cashier.hide()
+		cashier.position.x = 3000.0
+		DAT.free_player("cutscene")
+		var tw := create_tween()
+		tw.tween_property(SND.current_song_player, "pitch_scale", 1.0, 2.0)
+		tw.tween_property(canvas_modulate, "color", Color.WHITE, 2.0)
+	, CONNECT_ONE_SHOT)

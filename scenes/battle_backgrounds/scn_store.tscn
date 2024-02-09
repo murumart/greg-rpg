@@ -419,3 +419,10 @@ libraries = {
 "": SubResource("AnimationLibrary_25ivg")
 }
 autoplay = "intro"
+
+[node name="ColorRect" type="ColorRect" parent="." index="4"]
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 167.0
+offset_bottom = 126.0
+color = Color(0, 0, 0, 0)

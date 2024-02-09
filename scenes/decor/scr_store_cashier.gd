@@ -84,7 +84,7 @@ func warn() -> void:
 		elif stolen_profit > 199:
 			SOL.dialogue_box.dial_concat("cashier_nice_warning", 0, [stolen_profit])
 			SOL.dialogue("cashier_nice_warning")
-	else:
+	elif cashier == "mean":
 		# just murder you
 		SND.play_song("")
 		DAT.capture_player("cashier_revenge", false, false)

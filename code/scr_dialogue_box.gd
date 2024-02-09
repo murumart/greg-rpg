@@ -55,7 +55,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		skip()
 	# grab focus on choics if it somehow got lost (spamming keys can do this)
-	if (event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel")) and choices_open:
+	if (event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel")) and choices_open\
+			and not choices_container.get_children().any(func(a): return a.has_focus()):
 		choices_container.get_child(0).grab_focus.call_deferred()
 
 

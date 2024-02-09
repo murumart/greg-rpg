@@ -53,6 +53,8 @@ func _ready():
 		})
 	decor.neighbour_wife_position()
 	decor.product_placement()
+	if LTS.gate_id == &"exit_cashier_fight":
+		decor.exit_cashier_fight()
 
 
 func set_store_wall_colours():
@@ -147,7 +149,9 @@ func check_cashier_switch() -> void:
 		DIR.sej(144, 1)
 		return
 	# load the current cashier based on their schedule
-	if wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH:
+	if not DAT.get_data("cashier_mean_defeated") and \
+			(wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH or \
+			LTS.gate_id == &"exit_cashier_fight"):
 		store_cashier.cashier = "mean"
 		cashier_sprite.sprite_frames = load("res://resources/characters/sfr_cashier_mean.tres")
 	else:
