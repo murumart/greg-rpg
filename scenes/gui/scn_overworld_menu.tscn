@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=15 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
@@ -51,6 +51,15 @@ blend_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c61xy"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_jniqt"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3xmlp"]
+gradient = SubResource("Gradient_jniqt")
+width = 8
+height = 8
+fill_from = Vector2(1, 1)
 
 [node name="OverworldMenu" type="Control"]
 layout_mode = 3
@@ -334,12 +343,16 @@ texture = ExtResource("5_buhag")
 stretch_mode = 4
 
 [node name="SaveWarningLabel" type="Label" parent="."]
-visible = false
 layout_mode = 0
-offset_top = 51.0
+offset_top = 113.0
 offset_right = 160.0
-offset_bottom = 62.0
+offset_bottom = 124.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_c61xy")
 text = "press ctrl+s to save your game."
 horizontal_alignment = 1
 autowrap_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="SaveWarningLabel"]
+position = Vector2(80, -16.5391)
+scale = Vector2(20, 4.11523)
+texture = SubResource("GradientTexture2D_3xmlp")

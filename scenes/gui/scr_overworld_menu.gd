@@ -5,7 +5,7 @@ extends Control
 signal close_requested
 signal skateboard_dequipped
 
-const TIME_AFTER_WARN_SAVE := 300
+const TIME_AFTER_WARN_SAVE := 60
 
 const MEM_INFO_DEF_SIZE := Vector2(63, 71)
 const MEM_INFO_DEF_POS := Vector2(2, 25)
@@ -363,18 +363,24 @@ func party(index: int = -1):
 		return (DAT.get_data("party", ["greg"]))
 
 
+var save_warning_tween: Tween
 func showme():
 	show()
 	SND.menusound()
+	save_warning_label.hide()
 	if DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()
 		save_warning_label.modulate.a = 1.0
-		var tw := create_tween()
-		tw.tween_property(save_warning_label, "modulate:a", 0.0, 2.0)
-		tw.tween_callback(save_warning_label.hide)
+		save_warning_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
+		save_warning_tween.tween_interval(2.0)
+		save_warning_tween.tween_property(save_warning_label, "modulate:a", 0.0, 1.0).set_ease(
+				Tween.EASE_OUT).from(1.0)
+		save_warning_tween.tween_callback(save_warning_label.hide)
 
 
 func hideme():
+	if save_warning_tween.is_valid():
+		save_warning_tween.kill()
 	hide()
 	doing = Doings.INNER
 	doing = Doings.PARTY
