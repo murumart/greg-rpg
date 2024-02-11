@@ -15,10 +15,10 @@
 
 [sub_resource type="Resource" id="Resource_2huu4"]
 script = ExtResource("2_cxq0n")
-enemies = Array[String](["cashier_mean"])
+enemies = Array[StringName]([&"cashier_mean"])
 background = "store"
 music = "entirely_just"
-party = Array[String](["greg"])
+party = Array[StringName]([&"greg"])
 death_reason = "default"
 start_text = "sofnwoeaifaweoifj"
 victory_music = true

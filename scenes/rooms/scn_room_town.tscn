@@ -1695,7 +1695,6 @@ layer_0/tile_data = PackedInt32Array(-4, 327681, 11, -3, 327681, 11, -5, 262145,
 
 [node name="DoorArea" parent="Houses/MafiaHouse" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
 position = Vector2(88, 16)
-destination = &"mafia_house"
 gate_id = &"mafiahouse-town"
 spawn_point = NodePath("Marker2D")
 
