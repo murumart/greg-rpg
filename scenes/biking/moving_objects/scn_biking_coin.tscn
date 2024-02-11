@@ -74,19 +74,17 @@ curve = SubResource("Curve_ydtdq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hvhl4"]
 lifetime_randomness = 0.09
+particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 8.0
 emission_ring_inner_radius = 0.0
-particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 1.0
 initial_velocity_max = 5.75
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_54sd8")
 anim_speed_min = 2.0
 anim_speed_max = 4.0
@@ -126,5 +124,3 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ManArea"]
 shape = SubResource("CircleShape2D_h5bqn")
-
-[connection signal="area_entered" from="Area2D" to="." method="collect_coin" unbinds=1]

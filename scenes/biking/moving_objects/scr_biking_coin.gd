@@ -1,12 +1,10 @@
 extends BikingMovingObject
 
+@onready var collection_area: Area2D = $Area2D
+
 
 func _ready() -> void:
-	super._ready()
-	overlap_test()
-
-
-func overlap_test() -> void:
-	if $ManArea.get_overlapping_areas().size() > 0:
-		randomise_position()
-		overlap_test()
+	collection_area.area_entered.connect(func(_a):
+		coin_got.emit()
+		queue_free()
+	)
