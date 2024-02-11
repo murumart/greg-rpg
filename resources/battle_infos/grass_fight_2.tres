@@ -17,10 +17,10 @@ rewards = Array[ExtResource("1_piuhu")]([SubResource("Resource_5e8fj")])
 
 [resource]
 script = ExtResource("1_7no3v")
-enemies = Array[String](["turf", "turf"])
+enemies = Array[StringName]([&"turf", &"turf"])
 background = "grass"
 music = "touch_me"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 rewards = SubResource("Resource_2vy6v")

@@ -17,10 +17,10 @@ rewards = Array[ExtResource("1_ntm8h")]([SubResource("Resource_vnyro")])
 
 [resource]
 script = ExtResource("1_0a05d")
-enemies = Array[String](["cashier_mean"])
+enemies = Array[StringName]([&"cashier_mean"])
 background = "store"
 music = "entirely_just"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "default"
 start_text = "this will be painful!"
 rewards = SubResource("Resource_gjsyr")

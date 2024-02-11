@@ -45,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="29_fx2ly"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_fake_cat.gd" id="29_v4362"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
-[ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
@@ -60,7 +60,7 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_leave_ending.gd" id="42_njd4g"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
-[ext_resource type="SpriteFrames" uid="uid://c1vqflismuh01" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
+[ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
