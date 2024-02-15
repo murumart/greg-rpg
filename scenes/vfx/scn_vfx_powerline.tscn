@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3grs3liet5e4"]
+
+[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_powerline.gd" id="1_dnkul"]
+
+[sub_resource type="Gradient" id="Gradient_22rxs"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwucu"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_22rxs")
+fill_from = Vector2(1, 1)
+
+[node name="VfxPowerline" type="Node2D"]
+script = ExtResource("1_dnkul")
+gradient = SubResource("Gradient_22rxs")
+lifetime = null
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-25, 0, -17.5301, -0.5792, -11.9013, 0.222466, -9.27838, -1.76264, -4.71392, -0.501347, 1.82473, -1.75832, 6.76638, -1.24283, 12.0094, -0.683626, 21.408, -0.380187, 25, 0)
+width = 2.0
+texture = SubResource("GradientTexture2D_fwucu")
+texture_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Start" type="Marker2D" parent="."]
+position = Vector2(-25, 0)
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(25, 0)
