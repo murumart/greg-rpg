@@ -131,20 +131,59 @@ DATA_LINK fulfilled_bounty_thugs,true
 
 DIALOGUE phone_town_under46
 CHAR zerma
+DATA_LINK vampire_defeated,false
 	hey hey! you're in town? great...
 	i just heard some alarming news.
 	apparently there is a vampire at your town!
 	be careful! if you don't take care of them...
 	...who knows what they will do to some random person.
 	fingers crossed! toodles!
+DATA_LINK vampire_defeated,true
+	hey hey! i heard you got rid of the vampire?
+	good work. they can be really dangerous...
+	toodles for now!
 
 
 DIALOGUE phone_town_under50
 CHAR zerma
+DATA_LINK vampire_defeated,false
 	hey hey! have you dealt with the vampire yet?
 	i'm sure they'll do something nefarious...
 	...if you don't stop them. be careful!
 	toodles...
+DATA_LINK vampire_defeated,true
+	hey hey! i heard you got rid of the vampire?
+	good work. they can be really dangerous...
+	toodles for now!
+
+
+DIALOGUE phone_town_under60
+CHAR zerma
+	well... you have reached the end...
+	...of what the "demo" has to offer.
+	see you again soon...
+
+
+DIALOGUE phone_lakeside_under40
+CHAR zerma
+	the lake!
+	todo: say something more interesting.
+	i need a nap! toodles!
+
+
+DIALOGUE phone_lakeside_under50
+CHAR zerma
+DATA_LINK vampire_defeated,false
+	hey hey! you're grinding levels at the lake?
+	have you dealt with the vampire yet?
+	i'm sure they'll do something nefarious...
+	...if you don't stop them. be careful!
+	you can find the vampire in town.
+	toodles...
+DATA_LINK vampire_defeated,true
+	hey hey! i heard you got rid of the vampire?
+	good work. they can be really dangerous...
+	toodles for now!
 
 
 DIALOGUE phone_call_over
