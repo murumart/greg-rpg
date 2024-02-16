@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_dj1o2")
-enemies = Array[String](["vampire"])
+enemies = Array[StringName]([&"vampire"])
 background = "bg_vampire"
 music = "vampire_fight"
-party = Array[String](["greg", "cashier_nice"])
+party = Array[StringName]([&"greg", &"cashier_nice"])
 death_reason = "vampire"
 start_text = "the girl who is also a vampire?"
 rewards = ExtResource("1_7mdua")

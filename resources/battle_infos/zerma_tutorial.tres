@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("1_mc71a")
-enemies = Array[String](["zerma"])
+enemies = Array[StringName]([&"zerma"])
 background = "greghouse"
 music = "greg_battle"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "sus"
 start_text = "you will be so educated!"
 rewards = ExtResource("1_5mkkn")
