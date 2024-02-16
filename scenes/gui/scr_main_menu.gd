@@ -17,7 +17,7 @@ func _ready() -> void:
 	$LoadingScreen.call_deferred("hide")
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
-	version_text.text += " " + DAT.VERSION
+	version_text.text += " " + DAT.version_str()
 	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
 		$Label.text = "[center]" + str(get_funny_messages().pick_random())
 		if $Label.text.ends_with("[/url]"):

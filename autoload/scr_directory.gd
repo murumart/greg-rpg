@@ -190,6 +190,7 @@ func screenshot() -> void:
 	if not DirAccess.dir_exists_absolute("user://greg_rpg/screenshots"):
 		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
 	var img := get_viewport().get_texture().get_image()
+	img.resize(get_window().size.x, get_window().size.y, Image.INTERPOLATE_NEAREST)
 	img.save_png(
 		"user://greg_rpg/screenshots/" + str(
 				Time.get_datetime_string_from_system().validate_filename()) + ".png"
