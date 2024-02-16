@@ -77,6 +77,24 @@ button_mask = 0
 text = "file 3 "
 script = ExtResource("3_1c2wv")
 
+[node name="File4" type="Button" parent="Panel/FileContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "file 4 "
+script = ExtResource("3_1c2wv")
+
+[node name="File5" type="Button" parent="Panel/FileContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "file 5 "
+script = ExtResource("3_1c2wv")
+
 [node name="TabContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 1.0

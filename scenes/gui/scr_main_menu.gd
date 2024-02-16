@@ -9,6 +9,7 @@ var starting := false
 @onready var buttons := [
 	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/CreditsButton, $VBoxContainer/QuitButton,
 ]
+@onready var version_text: Label = $VersionText
 
 
 func _ready() -> void:
@@ -16,6 +17,7 @@ func _ready() -> void:
 	$LoadingScreen.call_deferred("hide")
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
+	version_text.text += " " + DAT.VERSION
 	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
 		$Label.text = "[center]" + str(get_funny_messages().pick_random())
 		if $Label.text.ends_with("[/url]"):

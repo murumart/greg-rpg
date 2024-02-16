@@ -21,6 +21,26 @@ SPEED 0.1
 	[color=#00ff00]a white dove flew over england[/color]
 
 
+DIALOGUE load_warning_superdiff
+	this save file is bugged or from a very old version of greg.
+	are you sure you want to load it? things might break.
+CHOICES no,yes
+	consider making a backup (press c to open the save folder.)
+
+
+DIALOGUE load_warning_majordiff
+	this save file is from an older version.
+CHOICES yes,no,backup
+	are you sure you want to load it?
+CHOICE_LINK backup
+	you can open the save folder and back the save up manually.
+	(press c to do that.)
+
+
+DIALOGUE load_warning_empty
+	this save file is empty. you cannot load it.
+
+
 DIALOGUE get_experience
 	%s experience was gained.
 

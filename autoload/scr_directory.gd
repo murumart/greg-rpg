@@ -191,5 +191,6 @@ func screenshot() -> void:
 		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
 	var img := get_viewport().get_texture().get_image()
 	img.save_png(
-		"user://greg_rpg/screenshots/" + str(hash(img)) + ".png"
+		"user://greg_rpg/screenshots/" + str(
+				Time.get_datetime_string_from_system().validate_filename()) + ".png"
 	)

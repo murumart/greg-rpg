@@ -204,7 +204,7 @@ offset_right = 150.0
 offset_bottom = 124.0
 text = "press esc for options any time"
 
-[node name="DevVersion" type="Label" parent="."]
+[node name="VersionText" type="Label" parent="."]
 modulate = Color(0.356863, 0.356863, 0.356863, 1)
 layout_mode = 0
 offset_left = 1.0
@@ -215,7 +215,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
 text = "pre-relase version"
 
-[node name="ScreenEdgeBounceComponent" type="Node" parent="DevVersion" node_paths=PackedStringArray("target")]
+[node name="ScreenEdgeBounceComponent" type="Node" parent="VersionText" node_paths=PackedStringArray("target")]
 script = ExtResource("6_y22vi")
 target = NodePath("..")
 bounce_rect = Rect2i(0, 0, 72, 112)

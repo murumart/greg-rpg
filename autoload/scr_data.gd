@@ -3,6 +3,8 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
+const VERSION := Vector3(0, 8, 0)
+
 signal player_captured(capture: bool)
 signal resources_loaded
 
@@ -123,6 +125,7 @@ func save_to_dict() -> void:
 	# get estonianised
 	set_data("date", Time.get_date_string_from_system().replace("-", "."))
 	set_data("time", Time.get_time_string_from_system().replace(":", "."))
+	set_data("version", VERSION)
 	last_save_second = seconds
 
 
@@ -349,3 +352,6 @@ func init_data() -> void:
 	set_data("party", ["greg"])
 	set_data("nr", 0.0)
 
+
+func version_str(version: Vector3 = VERSION) -> String:
+	return "%s.%s.%s" % [version.x, version.y, version.z]
