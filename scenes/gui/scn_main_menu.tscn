@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=11 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
 [ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
+[ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="6_y22vi"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -143,6 +145,44 @@ you are my repugnance abominable: my avoided animus. you are my repulsion beloat
 yours unforgivably,
 m.d.p."
 
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadGameButton")
+focus_neighbor_bottom = NodePath("../NewGameButton")
+focus_next = NodePath("../NewGameButton")
+focus_previous = NodePath("../LoadGameButton")
+mouse_filter = 2
+button_mask = 0
+text = " view credits"
+alignment = 0
+
+[node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton"]
+visible = false
+z_index = 1
+offset_left = -27.0
+offset_top = -81.0
+offset_right = 124.0
+offset_bottom = 23.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CreditsButton/TextPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 149.0
+offset_bottom = 102.0
+text = "undesirable hate
+
+you are my repugnance abominable: my avoided animus. you are my repulsion beloathed: my anathematised hate. my undesirable odium disgracefully strangles your avoided anathema. my repulsive dislike loathes your shunned resentment. you are my malevolence undesirable: my despised spite.
+
+yours unforgivably,
+m.d.p."
+
+[node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/TextPanel/RichTextLabel" node_paths=PackedStringArray("target")]
+script = ExtResource("6_vbxvf")
+target = NodePath("..")
+speed = 0.8
+
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -164,7 +204,25 @@ offset_right = 150.0
 offset_bottom = 124.0
 text = "press esc for options any time"
 
+[node name="DevVersion" type="Label" parent="."]
+modulate = Color(0.356863, 0.356863, 0.356863, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 88.0
+offset_bottom = 12.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+text = "pre-relase version"
+
+[node name="ScreenEdgeBounceComponent" type="Node" parent="DevVersion" node_paths=PackedStringArray("target")]
+script = ExtResource("6_y22vi")
+target = NodePath("..")
+bounce_rect = Rect2i(0, 0, 72, 112)
+speed = 30.0
+
 [node name="LoadingScreen" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
@@ -182,4 +240,5 @@ text = "loading."
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MailButton" to="." method="_on_mail_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

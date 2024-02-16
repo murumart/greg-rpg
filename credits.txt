@@ -3,13 +3,20 @@ greenhouse music by webcatz
 fisher hut theme by radio and murumart
 other music made by murumart
 
-explosion noises https://www.freesoundeffects.com/free-sounds/explosion-10070/
-explosion graphic https://mebiusbox.github.io/contents/EffectTextureMaker/
-water shader https://godotshaders.com/shader/perlin-procedural-water/
-shopping cart photo https://pixabay.com/illustrations/shopping-venture-shopping-1019925/
-water rushing and some other nature sounds by freetousesounds https://freetousesounds.bandcamp.com/
-jack and aric skaters by aiden https://troy-sucks.neocities.org/
-fake cat by webcatz https://webcatz.neocities.org/
+explosion noises
+	https://www.freesoundeffects.com/free-sounds/explosion-10070/
+explosion graphic
+	https://mebiusbox.github.io/contents/EffectTextureMaker/
+water shader
+	https://godotshaders.com/shader/perlin-procedural-water/
+shopping cart photo
+	https://pixabay.com/illustrations/shopping-venture-shopping-1019925/
+water rushing and some other nature sounds by freetousesounds
+	https://freetousesounds.bandcamp.com/
+jack and aric skaters by aiden
+	https://troy-sucks.neocities.org/
+fake cat by webcatz
+	https://webcatz.neocities.org/
 
 thank you very much for ideas aiden, alan, ardenna, benny, julian, kin, radio, webcatz...
 fish facts provided by alan, ardenna, caboose, radio, octopixel, webcatz

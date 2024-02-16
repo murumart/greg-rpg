@@ -1,6 +1,6 @@
 class_name ScreenEdgeBounceComponent extends Node
 
-@export var target: Node2D
+@export var target: Node
 @export var bounce_rect: Rect2i = Rect2i(0, 0, 160, 120)
 @export var speed: float = 60
 
@@ -9,14 +9,15 @@ var direction := Vector2()
 
 
 func _ready() -> void:
+	assert("global_position" in target, "target isn't movable node")
 	direction.x = randf() * 2 - 1
 	direction.y = randf() * 2 - 1
 	direction = direction.normalized()
 
 
 func _physics_process(delta: float) -> void:
-	
-	var future_pos := target.global_position + direction * speed * delta
+
+	var future_pos := target.global_position + direction * speed * delta as Vector2
 	if future_pos.x >= bounce_rect.size.x:
 		direction = direction.rotated(deg_to_rad(randf() * random_bounce_angle))
 		direction.x *= -1

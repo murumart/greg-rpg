@@ -7,7 +7,7 @@ var menusound := preload("res://sounds/gui.ogg")
 var starting := false
 
 @onready var buttons := [
-	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/QuitButton
+	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/CreditsButton, $VBoxContainer/QuitButton,
 ]
 
 
@@ -26,10 +26,15 @@ func _ready() -> void:
 	if randf() <= 0.01:
 		$VBoxContainer/MailButton/MailPanel/RichTextLabel.text = HateMail.letter()
 		$VBoxContainer/MailButton.visible = true
-		$VBoxContainer/LoadGameButton.focus_neighbor_bottom = $VBoxContainer/MailButton.get_path()
-		$VBoxContainer/MailButton.focus_neighbor_top = $VBoxContainer/LoadGameButton.get_path()
-		$VBoxContainer/MailButton.focus_neighbor_bottom = $VBoxContainer/QuitButton.get_path()
-		$VBoxContainer/QuitButton.focus_neighbor_top = $VBoxContainer/MailButton.get_path()
+	button_focuses()
+	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel.text = FileAccess.open("res://credits.txt"
+			, FileAccess.READ).get_as_text()
+	if randf() <= 0.008:
+		for x in buttons:
+			var mov := ScreenEdgeBounceComponent.new()
+			mov.target = x
+			mov.bounce_rect.size.x -= 90
+			x.add_child(mov)
 	DIR.incj(0, 1)
 
 
@@ -76,6 +81,7 @@ func _on_label_meta_clicked(meta) -> void:
 func _on_button_focus_exited(_button: Button) -> void:
 	if OPT.options_open: return
 	SND.play_sound(menusound)
+	$VBoxContainer/CreditsButton/TextPanel.hide()
 
 
 # play only the first 2 menu themes on game start up
@@ -118,4 +124,23 @@ func _on_mail_button_pressed() -> void:
 	read_messages = true
 
 
+func button_focuses() -> void:
+	var sz := buttons.size()
+	var y := 0
+	for x in sz:
+		y = wrapi(x + 1, 0, sz)
+		var current := buttons[x] as Button
+		if not current.visible:
+			continue
+		var next := buttons[y] as Button
+		while not next.visible:
+			y = wrapi(y + 1, 0, sz)
+			next = buttons[y]
+		current.focus_neighbor_bottom = next.get_path()
+		next.focus_neighbor_top = current.get_path()
 
+
+func _on_credits_button_pressed() -> void:
+	$VBoxContainer/CreditsButton/TextPanel.show()
+	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.reset.call_deferred()
+	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.check.call_deferred()

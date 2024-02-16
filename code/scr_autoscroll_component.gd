@@ -15,6 +15,8 @@ func _ready() -> void:
 
 
 func check() -> void:
+	if not target.is_visible_in_tree():
+		return
 	if target.get_v_scroll_bar():
 		var scrollbar := target.get_v_scroll_bar() as VScrollBar
 		if scrollbar.max_value != scrollbar.page:
@@ -44,3 +46,12 @@ func scroll_up(bar: VScrollBar) -> void:
 	scroller.tween_interval(read_time)
 	scroller.tween_property(bar, "value", 0, speed * SPEED_MULT * distance)
 	scroller.tween_callback(check)
+
+
+func reset() -> void:
+	if not target.get_v_scroll_bar():
+		return
+	var scrollbar := target.get_v_scroll_bar() as VScrollBar
+	if is_instance_valid(scroller) and scroller.is_valid():
+		scroller.kill()
+	scrollbar.value = 0
