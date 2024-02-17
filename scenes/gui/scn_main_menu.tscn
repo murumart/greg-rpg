@@ -160,6 +160,7 @@ alignment = 0
 [node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton"]
 visible = false
 z_index = 1
+layout_mode = 0
 offset_left = -27.0
 offset_top = -81.0
 offset_right = 124.0
