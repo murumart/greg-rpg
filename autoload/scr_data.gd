@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(0, 8, 0)
+const VERSION := Vector3(0, 8, 1)
 
 signal player_captured(capture: bool)
 signal resources_loaded
@@ -353,5 +353,5 @@ func init_data() -> void:
 	set_data("nr", 0.0)
 
 
-func version_str(version: Vector3 = VERSION) -> String:
+static func version_str(version: Vector3 = VERSION) -> String:
 	return "%s.%s.%s" % [version.x, version.y, version.z]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=12 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
 [ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="6_y22vi"]
+[ext_resource type="Script" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -236,6 +237,9 @@ offset_top = 2.0
 offset_right = 42.0
 offset_bottom = 13.0
 text = "loading."
+
+[node name="EditorHelperTool" type="Node" parent="."]
+script = ExtResource("8_ipbln")
 
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
