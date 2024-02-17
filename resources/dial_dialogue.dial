@@ -1612,6 +1612,33 @@ DIALOGUE neighbour_wife_talk_store_1
 	it's easy to tell you're not a local.
 
 
+DIALOGUE car_scared_1
+	oh dear... how am i supposed to cross the road here...
+	...if there are cars zooming about?
+	cars can be r-really dangerous you know!
+	if only i could "save my game" before crossing roads...
+
+
+DIALOGUE car_scared_2
+	oh dear... you look more adept at crossing roads than i am...
+	would you be so kind and lead me across?
+CHOICES yes,no
+	please...?
+CHOICE_LINK yes
+	thank you k-kindly...
+CHOICE_LINK no
+	oh dear...
+
+
+DIALOGUE car_scared_3
+	oh d-dear... they got me...
+	go on w-without me... save yourself...
+
+
+DIALOGUE car_scared_4
+	bleghhh
+
+
 DIALOGUE naturalist_grass_1
 CHAR naturalist
 	hush! be careful!

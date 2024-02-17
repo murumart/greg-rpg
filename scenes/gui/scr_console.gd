@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,gitem,gspirit,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,gitem,gspirit,reload,7\ntype command without args to get help")
 		&"eks":
 			ex(args)
 		&"clear":
@@ -87,6 +87,10 @@ func parse_command() -> void:
 			give_item(args)
 		&"gspirit":
 			give_spirit(args)
+		&"reload":
+			DAT.save_to_dict()
+			LTS.gate_id = LTS.GATE_LOADING
+			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		&"7":
 			output("7")
 		_:
