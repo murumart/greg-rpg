@@ -134,6 +134,7 @@ offset_right = 156.0
 offset_bottom = 119.0
 
 [node name="S" type="HBoxContainer" parent="UI"]
+modulate = Color(1, 1, 1, 0.509804)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -146,6 +147,13 @@ alignment = 1
 [node name="Player" type="VBoxContainer" parent="UI/S"]
 layout_mode = 2
 size_flags_horizontal = 2
+
+[node name="Player" type="Label" parent="UI/S/Player"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "you: "
 
 [node name="Score" type="Label" parent="UI/S/Player"]
 layout_mode = 2
@@ -164,6 +172,13 @@ text = "lives: "
 [node name="Enemy" type="VBoxContainer" parent="UI/S"]
 layout_mode = 2
 size_flags_horizontal = 10
+
+[node name="Enemy" type="Label" parent="UI/S/Enemy"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "him: "
 
 [node name="Score" type="Label" parent="UI/S/Enemy"]
 layout_mode = 2

@@ -175,11 +175,11 @@ func _ball_movement(delta: float) -> void:
 
 
 func open_rps(where := Vector2(80, 60)) -> void:
-	rps_choice = ROCK
+	rps_choice = rps_choice
 	rps_open = true
 	rps_ui.show()
 	rps_ui.global_position = where
-	rps_select(ROCK)
+	rps_select(rps_choice)
 
 
 func close_rps() -> void:
@@ -223,7 +223,7 @@ func win() -> void:
 	var rewards := BattleRewards.new()
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP
-	reward.property = str(maxi(score - enscore, 0) / 27.0)
+	reward.property = str(xpreward(score, enscore))
 	rewards.add(reward)
 	rewards.grant()
 	await SOL.dialogue_closed
@@ -249,4 +249,8 @@ func end() -> void:
 		LTS.gate_id = LTS.GATE_EXIT_GAMING
 		LTS.level_transition("res://scenes/rooms/scn_room_super_gaming_house.tscn")
 		, CONNECT_ONE_SHOT)
+
+
+static func xpreward(player_score: int, enemy_score: int) -> int:
+	return maxi(player_score - pow(enemy_score, 1.02), 10) / 11.0
 
