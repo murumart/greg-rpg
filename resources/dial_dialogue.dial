@@ -1631,8 +1631,7 @@ CHOICE_LINK no
 
 
 DIALOGUE car_scared_3
-	oh d-dear... they got me...
-	go on w-without me... save yourself...
+	l-let's go to the east... i should buy groceries...
 
 
 DIALOGUE car_scared_4

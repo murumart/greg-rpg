@@ -1001,10 +1001,6 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 16)
 
-[node name="CarScaredVisible" type="VisibleOnScreenNotifier2D" parent="Houses/NeighbourHouse/CarScared"]
-position = Vector2(4.17233e-07, -8)
-scale = Vector2(0.8, 0.9)
-
 [node name="KidEncounter" parent="Houses/NeighbourHouse" instance=ExtResource("25_ffcbh")]
 position = Vector2(158, 96)
 script = ExtResource("14_gpjks")
@@ -2750,6 +2746,5 @@ gate_id = &"town-lake"
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-31, -15)
 
-[connection signal="screen_exited" from="Houses/NeighbourHouse/CarScared/CarScaredVisible" to="Houses/NeighbourHouse" method="_on_car_scared_visible_screen_exited"]
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
 [connection signal="inspected" from="Houses/HousingBlock/Atgirl" to="." method="_on_atgirl_inspected"]

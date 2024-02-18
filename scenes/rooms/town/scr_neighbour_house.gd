@@ -1,6 +1,6 @@
 extends Node2D
 
-const CAR_SCARED_DIED := &"car_scared_died"
+const CAR_SCARED_DIED := &"car_scared_overrun"
 
 const NEIGHBOUR_WIFE_CYCLE := 470
 const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
@@ -32,16 +32,17 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(car_scared):
 		return
 	if car_scared.global_position.x > -56 and car_scared.is_physics_processing():
-		SOL.vfx("overrun_down", car_scared.global_position, {"parent": car_scared})
+		SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
 		SOL.vfx("explosion", car_scared.global_position, {
-				"parent": car_scared, "scale": Math.v2(0.5)})
+				"parent": self, "scale": Math.v2(0.5)})
 		car_scared.set_physics_process(false)
-		car_scared.get_node("Sprite2D").rotation_degrees = 90
-		car_scared.get_node("Sprite2D").position.y = 0
+		var tw := create_tween()
+		tw.tween_property(car_scared.get_node("Sprite2D"), "position", Vector2(10, 300), 1.0)
+		tw.parallel().tween_property(
+				car_scared.get_node("Sprite2D"), "rotation", TAU * 4, 2.0)
 		car_scared.default_lines.clear()
-		car_scared.convo_progress = 0
-		car_scared.default_lines.append_array(["car_scared_3", "car_scared_4"])
 		DAT.set_data(CAR_SCARED_DIED, true)
+		tw.finished.connect(car_scared.queue_free)
 
 
 func neighbour_wife_position() -> void:
@@ -58,8 +59,8 @@ func car_scared_inspected() -> void:
 			car_scared.chase_closeness = 36
 			car_scared.speed = 3600
 			car_scared.chase(greg)
+			car_scared.convo_progress = 0
+			car_scared.default_lines.clear()
+			car_scared.default_lines.append(&"car_scared_3")
 	, CONNECT_ONE_SHOT)
 
-
-func _on_car_scared_visible_screen_exited() -> void:
-	car_scared.queue_free()
