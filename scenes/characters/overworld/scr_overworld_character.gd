@@ -40,6 +40,7 @@ var time_moved_limit := 2.5
 @export var chase_distance := 32
 @export var chase_closeness := 6
 @export var path_container: Node2D
+@export var flee: bool
 var path_timer: Timer
 
 @export_group("Interaction")
@@ -114,7 +115,7 @@ func _physics_process(delta: float) -> void:
 			if not is_instance_valid(SOL.dialogue_box.loaded_dialogue) or SOL.dialogue_box.loaded_dialogue.size() < 1:
 				set_state(States.IDLE)
 		States.CHASE:
-			velocity = global_position.direction_to(target) * delta * speed
+			velocity = global_position.direction_to(target) * delta * speed * (int(not flee) * 2 - 1)
 			# move as long as distance > 6 and hasn't moved for too long
 			if global_position.distance_squared_to(target) > chase_closeness and time_moved < time_moved_limit:
 				time_moved += delta

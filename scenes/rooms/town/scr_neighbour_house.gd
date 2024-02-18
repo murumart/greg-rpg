@@ -31,7 +31,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(car_scared):
 		return
-	if car_scared.global_position.x > -56 and car_scared.is_physics_processing():
+	if car_scared.global_position.x > -64 and car_scared.is_physics_processing():
 		SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
 		SOL.vfx("explosion", car_scared.global_position, {
 				"parent": self, "scale": Math.v2(0.5)})
