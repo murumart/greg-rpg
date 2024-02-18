@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://q4xw2dche40p"]
+[gd_scene load_steps=22 format=3 uid="uid://q4xw2dche40p"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_lake_corridor.gd" id="1_0lfh4"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_clenx"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="10_y2oa7"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="11_o5atk"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="12_eb763"]
+[ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="13_f4g7x"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uudyh"]
 
@@ -26,14 +27,43 @@ normal = Vector2(1, 0)
 
 [sub_resource type="Resource" id="Resource_svjui"]
 script = ExtResource("7_bkiuy")
-enemies = Array[String](["turf", "turf"])
+enemies = Array[StringName]([&"turf", &"turf"])
 background = "grass"
 music = "touch_me"
-party = Array[String]([])
+party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 victory_music = true
 stop_music_before_end = true
+
+[sub_resource type="Curve" id="Curve_qejha"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.357544, 0.287445), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gdygd"]
+curve = SubResource("Curve_qejha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ipct4"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 400, 1)
+angle_min = -2.0
+angle_max = 2.0
+initial_velocity_min = 170.36
+initial_velocity_max = 192.59
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -17.78
+linear_accel_max = 2.96
+radial_accel_max = 40.0
+scale_min = 2.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_gdygd")
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.57
+turbulence_influence_min = 0.057
+turbulence_influence_max = 0.114
+turbulence_initial_displacement_min = -27.1
+turbulence_initial_displacement_max = 41.4
 
 [node name="LakeCorridor" type="Node2D"]
 y_sort_enabled = true
@@ -202,3 +232,14 @@ save_position = true
 position = Vector2(0, -8)
 sprite_frames = ExtResource("12_eb763")
 animation = &"walk_down"
+
+[node name="Mist" type="GPUParticles2D" parent="."]
+z_index = 2
+z_as_relative = false
+position = Vector2(106, 644)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_ipct4")
+texture = ExtResource("13_f4g7x")
+lifetime = 16.0
+preprocess = 4.0
+visibility_rect = Rect2(-800, -600, 1600, 1200)

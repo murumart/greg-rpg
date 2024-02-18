@@ -1,8 +1,9 @@
-[gd_scene load_steps=74 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=79 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_rbpn8"]
+[ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_r61au"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_so2nw"]
@@ -17,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/water_river.ogg" id="11_n82my"]
 [ext_resource type="PackedScene" uid="uid://cuq7r8jwkjto0" path="res://scenes/characters/overworld/scn_broken_fisherman_overworld.tscn" id="11_wk6gi"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="12_tsmfn"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="13_cds6h"]
 [ext_resource type="Texture2D" uid="uid://ct0g7lwo7tapk" path="res://sprites/characters/overworld/spr_fisherwoman_overworld.png" id="13_fsvee"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="14_n53oy"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="15_w4l3t"]
@@ -62,6 +64,35 @@ shader_parameter/timescale = 0.2
 shader_parameter/WATER_COL = Color(0.243137, 0.458824, 0.835294, 1)
 shader_parameter/WATER2_COL = Color(0.2, 0.301961, 0.811765, 1)
 shader_parameter/FOAM_COL = Color(0.443137, 0.65098, 0.847059, 1)
+
+[sub_resource type="Curve" id="Curve_2ajmv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.357544, 0.287445), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hf4wo"]
+curve = SubResource("Curve_2ajmv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q7n2y"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 400, 1)
+angle_min = -2.0
+angle_max = 2.0
+initial_velocity_min = 170.36
+initial_velocity_max = 192.59
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -17.78
+linear_accel_max = 2.96
+radial_accel_max = 40.0
+scale_min = 2.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_hf4wo")
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.57
+turbulence_influence_min = 0.057
+turbulence_influence_max = 0.114
+turbulence_initial_displacement_min = -27.1
+turbulence_initial_displacement_max = 41.4
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tr7m6"]
 normal = Vector2(0, 1)
@@ -339,6 +370,17 @@ offset_right = 736.0
 offset_bottom = 587.0
 metadata/_edit_lock_ = true
 
+[node name="Mist" type="GPUParticles2D" parent="Water"]
+z_index = 2
+z_as_relative = false
+position = Vector2(750, 497)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_q7n2y")
+texture = ExtResource("3_r61au")
+lifetime = 16.0
+preprocess = 4.0
+visibility_rect = Rect2(-800, -600, 1600, 1200)
+
 [node name="WorldCollision" type="StaticBody2D" parent="."]
 collision_mask = 0
 
@@ -481,7 +523,7 @@ max_enemies = 3
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(-311, 390)
+position = Vector2(35, 393)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 3
 player = NodePath("../../Greg")
@@ -497,6 +539,17 @@ position = Vector2(729, 68)
 stream = ExtResource("11_n82my")
 autoplay = true
 max_distance = 200.0
+
+[node name="FishVictim" parent="Areas" instance=ExtResource("12_tsmfn")]
+position = Vector2(-456, -254)
+default_lines = Array[StringName]([&"fish_victim_1", &"fish_victim_2"])
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Areas/FishVictim"]
+position = Vector2(0, -8)
+texture = ExtResource("13_cds6h")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true

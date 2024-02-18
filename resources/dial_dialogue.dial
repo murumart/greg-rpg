@@ -2243,6 +2243,37 @@ CHOICE_LINK no
 	good luck!
 
 
+DIALOGUE fish_victim_1
+	hey... do not walk too close to the lake!
+	i was just taking a stroll... fresh air and all that...
+	worst mistake i've made today... the fish jumped out of the water...
+	...and started beating my ass! i barely made it out alive...
+	...you're laughing at me... i see... i see...
+
+
+DIALOGUE fish_victim_2
+	come back when you've actually met a fish. hmph.
+
+
+DIALOGUE fish_victim_after_fight
+	i see it in your eyes... you've fought fish.
+DATA_LINK first_fish_fight_was_hard,true
+	you barely escaped with your life.
+	see now? see how fish are in fact capable...
+	...of beating your ass?
+DATA_LINK first_fish_fight_was_hard,false
+	...and survived effortlessly.
+	damn. damn...
+	i remain the loser...
+
+
+DIALOGUE fish_victim_3
+DATA_LINK first_fish_fight_was_hard,true
+	that's all. i'm satisfied.
+DATA_LINK first_fish_fight_was_hard,false
+	i need to think for a while...
+
+
 DIALOGUE police_greeting
 CHAR popo_1
 	greetings, citizen! 
