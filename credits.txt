@@ -5,16 +5,25 @@ other music made by murumart
 
 explosion noises
 	https://www.freesoundeffects.com/free-sounds/explosion-10070/
+
 explosion graphic
 	https://mebiusbox.github.io/contents/EffectTextureMaker/
+
 water shader
 	https://godotshaders.com/shader/perlin-procedural-water/
+
 shopping cart photo
 	https://pixabay.com/illustrations/shopping-venture-shopping-1019925/
+	
 water rushing and some other nature sounds by freetousesounds
 	https://freetousesounds.bandcamp.com/
+
+some shader code from shaderv
+	https://github.com/arkology/ShaderV
+
 jack and aric skaters by aiden
 	https://troy-sucks.neocities.org/
+
 fake cat by webcatz
 	https://webcatz.neocities.org/
 
