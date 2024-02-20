@@ -314,5 +314,9 @@ DIALOGUE fish_fact_73
 	did you know? fish barely receive a living wage.
 
 
+DIALOGUE fish_fact_74
+	did you know? the half life of a fish is 3 nanoseconds.
+
+
 DIALOGUE fish_fact_end
 	there are no more fish facts.
