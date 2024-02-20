@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dfk75ibmyup8h"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bdinqkjo5lygo"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_r1w5f"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="2_ocr1u"]
@@ -10,17 +10,20 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
-defense_increase = 3.0
+defense_increase = 2.0
 speed_increase = 0.0
+gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
 animation_on_receive = ""
-reveal_enemy_info = false
+meta = {}
 
 [resource]
 script = ExtResource("2_ocr1u")
@@ -29,7 +32,7 @@ name = &"bike helmet"
 description = "protects your mushy head"
 texture = ExtResource("3_xqhvh")
 attack_animation = ""
-price = 180
+price = 1000
 use = 5
 consume_on_use = true
 payload = SubResource("Resource_wskrl")
