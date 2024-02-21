@@ -9,9 +9,7 @@ CHAR
 CHAR greg
 	man...
 
-
 # this line should be ignored
-
 
 DIALOGUE test2be
 	[color=#00ff00]shut up! shut up![/color]
@@ -23,9 +21,11 @@ SPEED 0.1
 
 DIALOGUE load_warning_superdiff
 	this save file is bugged or from a very old version of greg.
-	are you sure you want to load it? things might break.
 CHOICES no,yes
-	consider making a backup (press c to open the save folder.)
+	are you sure you want to load it? things might break.
+CHOICE_LINK yes
+	alright, it'll be loaded.
+	consider making a new save file instead, though.
 
 
 DIALOGUE load_warning_majordiff

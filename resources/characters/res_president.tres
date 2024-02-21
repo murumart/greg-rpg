@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://cg88yxp6l571p"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_fqokn"]
+[ext_resource type="Texture2D" uid="uid://du2lwib5veg6w" path="res://sprites/characters/portraits/spr_portrait_president.png" id="1_utpyr"]
+
+[resource]
+script = ExtResource("1_fqokn")
+name_in_file = &""
+name = "president"
+info = "a gaunt old man. the president of somewhere?"
+portrait = ExtResource("1_utpyr")
+max_health = 155.0
+health = 145.0
+max_magic = 300.0
+magic = 300.0
+level = 55
+experience = 0
+attack = 55.0
+defense = 55.0
+speed = 55.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""
