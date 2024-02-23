@@ -20,7 +20,7 @@ const NEW_SOUND := &"SOUND "
 const NEW_EMOTION := &"EMO "
 const NEW_DATA_LINK := &"DATA_LINK "
 const NEW_SET_DATA := &"SET_DATA "
-const NEW_PORTRAIT_SCALE := &"PORTRAIT_SCALE"
+const NEW_PORTRAIT_SCALE := &"PORTRAIT_SCALE "
 const LB := "
 "
 

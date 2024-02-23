@@ -14,8 +14,8 @@
   <styles>
     <style id="dial-def" name="Dialogue definition"  map-to="def:special-constant" />
     <style id="dial-name" name="Dialogue name"  map-to="def:character" />
-    <style id="dial-key" name="Dialogue keyword"  map-to="def:string" />
-    <style id="dial-key-property" name="Dialogue keyword"  map-to="def:type" />
+    <style id="dial-key" name="Dialogue keyword"  map-to="def:type" />
+    <style id="dial-key-property" name="Dialogue keyword"  map-to="def:string" />
     <style id="bbcode" name="bbcode"  map-to="def:identifier" />
     <style id="dial-com" name="Dialogue comment"  map-to="def:comment" />
     <style id="format" name="Format"  map-to="def:character"/>

@@ -68,7 +68,7 @@ func _on_atgirl_inspected() -> void:
 
 func naturalist_setup() -> void:
 	var left := $Other/NatureGuyLeft/NatureGuy
-	if DAT.get_character("greg").get_defeated_character("turf") > 2:
+	if DAT.get_character("greg").get_defeated_character("turf") > 6:
 		left.queue_free()
 
 
