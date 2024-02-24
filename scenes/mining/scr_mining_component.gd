@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 
 	if display:
 		manage_display(target_pos, direction, delta)
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("cancel"):
 		tile_action(target_pos / TSIZE)
 
 

@@ -47,11 +47,9 @@ func _input(_event: InputEvent) -> void:
 # speak a dialogue
 func dialogue(key: String) -> void:
 	var player: PlayerOverworld = get_tree().get_first_node_in_group("players")
-	print(player)
 	if is_instance_valid(player):
 		# position the dialogue box up or down so the player is visible
 		var pos := player.get_global_transform_with_canvas().origin
-		print(pos)
 		if pos.y < 75:
 			dialogue_low_position()
 		else:

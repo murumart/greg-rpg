@@ -44,6 +44,10 @@ var songs := {
 		"title": "development hell",
 		"stream": preload("res://music/mus_development_hell.ogg")
 	},
+	"dishout": {
+		"title": "dishout",
+		"stream": preload("res://music/mus_dishout.ogg")
+	},
 	"dry_summer": {
 		"title": "dry summer",
 		"stream": preload("res://music/mus_dry_summer.ogg")
@@ -136,6 +140,10 @@ var songs := {
 	"mail_man": {
 		"title": "the friendly postman",
 		"stream": preload("res://music/mus_mail_man.ogg")
+	},
+	"president_fight": {
+		"title": "touch me",
+		"stream": preload("res://music/mus_president_fight.ogg")
 	},
 	"touch_me": {
 		"title": "touch me",

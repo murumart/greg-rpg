@@ -49,12 +49,12 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed():
 		return
-	if event.is_action_pressed("ui_menu") and load_warning_message:
+	if event.is_action_pressed("menu") and load_warning_message:
 		OS.shell_open(ProjectSettings.globalize_path(DIR.GREG_USER_FOLDER_PATH))
 		return
 	# exiting the save menu
 	# by popular demand: you can use multiple keys to do it
-	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_menu") or event.is_action_pressed("escape"):
+	if event.is_action_pressed("cancel") or event.is_action_pressed("menu") or event.is_action_pressed("escape"):
 		DAT.free_player("save_screen")
 		queue_free()
 	# i like this input scheme i've devised.

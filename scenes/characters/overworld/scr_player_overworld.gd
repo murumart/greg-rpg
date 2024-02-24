@@ -48,7 +48,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		# opening the menu
-		if event.is_action_pressed("ui_menu"):
+		if event.is_action_pressed("menu"):
 			if (not menu.visible) and DAT.player_capturers.is_empty():
 				if not menu_disabled:
 					menu.call_deferred("showme")

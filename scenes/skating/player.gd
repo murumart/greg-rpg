@@ -88,9 +88,9 @@ func _physics_process(delta: float) -> void:
 		sprite.scale.x = signf(velocity.x)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
-	if can_input and Input.is_action_pressed("ui_menu"):
+	if can_input and Input.is_action_pressed("menu"):
 		balance += direction * delta * absf(velocity.y) * 0.2 * maxf(absf(balance) * 2, 0.2)
-	if can_input and Input.is_action_just_pressed("ui_cancel"):
+	if can_input and Input.is_action_just_pressed("cancel"):
 		trick()
 	mod_balance(delta * 0.333)
 	sprite_look()
