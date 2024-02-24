@@ -143,9 +143,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if not event.is_pressed():
 			attack_button.grab_focus()
 	if not listening_to_player_input: return
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("cancel"):
 		go_back_a_menu()
-	if event.is_action_pressed("ui_menu") and doing == Doings.NOTHING:
+	if event.is_action_pressed("menu") and doing == Doings.NOTHING:
 		for e: BattleStatusEffect in current_guy.status_effects:
 			var cont := HBoxContainer.new()
 			cont.add_theme_constant_override("separation", 0)
@@ -161,7 +161,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			status_effects_list.add_child(cont)
 		resize_panel(112)
 		set_description("status effect info")
-	if event.is_action_released("ui_menu") and doing == Doings.NOTHING:
+	if event.is_action_released("menu") and doing == Doings.NOTHING:
 		open_main_actions_screen()
 	if event.is_action_pressed("ui_accept") and doing == Doings.DONE:
 		# leave the battle

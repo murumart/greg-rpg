@@ -54,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not visible: return
 	get_viewport().set_input_as_handled()
 	# going back a menu level
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("cancel"):
 		match doing:
 			Doings.INNER:
 				doing = Doings.PARTY

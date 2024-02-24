@@ -105,10 +105,10 @@ func _physics_process(delta: float) -> void:
 		set_speed(0)
 		check_if_kiosk_has_made_it()
 
-	if Input.is_action_just_pressed("ui_menu") and !ui.inventory_open:
+	if Input.is_action_just_pressed("menu") and !ui.inventory_open:
 		open_inventory()
 
-	if (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_menu")) and ui.inventory_open:
+	if (Input.is_action_just_pressed("cancel") or Input.is_action_just_pressed("menu")) and ui.inventory_open:
 		close_inventory()
 
 	# parallax background

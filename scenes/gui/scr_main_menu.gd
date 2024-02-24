@@ -51,7 +51,7 @@ func _input(event: InputEvent) -> void:
 	)
 	if not hf.call() and not SOL.save_menu_open:
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("cancel"):
 		$VBoxContainer/MailButton/MailPanel.hide()
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
 
