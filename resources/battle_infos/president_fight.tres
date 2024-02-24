@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://3lpdfn5b032y"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_ibgvi"]
+
+[resource]
+script = ExtResource("1_ibgvi")
+enemies = Array[StringName]([&"president"])
+background = "town"
+music = "president_fight"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "f"
+victory_music = true
+stop_music_before_end = true

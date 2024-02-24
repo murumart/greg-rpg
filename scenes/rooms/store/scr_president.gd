@@ -61,8 +61,13 @@ func _president_inspected() -> void:
 	tw.tween_callback(animation_player.play.bind("milkfall"))
 	animation_player.animation_finished.connect(func(_a):
 		tw = create_tween()
-		tw.tween_interval(0.4)
-		SOL.dialogue("")
+		tw.tween_interval(1.0)
+		SOL.dialogue("president_bump")
+		SOL.dialogue_closed.connect(func():
+			LTS.gate_id = LTS.GATE_ENTER_BATTLE
+			LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
+					{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
+		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
 
 

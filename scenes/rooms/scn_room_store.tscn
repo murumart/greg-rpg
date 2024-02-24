@@ -114,7 +114,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_dpbpc"]
 resource_name = "milkfall"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -209,7 +209,7 @@ tracks/7/path = NodePath("Clickbait:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.56, 1.82, 2),
+"times": PackedFloat32Array(0, 1.56, 2.47, 2.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
