@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://8e6qtrpg4jaf"]
+
+[ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="1_gs5cq"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_iqel7"]
+[ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_mdvfn"]
+[ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="4_bbuws"]
+[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="5_ki6u1"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="6_sakjq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3s8v"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="DialogueBox" type="Node2D"]
+z_index = 11
+position = Vector2(0, 92)
+script = ExtResource("1_gs5cq")
+
+[node name="DialogueBoxPanel" type="Panel" parent="."]
+offset_left = 10.0
+offset_right = 148.0
+offset_bottom = 28.0
+theme = ExtResource("2_iqel7")
+
+[node name="DialogueTextbox" type="RichTextLabel" parent="DialogueBoxPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 136.0
+offset_bottom = 28.0
+theme = ExtResource("2_iqel7")
+text = "\\nfefw\\nijiji"
+scroll_active = false
+script = ExtResource("3_mdvfn")
+
+[node name="PortraitSprite" type="Sprite2D" parent="DialogueBoxPanel"]
+visible = false
+position = Vector2(3, 3)
+texture = ExtResource("4_bbuws")
+centered = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DialogueBoxPanel"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = -35.0
+offset_right = 138.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3s8v")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="DialogueBoxPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ReferenceButton" type="Button" parent="DialogueBoxPanel"]
+visible = false
+layout_mode = 0
+offset_right = 22.0
+offset_bottom = 13.0
+mouse_filter = 2
+text = "greg"
+flat = true
+alignment = 0
+script = ExtResource("5_ki6u1")
+
+[node name="FinishedMarker" type="Sprite2D" parent="DialogueBoxPanel"]
+position = Vector2(133, 23)
+texture = ExtResource("6_sakjq")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 1, 3, 3)
+
+[node name="DialogueSound" type="AudioStreamPlayer" parent="."]
+max_polyphony = 32
+bus = &"Speech"

@@ -16,7 +16,7 @@ var dialogue_open := false
 
 var save_menu_open := false
 
-@onready var dialogue_box := $DialogueBoxOrderer as DialogueBox
+@onready var dialogue_box := $DialogueBox as DialogueBox
 @onready var screen_fade: ColorRect = $ScreenFadeOrderer/ScreenFade
 
 var dialogue_choice := &""
@@ -46,11 +46,13 @@ func _input(_event: InputEvent) -> void:
 
 # speak a dialogue
 func dialogue(key: String) -> void:
-	var player: PlayerOverworld = get_tree().get_first_node_in_group("player")
+	var player: PlayerOverworld = get_tree().get_first_node_in_group("players")
+	print(player)
 	if is_instance_valid(player):
 		# position the dialogue box up or down so the player is visible
 		var pos := player.get_global_transform_with_canvas().origin
-		if pos.y < 65:
+		print(pos)
+		if pos.y < 75:
 			dialogue_low_position()
 		else:
 			dialogue_high_position()
@@ -89,12 +91,12 @@ func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := tru
 
 func dialogue_low_position() -> void:
 	dialogue_box.position.y = 92
-	$DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer.position.y = -35
+	$DialogueBox/DialogueBoxPanel/ScrollContainer.position.y = -35
 
 
 func dialogue_high_position() -> void:
 	dialogue_box.position = Vector2.ZERO
-	$DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer.position.y = 35
+	$DialogueBox/DialogueBoxPanel/ScrollContainer.position.y = 35
 
 
 func fade_screen(start: Color, end: Color, time := 1.0) -> void:
