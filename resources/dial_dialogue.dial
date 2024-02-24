@@ -2991,6 +2991,17 @@ CHOICE_LINK yes
 	can't wait to go home! see you there!
 
 
+DIALOGUE president_bump
+CHAR president
+	...
+CHAR greg
+	...
+CHAR president
+	you don't seem to display awareness of... 
+	...whose aquaintance you're making.
+	well... let me enlighten you.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
