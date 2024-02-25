@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=15 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
 [ext_resource type="Texture2D" uid="uid://bupucffay7rlu" path="res://sprites/vfx/president_background/beam.png" id="2_efvev"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="2_shpnw"]
 [ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="5_2jjai"]
-[ext_resource type="SpriteFrames" uid="uid://cd50wxsj1rc36" path="res://resources/characters/sfr_greg.tres" id="5_nlbht"]
+[ext_resource type="SpriteFrames" uid="uid://cgg6yedlort55" path="res://resources/characters/sfr_greg.tres" id="5_nlbht"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_sj8jt"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="6_g0ddx"]
+[ext_resource type="Script" path="res://code/scr_textbox.gd" id="9_kqx2m"]
 
 [sub_resource type="Curve" id="Curve_578y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -60,17 +61,19 @@ preprocess = 4.0
 
 [node name="Lighthouse" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(79, 71)
+position = Vector2(79, 52)
 texture = ExtResource("1_3h3h7")
 centered = false
 offset = Vector2(-38, -55)
 
 [node name="Beam" type="Sprite2D" parent="Lighthouse"]
+modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_2hpv4")
 position = Vector2(0, -39)
 texture = ExtResource("2_efvev")
 
 [node name="SpinPivot" type="Node2D" parent="Lighthouse"]
+modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
 position = Vector2(0, -2)
 
@@ -110,3 +113,12 @@ preprocess = 4.0
 [node name="MusBarCounter" type="Node" parent="."]
 script = ExtResource("5_2jjai")
 bpm = 155.0
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 34.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.219608)
+theme_override_constants/outline_size = 8
+script = ExtResource("9_kqx2m")
