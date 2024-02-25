@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_ibgvi")
 enemies = Array[StringName]([&"president"])
-background = "town"
+background = "president_background"
 music = "president_fight"
 party = Array[StringName]([])
 death_reason = "default"

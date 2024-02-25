@@ -18,7 +18,7 @@ func _ready() -> void:
 	president.inspected.connect(_president_inspected)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_instance_valid(SND.current_song_player) and song_pitching:
 		SND.current_song_player.pitch_scale = minf(remap(president.global_position.distance_to(
 				greg.global_position), 0.0, 66.0, 0.75, 1.0), 1.0)
