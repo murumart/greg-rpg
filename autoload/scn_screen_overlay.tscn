@@ -10,6 +10,7 @@ script = ExtResource("1_3f4vq")
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
 visible = false
+z_index = 19
 
 [node name="ScreenFade" type="ColorRect" parent="ScreenFadeOrderer"]
 offset_right = 160.0

@@ -64,6 +64,8 @@ func _president_inspected() -> void:
 		tw.tween_interval(1.0)
 		SOL.dialogue("president_bump")
 		SOL.dialogue_closed.connect(func():
+			SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.1)
+			await SOL.fade_finished
 			LTS.gate_id = LTS.GATE_ENTER_BATTLE
 			LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
 					{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
