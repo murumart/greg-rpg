@@ -15,9 +15,9 @@ const ANGLE_UP := -1.5708
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():
 		return TYPE_FLOAT
-	elif input.is_valid_int():
+	if input.is_valid_int():
 		return TYPE_INT
-	else: return TYPE_STRING
+	return TYPE_STRING
 
 
 # get either -1, 0, 1, 2 to represent the 4 cardinal directions
@@ -59,6 +59,14 @@ static func dictdiff(a: Dictionary, b: Dictionary) -> Dictionary:
 		if typeof(a[key]) == typeof(b[key]):
 			ret[key] = a[key] - b[key]
 	return ret
+
+# unique elements only
+static func array_union(a: Array, b: Array) -> Array:
+	var new := []
+	for el in a:
+		if el in b:
+			new.append(el)
+	return new
 
 
 # i guess it's not actually shorter than writing it out
@@ -219,10 +227,10 @@ static func v2(from: float) -> Vector2:
 
 # convert a string to a usable type
 static func toexp(string: String) -> Variant:
+	if string.is_valid_int(): return int(string)
+	if string.is_valid_float(): return float(string)
+	if string == "false": return false
 	if string == "true": return true
-	elif string == "false": return false
-	elif string.is_valid_int(): return int(string)
-	elif string.is_valid_float(): return float(string)
 	return null
 
 
@@ -256,3 +264,5 @@ static func but(a: bool, b: bool) -> bool:
 	return (not a) and b
 
 
+static func true_or_false(rng: RandomNumberGenerator) -> bool:
+	return bool(roundf(rng.randf()))
