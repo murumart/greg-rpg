@@ -66,6 +66,9 @@ static func array_union(a: Array, b: Array) -> Array:
 	for el in a:
 		if el in b:
 			new.append(el)
+	for el in b:
+		if el in a and not el in new:
+			new.append(el)
 	return new
 
 

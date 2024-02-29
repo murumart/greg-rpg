@@ -111,6 +111,8 @@ func get_effect_description() -> String:
 			efftxt += "[color=#886688]%s[/color]\n" % (immuniscriptions.get(eff.name, fname + " immunity") + " for %s" % absi(eff.duration))
 		elif eff.duration == -1:
 			efftxt += "[color=#668866]%s[/color]\n" % (curescriptions.get(eff.name, "cures " + fname))
+		elif eff.strength < 0:
+			efftxt += "[color=#aa8866]%s[/color]\n" % (criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s" % eff.duration)
 		else:
 			efftxt += "[color=#888866]%s[/color]\n" % (criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s" % eff.duration)
 		text += efftxt

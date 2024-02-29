@@ -27,7 +27,7 @@ const GENDER_ROLES := {
 	Genders.BRAIN: [&"sleepy"],
 	Genders.ELECTRIC: [&"electric", &"speed", &"magnet"],
 	Genders.FLAMING: [&"fire", &"attack", &"sopping_immunity"],
-	Genders.GHOST: [&"inspiration", &"shield"],
+	Genders.GHOST: [&"shield"],
 	Genders.SOPPING: [&"sopping", &"defense", &"coughing"],
 	Genders.VAST: [&"confusion"],
 }
@@ -50,7 +50,7 @@ const COSTS := {
 	&"defense": 5,
 	&"speed": 7,
 	&"magnet": 12,
-	&"inspiration": 6,
+	&"inspiration": 55,
 	&"regen": 6,
 	&"shield": 8,
 	&"sleepy": 8,
