@@ -4,7 +4,7 @@ extends Room
 
 func _ready() -> void:
 	super._ready()
-	var level := DAT.get_character("greg").level
+	var level := ResMan.get_character("greg").level
 	if level < 25 and not DAT.get_data("naturalist_knows_you_survive_lake", false):
 		SOL.dialogue_box.dial_concat("naturalist_lake_underleveled", 2, [level])
 		naturalist.default_lines = [

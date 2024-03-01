@@ -28,7 +28,7 @@ func exchange(inventory: Array) -> bool:
 	DAT.incri("silver", -silver_required)
 	for i in output:
 		inventory.append(i)
-		SOL.dialogue_box.dial_concat("exchange_item", 0, [DAT.get_item(i).name])
+		SOL.dialogue_box.dial_concat("exchange_item", 0, [ResMan.get_item(i).name])
 		SOL.dialogue("exchange_item")
 	if silver_granted:
 		DAT.incri("silver", silver_granted)
@@ -44,12 +44,12 @@ func state(what: Statements) -> void:
 		if silver_required:
 			informations.append("- %s silver" % silver_required)
 		for i in input:
-			informations.append("- %s" % DAT.get_item(i).name)
+			informations.append("- %s" % ResMan.get_item(i).name)
 	elif what == Statements.RETURNS:
 		if silver_granted:
 			informations.append("- %s silver" % silver_granted)
 		for i in output:
-			informations.append("- %s" % DAT.get_item(i).name)
+			informations.append("- %s" % ResMan.get_item(i).name)
 	
 	# TITLE: this exchange requires: LB%s LB%s
 	# SISU: %s LB%s LB%s

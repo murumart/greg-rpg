@@ -110,7 +110,7 @@ static func mult_arr(arr: Array, x: int) -> Array:
 
 
 static func party(tab: int) -> Character:
-	return DAT.get_character(DAT.get_data("party", ["greg"])[tab])
+	return ResMan.get_character(DAT.get_data("party", ["greg"])[tab])
 
 
 # this is one ugly funtion
@@ -198,21 +198,21 @@ static func load_reference_buttons_groups(
 static func item_name_array(inp: Array) -> Array:
 	var ret := []
 	for i in inp:
-		ret.append(DAT.get_item(i).name)
+		ret.append(ResMan.get_item(i).name)
 	return ret
 
 
 static func spirit_name_array(inp: Array) -> Array:
 	var ret := []
 	for i in inp:
-		ret.append(DAT.get_spirit(i).name)
+		ret.append(ResMan.get_spirit(i).name)
 	return ret
 
 
 static func character_name_array(inp: Array) -> Array:
 	var ret := []
 	for i in inp:
-		ret.append(DAT.get_character(i).name)
+		ret.append(ResMan.get_character(i).name)
 	return ret
 
 

@@ -188,8 +188,8 @@ func item_names(opt := {}) -> void:
 		opt.button.modulate = Color("#888888")
 		return
 	opt.button.text = opt.reference.left(8)
-	if opt.reference in DAT.item_dict:
-		opt.button.text = DAT.get_item(opt.reference).name.left(8)
+	if opt.reference in ResMan.items:
+		opt.button.text = ResMan.get_item(opt.reference).name.left(8)
 
 
 func perk_names(opt := {}) -> void:
@@ -211,7 +211,7 @@ func _reference_button_pressed(reference) -> void:
 
 
 func item_reference_pressed(reference) -> void:
-	var item := DAT.get_item(reference)
+	var item := ResMan.get_item(reference)
 	var price = roundi(item.price / 4.0)
 	var inventory: Array = game_get("inventory", [])
 	var silver: int = game_get("silver_collected", 0)
@@ -266,9 +266,9 @@ func _on_button_reference_received(reference) -> void:
 func item_reference_received(reference) -> void:
 	item_info_label.text = "%s
 ===
-%s silver" % [DAT.get_item(reference).name, roundi(DAT.get_item(reference).price / 4.0)]
+%s silver" % [ResMan.get_item(reference).name, roundi(ResMan.get_item(reference).price / 4.0)]
 	item_picture.get_parent().show()
-	item_picture.texture = DAT.get_item(reference).texture
+	item_picture.texture = ResMan.get_item(reference).texture
 
 
 func perk_reference_received(reference) -> void:

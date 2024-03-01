@@ -13,7 +13,7 @@ const LVLUNDER := "_under"
 
 var level := 1:
 	get:
-		return DAT.get_character("greg").level
+		return ResMan.get_character("greg").level
 var room := "":
 	get:
 		return DAT.get_data("current_room", null) as String

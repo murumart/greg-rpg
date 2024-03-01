@@ -167,7 +167,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	choices_open = false
 
 	if character_load:
-		character = DAT.get_character(character_load)
+		character = ResMan.get_character(character_load)
 
 	if character and character.portrait:
 		portrait.texture = character.portrait

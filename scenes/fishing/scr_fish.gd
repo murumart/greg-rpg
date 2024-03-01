@@ -63,7 +63,7 @@ func _on_wall_hit(_body: Node2D) -> void:
 func assign_value() -> void:
 	if not is_fish:
 		if item:
-			sprite.texture = DAT.get_item(item).texture
+			sprite.texture = ResMan.get_item(item).texture
 			sprite.material = null
 		return
 	# hehehe

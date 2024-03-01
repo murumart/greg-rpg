@@ -222,7 +222,7 @@ func attack(subject: BattleActor) -> void:
 	var weapon: Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
-		weapon = DAT.get_item(character.weapon)
+		weapon = ResMan.get_item(character.weapon)
 		pld.set_defense_pierce(weapon.payload.pierce_defense)
 		pld.effects = weapon.payload.effects
 		pld.delay = weapon.payload.delay
@@ -259,7 +259,7 @@ func attack(subject: BattleActor) -> void:
 
 
 func use_spirit(id: String, subject: BattleActor) -> void:
-	var spirit: Spirit = DAT.get_spirit(id)
+	var spirit: Spirit = ResMan.get_spirit(id)
 	character.magic = max(character.magic - spirit.cost, 0)
 	emit_message("%s: %s!" % [actor_name, spirit.name])
 	# animating
@@ -313,7 +313,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 		turn_finished()
 		return
-	var item: Item = DAT.get_item(id)
+	var item: Item = ResMan.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self).\
 		set_type(BattlePayload.Types.ITEM)) # using the item
@@ -465,7 +465,7 @@ func turn_finished() -> void:
 
 
 func load_character(id: StringName) -> void:
-	var charc: Character = DAT.get_character(id).duplicate(true)
+	var charc: Character = ResMan.get_character(id).duplicate(true)
 	character = charc
 	charc.defeated_characters.clear()
 
@@ -474,7 +474,7 @@ func load_character(id: StringName) -> void:
 # so that the health and other information will get saved between battles
 func offload_character() -> void:
 	character.health = maxf(character.health, 1.0)
-	var basechar: Character = DAT.character_dict[character.name_in_file]
+	var basechar: Character = ResMan.characters[character.name_in_file]
 	basechar.health = character.health
 	basechar.magic = clampf(character.magic, 0.0, basechar.max_magic)
 	basechar.inventory = character.inventory

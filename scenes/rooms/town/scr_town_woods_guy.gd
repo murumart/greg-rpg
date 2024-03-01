@@ -8,7 +8,7 @@ const DONT_TELEPORT := ["no", "darn"]
 
 
 func _ready() -> void:
-	var level := DAT.get_character("greg").level
+	var level := ResMan.get_character("greg").level
 	if level < 55:
 		woods_guy.queue_free()
 		return

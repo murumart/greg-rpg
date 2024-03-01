@@ -80,7 +80,7 @@ func load_from_dict(dict: Dictionary) -> void:
 
 # base stat + armour + weapon increases for it
 func get_stat(nimi: String) -> int:
-	var stat := roundi(get(nimi) + (DAT.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (DAT.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
+	var stat := roundi(get(nimi) + (ResMan.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (ResMan.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
 	return stat
 
 
@@ -152,7 +152,7 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 
 
 func handle_item(id: String) -> void:
-	var item = DAT.get_item(id)
+	var item = ResMan.get_item(id)
 	if item.use == Item.Uses.ARMOUR:
 		if armour:
 			inventory.append(armour)

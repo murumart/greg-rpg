@@ -17,7 +17,7 @@ func _ready() -> void:
 		ushanka_guy_cutscene.start()
 	else:
 		ushanka_guy_cutscene.cleanup()
-	if not DAT.get_data("vampire_fought", false) and DAT.get_character("greg").level > 49:
+	if not DAT.get_data("vampire_fought", false) and ResMan.get_character("greg").level > 49:
 		hes_dead = true
 		notes.show()
 		ushanka_guy_cutscene.consequences()
@@ -81,7 +81,7 @@ func can_ushanka_guy_cutscene() -> bool:
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
 	if DAT.get_data("witnessed_ushanka_guy_cutscene", false): return false
 	if DAT.get_data("vampire_fought", false): return false
-	if DAT.get_character("greg").level > 49: return false
+	if ResMan.get_character("greg").level > 49: return false
 	if DAT.get_data("uguy_following", false): return false
 	DAT.set_data("witnessed_ushanka_guy_cutscene", true)
 	return true

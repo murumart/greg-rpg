@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	# TODO make this an actual thing
-	if true:#DAT.get_character("greg").level >= 7:
+	if true:#ResMan.get_character("greg").level >= 7:
 		queue_free()
 		return
 	if DAT.get_data("leave_ending_offered", false):

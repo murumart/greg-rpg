@@ -54,8 +54,8 @@ func _on_interaction_area_on_interact() -> void:
 	for i in inventory.size(): # every available item
 		var item = inventory[i]
 		# item["item"] accesses an item dictionary's type id
-		var item_name = DAT.get_item(item["item"]).name
-		var item_price = DAT.get_item(item["item"]).price
+		var item_name = ResMan.get_item(item["item"]).name
+		var item_price = ResMan.get_item(item["item"]).price
 		name_keys_dict[item_name] = item["item"]
 		choices.append(item_name)
 		if len(text) > 1:

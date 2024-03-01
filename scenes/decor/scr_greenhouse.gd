@@ -77,7 +77,7 @@ func pleasant() -> void:
 	SND.play_song("")
 	if SOL.dialogue_choice == "eat":
 		for c in DAT.get_data("party", ["greg"]):
-			DAT.get_character(c).fully_heal()
+			ResMan.get_character(c).fully_heal()
 		DAT.incri(get_save_key("eats"), 1)
 		SND.play_sound(preload("res://sounds/greenhouse_heal_big.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:
@@ -89,7 +89,7 @@ func pleasant() -> void:
 			DAT.incri("greenhouses_eaten", 1)
 	else:
 		for c in DAT.get_data("party", ["greg"]):
-			DAT.get_character(c).mostly_heal()
+			ResMan.get_character(c).mostly_heal()
 		DAT.incri(get_save_key("sleeps"), 1)
 		SND.play_sound(preload("res://sounds/greenhouse_heal.ogg"))
 		if DAT.get_data("party", ["greg"]).size() > 1:

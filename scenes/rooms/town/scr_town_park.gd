@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func tarikas_lines() -> void:
-	var level := DAT.get_character("greg").level
+	var level := ResMan.get_character("greg").level
 	var lines_to_set: Array[StringName] = []
 	tarikas.convo_progress = 0
 	if not DAT.get_data("tarikas_talked_to", false):

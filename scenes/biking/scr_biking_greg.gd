@@ -40,7 +40,7 @@ const CRASH_SOUND := preload("res://sounds/biking_crash.ogg")
 func _ready() -> void:
 	set_ragdoll_enabled(false)
 	animation_tree.active = true
-	max_health = roundi(DAT.get_character("greg").max_health)
+	max_health = roundi(ResMan.get_character("greg").max_health)
 	health = max_health
 
 
