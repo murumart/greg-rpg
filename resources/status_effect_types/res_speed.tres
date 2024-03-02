@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=6 format=3 uid="uid://cn1x3pbgoiq0v"]
+
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_cfnwb"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_j3hlu"]
+[ext_resource type="Script" path="res://code/res_status_effect_payload.gd" id="3_2fuyb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc0xb"]
+atlas = ExtResource("1_cfnwb")
+region = Rect2(12, 6, 6, 6)
+
+[sub_resource type="Resource" id="Resource_4p8y5"]
+script = ExtResource("3_2fuyb")
+health_strength_modifier = 1.0
+magic_strength_modifier = 1.0
+applied_effect_duration_strength_modifier = 1.0
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 1.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("2_j3hlu")
+s_id = &""
+name = "speed"
+icon = SubResource("AtlasTexture_dc0xb")
+turn_payload = SubResource("Resource_4p8y5")
+color = Color(1, 1, 1, 1)
+gender = 1
+use = 2
+cost = 7
+turn_visual = &""
+process_visual = &""
+process_visual_chance = 0.02

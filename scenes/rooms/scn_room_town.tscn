@@ -45,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="29_fx2ly"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_fake_cat.gd" id="29_v4362"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
+[ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=4 format=3 uid="uid://01wa724bajsf"]
+
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_rmino"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_ffxiv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1fhd"]
+atlas = ExtResource("1_rmino")
+region = Rect2(24, 12, 6, 6)
+
+[resource]
+script = ExtResource("2_ffxiv")
+s_id = &""
+name = "appetising"
+icon = SubResource("AtlasTexture_v1fhd")
+color = Color(0.992157, 0.803922, 0.682353, 1)
+gender = 0
+use = 3
+cost = 16
+turn_visual = &""
+process_visual = &""
+process_visual_chance = 0.02

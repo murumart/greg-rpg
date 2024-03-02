@@ -42,25 +42,25 @@ func get_spirit(level: int) -> Spirit:
 
 
 class MGPayload:
-	
-	static var STATEFF_ORDER := StatusEffect.ICONS.keys()
+
+	static var STATEFF_ORDER := ResMan.status_effect_types.keys()
 	const HIGH_VARIANCE_EFFECTS := [&"attack", &"defense", &"speed"]
 	const QUARTER_VARIANCE_EFFECTS := [
 		&"regen", &"inspiration", &"poison", &"coughing", &"sopping", &"electric"]
 	const RESTRICTED_EFFECTS := [
 		&"confusion", &"shield", &"appetising", &"little", &"sleepy"]
 	const STATEFF_WEIGHTS := [10, 6, 2, 8]
-	
+
 	var rng: RandomNumberGenerator
 	var lvl: int
 	var use: Uses
 	var gender: int
 	var mcost := 0
-	
-	
+
+
 	func _init(
 				_rng: RandomNumberGenerator,
-				_lvl: int, 
+				_lvl: int,
 				_use: Uses,
 				_gender: int
 			) -> void:
@@ -70,8 +70,8 @@ class MGPayload:
 		gender = _gender
 		if gender == Genders.RANDOM:
 			gender = Math.weighted_random(GENDER_ORDER, GENDER_WEIGHTS)
-	
-	
+
+
 	func pload() -> BattlePayload:
 		var pl := BattlePayload.new()
 		var much := float(lvl)
@@ -122,15 +122,15 @@ class MGPayload:
 		mcost = lvl
 		mcost += plcost(pl)
 		return pl
-		
-		
+
+
 	func stateff(much: float) -> StatusEffect:
 		var se := StatusEffect.new()
 		se.duration = rng.randi_range(2, 4)
 		var rand_start := 1.0
 		if rng.randf() < 0.1:
 			rand_start = randf_range(-10, much / 2)
-		
+
 		# choose name
 		var union := Math.array_union(
 				StatusEffect.GENDER_ROLES.get(gender, STATEFF_ORDER),
@@ -160,7 +160,7 @@ class MGPayload:
 				se.duration += rng.randf_range(-10, 10)
 			elif rng.randf() < 0.2:
 				se.strength += rng.randf_range(-6, 12)
-		
+
 		var rand_end := 5.0
 		if se.name in HIGH_VARIANCE_EFFECTS:
 			rand_end = much
@@ -183,7 +183,7 @@ class MGPayload:
 					se.duration = maxf(se.duration + rng.randi_range(-2, 2), 1)
 				else:
 					se.strength = maxf(se.strength + rng.randf_range(-2, 2), 1)
-		
+
 		if se.strength > 0:
 			se.strength = ceilf(se.strength)
 		else:
@@ -191,8 +191,8 @@ class MGPayload:
 		if se.duration == 0:
 			se.set_strength(0)
 		return se
-		
-	
+
+
 	static func secost(eff: StatusEffect) -> float:
 		var cost := 0.0
 		var semult := 0.5
@@ -203,8 +203,8 @@ class MGPayload:
 		if eff.name in RESTRICTED_EFFECTS and eff.strength != 1:
 			cost += absf(eff.strength * 10)
 		return cost
-	
-	
+
+
 	static func plcost(pl: BattlePayload) -> float:
 		var sc := 0.0
 		for x in pl.effects:
@@ -226,12 +226,12 @@ class MGPayload:
 
 
 class MGRandomName:
-	
+
 	const NAME_LEN_MIN = 6
 	const NAME_LEN_MAX = 9
 	const SYLLABLES: Array[String] = ["ba", "be", "bi", "bo", "bu"]
-	
-	
+
+
 	static func gen_name(rng: RandomNumberGenerator) -> String:
 		var name := ""
 		var lenght := rng.randi_range(NAME_LEN_MIN, NAME_LEN_MAX)

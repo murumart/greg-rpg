@@ -146,16 +146,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("menu") and doing == Doings.NOTHING:
-		for e: BattleStatusEffect in current_guy.status_effects:
+		for e: BattleStatusEffect in current_guy.status_effects.values():
 			var cont := HBoxContainer.new()
 			cont.add_theme_constant_override("separation", 0)
 			var tex := TextureRect.new()
 			tex.stretch_mode = TextureRect.STRETCH_KEEP
-			# lazy
-			tex.texture = current_info.effect_textures.get(e.name, current_info.effect_textures["confusion"])
+			tex.texture = e.type.icon
 			tex.flip_v = e.strength < 0
 			var lab := Label.new()
-			lab.text = "%s lvl %s for %s turns" % [e.name.replace("_", " "), e.strength, e.duration]
+			lab.text = "%s lvl %s for %s turns" % [e.type.name, e.strength, e.duration]
 			cont.add_child(tex)
 			cont.add_child(lab)
 			status_effects_list.add_child(cont)

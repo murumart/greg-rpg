@@ -7,6 +7,15 @@ class_name BattlePayload
 enum Types {ATTACK, SPIRIT, ITEM}
 var type := Types.ATTACK
 
+const FIELDS := [
+	&"health", &"health_percent", &"max_health_percent",
+	&"pierce_defense", &"steal_health",
+	&"magic", &"magic_percent", &"max_magic_percent",
+	&"attack_increase", &"defense_increase", &"speed_increase",
+	&"gender", &"effects",
+	&"delay", &"summon_enemy", &"animation_on_receive"
+]
+
 @export_group("Resources")
 @export var health: float
 @export var health_percent := 0.0
@@ -96,25 +105,34 @@ func get_effect_description() -> String:
 		var c := "[color=#888800]%s%s spd[/color]" if not harm else "[color=#884400]%s%s spd[/color]"
 		text += c % [Math.sign_symbol(speed_increase), absf(speed_increase)] + "\n"
 	for eff in effects:
-		var fname := eff.name.replace("_", " ") as String
+		var fid := eff.name
+		if eff.duration < -1:
+			fid += "_immunity"
+		var efftype := ResMan.get_effect(fid)
+		var fname := efftype.name
 		var efftxt := ""
-		var criptions := {
-			&"magnet": "magnetic"
-		}
-		var immuniscriptions := {
-			&"fire": "fireproof"
-		}
 		var curescriptions := {
 			&"fire": "fire extinguished"
 		}
+		var effcolor := efftype.color.to_html()
 		if eff.duration < -1:
-			efftxt += "[color=#886688]%s[/color]\n" % (immuniscriptions.get(eff.name, fname + " immunity") + " for %s" % absi(eff.duration))
+			efftxt += ("[color=#%s]%s[/color]" % [effcolor, fname]) +\
+			" for %s\n" % absi(eff.duration)
 		elif eff.duration == -1:
 			efftxt += "[color=#668866]%s[/color]\n" % (curescriptions.get(eff.name, "cures " + fname))
 		elif eff.strength < 0:
-			efftxt += "[color=#aa8866]%s[/color]\n" % (criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s" % eff.duration)
+			effcolor = efftype.color.darkened(0.2).to_html()
+			efftxt += "[color=#%s]%s[/color]" % [effcolor,
+			# the horrors
+					(fname + ((" "+Math.sign_symbol(eff.strength) + str(
+					absf(eff.strength))+" ") if eff.strength != 1
+					else " ") + "for %s\n" % eff.duration)
+				]
 		else:
-			efftxt += "[color=#888866]%s[/color]\n" % (criptions.get(eff.name, fname) + ((" "+Math.sign_symbol(eff.strength)+str(absf(eff.strength))+" ") if eff.strength != 1 else " ") + "for %s" % eff.duration)
+			efftxt += ("[color=#%s]%s[/color]" % [effcolor,
+					(fname + ((" "+Math.sign_symbol(eff.strength) + str(
+					absf(eff.strength))+" ") if eff.strength != 1 else " "))
+				] + "for %s\n" % eff.duration)
 		text += efftxt
 	if gender:
 		text += "[color=#444444]type:[/color] [color=#%s]" % Genders.COLOURS[gender].to_html(false)

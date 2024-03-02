@@ -189,7 +189,7 @@ func version_string(data: Dictionary) -> String:
 	var version := data.get("version", Vector3(-4, 0, 4)) as Vector3
 	var super_difference := DAT.VERSION.x - version.x as int
 	var major_difference := DAT.VERSION.y - version.y as int
-	var minor_difference := DAT.VERSION.z - version.z as int
+	var _minor_difference := DAT.VERSION.z - version.z as int
 	var text := ""
 	if not version == Vector3(-4, 0, 4):
 		text += "version: %s\n" % DAT.version_str(version)

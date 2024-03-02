@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=4 format=3 uid="uid://d4b6kgecha0xk"]
+
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_2k2u8"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_5rmdt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgsv7"]
+atlas = ExtResource("1_2k2u8")
+region = Rect2(18, 0, 6, 6)
+
+[resource]
+script = ExtResource("2_5rmdt")
+s_id = &""
+name = "confusion"
+icon = SubResource("AtlasTexture_jgsv7")
+color = Color(0.678431, 0.815686, 0.980392, 1)
+gender = 6
+use = 3
+cost = 17
+turn_visual = &""
+process_visual = &""
+process_visual_chance = 0.02

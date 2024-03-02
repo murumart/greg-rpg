@@ -1,4 +1,4 @@
-class_name ResMan
+class_name ResMan # Man...
 
 const CHAR_PATH := "res://resources/characters/res_%s.tres"
 const ITEM_PATH := "res://resources/items/res_%s.tres"
@@ -12,7 +12,9 @@ static var status_effect_types := {}
 
 
 static func _static_init() -> void:
+	var s := Time.get_ticks_msec()
 	load_resources()
+	print("loaded resources in " + str(Time.get_ticks_msec() - s) + "ms")
 
 
 static func get_character(key: StringName) -> Character:
@@ -65,12 +67,34 @@ static func load_resources() -> void:
 		s = s.trim_prefix("res_")
 		spirits[s] = load(SPIRIT_PATH % s) as Spirit
 		spirits[s].name_in_file = s
-	for s in _get_dir_contents("res://resources/status_effect_types/"):
-		if not s.begins_with("res"):
-			continue
-		s = s.trim_prefix("res_")
-		status_effect_types[s] = load("res://code/scr_status_effect_type.gd" % s) as StatusEffectType
+	load_effects()
+
+
+static func load_effects() -> void:
+	var effnames := _get_dir_contents("res://resources/status_effect_types/").map(
+		func(name: String):
+			if not name.begins_with("res"):
+				return null
+			return StringName(name.trim_prefix("res_"))).filter(func(a): return a != null)
+	for s in effnames:
+		status_effect_types[s] = load(STATUS_EFFECT_TYPE_PATH % s) as StatusEffectType
 		status_effect_types[s].s_id = s
+	for s: StringName in effnames:
+		if "_immunity" in s:
+			continue
+		#var cure := s + "_cure"
+		var immune := s + "_immunity"
+		#if not cure in status_effect_types.keys():
+			#var cureeff := load(STATUS_EFFECT_TYPE_PATH % s).duplicate() as StatusEffectType
+			#cureeff.turn_payload = null
+			#cureeff.gender = Genders.CIRCLE[cureeff.gender]
+			#status_effect_types[s] = cureeff
+		if not immune in status_effect_types.keys():
+			var immeff := load(STATUS_EFFECT_TYPE_PATH % s).duplicate() as StatusEffectType
+			immeff.turn_payload = null
+			immeff.gender = Genders.CIRCLE[immeff.gender]
+			immeff.name += " immune"
+			status_effect_types[immune] = immeff
 
 
 # copied from DIR

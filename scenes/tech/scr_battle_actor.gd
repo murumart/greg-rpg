@@ -32,7 +32,7 @@ var actor_name: StringName
 
 var accessible := true
 
-var status_effects: Array[BattleStatusEffect]
+var status_effects := {}
 
 var reference_to_team_array: Array[BattleActor] = []
 var reference_to_opposing_array: Array[BattleActor] = []
@@ -124,7 +124,7 @@ func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
 	amount = Genders.apply_gender_effects(amount, self, gendr)
 	if state == States.DEAD: return
-	for x: BattleStatusEffect in status_effects:
+	for x: BattleStatusEffect in status_effects.values():
 		amount += x.hurt_damage(amount, gendr, self)
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
@@ -169,7 +169,7 @@ func flee() -> void:
 func get_attack() -> float:
 	var x := 0.0
 	x += character.get_stat("attack")
-	for e in status_effects:
+	for e in status_effects.values():
 		x += e.attack_bonus(self)
 	return maxf(x, 1) * stat_multiplier
 
@@ -177,7 +177,7 @@ func get_attack() -> float:
 func get_defense() -> float:
 	var x := 0.0
 	x += character.get_stat("defense")
-	for e in status_effects:
+	for e in status_effects.values():
 		x += e.defense_bonus(self)
 	return maxf(x, 1) * stat_multiplier
 
@@ -185,7 +185,7 @@ func get_defense() -> float:
 func get_speed() -> float:
 	var x := 0.0
 	x += character.get_stat("speed")
-	for e in status_effects:
+	for e in status_effects.values():
 		x += e.speed_bonus(self)
 	if has_status_effect(&"little"):
 		x *= 0.25
@@ -404,7 +404,7 @@ func handle_payload(pld: BattlePayload) -> void:
 func add_status_effect(eff: StatusEffect) -> void:
 	var effect := BattleStatusEffect.add(self, eff)
 	if effect:
-		status_effects.append(effect)
+		status_effects[eff.name] = effect
 		print("added effect ", effect, " to ", self)
 
 
@@ -415,34 +415,32 @@ func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> vo
 
 
 func has_status_effect(nimi: StringName) -> bool:
-	for eff in status_effects:
-		if nimi == eff.name:
-			return true
-	return false
+	return nimi in status_effects
 
 
 func get_status_effect(nimi: StringName) -> BattleStatusEffect:
-	for eff in status_effects:
-		if nimi == eff.name:
-			return eff
-	return null
+	return status_effects.get(nimi)
 
 
 func remove_status_effect(nimi: StringName) -> void:
-	for eff in status_effects:
-		if nimi == eff.name:
-			eff.removed(self)
-			status_effects.erase(eff)
-			print("removed effect ", eff, " from ", self)
+	print(nimi)
+	var eff := status_effects.get(nimi) as BattleStatusEffect
+	if eff:
+		eff.removed(self)
+		status_effects.erase(nimi)
+		print("removed effect ", eff, " from ", self)
+		if status_effects.is_empty():
+			create_tween().tween_property(self, "modulate", Color.WHITE, 2.0)
 
 
 func status_effect_update() -> void:
-	for eff in status_effects:
-		eff.turn(self)
+	for eff in status_effects.keys():
+		var effect := status_effects[eff] as BattleStatusEffect
+		effect.turn(self)
 		# remove if immune
-		if is_immune_to(eff.name):
-			remove_status_effect(eff.name)
-		print(self, ": ", eff)
+		if is_immune_to(eff):
+			remove_status_effect(eff)
+		print(self, ": ", effect)
 
 
 func is_immune_to(what: StringName) -> bool:
@@ -452,7 +450,7 @@ func is_immune_to(what: StringName) -> bool:
 
 
 func effect_visuals() -> void:
-	for eff in status_effects:
+	for eff in status_effects.values():
 		eff.visuals(self)
 
 # HELPERS
