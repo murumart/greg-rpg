@@ -10,6 +10,9 @@ static var spirits := {}
 static var characters := {}
 static var status_effect_types := {}
 
+static var gender__effects := {}
+static var use__effects := {}
+
 
 static func _static_init() -> void:
 	var s := Time.get_ticks_msec()
@@ -91,10 +94,20 @@ static func load_effects() -> void:
 			#status_effect_types[s] = cureeff
 		if not immune in status_effect_types.keys():
 			var immeff := load(STATUS_EFFECT_TYPE_PATH % s).duplicate() as StatusEffectType
+			immeff.s_id = StringName(immune)
 			immeff.turn_payload = null
 			immeff.gender = Genders.CIRCLE[immeff.gender]
 			immeff.name += " immune"
 			status_effect_types[immune] = immeff
+	# sort
+	for s: StringName in status_effect_types:
+		var eff := status_effect_types[s] as StatusEffectType
+		if not gender__effects.has(eff.gender):
+			gender__effects[eff.gender] = []
+		gender__effects[eff.gender].append(s)
+		if not use__effects.has(eff.use):
+			use__effects[eff.use] = []
+		use__effects[eff.use].append(s)
 
 
 # copied from DIR

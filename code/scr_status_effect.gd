@@ -2,15 +2,6 @@ class_name StatusEffect extends Resource
 
 # quick thing to store status effect applying in BattlePayload
 
-const GENDER_ROLES := {
-	Genders.BRAIN: [&"sleepy"],
-	Genders.ELECTRIC: [&"electric", &"speed", &"magnet"],
-	Genders.FLAMING: [&"fire", &"attack", &"sopping_immunity"],
-	Genders.GHOST: [&"shield"],
-	Genders.SOPPING: [&"sopping", &"defense", &"coughing"],
-	Genders.VAST: [&"confusion"],
-}
-
 const USE_ROLES := {
 	Spirit.Uses.HEALING: [&"regen"],
 	Spirit.Uses.HURTING: [&"poison", &"coughing", &"fire"],

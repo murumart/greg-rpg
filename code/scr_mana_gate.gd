@@ -15,7 +15,7 @@ var _random: RandomNumberGenerator
 	"None", "Electric",
 	"Sopping", "Burning",
 	"Ghost", "Brain", "Vast", "Random"
-	) var gender: int = 0
+	) var gender: int = 7
 
 
 func _init(rng: RandomNumberGenerator, options := {}) -> void:
@@ -131,35 +131,11 @@ class MGPayload:
 		if rng.randf() < 0.1:
 			rand_start = randf_range(-10, much / 2)
 
-		# choose name
-		var union := Math.array_union(
-				StatusEffect.GENDER_ROLES.get(gender, STATEFF_ORDER),
-				StatusEffect.USE_ROLES.get(use, STATEFF_ORDER)
-		)
-		if rng.randf() <= 0.96:
-			if union.is_empty():
-				union = Math.determ_pick_random(
-					[
-						StatusEffect.GENDER_ROLES.get(gender, STATEFF_ORDER),
-						StatusEffect.USE_ROLES.get(use, STATEFF_ORDER)
-					], rng
-				)
-				if rng.randf() < 0.75:
-					gender = Genders.NONE
-			se.name = Math.determ_pick_random(union, rng) as StringName
-		else:
-			if union.is_empty():
-				union = Math.determ_pick_random(
-					[
-						StatusEffect.GENDER_ROLES.get(gender, STATEFF_ORDER),
-						StatusEffect.USE_ROLES.get(use, STATEFF_ORDER)
-					], rng
-				)
-			se.name = Math.determ_pick_random(STATEFF_ORDER, rng)
-			if rng.randf() < 0.2:
-				se.duration += rng.randf_range(-10, 10)
-			elif rng.randf() < 0.2:
-				se.strength += rng.randf_range(-6, 12)
+		se.name = _eff_name()
+		if rng.randf() < 0.2:
+			se.duration += rng.randf_range(-10, 10)
+		elif rng.randf() < 0.2:
+			se.strength += rng.randf_range(-6, 12)
 
 		var rand_end := 5.0
 		if se.name in HIGH_VARIANCE_EFFECTS:
@@ -167,7 +143,7 @@ class MGPayload:
 			rand_start = maxf(rand_start, much * 0.33)
 		elif se.name in QUARTER_VARIANCE_EFFECTS:
 			rand_end = much * 0.25
-		elif se.name in RESTRICTED_EFFECTS:
+		elif se.name in RESTRICTED_EFFECTS or se.name.ends_with("_immunity"):
 			rand_end = 1
 			rand_start = 1
 		else:
@@ -177,12 +153,10 @@ class MGPayload:
 		for _n in 5:
 			var cost := secost(se)
 			if cost >= much:
-				if rng.randf() <= 0.33:
-					se.name = Math.determ_pick_random(union, rng)
-				elif rng.randf() <= 0.66:
-					se.duration = maxf(se.duration + rng.randi_range(-2, 2), 1)
+				if rng.randf() <= 0.66:
+					se.duration = maxf(se.duration + rng.randi_range(-3, 1), 1)
 				else:
-					se.strength = maxf(se.strength + rng.randf_range(-2, 2), 1)
+					se.strength = maxf(se.strength + rng.randf_range(-3, 1), 1)
 
 		if se.strength > 0:
 			se.strength = ceilf(se.strength)
@@ -191,6 +165,38 @@ class MGPayload:
 		if se.duration == 0:
 			se.set_strength(0)
 		return se
+
+
+	func _eff_name() -> StringName:
+		# choose name
+		var name := &""
+		var union := Math.array_union(
+				ResMan.gender__effects.get(gender, STATEFF_ORDER),
+				ResMan.use__effects.get(use, STATEFF_ORDER)
+		)
+		if rng.randf() <= 0.96:
+			if union.is_empty():
+				union = Math.determ_pick_random(
+					[
+						ResMan.gender__effects.get(gender, STATEFF_ORDER),
+						ResMan.use__effects.get(use, STATEFF_ORDER)
+					], rng
+				)
+				if rng.randf() < 0.75:
+					gender = Genders.NONE
+			name = Math.determ_pick_random(union, rng) as StringName
+		else:
+			if union.is_empty():
+				union = Math.determ_pick_random(
+					[
+						ResMan.gender__effects.get(gender, STATEFF_ORDER),
+						ResMan.use__effects.get(use, STATEFF_ORDER)
+					], rng
+				)
+			name = Math.determ_pick_random(STATEFF_ORDER, rng)
+		if rng.randf() < 0.95 and name.ends_with("_immunity"):
+			return _eff_name()
+		return name
 
 
 	static func secost(eff: StatusEffect) -> float:
