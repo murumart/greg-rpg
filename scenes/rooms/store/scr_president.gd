@@ -16,6 +16,8 @@ var rotating := false
 
 func _ready() -> void:
 	president.inspected.connect(_president_inspected)
+	# not doing this right now
+	queue_free()
 
 
 func _physics_process(_delta: float) -> void:
