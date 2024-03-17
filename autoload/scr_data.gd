@@ -3,18 +3,12 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(0, 8, 1)
+const VERSION := Vector3(0, 8, 2)
 
 signal player_captured(capture: bool)
-signal resources_loaded
 
 # DATA
 var A: Dictionary
-
-# loadable resources
-var character_dict := {}
-var item_dict := {}
-var spirit_dict := {}
 
 # for forbidding player movement
 var player_capturers := []
@@ -49,31 +43,10 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	load_resources()
 	init_data()
 	print("DAT is ready!")
 	DIR.incj(1, 1)
 	await get_tree().process_frame
-
-
-# loading characters, items, spirits from folders
-func load_resources() -> void:
-	for s in DIR.get_dir_contents("res://resources/characters/"):
-		if not s.begins_with("res"): continue
-		s = s.trim_prefix("res_")
-		character_dict[s] = load(DIR.get_char_path(s)) as Character
-		character_dict[s].name_in_file = s
-	for s in DIR.get_dir_contents("res://resources/items/"):
-		if not s.begins_with("res"): continue
-		s = s.trim_prefix("res_")
-		item_dict[s] = load(DIR.get_item_path(s)) as Item
-		item_dict[s].name_in_file = s
-	for s in DIR.get_dir_contents("res://resources/spirits/"):
-		if not s.begins_with("res"): continue
-		s = s.trim_prefix("res_")
-		spirit_dict[s] = load(DIR.get_spirit_path(s)) as Spirit
-		spirit_dict[s].name_in_file = s
-	resources_loaded.emit()
 
 
 # entry point for a new game
@@ -233,13 +206,13 @@ func free_player(type := &"") -> void:
 
 
 func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:
-	get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
+	ResMan.get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
 		if battle.party.is_empty(): return
 		battle.party[party_index].character.inventory.append(item)
 	if not dialogue: return
-	SOL.dialogue_box.dial_concat("getitem", 0, [get_item(item).name])
+	SOL.dialogue_box.dial_concat("getitem", 0, [ResMan.get_item(item).name])
 	SOL.dialogue("getitem")
 
 
@@ -253,7 +226,7 @@ func grant_silver(amount: int, dialogue := true) -> void:
 
 
 func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> void:
-	var charc: Character = get_character(A.get("party", ["greg"])[party_index])
+	var charc: Character = ResMan.get_character(A.get("party", ["greg"])[party_index])
 	if spirit in charc.unused_sprits or spirit in charc.spirits: return
 	# this implementation looks so kooky because typed arrays if i remember right
 	var uuspirits: Array[String] = charc.unused_sprits.duplicate()
@@ -268,20 +241,11 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 			list.append(spirit)
 			character_is.unused_sprits = list
 	if not dialogue: return
-	SOL.dialogue_box.dial_concat("getspirit", 0, [get_spirit(spirit).name])
+	SOL.dialogue_box.dial_concat("getspirit", 0, [ResMan.get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
 	if not DAT.get_data("spirits_gotten", 0):
 		SOL.dialogue("spirit_equip_tutorial")
 	DAT.incri("spirits_gotten", 1)
-
-
-func get_character(key: StringName) -> Character:
-	if not key in character_dict:
-		print("char ", key, " not found")
-		var charc: Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
-		charc.name = key
-		return charc
-	return character_dict[key]
 
 
 func char_save_string_key(which: String, key: String) -> String:
@@ -297,29 +261,13 @@ func save_chars_to_data(dict := {}) -> void:
 
 
 func save_char_to_data(chara: StringName) -> void:
-	set_data(char_save_string_key(chara, "save"), get_character(chara).get_saveable_dict())
+	set_data(char_save_string_key(chara, "save"), ResMan.get_character(chara).get_saveable_dict())
 
 
 func load_chars_from_data() -> void:
-	for c in character_dict:
-		var charc: Character = character_dict[c]
+	for c in ResMan.characters:
+		var charc: Character = ResMan.characters[c]
 		charc.load_from_dict(get_data(char_save_string_key(c, "save"), {}))
-
-
-func get_item(id: String) -> Item:
-	if not id in item_dict:
-		print("item ", id, " not found")
-		return preload("res://resources/res_default_item.tres")
-	return item_dict[id]
-
-
-func get_spirit(id: String) -> Spirit:
-	if not id in spirit_dict:
-		print("spirit ", id, " not found")
-		return preload("res://resources/res_default_spirit.tres")
-	return spirit_dict[id]
-
-# default spirit/item/character is gleebungus
 
 
 func _on_game_timer_timeout() -> void:

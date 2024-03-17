@@ -26,7 +26,7 @@ func _ready() -> void:
 	lake_hint_npc_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
-	if DAT.get_character("greg").level < 9: bike.queue_free()
+	if ResMan.get_character("greg").level < 9: bike.queue_free()
 	# disable thugs if bounty fulfilled
 	if (DAT.get_data("fulfilled_bounty_thugs", false) and
 	not DAT.get_data("hunks_enabled", false)):
@@ -68,7 +68,7 @@ func _on_atgirl_inspected() -> void:
 
 func naturalist_setup() -> void:
 	var left := $Other/NatureGuyLeft/NatureGuy
-	if DAT.get_character("greg").get_defeated_character("turf") > 6:
+	if ResMan.get_character("greg").get_defeated_character("turf") > 6:
 		left.queue_free()
 
 
@@ -91,7 +91,7 @@ func _on_ph_guy_inspected() -> void:
 	var door := $Houses/Pairhouse/DoorArea2
 	guy.default_lines.clear()
 	if int_disabled: return
-	var turf_killed: int = (DAT.get_character("greg").get_defeated_character(
+	var turf_killed: int = (ResMan.get_character("greg").get_defeated_character(
 		"turf") - DAT.get_data("mission_start_turf_killed", 0))
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
 		guy.default_lines = ["ph_guy_jooky_missing_1", "ph_guy_jooky_missing_2"]
@@ -101,7 +101,7 @@ func _on_ph_guy_inspected() -> void:
 		guy.default_lines = ["ph_guy_hello"]
 		DAT.set_data("turf_mission_active", true)
 		DAT.set_data("mission_start_turf_killed",
-			DAT.get_character("greg").get_defeated_character("turf"))
+			ResMan.get_character("greg").get_defeated_character("turf"))
 		return
 	if turf_killed >= 30:
 		int_disabled = true
@@ -155,7 +155,7 @@ func lake_hint_npc_setup() -> void:
 		DAT.set_data("lake_hint_received", false)
 		return
 	npc.inspected.connect(_on_lake_hint_received)
-	var level := DAT.get_character("greg").level
+	var level := ResMan.get_character("greg").level
 	if level >= 24 and not "lakeside" in DAT.get_data("visited_rooms", []):
 		npc.default_lines.append("lake_hint")
 		return

@@ -33,7 +33,7 @@ func _ready() -> void:
 		DAT.set_data(k, data_overrides[k])
 	DAT.seconds += add_seconds
 	for i in target_characters:
-		var charac := DAT.get_character(i) as Character
+		var charac := ResMan.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:
 			continue
 		charac.level_up(level_gain, false, false)

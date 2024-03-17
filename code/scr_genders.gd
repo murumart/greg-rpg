@@ -7,7 +7,8 @@ enum {
 	FLAMING,
 	GHOST,
 	BRAIN,
-	VAST
+	VAST,
+	RANDOM
 }
 
 const CIRCLE := {
@@ -16,7 +17,8 @@ const CIRCLE := {
 	FLAMING: GHOST,
 	GHOST: BRAIN,
 	BRAIN: VAST,
-	VAST: ELECTRIC
+	VAST: ELECTRIC,
+	NONE: NONE,
 }
 
 const COLOURS := {

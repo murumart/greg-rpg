@@ -98,7 +98,7 @@ func update_item_menu() -> void:
 		var child := items_container.get_child(mike_from_game_from_scracth)
 		child.texture = null
 		if mike_from_game_from_scracth < game.inventory.size():
-			child.texture = DAT.get_item(game.inventory[mike_from_game_from_scracth]).texture
+			child.texture = ResMan.get_item(game.inventory[mike_from_game_from_scracth]).texture
 
 
 # pure barbarism <- old comment but true
@@ -107,7 +107,7 @@ func use_item(item: StringName) -> void:
 	update_item_menu()
 	if item == &"tape":
 		game.bike.heal(roundi(
-			DAT.get_item("tape").payload.health/2.0))
+			ResMan.get_item("tape").payload.health/2.0))
 	elif item == &"magnet":
 		game.bike.effects["coin_magnet"] = {"time": 20.0}
 	elif item == &"cough_syrup":

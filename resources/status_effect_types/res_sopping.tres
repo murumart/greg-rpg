@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://dm4l6nommlc3l"]
+
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_18cwe"]
+[ext_resource type="Script" path="res://resources/status_effect_types/scr_sopping_hurt_response.gd" id="1_l41ch"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_4k3bg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofgk4"]
+atlas = ExtResource("1_18cwe")
+region = Rect2(18, 12, 6, 6)
+
+[resource]
+script = ExtResource("2_4k3bg")
+s_id = &""
+name = "sopping"
+icon = SubResource("AtlasTexture_ofgk4")
+color = Color(0.505882, 0.717647, 0.964706, 1)
+gender = 2
+use = 3
+cost = 6
+turn_visual = &"sopping"
+process_visual = &"sopping"
+hurt_response_script = ExtResource("1_l41ch")
+process_visual_chance = 0.023

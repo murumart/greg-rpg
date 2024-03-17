@@ -89,7 +89,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				grab_item_focus()
 
 		Doings.USING:
-			var item := DAT.get_item(using_item) as Item
+			var item := ResMan.get_item(using_item) as Item
 			var old_choice := using_menu_choice
 			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size() + 1)
 			update_using_portraits()
@@ -110,7 +110,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
 						if using_item == &"cellphone":
 							party(current_tab).inventory.append("cellphone")
-							DAT.get_item("cellphone").description = preload(
+							ResMan.get_item("cellphone").description = preload(
 									"res://code/res_cellphone_logic.gd").READD_DESC
 					else:
 						party(using_menu_choice).handle_item(using_item)
@@ -123,7 +123,7 @@ func _unhandled_input(event: InputEvent) -> void:
 							{volume = -15})
 
 				elif item_spirit_tabs.current_tab == 1:
-					var spirit: Spirit = DAT.get_spirit(using_item)
+					var spirit: Spirit = ResMan.get_spirit(using_item)
 					if not party(current_tab).magic >= spirit.cost:
 						SND.play_sound(load("res://sounds/error.ogg"))
 						using_label.text = "not enough sp!"
@@ -176,7 +176,7 @@ func side_load_character_data() -> void:
 
 # print item data to the side
 func side_load_item_data(id: String) -> void:
-	var item: Item = DAT.get_item(id)
+	var item: Item = ResMan.get_item(id)
 	mem_portrait.texture = item.texture
 	mem_infotext.text = str("[color=#888888]", item.description + "\n", "[/color]")
 	mem_infotext.text += item.get_effect_description()
@@ -192,7 +192,7 @@ func side_load_item_data(id: String) -> void:
 
 # print spirit data to the side
 func side_load_spirit_data(id: String) -> void:
-	var spirit: Spirit = DAT.get_spirit(id)
+	var spirit: Spirit = ResMan.get_spirit(id)
 	mem_portrait.texture = null
 	mem_infotext.text = str("[color=#888888]", spirit.description + "\n", "[/color]")
 	mem_infotext.text += spirit.get_effect_description()
@@ -241,12 +241,12 @@ func item_names(opt := {}) -> void:
 	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
-		DAT.get_item(opt.reference).name
+		ResMan.get_item(opt.reference).name
 		).left(12)
 
 
 func spirit_names(opt := {}) -> void:
-	opt.button.text = DAT.get_spirit(opt.reference).name.left(12)
+	opt.button.text = ResMan.get_spirit(opt.reference).name.left(12)
 
 
 # display the character's used and unused spirits
@@ -360,7 +360,7 @@ func party_size() -> int:
 # return either a party memeber or the party array
 func party(index: int = -1):
 	if index > -1 and index < party_size():
-		return DAT.get_character(DAT.get_data("party", ["greg"])[index])
+		return ResMan.get_character(DAT.get_data("party", ["greg"])[index])
 	else:
 		return (DAT.get_data("party", ["greg"]))
 

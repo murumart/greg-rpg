@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://gckadrv2pw8n"]
+
+[ext_resource type="Script" path="res://resources/status_effect_types/scr_sleepy_hurt_response.gd" id="1_atppw"]
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_jkkak"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="1_smvp1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi5b1"]
+atlas = ExtResource("1_jkkak")
+region = Rect2(12, 12, 6, 6)
+
+[resource]
+script = ExtResource("1_smvp1")
+s_id = &""
+name = "sleepy"
+icon = SubResource("AtlasTexture_bi5b1")
+color = Color(0.4, 0.588235, 1, 1)
+gender = 5
+use = 3
+cost = 8
+turn_visual = &""
+process_visual = &"sleepy"
+hurt_response_script = ExtResource("1_atppw")
+process_visual_chance = 0.03

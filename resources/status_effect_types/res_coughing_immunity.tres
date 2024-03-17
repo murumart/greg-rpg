@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=4 format=3 uid="uid://db1vxw4b5upee"]
+
+[ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_vlj7b"]
+[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_nwi1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv24h"]
+atlas = ExtResource("1_vlj7b")
+region = Rect2(24, 0, 6, 6)
+
+[resource]
+script = ExtResource("2_nwi1p")
+s_id = &""
+name = "coughing immune"
+icon = SubResource("AtlasTexture_yv24h")
+color = Color(1, 1, 1, 1)
+gender = 3
+use = 2
+cost = 5
+turn_visual = &""
+process_visual = &""
+process_visual_chance = 0.02

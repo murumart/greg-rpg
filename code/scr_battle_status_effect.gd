@@ -1,33 +1,33 @@
 class_name BattleStatusEffect extends RefCounted
 
-var name := &""
+var type: StatusEffectType
 var duration: int = 1
 var strength: float = 1.0
 
 
 static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 	var neweff := BattleStatusEffect.new()
-	neweff.set_name(eff.name)
+	neweff.set_type_s(eff.name)
 	neweff.set_duration(eff.duration)
 	neweff.set_strength(eff.strength)
 	# duration -1 means curing or removing some sort of effect
 	if eff.duration == -1:
-		var oldeff := actor.get_status_effect(neweff.name)
+		var oldeff := actor.get_status_effect(neweff.type.s_id)
 		if oldeff:
 			oldeff._removed_text(actor)
 		actor.remove_status_effect(eff.name)
 		return null
 	# duration < -1 means an immunity effect instead
 	if eff.duration < -1:
-		neweff.name += &"_immunity"
+		neweff.set_type_s(eff.name + "_immunity")
 		neweff.duration = -neweff.duration
 		actor.remove_status_effect(eff.name)
-	if actor.is_immune_to(neweff.name):
+	if actor.is_immune_to(neweff.type.s_id):
 		neweff._immune_text(actor)
 		return null
 	# we have both status effects
-	if actor.has_status_effect(neweff.name):
-		var oldeff := actor.get_status_effect(neweff.name)
+	if actor.has_status_effect(neweff.type.s_id):
+		var oldeff := actor.get_status_effect(neweff.type.s_id)
 		var olds := oldeff.strength
 		var addition := BattleStatusEffect.plus(neweff, oldeff)
 		actor.remove_status_effect(eff.name)
@@ -39,8 +39,8 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 		return addition
 	neweff._add_text(actor)
 	neweff.added(actor)
-	if not neweff.name in DAT.get_data("known_status_effects", []):
-		DAT.appenda("known_status_effects", neweff.name)
+	if not neweff.type.s_id in DAT.get_data("known_status_effects", []):
+		DAT.appenda("known_status_effects", neweff.type.s_id)
 	return neweff
 
 
@@ -52,8 +52,8 @@ static func add_s(
 			e_name).set_duration(e_duration).set_strength(e_strength))
 
 
-func set_name(x: StringName) -> BattleStatusEffect:
-	name = x
+func set_type_s(x: StringName) -> BattleStatusEffect:
+	type = ResMan.get_effect(x)
 	return self
 
 
@@ -69,9 +69,9 @@ func set_strength(x: float) -> BattleStatusEffect:
 
 static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEffect:
 	var u := BattleStatusEffect.new()
-	if a.name != b.name:
+	if a.type.s_id != b.type.s_id:
 		return null
-	u.name = a.name
+	u.type.s_id = a.type.s_id
 	u.strength = ceilf((a.strength + b.strength) / 2.0)
 	if u.strength == 0:
 		return null
@@ -89,115 +89,49 @@ static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEf
 
 
 func added(actor: BattleActor) -> void:
-	match name:
-		&"little":
-			actor.scale *= 0.25
+	if type.added_script:
+		type.added_script.new().added(actor, self)
 
 
 func turn(actor: BattleActor) -> void:
 	duration -= 1
 	if duration <= 0:
-		actor.remove_status_effect(name)
-
-	if name == &"coughing":
-		# coughing damage is applied by a separate battle actor because why not
-		var cougher := BattleActor.new()
-		cougher.character = Character.new()
-		cougher.character.attack = strength * 2
-		actor.add_child(cougher)
-		cougher.attack(actor)
-		SND.play_sound(preload("res://sounds/spirit/airspace_violation.ogg"), {"volume": -3})
-		cougher.queue_free()
-
-	if name == &"poison":
-		actor.hurt(strength * 1.3, Genders.NONE)
-
-	if name == &"fire":
-		actor.hurt(
-			clampf(actor.character.health * 0.08 * ceilf(strength / 32.0), 1, 25),
-			Genders.FLAMING)
-		SOL.vfx(&"battle_burning",
-			actor.global_position + SOL.SCREEN_SIZE / 2 +
-			Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": actor})
-		SND.play_sound(preload("res://sounds/fire.ogg"), {pitch_scale = 2.0})
-
-	if name == &"regen":
-		actor.heal(strength * 5)
-
-	if name == &"inspiration":
-		actor.character.magic += strength * 2
+		actor.remove_status_effect(type.s_id)
+	type.turn(actor, self)
 
 
 func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:
 	var amt := amount
-	match name:
-		&"sleepy":
-			actor.remove_status_effect(&"sleepy")
-			actor.message.emit("%s woke up!" % actor.actor_name)
-			amount *= 1.8
-			if gender == Genders.BRAIN:
-				amount *= 1.8
-		&"sopping":
-			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
-				{"pitch_scale": 1.3, "volume": 2})
-			amount += amt * (0.4 + (strength * 0.2))
-			if gender == Genders.FLAMING:
-				amount *= 0.5
-			elif gender == Genders.ELECTRIC:
-				amount *= 1.5
-			SOL.vfx(
-				"sopping",
-				actor.global_position + Vector2(randf_range(-4, 4), -16),
-				{"parent": actor})
+	amt += type.actor_hurt_response(actor, self, gender, amount)
 
-	return amount - amt
+	return amt - amount
 
 
 func attack_bonus(_actor: BattleActor) -> float:
-	if name == &"attack":
-		return strength
-	if name == &"electric":
-		return 6 + strength
-	return 0
+	if not type.turn_payload:
+		return 0
+	return type.turn_payload.attack_increase * strength
 
 
 func defense_bonus(_actor: BattleActor) -> float:
-	if name == &"defense":
-		return strength
-	return 0
+	if not type.turn_payload:
+		return 0
+	return type.turn_payload.defense_increase * strength
 
 
 func speed_bonus(_actor: BattleActor) -> float:
-	if name == &"speed":
-		return strength
-	return 0
+	if not type.turn_payload:
+		return 0
+	return type.turn_payload.speed_increase * strength
 
 
 func removed(actor: BattleActor) -> void:
-	match name:
-		&"little":
-			actor.scale *= 4
+	if type.removed_script:
+		type.removed_script.new().removed(actor, self)
 
 
 func visuals(actor: BattleActor) -> void:
-	if randf() <= 0.02 and name == &"fire":
-		SOL.vfx("battle_burning",
-			actor.global_position + Vector2(randf_range(-4, 4),
-				randf_range(-8, 16)), {"parent": actor})
-		var tw := actor.create_tween().set_trans(Tween.TRANS_QUINT)
-		var rand := randf_range(0.5, 1.0)
-		tw.tween_property(actor, "modulate",
-			Color(randf_range(1.0, 1.5), rand, rand, 1.0), rand)
-	if randf() <= 0.03 and name == &"sleepy":
-		SOL.vfx(
-			"sleepy",
-			actor.global_position + Vector2(randf_range(-4, 4),
-				randf_range(-16, 0)), {"parent": actor})
-	if randf() <= 0.04 and name == &"sopping":
-		SOL.vfx(
-			"sopping",
-			actor.global_position + Vector2(randf_range(-4, 4),
-				randf_range(-16, 0)), {"parent": actor})
+	type.process_visuals(actor, self)
 
 
 func _add_text(actor: BattleActor) -> void:
@@ -208,7 +142,7 @@ func _add_text(actor: BattleActor) -> void:
 			text = "%s%s %s" % [
 				Math.sign_symbol(strength),
 				str(absf(strength)) if strength != 1 else "",
-				name.replace("_", " ")
+				type.name
 			],
 			color = Color.YELLOW, speed = 0.5
 		}
@@ -217,7 +151,7 @@ func _add_text(actor: BattleActor) -> void:
 		actor.actor_name,
 		Math.sign_symbol(strength),
 		str(absf(strength)) if strength != 1 else "",
-		name.replace("_", " ")
+		type.name
 	])
 
 
@@ -229,7 +163,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 			text = "%s%s %s" % [
 				Math.sign_symbol(streng),
 				str(absf(streng)) if streng != 1 else "",
-				name.replace("_", " ")
+				type.name
 			],
 			color = Color.LIGHT_YELLOW, speed = 0.5
 		}
@@ -238,7 +172,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 		actor.actor_name,
 		Math.sign_symbol(streng),
 		str(absf(strength)) if strength != 1 else "",
-		name.replace("_", " ")
+		type.name
 	])
 
 
@@ -248,12 +182,12 @@ func _removed_text(actor: BattleActor) -> void:
 		actor.parentless_effcenter() - Vector2(0, 8),
 		{
 			text = "no %s" % [
-				name.replace("_", " ")
+				type.name
 			],
 			color = Color.DIM_GRAY, speed = 0.5
 		}
 	)
-	actor.emit_message("@%s no %s" % [actor.actor_name, name.replace("_", " ")])
+	actor.emit_message("@%s no %s" % [actor.actor_name, type.name])
 
 
 func _immune_text(actor: BattleActor) -> void:
@@ -269,4 +203,4 @@ func _immune_text(actor: BattleActor) -> void:
 
 
 func _to_string() -> String:
-	return str("BattleStatusEffect " + name + " lvl " + str(strength) + " " + str(duration) + " turn(s) left")
+	return str("BattleStatusEffect " + type.s_id + " lvl " + str(strength) + " " + str(duration) + " turn(s) left")

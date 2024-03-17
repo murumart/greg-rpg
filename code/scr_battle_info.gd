@@ -52,7 +52,7 @@ func set_rewards(x: BattleRewards) -> BattleInfo:
 func get_level() -> int:
 	var levelee := 0
 	for e in enemies:
-		var enemy: Character = DAT.get_character(e)
+		var enemy: Character = ResMan.get_character(e)
 		levelee += enemy.level
 	return levelee
 

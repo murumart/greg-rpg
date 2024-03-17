@@ -197,7 +197,7 @@ func xp(args: PackedStringArray) -> void:
 		return
 	var charname := args[0]
 	var amount := int(args[1])
-	DAT.get_character(charname).add_experience(amount)
+	ResMan.get_character(charname).add_experience(amount)
 	output("gave %s exp to %s" % [amount, charname])
 
 
@@ -210,7 +210,7 @@ func lvup(args: PackedStringArray) -> void:
 		return
 	var charname := args[0]
 	var amount := int(args[1])
-	DAT.get_character(charname).level_up(amount)
+	ResMan.get_character(charname).level_up(amount)
 	output("leveled %s to %s" % [charname, amount + 1])
 
 

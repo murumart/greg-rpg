@@ -1,7 +1,7 @@
 extends BattleEnemy
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
-var wli_spirit := DAT.get_spirit("wli_attack") as Spirit
+var wli_spirit := ResMan.get_spirit("wli_attack") as Spirit
 const BackgroundType := preload("res://scenes/battle_backgrounds/scr_battle_background.gd")
 const CameraType := preload("res://scenes/tech/scr_camera.gd")
 var background: BackgroundType
@@ -13,7 +13,7 @@ var dbox := SOL.dialogue_box as DialogueBox
 
 func _ready() -> void:
 	super()
-	character.speed = maxf(character.speed, DAT.get_character("greg").speed)
+	character.speed = maxf(character.speed, ResMan.get_character("greg").speed)
 	if "background_container" in LTS.get_current_scene():
 		background = LTS.get_current_scene().background_container.get_child(0) as BackgroundType
 	if "camera" in LTS.get_current_scene():

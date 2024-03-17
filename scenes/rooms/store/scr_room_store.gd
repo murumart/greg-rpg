@@ -68,7 +68,7 @@ func set_store_wall_colours():
 
 
 func _on_item_taken(ittype: String):
-	if ittype in DAT.item_dict:
+	if ittype in ResMan.items:
 		DAT.appenda("unpaid_items", ittype)
 	update_shopping_list()
 
@@ -109,9 +109,9 @@ func restock() -> void:
 		for J in randi() % 4:
 			if fromremove.size() < 1: continue
 			var item = fromremove.pick_random()
-			if item not in DAT.item_dict.keys(): continue
+			if item not in ResMan.items.keys(): continue
 			fromremove.erase(item)
-			var itemprice = DAT.get_item(item).price
+			var itemprice = ResMan.get_item(item).price
 			var itemcount = roundi(minf(3000 / pow(itemprice, 1.5) + 1, 8)) # ???
 			if itemcount < 1: continue
 			inventory.append({"item": item,"count": itemcount})
@@ -185,8 +185,8 @@ func update_shopping_list() -> void:
 			temp_dict[i] = 1
 	var text := "[right]"
 	for i in temp_dict:
-		text += "%s x %s\n" % [DAT.get_item(i).name, temp_dict[i]]
-		total += DAT.get_item(i).price * temp_dict[i]
+		text += "%s x %s\n" % [ResMan.get_item(i).name, temp_dict[i]]
+		total += ResMan.get_item(i).price * temp_dict[i]
 	text += "total: " + str(total)
 	shopping_list.text = text
 
@@ -199,7 +199,7 @@ func _on_stealing_area_entered(_body: Node2D) -> void:
 func _on_room_gate_entered() -> void:
 	var stolen_profit := 0
 	for i in DAT.get_data("unpaid_items", []):
-		stolen_profit += DAT.get_item(i).price
+		stolen_profit += ResMan.get_item(i).price
 	DAT.incri("%s_profit_stolen" % store_cashier.cashier, stolen_profit)
 
 

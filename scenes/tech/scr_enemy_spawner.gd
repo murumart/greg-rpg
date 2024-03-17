@@ -17,7 +17,7 @@ var level: int
 func _ready() -> void:
 	$Sprite2D.hide()
 	await get_tree().process_frame
-	level = DAT.get_character("greg").level
+	level = ResMan.get_character("greg").level
 
 
 func _on_timer_timeout() -> void:

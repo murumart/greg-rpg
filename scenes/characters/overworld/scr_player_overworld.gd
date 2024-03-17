@@ -31,7 +31,7 @@ var menu: Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instanti
 
 func _ready() -> void:
 	DAT.player_captured.connect(_update_capture)
-	DAT.get_character("greg").message_owner.connect(_character_message_received)
+	ResMan.get_character("greg").message_owner.connect(_character_message_received)
 	if DAT.player_capturers.size() > 0:
 		state = States.NOT_FREE_MOVE
 	move_mode = DAT.get_data("player_move_mode", 0) as MoveModes
@@ -185,7 +185,7 @@ func set_saving_disabled(to: bool) -> void:
 func load_armour() -> void:
 	armour.hide()
 	updating_armour = false
-	var greg := DAT.get_character("greg") as Character
+	var greg := ResMan.get_character("greg") as Character
 	var path := "res://resources/armours/sfr_%s.tres" % greg.armour
 	if greg.armour:
 		if ResourceLoader.exists(path):

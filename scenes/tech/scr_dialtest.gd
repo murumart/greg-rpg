@@ -22,8 +22,8 @@ func _ready() -> void:
 	dialogue_box.load_dialogue_dict()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, {"mouse_interaction": true, "text_left": 14})
-	for charc in DAT.character_dict:
-		var chara := DAT.get_character(charc) as Character
+	for charc in ResMan.characters:
+		var chara := ResMan.get_character(charc) as Character
 		character_choice.add_icon_item(chara.portrait, chara.name_in_file)
 
 
@@ -73,7 +73,7 @@ func _on_go_button_pressed() -> void:
 
 func _on_character_choice_item_selected(index: int) -> void:
 	var charc := character_choice.get_item_text(index)
-	var character := DAT.get_character(charc) as Character
+	var character := ResMan.get_character(charc) as Character
 	if character and character.portrait:
 		portrait_sprite.texture = character.portrait
 	if charc == "empty":

@@ -47,7 +47,7 @@ func act() -> void:
 				if stolen == "hotel":
 					stolen = "hotel_used_by_vampire"
 				stolen_spirits.append(stolen)
-				var stolen_spirit := DAT.get_spirit(stolen) as Spirit
+				var stolen_spirit := ResMan.get_spirit(stolen) as Spirit
 				emit_message("vampire stole %s!" % stolen_spirit.name)
 				stole_spirit = true
 				SOL.set_deferred("dialogue_open", true)
@@ -60,7 +60,7 @@ func act() -> void:
 				return
 		if stolen_spirits.size() > 0:
 			var stolen := stolen_spirits.pop_at(0) as StringName
-			var stolen_spirit := DAT.get_spirit(stolen) as Spirit
+			var stolen_spirit := ResMan.get_spirit(stolen) as Spirit
 			if stolen_spirit.use in Spirit.USES_POSITIVE:
 				use_spirit(stolen, self)
 				buffing_spirits.append(stolen)

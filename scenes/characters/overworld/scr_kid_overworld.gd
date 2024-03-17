@@ -27,7 +27,7 @@ func interacted() -> void:
 		SOL.dialogue_closed.connect(func():
 			if SOL.dialogue_choice == "no": return
 			var success := trades_dict[key].exchange(
-			DAT.get_character("greg").inventory) as bool
+			ResMan.get_character("greg").inventory) as bool
 			if success:
 				SOL.dialogue("kid_trade_success")
 				DAT.incri("kid_reputation", 1)

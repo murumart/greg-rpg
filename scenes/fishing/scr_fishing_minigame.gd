@@ -177,7 +177,7 @@ func _on_hook_collision(node: Node2D) -> void:
 					"damage_number",
 					node.global_position,
 					{
-						"text": DAT.get_item(node.item).name,
+						"text": ResMan.get_item(node.item).name,
 						"color": Color(0.3, 1, 0.4, 0.5),
 						"speed": 0.75
 					}

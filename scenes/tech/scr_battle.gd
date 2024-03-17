@@ -146,16 +146,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("menu") and doing == Doings.NOTHING:
-		for e: BattleStatusEffect in current_guy.status_effects:
+		for e: BattleStatusEffect in current_guy.status_effects.values():
 			var cont := HBoxContainer.new()
 			cont.add_theme_constant_override("separation", 0)
 			var tex := TextureRect.new()
 			tex.stretch_mode = TextureRect.STRETCH_KEEP
-			# lazy
-			tex.texture = current_info.effect_textures.get(e.name, current_info.effect_textures["confusion"])
+			tex.texture = e.type.icon
 			tex.flip_v = e.strength < 0
 			var lab := Label.new()
-			lab.text = "%s lvl %s for %s turns" % [e.name.replace("_", " "), e.strength, e.duration]
+			lab.text = "%s lvl %s for %s turns" % [e.type.name, e.strength, e.duration]
 			cont.add_child(tex)
 			cont.add_child(lab)
 			status_effects_list.add_child(cont)
@@ -239,7 +238,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 
 
 func add_enemy(character_id: StringName, ally := false) -> void:
-	var character: Character = DAT.get_character(character_id)
+	var character: Character = ResMan.get_character(character_id)
 	var node: BattleActor
 	if DIR.enemy_scene_exists(character.name_in_file) and not ally:
 		node = load(DIR.enemy_scene_path(character.name_in_file)).instantiate()
@@ -356,7 +355,7 @@ func _on_button_reference_received(reference) -> void:
 		selected_guy_display.update(reference)
 		highlight_selected_enemy(reference)
 	if doing == Doings.ITEM_MENU:
-		item_info_label.text = str(DAT.get_item(reference).get_effect_description(),"\n[color=#888888]", DAT.get_item(reference).description)
+		item_info_label.text = str(ResMan.get_item(reference).get_effect_description(),"\n[color=#888888]", ResMan.get_item(reference).description)
 
 
 # some actor wants to act!
@@ -420,15 +419,15 @@ func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
 	if actor in enemies:
 		if enemies.size() < MAX_ENEMIES:
 			add_enemy(req)
-			message("%s joined the fight" % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s joined the fight" % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			message("%s did not fit into the fight." % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s did not fit into the fight." % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	else:
 		if party.size() < MAX_PARTY_MEMBERS:
 			add_party_member(req)
-			message("%s joined the fight" % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s joined the fight" % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			message("%s did not fit into the fight." % DAT.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s did not fit into the fight." % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 
 
 func check_end(force := false) -> void:
@@ -507,7 +506,7 @@ func open_list_screen() -> void:
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
-			var item := DAT.get_item(held_item_id) as Item
+			var item := ResMan.get_item(held_item_id) as Item
 			if item.use in Item.USES_POSITIVE:
 				array.append_array(party)
 				array.append_array(enemies)
@@ -562,7 +561,7 @@ func open_spirit_name_screen() -> void:
 	spirit_speak_timer.paused = false
 	spirit_speak_timer.start(spirit_speak_timer_wait)
 	for i in current_guy.character.spirits:
-		var spirit: Spirit = DAT.get_spirit(i)
+		var spirit: Spirit = ResMan.get_spirit(i)
 		loaded_spirits[spirit.name] = i
 	spirit_name.grab_focus()
 
@@ -604,7 +603,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 	if submission in loaded_spirits.keys():
 		spirit_name.editable = false
 		var spirit_id = loaded_spirits[submission]
-		var spirit := DAT.get_spirit(spirit_id)
+		var spirit := ResMan.get_spirit(spirit_id)
 		if spirit.cost <= current_guy.character.magic:
 			SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"))
 			var tw := create_tween().set_trans(Tween.TRANS_QUART)
@@ -760,7 +759,7 @@ func set_description(text: String) -> void:
 	if text.ends_with("%s"):
 		description_text.text = text % "hands"
 		if current_guy.character.weapon:
-			description_text.text = text % DAT.get_item(current_guy.character.weapon).name
+			description_text.text = text % ResMan.get_item(current_guy.character.weapon).name
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:
@@ -827,7 +826,7 @@ func item_names(opt := {}) -> void:
 	var count: int = current_guy.character.inventory.count(opt.reference)
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
-		DAT.get_item(opt.reference).name
+		ResMan.get_item(opt.reference).name
 		).left(15)
 
 

@@ -26,7 +26,7 @@ func init(options := {}) -> void:
 	var srt: String = options.get("spirit", "unknown")
 	if DIR.spirit_hint_exists(srt):
 		sprite.sprite_frames = load(FRAMES_PATH % srt)
-	var nam := DAT.get_spirit(srt).name
+	var nam := ResMan.get_spirit(srt).name
 	label.text = nam
 	var h := str(hash(nam)).split()
 	var g := []

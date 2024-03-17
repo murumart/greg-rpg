@@ -44,7 +44,7 @@ func _ready() -> void:
 	rng.seed = hash(actor_name) + DAT.get_data("nr", 0) * 1000
 	# sorting the spirits
 	for s in character.spirits:
-		var spirit: Spirit = DAT.get_spirit(s)
+		var spirit: Spirit = ResMan.get_spirit(s)
 		if spirit.use == Spirit.Uses.BUFFING:
 			buffing_spirits.append(s)
 		elif spirit.use == Spirit.Uses.DEBUFFING:
@@ -98,11 +98,11 @@ func ai_action() -> void:
 					spirit_pocket.append_array(Math.determ_shuffle(hurting_spirits, rng))
 					if rng.randf() <= vaimulembesus:
 						for s in spirit_pocket:
-							if DAT.get_spirit(s).cost <= character.magic:
+							if ResMan.get_spirit(s).cost <= character.magic:
 								use_spirit(s, target)
 								return # fantastic 8 tab indents
 				for s in character.inventory:
-					if DAT.get_item(s).use == Item.Uses.HURTING:
+					if ResMan.get_item(s).use == Item.Uses.HURTING:
 						use_item(s, target)
 						return
 				attack(target)
@@ -113,11 +113,11 @@ func ai_action() -> void:
 				if rng.randf() <= vaimulembesus and buffing_spirits.size() > 0:
 					spirit_pocket.append_array(Math.determ_shuffle(buffing_spirits, rng))
 					for s in spirit_pocket:
-						if DAT.get_spirit(s).cost <= character.magic:
+						if ResMan.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
 							return
 				for s in character.inventory:
-					if DAT.get_item(s).use == Item.Uses.BUFFING:
+					if ResMan.get_item(s).use == Item.Uses.BUFFING:
 						use_item(s, target)
 						return
 			Intents.DEBUFF:
@@ -125,11 +125,11 @@ func ai_action() -> void:
 				if rng.randf() <= vaimulembesus and debuffing_spirits.size() > 0:
 					spirit_pocket.append_array(Math.determ_shuffle(debuffing_spirits, rng))
 					for s in spirit_pocket:
-						if DAT.get_spirit(s).cost <= character.magic:
+						if ResMan.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
 							return
 				for s in character.inventory:
-					if DAT.get_item(s).use == Item.Uses.DEBUFFING:
+					if ResMan.get_item(s).use == Item.Uses.DEBUFFING:
 						use_item(s, target)
 						return
 			Intents.HEAL:
@@ -145,11 +145,11 @@ func ai_action() -> void:
 				if rng.randf() <= vaimulembesus and healing_spirits.size() > 0:
 					spirit_pocket.append_array(Math.determ_shuffle(healing_spirits, rng))
 					for s in spirit_pocket:
-						if DAT.get_spirit(s).cost <= character.magic:
+						if ResMan.get_spirit(s).cost <= character.magic:
 							use_spirit(s, target)
 							return
 				for s in character.inventory:
-					if DAT.get_item(s).use == Item.Uses.HEALING:
+					if ResMan.get_item(s).use == Item.Uses.HEALING:
 						use_item(s, target)
 						return
 			Intents.FLEE:

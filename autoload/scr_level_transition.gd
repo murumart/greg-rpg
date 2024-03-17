@@ -111,7 +111,7 @@ func handle_stolen_items() -> void:
 	DAT.set_data("unpaid_items", [])
 	for i in stolen_items:
 		DAT.grant_item(i)
-		DAT.incri("stolen_from_store", DAT.get_item(i).price)
+		DAT.incri("stolen_from_store", ResMan.get_item(i).price)
 		await SOL.dialogue_closed
 
 

@@ -43,7 +43,7 @@ func speak():
 	var price := 0
 	var silver = dat.get("silver", 0)
 	for p in unpaid_items: # tallying price
-		var item_price = DAT.get_item(p).price
+		var item_price = ResMan.get_item(p).price
 		price += item_price
 	if silver >= price:
 		# inject the price into the cashier's dialogue
@@ -54,7 +54,7 @@ func speak():
 		DAT.set_data("silver", silver - price) # deduct money
 		DAT.incri("%s_silver_spent" % cashier, price)
 		for p in unpaid_items: # add unpaid items to real inventory
-			DAT.get_character(DAT.get_data("party", ["greg"]).front()).inventory.append(p)
+			ResMan.get_character(DAT.get_data("party", ["greg"]).front()).inventory.append(p)
 		unpaid_items.clear()
 		SOL.call_deferred("dialogue", "cashier_%s_finish" % cashier) # thanks
 		DAT.incri("%s_transactions_done" % cashier, 1)
@@ -71,7 +71,7 @@ func warn() -> void:
 	if cashier == "dead": return
 	var stolen_profit := 0
 	for i in DAT.get_data("unpaid_items", []):
-		var price := DAT.get_item(i).price
+		var price := ResMan.get_item(i).price
 		stolen_profit += price
 	if stolen_profit < 1: return
 	if cashier == "nice":

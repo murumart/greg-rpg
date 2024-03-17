@@ -2,7 +2,7 @@ extends OverworldCharacter
 
 
 func interacted() -> void:
-	var list: ScrollContainer = SOL.get_node("DialogueBoxOrderer/DialogueBoxPanel/ScrollContainer")
+	var list: ScrollContainer = SOL.get_node("DialogueBox/DialogueBoxPanel/ScrollContainer")
 	if not DAT.get_data("talked_to_guru", false):
 		DAT.set_data("talked_to_guru", true)
 		SOL.dialogue("effect_guru_hi")
@@ -13,7 +13,7 @@ func interacted() -> void:
 	var newchoices := PackedStringArray()
 	newchoices.append("bye")
 	for eff in DAT.get_data("known_status_effects", []):
-		var eff_name = eff.replace("_", " ")
+		var eff_name := ResMan.get_effect(eff).name
 		newchoices.append(eff_name)
 	SOL.dialogue_box.adjust("effect_guru", 0, "choices", newchoices)
 	list.size = Vector2(80, 60)
@@ -26,10 +26,10 @@ func interacted() -> void:
 			return
 		var id := SOL.dialogue_choice.replace(" ", "_")
 		var dial_id = "stefde_" + id
-		if not dial_id in SOL.dialogue_box.dialogues_dict:
-			if dial_id.ends_with("immunity"):
+		if not SOL.dialogue_exists(dial_id):
+			if dial_id.ends_with("immune"):
 				SOL.dialogue_box.dial_concat("stefde_default_immunity", 0,
-					[SOL.dialogue_choice.trim_suffix(" immunity")])
+					[SOL.dialogue_choice.trim_suffix(" immune")])
 				SOL.dialogue("stefde_default_immunity")
 				return
 			SOL.dialogue("stefde_default")
