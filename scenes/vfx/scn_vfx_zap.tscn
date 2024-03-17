@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=3 uid="uid://veb0n0d0uu3k"]
+
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="1_keg01"]
+
+[sub_resource type="Gradient" id="Gradient_6cvqx"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.48992, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_36m7d"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_6cvqx")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_h5umf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VfxPowerline:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedFloat32Array(0, 0.48992, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VfxPowerline:gradient:colors")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VfxPowerline/Start:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(-8, -11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VfxPowerline/End:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(11, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_ralit"]
+resource_name = "default"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VfxPowerline:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedFloat32Array(0, 0.48992, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VfxPowerline:gradient:colors")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), PackedColorArray(1, 1, 1, 0, 1, 1, 0.266667, 1, 1, 1, 1, 0), PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VfxPowerline/Start:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-8, -11), Vector2(-9, -9), Vector2(-1, -13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VfxPowerline/End:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(11, 13), Vector2(11, 12), Vector2(2, 16), Vector2(2, 11)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33eru"]
+_data = {
+"RESET": SubResource("Animation_h5umf"),
+"default": SubResource("Animation_ralit")
+}
+
+[node name="VfxZap" type="Node2D"]
+
+[node name="VfxPowerline" parent="." instance=ExtResource("1_keg01")]
+gradient = SubResource("Gradient_6cvqx")
+lifetime = 0.0
+
+[node name="Line2D" parent="VfxPowerline" index="0"]
+points = PackedVector2Array(-8, -11, -3.8892, -8.3688, -4.6084, -7.48603, -3.22755, -4.25046, 2.24767, -1.19842, 0.565186, 2.52936, 2.67355, 5.16577, 7.40073, 5.76616, 10.6545, 11.2728, 11, 13)
+texture = SubResource("GradientTexture2D_36m7d")
+
+[node name="Start" parent="VfxPowerline" index="1"]
+position = Vector2(-8, -11)
+
+[node name="End" parent="VfxPowerline" index="2"]
+position = Vector2(11, 13)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_33eru")
+}
+autoplay = "default"
+
+[editable path="VfxPowerline"]

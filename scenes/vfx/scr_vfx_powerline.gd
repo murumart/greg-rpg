@@ -48,8 +48,8 @@ func _ready() -> void:
 ## This is called by the [code]SOL.vfx()[/code] function.
 ## It can initialise the start and end positions, and the node's lifetime.
 func init(options := {}) -> void:
-	start.global_position = options.get("start_position", start.global_position)
-	end.global_position = options.get("end_position", end.global_position)
+	#start.global_position = options.get("start_position", start.global_position)
+	#end.global_position = options.get("end_position", end.global_position)
 	lifetime = options.get("lifetime", lifetime)
 
 
@@ -69,8 +69,8 @@ func update_display() -> void:
 	if Engine.is_editor_hint():
 		line = _getline
 	for p in divisions:
-		line.points[p] = start.global_position.lerp(
-				end.global_position, float(p) / (divisions - 1))
+		line.points[p] = start.position.lerp(
+				end.position, float(p) / (divisions - 1))
 	line.texture.gradient = gradient
 
 ## Deviates the line's points' positions. Called in [code]_physics_process[/code].

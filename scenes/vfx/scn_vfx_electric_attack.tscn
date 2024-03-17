@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bajl0gp7tdhcy"]
+[gd_scene load_steps=10 format=3 uid="uid://bajl0gp7tdhcy"]
 
 [ext_resource type="AudioStream" uid="uid://ccw34efjit2k" path="res://sounds/attack_electric.ogg" id="1_u3k2t"]
 [ext_resource type="Texture2D" uid="uid://duh04w84k0fve" path="res://sprites/vfx/spr_electric_attack.png" id="2_kd0qo"]
+[ext_resource type="PackedScene" uid="uid://veb0n0d0uu3k" path="res://scenes/vfx/scn_vfx_zap.tscn" id="3_de5t5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6jnp"]
 atlas = ExtResource("2_kd0qo")
@@ -54,10 +55,13 @@ volume_db = 2.0
 autoplay = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_o5ise")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
+
+[node name="VfxZap" parent="." instance=ExtResource("3_de5t5")]
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="queue_free"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="hide"]
