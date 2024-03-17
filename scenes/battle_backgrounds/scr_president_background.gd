@@ -9,21 +9,23 @@ var beam_direction := 1.0
 @onready var mist: GPUParticles2D = $Mist
 @onready var text_box: TextBox = $TextBox
 var initial_message_spoken := false
+var skip_intro := true
 
 
 func _ready() -> void:
-	SOL.dialogue_open = true
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 3.0)
-	if LTS.get_current_scene().name == "Battle":
-		LTS.get_current_scene().ui.modulate.a = 0.0
 	mus_bar_counter.new_bar.connect(new_bar)
-	mist.modulate.a = 0.0
-	mist_2.modulate.a = 0.0
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(mist, "modulate:a", 1.0, 6.0)
-	tw.parallel().tween_property(mist_2, "modulate:a", 1.0, 6.0)
-	tw.tween_interval(5)
-	tw.tween_property(beam, "modulate:a", 1.0, 0.6)
+	if not skip_intro:
+		SOL.dialogue_open = true
+		if LTS.get_current_scene().name == "Battle":
+			LTS.get_current_scene().ui.modulate.a = 0.0
+		mist.modulate.a = 0.0
+		mist_2.modulate.a = 0.0
+		var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mist, "modulate:a", 1.0, 6.0)
+		tw.parallel().tween_property(mist_2, "modulate:a", 1.0, 6.0)
+		tw.tween_interval(5)
+		tw.tween_property(beam, "modulate:a", 1.0, 0.6)
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +41,7 @@ func _physics_process(delta: float) -> void:
 
 
 func new_bar(bar) -> void:
-	if not initial_message_spoken:
+	if not initial_message_spoken and not skip_intro:
 		if bar == 1:
 			text_box.text = "my name is president frankling. i rule over the mighty country of beacon archipelago. "
 			text_box.speak_text({"speed": 2.5})
