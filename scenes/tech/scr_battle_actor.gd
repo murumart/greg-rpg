@@ -252,7 +252,7 @@ func attack(subject: BattleActor) -> void:
 	else:
 		blunt_visuals(subject)
 	if get_gender() == Genders.ELECTRIC:
-		SOL.vfx("electric_attack", get_effect_center(subject), {parent = subject})
+		SOL.vfx("electric_attack", get_effect_center(subject), {parent = subject, random_rotation = true})
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()

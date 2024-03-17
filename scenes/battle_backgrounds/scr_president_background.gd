@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 
 
 func new_bar(bar) -> void:
+	var tw : Tween
 	if not initial_message_spoken and not skip_intro:
 		if bar == 1:
 			text_box.text = "my name is president frankling. i rule over the mighty country of beacon archipelago. "
@@ -51,25 +52,24 @@ func new_bar(bar) -> void:
 		elif bar == 6:
 			text_box.text = "it is i who establishes justice, and you, young man, have brought upon me great injustice."
 			text_box.speak_text({"speed": 2.5})
-			var tw := create_tween()
+			tw = create_tween()
 			tw.tween_property(spin_pivot, "modulate:a", 1.0, 2.0)
+			tw.parallel().tween_property(
+					text_box, "theme_override_colors/font_shadow_color",
+					Color(Color.DARK_MAGENTA, 0.3), 1.0)
 			if LTS.get_current_scene().name == "Battle":
 				tw.tween_property(
 						LTS.get_current_scene().ui, "modulate:a", 1.0, 1.0
 						).set_trans(Tween.TRANS_BOUNCE)
 		elif bar == 9:
-			var tw := create_tween()
-			tw.tween_property(
-					text_box, "theme_override_colors/font_outline_color",
-					Color(Color.DARK_MAGENTA, 0.3), 1.0)
 			text_box.text = "thus, i demand reparations.
 
 you'll find my demands
 	convincing and fair."
 			text_box.speak_text({"speed": 3.5})
+			tw = create_tween()
+			tw.tween_property(spin_pivot, "modulate:a", 0.0, 2.0)
 		elif bar == 13:
 			SOL.dialogue_open = false
-			var tw := create_tween()
-			tw.tween_property(spin_pivot, "modulate:a", 0.0, 2.0)
 			text_box.text = ""
 			initial_message_spoken = true

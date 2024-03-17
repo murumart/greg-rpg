@@ -6,7 +6,7 @@ func hr(actor: BattleActor, container: BattleStatusEffect, attack_gender: int, d
 	if attack_gender == Genders.FLAMING:
 		damage_amount *= 0.5
 	elif attack_gender == Genders.ELECTRIC:
-		damage_amount *= 1.5
+		damage_amount *= 1.2
 	SOL.vfx(
 		"sopping",
 		actor.global_position + Vector2(randf_range(-4, 4), -16),
