@@ -1,5 +1,7 @@
 extends BattleEnemy
 
+var progress := 0
+
 
 func _ready() -> void:
 	super()
@@ -12,3 +14,19 @@ func _ready() -> void:
 	tw.tween_property(self, "global_position:y", 1.0, 14)
 	tw.parallel().tween_property(self, "modulate", Color.WHITE, 30
 			).from(Color.BLACK)
+
+
+func hurt(amount: float, gender: int) -> void:
+	amount = _progress_check(amount)
+	super(amount, gender)
+
+
+func _progress_check(damage: float) -> float:
+	if (character.health - damage) / character.max_health < 0.5 and progress == 0:
+		progress = 1
+		SOL.dialogue("president_50")
+		damage += (character.health - damage) - character.max_health * 0.7
+	elif (character.health - damage) / character.max_health < 0.33 and progress == 1:
+		SOL.dialogue("president_33")
+		damage += (character.health - damage) - character.max_health * 0.33
+	return damage

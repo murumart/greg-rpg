@@ -54,8 +54,10 @@ func init(options := {}) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	_delay += delta
 	_lifetime += delta
+	if not visible:
+		return
+	_delay += delta
 	if _delay >= delay:
 		update_display()
 		wobble()

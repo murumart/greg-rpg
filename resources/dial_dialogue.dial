@@ -3002,6 +3002,17 @@ CHAR president
 	well... let me enlighten you.
 
 
+DIALOGUE president_50
+CHAR president
+	your resistance to my rule is maddening!
+	cease your rebellion now... or face the consequences.
+
+
+DIALOGUE president_33
+CHAR president
+	you've done it now.
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

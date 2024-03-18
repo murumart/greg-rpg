@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=18 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="2_8t0xc"]
 [ext_resource type="Texture2D" uid="uid://bupucffay7rlu" path="res://sprites/vfx/president_background/beam.png" id="2_efvev"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="2_shpnw"]
 [ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="5_2jjai"]
@@ -9,6 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_sj8jt"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="6_g0ddx"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="9_kqx2m"]
+
+[sub_resource type="Gradient" id="Gradient_0jvk6"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.452282, 1)
+colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_0jvk6")
+fill_from = Vector2(1, 1)
 
 [sub_resource type="Curve" id="Curve_578y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -49,6 +60,59 @@ offset_top = -3.0
 offset_right = 168.0
 offset_bottom = 123.0
 color = Color(0, 0, 0, 1)
+
+[node name="More" type="Node2D" parent="."]
+visible = false
+
+[node name="VfxPowerline" parent="More" instance=ExtResource("2_8t0xc")]
+divisions = 15
+deviation_distance = 2.5
+gradient = SubResource("Gradient_0jvk6")
+lifetime = 0.0
+
+[node name="Line2D" parent="More/VfxPowerline" index="0"]
+points = PackedVector2Array(-8, -6, -4.07032, 4.39807, -4.08033, 14.4915, -1.77662, 23.4135, -2.69018, 31.327, -1.19727, 39.2912, 1.09027, 46.5728, 6.79105, 55.2558, 5.83106, 63.7203, 11.0024, 73.9927, 8.90056, 85.8596, 14.9043, 93.3478, 11.8511, 102.568, 13.6447, 110.904, 18, 120)
+texture = SubResource("GradientTexture2D_rryk2")
+
+[node name="Start" parent="More/VfxPowerline" index="1"]
+position = Vector2(-8, -6)
+
+[node name="End" parent="More/VfxPowerline" index="2"]
+position = Vector2(18, 120)
+
+[node name="VfxPowerline2" parent="More" instance=ExtResource("2_8t0xc")]
+position = Vector2(132, 4)
+divisions = 15
+deviation_distance = 2.5
+gradient = SubResource("Gradient_0jvk6")
+lifetime = 0.0
+
+[node name="Line2D" parent="More/VfxPowerline2" index="0"]
+points = PackedVector2Array(-9, -11, -7.13732, -3.34139, -6.7544, 7.84075, -1.62109, 17.1162, -2.79561, 28.767, 2.09709, 42.1848, 1.36829, 49.6214, 5.7273, 57.5149, 7.55825, 72.5735, 12.6732, 81.0271, 13.6196, 92.6266, 14.2731, 98.0893, 19.2021, 110.961, 16.3778, 120.537, 21, 131)
+texture = SubResource("GradientTexture2D_rryk2")
+
+[node name="Start" parent="More/VfxPowerline2" index="1"]
+position = Vector2(-9, -11)
+
+[node name="End" parent="More/VfxPowerline2" index="2"]
+position = Vector2(21, 131)
+
+[node name="VfxPowerline3" parent="More" instance=ExtResource("2_8t0xc")]
+position = Vector2(73, 4)
+divisions = 15
+deviation_distance = 2.5
+gradient = SubResource("Gradient_0jvk6")
+lifetime = 0.0
+
+[node name="Line2D" parent="More/VfxPowerline3" index="0"]
+points = PackedVector2Array(14, -9, 14.7936, -0.502526, 11.193, 7.78622, 9.13836, 22.3613, 10.7088, 30.1869, 6.43882, 41.679, 5.71622, 46.3737, 1.91489, 57.1208, 0.798238, 69.9052, -1.12964, 78.8277, 0.536038, 85.0675, -1.01878, 94.6701, -2.65278, 109.166, -5.07104, 113.908, -6, 126)
+texture = SubResource("GradientTexture2D_rryk2")
+
+[node name="Start" parent="More/VfxPowerline3" index="1"]
+position = Vector2(14, -9)
+
+[node name="End" parent="More/VfxPowerline3" index="2"]
+position = Vector2(-6, 126)
 
 [node name="Mist2" type="GPUParticles2D" parent="."]
 z_as_relative = false
@@ -127,3 +191,7 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 2
 text = "uiuiuhiuiuhiuhiuhiuhui"
 script = ExtResource("9_kqx2m")
+
+[editable path="More/VfxPowerline"]
+[editable path="More/VfxPowerline2"]
+[editable path="More/VfxPowerline3"]
