@@ -28,6 +28,7 @@ func _ready() -> void:
 		for i in Elements.ELEMENT_AMOUNT:
 			print(ELM.get_element(i))
 			print(" ")
+			print(ELM.table_string())
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	solution = [
 		{

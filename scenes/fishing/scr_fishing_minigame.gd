@@ -61,6 +61,7 @@ var cow_ant_enabled := false
 
 
 func _ready() -> void:
+	print(random_items.elements)
 	state = States.MOVE
 	noise.seed = randi()
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
