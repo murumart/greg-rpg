@@ -54,9 +54,9 @@ func _physics_process(delta: float) -> void:
 		enemy_score -= delta * 0.5
 
 	# DEBUG
-	if Input.is_key_pressed(KEY_9):
-		reset()
-		active = true
+	#if Input.is_key_pressed(KEY_9):
+		#reset()
+		#active = true
 
 
 func reset() -> void:
