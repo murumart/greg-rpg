@@ -46,7 +46,6 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	print("greg: ", event.as_text())
 	if event.is_action_pressed("menu"):
 		if (not menu.visible) and DAT.player_capturers.is_empty():
 			if not menu_disabled:
