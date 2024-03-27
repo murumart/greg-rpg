@@ -137,9 +137,9 @@ func _physics_process(_delta: float) -> void:
 		update_party()
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.keycode == KEY_0:
-		ui.visible = ! event.is_pressed()
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action("hide_battle_ui"):
+		ui.visible = not event.is_pressed()
 		if not event.is_pressed():
 			attack_button.grab_focus()
 	if not listening_to_player_input: return
@@ -171,7 +171,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		for p in looper:
 			p.offload_character()
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
-		set_process_unhandled_key_input(false)
+		set_process_unhandled_input(false)
 
 
 func load_battle(info: BattleInfo) -> void:

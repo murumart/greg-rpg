@@ -21,10 +21,12 @@ var intro_progress := 0:
 @onready var next_to_car_pos: Marker2D = $Cutscenes/NextToCarPos
 @onready var car_inspect: InspectArea = $Cutscenes/ZermCar/InspectArea
 
+@export var play_intro := false
+
 
 func _ready() -> void:
 	super()
-	if intro_progress == 0 and LTS.gate_id == &"intro":
+	if intro_progress == 0 and (LTS.gate_id == &"intro" or play_intro):
 		start()
 		SOL.dialogue("intro_convo_2")
 	elif intro_progress == 1:
@@ -45,7 +47,7 @@ func start() -> void:
 	greg.hide()
 	# camera follows car
 	greg.remove_child(camera)
-	zerm_car.add_child(camera)
+	zerm_car.add_child(camera, true)
 	zerm_car.turn(Math.ANGLE_LEFT)
 	camera.global_position = zerm_car.global_position
 	set_car_noise(true)
@@ -61,7 +63,7 @@ func start() -> void:
 		zerma.global_position = zerm_car.global_position + Vector2(0, 10)
 		await create_tween().tween_interval(0.5).finished
 		zerm_car.remove_child(camera)
-		greg.add_child(camera)
+		greg.add_child(camera, true)
 		zerma.move_to(zerma.global_position + Vector2(20, 0))
 		zerma.target_reached.connect(func():
 			zerma.move_to(zerma_walk_pos.global_position)

@@ -104,68 +104,71 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		# DEBUG
-		# remember to remove this when releasing the game
-		if not DIR.standalone():
-			match event.keycode:
-				KEY_KP_0:
-					DAT.copy_data()
-					SOL.vfx_damage_number(
-						Vector2.ZERO, "copied data", Color.WHITE, 2)
-				KEY_KP_1:
-					DAT.set_copied_data()
-					SOL.vfx_damage_number(
-						Vector2.ZERO, "replaced data", Color.WHITE, 2)
-				KEY_KP_2:
-					print(get_viewport().gui_get_focus_owner())
-				KEY_KP_3, KEY_3:
-					if not get_viewport().get_camera_2d():
-						var cam := preload(
-							"res://scenes/tech/scn_camera.tscn"
-							).instantiate()
-						add_child(cam)
-					if get_viewport().get_camera_2d() and\
-					 "free_cam" in get_viewport().get_camera_2d():
-						get_viewport().get_camera_2d().free_cam\
-						 = !get_viewport().get_camera_2d().free_cam
-				KEY_KP_4:
-					get_tree().debug_collisions_hint = !get_tree().debug_collisions_hint
-					print("collisions ", "showing" if
-					get_tree().debug_collisions_hint else "hidden")
-				KEY_KP_7, KEY_7:
-					SOL.debug_console()
+	# DEBUG
+	# remember to remove this when releasing the game
+	if not DIR.standalone() and event is InputEventKey:
+		match event.keycode:
+			KEY_KP_0:
+				DAT.copy_data()
+				SOL.vfx_damage_number(
+					Vector2.ZERO, "copied data", Color.WHITE, 2)
+			KEY_KP_1:
+				DAT.set_copied_data()
+				SOL.vfx_damage_number(
+					Vector2.ZERO, "replaced data", Color.WHITE, 2)
+			KEY_KP_2:
+				print(get_viewport().gui_get_focus_owner())
+			KEY_KP_3, KEY_3:
+				if not get_viewport().get_camera_2d():
+					var cam := preload(
+						"res://scenes/tech/scn_camera.tscn"
+						).instantiate()
+					add_child(cam)
+				if get_viewport().get_camera_2d() and\
+				 "free_cam" in get_viewport().get_camera_2d():
+					get_viewport().get_camera_2d().free_cam\
+					 = !get_viewport().get_camera_2d().free_cam
+			KEY_KP_4:
+				get_tree().debug_collisions_hint = !get_tree().debug_collisions_hint
+				print("collisions ", "showing" if
+				get_tree().debug_collisions_hint else "hidden")
+			KEY_KP_7, KEY_7:
+				SOL.debug_console()
+	if event is InputEventKey:
 		match event.keycode:
 			KEY_F12:
 				DIR.screenshot()
-		# the options menu is shown and hidden when esc is pressed
-		if event.is_action_pressed("escape"):
-			# just close the save screen and not open OPT when save screen is open
-			for i in ["save_screen", "debug_console"]:
-				if i in DAT.player_capturers:
-					return
-			if not root.visible:
-				root.show()
-				top_text = -1
-				_on_top_text_switcher_timeout()
-				get_tree().paused = true
-				cur_opt = 0
-				select(cur_opt)
-				options_open = true
-			else:
-				save_options()
-				root.hide()
-				get_tree().paused = false
-				options_open = false
-		if not root.visible: return
-		# moving around the menu
-		var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var last_opt := cur_opt
-		cur_opt = wrapi(cur_opt + int(move.y), 0, options_length)
-		if cur_opt != last_opt:
-			SND.play_sound(menu_sound)
-		select(cur_opt)
-		modify(move.x)
+	# the options menu is shown and hidden when esc is pressed
+	if event.is_action_pressed("escape"):
+		# just close the save screen and not open OPT when save screen is open
+		for i in ["save_screen", "debug_console"]:
+			if i in DAT.player_capturers:
+				return
+		if not root.visible:
+			root.show()
+			top_text = -1
+			_on_top_text_switcher_timeout()
+			get_tree().paused = true
+			cur_opt = 0
+			select(cur_opt)
+			options_open = true
+		else:
+			save_options()
+			root.hide()
+			get_tree().paused = false
+			options_open = false
+	if not root.visible:
+		return
+	if event is InputEventJoypadMotion:
+		return
+	# moving around the menu
+	var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").round()
+	var last_opt := cur_opt
+	cur_opt = wrapi(cur_opt + int(move.y), 0, options_length)
+	if cur_opt != last_opt:
+		SND.play_sound(menu_sound)
+	select(cur_opt)
+	modify(move.x)
 
 
 func save_options() -> void:

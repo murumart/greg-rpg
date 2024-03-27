@@ -43,7 +43,7 @@ func _ready() -> void:
 	default_textbox_position = textbox.position
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not is_instance_valid(loaded_dialogue): return
 	if loaded_dialogue.size() < 1: return
 	if not event.is_pressed():

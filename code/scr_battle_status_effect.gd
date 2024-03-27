@@ -71,7 +71,7 @@ static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEf
 	var u := BattleStatusEffect.new()
 	if a.type.s_id != b.type.s_id:
 		return null
-	u.type.s_id = a.type.s_id
+	u.type = a.type
 	u.strength = ceilf((a.strength + b.strength) / 2.0)
 	if u.strength == 0:
 		return null

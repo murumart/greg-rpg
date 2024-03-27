@@ -46,12 +46,14 @@ func _ready() -> void:
 
 # ugly
 func _unhandled_input(event: InputEvent) -> void:
+	print("menüü: ", event.as_text())
 	# open the save menu (no idea why this is controlled here)
 	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
 		if DAT.player_capturers.is_empty():
 			if not saving_disabled:
 				SOL.save_menu(Input.is_action_just_pressed("quick_load"))
-	if not visible: return
+	if not visible:
+		return
 	get_viewport().set_input_as_handled()
 	# going back a menu level
 	if event.is_action_pressed("cancel"):

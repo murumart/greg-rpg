@@ -46,16 +46,15 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		# opening the menu
-		if event.is_action_pressed("menu"):
-			if (not menu.visible) and DAT.player_capturers.is_empty():
-				if not menu_disabled:
-					menu.call_deferred("showme")
-					DAT.capture_player("overworld_menu")
-					DAT.set_data("has_opened_inventory", true)
-			else:
-				close_menu()
+	print("greg: ", event.as_text())
+	if event.is_action_pressed("menu"):
+		if (not menu.visible) and DAT.player_capturers.is_empty():
+			if not menu_disabled:
+				menu.call_deferred("showme")
+				DAT.capture_player("overworld_menu")
+				DAT.set_data("has_opened_inventory", true)
+		else:
+			close_menu()
 
 
 func _physics_process(delta: float) -> void:

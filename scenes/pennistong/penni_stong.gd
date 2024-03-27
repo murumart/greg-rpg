@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 		_ball_movement(delta)
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if rps_open and not over:
 		var old_choice := rps_choice
 		var input := int(Input.get_axis("ui_left", "ui_right"))
