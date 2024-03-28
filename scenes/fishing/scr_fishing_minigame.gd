@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 func hook_movement(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	hook.global_position += input * hook_speed * 1 * delta
-	hook.global_position.y = clampf(hook.global_position.y, -60, 60)
+	hook.global_position.y = clampf(hook.global_position.y, -60, 50)
 	# swaying left-right
 	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, hook_speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
 	if Engine.get_physics_frames() % 4 == 0:

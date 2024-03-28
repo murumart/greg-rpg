@@ -371,7 +371,7 @@ func showme():
 	show()
 	SND.menusound()
 	save_warning_label.hide()
-	if DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
+	if not saving_disabled and DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()
 		save_warning_label.modulate.a = 1.0
 		save_warning_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
