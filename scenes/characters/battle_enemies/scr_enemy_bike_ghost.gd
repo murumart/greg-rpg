@@ -1,6 +1,8 @@
 extends BattleEnemy
 
 const OVERPOWER_LINES_MAX := 3
+const BikeType := preload("res://scenes/decor/scr_bike.gd")
+
 var said_healing_line := false
 var enemy_powerful := false
 var powerful_progress := 1
@@ -57,6 +59,7 @@ func hurt(amount: float, gnd: int) -> void:
 	if is_zero_approx(character.health_perc()):
 		dead = true
 		SOL.dialogue("bike_ghost_defeat")
+		DAT.appenda("bike_ghosts_fault", BikeType.Ghosts.ALPHA)
 		SOL.dialogue_box.changed_dialogue.connect(
 			func():
 				use_spirit("radiation_attack", reference_to_opposing_array[0])

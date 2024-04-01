@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=112 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_o4xvl"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="17_nuhfb"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_bike_call_timer.gd" id="18_0km5u"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="18_4rtss"]
 [ext_resource type="Texture2D" uid="uid://bgubly3ftklr" path="res://sprites/world/building/spr_doghouse.png" id="21_mjvj8"]
 [ext_resource type="SpriteFrames" uid="uid://d1gv8oqbnw55i" path="res://resources/characters/sfr_cashier_nice.tres" id="23_nx27k"]
@@ -1012,6 +1013,11 @@ save = false
 [node name="Bike" parent="Houses/NeighbourHouse" node_paths=PackedStringArray("player") instance=ExtResource("12_8ipa6")]
 position = Vector2(194, 97)
 player = NodePath("../../../Greg")
+
+[node name="BikeCallTimer" type="Timer" parent="Houses/NeighbourHouse/Bike"]
+wait_time = 6.0
+autostart = true
+script = ExtResource("18_0km5u")
 
 [node name="TutorialGUy" parent="Houses/NeighbourHouse" instance=ExtResource("16_2feir")]
 position = Vector2(-98, 105)

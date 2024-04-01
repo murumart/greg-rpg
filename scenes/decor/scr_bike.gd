@@ -4,6 +4,7 @@ extends Node2D
 # (eventually)
 
 enum Ghosts {ALPHA, BETA, GAMMA}
+@onready var interaction_area: InteractionArea = $InteractionArea
 
 @export var ghost: Ghosts = Ghosts.ALPHA
 
@@ -14,9 +15,6 @@ enum Ghosts {ALPHA, BETA, GAMMA}
 
 func _ready() -> void:
 	load_ghosts()
-	
-	await get_tree().process_frame
-	await get_tree().process_frame
 	if LTS.gate_id == LTS.GATE_BIKE_TRAVEL:
 		if player:
 			player.global_position = $SpawnPoint.global_position
@@ -40,7 +38,6 @@ func _interacted() -> void:
 						func():
 							DAT.free_player("cutscene")
 							LTS.enter_battle(alpha_battle_info)
-							DAT.appenda("bike_ghosts_fought", int(Ghosts.ALPHA))
 					)
 			, CONNECT_ONE_SHOT)
 		else:
