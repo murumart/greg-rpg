@@ -322,7 +322,7 @@ _data = {
 "hover": SubResource("Animation_fhef4")
 }
 
-[node name="Bike" type="Node2D"]
+[node name="Bike" type="Node2D" groups=["room_gates"]]
 script = ExtResource("1_hdwvo")
 alpha_battle_info = SubResource("Resource_1ki2y")
 

@@ -89,6 +89,7 @@ DIALOGUE phone_bike_ghost_call
 
 
 DIALOGUE phone_bike_ghost_call_ignore
+	(another call from the same number as last time.)
 	...
 	so... you've decided to ignore my call.
 	very well. if you can't move the mountain...

@@ -184,8 +184,8 @@ func load_armour() -> void:
 	armour.hide()
 	updating_armour = false
 	var greg := ResMan.get_character("greg") as Character
-	var path := "res://resources/armours/sfr_%s.tres" % greg.armour
 	if greg.armour:
+		var path := "res://resources/armours/sfr_%s.tres" % greg.armour
 		if ResourceLoader.exists(path):
 			armour.sprite_frames = load(path)
 			updating_armour = true

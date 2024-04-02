@@ -15,9 +15,11 @@ enum Ghosts {ALPHA, BETA, GAMMA}
 
 func _ready() -> void:
 	load_ghosts()
+
+
+func apply_spawn_point(player: PlayerOverworld) -> void:
 	if LTS.gate_id == LTS.GATE_BIKE_TRAVEL:
-		if player:
-			player.global_position = $SpawnPoint.global_position
+		player.global_position = $SpawnPoint.global_position
 
 
 func _interacted() -> void:
@@ -32,7 +34,7 @@ func _interacted() -> void:
 					$AnimationPlayer.play("emerge")
 					SND.play_song("bike_spirit", 0.20, {pitch_scale = 0.75, volume = -5})
 					SND.play_sound(load("res://sounds/spirit/bikeghost/alpha_appear.ogg"), {bus = "ECHO"})
-					await get_tree().create_timer(1.0).timeout
+					await get_tree().create_timer(2.0).timeout
 					SOL.dialogue("bike_alpha_interact_2")
 					SOL.dialogue_closed.connect(
 						func():
