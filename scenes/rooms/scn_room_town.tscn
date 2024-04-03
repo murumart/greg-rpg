@@ -1010,15 +1010,6 @@ script = ExtResource("14_gpjks")
 default_lines = Array[StringName]([&"kid_firstencounter"])
 save = false
 
-[node name="Bike" parent="Houses/NeighbourHouse" node_paths=PackedStringArray("player") instance=ExtResource("12_8ipa6")]
-position = Vector2(194, 97)
-player = NodePath("../../../Greg")
-
-[node name="BikeCallTimer" type="Timer" parent="Houses/NeighbourHouse/Bike"]
-wait_time = 6.0
-autostart = true
-script = ExtResource("18_0km5u")
-
 [node name="TutorialGUy" parent="Houses/NeighbourHouse" instance=ExtResource("16_2feir")]
 position = Vector2(-98, 105)
 
@@ -1515,6 +1506,14 @@ position = Vector2(0, -8)
 texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(32, 32, 16, 16)
+
+[node name="Bike" parent="Houses/UhhHouse" instance=ExtResource("12_8ipa6")]
+position = Vector2(107, 66)
+
+[node name="BikeCallTimer" type="Timer" parent="Houses/UhhHouse/Bike"]
+wait_time = 6.0
+autostart = true
+script = ExtResource("18_0km5u")
 
 [node name="UhhHouse2" type="Node2D" parent="Houses"]
 y_sort_enabled = true

@@ -75,6 +75,8 @@ func parse_command() -> void:
 			xp(args)
 		&"lvup":
 			lvup(args)
+		&"hurt":
+			hurt(args)
 		&"dial":
 			if args.size() < 1:
 				output("need dialogue key", true)
@@ -212,6 +214,19 @@ func lvup(args: PackedStringArray) -> void:
 	var amount := int(args[1])
 	ResMan.get_character(charname).level_up(amount)
 	output("leveled %s to %s" % [charname, amount + 1])
+
+
+func hurt(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: lvup charname amount")
+		return
+	if args.size() != 2:
+		output("need 2 arguments", true)
+		return
+	var charname := args[0]
+	var amount := int(args[1])
+	ResMan.get_character(charname).health -= amount
+	output("hurt %s by %s" % [charname, amount])
 
 
 func vfx(args: PackedStringArray) -> void:

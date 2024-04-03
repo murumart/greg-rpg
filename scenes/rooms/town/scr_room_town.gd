@@ -1,7 +1,7 @@
 extends Room
 
 @onready var store_door := $Houses/Store/DoorArea
-@onready var bike := $Houses/NeighbourHouse/Bike
+@onready var bike := $Houses/UhhHouse/Bike
 
 @onready var thug_spawners := $Areas.find_children("ThugSpawner*")
 @onready var animal_spawners := $Areas.find_children("AnimalSpawner*")

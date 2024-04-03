@@ -5,12 +5,11 @@ extends Node2D
 
 enum Ghosts {ALPHA, BETA, GAMMA}
 @onready var interaction_area: InteractionArea = $InteractionArea
+@onready var collision: StaticBody2D = $StaticBody2D
 
 @export var ghost: Ghosts = Ghosts.ALPHA
 
 @export var alpha_battle_info: BattleInfo
-
-@export var player: PlayerOverworld
 
 
 func _ready() -> void:
