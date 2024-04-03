@@ -1786,7 +1786,35 @@ CHAR bike_ghost
 DIALOGUE bike_ghost_afterdefeat
 CHAR bike_ghost
 	what now? want to rub your victory in my face?
+CHOICES travel,bye
 	go away!
+CHOICE_LINK bye
+	yeahhh, show pity to me! how gracious!
+CHOICE_LINK travel
+DATA_LINK fast_travel_tutorialed,false
+	huh? fast travel?
+	it's a lot to ask for after beating me up!
+SET_DATA fast_travel_tutorialed,true
+	b-but i'll do it... sure...
+
+
+DIALOGUE bike_ghost_travel_nodests
+CHAR bike_ghost
+	travel? travel where?
+	you haven't freed any other bikes to travel to.
+
+
+DIALOGUE bike_ghost_travel_options
+CHAR bike_ghost
+CHOICES nvm
+	travel where?
+CHOICE_LINK nvm
+	good riddance.
+
+
+DIALOGUE bike_ghost_travel
+CHAR bike_ghost
+	hope i don't see you again soon.
 
 
 DIALOGUE tarikas_hello
