@@ -148,8 +148,8 @@ func _physics_process(delta: float) -> void:
 				target_reached.emit()
 				path_timer.start(movement_wait)
 				set_state(States.IDLE)
-	if player_colliding:
-		if interact_on_touch: interacted()
+	if player_colliding and interact_on_touch:
+		interacted()
 	direct_walking_animation(velocity)
 
 
@@ -202,8 +202,9 @@ func interacted() -> void:
 
 func _on_talking_finished() -> void:
 	if path_container:
-		set_state(States.PATH)
 		path_timer.paused = false
+		if path_timer.time_left == 0:
+			_on_path_target_reached()
 	SOL.dialogue_closed.disconnect(_on_talking_finished)
 	if action_right_after_dialogue:
 		if battle_info:
@@ -216,8 +217,10 @@ func _on_talking_finished() -> void:
 
 
 func _on_random_movement_timer_timeout() -> void:
-	if not state == States.IDLE: return
-	if not random_movement: return
+	if not state == States.IDLE:
+		return
+	if not random_movement:
+		return
 	# test if random target position is reachable
 	for i in RANDOM_MOVEMENT_TRIES:
 		set_target(global_position + Vector2(randi_range(-random_movement_distance, random_movement_distance), randi_range(-random_movement_distance, random_movement_distance)))
@@ -227,14 +230,15 @@ func _on_random_movement_timer_timeout() -> void:
 		if collider:
 			target = detection_raycast.get_collision_point()
 			break
-		else: break
 	set_state(States.WANDER)
 	random_movement_timer.start(randfn(movement_wait, movement_wait * 0.25))
 
 
 func _on_path_target_reached() -> void:
-	if not state == States.IDLE: return
-	if not path_container: return
+	if not state == States.IDLE:
+		return
+	if not path_container:
+		return
 	var path_points := path_container.get_children()
 	if path_points:
 		var current := at_which_path_point()

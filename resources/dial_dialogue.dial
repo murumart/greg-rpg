@@ -2407,6 +2407,20 @@ CHOICES yes,no
 	would you like to break out?
 
 
+DIALOGUE police_nobounties
+CHAR popo_2
+	look at this empty room.
+	a blank slate... tabula rasa.
+	imagine everything you could put here.
+
+
+DIALOGUE police_nobounties_2
+CHAR popo_2
+	i was hinting that you go catch some criminals or such.
+	we can put their defeated (mentally and physically)...
+	...bodies in this room.
+
+
 DIALOGUE kid_firstencounter
 CHAR kid
 	yo! you interested in some goods?

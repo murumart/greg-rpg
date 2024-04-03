@@ -1,6 +1,7 @@
 extends Room
 
 @onready var popo1 := $Npcs/Popo1 as OverworldCharacter
+@onready var popo_2 := $Npcs/Popo2 as OverworldCharacter
 
 var bounty := {}
 var tracked_bounties := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
@@ -13,11 +14,7 @@ const BOUNTY_CATCHES := {
 	"broken_fishermen": 40,
 }
 
-@onready var cells := (func():
-	var dict := {}
-	for c in $Cells.get_children():
-		dict[c.name.to_snake_case()] = c
-	return dict).call() as Dictionary
+@onready var cells := Math.child_dict($Cells)
 
 @onready var rage := $SunSpiritRage as Node2D
 
@@ -53,7 +50,8 @@ func _on_popo_1_interact_on_interact() -> void:
 					reward = load(reward_path)
 				if complete_dial in SOL.dialogue_box.dialogues_dict:
 					SOL.dialogue(complete_dial)
-				if reward: reward.grant()
+				if reward:
+					reward.grant()
 				DAT.set_data("fulfilled_bounty_%s" % b, true)
 				DAT.incri("police_standing", 1)
 	SOL.dialogue(get_greeting())
@@ -170,6 +168,9 @@ func setup_cells() -> void:
 			)
 		else:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
+	
+	if DAT.get_data("police_standing", 0) <= 1:
+		popo_2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 
 
 # this is source code poetry
