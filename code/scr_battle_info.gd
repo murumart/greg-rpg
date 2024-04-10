@@ -62,3 +62,18 @@ func get_(x: StringName, default) -> Variant:
 		return get(x)
 	else:
 		return default
+
+
+func _to_string() -> String:
+	return str(
+		"BattleInfo(",
+		"enemies=", enemies, ", ",
+		"background=", background, ", ",
+		"music=", music, ", ",
+		"party=", party, ", ",
+		"death_reason=", death_reason, ", ",
+		"start_text=", start_text, ", ",
+		"rewards=", rewards, ", ",
+		"victory_music=", victory_music, ", ",
+		"stop_music_before_end=", stop_music_before_end, ") "
+	)

@@ -13,6 +13,7 @@ class_name Room
 func _init() -> void:
 	# so i don't have to manually :dace:
 	self.add_to_group("save_me")
+	
 
 
 func _ready() -> void:

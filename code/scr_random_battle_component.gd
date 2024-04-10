@@ -6,19 +6,23 @@ class_name RandomBattleComponent extends Node
 @export var minimum_enemy_tries := 1
 @export var inject_target: OverworldCharacter
 @export var start_texts: Array[String] = []
-var level := 0
+var level := 0.0
 
 
 func _ready() -> void:
-	level = roundi(remap(ResMan.get_character("greg").level, 1, 99, 0.001, 1.0))
+	set_level()
 	if inject_target:
 		inject_target.battle_info = get_battle()
 
 
 func gen_enemies() -> Array[StringName]:
+	set_level()
 	var enemies: Array[StringName] = []
 	enemies.append_array(default_battle.get_("enemies", []).duplicate())
-	for i in maxi(ceili(level / 10.0) + 1, minimum_enemy_tries):
+	values.shuffle()
+	var loops := maxi(ceili(level / 10.0) + 1, minimum_enemy_tries)
+	print("level: " ,level, ", loops: ", loops)
+	for i in loops:
 		for k in values:
 			var curve := k.curve as Curve
 			if curve.sample(level) >= randf():
@@ -39,4 +43,9 @@ func get_battle() -> BattleInfo:
 	if start_texts.size():
 		info.start_text = start_texts.pick_random()
 	return info
+
+
+func set_level() -> void:
+	level = remap(ResMan.get_character("greg").level, 1, 99, 0.001, 1.0)
+
 
