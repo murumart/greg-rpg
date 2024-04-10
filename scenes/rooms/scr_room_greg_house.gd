@@ -41,6 +41,7 @@ func _ready() -> void:
 
 
 func start() -> void:
+	house_door.destination = "grandma_house_inside"
 	delete_escape_routes()
 	delete_nuisances()
 	DAT.capture_player("cutscene")
@@ -92,6 +93,7 @@ func start() -> void:
 
 
 func leave_house() -> void:
+	house_door.destination = "grandma_house_inside"
 	delete_escape_routes()
 	delete_nuisances()
 	zerma.global_position = zerma_walk_pos.global_position

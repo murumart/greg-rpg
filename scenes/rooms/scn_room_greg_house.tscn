@@ -317,7 +317,6 @@ spawnpoint = Vector2i(35, 0)
 
 [node name="HouseDoor" parent="Areas" node_paths=PackedStringArray("spawn_point") instance=ExtResource("8_7g8ll")]
 position = Vector2(-23, 40)
-destination = &"grandma_house_inside"
 gate_id = &"greghouse_inside-outside"
 spawn_point = NodePath("SpawnPoint")
 
