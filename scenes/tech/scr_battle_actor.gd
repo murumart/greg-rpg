@@ -338,8 +338,6 @@ func use_item(id: String, subject: BattleActor) -> void:
 # squeeze empty the payload, copy everything over
 func handle_payload(pld: BattlePayload) -> void:
 	print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
-	print("\t", pld)
-	print(pld.sender)
 	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
 	if character.health <= 0: return
