@@ -17,7 +17,7 @@
 script = ExtResource("2_281x7")
 enemies = Array[StringName]([&"strider"])
 background = "town"
-music = ""
+music = "lake_battle"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
