@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://h0h7kb3xojk6"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_fyc2s"]
-[ext_resource type="Texture2D" uid="uid://bah7sf2ahaqbi" path="res://sprites/characters/battle/thugs/spr_benthon_head.png" id="1_w26mi"]
+[ext_resource type="Texture2D" uid="uid://bah7sf2ahaqbi" path="res://sprites/characters/battle/thugs/spr_benthon_head.png" id="1_gy57l"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_q41es"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_344at"]
-atlas = ExtResource("1_w26mi")
-region = Rect2(32, 12, 22, 22)
+atlas = ExtResource("1_gy57l")
+region = Rect2(10, 10, 22, 22)
 
 [resource]
-script = ExtResource("1_fyc2s")
+script = ExtResource("2_q41es")
 name_in_file = &""
 name = "benthon"
 info = "OoooooOOOoooOOOoo"

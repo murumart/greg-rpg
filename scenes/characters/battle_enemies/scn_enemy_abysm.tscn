@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://mvih26nda2tx"]
+[gd_scene load_steps=9 format=3 uid="uid://ig4plm5gwocf"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_h1b1s"]
-[ext_resource type="Texture2D" uid="uid://mqtcaojnu3up" path="res://sprites/characters/battle/thugs/spr_benthon_mantle.png" id="2_kgv6q"]
-[ext_resource type="Texture2D" uid="uid://bah7sf2ahaqbi" path="res://sprites/characters/battle/thugs/spr_benthon_head.png" id="3_faenw"]
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_a5pmr"]
+[ext_resource type="Texture2D" uid="uid://bhnvl7ldjih6p" path="res://sprites/characters/battle/lakeside/spr_abysm_coat.png" id="2_y0l3u"]
+[ext_resource type="Texture2D" uid="uid://cxbrsfky38cnn" path="res://sprites/characters/battle/lakeside/spr_abysm_head.png" id="3_nht1y"]
 
 [sub_resource type="Animation" id="Animation_011cy"]
 length = 0.001
@@ -178,10 +178,10 @@ tracks/2/path = NodePath("Head:rotation")
 tracks/2/interp = 4
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4, 2.9, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.109852, -0.181756, 6.33283]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -199,13 +199,13 @@ tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Body:scale")
-tracks/4/interp = 1
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.92, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -214,10 +214,22 @@ tracks/5/path = NodePath("Body:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-1.3113e-06, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_5tvgc"]
@@ -304,16 +316,18 @@ _data = {
 }
 
 [node name="Benthon" type="Node2D" node_paths=PackedStringArray("animator")]
-script = ExtResource("1_h1b1s")
+script = ExtResource("1_a5pmr")
 animator = NodePath("AnimationPlayer")
-altruism = 0.908
+altruism = 0.965
+xp_multiplier = 1.3
+gender = 2
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_kgv6q")
+texture = ExtResource("2_y0l3u")
 
 [node name="Head" type="Sprite2D" parent="."]
 position = Vector2(-3, 3)
-texture = ExtResource("3_faenw")
+texture = ExtResource("3_nht1y")
 offset = Vector2(-3.18608, -22.52)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
