@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene load_steps=43 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
@@ -209,6 +209,15 @@ script = ExtResource("5_2m4wv")
 key = &"abysm"
 curve = SubResource("Curve_tqyql")
 
+[sub_resource type="Curve" id="Curve_1qt73"]
+_data = [Vector2(0.418699, 0.010989), 0.0, 0.0, 0, 0, Vector2(0.495935, 0.0983871), 0.0, 0.0, 0, 0, Vector2(0.560976, 0.043956), 0.0, 0.0, 0, 0, Vector2(1, 0.0774194), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_cdx0q"]
+script = ExtResource("5_2m4wv")
+key = &"strider"
+curve = SubResource("Curve_1qt73")
+
 [sub_resource type="Resource" id="Resource_v2hfp"]
 script = ExtResource("6_7wttt")
 enemies = Array[StringName]([&"broken_fisherman"])
@@ -250,6 +259,6 @@ animation = &"walk_down"
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_txuqq")
-values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb"), SubResource("Resource_3epx7"), SubResource("Resource_d08lo")])
+values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb"), SubResource("Resource_3epx7"), SubResource("Resource_d08lo"), SubResource("Resource_cdx0q")])
 default_battle = SubResource("Resource_v2hfp")
 inject_target = NodePath("..")
