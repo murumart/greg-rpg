@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://b2dtucrnjqlj7"]
+
+[ext_resource type="Texture2D" uid="uid://d3b2afl8yht35" path="res://sprites/characters/battle/lakeside/spr_super_fisherman.png" id="1_bdwd2"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_au1hy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uauxx"]
+atlas = ExtResource("1_bdwd2")
+region = Rect2(19, 2, 22, 22)
+
+[resource]
+script = ExtResource("2_au1hy")
+name_in_file = &""
+name = "cracked fisherman"
+info = "hardened by years of loss."
+portrait = SubResource("AtlasTexture_uauxx")
+max_health = 140.0
+health = 140.0
+max_magic = 120.0
+magic = 120.0
+level = 40
+experience = 0
+attack = 40.0
+defense = 25.0
+speed = 40.0
+defeated_characters = {}
+inventory = Array[String](["pills", "pills", "pills", "pills", "pills", "pills", "pills", "pills", "pills", "pills"])
+spirits = Array[String](["hook_attack", "fish_attack", "splash_attack", "jglove"])
+unused_sprits = Array[String]([])
+armour = "rain_boot"
+weapon = "fish"

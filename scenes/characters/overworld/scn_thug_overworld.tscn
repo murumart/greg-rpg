@@ -206,7 +206,7 @@ point_count = 4
 
 [sub_resource type="Resource" id="Resource_8pvwv"]
 script = ExtResource("5_7t3nr")
-key = &"abiss"
+key = &"benthon"
 curve = SubResource("Curve_rf7mf")
 
 [sub_resource type="Curve" id="Curve_wjsfi"]

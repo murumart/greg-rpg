@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mqtcaojnu3up"
-path="res://.godot/imported/spr_abiss_mantle.png-d4bf973d8c0a37f4c19970e2bb3b6798.ctex"
+uid="uid://bah7sf2ahaqbi"
+path="res://.godot/imported/spr_benthon_head.png-532ea2db477ef0ae876293f19ed5dffe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/battle/thugs/spr_abiss_mantle.png"
-dest_files=["res://.godot/imported/spr_abiss_mantle.png-d4bf973d8c0a37f4c19970e2bb3b6798.ctex"]
+source_file="res://sprites/characters/battle/thugs/spr_benthon_head.png"
+dest_files=["res://.godot/imported/spr_benthon_head.png-532ea2db477ef0ae876293f19ed5dffe.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=21 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -27,6 +27,11 @@ gradient = SubResource("Gradient_cttpx")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ly6d5"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.452282, 1)
+colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
+[sub_resource type="Gradient" id="Gradient_6uv00"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
@@ -111,7 +116,7 @@ position = Vector2(21, 131)
 position = Vector2(73, 4)
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_cttpx")
+gradient = SubResource("Gradient_6uv00")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]

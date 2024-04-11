@@ -5,9 +5,9 @@ extends Room
 
 var bounty := {}
 var tracked_bounties := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
-var thugs := ["chimney", "well", "shopping_cart", "kor_sten", "abiss", "moron", "stabbing_fella"]
-var broken := ["broken_fisherman", "not_fish", "sopping"]
-var animals := ["mole", "rainbird", "stray_pet", "wild_lizard"]
+#var thugs := ["chimney", "well", "shopping_cart", "kor_sten", "benthon", "moron", "stabbing_fella"]
+#var broken := ["broken_fisherman", "not_fish", "sopping"]
+#var animals := ["mole", "rainbird", "stray_pet", "wild_lizard"]
 const BOUNTY_CATCHES := {
 	"thugs": 40,
 	"stray_animals": 40,

@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://o2ra53h5ycm5"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_sttyi"]
+[ext_resource type="Texture2D" uid="uid://d3b2afl8yht35" path="res://sprites/characters/battle/lakeside/spr_super_fisherman.png" id="2_7am5s"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3rltk"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_pgxvf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0384615, 0.446023), 0.0, 0.0, 0, 0, Vector2(0.667832, 0.658381), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_n0luj"]
+width = 32
+curve = SubResource("Curve_pgxvf")
+
+[sub_resource type="Curve" id="Curve_smg0m"]
+_data = [Vector2(0.346154, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), -0.310662, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2w5ih"]
+width = 32
+curve = SubResource("Curve_smg0m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h87ii"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.63
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2w5ih")
+alpha_curve = SubResource("CurveTexture_n0luj")
+
+[node name="BrackedFisherman" type="Node2D"]
+script = ExtResource("1_sttyi")
+effect_center = Vector2i(0, -32)
+toughness = 1.0
+altruism = 0.0
+innovation = 0.614
+vaimulembesus = 0.666
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7am5s")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_3rltk")
+process_material = SubResource("ParticleProcessMaterial_h87ii")
+texture = ExtResource("2_7am5s")

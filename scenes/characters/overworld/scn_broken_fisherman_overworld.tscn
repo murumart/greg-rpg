@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene load_steps=39 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
@@ -165,8 +165,8 @@ key = &"broken_fisherman"
 curve = SubResource("Curve_lwc41")
 
 [sub_resource type="Curve" id="Curve_cpli7"]
-_data = [Vector2(0, 0.505574), 0.0, 0.0, 0, 0, Vector2(0.257488, 0.541929), 0.0, 0.0, 0, 0, Vector2(0.334293, 0.735821), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.505574), 0.0, 0.0, 0, 0, Vector2(0.257488, 0.541929), 0.0, 0.0, 0, 0, Vector2(0.334293, 0.735821), 0.0, 0.0, 0, 0, Vector2(0.577236, 0.591129), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_7f55p"]
 script = ExtResource("5_2m4wv")
@@ -190,6 +190,15 @@ point_count = 3
 script = ExtResource("5_2m4wv")
 key = &"not_fish"
 curve = SubResource("Curve_wtvfl")
+
+[sub_resource type="Curve" id="Curve_1t12c"]
+_data = [Vector2(0.186992, 0), 0.0, 0.0, 0, 0, Vector2(0.341463, 0.025), 0.0, 0.0, 0, 0, Vector2(0.48374, 0.318548), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_3epx7"]
+script = ExtResource("5_2m4wv")
+key = &"cracked_fisherman"
+curve = SubResource("Curve_1t12c")
 
 [sub_resource type="Resource" id="Resource_v2hfp"]
 script = ExtResource("6_7wttt")
@@ -232,6 +241,6 @@ animation = &"walk_down"
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_txuqq")
-values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb")])
+values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb"), SubResource("Resource_3epx7")])
 default_battle = SubResource("Resource_v2hfp")
 inject_target = NodePath("..")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dyg8t5y4s0oep"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://71djpahq52vc"]
 
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_4es2m"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_grfca"]
@@ -23,12 +23,15 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 0
 effects = Array[ExtResource("1_ok4l0")]([SubResource("Resource_wm78g"), SubResource("Resource_naprc")])
 delay = 0.0
 summon_enemy = ""
@@ -38,7 +41,7 @@ meta = {}
 [resource]
 script = ExtResource("1_grfca")
 name_in_file = &""
-name = &"pill bottle"
+name = &"pills"
 description = "this can only be healthy."
 texture = ExtResource("3_w2wda")
 attack_animation = ""

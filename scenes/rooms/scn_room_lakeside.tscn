@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="7_7ppah"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
-[ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="9_8d332"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="10_w8d1t"]
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/water_river.ogg" id="11_n82my"]

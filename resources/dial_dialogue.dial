@@ -376,12 +376,12 @@ CHAR stabbing_fella
 
 
 DIALOGUE prank_call_2
-CHAR abiss
+CHAR benthon
 	oooooooooooo
 CHAR 
 	(you can smell cheap booze through the receiver)
 	(somehow)
-CHAR abiss
+CHAR benthon
 	*hic*
 
 
