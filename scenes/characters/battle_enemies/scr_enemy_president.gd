@@ -1,13 +1,17 @@
 extends BattleEnemy
 
+const BackgroundType := preload("res://scenes/battle_backgrounds/scr_president_background.gd")
+
+var background: BackgroundType
+
 var progress := 0
 
 
 func _ready() -> void:
 	super()
 	if LTS.get_current_scene().name == "Battle":
-		var bg = LTS.get_current_scene().background_container.get_child(0)
-		if bg.skip_intro:
+		background = LTS.get_current_scene().background_container.get_child(0)
+		if background.skip_intro:
 			return
 	var tw := create_tween()
 	tw.tween_property(self, "global_position:y", 190.0, 7.0).from(189.0)

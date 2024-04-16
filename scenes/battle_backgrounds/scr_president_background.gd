@@ -1,15 +1,18 @@
 extends Node2D
 
-@export var spin_speed := 155
-@onready var beam := $Lighthouse/Beam as Sprite2D
 var beam_direction := 1.0
+var initial_message_spoken := false
+var skip_intro := false
+
+@export var spin_speed := 155
+
+@onready var beam := $Lighthouse/Beam as Sprite2D
 @onready var mus_bar_counter: MusBarCounter = $MusBarCounter
 @onready var spin_pivot: Node2D = $Lighthouse/SpinPivot
 @onready var mist_2: GPUParticles2D = $Mist2
 @onready var mist: GPUParticles2D = $Mist
 @onready var text_box: TextBox = $TextBox
-var initial_message_spoken := false
-var skip_intro := true
+@onready var zoom_animation: AnimationPlayer = $Lighthouse/ZoomAnimation
 
 
 func _ready() -> void:
@@ -57,6 +60,7 @@ func new_bar(bar) -> void:
 			tw.parallel().tween_property(
 					text_box, "theme_override_colors/font_shadow_color",
 					Color(Color.DARK_MAGENTA, 0.3), 1.0)
+			tw.tween_callback(lighthouse_zoom_in)
 			if LTS.get_current_scene().name == "Battle":
 				tw.tween_property(
 						LTS.get_current_scene().ui, "modulate:a", 1.0, 1.0
@@ -73,3 +77,11 @@ you'll find my demands
 			SOL.dialogue_open = false
 			text_box.text = ""
 			initial_message_spoken = true
+
+
+func lighthouse_zoom_in() -> void:
+	zoom_animation.play("zoom_in")
+
+
+func lighthouse_zoom_out() -> void:
+	zoom_animation.play_backwards("zoom_in")

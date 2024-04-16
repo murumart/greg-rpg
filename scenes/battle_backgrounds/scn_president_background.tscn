@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=23 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -16,22 +16,17 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_cttpx"]
+[sub_resource type="Gradient" id="Gradient_6uv00"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_cttpx")
+gradient = SubResource("Gradient_6uv00")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ly6d5"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.452282, 1)
-colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
-
-[sub_resource type="Gradient" id="Gradient_6uv00"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
@@ -66,6 +61,163 @@ blend_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r4bp5"]
 blend_mode = 1
 
+[sub_resource type="Animation" id="Animation_pqi71"]
+resource_name = "zoom_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(79, 52), Vector2(79, 10), Vector2(79, 31.3595), Vector2(79, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4.97368, 4.97368), Vector2(4.97368, 4.97368)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Mist:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(85, 103)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Mist:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Mist:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_lchrs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(79, 52)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Mist:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(85, 103)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Mist:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Mist:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uw302"]
+_data = {
+"RESET": SubResource("Animation_lchrs"),
+"zoom_in": SubResource("Animation_pqi71")
+}
+
 [node name="PresidentBackground" type="Node2D"]
 script = ExtResource("1_sckib")
 
@@ -86,7 +238,7 @@ gradient = SubResource("Gradient_0jvk6")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -6, -3.80785, 3.89315, -2.01068, 10.9636, -0.533576, 19.3694, -2.77795, 31.1753, 3.38257, 37.6387, 2.83872, 45.5186, 7.41647, 57.6408, 7.05543, 63.5079, 8.97288, 77.4866, 11.3433, 86.3779, 12.1335, 90.5175, 16.5893, 102.971, 13.7385, 110.315, 18, 120)
+points = PackedVector2Array(-8, -6, -8.55416, 2.33999, -4.88402, 14.4274, -4.57539, 19.7189, -2.92428, 29.155, -1.16117, 38.4874, 1.65745, 50.0109, 4.21257, 59.3728, 9.09968, 64.895, 7.1659, 73.0372, 12.994, 83.3828, 13.9471, 91.014, 14.3829, 99.5019, 17.8454, 109.169, 18, 120)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
@@ -103,7 +255,7 @@ gradient = SubResource("Gradient_ly6d5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
-points = PackedVector2Array(-9, -11, -5.06053, -2.59559, -2.40237, 10.2371, -5.00844, 19.9862, 0.600068, 27.2929, 1.36155, 37.2393, 2.94126, 47.531, 5.00376, 62.2929, 6.55262, 72.0719, 9.19594, 82.5357, 14.1527, 92.239, 13.095, 102.589, 14.7834, 112.302, 16.3575, 120.812, 21, 131)
+points = PackedVector2Array(-9, -11, -6.0923, 1.52299, -4.14928, 6.8504, -4.93265, 20.2499, 1.87845, 28.6083, 0.154191, 41.6678, 4.72912, 47.5141, 8.39671, 60.7112, 7.75302, 72.6123, 8.56735, 78.4699, 10.9894, 88.3844, 12.1104, 100.132, 14.5162, 109.523, 20.3098, 118.822, 21, 131)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
@@ -120,7 +272,7 @@ gradient = SubResource("Gradient_6uv00")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
-points = PackedVector2Array(14, -9, 11.7841, -1.72993, 11.4426, 7.80375, 8.80784, 22.2585, 7.76148, 32.0159, 8.90089, 37.7745, 4.96825, 46.3999, 1.51451, 58.2311, 3.84971, 70.2913, 3.5321, 78.5216, 0.438993, 85.0359, 0.166783, 98.7181, -3.20138, 109.214, -4.68088, 113.86, -6, 126)
+points = PackedVector2Array(14, -9, 11.4496, -1.59131, 13.634, 10.0752, 8.86801, 17.5762, 6.82284, 27.5441, 8.26599, 37.1491, 5.67394, 46.3692, 1.85861, 57.2099, 4.32177, 66.3578, -0.477894, 75.8823, 1.29192, 89.3679, 0.781206, 96.9213, -3.629, 109.167, -6.9306, 115.53, -6, 126)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
@@ -180,6 +332,11 @@ position = Vector2(0, -7)
 sprite_frames = ExtResource("5_nlbht")
 animation = &"walk_down"
 
+[node name="ZoomAnimation" type="AnimationPlayer" parent="Lighthouse"]
+libraries = {
+"": SubResource("AnimationLibrary_uw302")
+}
+
 [node name="Mist" type="GPUParticles2D" parent="."]
 z_as_relative = false
 position = Vector2(85, 103)
@@ -188,6 +345,7 @@ process_material = SubResource("ParticleProcessMaterial_f0gpj")
 texture = ExtResource("2_shpnw")
 lifetime = 16.0
 preprocess = 4.0
+local_coords = true
 
 [node name="MusBarCounter" type="Node" parent="."]
 script = ExtResource("5_2jjai")
