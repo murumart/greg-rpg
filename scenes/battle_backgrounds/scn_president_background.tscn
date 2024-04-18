@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=25 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -10,28 +10,25 @@
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_sj8jt"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="6_g0ddx"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="9_kqx2m"]
+[ext_resource type="Texture2D" uid="uid://csyrhomxysu3f" path="res://sprites/vfx/spr_waves.png" id="9_kw803"]
+[ext_resource type="Script" path="res://code/scr_sin_animator.gd" id="10_ds01p"]
 
 [sub_resource type="Gradient" id="Gradient_0jvk6"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_6uv00"]
+[sub_resource type="Gradient" id="Gradient_u4ceh"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_6uv00")
+gradient = SubResource("Gradient_u4ceh")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ly6d5"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.452282, 1)
-colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
-
-[sub_resource type="Gradient" id="Gradient_u4ceh"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
@@ -227,6 +224,7 @@ _data = {
 script = ExtResource("1_sckib")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -3
 offset_left = -6.0
 offset_top = -3.0
 offset_right = 168.0
@@ -243,7 +241,7 @@ gradient = SubResource("Gradient_0jvk6")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -6, -8.55416, 2.33999, -4.88402, 14.4274, -4.57539, 19.7189, -2.92428, 29.155, -1.16117, 38.4874, 1.65745, 50.0109, 4.21257, 59.3728, 9.09968, 64.895, 7.1659, 73.0372, 12.994, 83.3828, 13.9471, 91.014, 14.3829, 99.5019, 17.8454, 109.169, 18, 120)
+points = PackedVector2Array(-8, -6, -7.68297, 1.03072, -5.89583, 10.0875, -3.08791, 18.5885, -3.05054, 30.3225, 3.50523, 37.8495, 5.64056, 48.1071, 7.17721, 55.7713, 7.94317, 68.2518, 6.291, 74.3854, 10.201, 81.5276, 14.9127, 93.2816, 14.8736, 104.43, 15.631, 113.447, 18, 120)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
@@ -260,7 +258,7 @@ gradient = SubResource("Gradient_ly6d5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
-points = PackedVector2Array(-9, -11, -6.0923, 1.52299, -4.14928, 6.8504, -4.93265, 20.2499, 1.87845, 28.6083, 0.154191, 41.6678, 4.72912, 47.5141, 8.39671, 60.7112, 7.75302, 72.6123, 8.56735, 78.4699, 10.9894, 88.3844, 12.1104, 100.132, 14.5162, 109.523, 20.3098, 118.822, 21, 131)
+points = PackedVector2Array(-9, -11, -9.35711, -0.869982, -2.54913, 10.5356, -2.34875, 16.9385, 1.2954, 27.7609, -0.560303, 38.6769, 2.00559, 51.5369, 5.13052, 62.3439, 5.64852, 70.311, 8.17502, 78.9459, 12.6641, 92.9174, 12.4414, 101.88, 14.2227, 110.509, 18.5074, 123.333, 21, 131)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
@@ -277,11 +275,11 @@ gradient = SubResource("Gradient_u4ceh")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
-points = PackedVector2Array(14, -9, 11.4496, -1.59131, 13.634, 10.0752, 8.86801, 17.5762, 6.82284, 27.5441, 8.26599, 37.1491, 5.67394, 46.3692, 1.85861, 57.2099, 4.32177, 66.3578, -0.477894, 75.8823, 1.29192, 89.3679, 0.781206, 96.9213, -3.629, 109.167, -6.9306, 115.53, -6, 126)
+points = PackedVector2Array(26, -7, 25.8474, 3.80382, 21.1629, 9.51416, 19.6554, 23.9469, 14.777, 29.6133, 16.5502, 38.9721, 13.5794, 52.1392, 12.3273, 58.587, 10.2121, 69.1048, 5.71423, 80.9836, 0.674515, 88.3966, -1.54561, 96.8095, -0.946884, 109.453, -1.7641, 114.936, -6, 126)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
-position = Vector2(14, -9)
+position = Vector2(26, -7)
 
 [node name="End" parent="More/VfxPowerline3" index="2"]
 position = Vector2(-6, 126)
@@ -341,6 +339,63 @@ animation = &"walk_down"
 libraries = {
 "": SubResource("AnimationLibrary_uw302")
 }
+
+[node name="Waves" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Waves"]
+texture_repeat = 2
+position = Vector2(-185.78, 43)
+scale = Vector2(1, 1.13134)
+texture = ExtResource("9_kw803")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 360, 80)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Waves"]
+modulate = Color(0.145098, 0.447059, 0.686275, 1)
+z_index = -1
+texture_repeat = 2
+position = Vector2(-36.9339, 30)
+scale = Vector2(1, 1.09368)
+texture = ExtResource("9_kw803")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 360, 64)
+
+[node name="SinAnimator" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+script = ExtResource("10_ds01p")
+property_name = &"position:x"
+target = NodePath("../Sprite2D2")
+speed = 0.75
+min_value = -80.0
+max_value = 120.0
+
+[node name="SinAnimator2" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+script = ExtResource("10_ds01p")
+property_name = &"position:x"
+target = NodePath("../Sprite2D")
+min_value = -96.0
+max_value = 180.0
+offset = 3.575
+
+[node name="SinAnimator3" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+script = ExtResource("10_ds01p")
+property_name = &"scale:y"
+target = NodePath("../Sprite2D")
+speed = 2.14
+min_value = 1.1
+max_value = 0.12
+offset = 3.575
+
+[node name="SinAnimator4" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+script = ExtResource("10_ds01p")
+property_name = &"scale:y"
+target = NodePath("../Sprite2D2")
+speed = 0.79
+min_value = 1.1
+max_value = 0.12
+offset = 3.575
 
 [node name="Mist" type="GPUParticles2D" parent="."]
 z_as_relative = false

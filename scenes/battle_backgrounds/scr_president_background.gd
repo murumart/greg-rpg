@@ -2,7 +2,7 @@ extends Node2D
 
 var beam_direction := 1.0
 var initial_message_spoken := false
-var skip_intro := false
+var skip_intro := true
 
 @export var spin_speed := 155
 
