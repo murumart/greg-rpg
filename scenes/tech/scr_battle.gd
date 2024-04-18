@@ -126,6 +126,7 @@ func _ready() -> void:
 	open_party_info_screen()
 	check_end()
 	DAT.death_reason = death_reason
+	SOL.dialogue_low_position()
 
 
 func _physics_process(_delta: float) -> void:
@@ -627,6 +628,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 
 # horrible function
 func open_end_screen(victory: bool) -> void:
+	SOL.dialogue_low_position()
 	if screen_end.visible: return
 	set_actor_states(BattleActor.States.IDLE)
 	hide_screens()

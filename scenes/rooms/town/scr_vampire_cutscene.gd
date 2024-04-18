@@ -28,6 +28,7 @@ func _ready() -> void:
 
 func start() -> void:
 	end_nuisances()
+	SOL.dialogue_low_position()
 	SND.call_deferred("play_song", "")
 	DAT.capture_player("cutscene")
 	greg.animate("walk_right")

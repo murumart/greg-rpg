@@ -1032,9 +1032,6 @@ libraries = {
 autoplay = "pedaling"
 
 [node name="AnimationTree" type="AnimationTree" parent="Bike/Greg"]
-libraries = {
-"": SubResource("AnimationLibrary_tl418")
-}
 tree_root = SubResource("AnimationNodeBlendTree_l5sbn")
 anim_player = NodePath("../PedalingAnimation")
 parameters/lobbing_speed/scale = 1.0
