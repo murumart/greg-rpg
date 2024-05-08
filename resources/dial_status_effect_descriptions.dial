@@ -80,3 +80,7 @@ DIALOGUE stefde_little
 DIALOGUE stefde_electric
 	you are a bit stronger! 
 	your physical attacks deal electric type damage.
+
+
+DIALOGUE stefde_crying
+	every turn, your misery emboldens your enemies and heals them.

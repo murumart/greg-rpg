@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://cvogn7s8ujv75"]
+
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_1gppt"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_3yoap"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_hhsbt"]
+[ext_resource type="Texture2D" uid="uid://cauh27xdxx8s6" path="res://sprites/items/spr_free_hugs.png" id="4_4rtnv"]
+
+[sub_resource type="Resource" id="Resource_v0ocw"]
+script = ExtResource("1_1gppt")
+name = &"crying"
+strength = 1.0
+duration = 10
+
+[sub_resource type="Resource" id="Resource_vkl56"]
+script = ExtResource("2_hhsbt")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_1gppt")]([SubResource("Resource_v0ocw")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_3yoap")
+name_in_file = &""
+name = &"free hug"
+description = "a coupon for a single free hug. how nice and kind."
+texture = ExtResource("4_4rtnv")
+attack_animation = ""
+price = 670
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_vkl56")
