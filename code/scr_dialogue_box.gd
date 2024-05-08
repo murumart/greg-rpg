@@ -100,7 +100,8 @@ func prepare_dialogue(key: String) -> void:
 		# why all this? ha ha ha! typed array jank!!!!  god dannnnnnnn
 		dialogue_queue.append(dial_to_append)
 		return
-	load_dialogue(dialogues_dict.get(key, Dialogue.new()))
+	load_dialogue(dialogues_dict.get(key,
+			preload("res://resources/res_default_dialogue.tres")))
 	set_finished_marker(0)
 
 
