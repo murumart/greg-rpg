@@ -8,7 +8,6 @@
 
 <language id="gregrpgdial" name="Greg RPG dialogue language" version="2.0" _section="Markup">
   <metadata>
-    <property name="mimetypes">text/plain</property>
     <property name="globs">*.dial</property>
   </metadata>
   <styles>
