@@ -2232,7 +2232,7 @@ toughness = 1.0
 altruism = 0.0
 xp_multiplier = 4.0
 gender = 3
-effect_immunities = Array[String](["fire"])
+effect_immunities = Array[String](["fire", "crying"])
 
 [node name="Puppet" type="Node2D" parent="."]
 
