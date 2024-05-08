@@ -6,6 +6,8 @@ var background: BackgroundType
 
 var progress := 0
 
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 func _ready() -> void:
 	super()
@@ -33,4 +35,29 @@ func _progress_check(damage: float) -> float:
 	elif (character.health - damage) / character.max_health < 0.33 and progress == 1:
 		SOL.dialogue("president_33")
 		damage += (character.health - damage) - character.max_health * 0.33
+		if not is_instance_valid(background):
+			return damage
+		SOL.dialogue_closed.connect(func():
+			background.hide_ui()
+			background.lighthouse_zoom_out()
+			SOL.dialogue_open = true
+			var tw := create_tween()
+			tw.tween_property(sprite, "scale", Vector2(0.2, 0.2), 2.0)
+			tw.parallel().tween_property(
+					SND.current_song_player, "pitch_scale",
+					2.0, 2.0)
+			SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9)
+			tw.finished.connect(func():
+				SND.play_song("", 2992)
+				SND.play_song("dishout", 0.2)
+				var t := create_tween()
+				t.tween_property(
+					SND.current_song_player,
+					"pitch_scale",
+					1.0,
+					6.0
+				).from(0.5)
+				SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 6.0)
+			)
+		, CONNECT_ONE_SHOT)
 	return damage

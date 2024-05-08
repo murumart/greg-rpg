@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://1a1gu4tumyl4"]
+[gd_scene load_steps=5 format=3 uid="uid://1a1gu4tumyl4"]
 
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_president.gd" id="1_2r85o"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="2_r6iib"]
 
-[node name="President" type="Node2D"]
+[sub_resource type="Animation" id="Animation_408t0"]
+resource_name = "hurt"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcdku"]
+_data = {
+"hurt": SubResource("Animation_408t0")
+}
+
+[node name="President" type="Node2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_2r85o")
 effect_center = Vector2i(31, -30)
+animator = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(31, 0)
 texture = ExtResource("2_r6iib")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mcdku")
+}

@@ -143,7 +143,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		ui.visible = not event.is_pressed()
 		if not event.is_pressed():
 			attack_button.grab_focus()
-	if not listening_to_player_input: return
+	if not listening_to_player_input:
+		return
+	if not ui.visible or not is_equal_approx(ui.modulate.a, 1.0):
+		return
 	if event.is_action_pressed("cancel"):
 		go_back_a_menu()
 	if event.is_action_pressed("menu") and doing == Doings.NOTHING:

@@ -20,8 +20,7 @@ func _ready() -> void:
 	mus_bar_counter.new_bar.connect(new_bar)
 	if not skip_intro:
 		SOL.dialogue_open = true
-		if LTS.get_current_scene().name == "Battle":
-			LTS.get_current_scene().ui.modulate.a = 0.0
+		hide_ui()
 		mist.modulate.a = 0.0
 		mist_2.modulate.a = 0.0
 		var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
@@ -43,6 +42,18 @@ func _physics_process(delta: float) -> void:
 	)
 
 
+func show_ui() -> void:
+	if LTS.get_current_scene().name == "Battle":
+		create_tween().tween_property(
+				LTS.get_current_scene().ui, "modulate:a", 1.0, 1.0
+						).set_trans(Tween.TRANS_BOUNCE)
+	
+
+func hide_ui() -> void:
+	if LTS.get_current_scene().name == "Battle":
+		LTS.get_current_scene().ui.modulate.a = 0.0
+
+
 func new_bar(bar) -> void:
 	var tw : Tween
 	if not initial_message_spoken and not skip_intro:
@@ -61,10 +72,7 @@ func new_bar(bar) -> void:
 					text_box, "theme_override_colors/font_shadow_color",
 					Color(Color.DARK_MAGENTA, 0.3), 1.0)
 			tw.tween_callback(lighthouse_zoom_in)
-			if LTS.get_current_scene().name == "Battle":
-				tw.tween_property(
-						LTS.get_current_scene().ui, "modulate:a", 1.0, 1.0
-						).set_trans(Tween.TRANS_BOUNCE)
+			tw.tween_callback(show_ui)
 		elif bar == 9:
 			text_box.text = "thus, i demand reparations.
 
