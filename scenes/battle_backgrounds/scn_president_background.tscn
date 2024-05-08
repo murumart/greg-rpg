@@ -18,14 +18,14 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_u4ceh"]
+[sub_resource type="Gradient" id="Gradient_b3xio"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_u4ceh")
+gradient = SubResource("Gradient_b3xio")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ly6d5"]
@@ -241,7 +241,7 @@ gradient = SubResource("Gradient_0jvk6")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -6, -7.68297, 1.03072, -5.89583, 10.0875, -3.08791, 18.5885, -3.05054, 30.3225, 3.50523, 37.8495, 5.64056, 48.1071, 7.17721, 55.7713, 7.94317, 68.2518, 6.291, 74.3854, 10.201, 81.5276, 14.9127, 93.2816, 14.8736, 104.43, 15.631, 113.447, 18, 120)
+points = PackedVector2Array(-8, -6, -5.01919, 5.23324, -2.72127, 10.05, -0.546922, 19.354, -0.401237, 27.5058, 1.67486, 41.4695, 3.36716, 45.5101, 2.79805, 55.8162, 5.3847, 63.9796, 6.29232, 74.3802, 9.07848, 81.9947, 11.1382, 90.8588, 11.7982, 101.751, 14.6428, 113, 18, 120)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
@@ -258,7 +258,7 @@ gradient = SubResource("Gradient_ly6d5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
-points = PackedVector2Array(-9, -11, -9.35711, -0.869982, -2.54913, 10.5356, -2.34875, 16.9385, 1.2954, 27.7609, -0.560303, 38.6769, 2.00559, 51.5369, 5.13052, 62.3439, 5.64852, 70.311, 8.17502, 78.9459, 12.6641, 92.9174, 12.4414, 101.88, 14.2227, 110.509, 18.5074, 123.333, 21, 131)
+points = PackedVector2Array(-9, -11, -6.24657, 1.56715, -2.99782, 11.1033, -2.22653, 21.9047, -0.261515, 32.0658, -0.720809, 40.2803, 4.17948, 47.378, 3.96441, 58.5487, 6.97751, 72.3546, 12.1532, 81.9478, 14.5691, 91.7201, 12.734, 102.267, 14.7937, 109.114, 16.3733, 121.141, 21, 131)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
@@ -271,11 +271,11 @@ position = Vector2(21, 131)
 position = Vector2(73, 4)
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_u4ceh")
+gradient = SubResource("Gradient_b3xio")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
-points = PackedVector2Array(26, -7, 25.8474, 3.80382, 21.1629, 9.51416, 19.6554, 23.9469, 14.777, 29.6133, 16.5502, 38.9721, 13.5794, 52.1392, 12.3273, 58.587, 10.2121, 69.1048, 5.71423, 80.9836, 0.674515, 88.3966, -1.54561, 96.8095, -0.946884, 109.453, -1.7641, 114.936, -6, 126)
+points = PackedVector2Array(26, -7, 24.5864, 0.157035, 23.8094, 12.7627, 20.8981, 23.2802, 14.3832, 31.3598, 14.793, 38.0098, 14.3799, 48.6346, 10.9896, 61.7958, 7.15644, 66.563, 3.97226, 76.468, 5.63619, 87.8175, -1.1558, 98.9826, -0.231809, 104.805, -6.20929, 116.658, -6, 126)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
@@ -344,8 +344,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="Waves"]
 texture_repeat = 2
-position = Vector2(-185.78, 43)
-scale = Vector2(1, 1.13134)
+position = Vector2(-6.16548, 43)
+scale = Vector2(1, 1.11014)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
@@ -355,8 +355,8 @@ region_rect = Rect2(0, 0, 360, 80)
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-36.9339, 30)
-scale = Vector2(1, 1.09368)
+position = Vector2(-139.616, 30)
+scale = Vector2(1, 1.05268)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true

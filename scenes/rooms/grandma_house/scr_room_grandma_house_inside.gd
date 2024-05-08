@@ -3,6 +3,7 @@ extends Room
 @onready var musicplayer := $Radio/RadioMusic
 var music_last_position := 0.0
 var music_last_song: String
+@export_range(-1, 10) var prank_call_force := -1
 
 
 func _ready() -> void:
@@ -51,7 +52,12 @@ func _on_phone_interacted() -> void:
 		SOL.dialogue("prank_call_enough")
 		return
 	var number: float = DAT.get_data("nr", 0.0) * 10.0 + 1
+	if prank_call_force > -1:
+		number = prank_call_force
 	var call_name := "prank_call_%s"
+	if number == 10:
+		if musicplayer.playing:
+			musicplayer.stop()
 	SOL.dialogue_box.dial_concat("prank_call_0", 1, [floorf(number)])
 	SOL.dialogue("prank_call_0")
 	if call_name % floorf(number) in SOL.dialogue_box.dialogues_dict.keys():
