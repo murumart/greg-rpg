@@ -23,7 +23,11 @@ const BACK_PITCH := 0.75
 enum Teams {PARTY, ENEMIES}
 
 # states of the battle
-enum Doings {NOTHING = -1, WAITING, ATTACK, SPIRIT, SPIRIT_NAME, ITEM_MENU, ITEM, END, DONE, DANCE_BATTLE}
+enum Doings {
+	NOTHING = -1, WAITING, ATTACK,
+	SPIRIT, SPIRIT_NAME, ITEM_MENU,
+	ITEM, END, DONE, DANCE_BATTLE
+}
 var doing := Doings.NOTHING:
 	set(to):
 		doing = to
@@ -133,7 +137,9 @@ func _physics_process(_delta: float) -> void:
 	match doing:
 		Doings.SPIRIT_NAME:
 			# match the timer with the progress bar
-			spirit_speak_timer_progress.value = remap(spirit_speak_timer.time_left, 0.0, spirit_speak_timer_wait, 0.0, 100.0)
+			spirit_speak_timer_progress.value = remap(
+					spirit_speak_timer.time_left, 0.0,
+					spirit_speak_timer_wait, 0.0, 100.0)
 	if screen_party_info.visible:
 		update_party()
 
@@ -145,7 +151,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			attack_button.grab_focus()
 	if not listening_to_player_input:
 		return
-	if not ui.visible or not is_equal_approx(ui.modulate.a, 1.0):
+	if is_ui_locked():
 		return
 	if event.is_action_pressed("cancel"):
 		go_back_a_menu()
@@ -158,7 +164,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			tex.texture = e.type.icon
 			tex.flip_v = e.strength < 0
 			var lab := Label.new()
-			lab.text = "%s lvl %s for %s turns" % [e.type.name, e.strength, e.duration]
+			lab.text = "%s lvl %s for %s turns" % [
+					e.type.name, e.strength, e.duration]
 			cont.add_child(tex)
 			cont.add_child(lab)
 			status_effects_list.add_child(cont)
@@ -174,7 +181,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		looper.append_array(dead_party)
 		for p in looper:
 			p.offload_character()
-		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		LTS.level_transition(LTS.ROOM_SCENE_PATH %
+				DAT.get_data("current_room", "test_room"))
 		set_process_unhandled_input(false)
 
 
@@ -188,11 +196,12 @@ func load_battle(info: BattleInfo) -> void:
 		add_enemy(e)
 	death_reason = info.death_reason
 	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
-	battle_rewards = info.get_("rewards", BattleRewards.new()).duplicate(true)
-	if not battle_rewards.valid():
-		battle_rewards = load("res://resources/rewards/res_default_reward.tres").duplicate(true)
+	battle_rewards = info.get_("rewards",
+			preload("res://resources/rewards/res_default_reward.tres"
+			)).duplicate(true)
 	message(info.get_("start_text",
-		("%s lunges at you!" % enemies.front().actor_name) if enemies.size() else "no one is here."
+			("%s lunges at you!" % enemies.front().actor_name)
+			if enemies.size() else "no one is here."
 	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
@@ -220,7 +229,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	node.act_finished.connect(_on_act_finished)
 	node.died.connect(_on_actor_died)
 	node.fled.connect(_on_actor_fled)
-	node.teammate_requested.connect(_on_summon_enemy_requested)
+	node.teammate_requested.connect(request_new_enemy)
 	node.critically_hitted.connect(_on_crit_received)
 	if node is EnemyAnimal:
 		node.dance_battle_requested.connect(_on_dance_battle_requested)
@@ -254,7 +263,8 @@ func add_enemy(character_id: StringName, ally := false) -> void:
 		if not ally:
 			var sprite_new := Sprite2D.new()
 			node.add_child(sprite_new)
-			sprite_new.texture = preload("res://sprites/characters/battle/spr_enemy_battle.png")
+			sprite_new.texture = preload(
+					"res://sprites/characters/battle/spr_enemy_battle.png")
 			node.effect_center = Vector2i(0, -20)
 
 	add_actor(node, Teams.ENEMIES if not ally else Teams.PARTY)
@@ -263,7 +273,8 @@ func add_enemy(character_id: StringName, ally := false) -> void:
 
 
 func add_party_member(id: String) -> void:
-	var party_member: BattleActor = preload("res://scenes/tech/scn_battle_actor.tscn").instantiate()
+	var party_member: BattleActor = preload(
+			"res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.load_character(id)
 	DAT.save_char_to_data(id)
 
@@ -273,12 +284,16 @@ func add_party_member(id: String) -> void:
 
 
 func arrange_enemies():
-	if enemies.size() < 1: return
+	if enemies.is_empty():
+		return
 	var scree := SCREEN_SIZE.x - 20
 	var tw := create_tween().set_parallel(true)
 	for e in len(enemies):
 		# space enemies evenly on the screen
-		var to: float = roundf(-scree/2.0 + scree/float(len(enemies))*(e+1) - scree/float(len(enemies))/2.0)
+		var to: float = roundf(
+				-scree/2.0
+				+ scree/float(len(enemies))*(e+1)
+				- scree/float(len(enemies))/2.0)
 		tw.tween_property(enemies[e], "global_position:x", to, 0.2)
 		enemies[e].global_position.y = 0
 		if e % 2 != 0:
@@ -290,7 +305,8 @@ func set_background(id: String) -> void:
 	if DIR.battle_background_scene_exists(id):
 		background_container.add_child(load(path).instantiate())
 	else:
-		background_container.add_child(load("res://scenes/battle_backgrounds/scn_town.tscn").instantiate())
+		background_container.add_child(
+			load("res://scenes/battle_backgrounds/scn_town.tscn").instantiate())
 
 
 # update the panel visuals
@@ -330,8 +346,8 @@ func go_back_a_menu() -> void:
 
 # something is selected
 func _reference_button_pressed(reference) -> void:
-	if SOL.dialogue_open: return
-	if is_end(): return
+	if is_ui_locked() or is_end():
+		return
 	match doing:
 		Doings.ATTACK:
 			current_guy.attack(reference)
@@ -341,7 +357,8 @@ func _reference_button_pressed(reference) -> void:
 		Doings.SPIRIT:
 			current_target = reference
 			open_spirit_name_screen()
-			SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch_scale": 0.8})
+			SND.play_sound(preload("res://sounds/gui.ogg"),
+					{"bus": "ECHO", "pitch_scale": 0.8})
 		Doings.ITEM_MENU:
 			doing = Doings.ITEM
 			held_item_id = reference
@@ -349,7 +366,8 @@ func _reference_button_pressed(reference) -> void:
 		Doings.ITEM:
 			listening_to_player_input = false
 			current_guy.use_item(held_item_id, reference)
-			append_action_history("item", {"target": reference, "item": held_item_id})
+			append_action_history("item",
+					{"target": reference, "item": held_item_id})
 			open_party_info_screen()
 
 
@@ -359,12 +377,15 @@ func _on_button_reference_received(reference) -> void:
 		selected_guy_display.update(reference)
 		highlight_selected_enemy(reference)
 	if doing == Doings.ITEM_MENU:
-		item_info_label.text = str(ResMan.get_item(reference).get_effect_description(),"\n[color=#888888]", ResMan.get_item(reference).description)
+		item_info_label.text = str(
+				ResMan.get_item(reference).get_effect_description(),
+				"\n[color=#888888]", ResMan.get_item(reference).description)
 
 
 # some actor wants to act!
 func _on_act_requested(actor: BattleActor) -> void:
-	if is_end(): return
+	if is_end():
+		return
 	print(actor, " requested act")
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
@@ -373,7 +394,8 @@ func _on_act_requested(actor: BattleActor) -> void:
 
 # some actor has finished their act
 func _on_act_finished(actor: BattleActor) -> void:
-	if is_end(): return
+	if is_end():
+		return
 	if actor.player_controlled:
 		player_finished_acting.emit()
 	open_party_info_screen()
@@ -385,7 +407,8 @@ func _on_act_finished(actor: BattleActor) -> void:
 
 # some actor has been killed
 func _on_actor_died(actor: BattleActor) -> void:
-	if is_end(): return
+	if is_end():
+		return
 	if actor in party:
 		dead_party.append(party.pop_at(party.find(actor)))
 	if actor in enemies:
@@ -405,7 +428,8 @@ func _on_actor_died(actor: BattleActor) -> void:
 
 # some actor has fled the fight
 func _on_actor_fled(actor: BattleActor) -> void:
-	if is_end(): return
+	if is_end():
+		return
 	if actor in party:
 		pass
 	if actor in enemies:
@@ -419,19 +443,27 @@ func _on_actor_fled(actor: BattleActor) -> void:
 
 
 # more enemies are requested by a spirit perhaps
-func _on_summon_enemy_requested(actor: BattleActor, req: String) -> void:
+func request_new_enemy(actor: BattleActor, req: String) -> void:
 	if actor in enemies:
 		if enemies.size() < MAX_ENEMIES:
 			add_enemy(req)
-			message("%s joined the fight" % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s joined the fight" %
+					ResMan.get_character(req).name,
+					{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			message("%s did not fit into the fight." % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s did not fit into the fight." %
+					ResMan.get_character(req).name,
+					{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	else:
 		if party.size() < MAX_PARTY_MEMBERS:
 			add_party_member(req)
-			message("%s joined the fight" % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s joined the fight" %
+					ResMan.get_character(req).name,
+					{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 		else:
-			message("%s did not fit into the fight." % ResMan.get_character(req).name, {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+			message("%s did not fit into the fight." %
+					ResMan.get_character(req).name,
+					{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 
 
 func check_end(force := false) -> void:
@@ -464,11 +496,22 @@ func open_main_actions_screen() -> void:
 	hide_screens()
 	resize_panel(44)
 	# sparkle on, it's wednesday! don't forget to be yourself!
-	if Time.get_date_dict_from_system().weekday == Time.WEEKDAY_WEDNESDAY and randf() <= 0.02: attack_button.text = "slay"
-	else: attack_button.text = "tussle"
+	if Time.get_date_dict_from_system().weekday == \
+			Time.WEEKDAY_WEDNESDAY and randf() <= 0.02:
+		attack_button.text = "slay"
+	else:
+		attack_button.text = "tussle"
 	current_info.update(current_guy)
-	inf1.text = str("%s\nlvl %s" % [current_guy.character.name, current_guy.character.level])
-	inf2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" % [roundi(current_guy.get_attack()), roundi(current_guy.get_defense()), roundi(current_guy.get_speed()), roundi(current_guy.character.health), roundi(current_guy.character.max_health), roundi(current_guy.character.magic), roundi(current_guy.character.max_magic)])
+	inf1.text = str("%s\nlvl %s" %
+			[current_guy.character.name, current_guy.character.level])
+	inf2.text = str("atk: %s\ndef: %s\nspd: %s\nhp: %s/%s\nsp: %s/%s" %
+			[roundi(current_guy.get_attack()),
+			roundi(current_guy.get_defense()),
+			roundi(current_guy.get_speed()),
+			roundi(current_guy.character.health),
+			roundi(current_guy.character.max_health),
+			roundi(current_guy.character.magic),
+			roundi(current_guy.character.max_magic)])
 	screen_main_actions.show()
 	attack_button.grab_focus()
 	erase_floating_spirits()
@@ -501,12 +544,19 @@ func open_list_screen() -> void:
 			var array := []
 			array.append_array(enemies)
 			array.append_array(party)
-			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
+			Math.load_reference_buttons(
+					array, list_containers,
+					_reference_button_pressed,
+					_on_button_reference_received)
 			screen_list_select.show()
 		Doings.ITEM_MENU:
 			var items := current_guy.character.inventory.duplicate()
 			items.sort()
-			Math.load_reference_buttons_groups(items, item_list_container, _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+			Math.load_reference_buttons_groups(
+					items, item_list_container,
+					_reference_button_pressed,
+					_on_button_reference_received,
+					{"item": true, "custom_pass_function": item_names})
 			screen_item_select.show()
 		Doings.ITEM:
 			var array := []
@@ -517,10 +567,16 @@ func open_list_screen() -> void:
 			else:
 				array.append_array(enemies)
 				array.append_array(party)
-			Math.load_reference_buttons(array, list_containers, _reference_button_pressed, _on_button_reference_received)
+			Math.load_reference_buttons(
+					array, list_containers,
+					_reference_button_pressed,
+					_on_button_reference_received)
 			screen_list_select.show()
 		Doings.SPIRIT:
-			Math.load_reference_buttons(actors, list_containers, _reference_button_pressed, _on_button_reference_received)
+			Math.load_reference_buttons(
+					actors, list_containers,
+					_reference_button_pressed,
+					_on_button_reference_received)
 			screen_list_select.show()
 			load_floating_spirits()
 	resize_panel(60)
@@ -573,7 +629,9 @@ func open_spirit_name_screen() -> void:
 # you didn't type the spirit name fast enough
 func _on_spirit_speak_timer_timeout() -> void:
 	listening_to_player_input = false
-	SND.play_sound(preload("res://sounds/error.ogg"), {pitch_scale = 0.7, bus = "ECHO"})
+	SND.play_sound(
+			preload("res://sounds/error.ogg"),
+			{pitch_scale = 0.7, bus = "ECHO"})
 	spirit_name.text = "moment passed"
 	spirit_name.modulate = Color(2, 0.2, 0.4)
 	spirit_name.editable = false
@@ -594,7 +652,10 @@ func _on_spirit_name_changed(to: String) -> void:
 		_on_spirit_name_submitted(to)
 		return
 
-	SND.play_sound(preload("res://sounds/gui.ogg"), {"bus": "ECHO", "pitch_scale": [1.0, 1.0, 1.18921, 1.7818].pick_random()})
+	SND.play_sound(
+			preload("res://sounds/gui.ogg"),
+			{"bus": "ECHO", "pitch_scale":
+				[1.0, 1.0, 1.18921, 1.7818].pick_random()})
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(spirit_name, "modulate", Color(0.8, 0.8, 8.0, 2.0), 0.1)
 	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
@@ -615,7 +676,9 @@ func _on_spirit_name_submitted(submission: String) -> void:
 
 			await get_tree().create_timer(1.5).timeout
 			current_guy.use_spirit(spirit_id, current_target)
-			append_action_history("spirit", {"spirit": spirit_id, "target": current_target})
+			append_action_history(
+					"spirit", {"spirit":
+						spirit_id, "target": current_target})
 			open_party_info_screen()
 			return
 		else:
@@ -632,7 +695,8 @@ func _on_spirit_name_submitted(submission: String) -> void:
 # horrible function
 func open_end_screen(victory: bool) -> void:
 	SOL.dialogue_low_position()
-	if screen_end.visible: return
+	if screen_end.visible:
+		return
 	set_actor_states(BattleActor.States.IDLE)
 	hide_screens()
 	screen_end.show()
@@ -644,7 +708,10 @@ func open_end_screen(victory: bool) -> void:
 	if victory:
 		resize_panel(60)
 		if play_victory_music:
-			SND.play_song("victory", 10, {start_volume = 0.0, play_from_beginning = true})
+			SND.play_song(
+					"victory", 10,
+					{start_volume = 0.0,
+					play_from_beginning = true})
 		var xp_reward := Reward.new()
 		xp_reward.type = BattleRewards.Types.EXP
 		xp_reward.property = str(xp_pool)
@@ -683,14 +750,16 @@ func _grant_rewards() -> void:
 
 # main screen buttons wired to these
 func _on_attack_pressed() -> void:
-	if SOL.dialogue_open: return
+	if is_ui_locked():
+		return
 	doing = Doings.ATTACK
 	open_list_screen()
 	SND.menusound()
 
 
 func _on_spirit_pressed() -> void:
-	if SOL.dialogue_open: return
+	if is_ui_locked():
+		return
 	if current_guy.character.spirits.size() < 1:
 		SND.menusound(0.3)
 		set_description("this one has no spirits.")
@@ -702,7 +771,8 @@ func _on_spirit_pressed() -> void:
 
 
 func _on_item_pressed() -> void:
-	if SOL.dialogue_open: return
+	if is_ui_locked():
+		return
 	doing = Doings.ITEM_MENU
 	open_list_screen()
 	SND.menusound()
@@ -749,10 +819,14 @@ func _dance_battle_ended(data: Dictionary) -> void:
 				1.0,
 				0.5
 		)
-	loser.handle_payload(BattlePayload.new().set_sender(actor).set_health(-(wscore - 0.333 * lscore
+	loser.handle_payload(BattlePayload.new().set_sender(
+				actor).set_health(-(wscore - 0.333 * lscore
 		)).set_defense_pierce(1).set_effects(
-			[StatusEffect.new().set_effect_name("defense").set_duration(8).set_strength(-55)]))
-	message("%s punished %s" % [winner.character.name, loser.character.name], {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+				[StatusEffect.new().set_effect_name("defense"
+				).set_duration(8).set_strength(-55)]))
+	message("%s punished %s" %
+			[winner.character.name, loser.character.name],
+			{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	open_party_info_screen()
 	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
 	if pwin and player in party:
@@ -764,14 +838,16 @@ func set_description(text: String) -> void:
 	if text.ends_with("%s"):
 		description_text.text = text % "hands"
 		if current_guy.character.weapon:
-			description_text.text = text % ResMan.get_item(current_guy.character.weapon).name
+			description_text.text = text % ResMan.get_item(
+					current_guy.character.weapon).name
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:
 	for e in enemies:
 		e.modulate = Color(1, 1, 1, 1)
 		e.position.y = 0
-	if not (enemy and enemy is BattleEnemy): return
+	if not (enemy and enemy is BattleEnemy):
+		return
 	enemy.modulate = Color(1.2, 1.2, 1.2, 1.3)
 	var tw := create_tween()
 	tw.tween_property(enemy, "position:y", -2, 0.1)
@@ -868,3 +944,7 @@ func _on_dance_battle_requested(actor: EnemyAnimal, target: BattleActor) -> void
 func set_greg_speed() -> void:
 	BattleActor.player_speed_modifier = 5.0 / float(party.map(func(a):
 		return a.character.speed).max())
+
+
+func is_ui_locked() -> bool:
+	return SOL.dialogue_open or not ui.visible or ui.modulate.a < 1.0

@@ -1823,6 +1823,11 @@ CHAR tarikas
 	at this point you have to look for trouble.
 
 
+DIALOGUE tarikas_60
+CHAR tarikas
+	dasdadadaasdasdasd
+
+
 DIALOGUE tarikas_finish
 CHAR tarikas
 	mh. come back later.
