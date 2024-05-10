@@ -16,7 +16,7 @@ var dialogue_open := false
 
 var save_menu_open := false
 
-@onready var dialogue_box := $DialogueBox as DialogueBox
+@onready var dialogue_box: DialogueBox = $DialogueBox as DialogueBox
 @onready var screen_fade: ColorRect = $ScreenFadeOrderer/ScreenFade
 
 var dialogue_choice := &""

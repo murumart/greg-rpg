@@ -2986,6 +2986,26 @@ DIALOGUE president_start
 	my name is [color=PRESCOLOR]president frankling[/color].
 	i am the ruler of the mighty country of [color=PRESCOLOR]beacon archipelago[/color].
 	i am endeared to my citizens for i am a just and brilliant ruler.
+	it is i who establishes justice there...
+	...and you, young man, have brought upon me great injustice.
+	thus, i demand reparations.
+	you'll find my demands convincing and fair.
+
+
+DIALOGUE theres_dish
+CHAR president
+EMO power
+	my [color=SPIRITCOLOR]spirit power[/color], [color=PRESCOLOR]dish[/color]...
+	it is my greatest presidential tool and ally.
+	it rose from the sea and chose me.
+	at the hardest moment of both of our lives...
+	we joined together and overcame their doubts.
+	but you, young man... do you doubt me?
+	do you doubt my ability to rule or my grace?
+	are you at all unsure about my rightful power?
+	do you deny my people their love towards me?
+	well... well. i'll just have to counter your doubts...
+	...with proof as sure as the sea itself.
 
 
 DIALOGUE president_50

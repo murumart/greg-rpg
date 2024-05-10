@@ -129,7 +129,7 @@ func battle_set(args: PackedStringArray) -> void:
 		output("argument 2 should be actor index of team", true)
 	var variant := args[2]
 	var value := args[3]
-	get_team[nr].set(variant, value)
+	get_team[nr].set_indexed(variant, value)
 	output("set %s %s property %s to %s" % ["enemy" if team == 1 else "party member", str(get_team[nr]), variant, value])
 
 

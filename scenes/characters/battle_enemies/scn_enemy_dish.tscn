@@ -3073,8 +3073,10 @@ _data = {
 [node name="Dish" node_paths=PackedStringArray("animator") instance=ExtResource("1_hrsmt")]
 script = ExtResource("2_rem6r")
 animator = NodePath("Puppet/AnimationPlayer")
+gender = 6
 
 [node name="Puppet" type="CanvasGroup" parent="." index="0"]
+z_index = -2
 
 [node name="Torso" type="Sprite2D" parent="Puppet" index="0"]
 position = Vector2(0, -4)

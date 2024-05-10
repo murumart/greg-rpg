@@ -1,5 +1,9 @@
 extends Node2D
 
+signal enemy_requested(e, String)
+
+const DishType := preload("res://scenes/characters/battle_enemies/scn_enemy_dish.gd")
+
 var beam_direction := 1.0
 var initial_message_spoken := false
 var skip_intro := false
@@ -17,9 +21,10 @@ var skip_intro := false
 
 func _ready() -> void:
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 3.0)
-	mus_bar_counter.new_bar.connect(new_bar)
+	SOL.dialogue_box.started_speaking.connect(new_line)
 	if not skip_intro:
 		SOL.dialogue_open = true
+		SOL.dialogue("president_start")
 		hide_ui()
 		mist.modulate.a = 0.0
 		mist_2.modulate.a = 0.0
@@ -54,37 +59,49 @@ func hide_ui() -> void:
 		LTS.get_current_scene().ui.modulate.a = 0.0
 
 
-func new_bar(bar) -> void:
+func new_line(line: int) -> void:
 	var tw : Tween
 	if not initial_message_spoken and not skip_intro:
-		if bar == 1:
-			text_box.text = "my name is president frankling. i rule over the mighty country of beacon archipelago. "
-			text_box.speak_text({"speed": 2.5})
-		elif bar == 4:
-			text_box.text = "i am endeared to my citizens, for i am a just and brilliant ruler."
-			text_box.speak_text({"speed": 2.5})
-		elif bar == 6:
-			text_box.text = "it is i who establishes justice, and you, young man, have brought upon me great injustice."
-			text_box.speak_text({"speed": 2.5})
+		if line == 3:
 			tw = create_tween()
 			tw.tween_property(spin_pivot, "modulate:a", 1.0, 2.0)
-			tw.parallel().tween_property(
-					text_box, "theme_override_colors/font_shadow_color",
-					Color(Color.DARK_MAGENTA, 0.3), 1.0)
+		elif line == 4:
+			tw = create_tween()
 			tw.tween_callback(lighthouse_zoom_in)
 			tw.tween_callback(show_ui)
-		elif bar == 9:
-			text_box.text = "thus, i demand reparations.
-
-you'll find my demands
-	convincing and fair."
-			text_box.speak_text({"speed": 3.5})
+		elif line == 5:
 			tw = create_tween()
 			tw.tween_property(spin_pivot, "modulate:a", 0.0, 2.0)
-		elif bar == 13:
-			SOL.dialogue_open = false
+		elif line == 6:
 			text_box.text = ""
 			initial_message_spoken = true
+			SOL.dialogue_box.started_speaking.disconnect(new_line)
+
+
+func dish_time(dish: DishType) -> void:
+	hide_ui()
+	lighthouse_zoom_out()
+	SOL.dialogue_open = true
+	var tw := create_tween()
+	tw.parallel().tween_property(dish, "modulate:a", 0.0, 2.0).from(0.0)
+	tw.parallel().tween_property(
+			SND.current_song_player, "pitch_scale",
+			2.0, 2.0)
+	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9)
+	tw.finished.connect(func():
+		SND.play_song("", 2992)
+		SND.play_song("dishout", 0.2)
+		var t := create_tween()
+		t.tween_property(
+				SND.current_song_player,
+				"pitch_scale",
+				1.0,
+				6.0
+		).from(0.5)
+		t.parallel().tween_property(dish, "modulate:a", 1.0, 3.0)
+		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 6.0)
+		t.tween_interval(2.0).finished.connect(show_ui)
+	)
 
 
 func lighthouse_zoom_in() -> void:
