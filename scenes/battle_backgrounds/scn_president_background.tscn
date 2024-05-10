@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=25 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -18,22 +18,17 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_b3xio"]
+[sub_resource type="Gradient" id="Gradient_jwcny"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_b3xio")
+gradient = SubResource("Gradient_jwcny")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_ly6d5"]
-resource_local_to_scene = true
-offsets = PackedFloat32Array(0, 0.452282, 1)
-colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
-
-[sub_resource type="Gradient" id="Gradient_jwcny"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
@@ -246,7 +241,7 @@ gradient = SubResource("Gradient_0jvk6")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -6, -6.41302, 5.48536, -2.02653, 13.0706, -2.18068, 18.5123, 0.687617, 27.8402, -0.691342, 37.4699, 2.17258, 45.696, 7.39027, 56.2675, 8.83404, 64.4697, 8.16457, 72.5612, 12.9052, 83.1035, 13.0333, 90.5742, 16.2756, 103.513, 16.313, 108.506, 18, 120)
+points = PackedVector2Array(-8, -6, -5.27092, 5.34302, -6.13965, 10.3228, -4.70072, 22.0427, -0.71672, 27.5042, -0.974164, 37.9309, 2.71398, 50.4629, 4.08763, 59.3276, 5.25582, 64.0802, 6.32286, 74.2712, 8.85995, 85.8223, 9.93437, 92.8299, 14.6595, 99.5281, 18.6119, 110.608, 18, 120)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
@@ -263,7 +258,7 @@ gradient = SubResource("Gradient_ly6d5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
-points = PackedVector2Array(-9, -11, -5.43478, -2.91308, -3.75305, 11.5935, -2.74096, 16.9343, -0.0633589, 27.0982, 3.95762, 40.8177, 2.28241, 47.9154, 5.57472, 62.4636, 5.65213, 70.358, 9.8201, 82.742, 14.6108, 91.6483, 16.2204, 102.451, 16.0774, 108.297, 17.9232, 118.538, 21, 131)
+points = PackedVector2Array(-9, -11, -4.50497, -0.0102224, -7.02791, 8.33853, -4.68344, 20.7663, -0.994595, 27.1363, -0.694432, 39.0449, 3.92129, 47.358, 3.52874, 60.378, 6.55571, 72.0744, 9.45919, 77.9263, 10.8706, 92.3838, 13.6134, 102.881, 19.0591, 111.581, 20.1207, 123.014, 21, 131)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
@@ -280,7 +275,7 @@ gradient = SubResource("Gradient_jwcny")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
-points = PackedVector2Array(26, -7, 25.4269, 0.678705, 20.0547, 9.91133, 17.3335, 19.7748, 16.8636, 28.5, 16.7581, 39.2883, 14.6767, 49.2699, 9.41462, 57.0695, 6.26644, 66.9619, 6.28063, 80.8503, 3.32713, 85.5068, 2.84916, 99.0106, -1.21706, 109.491, -4.42842, 114.104, -6, 126)
+points = PackedVector2Array(26, -7, 24.9485, 4.67411, 22.8279, 9.92833, 20.7699, 19.6019, 18.0617, 28.8093, 12.9384, 38.6071, 11.5406, 52.3864, 8.77748, 61.6807, 5.22225, 69.1994, 3.55052, 80.1501, 1.18303, 86.4479, -0.0444288, 99.8318, -3.82586, 107.709, -2.22745, 114.49, -6, 126)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
@@ -349,8 +344,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="Waves"]
 texture_repeat = 2
-position = Vector2(-182.611, 43)
-scale = Vector2(1, 1.09619)
+position = Vector2(-144.209, 43)
+scale = Vector2(1, 1.0691)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
@@ -360,8 +355,8 @@ region_rect = Rect2(0, 0, 360, 80)
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-50.642, 30)
-scale = Vector2(1, 1.07911)
+position = Vector2(-139.707, 30)
+scale = Vector2(1, 1.14515)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true

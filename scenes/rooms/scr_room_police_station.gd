@@ -168,7 +168,7 @@ func setup_cells() -> void:
 			)
 		else:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
-	
+
 	if DAT.get_data("police_standing", 0) <= 1:
 		popo_2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 

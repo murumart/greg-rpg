@@ -1,22 +1,31 @@
+MACRO SPIRITCOLOR #7799ff
+MACRO YUKUCOLOR #88aaff
+MACRO WLICOLOR #ff8888
+MACRO GREEN #00ff00
+MACRO SUNCOLOR #ffbb99
+MACRO VAMPCOLOR #ff2089
+MACRO PRESCOLOR #ff9999
+
+
 DIALOGUE test
 CHAR greg
 	i think...
 CHAR 
-	[color=#00ff00]who cares what you think? buddy.[/color]
-	[color=#00ff00]you should know that this will end up horribly.[/color]
-	[color=#00ff00]you will be canned like the earlier ones.[/color]
-	[color=#00ff00]have fun with that thought.[/color]
+	[color=GREEN]who cares what you think? buddy.[/color]
+	[color=GREEN]you should know that this will end up horribly.[/color]
+	[color=GREEN]you will be canned like the earlier ones.[/color]
+	[color=GREEN]have fun with that thought.[/color]
 CHAR greg
 	man...
 
 # this line should be ignored
 
 DIALOGUE test2be
-	[color=#00ff00]shut up! shut up![/color]
-	[color=#00ff00]i'm not going to talk to you![/color]
+	[color=GREEN]shut up! shut up![/color]
+	[color=GREEN]i'm not going to talk to you![/color]
 SPEED 0.1
-	[color=#00ff00]entel tentel trika trei[/color]
-	[color=#00ff00]a white dove flew over england[/color]
+	[color=GREEN]entel tentel trika trei[/color]
+	[color=GREEN]a white dove flew over england[/color]
 
 
 DIALOGUE load_warning_superdiff
@@ -71,7 +80,7 @@ DIALOGUE losesilver
 
 DIALOGUE getspirit
 SOUND spirit/spirit_get
-	[center]the spirit [color=#7799ff]%s[/color] joins you.[/center]
+	[center]the spirit [color=SPIRITCOLOR]%s[/color] joins you.[/center]
 
 
 DIALOGUE spirit_equip_tutorial
@@ -89,7 +98,7 @@ DIALOGUE magnet_used
 
 DIALOGUE test2talk
 CHAR 
-	[color=#00ff00]blaabl blaalb blaalb.[/color]
+	[color=GREEN]blaabl blaalb blaalb.[/color]
 	[color=#ff0000]blaabl blaalb blaalb.[/color]
 	[color=#0000ff]blaabl blaalb blaalb.[/color]
 
@@ -388,7 +397,7 @@ CHAR zerma
 	faster fighters get to have more turns...
 	...that means they can act more often.
 	you, however, will always get the first strike.
-	your turn is coming! press the [color=#00ffff]tussle[/color] button...
+	your turn is coming! press the [color=SPIRITCOLOR]tussle[/color] button...
 	...and then select my name from the list.
 	(my name is zeremy.)
 
@@ -405,7 +414,7 @@ DIALOGUE zerma_fight_2_he_attacks
 CHAR zerma
 	sorry, all part of the learning process!
 	you're hurt, so why don't you heal?
-	press the [color=#00ffff]object[/color] button...
+	press the [color=SPIRITCOLOR]object[/color] button...
 	...and use a healing item on yourself!
 	there's surely something in your pockets.
 
@@ -437,7 +446,7 @@ DIALOGUE zerma_fight_3_item_greg
 CHAR zerma
 	you're a natural! ahaha!
 	here comes your final lesson.
-	see that big [color=#00ffff]spirit[/color] button?
+	see that big [color=SPIRITCOLOR]spirit[/color] button?
 SPEED 1.5
 	press it and [color=#ff00ff]select me[/color].
 SPEED 1
@@ -447,10 +456,10 @@ SPEED 1
 	you must type the name of the spirit.
 	and you must be quick! spirits are fickle...
 	the spirit whom you must call is known as...
-	[color=#7799ff]sideeye[/color].
+	[color=SPIRITCOLOR]sideeye[/color].
 	do you understand?
 	...
-	just... type [color=#7799ff]sideeye[/color] when you can!
+	just... type [color=SPIRITCOLOR]sideeye[/color] when you can!
 	good luck!
 
 
@@ -491,8 +500,8 @@ CHAR greg
 INSTASKIP
 	...it sa
 CHAR zerma
-	did you see how your magic [color=#00ffff]spirit points[/color] decreased?
-	you can only use spirits when you have enough [color=#00ffff]sp[/color].
+	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
+	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
 	well!
 	this is actually all for now!
 	of course i could not teach you everything.
@@ -507,8 +516,8 @@ CHAR zerma
 	you see, the spying spell would be more useful...
 	...when used on someone who you don't know!
 	but maybe you found out something new about yourself?
-	did you see how your magic [color=#00ffff]spirit points[/color] decreased?
-	you can only use spirits when your [color=#00ffff]sp[/color] is high enough.
+	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
+	you can only use spirits when your [color=SPIRITCOLOR]sp[/color] is high enough.
 	anyway! this concludes my tutorial.
 	there are certainly more things to learn...
 	...but i trust in you to learn them yourself...
@@ -527,7 +536,7 @@ ACTUALLY zerma_fight_3_attack_greg
 DIALOGUE zerma_fight_4_spirit_fail_
 CHAR zerma
 	oh dear, try again!
-	select me and type [color=#7799ff]sideeye[/color]!
+	select me and type [color=SPIRITCOLOR]sideeye[/color]!
 	and be quick about it.
 
 
@@ -535,7 +544,7 @@ DIALOGUE zerma_fight_4_else
 CHAR zerma
 	oh dear, that's not quite right.
 	the spirit button, greg!
-	select me and type [color=#7799ff]sideeye[/color].
+	select me and type [color=SPIRITCOLOR]sideeye[/color].
 
 
 DIALOGUE zerma_after_fight
@@ -607,7 +616,7 @@ CHAR cashier_nice
 
 DIALOGUE cashier_mean_tutorial
 CHAR cashier_mean
-	hello! welcome to the [color=#88aaff]yuku[/color] brand grocery store!
+	hello! welcome to the [color=YUKUCOLOR]yuku[/color] brand grocery store!
 	all the products you will ever need - here!
 CHOICES buying,stealing,bye
 	do you need any help? i will be glad to help!
@@ -622,7 +631,7 @@ CHOICE_LINK stealing
 	how can you even ask me something like this?!
 	(smile, smile)
 CHOICE_LINK bye
-	goodbye! we hope your experience was [color=#88aaff]yuku[/color]-tastic!!!!
+	goodbye! we hope your experience was [color=YUKUCOLOR]yuku[/color]-tastic!!!!
 
 
 DIALOGUE cashier_absent_tutorial
@@ -654,7 +663,7 @@ CHOICES you,me,other,vampire,bye
 CHOICE_LINK you
 	about me?
 	i live in the part of town where all the houses are.
-	i work at the local [color=#88aaff]yuku[/color] brand department store.
+	i work at the local [color=YUKUCOLOR]yuku[/color] brand department store.
 	i get home by 10pm at the latest.
 	i don't smoke, but i occasionally drink.
 	is this what you wanted to know?
@@ -701,7 +710,7 @@ CHOICE_LINK bye
 DIALOGUE cashier_mean_chat
 CHAR cashier_mean
 	you have a wish for idle chatting?
-	uh, sure! we here at [color=#88aaff]yuku[/color] are devoted...
+	uh, sure! we here at [color=YUKUCOLOR]yuku[/color] are devoted...
 	...to give the best customer experience possible!
 CHAR 
 	(interesting how loudly she can grind her teeth...)
@@ -730,7 +739,7 @@ LOOP 5
 	...while i am not here!
 CHOICE_LINK bye
 CHAR cashier_mean
-	goodbye! we hope your experience at [color=#88aaff]yuku[/color] has been great!!
+	goodbye! we hope your experience at [color=YUKUCOLOR]yuku[/color] has been great!!
 	(even wider smile, smile)
 
 
@@ -783,7 +792,7 @@ CHAR cashier_nice
 
 DIALOGUE cashier_mean_finish
 CHAR cashier_mean
-	thank you! have a [color=#88aaff]yuku[/color]-tastic day!!!
+	thank you! have a [color=YUKUCOLOR]yuku[/color]-tastic day!!!
 
 
 DIALOGUE cashier_absent_finish
@@ -830,7 +839,7 @@ CHAR
 
 DIALOGUE cashier_mean_mean
 SPEED 0.5
-	[color=#ff8888]work life imbalance
+	[color=WLICOLOR]work life imbalance
 SPEED 1.0
 	we are prepared for any such intrusion.
 	free of charge - i'll show you...
@@ -843,40 +852,40 @@ SPEED 1.0
 DIALOGUE cashier_fight_standstill
 CHAR cashier_mean
 DATA_LINK cashier_defeated_thru_damage,false
-	it appears i'm out of [color=#00ffff]sp[/color]...
+	it appears i'm out of [color=SPIRITCOLOR]sp[/color]...
 DATA_LINK cashier_defeated_thru_damage,true
 	it appears i've been... badly beaten...
 DATA_LINK 
 	vermin... like you... can be hard to...
 	...exterminate sometimes...
-	[color=#ff8888]work life imbalance...
+	[color=WLICOLOR]work life imbalance...
 	lend me more of your strength...
 	haaaaaaaaaaaaa.........
 
 
 DIALOGUE cashier_fight_interrupt
-	[color=#ff8888]no.
-	[color=#ff8888]i don't want to do this anymore.
+	[color=WLICOLOR]no.
+	[color=WLICOLOR]i don't want to do this anymore.
 
 
 DIALOGUE cashier_fight_interrupt_2
-	[color=#ff8888]i know the type of person this "greg" is.
-	[color=#ff8888]it's pointless.
-	[color=#ff8888]he'd win.
+	[color=WLICOLOR]i know the type of person this "greg" is.
+	[color=WLICOLOR]it's pointless.
+	[color=WLICOLOR]he'd win.
 
 
 DIALOGUE cashier_fight_interrupt_3
 CHAR cashier_mean
 	...
 CHAR 
-	[color=#ff8888]the rules are in his favour. stop the battle.
-	[color=#ff8888]it's not fun. we're done.
+	[color=WLICOLOR]the rules are in his favour. stop the battle.
+	[color=WLICOLOR]it's not fun. we're done.
 
 
 DIALOGUE cashier_after_fight
 CHAR cashier_mean
 	...i see. well then.
-	you're strong enough for [color=#ff8888]work life imbalance[/color]...
+	you're strong enough for [color=WLICOLOR]work life imbalance[/color]...
 	...to not want to deal with you.
 	...
 	i guess... i'll go take a nap...
@@ -1703,7 +1712,7 @@ CHAR bike_ghost
 
 DIALOGUE bike_ghost_powerfulenemy_outofmagic
 CHAR bike_ghost
-	...i'm out of [color=#00ffff]sp[/color].
+	...i'm out of [color=SPIRITCOLOR]sp[/color].
 	[expletive redacted]
 
 
@@ -2286,7 +2295,7 @@ CHOICE_LINK brknfishr
 CHOICE_LINK sunspirit
 	rumor has it that a rogue spirit from the sun is in the forest somewhere.
 	it attacks on sight... but surely you can take care of it?
-	you have%sdefeated the [color=#ffaa00]solar protuberance[/color].
+	you have%sdefeated the [color=SUNCOLOR]solar protuberance[/color].
 CHOICE_LINK president
 	a citizen claiming to be the president of some- where is shopping in town.
 	this sounds like a security issue... please remove him.
@@ -2617,18 +2626,18 @@ DIALOGUE mafia_interrupt
 
 
 DIALOGUE lake_hint_1
-	i always do my shopping at the [color=#88aaff]yuku[/color] brand department stores.
+	i always do my shopping at the [color=YUKUCOLOR]yuku[/color] brand department stores.
 	that's because they are the only store chain in this region.
 
 
 DIALOGUE lake_hint_2
-	as an old person, i find it convenient that [color=#88aaff]yuku[/color] brand department stores...
+	as an old person, i find it convenient that [color=YUKUCOLOR]yuku[/color] brand department stores...
 	...sell medicine. i can buy healing items in case i trip and fall...
 	...on my way back home.
 
 
 DIALOGUE lake_hint_3
-	[color=#88aaff]yuku[/color] brand department stores have bought all the competition...
+	[color=YUKUCOLOR]yuku[/color] brand department stores have bought all the competition...
 	...in the local region. they rose their prices afterwards, but...
 	...at least it's convenient having a fixed price, i guess.
 
@@ -2637,34 +2646,34 @@ DIALOGUE lake_hint_4
 	i remember how back in the day, people would sell things...
 	...they made at the town market.
 	nothing, however, could compare to the convenience...
-	...that a single [color=#88aaff]yuku[/color] brand department store poses.
+	...that a single [color=YUKUCOLOR]yuku[/color] brand department store poses.
 
 
 DIALOGUE lake_hint_5
 	i really enjoy the new muesli available at... you guessed it...
-	[color=#88aaff]yuku[/color] brand department stores.
+	[color=YUKUCOLOR]yuku[/color] brand department stores.
 	only, what, 450 silver or something?
 
 
 DIALOGUE lake_hint_6
 	my favourite customer service is at the local... yawn...
-	...[color=#88aaff]yuku[/color] brand department store. go spend money.
+	...[color=YUKUCOLOR]yuku[/color] brand department store. go spend money.
 
 
 DIALOGUE lake_hint_7
-	it is futile. [color=#88aaff]yuku[/color] brand department stores will sell you...
+	it is futile. [color=YUKUCOLOR]yuku[/color] brand department stores will sell you...
 	...the products you love.
 
 
 DIALOGUE lake_hint_8
-	[color=#88aaff]yuku[/color] brand department stores stocked new crowd favorites.
+	[color=YUKUCOLOR]yuku[/color] brand department stores stocked new crowd favorites.
 	it was inevitable.
 
 
 DIALOGUE lake_hint
 	have you been to the lakeside yet?
 	it's refreshing taking a walk in the green nature.
-	the [color=#88aaff]yuku[/color] brand department store gets fresh fish from there.
+	the [color=YUKUCOLOR]yuku[/color] brand department store gets fresh fish from there.
 	just walk down the road to the southeast from here.
 
 
@@ -2673,7 +2682,7 @@ CHAR cashier_nice
 	hello... the company has decided to pay your wage this month.
 	it's as thanks for the rampant adver- tising. keep it up...
 CHAR 
-	splendid. with enough money, i can finally buy some [color=#88aaff]yuku[/color] brand muesli.
+	splendid. with enough money, i can finally buy some [color=YUKUCOLOR]yuku[/color] brand muesli.
 CHAR cashier_nice
 	please don't say things like that to my face ever again.
 
@@ -2831,7 +2840,7 @@ CHAR vampire
 
 DIALOGUE vampire_battle_70p2
 CHAR vampire
-	this is my spirit - [color=#ff2089]ymxvb2q[/color].
+	this is my spirit - [color=VAMPCOLOR]ymxvb2q[/color].
 	i will use a mere fraction of its power to end you.
 
 
@@ -2855,7 +2864,7 @@ CHAR vampire
 
 DIALOGUE vampire_battle_30p2
 CHAR vampire
-	[color=#ff2089]ymxvb2q[/color]!!! grind these ██████ to ███████████ from ████████!!!
+	[color=VAMPCOLOR]ymxvb2q[/color]!!! grind these ██████ to ███████████ from ████████!!!
 	take their spirit powers now!!!
 
 
@@ -2971,6 +2980,12 @@ CHAR president
 	you don't seem to display awareness of... 
 	...whose aquaintance you're making.
 	well... let me enlighten you.
+
+
+DIALOGUE president_start
+	my name is [color=PRESCOLOR]president frankling[/color].
+	i am the ruler of the mighty country of [color=PRESCOLOR]beacon archipelago[/color].
+	i am endeared to my citizens for i am a just and brilliant ruler.
 
 
 DIALOGUE president_50
@@ -3181,16 +3196,16 @@ CHAR popo_2
 
 
 DIALOGUE insp_sun_spirit_rage_1
-	[color=#ffbb99]congratulations, you absolute fool.
-	[color=#ffbb99]you have drained me of the energy to escape this world.
-	[color=#ffbb99]very well done! and what is your reward?
+	[color=SUNCOLOR]congratulations, you absolute fool.
+	[color=SUNCOLOR]you have drained me of the energy to escape this world.
+	[color=SUNCOLOR]very well done! and what is your reward?
 
 DIALOGUE insp_sun_spirit_rage_2
 	...
-	[color=#ffbb99]...well, i don't want to ruin the surprise...
-	[color=#ffbb99]...actually, i do want to ruin the surprise.
-	[color=#ffbb99]you will not survive "grandma's" true attack.
-	[color=#ffbb99]enjoy the fleeting moments. you have my curse.
+	[color=SUNCOLOR]...well, i don't want to ruin the surprise...
+	[color=SUNCOLOR]...actually, i do want to ruin the surprise.
+	[color=SUNCOLOR]you will not survive "grandma's" true attack.
+	[color=SUNCOLOR]enjoy the fleeting moments. you have my curse.
 
 
 DIALOGUE insp_sun_spirit

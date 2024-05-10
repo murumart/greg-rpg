@@ -23,6 +23,7 @@ const NEW_SET_DATA := &"SET_DATA "
 const NEW_PORTRAIT_SCALE := &"PORTRAIT_SCALE "
 const LB := "
 "
+const NEW_MACRO := &"MACRO "
 
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
@@ -44,6 +45,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var emotion_to_set := ""
 	var set_data_to_set := PackedStringArray()
 	var portrait_scale_to_set := Vector2(1, 1)
+	var macros := {} # value replaced by key in the final text
 
 	# going trhough the file line by line
 	while not file.eof_reached():
@@ -51,7 +53,12 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
 		line = line.replace("\r\n", "\n")
-		if line.begins_with(NEW_DIAL):
+		for k in macros.keys():
+			line = line.replace(k, macros[k])
+		if line.begins_with(NEW_MACRO):
+			var t := line.trim_prefix(NEW_MACRO).split(" ")
+			macros[t[0]] = t[1]
+		elif line.begins_with(NEW_DIAL):
 			if not dial == null:
 				# if we have a dialogue at hand, we store a duplicate of it
 				dialogue_dictionary[dial.name] = dial.duplicate()

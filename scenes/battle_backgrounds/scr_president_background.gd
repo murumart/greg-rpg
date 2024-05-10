@@ -2,7 +2,7 @@ extends Node2D
 
 var beam_direction := 1.0
 var initial_message_spoken := false
-var skip_intro := true
+var skip_intro := false
 
 @export var spin_speed := 155
 
@@ -47,7 +47,7 @@ func show_ui() -> void:
 		create_tween().tween_property(
 				LTS.get_current_scene().ui, "modulate:a", 1.0, 1.0
 						).set_trans(Tween.TRANS_BOUNCE)
-	
+
 
 func hide_ui() -> void:
 	if LTS.get_current_scene().name == "Battle":
