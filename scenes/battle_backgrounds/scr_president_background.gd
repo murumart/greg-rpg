@@ -99,7 +99,7 @@ func dish_time(dish: DishType) -> void:
 				6.0
 		).from(0.5)
 		t.parallel().tween_property(dish, "modulate:a", 1.0, 3.0)
-		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 6.0)
+		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 5.0)
 		t.tween_interval(2.0).finished.connect(show_ui)
 	)
 

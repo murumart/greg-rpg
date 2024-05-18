@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7abgwgw2w6xa"]
+[gd_scene load_steps=14 format=3 uid="uid://c7abgwgw2w6xa"]
 
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_hrsmt"]
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scn_enemy_dish.gd" id="2_rem6r"]
 [ext_resource type="Texture2D" uid="uid://dnqlcua0daxsu" path="res://sprites/characters/battle/president/spr_dish.png" id="3_yioit"]
+[ext_resource type="Texture2D" uid="uid://d0qjrqilh0m6l" path="res://sprites/characters/battle/president/spr_dish_neck.png" id="4_vl04o"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_neck_line_point_one_follow.gd" id="5_2jiuo"]
 
 [sub_resource type="Animation" id="Animation_r8ct8"]
 length = 0.001
@@ -124,7 +126,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -21)]
+"values": [Vector2(0, -25)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -172,7 +174,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 14)]
+"values": [Vector2(0.0951033, 16.019)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -196,7 +198,7 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 14)]
+"values": [Vector2(0.0951033, 16.019)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
@@ -484,7 +486,7 @@ tracks/39/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [6.28953]
+"values": [0.00634432]
 }
 tracks/40/type = "value"
 tracks/40/imported = false
@@ -3092,7 +3094,7 @@ texture = ExtResource("3_yioit")
 centered = false
 offset = Vector2(-9, -9)
 region_enabled = true
-region_rect = Rect2(2, 39, 18, 9)
+region_rect = Rect2(2, 38, 18, 10)
 
 [node name="RULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="0"]
 position = Vector2(-5, 0)
@@ -3126,24 +3128,34 @@ offset = Vector2(-4, -1)
 region_enabled = true
 region_rect = Rect2(32, 50, 14, 30)
 
-[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="1"]
-position = Vector2(0, -21)
+[node name="NeckLine" type="Line2D" parent="Puppet/Torso" index="1" node_paths=PackedStringArray("follow_what")]
+show_behind_parent = true
+texture_repeat = 2
+points = PackedVector2Array(0, -17, 0, -25)
+width = 8.0
+texture = ExtResource("4_vl04o")
+texture_mode = 1
+script = ExtResource("5_2jiuo")
+follow_what = NodePath("../Head")
+
+[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="2"]
+position = Vector2(0, -25)
 texture = ExtResource("3_yioit")
 centered = false
-offset = Vector2(-10, -16)
+offset = Vector2(-6, -11)
 region_enabled = true
-region_rect = Rect2(1, 0, 20, 16)
+region_rect = Rect2(5, 0, 12, 16)
 
-[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="2"]
+[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="3"]
 position = Vector2(11, -17)
 texture = ExtResource("3_yioit")
 centered = false
 offset = Vector2(-3, -4)
 region_enabled = true
-region_rect = Rect2(22, 16, 8, 18)
+region_rect = Rect2(22, 16, 8, 21)
 
 [node name="RLArm" type="Sprite2D" parent="Puppet/Torso/RUArm" index="0"]
-position = Vector2(0, 14)
+position = Vector2(0.0951033, 16.019)
 texture = ExtResource("3_yioit")
 centered = false
 offset = Vector2(-3, -1)
@@ -3158,18 +3170,18 @@ offset = Vector2(-5, -1)
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="3"]
+[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="4"]
 position = Vector2(-11, -17)
 texture = ExtResource("3_yioit")
 centered = false
 offset = Vector2(-5, -4)
 flip_h = true
 region_enabled = true
-region_rect = Rect2(22, 16, 8, 18)
+region_rect = Rect2(22, 16, 8, 21)
 
 [node name="RLArm" type="Sprite2D" parent="Puppet/Torso/LUArm" index="0"]
-position = Vector2(0, 14)
-rotation = 6.28953
+position = Vector2(0.0951033, 16.019)
+rotation = 0.00634432
 texture = ExtResource("3_yioit")
 centered = false
 offset = Vector2(-3, -1)
@@ -3184,6 +3196,15 @@ offset = Vector2(-3, -1)
 flip_h = true
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
+
+[node name="Bell" type="Sprite2D" parent="Puppet/Torso" index="5"]
+modulate = Color(0.494118, 0.337255, 0.494118, 1)
+show_behind_parent = true
+position = Vector2(-5, -10)
+texture = ExtResource("3_yioit")
+centered = false
+region_enabled = true
+region_rect = Rect2(20, 1, 10, 11)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1"]
 libraries = {
