@@ -22,5 +22,5 @@ defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
 unused_sprits = Array[String]([])
-armour = ""
+armour = "frankling_badge"
 weapon = ""

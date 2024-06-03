@@ -5,6 +5,7 @@ MACRO GREEN #00ff00
 MACRO SUNCOLOR #ffbb99
 MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
+MACRO YELLOW #ffff00
 
 
 DIALOGUE test
@@ -2986,6 +2987,16 @@ CHAR president
 	well... let me enlighten you.
 
 
+DIALOGUE president_resistance
+CHAR president
+	during my reign i have done many great deeds for my people.
+	thusly i have been rewarded for my grace...
+	one such reward being the [color=PRESCOLOR]frankling badge[/color]...
+	i earned this by saving my people from a great deluge.
+	its great power is to reflect [color=YELLOW]"electric"[/color] damage.
+	beware, then, your own attacks bearing down on yourself.
+
+
 DIALOGUE president_start
 	my name is [color=PRESCOLOR]president frankling[/color].
 	i am the ruler of the mighty country of [color=PRESCOLOR]beacon archipelago[/color].
@@ -2994,6 +3005,17 @@ DIALOGUE president_start
 	...and you, young man, have brought upon me great injustice.
 	thus, i demand reparations.
 	you'll find my demands convincing and fair.
+	
+
+DIALOGUE president_50
+CHAR president
+	your resistance to my rule is maddening!
+	cease your rebellion now... or face the consequences.
+
+
+DIALOGUE president_33
+CHAR president
+	you've done it now.
 
 
 DIALOGUE theres_dish
@@ -3010,17 +3032,6 @@ EMO power
 	do you deny my people their love towards me?
 	well... well. i'll just have to counter your doubts...
 	...with proof as sure as the sea itself.
-
-
-DIALOGUE president_50
-CHAR president
-	your resistance to my rule is maddening!
-	cease your rebellion now... or face the consequences.
-
-
-DIALOGUE president_33
-CHAR president
-	you've done it now.
 
 
 DIALOGUE insp_snowdrops

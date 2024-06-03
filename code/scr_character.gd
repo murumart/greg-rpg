@@ -80,7 +80,13 @@ func load_from_dict(dict: Dictionary) -> void:
 
 # base stat + armour + weapon increases for it
 func get_stat(nimi: String) -> int:
-	var stat := roundi(get(nimi) + (ResMan.get_item(armour).payload.get("%s_increase" % nimi) if armour else 0) + (ResMan.get_item(weapon).payload.get("%s_increase" % nimi) if weapon else 0))
+	var stat := roundi(
+			get(nimi)
+			+ (ResMan.get_item(armour).payload.get("%s_increase" % nimi)
+			if armour else 0)
+			+ (ResMan.get_item(weapon).payload.get("%s_increase" % nimi)
+			if weapon else 0)
+	)
 	return stat
 
 
