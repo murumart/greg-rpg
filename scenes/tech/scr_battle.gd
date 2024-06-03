@@ -288,7 +288,7 @@ func arrange_enemies():
 		return
 	var scree := SCREEN_SIZE.x - 20
 	var tw := create_tween().set_parallel(true)
-	for e in len(enemies):
+	for e in enemies.size():
 		# space enemies evenly on the screen
 		var to: float = roundf(
 				-scree/2.0

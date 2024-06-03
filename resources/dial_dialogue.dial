@@ -2508,6 +2508,10 @@ SET_DATA heard_mail_info_played,true
 	...excuse me for one second...
 
 
+DIALOGUE mail_game_pride_month
+	it is pride month. you know what this means
+
+
 DIALOGUE woods_guy_0
 	the woods
 CHOICES no,ok
