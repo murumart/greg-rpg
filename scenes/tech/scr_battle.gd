@@ -286,18 +286,7 @@ func add_party_member(id: String) -> void:
 func arrange_enemies():
 	if enemies.is_empty():
 		return
-	var scree := SCREEN_SIZE.x - 20
-	var tw := create_tween().set_parallel(true)
-	for e in enemies.size():
-		# space enemies evenly on the screen
-		var to: float = roundf(
-				-scree/2.0
-				+ scree/float(len(enemies))*(e+1)
-				- scree/float(len(enemies))/2.0)
-		tw.tween_property(enemies[e], "global_position:x", to, 0.2)
-		enemies[e].global_position.y = 0
-		if e % 2 != 0:
-			enemies[e].scale.x = -1.0
+	enemies_node.arrange()
 
 
 func set_background(id: String) -> void:
