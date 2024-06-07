@@ -20,3 +20,5 @@ func _ready() -> void:
 		, CONNECT_ONE_SHOT)
 	elif DAT.get_data("biking_games_finished", 0):
 		bald_man.queue_free()
+	elif Time.get_datetime_dict_from_system().month == 6:
+		bald_man.default_lines.push_front("mail_game_pride_month")

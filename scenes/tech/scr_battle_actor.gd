@@ -117,20 +117,27 @@ func heal(amount: float) -> void:
 	if state == States.DEAD: return
 	# limit healing to max health
 	character.health = minf(character.health + absf(amount), character.max_health)
-	SOL.vfx("damage_number", parentless_effcenter(self), {text = absf(roundi(amount)), color=Color.GREEN_YELLOW})
+	SOL.vfx(
+			"damage_number",
+			parentless_effcenter(self),
+			{text = absf(roundi(amount)),
+			color=Color.GREEN_YELLOW})
 
 
 func hurt(amt: float, gendr: int) -> void:
 	var amount := amt
 	amount = Genders.apply_gender_effects(amount, self, gendr)
-	if state == States.DEAD: return
+	if state == States.DEAD:
+		return
 	for x: BattleStatusEffect in status_effects.values():
 		amount += x.hurt_damage(amount, gendr, self)
 	amount = maxf(amount, 1.0)
 	character.health = maxf(character.health - absf(amount), 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
-		SND.play_sound(preload("res://sounds/hurt.ogg"), {"pitch_scale": 0.5, "volume": 4})
+		SND.play_sound(
+				preload("res://sounds/hurt.ogg"),
+				{"pitch_scale": 0.5, "volume": 4})
 		died.emit(self)
 	else:
 		# hurt sound
@@ -138,10 +145,10 @@ func hurt(amt: float, gendr: int) -> void:
 			SND.play_sound(preload("res://sounds/eek.ogg"))
 		else:
 			SND.play_sound(
-				hurt_sound,
-				{"pitch_scale": maxf(lerpf(2.0, 0.5, remap(
-					amount, 1, 90, 0.1, 1)), 0.1),
-				"volume": randi_range(-4, 1)}
+					hurt_sound,
+					{"pitch_scale": maxf(lerpf(2.0, 0.5, remap(
+						amount, 1, 90, 0.1, 1)), 0.1),
+					"volume": randi_range(-4, 1)}
 			)
 
 	# damage number
@@ -157,7 +164,10 @@ func hurt(amt: float, gendr: int) -> void:
 
 func flee() -> void:
 	SND.play_sound(preload("res://sounds/flee.ogg"))
-	SOL.vfx("damage_number", get_effect_center(self), {text = "bye!", color=Color.WHITE})
+	SOL.vfx(
+			"damage_number",
+			get_effect_center(self),
+			{text = "bye!", color=Color.WHITE})
 	# so that it won't be acting anymore
 	set_state(States.DEAD)
 	fled.emit(self)
@@ -211,7 +221,10 @@ func account_defense(x: float) -> float:
 func attack(subject: BattleActor) -> void:
 	if not subject.accessible:
 		SND.play_sound(preload("res://sounds/flee.ogg"))
-		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
+		SOL.vfx(
+				"damage_number",
+				get_effect_center(self),
+				{text = "miss!", color=Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 		turn_finished()
 		return
@@ -234,10 +247,10 @@ func attack(subject: BattleActor) -> void:
 	subject.handle_payload(pld) # the actual attack
 	if crit:
 		SOL.vfx(
-			"damage_number",
-			parentless_effcenter(subject),
-			{text = "crit!!!",
-			color = Color(1.0, 0.3, 0.2),
+				"damage_number",
+				parentless_effcenter(subject),
+				{text = "crit!!!",
+				color = Color(1.0, 0.3, 0.2),
 		})
 		SND.play_sound(preload("res://sounds/critical_hit.ogg"), {"volume": 5})
 		critically_hitted.emit()
@@ -343,31 +356,39 @@ func handle_payload(pld: BattlePayload) -> void:
 	if character.health <= 0: return
 	if pld.delay:
 		await get_tree().create_timer(pld.delay).timeout
-	var health_change := 0.0
-	health_change += pld.health
-	health_change += (pld.health_percent / 100.0) * character.health
-	health_change += (pld.max_health_percent / 100.0) * character.max_health
-	if health_change:
-		if health_change > 0:
-			if gender:
-				if pld.gender == gender:
-					health_change *= 1.5
-			heal(health_change)
-		else:
-			health_change = absf(health_change)
-			health_change = lerpf(account_defense(health_change), health_change, pld.pierce_defense)
-			if has_status_effect(&"shield"):
-				health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
-				SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
-			hurt(health_change, pld.gender)
-			if pld.steal_health and is_instance_valid(pld.sender):
-				pld.sender.heal(health_change * pld.steal_health)
-			if pld.steal_magic and is_instance_valid(pld.sender):
-				pld.sender.character.magic += pld.steal_magic
-				character.magic = maxf(character.magic - pld.steal_magic, 0.0)
-			if character.health <= 0:
-				if is_instance_valid(pld.sender):
-					pld.sender.character.add_defeated_character(character.name_in_file)
+	var health_change := pld.get_health_change(
+			character.health, character.max_health)
+	if health_change > 0:
+		if gender and pld.gender == gender:
+			health_change *= 1.5
+		heal(health_change)
+	elif health_change < 0:
+		# gender effect done in hurt() function
+		health_change = absf(health_change)
+		health_change = lerpf(
+				account_defense(health_change),
+				health_change, pld.pierce_defense)
+		# shield effect
+		if has_status_effect(&"shield"):
+			health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
+			SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
+		# frankling badge
+		if pld.gender == Genders.ELECTRIC\
+				and character.armour == &"frankling_badge":
+			if is_instance_valid(pld.sender)\
+					and pld.bounces < BattlePayload.MAX_BOUNCES:
+				pld.sender.handle_payload(pld)
+				pld.bounces += 1
+			health_change *= 0.25
+		hurt(health_change, pld.gender)
+		if pld.steal_health and is_instance_valid(pld.sender):
+			pld.sender.heal(health_change * pld.steal_health)
+		if pld.steal_magic and is_instance_valid(pld.sender):
+			pld.sender.character.magic += pld.steal_magic
+			character.magic = maxf(character.magic - pld.steal_magic, 0.0)
+		if character.health <= 0:
+			if is_instance_valid(pld.sender):
+				pld.sender.character.add_defeated_character(character.name_in_file)
 
 	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
 

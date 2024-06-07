@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="Resource" uid="uid://3lpdfn5b032y" path="res://resources/battle_infos/president_fight.tres" id="2_e7g3o"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
+[ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="4_vhvdj"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
@@ -69,6 +70,8 @@ load_options = ExtResource("2_e7g3o")
 [node name="Party" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("4_3v3ux")
+radius = 110.0
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -88

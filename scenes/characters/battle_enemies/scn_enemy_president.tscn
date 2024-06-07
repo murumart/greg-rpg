@@ -15,7 +15,6 @@ _data = {
 script = ExtResource("1_2r85o")
 effect_center = Vector2i(31, -30)
 animator = NodePath("AnimationPlayer")
-effect_immunities = Array[String](["little"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(31, 0)

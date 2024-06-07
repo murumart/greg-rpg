@@ -4,6 +4,8 @@ class_name BattlePayload
 # resource that stores attack info in battles
 # interpreted and exchanged by battle actors
 
+const MAX_BOUNCES = 3
+
 enum Types {ATTACK, SPIRIT, ITEM}
 var type := Types.ATTACK
 
@@ -48,6 +50,7 @@ var equip_as_armour := false
 @export var meta := {}
 
 var sender: BattleActor
+var bounces := 0
 
 
 func _init(_options := {}) -> void:
@@ -229,6 +232,14 @@ func set_effects(x: Array[StatusEffect]) -> BattlePayload:
 func set_gender(x: int) -> BattlePayload:
 	gender = x
 	return self
+
+
+func get_health_change(_health: float, _max_health: float) -> float:
+	return (
+			health
+			+ _health * (health_percent * 0.01)
+			+ _max_health * (max_health_percent * 0.01)
+	)
 
 
 func _to_string() -> String:
