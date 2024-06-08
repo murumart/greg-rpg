@@ -351,8 +351,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="Waves"]
 texture_repeat = 2
-position = Vector2(-60.7799, 43)
-scale = Vector2(1, 1.04644)
+position = Vector2(-12.8519, 43)
+scale = Vector2(1, 1.07787)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
@@ -362,8 +362,8 @@ region_rect = Rect2(0, 0, 360, 80)
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-128.601, 30)
-scale = Vector2(1, 1.0506)
+position = Vector2(-101.259, 30)
+scale = Vector2(1, 1.07919)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true

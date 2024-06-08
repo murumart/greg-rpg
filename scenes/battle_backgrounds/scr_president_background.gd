@@ -102,7 +102,10 @@ func dish_time(dish: BattleEnemy) -> void:
 		t.parallel().tween_property(dish, "modulate:a", 1.0, 3.0)
 		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 5.0)
 		t.tween_interval(2.0).finished.connect(func():
-			LTS.enter_battle(load("res://resources/battle_infos/dish_fight.tres"))
+			SOL.dialogue("theres_dish")
+			SOL.dialogue_closed.connect(func():
+				LTS.enter_battle(load("res://resources/battle_infos/dish_fight.tres"))
+			, CONNECT_ONE_SHOT)
 		)
 	)
 

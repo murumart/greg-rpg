@@ -2748,8 +2748,9 @@ DIALOGUE president_start
 	i am endeared to my citizens for i am a just and brilliant ruler.
 	it is i who establishes justice there...
 	...and you, young man, have brought upon me great injustice.
+	my trip to get groceries has been totally ruined.
 	thus, i demand reparations.
-	you'll find my demands convincing and fair.
+	you'll find my demands (you die) convincing and fair.
 	
 
 DIALOGUE president_50
@@ -2768,6 +2769,7 @@ CHAR president
 	so... i recommend that you die quickly now...
 	...because when that "pizz" is here... well...
 	let's hurry up.
+	come forth, [color=PRESCOLOR]dish[/color]!!
 
 
 DIALOGUE theres_dish
@@ -2784,6 +2786,19 @@ EMO power
 	do you deny my people their love towards me?
 	well... well. i'll just have to counter your doubts...
 	...with proof as sure as the sea itself.
+
+
+DIALOGUE president_monologue_1
+CHAR president
+EMO power
+	i have lived a long life and seen many years.
+	but no era has been as wondrous as the current time.
+
+
+DIALOGUE president_monologue_2
+CHAR president
+EMO power
+	
 
 
 DIALOGUE insp_snowdrops
