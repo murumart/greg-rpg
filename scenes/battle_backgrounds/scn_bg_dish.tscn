@@ -1,6 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://3cd078pknkxl"]
+[gd_scene load_steps=10 format=3 uid="uid://3cd078pknkxl"]
 
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="1_nv7y5"]
+
+[sub_resource type="Shader" id="Shader_07h0l"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_sampler: repeat_enable, filter_nearest;
+uniform float speed_mult = 1.0f;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec4 color = COLOR;
+	vec4 sample_uv = vec4(
+		sin(UV.x + TIME * 0.2f * speed_mult) * 10.0f,
+		sin(UV.y) - sin(TIME * 0.0023f) * 129.0f * speed_mult,
+		cos(UV.x) - TIME * 1.1f * speed_mult,
+		UV.y + cos(TIME * 0.03f) * 8.0f * speed_mult
+	);
+	vec2 noise_texture = vec2(
+		texture(noise_sampler, sample_uv.xy).r,
+		texture(noise_sampler, sample_uv.zw).r
+	);
+	COLOR = vec4(color.r * noise_texture.g, color.g * noise_texture.r, color.b * noise_texture.g, color.a);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="Gradient" id="Gradient_m2j1g"]
+offsets = PackedFloat32Array(0.460099, 0.669055, 0.947662)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x55jn"]
+frequency = 0.0029
+fractal_type = 3
+fractal_octaves = 4
+fractal_lacunarity = 2.175
+fractal_gain = 0.45
+fractal_weighted_strength = 0.27
+fractal_ping_pong_strength = 24.61
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fn4x0"]
+width = 128
+height = 128
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_m2j1g")
+noise = SubResource("FastNoiseLite_x55jn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huapp"]
+shader = SubResource("Shader_07h0l")
+shader_parameter/speed_mult = 1.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_fn4x0")
 
 [sub_resource type="Curve" id="Curve_cvkma"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -29,11 +86,12 @@ turbulence_initial_displacement_max = 41.4
 [node name="ScnBgDish" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -8.0
-offset_right = 169.0
-offset_bottom = 128.0
-color = Color(0.0117647, 0.0117647, 0.101961, 1)
+material = SubResource("ShaderMaterial_huapp")
+offset_left = -11.0
+offset_top = -6.0
+offset_right = 171.0
+offset_bottom = 129.0
+color = Color(0.10927, 0.115757, 0.329653, 1)
 
 [node name="Mist2" type="GPUParticles2D" parent="."]
 z_as_relative = false
