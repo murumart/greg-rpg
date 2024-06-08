@@ -74,11 +74,11 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			emotion_to_set = ""
 			loop_to_set = -1
 			dial = Dialogue.new()
-			dial.name = line.trim_prefix(NEW_DIAL)
+			dial.name = line.right(-NEW_DIAL.length())
 		elif line.begins_with(NEW_LINE):
 			# applying dialogue line properties
 			dial_line = DialogueLine.new()
-			dial_line.text = line.trim_prefix(NEW_LINE).replace("LB", LB)
+			dial_line.text = line.right(-NEW_LINE.length()).replace("LB", LB)
 			dial_line.character = char_to_set
 			dial_line.text_speed = text_speed_to_set
 			dial_line.choice_link = choice_link_to_set
@@ -108,35 +108,35 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 			portrait_scale_to_set = Vector2(1, 1)
 		# storing dialogue line properties
 		elif line.begins_with(NEW_ALIAS):
-			dial.alias = line.trim_prefix(NEW_ALIAS)
+			dial.alias = line.right(-NEW_ALIAS.length())
 		elif line.begins_with(NEW_CHAR):
-			char_to_set = line.trim_prefix(NEW_CHAR)
+			char_to_set = line.right(-NEW_CHAR.length())
 		elif line.begins_with(NEW_CHOICES):
-			choices_to_set = line.trim_prefix(NEW_CHOICES).split(",")
+			choices_to_set = line.right(-NEW_CHOICES.length()).split(",")
 		elif line.begins_with(NEW_CHOICE_LINK):
-			choice_link_to_set = line.trim_prefix(NEW_CHOICE_LINK)
+			choice_link_to_set = line.right(-NEW_CHOICE_LINK.length())
 		elif line.begins_with(NEW_DATA_LINK):
-			data_link_to_set = line.trim_prefix(NEW_DATA_LINK).split(",")
+			data_link_to_set = line.right(-NEW_DATA_LINK.length()).split(",")
 		elif line.begins_with(NEW_EMOTION):
-			emotion_to_set = line.trim_prefix(NEW_EMOTION)
+			emotion_to_set = line.right(-NEW_EMOTION.length())
 		elif line.begins_with(NEW_SET_DATA):
-			set_data_to_set = line.trim_prefix(NEW_SET_DATA).split(",")
+			set_data_to_set = line.right(-NEW_SET_DATA.length()).split(",")
 		elif line.begins_with(NEW_INSTASKIP):
 			instaskip_to_set = true
 		elif line.begins_with(NEW_TXT_SPD):
-			text_speed_to_set = float(line.trim_prefix(NEW_TXT_SPD))
+			text_speed_to_set = float(line.right(-NEW_TXT_SPD.length()))
 		elif line.begins_with(NEW_LOOP):
-			loop_to_set = int(line.trim_prefix(NEW_LOOP))
+			loop_to_set = int(line.right(-NEW_LOOP.length()))
 		elif line.begins_with(NEW_ITEM):
-			item_to_give = str(line.trim_prefix(NEW_ITEM))
+			item_to_give = str(line.right(-NEW_ITEM.length()))
 		elif line.begins_with(NEW_SPIRIT):
-			spirit_to_give = str(line.trim_prefix(NEW_SPIRIT))
+			spirit_to_give = str(line.right(-NEW_SPIRIT.length()))
 		elif line.begins_with(NEW_SILVER):
-			silver_to_give = int(line.trim_prefix(NEW_SPIRIT))
+			silver_to_give = int(line.right(-NEW_SILVER.length()))
 		elif line.begins_with(NEW_SOUND):
-			sound_to_set = load("res://sounds/%s.ogg" % line.trim_prefix(NEW_SOUND))
+			sound_to_set = load("res://sounds/%s.ogg" % line.right(-NEW_SOUND.length()))
 		elif line.begins_with(NEW_PORTRAIT_SCALE):
-			var arr := line.trim_prefix(NEW_PORTRAIT_SCALE).split(",")
+			var arr := line.right(-NEW_PORTRAIT_SCALE.length()).split(",")
 			portrait_scale_to_set = Vector2(float(arr[0]), float(arr[1]))
 	if file.eof_reached():
 		dialogue_dictionary[dial.name] = dial
