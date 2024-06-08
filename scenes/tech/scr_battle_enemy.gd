@@ -231,7 +231,8 @@ func animate(what: String) -> void:
 	var animatable: Node2D
 	if self.get_child(0) is Node2D:
 		animatable = self.get_child(0)
-	if not is_instance_valid(animatable): return
+	if not is_instance_valid(animatable):
+		return
 	match what:
 		"hurt":
 			var tw := create_tween()

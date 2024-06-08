@@ -12,5 +12,5 @@ party = Array[StringName]([&"greg", &"cashier_nice"])
 death_reason = "vampire"
 start_text = "the girl who is also a vampire?"
 rewards = ExtResource("1_7mdua")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true

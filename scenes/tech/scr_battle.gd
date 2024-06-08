@@ -12,7 +12,7 @@ signal player_finished_acting
 @export var load_options: BattleInfo = null
 
 var stop_music_before_end := true
-var play_victory_music := true
+var play_victory_music := &"victory"
 
 const SCREEN_SIZE := Vector2i(160, 120)
 const MAX_PARTY_MEMBERS := 3
@@ -696,9 +696,9 @@ func open_end_screen(victory: bool) -> void:
 	victory_text.speak_text()
 	if victory:
 		resize_panel(60)
-		if play_victory_music:
+		if not play_victory_music.is_empty():
 			SND.play_song(
-					"victory", 10,
+					play_victory_music, 10,
 					{start_volume = 0.0,
 					play_from_beginning = true})
 		var xp_reward := Reward.new()

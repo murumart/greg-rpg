@@ -63,7 +63,11 @@ func _unhandled_input(event: InputEvent) -> void:
 # load the dialogues from files
 func load_dialogue_dict() -> void:
 	dialogues_dict = DialogueParser.parse_dialogue_from_file(
-		FileAccess.open("res://resources/dial_dialogue.dial", FileAccess.READ))
+		FileAccess.open("res://resources/dial_menus.dial", FileAccess.READ))
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open("res://resources/dial_dialogue.dial", FileAccess.READ)
+	))
 	dialogues_dict.merge(
 		DialogueParser.parse_dialogue_from_file(
 			FileAccess.open("res://resources/dial_fisher_dialogue.dial", FileAccess.READ)

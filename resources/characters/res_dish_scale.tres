@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://de4ypdbnokrwb"]
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://by5mxebgvif7a"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_dxe58"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_wnrui"]
 
 [resource]
-script = ExtResource("1_dxe58")
+script = ExtResource("1_wnrui")
 name_in_file = &""
 name = "dish"
 info = "it towers above you. you can feel its groan in your bones."
@@ -18,7 +18,7 @@ defense = 35.0
 speed = 55.0
 defeated_characters = {}
 inventory = Array[String]([])
-spirits = Array[String](["grassy_vengeance"])
+spirits = Array[String]([])
 unused_sprits = Array[String]([])
 armour = ""
 weapon = ""

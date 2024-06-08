@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://3cd078pknkxl"]
+
+[ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="1_nv7y5"]
+
+[sub_resource type="Curve" id="Curve_cvkma"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fh56m"]
+curve = SubResource("Curve_cvkma")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xl7p2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 50, 1)
+angle_min = -2.0
+angle_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 2.0
+scale_min = 0.5
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_fh56m")
+turbulence_noise_speed_random = 0.57
+turbulence_influence_min = 0.057
+turbulence_influence_max = 0.114
+turbulence_initial_displacement_min = -27.1
+turbulence_initial_displacement_max = 41.4
+
+[node name="ScnBgDish" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 169.0
+offset_bottom = 128.0
+color = Color(0.0117647, 0.0117647, 0.101961, 1)
+
+[node name="Mist2" type="GPUParticles2D" parent="."]
+z_as_relative = false
+position = Vector2(85, 103)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xl7p2")
+texture = ExtResource("1_nv7y5")
+lifetime = 16.0
+preprocess = 4.0
+
+[node name="Mist" type="GPUParticles2D" parent="."]
+z_as_relative = false
+position = Vector2(85, 103)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_xl7p2")
+texture = ExtResource("1_nv7y5")
+lifetime = 16.0
+preprocess = 4.0
+local_coords = true

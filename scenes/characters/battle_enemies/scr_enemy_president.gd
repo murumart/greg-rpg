@@ -44,12 +44,14 @@ func _progress_check(damage: float) -> float:
 		if not is_instance_valid(background):
 			return damage
 		SOL.dialogue_closed.connect(func():
-			teammate_requested.emit(self, "dish")
+			auto_ai = false
+			teammate_requested.emit(self, "dish_scale")
 			background.dish_time(reference_to_team_array.back())
 			var tw := create_tween()
 			tw.tween_property(self, "scale", Vector2(0.2, 0.2), 2.0)
 			tw.finished.connect(func():
 				died.emit(self)
 			)
+			reference_to_opposing_array.map(func(a): a.offload_character())
 		, CONNECT_ONE_SHOT)
 	return damage

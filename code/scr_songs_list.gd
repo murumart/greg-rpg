@@ -46,7 +46,8 @@ var songs := {
 	},
 	"dishout": {
 		"title": "dishout",
-		"stream": preload("res://music/mus_dishout.ogg")
+		"stream": preload("res://music/mus_dishout.ogg"),
+		"default_volume": 2
 	},
 	"dry_summer": {
 		"title": "dry summer",
@@ -55,6 +56,11 @@ var songs := {
 	"entirely_just": {
 		"title": "entirely just",
 		"stream": preload("res://music/mus_entirely_just.ogg")
+	},
+	"extremophile": {
+		"title": "extremophile",
+		"stream": preload("res://music/mus_extremophile.ogg"),
+		"default_volume": -1,
 	},
 	"favourable_silence": {
 		"title": "favourable silence",

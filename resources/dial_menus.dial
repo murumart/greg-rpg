@@ -1,0 +1,181 @@
+MACRO GREEN #00ff00
+
+
+DIALOGUE load_warning_superdiff
+	this save file is bugged or from a very old version of greg.
+CHOICES no,yes
+	are you sure you want to load it? things might break.
+CHOICE_LINK yes
+	alright, it'll be loaded.
+	consider making a new save file instead, though.
+
+
+DIALOGUE load_warning_majordiff
+	this save file is from an older version.
+CHOICES yes,no,backup
+	are you sure you want to load it?
+CHOICE_LINK backup
+	you can open the save folder and back the save up manually.
+	(press c to do that.)
+
+
+DIALOGUE load_warning_empty
+	this save file is empty. you cannot load it.
+
+
+DIALOGUE get_experience
+	%s experience was gained.
+
+
+DIALOGUE levelup
+SPEED 0.75
+SOUND level_up
+	[center]level up![center]
+SPEED 1
+	%s leveled up to %s.
+
+
+DIALOGUE getitem
+	%s was found.
+
+
+DIALOGUE nothing
+	there is nothing here.
+
+
+DIALOGUE getsilver
+	%s silver were received.
+
+
+DIALOGUE losesilver
+	%s silver were lost.
+
+
+DIALOGUE getspirit
+SOUND spirit/spirit_get
+	[center]the spirit [color=SPIRITCOLOR]%s[/color] joins you.[/center]
+
+
+DIALOGUE spirit_equip_tutorial
+	your new spirit is now available to be equipped in your inventory.
+	remember to equip it to use it in battle.
+
+
+DIALOGUE emptyreward
+	you are not fit for a reward.
+
+
+DIALOGUE magnet_used
+	the used magnet draws near more silver and exp!
+
+
+DIALOGUE test2talk
+CHAR 
+	[color=GREEN]blaabl blaalb blaalb.[/color]
+	[color=#ff0000]blaabl blaalb blaalb.[/color]
+	[color=#0000ff]blaabl blaalb blaalb.[/color]
+
+DIALOGUE greenhouse
+	it's pleasant in here.
+CHOICES sleep,eat
+	what would you like to do?
+
+
+DIALOGUE greenhouse_heal_greg_small
+	you feel better but not much.
+
+
+DIALOGUE greenhouse_heal_greg_big
+	those were tasty. hope they grow back.
+
+
+DIALOGUE greenhouse_heal_party_small
+	your party takes a nap.
+
+
+DIALOGUE greenhouse_heal_party_big
+	your party eats all the vegetables.
+	(that heals you fully.)
+
+
+DIALOGUE cwarning
+	do not run bell.c!!!
+	bell hell is real
+	your cpu will be eaten
+
+
+DIALOGUE door_unanswer
+	but nobody answered the door.
+
+
+DIALOGUE door_locked
+	it's locked.
+
+
+DIALOGUE battle_inspect
+	here's the dirt, boss:
+	name: %s
+	level: %s
+	atk: %s; def: %s; spd: %s
+	%s
+
+
+DIALOGUE exchange_success
+	exchange successful!
+
+
+DIALOGUE exchange_item
+	you acquired %s.
+
+
+DIALOGUE exchange_silver
+	you received %s silver.
+
+
+DIALOGUE exchange_missing_input
+	you are missing required items.
+
+
+DIALOGUE exchange_criteria_title
+	this exchange requires: LB%s LB%s
+
+
+DIALOGUE exchange_returns_title
+	this exchange returns: LB%s LB%s
+
+
+DIALOGUE exchange_criteria_sisu
+	%s LB%s LB%s LB
+
+
+DIALOGUE save_deletion_confirmation
+CHOICES no,yes
+	are you sure you want to erase this save file?
+CHOICE_LINK yes
+	so be it.
+CHOICE_LINK no
+	there's many memories here.
+
+
+DIALOGUE store_shelf_empty
+CHOICES ok
+	this shelf has no products.
+
+
+DIALOGUE store_shelf_start
+CHOICES yes,no
+	this shelf has %s products. take a closer look?
+CHOICE_LINK yes
+	%s
+
+
+DIALOGUE store_shelf_confirm
+CHOICES yes,no
+	do you want to take the %s?
+
+
+DIALOGUE store_wont_let_you_in
+	they won't let you in.
+	you might've stolen too much.
+
+

@@ -45,10 +45,13 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	var loop_override := "loop" in options
 	var loop: bool = options.get("loop", true)
 
+	if not song.is_empty():
+		assert(song in list.songs.keys(), "song with name %s doesn't exist" % song)
 	var song_dict: Dictionary = list.songs.get(song, {})
 
 	# if the music requested is the same as current music, do nothing
-	if current_song.size() > 0 and song in list.songs and current_song.get("title") == song_dict.get("title", ""):
+	if not current_song.is_empty()\
+			and current_song.get("title") == song_dict.get("title", ""):
 		return
 
 	previously_played_song_key = current_song_key
@@ -69,7 +72,8 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 	add_child(new_audio_player)
 	var audio_stream: AudioStream = song_dict["stream"]
 	audio_stream.loop = song_dict.get("loop", true)
-	if loop_override: audio_stream.loop = loop
+	if loop_override:
+		audio_stream.loop = loop
 	new_audio_player.stream = audio_stream
 	new_audio_player.volume_db = start_volume
 	new_audio_player.pitch_scale = song_dict.get("default_pitch", 1.0) * pitch_scale
@@ -83,7 +87,9 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 			new_audio_player.seek(skip_to)
 	var tween := create_tween().set_ease(fade_in_ease_type).set_trans(trans_type)
 	var volume_to: float = song_dict.get("default_volume", DEFAULT_VOLUME) if not volume_override else volume
-	tween.tween_property(new_audio_player, "volume_db", volume_to, DEFAULT_WAIT_SPEED/float(fade_speed))
+	tween.tween_property(
+			new_audio_player, "volume_db", volume_to,
+			DEFAULT_WAIT_SPEED / float(fade_speed))
 
 
 func fade_out_song_player(player, fade_speed := 1.0, options := {}):

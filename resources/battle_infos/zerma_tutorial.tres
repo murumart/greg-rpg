@@ -12,5 +12,5 @@ party = Array[StringName]([])
 death_reason = "sus"
 start_text = "you will be so educated!"
 rewards = ExtResource("1_5mkkn")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true

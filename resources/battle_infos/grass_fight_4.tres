@@ -31,5 +31,5 @@ party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 rewards = SubResource("Resource_tyuht")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true

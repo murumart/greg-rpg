@@ -32,6 +32,8 @@ fish facts provided by alan, ardenna, caboose, radio, octopixel, webcatz
 
 voice acting by alan, julian, webcatz
 
+gameplay by webcatz
+
 thank you to play testers alan, kin, radio, webcatz
 
 with special thanks to free software gimp, audacity, godot, piskel, jummbox, lmms

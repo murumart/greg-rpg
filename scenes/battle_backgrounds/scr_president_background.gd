@@ -2,8 +2,6 @@ extends Node2D
 
 signal enemy_requested(e, String)
 
-const DishType := preload("res://scenes/characters/battle_enemies/scn_enemy_dish.gd")
-
 var beam_direction := 1.0
 var initial_message_spoken := false
 var skip_intro := false
@@ -17,6 +15,9 @@ var skip_intro := false
 @onready var mist: GPUParticles2D = $Mist
 @onready var text_box: TextBox = $TextBox
 @onready var zoom_animation: AnimationPlayer = $Lighthouse/ZoomAnimation
+@onready var powerline: Node2D = $More/VfxPowerline
+@onready var powerline_2: Node2D = $More/VfxPowerline2
+@onready var powerline_3: Node2D = $More/VfxPowerline3
 
 
 func _ready() -> void:
@@ -78,7 +79,7 @@ func new_line(line: int) -> void:
 			SOL.dialogue_box.started_speaking.disconnect(new_line)
 
 
-func dish_time(dish: DishType) -> void:
+func dish_time(dish: BattleEnemy) -> void:
 	hide_ui()
 	lighthouse_zoom_out()
 	SOL.dialogue_open = true
@@ -90,17 +91,19 @@ func dish_time(dish: DishType) -> void:
 	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9)
 	tw.finished.connect(func():
 		SND.play_song("", 2992)
-		SND.play_song("dishout", 0.2)
+		SND.play_song("dishout", 0.2, {"volume": 2})
 		var t := create_tween()
 		t.tween_property(
 				SND.current_song_player,
 				"pitch_scale",
-				1.0,
-				6.0
+				0.75,
+				3.0
 		).from(0.5)
 		t.parallel().tween_property(dish, "modulate:a", 1.0, 3.0)
 		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 5.0)
-		t.tween_interval(2.0).finished.connect(show_ui)
+		t.tween_interval(2.0).finished.connect(func():
+			LTS.enter_battle(load("res://resources/battle_infos/dish_fight.tres"))
+		)
 	)
 
 

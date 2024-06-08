@@ -8,219 +8,6 @@ MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
 
 
-DIALOGUE test
-CHAR greg
-	i think...
-CHAR 
-	[color=GREEN]who cares what you think? buddy.[/color]
-	[color=GREEN]you should know that this will end up horribly.[/color]
-	[color=GREEN]you will be canned like the earlier ones.[/color]
-	[color=GREEN]have fun with that thought.[/color]
-CHAR greg
-	man...
-
-# this line should be ignored
-
-DIALOGUE test2be
-	[color=GREEN]shut up! shut up![/color]
-	[color=GREEN]i'm not going to talk to you![/color]
-SPEED 0.1
-	[color=GREEN]entel tentel trika trei[/color]
-	[color=GREEN]a white dove flew over england[/color]
-
-
-DIALOGUE load_warning_superdiff
-	this save file is bugged or from a very old version of greg.
-CHOICES no,yes
-	are you sure you want to load it? things might break.
-CHOICE_LINK yes
-	alright, it'll be loaded.
-	consider making a new save file instead, though.
-
-
-DIALOGUE load_warning_majordiff
-	this save file is from an older version.
-CHOICES yes,no,backup
-	are you sure you want to load it?
-CHOICE_LINK backup
-	you can open the save folder and back the save up manually.
-	(press c to do that.)
-
-
-DIALOGUE load_warning_empty
-	this save file is empty. you cannot load it.
-
-
-DIALOGUE get_experience
-	%s experience was gained.
-
-
-DIALOGUE levelup
-SPEED 0.75
-SOUND level_up
-	[center]level up![center]
-SPEED 1
-	%s leveled up to %s.
-
-
-DIALOGUE getitem
-	%s was found.
-
-
-DIALOGUE nothing
-	there is nothing here.
-
-
-DIALOGUE getsilver
-	%s silver were received.
-
-
-DIALOGUE losesilver
-	%s silver were lost.
-
-
-DIALOGUE getspirit
-SOUND spirit/spirit_get
-	[center]the spirit [color=SPIRITCOLOR]%s[/color] joins you.[/center]
-
-
-DIALOGUE spirit_equip_tutorial
-	your new spirit is now available to be equipped in your inventory.
-	remember to equip it to use it in battle.
-
-
-DIALOGUE emptyreward
-	you are not fit for a reward.
-
-
-DIALOGUE magnet_used
-	the used magnet draws near more silver and exp!
-
-
-DIALOGUE test2talk
-CHAR 
-	[color=GREEN]blaabl blaalb blaalb.[/color]
-	[color=#ff0000]blaabl blaalb blaalb.[/color]
-	[color=#0000ff]blaabl blaalb blaalb.[/color]
-
-
-DIALOGUE mailtest
-CHAR mail_man
-	what is this place?
-	is this a nightmare?
-	sure looks like one.
-	i bet something with spaghetti will happen soon.
-	i just know it.
-
-
-DIALOGUE tarikastest
-CHAR tarikas
-	you look boring.
-	also you smell.
-
-
-DIALOGUE cashiernicetest
-CHAR cashier_nice
-	please don't talk to me outside work hours.
-
-
-DIALOGUE choicestest
-CHAR 
-	will you be a saint?
-	or will you be a grinch?
-	well, what's it gonna be, huh? huh?
-CHOICES saint,grinch,flesh,flush
-	saint? or a grinch.
-CHOICE_LINK saint
-	the saint? wisely chosen.
-CHOICE_LINK grinch
-	the grinch? you never really had free will.
-CHOICE_LINK 
-	good bye.
-
-
-DIALOGUE greenhouse
-	it's pleasant in here.
-CHOICES sleep,eat
-	what would you like to do?
-
-
-DIALOGUE greenhouse_heal_greg_small
-	you feel better but not much.
-
-
-DIALOGUE greenhouse_heal_greg_big
-	those were tasty. hope they grow back.
-
-
-DIALOGUE greenhouse_heal_party_small
-	your party takes a nap.
-
-
-DIALOGUE greenhouse_heal_party_big
-	your party eats all the vegetables.
-	(that heals you fully.)
-
-
-DIALOGUE cwarning
-	do not run bell.c!!!
-	bell hell is real
-	your cpu will be eaten
-
-
-DIALOGUE door_unanswer
-	but nobody answered the door.
-
-
-DIALOGUE door_locked
-	it's locked.
-
-
-DIALOGUE battle_inspect
-	here's the dirt, boss:
-	name: %s
-	level: %s
-	atk: %s; def: %s; spd: %s
-	%s
-
-
-DIALOGUE exchange_success
-	exchange successful!
-
-
-DIALOGUE exchange_item
-	you acquired %s.
-
-
-DIALOGUE exchange_silver
-	you received %s silver.
-
-
-DIALOGUE exchange_missing_input
-	you are missing required items.
-
-
-DIALOGUE exchange_criteria_title
-	this exchange requires: LB%s LB%s
-
-
-DIALOGUE exchange_returns_title
-	this exchange returns: LB%s LB%s
-
-
-DIALOGUE exchange_criteria_sisu
-	%s LB%s LB%s LB
-
-
-DIALOGUE save_deletion_confirmation
-CHOICES no,yes
-	are you sure you want to erase this save file?
-CHOICE_LINK yes
-	so be it.
-CHOICE_LINK no
-	there's many memories here.
-
-
 DIALOGUE intro_convo_0
 CHAR zerma
 	greg, wake up!
@@ -577,23 +364,6 @@ CHAR zerma
 # he leaves
 
 
-DIALOGUE store_shelf_empty
-CHOICES ok
-	this shelf has no products.
-
-
-DIALOGUE store_shelf_start
-CHOICES yes,no
-	this shelf has %s products. take a closer look?
-CHOICE_LINK yes
-	%s
-
-
-DIALOGUE store_shelf_confirm
-CHOICES yes,no
-	do you want to take the %s?
-
-
 DIALOGUE cashier_nice_welcome
 CHAR cashier_nice
 	welcome to the store...
@@ -819,11 +589,6 @@ CHAR cashier_nice
 	that's %s silver worth of items on you.
 	you will face reprecussions for stealing those.
 	turn back now.
-
-
-DIALOGUE store_wont_let_you_in
-	they won't let you in.
-	you might've stolen too much.
 
 
 DIALOGUE cashier_mean_notice
@@ -1185,7 +950,8 @@ EMO
 	i thought a bit about what my insanity could be.
 	i did not like what i came up with. i don't think anyone would.
 	you could think about your own insanity, you know.
-	but if you don't, don't worry, we all have yours figured out.
+	but if you don't, don't worry.
+	we all have yours figured out already.
 CHOICES browse,leave
 	have i mentioned i sell helpful items?
 
@@ -1323,24 +1089,6 @@ DATA_LINK
 	a mail man hat of your own!
 EMO 
 	wear it and be reminded of your true calling.
-
-
-DIALOGUE mail_man_face_test
-CHAR mail_man
-	hey, check this out.
-EMO content
-	i can close my eyes.
-	i look so content right now!
-EMO serious
-	but all is not fun and games, you see.
-	sometimes you have to grab life by the reigns.
-EMO intimidating
-	and take what's yours.
-	...
-EMO content
-	...
-EMO 
-	well, that's it. i'm going to cry now. seeya.
 
 
 DIALOGUE mail_man_welcomeback
@@ -2275,9 +2023,6 @@ CHOICE_LINK bye
 	goodbye citizen! stay up to yes good!
 
 
-# i just scratched my head too much and now i think it's bleeding
-
-
 DIALOGUE bounty_board
 CHOICES exit,thugs,stryanmls,brknfishr,sunspirit,president,vampire,circus
 	which bounty to check out in detail?
@@ -3015,7 +2760,14 @@ CHAR president
 
 DIALOGUE president_33
 CHAR president
-	you've done it now.
+	one second.
+	...
+	i have just been given crucial information.
+	so... my "pizz delivery" will be arriving in 2 minutes.
+	i have been waiting for this for literal years.
+	so... i recommend that you die quickly now...
+	...because when that "pizz" is here... well...
+	let's hurry up.
 
 
 DIALOGUE theres_dish

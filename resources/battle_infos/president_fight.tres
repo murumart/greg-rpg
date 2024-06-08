@@ -10,5 +10,5 @@ music = "president_fight"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = "f"
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true

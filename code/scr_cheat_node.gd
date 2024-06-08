@@ -36,7 +36,7 @@ func _ready() -> void:
 		var charac := ResMan.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:
 			continue
-		charac.level_up(level_gain, false, false)
+		charac.level_up(level_gain, true, false)
 		charac.unused_sprits.append_array(new_spirits)
 		if not force_spirits_into_use and new_spirits:
 			while charac.spirits.size() < Character.MAX_SPIRITS:

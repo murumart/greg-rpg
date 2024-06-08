@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene load_steps=26 format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -33,11 +33,16 @@ resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
+[sub_resource type="Gradient" id="Gradient_jy1j7"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.452282, 1)
+colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
 [sub_resource type="Curve" id="Curve_578y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_fh56m"]
+[sub_resource type="CurveTexture" id="CurveTexture_560af"]
 curve = SubResource("Curve_578y2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f0gpj"]
@@ -50,7 +55,7 @@ gravity = Vector3(0, 0, 0)
 radial_accel_max = 2.0
 scale_min = 0.5
 scale_max = 2.0
-alpha_curve = SubResource("CurveTexture_fh56m")
+alpha_curve = SubResource("CurveTexture_560af")
 turbulence_noise_speed_random = 0.57
 turbulence_influence_min = 0.057
 turbulence_influence_max = 0.114
@@ -232,16 +237,16 @@ offset_bottom = 123.0
 color = Color(0, 0, 0, 1)
 
 [node name="More" type="Node2D" parent="."]
-visible = false
 
 [node name="VfxPowerline" parent="More" instance=ExtResource("2_8t0xc")]
+visible = false
 divisions = 15
 deviation_distance = 2.5
 gradient = SubResource("Gradient_0jvk6")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -6, -4.21479, 4.59141, -2.36773, 13.6035, -3.97507, 22.9643, -1.07679, 32.4484, 0.186314, 36.7547, 4.24068, 50.2461, 3.40935, 58.9287, 6.79464, 68.4992, 9.27932, 77.4353, 13.0714, 84.0179, 14.6171, 94.2084, 12.2361, 100.569, 18.6018, 110.549, 18, 120)
+points = PackedVector2Array(-8, -6, -4.08215, 1.58455, -4.69494, 14.4663, -4.26389, 19.3025, 1.84377, 29.3544, 1.90378, 41.4224, 4.86893, 49.8085, 5.43319, 59.4622, 8.73027, 64.3443, 7.48496, 72.8231, 12.8635, 83.0018, 11.4483, 95.2998, 11.9144, 101.208, 18.5052, 111.818, 18, 120)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
@@ -251,6 +256,7 @@ position = Vector2(-8, -6)
 position = Vector2(18, 120)
 
 [node name="VfxPowerline2" parent="More" instance=ExtResource("2_8t0xc")]
+visible = false
 position = Vector2(132, 4)
 divisions = 15
 deviation_distance = 2.5
@@ -258,7 +264,7 @@ gradient = SubResource("Gradient_ly6d5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
-points = PackedVector2Array(-9, -11, -8.98835, -2.16402, -5.85405, 7.06064, -5.0016, 18.8418, -2.90684, 29.9004, -0.684521, 39.0102, 4.36996, 47.4103, 4.47994, 61.9848, 7.15208, 67.8476, 9.04178, 82.4543, 14.339, 88.8161, 16.618, 102.007, 19.2117, 110.828, 18.6233, 123.346, 21, 131)
+points = PackedVector2Array(-9, -11, -8.95006, -2.22451, -4.1045, 11.7102, -3.59702, 21.7085, -0.402282, 27.0716, -0.326438, 41.1584, 1.36122, 49.7145, 3.51348, 60.2593, 10.3015, 71.4039, 8.05269, 79.1616, 10.2257, 89.2465, 14.9085, 98.0943, 17.439, 108.322, 16.3827, 120.501, 21, 131)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
@@ -268,14 +274,15 @@ position = Vector2(-9, -11)
 position = Vector2(21, 131)
 
 [node name="VfxPowerline3" parent="More" instance=ExtResource("2_8t0xc")]
+visible = false
 position = Vector2(73, 4)
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_yi33l")
+gradient = SubResource("Gradient_jy1j7")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
-points = PackedVector2Array(26, -7, 25.2461, 0.524235, 21.6532, 9.51011, 17.6303, 19.5095, 14.3654, 30.7973, 14.7767, 42.9916, 11.4698, 47.6369, 9.2152, 57.1264, 5.4204, 69.994, 5.22723, 80.9919, 2.21821, 85.6773, -1.61256, 97.112, 0.970787, 106.298, -5.62298, 114.885, -6, 126)
+points = PackedVector2Array(26, -7, 21.4787, 3.619, 23.1319, 10.1701, 21.2704, 22.8129, 14.6363, 29.8519, 15.4648, 42.8349, 9.82313, 49.5691, 7.60888, 58.7703, 8.48314, 71.3788, 5.60867, 76.0065, 2.06446, 90.2555, 1.31622, 95.0425, 1.00725, 107.563, -5.59233, 114.85, -6, 126)
 texture = SubResource("GradientTexture2D_rryk2")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
@@ -344,8 +351,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="Waves"]
 texture_repeat = 2
-position = Vector2(-50.295, 43)
-scale = Vector2(1, 1.04293)
+position = Vector2(-74.6252, 43)
+scale = Vector2(1, 1.07099)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
@@ -355,8 +362,8 @@ region_rect = Rect2(0, 0, 360, 80)
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-119.768, 30)
-scale = Vector2(1, 1.06248)
+position = Vector2(-27.4866, 30)
+scale = Vector2(1, 1.06051)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true

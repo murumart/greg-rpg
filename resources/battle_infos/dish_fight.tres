@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://dq15d2quoe8li"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_oh4at"]
+
+[resource]
+script = ExtResource("1_oh4at")
+enemies = Array[StringName]([&"dish"])
+background = "bg_dish"
+music = "dishout"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = ""
+victory_music = &"extremophile"
+stop_music_before_end = true

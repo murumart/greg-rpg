@@ -81,10 +81,10 @@ DIALOGUE prank_call_6
 
 DIALOGUE prank_call_7
 CHAR president
-	yes, hello, pizza delivery?
+	yes, hello, "pizz" delivery?
 	i would like to file a complaint.
 	your delivery tracking technology is impressive...
-	...but the pizza i ordered was marked as "lost at sea".
+	...but the "pizz" i ordered was marked as "lost at sea".
 	i would like to order a refund.
 	my name is [color=#ff9999]president frankling[/color].
 	thank you for your time.
