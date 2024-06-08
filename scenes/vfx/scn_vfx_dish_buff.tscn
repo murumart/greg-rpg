@@ -1,0 +1,335 @@
+[gd_scene load_steps=18 format=3 uid="uid://dopjpe7bk1png"]
+
+[ext_resource type="Texture2D" uid="uid://tqtwvqlix3wt" path="res://sprites/spirit/spr_dish_buff.png" id="1_5301g"]
+[ext_resource type="AudioStream" uid="uid://idf0wsa5epfp" path="res://sounds/spirit/dish_buff.ogg" id="2_ei83t"]
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="3_i08m3"]
+
+[sub_resource type="Gradient" id="Gradient_mu6h2"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3sjyh"]
+gradient = SubResource("Gradient_mu6h2")
+width = 160
+height = 120
+fill_from = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi35p"]
+atlas = ExtResource("1_5301g")
+region = Rect2(0, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxy31"]
+atlas = ExtResource("1_5301g")
+region = Rect2(160, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfeud"]
+atlas = ExtResource("1_5301g")
+region = Rect2(0, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xiar"]
+atlas = ExtResource("1_5301g")
+region = Rect2(160, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsa87"]
+atlas = ExtResource("1_5301g")
+region = Rect2(0, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_megrs"]
+atlas = ExtResource("1_5301g")
+region = Rect2(160, 240, 160, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_876vo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi35p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxy31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfeud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xiar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsa87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_megrs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wxpnr"]
+resource_name = "new_animation"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 5]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ei83t")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VfxPowerline2/Start:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.5, 2.6, 2.9, 3.1, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(211, 133), Vector2(-20, 125), Vector2(91, 69), Vector2(77, 70), Vector2(128, 94), Vector2(103, 95), Vector2(-47, 184), Vector2(216, 117)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VfxPowerline2/End:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.3, 1.9, 2.3, 2.6, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(136, -84), Vector2(88, -111), Vector2(18, -118), Vector2(12, -104), Vector2(52, -94), Vector2(52, -94), Vector2(154, -139)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VfxPowerline/End:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.6, 0.8, 0.9, 1.1, 1.5, 1.7, 1.9, 2.1, 2.6, 3, 3.4, 3.5, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-76, -107), Vector2(-108, -69), Vector2(-81, -39), Vector2(-86, -19), Vector2(-80, -144), Vector2(-80, -109), Vector2(-50, -23), Vector2(-59, -34), Vector2(-117, -93), Vector2(-113, -72), Vector2(-88, -47), Vector2(-95, -72), Vector2(-46, -77), Vector2(-63, -86), Vector2(-158, -99), Vector2(-168, -59)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VfxPowerline/Start:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.1, 1.3, 1.4, 1.6, 1.7, 2, 2.2, 2.5, 2.6, 2.8, 3, 3.2, 3.5, 3.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-122, 101), Vector2(-68, 168), Vector2(-85, 168), Vector2(-49, 153), Vector2(-10, 91), Vector2(-24, 134), Vector2(-66, 98), Vector2(-87, 114), Vector2(-87, 121), Vector2(-62, 130), Vector2(-41, 154), Vector2(-38, 113), Vector2(-87, 121), Vector2(-109, 119), Vector2(-75, 131), Vector2(-125, 131), Vector2(-132, 132), Vector2(-135, 148)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:scale")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 4.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 1.24167), Vector2(1, -0.0103473)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimatedSprite2D:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mkhpo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VfxPowerline2/Start:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(211, 133)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VfxPowerline2/End:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, -84)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VfxPowerline/End:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-76, -107)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VfxPowerline/Start:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-122, 101)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ri33"]
+_data = {
+"RESET": SubResource("Animation_mkhpo"),
+"new_animation": SubResource("Animation_wxpnr")
+}
+
+[sub_resource type="Gradient" id="Gradient_tejui"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxrdl"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tejui")
+fill_from = Vector2(1, 1)
+
+[node name="ScnVfxDishBuff" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 69)
+texture = SubResource("GradientTexture2D_3sjyh")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_876vo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ri33")
+}
+autoplay = "new_animation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="VfxPowerline" parent="." instance=ExtResource("3_i08m3")]
+gradient = SubResource("Gradient_tejui")
+lifetime = 0.0
+
+[node name="Line2D" parent="VfxPowerline" index="0"]
+points = PackedVector2Array(-122, 101, -116.58, 79.8649, -112.47, 52.9012, -105.923, 29.8101, -100.845, 10.425, -95.8169, -16.4545, -91.3192, -39.6666, -87.948, -59.7669, -79.4143, -82.8302, -76, -107)
+texture = SubResource("GradientTexture2D_cxrdl")
+
+[node name="Start" parent="VfxPowerline" index="1"]
+position = Vector2(-122, 101)
+
+[node name="End" parent="VfxPowerline" index="2"]
+position = Vector2(-76, -107)
+
+[node name="VfxPowerline2" parent="." instance=ExtResource("3_i08m3")]
+divisions = 12
+deviation_distance = 4.0
+gradient = SubResource("Gradient_tejui")
+lifetime = 0.0
+
+[node name="Line2D" parent="VfxPowerline2" index="0"]
+points = PackedVector2Array(211, 133, 207.839, 111.652, 200.222, 90.7474, 194.483, 74.5203, 186.995, 51.7836, 180.52, 36.0846, 173.629, 12.7707, 164.753, -8.80692, 152.729, -26.2752, 145.754, -43.581, 142.058, -68.1998, 136, -84)
+texture = SubResource("GradientTexture2D_cxrdl")
+
+[node name="Start" parent="VfxPowerline2" index="1"]
+position = Vector2(211, 133)
+
+[node name="End" parent="VfxPowerline2" index="2"]
+position = Vector2(136, -84)
+
+[editable path="VfxPowerline"]
+[editable path="VfxPowerline2"]

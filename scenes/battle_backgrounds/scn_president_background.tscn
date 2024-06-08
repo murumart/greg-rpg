@@ -42,7 +42,7 @@ colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_560af"]
+[sub_resource type="CurveTexture" id="CurveTexture_ekksq"]
 curve = SubResource("Curve_578y2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f0gpj"]
@@ -55,7 +55,7 @@ gravity = Vector3(0, 0, 0)
 radial_accel_max = 2.0
 scale_min = 0.5
 scale_max = 2.0
-alpha_curve = SubResource("CurveTexture_560af")
+alpha_curve = SubResource("CurveTexture_ekksq")
 turbulence_noise_speed_random = 0.57
 turbulence_influence_min = 0.057
 turbulence_influence_max = 0.114
@@ -351,8 +351,8 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="Waves"]
 texture_repeat = 2
-position = Vector2(-12.8519, 43)
-scale = Vector2(1, 1.07787)
+position = Vector2(-31.5765, 43)
+scale = Vector2(1, 1.07433)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
@@ -362,8 +362,8 @@ region_rect = Rect2(0, 0, 360, 80)
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-101.259, 30)
-scale = Vector2(1, 1.07919)
+position = Vector2(-43.8133, 30)
+scale = Vector2(1, 1.04004)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true

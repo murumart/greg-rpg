@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=7 format=3 uid="uid://bad021c4pwnjo"]
+
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_65m85"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_euoy5"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_p4phw"]
+
+[sub_resource type="Resource" id="Resource_xd5w7"]
+script = ExtResource("1_euoy5")
+name = &"electric"
+strength = 2.0
+duration = 4
+
+[sub_resource type="Resource" id="Resource_w7xkd"]
+script = ExtResource("1_euoy5")
+name = &"shield"
+strength = 1.0
+duration = 1
+
+[sub_resource type="Resource" id="Resource_ytwkt"]
+script = ExtResource("2_p4phw")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_euoy5")]([SubResource("Resource_xd5w7"), SubResource("Resource_w7xkd")])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_65m85")
+name_in_file = &""
+name = &"surge"
+description = "surge power"
+animation = &""
+use_animation = &"dish_buff"
+receive_animation = &""
+cost = 100
+use = 2
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_ytwkt")

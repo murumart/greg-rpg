@@ -1,0 +1,259 @@
+[gd_scene load_steps=23 format=3 uid="uid://b1lu2vib51l6x"]
+
+[ext_resource type="Texture2D" uid="uid://bgmy4ypo1yu6h" path="res://sprites/spirit/spr_dish_debuff.png" id="1_46vhy"]
+[ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="1_i77x7"]
+[ext_resource type="AudioStream" uid="uid://bcauf4xalu0ee" path="res://sounds/spirit/dish_debuff.ogg" id="3_xj4fy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn32i"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(0, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_708re"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(160, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siyya"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(320, 0, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07xrv"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(0, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpkce"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(160, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wurig"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(320, 120, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0xv1"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(0, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guqwl"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(160, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cg18"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(320, 240, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_488e7"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(0, 360, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcmik"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(160, 360, 160, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udne6"]
+atlas = ExtResource("1_46vhy")
+region = Rect2(320, 360, 160, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpscg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn32i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_708re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_siyya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07xrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpkce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wurig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0xv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guqwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cg18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_488e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcmik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udne6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_fyd62"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mwn1l"]
+curve = SubResource("Curve_fyd62")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qcp3j"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 50, 1)
+angle_min = -2.0
+angle_max = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 7.94
+linear_accel_max = 15.87
+radial_accel_max = 2.0
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_mwn1l")
+turbulence_noise_speed_random = 0.57
+turbulence_influence_min = 0.057
+turbulence_influence_max = 0.114
+turbulence_initial_displacement_min = -27.1
+turbulence_initial_displacement_max = 41.4
+
+[sub_resource type="Animation" id="Animation_l3w0e"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_xj4fy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mist2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_50sop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mist2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jmfxw"]
+_data = {
+"RESET": SubResource("Animation_50sop"),
+"new_animation": SubResource("Animation_l3w0e")
+}
+
+[node name="ScnVfxDishDebuff" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_wpscg")
+
+[node name="Mist2" type="GPUParticles2D" parent="."]
+z_as_relative = false
+position = Vector2(0, 2)
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_qcp3j")
+texture = ExtResource("1_i77x7")
+lifetime = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jmfxw")
+}
+autoplay = "new_animation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

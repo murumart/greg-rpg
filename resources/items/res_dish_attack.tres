@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://nq0h47o38c4g"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_4tjlr"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_j7t5q"]
+
+[sub_resource type="Resource" id="Resource_56k05"]
+script = ExtResource("1_j7t5q")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_4tjlr")
+name_in_file = &""
+name = &""
+description = ""
+attack_animation = "dishpunch"
+price = 0
+use = 4
+consume_on_use = true
+payload = SubResource("Resource_56k05")
