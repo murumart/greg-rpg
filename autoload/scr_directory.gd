@@ -181,11 +181,12 @@ func appj(k: int, t: Variant)\
 	"pers")
 
 
-func screenshot() -> void:
+func screenshot(small: bool) -> void:
 	if not DirAccess.dir_exists_absolute("user://greg_rpg/screenshots"):
 		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
 	var img := get_viewport().get_texture().get_image()
-	img.resize(get_window().size.x, get_window().size.y, Image.INTERPOLATE_NEAREST)
+	if not small:
+		img.resize(get_window().size.x, get_window().size.y, Image.INTERPOLATE_NEAREST)
 	img.save_png(
 		"user://greg_rpg/screenshots/" + str(
 				Time.get_datetime_string_from_system().validate_filename()) + ".png"
