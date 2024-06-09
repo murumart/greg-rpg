@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bju0euwxosrud"]
+[gd_scene load_steps=5 format=3 uid="uid://bju0euwxosrud"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_mqtim"]
 [ext_resource type="Script" path="res://scenes/gui/scr_save_screen.gd" id="2_h7lsi"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_1c2wv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rer5"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0, 0, 0, 0.839216)
 
 [node name="SaveScreen" type="Control" groups=["free_on_level_transition"]]
 layout_mode = 3
@@ -133,6 +140,7 @@ offset_left = 72.0
 offset_top = 4.0
 offset_right = 159.0
 offset_bottom = 113.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_3rer5")
 bbcode_enabled = true
 text = "[center]save file info[/center]
 
