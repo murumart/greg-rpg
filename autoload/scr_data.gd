@@ -249,7 +249,7 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 
 
 func char_save_string_key(which: String, key: String) -> String:
-	return str("char_", which, "_", key)
+	return "char_" + which + "_" + key
 
 
 # saving and loading characters is handled here instead of inside the character

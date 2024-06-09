@@ -111,8 +111,8 @@ func set_vegetables(to: bool) -> void:
 
 func get_save_key(key: String) -> String:
 	return StringName(
-		str("greenhouse_", name, "_in_",
-		LTS.get_current_scene().name.to_snake_case(), "_", key))
+		"greenhouse_" + name + "_in_" +
+		LTS.get_current_scene().name.to_snake_case() + "_" + key)
 
 
 # the second on which vegs were eaten is saved

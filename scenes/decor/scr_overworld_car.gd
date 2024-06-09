@@ -122,7 +122,7 @@ func _save_me() -> void:
 
 
 func get_save_key(key: String) -> String:
-	return str("car_", name, "_in_", LTS.get_current_scene().name.to_snake_case(), "_", key)
+	return "car_" + name + "_in_" + LTS.get_current_scene().name.to_snake_case() + "_" + key
 
 
 func set_moves(to: bool):

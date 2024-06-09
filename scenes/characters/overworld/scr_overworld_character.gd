@@ -273,7 +273,7 @@ func direct_walking_animation(direction: Vector2) -> void:
 		animated_sprite.stop()
 		return
 	idle_timer.start(randfn(8, 3))
-	var animation_name := str("walk_", ROTS[Math.dir_from_rot(direction.angle()) + 1])
+	var animation_name : String = "walk_" + ROTS[Math.dir_from_rot(direction.angle()) + 1]
 	if not animated_sprite.sprite_frames.has_animation(animation_name):
 		return
 	animated_sprite.play(animation_name)
@@ -383,8 +383,8 @@ func _save_me() -> void:
 
 func get_save_key(key: String) -> StringName:
 	return StringName(
-		str("npc_", name, "_in_",
-		LTS.get_current_scene().name.to_snake_case(), "_", key))
+		"npc_" + name + "_in_" +
+		LTS.get_current_scene().name.to_snake_case() + "_" + key)
 
 
 func sort_by_distance(a: Node2D, b: Node2D) -> bool:

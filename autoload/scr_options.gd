@@ -258,7 +258,7 @@ func gen_option_nodes() -> void:
 		var opts := CATEGORIES[i] as Array
 		var label := Label.new()
 		main_container.add_child(label)
-		label.text = str("  ", i)
+		label.text = "  " + i
 		for j in opts:
 			var option := base_option.duplicate()
 			main_container.add_child(option)

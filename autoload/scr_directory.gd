@@ -32,16 +32,16 @@ func standalone() -> bool:
 # dicts are stored to file in the format provided by var2bytes
 # rather unreadable
 func write_dict_to_file(data: Dictionary, filename: String) -> void:
-	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.WRITE)
+	var file := FileAccess.open(GREG_USER_FOLDER_PATH + "/" + filename, FileAccess.WRITE)
 	file.store_var(var_to_bytes(data))
 	file.flush()
 
 
 func get_dict_from_file(filename: String) -> Dictionary:
-	if not FileAccess.file_exists(str(GREG_USER_FOLDER_PATH, "/", filename)):
+	if not FileAccess.file_exists(GREG_USER_FOLDER_PATH + "/" + filename):
 		printerr("no %s file exists" % filename)
 		return {}
-	var file := FileAccess.open(str(GREG_USER_FOLDER_PATH, "/", filename), FileAccess.READ)
+	var file := FileAccess.open(GREG_USER_FOLDER_PATH + "/" + filename, FileAccess.READ)
 	var returnable: Dictionary = bytes_to_var(file.get_var())
 	return returnable
 
@@ -73,7 +73,7 @@ func get_spirit_path(spiritname: String) -> String:
 
 
 func enemy_scene_path(name_in_file: String) -> String:
-	return str(ENEMY_SCENE_PATH % name_in_file)
+	return ENEMY_SCENE_PATH % name_in_file
 
 
 func room_scene_path(id: String) -> String:

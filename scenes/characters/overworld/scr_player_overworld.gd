@@ -103,7 +103,7 @@ func direct_raycast() -> void:
 
 func direct_animation() -> void:
 	var dir := Math.dir_from_rot(raycast.target_position.angle())
-	var animation_name := str("walk_", ROTS[dir + 1])
+	var animation_name : String = "walk_" + ROTS[dir + 1]
 	sprite.play(animation_name)
 	sprite.speed_scale = 0.0
 	if move_mode != MoveModes.SKATE:

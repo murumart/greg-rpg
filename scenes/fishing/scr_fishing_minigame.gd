@@ -163,9 +163,10 @@ func _on_hook_collision(node: Node2D) -> void:
 				if combo:
 					SOL.vfx(
 						"damage_number",
-						combo_bar.global_position + (Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2,
+						combo_bar.global_position +
+							(Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2,
 						{
-							"text": str("combo! +", combo),
+							"text": "combo! +" + str(combo),
 							"color": Color(1.0, 0.8, 0.6, 0.8),
 							"speed": 2
 						}
@@ -185,7 +186,8 @@ func _on_hook_collision(node: Node2D) -> void:
 				)
 			node.caught()
 			SND.play_sound(SND_CATCH, {"pitch_scale": remap(node.value, 1, 11, 1.0, 0.66)})
-			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch_scale = randf_range(0.9, 1.4)})
+			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
+					{pitch_scale = randf_range(0.9, 1.4)})
 			wiggle.call()
 
 

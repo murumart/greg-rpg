@@ -62,9 +62,12 @@ func get_effect_description() -> String:
 	if health or health_percent or max_health_percent:
 		var health_change := ""
 		var harm := health < 0 or health_percent < 0 or max_health_percent < 0
-		if harm: health_change += "damage: "
-		else: health_change += "health: "
-		if health: health_change += str(absf(health)) + " "
+		if harm:
+			health_change += "damage: "
+		else:
+			health_change += "health: "
+		if health:
+			health_change += str(absf(health)) + " "
 		if health_percent:
 			if health: health_change += "+"
 			health_change += str(absf(health_percent)) + "% hp "
@@ -127,14 +130,14 @@ func get_effect_description() -> String:
 			effcolor = efftype.color.darkened(0.2).to_html()
 			efftxt += "[color=#%s]%s[/color]" % [effcolor,
 			# the horrors
-					(fname + ((" "+Math.sign_symbol(eff.strength) + str(
-					absf(eff.strength))+" ") if eff.strength != 1
+					(fname + ((" " + Math.sign_symbol(eff.strength) + str(
+					absf(eff.strength)) + " ") if eff.strength != 1
 					else " ") + "for %s\n" % eff.duration)
 				]
 		else:
 			efftxt += ("[color=#%s]%s[/color]" % [effcolor,
-					(fname + ((" "+Math.sign_symbol(eff.strength) + str(
-					absf(eff.strength))+" ") if eff.strength != 1 else " "))
+					(fname + ((" " + Math.sign_symbol(eff.strength) + str(
+					absf(eff.strength)) + " ")  if eff.strength != 1 else " "))
 				] + "for %s\n" % eff.duration)
 		text += efftxt
 	if gender:

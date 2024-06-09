@@ -203,4 +203,4 @@ func _immune_text(actor: BattleActor) -> void:
 
 
 func _to_string() -> String:
-	return str("BattleStatusEffect " + type.s_id + " lvl " + str(strength) + " " + str(duration) + " turn(s) left")
+	return str("BattleStatusEffect ", type.s_id, " lvl ", strength, " ", duration, " turn(s) left")
