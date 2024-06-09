@@ -38,21 +38,21 @@ func init(options := {}) -> void:
 
 func _physics_process(delta: float) -> void:
 	gravity = sin(Engine.get_physics_frames() / 100.0) * gravity
-	
+
 	if randf() < 0.02:
 		move += Vector2(randf_range(-agit, agit), randf_range(-agit, agit))
 		var tw1 := create_tween()
 		tw1.tween_property(sprite, "modulate:a", randf_range(0.1, 1.1), randf_range(0.1, 2.0))
 		var tw2 := create_tween()
 		tw2.tween_property(label, "modulate:a", randf_range(0.3, 1.1), randf_range(0.1, 2.0))
-	
+
 	move.y = move_toward(move.y, 0.0, delta)
 	move.x = move_toward(move.x, 0.0, delta)
-	
+
 	move.y += gravity
-	
+
 	move = move.limit_length(2.0)
-	
+
 	position += move
 	if (position.x <= clamp_zone_min.x or position.x >= clamp_zone_max.x): move.x = -move.x
 	if (position.y <= clamp_zone_min.y or position.y >= clamp_zone_max.y): move.y = -move.y

@@ -1,40 +1,11 @@
 [gd_scene load_steps=26 format=3 uid="uid://dhve75utx7fh7"]
 
 [ext_resource type="Texture2D" uid="uid://bwng2xhy78hng" path="res://sprites/characters/battle/president/spr_dish_big.png" id="2_7agk0"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scn_enemy_dish.gd" id="2_rem6r"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
+[ext_resource type="Shader" path="res://shaders/shd_dish_iridescence.gdshader" id="2_x2g0d"]
 [ext_resource type="Texture2D" uid="uid://dc4khr6yps6nm" path="res://sprites/spirit/spr_dish_use.png" id="3_s1scl"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="4_k0s8a"]
 [ext_resource type="Texture2D" uid="uid://c34u2d6fe3rix" path="res://sprites/characters/battle/president/spr_pizza_delivery_guy.png" id="5_ov1ks"]
-
-[sub_resource type="Shader" id="Shader_pbrfp"]
-code = "// rote this myslef coptright murumart 20204
-
-shader_type canvas_item;
-
-uniform sampler2D noise_texture: filter_nearest, repeat_enable;
-uniform float iridescence_reducer = 0.85f;
-uniform float iridescence_reducer_multiplier = 1.0f;
-
-const float noise_time_scale = 0.2f;
-const float uv_scale = 0.5f;
-const float cyamag_diff = 0.75f;
-
-void fragment() {
-	//COLOR = vec4(COLOR.r, (sin(TIME) + 1.0f) * 0.5f, COLOR.b, COLOR.a);
-	float diff = (sin(TIME * 0.05f) + 1.0f) * cyamag_diff;
-	vec2 noise_color = vec2(
-			texture(noise_texture,
-					vec2(((UV.x * uv_scale) - sin(TIME * noise_time_scale)),
-					(UV.y * uv_scale) - (TIME * noise_time_scale))
-			).r,
-			texture(noise_texture,
-					vec2(((UV.x * uv_scale) - sin(TIME * noise_time_scale)) - diff,
-					(UV.y * uv_scale) - (TIME * noise_time_scale)) - diff
-			).r
-	) * (1.0f - iridescence_reducer * iridescence_reducer_multiplier);
-	COLOR = vec4(COLOR.r + noise_color.x, COLOR.g + noise_color.x, COLOR.b + noise_color.y, COLOR.a);
-}
-"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j267r"]
 frequency = 0.0218
@@ -44,7 +15,7 @@ offset = Vector3(250, 0, 0)
 noise = SubResource("FastNoiseLite_j267r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38e2f"]
-shader = SubResource("Shader_pbrfp")
+shader = ExtResource("2_x2g0d")
 shader_parameter/iridescence_reducer = 0.85
 shader_parameter/iridescence_reducer_multiplier = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_4csr8")
@@ -261,6 +232,58 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vc1hr"]
+resource_name = "attack"
+length = 0.8465
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node/CanvasGroup/RightHand:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-75.6719, 72.7813), Vector2(-57, 79), Vector2(-69, 54), Vector2(-76, 93), Vector2(-75.6719, 72.7813)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/CanvasGroup/RightHand:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.080008, 0.577302, 1.00698, 0.080008]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node/CanvasGroup/Head:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 26), Vector2(2.46939, 25.5592)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node/CanvasGroup/Head:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_56w3f"]
@@ -575,58 +598,6 @@ tracks/8/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vc1hr"]
-resource_name = "attack"
-length = 0.8465
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node/CanvasGroup/RightHand:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-75.6719, 72.7813), Vector2(-57, 79), Vector2(-69, 54), Vector2(-76, 93), Vector2(-75.6719, 72.7813)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node/CanvasGroup/RightHand:rotation")
-tracks/1/interp = 4
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.080008, 0.577302, 1.00698, 0.080008]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node/CanvasGroup/Head:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 26), Vector2(2.46939, 25.5592)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node/CanvasGroup/Head:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0btp4"]
 _data = {
 "RESET": SubResource("Animation_p50l1"),
@@ -647,12 +618,11 @@ effect_immunities = Array[String](["little", "sopping"])
 
 [node name="Node" type="Node" parent="."]
 
-[node name="CanvasGroup" type="Node2D" parent="Node"]
+[node name="CanvasGroup" type="CanvasGroup" parent="Node"]
 material = SubResource("ShaderMaterial_38e2f")
 position = Vector2(0, -27)
 
 [node name="Body" type="Sprite2D" parent="Node/CanvasGroup"]
-use_parent_material = true
 position = Vector2(-111, 0)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -660,7 +630,6 @@ region_enabled = true
 region_rect = Rect2(1, 96, 220, 95)
 
 [node name="Head" type="Sprite2D" parent="Node/CanvasGroup"]
-use_parent_material = true
 position = Vector2(0, 23)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -669,7 +638,6 @@ region_enabled = true
 region_rect = Rect2(82, 3, 60, 88)
 
 [node name="LeftHand" type="Sprite2D" parent="Node/CanvasGroup"]
-use_parent_material = true
 position = Vector2(75, 72)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -678,7 +646,6 @@ region_enabled = true
 region_rect = Rect2(229, 48, 48, 70)
 
 [node name="RightHand" type="Sprite2D" parent="Node/CanvasGroup"]
-use_parent_material = true
 position = Vector2(-76, 73)
 texture = ExtResource("2_7agk0")
 centered = false
