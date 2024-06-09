@@ -75,7 +75,7 @@ class MGPayload:
 	func pload() -> BattlePayload:
 		var pl := BattlePayload.new()
 		var much := float(lvl)
-		var repears := mini(rng.randfn(2, 1), 1) + int(lvl / 70)
+		var repears := mini(int(rng.randfn(2, 1)), 1) + int(lvl / 70)
 		if rng.randf() < 0.04:
 			repears += rng.randi_range(1, 6)
 		pl.type = BattlePayload.Types.SPIRIT
@@ -133,9 +133,9 @@ class MGPayload:
 
 		se.name = _eff_name()
 		if rng.randf() < 0.2:
-			se.duration += rng.randf_range(-10, 10)
+			se.duration += roundi(rng.randf_range(-10, 10))
 		elif rng.randf() < 0.2:
-			se.strength += rng.randf_range(-6, 12)
+			se.strength += roundi(rng.randf_range(-6, 12))
 
 		var rand_end := 5.0
 		if se.name in HIGH_VARIANCE_EFFECTS:
@@ -148,13 +148,13 @@ class MGPayload:
 			rand_start = 1
 		else:
 			rand_end = maxf(rand_end, rand_start + 5.0)
-		se.strength = randf_range(rand_start, rand_end)
+		se.strength = rng.randf_range(rand_start, rand_end)
 
 		for _n in 5:
 			var cost := secost(se)
 			if cost >= much:
 				if rng.randf() <= 0.66:
-					se.duration = maxf(se.duration + rng.randi_range(-3, 1), 1)
+					se.duration = maxi(se.duration + rng.randi_range(-3, 1), 1)
 				else:
 					se.strength = maxf(se.strength + rng.randf_range(-3, 1), 1)
 
@@ -211,7 +211,7 @@ class MGPayload:
 		return cost
 
 
-	static func plcost(pl: BattlePayload) -> float:
+	static func plcost(pl: BattlePayload) -> int:
 		var sc := 0.0
 		for x in pl.effects:
 			sc += secost(x)
@@ -228,7 +228,7 @@ class MGPayload:
 		elif pl.max_health_percent > 0:
 			sc -= (pl.max_health_percent * 4)
 		print(sc)
-		return sc
+		return int(roundf(sc))
 
 
 class MGRandomName:

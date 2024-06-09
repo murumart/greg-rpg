@@ -1,6 +1,6 @@
-func added(actor: BattleActor, container: BattleStatusEffect) -> void:
+func added(actor: BattleActor, _container: BattleStatusEffect) -> void:
 	actor.scale = Vector2(0.2, 0.2)
 
 
-func removed(actor: BattleActor, container: BattleStatusEffect) -> void:
+func removed(actor: BattleActor, _container: BattleStatusEffect) -> void:
 	actor.scale = Vector2.ONE
