@@ -1,5 +1,8 @@
 extends Node2D
 
+const FRAMES_PATH := "res://scenes/vfx/sfr_spirit_%s.tres"
+const SPRITE_PATH := "res://sprites/spirit/spr_%s_hint.png"
+
 var move := Vector2()
 var clamp_zone_min := Vector2(10, 30)
 var clamp_zone_max := Vector2()
@@ -7,10 +10,12 @@ var gravity := 0.8
 
 var agit := 1.0
 
-@onready var sprite := $Sprite
+static var sprite_frame_storage := {}
+
+@onready var sprite := $Sprite as AnimatedSprite2D
 @onready var label := $Label
 @onready var particles := $GPUParticles2D
-const FRAMES_PATH := "res://scenes/vfx/sfr_spirit_%s.tres"
+
 
 func _ready() -> void:
 	clamp_zone_max = Vector2(SOL.SCREEN_SIZE.x - 10, SOL.SCREEN_SIZE.y / 2.0)
@@ -23,21 +28,24 @@ func _ready() -> void:
 
 
 func init(options := {}) -> void:
-	var srt: String = options.get("spirit", "unknown")
-	if DIR.spirit_hint_exists(srt):
-		sprite.sprite_frames = load(FRAMES_PATH % srt)
-	var nam := ResMan.get_spirit(srt).name
+	var spirit_name := options.get("spirit", "unknown") as String
+	if ResourceLoader.exists(FRAMES_PATH % spirit_name):
+		sprite.sprite_frames = load(FRAMES_PATH % spirit_name)
+	elif ResourceLoader.exists(SPRITE_PATH % spirit_name):
+		sprite.sprite_frames = _sprite_frames_from_file(SPRITE_PATH % spirit_name)
+	# else: use default
+	var nam := ResMan.get_spirit(spirit_name).name
 	label.text = nam
 	var h := str(hash(nam)).split()
 	var g := []
 	for i in h:
-		g.append(float(i) / 10.0)
+		g.append(float(i) * 0.01)
 	particles.modulate = Color(g[0], g[1], g[2])
 	sprite.play()
 
 
 func _physics_process(delta: float) -> void:
-	gravity = sin(Engine.get_physics_frames() / 100.0) * gravity
+	gravity = sin(Engine.get_physics_frames() * 0.01) * gravity
 
 	if randf() < 0.02:
 		move += Vector2(randf_range(-agit, agit), randf_range(-agit, agit))
@@ -54,8 +62,10 @@ func _physics_process(delta: float) -> void:
 	move = move.limit_length(2.0)
 
 	position += move
-	if (position.x <= clamp_zone_min.x or position.x >= clamp_zone_max.x): move.x = -move.x
-	if (position.y <= clamp_zone_min.y or position.y >= clamp_zone_max.y): move.y = -move.y
+	if (position.x <= clamp_zone_min.x or position.x >= clamp_zone_max.x):
+		move.x = -move.x
+	if (position.y <= clamp_zone_min.y or position.y >= clamp_zone_max.y):
+		move.y = -move.y
 	position = position.clamp(clamp_zone_min, clamp_zone_max)
 
 
@@ -64,3 +74,19 @@ func del() -> void:
 	tw.tween_property(self, "modulate:a", 0.0, 1.0)
 	tw.finished.connect(queue_free)
 
+
+func _sprite_frames_from_file(sprite_path: String) -> SpriteFrames:
+	if sprite_path in sprite_frame_storage.keys():
+		return sprite_frame_storage[sprite_path]
+	var frames = SpriteFrames.new()
+	var texture := load(sprite_path) as CompressedTexture2D
+	print(load(sprite_path))
+	const WIDTH = 16
+	var hframes = texture.get_height() / WIDTH
+	for i in hframes:
+		var at := AtlasTexture.new()
+		at.atlas = texture
+		at.region = Rect2(0, WIDTH * i, WIDTH, WIDTH)
+		frames.add_frame("default", at)
+	sprite_frame_storage[sprite_path] = frames
+	return frames
