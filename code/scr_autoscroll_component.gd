@@ -15,8 +15,8 @@ func _ready() -> void:
 
 
 func check() -> void:
-	if not target.is_visible_in_tree():
-		return
+	#if not target.is_visible_in_tree():
+		#return
 	if target.get_v_scroll_bar():
 		var scrollbar := target.get_v_scroll_bar() as VScrollBar
 		if scrollbar.max_value != scrollbar.page:

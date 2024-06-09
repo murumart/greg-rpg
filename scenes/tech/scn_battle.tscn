@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=22 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="Resource" uid="uid://dq15d2quoe8li" path="res://resources/battle_infos/dish_fight.tres" id="2_11qsr"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="8_teagk"]
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
+[ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -380,6 +381,10 @@ offset_right = 159.0
 offset_bottom = 59.0
 bbcode_enabled = true
 scroll_active = false
+
+[node name="AutoscrollComponent" type="Node" parent="UI/Panel/ScreenItemSelect/ItemInfoLabel" node_paths=PackedStringArray("target")]
+script = ExtResource("11_jcqcf")
+target = NodePath("..")
 
 [node name="ScreenPartyInfo" type="Control" parent="UI/Panel"]
 unique_name_in_owner = true

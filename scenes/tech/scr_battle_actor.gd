@@ -37,8 +37,11 @@ var status_effects := {}
 var reference_to_team_array: Array[BattleActor] = []
 var reference_to_opposing_array: Array[BattleActor] = []
 var reference_to_actor_array: Array[BattleActor] = []
+var crit_chance := 0.05
+var crittable := [] # those who can be critted the next round
 
 var player_controlled := false
+var rng := RandomNumberGenerator.new()
 
 @export_group("Other")
 @export_enum(
@@ -58,6 +61,7 @@ func _init() -> void:
 
 # the character is loaded before _ready()
 func _ready() -> void:
+	rng.set_seed(randi())
 	if not is_instance_valid(character):
 		character = Character.new()
 	actor_name = character.name
@@ -65,8 +69,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var sleepy := has_status_effect(&"sleepy")
-	if not character: return
-	if SOL.dialogue_open: return # don't run logic if dialogue is open
+	if not character:
+		return
+	if SOL.dialogue_open:
+		return # don't run logic if dialogue is open
 	effect_visuals()
 	match state:
 		States.IDLE:
@@ -229,9 +235,11 @@ func attack(subject: BattleActor) -> void:
 		turn_finished()
 		return
 	# manual construction of payload
-	var crit := randf() <= 0.05
+	#var crit := randf() <= 0.05
+	var crit := subject in crittable
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
-	if crit: pld.health *= 2.5
+	if crit:
+		pld.health *= 2.5
 	var weapon: Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
@@ -550,4 +558,15 @@ func get_gender() -> int:
 	if has_status_effect("sopping"):
 		return Genders.SOPPING
 	return gender
+
+
+func set_crittable() -> void:
+	crittable = reference_to_actor_array.filter(func(a) -> bool:
+		var actor := a as BattleActor
+		if not is_instance_valid(actor):
+			return false
+		if actor.state == States.DEAD:
+			return false
+		return rng.randf() <= crit_chance
+	)
 

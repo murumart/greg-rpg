@@ -35,12 +35,12 @@ var extra_targets: Array[BattleActor]
 @export_range(0.0, 10.0) var xp_multiplier := 1.0
 
 var last_intent: Intents
-var rng := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
 	animate("idle")
 	super._ready()
+	# manually set rng seed
 	rng.seed = hash(actor_name) + DAT.get_data("nr", 0) * 1000
 	# sorting the spirits
 	for s in character.spirits:

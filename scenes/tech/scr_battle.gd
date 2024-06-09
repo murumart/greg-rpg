@@ -385,6 +385,7 @@ func _on_act_requested(actor: BattleActor) -> void:
 func _on_act_finished(actor: BattleActor) -> void:
 	if is_end():
 		return
+	actor.set_crittable()
 	if actor.player_controlled:
 		player_finished_acting.emit()
 	open_party_info_screen()
@@ -536,7 +537,8 @@ func open_list_screen() -> void:
 			Math.load_reference_buttons(
 					array, list_containers,
 					_reference_button_pressed,
-					_on_button_reference_received)
+					_on_button_reference_received,
+					{"custom_pass_function": crittable_display})
 			screen_list_select.show()
 		Doings.ITEM_MENU:
 			var items := current_guy.character.inventory.duplicate()
@@ -559,13 +561,15 @@ func open_list_screen() -> void:
 			Math.load_reference_buttons(
 					array, list_containers,
 					_reference_button_pressed,
-					_on_button_reference_received)
+					_on_button_reference_received,
+					{"custom_pass_function": crittable_display})
 			screen_list_select.show()
 		Doings.SPIRIT:
 			Math.load_reference_buttons(
 					actors, list_containers,
 					_reference_button_pressed,
-					_on_button_reference_received)
+					_on_button_reference_received,
+					{"custom_pass_function": crittable_display})
 			screen_list_select.show()
 			load_floating_spirits()
 	resize_panel(60)
@@ -937,3 +941,12 @@ func set_greg_speed() -> void:
 
 func is_ui_locked() -> bool:
 	return SOL.dialogue_open or not ui.visible or ui.modulate.a < 1.0
+
+
+func crittable_display(opt: Dictionary) -> void:
+	if current_guy in opt.reference.crittable:
+		opt.button.modulate = Color.YELLOW
+	elif opt.reference in current_guy.crittable:
+		opt.button.modulate = (opt.button.modulate as Color)\
+				.blend(Color.GREEN)
+
