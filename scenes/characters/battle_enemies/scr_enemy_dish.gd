@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	power_label.modulate.b = minf(1.0 - (electric_power * 0.04), 1.0)
 	var electric := get_status_effect("electric")
 	power_label.text = "p o w e r : " + (
-			str(electric.strength) if electric else "0.0")
+			str(electric.strength) if electric else "0")
 	canvas_group.material.set("shader_parameter/iridescence_reducer",
 			character.health_perc() * 0.85)
 	animator.speed_scale = 2.0 - character.health_perc() * 0.76
@@ -34,7 +34,8 @@ func ai_action() -> void:
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
 	super()
-	_increase_electric(0.5)
+	if turn % 3 == 0:
+		_increase_electric(0.5)
 
 
 func hurt(amount: float, h_gender: int) -> void:

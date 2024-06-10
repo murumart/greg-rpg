@@ -2817,6 +2817,13 @@ EMO power
 	as i'm sure you'll experience soon.
 
 
+DIALOGUE president_monologue_11
+CHAR president
+EMO power
+	öokpoksaüpockascpokac
+	
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
@@ -2850,16 +2857,6 @@ DIALOGUE insp_lit_campfire
 	this campfire is alight.
 CHOICES yes,no
 	you could use the fire to make things. do you want to look closer?
-
-
-DIALOGUE campfire_exchanges
-CHOICES 
-	what would you like to do?
-
-
-DIALOGUE campfire_exchange_confirm
-CHOICES yes,no,info
-	you really want to %s?
 
 
 DIALOGUE insp_postboxes

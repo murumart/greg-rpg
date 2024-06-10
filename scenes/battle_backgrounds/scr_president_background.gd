@@ -13,7 +13,6 @@ var skip_intro := false
 @onready var spin_pivot: Node2D = $Lighthouse/SpinPivot
 @onready var mist_2: GPUParticles2D = $Mist2
 @onready var mist: GPUParticles2D = $Mist
-@onready var text_box: TextBox = $TextBox
 @onready var zoom_animation: AnimationPlayer = $Lighthouse/ZoomAnimation
 @onready var powerline: Node2D = $More/VfxPowerline
 @onready var powerline_2: Node2D = $More/VfxPowerline2
@@ -74,7 +73,6 @@ func new_line(line: int) -> void:
 			tw = create_tween()
 			tw.tween_property(spin_pivot, "modulate:a", 0.0, 2.0)
 		elif line == 6:
-			text_box.text = ""
 			initial_message_spoken = true
 			SOL.dialogue_box.started_speaking.disconnect(new_line)
 

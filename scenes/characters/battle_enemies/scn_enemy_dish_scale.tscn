@@ -3120,6 +3120,7 @@ _data = {
 }
 
 [node name="DishScale" instance=ExtResource("1_etmw4")]
+z_index = -86
 
 [node name="Puppet" type="CanvasGroup" parent="." index="0"]
 z_index = -2

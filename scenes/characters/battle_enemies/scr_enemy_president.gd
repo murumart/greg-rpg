@@ -37,7 +37,8 @@ func _progress_check(damage: float) -> float:
 		progress = 2
 		SOL.dialogue("president_33")
 		damage += character.health - damage - character.max_health * 0.33
-		SOL.dialogue_box.started_speaking.connect(_instrumental_solo)
+		if Math.inrange(DAT.get_data("nr"), 0.87, 0.88):
+			SOL.dialogue_box.started_speaking.connect(_instrumental_solo)
 		if not is_instance_valid(background):
 			return damage
 		SOL.dialogue_closed.connect(func():

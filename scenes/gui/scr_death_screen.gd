@@ -51,6 +51,11 @@ const DEATH_REASONS := {
 	"vampire": {
 		"picture": "vampire",
 		"text": "[center]looooooooseeeeeeeer!",
+	},
+	"president_gun": {
+		"picture": "president_gun",
+		"text": "",
+		"sound": "res://sounds/spirit/dishpunch.ogg"
 	}
 }
 @export var test_death := ""

@@ -806,6 +806,8 @@ texture = ExtResource("5_ov1ks")
 
 [node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople"]
 scale = Vector2(0.48, 0.48)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople/Node2D"]
 modulate = Color(1, 1, 1, 0)

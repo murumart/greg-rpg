@@ -178,4 +178,14 @@ DIALOGUE store_wont_let_you_in
 	they won't let you in.
 	you might've stolen too much.
 
+DIALOGUE campfire_exchanges
+CHOICES 
+	what would you like to do?
+
+
+DIALOGUE campfire_exchange_confirm
+CHOICES yes,no,info
+	you really want to %s?
+
+
 

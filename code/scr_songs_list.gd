@@ -60,7 +60,6 @@ var songs := {
 	"extremophile": {
 		"title": "extremophile",
 		"stream": preload("res://music/mus_extremophile.ogg"),
-		"default_volume": -1,
 	},
 	"favourable_silence": {
 		"title": "favourable silence",
