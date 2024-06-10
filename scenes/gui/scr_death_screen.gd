@@ -56,6 +56,10 @@ const DEATH_REASONS := {
 		"picture": "president_gun",
 		"text": "",
 		"sound": "res://sounds/spirit/dishpunch.ogg"
+	},
+	"dish": {
+		"picture": "dish",
+		"text": "[center]sleep with the dishes / for a 1000 years",
 	}
 }
 @export var test_death := ""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhve75utx7fh7"]
+[gd_scene load_steps=33 format=3 uid="uid://dhve75utx7fh7"]
 
 [ext_resource type="Texture2D" uid="uid://bwng2xhy78hng" path="res://sprites/characters/battle/president/spr_dish_big.png" id="2_7agk0"]
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
@@ -20,6 +20,19 @@ shader = ExtResource("2_x2g0d")
 shader_parameter/iridescence_reducer = 0.85
 shader_parameter/iridescence_reducer_multiplier = 1.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_4csr8")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_js0um"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_am7rb"]
+offsets = PackedFloat32Array(0.0670129, 0.240173)
+colors = PackedColorArray(0, 0.0666667, 0.0823529, 1, 0.59326, 1, 0.671239, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2hil2"]
+gradient = SubResource("Gradient_am7rb")
+fill = 1
+fill_from = Vector2(0.5, 0.915)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vr7js"]
 blend_mode = 1
@@ -762,6 +775,14 @@ texture = ExtResource("2_7agk0")
 centered = false
 region_enabled = true
 region_rect = Rect2(1, 96, 220, 95)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/CanvasGroup/Body"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_js0um")
+position = Vector2(110, -29.625)
+scale = Vector2(9.5, 5.39453)
+texture = SubResource("GradientTexture2D_2hil2")
+metadata/_edit_lock_ = true
 
 [node name="Head" type="Sprite2D" parent="Node/CanvasGroup"]
 position = Vector2(0, 23)

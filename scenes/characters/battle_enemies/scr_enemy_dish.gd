@@ -5,14 +5,13 @@ extends BattleEnemy
 @onready var canvas_group: Node2D = $Node/CanvasGroup
 
 var electric_power : float = 0.0
-var monologue_progress := 0
 
 
 func _ready() -> void:
 	super()
 	remove_child(time_for_pizz)
 	SOL.add_ui_child(time_for_pizz)
-	crit_chance = 0.035
+	crit_chance = 0.02
 	# move the message container down so it doesn't obscure the power label
 	if LTS.get_current_scene().name == "Battle":
 		LTS.get_current_scene().log_text.position.y += 8
@@ -61,8 +60,7 @@ func _pizz_arrival_animation() -> void:
 
 
 func _monologue() -> void:
-	var title := "president_monologue_" + str(monologue_progress)
-	monologue_progress += 1
+	var title := "president_monologue_" + str(turn)
 	if SOL.dialogue_exists(title):
 		SOL.dialogue(title)
 
