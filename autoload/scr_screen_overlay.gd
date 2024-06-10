@@ -58,6 +58,8 @@ func dialogue(key: String) -> void:
 
 
 func dialogue_exists(key: String) -> bool:
+	if dialogue_box.dialogues_dict.is_empty():
+		dialogue_box.load_dialogue_dict()
 	return key in dialogue_box.dialogues_dict
 
 

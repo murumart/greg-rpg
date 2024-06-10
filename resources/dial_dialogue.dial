@@ -2788,17 +2788,32 @@ EMO power
 	...with proof as sure as the sea itself.
 
 
+DIALOGUE president_monologue_0
+CHAR president
+EMO power
+	do you see the weather?
+	[color=PRESCOLOR]dish[/color] draws its power from the thunderclouds.
+	
+
 DIALOGUE president_monologue_1
+CHAR president
+EMO power
+	it's getting more and more stormy...
+	your fate is sealed.
+	
+
+DIALOGUE president_monologue_6
 CHAR president
 EMO power
 	i have lived a long life and seen many years.
 	but no era has been as wondrous as the current time.
 
 
-DIALOGUE president_monologue_2
+DIALOGUE president_monologue_7
 CHAR president
 EMO power
-	
+	you see,
+	my computer is hack???
 
 
 DIALOGUE insp_snowdrops

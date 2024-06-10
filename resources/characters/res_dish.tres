@@ -1,24 +1,30 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://de4ypdbnokrwb"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://de4ypdbnokrwb"]
 
+[ext_resource type="Texture2D" uid="uid://dnqlcua0daxsu" path="res://sprites/characters/battle/president/spr_dish.png" id="1_47ymd"]
 [ext_resource type="Script" path="res://code/scr_character.gd" id="1_dxe58"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkj3f"]
+atlas = ExtResource("1_47ymd")
+region = Rect2(-3, -6, 22, 22)
 
 [resource]
 script = ExtResource("1_dxe58")
 name_in_file = &""
 name = "dish"
 info = "it towers above you. you can feel its groan in your bones."
-max_health = 1000.0
-health = 1000.0
+portrait = SubResource("AtlasTexture_mkj3f")
+max_health = 700.0
+health = 700.0
 max_magic = 90000.0
 magic = 90000.0
 level = 55
 experience = 0
-attack = 55.0
+attack = 42.0
 defense = 35.0
 speed = 55.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["dish_debuff", "dish_buff"])
 unused_sprits = Array[String]([])
-armour = ""
+armour = "frankling_badge"
 weapon = "dish_attack"

@@ -670,6 +670,8 @@ texture = ExtResource("4_k0s8a")
 position = Vector2(253, 12)
 texture = ExtResource("5_ov1ks")
 
+[node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_0btp4")
@@ -683,12 +685,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TimeLimitLabel" type="Label" parent="TimeForPizz"]
+[node name="PowerLabel" type="Label" parent="TimeForPizz"]
+self_modulate = Color(1, 1, 1, 0.729412)
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 87.0
+offset_right = 158.0
 offset_bottom = 10.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
-text = "time left: 1281921"
+text = "p o w e r : "
+horizontal_alignment = 1
