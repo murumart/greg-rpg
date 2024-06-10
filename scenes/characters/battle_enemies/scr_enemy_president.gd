@@ -17,16 +17,12 @@ func _ready() -> void:
 		background.enemy_requested.connect(LTS.get_current_scene().request_new_enemy)
 		if background.skip_intro:
 			return
-	var tw := create_tween()
-	tw.tween_property(self, "global_position:y", 190.0, 7.0).from(189.0)
-	tw.tween_property(self, "global_position:y", 1.0, 14)
-	tw.parallel().tween_property(self, "modulate", Color.WHITE, 30
-			).from(Color.BLACK)
 
 
 func hurt(amount: float, h_gender: int) -> void:
-	if h_gender == Genders.ELECTRIC and not mentioned_electric_resistance:
-		mentioned_electric_resistance = true
+	if h_gender == Genders.ELECTRIC and not DAT.get_data(
+				"president_mentioned_electric_resistance"):
+		DAT.set_data("president_mentioned_electric_resistance", true)
 		SOL.dialogue("president_resistance")
 	amount = _progress_check(amount)
 	super(amount, h_gender)
@@ -36,11 +32,12 @@ func _progress_check(damage: float) -> float:
 	if (character.health - damage) / character.max_health < 0.5 and progress == 0:
 		progress = 1
 		SOL.dialogue("president_50")
-		damage += (character.health - damage) - character.max_health * 0.7
+		damage += character.health - damage - character.max_health * 0.7
 	elif (character.health - damage) / character.max_health < 0.33 and progress == 1:
 		progress = 2
 		SOL.dialogue("president_33")
-		damage += (character.health - damage) - character.max_health * 0.33
+		damage += character.health - damage - character.max_health * 0.33
+		SOL.dialogue_box.started_speaking.connect(_instrumental_solo)
 		if not is_instance_valid(background):
 			return damage
 		SOL.dialogue_closed.connect(func():
@@ -55,3 +52,13 @@ func _progress_check(damage: float) -> float:
 			reference_to_opposing_array.map(func(a): a.offload_character())
 		, CONNECT_ONE_SHOT)
 	return damage
+
+
+func _instrumental_solo(line: int) -> void:
+	if line >= 5:
+		SND.current_song_player.volume_db = -30.0
+		SND.play_sound(preload("res://sounds/talking/solo.ogg"))
+		var tw := create_tween()
+		tw.tween_interval(1.0)
+		tw.tween_property(SND.current_song_player, "volume_db", 0.0, 1.0)
+		SOL.dialogue_box.started_speaking.disconnect(_instrumental_solo)

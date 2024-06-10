@@ -2755,21 +2755,21 @@ DIALOGUE president_start
 
 DIALOGUE president_50
 CHAR president
-	your resistance to my rule is maddening!
-	cease your rebellion now... or face the consequences.
+	i see now... you're trying to overthrow me!
+	i won't have it!
 
 
 DIALOGUE president_33
 CHAR president
 	one second.
 	...
-	i have just been given crucial information.
-	so... my "pizz delivery" will be arriving in 2 minutes.
-	i have been waiting for this for literal years.
-	so... i recommend that you die quickly now...
-	...because when that "pizz" is here... well...
-	let's hurry up.
-	come forth, [color=PRESCOLOR]dish[/color]!!
+	owing to the wonders of modern technology...
+	i have just sent a long-distance transmission...
+	...or, "called", the "pizz" delivery man.
+	[instrumental solo]
+	they will be here soon, and you will fail.
+	but to buy myself time to escape...
+	come forth!! [color=PRESCOLOR]dish[/color]!!
 
 
 DIALOGUE theres_dish
@@ -2788,19 +2788,19 @@ EMO power
 	...with proof as sure as the sea itself.
 
 
-DIALOGUE president_monologue_0
+DIALOGUE president_monologue_1
 CHAR president
 EMO power
 	do you see the weather?
 	[color=PRESCOLOR]dish[/color] draws its power from the thunderclouds.
 	
 
-DIALOGUE president_monologue_1
+DIALOGUE president_monologue_2
 CHAR president
 EMO power
 	it's getting more and more stormy...
 	your fate is sealed.
-	
+
 
 DIALOGUE president_monologue_6
 CHAR president
@@ -2812,8 +2812,9 @@ EMO power
 DIALOGUE president_monologue_7
 CHAR president
 EMO power
-	you see,
-	my computer is hack???
+	i love ordering "pizz". it's great food...
+	and i've made good connections through it.
+	as i'm sure you'll experience soon.
 
 
 DIALOGUE insp_snowdrops

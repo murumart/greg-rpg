@@ -129,8 +129,9 @@ func save_audio_position(player: AudioStreamPlayer, song: Dictionary):
 	song["progress"] = position
 
 
-func play_sound(sound: AudioStream, options := {}):
-	if playing_sounds.size() >= MAX_SOUNDS_PLAYING: return
+func play_sound(sound: AudioStream, options := {}) -> AudioStreamPlayer:
+	if playing_sounds.size() >= MAX_SOUNDS_PLAYING:
+		return null
 	var player := AudioStreamPlayer.new()
 	sound.loop = false
 	player.name = str(sound)
@@ -141,7 +142,9 @@ func play_sound(sound: AudioStream, options := {}):
 	if options.get("autofree", true): playing_sounds.append(player)
 	add_child(player)
 	player.play()
-	if options.get("return", false): return player
+	if not options.get("return", false):
+		return null
+	return player
 
 
 func menusound(pitch := 1.0, options := {}) -> void:

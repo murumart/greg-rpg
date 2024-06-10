@@ -37,11 +37,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	beam.scale.x += delta * spin_speed * (1 / 60.0) * beam_direction
+	beam.scale.x += delta * spin_speed * (0.0166667) * beam_direction
 	if beam.scale.x >= 2.0 or beam.scale.x <= -2.0:
 		beam_direction *= -1
 	beam.self_modulate.a = remap(absf(beam.scale.x), 0.0, 2.0, 0.1, 1.1)
-	spin_pivot.rotation += spin_speed * delta * (1 / 60.0)
+	spin_pivot.rotation += spin_speed * delta * (0.0166667)
 	spin_pivot.get_children().map(func(a: OverworldCharacter):
 		a.global_rotation = 0.0
 		a.direct_walking_animation(a.global_position.direction_to(spin_pivot.global_position))

@@ -1,4 +1,3 @@
-@tool
 extends Node2D
 
 # shelves in the store. copied over from old greg

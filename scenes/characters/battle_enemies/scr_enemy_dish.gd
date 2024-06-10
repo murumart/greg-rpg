@@ -37,6 +37,14 @@ func ai_action() -> void:
 	_increase_electric(0.5)
 
 
+func hurt(amount: float, h_gender: int) -> void:
+	super(amount, gender)
+	if h_gender == Genders.ELECTRIC and not DAT.get_data(
+				"president_mentioned_electric_resistance"):
+		DAT.set_data("president_mentioned_electric_resistance", true)
+		SOL.dialogue("president_resistance")
+
+
 func _spirit_dish_buff_used_on() -> void:
 	_increase_electric(1.0)
 
@@ -56,7 +64,6 @@ func _monologue() -> void:
 	monologue_progress += 1
 	if SOL.dialogue_exists(title):
 		SOL.dialogue(title)
-
 
 
 func _president_slide(out: bool) -> void:

@@ -124,7 +124,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -805,10 +805,10 @@ position = Vector2(253, 12)
 texture = ExtResource("5_ov1ks")
 
 [node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople"]
-visible = false
 scale = Vector2(0.48, 0.48)
 
 [node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople/Node2D"]
+modulate = Color(1, 1, 1, 0)
 
 [node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
 libraries = {
