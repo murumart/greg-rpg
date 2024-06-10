@@ -326,9 +326,7 @@ func go_back_a_menu() -> void:
 			open_main_actions_screen()
 			SND.menusound(BACK_PITCH)
 		Doings.SPIRIT_NAME:
-			doing = Doings.SPIRIT
-			open_list_screen()
-			SND.menusound(BACK_PITCH)
+			pass
 	highlight_selected_enemy()
 	erase_floating_spirits()
 
