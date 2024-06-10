@@ -68,12 +68,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var sleepy := has_status_effect(&"sleepy")
 	if not character:
 		return
 	if SOL.dialogue_open:
 		return # don't run logic if dialogue is open
 	effect_visuals()
+	_process_states(delta)
+
+
+func _process_states(delta: float) -> void:
 	match state:
 		States.IDLE:
 			pass
@@ -83,24 +86,17 @@ func _process(delta: float) -> void:
 			# always calculated based on fastest party member
 			var ratio := delta * (player_speed_modifier)
 			wait = maxf(wait - maxf(ratio * get_speed(), 0.1 * delta), 0.0)
-			if wait == 0.0:
-				if not sleepy:
-					act_requested.emit(self)
-					set_state(States.ACTING)
-					wait = 1.0
-				else:
-					status_effect_update()
-					SOL.vfx(
-						"sleepy",
-						global_position + Vector2(randf_range(-4, 4),
-							randf_range(-16, 0)), {"parent": self})
-					wait = 1.0
-					if sleepy:
-						emit_message("%s is sleeping..." % actor_name)
-						SND.play_sound(preload("res://sounds/sleepy.ogg"),
-						 {"volume": 6})
-					else:
-						emit_message("%s woke up." % actor_name)
+
+			if wait != 0.0:
+				return
+			wait = 1.0
+			var sleepy := has_status_effect(&"sleepy")
+			if not sleepy:
+				act_requested.emit(self)
+				set_state(States.ACTING)
+				return
+			_sleepy_process()
+
 		States.ACTING:
 			pass
 		States.DEAD:
@@ -269,11 +265,14 @@ func attack(subject: BattleActor) -> void:
 		call("_hurt_by_%s" % character.name_in_file)
 	# animations
 	if weapon != null and weapon.attack_animation.length() > 0:
-		SOL.vfx(weapon.attack_animation, get_effect_center(subject), {parent = subject})
+		SOL.vfx(weapon.attack_animation,
+				get_effect_center(subject), {parent = subject})
 	else:
 		blunt_visuals(subject)
 	if get_gender() == Genders.ELECTRIC:
-		SOL.vfx("electric_attack", get_effect_center(subject), {parent = subject, random_rotation = true})
+		SOL.vfx("electric_attack",
+				get_effect_center(subject),
+				{parent = subject, random_rotation = true})
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
@@ -303,14 +302,17 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 	for receiver in targets:
 		if character.health <= 0: break
 		if spirit.receive_animation:
-			SOL.vfx(spirit.receive_animation, get_effect_center(receiver), {parent = receiver})
+			SOL.vfx(spirit.receive_animation,
+					get_effect_center(receiver), {parent = receiver})
 		for i in spirit.payload_reception_count:
 			if character.health <= 0: break
 			if receiver.character.health <= 0: break
 			receiver.handle_payload(
-				spirit.payload.set_sender(self).\
-				set_defense_pierce(spirit.payload.pierce_defense if spirit.payload.pierce_defense else 1.0)\
-				.set_type(BattlePayload.Types.SPIRIT)
+					spirit.payload.set_sender(self)
+					.set_defense_pierce(
+							spirit.payload.pierce_defense
+							if spirit.payload.pierce_defense else 1.0)
+					.set_type(BattlePayload.Types.SPIRIT)
 			)
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
@@ -330,7 +332,8 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 func use_item(id: String, subject: BattleActor) -> void:
 	if not subject.accessible:
 		SND.play_sound(preload("res://sounds/flee.ogg"))
-		SOL.vfx("damage_number", get_effect_center(self), {text = "miss!", color=Color.WHITE})
+		SOL.vfx("damage_number", get_effect_center(self),
+				{text = "miss!", color=Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 		turn_finished()
 		return
@@ -338,7 +341,10 @@ func use_item(id: String, subject: BattleActor) -> void:
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
 		subject.handle_payload(item.payload.set_sender(self).\
 		set_type(BattlePayload.Types.ITEM)) # using the item
-		SOL.vfx("use_item", get_effect_center(subject), {parent = subject, item_texture = item.texture, silent = item.play_sound != null})
+		SOL.vfx(
+				"use_item", get_effect_center(subject),
+				{parent = subject, item_texture = item.texture,
+				silent = item.play_sound != null})
 		if item.play_sound:
 			SND.play_sound(item.play_sound)
 
@@ -347,7 +353,9 @@ func use_item(id: String, subject: BattleActor) -> void:
 		subject.character.handle_item(id)
 	if item.consume_on_use:
 		character.inventory.erase(id)
-	emit_message("%s used %s" % [actor_name, item.name] if subject == self else "%s used %s on %s" % [actor_name, item.name, subject.actor_name])
+	emit_message("%s used %s" % [actor_name, item.name]
+			if subject == self else "%s used %s on %s"
+			% [actor_name, item.name, subject.actor_name])
 	# function
 	if subject.has_method("_item_%s_used_on" % id):
 		subject.call("_item_%s_used_on" % id)
@@ -358,7 +366,8 @@ func use_item(id: String, subject: BattleActor) -> void:
 
 # squeeze empty the payload, copy everything over
 func handle_payload(pld: BattlePayload) -> void:
-	print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
+	print(actor_name, " handling payload! (%s)"
+			% BattlePayload.Types.find_key(pld.type))
 	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
 	if character.health <= 0: return
@@ -398,7 +407,8 @@ func handle_payload(pld: BattlePayload) -> void:
 			if is_instance_valid(pld.sender):
 				pld.sender.character.add_defeated_character(character.name_in_file)
 
-	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic) + (pld.max_magic_percent / 100.0 * character.max_magic)
+	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic)\
+			+ (pld.max_magic_percent / 100.0 * character.max_magic)
 
 	for en in pld.effects:
 		if en.name.length() and en.duration:
@@ -569,4 +579,19 @@ func set_crittable() -> void:
 			return false
 		return rng.randf() <= crit_chance
 	)
+
+
+func _sleepy_process() -> void:
+	SOL.vfx(
+			"sleepy",
+			global_position + Vector2(randf_range(-4, 4),
+			randf_range(-16, 0)), {"parent": self})
+	status_effect_update()
+
+	if has_status_effect("sleepy"):
+		emit_message("%s is sleeping..." % actor_name)
+		SND.play_sound(preload("res://sounds/sleepy.ogg"),
+				{"volume": 6})
+		return
+	emit_message("%s woke up." % actor_name)
 
