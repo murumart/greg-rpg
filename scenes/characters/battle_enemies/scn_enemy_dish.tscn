@@ -88,6 +88,69 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_kfc1w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lid:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gun:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_lsna7"]
 resource_name = "pizz"
 length = 1.5
@@ -150,69 +213,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_kfc1w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Lid:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Gun:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4sxmm"]
@@ -804,27 +804,38 @@ texture = ExtResource("4_k0s8a")
 position = Vector2(253, 12)
 texture = ExtResource("5_ov1ks")
 
-[node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople"]
-position = Vector2(366, 8)
+[node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople"]
+visible = false
+scale = Vector2(0.48, 0.48)
 
-[node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople/Pizzabox"]
+[node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople/Node2D"]
+
+[node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
 libraries = {
 "": SubResource("AnimationLibrary_4sxmm")
 }
 
-[node name="Box" type="Sprite2D" parent="Node/FunnyCutscenePeople/Pizzabox"]
+[node name="Box" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
 texture = ExtResource("7_8uiop")
 region_enabled = true
 region_rect = Rect2(0, 0, 185, 189)
 
-[node name="Gun" type="Sprite2D" parent="Node/FunnyCutscenePeople/Pizzabox"]
+[node name="Gun" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
 visible = false
 rotation = 0.349066
 texture = ExtResource("7_8uiop")
 region_enabled = true
 region_rect = Rect2(18, 208, 150, 90)
 
-[node name="Lid" type="Sprite2D" parent="Node/FunnyCutscenePeople/Pizzabox"]
+[node name="Label" type="Label" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox/Gun"]
+offset_left = -54.876
+offset_top = -58.4399
+offset_right = -14.876
+offset_bottom = -50.4399
+scale = Vector2(3.47919, 3.1754)
+text = "(gun)"
+
+[node name="Lid" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
 position = Vector2(0, -96)
 texture = ExtResource("7_8uiop")
 offset = Vector2(0, 90)

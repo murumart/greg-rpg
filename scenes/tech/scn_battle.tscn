@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
-[ext_resource type="Resource" uid="uid://dq15d2quoe8li" path="res://resources/battle_infos/dish_fight.tres" id="2_11qsr"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
+[ext_resource type="Resource" uid="uid://3lpdfn5b032y" path="res://resources/battle_infos/president_fight.tres" id="2_oxlho"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -64,7 +64,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_11qsr")
+load_options = ExtResource("2_oxlho")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
