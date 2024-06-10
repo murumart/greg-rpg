@@ -2817,11 +2817,45 @@ EMO power
 	as i'm sure you'll experience soon.
 
 
-DIALOGUE president_monologue_11
+DIALOGUE president_monologue_10
 CHAR president
 EMO power
-	öokpoksaüpockascpokac
-	
+	i have asked for an update on my "pizz" delivery.
+	they are a quarter of the way here.
+
+
+DIALOGUE president_monologue_20
+CHAR president
+EMO power
+	i have asked for an update on my "pizz" delivery.
+	they are half of the way here.
+
+
+DIALOGUE president_monologue_30
+CHAR president
+EMO power
+	i have asked for an update on my "pizz" delivery.
+	they are three quarters of the way here.
+
+
+DIALOGUE president_monologue_35
+CHAR president
+EMO power
+	the "pizz delivery" will be arriving in a few turns.
+	i must thank [color=PRESCOLOR]dish[/color] for it has kept you busy.
+
+
+DIALOGUE president_monologue_40
+CHAR president
+EMO power
+	yes... the "pizz delivery" has arrived at last.
+
+
+DIALOGUE president_pizz_1
+CHAR president
+EMO power
+	i'm sure you're excited to see the "pizz delivery" man.
+	take it away...
 
 
 DIALOGUE insp_snowdrops

@@ -1,5 +1,7 @@
 extends BattleEnemy
 
+const END_TURN = 2
+
 @onready var time_for_pizz: Control = $TimeForPizz
 @onready var power_label: Label = $TimeForPizz/PowerLabel
 @onready var canvas_group: Node2D = $Node/CanvasGroup
@@ -32,6 +34,10 @@ func ai_action() -> void:
 	_monologue()
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
+	if turn >= END_TURN: # pizz arrival
+		DAT.death_reason = "president_gun"
+		_pizz_arrival_animation()
+		return
 	super()
 	if turn % 3 == 0:
 		_increase_electric(0.5)
@@ -57,6 +63,7 @@ func _increase_electric(amount: float) -> void:
 
 func _pizz_arrival_animation() -> void:
 	auto_ai = false
+	$Node/FunnyCutscenePeople.animate()
 
 
 func _monologue() -> void:

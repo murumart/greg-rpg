@@ -1,12 +1,14 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhve75utx7fh7"]
+[gd_scene load_steps=40 format=3 uid="uid://dhve75utx7fh7"]
 
 [ext_resource type="Texture2D" uid="uid://bwng2xhy78hng" path="res://sprites/characters/battle/president/spr_dish_big.png" id="2_7agk0"]
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
 [ext_resource type="Shader" path="res://shaders/shd_dish_iridescence.gdshader" id="2_x2g0d"]
 [ext_resource type="Texture2D" uid="uid://dc4khr6yps6nm" path="res://sprites/spirit/spr_dish_use.png" id="3_s1scl"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="4_k0s8a"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish_pizz_cutscene.gd" id="5_jvhgd"]
 [ext_resource type="Texture2D" uid="uid://c34u2d6fe3rix" path="res://sprites/characters/battle/president/spr_pizza_delivery_guy.png" id="5_ov1ks"]
 [ext_resource type="Texture2D" uid="uid://ct6siq546arn3" path="res://sprites/characters/battle/president/pizz.png" id="7_8uiop"]
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="7_v1iur"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j267r"]
 frequency = 0.0218
@@ -100,6 +102,28 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_tygy2"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.50192, 1)
+colors = PackedColorArray(1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t6d7i"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_tygy2")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aihdk"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_far7r"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.218528, 0.517229, 0.742338, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.952941, 0.788235, 0.952941, 0.682353, 1, 1, 1, 1, 1, 1, 0.784314, 0.658824, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xovsu"]
+gradient = SubResource("Gradient_far7r")
+height = 256
 
 [sub_resource type="Animation" id="Animation_kfc1w"]
 length = 0.001
@@ -816,6 +840,7 @@ sprite_frames = SubResource("SpriteFrames_gfbcs")
 metadata/_edit_lock_ = true
 
 [node name="FunnyCutscenePeople" type="Node2D" parent="Node"]
+script = ExtResource("5_jvhgd")
 
 [node name="President" type="Sprite2D" parent="Node/FunnyCutscenePeople"]
 position = Vector2(189, 12)
@@ -824,6 +849,30 @@ texture = ExtResource("4_k0s8a")
 [node name="PizzaGuy" type="Sprite2D" parent="Node/FunnyCutscenePeople"]
 position = Vector2(253, 12)
 texture = ExtResource("5_ov1ks")
+
+[node name="VfxPowerline" parent="Node/FunnyCutscenePeople/PizzaGuy" instance=ExtResource("7_v1iur")]
+visible = false
+divisions = 14
+deviation_distance = 5.69
+line_width = 49.005
+gradient = SubResource("Gradient_tygy2")
+lifetime = 0.0
+
+[node name="Line2D" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="0"]
+points = PackedVector2Array(0, 106, 1.11846, 95.7328, 5.5835, 75.4034, -3.83772, 62.6625, -5.13052, 40.1549, 1.2842, 32.3124, -3.83481, 15.1267, 1.97613, -10.2589, -1.23934, -15.2158, 3.30977, -41.2437, -1.83402, -57.8479, -4.75251, -65.1788, -2.49486, -89.2677, 0, -100)
+width = 49.005
+texture = SubResource("GradientTexture2D_t6d7i")
+
+[node name="Start" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="1"]
+position = Vector2(0, 106)
+
+[node name="End" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="2"]
+position = Vector2(0, -100)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/FunnyCutscenePeople/PizzaGuy"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_aihdk")
+texture = SubResource("GradientTexture2D_xovsu")
 
 [node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople"]
 scale = Vector2(0.48, 0.48)
@@ -889,3 +938,5 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "p o w e r : "
 horizontal_alignment = 1
+
+[editable path="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline"]
