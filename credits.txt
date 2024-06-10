@@ -30,6 +30,8 @@ fake cat by webcatz
 old gun from pixabay
 	https://pixabay.com/photos/guns-old-vintage-history-5487430/
 
+sprite help by aj, webcatz
+
 thank you very much for ideas aiden, alan, ardenna, benny, julian, kin, radio, webcatz...
 fish facts provided by alan, ardenna, caboose, radio, octopixel, webcatz
 
@@ -39,5 +41,5 @@ pizz animation by webcatz
 
 thank you to play testers alan, kin, radio, webcatz
 
-with special thanks to free software gimp, audacity, godot, piskel, jummbox, lmms
+with special thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, webcatz
 
