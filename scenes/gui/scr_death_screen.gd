@@ -54,7 +54,7 @@ const DEATH_REASONS := {
 	},
 	"president_gun": {
 		"picture": "president_gun",
-		"text": "",
+		"text": "[center]gun",
 		"sound": "res://sounds/spirit/dishpunch.ogg"
 	},
 	"dish": {

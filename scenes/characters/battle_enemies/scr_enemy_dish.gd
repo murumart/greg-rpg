@@ -1,6 +1,6 @@
 extends BattleEnemy
 
-const END_TURN = 2
+const END_TURN = 40
 
 @onready var time_for_pizz: Control = $TimeForPizz
 @onready var power_label: Label = $TimeForPizz/PowerLabel
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			str(electric.strength) if electric else "0")
 	canvas_group.material.set("shader_parameter/iridescence_reducer",
 			character.health_perc() * 0.85)
-	animator.speed_scale = 2.0 - character.health_perc() * 0.76
+	animator.speed_scale = 2.4 - character.health_perc() * 1.2
 
 
 func ai_action() -> void:
@@ -44,6 +44,21 @@ func ai_action() -> void:
 
 
 func hurt(amount: float, h_gender: int) -> void:
+	if character.health - absi(amount) <= 0:
+		animate("death")
+		SND.play_sound(preload("res://sounds/spirit/dish_end.ogg"))
+		SND.play_song("", 1281)
+		var tw := create_tween().set_loops(8)
+		tw.tween_callback(func():
+			SOL.vfx("explosion",
+					$Node/CanvasGroup/Head.global_position + Vector2(
+							randf_range(-50, 50), randf_range(-50, 50)
+					),
+					{"silent": true, "scale": Vector2(0.2, 0.2)}))
+		tw.tween_interval(0.3)
+
+		auto_ai = false
+		await create_tween().tween_interval(2.0).finished
 	super(amount, gender)
 	if h_gender == Genders.ELECTRIC and not DAT.get_data(
 				"president_mentioned_electric_resistance"):

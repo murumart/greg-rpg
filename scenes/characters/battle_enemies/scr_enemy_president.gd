@@ -33,6 +33,9 @@ func _progress_check(damage: float) -> float:
 		progress = 1
 		SOL.dialogue("president_50")
 		damage += character.health - damage - character.max_health * 0.7
+		SOL.dialogue_closed.connect(func():
+			add_status_effect_s("attack", 10, 1000)
+		, CONNECT_ONE_SHOT)
 	elif (character.health - damage) / character.max_health < 0.33 and progress == 1:
 		progress = 2
 		SOL.dialogue("president_33")

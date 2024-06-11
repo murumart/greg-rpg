@@ -2858,6 +2858,20 @@ EMO power
 	take it away...
 
 
+DIALOGUE president_pizz_2
+	here's the pizz, boss.
+	we put [color=PRESCOLOR]snails[/color] and [color=PRESCOLOR]fish[/color] in it.
+CHAR president
+EMO power
+	excellent.
+
+
+DIALOGUE president_pizz_3
+SPEED 0.7
+INSTASKIP
+	just kidding. it's a              
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

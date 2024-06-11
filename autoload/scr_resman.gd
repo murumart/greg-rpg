@@ -45,7 +45,7 @@ static func get_spirit(id: StringName) -> Spirit:
 
 static func get_effect(id: StringName) -> StatusEffectType:
 	if not id in status_effect_types:
-		print("effect type ", id, " not found")
+		printerr("effect type ", id, " not found")
 		return StatusEffectType.new()
 	return status_effect_types[id]
 
