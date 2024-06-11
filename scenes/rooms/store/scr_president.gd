@@ -9,15 +9,26 @@ extends Node2D
 @onready var milk: Sprite2D = $President/Milk
 @onready var clickbait: Sprite2D = $President/Milk/Clickbait
 @onready var animation_player: AnimationPlayer = $President/Milk/AnimationPlayer
+@onready var wet_animation: AnimationPlayer = $WetMessSlop/ColorRect2/AnimationPlayer
+@onready var wet_mess_slop: Node2D = $WetMessSlop
+@onready var delivery_guy: Sprite2D = $WetMessSlop/DeliveryGuy
 
 var song_pitching := true
 var rotating := false
 
 
 func _ready() -> void:
+	DAT.set_data("you_gotta_see_the_water_drain", true) # DEBUG
+	if DAT.get_data("president_defeated", false):
+		queue_free()
+		return
+	if DAT.get_data("you_gotta_see_the_water_drain", false):
+		DAT.set_data("you_gotta_see_the_water_drain", false)
+		_after_battle()
+		return
 	president.inspected.connect(_president_inspected)
-	# not doing this right now
-	queue_free()
+	wet_mess_slop.queue_free()
+	delivery_guy.queue_free()
 
 
 func _physics_process(_delta: float) -> void:
@@ -53,8 +64,7 @@ func _president_inspected() -> void:
 			greg.global_position.move_toward(president.global_position, 0.5) - Vector2(0, 10), 1.0)
 	tw.parallel().tween_method(func(f): $"../Shelves".get_children().map(func(a):
 		a.modulate.a = f), 1.0, 0.0, 1.0)
-	tw.parallel().tween_callback(
-		func():
+	tw.parallel().tween_callback(func():
 		president.direct_walking_animation(
 			president.global_position.direction_to(greg_poses[0].global_position)))
 	milk.show()
@@ -72,6 +82,43 @@ func _president_inspected() -> void:
 			LTS.gate_id = LTS.GATE_ENTER_BATTLE
 			LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
 					{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
+		, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
+
+
+func _after_battle() -> void:
+	DAT.capture_player("cutscene")
+	var powerline := $WetMessSlop/DeliveryGuy/VfxPowerline
+	wet_mess_slop.show()
+	delivery_guy.modulate.a = 0.0
+	wet_animation.play("drain")
+	var tw: Tween
+	greg.global_position = greg_poses[0].global_position
+	greg.animate("walk_right", false)
+	president.rotate(deg_to_rad(90.0))
+	president.path_container = null
+	president.default_lines.append("president_inspect")
+	president.interact_on_touch = false
+	wet_animation.animation_finished.connect(func(_a):
+		SOL.dialogue("president_after")
+		SOL.dialogue_closed.connect(func():
+			delivery_guy.modulate.a = 1.0
+			SND.play_sound(preload("res://sounds/pizz_arrive.ogg"))
+			tw = create_tween()
+			tw.tween_property(powerline, "line_width", 0.0, 1.0)
+			tw.tween_callback(func(): powerline.hide())
+			tw.tween_interval(0.5)
+			tw.tween_callback(SOL.dialogue.bind("president_after_pizz"))
+			SOL.dialogue_closed.connect(func():
+				tw = create_tween()
+				SND.play_sound(preload("res://sounds/pizz_arrive.ogg"), {"volume": -3})
+				powerline.show()
+				tw.tween_property(powerline, "line_width", 5, 0.2)
+				tw.tween_callback(func(): delivery_guy.self_modulate.a = 0.0)
+				tw.tween_property(powerline, "line_width", 0, 0.2)
+				tw.tween_callback(delivery_guy.queue_free)
+				DAT.free_player("cutscene")
+			, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
 

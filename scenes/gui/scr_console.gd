@@ -93,6 +93,8 @@ func parse_command() -> void:
 			DAT.save_to_dict()
 			LTS.gate_id = LTS.GATE_LOADING
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		&"instakill":
+			instakill()
 		&"7":
 			output("7")
 		_:
@@ -266,4 +268,8 @@ func give_spirit(args: PackedStringArray) -> void:
 		return
 	var spiritname := args[0]
 	DAT.grant_spirit(spiritname)
+
+
+func instakill() -> void:
+	ResMan.get_character("greg").attack = 999999999
 

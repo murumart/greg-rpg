@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=70 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -25,8 +25,15 @@
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_president.gd" id="23_w6t1x"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="24_7v6sw"]
 [ext_resource type="Texture2D" uid="uid://bcgdto63oyltb" path="res://sprites/items/spr_milk.png" id="25_ate3i"]
+[ext_resource type="Texture2D" uid="uid://cu1gacaq6b85f" path="res://sprites/characters/overworld/spr_pizz_delivery_guy.png" id="25_jrixr"]
 [ext_resource type="AudioStream" uid="uid://ctrw1twry0k57" path="res://sounds/flee.ogg" id="26_r8ymx"]
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="26_tunbu"]
 [ext_resource type="AudioStream" uid="uid://ctadct610sv6e" path="res://sounds/spirit/splash_attack.ogg" id="27_rosy8"]
+[ext_resource type="Shader" path="res://shaders/shd_store_damage.gdshader" id="28_6e1rh"]
+[ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="29_tkyvl"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="30_3immg"]
+[ext_resource type="AudioStream" uid="uid://7bdt4ovexyd5" path="res://sounds/drain.ogg" id="31_bq8wf"]
+[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="32_p1g7d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -329,6 +336,229 @@ collision_bounce = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_46con"]
 polygon = PackedVector2Array(-87.9662, 16.5034, 100.034, 16.5034, -27.9662, 20.5034)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ko55"]
+shader = ExtResource("28_6e1rh")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xposc"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_t4lsx"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.205541, 0.456623)
+colors = PackedColorArray(0.203922, 0.0627451, 0, 1, 0.6174, 0.758042, 0.634195, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wsc7f"]
+seed = 7
+frequency = 0.0492
+fractal_type = 2
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 29.65
+domain_warp_frequency = 0.005
+domain_warp_fractal_lacunarity = 6.85
+domain_warp_fractal_gain = -0.465
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l3lyj"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_t4lsx")
+noise = SubResource("FastNoiseLite_wsc7f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aoc0i"]
+shader = ExtResource("29_tkyvl")
+shader_parameter/OCTAVE = 4
+shader_parameter/mulscale = 13.81
+shader_parameter/height = 0.395
+shader_parameter/tide = 0.525
+shader_parameter/foamthickness = 0.085
+shader_parameter/timescale = 1.135
+shader_parameter/WATER_COL = Color(0.0392157, 0.380392, 0.878431, 0.721569)
+shader_parameter/WATER2_COL = Color(0.0392157, 0.34902, 0.780392, 0)
+shader_parameter/FOAM_COL = Color(0.937255, 0.960784, 0.964706, 0.854902)
+
+[sub_resource type="Animation" id="Animation_y4ovi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -0.584699)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(224, 183)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/WATER_COL")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0392157, 0.380392, 0.878431, 0.721569)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:material:shader_parameter/FOAM_COL")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.937255, 0.960784, 0.964706, 0.854902)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:material:shader_parameter/foamthickness")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.085]
+}
+
+[sub_resource type="Animation" id="Animation_qos5f"]
+resource_name = "drain"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(0, -62.9508)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -0.584699), Vector2(0, 0.393443)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(224, 183), Vector2(224, 160)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/WATER_COL")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.8, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.0392157, 0.380392, 0.878431, 0.721569), Color(0.0392157, 0.380392, 0.878431, 0.721569), Color(0.0392157, 0.380392, 0.878431, 0.384314)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:material:shader_parameter/FOAM_COL")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.937255, 0.960784, 0.964706, 0.854902)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:material:shader_parameter/foamthickness")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.085, 0.0]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("31_bq8wf")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mit1f"]
+_data = {
+"RESET": SubResource("Animation_y4ovi"),
+"drain": SubResource("Animation_qos5f")
+}
+
+[sub_resource type="Gradient" id="Gradient_gckj0"]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
+colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6l7m"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_gckj0")
+fill_from = Vector2(1, 1)
 
 [node name="Store" type="Node2D" groups=["save_me"]]
 y_sort_enabled = true
@@ -842,6 +1072,76 @@ position = Vector2(-48, -11)
 [node name="Node2D5" type="Node2D" parent="PresidentEncounter/PresidentPath"]
 position = Vector2(1, -10)
 
+[node name="WetMessSlop" type="Node2D" parent="PresidentEncounter"]
+visible = false
+y_sort_enabled = true
+position = Vector2(-96, 64)
+
+[node name="ColorRect" type="ColorRect" parent="PresidentEncounter/WetMessSlop"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_7ko55")
+offset_left = -217.0
+offset_top = -47.0
+offset_right = 29.0
+offset_bottom = 171.0
+
+[node name="TextureRect" type="TextureRect" parent="PresidentEncounter/WetMessSlop"]
+material = SubResource("CanvasItemMaterial_xposc")
+offset_left = -112.0
+offset_top = -105.0
+offset_right = 112.0
+offset_bottom = 80.0
+texture = SubResource("NoiseTexture2D_l3lyj")
+
+[node name="ColorRect2" type="Sprite2D" parent="PresidentEncounter/WetMessSlop"]
+material = SubResource("ShaderMaterial_aoc0i")
+position = Vector2(0, 80)
+scale = Vector2(224, 183)
+texture = ExtResource("30_3immg")
+offset = Vector2(0, -0.584699)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PresidentEncounter/WetMessSlop/ColorRect2"]
+libraries = {
+"": SubResource("AnimationLibrary_mit1f")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PresidentEncounter/WetMessSlop/ColorRect2"]
+
+[node name="DeliveryGuy" type="Sprite2D" parent="PresidentEncounter/WetMessSlop"]
+z_index = 1
+position = Vector2(107, -64)
+texture = ExtResource("25_jrixr")
+offset = Vector2(0, -8)
+
+[node name="VfxPowerline" parent="PresidentEncounter/WetMessSlop/DeliveryGuy" instance=ExtResource("26_tunbu")]
+position = Vector2(24, 3)
+line_width = 5.0
+gradient = SubResource("Gradient_gckj0")
+lifetime = 0.0
+
+[node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
+points = PackedVector2Array(-24, -3, -25.5322, -13.2593, -26.2154, -26.1688, -22.4766, -37.2566, -22.4517, -49.837, -26.2889, -60.3355, -24.6139, -74.9993, -22.9246, -85.4189, -26.1106, -97.9168, -25, -108)
+width = 5.0
+texture = SubResource("GradientTexture2D_m6l7m")
+
+[node name="Start" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="1"]
+position = Vector2(-24, -3)
+
+[node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2"]
+position = Vector2(-25, -108)
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("32_p1g7d")
+level_gain = 55
+new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda"])
+replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
+replace_armour = &"rain_boot"
+replace_weapon = &"fish"
+force_spirits_into_use = true
+
 [connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]
 [connection signal="body_entered" from="StealingArea" to="." method="_on_stealing_area_entered"]
+
+[editable path="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline"]

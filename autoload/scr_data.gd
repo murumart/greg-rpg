@@ -34,9 +34,6 @@ var cat_names := []
 # DEBUG
 var check_for_key := ""
 
-#
-var süs := 0.0
-
 
 func _init() -> void:
 	randomize() # only place where this is called

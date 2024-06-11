@@ -45,6 +45,7 @@ func ai_action() -> void:
 
 func hurt(amount: float, h_gender: int) -> void:
 	if character.health - absi(amount) <= 0:
+		DAT.set_data("you_gotta_see_the_water_drain", true)
 		animate("death")
 		SND.play_sound(preload("res://sounds/spirit/dish_end.ogg"))
 		SND.play_song("", 1281)
@@ -59,6 +60,8 @@ func hurt(amount: float, h_gender: int) -> void:
 
 		auto_ai = false
 		await create_tween().tween_interval(2.0).finished
+		SOL.dialogue("president_die_die_die")
+		await SOL.dialogue_closed
 	super(amount, gender)
 	if h_gender == Genders.ELECTRIC and not DAT.get_data(
 				"president_mentioned_electric_resistance"):

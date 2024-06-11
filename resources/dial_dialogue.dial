@@ -2828,7 +2828,7 @@ DIALOGUE president_monologue_20
 CHAR president
 EMO power
 	i have asked for an update on my "pizz" delivery.
-	they are half of the way here.
+	they are halfway here.
 
 
 DIALOGUE president_monologue_30
@@ -2870,6 +2870,47 @@ DIALOGUE president_pizz_3
 SPEED 0.7
 INSTASKIP
 	just kidding. it's a              
+
+
+DIALOGUE president_die_die_die
+CHAR president
+EMO power
+	no... this cannot be!
+CHAR 
+SOUND spirit/dish_president_he_die
+	...
+
+
+DIALOGUE president_after
+CHAR president
+	no.... the "pizz delivery" didn't arrive on time...
+	i have been wholly defeated...
+	this is a tragic day for beacon archipelago.
+	leave me be now.
+	i always knew that one day i must join the 1000 souls...
+	...whose ship i sank that night in 2003.
+#(he dies)
+
+
+DIALOGUE president_after_pizz
+	pizz delivery!
+	...oh... i see why he needed the gun now.
+	...
+	...what? 1000 souls?
+	...damn... he really did that?
+	...
+	we need to reevaluate our valued customers...
+	...or maybe stop operating in this region.
+	i mean, look at you. you know how it is here...
+	by the way... i need someone to pay for this delivery.
+	you looted his pockets already? give me that.
+SILVER -100
+	(they force 100 silver out of you)
+	thanks. bye.
+
+
+DIALOGUE president_inspect
+	(he's lying down in the puddle, wallowing.)
 
 
 DIALOGUE insp_snowdrops
