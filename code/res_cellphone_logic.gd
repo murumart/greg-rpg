@@ -29,6 +29,7 @@ func phonecall() -> void:
 	SOL.dialogue("phone_dial")
 	var init_id := CSTART + room
 	var area := get_phone_area()
+	SND.play_sound(SND_CALL)
 	# format: phone_<room>_<area_name>_under<lvl>
 	for test in LEVELS_TEST_COUNT:
 		var test_id := init_id

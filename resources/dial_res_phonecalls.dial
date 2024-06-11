@@ -1,3 +1,6 @@
+MACRO SPIRITCOLOR #7799ff
+
+
 DIALOGUE phone_dial
 	dialing...
 
@@ -263,7 +266,9 @@ DATA_LINK vampire_defeated,false
 	hey hey! have you dealt with the vampire yet?
 	i'm sure they'll do something nefarious...
 	...if you don't stop them. be careful!
-	toodles...
+	i'm sure they'll only stay around for a bit longer.
+	maybe until you reach level 50...
+	toodles!
 DATA_LINK vampire_defeated,true
 	hey hey! i heard you got rid of the vampire?
 	good work. they can be really dangerous...
@@ -272,16 +277,45 @@ DATA_LINK vampire_defeated,true
 
 DIALOGUE phone_town_under60
 CHAR zerma
-	well... you have reached the end...
-	...of what the "demo" has to offer.
-	see you again soon...
+	hey hey! i heard there's a famous president in town.
+	supposedly he's shopping at the store.
+	try go meet him before you reach level 60!
+	i'm sure he's left by then.
+
+
+DIALOGUE phone_store
+CHAR zerma
+	hey hey! you're at the store?
+	you can spend your well-earned silver here!
+	buy lots of healing items and sweets!
+	remember, sweets help replenish your [color=SPIRITCOLOR]sp[/color]!
+	toodles!
+
+
+DIALOGUE phone_store_under60
+CHAR zerma
+DATA_LINK president_defeated,false
+	hey hey! do you see the president anywhere?
+	i'm sure it'd be a fun meeting!
+DATA_LINK president_defeated,true
+	hey hey! how did the meeting with the president go?
+	...oh...
+	well, at least.. uh.. you know...
+DATA_LINK 
+	toodles!
+
+
+DIALOGUE phone_store_under50
+ACTUALLY phone_store
 
 
 DIALOGUE phone_lakeside_under40
 CHAR zerma
-	the lake!
-	todo: say something more interesting.
-	i need a nap! toodles!
+	hey! you're at the lakeside?
+	this place is dangerous! but also lucrative...
+	...if you put enough time in to grind those levels.
+	check your surroundings for any attackers!
+	be careful! toodles!
 
 
 DIALOGUE phone_lakeside_under50
@@ -297,6 +331,10 @@ DATA_LINK vampire_defeated,true
 	hey hey! i heard you got rid of the vampire?
 	good work. they can be really dangerous...
 	toodles for now!
+
+
+DIALOGUE phone_lakeside_under60
+ACTUALLY phone_town_under60
 
 
 DIALOGUE phone_call_over

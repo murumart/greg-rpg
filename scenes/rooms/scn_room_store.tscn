@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=69 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -33,7 +33,6 @@
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="29_tkyvl"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="30_3immg"]
 [ext_resource type="AudioStream" uid="uid://7bdt4ovexyd5" path="res://sounds/drain.ogg" id="31_bq8wf"]
-[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="32_p1g7d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -1121,7 +1120,7 @@ gradient = SubResource("Gradient_gckj0")
 lifetime = 0.0
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
-points = PackedVector2Array(-24, -3, -23.0284, -16.3482, -26.2183, -26.2077, -25.026, -39.8762, -26.1364, -48.6003, -22.6213, -60.8247, -25.6161, -74.7603, -24.8205, -86.6662, -23.4483, -94.946, -25, -108)
+points = PackedVector2Array(-24, -3, -23.0609, -12.9646, -23.401, -28.1569, -22.7147, -36.8252, -22.5539, -49.0141, -23.9537, -63.2406, -24.5199, -71.0054, -26.0163, -86.237, -23.4123, -94.9844, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_m6l7m")
 
@@ -1130,15 +1129,6 @@ position = Vector2(-24, -3)
 
 [node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2"]
 position = Vector2(-25, -108)
-
-[node name="CheatNode" type="Node" parent="."]
-script = ExtResource("32_p1g7d")
-level_gain = 55
-new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda"])
-replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
-replace_armour = &"rain_boot"
-replace_weapon = &"fish"
-force_spirits_into_use = true
 
 [connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]

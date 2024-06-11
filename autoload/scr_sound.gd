@@ -133,7 +133,8 @@ func play_sound(sound: AudioStream, options := {}) -> AudioStreamPlayer:
 	if playing_sounds.size() >= MAX_SOUNDS_PLAYING:
 		return null
 	var player := AudioStreamPlayer.new()
-	sound.loop = false
+	if "loop" in sound:
+		sound.loop = false
 	player.name = str(sound)
 	player.stream = sound
 	player.bus = options.get("bus", "Master")

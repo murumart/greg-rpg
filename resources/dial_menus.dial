@@ -1,4 +1,5 @@
 MACRO GREEN #00ff00
+MACRO SPIRITCOLOR #7799ff
 
 
 DIALOGUE load_warning_superdiff

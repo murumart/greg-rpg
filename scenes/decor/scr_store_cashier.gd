@@ -21,7 +21,7 @@ func speak():
 		var transactions_done: int = DAT.get_data("%s_transactions_done" % cashier, 0)
 		var silver_spent: int = DAT.get_data("%s_silver_spent" % cashier, 0)
 		var profit_stolen: int = DAT.get_data("%s_profit_stolen" % cashier, 0)
-		var friend_score: float = silver_spent - pow(profit_stolen, 1.1)
+		var friend_score: float = transactions_done * 50 + silver_spent - pow(profit_stolen, 1.1)
 		if not cashier_welcomed:
 			SOL.dialogue("cashier_%s_welcome" % cashier)
 			DAT.set_data("cashier_%s_welcomed" % cashier, true)
