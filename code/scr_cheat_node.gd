@@ -57,6 +57,7 @@ func _ready() -> void:
 		if fill_resources:
 			charac.health = charac.max_health
 			charac.magic = charac.max_magic
+	print(self, " cheats applied.")
 
 
 func _get_configuration_warnings() -> PackedStringArray:

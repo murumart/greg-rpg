@@ -17,7 +17,7 @@ func _ready() -> void:
 	not DAT.get_data("cashier_dead", false):
 		store_door.destination = ""
 	if store_door.destination != ""\
-			and DAT.seconds - DAT.get_data("store_cleanup_started_second")\
+			and DAT.seconds - DAT.get_data("store_cleanup_started_second", -31399)\
 			< STORE_CLEANUP_TIME_SECONDS:
 		store_door.destination = ""
 		store_door.fail_dialogue = "store_under_cleanup"

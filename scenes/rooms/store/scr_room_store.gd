@@ -67,10 +67,8 @@ func _ready():
 
 func set_store_wall_colours():
 	var store_wall := $InteriorTiles as TileMap
-	print(Math.süsarv())
 	var mn = Math.süsarv()
 	var color = Color(mn, 0.5, 0.8 - mn * 0.5).lightened(0.2)
-
 	store_wall.set_layer_modulate(1, color)
 
 

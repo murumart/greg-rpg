@@ -2870,6 +2870,13 @@ EMO power
 	i must thank [color=PRESCOLOR]dish[/color] for it has kept you busy.
 
 
+DIALOGUE president_monologue_39
+CHAR president
+EMO power
+	my "pizz" will be here in one more turn.
+	brace yourself.
+
+
 DIALOGUE president_monologue_40
 CHAR president
 EMO power
@@ -2879,12 +2886,11 @@ EMO power
 DIALOGUE president_pizz_1
 CHAR president
 EMO power
-	i'm sure you're excited to see the "pizz delivery" man.
-	take it away...
+	your defeat will be very simple. observe...
 
 
 DIALOGUE president_pizz_2
-	here's the pizz, boss.
+	delivery! here's the pizz, boss.
 	we put [color=PRESCOLOR]snails[/color] and [color=PRESCOLOR]fish[/color] in it.
 CHAR president
 EMO power
@@ -2894,7 +2900,7 @@ EMO power
 DIALOGUE president_pizz_3
 SPEED 0.7
 INSTASKIP
-	just kidding. it's a              
+	just kidding. it's a      
 
 
 DIALOGUE president_die_die_die

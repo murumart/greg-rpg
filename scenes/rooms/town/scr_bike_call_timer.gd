@@ -24,16 +24,19 @@ func is_close_enough() -> bool:
 
 
 func _ready() -> void:
-	if DAT.get_data("bike_chasing", false) and\
-	DAT.get_data("bike_ghosts_fought", []).size() < 1:
+	if DAT.get_data("bike_chasing", false)\
+	and DAT.get_data("bike_ghosts_fought", []).size() < 1:
 		await bike.ready
 		bike_chase()
 		return
 	timeout.connect(func():
-		if ResMan.get_character("greg").level >= 10 and\
-		DAT.get_data("bike_ghosts_fought", []).size() < 1 and\
-		not active and not chasing and\
-		not is_close_enough() and DAT.player_capturers.is_empty():
+		if (
+				Math.inrange(ResMan.get_character("greg").level, 10, 20)
+				and	DAT.get_data("bike_ghosts_fought", []).size() < 1
+				and not active
+				and not chasing
+				and not is_close_enough()
+				and DAT.player_capturers.is_empty()):
 			SOL.dialogue("phone_bike_ghost_call")
 			SOL.dialogue_closed.connect(func(): active = true, CONNECT_ONE_SHOT)
 		elif active and not is_close_enough():
