@@ -23,8 +23,9 @@ func _ready() -> void:
 		queue_free()
 		return
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
-		DAT.set_data("you_gotta_see_the_water_drain", false)
+		#DAT.set_data("you_gotta_see_the_water_drain", false) # set in store script
 		_after_battle()
+		greg.saving_disabled = true
 		return
 	president.inspected.connect(_president_inspected)
 	wet_mess_slop.queue_free()

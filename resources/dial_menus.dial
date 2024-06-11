@@ -162,6 +162,12 @@ CHOICES ok
 	this shelf has no products.
 
 
+DIALOGUE store_shelf_wet
+CHOICES ok
+	this shelf is totally soaked.
+
+
+
 DIALOGUE store_shelf_start
 CHOICES yes,no
 	this shelf has %s products. take a closer look?
@@ -177,6 +183,12 @@ CHOICES yes,no
 DIALOGUE store_wont_let_you_in
 	they won't let you in.
 	you might've stolen too much.
+
+
+DIALOGUE store_under_cleanup
+	the store is being cleaned up right now.
+	they really hate you in there.
+
 
 DIALOGUE campfire_exchanges
 CHOICES 

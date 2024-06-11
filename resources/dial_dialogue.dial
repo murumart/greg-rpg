@@ -658,6 +658,31 @@ CHAR cashier_mean
 	goodbye... i hope you behave nicely.
 
 
+DIALOGUE cashier_nice_after_president_fight
+CHAR cashier_nice
+DATA_LINK vampire_defeated,false
+	cleanup on aisle... all of them.
+	i was ambivalent earlier, but now i'm sure.
+	i hate you.
+DATA_LINK vampire_defeated,true
+	that's... uh...
+	i'm pretty sure i'm going to get fired over this.
+DATA_LINK 
+	...
+	yeah, that's a good reaction to having the store flooded.
+	and a guy being beaten to half death.
+	you should leave...
+
+
+DIALOGUE cashier_mean_after_president_fight
+CHAR cashier_mean
+	i don't have the time to kill you right now!
+	i need to clean up all the █████████ you ███████!
+	(smile, smile)
+CHAR 
+	(you can hear her teeth be ground down gradually.)
+
+
 DIALOGUE mail_man_hello
 CHAR mail_man
 EMO serious

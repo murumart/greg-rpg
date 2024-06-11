@@ -1,5 +1,7 @@
 extends Room
 
+const STORE_CLEANUP_TIME_SECONDS := 400
+
 @onready var store_door := $Houses/Store/DoorArea
 @onready var bike := $Houses/UhhHouse/Bike
 
@@ -14,7 +16,11 @@ func _ready() -> void:
 	if DAT.get_data("stolen_from_store", 0) > 199 and\
 	not DAT.get_data("cashier_dead", false):
 		store_door.destination = ""
-
+	if store_door.destination != ""\
+			and DAT.seconds - DAT.get_data("store_cleanup_started_second")\
+			< STORE_CLEANUP_TIME_SECONDS:
+		store_door.destination = ""
+		store_door.fail_dialogue = "store_under_cleanup"
 	if not DAT.get_data("zerma_left", false):
 		DAT.set_data("intro_cutscene_finished", true)
 		DAT.set_data("zerma_left", true)

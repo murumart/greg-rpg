@@ -21,6 +21,8 @@ const PRODUCT_PATH := "res://sprites/world/object/store_shelves/spr_%s_products.
 		$Background.visible = not to
 @export var cold := false
 
+var is_wet := false
+
 
 func set_type(to: int):
 	type = to
@@ -42,6 +44,10 @@ func _on_interaction_area_on_interact() -> void:
 	# if there are no items on the shelf:
 	if type == types.EMPTY:
 		SOL.dialogue("store_shelf_empty")
+		return
+
+	if is_wet:
+		SOL.dialogue("store_shelf_wet")
 		return
 
 	# updating dialogue to make sense in current context - stuffing type name in

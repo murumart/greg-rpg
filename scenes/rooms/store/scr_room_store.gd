@@ -24,6 +24,8 @@ var store_data := {}
 
 var store_cashier := StoreCashier.new()
 
+var wet_slop := false
+
 @onready var ui := $StoreUi
 @onready var shopping_list := $StoreUi/ShoppingList
 
@@ -56,6 +58,11 @@ func _ready():
 	if LTS.gate_id == &"exit_cashier_fight":
 		DAT.free_player("cashier_revenge")
 		decor.exit_cashier_fight()
+	if DAT.get_data("you_gotta_see_the_water_drain", false):
+		DAT.set_data("you_gotta_see_the_water_drain", false)
+		wet_slop = true
+		for s in shelves:
+			s.is_wet = true
 
 
 func set_store_wall_colours():
@@ -161,6 +168,9 @@ func check_cashier_switch() -> void:
 
 
 func _on_kassa_speak_on_interact() -> void:
+	if wet_slop:
+		SOL.dialogue("cashier_%s_after_president_fight" % store_cashier.cashier)
+		return
 	store_cashier.speak()
 	if not is_instance_valid(cashier):
 		return
@@ -201,6 +211,8 @@ func _on_room_gate_entered() -> void:
 	for i in DAT.get_data("unpaid_items", []):
 		stolen_profit += ResMan.get_item(i).price
 	DAT.incri("%s_profit_stolen" % store_cashier.cashier, stolen_profit)
+	if wet_slop:
+		DAT.set_data("store_cleanup_started_second", DAT.seconds)
 
 
 # mean cashier steal cutscene
