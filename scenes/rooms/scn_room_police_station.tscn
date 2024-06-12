@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=55 format=3 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="15_8e2iq"]
 [ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="16_ro10j"]
 [ext_resource type="Texture2D" uid="uid://d0bynei1atpgu" path="res://sprites/items/ash_bucket.png" id="18_cskhu"]
+[ext_resource type="Texture2D" uid="uid://bnusfluirkrpi" path="res://sprites/characters/overworld/spr_president_overworld.png" id="19_dpo5f"]
 [ext_resource type="Texture2D" uid="uid://cmqrw5vtp48wc" path="res://sprites/cutscene/spr_sun_spirit_rage.png" id="20_8g7l1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_snmx5"]
@@ -403,6 +404,7 @@ shape = SubResource("RectangleShape2D_apysc")
 position = Vector2(-32, 0)
 
 [node name="OverworldCharacter" parent="Cells/StrayAnimals" instance=ExtResource("14_3gwec")]
+position = Vector2(0, 2)
 script = ExtResource("15_8e2iq")
 
 [node name="InspectArea" type="Area2D" parent="Cells/StrayAnimals"]
@@ -466,6 +468,22 @@ shape = SubResource("RectangleShape2D_378vf")
 
 [node name="President" parent="Cells" instance=ExtResource("6_y0r06")]
 position = Vector2(53, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cells/President"]
+position = Vector2(8, 0)
+rotation = -1.57079
+texture = ExtResource("19_dpo5f")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
+
+[node name="PresidentInspect" type="Area2D" parent="Cells/President"]
+script = ExtResource("14_3kw1r")
+key = "president_cell"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/President/PresidentInspect"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_378vf")
 
 [node name="Circus" parent="Cells" instance=ExtResource("6_y0r06")]
 position = Vector2(74, 0)

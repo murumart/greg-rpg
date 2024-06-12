@@ -1,5 +1,7 @@
 MACRO GREEN #00ff00
 MACRO SPIRITCOLOR #7799ff
+MACRO PRESCOLOR #ff9999
+MACRO SUNCOLOR #ffbb99
 
 
 DIALOGUE load_warning_superdiff
@@ -201,4 +203,35 @@ CHOICES yes,no,info
 	you really want to %s?
 
 
+DIALOGUE bounty_board
+CHOICES exit,thugs,stryanmls,brknfishr,sunspirit,vampire,president
+	which bounty to check out in detail?
+CHOICE_LINK thugs
+	there are plenty of petty criminals running around town.
+	catch them! lock em up! put them in jail!
+	%s out of %s thugs fought.
+CHOICE_LINK stryanmls
+	some pet owners really need to keep their pets inside...
+	as long as they don't, they're a safety issue for you to solve.
+	%s out of %s stray pets fought.
+CHOICE_LINK brknfishr
+	some people really can't handle losing their loved ones.
+	others can't handle losing a fish off their hook.
+	%s out of %s sorry sods put in place.
+CHOICE_LINK sunspirit
+	rumor has it that a rogue spirit from the sun is in the forest somewhere.
+	it attacks on sight... but surely you can take care of it?
+	you have%sdefeated the [color=SUNCOLOR]solar protuberance[/color].
+CHOICE_LINK president
+	a citizen claiming to be the president of some- where is shopping in town.
+	this sounds like a security issue... please remove him.
+	you have%sdefeated [color=PRESCOLOR]president frankling[/color].
+CHOICE_LINK circus
+	an illegal circus has set up shop in town, housing illegal spirits!
+	uproot them... if you can find them in the first place.
+	you have%scompleted [color=#aa2200]the circus[/color].
+CHOICE_LINK vampire
+	there is talk of a vampire in this town... that's horrible!
+	vampires are unlicensed spirit users, which is illegal.
+	you have%sdefeated the vampire.
 

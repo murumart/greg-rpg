@@ -60,6 +60,8 @@ func _ready():
 		decor.exit_cashier_fight()
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
 		DAT.set_data("you_gotta_see_the_water_drain", false)
+		if is_instance_valid(decor.funny_area):
+			decor.funny_area.queue_free()
 		wet_slop = true
 		for s in shelves:
 			s.is_wet = true

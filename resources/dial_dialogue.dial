@@ -2048,39 +2048,6 @@ CHOICE_LINK bye
 	goodbye citizen! stay up to yes good!
 
 
-DIALOGUE bounty_board
-CHOICES exit,thugs,stryanmls,brknfishr,sunspirit,president,vampire,circus
-	which bounty to check out in detail?
-CHOICE_LINK thugs
-	there are plenty of petty criminals running around town.
-	catch them! lock em up! put them in jail!
-	%s out of %s thugs fought.
-CHOICE_LINK stryanmls
-	some pet owners really need to keep their pets inside...
-	as long as they don't, they're a safety issue for you to solve.
-	%s out of %s stray pets fought.
-CHOICE_LINK brknfishr
-	some people really can't handle losing their loved ones.
-	others can't handle losing a fish off their hook.
-	%s out of %s sorry sods put in place.
-CHOICE_LINK sunspirit
-	rumor has it that a rogue spirit from the sun is in the forest somewhere.
-	it attacks on sight... but surely you can take care of it?
-	you have%sdefeated the [color=SUNCOLOR]solar protuberance[/color].
-CHOICE_LINK president
-	a citizen claiming to be the president of some- where is shopping in town.
-	this sounds like a security issue... please remove him.
-	you have%sdefeated [color=#00aaff]president frankling[/color].
-CHOICE_LINK circus
-	an illegal circus has set up shop in town, housing illegal spirits!
-	uproot them... if you can find them in the first place.
-	you have%scompleted [color=#aa2200]the circus[/color].
-CHOICE_LINK vampire
-	there is talk of a vampire in this town... that's horrible!
-	vampires are unlicensed spirit users, which is illegal.
-	you have%sdefeated the vampire.
-
-
 DIALOGUE bounty_complete_pre
 CHAR popo_1
 	hello! you have cleared some bounties!
@@ -2136,6 +2103,19 @@ CHAR popo_1
 	so the few that exist are "well fed" and powerful.
 	anyway, thanks for that, king.
 	here's some soda we looted off the corpse!
+
+
+DIALOGUE bounty_complete_president
+CHAR popo_1
+	let me get this straight... the so-called president...
+	...of a tiny island a mile or so away from the coast...
+	...who has resisted capture for the last 20 years...
+	...by having a gigantic spirit power buddy...
+	...is finally beaten by... uh, you.
+	you are very interesting. anyway...
+	this guy had an actual bounty on his head...
+	...on the rest of the mainland, so i'll...
+	...be claiming that. here's your pocket change...
 
 
 DIALOGUE inside_police_cell
@@ -3164,6 +3144,12 @@ CHAR popo_2
 	i guess the real trophies were the, uh,...
 	...bounties you fulfilled along the way.
 	or something.
+
+
+DIALOGUE insp_president_cell
+CHAR popo_2
+	he asks for so much water to drink. i think we should...
+	...limit his intake, otherwise we might go bankrupt.
 
 
 DIALOGUE insp_guy_house_bed

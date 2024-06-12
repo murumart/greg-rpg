@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=5 format=3 uid="uid://cbo4cwne17ch5"]
+
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_kbm7u"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_kvaj6"]
+
+[sub_resource type="Resource" id="Resource_t2ypg"]
+script = ExtResource("1_kvaj6")
+type = 0
+property = "350"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_nxnot"]
+script = ExtResource("1_kvaj6")
+type = 1
+property = "pizz"
+chance = 1.0
+unique = false
+
+[resource]
+script = ExtResource("1_kbm7u")
+rewards = Array[ExtResource("1_kvaj6")]([SubResource("Resource_t2ypg"), SubResource("Resource_nxnot")])

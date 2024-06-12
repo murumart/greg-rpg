@@ -22,7 +22,7 @@ const BOUNTY_CATCHES := {
 func _ready() -> void:
 	super._ready()
 	load_bounties()
-	#if DAT.seconds < 1 and not LTS.gate_id: fulfill_bounty("all") #DEBUG
+	if DAT.seconds < 1 and not LTS.gate_id: fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
@@ -84,7 +84,7 @@ func cd(w: Character, c: StringName) -> int:
 func get_bounty_info() -> void:
 	var choices: PackedStringArray = ["exit"]
 	choices.append_array([
-		"thugs","stryanmls","brknfishr","president","vampire","circus"])
+		"thugs","stryanmls","brknfishr","vampire","president"])
 	SOL.dialogue_box.dial_concat("bounty_board", 3, [
 		bounty.get("thugs", 0),
 		BOUNTY_CATCHES["thugs"]
@@ -169,7 +169,7 @@ func setup_cells() -> void:
 		else:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
 
-	if DAT.get_data("police_standing", 0) <= 1:
+	if DAT.get_data("police_standing", 0) < 1:
 		popo_2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 
 
