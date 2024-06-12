@@ -337,6 +337,25 @@ DIALOGUE phone_lakeside_under60
 ACTUALLY phone_town_under60
 
 
+DIALOGUE phone_police_station
+CHAR zerma
+DATA_LINK agreed_to_zerma_crime,true
+	you're a criminal, greg.
+DATA_LINK agreed_to_zerma_crime,false
+	hey hey! you're at the police station?
+	hopefully you didn't get caught...
+	...doing some sort of crime!
+	if you're still free, though, do you mind...
+	...committing a crime for me?
+CHOICES no,yes
+	what do you think? no details provided.
+CHOICE_LINK no
+	maaaaan
+CHOICE_LINK yes
+SET_DATA agreed_to_zerma_crime,true
+	nice!...
+
+
 DIALOGUE phone_call_over
 SOUND phone/call_end
 	they hung up.
