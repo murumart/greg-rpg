@@ -74,6 +74,10 @@ func act() -> void:
 		has_stolen_spirits = true
 		await SOL.dialogue_closed
 	super()
+	if not is_cashier_alive()\
+			and not DAT.get_data("is_cashier_dead_during_vampire_battle", false):
+		print("cashier died lol!")
+		DAT.set_data("is_cashier_dead_during_vampire_battle", true)
 
 
 func hurt(amt: float, _g: int) -> void:
@@ -159,9 +163,17 @@ func _progress_check(damage: float) -> float:
 func _comments(actor: BattleActor) -> void:
 	if actor == reference_to_opposing_array[0]:
 		var greg := actor
-		if (comments_made == 0 and reference_to_opposing_array.size() > 1 and
-				reference_to_opposing_array[1].character.health > 0 and
-				greg.character.spirits.size() < 1 and progress == 3):
+		if (comments_made == 0
+				and is_cashier_alive()
+				and greg.character.spirits.size() < 1
+				and progress == 3):
 			SOL.dialogue("vampire_steal_all_spirits")
 			comments_made += 1
+
+
+func is_cashier_alive() -> bool:
+	return (
+			reference_to_opposing_array.size() > 1
+			and reference_to_opposing_array[1].character.health > 0
+	)
 

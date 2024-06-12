@@ -2646,6 +2646,7 @@ CHAR vampire
 DIALOGUE vampire_battle_50p
 CHAR vampire
 	ow!
+DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
 	i'm surprised we're still alive... let's keep doing...
 	...whatever it is that's keeping us that way.
@@ -2655,10 +2656,13 @@ CHAR vampire
 
 
 DIALOGUE vampire_battle_30p
+DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
 	i'll be late to work at this pace. could we hurry up?
 CHAR vampire
-	shut up!!! i'm killing you! i'm killing you! i'm killing you!  i'm killing you! i'm killing you!
+	shut up!!!
+DATA_LINK 
+	i'm killing you! i'm killing you! i'm killing you!  i'm killing you! i'm killing you!
 
 
 DIALOGUE vampire_battle_30p2
