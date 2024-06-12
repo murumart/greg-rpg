@@ -67,14 +67,19 @@ func _unhandled_input(event: InputEvent) -> void:
 				grab_item_focus()
 			Doings.PARTY:
 				close_requested.emit()
+		update_tabs()
 	match doing:
 		Doings.PARTY:
 
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)
 			var old_tab = current_tab
-			current_tab = wrapi(current_tab + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size())
-			if current_tab != old_tab: SND.menusound(1.3)
-			update_tabs()
+			current_tab = wrapi(
+						current_tab
+						+ roundi(Input.get_axis("ui_left", "ui_right")),
+						0, party_size())
+			if current_tab != old_tab:
+				SND.menusound(1.3)
+			#update_tabs()
 
 			if event.is_action_pressed("ui_accept"):
 				doing = Doings.INNER
@@ -135,8 +140,7 @@ func _unhandled_input(event: InputEvent) -> void:
 							SOL.vfx(spirit.animation, Vector2())
 
 				doing = Doings.INNER
-				load_items()
-				load_spirits()
+				update_tabs()
 				using_menu.hide()
 				await get_tree().process_frame
 				grab_item_focus()
@@ -220,7 +224,11 @@ func load_items() -> void:
 	if party(current_tab).weapon:
 		item_array.push_front(party(current_tab).weapon)
 
-	Math.load_reference_buttons_groups(item_array, [item_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+	Math.load_reference_buttons_groups(
+			item_array, [item_container],
+			_reference_button_pressed,
+			_on_button_reference_received,
+			{"item": true, "custom_pass_function": item_names})
 	var silver_text := "p. silver:\n" if party_size() > 1 else "silver: "
 	silver_counter.text = str(silver_text, DAT.get_data("silver", 0))
 
@@ -240,10 +248,17 @@ func item_names(opt := {}) -> void:
 		opt.button.modulate = Color(1.0, 0.6, 0.3)
 		opt.button.set_meta(&"equipped", true)
 	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
-	opt.button.text = str(
-		str(count, "x ") if count > 1 else "",
-		ResMan.get_item(opt.reference).name
-		).left(12)
+	var item_name := String(ResMan.get_item(opt.reference).name)
+	# funny typoes
+	if randf() <= 0.01 and Math.inrange(item_name.length(), 4, 8):
+		var first := randi_range(1, item_name.length() - 1)
+		var second := randi_range(1, item_name.length() - 1)
+		var swchar := item_name[first]
+		item_name[first] = item_name[second]
+		item_name[second] = swchar
+	elif randf() <= 0.01 and item_name.length() >= 3:
+		item_name = item_name.erase(randi_range(1, item_name.length() - 1))
+	opt.button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(12)
 
 
 func spirit_names(opt := {}) -> void:
@@ -370,6 +385,7 @@ var save_warning_tween: Tween
 func showme():
 	show()
 	SND.menusound()
+	update_tabs()
 	save_warning_label.hide()
 	if not saving_disabled and DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()

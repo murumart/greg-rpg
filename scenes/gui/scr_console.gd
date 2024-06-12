@@ -58,20 +58,20 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,eks,clear,history,vfks,printdata,ksp,lvup,dial,gitem,gspirit,reload,7\ntype command without args to get help")
-		&"eks":
+			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,reload,instakill,clearinv,7\ntype command without args to get help")
+		&"ex":
 			ex(args)
 		&"clear":
 			output("\n\n\n\n\n\n\n\n\n\n")
 		&"history":
 			print(history)
-		&"vfks":
+		&"vfx":
 			vfx(args)
 		&"printdata":
 			print(DAT.A)
 		&"setdata":
 			setdata(args)
-		&"ksp":
+		&"xp":
 			xp(args)
 		&"lvup":
 			lvup(args)
@@ -95,6 +95,10 @@ func parse_command() -> void:
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		&"instakill":
 			instakill()
+			output("greg's attack stack ridiculous now")
+		&"clearinv":
+			ResMan.get_character("greg").inventory.clear()
+			output("inventory cleared")
 		&"7":
 			output("7")
 		_:
@@ -167,8 +171,10 @@ func _data_change(type: DataCommands, key: StringName, value: Variant) -> void:
 	match type:
 		DataCommands.SET:
 			DAT.set_data(key, value)
+			output("set data %s to %s" % [key, value])
 		DataCommands.INCRI:
 			DAT.incri(key, value)
+			output("incremented %s to %s" % [key, DAT.get_data(key)])
 
 
 func ex(args: PackedStringArray) -> void:
