@@ -593,6 +593,8 @@ func _item_cellphone_used_on() -> void:
 		SOL.dialogue("phone_dial")
 		SOL.dialogue("phone_in_battle")
 		SOL.dialogue("phone_call_over")
+	elif SOL.dialogue_exists("phone_in_battle_" + character.name_in_file):
+		SOL.dialogue("phone_in_battle_" + character.name_in_file)
 	else:
 		SOL.dialogue_box.dial_concat("phone_in_battle_other_character", 0, [actor_name])
 		SOL.dialogue("phone_in_battle_other_character")
