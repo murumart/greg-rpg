@@ -26,6 +26,7 @@ func _ready() -> void:
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
+	_waiter_setup()
 
 
 func _exit_tree() -> void:
@@ -184,3 +185,17 @@ get_child(1).queue_free();SOL.dialogue_closed.connect(func():var tw:=\
 create_tween();tw.tween_property(rage,"modulate:a",0.0,2.0);SND.play_song(
 "police"),CONNECT_ONE_SHOT),CONNECT_ONE_SHOT)}.get(DAT.get_data(
 "suspirit_inspected",false),func():SOL.dialogue("insp_sun_spirit")).call()
+
+
+func _waiter_setup() -> void:
+	var waiter: OverworldCharacter = $Npcs/TheWaiter
+	var lines: Array[StringName]
+	for i in range(1, 5 + 1):
+		lines.append(&"police_waiter_mid_" + str(i))
+	if DAT.get_data("greenhouses_eaten", 0) > 0:
+		lines.append(&"police_waiter_grenhouse")
+	if randf() < 0.2:
+		lines.append(&"police_waiter_fish")
+	waiter.default_lines.append(&"police_waiter_1")
+	waiter.default_lines.append(lines.pick_random())
+	waiter.default_lines.append(&"police_waiter_2")

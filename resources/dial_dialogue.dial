@@ -2138,6 +2138,50 @@ CHAR popo_2
 	...bodies in this room.
 
 
+DIALOGUE police_waiter_1
+	i'm waiting for my police appointment.
+
+
+DIALOGUE police_waiter_fish
+	i need to file a complaint about the mysterious fish...
+	...huh?
+
+
+DIALOGUE police_waiter_mid_1
+	i need to file a complaint about the police.
+	they've been really bad at taking in complaints recently.
+
+
+DIALOGUE police_waiter_grenhouse
+	i need to file a complaint about some sicko breaking in...
+	...and eating all the plants in my greenhouse.
+
+
+DIALOGUE police_waiter_mid_2
+	i need to file a complaint about the vulgar fishermen...
+	...at the lakeside. my stroll was rudely interrupted.
+
+
+DIALOGUE police_waiter_mid_3
+	i need to file a complaint to the police...
+	i'm pretty sure their holding cells are not up to standard.
+	they look too humane.
+
+
+DIALOGUE police_waiter_mid_4
+	i need to file a complaint, but i forgot what it is.
+	maybe the police can remind me...
+
+
+DIALOGUE police_waiter_mid_5
+	i need to file a complaint about the cars driving in town.
+	one almost hit me yesterday while i was crossing the road.
+
+
+DIALOGUE police_waiter_2
+	unfortunately they're busy right now.
+
+
 DIALOGUE kid_firstencounter
 CHAR kid
 	yo! you interested in some goods?
