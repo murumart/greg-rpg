@@ -426,14 +426,6 @@ func handle_payload(pld: BattlePayload) -> void:
 
 	if pld.meta.get("skateboard", false):
 		emit_message("woah! skateboard!! so cool!!")
-	if pld.meta.get("cellphone", false):
-		if character.name_in_file == &"greg":
-			SOL.dialogue("phone_dial")
-			SOL.dialogue("phone_in_battle")
-			SOL.dialogue("phone_call_over")
-		else:
-			SOL.dialogue_box.dial_concat("phone_in_battle_other_character", 0, [actor_name])
-			SOL.dialogue("phone_in_battle_other_character")
 
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
@@ -594,4 +586,14 @@ func _sleepy_process() -> void:
 				{"volume": 6})
 		return
 	emit_message("%s woke up." % actor_name)
+
+
+func _item_cellphone_used_on() -> void:
+	if character.name_in_file == &"greg":
+		SOL.dialogue("phone_dial")
+		SOL.dialogue("phone_in_battle")
+		SOL.dialogue("phone_call_over")
+	else:
+		SOL.dialogue_box.dial_concat("phone_in_battle_other_character", 0, [actor_name])
+		SOL.dialogue("phone_in_battle_other_character")
 

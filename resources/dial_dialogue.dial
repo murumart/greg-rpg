@@ -147,6 +147,14 @@ CHAR grandma
 	get outta my hoooooooouuuuuuuuussssssse
 
 
+DIALOGUE grandma_diploma_use
+CHAR grandma
+	a "diploma?"
+	i dig up these all around my garden all the time!
+	stop waving trash around my face! completely worthless!
+	anyway...
+
+
 DIALOGUE grandma_fight_end
 CHAR grandma
 	get off my floor! you're drooling all over it.

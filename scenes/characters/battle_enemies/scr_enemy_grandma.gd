@@ -19,3 +19,7 @@ func act() -> void:
 	LTS.gate_id = LTS.GATE_EXIT_BATTLE
 	await get_tree().create_timer(2.5).timeout
 	LTS.level_transition(LTS.ROOM_SCENE_PATH % "grandma_house_inside")
+
+
+func _item_diploma_used_on() -> void:
+	SOL.dialogue("grandma_diploma_use")
