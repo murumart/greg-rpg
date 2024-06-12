@@ -1842,7 +1842,7 @@ DIALOGUE ph_guy_hello
 
 DIALOGUE ph_guy_checkup
 	hello. how is your quest going?
-	%s turf murdered, you say?
+	%s turf murdered, out of %s, you say?
 	excellent. keep going.
 
 
