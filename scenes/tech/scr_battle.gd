@@ -62,7 +62,6 @@ var loading_battle := true
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var status_effects_list := $UI/Panel/ScreenMainActions/StatusEffectsList
 @onready var victory_text := %VictoryText
-@onready var defeat_text := %DefeatText
 @onready var attack_button := %AttackButton
 @onready var spirit_button := %SpiritButton
 @onready var item_button := %ItemButton
@@ -692,10 +691,8 @@ func open_end_screen(victory: bool) -> void:
 	hide_screens()
 	screen_end.show()
 	victory_text.visible = victory
-	defeat_text.visible = !victory
 	await get_tree().create_timer(1.0).timeout
 	screen_party_info.show()
-	victory_text.speak_text()
 	if victory:
 		resize_panel(60)
 		if not play_victory_music.is_empty():
@@ -710,15 +707,16 @@ func open_end_screen(victory: bool) -> void:
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
 			#await battle_rewards.granted
+		_check_on_bounties()
 		await SOL.dialogue_closed
 		doing = Doings.DONE
 		listening_to_player_input = true
-	else:
-		if DAT.death_reason == "default":
-			DAT.death_reason = death_reason
-		await get_tree().create_timer(1.0).timeout
-		SOL.clear_vfx()
-		LTS.to_game_over_screen()
+		return
+	if DAT.death_reason == "default":
+		DAT.death_reason = death_reason
+	await get_tree().create_timer(1.0).timeout
+	SOL.clear_vfx()
+	LTS.to_game_over_screen()
 
 
 func _grant_rewards() -> void:
@@ -737,6 +735,15 @@ func _grant_rewards() -> void:
 				reward.property = str(float(reward.property) * (magnet + 1.0))
 	await get_tree().process_frame
 	battle_rewards.grant()
+
+
+func _check_on_bounties() -> void:
+	for k: String in PoliceStation.BOUNTY_CATCHES.keys():
+		var notif_save_key := "bounty_" + k + "_notified"
+		if (not DAT.get_data(notif_save_key, false)
+				and PoliceStation.is_bounty_fulfilled_static(k)):
+			DAT.set_data(notif_save_key, true)
+			SOL.dialogue("bounty_notification")
 
 
 # main screen buttons wired to these

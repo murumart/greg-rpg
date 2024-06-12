@@ -1,10 +1,10 @@
-extends Room
+class_name PoliceStation extends Room
 
 @onready var popo1 := $Npcs/Popo1 as OverworldCharacter
 @onready var popo_2 := $Npcs/Popo2 as OverworldCharacter
 
 var bounty := {}
-var tracked_bounties := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
+const TRACKED_BOUNTIES := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
 #var thugs := ["chimney", "well", "shopping_cart", "kor_sten", "benthon", "moron", "stabbing_fella"]
 #var broken := ["broken_fisherman", "not_fish", "sopping"]
 #var animals := ["mole", "rainbird", "stray_pet", "wild_lizard"]
@@ -35,7 +35,7 @@ func _exit_tree() -> void:
 
 func _on_popo_1_interact_on_interact() -> void:
 	var newbounts := false
-	for b in tracked_bounties:
+	for b in TRACKED_BOUNTIES:
 		if is_bounty_fulfilled(b):
 			if not DAT.get_data("fulfilled_bounty_%s" % b, false):
 				if not newbounts:
@@ -69,7 +69,7 @@ func _bounty_interacted() -> void:
 
 
 func load_bounties() -> void:
-	bounty["thugs"] = int(DAT.get_data("thugs_battled", 0))
+	bounty["thugs"] = int(DAT.get_data("thugs_fought", 0))
 	bounty["stray_animals"] = int(DAT.get_data("stray_animals_fought", 0))
 	bounty["broken_fishermen"] = int(DAT.get_data("broken_fishermen_fought", 0))
 	bounty["sun_spirit"] = int(DAT.get_data("solar_protuberance_defeated", false))
@@ -128,9 +128,14 @@ func is_bounty_fulfilled(nomen: String) -> bool:
 	return bounty[nomen] >= (BOUNTY_CATCHES[nomen] if nomen in BOUNTY_CATCHES else 1)
 
 
+# for external use :) :3 😘
+static func is_bounty_fulfilled_static(nomen: String) -> bool:
+	return int(DAT.get_data(nomen + "_fought", 0)) >= BOUNTY_CATCHES[nomen]
+
+
 func fulfill_bounty(nomen: String) -> void:
 	if nomen == "all":
-		for i in tracked_bounties:
+		for i in TRACKED_BOUNTIES:
 			fulfill_bounty(i)
 		return
 	bounty[nomen] = (BOUNTY_CATCHES[nomen] if nomen in BOUNTY_CATCHES else 1)
@@ -140,7 +145,7 @@ func setup_cells() -> void:
 	if not DAT.get_data("trash_guy_inspected", false):
 		cells["trash_guy"].queue_free()
 
-	for i in tracked_bounties:
+	for i in TRACKED_BOUNTIES:
 		if i in cells and not is_bounty_fulfilled(i):
 			cells[i].queue_free()
 

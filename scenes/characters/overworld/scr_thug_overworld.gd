@@ -13,7 +13,7 @@ func _ready() -> void:
 func interacted() -> void:
 	super()
 	if not RunFlags.thugs_battled_changed:
-		DAT.incri("thugs_battled", battle_info.enemies.size())
+		DAT.incri("thugs_fought", battle_info.enemies.size())
 		RunFlags.thugs_battled_changed = true
 
 

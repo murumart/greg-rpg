@@ -235,3 +235,8 @@ CHOICE_LINK vampire
 	vampires are unlicensed spirit users, which is illegal.
 	you have%sdefeated the vampire.
 
+
+DIALOGUE bounty_notification
+	supposedly, you have completed a bounty.
+	acquire your rewards at the police station.
+
