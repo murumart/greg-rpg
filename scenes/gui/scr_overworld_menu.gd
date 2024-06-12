@@ -405,3 +405,4 @@ func hideme():
 	doing = Doings.PARTY
 	using_menu.hide()
 	#grab_item_focus()
+

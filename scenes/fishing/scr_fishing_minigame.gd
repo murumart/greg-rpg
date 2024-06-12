@@ -59,6 +59,8 @@ var shopping_cart_enabled := false
 var cow_ant_enabled := false
 @onready var cow_ant := $FishParent/CowAnt
 
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
+
 
 func _ready() -> void:
 	print(random_items.elements)
@@ -380,3 +382,14 @@ func set_water_color(to: Color) -> void:
 
 func update_points_display() -> void:
 	points_label.text = str("points: ", roundi(depth / 100.0) + points)
+
+
+var envir: Environment
+func _set_fancy_grapics_to(fancy: bool) -> void:
+	if fancy:
+		if envir:
+			world_environment.environment = envir
+		return
+	envir = world_environment.environment
+	world_environment.set_environment(null)
+

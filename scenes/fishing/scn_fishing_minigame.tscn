@@ -1100,7 +1100,7 @@ bg_color = Color(0.117647, 0.117647, 0.117647, 0.839216)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4e5s6"]
 bg_color = Color(0.309804, 0.556863, 0.435294, 1)
 
-[node name="FishingMinigame" type="Node2D"]
+[node name="FishingMinigame" type="Node2D" groups=["_fancy_graphics_option_owners"]]
 script = ExtResource("1_v6q63")
 depth_fish_increase_curve = SubResource("Curve_itjb6")
 depth_item_increase_curve = SubResource("Curve_amim5")

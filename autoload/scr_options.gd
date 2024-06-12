@@ -51,12 +51,21 @@ var IONS := {
 		"default_value": 0.5,
 		"step": 0.1,
 	},
+	"less_fancy_graphics": {
+		"value": 1.0,
+		"range": [0.0, 1.0],
+		"default_value": 0.0,
+		"step": 1.0,
+	},
 	"reset": {}
 }
 # sorting the options
 const CATEGORIES := {
 	"sound": ["main_volume", "music_volume"],
-	"graphics": ["screen_shake_intensity", "text_speak_time",  "max_fps", "battle_text_opacity"],
+	"graphics": [
+		"screen_shake_intensity", "text_speak_time",
+		"max_fps", "battle_text_opacity", "less_fancy_graphics"
+	],
 	"debug": ["log_data_changes","list_button_focus_deferred"],
 	"": ["reset"]
 }
@@ -205,9 +214,12 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	var opt_contain := get_option_nodes()
 	var container := opt_contain[cur_opt]
 	var type: String = container.get_meta("type", "")
+	var end_value = clamp(
+				get_opt(type) + amt * get_opt_step(type),
+				get_opt_min(type), get_opt_max(type))
 	var prev_opt: Variant = get_opt(type)
 	if not ifset:
-		set_opt(type, clamp(get_opt(type) + amt * get_opt_step(type), get_opt_min(type), get_opt_max(type)))
+		set_opt(type, end_value)
 	if reset:
 		set_opt(type, get_opt_default(type))
 		prev_opt = get_opt(type)
@@ -217,7 +229,8 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
 	Engine.max_fps = get_opt("max_fps")
-	if prev_opt == get_opt(type): return
+	if prev_opt == get_opt(type):
+		return
 	match type:
 		"reset":
 			reset_options()
@@ -232,6 +245,11 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		"battle_text_opacity":
 			SND.play_sound(menu_sound, {pitch_scale = 1.36})
 			battle_text_opacity_changed.emit()
+		"less_fancy_graphics":
+			get_tree().call_group(
+					"_fancy_graphics_option_owners",
+					"_set_fancy_grapics_to",
+					not bool(end_value))
 		_:
 			SND.play_sound(menu_sound, {pitch_scale = 1.36})
 
