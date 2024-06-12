@@ -183,7 +183,7 @@ key = &"fish"
 curve = SubResource("Curve_af0c2")
 
 [sub_resource type="Curve" id="Curve_wtvfl"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.28629, 0.335918), 0.0, 0.0, 0, 0, Vector2(1, 0.60252), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.296048, 0.263209), 0.0, 0.0, 0, 0, Vector2(1, 0.481338), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_e6gdb"]
@@ -192,7 +192,7 @@ key = &"not_fish"
 curve = SubResource("Curve_wtvfl")
 
 [sub_resource type="Curve" id="Curve_1t12c"]
-_data = [Vector2(0.186992, 0), 0.0, 0.0, 0, 0, Vector2(0.341463, 0.025), 0.0, 0.0, 0, 0, Vector2(0.48374, 0.318548), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.186992, 0), 0.0, 0.0, 0, 0, Vector2(0.390132, 0.0208433), 0.0, 0.0, 0, 0, Vector2(0.505122, 0.311682), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_3epx7"]
@@ -201,7 +201,7 @@ key = &"cracked_fisherman"
 curve = SubResource("Curve_1t12c")
 
 [sub_resource type="Curve" id="Curve_tqyql"]
-_data = [Vector2(0.386179, 0.0354838), 0.0, 0.0, 0, 0, Vector2(0.548781, 0.395604), 0.0, 0.0, 0, 0, Vector2(0.768293, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.395358, 0), 0.0, 0.0, 0, 0, Vector2(0.609659, 0.39651), 0.0, 0.0, 0, 0, Vector2(0.768293, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_d08lo"]
@@ -227,7 +227,7 @@ party = Array[StringName]([])
 death_reason = "lakeside"
 start_text = ""
 rewards = ExtResource("6_5ctlp")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true
 
 [node name="BrokenFisherman" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]

@@ -334,7 +334,7 @@ DATA_LINK vampire_defeated,true
 
 
 DIALOGUE phone_lakeside_under60
-ACTUALLY phone_town_under60
+ACTUALLY phone_lakeside_under40
 
 
 DIALOGUE phone_police_station

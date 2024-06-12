@@ -227,7 +227,7 @@ party = Array[StringName]([])
 death_reason = "default"
 start_text = "various thug(s) accost you."
 rewards = ExtResource("6_1dlt0")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true
 
 [node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
