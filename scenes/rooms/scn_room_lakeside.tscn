@@ -139,7 +139,7 @@ party = Array[StringName]([])
 death_reason = "lakeside"
 start_text = ""
 rewards = SubResource("Resource_k01d4")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsg2b"]
@@ -378,7 +378,7 @@ amount = 64
 process_material = SubResource("ParticleProcessMaterial_q7n2y")
 texture = ExtResource("3_r61au")
 lifetime = 16.0
-preprocess = 4.0
+preprocess = 8.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]
