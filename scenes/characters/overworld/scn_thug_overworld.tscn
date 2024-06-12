@@ -165,8 +165,8 @@ key = &"chimney"
 curve = SubResource("Curve_361hw")
 
 [sub_resource type="Curve" id="Curve_1hldi"]
-_data = [Vector2(0, 0.0631579), 0.0, 0.0, 0, 0, Vector2(0.206668, 0.802631), 2.10269, 2.10269, 0, 0, Vector2(1, 0.483652), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.0631579), 0.0, 0.0, 0, 0, Vector2(0.102655, 0.384392), 7.72823, 7.72823, 0, 0, Vector2(0.206668, 0.802631), 2.10269, 2.10269, 0, 0, Vector2(1, 0.483652), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_1t6p2"]
 script = ExtResource("5_7t3nr")

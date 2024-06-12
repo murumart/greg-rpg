@@ -15,17 +15,11 @@ var IONS := {
 		"range": [0.25, 1.0],
 		"default_value": 0.75
 	},
-	"content_scale_mode": {
-		"value": 0,
-		"range": [0, 1],
-		"default_value": 0,
-		"step": 1.0, # by what increment the value can go up or down
-	},
 	"main_volume": {
 		"value": 0.0,
 		"range": [-60.0, 0.0],
 		"default_value": 0.0,
-		"step": 1.0,
+		"step": 1.0,# by what increment the value can go up or down
 	},
 	"music_volume": {
 		"value": -2.0,
@@ -223,10 +217,6 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
 	Engine.max_fps = get_opt("max_fps")
-	if get_opt("content_scale_mode") == 0:
-		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
-	else:
-		get_tree().root.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	if prev_opt == get_opt(type): return
 	match type:
 		"reset":

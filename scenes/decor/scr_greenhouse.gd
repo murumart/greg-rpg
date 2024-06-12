@@ -8,6 +8,7 @@ var zoom := 1.0
 @onready var inside_area: Area2D = $InsideArea
 
 var player: PlayerOverworld
+var is_player_in := false
 
 var previous_song_key := ""
 
@@ -19,9 +20,9 @@ func _ready() -> void:
 	set_physics_process(false)
 	set_vegetables(DAT.get_data(get_save_key("has_vegetables"), has_vegetables))
 	check_vegetables_regrown()
-	await get_tree().process_frame
-	await get_tree().process_frame
-	await get_tree().process_frame
+	#await get_tree().process_frame
+	#await get_tree().process_frame
+	#await get_tree().process_frame
 	inside_area.body_entered.connect(_on_inside_area_body_entered)
 	inside_area.body_exited.connect(_on_inside_area_body_exited)
 
@@ -30,6 +31,7 @@ func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 	player = body
 	player.menu_disabled = true
 	player.saving_disabled = true
+	is_player_in = true
 	cam_zoom(Vector2(2, 2), 1)
 	set_physics_process(true)
 	SND.play_song("greenhouse", 1.0, {play_from_beginning = true})
@@ -39,6 +41,7 @@ func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 	cam_zoom(Vector2(1, 1), 1)
 	set_physics_process(false)
+	is_player_in = false
 	zoom = 1.0
 	SND.play_song(previous_song_key)
 	player.menu_disabled = false
@@ -57,6 +60,10 @@ func cam_zoom(to: Vector2, time: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	zoom = move_toward(zoom, 2.0, delta)
+	# so that he can't run out of the greenhouse so that
+	# the body exited function lags behind physics process' zoom check
+	if zoom >= 1.75:
+		DAT.capture_player("greenhouse")
 	if zoom >= 2.0:
 		pleasant()
 

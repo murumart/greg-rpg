@@ -45,6 +45,7 @@ window/size/viewport_height=120
 window/size/extend_to_title=true
 window/size/window_width_override=959
 window/size/window_height_override=720
+window/stretch/mode="viewport"
 
 [editor]
 
