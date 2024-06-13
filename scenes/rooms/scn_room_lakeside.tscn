@@ -38,7 +38,6 @@ gradient = SubResource("Gradient_r8mui")
 [sub_resource type="Environment" id="Environment_ymw61"]
 background_mode = 3
 ambient_light_source = 1
-glow_enabled = true
 glow_levels/1 = 16.0
 glow_levels/2 = 16.0
 glow_levels/3 = 16.0
@@ -499,13 +498,13 @@ position = Vector2(509, 106)
 shape = SubResource("RectangleShape2D_fm3da")
 
 [node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(2, -342)
+position = Vector2(-44, -349)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 2
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(311, -200)
+position = Vector2(226, -129)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 4
 player = NodePath("../../Greg")
@@ -517,13 +516,13 @@ max_enemies = 3
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(420, 211)
+position = Vector2(434, 309)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 3
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner5" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
-position = Vector2(35, 393)
+position = Vector2(6, 390)
 spawn_enemy = ExtResource("11_wk6gi")
 max_enemies = 3
 player = NodePath("../../Greg")
