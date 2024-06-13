@@ -1353,6 +1353,51 @@ DIALOGUE car_scared_4
 	bleghhh
 
 
+DIALOGUE car_scared_lake_1
+	oh... it's you...
+	when that car hit me, my life flashed before my eyes...
+	it was as if e-everything i ever knew passed by below me.
+	then i realised it was because i was flying above the town...
+	...at an alarming v-velocity.
+	thankfully my fall was cushioned by water.
+	because water, uh, d-does that.
+
+
+DIALOGUE car_scared_lake_2
+	the fisherman? i'm pretty sure that...
+	...they sprouted out of the earth...
+	i didn't notice them c-coming here.
+
+
+DIALOGUE car_scared_lake_3
+	the weather's been q-quite hot, so it's nice in this puddle.
+
+
+DIALOGUE car_scared_lake_4
+	s-so, what else have you been up to?
+	...
+	...
+	t-that's unfortunate... oh dear...
+
+
+DIALOGUE car_scared_lake_5
+	y-you know, sometimes i feel that i'm not safe...
+	...from vehicle accidents, even over h-here.
+	it would be really screwed u-up if a car hit me here.
+
+
+DIALOGUE car_scared_lake_6
+	c-can you imagine it? h-haha.
+
+
+DIALOGUE car_scared_lake_7
+	...
+
+
+DIALOGUE car_scared_lake_8
+	i-i'm out of things to say... i'm sorry...
+
+
 DIALOGUE naturalist_grass_1
 CHAR naturalist
 	hush! be careful!

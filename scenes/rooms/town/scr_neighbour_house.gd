@@ -21,7 +21,8 @@ func _ready() -> void:
 			neighbour_wife.default_lines.clear()
 			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse")
 			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse_2")
-			neighbour_wife.inspected.disconnect(neighbour_wife.inspected.get_connections()[0]["callable"])
+			neighbour_wife.inspected.disconnect(
+					neighbour_wife.inspected.get_connections()[0]["callable"])
 	)
 	car_scared.inspected.connect(car_scared_inspected)
 	if DAT.get_data(CAR_SCARED_DIED, false):
@@ -33,8 +34,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	if car_scared.global_position.x > -64 and car_scared.is_physics_processing():
 		SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
-		SOL.vfx("explosion", car_scared.global_position, {
-				"parent": self, "scale": Math.v2(0.5)})
+		SOL.vfx("explosion", car_scared.global_position,
+				{"parent": self, "scale": Math.v2(0.5)})
 		car_scared.set_physics_process(false)
 		var tw := create_tween()
 		tw.tween_property(car_scared.get_node("Sprite2D"), "position", Vector2(10, 300), 1.0)

@@ -1201,7 +1201,8 @@ position = Vector2(-414, 191)
 scale = Vector2(-1, 1)
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-478, -312)
+position = Vector2(135, 2)
+metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
 position = Vector2(0, -9)
@@ -1421,6 +1422,25 @@ position = Vector2(16, 4)
 type = 1
 line_length = 1
 custom_lines = PackedStringArray()
+
+[node name="Fisherman33" parent="Fishermen" instance=ExtResource("8_j6fv8")]
+position = Vector2(171, -3)
+type = 1
+line_length = 43
+flip = true
+custom_lines = PackedStringArray()
+
+[node name="OverworldCharacter" parent="Fishermen/Fisherman33" instance=ExtResource("12_tsmfn")]
+position = Vector2(-16, 13)
+collision_extents = Vector2i(11, 7)
+default_lines = Array[StringName]([&"car_scared_lake_1", &"car_scared_lake_2", &"car_scared_lake_3", &"car_scared_lake_4", &"car_scared_lake_5", &"car_scared_lake_6", &"car_scared_lake_7", &"car_scared_lake_8"])
+
+[node name="Sprite2D" type="Sprite2D" parent="Fishermen/Fisherman33/OverworldCharacter"]
+position = Vector2(-8, -11)
+texture = ExtResource("13_cds6h")
+centered = false
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 11)
 
 [connection signal="body_entered" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_entered"]
 [connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]
