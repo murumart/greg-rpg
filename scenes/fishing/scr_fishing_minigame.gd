@@ -63,7 +63,7 @@ var cow_ant_enabled := false
 
 
 func _ready() -> void:
-	print(random_items.elements)
+	_set_fancy_grapics_to(bool(not OPT.get_opt("less_fancy_graphics")))
 	state = States.MOVE
 	noise.seed = randi()
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	recent_fish_caught = maxf(recent_fish_caught - delta * pow(2, recent_fish_caught * 0.6), 0.0)
 	combo_bar.value = recent_fish_caught
 	# depth and time display
-	depth_label.text = str("depth: %s m" % roundi(depth / 100.0))
+	depth_label.text = str("depth: %s m" % roundi(depth * 0.01))
 	time_bar.value = time_left
 	line_movement(delta)
 	match state:
