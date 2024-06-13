@@ -65,8 +65,11 @@ func mail_man_welcome_after_biking() -> void:
 
 func pink_haired_girl_setup(force := false) -> void:
 	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
-	var atgirl := $Decoration/Atgirl
-	if not Math.inrange(time / 4.0, 300, 600) and not force:
+	var atgirl := $Decoration/Atgirl as OverworldCharacter
+	if not Math.inrange(time, time * 0.25, 0.5) and not force:
+		atgirl.queue_free()
+		return
+	if hes_dead:
 		atgirl.queue_free()
 		return
 	if DAT.get_data("atgirl_progress", 0) > 3:

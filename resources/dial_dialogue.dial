@@ -1655,8 +1655,16 @@ CHAR tarikas
 DIALOGUE tarikas_50
 CHAR tarikas
 	are you looking for things to do?
-	mh. look around town. go shopping. help the mailman.
+	mh. look around town.
+	go shopping. help the mailman. go shopping.
 	at this point you have to look for trouble.
+
+
+DIALOGUE tarikas_50_nomail
+CHAR tarikas
+	the quality of mail delivery in this town has...
+	...dropped dramatically. i don't think there's...
+	...anything you could do about it now. mh.
 
 
 DIALOGUE tarikas_60

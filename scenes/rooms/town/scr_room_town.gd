@@ -55,13 +55,13 @@ func _ready() -> void:
 func pink_haired_girl_setup() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
 	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
-	if time > DAT.ATGIRL_CYCLE / 4.0:
+	if time > DAT.ATGIRL_CYCLE * 0.25: # first quarter she's in town
 		atgirl.queue_free()
 		DAT.set_data("has_interacted_with_atgirl", false)
 		return
 
 func _on_atgirl_inspected() -> void:
-	var atgirl := $Houses/HousingBlock/Atgirl
+	var atgirl := $Houses/HousingBlock/Atgirl as OverworldCharacter
 	var progress: int = DAT.get_data("atgirl_progress", 1)
 	if not DAT.get_data("has_interacted_with_atgirl", false):
 		atgirl.default_lines.clear()
