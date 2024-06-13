@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3gdvvy4nuyh4"]
+
+[ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_47uo3"]
+
+[node name="GrassyClearing" type="Node2D"]
+y_sort_enabled = true
+
+[node name="OverworldTiles" parent="." instance=ExtResource("1_47uo3")]
+layer_0/tile_data = PackedInt32Array(-131074, 589824, 19, -65538, 524288, 19, 65536, 655360, 19, -196607, 655360, 19, -131071, 655360, 19, -65535, 524288, 19, 0, 589824, 19, 131070, 589824, 19, 131071, 589824, 19, 2, 524288, 19, 196606, 655360, 19, 131073, 655360, 19, -3, 589824, 19, 131069, 655360, 19, 196605, 589824, 19, -131070, 655360, 19)

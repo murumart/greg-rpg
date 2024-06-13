@@ -63,7 +63,7 @@ music = "lion"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
-victory_music = false
+victory_music = &""
 stop_music_before_end = false
 
 [node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]

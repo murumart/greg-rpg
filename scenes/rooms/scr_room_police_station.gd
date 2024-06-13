@@ -194,7 +194,7 @@ create_tween();tw.tween_property(rage,"modulate:a",0.0,2.0);SND.play_song(
 
 func _waiter_setup() -> void:
 	var waiter: OverworldCharacter = $Npcs/TheWaiter
-	var lines: Array[StringName]
+	var lines: Array[StringName] = []
 	for i in range(1, 5 + 1):
 		lines.append(&"police_waiter_mid_" + str(i))
 	if DAT.get_data("greenhouses_eaten", 0) > 0:
