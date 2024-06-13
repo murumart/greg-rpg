@@ -1,7 +1,12 @@
-menu music by radio
-greenhouse music by webcatz
-fisher hut theme by radio and murumart
+-- music --
+
+menu music - radio
+greenhouse music - webcatz
+fisher hut theme - radio and murumart
 other music made by murumart
+
+
+-- other media --
 
 explosion noises
 	https://www.freesoundeffects.com/free-sounds/explosion-10070/
@@ -30,7 +35,12 @@ fake cat by webcatz
 old gun from pixabay
 	https://pixabay.com/photos/guns-old-vintage-history-5487430/
 
+
+-- special thanks --
+
 sprite help by aj, webcatz
+
+"legal help" (non-binding) by alan, kin, webcatz
 
 thank you very much for ideas aiden, alan, ardenna, benny, julian, kin, radio, webcatz...
 fish facts provided by alan, ardenna, caboose, radio, octopixel, webcatz
@@ -41,5 +51,5 @@ pizz animation by webcatz
 
 thank you to play testers alan, kin, radio, webcatz
 
-with special thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, webcatz
+thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, webcatz
 

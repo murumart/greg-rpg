@@ -183,7 +183,7 @@ m.d.p."
 [node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/TextPanel/RichTextLabel" node_paths=PackedStringArray("target")]
 script = ExtResource("6_vbxvf")
 target = NodePath("..")
-speed = 0.8
+speed = 0.9
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 12)
