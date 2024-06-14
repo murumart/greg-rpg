@@ -135,7 +135,7 @@ func next_bar(bar: int) -> void:
 			imgs[1].texture = texs["grab"]
 			imgs[0].texture = texs["2remain"]
 		19:
-			talk("carrying no metal, 2 of them made it")
+			talk("carrying no metal, two of them made it")
 			fadeout(imgs[1], 0.0001)
 			spirit_masters.hide()
 		20:
@@ -148,7 +148,7 @@ func next_bar(bar: int) -> void:
 			talk("his own power allowed him to die there", 11)
 			imgs[0].texture = texs["spirits"]
 		23:
-			talk("for bloodshed and suffering are what spirits crave.", 12)
+			talk("for the motives of spirits are beyond us all.", 11)
 			fadeout(imgs[1])
 		24:
 			talk("with his death, all metal was unbound from the curse", 11)

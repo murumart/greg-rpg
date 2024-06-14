@@ -14,11 +14,15 @@ func _ready() -> void:
 	else: tarikas.queue_free()
 	if not DAT.get_data("nr", 0.0) < 0.1:
 		fisher_ghost.queue_free()
+	if DAT.get_data("sun_spirit_engagement_position", false):
+		$OverworldTiles/BurnMark.global_position = (
+				DAT.get_data("sun_spirit_engagement_position") - Vector2(0, 16))
 
 
 func _on_sun_spirit_inspected() -> void:
 	$Areas/SunSpirit/AmbientLoop.playing = false
 	DAT.set_data("sun_spirit_engaged", true)
+	DAT.set_data("sun_spirit_engagement_position", $Greg.global_position)
 
 
 func _on_tarikas_inspected() -> void:
