@@ -1448,13 +1448,13 @@ CHAR naturalist
 	shh! don't frighten the birds!
 
 
-DIALOGUE bike_alpha_interact_1
+DIALOGUE bike_ghost_interact_1
 	hmm?
 	you look like you want to steal my bike.
 	how about i steal your earlobes instead?
 
 
-DIALOGUE bike_alpha_interact_2
+DIALOGUE bike_ghost_interact_2
 CHAR bike_ghost
 	indeed, the bike you are trying to steal is haunted...
 	...by me!
@@ -1575,6 +1575,17 @@ CHOICE_LINK nvm
 DIALOGUE bike_ghost_travel
 CHAR bike_ghost
 	hope i don't see you again soon.
+
+
+DIALOGUE bike_beta_interact_1
+	...fast travel...
+	...it's one fascinating technological advancement...
+	...
+
+
+DIALOGUE bike_beta_interact_2
+CHAR bike_ghost_beta
+	...it's too bad we're out of service at the moment.
 
 
 DIALOGUE tarikas_hello

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://322ei408recb"]
 
-[ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/spr_alpha.png" id="1_sihx0"]
-[ext_resource type="AudioStream" uid="uid://bk5b2q77em5d8" path="res://sounds/spirit/bikeghost/snd_bike_ghost_punch.ogg" id="2_1iaa3"]
+[ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/alpha.png" id="1_sihx0"]
+[ext_resource type="AudioStream" uid="uid://bk5b2q77em5d8" path="res://sounds/spirit/bikeghost/bike_ghost_punch.ogg" id="2_1iaa3"]
 [ext_resource type="PackedScene" uid="uid://bgepjvtvo82in" path="res://scenes/vfx/scn_vfx_dustpuff.tscn" id="3_ec7xy"]
 [ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="4_0vs8w"]
 

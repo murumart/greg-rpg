@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=80 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="13_cds6h"]
 [ext_resource type="Texture2D" uid="uid://ct0g7lwo7tapk" path="res://sprites/characters/overworld/spr_fisherwoman_overworld.png" id="13_fsvee"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="14_n53oy"]
+[ext_resource type="PackedScene" uid="uid://bkuu3x2gw38ch" path="res://scenes/decor/scn_bike.tscn" id="15_8k51n"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="15_w4l3t"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="17_un030"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="18_7yl5j"]
@@ -549,6 +550,10 @@ position = Vector2(0, -8)
 texture = ExtResource("13_cds6h")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
+
+[node name="Bike" parent="Areas" instance=ExtResource("15_8k51n")]
+position = Vector2(485, -135)
+ghost = 1
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1201,7 +1206,7 @@ position = Vector2(-414, 191)
 scale = Vector2(-1, 1)
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(135, 2)
+position = Vector2(-477, -327)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]

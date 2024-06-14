@@ -19,9 +19,17 @@ var songs := {
 		"title": "soundtrack highlight",
 		"stream": preload("res://music/mus_best.ogg")
 	},
+	"bike_beta": {
+		"title": "personal transport apparition",
+		"stream": preload("res://music/mus_bike_beta.ogg")
+	},
 	"bike_spirit": {
 		"title": "bike spirit",
 		"stream": preload("res://music/mus_bike_spirit.ogg")
+	},
+	"bike_spirit_appear": {
+		"title": "a bike spirit appears!",
+		"stream": preload("res://music/mus_bike_spirit_appear.ogg")
 	},
 	"birds": {
 		"title": "birdsong",

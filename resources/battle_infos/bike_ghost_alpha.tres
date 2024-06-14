@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://dtp0dndpfu60u"]
+
+[ext_resource type="Resource" uid="uid://bjdta44b75tuj" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="1_mdgh0"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_hiioj"]
+
+[resource]
+script = ExtResource("2_hiioj")
+enemies = Array[StringName]([&"bike_ghost"])
+background = "town"
+music = "bike_spirit"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "toute phrase en langue etrangere."
+rewards = ExtResource("1_mdgh0")
+victory_music = &"victory"
+stop_music_before_end = true

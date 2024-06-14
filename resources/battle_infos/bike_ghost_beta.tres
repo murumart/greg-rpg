@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://cgrinognjr8q7"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_qging"]
+
+[resource]
+script = ExtResource("1_qging")
+enemies = Array[StringName]([&"bike_ghost_beta"])
+background = "lakeside"
+music = "bike_beta"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "ca sent le mouille."
+victory_music = &"victory"
+stop_music_before_end = true

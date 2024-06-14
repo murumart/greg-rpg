@@ -1,23 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkuu3x2gw38ch"]
+[gd_scene load_steps=13 format=3 uid="uid://bkuu3x2gw38ch"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
-[ext_resource type="Resource" uid="uid://bjdta44b75tuj" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="2_dhrtd"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="3_77748"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
-[ext_resource type="SpriteFrames" uid="uid://bv8mdhbutisx4" path="res://resources/characters/sfr_bike_ghost.tres" id="4_ks0h0"]
-
-[sub_resource type="Resource" id="Resource_1ki2y"]
-script = ExtResource("3_77748")
-enemies = Array[StringName]([&"bike_ghost"])
-background = "town"
-music = "bike_spirit"
-party = Array[StringName]([])
-death_reason = "default"
-start_text = "toute phrase en langue etrangere."
-rewards = ExtResource("2_dhrtd")
-victory_music = true
-stop_music_before_end = true
+[ext_resource type="Texture2D" uid="uid://cpr2152aq2eya" path="res://sprites/characters/overworld/bike_ghosts.png" id="6_82grt"]
 
 [sub_resource type="Gradient" id="Gradient_rurkq"]
 interpolation_mode = 2
@@ -78,19 +64,19 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Ghost/AnimatedSprite2D:modulate")
+tracks/3/path = NodePath("Ghost:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Ghost:visible")
+tracks/4/path = NodePath("Gradient:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -102,46 +88,34 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Gradient:visible")
+tracks/5/path = NodePath("Gradient:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(-16, -32)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Gradient:position")
+tracks/6/path = NodePath("Gradient:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-16, -32)]
+"values": [0.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Gradient:rotation")
+tracks/7/path = NodePath("Gradient:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Gradient:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -190,82 +164,70 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Ghost/AnimatedSprite2D:modulate")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Gradient:visible")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
-"transitions": PackedFloat32Array(1, 0.258816, 1),
-"update": 0,
-"values": [Color(1, 34.28, 31.45, 0.08), Color(1, 14.3451, 8.58823, 1), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Gradient:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Gradient:position")
-tracks/5/interp = 2
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gradient:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, -11), Vector2(-16, -32)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Gradient:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Gradient:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Gradient:scale")
-tracks/7/interp = 2
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Gradient:scale")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-3.125e-07, 0.34375), Vector2(1, 1)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Ghost:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ghost:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("AnimationPlayer")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -324,7 +286,6 @@ _data = {
 
 [node name="Bike" type="Node2D" groups=["room_gates"]]
 script = ExtResource("1_hdwvo")
-alpha_battle_info = SubResource("Resource_1ki2y")
 
 [node name="Gradient" type="Sprite2D" parent="."]
 position = Vector2(-16, -32)
@@ -354,10 +315,11 @@ shape = SubResource("RectangleShape2D_cyjnj")
 
 [node name="Ghost" type="Node2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ghost"]
+[node name="Image" type="Sprite2D" parent="Ghost"]
 position = Vector2(0, -8)
-sprite_frames = ExtResource("4_ks0h0")
-animation = &"walk_down"
+texture = ExtResource("6_82grt")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
