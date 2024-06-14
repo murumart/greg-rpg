@@ -46,6 +46,9 @@ func _interacted() -> void:
 	if not ghost in fought:
 		_prefight()
 		return
+	# this should mean that there can be multiple of the same ghost
+	# and they will all be "defeated" at once
+	# but their bike destinations can be different
 	_register()
 	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_AFTER_DEFEAT)
 	await SOL.dialogue_closed
