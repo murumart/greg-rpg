@@ -13,6 +13,7 @@ func _ready() -> void:
 	set_level(ResMan.get_character("greg").level)
 	if inject_target:
 		inject_target.battle_info = get_battle()
+		#print("RBC: genned battle with level " + str(_level))
 
 
 func gen_enemies() -> Array[StringName]:
