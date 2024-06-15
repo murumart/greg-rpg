@@ -29,7 +29,7 @@ const DIAL_TRAVEL_NODESTS := "travel_nodests"
 
 @export var ghost: Ghosts = Ghosts.ALPHA
 @export var destination_name := &""
-@export_file("*.tscn") var destination_path := ""
+@export_file("scn_room_*.tscn") var destination_path := ""
 
 
 func _ready() -> void:
@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 func apply_spawn_point(player: PlayerOverworld) -> void:
-	if LTS.gate_id == LTS.GATE_BIKE_TRAVEL:
+	if LTS.gate_id == get_gate_id(destination_name):
 		player.global_position = $SpawnPoint.global_position
 
 
@@ -54,7 +54,7 @@ func _interacted() -> void:
 	await SOL.dialogue_closed
 	if SOL.dialogue_choice == &"travel":
 		var options := _get_travel_options()
-		if not options.is_empty():
+		if not options.size() <= 1: # "nvm" is always an option
 			SOL.dialogue_box.adjust(
 					G_DIAL_PREXES[ghost] + DIAL_TRAVEL_OPTIONS, 0, "choices", options)
 			SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_TRAVEL_OPTIONS)
@@ -81,6 +81,7 @@ func _prefight() -> void:
 		SOL.dialogue_closed.connect(
 			func():
 				DAT.free_player("cutscene")
+				DAT.appenda("bike_ghosts_fought", ghost)
 				LTS.enter_battle(G_BATTLE_INFOS[ghost])
 		, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
@@ -103,7 +104,7 @@ func _travel() -> void:
 	SOL.dialogue_choice = ""
 	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_TRAVEL)
 	SOL.dialogue_closed.connect(func():
-		LTS.gate_id = StringName(LTS.GATE_BIKE_TRAVEL + "_" + where)
+		LTS.gate_id = get_gate_id(where)
 		LTS.level_transition((get_regs().get(where, {}) as Dictionary).get(
 				"path", "res://scenes/rooms/scn_room_test_room.tscn"))
 	, CONNECT_ONE_SHOT)
@@ -115,10 +116,14 @@ func _get_travel_options() -> PackedStringArray:
 	var regs := get_regs()
 	for k: StringName in regs:
 		var d := regs[k] as Dictionary
-		if k == destination_path or d.ghost != ghost:
+		if k == destination_name or d.ghost != ghost:
 			continue
 		options.append(String(k))
 	return options
+
+
+func get_gate_id(where: StringName) -> StringName:
+	return StringName(LTS.GATE_BIKE_TRAVEL + "_" + where)
 
 
 func get_regs() -> Dictionary:
