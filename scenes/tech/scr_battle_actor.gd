@@ -52,6 +52,7 @@ var rng := RandomNumberGenerator.new()
 @export var effect_immunities: Array[String] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
+var ignore_my_finishes := false # cutscenes and such?
 
 
 # battle script accesses actors through the group
@@ -127,14 +128,10 @@ func heal(amount: float) -> void:
 
 
 func hurt(amt: float, gendr: int) -> void:
-	var amount := amt
-	amount = Genders.apply_gender_effects(amount, self, gendr)
 	if state == States.DEAD:
 		return
-	for x: BattleStatusEffect in status_effects.values():
-		amount += x.hurt_damage(amount, gendr, self)
-	amount = maxf(amount, 1.0)
-	character.health = maxf(character.health - absf(amount), 0.0)
+	var amount := _hurt_damage(amt, gendr)
+	character.health = maxf(character.health - amount, 0.0)
 	if character.health <= 0.0:
 		state = States.DEAD
 		SND.play_sound(
@@ -162,6 +159,17 @@ func hurt(amt: float, gendr: int) -> void:
 		})
 	# shake the screen (not visible unless high damage)
 	SOL.shake(sqrt(amount)/15.0)
+
+
+func _hurt_damage(amount: float, gendr: int) -> float:
+	amount = absf(amount)
+	amount = Genders.apply_gender_effects(amount, self, gendr)
+	if state == States.DEAD:
+		return 0
+	for x: BattleStatusEffect in status_effects.values():
+		amount += x.hurt_damage(amount, gendr, self)
+	amount = maxf(amount, 1.0)
+	return amount
 
 
 func flee() -> void:

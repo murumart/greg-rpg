@@ -80,8 +80,8 @@ func act() -> void:
 		DAT.set_data("is_cashier_dead_during_vampire_battle", true)
 
 
-func hurt(amt: float, _g: int) -> void:
-	amt = _progress_check(amt)
+func hurt(amt: float, g: int) -> void:
+	amt = _progress_check(amt, g)
 	if progress == 4 and SOL.dialogue_open:
 		await SOL.dialogue_closed
 	super(amt, _g)
@@ -102,7 +102,7 @@ func _vampire_limb_flash() -> void:
 	tw.tween_property(limb, "modulate:" + channel, 1, 0.333 * randf())
 
 
-func _progress_check(damage: float) -> float:
+func _progress_check(damage: float, g: int) -> float:
 	if (character.health - damage) / character.max_health < 0.7 and progress == 0:
 		progress = 1
 		hurting_spirits.append("powerpunch")
@@ -144,7 +144,7 @@ func _progress_check(damage: float) -> float:
 			, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)
 		damage += (character.health - damage) - character.max_health * 0.3
-	elif character.health - damage <= 0.0:
+	elif character.health - _hurt_damage(damage, g) <= 0.0:
 		progress = 4
 		animate("death")
 		DAT.set_data("vampire_defeated", true)

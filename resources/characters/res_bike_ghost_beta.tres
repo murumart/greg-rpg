@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://cbsinrwa443op"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_fnh2w"]
+[ext_resource type="Texture2D" uid="uid://b20yovsmiif8x" path="res://sprites/characters/portraits/spr_portrait_bike_beta.png" id="1_p5706"]
+[ext_resource type="AudioStream" uid="uid://d2jk7oc1csuhy" path="res://sounds/talking/bike_ghost.ogg" id="3_c7i3b"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xqb0m"]
+random_pitch = 1.33
+streams_count = 1
+stream_0/stream = ExtResource("3_c7i3b")
+stream_0/weight = 1.0
+
+[resource]
+script = ExtResource("1_fnh2w")
+name_in_file = &""
+name = "bike ghost"
+info = "you can feel its gaze radiate through your body. it also smells quite bad."
+voice_sound = SubResource("AudioStreamRandomizer_xqb0m")
+portrait = ExtResource("1_p5706")
+max_health = 200.0
+health = 200.0
+max_magic = 190.0
+magic = 190.0
+level = 36
+experience = 0
+attack = 36.0
+defense = 36.0
+speed = 36.0
+defeated_characters = {}
+inventory = Array[String](["glue", "glue", "glue", "brick", "gummy_fish", "gummy_fish", "gummy_fish", "soda"])
+spirits = Array[String](["dreaming_in_green", "radiation_attack", "splash_attack"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

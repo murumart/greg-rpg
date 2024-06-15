@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://cgrinognjr8q7"]
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://cgrinognjr8q7"]
 
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_qging"]
+[ext_resource type="Resource" uid="uid://dawh3y2rpif8g" path="res://resources/rewards/res_bike_ghost_beta.tres" id="1_rxf2e"]
 
 [resource]
 script = ExtResource("1_qging")
@@ -10,5 +11,6 @@ music = "bike_beta"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = "ca sent le mouille."
+rewards = ExtResource("1_rxf2e")
 victory_music = &"victory"
 stop_music_before_end = true

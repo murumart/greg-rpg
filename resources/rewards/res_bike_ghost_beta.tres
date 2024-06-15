@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=5 format=3 uid="uid://dawh3y2rpif8g"]
+
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_hw8h0"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_vq2dp"]
+
+[sub_resource type="Resource" id="Resource_ui4ok"]
+script = ExtResource("1_hw8h0")
+type = 0
+property = "77"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_wdtt7"]
+script = ExtResource("1_hw8h0")
+type = 1
+property = "bike_bell"
+chance = 1.0
+unique = false
+
+[resource]
+script = ExtResource("1_vq2dp")
+rewards = Array[ExtResource("1_hw8h0")]([SubResource("Resource_ui4ok"), SubResource("Resource_wdtt7")])

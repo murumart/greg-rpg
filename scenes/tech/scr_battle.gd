@@ -380,6 +380,8 @@ func _on_act_requested(actor: BattleActor) -> void:
 
 # some actor has finished their act
 func _on_act_finished(actor: BattleActor) -> void:
+	if actor.ignore_my_finishes:
+		return
 	if is_end():
 		return
 	actor.set_crittable()

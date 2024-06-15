@@ -278,4 +278,6 @@ func give_spirit(args: PackedStringArray) -> void:
 
 func instakill() -> void:
 	ResMan.get_character("greg").attack = 999999999
+	if LTS.get_current_scene().name == "Battle":
+		LTS.get_current_scene().party[0].character.attack = 99999999
 

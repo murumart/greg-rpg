@@ -1,9 +1,10 @@
-[gd_scene load_steps=80 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=81 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_rbpn8"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_r61au"]
+[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="4_6dg7d"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_so2nw"]
@@ -359,6 +360,22 @@ music = "lakeside"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ymw61")
 
+[node name="Greg" parent="." instance=ExtResource("4_obfq8")]
+position = Vector2(425, -103)
+metadata/_edit_group_ = true
+
+[node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
+position = Vector2(0, -9)
+limit_left = -600
+limit_top = -384
+limit_right = 696
+limit_bottom = 400
+
+[node name="CheatNode" type="Node" parent="Greg"]
+script = ExtResource("4_6dg7d")
+level_gain = 32
+new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon"])
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Water" type="ColorRect" parent="."]
@@ -554,6 +571,7 @@ region_rect = Rect2(0, 48, 16, 16)
 [node name="Bike" parent="Areas" instance=ExtResource("15_8k51n")]
 position = Vector2(485, -135)
 ghost = 1
+destination_name = &"fishhut"
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1204,17 +1222,6 @@ type = 1
 [node name="Tree115" parent="Trees" instance=ExtResource("4_xwmth")]
 position = Vector2(-414, 191)
 scale = Vector2(-1, 1)
-
-[node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-477, -327)
-metadata/_edit_group_ = true
-
-[node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
-position = Vector2(0, -9)
-limit_left = -600
-limit_top = -384
-limit_right = 696
-limit_bottom = 400
 
 [node name="Fishermen" type="Node2D" parent="."]
 y_sort_enabled = true

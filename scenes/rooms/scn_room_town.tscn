@@ -1508,6 +1508,7 @@ region_rect = Rect2(32, 32, 16, 16)
 
 [node name="Bike" parent="Houses/UhhHouse" instance=ExtResource("12_8ipa6")]
 position = Vector2(107, 66)
+destination_name = &"skatepark"
 
 [node name="BikeCallTimer" type="Timer" parent="Houses/UhhHouse/Bike"]
 wait_time = 6.0

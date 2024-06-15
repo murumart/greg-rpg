@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="Resource" uid="uid://cgrinognjr8q7" path="res://resources/battle_infos/bike_ghost_beta.tres" id="2_4gigg"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_twb7q"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -13,17 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 [ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
-
-[sub_resource type="Resource" id="Resource_t4xg8"]
-script = ExtResource("2_twb7q")
-enemies = Array[StringName]([&"well"])
-background = "town"
-music = ""
-party = Array[StringName]([])
-death_reason = "default"
-start_text = ""
-victory_music = &"victory"
-stop_music_before_end = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -74,7 +63,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = SubResource("Resource_t4xg8")
+load_options = ExtResource("2_4gigg")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
@@ -509,7 +498,7 @@ wait_time = 0.07
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("10_7y584")
-level_gain = 45
+level_gain = 33
 new_items = Array[StringName]([&"free_hugs_coupon", &"diploma"])
 replace_spirits = Array[StringName]([&"peptide", &"hotel", &"peanuts"])
 replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda"])

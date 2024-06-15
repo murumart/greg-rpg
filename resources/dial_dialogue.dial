@@ -1588,6 +1588,65 @@ CHAR bike_ghost_beta
 	...it's too bad we're out of service at the moment.
 
 
+DIALOGUE bike_beta_battle_1
+CHAR bike_ghost_beta
+	greetings. i am the [color=#aaffff]bike ghost[/color].
+	i have been tasked to guard this fast travel spot.
+	my employer requires that no fast travel goes on at this time.
+	my employer also requires that you die.
+	there will be no further communication. goodbye.
+
+
+DIALOGUE bike_beta_battle_2
+CHAR bike_ghost_beta
+	...well, i tried.
+	time to use my [color=SPIRITCOLOR]super radiation attack[/color].
+
+
+DIALOGUE bike_beta_battle_3
+CHAR bike_ghost_beta
+	you're really gonna feel that attack in a few months.
+	you have bested me for now.
+
+
+DIALOGUE bike_beta_afterdefeat
+CHAR bike_ghost_beta
+CHOICES travel,bye
+	why are you back? you know i can't kill you.
+CHOICE_LINK bye
+	i suppose this is goodbye.
+CHOICE_LINK travel
+DATA_LINK fast_travel_beta_tutorialed,false
+	travel... that's not part of my work obligations.
+SET_DATA fast_travel_beta_tutorialed,true
+	but you're right in that i'm not employed any more.
+
+
+DIALOGUE bike_beta_travel_options
+CHAR bike_ghost_beta
+CHOICES nvm
+	where do you wish to travel?
+CHOICE_LINK nvm
+	...you don't want to go anywhere?
+	i had all my space folds mapped and mana links warmed up.
+	and you just decide to not travel...?
+	imagine ordering a taxi and then saying: "no, never mind."
+	imagine booking a bus and when it arrives saying:
+	"no, i do not actually want to go anywhere."
+	your impatience and indecisiveness is very irritating.
+
+
+DIALOGUE bike_beta_travel_nodests
+CHAR bike_ghost_beta
+	but you haven't been to any other bikes yet.
+
+
+DIALOGUE bike_beta_travel
+CHAR bike_ghost_beta
+	as i said before... i'm not a transport spirit.
+	so... brace yourself. this might hurt...
+
+
 DIALOGUE tarikas_hello
 CHAR tarikas
 	mh. you're blocking the sunlight.

@@ -1,7 +1,6 @@
 extends Node2D
 
 # bikes that can be used for fast travel
-# (hopefully)
 
 const DAT_DESTS := &"_bike_dests"
 enum Ghosts {ALPHA, BETA, GAMMA}
@@ -26,14 +25,15 @@ const DIAL_TRAVEL_NODESTS := "travel_nodests"
 @onready var collision: StaticBody2D = $StaticBody2D
 @onready var image: Sprite2D = $Ghost/Image
 @onready var animator: AnimationPlayer = $AnimationPlayer
+@onready var bike_image: Sprite2D = $Body
 
 @export var ghost: Ghosts = Ghosts.ALPHA
 @export var destination_name := &""
-@export_file("scn_room_*.tscn") var destination_path := ""
 
 
 func _ready() -> void:
-	pass
+	image.region_rect = G_REGIONS[ghost]
+	bike_image.region_rect.position.y = 13 * int(ghost)
 
 
 func apply_spawn_point(player: PlayerOverworld) -> void:
@@ -46,15 +46,15 @@ func _interacted() -> void:
 	if not ghost in fought:
 		_prefight()
 		return
-	# this should mean that there can be multiple of the same ghost
+	# this means that there can be multiple of the same ghost
 	# and they will all be "defeated" at once
 	# but their bike destinations can be different
 	_register()
 	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_AFTER_DEFEAT)
 	await SOL.dialogue_closed
 	if SOL.dialogue_choice == &"travel":
-		var options := _get_travel_options()
-		if not options.size() <= 1: # "nvm" is always an option
+		var options := get_travel_options()
+		if options.size() > 1: # "nvm" is always an option
 			SOL.dialogue_box.adjust(
 					G_DIAL_PREXES[ghost] + DIAL_TRAVEL_OPTIONS, 0, "choices", options)
 			SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_TRAVEL_OPTIONS)
@@ -70,7 +70,6 @@ func _prefight() -> void:
 	SND.play_song("")
 	SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_1")
 	SOL.dialogue_closed.connect(func():
-		image.region_rect = G_REGIONS[ghost]
 		DAT.capture_player("cutscene")
 		animator.play("emerge")
 		SND.play_song("bike_spirit_appear",
@@ -93,7 +92,7 @@ func _register() -> void:
 		return
 	var dict := {
 		"ghost": ghost,
-		"path": destination_path,
+		"path": LTS.get_current_scene().scene_file_path,
 	}
 	dests[destination_name] = dict
 	DAT.set_data(DAT_DESTS, dests)
@@ -110,13 +109,13 @@ func _travel() -> void:
 	, CONNECT_ONE_SHOT)
 
 
-func _get_travel_options() -> PackedStringArray:
+func get_travel_options() -> PackedStringArray:
 	var options := PackedStringArray()
 	options.append("nvm")
 	var regs := get_regs()
 	for k: StringName in regs:
 		var d := regs[k] as Dictionary
-		if k == destination_name or d.ghost != ghost:
+		if k == destination_name:
 			continue
 		options.append(String(k))
 	return options

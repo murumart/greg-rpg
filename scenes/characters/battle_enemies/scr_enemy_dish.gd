@@ -44,7 +44,7 @@ func ai_action() -> void:
 
 
 func hurt(amount: float, h_gender: int) -> void:
-	if character.health - absi(amount) <= 0:
+	if character.health - _hurt_damage(amount, h_gender) <= 0:
 		DAT.set_data("you_gotta_see_the_water_drain", true)
 		animate("death")
 		SND.play_sound(preload("res://sounds/spirit/dish_end.ogg"))
