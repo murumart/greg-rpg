@@ -411,7 +411,7 @@ func handle_payload(pld: BattlePayload) -> void:
 		if pld.steal_magic and is_instance_valid(pld.sender):
 			pld.sender.character.magic += pld.steal_magic
 			character.magic = maxf(character.magic - pld.steal_magic, 0.0)
-		if character.health <= 0:
+		if state == States.DEAD:
 			if is_instance_valid(pld.sender):
 				pld.sender.character.add_defeated_character(character.name_in_file)
 

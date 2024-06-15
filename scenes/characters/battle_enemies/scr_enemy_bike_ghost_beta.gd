@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func hurt(amt: float, g: int) -> void:
 	if character.health - _hurt_damage(amt, g) <= 0:
+		set_state(States.DEAD)
 		SOL.dialogue("bike_beta_battle_2")
 		await SOL.dialogue_closed
 		auto_ai = false

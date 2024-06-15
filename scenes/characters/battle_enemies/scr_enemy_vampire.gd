@@ -84,7 +84,7 @@ func hurt(amt: float, g: int) -> void:
 	amt = _progress_check(amt, g)
 	if progress == 4 and SOL.dialogue_open:
 		await SOL.dialogue_closed
-	super(amt, _g)
+	super(amt, g)
 
 
 func _item_salt_used_on() -> void:
@@ -145,6 +145,7 @@ func _progress_check(damage: float, g: int) -> float:
 		, CONNECT_ONE_SHOT)
 		damage += (character.health - damage) - character.max_health * 0.3
 	elif character.health - _hurt_damage(damage, g) <= 0.0:
+		set_state(States.DEAD)
 		progress = 4
 		animate("death")
 		DAT.set_data("vampire_defeated", true)
