@@ -258,11 +258,11 @@ func item_names(opt := {}) -> void:
 		item_name[second] = swchar
 	elif randf() <= 0.01 and item_name.length() >= 3:
 		item_name = item_name.erase(randi_range(1, item_name.length() - 1))
-	opt.button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(12)
+	opt.button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(11)
 
 
 func spirit_names(opt := {}) -> void:
-	opt.button.text = ResMan.get_spirit(opt.reference).name.left(12)
+	opt.button.text = ResMan.get_spirit(opt.reference).name.left(11)
 
 
 # display the character's used and unused spirits

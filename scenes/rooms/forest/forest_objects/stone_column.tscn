@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmmplrqu5g683"]
+
+[ext_resource type="Texture2D" uid="uid://cvenx7ncp0g7y" path="res://sprites/world/object/spr_stone_column.png" id="1_nivfg"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_hw5mx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
+size = Vector2(16, 12)
+
+[node name="Stump" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_nivfg")
+region_rect = Rect2(48, 57, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ltmb5")
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_hw5mx")
+key = "stone_column"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+shape = SubResource("RectangleShape2D_dxvwd")
+debug_color = Color(1, 0.564706, 1, 0.419608)

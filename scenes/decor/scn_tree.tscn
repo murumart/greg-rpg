@@ -13,11 +13,24 @@ size = Vector2(16, 88)
 [node name="Tree" type="Node2D" groups=["trees"]]
 script = ExtResource("1_ntvbr")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+modulate = Color(1, 1, 1, 0.0823529)
+position = Vector2(1.43051e-06, -56)
+scale = Vector2(2.4, 6.4)
+
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -56)
 texture = ExtResource("2_mh3gg")
 region_enabled = true
 region_rect = Rect2(16, 0, 48, 128)
+
+[node name="Face" type="Sprite2D" parent="Sprite"]
+visible = false
+position = Vector2(-2, 36)
+texture = ExtResource("2_mh3gg")
+centered = false
+region_enabled = true
+region_rect = Rect2(3, 64, 5, 9)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -32,13 +45,8 @@ debug_color = Color(0.294118, 1, 1, 0.45098)
 affected_node = NodePath("../Sprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
-position = Vector2(0, -44)
+position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_38uvm")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-modulate = Color(1, 1, 1, 0.0823529)
-position = Vector2(1.43051e-06, -56)
-scale = Vector2(2.4, 6.4)
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="Sprite" method="show"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="Sprite" method="hide"]

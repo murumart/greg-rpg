@@ -6,6 +6,10 @@ class_name TreeDecor extends Node2D
 @export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type: int = 0: set = set_type
 const TYPES_SIZE := 4
 @export var randomise_trees := false: set = activate_randomise_trees
+@export var face_visible := false:
+	set(to):
+		$Sprite/Face.visible = to
+		face_visible = to
 
 
 func _ready() -> void:

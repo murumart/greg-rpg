@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://br04qlywiqgw6"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_q67ku"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_xgd36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pevje"]
+size = Vector2(28, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8osms"]
+size = Vector2(30, 6)
+
+[node name="Stump" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_q67ku")
+region_enabled = true
+region_rect = Rect2(17, 4, 30, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pevje")
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_xgd36")
+key = "forest_bench"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+shape = SubResource("RectangleShape2D_8osms")

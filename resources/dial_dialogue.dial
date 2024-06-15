@@ -2476,6 +2476,14 @@ CHOICES darn
 	it's not woods time for you yet.
 
 
+DIALOGUE lost_guy_1
+	did you get teleported to the woods too?
+
+
+DIALOGUE lost_guy_2
+	this is un-epic, as they say. i didn't want a dweeb like you here.
+
+
 DIALOGUE effect_guru_noeffects
 	come to me once you have some more battle experience.
 	i can help you. see you then...
@@ -3372,6 +3380,14 @@ DIALOGUE insp_wet_floor
 
 DIALOGUE insp_ph_doghouse
 	a pet-sized house.
+
+
+DIALOGUE insp_stone_column
+	what is the purpose of this lone stone column?
+
+
+DIALOGUE insp_forest_bench
+	this is no time for resting.
 
 
 DIALOGUE end_of_the_line

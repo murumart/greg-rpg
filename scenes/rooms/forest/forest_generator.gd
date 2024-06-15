@@ -9,13 +9,13 @@ const HAS_ENTRANCE := [
 	[1, 2, 3, 5], # WEST
 ]
 
+const OBJECT_AMOUNT := 15
+
 const TREE := preload("res://scenes/decor/scn_tree.tscn")
 const TREE_COUNT := 45
 const LOCATION_TESTS := 20
 const TRASH := preload("res://scenes/decor/scn_trash_bin.tscn")
-var trash_count := 10
 const ENEMY := preload("res://scenes/characters/overworld/scn_wild_lizard_overworld.tscn")
-var enemy_count := 10
 const GREENHOUSE := preload("res://scenes/decor/scn_greenhouse.tscn")
 const SCR_GREENHOUSE := preload("res://scenes/decor/scr_greenhouse.gd")
 const GREENHOUSE_INTERVAL := 11
@@ -30,7 +30,6 @@ const BIN_LOOT := {
 	"bread": 5,
 	"plaster": 3,
 	"pills": 6,
-	"sleepy_flower": 3,
 	"tape": 1,
 	"sugar_lemon": 3,
 	"gummy_fish": 8,
@@ -88,9 +87,8 @@ func rand_pos() -> Vector2:
 
 func valid_placement_spot(pos: Vector2) -> bool:
 	var vpos := Vector2i((pos * forest.paths.scale).round())
-	var requred_distance := 2.0
-	#if vpos in used_poses:
-		#return false
+	if vpos in used_poses:
+		return false
 	var tds := [
 		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos),
 		forest.paths.get_cell_tile_data(
@@ -121,10 +119,12 @@ func trees() -> void:
 		var pos := rand_pos()
 		tree.global_position = pos * 16
 		tree.type = randi() % tree.TYPES_SIZE
+		if randf() < 0.2:
+			tree.face_visible = true
 
 
 func bins() -> void:
-	trash_count = roundi(forest.trash_amount_curve.sample_baked(
+	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
 		forest.current_room / 100.0) * randf())
 	for i in trash_count:
 		var trash := TRASH.instantiate() as TrashBin
@@ -137,15 +137,13 @@ func bins() -> void:
 
 
 func bin_loot(bin: TrashBin) -> void:
-	bin.replenish_seconds = -1
-	bin.save = false
 	bin.add_to_group("bins")
-	if randf() <= 0.11: return
-	if randf() <= 0.22:
+	if randf() <= 0.56: return
+	if randf() <= 0.11:
 		bin.full = false
 		return
 	if randf() <= forest.trash_silver_item_chance_curve.sample_baked(
-			forest.current_room / 100.0):
+			forest.current_room * 0.01):
 		# silver
 		bin.silver = forest.current_room * ((randi() % 3) + 1)
 		return
@@ -155,7 +153,7 @@ func bin_loot(bin: TrashBin) -> void:
 
 
 func enemies() -> void:
-	enemy_count = clampi(forest.current_room / 12, 1, 12)
+	var enemy_count := clampi(forest.current_room / 12, 1, 12)
 	for i in enemy_count:
 		var enemy := ENEMY.instantiate()
 		enemy.difficulty = forest.current_room * 0.99
@@ -177,10 +175,16 @@ func gen_greenhouse() -> void:
 
 func gen_objects() -> void:
 	var weights := ForestObjects.get_db_keys_by_weights()
-	for i in 3:
+	var amounts := {}
+	var tries := 0
+	while generated_objects.size() < OBJECT_AMOUNT and tries < 100:
 		var obkey: StringName = Math.weighted_random(
 				weights.keys(), weights.values())
+		if (amounts.get(obkey, 0)
+				>= ForestObjects.get_object(obkey).get(ForestObjects.LIMIT, 999)):
+			continue
 		gen_object(obkey)
+		amounts[obkey] = amounts.get(obkey, 0) + 1
 
 
 func gen_object(type: StringName) -> Node2D:
@@ -191,13 +195,20 @@ func gen_object(type: StringName) -> Node2D:
 	for i in range(start_x, 17, sze.x):
 		for j in range(start_y, 15, sze.y):
 			if is_area_free(Rect2i(i, j, sze.x, sze.y)):
-				var pos := Vector2(i, j)
-				var g: Node2D = object[ForestObjects.SCENE].instantiate()
-				g.global_position = pos * 16
-				forest.add_child(g)
-				generated_objects[g.global_position] = type
-				return g
+				return _place_object(type, Vector2(i, j) * 16)
 	return null
+
+
+func _place_object(type: StringName, position: Vector2) -> Node2D:
+	var object := ForestObjects.get_object(type)
+	var g: Node2D = object[ForestObjects.SCENE].instantiate()
+	g.global_position = position
+	# pass in the actual object as the only argument
+	if object.get(ForestObjects.FUNCTION, false):
+		call(object[ForestObjects.FUNCTION], g)
+	forest.add_child(g)
+	generated_objects[g.global_position] = type
+	return g
 
 
 func gen_us() -> void:
@@ -241,10 +252,7 @@ func load_from_save() -> void:
 	for e in d.enemies:
 		pass
 	for o in d.objects:
-		var object: Node2D = ForestObjects.get_object(d.objects[o])\
-				[ForestObjects.SCENE].instantiate()
-		forest.add_child(object)
-		object.global_position = o
+		_place_object(d.objects[o], o)
 	generated_objects = d.objects
 	if d.greenhouse.exists:
 		forest.greenhouse = GREENHOUSE.instantiate()
@@ -260,3 +268,8 @@ static func dir_oppos(which: int) -> int:
 	if which == EAST: return WEST
 	if which == WEST: return EAST
 	return -1
+
+
+func _set_flower_sleepy(a) -> void:
+	(a as PickableItem).item_type = &"sleepy_flower"
+

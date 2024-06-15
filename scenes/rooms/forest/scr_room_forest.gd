@@ -15,6 +15,7 @@ var inversion := false
 @export var trash_silver_item_chance_curve: Curve
 
 var generator: ForestGenerator
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 
 func _ready() -> void:
@@ -28,7 +29,10 @@ func _ready() -> void:
 				greg.global_position = $Gates.get_child(
 						ForestGenerator.dir_oppos(i)).get_child(1).global_position
 	generator = ForestGenerator.new(self)
-	if LTS.gate_id == LTS.GATE_ENTER_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
+	canvas_modulate.color = canvas_modulate.color.lerp(
+			Color(0.735003054142, 0.89518678188324, 0.22227722406387),
+			remap(current_room, 0, 100, 0.0, 1.0))
+	if LTS.gate_id == LTS.GATE_EXIT_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
 		load_from_save()
 		return
 	generator.generate()
@@ -36,11 +40,7 @@ func _ready() -> void:
 
 # DEBUG
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("mouse_left") and event.is_pressed():
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		var pos := (get_global_mouse_position() / 16.0).floor()
-		var td := paths.get_cell_tile_data(enabled_layer, Vector2i((pos * paths.scale).floor()))
-		#prints("pos:", pos, "td:", td.terrain if td else "null", "ps:", paths.scale, "valid:", valid_placement_spot(pos))
+	pass
 
 
 func gate_entered(which: int) -> void:
@@ -52,8 +52,8 @@ func gate_entered(which: int) -> void:
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 		DAT.incri("total_forest_rooms_traveled", 1)
 		DAT.incri("current_forest_rooms_traveled", 1)
-	else:
-		leave()
+		return
+	leave()
 
 
 func load_from_save() -> void:

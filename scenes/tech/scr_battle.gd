@@ -952,7 +952,7 @@ func is_ui_locked() -> bool:
 
 func crittable_display(opt: Dictionary) -> void:
 	if current_guy in opt.reference.crittable:
-		opt.button.modulate = Color.YELLOW
+		opt.button.modulate = Color.MAGENTA
 	elif opt.reference in current_guy.crittable:
 		opt.button.modulate = (opt.button.modulate as Color)\
 				.blend(Color.GREEN)

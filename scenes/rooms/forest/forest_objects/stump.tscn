@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6gbcqtnandsk"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_d26aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
+size = Vector2(14, 8)
+
+[node name="Stump" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_d26aa")
+region_enabled = true
+region_rect = Rect2(48, 57, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ltmb5")
