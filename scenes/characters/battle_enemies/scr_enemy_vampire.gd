@@ -145,7 +145,6 @@ func _progress_check(damage: float, g: int) -> float:
 		, CONNECT_ONE_SHOT)
 		damage += (character.health - damage) - character.max_health * 0.3
 	elif character.health - _hurt_damage(damage, g) <= 0.0:
-		set_state(States.DEAD)
 		progress = 4
 		animate("death")
 		DAT.set_data("vampire_defeated", true)

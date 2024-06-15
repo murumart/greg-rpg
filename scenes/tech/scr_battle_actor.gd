@@ -128,7 +128,7 @@ func heal(amount: float) -> void:
 
 
 func hurt(amt: float, gendr: int) -> void:
-	if state == States.DEAD:
+	if character.health <= 0:
 		return
 	var amount := _hurt_damage(amt, gendr)
 	character.health = maxf(character.health - amount, 0.0)

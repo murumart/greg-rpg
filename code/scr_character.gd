@@ -225,8 +225,7 @@ func add_defeated_characters(them: Dictionary) -> void:
 
 # NOTE:
 # actors that have any delay between their deadly hurt and actual death
-# will have to manually set their state to DEAD for them to be registred
-# as defeated.
+# won't be registred.
 func get_defeated_character(nimi: StringName) -> int:
 	return defeated_characters.get(nimi, 0)
 
