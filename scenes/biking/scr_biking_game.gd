@@ -81,9 +81,6 @@ func _ready() -> void:
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
 	DAT.death_reason = ""
-	inventory.append(&"salt")
-	inventory.append(&"salt")
-	inventory.append(&"salt")
 	update_ui()
 
 

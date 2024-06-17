@@ -4,6 +4,7 @@ extends RigidBody2D
 
 var lifetime := 0.0
 const MAX_LIFETIME := 2.0
+const FOLLOW_SPEED := 60
 
 var paper_sounds := [
 	preload("res://sounds/paper/paper3.ogg"),
@@ -36,9 +37,12 @@ func _physics_process(delta: float) -> void:
 		# manually move it, not using physics
 		freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 		freeze = true
-		var target_position := Vector2(target.global_position.x, target.global_position.y - 15)
+		var target_position := Vector2(target.global_position.x,
+				target.global_position.y - 15)
 		look_at(target_position)
-		global_position = global_position.move_toward(target_position, delta * 60)
+		global_position = global_position.move_toward(
+				target_position, delta * FOLLOW_SPEED *
+				(2.0 - int(target_position.x >= global_position.x)))
 		lifetime -= delta * 0.5
 
 		if global_position.is_equal_approx(target_position):

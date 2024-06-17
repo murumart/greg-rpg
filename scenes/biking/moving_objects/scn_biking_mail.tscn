@@ -13,8 +13,8 @@ height = 14.0
 [node name="BikingMail" type="RigidBody2D"]
 z_index = 1
 collision_layer = 32
-inertia = 289.54
 physics_material_override = SubResource("PhysicsMaterial_dvqhj")
+inertia = 289.54
 max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("1_dw0f7")
