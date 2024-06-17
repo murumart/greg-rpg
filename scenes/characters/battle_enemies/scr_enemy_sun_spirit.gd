@@ -15,6 +15,7 @@ func _ready() -> void:
 	SOL.add_ui_child(nova_prospect)
 	super._ready()
 	nova_process(0)
+	color(character.health_perc())
 
 
 func color(amt: float) -> void:
@@ -22,7 +23,7 @@ func color(amt: float) -> void:
 	$Puppet/Pivot.modulate = mod_gradient.sample(amt)
 	$Puppet/Pivot.scale.x = size_curve.sample(amt)
 	character.attack = remap(amt, 0.0, 1.0, 35, 85)
-	character.defense = remap(amt, 0.0, 1.0, 75, 20)
+	character.defense = remap(amt, 0.0, 1.0, 69, 20)
 	character.speed = remap(amt, 0.0, 1.0, 55, 20)
 
 
@@ -32,7 +33,8 @@ func ai_action() -> void:
 
 
 func hurt(amt: float, gnd: int) -> void:
-	if dead: return
+	if dead:
+		return
 	super(amt, gnd)
 	color(character.health_perc())
 	if character.health_perc() <= 0.05:
@@ -42,7 +44,7 @@ func hurt(amt: float, gnd: int) -> void:
 			super.hurt(3000, Genders.VAST)
 			dead = true
 			DAT.set_data("solar_protuberance_defeated", true)
-	nova_process(pow(amt, 1.35) / character.max_health)
+	nova_process(pow(amt * 1.19, 1.35) / character.max_health)
 
 
 func heal(amt: float) -> void:
@@ -61,7 +63,8 @@ func nova_process(add: float) -> void:
 	var tw2 := create_tween()
 	tw1.tween_property(nova_prospect.get_child(0), "value", nova, 0.5)
 	var col := Color.RED
-	if nova < old_nova: col = Color.GREEN
+	if nova < old_nova:
+		col = Color.GREEN
 	tw2.tween_property(nova_prospect.get_child(0), "modulate", col, 0.5)
 	tw2.tween_property(nova_prospect.get_child(0), "modulate", Color.WHITE, 0.5)
 	if is_instance_valid(SND.current_song_player):
