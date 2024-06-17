@@ -218,12 +218,13 @@ func pick_target(who: int = 0) -> BattleActor:
 	return null
 
 
-func animate(what: String) -> void:
+func animate(what: String, queue_idle := true) -> void:
 	# custom animations using animationplayer
 	if animator:
 		if animator.has_animation(what):
 			animator.play(what)
-			if animator.has_animation("idle") and not what in ["death", "flee"]:
+			if (animator.has_animation("idle")
+					and not what in ["death", "flee"] and queue_idle):
 				animator.queue("idle")
 			return
 	# default animations using tweens

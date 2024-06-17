@@ -20,11 +20,9 @@ curve = SubResource("Curve_q4f4c")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ew53a"]
 particle_flag_disable_z = true
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.1
 initial_velocity_max = 0.1
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 tangential_accel_min = 28.57
 tangential_accel_max = 28.57
 scale_max = 2.0

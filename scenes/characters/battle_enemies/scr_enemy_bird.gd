@@ -21,8 +21,10 @@ func ai_action() -> void:
 	else:
 		turn_finished()
 
-	if here: time_away -= 1
-	else: time_away += 1
+	if here:
+		time_away -= 1
+	else:
+		time_away += 1
 
 	if time_away >= max_time_away and not here:
 		here = true
