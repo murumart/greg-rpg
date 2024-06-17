@@ -32,6 +32,7 @@ var current_tab := 0
 @onready var using_label := $UsingMenu/Label
 var using_menu_choice := 0
 var using_item: String
+var using_item_index := 0
 
 @onready var save_warning_label := $SaveWarningLabel
 
@@ -65,21 +66,22 @@ func _unhandled_input(event: InputEvent) -> void:
 				SND.menusound(0.8)
 				using_menu.hide()
 				grab_item_focus()
+				return
 			Doings.PARTY:
 				close_requested.emit()
 		update_tabs()
+		return
 	match doing:
 		Doings.PARTY:
 
 			item_spirit_tabs.modulate = Color.from_string("#888888", Color.WHITE)
-			var old_tab = current_tab
+			var old_tab := current_tab
 			current_tab = wrapi(
-						current_tab
-						+ roundi(Input.get_axis("ui_left", "ui_right")),
-						0, party_size())
+					current_tab
+					+ roundi(Input.get_axis("ui_left", "ui_right")),
+					0, party_size())
 			if current_tab != old_tab:
 				SND.menusound(1.3)
-			#update_tabs()
 
 			if event.is_action_pressed("ui_accept"):
 				doing = Doings.INNER
@@ -89,7 +91,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		Doings.INNER:
 			item_spirit_tabs.modulate = Color.from_string("#ffffff", Color.WHITE)
 			var old_tab = item_spirit_tabs.current_tab
-			item_spirit_tabs.current_tab = wrapi(item_spirit_tabs.current_tab + roundi(Input.get_axis("ui_left", "ui_right")), 0, item_spirit_tabs.get_tab_count())
+			item_spirit_tabs.current_tab = wrapi(item_spirit_tabs.current_tab
+					+ roundi(Input.get_axis("ui_left", "ui_right")),
+					0, item_spirit_tabs.get_tab_count())
 			if item_spirit_tabs.current_tab != old_tab:
 				SND.menusound(1.47)
 				grab_item_focus()
@@ -97,7 +101,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		Doings.USING:
 			var item := ResMan.get_item(using_item) as Item
 			var old_choice := using_menu_choice
-			using_menu_choice = wrapi(using_menu_choice + roundi(Input.get_axis("ui_left", "ui_right")), 0, party_size() + 1)
+			using_menu_choice = wrapi(using_menu_choice
+					+ roundi(Input.get_axis("ui_left", "ui_right")),
+					0, party_size() + 1)
 			update_using_portraits()
 			if using_menu_choice != party_size():
 				if item.use in Item.USES_EQUIPABLE:
@@ -241,6 +247,7 @@ func item_names(opt := {}) -> void:
 		int(opt.reference == &"skateboard" and
 			DAT.get_data("player_move_mode", 0) == 1)
 	)
+	opt.button.pressed.connect(_get_button_reference_when_press.bind(opt.button))
 	if equipped:
 		opt.button.modulate = Color(1.0, 0.6, 0.3)
 		opt.button.set_meta(&"equipped", true)
@@ -277,7 +284,10 @@ func load_spirits() -> void:
 
 func grab_item_focus() -> void:
 	if item_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 0:
-		item_container.get_child(0).call_deferred("grab_focus")
+		var focus_index := wrapi(using_item_index,
+				0, item_container.get_child_count())
+		var focus_me := item_container.get_child(focus_index) as Button
+		focus_me.grab_focus()
 	if used_spirit_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 1:
 		used_spirit_container.get_child(0).call_deferred("grab_focus")
 	elif unused_spirit_container.get_child_count() > 0 and item_spirit_tabs.current_tab == 1:
@@ -311,7 +321,10 @@ func update_using_portraits() -> void:
 
 
 func _reference_button_pressed(reference) -> void:
-	if reference in party(current_tab).inventory or reference == party(current_tab).armour or reference == party(current_tab).weapon or DAT.get_data("player_move_mode", 0) == 1:
+	if (reference in party(current_tab).inventory
+			or reference == party(current_tab).armour
+			or reference == party(current_tab).weapon
+			or DAT.get_data("player_move_mode", 0) == 1):
 		if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 			if (reference == party(current_tab).armour):
 				party(current_tab).armour = ""
@@ -362,6 +375,11 @@ func _reference_button_pressed(reference) -> void:
 			grab_item_focus()
 
 
+func _get_button_reference_when_press(button: Button) -> void:
+	using_item_index = button.get_meta("_index", 0)
+	print(using_item_index)
+
+
 func _on_button_reference_received(reference) -> void:
 	if item_spirit_tabs.current_tab == 0:
 		side_load_item_data(reference)
@@ -377,8 +395,7 @@ func party_size() -> int:
 func party(index: int = -1):
 	if index > -1 and index < party_size():
 		return ResMan.get_character(DAT.get_data("party", ["greg"])[index])
-	else:
-		return (DAT.get_data("party", ["greg"]))
+	return (DAT.get_data("party", ["greg"]))
 
 
 var save_warning_tween: Tween

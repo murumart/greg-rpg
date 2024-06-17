@@ -137,6 +137,7 @@ static func load_reference_buttons(
 		var ref = array[i]
 		var refbutton := REFERENCE_BUTTON.instantiate() as Button
 		refbutton.reference = ref
+		refbutton.set_meta("_index", i)
 		refbutton.text = str(ref).left(text_left)
 		if name_overwrite_array:
 			refbutton.text = str(name_overwrite_array[i]).left(text_left)
