@@ -192,7 +192,7 @@ key = &"not_fish"
 curve = SubResource("Curve_wtvfl")
 
 [sub_resource type="Curve" id="Curve_1t12c"]
-_data = [Vector2(0.186992, 0), 0.0, 0.0, 0, 0, Vector2(0.390132, 0.0208433), 0.0, 0.0, 0, 0, Vector2(0.505122, 0.311682), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.374451, 0), 0.0, 0.0, 0, 0, Vector2(0.421493, 0.0208433), 0.0772819, 0.0772819, 0, 0, Vector2(0.505122, 0.311682), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_3epx7"]
