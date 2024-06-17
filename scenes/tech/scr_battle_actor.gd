@@ -420,7 +420,10 @@ func handle_payload(pld: BattlePayload) -> void:
 
 	for en in pld.effects:
 		if en.name.length() and en.duration:
-			add_status_effect(en)
+			var eff := en.duplicate() as StatusEffect
+			if pld.sender and pld.sender == self:
+				eff.duration += 1
+			add_status_effect(eff)
 
 	if pld.summon_enemy:
 		teammate_requested.emit(self, pld.summon_enemy)
