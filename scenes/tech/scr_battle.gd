@@ -691,9 +691,9 @@ func open_end_screen(victory: bool) -> void:
 		return
 	set_actor_states(BattleActor.States.IDLE)
 	hide_screens()
-	screen_end.show()
 	victory_text.visible = victory
 	await get_tree().create_timer(1.0).timeout
+	screen_end.show()
 	screen_party_info.show()
 	if victory:
 		resize_panel(60)
