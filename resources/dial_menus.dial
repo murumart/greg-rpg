@@ -119,7 +119,7 @@ DIALOGUE battle_inspect
 	here's the dirt, boss:
 	name: %s
 	level: %s
-	atk: %s; def: %s; spd: %s
+	atk: %s; def: %s; spd: %s, type: %s
 	%s
 
 

@@ -431,7 +431,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld.meta.get("reveal_enemy_info", false) and pld.sender.player_controlled:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
 		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
-		SOL.dialogue_box.dial_concat("battle_inspect", 3, [get_attack(), get_defense(), get_speed()])
+		SOL.dialogue_box.dial_concat("battle_inspect", 3,
+				[get_attack(), get_defense(), get_speed(), Genders.NAMES[get_gender()]])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
 
