@@ -377,7 +377,6 @@ func _reference_button_pressed(reference) -> void:
 
 func _get_button_reference_when_press(button: Button) -> void:
 	using_item_index = button.get_meta("_index", 0)
-	print(using_item_index)
 
 
 func _on_button_reference_received(reference) -> void:
