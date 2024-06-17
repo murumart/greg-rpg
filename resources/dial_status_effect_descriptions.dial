@@ -50,7 +50,7 @@ DIALOGUE stefde_inspiration
 	you regain some [color=#00ffff]spirit power[/color] every time you act.
 
 
-DIALOGUE stefde_regen
+DIALOGUE stefde_regeneration
 	you regain some life after every action.
 
 
