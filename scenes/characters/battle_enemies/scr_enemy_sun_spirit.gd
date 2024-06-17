@@ -35,6 +35,7 @@ func ai_action() -> void:
 func hurt(amt: float, gnd: int) -> void:
 	if dead:
 		return
+	var oldhp := character.health
 	super(amt, gnd)
 	color(character.health_perc())
 	if character.health_perc() <= 0.05:
@@ -44,7 +45,8 @@ func hurt(amt: float, gnd: int) -> void:
 			super.hurt(3000, Genders.VAST)
 			dead = true
 			DAT.set_data("solar_protuberance_defeated", true)
-	nova_process(pow(amt * 1.19, 1.35) / character.max_health)
+	var change := absf(character.health - oldhp)
+	nova_process(pow(change * 1.01, 1.35) / character.max_health)
 
 
 func heal(amt: float) -> void:
