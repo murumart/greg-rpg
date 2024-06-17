@@ -1001,6 +1001,11 @@ EMO serious
 	well? which is it then?
 
 
+DIALOGUE biking_delete_items
+CHAR mail_man
+	thank you for the donation.
+
+
 DIALOGUE biking_perks
 CHAR mail_man
 EMO 
@@ -1065,6 +1070,8 @@ DIALOGUE biking_man_not_enough_space
 CHAR mail_man
 EMO serious
 	you can't carry more than %s items.
+EMO 
+	i'd be glad to take the weight of all your items off you, though.
 
 
 DIALOGUE biking_perk_snail_repel

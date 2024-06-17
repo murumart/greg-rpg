@@ -81,6 +81,9 @@ func _ready() -> void:
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
 	DAT.death_reason = ""
+	inventory.append(&"salt")
+	inventory.append(&"salt")
+	inventory.append(&"salt")
 	update_ui()
 
 
@@ -200,8 +203,10 @@ func _on_coin_timer_timeout() -> void:
 
 
 func _on_snail_timer_timeout() -> void:
-	if speed < 5: return
-	if kiosk_activated: return
+	if speed < 5:
+		return
+	if kiosk_activated:
+		return
 	snail_timer.start(randf_range(2, 5) * 0.1 if currently_hell else 1.0)
 	spawn_snail()
 
@@ -209,7 +214,8 @@ func _on_snail_timer_timeout() -> void:
 var mails_wo_box := 0
 
 func _on_mailbox_timer_timeout() -> void:
-	if speed < 5: return
+	if speed < 5:
+		return
 	mailbox_timer.start(0.5)
 	mails_wo_box += 1
 	if randf() <= 0.89:
@@ -258,13 +264,14 @@ func spawn_coin() -> void:
 
 
 func spawn_snail() -> void:
-	if current_perk == "snail_repel" and randf() <= 0.95: return
+	if current_perk == "snail_repel" and randf() <= 0.95:
+		return
 	var snail: BikingMovingObject = SNAIL_LOAD.instantiate()
 	snail.randomise_position()
 	snail.will_delete.connect(_on_snail_hit)
 	add_child(snail)
 	snail.speed = speed
-	snail.get_node("Sprite2D").modulate = Color(randf(), randf(), randf())
+	snail.get_child(0).modulate = Color(randf(), randf(), randf())
 	if currently_hell:
 		snail.scale.x = -1.0
 
@@ -375,8 +382,10 @@ func _set_perk(to: String) -> void:
 
 
 func open_inventory() -> void:
-	if bike.health <= 0.0: return
-	if speed < 5: return
+	if bike.health <= 0.0:
+		return
+	if speed < 5:
+		return
 	bike.paused = true
 	speed_before_inv = speed
 	set_speed(0)
@@ -384,7 +393,8 @@ func open_inventory() -> void:
 
 
 func close_inventory() -> void:
-	if bike.health <= 0.0: return
+	if bike.health <= 0.0:
+		return
 	bike.paused = false
 	set_speed(speed_before_inv)
 	ui.close_item_menu()
@@ -503,4 +513,17 @@ func stop_syrup():
 	currently_syrup = false
 	set_speed(speed - 800)
 	bike.invincibility_timer.stop()
+
+
+func coinify_snails() -> void:
+	SND.play_sound(preload("res://sounds/biking_snail_coinify.ogg"))
+	for snail in get_tree().get_nodes_in_group("biking_snails"):
+		var coin := COIN_LOAD.instantiate()
+		add_child(coin)
+		coin.transform = snail.transform
+		coin.modulate = snail.get_child(0).modulate
+		coin.speed = speed
+		coin.coin_got.connect(_on_coin_collected)
+		SOL.vfx("dustpuff", coin.global_position, {parent = coin})
+		snail.queue_free()
 

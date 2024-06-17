@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 		var move := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		chosen_item = wrapi(chosen_item + int(move.x), 0, game.inventory.size())
 		pointing_hand.global_position.x = items_container.get_child(chosen_item).global_position.x + 8
-		
+
 		if event.is_action_pressed("ui_accept"):
 			if game.inventory.size() > 0:
 				use_item(game.inventory[chosen_item])
@@ -115,8 +115,11 @@ func use_item(item: StringName) -> void:
 		game.syrup()
 	elif item == &"milk":
 		game.close_inventory()
-		SND.play_sound(preload("res://sounds/chemistry/dissociate.ogg"), {"volume": 4})
+		SND.play_sound(preload("res://sounds/chemistry/dissociate.ogg"), {"volume": 14})
 		game.bike.invincibility_timer.start(2.0)
+	elif item == &"salt":
+		game.close_inventory()
+		game.coinify_snails()
 
 
 func open_hell_menu() -> void:

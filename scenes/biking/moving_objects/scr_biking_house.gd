@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func set_snail(to: bool) -> void:
 	sprite.visible = not to
-	$Snail.visible = to
+	$SNAIL.visible = to
 

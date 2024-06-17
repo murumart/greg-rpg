@@ -55,7 +55,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ie6b8"]
-radius = 3.16228
+radius = 3.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ntbh"]
 blend_mode = 1

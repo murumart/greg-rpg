@@ -825,7 +825,7 @@ region_rect = Rect2(0, 0, 256, 16)
 [node name="SnailHellBackground" type="Node2D" parent="Background"]
 position = Vector2(0, 119)
 
-[node name="Snail" type="Node2D" parent="Background/SnailHellBackground" groups=["biking_snails"]]
+[node name="Snail" type="Node2D" parent="Background/SnailHellBackground"]
 position = Vector2(82, 1)
 scale = Vector2(4, 4)
 

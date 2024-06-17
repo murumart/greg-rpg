@@ -7,7 +7,7 @@ const MAX_INV_SIZE := 3
 
 signal closed
 
-var game_reference #: BikingGame but NOT because cyclic resource inclusion!!! ahhahaaha
+var game #: BikingGame but NOT because cyclic resource inclusion!!! ahhahaaha
 
 const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 
@@ -27,7 +27,7 @@ const RESETTABLE_DAT_VARIABLES := [
 var stage := -1
 var ending := false
 
-var possible_items := [&"tape", &"magnet", &"cough_syrup", &"milk"]
+var possible_items := [&"tape", &"magnet", &"cough_syrup", &"milk", &"salt"]
 var items_available := []
 var possible_perks := [
 	&"snail_repel",
@@ -37,10 +37,11 @@ var possible_perks := [
 	&"fast_earner",
 	&"mail_attraction"]
 var perks_available := []
+var deletion_possible := false
 
 
 func _ready() -> void:
-	if game_reference and game_reference.get_meter() >= game_reference.ROAD_LENGTH - 15:
+	if game and game.get_meter() >= game.ROAD_LENGTH - 15:
 		ending = true
 	item_picture.texture = null
 	item_picture.get_parent().hide()
@@ -59,14 +60,21 @@ func _ready() -> void:
 
 func load_items() -> void:
 	stage = 1
-	Math.load_reference_buttons(items_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"item": true, "custom_pass_function": item_names})
+	for c in button_container.get_children():
+		c.hide()
+		c.queue_free()
+	Math.load_reference_buttons(items_available, [button_container],
+			_reference_button_pressed, _on_button_reference_received,
+			{"item": true, "custom_pass_function": item_names})
 	button_container.get_child(0).call_deferred("grab_focus")
 
 
 func load_perks() -> void:
 	stage = 2
 	#load_reference_buttons(perks_available, [button_container])
-	Math.load_reference_buttons(perks_available, [button_container], _reference_button_pressed, _on_button_reference_received, {"us2space": true, "custom_pass_function": perk_names})
+	Math.load_reference_buttons(perks_available, [button_container],
+			_reference_button_pressed, _on_button_reference_received,
+			{"us2space": true, "custom_pass_function": perk_names})
 
 
 # this is horrible but I do not have the mental capacity at the moment
@@ -122,6 +130,8 @@ func _input(event: InputEvent) -> void:
 
 
 func get_welcome_message() -> String:
+	if not game:
+		return "biking_welcome_1"
 	var kiosks_opened: int = game_get("kiosks_activated", 0)
 	var bike = game_get("bike")
 	var health: float = bike.health / float(bike.max_health)
@@ -187,6 +197,10 @@ func item_names(opt := {}) -> void:
 		opt.button.text = &"leave"
 		opt.button.modulate = Color("#888888")
 		return
+	if opt.button.reference == &"delete":
+		opt.button.text = &"delete"
+		opt.button.modulate = Color("#888888")
+		return
 	opt.button.text = opt.reference.left(8)
 	if opt.reference in ResMan.items:
 		opt.button.text = ResMan.get_item(opt.reference).name.left(8)
@@ -201,8 +215,11 @@ func perk_names(opt := {}) -> void:
 
 
 func _reference_button_pressed(reference) -> void:
-	if reference == "leave":
+	if reference == &"leave":
 		bye()
+		return
+	if reference == &"delete":
+		delete_items()
 		return
 	if stage == 1:
 		item_reference_pressed(reference)
@@ -242,8 +259,24 @@ func item_reference_pressed(reference) -> void:
 			else:
 				dlbox.dial_concat("biking_man_not_enough_space", 0, [MAX_INV_SIZE])
 				dlbox.prepare_dialogue("biking_man_not_enough_space")
+				if not deletion_possible:
+					items_available.insert(items_available.size() - 1, &"delete")
+					load_items()
+					deletion_possible = true
+				await dlbox.dialogue_closed
 				button_container.get_child(0).grab_focus()
 	dlbox.current_choice = ""
+
+
+func delete_items() -> void:
+	var inventory: Array = game_get("inventory", [])
+	inventory.clear()
+	items_available.erase(&"delete")
+	load_items()
+	dlbox.prepare_dialogue("biking_delete_items")
+	await dlbox.dialogue_closed
+	button_container.get_child(0).grab_focus()
+	deletion_possible = false
 
 
 func perk_reference_pressed(reference) -> void:
@@ -253,7 +286,7 @@ func perk_reference_pressed(reference) -> void:
 
 
 func _on_button_reference_received(reference) -> void:
-	if reference == "leave":
+	if reference == &"leave" or reference == &"delete":
 		item_info_label.text = ""
 		item_picture.get_parent().hide()
 		return
@@ -283,22 +316,22 @@ func perk_reference_received(reference) -> void:
 
 
 func game_get(thing: String, default: Variant = null) -> Variant:
-	if !game_reference:
+	if !game:
 		return default
-	return game_reference.get(thing)
+	return game.get(thing)
 
 
 func game_set(thing: String, to: Variant) -> void:
-	if !game_reference:
+	if !game:
 		printerr("no game")
 		return
-	game_reference.set(thing, to)
+	game.set(thing, to)
 
 
 func game_call(method: String, arguments: Array = []) -> void:
-	if !game_reference:
+	if !game:
 		printerr("no game")
 		return
-	game_reference.callv(method, arguments)
+	game.callv(method, arguments)
 
 
