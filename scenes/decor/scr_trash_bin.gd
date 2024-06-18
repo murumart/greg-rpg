@@ -3,6 +3,8 @@ class_name TrashBin extends Node2D
 
 # trash bins in overworld that contain loot
 
+signal opened
+
 @export var full := true: set = set_full
 @export var replenish_minutes := 25:
 	set(to):
@@ -16,7 +18,8 @@ var emptied_second := -39999999
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint():
+		return
 	if save:
 		check_full_time_passed()
 
@@ -34,6 +37,7 @@ func _on_interaction_area_on_interact() -> void:
 		if (item.length() < 1) and (not bool(silver)):
 			SOL.dialogue("nothing")
 		DAT.incri("trashcans_emptied", 1)
+		opened.emit()
 
 
 func set_full(to: bool) -> void:

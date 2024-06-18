@@ -4,11 +4,13 @@ const CHAR_PATH := "res://resources/characters/res_%s.tres"
 const ITEM_PATH := "res://resources/items/res_%s.tres"
 const SPIRIT_PATH := "res://resources/spirits/res_%s.tres"
 const STATUS_EFFECT_TYPE_PATH := "res://resources/status_effect_types/res_%s.tres"
+const FOREST_QUEST_PATH := "res://resources/forest_quests/%s.tres"
 
 static var items := {}
 static var spirits := {}
 static var characters := {}
 static var status_effect_types := {}
+static var forest_quests := {}
 
 static var gender__effects := {}
 static var use__effects := {}
@@ -70,6 +72,8 @@ static func load_resources() -> void:
 		s = s.trim_prefix("res_")
 		spirits[s] = load(SPIRIT_PATH % s) as Spirit
 		spirits[s].name_in_file = s
+	for s in _get_dir_contents("res://resources/forest_quests/"):
+		forest_quests[s] = load(FOREST_QUEST_PATH % s) as ForestQuest
 	load_effects()
 
 

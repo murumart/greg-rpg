@@ -118,7 +118,8 @@ func load_dialogue(dial: Dialogue) -> void:
 		prepare_dialogue(alias)
 		return
 	DAT.capture_player("dialogue", false)
-	assert(is_instance_valid(loaded_dialogue) and loaded_dialogue.size() > 0)
+	assert(is_instance_valid(loaded_dialogue), "dialogue isn't valid!")
+	assert(loaded_dialogue.size() > 0, "dialogue is empty!")
 	current_dialogue = 0
 	speak_this_dialogue_part(loaded_dialogue.get_line(current_dialogue))
 

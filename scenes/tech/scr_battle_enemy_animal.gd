@@ -36,3 +36,6 @@ func hurt(amount: float, gnd: int) -> void:
 	super(amount, gnd)
 	if state != States.DEAD:
 		soul += remap(amount, 1, 50, 5, 10)
+		return
+	# dead
+	DAT.incri("killed_" + character.name_in_file, 1)

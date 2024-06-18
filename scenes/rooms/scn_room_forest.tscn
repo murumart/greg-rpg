@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=20 format=3 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_2kpjx"]
@@ -6,6 +6,9 @@
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="3_q2vky"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_255qu"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="6_bbhas"]
+[ext_resource type="Script" path="res://scenes/rooms/forest/scr_forest_hud.gd" id="7_yb0vi"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_d6fx5"]
+[ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
 
 [sub_resource type="Curve" id="Curve_g5h5i"]
 max_value = 20.0
@@ -32,6 +35,14 @@ size = Vector2(48, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyc05"]
 size = Vector2(8, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fvw8"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(24, 16, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy2op"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(16, 17, 6, 6)
 
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
@@ -162,3 +173,52 @@ shape = SubResource("RectangleShape2D_dyc05")
 
 [node name="Marker2D" type="Marker2D" parent="Gates/WestGate"]
 position = Vector2(16, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_yb0vi")
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 9.0
+color = Color(0, 0, 0, 0.815686)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 160.0
+offset_bottom = 9.0
+alignment = 1
+
+[node name="RoomCounter" type="HBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/RoomCounter"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3fvw8")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/RoomCounter"]
+layout_mode = 2
+text = "999"
+
+[node name="VSeparator" type="VSeparator" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="GlassCounter" type="HBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/GlassCounter"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_dy2op")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/GlassCounter"]
+layout_mode = 2
+text = "999"
+
+[node name="MessageContainer" parent="UI" instance=ExtResource("9_dsf2t")]

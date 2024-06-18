@@ -1,6 +1,6 @@
 class_name ForestObjects extends RefCounted
 
-enum {SCENE, SIZE, WEIGHT, LIMIT, FUNCTION}
+enum {SCENE, SIZE, WEIGHT, LIMIT, FUNCTION, EVERY_X_ROOMS}
 const DEFAULT_WEIGHT := 100.0
 const DEFAULT_SIZE := Vector2i(2, 2)
 
@@ -38,6 +38,13 @@ const DB = {
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 10.0,
 		LIMIT: 3
+	},
+	&"quest_board": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/quest_board.tscn"),
+		SIZE: Vector2i(2, 2),
+		WEIGHT: 600.0,
+		LIMIT: 1,
+		EVERY_X_ROOMS: 6
 	},
 }
 

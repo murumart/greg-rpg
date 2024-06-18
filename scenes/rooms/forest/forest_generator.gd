@@ -133,12 +133,14 @@ func bins() -> void:
 		var pos := rand_pos()
 		trash.global_position = pos * 16
 		trash.replenish_seconds = -1
+		trash.opened.connect(forest.update_quests)
 		bin_loot(trash)
 
 
 func bin_loot(bin: TrashBin) -> void:
 	bin.add_to_group("bins")
-	if randf() <= 0.56: return
+	if randf() <= 0.06:
+		return
 	if randf() <= 0.11:
 		bin.full = false
 		return
@@ -180,8 +182,13 @@ func gen_objects() -> void:
 	while generated_objects.size() < OBJECT_AMOUNT and tries < 100:
 		var obkey: StringName = Math.weighted_random(
 				weights.keys(), weights.values())
-		if (amounts.get(obkey, 0)
-				>= ForestObjects.get_object(obkey).get(ForestObjects.LIMIT, 999)):
+		var object := ForestObjects.get_object(obkey)
+		if (
+				amounts.get(obkey, 0)
+				>= object.get(ForestObjects.LIMIT, 999)
+				or forest.current_room % object.get(
+						ForestObjects.EVERY_X_ROOMS, 1) != 0
+				):
 			continue
 		gen_object(obkey)
 		amounts[obkey] = amounts.get(obkey, 0) + 1
@@ -247,7 +254,9 @@ func load_from_save() -> void:
 		bin.item = d.bins[b].item
 		bin.silver = d.bins[b].silver
 		bin.full = d.bins[b].full
+		bin.save = false
 		bin.add_to_group("bins")
+		bin.opened.connect(forest.update_quests)
 	# do not load enemies after a fight
 	for e in d.enemies:
 		pass

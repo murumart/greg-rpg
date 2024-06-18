@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/spr_trees.png" id="2_mh3gg"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8cain"]
-radius = 4.12311
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o55p1"]
+size = Vector2(6, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
 size = Vector2(16, 88)
@@ -38,7 +38,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 modulate = Color(1, 1, 1, 0.396078)
 position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_8cain")
+shape = SubResource("RectangleShape2D_o55p1")
 debug_color = Color(0.294118, 1, 1, 0.45098)
 
 [node name="BehindArea" parent="." node_paths=PackedStringArray("affected_node") instance=ExtResource("3_s4k00")]
