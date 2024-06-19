@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://chgpxxfnio486"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_quest.gd" id="1_xflk6"]
+
+[resource]
+script = ExtResource("1_xflk6")
+name = "foxhunter"
+data_key = &"killed_fox"
+completion_value = 3
+glass_reward = 10

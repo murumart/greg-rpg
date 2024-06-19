@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3o1k43p0b48o"]
+
+[ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="1_3g07p"]
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/forest_quest_board.gd" id="2_8k2ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pevje"]
+size = Vector2(28, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8osms"]
+size = Vector2(30, 4)
+
+[node name="QuestBoard" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, -23)
+texture = ExtResource("1_3g07p")
+centered = false
+region_rect = Rect2(17, 4, 30, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pevje")
+
+[node name="QuestInteraction" type="Area2D" parent="."]
+script = ExtResource("2_8k2ys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestInteraction"]
+shape = SubResource("RectangleShape2D_8osms")

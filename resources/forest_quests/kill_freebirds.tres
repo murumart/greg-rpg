@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://diwn4xcxr547m"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_quest.gd" id="1_5poxq"]
+
+[resource]
+script = ExtResource("1_5poxq")
+name = "birdhunter"
+data_key = &"killed_freebird"
+completion_value = 3
+glass_reward = 6
