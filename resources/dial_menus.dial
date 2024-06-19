@@ -266,3 +266,7 @@ CHOICES yes,no
 	would you like to take on this quest?
 
 
+DIALOGUE quest_board_active
+	these are your active quests:
+
+

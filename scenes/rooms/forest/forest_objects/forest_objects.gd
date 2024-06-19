@@ -44,7 +44,8 @@ const DB = {
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 600.0,
 		LIMIT: 1,
-		EVERY_X_ROOMS: 6
+		EVERY_X_ROOMS: 6,
+		FUNCTION: &"_init_questboard"
 	},
 }
 

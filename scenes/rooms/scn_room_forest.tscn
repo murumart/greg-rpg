@@ -222,3 +222,4 @@ layout_mode = 2
 text = "999"
 
 [node name="MessageContainer" parent="UI" instance=ExtResource("9_dsf2t")]
+life_time = 2.3

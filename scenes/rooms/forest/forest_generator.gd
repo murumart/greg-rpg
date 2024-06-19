@@ -47,6 +47,7 @@ func _init(_forest: ForestPath) -> void:
 
 func generate() -> void:
 	print(" --- generating new room")
+	DAT.set_data("forest_available_quests", [])
 	load_layout()
 	bins()
 	trees()
@@ -256,6 +257,7 @@ func load_from_save() -> void:
 		bin.full = d.bins[b].full
 		bin.save = false
 		bin.add_to_group("bins")
+		bin.replenish_seconds = -1
 		bin.opened.connect(forest.update_quests)
 	# do not load enemies after a fight
 	for e in d.enemies:
@@ -281,4 +283,16 @@ static func dir_oppos(which: int) -> int:
 
 func _set_flower_sleepy(a) -> void:
 	(a as PickableItem).item_type = &"sleepy_flower"
+	(a as PickableItem).on_interact.connect(func():
+		generated_objects.erase(a.global_position)
+	)
+
+
+func _init_questboard(a) -> void:
+	const IT := preload("res://scenes/rooms/forest/forest_objects/forest_quest_board.gd")
+	var interaction := a.get_node("QuestInteraction") as IT
+	interaction.level = forest.current_room * 0.1 + 1.0
+	interaction.quest_started.connect(func(q: ForestQuest):
+		forest.hud.message("started quest " + q.name)
+	)
 

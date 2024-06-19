@@ -276,6 +276,12 @@ func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
 	dialogues_dict.get(key).get_line(line_id).set(param, to)
 
 
+func adjust_dial(key: String, param: String, to: Variant) -> void:
+	if dialogues_dict.is_empty():
+		load_dialogue_dict()
+	dialogues_dict[key].set(param, to)
+
+
 # replace the %s in dialogue strings with something else
 func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if dialogues_dict.is_empty():

@@ -71,6 +71,7 @@ func load_from_save() -> void:
 
 func leave() -> void:
 	DAT.set_data("forest_questing", null)
+	DAT.set_data("forest_active_quests", [])
 	DAT.set_data("last_forest_gate_entered", -1)
 	DAT.set_data("current_forest_rooms_traveled", 0)
 	LTS.gate_id = &"forest-house"
@@ -120,7 +121,7 @@ func _save_me() -> void:
 
 
 func update_quests() -> void:
-	print("--- checking quests")
+	print(" --- checking quests")
 	var removing := []
 	for q: ForestQuest.Active in DAT.get_data("forest_active_quests", []):
 		var completed := q.check_completion()
@@ -128,7 +129,8 @@ func update_quests() -> void:
 			removing.append(q)
 			questing.glass += q.quest_reference.glass_reward
 			hud.update_glass()
-			hud.message("completed quest " + q.quest_reference.name)
+			hud.message("completed quest " + q.quest_reference.name,
+					{quest_complete = true})
 	for q in removing:
 		(DAT.get_data("forest_active_quests", []) as Array).erase(q)
 
