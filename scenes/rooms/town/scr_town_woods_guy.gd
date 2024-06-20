@@ -26,5 +26,6 @@ func _on_inspected() -> void:
 	SOL.dialogue_closed.connect(
 		func():
 			if SOL.dialogue_choice not in DONT_TELEPORT:
+				LTS.gate_id = &"enter_woods"
 				LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 	, CONNECT_ONE_SHOT)
