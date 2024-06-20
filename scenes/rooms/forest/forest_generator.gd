@@ -259,7 +259,7 @@ func load_from_save() -> void:
 		bin.save = false
 		bin.add_to_group("bins")
 		bin.replenish_seconds = -1
-		bin.opened.connect(forest.update_quests)
+		bin.opened.connect(forest.questing.update_quests)
 	# do not load enemies after a fight
 	for e in d.enemies:
 		pass
