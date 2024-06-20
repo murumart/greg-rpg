@@ -1,11 +1,12 @@
 extends InteractionArea
 
-signal quest_started(q: ForestQuest)
-
-var level := 1.0
-@export var available_quests := []:
+var generated: bool:
 	get:
-		return DAT.get_data("forest_available_quests", [])
+		return DAT.get_data("forest_quests_generated", false)
+	set(to):
+		DAT.set_data("forest_quests_generated", to)
+var level := 1.0
+var questing: ForestQuesting = null
 
 
 func interacted() -> void:
@@ -16,7 +17,7 @@ func interacted() -> void:
 
 
 func _generate_quests() -> void:
-	if not available_quests.is_empty():
+	if generated:
 		return
 	var quest_names := []
 	for i in 3:
@@ -38,7 +39,8 @@ func _generate_quests() -> void:
 		quest.completion_value = maxi(roundi(reward_ratio * reward_desired), 1)
 		quest.glass_reward = reward_desired
 
-		available_quests.append(quest)
+		questing.available_quests.append(quest)
+	generated = true
 
 
 func _choosed() -> void:
@@ -49,7 +51,7 @@ func _choosed() -> void:
 			#list.position = Vector2(67, -60)
 			var choices := PackedStringArray()
 			choices.append("nvm")
-			for q in available_quests:
+			for q in questing.available_quests:
 				choices.append(q.name)
 			SOL.dialogue_box.adjust("quest_board_available_quests",
 					0, "choices", choices)
@@ -60,14 +62,24 @@ func _choosed() -> void:
 			var start_line := DialogueLine.new()
 			start_line.text = "these are your active quests:"
 			lines.append(start_line)
-			for q: ForestQuest.Active in DAT.get_data("forest_active_quests", []):
+			if questing.active_quests.is_empty():
+				SOL.dialogue("quest_board_active_empty")
+				return
+			for q: ForestQuest.Active in questing.active_quests:
+				if not q:
+					continue
 				var line := DialogueLine.new()
 				line.text = str(q)
 				line.choices = ["ok", "cancel"]
 				lines.append(line)
 			SOL.dialogue_box.adjust_dial("quest_board_active", "lines", lines)
 			SOL.dialogue("quest_board_active")
-			SOL.dialogue_box.started_speaking.connect(_active_lines)
+			SOL.dialogue_box.finished_speaking.connect(_active_line_finished)
+			SOL.dialogue_closed.connect(func():
+				var dbox := SOL.dialogue_box as DialogueBox
+				if dbox.finished_speaking.is_connected(self._active_line_finished):
+					dbox.finished_speaking.disconnect(self._active_line_finished)
+			, CONNECT_ONE_SHOT)
 
 
 func _chose_quest_display() -> void:
@@ -83,19 +95,21 @@ func _chose_quest_display() -> void:
 	SOL.dialogue("quest_details")
 	SOL.dialogue_closed.connect(func():
 		if SOL.dialogue_choice == &"yes":
-			available_quests.erase(quest)
-			quest.start()
-			quest_started.emit(quest)
+			questing.start_quest(quest)
 	, CONNECT_ONE_SHOT)
 
 
 func get_quest_by_name(q_name: String) -> ForestQuest:
-	return available_quests.filter(
+	return questing.available_quests.filter(
 			func(a):
 				return (a as ForestQuest).name == q_name
 	)[0]
 
 
-func _active_lines(line: int) -> void:
-	var to_erase := []
+func _active_line_finished(line: int) -> void:
+	var last := questing.active_quests.size()
+	if not questing.active_quests.is_empty():
+		print(" --- quest in question: " + str(questing.active_quests[line - 1]))
+		if SOL.dialogue_choice == &"cancel":
+			questing.active_quests[line - 1] = null # starting at explanatory line 0
 

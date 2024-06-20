@@ -47,7 +47,8 @@ func _init(_forest: ForestPath) -> void:
 
 func generate() -> void:
 	print(" --- generating new room")
-	DAT.set_data("forest_available_quests", [])
+	forest.questing.available_quests.clear()
+	forest.questing.available_quests_generated = false
 	load_layout()
 	bins()
 	trees()
@@ -134,7 +135,7 @@ func bins() -> void:
 		var pos := rand_pos()
 		trash.global_position = pos * 16
 		trash.replenish_seconds = -1
-		trash.opened.connect(forest.update_quests)
+		trash.opened.connect(forest.questing.update_quests)
 		bin_loot(trash)
 
 
@@ -291,8 +292,6 @@ func _set_flower_sleepy(a) -> void:
 func _init_questboard(a) -> void:
 	const IT := preload("res://scenes/rooms/forest/forest_objects/forest_quest_board.gd")
 	var interaction := a.get_node("QuestInteraction") as IT
+	interaction.questing = forest.questing
 	interaction.level = forest.current_room * 0.1 + 1.0
-	interaction.quest_started.connect(func(q: ForestQuest):
-		forest.hud.message("started quest " + q.name)
-	)
 

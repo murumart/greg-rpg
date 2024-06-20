@@ -39,7 +39,7 @@ func _ready() -> void:
 	canvas_modulate.color = canvas_modulate.color.lerp(
 			Color(0.735003054142, 0.89518678188324, 0.22227722406387),
 			remap(current_room, 0, 100, 0.0, 1.0))
-	update_quests()
+	questing.update_quests()
 	if LTS.gate_id == LTS.GATE_EXIT_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
 		load_from_save()
 		return
@@ -119,18 +119,4 @@ func _save_me() -> void:
 		}
 		DAT.set_data("forest_save", forest_save)
 
-
-func update_quests() -> void:
-	print(" --- checking quests")
-	var removing := []
-	for q: ForestQuest.Active in DAT.get_data("forest_active_quests", []):
-		var completed := q.check_completion()
-		if completed:
-			removing.append(q)
-			questing.glass += q.quest_reference.glass_reward
-			hud.update_glass()
-			hud.message("completed quest " + q.quest_reference.name,
-					{quest_complete = true})
-	for q in removing:
-		(DAT.get_data("forest_active_quests", []) as Array).erase(q)
 

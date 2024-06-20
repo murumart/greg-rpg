@@ -42,7 +42,7 @@ const DB = {
 	&"quest_board": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/quest_board.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 600.0,
+		WEIGHT: 1600.0,
 		LIMIT: 1,
 		EVERY_X_ROOMS: 6,
 		FUNCTION: &"_init_questboard"

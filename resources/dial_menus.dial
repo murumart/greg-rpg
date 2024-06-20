@@ -248,9 +248,8 @@ DATA_LINK quest_board_introed,false
 SET_DATA quest_board_introed,true
 	(who does these in the forest?)
 DATA_LINK 
-	welcome to the quest board!
 CHOICES quests,active,leave
-	what would you like to do now?
+	welcome to the quest board! what would you like to do now?
 CHOICE_LINK leave
 	fare well.
 
@@ -268,5 +267,9 @@ CHOICES yes,no
 
 DIALOGUE quest_board_active
 	these are your active quests:
+
+
+DIALOGUE quest_board_active_empty
+	you have no active quests.
 
 

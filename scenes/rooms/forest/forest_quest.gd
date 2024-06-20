@@ -15,7 +15,6 @@ static func gen_random_quest() -> ForestQuest:
 
 func start() -> Active:
 	var acc := Active.new(completion_value, data_key, self)
-	DAT.appenda("forest_active_quests", acc)
 	return acc
 
 
@@ -52,6 +51,6 @@ class Active:
 
 
 	func _to_string() -> String:
-		return ("(" + str(get_remaining()) + "/"
-				+ str(quest_reference.completion_value)
-				+ ") " + str(quest_reference))
+		return ("(" + str(quest_reference.completion_value - get_remaining())
+				+ "/" + str(quest_reference.completion_value)
+				+ ") ") + str(quest_reference)

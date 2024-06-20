@@ -9,9 +9,19 @@ var forest: ForestPath
 
 func forest_ready(_forest: ForestPath) -> void:
 	forest = _forest
+
 	get_parent().remove_child(self)
 	SOL.add_ui_child(self)
 	forest_quests = DAT.get_data("forest_questing")
+
+	forest_quests.quest_started.connect(func(q: ForestQuest):
+		message("started quest " + q.name)
+	)
+	forest_quests.quest_completed.connect(func(q: ForestQuest.Active):
+		update_glass()
+		message("completed quest " + q.quest_reference.name,
+				{quest_complete = true})
+	)
 	update_glass()
 	update_room()
 
