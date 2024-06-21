@@ -217,7 +217,10 @@ func process_tilemap() -> void:
 	if ypos == processed_ypos:
 		return
 	update_points_display()
-	var path_noise_value := roundi((remap(noise.get_noise_1d(tilemap.position.y * 0.000125), -1, 1, -6, 6) + remap(noise.get_noise_1d((tilemap.position.y + 1) * 0.000125), -1, 1, -6, 6)) * 0.5)
+	var path_noise_value := roundi((remap(
+			noise.get_noise_1d(tilemap.position.y * 0.000125), -1, 1, -6, 6)
+			+ remap(noise.get_noise_1d((tilemap.position.y + 1) * 0.000125),
+			-1, 1, -6, 6)) * 0.5)
 
 	# this might optimise things. i hope
 	delete_offscreen_tiles(ypos)
@@ -229,8 +232,8 @@ func process_tilemap() -> void:
 		var noise_value := noise.get_noise_2d(x, 10)
 		# random caves
 		if (
-			!(noise_value > -0.2 and noise_value < 0.2) and
-			!(absi(cell.x - path_noise_value) <= 2) and
+			not (noise_value > -0.2 and noise_value < 0.2) and
+			not (absi(cell.x - path_noise_value) <= 2) and
 			randf() <= 0.95
 		) or (
 			cell.x <= -5 or cell.x >= 4
@@ -241,11 +244,15 @@ func process_tilemap() -> void:
 				pass
 				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
 			if depth >= 7500:
-				if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.0625:
+				if (randf() < depth_fish_increase_curve.sample(depth * 5e-05)
+						* 0.0625):
 					pass
 					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
-			if randf() < depth_item_increase_curve.sample(depth * 5e-05) * 0.00285714:
-				spawn_item(random_items.get_random_id(), tilemap.to_global(tilemap.map_to_local(cell)))
+			if (randf() < depth_item_increase_curve.sample(depth * 5e-05)
+					* 0.00285714):
+				spawn_item(
+						random_items.get_random_id(),
+						tilemap.to_global(tilemap.map_to_local(cell)))
 		# background fish
 		if randf() < depth_fish_increase_curve.sample(depth * 5e-05):
 			pass
@@ -258,16 +265,32 @@ func process_tilemap() -> void:
 		if (noise_value > 0 and randf() <= 0.95) or (cell.x <= -5 or cell.x >= 4):
 			bg_rock_array.append(cell)
 
-	tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
-	tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
+	_set_cells(rock_array, bg_rock_array)
 
 	# decorations random
-	if randf() <= 0.002: kiosk_enabled = true
-	if randf() <= 0.0002: fisherman_enabled = true
-	if randf() <= 0.001: shopping_cart_enabled = true
-	if randf() <= 0.00001: cow_ant_enabled = true
+	if randf() <= 0.002:
+		kiosk_enabled = true
+	if randf() <= 0.0002:
+		fisherman_enabled = true
+	if randf() <= 0.001:
+		shopping_cart_enabled = true
+	if randf() <= 0.00001:
+		cow_ant_enabled = true
 
 	processed_ypos = ypos
+
+
+# the most process intensive part of process_tilemap
+func _set_cells(rock_array: Array, bg_rock_array: Array) -> void:
+	if world_environment.environment:
+		tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
+		tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
+		return
+	# lower graphics
+	for pos in rock_array:
+		tilemap.set_cell(1, pos, 0, Vector2i(13, 16))
+	for pos in bg_rock_array:
+		tilemap.set_cell(0, pos, 1, Vector2i(13, 16))
 
 
 func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> void:
@@ -299,7 +322,8 @@ func spawn_mine(coords: Vector2, background := false) -> void:
 
 
 func spawn_item(item_id: StringName, coords: Vector2) -> void:
-	var rew_s := str(Reward.new({"property": item_id, "type": BattleRewards.Types.ITEM}))
+	var rew_s := str(Reward.new(
+			{"property": item_id, "type": BattleRewards.Types.ITEM}))
 	if not rew_s in DAT.get_data("unique_rewards", []) and not (
 		(item_id in UNIQUE_REWARDS) and (item_id in items_spawned)
 	):
@@ -361,8 +385,12 @@ func _on_after_crash_timer_timeout() -> void:
 		rewards.add(rew)
 
 	# granting rewards
-	SND.play_sound(SND_HISCR if high_score else preload("res://sounds/misc_click.ogg"))
-	congrats_label.text = str("[center]", high_score_text if high_score else "", "\n", good_job_text if score > 9 else bad_job_text, "\n", "score: ", score)
+	SND.play_sound(SND_HISCR if high_score
+			else preload("res://sounds/misc_click.ogg"))
+	congrats_label.text = str(
+			"[center]", high_score_text if high_score else "",
+			"\n", good_job_text if score > 9 else bad_job_text, "\n",
+			"score: ", score)
 	rewards.granted.connect(func():
 		SOL.dialogue_closed.connect(self.end, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)
@@ -371,7 +399,8 @@ func _on_after_crash_timer_timeout() -> void:
 
 func end() -> void:
 	LTS.gate_id = LTS.GATE_EXIT_FISHING
-	LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+	LTS.level_transition(LTS.ROOM_SCENE_PATH
+			% DAT.get_data("current_room", "test_room"))
 
 
 func set_water_color(to: Color) -> void:
