@@ -145,7 +145,7 @@ func _input(event: InputEvent) -> void:
 	# the options menu is shown and hidden when esc is pressed
 	if event.is_action_pressed("escape"):
 		# just close the save screen and not open OPT when save screen is open
-		for i in ["save_screen", "debug_console"]:
+		for i in ["save_screen", "debug_console", "overworld_menu"]:
 			if i in DAT.player_capturers:
 				return
 		if not root.visible:

@@ -54,6 +54,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				DAT.set_data("has_opened_inventory", true)
 		else:
 			close_menu()
+	if event.is_action_pressed("escape") and menu.visible:
+		close_menu()
 
 
 func _physics_process(delta: float) -> void:
