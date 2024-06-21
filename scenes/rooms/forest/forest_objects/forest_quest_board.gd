@@ -1,10 +1,5 @@
 extends InteractionArea
 
-var generated: bool:
-	get:
-		return DAT.get_data("forest_quests_generated", false)
-	set(to):
-		DAT.set_data("forest_quests_generated", to)
 var level := 1.0
 var questing: ForestQuesting = null
 
@@ -17,7 +12,7 @@ func interacted() -> void:
 
 
 func _generate_quests() -> void:
-	if generated:
+	if questing.available_quests_generated:
 		return
 	var quest_names := []
 	for i in 3:
@@ -40,7 +35,7 @@ func _generate_quests() -> void:
 		quest.glass_reward = reward_desired
 
 		questing.available_quests.append(quest)
-	generated = true
+	questing.available_quests_generated = true
 
 
 func _choosed() -> void:

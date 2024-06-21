@@ -9,7 +9,7 @@ size = Vector2(28, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8osms"]
 size = Vector2(30, 4)
 
-[node name="QuestBoard" type="StaticBody2D"]
+[node name="QuestBoard" type="StaticBody2D" groups=["forest_quest_boards"]]
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

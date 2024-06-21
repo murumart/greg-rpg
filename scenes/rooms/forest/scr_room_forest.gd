@@ -55,7 +55,7 @@ func gate_entered(which: int) -> void:
 	print("gate ", which)
 	LTS.gate_id = &"forest_transition"
 	if which != ForestGenerator.dir_oppos(
-				DAT.get_data("forest_last_gate_entered", -1)):
+			DAT.get_data("forest_last_gate_entered", -1)):
 		DAT.set_data("forest_last_gate_entered", which)
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 		DAT.incri("total_forest_rooms_traveled", 1)
@@ -72,7 +72,7 @@ func load_from_save() -> void:
 func leave() -> void:
 	DAT.set_data("forest_questing", null)
 	DAT.set_data("forest_active_quests", [])
-	DAT.set_data("last_forest_gate_entered", -1)
+	DAT.set_data("forest_last_gate_entered", -1)
 	DAT.set_data("current_forest_rooms_traveled", 0)
 	LTS.gate_id = &"forest-house"
 	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn")
@@ -84,11 +84,17 @@ func _save_me() -> void:
 		var forest_save := {}
 		var trees_dict := {}
 		var bins_dict := {}
-		var enemies_dict := {}
 		var greenhouse_dict := {
 			"exists": (current_room % ForestGenerator.GREENHOUSE_INTERVAL == 0
 					and current_room > 3),
 			"has_vegetables": greenhouse.has_vegetables if greenhouse else false
+		}
+		var board_dict := {
+			"exists": current_room % ForestGenerator.BOARD_INTERVAL == 0,
+			"position": get_tree().get_first_node_in_group(
+					"forest_quest_boards").global_position
+							if current_room % ForestGenerator.BOARD_INTERVAL == 0
+							else null
 		}
 		var objects_dict := generator.generated_objects
 		for tree in get_tree().get_nodes_in_group("trees"):
@@ -102,20 +108,15 @@ func _save_me() -> void:
 				"full": bin.full
 			}
 			bin.replenish_seconds = -1
-		for enemy in get_tree().get_nodes_in_group("enemies"):
-			enemy = enemy as OverworldCharacter
-			enemies_dict[enemy.name] = {
-				"pos": enemy.global_position,
-			}
 		forest_save = {
 			"layout": enabled_layer,
 			"pscale": paths.scale,
 			"room_nr": current_room,
 			"trees": trees_dict,
 			"bins": bins_dict,
-			"enemies": enemies_dict,
 			"greenhouse": greenhouse_dict,
 			"objects": objects_dict,
+			"board": board_dict,
 		}
 		DAT.set_data("forest_save", forest_save)
 

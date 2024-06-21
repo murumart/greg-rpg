@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://s18egu6smh4w"]
+
+[ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_ybqe6"]
+
+[node name="OverworldTiles" instance=ExtResource("1_ybqe6")]
+layer_0/tile_data = PackedInt32Array(-1, 65536, 0, 65536, 655360, 19, 65535, 524288, 19, -65536, 589824, 19, 1, 655360, 19, -65538, 655360, 19)
+layer_1/name = "veg level"
+layer_1/y_sort_enabled = true
+layer_2/name = "road level"
+layer_2/z_index = -7
+layer_3/name = "cliff layer"
+layer_3/z_index = -6

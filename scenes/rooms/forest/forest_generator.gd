@@ -19,6 +19,7 @@ const ENEMY := preload("res://scenes/characters/overworld/scn_wild_lizard_overwo
 const GREENHOUSE := preload("res://scenes/decor/scn_greenhouse.tscn")
 const SCR_GREENHOUSE := preload("res://scenes/decor/scr_greenhouse.gd")
 const GREENHOUSE_INTERVAL := 11
+const BOARD_INTERVAL := 6
 const VEGET_GREENHOUSE_INTERVAL := 33
 
 const BIN_LOOT := {
@@ -50,12 +51,51 @@ func generate() -> void:
 	forest.questing.available_quests.clear()
 	forest.questing.available_quests_generated = false
 	load_layout()
-	bins()
-	trees()
-	enemies()
+	gen_board()
+	gen_bins()
+	gen_trees()
+	gen_enemies()
 	gen_greenhouse()
 	gen_objects()
-	#gen_us()
+	if randf() < 0.002:
+		gen_us()
+
+
+func rand_pos() -> Vector2:
+	var pos := Vector2()
+	for j in LOCATION_TESTS:
+		pos.x = randf_range(-18, 17)
+		pos.y = randf_range(-16, 15)
+		if valid_placement_spot(pos):
+			break
+	return pos
+
+
+func is_area_free(rect: Rect2i) -> bool:
+	for i in rect.size.x:
+		for j in rect.size.y:
+			var x := i + rect.position.x
+			var y := j + rect.position.y
+			if not valid_placement_spot(Vector2(x, y)):
+				return false
+	return true
+
+
+func valid_placement_spot(pos: Vector2) -> bool:
+	var vpos := Vector2i((pos * forest.paths.scale).round())
+	if vpos in used_poses:
+		return false
+	var tds := [
+		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos),
+		forest.paths.get_cell_tile_data(
+			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.UP))
+	]
+	for td: TileData in tds:
+		if not (not td or (
+			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
+			return false
+	used_poses.append(vpos)
+	return true
 
 
 func load_layout() -> void:
@@ -77,44 +117,7 @@ func load_layout() -> void:
 	forest.enabled_layer = layout
 
 
-func rand_pos() -> Vector2:
-	var pos := Vector2()
-	for j in LOCATION_TESTS:
-		pos.x = randf_range(-18, 17)
-		pos.y = randf_range(-16, 15)
-		if valid_placement_spot(pos):
-			break
-	return pos
-
-
-func valid_placement_spot(pos: Vector2) -> bool:
-	var vpos := Vector2i((pos * forest.paths.scale).round())
-	if vpos in used_poses:
-		return false
-	var tds := [
-		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos),
-		forest.paths.get_cell_tile_data(
-			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.UP))
-	]
-	for td: TileData in tds:
-		if not (not td or (
-			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
-			return false
-	used_poses.append(vpos)
-	return true
-
-
-func is_area_free(rect: Rect2i) -> bool:
-	for i in rect.size.x:
-		for j in rect.size.y:
-			var x := i + rect.position.x
-			var y := j + rect.position.y
-			if not valid_placement_spot(Vector2(x, y)):
-				return false
-	return true
-
-
-func trees() -> void:
+func gen_trees() -> void:
 	for i in TREE_COUNT:
 		var tree := TREE.instantiate()
 		forest.add_child(tree)
@@ -125,15 +128,34 @@ func trees() -> void:
 			tree.face_visible = true
 
 
-func bins() -> void:
+func gen_board() -> void:
+	if forest.current_room % 6 != 0:
+		return
+	_place_board(rand_pos() * 16)
+
+
+func _place_board(pos: Vector2) -> void:
+	var board := preload("res://scenes/rooms/forest/forest_objects/quest_board.tscn").instantiate()
+	forest.add_child(board)
+	board.global_position = pos
+	_init_board(board)
+
+
+func _init_board(a) -> void:
+	const IT := preload("res://scenes/rooms/forest/forest_objects/forest_quest_board.gd")
+	var interaction := a.get_node("QuestInteraction") as IT
+	interaction.questing = forest.questing
+	interaction.level = forest.current_room * 0.1 + 1.0
+
+
+func gen_bins() -> void:
 	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
 		forest.current_room / 100.0) * randf())
 	for i in trash_count:
 		var trash := TRASH.instantiate() as TrashBin
 		trash.save = false
 		forest.add_child(trash)
-		var pos := rand_pos()
-		trash.global_position = pos * 16
+		trash.global_position = rand_pos() * 16
 		trash.replenish_seconds = -1
 		trash.opened.connect(forest.questing.update_quests)
 		bin_loot(trash)
@@ -156,7 +178,7 @@ func bin_loot(bin: TrashBin) -> void:
 			BIN_LOOT.keys(), BIN_LOOT.values())
 
 
-func enemies() -> void:
+func gen_enemies() -> void:
 	var enemy_count := clampi(forest.current_room / 12, 1, 12)
 	for i in enemy_count:
 		var enemy := ENEMY.instantiate()
@@ -186,14 +208,17 @@ func gen_objects() -> void:
 				weights.keys(), weights.values())
 		var object := ForestObjects.get_object(obkey)
 		if (
-				amounts.get(obkey, 0)
-				>= object.get(ForestObjects.LIMIT, 999)
+				amounts.get(obkey, 0) >= object.get(ForestObjects.LIMIT, 999)
 				or forest.current_room % object.get(
 						ForestObjects.EVERY_X_ROOMS, 1) != 0
-				):
+				or forest.current_room < object.get(
+						ForestObjects.MIN_ROOM, 0)
+				or forest.current_room > object.get(
+						ForestObjects.MAX_ROOM, 19919991)
+		):
 			continue
-		gen_object(obkey)
-		amounts[obkey] = amounts.get(obkey, 0) + 1
+		if gen_object(obkey):
+			amounts[obkey] = amounts.get(obkey, 0) + 1
 
 
 func gen_object(type: StringName) -> Node2D:
@@ -204,7 +229,8 @@ func gen_object(type: StringName) -> Node2D:
 	for i in range(start_x, 17, sze.x):
 		for j in range(start_y, 15, sze.y):
 			if is_area_free(Rect2i(i, j, sze.x, sze.y)):
-				return _place_object(type, Vector2(i, j) * 16)
+				return _place_object(
+						type, Vector2(i + sze.x * 0.5, j + sze.y * 0.5) * 16)
 	return null
 
 
@@ -271,6 +297,8 @@ func load_from_save() -> void:
 		forest.greenhouse.save = false
 		forest.add_child(forest.greenhouse)
 		forest.greenhouse.set_vegetables(d.greenhouse.has_vegetables)
+	if d.board.exists:
+		_place_board(d.board.position)
 	forest.current_room = d.room_nr
 
 
@@ -284,14 +312,11 @@ static func dir_oppos(which: int) -> int:
 
 func _set_flower_sleepy(a) -> void:
 	(a as PickableItem).item_type = &"sleepy_flower"
-	(a as PickableItem).on_interact.connect(func():
+	_delete_item_on_pickup(a)
+
+
+func _delete_item_on_pickup(a: PickableItem) -> void:
+	a.on_interact.connect(func():
 		generated_objects.erase(a.global_position)
 	)
-
-
-func _init_questboard(a) -> void:
-	const IT := preload("res://scenes/rooms/forest/forest_objects/forest_quest_board.gd")
-	var interaction := a.get_node("QuestInteraction") as IT
-	interaction.questing = forest.questing
-	interaction.level = forest.current_room * 0.1 + 1.0
 
