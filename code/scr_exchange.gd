@@ -1,6 +1,8 @@
 class_name Exchange extends Resource
 # every rpg needs a crafting system!!!!!!!!
 
+signal granted(what: Exchange)
+
 enum Statements {CRITERIA, RETURNS}
 
 @export var title := ""
@@ -13,15 +15,10 @@ enum Statements {CRITERIA, RETURNS}
 
 func exchange(inventory: Array) -> bool:
 	print("exchanging!")
-	var has_input := true
-	for i in input:
-		if not i in inventory:
-			has_input = false
-	if DAT.get_data("silver", 0) < silver_required:
-		has_input = false
-	if not has_input:
+	if not has_input(inventory):
 		SOL.dialogue("exchange_missing_input")
 		return false
+
 	SOL.dialogue("exchange_success")
 	for i in input:
 		inventory.erase(i)
@@ -34,23 +31,36 @@ func exchange(inventory: Array) -> bool:
 		DAT.incri("silver", silver_granted)
 		SOL.dialogue_box.dial_concat("exchange_silver", 0, [silver_granted])
 		SOL.dialogue("exchange_silver")
+	granted.emit(self)
 	return true
+
+
+func has_input(inventory: Array) -> bool:
+	return check_items(inventory) and check_silver()
+
+
+func check_items(inventory: Array) -> bool:
+	for i in input:
+		if not i in inventory:
+			return false
+	return true
+
+
+func check_silver() -> bool:
+	return DAT.get_data("silver", 0) >= silver_required
 
 
 func state(what: Statements) -> void:
 	var informations := []
 	# criterion strings
 	if what == Statements.CRITERIA:
-		if silver_required:
-			informations.append("- %s silver" % silver_required)
-		for i in input:
-			informations.append("- %s" % ResMan.get_item(i).name)
+		_criteria_statement(informations)
 	elif what == Statements.RETURNS:
 		if silver_granted:
 			informations.append("- %s silver" % silver_granted)
 		for i in output:
 			informations.append("- %s" % ResMan.get_item(i).name)
-	
+
 	# TITLE: this exchange requires: LB%s LB%s
 	# SISU: %s LB%s LB%s
 	var divisions := [[]]
@@ -61,18 +71,26 @@ func state(what: Statements) -> void:
 		else:
 			if (i + 1) % 3 == 0: divisions.append([])
 			divisions[floori((i + 1) / 3.0)].append(criterion)
-	var dial_title := "exchange_criteria_title" if what == Statements.CRITERIA else "exchange_returns_title"
+	var dial_title := ("exchange_criteria_title" if what == Statements.CRITERIA
+			else "exchange_returns_title")
 	for i in divisions.size():
 		if i == 0:
 			while divisions[i].size() < 2:
 				divisions[i].append("") # need empty string to make %s disappear
 			SOL.dialogue_box.dial_concat(dial_title, 0, divisions[i])
 			SOL.dialogue(dial_title)
-		else:
-			while divisions[i].size() < 3:
-				divisions[i].append("")
-			SOL.dialogue_box.dial_concat("exchange_criteria_sisu", 0, divisions[i])
-			SOL.dialogue("exchange_criteria_sisu")
+			return
+		while divisions[i].size() < 3:
+			divisions[i].append("")
+		SOL.dialogue_box.dial_concat("exchange_criteria_sisu", 0, divisions[i])
+		SOL.dialogue("exchange_criteria_sisu")
+
+
+func _criteria_statement(informations: Array) -> void:
+	if silver_required:
+		informations.append("- %s silver" % silver_required)
+	for i in input:
+		informations.append("- %s" % ResMan.get_item(i).name)
 
 
 func _to_string() -> String:
