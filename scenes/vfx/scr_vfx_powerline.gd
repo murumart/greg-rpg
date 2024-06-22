@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name VfxPowerline extends Node2D
 ## A visual electric spark-line type effect.
 ## Uses an animated [Line2D] with a gradent texture.
 ##

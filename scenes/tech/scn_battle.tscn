@@ -16,10 +16,10 @@
 
 [sub_resource type="Resource" id="Resource_iy86j"]
 script = ExtResource("2_di672")
-enemies = Array[StringName]([&"sun_spirit"])
+enemies = Array[StringName]([&"wild_lizard"])
 background = "town"
 music = ""
-party = Array[StringName]([&"greg", &"fox", &"freebird"])
+party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 victory_music = &"victory"
@@ -510,7 +510,7 @@ wait_time = 0.07
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("10_7y584")
 level_gain = 46
-new_items = Array[StringName]([&"free_hugs_coupon", &"diploma"])
+new_items = Array[StringName]([&"free_hugs_coupon", &"diploma", &"fungus", &"fungus", &"fungus", &"fungus", &"fungus", &"fungus", &"fungus", &"fungus", &"fungus"])
 replace_spirits = Array[StringName]([&"skystorm", &"sideeye", &"splash_attack"])
 replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda"])
 replace_armour = &"rain_boot"

@@ -4,6 +4,7 @@ class_name TrashBin extends Node2D
 # trash bins in overworld that contain loot
 
 signal opened
+signal got_item(type: StringName)
 
 @export var full := true: set = set_full
 @export var replenish_minutes := 25:
@@ -32,10 +33,13 @@ func _on_interaction_area_on_interact() -> void:
 		SND.play_sound(preload("res://sounds/trashbin.ogg"))
 		if item:
 			DAT.grant_item(item)
+			got_item.emit(item)
 		if silver:
 			DAT.grant_silver(silver)
 		if (item.length() < 1) and (not bool(silver)):
 			SOL.dialogue("nothing")
+			if randf() < 0.0001:
+				SND.play_sound(preload("res://sounds/gui/nothinghere.ogg"))
 		DAT.incri("trashcans_emptied", 1)
 		opened.emit()
 

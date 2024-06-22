@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://y1ed4jtmk0et"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://y1ed4jtmk0et"]
 
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_m7opm"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_rs2cn"]
+[ext_resource type="Texture2D" uid="uid://coubrfwacd0u" path="res://sprites/items/spr_frankling_badge.png" id="3_gtht6"]
 
 [sub_resource type="Resource" id="Resource_hbrw1"]
 script = ExtResource("1_rs2cn")
@@ -29,6 +30,7 @@ script = ExtResource("1_m7opm")
 name_in_file = &""
 name = &"frankling badge"
 description = "badge awarded to president franking. reflects electric attacks."
+texture = ExtResource("3_gtht6")
 attack_animation = ""
 price = 0
 use = 5

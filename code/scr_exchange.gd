@@ -20,17 +20,8 @@ func exchange(inventory: Array) -> bool:
 		return false
 
 	SOL.dialogue("exchange_success")
-	for i in input:
-		inventory.erase(i)
-	DAT.incri("silver", -silver_required)
-	for i in output:
-		inventory.append(i)
-		SOL.dialogue_box.dial_concat("exchange_item", 0, [ResMan.get_item(i).name])
-		SOL.dialogue("exchange_item")
-	if silver_granted:
-		DAT.incri("silver", silver_granted)
-		SOL.dialogue_box.dial_concat("exchange_silver", 0, [silver_granted])
-		SOL.dialogue("exchange_silver")
+	_remove_payment(inventory)
+	_grant_parts(inventory)
 	granted.emit(self)
 	return true
 
@@ -50,16 +41,30 @@ func check_silver() -> bool:
 	return DAT.get_data("silver", 0) >= silver_required
 
 
+func _remove_payment(inventory: Array) -> void:
+	for i in input:
+		inventory.erase(i)
+	DAT.incri("silver", -silver_required)
+
+
+func _grant_parts(inventory: Array) -> void:
+	for i in output:
+		inventory.append(i)
+		SOL.dialogue_box.dial_concat("exchange_item", 0, [ResMan.get_item(i).name])
+		SOL.dialogue("exchange_item")
+	if silver_granted:
+		DAT.incri("silver", silver_granted)
+		SOL.dialogue_box.dial_concat("exchange_silver", 0, [silver_granted])
+		SOL.dialogue("exchange_silver")
+
+
 func state(what: Statements) -> void:
 	var informations := []
 	# criterion strings
 	if what == Statements.CRITERIA:
 		_criteria_statement(informations)
 	elif what == Statements.RETURNS:
-		if silver_granted:
-			informations.append("- %s silver" % silver_granted)
-		for i in output:
-			informations.append("- %s" % ResMan.get_item(i).name)
+		_returns_statement(informations)
 
 	# TITLE: this exchange requires: LB%s LB%s
 	# SISU: %s LB%s LB%s
@@ -69,7 +74,8 @@ func state(what: Statements) -> void:
 		if i < 2: # divisions[0] is the title, only 2 %s
 			divisions[0].append(criterion)
 		else:
-			if (i + 1) % 3 == 0: divisions.append([])
+			if (i + 1) % 3 == 0:
+				divisions.append([])
 			divisions[floori((i + 1) / 3.0)].append(criterion)
 	var dial_title := ("exchange_criteria_title" if what == Statements.CRITERIA
 			else "exchange_returns_title")
@@ -90,6 +96,13 @@ func _criteria_statement(informations: Array) -> void:
 	if silver_required:
 		informations.append("- %s silver" % silver_required)
 	for i in input:
+		informations.append("- %s" % ResMan.get_item(i).name)
+
+
+func _returns_statement(informations: Array) -> void:
+	if silver_granted:
+		informations.append("- %s silver" % silver_granted)
+	for i in output:
 		informations.append("- %s" % ResMan.get_item(i).name)
 
 

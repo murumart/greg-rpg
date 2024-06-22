@@ -31,6 +31,7 @@ const COLOURS := {
 }
 
 const NAMES := {
+	NONE: "none",
 	ELECTRIC: "electric",
 	SOPPING: "sopping",
 	FLAMING: "flaming",

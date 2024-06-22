@@ -611,3 +611,14 @@ func _item_cellphone_used_on() -> void:
 		SOL.dialogue_box.dial_concat("phone_in_battle_other_character", 0, [actor_name])
 		SOL.dialogue("phone_in_battle_other_character")
 
+
+func _item_fungus_used_on() -> void:
+	var random_effect_type: StatusEffectType = ResMan.status_effect_types[
+			Math.determ_pick_random(ResMan.status_effect_types.keys(), rng)]
+	var random_effect := (StatusEffect.new()
+			.set_effect_name(random_effect_type.s_id)
+			.set_duration(rng.randi_range(3, 5))
+			.set_strength(float(rng.randi_range(1, 3)))
+	)
+	add_status_effect(random_effect)
+

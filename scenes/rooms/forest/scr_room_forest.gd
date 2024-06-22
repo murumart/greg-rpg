@@ -14,7 +14,6 @@ var inversion := false
 
 @export_group("Curves")
 @export var trash_amount_curve: Curve
-@export var trash_silver_item_chance_curve: Curve
 
 var generator: ForestGenerator
 var questing: ForestQuesting

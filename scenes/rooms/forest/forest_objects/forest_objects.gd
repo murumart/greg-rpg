@@ -43,11 +43,24 @@ const DB = {
 		LIMIT: 1,
 		FUNCTION: &"_set_flower_sleepy"
 	},
+	&"funny_fungus": {
+		SCENE: preload("res://scenes/decor/scn_pickable_item.tscn"),
+		SIZE: Vector2i(3, 2),
+		WEIGHT: 20,
+		LIMIT: 1,
+		FUNCTION: &"_set_fungus_funny"
+	},
 	&"stone_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/stone_column.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 100,
 		LIMIT: 3
+	},
+	&"saleskid": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
+		SIZE: Vector2i(3, 3),
+		WEIGHT: 300,
+		LIMIT: 1
 	},
 }
 

@@ -344,10 +344,12 @@ func delete_offscreen_tiles(ypos: int) -> void:
 
 # game ends here
 func _on_after_crash_timer_timeout() -> void:
-	var score := roundi(depth / 100.0) + points
+	var score := roundi(depth * 0.01) + points
 	var high_score: bool = score > DAT.get_data("fishing_high_score", 0)
 	DAT.incri("fishings_finished", 1)
 	DAT.incri("fish_caught", fish_caught)
+	if DAT.get_data("fishing_max_depth", 0) < depth:
+		DAT.set_data("fishing_max_depth", depth)
 	if high_score:
 		DAT.set_data("fishing_high_score", score)
 	if battle_info:

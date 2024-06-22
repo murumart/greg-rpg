@@ -14,26 +14,23 @@ func interacted() -> void:
 func _generate_quests() -> void:
 	if questing.available_quests_generated:
 		return
-	var quest_names := []
+	var quest_names := {}
 	for i in 3:
 		var quest: ForestQuest = ResMan.forest_quests[
 				ResMan.forest_quests.keys().pick_random()
 				].duplicate()
-		if quest.name in quest_names:
-			var nr := 2
-			if quest.name[quest.name.length() - 1].is_valid_int():
-				nr = int(quest.name[quest.name.length() - 1])
-				nr += 1
-			quest.name = quest.name + " " + str(nr)
-		quest_names.append(quest.name)
-
-		var reward := quest.glass_reward
-		var comp_times := quest.completion_value
-		var reward_ratio := comp_times / float(reward)
-		var reward_desired := roundi(randf_range(level + 2, level * 4))
-		quest.completion_value = maxi(roundi(reward_ratio * reward_desired), 1)
-		quest.glass_reward = reward_desired
-
+		quest = ResMan.forest_quests["find_item"].duplicate() # DEBUG
+		quest_names[quest.name] = quest_names.get(quest.name, 0) + 1
+		var special := _quest_generation_special(quest)
+		if quest_names[quest.name] > 1:
+			quest.name += " " + str(quest_names[quest.name])
+		if not special:
+			var reward := quest.glass_reward
+			var comp_times := quest.completion_value
+			var reward_ratio := comp_times / float(reward)
+			var reward_desired := roundi(randf_range(level + 2, level * 4))
+			quest.completion_value = maxi(roundi(reward_ratio * reward_desired), 1)
+			quest.glass_reward = reward_desired
 		questing.available_quests.append(quest)
 	questing.available_quests_generated = true
 
@@ -107,4 +104,17 @@ func _active_line_finished(line: int) -> void:
 		print(" --- quest in question: " + str(questing.active_quests[line - 1]))
 		if SOL.dialogue_choice == &"cancel":
 			questing.active_quests[line - 1] = null # starting at explanatory line 0
+
+
+func _quest_generation_special(quest: ForestQuest) -> bool:
+	match quest.name:
+		"itemfinder":
+			var item := ForestGenerator.BIN_LOOT.keys().pick_random() as StringName
+			quest.data_key += item + " in bins"
+			quest.set_meta("correct_item", item)
+			var rarity: int = (ForestGenerator.BIN_LOOT.values().max()
+					- ForestGenerator.BIN_LOOT[item] + 1)
+			quest.glass_reward = maxi(ceili(sqrt(rarity)), 1)
+			return true
+	return false
 

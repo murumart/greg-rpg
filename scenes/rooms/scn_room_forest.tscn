@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=19 format=3 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_2kpjx"]
@@ -14,10 +14,6 @@
 max_value = 20.0
 _data = [Vector2(0, 3.37031), 0.0, 0.0, 0, 0, Vector2(0.37542, 10.3375), 0.0, 0.0, 0, 0, Vector2(0.746091, 11.9556), -32.6554, -32.6554, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
 point_count = 4
-
-[sub_resource type="Curve" id="Curve_ams8o"]
-_data = [Vector2(0, 0.505316), 0.0, 0.0, 0, 0, Vector2(0.384107, 0.30883), 0.0, 0.0, 0, 0, Vector2(1, 0.100786), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d8w40"]
 normal = Vector2(1, 0)
@@ -48,7 +44,6 @@ region = Rect2(16, 17, 6, 6)
 y_sort_enabled = true
 script = ExtResource("1_8ih16")
 trash_amount_curve = SubResource("Curve_g5h5i")
-trash_silver_item_chance_curve = SubResource("Curve_ams8o")
 music = "lion"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

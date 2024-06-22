@@ -13,6 +13,8 @@ func forest_ready(_forest: ForestPath) -> void:
 	get_parent().remove_child(self)
 	SOL.add_ui_child(self)
 	forest_quests = DAT.get_data("forest_questing")
+	if not forest_quests.glass_changed.is_connected(update_glass):
+		forest_quests.glass_changed.connect(update_glass)
 
 	forest_quests.quest_started.connect(func(q: ForestQuest):
 		message("started quest " + q.name)

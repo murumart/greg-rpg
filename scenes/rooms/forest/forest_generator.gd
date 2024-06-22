@@ -1,4 +1,4 @@
-class_name ForestGenerator extends RefCounted
+class_name ForestGenerator
 
 enum {NORTH, SOUTH, EAST, WEST}
 
@@ -118,6 +118,7 @@ func load_layout() -> void:
 
 
 func gen_trees() -> void:
+	var amount := TREE_COUNT - forest.questing.get_perk_tree_reduction()
 	for i in TREE_COUNT:
 		var tree := TREE.instantiate()
 		forest.add_child(tree)
@@ -150,7 +151,8 @@ func _init_board(a) -> void:
 
 func gen_bins() -> void:
 	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
-		forest.current_room / 100.0) * randf())
+		forest.current_room / 100.0) * randf()
+		+ forest.questing.get_perk_extra_trash_amount())
 	for i in trash_count:
 		var trash := TRASH.instantiate() as TrashBin
 		trash.save = false
@@ -158,6 +160,7 @@ func gen_bins() -> void:
 		trash.global_position = rand_pos() * 16
 		trash.replenish_seconds = -1
 		trash.opened.connect(forest.questing.update_quests)
+		trash.got_item.connect(forest.questing._trash_item_got)
 		bin_loot(trash)
 
 
@@ -168,14 +171,17 @@ func bin_loot(bin: TrashBin) -> void:
 	if randf() <= 0.11:
 		bin.full = false
 		return
-	if randf() <= forest.trash_silver_item_chance_curve.sample_baked(
-			forest.current_room * 0.01):
+	if randf() <= 0.5:
 		# silver
-		bin.silver = forest.current_room * ((randi() % 3) + 1)
+		bin.silver = (forest.current_room * ((randi() % 3) + 1)
+				* forest.questing.get_perk_silver_multiplier())
 		return
 	# item
-	bin.item = Math.weighted_random(
-			BIN_LOOT.keys(), BIN_LOOT.values())
+	var values := BIN_LOOT.duplicate()
+	var add := forest.questing.get_perk_item_weight_addition_dictionary()
+	for k in add.keys():
+		values[k] += add[k]
+	bin.item = Math.weighted_random(values.keys(), values.values())
 
 
 func gen_enemies() -> void:
@@ -230,6 +236,8 @@ func gen_object(type: StringName) -> Node2D:
 		for j in range(start_y, 15, sze.y):
 			if is_area_free(Rect2i(i, j, sze.x, sze.y)):
 				return _place_object(
+						# adding half the object's size which makes it
+						# not spawn inside obstructed positions
 						type, Vector2(i + sze.x * 0.5, j + sze.y * 0.5) * 16)
 	return null
 
@@ -286,9 +294,6 @@ func load_from_save() -> void:
 		bin.add_to_group("bins")
 		bin.replenish_seconds = -1
 		bin.opened.connect(forest.questing.update_quests)
-	# do not load enemies after a fight
-	for e in d.enemies:
-		pass
 	for o in d.objects:
 		_place_object(d.objects[o], o)
 	generated_objects = d.objects
@@ -312,6 +317,11 @@ static func dir_oppos(which: int) -> int:
 
 func _set_flower_sleepy(a) -> void:
 	(a as PickableItem).item_type = &"sleepy_flower"
+	_delete_item_on_pickup(a)
+
+
+func _set_fungus_funny(a) -> void:
+	(a as PickableItem).item_type = &"funny_fungus"
 	_delete_item_on_pickup(a)
 
 

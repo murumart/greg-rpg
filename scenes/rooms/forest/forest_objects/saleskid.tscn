@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ciqny4ug5q5"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_forest_saleskid.gd" id="1_36kmr"]
+[ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="1_jr0ga"]
+
+[node name="Saleskid" type="Node2D"]
+script = ExtResource("1_36kmr")
+
+[node name="KidOverworld" parent="." instance=ExtResource("1_jr0ga")]

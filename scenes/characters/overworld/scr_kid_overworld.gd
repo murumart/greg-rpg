@@ -1,37 +1,49 @@
 extends OverworldCharacter
 
+signal finished_talking
+
 @export var trades: Array[Exchange] = []
-@onready var trades_dict := (func():
-	var dict := {}
-	for i in trades:
-		dict[i.title] = i
-	return dict).call() as Dictionary
+@onready var trades_dict := {}
 
 
 func _ready() -> void:
+	load_trades()
 	super._ready()
+	default_lines.clear()
+	default_lines.append("kid_hi")
+
+
+func load_trades() -> void:
+	trades_dict.clear()
+	for i in trades:
+		trades_dict[i.title] = i
 
 
 func interacted() -> void:
-	default_lines.clear()
-	default_lines.append("kid_hi")
-	SOL.dialogue_box.adjust("kid_hi", 1, "choices",
+	SOL.dialogue_box.adjust(default_lines[0], 1, "choices",
 	Math.reaap(trades_dict.keys(), "nvm"))
 	super.interacted()
 	SOL.dialogue_closed.connect(func():
-		if SOL.dialogue_choice == "nvm" or SOL.dialogue_choice == "no": return
-		var key := SOL.dialogue_choice
+		if SOL.dialogue_choice == "nvm" or SOL.dialogue_choice == "no":
+			self.finished_talking.emit()
+			return
+		var key: StringName = SOL.dialogue_choice
 		trades_dict[key].state(Exchange.Statements.CRITERIA)
 		trades_dict[key].state(Exchange.Statements.RETURNS)
 		SOL.dialogue("kid_trade_confirmation")
 		SOL.dialogue_closed.connect(func():
-			if SOL.dialogue_choice == "no": return
+			if SOL.dialogue_choice == "no":
+				self.finished_talking.emit()
+				return
 			var success := trades_dict[key].exchange(
-			ResMan.get_character("greg").inventory) as bool
+					ResMan.get_character("greg").inventory) as bool
 			if success:
 				SOL.dialogue("kid_trade_success")
 				DAT.incri("kid_reputation", 1)
 			else:
 				SOL.dialogue("kid_trade_fail")
+			SOL.dialogue_closed.connect(func():
+				self.finished_talking.emit()
+			, CONNECT_ONE_SHOT)
 		,CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
