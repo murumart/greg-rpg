@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://e5p36iavtsuc"]
+[gd_scene load_steps=14 format=3 uid="uid://e5p36iavtsuc"]
 
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_bird.gd" id="1_8xof1"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_2dony"]
-[ext_resource type="AudioStream" uid="uid://d0hdnl64at3ls" path="res://sounds/snd_birdflap.ogg" id="3_ojjhb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke3ye"]
 atlas = ExtResource("2_2dony")
@@ -111,12 +110,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0c5e"]
 radius = 32.1403
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xu875"]
-streams_count = 1
-random_volume_offset_db = 2.8
-stream_0/stream = ExtResource("3_ojjhb")
-stream_0/weight = 1.0
-
 [node name="Bird" type="Node2D" groups=["birds"]]
 script = ExtResource("1_8xof1")
 
@@ -146,9 +139,3 @@ shape = SubResource("CircleShape2D_j0c5e")
 
 [node name="CollisionTest" type="RayCast2D" parent="."]
 hit_from_inside = true
-
-[node name="FlapSound" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_xu875")
-max_distance = 200.0
-panning_strength = 1.35
-area_mask = 0
