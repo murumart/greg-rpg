@@ -59,6 +59,7 @@ func _ready() -> void:
 	lives = 3
 	enlives = 3
 	bdir = v2dou()
+	DAT.set_data("penni_stong_played", true)
 	await get_tree().create_timer(2.0).timeout
 	set_physics_process(true)
 
@@ -155,7 +156,7 @@ func _ball_movement(delta: float) -> void:
 			# player handling
 			if bpos.y > 60:
 				open_rps()
-				
+
 			# enemy handling
 			else:
 				var rps := randi() % 3

@@ -67,6 +67,7 @@ var hells_survived := 0
 
 
 func _ready() -> void:
+	DAT.set_data("biking_game_played", true)
 	bike.died.connect(_on_died)
 	obstacle_timer.start()
 	coin_timer.start()

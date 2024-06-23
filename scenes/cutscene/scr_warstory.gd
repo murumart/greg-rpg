@@ -29,6 +29,7 @@ var texs := {
 
 
 func _ready() -> void:
+	DAT.set_data("heard_warstory", true)
 	SND.play_song("warstory", 1.0, {"start_volume": 1.0, "play_from_beginning": true})
 	next_bar(0)
 	var rng := RandomNumberGenerator.new()

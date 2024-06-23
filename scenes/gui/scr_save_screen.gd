@@ -7,6 +7,24 @@ enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
 const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 
+# TODO finish
+const COMPLETED_GAME := {
+	"zerma_fought": true,
+	"fought_grandma": true,
+	"intro_cutscene_over": true,
+	"vampire_defeated": true,
+	"fish_fought": true,
+	"president_defeated": true,
+	"solar_protuberance_defeated": true,
+	"heard_warstory": true,
+	"fulfilled_bounty_thugs": true,
+	"fulfilled_bounty_stray_animals": true,
+	"fulfilled_bounty_broken_fishermen": true,
+	"biking_game_played": true,
+	"penni_stong_played": true,
+	"bike_ghosts_fought": [0, 1], # TODO add to when another bike ghost gets added
+}
+
 @onready var file_container := $Panel/FileContainer
 @onready var file_count := file_container.get_child_count()
 @onready var tab_container := $Panel/TabContainer
@@ -102,9 +120,10 @@ func set_current_button(to: int) -> void:
 		text += "playtime: %s\n" % get_playtime(data)
 		text += "\nparty: %s\n" % data.get("party", "?")
 		text += "level: %s\n" % data.get("char_greg_save", {}).get("level", "?")
+		text += "completion: " + str(roundf(_calc_completion_percent(data))) + "%\n"
 		text += version_string(data)
 		if erasure_enabled:
-			text += "\npress del to erase this file."
+			text += "\n[color=darkgray]press del to erase this file."
 		info_label.set_text(text)
 	else:
 		var text := "[center]file empty![/center]\n"
@@ -135,7 +154,7 @@ func update_buttons() -> void:
 			SAVE:
 				child.disabled = false
 			LOAD:
-				child.disabled = !DIR.file_exists(ABSOLUTE_SAVE_PATH % i)
+				child.disabled = not DIR.file_exists(ABSOLUTE_SAVE_PATH % i)
 
 
 func get_playtime(data: Dictionary) -> String:
@@ -211,3 +230,11 @@ func can_walk() -> bool:
 	return (
 		not SOL.dialogue_open
 	)
+
+
+func _calc_completion_percent(file: Dictionary) -> float:
+	var sum := 0.0
+	for key in COMPLETED_GAME:
+		if file.get(key, null) == COMPLETED_GAME[key]:
+			sum += 1.0
+	return (sum / COMPLETED_GAME.size()) * 100.0
