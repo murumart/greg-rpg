@@ -28,7 +28,7 @@ clip_children = 2
 layout_mode = 0
 offset_left = 7.0
 offset_right = 153.0
-offset_bottom = 120.0
+offset_bottom = 116.0
 
 [node name="MailManPicture2" type="Sprite2D" parent="BackgroundPanel"]
 position = Vector2(54, 76)
