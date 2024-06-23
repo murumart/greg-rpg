@@ -28,9 +28,9 @@ func _ready() -> void:
 
 func start() -> void:
 	end_nuisances()
+	DAT.capture_player("cutscene")
 	SOL.dialogue_low_position()
 	SND.call_deferred("play_song", "")
-	DAT.capture_player("cutscene")
 	greg.animate("walk_right")
 	uguy.direct_walking_animation(Vector2.RIGHT)
 	greg.global_position = greg_pos.global_position
