@@ -142,6 +142,8 @@ start_text = ""
 rewards = SubResource("Resource_k01d4")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsg2b"]
 size = Vector2(218, 42.5)

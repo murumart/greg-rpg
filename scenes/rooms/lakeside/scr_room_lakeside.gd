@@ -1,12 +1,16 @@
 extends Room
 
 @onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var spawners := get_tree().get_nodes_in_group("thug_spawners")
 
 
 func _ready() -> void:
 	super._ready()
 	_fish_victim_setup()
 	_car_scared_setup()
+
+	if DAT.get_data("fulfilled_bounty_broken_fishermen", false):
+		spawners.map(func(a): a.queue_free())
 
 
 func _on_pole_interacted() -> void:
