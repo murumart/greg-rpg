@@ -258,13 +258,7 @@ func item_names(opt := {}) -> void:
 	var item_name := String(ResMan.get_item(opt.reference).name)
 	# funny typoes
 	if randf() <= 0.01 and Math.inrange(item_name.length(), 4, 8):
-		var first := randi_range(1, item_name.length() - 1)
-		var second := randi_range(1, item_name.length() - 1)
-		var swchar := item_name[first]
-		item_name[first] = item_name[second]
-		item_name[second] = swchar
-	elif randf() <= 0.01 and item_name.length() >= 3:
-		item_name = item_name.erase(randi_range(1, item_name.length() - 1))
+		item_name = Math.typos(item_name)
 	opt.button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(11)
 
 

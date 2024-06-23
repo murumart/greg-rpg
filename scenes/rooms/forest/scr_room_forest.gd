@@ -9,7 +9,7 @@ var greenhouse: ForestGenerator.GreenhouseType = null
 var enabled_layer := 0
 
 @onready var current_room := DAT.get_data(
-		"current_forest_rooms_traveled", 0) as int
+		"forest_depth", 0) as int
 var inversion := false
 
 @export_group("Curves")
@@ -27,13 +27,7 @@ func _ready() -> void:
 		DAT.set_data("forest_questing", ForestQuesting.new())
 	questing = DAT.get_data("forest_questing")
 	hud.forest_ready(self)
-	for i in $Gates.get_child_count():
-		($Gates.get_child(i) as Area2D).body_entered.connect(
-				gate_entered.bind(i).unbind(1))
-		if DAT.get_data("forest_last_gate_entered", -1) == i:
-			if not LTS.gate_id == LTS.GATE_EXIT_BATTLE:
-				greg.global_position = $Gates.get_child(
-						ForestGenerator.dir_oppos(i)).get_child(1).global_position
+	_setup_gates()
 	generator = ForestGenerator.new(self)
 	canvas_modulate.color = canvas_modulate.color.lerp(
 			Color(0.735003054142, 0.89518678188324, 0.22227722406387),
@@ -50,6 +44,21 @@ func _unhandled_input(_event: InputEvent) -> void:
 	pass
 
 
+func _setup_gates() -> void:
+	var gates := $Gates
+	var gradient := $Gates/Gradient
+	hud.update_compass(ForestGenerator.NORTH)
+	for i in gates.get_child_count():
+		var gate := gates.get_child(i) as Area2D
+		gate.body_entered.connect(
+				gate_entered.bind(i).unbind(1))
+		if DAT.get_data("forest_last_gate_entered", -1) == i:
+			if not LTS.gate_id == LTS.GATE_EXIT_BATTLE:
+				greg.global_position = gates.get_child(
+						ForestGenerator.dir_oppos(i)).get_child(1).global_position
+			hud.update_compass(ForestGenerator.dir_oppos(i))
+
+
 func gate_entered(which: int) -> void:
 	print("gate ", which)
 	LTS.gate_id = &"forest_transition"
@@ -58,7 +67,7 @@ func gate_entered(which: int) -> void:
 		DAT.set_data("forest_last_gate_entered", which)
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 		DAT.incri("total_forest_rooms_traveled", 1)
-		DAT.incri("current_forest_rooms_traveled", 1)
+		DAT.incri("forest_depth", 1)
 		return
 	leave()
 
@@ -72,7 +81,7 @@ func leave() -> void:
 	DAT.set_data("forest_questing", null)
 	DAT.set_data("forest_active_quests", [])
 	DAT.set_data("forest_last_gate_entered", -1)
-	DAT.set_data("current_forest_rooms_traveled", 0)
+	DAT.set_data("forest_depth", 0)
 	LTS.gate_id = &"forest-house"
 	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn")
 

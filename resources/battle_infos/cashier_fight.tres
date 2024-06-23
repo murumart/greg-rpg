@@ -26,3 +26,5 @@ start_text = "this will be painful!"
 rewards = SubResource("Resource_gjsyr")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true

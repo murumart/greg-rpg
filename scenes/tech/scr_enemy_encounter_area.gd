@@ -43,7 +43,7 @@ func _on_timer_timeout() -> void:
 		detection = maxf(detection - increase, 0.0)
 		if debug: print(detection)
 		return
-	
+
 	# increase detection when moving, decrease when not moving
 	if debug: print(player.velocity.length_squared())
 	if player.velocity.length_squared() > 0.1:
@@ -51,7 +51,7 @@ func _on_timer_timeout() -> void:
 	else:
 		detection = maxf(detection - increase, 0.0)
 	if debug: print(detection)
-	
+
 	# if detection over threshold (which is also random :dace:), enter battle
 	if detection >= required_for_detection and randf() >= detection:
 		battles_initiated += 1

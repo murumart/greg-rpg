@@ -93,4 +93,8 @@ func get_perk_tree_reduction() -> int:
 
 func get_perk_enemy_start_damage() -> int:
 	return roundi(active_perks.get("enemy_start_damage", 0.0))
+
+
+func get_perk_experience_multiplier() -> float:
+	return active_perks.get("experience_multiplier", 0.0)
 #endregion

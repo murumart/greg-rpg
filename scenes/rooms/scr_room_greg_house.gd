@@ -149,7 +149,8 @@ func move_to_car() -> void:
 				set_car_noise(true)
 				zerm_car.turn(Math.ANGLE_RIGHT)
 				var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-				tw.tween_property(zerm_car, "global_position", zerma.global_position + Vector2(429, 5), 2)
+				tw.tween_property(zerm_car, "global_position",
+						zerma.global_position + Vector2(429, 5), 2)
 				tw.parallel().tween_property(zerma, "global_position",
 						zerma.global_position + Vector2(429, 5), 2)
 				tw.parallel().tween_property(vroom_vroom, "pitch_scale", 1.2, 2).from(0.75)
@@ -180,3 +181,8 @@ func delete_escape_routes() -> void:
 
 func enable_gates() -> void:
 	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = false)
+
+
+func _exit_tree() -> void:
+	if not &"cellphone" in ResMan.get_character("greg").inventory:
+		ResMan.get_character("greg").inventory.append(&"cellphone")

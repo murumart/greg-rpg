@@ -14,3 +14,5 @@ start_text = "ca sent le mouille."
 rewards = ExtResource("1_rxf2e")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true

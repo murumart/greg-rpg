@@ -26,3 +26,5 @@ start_text = ""
 rewards = SubResource("Resource_2vy6v")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true

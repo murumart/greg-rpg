@@ -38,7 +38,7 @@ key = &"freebird"
 curve = SubResource("Curve_gwndq")
 
 [sub_resource type="Curve" id="Curve_3xq4p"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.322222, 0.107659), 0.0, 0.0, 0, 0, Vector2(0.707407, 0.614884), 0.0, 0.0, 0, 0, Vector2(1, 0.624277), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0329616), 0.0, 0.0, 0, 0, Vector2(0.24378, 0.11779), 0.0, 0.0, 0, 0, Vector2(0.332636, 0.529811), 0.0, 0.0, 0, 0, Vector2(1, 0.624277), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_iq6ak"]
@@ -47,7 +47,7 @@ key = &"fox"
 curve = SubResource("Curve_3xq4p")
 
 [sub_resource type="Curve" id="Curve_emw14"]
-_data = [Vector2(0, 0), 0.0, -0.0670026, 0, 0, Vector2(0.533333, 0.1875), 0.0, 0.0, 0, 0, Vector2(0.818519, 0.296494), 0.0, 0.0, 0, 0, Vector2(1, 0.772104), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, -0.0670026, 0, 0, Vector2(0.390132, 0.166263), 0.0, 0.0, 0, 0, Vector2(0.818519, 0.296494), 0.0, 0.0, 0, 0, Vector2(1, 0.772104), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_1cllb"]
@@ -58,13 +58,15 @@ curve = SubResource("Curve_emw14")
 [sub_resource type="Resource" id="Resource_5excg"]
 script = ExtResource("6_kdwyn")
 enemies = Array[StringName]([])
-background = "forest"
+background = "bg_forest"
 music = "lion"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 victory_music = &""
 stop_music_before_end = false
+kill_music = false
+play_fanfare = false
 
 [node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
 script = ExtResource("2_4xx1x")

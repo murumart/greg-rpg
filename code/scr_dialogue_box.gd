@@ -196,6 +196,10 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(0)
 
 	show()
+	while true:
+		if randf() > 0.002:
+			break
+		text = Math.typos(text)
 	textbox.set_text(text)
 	started_speaking.emit(current_dialogue)
 	# speaking takes as much time as many there are letters to speak

@@ -14,11 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="9_xism4"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="10_5xp3u"]
 [ext_resource type="SpriteFrames" uid="uid://o5esampj4xk6" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="13_bun5o"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="14_rld88"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="21_bcrgk"]
+[ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="21_bcrgk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_70heg"]
 normal = Vector2(-1, 0)

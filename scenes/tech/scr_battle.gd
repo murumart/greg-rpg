@@ -213,6 +213,8 @@ func load_battle(info: BattleInfo) -> void:
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
 		var damage := questing.get_perk_enemy_start_damage() as int
+		if damage < 1:
+			return
 		for i in enemies:
 			i.hurt(damage, Genders.NONE)
 
@@ -753,6 +755,12 @@ func _grant_rewards() -> void:
 		for reward in battle_rewards.rewards:
 			if reward.type == BRT.EXP or reward.type == BRT.SILVER:
 				reward.property = str(float(reward.property) * (magnet + 1.0))
+	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
+	if questing:
+		for reward in battle_rewards.rewards:
+			if reward.type == BRT.EXP:
+				reward.property = str(float(reward.property)
+						* (questing.get_perk_experience_multiplier() + 1.0))
 	await get_tree().process_frame
 	battle_rewards.grant()
 

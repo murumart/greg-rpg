@@ -14,3 +14,5 @@ start_text = "toute phrase en langue etrangere."
 rewards = ExtResource("1_mdgh0")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true

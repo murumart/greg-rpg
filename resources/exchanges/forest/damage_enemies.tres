@@ -10,7 +10,7 @@ value = 7.0
 
 [resource]
 script = ExtResource("1_orrgm")
-glass_required = 5
+glass_required = 3
 add_to_perk = SubResource("Resource_o7j6m")
 title = "fightadvantage"
 silver_required = 0

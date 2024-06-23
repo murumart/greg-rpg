@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://62rrfr2yajow"]
+[gd_scene load_steps=18 format=3 uid="uid://62rrfr2yajow"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_4wi4g"]
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_waterhole.gd" id="2_5ey5h"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_asjqi"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_u0tpm"]
+[ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="4_8vm30"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="5_061cc"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="6_eg5q7"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_fcvjd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ekv"]
 shader = ExtResource("2_asjqi")
@@ -45,10 +50,46 @@ turbulence_influence_max = 0.114
 turbulence_initial_displacement_min = -27.1
 turbulence_initial_displacement_max = 41.4
 
-[node name="OverworldTiles" instance=ExtResource("1_4wi4g")]
+[sub_resource type="Resource" id="Resource_wgka0"]
+script = ExtResource("5_061cc")
+type = 1
+property = "gummy_worm"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_rtn5j"]
+script = ExtResource("5_061cc")
+type = 1
+property = "gummy_fish"
+chance = 0.333
+unique = false
+
+[sub_resource type="Resource" id="Resource_yhm1s"]
+script = ExtResource("6_eg5q7")
+rewards = Array[ExtResource("5_061cc")]([SubResource("Resource_wgka0"), SubResource("Resource_rtn5j")])
+
+[sub_resource type="Resource" id="Resource_dsehx"]
+script = ExtResource("7_fcvjd")
+enemies = Array[StringName]([&"strider"])
+background = "bg_forest"
+music = "lion"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "i am the strider."
+rewards = SubResource("Resource_yhm1s")
+victory_music = &""
+stop_music_before_end = false
+kill_music = false
+play_fanfare = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54qvo"]
+size = Vector2(90, 88)
+
+[node name="Waterhole" groups=["save_me"] instance=ExtResource("1_4wi4g")]
 layer_0/z_index = -5
 layer_0/tile_data = PackedInt32Array(-1, 589824, 12, -65536, 983040, 13, 0, 655360, 12, 65535, 589824, 13, 65534, 786432, 14, -2, 786432, 11, -65537, 786432, 11, -131072, 983040, 11, 1, 983040, 11, 65536, 851968, 14, 131071, 786432, 14, 65537, 983040, 14, 131070, 0, 0, -65535, 0, 0, -131071, 0, 0, -65538, 0, 0)
 layer_3/tile_data = PackedInt32Array(-65538, 0, 22, -65535, 65536, 22)
+script = ExtResource("2_5ey5h")
 
 [node name="Water" type="ColorRect" parent="." index="0"]
 show_behind_parent = true
@@ -69,3 +110,10 @@ texture = ExtResource("3_u0tpm")
 lifetime = 16.0
 preprocess = 8.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
+
+[node name="EnemyEncounterArea" parent="." index="1" instance=ExtResource("4_8vm30")]
+battle = SubResource("Resource_dsehx")
+required_for_detection = 0.228
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyEncounterArea" index="0"]
+shape = SubResource("RectangleShape2D_54qvo")

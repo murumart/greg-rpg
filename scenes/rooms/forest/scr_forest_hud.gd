@@ -5,6 +5,7 @@ var forest: ForestPath
 @onready var glass_label: Label = $HBoxContainer/GlassCounter/Label
 @onready var room_label: Label = $HBoxContainer/RoomCounter/Label
 @onready var message_container: MessageContainer = $MessageContainer
+@onready var compass_needle: Sprite2D = $HBoxContainer/Compass/Needle
 
 
 func forest_ready(_forest: ForestPath) -> void:
@@ -34,6 +35,17 @@ func update_glass() -> void:
 
 func update_room() -> void:
 	room_label.text = str(forest.current_room + 1)
+
+
+func update_compass(direction: int) -> void:
+	if direction == ForestGenerator.NORTH:
+		compass_needle.rotation_degrees = 0
+	elif direction == ForestGenerator.SOUTH:
+		compass_needle.rotation_degrees = 180
+	elif direction == ForestGenerator.WEST:
+		compass_needle.rotation_degrees = 270
+	elif direction == ForestGenerator.EAST:
+		compass_needle.rotation_degrees = 90
 
 
 var _msg_sound_played := false

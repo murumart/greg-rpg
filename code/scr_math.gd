@@ -266,3 +266,17 @@ static func but(a: bool, b: bool) -> bool:
 
 static func true_or_false(rng: RandomNumberGenerator) -> bool:
 	return bool(roundf(rng.randf()))
+
+
+static func typos(s: String) -> String:
+	if s.length() < 3:
+		return s
+	if randf() < 0.5:
+		var first := randi_range(1, s.length() - 1)
+		var second := randi_range(1, s.length() - 1)
+		var swchar := s[first]
+		s[first] = s[second]
+		s[second] = swchar
+		return s
+	s = s.erase(randi_range(1, s.length() - 1))
+	return s

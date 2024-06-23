@@ -13,4 +13,4 @@ texture = ExtResource("2_mkrpv")
 
 [node name="CopyGregStatsComponent" type="Node" parent="."]
 script = ExtResource("3_wqo30")
-multiplier = 0.85
+multiplier = 0.84

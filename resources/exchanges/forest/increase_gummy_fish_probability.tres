@@ -10,7 +10,7 @@ value = 4.0
 
 [resource]
 script = ExtResource("2_02ior")
-glass_required = 5
+glass_required = 2
 add_to_perk = SubResource("Resource_rm5v1")
 title = "gummyfish+"
 silver_required = 0

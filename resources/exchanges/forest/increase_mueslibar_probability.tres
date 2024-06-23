@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GlassExchange" load_steps=4 format=3 uid="uid://m2kv2718snaf"]
+
+[ext_resource type="Script" path="res://code/scr_key_float_pair.gd" id="1_p28jq"]
+[ext_resource type="Script" path="res://code/scr_exchange_forest.gd" id="2_1turn"]
+
+[sub_resource type="Resource" id="Resource_rm5v1"]
+script = ExtResource("1_p28jq")
+key = &"item_mueslibar_chance_increase"
+value = 4.0
+
+[resource]
+script = ExtResource("2_1turn")
+glass_required = 2
+add_to_perk = SubResource("Resource_rm5v1")
+title = "gummyfish+"
+silver_required = 0
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([])

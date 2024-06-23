@@ -10,7 +10,7 @@ value = 7.0
 
 [resource]
 script = ExtResource("1_eu6wm")
-glass_required = 4
+glass_required = 3
 add_to_perk = SubResource("Resource_wjsyw")
 title = "lesstrees"
 silver_required = 0

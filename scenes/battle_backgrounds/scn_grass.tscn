@@ -6,6 +6,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_512c8"]
 shader = ExtResource("2_7k2wn")
+shader_parameter/waveX = 0.968
+shader_parameter/waveY = 0.094
+shader_parameter/distortX = 0.161
+shader_parameter/distortY = 0.07
+shader_parameter/speed = 1.0
 
 [node name="Grass" instance=ExtResource("1_in7mf")]
 

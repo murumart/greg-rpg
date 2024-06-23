@@ -194,6 +194,21 @@ offset_right = 160.0
 offset_bottom = 9.0
 alignment = 1
 
+[node name="Compass" type="Control" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="Needle" type="Sprite2D" parent="UI/HBoxContainer/Compass"]
+position = Vector2(4, 4)
+texture = ExtResource("8_d6fx5")
+centered = false
+offset = Vector2(-3, -3)
+region_enabled = true
+region_rect = Rect2(32, 17, 5, 5)
+
+[node name="VSeparator2" type="VSeparator" parent="UI/HBoxContainer"]
+layout_mode = 2
+
 [node name="RoomCounter" type="HBoxContainer" parent="UI/HBoxContainer"]
 layout_mode = 2
 

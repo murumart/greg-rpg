@@ -19,7 +19,7 @@ const ENEMY := preload("res://scenes/characters/overworld/scn_wild_lizard_overwo
 const GREENHOUSE := preload("res://scenes/decor/scn_greenhouse.tscn")
 const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 const GREENHOUSE_INTERVAL := 11
-const BOARD_INTERVAL := 5
+const BOARD_INTERVAL := 4
 const VEGET_GREENHOUSE_INTERVAL := 33
 
 const BIN_LOOT := {

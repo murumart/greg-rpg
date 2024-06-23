@@ -84,16 +84,17 @@ func to_game_over_screen() -> void:
 
 
 func enter_battle(info: BattleInfo, options := {}) -> void:
-	if entering_battle: return
+	if entering_battle:
+		return
 	if options.get("sbcheck", false) and skateboard_check(): return
 	entering_battle = true
 	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
-	if options.get("kill_music", true):
+	if info.kill_music:
 		SND.play_song("", 100.0, {save_audio_position = true})
-	if options.get("play_fanfare", true):
+	if info.play_fanfare:
 		SND.play_sound(preload("res://sounds/enter_battle.ogg"))
 	SOL.vfx("battle_enter", Vector2(), {"wait_time": options.get("wait_time", 3.0)})
 	await create_tween().tween_interval(options.get("wait_time", 3.0)).finished
