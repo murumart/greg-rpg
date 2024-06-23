@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dxea13a1qe1mf"]
+
+[node name="ScnKeybinds" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 160.0
+offset_bottom = 120.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 79.0
+offset_bottom = 119.0
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "z[color=darkgray] space enter[/color]
+x[color=darkgray] ctrl[/color]
+c
+up [color=darkgray]w[/color]
+down [color=darkgray]s[/color]
+right [color=darkgray]d[/color]
+left [color=darkgray]a[/color]
+z+x
+ctrl+s/o"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 156.0
+offset_bottom = 12.0
+text = "~~~~keybinds~~~~"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 157.0
+offset_bottom = 119.0
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "[right][color=darkgray]interact, accept
+decline, back
+inventory,[font_size=6] extra info [/font_size]
+move/select up
+move/select down
+move/select right
+move/select left
+skip dialogue
+save/load screen"

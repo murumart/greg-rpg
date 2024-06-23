@@ -57,10 +57,17 @@ var IONS := {
 		"default_value": 0.0,
 		"step": 1.0,
 	},
+	"view_keybinds": {
+		"value": 0.0,
+		"default_value": 0.0,
+		"range": [0.0, 1.0],
+		"step": 1.0,
+	},
 	"reset": {}
 }
 # sorting the options
 const CATEGORIES := {
+	"gameplay": ["view_keybinds"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
 		"screen_shake_intensity", "text_speak_time",
@@ -76,7 +83,6 @@ var options_open := false
 # tools
 var opt := ConfigFile.new()
 const OPTION_PATH := "user://greg_rpg/options.ini"
-@onready var menu_sound := preload("res://sounds/gui.ogg")
 var top_text := 0
 
 # nodes
@@ -84,6 +90,7 @@ var top_text := 0
 @onready var main_container := $Root/Panel/ScrollContainer/MainContainer
 @onready var base_option := $Root/BaseOption
 @onready var top_text_label := $Root/Panel/TopTextLabel
+@onready var keybinds := $Keybinds
 
 # selection
 var cur_opt := 0
@@ -102,6 +109,8 @@ func _ready() -> void:
 	gen_option_nodes()
 	remove_child(root)
 	SOL.add_ui_child(root, 128, false) # options gotta be on top
+	remove_child(keybinds)
+	SOL.add_ui_child(keybinds, 128, false) # options gotta be on top
 	root.hide()
 	load_options()
 
@@ -170,7 +179,7 @@ func _input(event: InputEvent) -> void:
 	var last_opt := cur_opt
 	cur_opt = wrapi(cur_opt + int(move.y), 0, options_length)
 	if cur_opt != last_opt:
-		SND.play_sound(menu_sound)
+		SND.menusound()
 	select(cur_opt)
 	modify(move.x)
 
@@ -197,6 +206,8 @@ func select(opti: int) -> void:
 	for c in opt_contain:
 		c.modulate = Color.WHITE
 	opt_contain[opti].modulate = Color.CYAN
+	set_opt("view_keybinds", 0.0)
+	keybinds.hide()
 	# this is the custom scrolling implementation since scrollcontainer
 	# would've needed me to use the default focus system as well
 	# which i find unreliable at this point sadly
@@ -216,8 +227,8 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	var container := opt_contain[cur_opt]
 	var type: String = container.get_meta("type", "")
 	var end_value = clamp(
-				get_opt(type) + amt * get_opt_step(type),
-				get_opt_min(type), get_opt_max(type))
+			get_opt(type) + amt * get_opt_step(type),
+			get_opt_min(type), get_opt_max(type))
 	var prev_opt: Variant = get_opt(type)
 	if not ifset:
 		set_opt(type, end_value)
@@ -237,22 +248,24 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			reset_options()
 			SND.play_sound(preload("res://sounds/hurt.ogg"), {volume = 4.0})
 		"main_volume":
-			SND.play_sound(menu_sound, {pitch_scale = 1.76})
+			SND.menusound(1.76)
 		"music_volume":
-			SND.play_sound(menu_sound, {bus = "Music", pitch = 0.89})
+			SND.play_sound(preload("res://sounds/gui.ogg"), {bus = "Music", pitch = 0.89})
 		"screen_shake_intensity":
 			SOL.shake(1.0)
-			SND.play_sound(menu_sound, {pitch_scale = 1.36})
+			SND.menusound(1.36)
 		"battle_text_opacity":
-			SND.play_sound(menu_sound, {pitch_scale = 1.36})
+			SND.menusound(1.36)
 			battle_text_opacity_changed.emit()
 		"less_fancy_graphics":
 			get_tree().call_group(
 					"_fancy_graphics_option_owners",
 					"_set_fancy_grapics_to",
 					not bool(end_value))
+		"view_keybinds":
+			keybinds.visible = bool(end_value)
 		_:
-			SND.play_sound(menu_sound, {pitch_scale = 1.36})
+			SND.menusound(1.36)
 
 
 # all visual option nodes are stored in a container node

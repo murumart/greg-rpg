@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://himl3pefm1tc"]
+[gd_scene load_steps=4 format=3 uid="uid://himl3pefm1tc"]
 
 [ext_resource type="Script" path="res://autoload/scr_options.gd" id="1_kip0u"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_yatxs"]
+[ext_resource type="PackedScene" uid="uid://dxea13a1qe1mf" path="res://scenes/gui/scn_keybinds.tscn" id="3_n1vjm"]
 
 [node name="OPT" type="Node"]
 process_mode = 3
@@ -61,6 +62,9 @@ text_overrun_behavior = 1
 layout_mode = 2
 text = "0.1"
 horizontal_alignment = 2
+
+[node name="Keybinds" parent="." instance=ExtResource("3_n1vjm")]
+visible = false
 
 [node name="TopTextSwitcher" type="Timer" parent="."]
 wait_time = 3.0
