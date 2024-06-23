@@ -17,9 +17,9 @@ const LOCATION_TESTS := 20
 const TRASH := preload("res://scenes/decor/scn_trash_bin.tscn")
 const ENEMY := preload("res://scenes/characters/overworld/scn_wild_lizard_overworld.tscn")
 const GREENHOUSE := preload("res://scenes/decor/scn_greenhouse.tscn")
-const SCR_GREENHOUSE := preload("res://scenes/decor/scr_greenhouse.gd")
+const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 const GREENHOUSE_INTERVAL := 11
-const BOARD_INTERVAL := 6
+const BOARD_INTERVAL := 5
 const VEGET_GREENHOUSE_INTERVAL := 33
 
 const BIN_LOOT := {
@@ -36,6 +36,8 @@ const BIN_LOOT := {
 	"gummy_fish": 8,
 	"mueslibar": 1,
 }
+
+#const BIN_LOOT := {"gummy_worm": 10} # DEBUG
 
 var forest: ForestPath
 var used_poses := []
@@ -115,11 +117,12 @@ func load_layout() -> void:
 			forest.inversion = true
 	forest.paths.set_layer_enabled(layout, true)
 	forest.enabled_layer = layout
+	print(" ---- chose layout ", layout, " scale is ", forest.paths.scale)
 
 
 func gen_trees() -> void:
 	var amount := TREE_COUNT - forest.questing.get_perk_tree_reduction()
-	for i in TREE_COUNT:
+	for i in amount:
 		var tree := TREE.instantiate()
 		forest.add_child(tree)
 		var pos := rand_pos()
@@ -127,12 +130,15 @@ func gen_trees() -> void:
 		tree.type = randi() % tree.TYPES_SIZE
 		if randf() < 0.2:
 			tree.face_visible = true
+	print(" ---- generated ", amount, " trees")
 
 
 func gen_board() -> void:
 	if forest.current_room % 6 != 0:
 		return
-	_place_board(rand_pos() * 16)
+	var pos := rand_pos() * 16
+	_place_board(pos)
+	print(" ---- placed quest board at ", pos)
 
 
 func _place_board(pos: Vector2) -> void:
@@ -162,6 +168,7 @@ func gen_bins() -> void:
 		trash.opened.connect(forest.questing.update_quests)
 		trash.got_item.connect(forest.questing._trash_item_got)
 		bin_loot(trash)
+	print(" ---- generated ", trash_count, " bins")
 
 
 func bin_loot(bin: TrashBin) -> void:
@@ -173,8 +180,8 @@ func bin_loot(bin: TrashBin) -> void:
 		return
 	if randf() <= 0.5:
 		# silver
-		bin.silver = (forest.current_room * ((randi() % 3) + 1)
-				* forest.questing.get_perk_silver_multiplier())
+		bin.silver = roundi(forest.current_room * randf_range(1.0, 1.5)
+				* (1.0 + forest.questing.get_perk_silver_multiplier()))
 		return
 	# item
 	var values := BIN_LOOT.duplicate()
@@ -194,6 +201,7 @@ func gen_enemies() -> void:
 		var pos := rand_pos().floor()
 		enemy.global_position = pos * 16
 		enemy.add_to_group("enemies")
+	print(" ---- added ", enemy_count, " enemies")
 
 
 func gen_greenhouse() -> void:
@@ -203,6 +211,7 @@ func gen_greenhouse() -> void:
 	forest.greenhouse.save = false
 	forest.add_child(forest.greenhouse)
 	forest.greenhouse.set_vegetables(forest.current_room % VEGET_GREENHOUSE_INTERVAL == 0)
+	print(" ---- greenhouse added")
 
 
 func gen_objects() -> void:
@@ -210,6 +219,7 @@ func gen_objects() -> void:
 	var amounts := {}
 	var tries := 0
 	while generated_objects.size() < OBJECT_AMOUNT and tries < 100:
+		tries += 1
 		var obkey: StringName = Math.weighted_random(
 				weights.keys(), weights.values())
 		var object := ForestObjects.get_object(obkey)
@@ -225,6 +235,9 @@ func gen_objects() -> void:
 			continue
 		if gen_object(obkey):
 			amounts[obkey] = amounts.get(obkey, 0) + 1
+	print(" ---- generated ", amounts.values(
+			).reduce(func(accum, number): return accum + number, 10), " objects")
+
 
 
 func gen_object(type: StringName) -> Node2D:
@@ -294,6 +307,7 @@ func load_from_save() -> void:
 		bin.add_to_group("bins")
 		bin.replenish_seconds = -1
 		bin.opened.connect(forest.questing.update_quests)
+		bin.got_item.connect(forest.questing._trash_item_got)
 	for o in d.objects:
 		_place_object(d.objects[o], o)
 	generated_objects = d.objects

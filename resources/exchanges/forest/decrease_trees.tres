@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_wjsyw"]
 script = ExtResource("1_hlqln")
 key = &"less_trees"
-value = 4.0
+value = 7.0
 
 [resource]
 script = ExtResource("1_eu6wm")

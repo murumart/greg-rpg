@@ -2,7 +2,7 @@ class_name ForestPath extends Room
 
 const HudType := preload("res://scenes/rooms/forest/scr_forest_hud.gd")
 
-var greenhouse: ForestGenerator.SCR_GREENHOUSE = null
+var greenhouse: ForestGenerator.GreenhouseType = null
 
 @onready var greg := $Greg as PlayerOverworld
 @onready var paths: TileMap = $Tilemaps/Paths

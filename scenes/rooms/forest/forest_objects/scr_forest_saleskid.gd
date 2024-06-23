@@ -1,6 +1,7 @@
 extends Node2D
 
 static var loaded_exchanges := {}
+var _traded := false
 
 @onready var kid := $KidOverworld
 
@@ -17,12 +18,17 @@ func _ready() -> void:
 	kid = kid as KidType
 	kid.load_trades()
 	kid.default_lines[0] = "kid_hi_forest"
+	kid.exchange_completed.connect(func(_a):
+		_traded = true
+	, CONNECT_ONE_SHOT)
 	kid.finished_talking.connect(func():
+		if not _traded:
+			return
 		if not is_instance_valid(get_parent()):
 			return
 		for x in 5:
 			SOL.vfx("bird_flight", global_position,
-					{parent = get_parent(), speed = randf_range(80.0, 120.0)})
+					{parent = get_parent(), speed = randf_range(100.0, 120.0)})
 		queue_free()
 	, CONNECT_ONE_SHOT)
 

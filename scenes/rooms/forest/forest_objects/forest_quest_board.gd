@@ -13,13 +13,15 @@ func interacted() -> void:
 
 func _generate_quests() -> void:
 	if questing.available_quests_generated:
+		if questing.available_quests.is_empty():
+			SOL.dialogue_box.adjust("quest_board", 3, "choices",
+					["active", "leave"])
 		return
 	var quest_names := {}
 	for i in 3:
 		var quest: ForestQuest = ResMan.forest_quests[
 				ResMan.forest_quests.keys().pick_random()
 				].duplicate()
-		quest = ResMan.forest_quests["find_item"].duplicate() # DEBUG
 		quest_names[quest.name] = quest_names.get(quest.name, 0) + 1
 		var special := _quest_generation_special(quest)
 		if quest_names[quest.name] > 1:
@@ -88,6 +90,9 @@ func _chose_quest_display() -> void:
 	SOL.dialogue_closed.connect(func():
 		if SOL.dialogue_choice == &"yes":
 			questing.start_quest(quest)
+		elif SOL.dialogue_choice == &"no":
+			SOL.dialogue_choice = &"quests"
+			_choosed()
 	, CONNECT_ONE_SHOT)
 
 
@@ -99,7 +104,6 @@ func get_quest_by_name(q_name: String) -> ForestQuest:
 
 
 func _active_line_finished(line: int) -> void:
-	var last := questing.active_quests.size()
 	if not questing.active_quests.is_empty():
 		print(" --- quest in question: " + str(questing.active_quests[line - 1]))
 		if SOL.dialogue_choice == &"cancel":
@@ -108,9 +112,9 @@ func _active_line_finished(line: int) -> void:
 
 func _quest_generation_special(quest: ForestQuest) -> bool:
 	match quest.name:
-		"itemfinder":
+		"detective":
 			var item := ForestGenerator.BIN_LOOT.keys().pick_random() as StringName
-			quest.data_key += item + " in bins"
+			quest.data_key += ResMan.get_item(item).name + " in bins"
 			quest.set_meta("correct_item", item)
 			var rarity: int = (ForestGenerator.BIN_LOOT.values().max()
 					- ForestGenerator.BIN_LOOT[item] + 1)

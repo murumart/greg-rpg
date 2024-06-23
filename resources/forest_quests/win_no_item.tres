@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://dj2e2s2wqvhwr"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_quest.gd" id="1_4xld8"]
+
+[resource]
+script = ExtResource("1_4xld8")
+name = "hoarder"
+data_key = &"win_battle_no_item"
+completion_value = 1
+completion_signal = &""
+glass_reward = 6

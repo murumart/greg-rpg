@@ -97,6 +97,10 @@ var current_target: BattleActor
 var death_reason := "default"
 var battle_rewards: BattleRewards
 
+var _used_attack := false
+var _used_spirit := false
+var _used_item := false
+
 
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
@@ -206,6 +210,11 @@ func load_battle(info: BattleInfo) -> void:
 	stop_music_before_end = info.stop_music_before_end
 	set_greg_speed()
 	loading_battle = false
+	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
+	if questing:
+		var damage := questing.get_perk_enemy_start_damage() as int
+		for i in enemies:
+			i.hurt(damage, Genders.NONE)
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:
@@ -339,6 +348,7 @@ func _reference_button_pressed(reference) -> void:
 			current_guy.attack(reference)
 			listening_to_player_input = false
 			append_action_history("attack", {"target": reference})
+			_used_attack = true
 			open_party_info_screen()
 		Doings.SPIRIT:
 			current_target = reference
@@ -354,6 +364,7 @@ func _reference_button_pressed(reference) -> void:
 			current_guy.use_item(held_item_id, reference)
 			append_action_history("item",
 					{"target": reference, "item": held_item_id})
+			_used_item = true
 			open_party_info_screen()
 
 
@@ -671,6 +682,7 @@ func _on_spirit_name_submitted(submission: String) -> void:
 			append_action_history(
 					"spirit", {"spirit":
 						spirit_id, "target": current_target})
+			_used_spirit = true
 			open_party_info_screen()
 			return
 		else:
@@ -713,6 +725,12 @@ func open_end_screen(victory: bool) -> void:
 		await SOL.dialogue_closed
 		doing = Doings.DONE
 		listening_to_player_input = true
+		if not _used_attack:
+			DAT.incri("win_battle_no_attack", 1)
+		if not _used_spirit:
+			DAT.incri("win_battle_no_spirit", 1)
+		if not _used_item:
+			DAT.incri("win_battle_no_item", 1)
 		return
 	if DAT.death_reason == "default":
 		DAT.death_reason = death_reason

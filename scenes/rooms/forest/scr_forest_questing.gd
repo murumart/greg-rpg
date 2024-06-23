@@ -18,9 +18,9 @@ var active_perks := {}
 
 #region QUESTING
 func start_quest(quest: ForestQuest) -> void:
-	available_quests.erase(quest)
 	active_quests.append(quest.start())
 	quest_started.emit(quest)
+	available_quests.clear()
 
 
 func update_quests() -> void:
@@ -47,9 +47,12 @@ func has_quest(quest_name: String) -> bool:
 
 
 func _trash_item_got(item: StringName) -> void:
+	print("trash item got ", item)
 	var togrant := active_quests.filter(func(a):
-		return a.get_meta("correct_item", "") == item
+		print(a.get_meta_list())
+		return a.quest_reference.get_meta("correct_item", "") == item
 	)
+	print(togrant)
 	for quest: ForestQuest.Active in togrant:
 		quest.complete()
 #endregion
@@ -66,7 +69,7 @@ func add_perk(perk: Dictionary) -> void:
 
 
 func get_perk_silver_multiplier() -> float:
-	return active_perks.get("silver_multiplier_increase", 1.0)
+	return active_perks.get("silver_multiplier_increase", 0.0)
 
 
 func get_perk_item_weight_addition_dictionary() -> Dictionary:
@@ -86,4 +89,8 @@ func get_perk_extra_trash_amount() -> int:
 
 func get_perk_tree_reduction() -> int:
 	return roundi(active_perks.get("less_trees", 0.0))
+
+
+func get_perk_enemy_start_damage() -> int:
+	return roundi(active_perks.get("enemy_start_damage", 0.0))
 #endregion

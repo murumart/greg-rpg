@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_trgl1"]
 script = ExtResource("1_07iiw")
 key = &"silver_multiplier_increase"
-value = 0.1
+value = 0.15
 
 [resource]
 script = ExtResource("1_1folf")

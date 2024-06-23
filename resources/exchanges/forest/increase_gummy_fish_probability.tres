@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_rm5v1"]
 script = ExtResource("1_decpr")
 key = &"item_gummy_fish_chance_increase"
-value = 2.0
+value = 4.0
 
 [resource]
 script = ExtResource("2_02ior")

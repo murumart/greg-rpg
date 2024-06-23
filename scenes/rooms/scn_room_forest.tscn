@@ -45,6 +45,10 @@ y_sort_enabled = true
 script = ExtResource("1_8ih16")
 trash_amount_curve = SubResource("Curve_g5h5i")
 music = "lion"
+music_fade_time = null
+music_save_progress = null
+music_play_from_beginning = null
+music_start_volume = null
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.911176, 0.921089, 0.870525, 1)
@@ -112,6 +116,7 @@ limit_bottom = 256
 [node name="CheatNode" type="Node" parent="Greg"]
 script = ExtResource("6_bbhas")
 level_gain = 60
+new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"mueslibar", &"mueslibar"])
 replace_armour = &"rain_boot"
 replace_weapon = &"fish"
 

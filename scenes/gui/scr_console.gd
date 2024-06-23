@@ -99,6 +99,8 @@ func parse_command() -> void:
 		&"clearinv":
 			ResMan.get_character("greg").inventory.clear()
 			output("inventory cleared")
+		&"addperk":
+			add_perk(args)
 		&"7":
 			output("7")
 		_:
@@ -280,4 +282,19 @@ func instakill() -> void:
 	ResMan.get_character("greg").attack = 999999999
 	if LTS.get_current_scene().name == "Battle":
 		LTS.get_current_scene().party[0].character.attack = 99999999
+
+
+func add_perk(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: addperk key value")
+		return
+	if args.size() < 2:
+		output("need 2 ars", true)
+		return
+	var questing := DAT.get_data("forest_questing") as ForestQuesting
+	if not is_instance_valid(questing):
+		output("must be in forest", true)
+		return
+	questing.add_perk({args[0]: Math.toexp(args[1])})
+	output("perk added")
 

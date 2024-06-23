@@ -240,12 +240,8 @@ static func toexp(string: String) -> Variant:
 
 # weighted random function i found online for python
 static func weighted_random(items: Array, weights: Array) -> Variant:
-	if items.size() != weights.size():
-		printerr("items and weights not equivalent in size.")
-		return null
-	if items.is_empty() or weights.is_empty():
-		printerr("items and/or weights empty.")
-		return null
+	assert(items.size() == weights.size(), "items and weights not equivalent in size.")
+	assert(not (items.is_empty() or weights.is_empty()), "items and/or weights empty.")
 	var cum_weigths := []
 	var sum := 0
 	for i in weights:

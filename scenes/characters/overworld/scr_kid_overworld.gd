@@ -1,6 +1,7 @@
 extends OverworldCharacter
 
 signal finished_talking
+signal exchange_completed(exchange: Exchange)
 
 @export var trades: Array[Exchange] = []
 @onready var trades_dict := {}
@@ -40,6 +41,7 @@ func interacted() -> void:
 			if success:
 				SOL.dialogue("kid_trade_success")
 				DAT.incri("kid_reputation", 1)
+				exchange_completed.emit(trades_dict[key])
 			else:
 				SOL.dialogue("kid_trade_fail")
 			SOL.dialogue_closed.connect(func():

@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_5a4fd")
-name = "itemfinder"
-data_key = &"find item "
+name = "detective"
+data_key = &"find "
 completion_value = 1
 completion_signal = &""
 glass_reward = 0
