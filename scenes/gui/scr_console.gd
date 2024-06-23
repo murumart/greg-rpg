@@ -204,13 +204,27 @@ func xp(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: xp charname amount")
 		return
-	if args.size() != 2:
-		output("need 2 arguments", true)
-		return
 	var charname := args[0]
-	var amount := int(args[1])
-	ResMan.get_character(charname).add_experience(amount)
-	output("gave %s exp to %s" % [amount, charname])
+	var chara := ResMan.get_character(charname)
+	var amount := int(args[1]) if args.size() == 2 else 0
+	if not LTS.get_current_scene().name == "Battle":
+		if amount != 0:
+			chara.add_experience(amount)
+			output("gave %s exp to %s" % [amount, charname])
+			return
+		output("char %s has %s/%s exp" %
+				[amount, chara.experience, chara.xp2lvl(chara.level)])
+		return
+	if charname != &"greg":
+		return
+	var battle = LTS.get_current_scene()
+	chara = battle.party[0].character
+	if amount != 0:
+		chara.add_experience(amount)
+		return
+
+	output("char %s has %s/%s exp" %
+			[amount, chara.experience, chara.xp2lvl(chara.level + 1)])
 
 
 func lvup(args: PackedStringArray) -> void:

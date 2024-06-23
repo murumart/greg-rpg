@@ -108,17 +108,29 @@ func add_experience(amount: int, speak := false) -> void:
 		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
 		SOL.dialogue("get_experience")
 	for i in amount:
-		if level >= 99: break
-		experience = experience + 1
+		if level >= 99:
+			break
+		experience += 1
 		if experience >= xp2lvl(level):
+			if speak and (
+					level + 1 >= 50 and not DAT.get_data("vampire_defeated", false)
+					or level + 1 >= 60 and not DAT.get_data("president_defeated", false)
+			):
+				SOL.dialogue("levelup_confirmation")
+				await SOL.dialogue_closed
+				if SOL.dialogue_choice == "no":
+					return
 			experience = 0
 			level_up()
-
 	leveled_up.emit()
 
 
 func level_up(by := 1, overflow := false, talk := true) -> void:
-	if by < 1: return
+	if by < 1:
+		level -= by
+		printerr("reduced level of " + name_in_file)
+		return
+
 	var curve := preload("res://resources/res_stat_add_curve.tres")
 	var spirits_to_add := []
 	for t in by:

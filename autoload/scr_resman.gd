@@ -32,6 +32,7 @@ static func get_character(key: StringName) -> Character:
 
 
 static func get_item(id: StringName) -> Item:
+	assert(id in items, "item " + id + " doesn't exist")
 	if not id in items:
 		print("item ", id, " not found")
 		return preload("res://resources/res_default_item.tres")

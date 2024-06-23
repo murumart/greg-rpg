@@ -612,7 +612,7 @@ func _item_cellphone_used_on() -> void:
 		SOL.dialogue("phone_in_battle_other_character")
 
 
-func _item_fungus_used_on() -> void:
+func _item_funny_fungus_used_on() -> void:
 	var random_effect_type: StatusEffectType = ResMan.status_effect_types[
 			Math.determ_pick_random(ResMan.status_effect_types.keys(), rng)]
 	var random_effect := (StatusEffect.new()

@@ -931,9 +931,10 @@ func erase_floating_spirits() -> void:
 
 func item_names(opt := {}) -> void:
 	var count: int = current_guy.character.inventory.count(opt.reference)
+	var item := ResMan.get_item(opt.reference)
 	opt.button.text = str(
 		str(count, "x ") if count > 1 else "",
-		ResMan.get_item(opt.reference).name
+		item.name
 		).left(15)
 
 
