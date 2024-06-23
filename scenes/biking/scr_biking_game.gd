@@ -261,7 +261,7 @@ func spawn_coin() -> void:
 
 
 func spawn_snail() -> void:
-	if current_perk == "snail_repel" and randf() <= 0.95:
+	if current_perk == "snail_repel" and randf() <= 0.95 and not currently_hell:
 		return
 	var snail: BikingMovingObject = SNAIL_LOAD.instantiate()
 	snail.randomise_position()
@@ -274,8 +274,8 @@ func spawn_snail() -> void:
 
 
 func the_kiosk() -> void:
-	if currently_hell: return
-	if kiosk_activated: return
+	if currently_hell or kiosk_activated:
+		return
 	kiosk_activated = true
 	var kiosk: BikingMovingObject = preload("res://scenes/biking/moving_objects/scn_mail_kiosk.tscn").instantiate()
 	current_kiosk = kiosk
