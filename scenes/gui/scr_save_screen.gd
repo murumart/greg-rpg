@@ -114,13 +114,13 @@ func set_current_button(to: int) -> void:
 	if DIR.file_exists(ABSOLUTE_SAVE_PATH % current_button):
 		data = DIR.get_dict_from_file(path)
 	if not data.is_empty():
-		var text := "[center]save file info[/center]\n"
+		var text := "[center]save file info[/center]\n[color=#eeefef]"
 		text += "\ndate: %s\n" % data.get("date", "?")
 		text += "time: %s\n" % data.get("time", "?")
 		text += "playtime: %s\n" % get_playtime(data)
-		text += "\nparty: %s\n" % data.get("party", "?")
 		text += "level: %s\n" % data.get("char_greg_save", {}).get("level", "?")
 		text += "completion: " + str(roundf(_calc_completion_percent(data))) + "%\n"
+		text += "[/color]"
 		text += version_string(data)
 		if erasure_enabled:
 			text += "\n[color=darkgray]press del to erase this file."
