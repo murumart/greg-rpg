@@ -134,7 +134,7 @@ func gen_trees() -> void:
 
 
 func gen_board() -> void:
-	if forest.current_room % 6 != 0:
+	if forest.current_room % BOARD_INTERVAL != 0:
 		return
 	var pos := rand_pos() * 16
 	_place_board(pos)

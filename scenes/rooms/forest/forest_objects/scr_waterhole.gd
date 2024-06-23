@@ -1,6 +1,6 @@
 extends TileMap
 
-@onready var current_room := DAT.get_data("forest_depth") as int
+@onready var current_room := DAT.get_data("forest_depth", 0) as int
 
 
 
