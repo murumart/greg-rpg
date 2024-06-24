@@ -113,8 +113,8 @@ func add_experience(amount: int, speak := false) -> void:
 		experience += 1
 		if experience >= xp2lvl(level):
 			if speak and (
-					level + 1 >= 50 and not DAT.get_data("vampire_defeated", false)
-					or level + 1 >= 60 and not DAT.get_data("president_defeated", false)
+					level + 1 == 50 and not DAT.get_data("vampire_defeated", false)
+					or level + 1 == 60 and not DAT.get_data("president_defeated", false)
 			):
 				SOL.dialogue("levelup_confirmation")
 				await SOL.dialogue_closed
