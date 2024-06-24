@@ -415,13 +415,15 @@ func handle_payload(pld: BattlePayload) -> void:
 			if is_instance_valid(pld.sender):
 				pld.sender.character.add_defeated_character(character.name_in_file)
 
-	character.magic += pld.magic + (pld.magic_percent / 100.0 * character.magic)\
-			+ (pld.max_magic_percent / 100.0 * character.max_magic)
+	character.magic += (pld.magic + (pld.magic_percent / 100.0 * character.magic)
+			+ (pld.max_magic_percent / 100.0 * character.max_magic))
 
 	for en in pld.effects:
 		if en.name.length() and en.duration:
 			var eff := en.duplicate() as StatusEffect
-			if pld.sender and pld.sender == self:
+			# add one if using on oneself because the turn is used up
+			# but not if it is a curing ability
+			if pld.sender and pld.sender == self and en.duration > 0:
 				eff.duration += 1
 			add_status_effect(eff)
 
