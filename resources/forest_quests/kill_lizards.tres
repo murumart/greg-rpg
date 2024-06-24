@@ -6,5 +6,6 @@
 script = ExtResource("1_lm5fx")
 name = "dogfighter"
 data_key = &"killed_wild_lizard"
-completion_value = 3
-glass_reward = 2
+completion_value = 1
+completion_signal = &""
+glass_reward = 4

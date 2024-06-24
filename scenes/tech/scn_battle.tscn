@@ -26,6 +26,7 @@ victory_music = &"victory"
 stop_music_before_end = true
 kill_music = true
 play_fanfare = true
+crits_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)

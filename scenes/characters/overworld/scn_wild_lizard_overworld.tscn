@@ -67,6 +67,7 @@ victory_music = &""
 stop_music_before_end = false
 kill_music = false
 play_fanfare = false
+crits_enabled = false
 
 [node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
 script = ExtResource("2_4xx1x")

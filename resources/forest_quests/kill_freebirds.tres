@@ -6,5 +6,6 @@
 script = ExtResource("1_5poxq")
 name = "birdhunter"
 data_key = &"killed_freebird"
-completion_value = 3
-glass_reward = 6
+completion_value = 1
+completion_signal = &""
+glass_reward = 3

@@ -6,5 +6,6 @@
 script = ExtResource("1_xflk6")
 name = "foxhunter"
 data_key = &"killed_fox"
-completion_value = 3
-glass_reward = 10
+completion_value = 1
+completion_signal = &""
+glass_reward = 7

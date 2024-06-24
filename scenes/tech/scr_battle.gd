@@ -210,6 +210,7 @@ func load_battle(info: BattleInfo) -> void:
 	stop_music_before_end = info.stop_music_before_end
 	set_greg_speed()
 	loading_battle = false
+	BattleActor.crits_enabled = info.crits_enabled
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
 		var damage := questing.get_perk_enemy_start_damage() as int

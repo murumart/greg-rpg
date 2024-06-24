@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://bfxrq184kho5f"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_quest.gd" id="1_ukt5k"]
+
+[resource]
+script = ExtResource("1_ukt5k")
+name = "poacher"
+data_key = &"killed_strider"
+completion_value = 1
+completion_signal = &""
+glass_reward = 5

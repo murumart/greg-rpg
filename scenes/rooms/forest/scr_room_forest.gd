@@ -77,6 +77,7 @@ func load_from_save() -> void:
 
 
 func leave() -> void:
+	DAT.set_data("forest_save", {})
 	DAT.set_data("forest_questing", null)
 	DAT.set_data("forest_active_quests", [])
 	DAT.set_data("forest_last_gate_entered", -1)

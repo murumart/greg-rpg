@@ -8,4 +8,4 @@ name = "pacifist"
 data_key = &"win_battle_no_attack"
 completion_value = 1
 completion_signal = &""
-glass_reward = 13
+glass_reward = 36

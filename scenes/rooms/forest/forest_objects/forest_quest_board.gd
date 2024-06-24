@@ -6,35 +6,49 @@ var questing: ForestQuesting = null
 
 func interacted() -> void:
 	super()
-	_generate_quests()
-	SOL.dialogue("quest_board")
-	SOL.dialogue_closed.connect(_choosed, CONNECT_ONE_SHOT)
-
-
-func _generate_quests() -> void:
 	if questing.available_quests_generated:
 		if questing.available_quests.is_empty():
 			SOL.dialogue_box.adjust("quest_board", 3, "choices",
 					["active", "leave"])
-		return
+	else:
+		_generate_quests()
+	SOL.dialogue("quest_board")
+	SOL.dialogue_closed.connect(_choosed, CONNECT_ONE_SHOT)
+	# DEBUG
+	#for x in 30:
+		#_generate_quests()
+		#level += 1
+		#print(questing.available_quests)
+		#print(level, "\n")
+		#questing.available_quests.clear()
+
+
+func _generate_quests() -> void:
+	SOL.dialogue_box.adjust("quest_board", 3, "choices",
+			["quests", "active", "leave"])
 	var quest_names := {}
-	for i in 3:
+	var tries := 0
+	while questing.available_quests.size() < 3 or tries > 30:
+		tries += 1
 		var quest: ForestQuest = ResMan.forest_quests[
 				ResMan.forest_quests.keys().pick_random()
 				].duplicate()
 		quest_names[quest.name] = quest_names.get(quest.name, 0) + 1
 		var special := _quest_generation_special(quest)
 		if quest_names[quest.name] > 1:
+			if tries < 20:
+				continue
 			quest.name += " " + str(quest_names[quest.name])
 		if not special:
 			var reward := quest.glass_reward
 			var comp_times := quest.completion_value
 			var reward_ratio := comp_times / float(reward)
-			var reward_desired := roundi(randf_range(level + 2, level * 4))
-			quest.completion_value = maxi(roundi(reward_ratio * reward_desired), 1)
-			quest.glass_reward = reward_desired
+			#var glass_price := reward / float(comp_times)
+			var reward_desired := roundi(randfn(level + 2, level * 0.1))
+			quest.completion_value = maxi(floori(reward_ratio * reward_desired), 1)
+			quest.glass_reward = maxi(reward_desired, reward)
 		questing.available_quests.append(quest)
-	questing.available_quests_generated = true
+		questing.available_quests_generated = true
 
 
 func _choosed() -> void:

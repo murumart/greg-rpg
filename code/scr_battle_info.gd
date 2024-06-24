@@ -15,6 +15,7 @@ class_name BattleInfo
 @export var stop_music_before_end := true
 @export var kill_music := true
 @export var play_fanfare := true
+@export var crits_enabled := true
 
 
 func set_enemies(x: Array[StringName]) -> BattleInfo:

@@ -10,6 +10,7 @@ const WAIT_AFTER_ITEM := 1.00
 const WAIT_AFTER_FLEE := 1.0
 
 static var player_speed_modifier := 1.0
+static var crits_enabled := true
 
 signal message(msg: String, options: Dictionary)
 signal act_requested(by_whom: BattleActor)
@@ -577,6 +578,9 @@ func get_gender() -> int:
 
 
 func set_crittable() -> void:
+	if not crits_enabled:
+		crittable.clear()
+		return
 	crittable = reference_to_actor_array.filter(func(a) -> bool:
 		var actor := a as BattleActor
 		if not is_instance_valid(actor):

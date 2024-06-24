@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_jr6pv")
-name = "aspiritual"
+name = "secularist"
 data_key = &"win_battle_no_spirit"
 completion_value = 1
 completion_signal = &""

@@ -66,8 +66,8 @@ func generate() -> void:
 func rand_pos() -> Vector2:
 	var pos := Vector2()
 	for j in LOCATION_TESTS:
-		pos.x = randf_range(-18, 17)
-		pos.y = randf_range(-16, 15)
+		pos.x = randf_range(-17, 16)
+		pos.y = randf_range(-15, 14)
 		if valid_placement_spot(pos):
 			break
 	return pos
