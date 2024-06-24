@@ -65,14 +65,18 @@ func act() -> void:
 
 func handle_payload(pld: BattlePayload) -> void:
 	if pld.type == pld.Types.ATTACK:
-		if (not pld.sender in reference_to_opposing_array) and (not pld.sender in extra_targets):
+		if ((not pld.sender in reference_to_opposing_array)
+				and (not pld.sender in extra_targets)
+				and pld.sender != self
+				and is_instance_valid(pld.sender)
+				and pld.sender.character.name_in_file):
 			var vendetta := toughness * (1 - altruism)
-			if randf() <= vendetta and is_instance_valid(pld.sender) and pld.sender.character.name_in_file:
+			if randf() <= vendetta:
 				extra_targets.append(pld.sender)
 				SOL.vfx("damage_number", parentless_effcenter(self) - Vector2(0, 16), {
-					text=str(pld.sender.character.name, " has done it now!"),
-					color=Color.FIREBRICK,
-					speed=0.5
+					text = str(pld.sender.character.name, " has done it now!"),
+					color = Color.FIREBRICK,
+					speed = 0.5
 				})
 	super(pld)
 
