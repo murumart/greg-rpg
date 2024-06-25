@@ -124,7 +124,8 @@ func create_arrow(alignment := 0) -> void:
 
 
 func _success_hit(accuracy: float) -> void:
-	if not active: return
+	if not active:
+		return
 	player_dance()
 	streak += 1
 	hits += 1
@@ -134,7 +135,8 @@ func _success_hit(accuracy: float) -> void:
 
 
 func _fail_miss() -> void:
-	if not active: return
+	if not active:
+		return
 	dancer.region_rect.position.y = 32
 	dancer.region_rect.position.x = 96
 	streak = 0
@@ -143,7 +145,8 @@ func _fail_miss() -> void:
 
 
 func _enemy_action(success := true) -> void:
-	if not active: return
+	if not active:
+		return
 	if success:
 		if tutorial and beat % 4 == 0:
 			_enemy_action(false)

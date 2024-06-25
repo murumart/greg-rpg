@@ -16,9 +16,9 @@
 
 [sub_resource type="Resource" id="Resource_iy86j"]
 script = ExtResource("2_di672")
-enemies = Array[StringName]([&"turf"])
+enemies = Array[StringName]([&"wild_lizard", &"wild_lizard"])
 background = "town"
-music = ""
+music = "lion"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""

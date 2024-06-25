@@ -634,6 +634,8 @@ func open_spirit_name_screen() -> void:
 
 # you didn't type the spirit name fast enough
 func _on_spirit_speak_timer_timeout() -> void:
+	if not listening_to_player_input:
+		return
 	listening_to_player_input = false
 	SND.play_sound(
 			preload("res://sounds/error.ogg"),
@@ -668,6 +670,8 @@ func _on_spirit_name_changed(to: String) -> void:
 
 
 func _on_spirit_name_submitted(submission: String) -> void:
+	if not listening_to_player_input:
+		return
 	listening_to_player_input = false
 	get_viewport().gui_release_focus()
 	spirit_speak_timer.paused = true
@@ -855,8 +859,9 @@ func _dance_battle_ended(data: Dictionary) -> void:
 			[winner.character.name, loser.character.name],
 			{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	open_party_info_screen()
-	get_tree().create_timer(0.5).timeout.connect(func(): winner.turn_finished())
+	get_tree().create_timer(0.5).timeout.connect(winner.turn_finished)
 	if pwin and player in party:
+		DAT.incri("dance_battles_won", 1)
 		xp_pool += ceili((pscore - enscore) / 3.0)
 
 
