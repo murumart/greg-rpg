@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="11_b4a8j"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="12_363c6"]
-[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/mental_cutscene.gd" id="17_ey6yv"]
 [ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/grandma.ogg" id="18_ufa5d"]
 
@@ -553,8 +553,8 @@ theme_override_constants/shadow_offset_x = 65
 theme_override_constants/outline_size = 89
 theme_override_font_sizes/normal_font_size = 163
 bbcode_enabled = true
-text = "[center][shake level=40]level 89.[/shake][/center]
-come back when you are at level 89."
+text = "[center][shake level=40]level 72.[/shake][/center]
+come back when you are at level 72."
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0

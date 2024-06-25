@@ -16,3 +16,4 @@ victory_music = &"victory"
 stop_music_before_end = true
 kill_music = true
 play_fanfare = true
+crits_enabled = true
