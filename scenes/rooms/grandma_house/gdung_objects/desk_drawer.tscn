@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl6k0grvwaxor"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_oahv6"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_cnw5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61aj5"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cafmx"]
+size = Vector2(30, 2)
+
+[node name="DeskDrawer" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_oahv6")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_61aj5")
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_cnw5j")
+key = "gdung_drawer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_cafmx")

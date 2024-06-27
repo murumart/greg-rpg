@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3r88xccx3cog"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_tfrvl"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_uilc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw7vi"]
+size = Vector2(14, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2uu1"]
+size = Vector2(14, 5)
+
+[node name="Bookshelf" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("1_tfrvl")
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 16)
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_uilc5")
+key = "gdung_bookshelf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_xw7vi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_f2uu1")

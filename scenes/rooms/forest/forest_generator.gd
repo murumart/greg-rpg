@@ -236,7 +236,7 @@ func gen_objects() -> void:
 		if gen_object(obkey):
 			amounts[obkey] = amounts.get(obkey, 0) + 1
 	print(" ---- generated ", amounts.values(
-			).reduce(func(accum, number): return accum + number, 10), " objects")
+			).reduce(func(accum, number): return accum + number, 0), " objects")
 
 
 

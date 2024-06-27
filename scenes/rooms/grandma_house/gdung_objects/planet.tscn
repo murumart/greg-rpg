@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5ldwpvwekoc7"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_doj5u"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_gfi3w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_doykm"]
+radius = 5.0
+height = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjnb1"]
+size = Vector2(24, 12)
+
+[node name="Planet" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_doj5u")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_doykm")
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_gfi3w")
+key = "gdung_planet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+shape = SubResource("RectangleShape2D_yjnb1")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcelkfgs3hysn"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_sav87"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_rife5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhe46"]
+size = Vector2(14, 4)
+
+[node name="Trashbag" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_sav87")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_rife5")
+key = "gdung_trashbag"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+shape = SubResource("RectangleShape2D_vhe46")

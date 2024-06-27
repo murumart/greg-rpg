@@ -131,6 +131,8 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_2:
 				print(get_viewport().gui_get_focus_owner())
 			KEY_KP_3, KEY_3:
+				if not event.is_pressed():
+					return
 				if not get_viewport().get_camera_2d():
 					var cam := preload(
 						"res://scenes/tech/scn_camera.tscn"

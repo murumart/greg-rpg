@@ -3410,6 +3410,68 @@ DIALOGUE insp_forest_bench
 	this is no time for resting.
 
 
+DIALOGUE insp_gdung_bookshelf
+	it's pages and pages of utter nonsense.
+	[color=GREEN]"all work and no games, or no games and no bacon?"
+
+
+DIALOGUE insp_gdung_trashbag
+	it's an old bag of trash. ew, it's even got stink lines coming off from it.
+
+
+DIALOGUE insp_gdung_catface
+	of course there's cats on the wall down here.
+
+
+DIALOGUE insp_gdung_huge_catface
+	of course there's huge cats on the wall down here.
+
+
+DIALOGUE insp_gdung_litterbox
+	it's a completely unused litterbox.
+
+
+DIALOGUE insp_gdung_drawer
+	the drawers are full diplomas of some kind.
+
+
+DIALOGUE insp_gdung_skeleton
+	[color=#ff0000]ahhhhhhhhhh!!!!!
+	(the skeleton is scary)
+
+
+DIALOGUE insp_gdung_carpets
+	rolled up carpets.
+	you can feel your lungs clog up with dust just standing near these.
+
+
+DIALOGUE insp_gdung_mayonnaise
+	it's an unnerving, open jar of mayonnaise.
+CHOICES yes,no
+	put your hand in it?
+CHOICE_LINK yes
+CHOICES yes!,no!
+	are you sure?
+CHOICE_LINK yes!
+	you roll up your sleeve and submerge your whole arm in the tub.
+	...
+	...there is no grand revelation.
+CHOICE_LINK no
+	that's sensible.
+CHOICE_LINK no!
+	you're hesitant...
+
+
+DIALOGUE insp_gdung_mayonnaise_huge
+	it is a hugely intimidating tub of open mayonnaise.
+	there's a handprint shaped like a flawless engine inside it.
+
+
+DIALOGUE insp_gdung_planet
+	this is a whole planet. you avoid touching it.
+# i dont have the budget to animate that
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.

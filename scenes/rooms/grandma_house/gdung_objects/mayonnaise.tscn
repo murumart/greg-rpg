@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ejea3dqd8o6b"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_1c0pr"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_6ftm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j57lm"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3egi"]
+size = Vector2(12, 6)
+
+[node name="Mayonnaise" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("1_1c0pr")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j57lm")
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_6ftm2")
+key = "gdung_mayonnaise"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+shape = SubResource("RectangleShape2D_g3egi")

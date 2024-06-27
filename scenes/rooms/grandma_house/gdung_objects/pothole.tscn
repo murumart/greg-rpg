@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckt6lkaoqdylt"]
+
+[ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="1_qqx18"]
+
+[node name="Pothole" type="Node2D"]
+
+[node name="Pothole" parent="." instance=ExtResource("1_qqx18")]
+decorative = true

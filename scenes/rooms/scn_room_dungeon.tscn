@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu84ipbqt3xqx"]
+
+[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_rk5ny"]
+[ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_7mgjs"]
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_layout_generator.gd" id="3_1an2q"]
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_decorator.gd" id="4_hfwjo"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_pruij"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vka64"]
+
+[node name="Dungeon" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rk5ny")
+
+[node name="InteriorTiles" parent="." instance=ExtResource("2_7mgjs")]
+layer_1/y_sort_origin = 202
+layer_1/z_index = -1
+layer_2/name = "3"
+layer_2/y_sort_enabled = true
+layer_2/tile_data = PackedInt32Array()
+
+[node name="LayoutGenerator" type="Node" parent="InteriorTiles"]
+script = ExtResource("3_1an2q")
+
+[node name="Decorator" type="Node" parent="InteriorTiles" node_paths=PackedStringArray("generator", "greg", "objects_node")]
+script = ExtResource("4_hfwjo")
+generator = NodePath("../LayoutGenerator")
+greg = NodePath("../../Greg")
+objects_node = NodePath("../../Objects")
+
+[node name="Greg" parent="." instance=ExtResource("5_vka64")]
+position = Vector2(24, 26)
+
+[node name="Camera" parent="Greg" instance=ExtResource("4_pruij")]
+
+[node name="testcam" parent="." instance=ExtResource("4_pruij")]
+zoom = Vector2(0.25, 0.25)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
