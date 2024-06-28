@@ -237,11 +237,11 @@ func set_gender(x: int) -> BattlePayload:
 	return self
 
 
-func get_health_change(_health: float, _max_health: float) -> float:
+func get_health_change(char_health: float, char_max_health: float) -> float:
 	return (
 			health
-			+ _health * (health_percent * 0.01)
-			+ _max_health * (max_health_percent * 0.01)
+			+ char_health * (health_percent * 0.01)
+			+ char_max_health * (max_health_percent * 0.01)
 	)
 
 

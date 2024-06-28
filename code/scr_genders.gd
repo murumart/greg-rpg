@@ -49,6 +49,8 @@ enum Kin {
 
 
 static func apply_gender_effects(amount: float, actor: BattleActor, gender_consider) -> float:
+	if gender_consider == Genders.NONE:
+		return amount
 	if gender_consider == CIRCLE.get(actor.gender, -1):
 		amount *= 1.5
 	if not actor.has_status_effect("sopping"):
