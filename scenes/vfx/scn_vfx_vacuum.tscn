@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhgibre44f5si"]
+
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_0dad0"]
+[ext_resource type="AudioStream" uid="uid://bg3v2fdg4ty34" path="res://sounds/spirit/vacuum.ogg" id="2_rnas1"]
+
+[sub_resource type="Curve" id="Curve_rddcq"]
+max_value = 3.0
+_data = [Vector2(0, 0.9714), 0.0, 0.0, 0, 0, Vector2(0.290918, 2.24382), 0.0, 0.0, 0, 0, Vector2(1, 0.535142), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eghel"]
+width = 64
+curve = SubResource("Curve_rddcq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3c5ms"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 86.78
+spread = 180.0
+orbit_velocity_min = 0.158
+orbit_velocity_max = 0.18
+radial_velocity_min = -148.94
+radial_velocity_max = -21.28
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -78.72
+radial_accel_max = -14.89
+tangential_accel_min = 2.13
+tangential_accel_max = 2.13
+scale_over_velocity_curve = SubResource("CurveTexture_eghel")
+
+[sub_resource type="Animation" id="Animation_6pifo"]
+resource_name = "damn"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_rnas1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nbowm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_circv"]
+_data = {
+"RESET": SubResource("Animation_nbowm"),
+"damn": SubResource("Animation_6pifo")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_3c5ms")
+texture = ExtResource("1_0dad0")
+lifetime = 0.2
+trail_enabled = true
+trail_sections = 4
+trail_section_subdivisions = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_circv")
+}
+autoplay = "damn"

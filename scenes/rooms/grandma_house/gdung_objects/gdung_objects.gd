@@ -78,7 +78,7 @@ const DB := {
 	&"cat_enemy": {
 		SCENE: preload("res://scenes/characters/overworld/scn_cat_overworld.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 65,
+		WEIGHT: 150,
 		ORDER_NR_MIN: 4,
 		IS_ENEMY: true,
 	},
@@ -121,6 +121,18 @@ const DB := {
 		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/door.tscn"),
 		SIZE: Vector2i(1, 2),
 		WEIGHT: 12,
+		BY_WALL: true,
+	},
+	&"shelf": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/shelf.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 100,
+		BY_WALL: true,
+	},
+	&"shelf_2": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/shelf_hanging_flower.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 65,
 		BY_WALL: true,
 	},
 

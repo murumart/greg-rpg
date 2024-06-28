@@ -1,0 +1,288 @@
+[gd_scene load_steps=12 format=3 uid="uid://cny6anl8nmuw0"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_k0nse"]
+[ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="2_5j1c7"]
+[ext_resource type="Texture2D" uid="uid://y1k54bghghqt" path="res://sprites/characters/battle/grandma/spr_bulb.png" id="3_6atrg"]
+
+[sub_resource type="GDScript" id="GDScript_ijar6"]
+resource_name = "bulb_follow"
+script/source = "extends Node2D
+
+@onready var powerline: VfxPowerline = $VfxPowerline
+@onready var light: Sprite2D = $Light
+@onready var power_cord: Line2D = $Socket/PowerCord
+@onready var segments := $Rope/Segments.get_children()
+@onready var pistik: Sprite2D = $Rope/Segments/Rope4/Pistik
+
+
+func _ready() -> void:
+	segments.push_front($Light/AnimatableBody2D)
+	segments.push_back($Socket/AnimatableBody2D2)
+	power_cord.clear_points()
+	for x in segments.size():
+		power_cord.add_point(Vector2.ZERO)
+
+
+func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	powerline.end.global_position = light.global_position
+	for i in power_cord.get_point_count():
+		power_cord.set_point_position(i, power_cord.to_local(segments[i].global_position))
+
+
+func _on_bulb_hurted(bulb: BattleActor) -> void:
+	if bulb.character.health_perc() < 0.5 and not pistik.visible:
+		pistik.show()
+		$Socket/Joint5.queue_free()
+		segments.pop_back()
+		segments.append(pistik)
+"
+
+[sub_resource type="Gradient" id="Gradient_fosrd"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4hinj"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_fosrd")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2158y"]
+radius = 2.23607
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd228"]
+size = Vector2(2, 10)
+
+[sub_resource type="Animation" id="Animation_dn4am"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Light:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.12678, 0.3, 0.6, 0.7, 0.715363, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -26), Vector2(-14, -26), Vector2(-3, -35), Vector2(12, -29), Vector2(14, -38), Vector2(11, -38), Vector2(-21, -28)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Light:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.09651, 0.183432, -0.527325]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Light:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_edsly"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Light:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -51)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Light:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Light:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftael"]
+_data = {
+"RESET": SubResource("Animation_edsly"),
+"idle": SubResource("Animation_dn4am")
+}
+
+[node name="Bulb" type="Node2D" node_paths=PackedStringArray("animator")]
+script = ExtResource("1_k0nse")
+animator = NodePath("AnimationPlayer")
+gender = 1
+
+[node name="Puppet" type="Node2D" parent="."]
+script = SubResource("GDScript_ijar6")
+
+[node name="VfxPowerline" parent="Puppet" instance=ExtResource("2_5j1c7")]
+gradient = SubResource("Gradient_fosrd")
+lifetime = 0.0
+
+[node name="Line2D" parent="Puppet/VfxPowerline" index="0"]
+points = PackedVector2Array(0, 0, 1.85186, -5.28359, -0.356543, -13.3288, -2.1115, -17.9155, 1.44237, -22.0034, 1.36369, -28.8959, -2.32995, -32.8894, 0.732494, -40.9778, -2.04971, -43.7047, -1, -51)
+texture = SubResource("GradientTexture2D_4hinj")
+
+[node name="Start" parent="Puppet/VfxPowerline" index="1"]
+position = Vector2(0, 0)
+
+[node name="End" parent="Puppet/VfxPowerline" index="2"]
+position = Vector2(-1, -51)
+
+[node name="Light" type="Sprite2D" parent="Puppet"]
+position = Vector2(-1, -51)
+texture = ExtResource("3_6atrg")
+centered = false
+offset = Vector2(-12, -20)
+region_enabled = true
+region_rect = Rect2(6, -1, 33, 27)
+
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Puppet/Light"]
+position = Vector2(-1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Light/AnimatableBody2D"]
+shape = SubResource("CircleShape2D_2158y")
+
+[node name="Socket" type="Sprite2D" parent="Puppet"]
+position = Vector2(13, -3)
+texture = ExtResource("3_6atrg")
+centered = false
+offset = Vector2(-4, -4)
+region_enabled = true
+region_rect = Rect2(2, 60, 9, 9)
+
+[node name="PowerCord" type="Line2D" parent="Puppet/Socket"]
+position = Vector2(9, 16)
+points = PackedVector2Array(4, -51, 4, -36, 6, -14, 31, -37)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+joint_mode = 1
+
+[node name="AnimatableBody2D2" type="StaticBody2D" parent="Puppet/Socket"]
+position = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Socket/AnimatableBody2D2"]
+shape = SubResource("CircleShape2D_2158y")
+
+[node name="Joint5" type="PinJoint2D" parent="Puppet/Socket"]
+position = Vector2(1, 1)
+node_a = NodePath("../../Rope/Segments/Rope4")
+node_b = NodePath("../AnimatableBody2D2")
+disable_collision = false
+
+[node name="Rope" type="Node2D" parent="Puppet"]
+position = Vector2(-1, -51)
+
+[node name="Joint" type="PinJoint2D" parent="Puppet/Rope"]
+position = Vector2(-1, 2)
+node_a = NodePath("../../Light/AnimatableBody2D")
+node_b = NodePath("../Segments/Rope1")
+disable_collision = false
+
+[node name="Joint2" type="PinJoint2D" parent="Puppet/Rope"]
+position = Vector2(-1, 19)
+node_a = NodePath("../Segments/Rope1")
+node_b = NodePath("../Segments/Rope2")
+disable_collision = false
+
+[node name="Joint3" type="PinJoint2D" parent="Puppet/Rope"]
+position = Vector2(-1, 35)
+node_a = NodePath("../Segments/Rope2")
+node_b = NodePath("../Segments/Rope3")
+disable_collision = false
+
+[node name="Joint4" type="PinJoint2D" parent="Puppet/Rope"]
+position = Vector2(-2, 54)
+node_a = NodePath("../Segments/Rope3")
+node_b = NodePath("../Segments/Rope4")
+disable_collision = false
+
+[node name="Segments" type="Node2D" parent="Puppet/Rope"]
+
+[node name="Rope1" type="RigidBody2D" parent="Puppet/Rope/Segments"]
+position = Vector2(-1, 11)
+collision_layer = 256
+collision_mask = 256
+mass = 0.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Rope/Segments/Rope1"]
+shape = SubResource("RectangleShape2D_hd228")
+
+[node name="Rope2" type="RigidBody2D" parent="Puppet/Rope/Segments"]
+position = Vector2(-1, 28)
+collision_layer = 256
+collision_mask = 256
+mass = 0.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Rope/Segments/Rope2"]
+shape = SubResource("RectangleShape2D_hd228")
+
+[node name="Rope3" type="RigidBody2D" parent="Puppet/Rope/Segments"]
+position = Vector2(-1, 45)
+collision_layer = 256
+collision_mask = 256
+mass = 0.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Rope/Segments/Rope3"]
+shape = SubResource("RectangleShape2D_hd228")
+
+[node name="Rope4" type="RigidBody2D" parent="Puppet/Rope/Segments"]
+position = Vector2(8, 52)
+rotation = -1.91844
+collision_layer = 256
+collision_mask = 256
+mass = 0.05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puppet/Rope/Segments/Rope4"]
+shape = SubResource("RectangleShape2D_hd228")
+
+[node name="Pistik" type="Sprite2D" parent="Puppet/Rope/Segments/Rope4"]
+visible = false
+position = Vector2(0, 7)
+rotation = 3.14159
+texture = ExtResource("3_6atrg")
+region_enabled = true
+region_rect = Rect2(3, 50, 7, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ftael")
+}
+autoplay = "idle"
+
+[connection signal="hurted" from="." to="Puppet" method="_on_bulb_hurted"]
+
+[editable path="Puppet/VfxPowerline"]

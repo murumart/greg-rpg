@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dypyknji64gje"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_qxpt5"]
+
+[node name="Shelf" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_qxpt5")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 71, 16, 9)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -21)
+texture = ExtResource("1_qxpt5")
+centered = false
+region_enabled = true
+region_rect = Rect2(96, 16, 16, 24.47)

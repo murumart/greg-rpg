@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu84ipbqt3xqx"]
+[gd_scene load_steps=12 format=3 uid="uid://cu84ipbqt3xqx"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_rk5ny"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="2_6ceol"]
@@ -7,6 +7,15 @@
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_decorator.gd" id="4_hfwjo"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_pruij"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vka64"]
+[ext_resource type="Shader" path="res://shaders/shd_gdung_pathline.gdshader" id="8_hje8f"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="9_qfv8t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glmk8"]
+shader = ExtResource("8_hje8f")
+
+[sub_resource type="Curve" id="Curve_acvih"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.119201, 0.869122), 0.0, 0.0, 0, 0, Vector2(0.194837, 0.238972), -4.25198, -4.25198, 0, 0, Vector2(0.920936, 0.517693), 0.0, 0.0, 0, 0, Vector2(1, 0.202617), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [node name="Dungeon" type="Node2D"]
 y_sort_enabled = true
@@ -19,6 +28,9 @@ data_overrides = {
 "nr": 0.68
 }
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.521038, 0.444563, 0.374513, 1)
+
 [node name="InteriorTiles" parent="." instance=ExtResource("2_7mgjs")]
 layer_1/y_sort_origin = 202
 layer_1/z_index = -1
@@ -29,11 +41,12 @@ layer_2/tile_data = PackedInt32Array()
 [node name="LayoutGenerator" type="Node" parent="InteriorTiles"]
 script = ExtResource("3_1an2q")
 
-[node name="Decorator" type="Node" parent="InteriorTiles" node_paths=PackedStringArray("generator", "greg", "objects_node")]
+[node name="Decorator" type="Node" parent="InteriorTiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line")]
 script = ExtResource("4_hfwjo")
 generator = NodePath("../LayoutGenerator")
 greg = NodePath("../../Greg")
 objects_node = NodePath("../../Objects")
+path_line = NodePath("../../PathLine")
 
 [node name="Greg" parent="." instance=ExtResource("5_vka64")]
 position = Vector2(24, 26)
@@ -46,3 +59,14 @@ zoom = Vector2(0.25, 0.25)
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="PathLine" type="Line2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_glmk8")
+points = PackedVector2Array(-131, 33, 320, 311)
+width_curve = SubResource("Curve_acvih")
+texture = ExtResource("9_qfv8t")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1

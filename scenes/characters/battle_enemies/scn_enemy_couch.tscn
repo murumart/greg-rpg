@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdnynvv4emtkp"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_ap4tc"]
+[ext_resource type="Texture2D" uid="uid://c2povv5gn22a6" path="res://sprites/characters/battle/grandma/spr_couch.png" id="2_evlxs"]
+
+[node name="Couch" type="Node2D"]
+script = ExtResource("1_ap4tc")
+toughness = 0.534
+altruism = 0.124
+innovation = 0.557
+can_flee = true
+xp_multiplier = 1.734
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_evlxs")

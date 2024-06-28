@@ -16,6 +16,7 @@ signal message(msg: String, options: Dictionary)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
+signal hurted(who: BattleActor)
 signal died(who: BattleActor)
 signal fled(who: BattleActor)
 signal teammate_requested(who: BattleActor, whom: String)
@@ -133,6 +134,7 @@ func hurt(amt: float, gendr: int) -> void:
 		return
 	var amount := _hurt_damage(amt, gendr)
 	character.health = maxf(character.health - amount, 0.0)
+	hurted.emit(self)
 	if character.health <= 0.0:
 		state = States.DEAD
 		SND.play_sound(
@@ -442,8 +444,31 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld.meta.get("skateboard", false):
 		emit_message("woah! skateboard!! so cool!!")
 
+	if pld.meta.get(&"vacuum", false) and is_instance_valid(pld.sender):
+		pld.sender.steal_item(self)
+
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
+
+
+func steal_item(from: BattleActor) -> void:
+	const DO_STEEL := [&"gummy_worm", &"gummy_fish",
+		&"pocket_candy", &"sugar_lemon", &"milk", &"medkit", &"muesli", &"mueslibar",
+		&"meat", &"meat_cooked", &"egg", &"egg_cooked", &"eggshell", &"magnet",
+		&"lighter", &"ice_pack", &"glue", &"funny_fungus", &"bread", &"berries",
+		&"antifreeze", &"tape", &"water_balloon", &"soda", &"sleepy_flower", &"plaster"]
+	var copy := from.character.inventory.duplicate()
+	if copy.is_empty():
+		emit_message("found nothing to take.")
+		return
+	Math.determ_shuffle(copy, rng)
+	for item in copy:
+		if item in DO_STEEL:
+			from.character.inventory.erase(item)
+			character.inventory.append(item)
+			from.emit_message(actor_name + " stole my " + ResMan.get_item(item).name + "!")
+			break
+
 
 # STATUS EFFECTS
 
@@ -627,4 +652,5 @@ func _item_funny_fungus_used_on() -> void:
 			.set_strength(float(rng.randi_range(1, 3)))
 	)
 	add_status_effect(random_effect)
+
 

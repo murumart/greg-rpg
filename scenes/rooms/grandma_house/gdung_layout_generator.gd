@@ -12,8 +12,7 @@ var astar := AStar3D.new()
 
 
 func _ready() -> void:
-	get_window().set_content_scale_mode(Window.CONTENT_SCALE_MODE_CANVAS_ITEMS) # DEBUG
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	generate()
 	for x in START_LAYOUT[2]:
 		for y in START_LAYOUT[3]:
@@ -229,18 +228,6 @@ func get_longest_path() -> PackedInt64Array:
 			var cur_path := astar.get_id_path(i, j)
 			if cur_path.size() > longest_path.size():
 				longest_path = cur_path
-	# DEBUG
-	print(longest_path)
-	for i in longest_path.size() - 1:
-		var j = i + 1
-		var id1 := longest_path[i]
-		var id2 := longest_path[j]
-		tilemap.draw.connect(func():
-			tilemap.draw_line(
-					suites[id1].get_rect().get_center() * 16,
-					suites[id2].get_rect().get_center() * 16,
-					Color.AQUA, 2)
-		, CONNECT_ONE_SHOT)
 	return longest_path
 
 

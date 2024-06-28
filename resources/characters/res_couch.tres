@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://pmr6nlkncku0"]
+
+[ext_resource type="Texture2D" uid="uid://c2povv5gn22a6" path="res://sprites/characters/battle/grandma/spr_couch.png" id="1_0mrpa"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_f8tb5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5g13"]
+atlas = ExtResource("1_0mrpa")
+region = Rect2(4, 20, 22, 22)
+
+[resource]
+script = ExtResource("1_f8tb5")
+name_in_file = &""
+name = "couch"
+info = "it was comfortable in a past life."
+portrait = SubResource("AtlasTexture_x5g13")
+max_health = 260.0
+health = 260.0
+max_magic = 51920.0
+magic = 51920.0
+level = 72
+experience = 0
+attack = 7.0
+defense = 72.0
+speed = 72.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["splash_attack"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = "fish"
