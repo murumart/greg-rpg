@@ -121,10 +121,10 @@ func _generate_suites_from_layout() -> void:
 		suites.append(suite)
 		suites_by_rect[suite.get_rect()] = suite
 		astar.add_point(i, Vector3(suite.get_position().x, suite.get_position().y, 0))
-		tilemap.draw.connect(func():
-			tilemap.draw_rect(globalise_rect(suite.get_rect()),
-					Color(randf(), randf(), randf(), 0.5).lightened(0.75), true)
-		, CONNECT_ONE_SHOT)
+		#tilemap.draw.connect(func():
+			#tilemap.draw_rect(globalise_rect(suite.get_rect()),
+					#Color(randf(), randf(), randf(), 0.5).lightened(0.75), true)
+		#, CONNECT_ONE_SHOT)
 		suite_layout = GDUNGSuite.remove_4_from_array(suite_layout)
 	print("creating suites took ", Time.get_ticks_msec() - time, " ms")
 
@@ -174,18 +174,18 @@ func _make_suite_walls() -> void:
 	var handled: Array[GDUNGSuite] = []
 	for suite: GDUNGSuite in suites:
 		_create_some_wall(suite.get_rect())
-		var button := Button.new() # DEBUG
-		button.text = str(suite).left(8)
-		button.global_position = suite.get_rect().position * 16
-		button.pressed.connect(func():
-			print(suite, ";\n", suite.neighbors,
-					"; ", suite.get_rect(), "; ", suite.get_rect().end,
-					"; ", suite.door_positions, "; ", suite.id,
-					";\n", astar.get_id_path(0, suite.id),
-					";\n", JSON.stringify(suite.generated_objects, "\t"))
-		)
-		button.add_to_group("debug_buttons")
-		add_child(button) # DEBUG
+		#var button := Button.new() # DEBUG
+		#button.text = str(suite).left(8)
+		#button.global_position = suite.get_rect().position * 16
+		#button.pressed.connect(func():
+			#print(suite, ";\n", suite.neighbors,
+					#"; ", suite.get_rect(), "; ", suite.get_rect().end,
+					#"; ", suite.door_positions, "; ", suite.id,
+					#";\n", astar.get_id_path(0, suite.id),
+					#";\n", JSON.stringify(suite.generated_objects, "\t"))
+		#)
+		#button.add_to_group("debug_buttons")
+		#add_child(button) # DEBUG
 		if suite in handled:
 			continue
 		for neighbor: GDUNGSuite in suite.neighbors[SIDE_BOTTOM]:

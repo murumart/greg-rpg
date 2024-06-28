@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=37 format=3 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -16,8 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="11_b4a8j"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="12_363c6"]
 [ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
+[ext_resource type="PackedScene" uid="uid://jj6bwkmk6vr8" path="res://scenes/rooms/grandma_house/gdung_objects/flower_6.tscn" id="14_l4787"]
+[ext_resource type="PackedScene" uid="uid://cal1oxl0ljsjj" path="res://scenes/rooms/grandma_house/gdung_objects/flower_3.tscn" id="15_v43um"]
+[ext_resource type="PackedScene" uid="uid://d4mleb62h6d8w" path="res://scenes/rooms/grandma_house/gdung_objects/flower_2.tscn" id="16_exfuk"]
+[ext_resource type="PackedScene" uid="uid://dgevysutt8p82" path="res://scenes/rooms/grandma_house/gdung_objects/flower_4.tscn" id="17_eiynl"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/mental_cutscene.gd" id="17_ey6yv"]
 [ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/grandma.ogg" id="18_ufa5d"]
+[ext_resource type="PackedScene" uid="uid://bqf4273xxdhf1" path="res://scenes/rooms/grandma_house/gdung_objects/flower_1.tscn" id="19_yh75l"]
 
 [sub_resource type="Gradient" id="Gradient_8myy1"]
 colors = PackedColorArray(0.0130485, 0.0130484, 0.0130484, 1, 0.00423512, 0.00423512, 0.00423512, 1)
@@ -51,16 +56,8 @@ shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3svxc"]
 size = Vector2(14, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_csciw"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcnh"]
 size = Vector2(18, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uv5b"]
-size = Vector2(9.5, 16.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw0su"]
-size = Vector2(18, 11.375)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jn2ko"]
 blend_mode = 2
@@ -182,20 +179,6 @@ shape = SubResource("RectangleShape2D_jrqee")
 y_sort_enabled = true
 position = Vector2(144, -33)
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor"]
-position = Vector2(-7, 13)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(2, 16, 13, 16)
-
-[node name="Sprite2D23" type="Sprite2D" parent="Decor"]
-position = Vector2(-55, 28)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -12)
-region_enabled = true
-region_rect = Rect2(114, 14, 12, 17)
-
 [node name="Sprite2D18" type="Sprite2D" parent="Decor"]
 position = Vector2(-36, -44)
 texture = ExtResource("7_fqnfh")
@@ -300,35 +283,6 @@ offset = Vector2(0, 13)
 region_enabled = true
 region_rect = Rect2(0, 33, 16, 15)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Decor"]
-position = Vector2(39, 27)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(18, 17, 12, 15)
-
-[node name="Sprite2D11" type="Sprite2D" parent="Decor"]
-position = Vector2(-149, -4.5)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(18, 17, 12, 15)
-
-[node name="Sprite2D24" type="Sprite2D" parent="Decor"]
-position = Vector2(-136, -4.5)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-flip_h = true
-region_enabled = true
-region_rect = Rect2(18, 17, 12, 15)
-
-[node name="Sprite2D3" type="Sprite2D" parent="Decor"]
-position = Vector2(41, 11)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(33, 18, 15, 13)
-
 [node name="Sprite2D20" type="Sprite2D" parent="Decor"]
 position = Vector2(12, -56)
 texture = ExtResource("7_fqnfh")
@@ -336,35 +290,58 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(33, 18, 15, 13)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Decor"]
-position = Vector2(73, 44)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(51, 17, 11, 14)
-
-[node name="Sprite2D21" type="Sprite2D" parent="Decor"]
-position = Vector2(-26.5, -35)
-scale = Vector2(0.999999, 1)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(51, 17, 11, 14)
-
-[node name="Sprite2D22" type="Sprite2D" parent="Decor"]
-position = Vector2(-19.5, -31)
-texture = ExtResource("7_fqnfh")
-offset = Vector2(-1, -7)
-flip_h = true
-region_enabled = true
-region_rect = Rect2(51, 17, 11, 14)
-
 [node name="Sprite2D5" type="Sprite2D" parent="Decor"]
 position = Vector2(7, -19)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -12)
 region_enabled = true
 region_rect = Rect2(67, 16, 9, 17)
+
+[node name="Flower1" parent="Decor" instance=ExtResource("19_yh75l")]
+position = Vector2(-16, 3)
+
+[node name="Flower2" parent="Decor" instance=ExtResource("14_l4787")]
+position = Vector2(-64, 3)
+
+[node name="Flower3" parent="Decor" instance=ExtResource("15_v43um")]
+position = Vector2(33, 3)
+
+[node name="Flower4" parent="Decor" instance=ExtResource("16_exfuk")]
+position = Vector2(31, 19)
+
+[node name="Sprite2D" parent="Decor/Flower4" index="0"]
+position = Vector2(9, 9)
+offset = Vector2(0, -9)
+
+[node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" index="0"]
+position = Vector2(9, 7)
+
+[node name="Flower5" parent="Decor" instance=ExtResource("17_eiynl")]
+position = Vector2(-36, -42)
+
+[node name="Flower6" parent="Decor" instance=ExtResource("17_eiynl")]
+position = Vector2(-26, -45)
+
+[node name="Flower7" parent="Decor" instance=ExtResource("16_exfuk")]
+position = Vector2(-147, -16)
+
+[node name="Sprite2D" parent="Decor/Flower7" index="0"]
+position = Vector2(9, 11)
+offset = Vector2(-1, -7)
+
+[node name="Flower8" parent="Decor" instance=ExtResource("16_exfuk")]
+position = Vector2(-161, -15)
+
+[node name="Sprite2D" parent="Decor/Flower8" index="0"]
+position = Vector2(9, 11)
+offset = Vector2(-1, -7)
+
+[node name="Flower9" parent="Decor" instance=ExtResource("17_eiynl")]
+position = Vector2(63, 30)
+
+[node name="Sprite2D" parent="Decor/Flower9" index="0"]
+position = Vector2(8, 14)
+offset = Vector2(0, -10)
 
 [node name="FogOfWar" type="CanvasGroup" parent="."]
 
@@ -387,69 +364,6 @@ fail_dialogue = "door_locked"
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3svxc")
 
-[node name="Flowers1" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(1, -42)
-key = "snowdrops"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers1"]
-shape = SubResource("RectangleShape2D_csciw")
-
-[node name="Flowers2" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(182, -11)
-key = "snowdrops"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers2"]
-position = Vector2(2, 3)
-shape = SubResource("RectangleShape2D_0bcnh")
-
-[node name="Flowers3" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(150, -64)
-key = "carnations"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers3"]
-position = Vector2(1.75, 7.375)
-shape = SubResource("RectangleShape2D_8uv5b")
-
-[node name="Flowers4" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(132, -26)
-key = "other_flowers"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers4"]
-position = Vector2(4, 0.875)
-shape = SubResource("RectangleShape2D_dw0su")
-
-[node name="Flowers5" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(84, -10)
-key = "other_flowers"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers5"]
-position = Vector2(4, 2)
-shape = SubResource("RectangleShape2D_dw0su")
-
-[node name="Flowers6" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(116, -72)
-key = "other_flowers"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers6"]
-position = Vector2(4, 3.5)
-shape = SubResource("RectangleShape2D_dw0su")
-
-[node name="Flowers7" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(180, -26)
-key = "other_flowers"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers7"]
-position = Vector2(4, 0.6875)
-shape = SubResource("RectangleShape2D_dw0su")
-
-[node name="Flowers8" parent="Areas" instance=ExtResource("11_b4a8j")]
-position = Vector2(211, 5)
-key = "other_flowers"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Flowers8"]
-position = Vector2(4.5, 0.75)
-shape = SubResource("RectangleShape2D_dw0su")
-
 [node name="Dirtbags" parent="Areas" instance=ExtResource("11_b4a8j")]
 position = Vector2(69, -78)
 key = "dirtbags"
@@ -467,6 +381,8 @@ spawnpoint = Vector2i(0, -13)
 
 [node name="Cats" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Cat" parent="Cats" instance=ExtResource("13_wcuw7")]
 position = Vector2(25, -38)
@@ -558,8 +474,14 @@ come back when you are at level 72."
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0
+metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="MentalCutscene/TextBoxes"]
 
 [connection signal="on_interact" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
 [connection signal="on_interact" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
+
+[editable path="Decor/Flower4"]
+[editable path="Decor/Flower7"]
+[editable path="Decor/Flower8"]
+[editable path="Decor/Flower9"]

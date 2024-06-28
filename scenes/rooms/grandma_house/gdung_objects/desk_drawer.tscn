@@ -14,16 +14,17 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(16, -2)
 texture = ExtResource("1_oahv6")
 region_enabled = true
 region_rect = Rect2(64, 0, 32, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(16, 2)
 shape = SubResource("RectangleShape2D_61aj5")
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(16, 8)
 script = ExtResource("2_cnw5j")
 key = "gdung_drawer"
 

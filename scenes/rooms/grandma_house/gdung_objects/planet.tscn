@@ -15,17 +15,19 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(16, 10)
 texture = ExtResource("1_doj5u")
 offset = Vector2(0, -7)
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_doykm")
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(16, 16)
 script = ExtResource("2_gfi3w")
 key = "gdung_planet"
 

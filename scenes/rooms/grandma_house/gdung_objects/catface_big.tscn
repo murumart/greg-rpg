@@ -3,6 +3,33 @@
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_triqe"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_vqd7j"]
 
+[sub_resource type="Animation" id="Animation_5abij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0.75)]
+}
+
 [sub_resource type="Animation" id="Animation_hjbix"]
 resource_name = "squish"
 length = 10.0
@@ -17,7 +44,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -20), Vector2(0, -20)]
+"values": [Vector2(16, -16), Vector2(16, -16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,33 +57,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 0.75), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5abij"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -20)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 0.75)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bc7vf"]
@@ -72,7 +72,7 @@ size = Vector2(16, 2)
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(16, -8)
 scale = Vector2(1, 0.75)
 texture = ExtResource("1_triqe")
 region_enabled = true
@@ -85,6 +85,7 @@ libraries = {
 autoplay = "squish"
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(16, 8)
 script = ExtResource("2_vqd7j")
 key = "gdung_huge_catface"
 

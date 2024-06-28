@@ -10,12 +10,13 @@ size = Vector2(16, 2)
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(8, -8)
 texture = ExtResource("1_or80m")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_erwuj")
 key = "gdung_catface"
 

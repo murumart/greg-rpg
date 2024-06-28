@@ -147,7 +147,7 @@ func _input(event: InputEvent) -> void:
 				print("collisions ", "showing" if
 				get_tree().debug_collisions_hint else "hidden")
 			KEY_KP_7, KEY_7:
-				if not root.visible:
+				if not root.visible and OS.has_feature("editor"):
 					SOL.debug_console()
 	if event.is_action_pressed("small_screenshot"):
 		DIR.screenshot(true)

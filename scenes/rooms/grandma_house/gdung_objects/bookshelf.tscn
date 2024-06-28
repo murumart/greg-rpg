@@ -14,12 +14,13 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(8, -5)
 texture = ExtResource("1_tfrvl")
 region_enabled = true
 region_rect = Rect2(96, 16, 16, 16)
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_uilc5")
 key = "gdung_bookshelf"
 
@@ -28,5 +29,5 @@ position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_xw7vi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.5)
+position = Vector2(8, 1.5)
 shape = SubResource("RectangleShape2D_f2uu1")

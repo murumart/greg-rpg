@@ -7,14 +7,17 @@
 size = Vector2(14, 4)
 
 [node name="Trashbag" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(8, 10)
 texture = ExtResource("1_sav87")
+offset = Vector2(0, -6)
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_rife5")
 key = "gdung_trashbag"
 

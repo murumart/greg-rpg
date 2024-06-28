@@ -14,16 +14,18 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(8, 11)
 texture = ExtResource("1_1c0pr")
 offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_j57lm")
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_6ftm2")
 key = "gdung_mayonnaise"
 

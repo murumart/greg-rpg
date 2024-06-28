@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbb0ssychwhl1"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_awymi"]
+[ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="2_5wbtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8j6b"]
+size = Vector2(14, 2)
+
+[node name="Door" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -10)
+texture = ExtResource("1_awymi")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 20)
+
+[node name="DoorArea" parent="." instance=ExtResource("2_5wbtl")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_e8j6b")

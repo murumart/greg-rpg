@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqf4273xxdhf1"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_4ic8l"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_kp3lo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w52c6"]
+size = Vector2(18, 18)
+
+[node name="Flower1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_4ic8l")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_kp3lo")
+key = "other_flowers"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_w52c6")

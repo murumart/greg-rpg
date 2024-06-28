@@ -82,6 +82,48 @@ const DB := {
 		ORDER_NR_MIN: 4,
 		IS_ENEMY: true,
 	},
+	&"flower_1": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_1.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 75,
+	},
+	&"flower_2": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_2.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 60,
+	},
+	&"flower_3": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_3.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 75,
+	},
+	&"flower_4": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_4.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 75,
+	},
+	&"flower_5": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_5.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 75,
+	},
+	&"flower_6": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/flower_6.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 75,
+	},
+	&"dirtbag": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/dirtbag.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 60,
+	},
+	&"door": {
+		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/door.tscn"),
+		SIZE: Vector2i(1, 2),
+		WEIGHT: 12,
+		BY_WALL: true,
+	},
+
 }
 
 

@@ -56,8 +56,7 @@ func _decorate_suite(suite: GDUNGSuite, keys_weights: Dictionary, approximate_or
 		break
 	if sut_pos == Vector2i.ZERO:
 		return false
-	var position := (sut_pos * 16.0
-			+ Vector2(object.get(GDUNGObjects.SIZE, Vector2.ONE)) * 8.0)
+	var position := sut_pos * 16.0
 	return _place_object(obkey, object, position, suite)
 
 
@@ -114,11 +113,11 @@ func _get_suitable_position(suite: GDUNGSuite, size: Vector2i, hug_wall := false
 			if x + size.x > rect.size.x - 1:
 				break
 			var pos := Vector2i(x, y) + suite.get_position()
-			var ob_rect := Rect2(x, y, size.x, size.y)
+			var ob_rect := Rect2i(x, y, size.x, size.y)
 			var ob_rect_glob := Rect2i(pos, size)
 			var is_free := true
 			for dict: Dictionary in suite.generated_objects:
-				if (dict.get("rect") as Rect2).intersects(ob_rect):
+				if (dict.get("rect") as Rect2i).intersects(ob_rect):
 					is_free = false
 					break
 			for door_pos in suite.door_positions:

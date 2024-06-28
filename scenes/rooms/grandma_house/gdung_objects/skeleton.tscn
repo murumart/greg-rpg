@@ -11,12 +11,13 @@ y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -14)
+position = Vector2(8, -6)
 texture = ExtResource("1_p13ax")
 region_enabled = true
 region_rect = Rect2(96, 0, 16, 16)
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_erhvp")
 key = "gdung_skeleton"
 

@@ -5,4 +5,5 @@
 [node name="Pothole" type="Node2D"]
 
 [node name="Pothole" parent="." instance=ExtResource("1_qqx18")]
+position = Vector2(8, 8)
 decorative = true

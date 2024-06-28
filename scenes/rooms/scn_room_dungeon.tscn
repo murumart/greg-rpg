@@ -41,6 +41,7 @@ position = Vector2(24, 26)
 [node name="Camera" parent="Greg" instance=ExtResource("4_pruij")]
 
 [node name="testcam" parent="." instance=ExtResource("4_pruij")]
+enabled = false
 zoom = Vector2(0.25, 0.25)
 
 [node name="Objects" type="Node2D" parent="."]

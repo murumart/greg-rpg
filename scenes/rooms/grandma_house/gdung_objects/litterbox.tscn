@@ -14,16 +14,17 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(8, 3)
 texture = ExtResource("1_6yd5k")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(8, 6)
 shape = SubResource("RectangleShape2D_j57lm")
 
 [node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 8)
 script = ExtResource("2_qn6k5")
 key = "gdung_litterbox"
 

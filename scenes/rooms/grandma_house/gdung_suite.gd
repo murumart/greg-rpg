@@ -92,11 +92,8 @@ func has_neighbors() -> bool:
 
 
 func add_generated_object(key: StringName, object: Dictionary, instance: Node2D, id: int) -> void:
-	#var rect := Rect2i(Vector2i(
-			#(instance.global_position - Vector2(8, 8)) / 16.0) - get_position(),
-			#object.get(GDUNGObjects.SIZE))
-	var rect := Rect2(Vector2i(
+	var rect := Rect2i(Vector2i(
 			(instance.global_position) / 16.0) - get_position(),
-			Vector2(object.get(GDUNGObjects.SIZE)))
+			object.get(GDUNGObjects.SIZE))
 	generated_objects.append(
 				{"key": key, "object": object, "rect": rect, "instance": instance, "id": id})
