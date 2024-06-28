@@ -20,15 +20,17 @@ func _ready() -> void:
 			tilemap.set_cell(0, Vector2i(x, y), 1, Vector2i(randi() % 2, randi() % 2 + 1))
 
 
+# DEBUG
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_delete"):
+		DAT.set_data("nr", randf())
 		generate()
 		ready.emit()
 
 
 func generate() -> void:
 	tilemap.queue_redraw()
-	rng.set_seed(randi())
+	rng.set_seed(DAT.get_data("nr", 0.0) * 1000)
 	tilemap.clear_layer(1)
 	_begin_wall_definition() #
 	_generate_suites_layout()
@@ -119,10 +121,10 @@ func _generate_suites_from_layout() -> void:
 		suites.append(suite)
 		suites_by_rect[suite.get_rect()] = suite
 		astar.add_point(i, Vector3(suite.get_position().x, suite.get_position().y, 0))
-		#tilemap.draw.connect(func():
-			#tilemap.draw_rect(globalise_rect(suite.get_rect()),
-					#Color(randf(), randf(), randf(), 0.5).lightened(0.75), true)
-		#, CONNECT_ONE_SHOT)
+		tilemap.draw.connect(func():
+			tilemap.draw_rect(globalise_rect(suite.get_rect()),
+					Color(randf(), randf(), randf(), 0.5).lightened(0.75), true)
+		, CONNECT_ONE_SHOT)
 		suite_layout = GDUNGSuite.remove_4_from_array(suite_layout)
 	print("creating suites took ", Time.get_ticks_msec() - time, " ms")
 
@@ -172,18 +174,18 @@ func _make_suite_walls() -> void:
 	var handled: Array[GDUNGSuite] = []
 	for suite: GDUNGSuite in suites:
 		_create_some_wall(suite.get_rect())
-		#var button := Button.new() # DEBUG
-		#button.text = str(suite).left(8)
-		#button.global_position = suite.get_rect().position * 16
-		#button.pressed.connect(func():
-			#print(suite, ";\n", suite.neighbors,
-					#"; ", suite.get_rect(), "; ", suite.get_rect().end,
-					#"; ", suite.door_positions, "; ", suite.id,
-					#";\n", astar.get_id_path(0, suite.id),
-					#";\n", JSON.stringify(suite.generated_objects, "\t"))
-		#)
-		#button.add_to_group("debug_buttons")
-		#add_child(button) # DEBUG
+		var button := Button.new() # DEBUG
+		button.text = str(suite).left(8)
+		button.global_position = suite.get_rect().position * 16
+		button.pressed.connect(func():
+			print(suite, ";\n", suite.neighbors,
+					"; ", suite.get_rect(), "; ", suite.get_rect().end,
+					"; ", suite.door_positions, "; ", suite.id,
+					";\n", astar.get_id_path(0, suite.id),
+					";\n", JSON.stringify(suite.generated_objects, "\t"))
+		)
+		button.add_to_group("debug_buttons")
+		add_child(button) # DEBUG
 		if suite in handled:
 			continue
 		for neighbor: GDUNGSuite in suite.neighbors[SIDE_BOTTOM]:
@@ -274,6 +276,7 @@ func _fill_some_wall(rect: Rect2i) -> void:
 
 func _end_wall_definition() -> void:
 	tilemap.set_cells_terrain_connect(1, walls, 1, 3)
+	walls.clear()
 
 
 func globalise_rect(r: Rect2) -> Rect2:

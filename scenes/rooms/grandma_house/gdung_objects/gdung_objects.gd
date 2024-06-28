@@ -1,7 +1,7 @@
 class_name GDUNGObjects
 
 # size is centered on the object.
-enum {SCENE, SIZE, BY_WALL, WEIGHT}
+enum {SCENE, SIZE, BY_WALL, WEIGHT, ORDER_NR_MIN, IS_ENEMY}
 
 const DB := {
 	&"bookshelf": {
@@ -74,6 +74,13 @@ const DB := {
 		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/planet.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 1,
+	},
+	&"cat_enemy": {
+		SCENE: preload("res://scenes/characters/overworld/scn_cat_overworld.tscn"),
+		SIZE: Vector2i(2, 2),
+		WEIGHT: 65,
+		ORDER_NR_MIN: 4,
+		IS_ENEMY: true,
 	},
 }
 

@@ -6,6 +6,7 @@ const OB_DB := GDUNGObjects.DB
 @export var greg: PlayerOverworld
 @onready var tilemap: TileMap = get_parent()
 @export var objects_node: Node2D
+var _decor_id := -1
 
 
 func _ready() -> void:
@@ -22,28 +23,66 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _decorate_suites(path: PackedInt64Array) -> void:
+	var time := Time.get_ticks_msec()
 	const DECORATION_TRIES := 5
 	objects_node.get_children().map(func(a): a.queue_free())
 	var to_decorate: Array[GDUNGSuite] = _get_suites_to_decorate(path)
-	print(to_decorate)
 	var keys_weights := GDUNGObjects.get_db_keys_by_weights()
 	for _x in DECORATION_TRIES:
-		for suite in to_decorate:
-			var obkey := Math.weighted_random(keys_weights.keys(),
-					keys_weights.values()) as StringName
-			var object := OB_DB[obkey] as Dictionary
-			var instance := object[GDUNGObjects.SCENE].instantiate() as Node2D
-			var sut_pos := _get_suitable_position(suite,
-					object.get(GDUNGObjects.SIZE),
-					object.get(GDUNGObjects.BY_WALL, false))
-			if sut_pos == Vector2i.ZERO:
-				continue
-			var position := (sut_pos * 16.0
-					+ Vector2(object.get(GDUNGObjects.SIZE, Vector2.ONE)) * 8.0)
-			print(position)
-			objects_node.add_child.call_deferred(instance)
-			instance.global_position = position
-			suite.add_generated_object(obkey, object, instance)
+		for i in to_decorate.size():
+			var suite: GDUNGSuite = to_decorate[i]
+			_decorate_suite(suite, keys_weights, i)
+	print("decorating ", to_decorate.size(), " suites took ", Time.get_ticks_msec() - time)
+
+
+func _decorate_suite(suite: GDUNGSuite, keys_weights: Dictionary, approximate_order: int) -> bool:
+	_decor_id += 1
+	var _tries := 0
+	var obkey := StringName()
+	var object := {}
+	var sut_pos := Vector2i.ZERO
+	while _tries < 20:
+		_tries += 1
+		obkey = Math.weighted_random(keys_weights.keys(),
+				keys_weights.values(), generator.rng) as StringName
+		object = OB_DB[obkey] as Dictionary
+		if object.get(GDUNGObjects.ORDER_NR_MIN, 0) > approximate_order:
+			continue
+		sut_pos = _get_suitable_position(suite,
+				object.get(GDUNGObjects.SIZE),
+				object.get(GDUNGObjects.BY_WALL, false))
+		if sut_pos == Vector2i.ZERO:
+			continue
+		break
+	if sut_pos == Vector2i.ZERO:
+		return false
+	var position := (sut_pos * 16.0
+			+ Vector2(object.get(GDUNGObjects.SIZE, Vector2.ONE)) * 8.0)
+	return _place_object(obkey, object, position, suite)
+
+
+func _place_object(
+		obkey: StringName,
+		object: Dictionary,
+		position: Vector2,
+		suite: GDUNGSuite) -> bool:
+	var instance := object[GDUNGObjects.SCENE].instantiate() as Node2D
+	if object.get(GDUNGObjects.IS_ENEMY, false):
+		var fought_enemies := DAT.get_data("gdung_fought_enemies", []) as Array
+		DAT.set_data("gdung_fought_enemies", fought_enemies)
+		if _decor_id in fought_enemies:
+			instance.free()
+			return false
+		instance = instance as OverworldCharacter
+		assert(is_instance_valid(instance))
+		instance.chase_target = greg
+		instance.inspected.connect(func():
+			fought_enemies.append(_decor_id)
+		, CONNECT_ONE_SHOT)
+	objects_node.add_child.call_deferred(instance)
+	instance.global_position = position
+	suite.add_generated_object(obkey, object, instance, _decor_id)
+	return true
 
 
 func _get_suites_to_decorate(path: PackedInt64Array) -> Array[GDUNGSuite]:
@@ -69,19 +108,17 @@ func _get_suitable_position(suite: GDUNGSuite, size: Vector2i, hug_wall := false
 	var rect := suite.get_rect().grow_side(SIDE_TOP, -1)
 	var possible_positions: Array[Vector2i] = []
 	for y in range(1, rect.size.y, size.y):
-		if y + size.y > rect.size.y:
-			break
-		if hug_wall and y > 1:
+		if (y + size.y > rect.size.y) or (hug_wall and y > 1):
 			break
 		for x in range(1, rect.size.x - 1, size.x):
 			if x + size.x > rect.size.x - 1:
 				break
 			var pos := Vector2i(x, y) + suite.get_position()
-			var ob_rect := Rect2i(x, y, size.x, size.y)
+			var ob_rect := Rect2(x, y, size.x, size.y)
 			var ob_rect_glob := Rect2i(pos, size)
 			var is_free := true
 			for dict: Dictionary in suite.generated_objects:
-				if (dict.get("rect") as Rect2i).intersects(ob_rect):
+				if (dict.get("rect") as Rect2).intersects(ob_rect):
 					is_free = false
 					break
 			for door_pos in suite.door_positions:

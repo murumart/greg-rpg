@@ -239,7 +239,10 @@ static func toexp(string: String) -> Variant:
 
 
 # weighted random function i found online for python
-static func weighted_random(items: Array, weights: Array) -> Variant:
+static func weighted_random(
+			items: Array,
+			weights: Array,
+			rng: RandomNumberGenerator = null) -> Variant:
 	assert(items.size() == weights.size(), "items and weights not equivalent in size.")
 	assert(not (items.is_empty() or weights.is_empty()), "items and/or weights empty.")
 	var cum_weigths := []
@@ -247,7 +250,7 @@ static func weighted_random(items: Array, weights: Array) -> Variant:
 	for i in weights:
 		sum += i
 		cum_weigths.append(sum)
-	var rand := (randi() % sum) + 1
+	var rand := ((rng.randi() if rng else randi()) % sum) + 1
 	var index := cum_weigths.bsearch(rand)
 	return items[index]
 
