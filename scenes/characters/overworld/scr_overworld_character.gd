@@ -112,12 +112,14 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2()
 		States.TALKING:
 			# idle if no longer talking
-			if not is_instance_valid(SOL.dialogue_box.loaded_dialogue) or SOL.dialogue_box.loaded_dialogue.size() < 1:
+			if (not is_instance_valid(SOL.dialogue_box.loaded_dialogue)
+					or SOL.dialogue_box.loaded_dialogue.size() < 1):
 				set_state(States.IDLE)
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed * (int(not flee) * 2 - 1)
 			# move as long as distance > 6 and hasn't moved for too long
-			if global_position.distance_squared_to(target) > chase_closeness and time_moved < time_moved_limit:
+			if (global_position.distance_squared_to(target) > chase_closeness
+					and time_moved < time_moved_limit):
 				time_moved += delta
 				var _collided := move_and_slide()
 			else:
@@ -223,7 +225,9 @@ func _on_random_movement_timer_timeout() -> void:
 		return
 	# test if random target position is reachable
 	for i in RANDOM_MOVEMENT_TRIES:
-		set_target(global_position + Vector2(randi_range(-random_movement_distance, random_movement_distance), randi_range(-random_movement_distance, random_movement_distance)))
+		set_target(global_position + Vector2(
+				randi_range(-random_movement_distance, random_movement_distance),
+				randi_range(-random_movement_distance, random_movement_distance)))
 		detection_raycast.target_position = to_local(target)
 		detection_raycast.force_raycast_update()
 		var collider := detection_raycast.get_collider()
@@ -348,9 +352,12 @@ func chase(body: Node2D) -> void:
 
 	# test if the raycast is colliding with another npc who is chasing the same target
 	var same_target_as_collider_condition := false
-	same_target_as_collider_condition = (is_instance_valid(collider) and "chase_target" in collider and collider.chase_target == chase_target)
+	same_target_as_collider_condition = (is_instance_valid(collider)
+			and "chase_target" in collider
+			and collider.chase_target == chase_target)
 	if not collider_is_target and not same_target_as_collider_condition:
 		cannot_reach_target.emit()
+		chase_timer.start(time_between_chase_updates)
 		return
 	time_moved = 0.0
 	set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 4) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
@@ -361,11 +368,13 @@ func chase(body: Node2D) -> void:
 func _on_chase_timer_timeout() -> void:
 	var bodies := detection_area.get_overlapping_bodies()
 	bodies.erase(self)
+	if bodies.size() < 1:
+		chase_timer.stop()
+		return
 	for b in bodies:
 		if b == chase_target:
 			chase(b)
-	if bodies.size() < 1:
-		chase_timer.stop()
+			return
 
 
 func debprint(msg) -> void:
