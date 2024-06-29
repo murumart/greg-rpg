@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwqv1f154an3m"]
+[gd_scene load_steps=9 format=3 uid="uid://dwqv1f154an3m"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_c22y5"]
 [ext_resource type="Texture2D" uid="uid://e50g7lqyahrn" path="res://sprites/characters/battle/grandma/spr_vacuum.png" id="2_7qjse"]
 [ext_resource type="Texture2D" uid="uid://dpnhxmsfcap0" path="res://sprites/characters/battle/grandma/spr_vacuum_pipe.png" id="3_8su2d"]
+[ext_resource type="AudioStream" uid="uid://coha6tsckbogr" path="res://sounds/vacuum_cleaner.ogg" id="4_o588p"]
 
 [sub_resource type="GDScript" id="GDScript_utgit"]
 resource_name = "pipe"
@@ -11,6 +12,7 @@ script/source = "extends Node2D
 @onready var segments := $Bodies.get_children()
 @onready var line: Line2D = $\"../Line2D\"
 @onready var head: RigidBody2D = $Bodies/PipePart
+@onready var sound: AudioStreamPlayer2D = $Bodies/PipePart/Sound
 var rang_e := 430.0
 var rang_f := 90.0
 
@@ -19,21 +21,26 @@ func _ready() -> void:
 	line.clear_points()
 	for x in segments.size():
 		line.add_point(Vector2.ZERO)
+	sound.play()
 
 
 func _physics_process(delta: float) -> void:
+	sound.pitch_scale = remap(head.constant_force.length() + head.linear_velocity.length() * 0.1,
+			1.0, 500.0, 0.3, 2.0)
+	sound.volume_db = minf(remap(head.constant_force.length() + head.linear_velocity.length() * 0.1,
+			1.0, 500.0, -30.0, 0.0), 0.0)
 	for i in segments.size():
 		line.set_point_position(i, line.to_local(segments[i].global_position))
 	head.add_constant_central_force(Vector2(
 			randf_range(-rang_e, rang_e), randf_range(-rang_e, 0.0)) * delta)
-	if randf() < 0.02:
+	if randf() < 0.005:
 		head.constant_force = Vector2.ZERO
 	if randf() < 0.02:
 		for segment in segments:
 			if segment is RigidBody2D:
 				segment.linear_velocity = Vector2.ZERO
 				segment.angular_velocity = 0.0
-	if randf() < 0.002:
+	if randf() < 0.0002:
 		apply_impulse(Vector2(randf_range(-rang_f, -rang_f), randf_range(-rang_f, rang_f)))
 
 
@@ -42,6 +49,11 @@ func apply_impulse(impulse: Vector2) -> void:
 		if segment is RigidBody2D:
 			segment.apply_central_impulse(impulse)
 
+
+func _on_vacuum_hurted(who: BattleActor) -> void:
+	apply_impulse(Vector2(-rang_f, -rang_f))
+	if who.character.health_perc() <= 0.0:
+		sound.stop()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0gl1b"]
@@ -54,8 +66,10 @@ size = Vector2(3, 54)
 
 [node name="Vacuum" type="Node2D"]
 script = ExtResource("1_c22y5")
-toughness = 0.599
-altruism = 0.17
+toughness = 0.645
+altruism = 0.326
+innovation = 0.906
+default_intent = 2
 xp_multiplier = 1.367
 gender = 1
 
@@ -133,7 +147,6 @@ collision_layer = 256
 collision_mask = 256
 mass = 0.3
 can_sleep = false
-linear_velocity = Vector2(-130, -1200)
 constant_force = Vector2(0, -360)
 constant_torque = -400.0
 
@@ -148,6 +161,11 @@ shape = SubResource("RectangleShape2D_0drgx")
 position = Vector2(1, -31)
 rotation = 3.14159
 texture = ExtResource("3_8su2d")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
+stream = ExtResource("4_o588p")
+attenuation = 0.594604
+panning_strength = 1.85
 
 [node name="PipePart2" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
 position = Vector2(-14, -54)
@@ -254,3 +272,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_i6kv6")
+
+[connection signal="hurted" from="." to="Sprite2D/Pipe" method="_on_vacuum_hurted"]

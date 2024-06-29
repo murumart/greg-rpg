@@ -274,9 +274,3 @@ func emit_message(msg: String, options := {}) -> void:
 
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:
 	return a.character.health_perc() < b.character.health_perc()
-
-
-
-
-func _on_hurted(who: BattleActor) -> void:
-	pass # Replace with function body.
