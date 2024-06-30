@@ -76,28 +76,6 @@ func _generate_suites_layout() -> void:
 					suite_layout, split_point) if last_split == VERTICAL else
 					GDUNGSuite.split_array_vertically(suite_layout, split_point))
 			new_layout.append_array(split)
-
-			#if last_split == VERTICAL:
-				#size = suite_layout[GDUNGSuite._XSIZE]
-				#if size < MIN_ROOM_SIZE:
-					#new_layout.append_array(suite_layout.slice(0, 4))
-					#suite_layout = GDUNGSuite.remove_4_from_array(suite_layout)
-					#continue
-				#var split_point := int(size * rng.randfn(0.5, 0.1))
-				#var split := GDUNGSuite.split_array_horizontally(
-						#suite_layout, split_point)
-				#new_layout.append_array(split)
-			#if last_split == HORIZONTAL:
-				#size = suite_layout[GDUNGSuite._YSIZE]
-				#if size < MIN_ROOM_SIZE:
-					#new_layout.append_array(suite_layout.slice(0, 4))
-					#suite_layout = GDUNGSuite.remove_4_from_array(suite_layout)
-					#continue
-				#var split_point := int(size * rng.randfn(0.5, 0.05))
-				#var split := GDUNGSuite.split_array_vertically(
-						#suite_layout, split_point)
-				#new_layout.append_array(split)
-
 			suite_layout = GDUNGSuite.remove_4_from_array(suite_layout)
 		suite_layout = new_layout
 		if last_split == VERTICAL:
@@ -228,6 +206,8 @@ func get_longest_path() -> PackedInt64Array:
 			var cur_path := astar.get_id_path(i, j)
 			if cur_path.size() > longest_path.size():
 				longest_path = cur_path
+	if longest_path.is_empty():
+		return suites.duplicate()
 	return longest_path
 
 
