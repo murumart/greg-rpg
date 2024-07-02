@@ -75,11 +75,11 @@ const DB := {
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 1,
 	},
-	&"cat_enemy": {
-		SCENE: preload("res://scenes/characters/overworld/scn_cat_overworld.tscn"),
+	&"enemy": {
+		SCENE: preload("res://scenes/characters/overworld/scn_grandma_housecat_overworld.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 150,
-		ORDER_NR_MIN: 4,
+		WEIGHT: 200,
+		ORDER_NR_MIN: 3,
 		IS_ENEMY: true,
 	},
 	&"flower_1": {

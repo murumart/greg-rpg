@@ -1,0 +1,102 @@
+[gd_scene load_steps=19 format=3 uid="uid://nhjuvuyqoydd"]
+
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_c6a5i"]
+[ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="2_6sx7j"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_n14ej"]
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="3_23not"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="4_hjfs6"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="5_8ihca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33s1w"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c16h7"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igif0"]
+resource_local_to_scene = true
+radius = 32.0
+
+[sub_resource type="Curve" id="Curve_jqxs0"]
+_data = [Vector2(0, 0.251091), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_l03v2"]
+script = ExtResource("4_hjfs6")
+key = &"cat"
+curve = SubResource("Curve_jqxs0")
+
+[sub_resource type="Curve" id="Curve_60gd2"]
+_data = [Vector2(0, 0.493456), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_a2kc8"]
+script = ExtResource("4_hjfs6")
+key = &"vacuum"
+curve = SubResource("Curve_60gd2")
+
+[sub_resource type="Curve" id="Curve_8boic"]
+_data = [Vector2(0, 0.74794), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_eoisg"]
+script = ExtResource("4_hjfs6")
+key = &"bulb"
+curve = SubResource("Curve_8boic")
+
+[sub_resource type="Curve" id="Curve_jamfo"]
+_data = [Vector2(0, 0.432865), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_kcycx"]
+script = ExtResource("4_hjfs6")
+key = &"couch"
+curve = SubResource("Curve_jamfo")
+
+[sub_resource type="Resource" id="Resource_erlxv"]
+script = ExtResource("5_8ihca")
+enemies = Array[StringName]([])
+background = "house_inside"
+music = "catfight"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = ""
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+
+[node name="GrandmaHousecat" instance=ExtResource("1_c6a5i")]
+script = ExtResource("2_n14ej")
+friendly = false
+speed = 4000
+random_movement = true
+interact_on_touch = true
+save = false
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_33s1w")
+
+[node name="CollisionDetectionArea" parent="." index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_c16h7")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_igif0")
+
+[node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_6sx7j")
+animation = &"idle"
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+script = ExtResource("3_23not")
+values = Array[ExtResource("4_hjfs6")]([SubResource("Resource_l03v2"), SubResource("Resource_a2kc8"), SubResource("Resource_eoisg"), SubResource("Resource_kcycx")])
+default_battle = SubResource("Resource_erlxv")
+inject_target = NodePath("..")
+start_texts = Array[String](["these things happen.", "meow?"])

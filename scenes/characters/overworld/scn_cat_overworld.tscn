@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsdq5h3auf48d"]
+[gd_scene load_steps=17 format=3 uid="uid://bsdq5h3auf48d"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_4qwvp"]
-[ext_resource type="Texture2D" uid="uid://yhxwtfjggtnm" path="res://sprites/characters/overworld/spr_cats_overworld.png" id="2_11itb"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
+[ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="3_8yccp"]
+[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_tjrt7"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="5_fc8d6"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_opow6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7uk"]
 resource_local_to_scene = true
@@ -16,66 +19,46 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3bglr"]
-atlas = ExtResource("2_11itb")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="Curve" id="Curve_bvjby"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e80i1"]
-atlas = ExtResource("2_11itb")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="Resource" id="Resource_byucl"]
+script = ExtResource("5_opow6")
+key = &"cat"
+curve = SubResource("Curve_bvjby")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppn82"]
-atlas = ExtResource("2_11itb")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="Curve" id="Curve_6yulo"]
+_data = [Vector2(0, 0.46922), 0.0, 0.0, 0, 0]
+point_count = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytdoi"]
-atlas = ExtResource("2_11itb")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="Resource" id="Resource_w5bnk"]
+script = ExtResource("5_opow6")
+key = &"cat"
+curve = SubResource("Curve_6yulo")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_smo2r"]
-atlas = ExtResource("2_11itb")
-region = Rect2(0, 16, 16, 16)
+[sub_resource type="Curve" id="Curve_34vmh"]
+_data = [Vector2(0, 0.238972), 0.0, 0.0, 0, 0]
+point_count = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bmdt6"]
-atlas = ExtResource("2_11itb")
-region = Rect2(16, 16, 16, 16)
+[sub_resource type="Resource" id="Resource_7ox55"]
+script = ExtResource("5_opow6")
+key = &"cat"
+curve = SubResource("Curve_34vmh")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hvoy4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3bglr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e80i1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppn82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ytdoi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppn82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e80i1")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smo2r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bmdt6")
-}],
-"loop": true,
-"name": &"running",
-"speed": 8.0
-}]
+[sub_resource type="Resource" id="Resource_7jt7c"]
+script = ExtResource("5_fc8d6")
+enemies = Array[StringName]([])
+background = "greghouse"
+music = "catfight"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = ""
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
 
 [node name="Cat" instance=ExtResource("1_4qwvp")]
 y_sort_enabled = true
@@ -102,7 +85,15 @@ shape = SubResource("CircleShape2D_0h7is")
 
 [node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
 position = Vector2(0, -7)
-sprite_frames = SubResource("SpriteFrames_hvoy4")
+sprite_frames = ExtResource("3_8yccp")
 animation = &"idle"
 frame_progress = 0.397401
 offset = Vector2(0, -1)
+
+[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+script = ExtResource("4_tjrt7")
+values = Array[ExtResource("5_opow6")]([SubResource("Resource_byucl"), SubResource("Resource_w5bnk"), SubResource("Resource_7ox55")])
+default_battle = SubResource("Resource_7jt7c")
+max_enemies = 3
+inject_target = NodePath("..")
+start_texts = Array[String](["ravenous beasts!", "meowmeowmeowmeow"])
