@@ -1550,6 +1550,31 @@ CHAR bike_ghost
 	[expletive redacted]
 
 
+DIALOGUE bike_ghost_gdung_1
+CHAR bike_ghost
+	surprise, asshole.
+CHAR bike_beta
+	greetings, irradiated one.
+CHAR bike_ghost
+	we were rehired with our payment in blood doubled!
+CHAR bike_beta
+	and if we are to fail, we will be expunged from this realm.
+CHAR bike_ghost
+	...that too... but that's just motivation for us!
+	you won't survive our true [color=SPIRITCOLOR]double radiation friendship attack!!!
+CHAR bike_beta
+	i wish not to be associated with this individual.
+CHAR bike_ghost
+	you fool! the crone's power outmatches our rivalry!
+	we must work together to remain in corpore!
+	i am a blithering idiot.
+	??? don't use my ???? ????????? ???
+	???? ???? my ?????????? bumbling
+CHAR bike_beta
+	i am jamming its communication frequency.
+	i'll make it quick, greg. goodbye.
+
+
 DIALOGUE bike_ghost_afterdefeat
 CHAR bike_ghost
 	what now? want to rub your victory in my face?

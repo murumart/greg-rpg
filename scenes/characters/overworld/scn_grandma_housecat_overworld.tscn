@@ -90,6 +90,7 @@ shape = SubResource("RectangleShape2D_c16h7")
 shape = SubResource("CircleShape2D_igif0")
 
 [node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
+self_modulate = Color(5.747, 13.794, 21.839, 1)
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_6sx7j")
 animation = &"idle"

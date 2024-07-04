@@ -1,9 +1,13 @@
 extends BattleEnemy
 
+var at_gdung := false
+
 
 func _ready() -> void:
 	super()
-	SOL.dialogue("bike_beta_battle_1")
+	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
+	if not at_gdung:
+		SOL.dialogue("bike_beta_battle_1")
 
 
 func hurt(amt: float, g: int) -> void:

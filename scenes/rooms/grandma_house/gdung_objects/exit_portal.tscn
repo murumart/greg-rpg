@@ -1,7 +1,55 @@
-[gd_scene load_steps=7 format=3 uid="uid://x12vt5wvj4qb"]
+[gd_scene load_steps=15 format=3 uid="uid://x12vt5wvj4qb"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
 [ext_resource type="Shader" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="2_1je23"]
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_qq1bq"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="3_ijuw0"]
+
+[sub_resource type="Resource" id="Resource_gvg6f"]
+script = ExtResource("2_1je23")
+type = 0
+property = "500"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_fqadj"]
+script = ExtResource("3_ijuw0")
+rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_gvg6f")])
+
+[sub_resource type="Resource" id="Resource_v3jjj"]
+script = ExtResource("2_qq1bq")
+enemies = Array[StringName]([&"vacuum_gold"])
+background = "house_inside"
+music = "gdung_beast"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "boss!"
+rewards = SubResource("Resource_fqadj")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+
+[sub_resource type="Resource" id="Resource_4tnsi"]
+script = ExtResource("3_ijuw0")
+rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_gvg6f")])
+
+[sub_resource type="Resource" id="Resource_6vr0c"]
+script = ExtResource("2_qq1bq")
+enemies = Array[StringName]([&"bike_ghost", &"bike_beta"])
+background = "house_inside"
+music = "gdung_beast"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "boss!"
+rewards = SubResource("Resource_4tnsi")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52bo6"]
 shader = ExtResource("1_oiab4")
@@ -24,6 +72,7 @@ height = 40.0
 
 [node name="ExitPortal" type="Node2D"]
 script = ExtResource("1_n24w5")
+battle_infos = Array[ExtResource("2_qq1bq")]([SubResource("Resource_v3jjj"), SubResource("Resource_6vr0c")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_52bo6")

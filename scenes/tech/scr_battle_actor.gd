@@ -457,6 +457,9 @@ func steal_item(from: BattleActor) -> void:
 		&"meat", &"meat_cooked", &"egg", &"egg_cooked", &"eggshell", &"magnet",
 		&"lighter", &"ice_pack", &"glue", &"funny_fungus", &"bread", &"berries",
 		&"antifreeze", &"tape", &"water_balloon", &"soda", &"sleepy_flower", &"plaster"]
+	if from.has_status_effect(&"shield"):
+		emit_message("the shield blocks theft!")
+		return
 	var copy := from.character.inventory.duplicate()
 	if copy.is_empty():
 		emit_message("found nothing to take.")

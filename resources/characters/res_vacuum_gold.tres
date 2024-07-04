@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dgyo70dnxc1d8"]
+
+[ext_resource type="Texture2D" uid="uid://b603kx61lguoq" path="res://sprites/characters/battle/grandma/spr_vacuum_gold.png" id="1_dc20x"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="2_thjpe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxymf"]
+atlas = ExtResource("1_dc20x")
+region = Rect2(10, 20, 22, 22)
+
+[resource]
+script = ExtResource("2_thjpe")
+name_in_file = &""
+name = "golden vacuum"
+info = "this enemy sucks! major money!"
+portrait = SubResource("AtlasTexture_yxymf")
+max_health = 300.0
+health = 300.0
+max_magic = 88099.0
+magic = 98099.0
+level = 80
+experience = 0
+attack = 65.0
+defense = 73.0
+speed = 71.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["vacuum", "peanuts", "ghostpunches"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

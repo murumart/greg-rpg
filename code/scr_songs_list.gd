@@ -90,6 +90,10 @@ var songs := {
 		"title": "gaming",
 		"stream": preload("res://music/mus_gaming.ogg")
 	},
+	"gdung_beast": {
+		"title": "undisclosed six figure sum",
+		"stream": preload("res://music/mus_gdung_beast.ogg")
+	},
 	"geezer": {
 		"title": "quit PISSING ME OFF GEEZER",
 		"stream": preload("res://music/mus_geezer.ogg")

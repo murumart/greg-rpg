@@ -1,0 +1,277 @@
+[gd_scene load_steps=9 format=3 uid="uid://do6u3qoe6mt0w"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_1a3e0"]
+[ext_resource type="Texture2D" uid="uid://b603kx61lguoq" path="res://sprites/characters/battle/grandma/spr_vacuum_gold.png" id="2_tbq3c"]
+[ext_resource type="Texture2D" uid="uid://cjxrmebv5gngc" path="res://sprites/characters/battle/grandma/spr_vacuum_pipe_gold.png" id="3_lwcma"]
+[ext_resource type="AudioStream" uid="uid://coha6tsckbogr" path="res://sounds/vacuum_cleaner.ogg" id="4_lp3ph"]
+
+[sub_resource type="GDScript" id="GDScript_utgit"]
+resource_name = "pipe"
+script/source = "extends Node2D
+
+@onready var segments := $Bodies.get_children()
+@onready var line: Line2D = $\"../Line2D\"
+@onready var head: RigidBody2D = $Bodies/PipePart
+@onready var sound: AudioStreamPlayer2D = $Bodies/PipePart/Sound
+var rang_e := 430.0
+var rang_f := 90.0
+
+
+func _ready() -> void:
+	line.clear_points()
+	for x in segments.size():
+		line.add_point(Vector2.ZERO)
+	sound.play()
+
+
+func _physics_process(delta: float) -> void:
+	sound.pitch_scale = remap(head.constant_force.length() + head.linear_velocity.length() * 0.1,
+			1.0, 500.0, 0.3, 2.0)
+	sound.volume_db = minf(remap(head.constant_force.length() + head.linear_velocity.length() * 0.1,
+			1.0, 500.0, -30.0, 0.0), 0.0)
+	for i in segments.size():
+		line.set_point_position(i, line.to_local(segments[i].global_position))
+	head.add_constant_central_force(Vector2(
+			randf_range(-rang_e, rang_e), randf_range(-rang_e, 0.0)) * delta)
+	if randf() < 0.005:
+		head.constant_force = Vector2.ZERO
+	if randf() < 0.02:
+		for segment in segments:
+			if segment is RigidBody2D:
+				segment.linear_velocity = Vector2.ZERO
+				segment.angular_velocity = 0.0
+	if randf() < 0.0002:
+		apply_impulse(Vector2(randf_range(-rang_f, -rang_f), randf_range(-rang_f, rang_f)))
+
+
+func apply_impulse(impulse: Vector2) -> void:
+	for segment in segments:
+		if segment is RigidBody2D:
+			segment.apply_central_impulse(impulse)
+
+
+func _on_vacuum_hurted(who: BattleActor) -> void:
+	apply_impulse(Vector2(-rang_f, -rang_f))
+	if who.character.health_perc() <= 0.0:
+		sound.stop()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0gl1b"]
+radius = 2.23607
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0drgx"]
+size = Vector2(3, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6kv6"]
+
+[node name="Vacuum" type="Node2D"]
+script = ExtResource("1_1a3e0")
+toughness = 0.645
+altruism = 0.326
+innovation = 0.906
+default_intent = 2
+xp_multiplier = 3.0
+gender = 1
+wait = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
+texture = ExtResource("2_tbq3c")
+
+[node name="Line2D" type="Line2D" parent="Sprite2D"]
+width = 3.0
+default_color = Color(0.443137, 0.360784, 0.0784314, 1)
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Pipe" type="Node2D" parent="Sprite2D"]
+position = Vector2(26, 0)
+script = SubResource("GDScript_utgit")
+
+[node name="Joints" type="Node2D" parent="Sprite2D/Pipe"]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -57)
+node_a = NodePath("../../Bodies/PipePart")
+node_b = NodePath("../../Bodies/PipePart2")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -51)
+node_a = NodePath("../../Bodies/PipePart2")
+node_b = NodePath("../../Bodies/PipePart3")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -45)
+node_a = NodePath("../../Bodies/PipePart3")
+node_b = NodePath("../../Bodies/PipePart4")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -39)
+node_a = NodePath("../../Bodies/PipePart4")
+node_b = NodePath("../../Bodies/PipePart5")
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -33)
+node_a = NodePath("../../Bodies/PipePart5")
+node_b = NodePath("../../Bodies/PipePart6")
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -27)
+node_a = NodePath("../../Bodies/PipePart6")
+node_b = NodePath("../../Bodies/PipePart7")
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -21)
+node_a = NodePath("../../Bodies/PipePart7")
+node_b = NodePath("../../Bodies/PipePart8")
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -15)
+node_a = NodePath("../../Bodies/PipePart8")
+node_b = NodePath("../../Bodies/PipePart9")
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -9)
+node_a = NodePath("../../Bodies/PipePart9")
+node_b = NodePath("../../Bodies/PipePart10")
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="Sprite2D/Pipe/Joints"]
+position = Vector2(-14, -3)
+node_a = NodePath("../../Bodies/PipePart10")
+node_b = NodePath("../../Bodies/PipePart11")
+
+[node name="Bodies" type="Node2D" parent="Sprite2D/Pipe"]
+
+[node name="PipePart" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -60)
+collision_layer = 256
+collision_mask = 256
+mass = 0.3
+can_sleep = false
+constant_force = Vector2(0, -360)
+constant_torque = -400.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_0drgx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
+position = Vector2(1, -31)
+rotation = 3.14159
+texture = ExtResource("3_lwcma")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
+stream = ExtResource("4_lp3ph")
+attenuation = 0.594604
+panning_strength = 1.85
+
+[node name="PipePart2" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -54)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart2"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart3" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -48)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart3"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart4" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -42)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart4"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart5" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -36)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart5"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart6" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -30)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart6"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart7" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -24)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart7"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart8" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -18)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart8"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart9" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -12)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart9"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart10" type="RigidBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, -6)
+collision_layer = 256
+collision_mask = 256
+mass = 0.1
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart10"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="PipePart11" type="StaticBody2D" parent="Sprite2D/Pipe/Bodies"]
+position = Vector2(-14, 0)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Pipe/Bodies/PipePart11"]
+shape = SubResource("CircleShape2D_0gl1b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_i6kv6")
+
+[connection signal="hurted" from="." to="Sprite2D/Pipe" method="_on_vacuum_hurted"]

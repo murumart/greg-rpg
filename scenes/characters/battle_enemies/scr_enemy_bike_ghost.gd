@@ -1,15 +1,27 @@
 extends BattleEnemy
 
-const OVERPOWER_LINES_MAX := 3
-const BikeType := preload("res://scenes/decor/scr_bike.gd")
-
 var said_healing_line := false
 var enemy_powerful := false
 var powerful_progress := 1
 var dead := false
+var at_gdung := false
+
+
+func _ready() -> void:
+	super()
+	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
+	if at_gdung:
+		SOL.dialogue("bike_ghost_gdung_1")
 
 
 func act() -> void:
+	if not at_gdung:
+		_act_normal()
+		return
+	_act_gdung()
+
+
+func _act_normal() -> void:
 	if turn == 0:
 		if character.health_perc() <= 0.75:
 			enemy_powerful = true
@@ -17,7 +29,7 @@ func act() -> void:
 		SOL.dialogue("bike_ghost_welcome" if not enemy_powerful else "bike_ghost_powerfulenemy_1")
 	if enemy_powerful:
 		await hnnng_____the_power()
-		super()
+		super.act()
 		return
 
 	if turn == 2:
@@ -32,7 +44,11 @@ func act() -> void:
 		return
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
-	super()
+	super.act()
+
+
+func _act_gdung() -> void:
+	super.act()
 
 
 func hnnng_____the_power() -> void:
