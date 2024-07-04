@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ujw3hja42fv4"]
+
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_ubmsx"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_gbrcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljcfa"]
+size = Vector2(7, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdpio"]
+size = Vector2(16, 10)
+
+[node name="Box" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 5)
+texture = ExtResource("1_ubmsx")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(112, 48, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_ljcfa")
+
+[node name="InspectArea" type="Area2D" parent="."]
+position = Vector2(8, 5)
+script = ExtResource("2_gbrcg")
+key = "gdung_box"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pdpio")

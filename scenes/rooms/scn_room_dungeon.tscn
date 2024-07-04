@@ -43,7 +43,7 @@ layer_2/tile_data = PackedInt32Array()
 [node name="LayoutGenerator" type="Node" parent="InteriorTiles"]
 script = ExtResource("3_1an2q")
 
-[node name="Decorator" type="Node" parent="InteriorTiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line")]
+[node name="Decorator" type="Node" parent="InteriorTiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line") groups=["room_gates"]]
 script = ExtResource("4_hfwjo")
 generator = NodePath("../LayoutGenerator")
 greg = NodePath("../../Greg")

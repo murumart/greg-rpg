@@ -72,7 +72,7 @@ crits_enabled = true
 [node name="GrandmaHousecat" instance=ExtResource("1_c6a5i")]
 script = ExtResource("2_n14ej")
 friendly = false
-speed = 4000
+speed = 8000
 random_movement = true
 interact_on_touch = true
 save = false

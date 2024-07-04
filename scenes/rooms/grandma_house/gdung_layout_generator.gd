@@ -29,7 +29,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func generate() -> void:
 	tilemap.queue_redraw()
-	rng.set_seed(DAT.get_data("nr", 0.0) * 1000)
+	rng.set_seed(DAT.get_data("nr", 0.0) * 1000 + DAT.get_data("gdung_floor", 0) * 2)
 	tilemap.clear_layer(1)
 	_begin_wall_definition() #
 	_generate_suites_layout()

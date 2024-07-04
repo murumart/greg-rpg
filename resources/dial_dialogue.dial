@@ -3472,6 +3472,15 @@ DIALOGUE insp_gdung_planet
 # i dont have the budget to animate that
 
 
+DIALOGUE insp_gdung_box
+	what could be the purpose of this cardboard box?
+	there's some amount of objects to be moved in here.
+
+
+DIALOGUE insp_gdung_boxes
+	small cardboard boxes for moving.
+
+
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.

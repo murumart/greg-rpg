@@ -9,14 +9,19 @@ const EXIT_PORTAL := preload("res://scenes/rooms/grandma_house/gdung_objects/exi
 @export var objects_node: Node2D
 @export var path_line: Line2D
 var _decor_id := -1
+var path := PackedInt64Array()
 
 
 func _ready() -> void:
-	var path := generator.get_longest_path()
-	greg.global_position = generator.suites[path[0]].get_rect().get_center() * 16.0
+	path = generator.get_longest_path()
 	_decor_id = -1
-	_decorate_suites(path)
-	_draw_path(path)
+	_decorate_suites()
+	_draw_path()
+
+
+func apply_spawn_point(greg_2: PlayerOverworld) -> void:
+	if LTS.gate_id == &"gdung_advance":
+		greg_2.global_position = generator.suites[path[0]].get_rect().get_center() * 16.0
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -26,11 +31,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_ready()
 
 
-func _decorate_suites(path: PackedInt64Array) -> void:
+func _decorate_suites() -> void:
 	var time := Time.get_ticks_msec()
 	const DECORATION_TRIES := 5
 	objects_node.get_children().map(func(a): a.queue_free())
-	var to_decorate: Array[GDUNGSuite] = _get_suites_to_decorate(path)
+	var to_decorate: Array[GDUNGSuite] = _get_suites_to_decorate()
 	var keys_weights := GDUNGObjects.get_db_keys_by_weights()
 	for _x in DECORATION_TRIES:
 		for i in to_decorate.size():
@@ -92,7 +97,7 @@ func _place_object(
 	return true
 
 
-func _get_suites_to_decorate(path: PackedInt64Array) -> Array[GDUNGSuite]:
+func _get_suites_to_decorate() -> Array[GDUNGSuite]:
 	var to_decorate: Array[GDUNGSuite] = []
 	for id in path:
 		var suite := generator.suites[id]
@@ -140,7 +145,7 @@ func _get_suitable_position(suite: GDUNGSuite, size: Vector2i, hug_wall := false
 	return Math.determ_pick_random(possible_positions, generator.rng)
 
 
-func _draw_path(path: PackedInt64Array) -> void:
+func _draw_path() -> void:
 	path_line.clear_points()
 	for id in path:
 		path_line.add_point(generator.suites[id].get_rect().get_center() * 16.0)

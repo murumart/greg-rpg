@@ -15,7 +15,6 @@ func _init() -> void:
 	self.add_to_group("save_me")
 
 
-
 func _ready() -> void:
 	var sname := name.to_snake_case()
 	DAT.set_data("current_room", sname)
