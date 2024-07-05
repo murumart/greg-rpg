@@ -3483,25 +3483,25 @@ position = Vector2(-10, -21)
 
 [node name="Line2D" type="Line2D" parent="Puppet/Torso/Lines" index="0"]
 position = Vector2(7, 5)
-points = PackedVector2Array(1, -13, 0, 1)
+points = PackedVector2Array(-2.81073, -12.2039, 0, 1)
 width = 1.0
 default_color = Color(0.164706, 0.498039, 0.329412, 1)
 
 [node name="Line2D2" type="Line2D" parent="Puppet/Torso/Lines" index="1"]
 position = Vector2(9, 5)
-points = PackedVector2Array(0, -9, 0, 1)
+points = PackedVector2Array(-3.53533, -8.28302, 0, 1)
 width = 1.0
 default_color = Color(0, 0.329412, 0.329412, 1)
 
 [node name="Line2D3" type="Line2D" parent="Puppet/Torso/Lines" index="2"]
 position = Vector2(11, 5)
-points = PackedVector2Array(0, -12, 0, 1)
+points = PackedVector2Array(-3.74852, -11.4147, 0, 1)
 width = 1.0
 default_color = Color(0.164706, 0.498039, 0.329412, 1)
 
 [node name="Line2D4" type="Line2D" parent="Puppet/Torso/Lines" index="3"]
 position = Vector2(13, 5)
-points = PackedVector2Array(-1, -13, 0, 1)
+points = PackedVector2Array(-4.82039, -12.4817, 0, 1)
 width = 1.0
 default_color = Color(0, 0.329412, 0.329412, 1)
 

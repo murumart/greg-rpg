@@ -377,11 +377,11 @@ func use_item(id: String, subject: BattleActor) -> void:
 
 # squeeze empty the payload, copy everything over
 func handle_payload(pld: BattlePayload) -> void:
-	print(actor_name, " handling payload! (%s)"
-			% BattlePayload.Types.find_key(pld.type))
+	print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
 	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
-	if character.health <= 0: return
+	if character.health <= 0:
+		return
 	if pld.delay:
 		await get_tree().create_timer(pld.delay).timeout
 	var health_change := pld.get_health_change(
@@ -562,7 +562,9 @@ func payload() -> BattlePayload:
 
 # for positioning visual effects
 func get_effect_center(subject: BattleActor = self) -> Vector2:
-	return Vector2(subject.effect_center) + Vector2(subject.global_position) if has_effcenter(subject) else subject.get_global_transform_with_canvas().origin
+	return (Vector2(subject.effect_center) + Vector2(subject.global_position)
+			if has_effcenter(subject)
+			else subject.get_global_transform_with_canvas().origin)
 	#return subject.get_global_transform_with_canvas().origin
 
 

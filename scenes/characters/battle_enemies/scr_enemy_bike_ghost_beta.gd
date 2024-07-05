@@ -8,10 +8,13 @@ func _ready() -> void:
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if not at_gdung:
 		SOL.dialogue("bike_beta_battle_1")
+		return
+	animator.speed_scale = 1.575
+	CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.99)
 
 
 func hurt(amt: float, g: int) -> void:
-	if character.health - _hurt_damage(amt, g) <= 0:
+	if character.health - _hurt_damage(amt, g) <= 0 and not at_gdung:
 		SOL.dialogue("bike_beta_battle_2")
 		await SOL.dialogue_closed
 		auto_ai = false
@@ -24,7 +27,8 @@ func hurt(amt: float, g: int) -> void:
 			animate("use_spirit")
 			await create_tween().tween_interval(0.3).finished
 		await create_tween().tween_interval(1.0).finished
-		SOL.dialogue("bike_beta_battle_3")
-		await SOL.dialogue_closed
+		if not at_gdung:
+			SOL.dialogue("bike_beta_battle_3")
+			await SOL.dialogue_closed
 	super(amt, g)
 

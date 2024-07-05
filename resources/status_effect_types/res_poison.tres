@@ -16,7 +16,7 @@ applied_effect_duration_strength_modifier = 1.0
 health = -1.3
 health_percent = 0.0
 max_health_percent = 0.0
-pierce_defense = 0.0
+pierce_defense = 1.0
 steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
@@ -27,10 +27,10 @@ defense_increase = 0.0
 speed_increase = 0.0
 gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
-delay = 0.0
-summon_enemy = ""
-animation_on_receive = ""
-meta = {}
+delay = null
+summon_enemy = null
+animation_on_receive = null
+meta = null
 
 [resource]
 script = ExtResource("1_p342v")

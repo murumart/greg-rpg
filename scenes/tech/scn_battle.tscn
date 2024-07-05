@@ -531,6 +531,9 @@ new_items = Array[StringName]([&"free_hugs_coupon", &"diploma", &"funny_fungus",
 replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish"])
 replace_armour = &"rain_boot"
 force_spirits_into_use = true
+data_overrides = {
+"gdung_floor": 2
+}
 
 [editable path="UI/Panel/ScreenMainActions/CurrentInfo"]
 [editable path="UI/Panel/ScreenListSelect/SelectedGuy"]

@@ -12,6 +12,8 @@ func _ready() -> void:
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if at_gdung:
 		SOL.dialogue("bike_ghost_gdung_1")
+		animator.speed_scale = 2.57166
+		CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.95)
 
 
 func act() -> void:
@@ -68,9 +70,13 @@ func hnnng_____the_power() -> void:
 
 
 func hurt(amount: float, gnd: int) -> void:
+	if at_gdung:
+		super(amount, gnd)
+		return
 	if enemy_powerful:
 		hnnng_____the_power()
-	if dead: return
+	if dead:
+		return
 	super.hurt(amount, gnd)
 	if is_zero_approx(character.health_perc()):
 		dead = true

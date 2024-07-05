@@ -6,7 +6,7 @@ class_name BattlePayload
 
 const MAX_BOUNCES = 3
 
-enum Types {ATTACK, SPIRIT, ITEM}
+enum Types {ATTACK, SPIRIT, ITEM, EFFECT}
 var type := Types.ATTACK
 
 const FIELDS := [
