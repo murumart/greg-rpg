@@ -197,7 +197,12 @@ func update_shopping_list() -> void:
 	for i in temp_dict:
 		text += "%s x %s\n" % [ResMan.get_item(i).name, temp_dict[i]]
 		total += ResMan.get_item(i).price * temp_dict[i]
-	text += "total: " + str(total)
+	text += "total: " + str(total) + "\n"
+	var silver: int = DAT.get_data("silver", 0)
+	if silver < total:
+		text += "[color=red]"
+	if total > 0:
+		text += "silver: " + str(silver) + "\n"
 	shopping_list.text = text
 
 

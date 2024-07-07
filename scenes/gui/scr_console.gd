@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,reload,instakill,clearinv,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -89,6 +89,8 @@ func parse_command() -> void:
 			give_item(args)
 		&"gspirit":
 			give_spirit(args)
+		&"gsilver":
+			give_silver(args)
 		&"reload":
 			DAT.save_to_dict()
 			LTS.gate_id = LTS.GATE_LOADING
@@ -282,6 +284,16 @@ func give_item(args: PackedStringArray) -> void:
 		return
 	var itemname := args[0]
 	DAT.grant_item(itemname)
+	output("gave item " + args[0])
+
+
+func give_silver(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: gsilver amount")
+		return
+	var silver := Math.toexp(args[0]) as int
+	DAT.grant_silver(silver)
+	output("gave " + args[0] + " silver")
 
 
 func give_spirit(args: PackedStringArray) -> void:
@@ -290,6 +302,7 @@ func give_spirit(args: PackedStringArray) -> void:
 		return
 	var spiritname := args[0]
 	DAT.grant_spirit(spiritname)
+	output("gave spirit " + args[0])
 
 
 func instakill() -> void:
