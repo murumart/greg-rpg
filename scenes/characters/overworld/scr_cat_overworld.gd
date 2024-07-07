@@ -7,7 +7,7 @@ extends OverworldCharacter
 func _ready() -> void:
 	super._ready()
 	if friendly:
-		return
+		battle_info = null
 
 
 func _physics_process(delta: float) -> void:
