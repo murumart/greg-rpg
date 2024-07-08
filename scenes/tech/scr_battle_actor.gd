@@ -51,7 +51,7 @@ var rng := RandomNumberGenerator.new()
 	"Sopping", "Burning",
 	"Ghost", "Brain", "Vast"
 	) var gender: int = 0
-@export var effect_immunities: Array[String] = []
+@export var effect_immunities: Array[StringName] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
 var ignore_my_finishes := false # cutscenes and such?
@@ -479,7 +479,7 @@ func steal_item(from: BattleActor) -> void:
 func add_status_effect(eff: StatusEffect) -> void:
 	var effect := BattleStatusEffect.add(self, eff)
 	if effect:
-		status_effects[eff.name] = effect
+		status_effects[effect.type.s_id] = effect
 		print("added effect ", effect, " to ", self)
 
 

@@ -72,10 +72,12 @@ static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEf
 	if a.type.s_id != b.type.s_id:
 		return null
 	u.type = a.type
-	u.strength = ceilf((a.strength + b.strength) / 2.0)
+	u.strength = maxf(a.strength, b.strength)
+	if a.strength < 0 or b.strength < 0:
+		u.strength -= minf(a.strength, b.strength)
 	if u.strength == 0:
 		return null
-	if u.strength == a.strength or u.strength == b.strength:
+	if absf(a.strength - b.strength) < 2:
 		u.strength += sign(u.strength)
 	if a.duration != 1 and b.duration != 1:
 		u.duration = ceili((a.duration + b.duration) / 2.0)
@@ -156,6 +158,8 @@ func _add_text(actor: BattleActor) -> void:
 
 
 func _adjusted_text(actor: BattleActor, streng: float) -> void:
+	if streng == 0:
+		return
 	SOL.vfx(
 		"damage_number",
 		actor.parentless_effcenter() - Vector2(0, 24),
@@ -171,7 +175,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 	actor.emit_message("@%s %s%s %s" % [
 		actor.actor_name,
 		Math.sign_symbol(streng),
-		str(absf(strength)) if strength != 1 else "",
+		str(absf(streng)) if streng != 1 else "",
 		type.name
 	])
 

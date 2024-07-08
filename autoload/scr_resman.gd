@@ -103,6 +103,13 @@ static func load_effects() -> void:
 			immeff.turn_payload = null
 			immeff.gender = Genders.CIRCLE[immeff.gender]
 			immeff.name += " immune"
+			match immeff.use:
+				Spirit.Uses.BUFFING, Spirit.Uses.HEALING:
+					immeff.use = Spirit.Uses.DEBUFFING
+				Spirit.Uses.DEBUFFING, Spirit.Uses.HURTING:
+					immeff.use = Spirit.Uses.BUFFING
+				_:
+					immeff.use = Spirit.Uses.NONE
 			status_effect_types[immune] = immeff
 	# sort
 	for s: StringName in status_effect_types:

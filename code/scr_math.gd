@@ -32,7 +32,11 @@ static func method_29193(x: float):
 
 
 static func sign_symbol(x) -> String:
-	return "+" if x > 0 else "-"
+	if x < 0:
+		return "-"
+	if x > 0:
+		return "+"
+	return ""
 
 
 # append to an array and return that array
