@@ -1,6 +1,6 @@
 extends Room
 
-@onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var canvas_modulate: ColorContainer = $CanvasModulateGroup/FishWarning
 @onready var spawners := get_tree().get_nodes_in_group("thug_spawners")
 
 

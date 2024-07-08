@@ -1,9 +1,11 @@
-[gd_scene load_steps=81 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=80 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_rbpn8"]
+[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_trs8b"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_r61au"]
+[ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_xexyo"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="4_6dg7d"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
@@ -29,30 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="19_sytvq"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
-
-[sub_resource type="Gradient" id="Gradient_r8mui"]
-offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
-colors = PackedColorArray(0, 0, 0.0901961, 1, 0.261103, 0.21774, 0.298783, 1, 0.596112, 0.708291, 0.916918, 1, 0.968627, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_pnx8r"]
-gradient = SubResource("Gradient_r8mui")
-
-[sub_resource type="Environment" id="Environment_ymw61"]
-background_mode = 3
-ambient_light_source = 1
-glow_levels/1 = 16.0
-glow_levels/2 = 16.0
-glow_levels/3 = 16.0
-glow_levels/4 = 16.0
-glow_levels/5 = 0.0
-glow_intensity = 1.35
-glow_blend_mode = 4
-glow_hdr_threshold = 0.95
-glow_hdr_scale = 0.32
-adjustment_enabled = true
-adjustment_contrast = 0.97
-adjustment_saturation = 1.09
-adjustment_color_correction = SubResource("GradientTexture1D_pnx8r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
 shader = ExtResource("2_aroxh")
@@ -144,6 +122,7 @@ victory_music = &"victory"
 stop_music_before_end = true
 kill_music = true
 play_fanfare = true
+crits_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsg2b"]
 size = Vector2(218, 42.5)
@@ -359,8 +338,16 @@ y_sort_enabled = true
 script = ExtResource("1_rym7f")
 music = "lakeside"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ymw61")
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+color = Color(0.772237, 0.929178, 1, 1)
+script = ExtResource("2_trs8b")
+
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_xexyo")
+color = Color(0.772237, 0.929178, 1, 1)
+
+[node name="FishWarning" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_xexyo")
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
 position = Vector2(425, -103)
@@ -377,8 +364,6 @@ limit_bottom = 400
 script = ExtResource("4_6dg7d")
 level_gain = 32
 new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon"])
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
 
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11
