@@ -1578,7 +1578,58 @@ SPEED 3
 SPEED 1
 CHAR bike_ghost_beta
 	i am jamming its communication frequency.
-	i'll make it quick, greg. goodbye.
+	i'll try to make it quick, greg. goodbye.
+
+
+DIALOGUE bike_ghost_gdung_defeat
+CHAR bike_ghost
+SOUND error
+SPEED 2
+	???? ???? noooooooooooooooooo ?????????? ???????
+SPEED 1
+CHAR bike_ghost_beta
+	i see now that attempting to fight you was really the only mistake.
+	forgive me. 
+
+
+DIALOGUE bike_ghost_gdung_enough
+CHAR bike_ghost_beta
+	...this is going nowhere. halt the battle.
+CHAR bike_ghost
+	what?! have you lost the last dredges of your sapience??
+SOUND error
+	you really have reverted ????? ???????? to ??? ?
+SOUND error
+	i ???? ou so much.
+CHAR bike_ghost_beta
+	shush! take a look in front of you.
+	can't you recognise that this man...
+	...is something that can overpower the crone?
+CHAR bike_ghost
+	you're not of sound mind if you think that!
+CHAR bike_ghost_beta
+	...
+CHAR bike_ghost
+	...i get it now.
+	yes, the crone will surely find a suitable match from you.
+CHAR bike_ghost_beta
+	i'm leaving now.
+CHAR bike_ghost
+	huh?? do you know a place to hide from her?
+	wait for me!
+
+
+DIALOGUE bike_ghost_gdung_enough_no_bikeghost
+CHAR bike_ghost_beta
+	...this is going nowhere. halt the battle.
+	greg... i'm sure of it now.
+	with the ease you have been fighting us...
+	the old crone herself will meet her match once you get to her.
+	no spirit really wishes to serve her.
+	all she is is an ugly reminder. an intruder.
+	i'll get out of your way now.
+SPEED 0.8
+	ha ha... you... remind her whose world she's in right now. 
 
 
 DIALOGUE bike_ghost_afterdefeat

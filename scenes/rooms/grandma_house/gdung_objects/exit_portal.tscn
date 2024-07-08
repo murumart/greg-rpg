@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://x12vt5wvj4qb"]
+[gd_scene load_steps=16 format=3 uid="uid://x12vt5wvj4qb"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
 [ext_resource type="Shader" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_qq1bq"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="3_ijuw0"]
 
-[sub_resource type="Resource" id="Resource_gvg6f"]
+[sub_resource type="Resource" id="Resource_4cc3d"]
 script = ExtResource("2_1je23")
 type = 0
 property = "500"
@@ -15,7 +15,7 @@ unique = false
 
 [sub_resource type="Resource" id="Resource_fqadj"]
 script = ExtResource("3_ijuw0")
-rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_gvg6f")])
+rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_4cc3d")])
 
 [sub_resource type="Resource" id="Resource_v3jjj"]
 script = ExtResource("2_qq1bq")
@@ -32,7 +32,14 @@ kill_music = true
 play_fanfare = true
 crits_enabled = true
 
-[sub_resource type="Resource" id="Resource_4tnsi"]
+[sub_resource type="Resource" id="Resource_gvg6f"]
+script = ExtResource("2_1je23")
+type = 0
+property = "100"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_o0cr0"]
 script = ExtResource("3_ijuw0")
 rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_gvg6f")])
 
@@ -44,7 +51,7 @@ music = "gdung_beast"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = "boss!"
-rewards = SubResource("Resource_4tnsi")
+rewards = SubResource("Resource_o0cr0")
 victory_music = &"victory"
 stop_music_before_end = true
 kill_music = true

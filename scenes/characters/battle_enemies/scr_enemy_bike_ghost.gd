@@ -71,6 +71,10 @@ func hnnng_____the_power() -> void:
 
 func hurt(amount: float, gnd: int) -> void:
 	if at_gdung:
+		if character.health - _hurt_damage(amount, gnd) <= 0 and not at_gdung:
+			if reference_to_team_array.size() == 1:
+				SOL.dialogue("bike_ghost_gdung_defeat")
+				await SOL.dialogue_closed
 		super(amount, gnd)
 		return
 	if enemy_powerful:
