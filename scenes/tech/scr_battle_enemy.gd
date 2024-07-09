@@ -113,7 +113,8 @@ func ai_action() -> void:
 				return
 			Intents.BUFF:
 				target = pick_target(SELF)
-				if rng.randf() <= altruism: target = pick_target(TEAM)
+				if rng.randf() <= altruism:
+					target = pick_target(TEAM)
 				if rng.randf() <= vaimulembesus and buffing_spirits.size() > 0:
 					spirit_pocket.append_array(Math.determ_shuffle(buffing_spirits, rng))
 					for s in spirit_pocket:

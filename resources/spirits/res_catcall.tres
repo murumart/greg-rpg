@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://tchc271ge7x3"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_1jyii"]
+[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_3ogvk"]
+
+[sub_resource type="Resource" id="Resource_3syh0"]
+script = ExtResource("1_1jyii")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = "cat"
+max_enemies = 5
+animation_on_receive = ""
+meta = {}
+
+[resource]
+script = ExtResource("1_3ogvk")
+name_in_file = &""
+name = &"catcall"
+description = "summons a cat to fight for you."
+animation = &"catcall"
+use_animation = &""
+receive_animation = &""
+cost = 112
+use = 2
+reach = 0
+payload_reception_count = 1
+payload = SubResource("Resource_3syh0")

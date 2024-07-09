@@ -1,0 +1,259 @@
+[gd_scene load_steps=12 format=3 uid="uid://j0hlaeya17sp"]
+
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_multipanther.gd" id="1_7nxnl"]
+[ext_resource type="Texture2D" uid="uid://0h7fiv6qxdyd" path="res://sprites/characters/battle/cats/spr_multipanther.png" id="2_b4rfq"]
+[ext_resource type="Script" path="res://scenes/tech/scr_line_wiggler.gd" id="3_urbci"]
+[ext_resource type="Script" path="res://code/scr_sin_animator.gd" id="4_q27c4"]
+[ext_resource type="Texture2D" uid="uid://bauv3inxqco72" path="res://sprites/characters/battle/cats/spr_cat.png" id="5_mgowv"]
+
+[sub_resource type="Gradient" id="Gradient_xkt0a"]
+offsets = PackedFloat32Array(0, 0.271077, 0.548, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.955846, 0, 0, 0, 0.78941, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p0ibm"]
+gradient = SubResource("Gradient_xkt0a")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of1m1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(120, 32, 1)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1thi"]
+atlas = ExtResource("5_mgowv")
+region = Rect2(4, 8, 12, 4)
+
+[sub_resource type="Shader" id="Shader_1mr4d"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void fragment() {
+	float red = sin(TIME + SCREEN_UV.x * 12.0 - SCREEN_UV.y * 15.0 * cos(SCREEN_UV.x * 12.0)) * 0.5 + 0.5;
+	vec4 c = texture(screen_texture, SCREEN_UV, 0.0);
+	vec4 c2 = texture(screen_texture, SCREEN_UV * (sin(TIME + SCREEN_UV.x) * 0.01 + 1.0 - SCREEN_UV.y * 0.01), 0.0);
+
+	vec4 redcolor = vec4(c2.a * red * red * red + red * red * red * red * red, 0.0, 0.0 + red * 0.33 * red, c2.a);
+	COLOR = redcolor;
+	if (c.a > 0.0) {
+		COLOR = c;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ke1u"]
+shader = SubResource("Shader_1mr4d")
+
+[node name="Multipanther" type="Node2D"]
+script = ExtResource("1_7nxnl")
+toughness = 1.0
+xp_multiplier = 4.0
+gender = 6
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"position:y"
+target = NodePath("../OutlineMe/Head")
+speed = 3.995
+min_value = -7.31
+max_value = -6.89
+
+[node name="SinAnimator2" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"position:x"
+target = NodePath("../OutlineMe/Head")
+speed = 3.995
+min_value = -4.985
+max_value = 2.19
+offset = 1.53
+
+[node name="SinAnimator3" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"position:x"
+target = NodePath("../OutlineMe/Head/Head")
+speed = 3.12
+min_value = 12.995
+max_value = -5.725
+offset = 2.855
+
+[node name="SinAnimator4" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"position:y"
+target = NodePath("../OutlineMe/Head/Head")
+speed = 3.995
+min_value = 8.465
+max_value = -0.74
+offset = 0.01
+
+[node name="SinAnimator5" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"rotation"
+target = NodePath("../OutlineMe/Head/Head")
+speed = 3.995
+min_value = 8.465
+max_value = -0.74
+offset = 0.01
+
+[node name="SinAnimator6" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_q27c4")
+property_name = &"rotation"
+target = NodePath("../OutlineMe/Head")
+speed = -0.925
+min_value = 5.365
+max_value = -1.21
+offset = 0.01
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-0.499998, 31.5)
+scale = Vector2(5.57813, 2.98438)
+texture = SubResource("GradientTexture2D_p0ibm")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 68)
+process_material = SubResource("ParticleProcessMaterial_of1m1")
+texture = SubResource("AtlasTexture_l1thi")
+lifetime = 6.0
+
+[node name="OutlineMe" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_8ke1u")
+
+[node name="Tail12" type="Line2D" parent="OutlineMe"]
+position = Vector2(3, -30)
+rotation = 0.385227
+points = PackedVector2Array(-1.65283, 3.90745, -8.6145, 23.9956, -2.9271, 48.6665, -8.76146, 71.5349, -18.2292, 72.1367, -16.825, 94.228, -40.5692, 99.5396)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Tail11" type="Line2D" parent="OutlineMe"]
+position = Vector2(4, -31)
+rotation = 0.911502
+points = PackedVector2Array(0.790424, 0.61256, 23.7718, 1.97566, 53.2544, 9.64223, 95.166, 2.90327, 135.24, -1.4644)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Tail4" type="Line2D" parent="OutlineMe"]
+position = Vector2(-11, -22)
+rotation = -2.70362
+points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(6, 1)
+
+[node name="Tail3" type="Line2D" parent="OutlineMe"]
+position = Vector2(3, 29)
+rotation = -0.378716
+scale = Vector2(1, 1)
+points = PackedVector2Array(-8, -2, -10.2205, -4.06701, -9.11135, -6.85443, -8.19185, -11.8699, -6.71294, -15.5864, -4.8643, -20.2321, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(6, 1)
+
+[node name="Tail2" type="Line2D" parent="OutlineMe"]
+position = Vector2(13, 30)
+rotation = -0.378716
+scale = Vector2(1, 1)
+points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(6, 1)
+
+[node name="Tail" type="Line2D" parent="OutlineMe"]
+position = Vector2(7, 7)
+rotation = 1.35998
+points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(6, 1)
+
+[node name="Tail5" type="Line2D" parent="OutlineMe"]
+position = Vector2(-7, 8)
+rotation = 2.65843
+points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(6, 1)
+
+[node name="Tail6" type="Line2D" parent="OutlineMe"]
+position = Vector2(1.61975, 15.3098)
+rotation = 2.71997
+points = PackedVector2Array(-16.6556, 41.0923, -7.65222, 21.0189, 10.5423, -14.6596)
+width = 9.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(18, 1)
+
+[node name="Tail7" type="Line2D" parent="OutlineMe"]
+position = Vector2(4, 6)
+rotation = -3.06924
+points = PackedVector2Array(-0.959102, 1.03929, -7, -5, -17.6679, -16.3047, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Tail10" type="Line2D" parent="OutlineMe"]
+position = Vector2(-1, 7)
+rotation = -2.51251
+points = PackedVector2Array(-0.959102, 1.03929, -7, -5, -17.6679, -16.3047, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Tail8" type="Line2D" parent="OutlineMe"]
+position = Vector2(-6, 15)
+rotation = -0.0590966
+points = PackedVector2Array(3.64445, -10.8036, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Tail9" type="Line2D" parent="OutlineMe"]
+position = Vector2(-6, 15)
+rotation = -0.477812
+points = PackedVector2Array(3.64445, -10.8036, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("3_urbci")
+active_in_editor = false
+wiggle_range = Vector2(12, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="OutlineMe"]
+texture = ExtResource("2_b4rfq")
+
+[node name="Head" type="Sprite2D" parent="OutlineMe"]
+position = Vector2(-4.4293, -10.3473)
+rotation = 5.34839
+texture = ExtResource("5_mgowv")
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 16)
+
+[node name="Head" type="Sprite2D" parent="OutlineMe/Head"]
+position = Vector2(11.9347, 8.13706)
+rotation = 8.13706
+texture = ExtResource("5_mgowv")
+region_enabled = true
+region_rect = Rect2(0, 0, 20, 16)

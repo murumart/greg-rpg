@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -91,6 +91,8 @@ func parse_command() -> void:
 			give_spirit(args)
 		&"gsilver":
 			give_silver(args)
+		&"goto":
+			goto(args)
 		&"reload":
 			DAT.save_to_dict()
 			LTS.gate_id = LTS.GATE_LOADING
@@ -324,4 +326,16 @@ func add_perk(args: PackedStringArray) -> void:
 		return
 	questing.add_perk({args[0]: Math.toexp(args[1])})
 	output("perk added")
+
+
+func goto(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: goto room")
+		return
+	var room: String = LTS.ROOM_SCENE_PATH % args[0]
+	if not ResourceLoader.exists(room):
+		output("room %s doesn't exist" % args[0], true)
+		return
+	LTS.level_transition(room)
+	output("going to " + args[0])
 

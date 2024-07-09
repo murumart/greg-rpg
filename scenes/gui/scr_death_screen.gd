@@ -60,6 +60,10 @@ const DEATH_REASONS := {
 	"dish": {
 		"picture": "dish",
 		"text": "[center]sleep with the dishes / for a 1000 years",
+	},
+	"gdung": {
+		"picture": "gdung",
+		"text": "[center]it goes deep.",
 	}
 }
 @export var test_death := ""

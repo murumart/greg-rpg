@@ -291,6 +291,11 @@ func attack(subject: BattleActor) -> void:
 
 func use_spirit(id: String, subject: BattleActor) -> void:
 	var spirit: Spirit = ResMan.get_spirit(id)
+	if (spirit.payload.summon_enemy
+			and subject.reference_to_team_array.size() > spirit.payload.max_enemies):
+		emit_message("%s: enemies won't fit!" % [actor_name])
+		SND.play_sound(preload("res://sounds/error.ogg"))
+		return
 	character.magic = max(character.magic - spirit.cost, 0)
 	emit_message("%s: %s!" % [actor_name, spirit.name])
 	# animating
@@ -430,7 +435,7 @@ func handle_payload(pld: BattlePayload) -> void:
 				eff.duration += 1
 			add_status_effect(eff)
 
-	if pld.summon_enemy:
+	if pld.summon_enemy and reference_to_team_array.size() < pld.max_enemies:
 		teammate_requested.emit(self, pld.summon_enemy)
 
 	if pld.meta.get("reveal_enemy_info", false) and pld.sender.player_controlled:

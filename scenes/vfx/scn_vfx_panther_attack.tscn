@@ -1,0 +1,185 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqyo7vmw7nsxo"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_line_wiggler.gd" id="1_8w2pk"]
+[ext_resource type="AudioStream" uid="uid://bdeurbfc2b2j1" path="res://sounds/cat_attack.ogg" id="2_yw2t8"]
+
+[sub_resource type="Shader" id="Shader_4yfe3"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void fragment() {
+	float red = sin(TIME + SCREEN_UV.x * 12.0 - SCREEN_UV.y * 15.0 * cos(SCREEN_UV.x * 12.0)) * 0.5 + 0.5;
+	vec4 c = texture(screen_texture, SCREEN_UV, 0.0);
+	vec4 c2 = texture(screen_texture, SCREEN_UV * (sin(TIME + SCREEN_UV.x) * 0.01 + 1.0 - SCREEN_UV.y * 0.01), 0.0);
+
+	vec4 redcolor = vec4(c2.a * red * red * red + red * red * red * red * red, 0.0, 0.0 + red * 0.33 * red, c2.a);
+	COLOR = redcolor;
+	if (c.a > 0.0) {
+		COLOR = c;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i5tj"]
+shader = SubResource("Shader_4yfe3")
+
+[sub_resource type="Animation" id="Animation_bpu4r"]
+resource_name = "new_animation"
+length = 0.641
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutlineMe:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_yw2t8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y5x5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutlineMe:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j6e4m"]
+_data = {
+"RESET": SubResource("Animation_y5x5b"),
+"new_animation": SubResource("Animation_bpu4r")
+}
+
+[node name="PantherAttack" type="Node2D"]
+
+[node name="OutlineMe" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_3i5tj")
+
+[node name="Tail12" type="Line2D" parent="OutlineMe"]
+position = Vector2(2, -34)
+rotation = 0.385227
+points = PackedVector2Array(9.62027, 31.7088, 1.07925, 31.9349, -2.9271, 48.6665, -8.76146, 71.5349, -18.2292, 72.1367, -16.825, 94.228, -40.5692, 99.5396)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail11" type="Line2D" parent="OutlineMe"]
+position = Vector2(4, -30)
+rotation = 0.911502
+points = PackedVector2Array(24.2463, 22.5857, 9.56406, 2.35134, 19.365, -10.2955, 27.684, -17.765, 19.503, -31.696)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail4" type="Line2D" parent="OutlineMe"]
+position = Vector2(-11, -22)
+rotation = -2.70362
+points = PackedVector2Array(-19.2921, -15.2583, -7, -5, 4.47066, 0.114804, 6.5115, -9.67473, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail5" type="Line2D" parent="OutlineMe"]
+position = Vector2(-7, 8)
+rotation = 2.65843
+points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail7" type="Line2D" parent="OutlineMe"]
+position = Vector2(4, 6)
+rotation = -3.06924
+points = PackedVector2Array(5.34838, 4.62546, -7, -5, -17.6679, -16.3047, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail10" type="Line2D" parent="OutlineMe"]
+position = Vector2(-1, 7)
+rotation = -2.51251
+points = PackedVector2Array(2.13346, 4.63124, -7, -5, -17.6679, -16.3047, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail8" type="Line2D" parent="OutlineMe"]
+position = Vector2(-6, 15)
+rotation = -0.0590966
+points = PackedVector2Array(7.69653, -11.5656, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="Tail9" type="Line2D" parent="OutlineMe"]
+position = Vector2(-8, 13)
+rotation = -0.477812
+points = PackedVector2Array(12.1939, -8.32518, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_8w2pk")
+active_in_editor = false
+wiggle_range = Vector2(128, 128)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j6e4m")
+}
+autoplay = "new_animation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

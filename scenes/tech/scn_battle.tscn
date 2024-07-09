@@ -29,7 +29,7 @@ rewards = Array[ExtResource("2_ih1jy")]([SubResource("Resource_gvg6f")])
 
 [sub_resource type="Resource" id="Resource_tkoo7"]
 script = ExtResource("2_di672")
-enemies = Array[StringName]([&"bike_ghost", &"bike_ghost_beta"])
+enemies = Array[StringName]([&"multipanther"])
 background = "house_inside"
 music = "gdung_beast"
 party = Array[StringName]([])
