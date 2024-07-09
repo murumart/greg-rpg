@@ -3465,7 +3465,7 @@ altruism = 0.592
 vaimulembesus = 0.511
 xp_multiplier = 7.0
 gender = 4
-effect_immunities = Array[String](["poison"])
+effect_immunities = Array[StringName]([&"poison"])
 
 [node name="Puppet" type="CanvasGroup" parent="." index="0"]
 script = ExtResource("2_s7p5t")

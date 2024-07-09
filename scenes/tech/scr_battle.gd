@@ -479,8 +479,10 @@ func check_end(force := false) -> void:
 		open_end_screen(party.size() > 0)
 
 
+var _message_log := []
 func message(msg: String, options := {}) -> void:
 	log_text.push_message(msg, options)
+	_message_log.append({"msg": msg, "options": options})
 
 
 # when a player-controllect character requests act

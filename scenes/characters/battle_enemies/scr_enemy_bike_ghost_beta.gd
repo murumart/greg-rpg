@@ -54,6 +54,6 @@ func hurt(amt: float, g: int) -> void:
 
 
 func _flee_at_right_time(line: int) -> void:
-	if line == 10:
+	if line == 11:
 		flee()
 		SOL.dialogue_box.started_speaking.disconnect(_flee_at_right_time)

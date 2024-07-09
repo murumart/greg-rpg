@@ -73,7 +73,9 @@ static func plus(a: BattleStatusEffect, b: BattleStatusEffect) -> BattleStatusEf
 		return null
 	u.type = a.type
 	u.strength = maxf(a.strength, b.strength)
-	if a.strength < 0 or b.strength < 0:
+	if sign(a.strength) != sign(b.strength):
+		u.strength = a.strength + b.strength
+	elif (a.strength < 0 or b.strength < 0) and u.strength > 0:
 		u.strength -= minf(a.strength, b.strength)
 	if u.strength == 0:
 		return null
