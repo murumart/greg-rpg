@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b26024b5usn7u"]
+
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_cat_enemy.gd" id="1_1ab0l"]
+[ext_resource type="PackedScene" uid="uid://nhjuvuyqoydd" path="res://scenes/characters/overworld/scn_grandma_housecat_overworld.tscn" id="1_6aq7w"]
+
+[node name="CatEnemy" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_1ab0l")
+
+[node name="GrandmaHousecat" parent="." instance=ExtResource("1_6aq7w")]
+position = Vector2(8, 8)

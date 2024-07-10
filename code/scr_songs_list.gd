@@ -90,6 +90,11 @@ var songs := {
 		"title": "gaming",
 		"stream": preload("res://music/mus_gaming.ogg")
 	},
+	"gdung": {
+		"title": "the rooms change",
+		"stream": preload("res://music/mus_gdung.ogg"),
+		"default_volume": -3,
+	},
 	"gdung_beast": {
 		"title": "undisclosed six figure sum",
 		"stream": preload("res://music/mus_gdung_beast.ogg")

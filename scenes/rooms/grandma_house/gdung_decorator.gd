@@ -80,21 +80,11 @@ func _place_object(
 		position: Vector2,
 		suite: GDUNGSuite) -> bool:
 	var instance := object[GDUNGObjects.SCENE].instantiate() as Node2D
-	if object.get(GDUNGObjects.IS_ENEMY, false):
-		var fought_enemies := DAT.get_data("gdung_fought_enemies", []) as Array
-		if _decor_id in fought_enemies:
-			instance.free()
-			return false
-		instance = instance as OverworldCharacter
-		assert(is_instance_valid(instance))
-		instance.chase_target = greg
-		var current_id := _decor_id
-		instance.inspected.connect(func():
-			DAT.appenda("gdung_fought_enemies", current_id)
-		, CONNECT_ONE_SHOT)
 	objects_node.add_child.call_deferred(instance)
 	instance.global_position = position
 	suite.add_generated_object(obkey, object, instance, _decor_id)
+	instance.set_meta("gdung_suite", suite)
+	instance.set_meta("gdung_greg", greg)
 	return true
 
 

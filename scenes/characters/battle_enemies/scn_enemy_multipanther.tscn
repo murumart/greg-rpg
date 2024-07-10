@@ -152,7 +152,6 @@ wiggle_range = Vector2(6, 1)
 [node name="Tail3" type="Line2D" parent="OutlineMe"]
 position = Vector2(3, 29)
 rotation = -0.378716
-scale = Vector2(1, 1)
 points = PackedVector2Array(-8, -2, -10.2205, -4.06701, -9.11135, -6.85443, -8.19185, -11.8699, -6.71294, -15.5864, -4.8643, -20.2321, 1.73751, -23.7493, 0.472765, -29.0127)
 width = 3.0
 default_color = Color(0, 0, 0, 1)
@@ -163,7 +162,6 @@ wiggle_range = Vector2(6, 1)
 [node name="Tail2" type="Line2D" parent="OutlineMe"]
 position = Vector2(13, 30)
 rotation = -0.378716
-scale = Vector2(1, 1)
 points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
 width = 3.0
 default_color = Color(0, 0, 0, 1)

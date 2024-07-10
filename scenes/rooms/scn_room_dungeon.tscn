@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu84ipbqt3xqx"]
+[gd_scene load_steps=13 format=3 uid="uid://cu84ipbqt3xqx"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_rk5ny"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="2_6ceol"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vka64"]
 [ext_resource type="Shader" path="res://shaders/shd_gdung_pathline.gdshader" id="8_hje8f"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="9_qfv8t"]
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_storyline.gd" id="10_76lej"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glmk8"]
 shader = ExtResource("8_hje8f")
@@ -20,14 +21,18 @@ point_count = 5
 [node name="Dungeon" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rk5ny")
+music = "gdung"
 metadata/_edit_vertical_guides_ = [1280.0]
 metadata/_edit_horizontal_guides_ = [881.0]
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_6ceol")
 level_gain = 72
+new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish"])
+replace_armour = &"cool_jacket"
+replace_weapon = &"fish"
 data_overrides = {
-"nr": 0.68
+"nr": 0.71
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -73,3 +78,7 @@ texture_mode = 2
 joint_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
+
+[node name="Storyline" type="Node" parent="." node_paths=PackedStringArray("layout_gen") groups=["save_me"]]
+script = ExtResource("10_76lej")
+layout_gen = NodePath("../InteriorTiles/LayoutGenerator")

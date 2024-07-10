@@ -1,5 +1,7 @@
 class_name GDUNGLayoutGenerator extends Node
 
+signal greg_entered_suite(GDUNGSuiteScene)
+
 const START_LAYOUT: PackedByteArray = [0, 0, 80, 55]
 
 var suites: Array[GDUNGSuite] = []
@@ -152,7 +154,8 @@ func _make_suite_walls() -> void:
 	var door_positions: Array[Vector2i] = []
 	var handled: Array[GDUNGSuite] = []
 	for suite: GDUNGSuite in suites:
-		_create_some_wall(suite.get_rect())
+		var rect := suite.get_rect()
+		_create_some_wall(rect)
 		#var button := Button.new() # DEBUG
 		#button.text = str(suite).left(8)
 		#button.global_position = suite.get_rect().position * 16
@@ -171,9 +174,11 @@ func _make_suite_walls() -> void:
 			var minimal := neighbor if neighbor.get_x_size() < suite.get_x_size() else suite
 			var door_x := minimal.get_rect().get_center().x
 			door_x += rng.randi_range(-1, 1)
-			while door_x >= suite.get_rect().end.x - 1 or door_x >= neighbor.get_rect().end.x - 1:
+			while (door_x >= suite.get_rect().end.x - 1
+					or door_x >= neighbor.get_rect().end.x - 1):
 				door_x -= 1
-			while door_x <= suite.get_rect().position.x or door_x <= neighbor.get_rect().position.x:
+			while (door_x <= suite.get_rect().position.x
+					or door_x <= neighbor.get_rect().position.x):
 				door_x += 1
 			var door_position := Vector2i(
 					door_x,
@@ -185,7 +190,8 @@ func _make_suite_walls() -> void:
 			var minimal := neighbor if neighbor.get_y_size() < suite.get_y_size() else suite
 			var door_y := minimal.get_rect().get_center().y
 			door_y += rng.randi_range(-1, 1)
-			while door_y >= suite.get_rect().end.y - 1 or door_y >= neighbor.get_rect().end.y - 1:
+			while (door_y >= suite.get_rect().end.y - 1
+					or door_y >= neighbor.get_rect().end.y - 1):
 				door_y -= 1
 			var door_position := Vector2i(
 					neighbor.get_rect().position.x - 1,
@@ -194,6 +200,9 @@ func _make_suite_walls() -> void:
 			neighbor.door_positions.append(door_position)
 			door_positions.append(door_position)
 			door_positions.append(door_position + Vector2i(0, -1))
+		var area := GDUNGSuiteScene.create(suite)
+		add_child(area)
+		area.greg_entered.connect(_greg_entered_scene)
 		handled.append(suite)
 	for pos in door_positions:
 		walls.erase(pos)
@@ -250,4 +259,8 @@ func _end_wall_definition() -> void:
 
 func globalise_rect(r: Rect2) -> Rect2:
 	return Rect2(r.position * 16, r.size * 16)
+
+
+func _greg_entered_scene(suite: GDUNGSuiteScene) -> void:
+	greg_entered_suite.emit(suite)
 
