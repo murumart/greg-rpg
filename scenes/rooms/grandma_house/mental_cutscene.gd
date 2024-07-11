@@ -18,7 +18,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	if DAT.get_data("fought_grandma", false):
+	if DAT.get_data("fought_grandma", false) and not DAT.get_data("intro_cutscene_over", false):
 		start()
 	else:
 		queue_free()
@@ -65,6 +65,7 @@ func start() -> void:
 			grandma_voice.playing = true
 			grandma_voice.pitch_scale = 0.3
 		)
+		labels.label_89.text = labels.label_89.text % DAT.GDUNG_LEVEL
 		t.tween_property(labels.label_89, "visible_ratio", 0.232, 3).from(0.0)
 		t.tween_callback(func():
 			grandma_voice.playing = false

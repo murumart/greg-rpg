@@ -4,11 +4,20 @@ extends Room
 var music_last_position := 0.0
 var music_last_song: String
 @export_range(-1, 10) var prank_call_force := -1
+@onready var things_to_delete := [$Grandma, $Decor/Sprite2D18, $Decor/Sprite2D19,
+	$Decor/Sprite2D15, $Decor/Sprite2D20, $Decor/Sprite2D5, $Decor/Flower1, $Decor/Flower2,
+	$Decor/Flower3, $Decor/Flower4, $Decor/Flower5, $Decor/Flower6, $Decor/Flower7,
+	$Decor/Flower8, $Decor/Flower9, $Cats]
+@onready var door_area: Area2D = $Areas/DoorArea
 
 
 func _ready() -> void:
 	super._ready()
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
+	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
+		things_to_delete.map(func(a): a.queue_free())
+		door_area.destination = &"dungeon"
+		return
 	# long grandma lol
 	if Math.inrange(DAT.get_data("nr", 0), 0.15, 0.16):
 		$Grandma/AnimatedSprite2D.scale.y = 4.875

@@ -38,6 +38,8 @@ func _ready() -> void:
 	else:
 		DAT.set_data("intro_cutscene_over", true)
 		$Cutscenes.queue_free()
+	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
+		house_door.destination = "grandma_house_inside"
 
 
 func start() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=39 format=3 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="11_b4a8j"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="12_363c6"]
+[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="13_kx26r"]
 [ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="13_wcuw7"]
 [ext_resource type="PackedScene" uid="uid://jj6bwkmk6vr8" path="res://scenes/rooms/grandma_house/gdung_objects/flower_6.tscn" id="14_l4787"]
 [ext_resource type="PackedScene" uid="uid://cal1oxl0ljsjj" path="res://scenes/rooms/grandma_house/gdung_objects/flower_3.tscn" id="15_v43um"]
@@ -48,6 +49,9 @@ size = Vector2(14, 17.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrqee"]
 size = Vector2(17, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnnht"]
+size = Vector2(18, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1s35"]
 shader = ExtResource("2_0lukr")
@@ -297,6 +301,14 @@ offset = Vector2(0, -12)
 region_enabled = true
 region_rect = Rect2(67, 16, 9, 17)
 
+[node name="InspectArea" type="Area2D" parent="Decor/Sprite2D5"]
+script = ExtResource("13_kx26r")
+key = "carnations"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Sprite2D5/InspectArea"]
+position = Vector2(-1, -4)
+shape = SubResource("RectangleShape2D_mnnht")
+
 [node name="Flower1" parent="Decor" instance=ExtResource("19_yh75l")]
 position = Vector2(-16, 3)
 
@@ -469,8 +481,8 @@ theme_override_constants/shadow_offset_x = 65
 theme_override_constants/outline_size = 89
 theme_override_font_sizes/normal_font_size = 163
 bbcode_enabled = true
-text = "[center][shake level=40]level 72.[/shake][/center]
-come back when you are at level 72."
+text = "[center][shake level=40]level %s.[/shake][/center]
+come back when you are at level %s."
 visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0

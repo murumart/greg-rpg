@@ -33,6 +33,9 @@ func generate() -> void:
 	tilemap.queue_redraw()
 	if DAT.get_data("gdung_gen_next_floor", false):
 		DAT.incri("gdung_floor", 1)
+	if DAT.get_data("gdung_floor", 0) >= 3:
+
+		return
 	rng.set_seed(DAT.get_data("nr", 0.0) * 1000 + DAT.get_data("gdung_floor", 0) * 2)
 	tilemap.clear_layer(1)
 	_begin_wall_definition() #

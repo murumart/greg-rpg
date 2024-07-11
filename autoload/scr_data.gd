@@ -4,6 +4,7 @@ extends Node
 # ...and a bunch of other things.
 
 const VERSION := Vector3(0, 9, 4)
+const GDUNG_LEVEL := 72
 
 signal player_captured(capture: bool)
 

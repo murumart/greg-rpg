@@ -22,7 +22,7 @@ func _ready() -> void:
 		store_door.destination = ""
 		store_door.fail_dialogue = "store_under_cleanup"
 	if not DAT.get_data("zerma_left", false):
-		DAT.set_data("intro_cutscene_finished", true)
+		DAT.set_data("intro_cutscene_over", true)
 		DAT.set_data("zerma_left", true)
 
 	pink_haired_girl_setup()

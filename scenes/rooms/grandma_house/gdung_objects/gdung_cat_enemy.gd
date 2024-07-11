@@ -5,7 +5,6 @@ extends Node2D
 
 func _ready() -> void:
 	grandma_housecat.inspected.connect(_on_attack)
-	grandma_housecat.chase_target = get_meta(&"gdung_greg", null)
 	var saved_cats := DAT.get_data("gdung_saved_cats", {}) as Dictionary
 	if not saved_cats:
 		return
