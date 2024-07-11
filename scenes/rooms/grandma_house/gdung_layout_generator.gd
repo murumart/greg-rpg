@@ -2,7 +2,7 @@ class_name GDUNGLayoutGenerator extends Node
 
 signal greg_entered_suite(GDUNGSuiteScene)
 
-const START_LAYOUT: PackedByteArray = [0, 0, 80, 55]
+const START_LAYOUT: PackedByteArray = [0, 0, 89, 89]
 
 var suites: Array[GDUNGSuite] = []
 var suites_by_rect := {}
@@ -22,11 +22,11 @@ func _ready() -> void:
 
 
 # DEBUG
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_text_delete"):
-		DAT.set_data("nr", randf())
-		generate()
-		ready.emit()
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_text_delete"):
+		#DAT.set_data("nr", randf())
+		#generate()
+		#ready.emit()
 
 
 func generate() -> void:

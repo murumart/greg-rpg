@@ -49,18 +49,23 @@ func _decorate_suites() -> void:
 	print("decorating ", to_decorate.size(), " suites took ", Time.get_ticks_msec() - time)
 
 
-func _decorate_suite(suite: GDUNGSuite, keys_weights: Dictionary, approximate_order: int) -> bool:
+func _decorate_suite(
+		suite: GDUNGSuite,
+		keys_weights: Dictionary,
+		approximate_order: int) -> bool:
 	_decor_id += 1
 	var _tries := 0
 	var obkey := StringName()
 	var object := {}
 	var sut_pos := Vector2i.ZERO
-	while _tries < 20:
+	while _tries < 8:
 		_tries += 1
 		obkey = Math.weighted_random(keys_weights.keys(),
 				keys_weights.values(), generator.rng) as StringName
 		object = OB_DB[obkey] as Dictionary
 		if object.get(GDUNGObjects.ORDER_NR_MIN, 0) > approximate_order:
+			continue
+		if object.get(GDUNGObjects.MAX_PER_SUITE, 9999) <= suite.count_objects(obkey):
 			continue
 		sut_pos = _get_suitable_position(suite,
 				object.get(GDUNGObjects.SIZE),
@@ -94,16 +99,11 @@ func _get_suites_to_decorate() -> Array[GDUNGSuite]:
 		var suite := generator.suites[id]
 		if not suite in to_decorate:
 			to_decorate.append(suite)
-		for side in 2:
-			side += 2
-			for x in suite.neighbors[side]:
-				if not x in to_decorate:
-					to_decorate.append(x)
-				for side2 in 2:
-					side2 += 2
-					for y in x.neighbors[side2]:
-						if not y in to_decorate:
-							to_decorate.append(y)
+		for neighbors in suite.neighbors.values():
+			for neighbor: GDUNGSuite in neighbors:
+				if neighbor in to_decorate:
+					continue
+				to_decorate.append(neighbor)
 	return to_decorate
 
 

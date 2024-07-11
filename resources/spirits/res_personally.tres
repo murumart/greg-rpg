@@ -6,10 +6,10 @@
 [sub_resource type="Resource" id="Resource_2etd8"]
 script = ExtResource("1_obkfa")
 health = -55.0
-health_percent = 0.0
+health_percent = -22.0
 max_health_percent = 0.0
 pierce_defense = 0.0
-steal_health = 0.4
+steal_health = 0.75
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
@@ -21,6 +21,7 @@ gender = 1
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
 meta = {}
 

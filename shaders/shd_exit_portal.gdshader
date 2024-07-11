@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform float modulate_a = 1.0;
+
 // https://forum.godotengine.org/t/simple-texture-rotation-shader/24198/2
 vec2 rotateUV(vec2 uv, vec2 pivot, float rotation) {
     float sine = sin(rotation);
@@ -35,5 +37,6 @@ void fragment() {
 	COLOR.r *= 2.0 + sin(TIME);
 	COLOR.g *= 2.0;
 	COLOR.b *= (3.0 + cos(UV.x * 12.0 * uv.y + TIME));
+	COLOR.a *= modulate_a;
 }
 

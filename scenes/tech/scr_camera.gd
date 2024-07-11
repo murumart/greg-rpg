@@ -11,11 +11,15 @@ var shake_trauma := 0.0
 var shake_trauma_power := 2
 
 var free_cam := false
+@export var window_mode: Window.ContentScaleMode = (
+		Window.ContentScaleMode.CONTENT_SCALE_MODE_VIEWPORT)
 
 
 func _ready() -> void:
 	# needed due to godot 4 beta somethingsomething camera changes
-	make_current()
+	if enabled:
+		make_current()
+		get_window().content_scale_mode = window_mode
 
 
 func add_trauma(amount: float) -> void:

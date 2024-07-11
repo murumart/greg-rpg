@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://x12vt5wvj4qb"]
+[gd_scene load_steps=20 format=3 uid="uid://x12vt5wvj4qb"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
 [ext_resource type="Shader" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
@@ -86,6 +86,7 @@ crits_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52bo6"]
 shader = ExtResource("1_oiab4")
+shader_parameter/modulate_a = 1.0
 
 [sub_resource type="Gradient" id="Gradient_joub4"]
 interpolation_mode = 2
@@ -99,6 +100,10 @@ height = 48
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tiuv"]
+shader = ExtResource("1_oiab4")
+shader_parameter/modulate_a = 1.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qons8"]
 radius = 13.0
 height = 40.0
@@ -111,6 +116,13 @@ battle_infos = Array[ExtResource("2_qq1bq")]([SubResource("Resource_v3jjj"), Sub
 material = SubResource("ShaderMaterial_52bo6")
 position = Vector2(0, -15)
 scale = Vector2(1, 0.958333)
+texture = SubResource("GradientTexture2D_gwqqb")
+
+[node name="Screener" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_4tiuv")
+position = Vector2(80, 60)
+scale = Vector2(5, 2.5)
 texture = SubResource("GradientTexture2D_gwqqb")
 
 [node name="Area2D" type="Area2D" parent="."]

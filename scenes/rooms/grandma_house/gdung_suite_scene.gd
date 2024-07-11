@@ -19,7 +19,7 @@ func _ready() -> void:
 	global_position = suite.get_position() * 16.0
 	coll.shape.size = suite.get_rect().size * 16.0
 	coll.position += coll.shape.size * 0.5
-	body_entered.connect(func(a):
+	body_entered.connect((func():
 		greg_in = self
-		self.greg_entered.emit(self)
+		self.greg_entered.emit(self)).unbind(1)
 	)

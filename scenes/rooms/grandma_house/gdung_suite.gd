@@ -91,9 +91,21 @@ func has_neighbors() -> bool:
 	return false
 
 
-func add_generated_object(key: StringName, object: Dictionary, instance: Node2D, ob_id: int) -> void:
+func add_generated_object(
+		key: StringName,
+		object: Dictionary,
+		instance: Node2D,
+		ob_id: int) -> void:
 	var rect := Rect2i(Vector2i(
 			(instance.global_position) / 16.0) - get_position(),
 			object.get(GDUNGObjects.SIZE))
 	generated_objects.append(
-				{"key": key, "object": object, "rect": rect, "instance": instance, "id": ob_id})
+			{"key": key, "object": object, "rect": rect, "instance": instance, "id": ob_id})
+
+
+func count_objects(key: StringName) -> int:
+	var count := 0
+	for x in generated_objects:
+		if x.get("key", &"") == key:
+			count += 1
+	return count
