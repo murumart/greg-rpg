@@ -65,7 +65,7 @@ func start() -> void:
 			grandma_voice.playing = true
 			grandma_voice.pitch_scale = 0.3
 		)
-		labels.label_89.text = labels.label_89.text % DAT.GDUNG_LEVEL
+		labels.label_89.text = labels.label_89.text % [DAT.GDUNG_LEVEL, DAT.GDUNG_LEVEL]
 		t.tween_property(labels.label_89, "visible_ratio", 0.232, 3).from(0.0)
 		t.tween_callback(func():
 			grandma_voice.playing = false

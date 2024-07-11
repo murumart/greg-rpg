@@ -186,5 +186,6 @@ func enable_gates() -> void:
 
 
 func _exit_tree() -> void:
-	if not &"cellphone" in ResMan.get_character("greg").inventory:
-		ResMan.get_character("greg").inventory.append(&"cellphone")
+	if intro_progress >= 4:
+		if not &"cellphone" in ResMan.get_character("greg").inventory:
+			ResMan.get_character("greg").inventory.append(&"cellphone")
