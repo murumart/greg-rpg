@@ -42,9 +42,6 @@ func get_dict_from_global_file(filename: String) -> Dictionary:
 		printerr("no %s file exists" % filename)
 		return {}
 	var file := FileAccess.open(filename, FileAccess.READ)
-	if filename.get_extension() != "grs":
-		printerr("invalid file extension")
-		return {}
 	var fvar: Variant = file.get_var()
 	if not fvar:
 		printerr("invalid file")

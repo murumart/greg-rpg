@@ -16,5 +16,6 @@ func _on_area_2d_body_entered(_body: PlayerOverworld) -> void:
 	if gdung_floor >= battle_infos.size():
 		LTS.level_transition("res://scenes/rooms/scn_room_grandma_after_fight_staredown.tscn")
 		return
+	SND.play_song("gdung_beast", 99, {"start_volume": 0, "play_from_start": true})
 	LTS.enter_battle(battle_infos[gdung_floor])
 	DAT.set_data("gdung_gen_next_floor", true)

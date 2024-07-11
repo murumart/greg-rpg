@@ -28,8 +28,8 @@ start_text = "boss!"
 rewards = SubResource("Resource_fqadj")
 victory_music = &"victory"
 stop_music_before_end = true
-kill_music = true
-play_fanfare = true
+kill_music = false
+play_fanfare = false
 crits_enabled = true
 
 [sub_resource type="Resource" id="Resource_gvg6f"]
@@ -54,8 +54,8 @@ start_text = "boss!"
 rewards = SubResource("Resource_o0cr0")
 victory_music = &"victory"
 stop_music_before_end = true
-kill_music = true
-play_fanfare = true
+kill_music = false
+play_fanfare = false
 crits_enabled = true
 
 [sub_resource type="Resource" id="Resource_hw6pg"]
@@ -80,8 +80,8 @@ start_text = "boss!"
 rewards = SubResource("Resource_hkonc")
 victory_music = &"extremophile"
 stop_music_before_end = true
-kill_music = true
-play_fanfare = true
+kill_music = false
+play_fanfare = false
 crits_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52bo6"]
