@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://nhjuvuyqoydd"]
+[gd_scene load_steps=23 format=3 uid="uid://nhjuvuyqoydd"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_c6a5i"]
 [ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="2_6sx7j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="3_23not"]
 [ext_resource type="Script" path="res://code/key_curve_pair.gd" id="4_hjfs6"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="5_8ihca"]
+[ext_resource type="Script" path="res://scenes/characters/overworld/cats/gdung_housecat_detector.gd" id="7_52pu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33s1w"]
 resource_local_to_scene = true
@@ -69,6 +70,17 @@ kill_music = true
 play_fanfare = true
 crits_enabled = true
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jw1ic"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_fh6m3"]
+offsets = PackedFloat32Array(0.0773015, 0.855079)
+colors = PackedColorArray(1, 1, 0, 0.564706, 1, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uyaft"]
+gradient = SubResource("Gradient_fh6m3")
+fill_to = Vector2(0, 1)
+
 [node name="GrandmaHousecat" instance=ExtResource("1_c6a5i")]
 script = ExtResource("2_n14ej")
 friendly = false
@@ -101,3 +113,35 @@ values = Array[ExtResource("4_hjfs6")]([SubResource("Resource_l03v2"), SubResour
 default_battle = SubResource("Resource_erlxv")
 inject_target = NodePath("..")
 start_texts = Array[String](["these things happen.", "meow?"])
+
+[node name="Detector" type="Node2D" parent="." index="5" node_paths=PackedStringArray("cat", "beam", "raycasts")]
+script = ExtResource("7_52pu2")
+cat = NodePath("..")
+beam = NodePath("Beam")
+raycasts = [NodePath("RayCast2D"), NodePath("RayCast2D2"), NodePath("RayCast2D3")]
+
+[node name="RayCast2D" type="RayCast2D" parent="Detector" index="0"]
+target_position = Vector2(0, 60)
+collision_mask = 3
+
+[node name="RayCast2D2" type="RayCast2D" parent="Detector" index="1"]
+rotation = 0.261799
+target_position = Vector2(0, 60)
+collision_mask = 3
+
+[node name="RayCast2D3" type="RayCast2D" parent="Detector" index="2"]
+rotation = -0.261799
+target_position = Vector2(0, 60)
+collision_mask = 3
+
+[node name="Beam" type="Polygon2D" parent="Detector" index="3"]
+material = SubResource("CanvasItemMaterial_jw1ic")
+texture = SubResource("GradientTexture2D_uyaft")
+polygon = PackedVector2Array(0, 0, -20, 58, 20, 59)
+uv = PackedVector2Array(29.944, 0.341681, -0.100147, 49.2371, 63.5228, 49.2371)
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="Detector" index="4"]
+scale = Vector2(6.3, 6.3)
+
+[connection signal="screen_entered" from="Detector/Visibility" to="Detector" method="_on_visibility_screen_entered"]
+[connection signal="screen_exited" from="Detector/Visibility" to="Detector" method="_on_visibility_screen_exited"]
