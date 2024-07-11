@@ -16,6 +16,7 @@ run/main_scene="res://scenes/gui/scn_main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Murumart"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/image="res://sprites/spr_boot_splash.png"
 boot_splash/use_filter=false
 config/icon="res://sprites/spr_icon.png"
 
