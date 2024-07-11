@@ -137,7 +137,7 @@ collision_mask = 3
 [node name="Beam" type="Polygon2D" parent="Detector" index="3"]
 material = SubResource("CanvasItemMaterial_jw1ic")
 texture = SubResource("GradientTexture2D_uyaft")
-polygon = PackedVector2Array(0, 0, -20, 58, 20, 59)
+polygon = PackedVector2Array(0, 0, -20, 60, 20, 60)
 uv = PackedVector2Array(29.944, 0.341681, -0.100147, 49.2371, 63.5228, 49.2371)
 
 [node name="Visibility" type="VisibleOnScreenNotifier2D" parent="Detector" index="4"]
