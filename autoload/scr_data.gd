@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(0, 9, 0)
+const VERSION := Vector3(0, 9, 4)
 
 signal player_captured(capture: bool)
 
