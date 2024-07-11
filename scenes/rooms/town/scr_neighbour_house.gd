@@ -9,6 +9,7 @@ const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 @onready var greenhouse := $NeighboursGreenhouse as GreenhouseType
 @onready var car_scared := $CarScared as OverworldCharacter
 @onready var greg := $"../../Greg" as PlayerOverworld
+@onready var car_inspect: InspectArea = $Car/InspectArea
 
 
 func _ready() -> void:
@@ -27,6 +28,8 @@ func _ready() -> void:
 	car_scared.inspected.connect(car_scared_inspected)
 	if DAT.get_data(CAR_SCARED_DIED, false):
 		car_scared.queue_free()
+	if randf() < 0.2 and DAT.seconds > 600:
+		car_inspect.keys = ["neighbour_car_3"]
 
 
 func _physics_process(_delta: float) -> void:

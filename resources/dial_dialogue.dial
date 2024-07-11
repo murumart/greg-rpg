@@ -3283,6 +3283,12 @@ DIALOGUE insp_neighbour_car_2
 	leave me be now. trying to acclimate, remember?
 
 
+DIALOGUE insp_neighbour_car_3
+	i heard a baby cry outside a few days ago, but i knew it was a trap.
+	i drove into a lamppost or something solid...
+	...to draw attention and to damage the car.
+
+
 DIALOGUE insp_trash_road
 	the road conditions look terrible up ahead.
 
