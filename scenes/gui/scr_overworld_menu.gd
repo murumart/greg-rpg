@@ -30,6 +30,8 @@ var current_tab := 0
 @onready var using_menu := $UsingMenu
 @onready var using_portraits := $UsingMenu/Panel/Portraits
 @onready var using_label := $UsingMenu/Label
+@onready var using_health_bar: ProgressBar = $UsingMenu/HealthBar
+@onready var using_magic_bar: ProgressBar = $UsingMenu/MagicBar
 var using_menu_choice := 0
 var using_item: String
 var using_item_index := 0
@@ -82,6 +84,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					0, party_size())
 			if current_tab != old_tab:
 				SND.menusound(1.3)
+				update_tabs()
 
 			if event.is_action_pressed("ui_accept"):
 				doing = Doings.INNER
@@ -106,6 +109,11 @@ func _unhandled_input(event: InputEvent) -> void:
 					0, party_size() + 1)
 			update_using_portraits()
 			if using_menu_choice != party_size():
+				var party_current: Character = party(using_menu_choice)
+				using_health_bar.max_value = party_current.max_health
+				using_health_bar.value = party_current.health
+				using_magic_bar.max_value = party_current.max_magic
+				using_magic_bar.value = party_current.magic
 				if item.use in Item.USES_EQUIPABLE:
 					using_label.text = "equipping " + item.name
 				else:

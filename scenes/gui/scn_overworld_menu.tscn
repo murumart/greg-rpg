@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene load_steps=23 format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
@@ -14,6 +14,20 @@ border_width_top = 1
 border_width_right = 1
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ImageTexture" id="ImageTexture_beyi1"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_fiwsn"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_mii8h"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_04ncw"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_qm1tc"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_eeqb5"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_r3trb"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dwt2"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
@@ -21,14 +35,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwejt"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_371id"]
 bg_color = Color(0, 0, 0, 1)
@@ -42,6 +48,14 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cwejt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmo2u"]
 bg_color = Color(0, 0, 0, 1)
@@ -193,7 +207,15 @@ offset_left = 71.0
 offset_top = 3.0
 offset_right = 144.0
 offset_bottom = 104.0
+theme_override_icons/increment = SubResource("ImageTexture_beyi1")
+theme_override_icons/increment_highlight = SubResource("ImageTexture_fiwsn")
+theme_override_icons/decrement = SubResource("ImageTexture_mii8h")
+theme_override_icons/decrement_highlight = SubResource("ImageTexture_04ncw")
+theme_override_icons/drop_mark = SubResource("ImageTexture_qm1tc")
+theme_override_icons/menu = SubResource("ImageTexture_eeqb5")
+theme_override_icons/menu_highlight = SubResource("ImageTexture_r3trb")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_2dwt2")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_371id")
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_cwejt")
 theme_override_styles/panel = SubResource("StyleBoxFlat_371id")
 tab_alignment = 1
@@ -347,6 +369,26 @@ material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("5_buhag")
 stretch_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="UsingMenu"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 67.0
+offset_right = 143.0
+offset_bottom = 69.0
+value = 42.72
+show_percentage = false
+
+[node name="MagicBar" type="ProgressBar" parent="UsingMenu"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 70.0
+offset_right = 143.0
+offset_bottom = 72.0
+value = 28.82
+show_percentage = false
 
 [node name="SaveWarningLabel" type="Label" parent="."]
 layout_mode = 0
