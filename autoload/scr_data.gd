@@ -135,21 +135,19 @@ func save_nodes_data() -> void:
 	print("node saving end.")
 
 
-func load_data(filename := "save.grs", overwrite := true) -> void:
-	var loaded := DIR.get_dict_from_file(filename)
-	if loaded.size() < 1: print("no data to load!"); return
+func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
+	if dict.size() < 1:
+		print("no data to load!")
+		return
 
 	print("overwriting data...")
 	if not overwrite:
 		# again option to not overwrite everything
-		for k in loaded.keys():
-			A[k] = loaded[k]
+		for k in dict.keys():
+			A[k] = dict[k]
 	else:
-		A = loaded
-	seconds = loaded.get("seconds", 0)
-	if get_data("save_file", "") == filename:
-		playtime = maxi(playtime, get_data("playtime", 0))
-		set_data("playtime", playtime)
+		A = dict
+	seconds = dict.get("seconds", 0)
 	print("finished overwriting data.")
 
 	load_chars_from_data()
@@ -158,12 +156,20 @@ func load_data(filename := "save.grs", overwrite := true) -> void:
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.
 	capture_player("level_transition")
-	var room_to_load: String = loaded.get("current_room", "test")
+	var room_to_load: String = dict.get("current_room", "test")
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)
+
+
+func load_data(filename := "save.grs", overwrite := true) -> void:
+	var loaded := DIR.get_dict_from_file(filename)
+	load_data_from_dict(loaded, overwrite)
+	if get_data("save_file", "") == filename:
+		playtime = maxi(playtime, get_data("playtime", 0))
+		set_data("playtime", playtime)
 
 
 # put the save data inside a JSON string and add it to clipboard

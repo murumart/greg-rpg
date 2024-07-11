@@ -59,6 +59,7 @@ func _ready() -> void:
 	if save_file_nr.is_valid_float():
 		set_current_button(int(save_file_nr))
 	get_window().gui_release_focus()
+	get_window().files_dropped.connect(_on_files_dropped)
 
 
 # i just bit an apple and its skin got stuck between my two front teeth
@@ -67,12 +68,14 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed():
 		return
-	if event.is_action_pressed("menu") and load_warning_message:
+	if event.is_action_pressed("menu"):
 		OS.shell_open(ProjectSettings.globalize_path(DIR.GREG_USER_FOLDER_PATH))
 		return
 	# exiting the save menu
 	# by popular demand: you can use multiple keys to do it
-	if event.is_action_pressed("cancel") or event.is_action_pressed("menu") or event.is_action_pressed("escape"):
+	if (event.is_action_pressed("cancel")
+			or event.is_action_pressed("menu")
+			or event.is_action_pressed("escape")):
 		DAT.free_player("save_screen")
 		queue_free()
 	# i like this input scheme i've devised.
@@ -184,7 +187,7 @@ func _on_button_pressed(reference: Variant) -> void:
 			DAT.save_data(SAVE_PATH % reference)
 			SND.menusound()
 			set_current_button(reference)
-			SOL.vfx_damage_number(file_container.get_child(current_button).global_position - Vector2(SOL.SCREEN_SIZE) / 2.0 + file_container.get_child(current_button).size / 2.0, "saved!")
+			vfx_msg("saved!")
 		LOAD:
 			if load_warning_message:
 				SOL.dialogue("load_warning_" + load_warning_message)
@@ -199,6 +202,26 @@ func _on_button_pressed(reference: Variant) -> void:
 
 func _tree_exiting() -> void:
 	SOL.save_menu_open = false
+	get_window().files_dropped.disconnect(_on_files_dropped)
+
+
+func _on_files_dropped(files: PackedStringArray) -> void:
+	if files.size() > 1:
+		vfx_msg("more than one file!")
+		return
+	var data := DIR.get_dict_from_global_file(files[0])
+	if not data:
+		vfx_msg("invalid file!")
+		return
+	SOL.dialogue("load_warning_external")
+	await SOL.dialogue_closed
+	if SOL.dialogue_choice != &"yes":
+		vfx_msg("denied!")
+		return
+	DAT.load_data_from_dict(data, true)
+	set_current_button(12839)
+	DAT.free_player("save_screen")
+	queue_free()
 
 
 func version_string(data: Dictionary) -> String:
@@ -238,3 +261,10 @@ func _calc_completion_percent(file: Dictionary) -> float:
 		if file.get(key, null) == COMPLETED_GAME[key]:
 			sum += 1.0
 	return (sum / COMPLETED_GAME.size()) * 100.0
+
+
+func vfx_msg(msg: String) -> void:
+	SOL.vfx_damage_number(
+			file_container.get_child(current_button).global_position
+			- Vector2(SOL.SCREEN_SIZE) / 2.0
+			+ file_container.get_child(current_button).size / 2.0, msg)

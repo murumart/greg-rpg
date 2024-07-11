@@ -26,6 +26,12 @@ DIALOGUE load_warning_empty
 	this save file is empty. you cannot load it.
 
 
+DIALOGUE load_warning_external
+	are you sure you want to load this file from your filesystem?
+CHOICES yes,no
+	there might be scary stuff in this!
+
+
 DIALOGUE get_experience
 	%s experience was gained.
 

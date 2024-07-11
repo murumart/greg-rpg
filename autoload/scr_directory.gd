@@ -37,13 +37,24 @@ func write_dict_to_file(data: Dictionary, filename: String) -> void:
 	file.flush()
 
 
-func get_dict_from_file(filename: String) -> Dictionary:
-	if not FileAccess.file_exists(GREG_USER_FOLDER_PATH + "/" + filename):
+func get_dict_from_global_file(filename: String) -> Dictionary:
+	if not FileAccess.file_exists(filename):
 		printerr("no %s file exists" % filename)
 		return {}
-	var file := FileAccess.open(GREG_USER_FOLDER_PATH + "/" + filename, FileAccess.READ)
-	var returnable: Dictionary = bytes_to_var(file.get_var())
-	return returnable
+	var file := FileAccess.open(filename, FileAccess.READ)
+	if filename.get_extension() != "grs":
+		printerr("invalid file extension")
+		return {}
+	var fvar: Variant = file.get_var()
+	if not fvar:
+		printerr("invalid file")
+		return {}
+	var dict: Dictionary = bytes_to_var(fvar)
+	return dict
+
+
+func get_dict_from_file(filename: String) -> Dictionary:
+	return get_dict_from_global_file(GREG_USER_FOLDER_PATH + "/" + filename)
 
 
 func enemy_scene_exists(name_in_file: String) -> bool:
