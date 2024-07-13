@@ -4,24 +4,37 @@
 script/source = "extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-static var active := false
-
 
 func _ready() -> void:
-	if active:
+	if get_tree().paused:
 		queue_free()
 		return
-	active = true
+	get_tree().paused = true
 	DAT.capture_player(\"to_be_continue\")
 	AudioServer.set_bus_mute(0, true)
 	animation_player.play(\"new_animation\")
 	animation_player.animation_finished.connect(func(a):
 		AudioServer.set_bus_mute(0, false)
-		active = false
 		DAT.free_player(\"to_be_continue\")
+		get_tree().paused = false
 		queue_free()
 	)
 "
+
+[sub_resource type="Animation" id="Animation_em7h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_c0ghc"]
 resource_name = "new_animation"
@@ -39,21 +52,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_em7h4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0flb"]
 _data = {
 "RESET": SubResource("Animation_em7h4"),
@@ -61,6 +59,7 @@ _data = {
 }
 
 [node name="ToBeContinue" type="Node2D"]
+process_mode = 3
 script = SubResource("GDScript_cq8r4")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	if updating_armour:
 		armour.animation = sprite.animation
 		armour.frame = sprite.frame
-	if randf() < 0.00000002 and state == States.FREE_MOVE:
+	if randf() < 0.000_000_02 and state == States.FREE_MOVE:
 		SOL.vfx("to_be_continue")
 
 
