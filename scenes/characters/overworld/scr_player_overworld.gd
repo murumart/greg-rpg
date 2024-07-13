@@ -63,21 +63,20 @@ func _physics_process(delta: float) -> void:
 
 	if state == States.FREE_MOVE:
 		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		if input: direct_raycast()
+		if input:
+			direct_raycast()
 		if Input.is_action_just_pressed("ui_accept"):
 			interact()
 		direct_animation()
 	movement(delta)
-	if updating_armour:
-		armour.animation = sprite.animation
-		armour.frame = sprite.frame
 	if randf() < 0.000_000_02 and state == States.FREE_MOVE:
 		SOL.vfx("to_be_continue")
 
 
 func set_state(to: States) -> void:
 	state = to
-	if not is_inside_tree(): return
+	if not is_inside_tree():
+		return
 	#direct_animation()
 
 
@@ -110,25 +109,40 @@ func direct_animation() -> void:
 	var animation_name : String = "walk_" + ROTS[dir + 1]
 	sprite.play(animation_name)
 	sprite.speed_scale = 0.0
+	if updating_armour:
+		armour.play(animation_name)
+		armour.speed_scale = 0.0
+
 	if move_mode != MoveModes.SKATE:
-		sprite.speed_scale = velocity.length() * 0.04
-		if is_zero_approx(velocity.length_squared()):
+		var leng := velocity.length() * 0.04
+		sprite.speed_scale = leng
+		if updating_armour:
+			armour.speed_scale = leng
+		if is_zero_approx(leng):
 			sprite.stop()
+			if updating_armour:
+				armour.stop()
 	else:
 		skateboard.region_rect.position.y = 0 if absi(dir) != 1 else 16
 
 
 # for cutscenes and such
 func animate(animation_name: String, moving := false) -> void:
-	if not animation_name.length():
+	if animation_name.is_empty():
 		sprite.stop()
 	sprite.play(animation_name)
 	sprite.speed_scale = 1.0 * float(moving)
+	if updating_armour:
+		if animation_name.is_empty():
+			armour.stop()
+		armour.play(animation_name)
+		armour.speed_scale = 1.0 * float(moving)
 
 
 func interact() -> void:
 	var collider: Object
-	if DAT.player_capturers.size() > 0: return
+	if DAT.player_capturers.size() > 0:
+		return
 	raycast.set_collision_mask_value(3, false)
 	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
@@ -188,12 +202,13 @@ func load_armour() -> void:
 	armour.hide()
 	updating_armour = false
 	var greg := ResMan.get_character("greg") as Character
-	if greg.armour:
-		var path := "res://resources/armours/sfr_%s.tres" % greg.armour
-		if ResourceLoader.exists(path):
-			armour.sprite_frames = load(path)
-			updating_armour = true
-			armour.show()
+	if not greg.armour:
+		return
+	var path := "res://resources/armours/sfr_%s.tres" % greg.armour
+	if ResourceLoader.exists(path):
+		armour.sprite_frames = load(path)
+		updating_armour = true
+		armour.show()
 
 
 func spawn_position() -> void:
