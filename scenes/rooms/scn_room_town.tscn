@@ -2093,6 +2093,14 @@ position = Vector2(-307, -430)
 position = Vector2(1453, 301)
 escape_offset = Vector2(60, 0)
 
+[node name="EscapingBusiness2" parent="Other/Men" instance=ExtResource("32_lci3r")]
+position = Vector2(1243, -464)
+escape_offset = Vector2(0, -60)
+
+[node name="EscapingBusiness3" parent="Other/Men" instance=ExtResource("32_lci3r")]
+position = Vector2(-456, -431)
+escape_offset = Vector2(0, -60)
+
 [node name="WoodsGuy" type="Node2D" parent="Other"]
 y_sort_enabled = true
 position = Vector2(-692, -28)

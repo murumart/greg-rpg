@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmd8863gajglq"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_ae1ek"]
+[ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_ywnvn"]
+
+[node name="ScnEnemyGrandmaBoss" type="Node2D"]
+script = ExtResource("1_ae1ek")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_ywnvn")

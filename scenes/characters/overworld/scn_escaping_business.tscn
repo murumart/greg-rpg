@@ -156,6 +156,7 @@ script = ExtResource("2_j3y10")
 escape_offset = Vector2(0, 0)
 animated_sprite = NodePath("Sprite")
 speed = 2100
+save = false
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_esqgc")

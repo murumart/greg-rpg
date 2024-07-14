@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_x228n"]
 script = ExtResource("1_ejsvt")
-health = -35.0
+health = -55.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 1.0
@@ -22,6 +22,7 @@ gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = "brick_attack"
 meta = {}
 

@@ -217,7 +217,7 @@ sprite_frames = ExtResource("15_jsbas")
 animation = &"walk_down"
 
 [node name="EnterArea" type="Area2D" parent="InteriorTiles/Grandma"]
-position = Vector2(0, 85)
+position = Vector2(0, 67)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -240,7 +240,7 @@ modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_koeod")
 
 [node name="Greg" parent="." instance=ExtResource("7_ltdhb")]
-position = Vector2(9, 269)
+position = Vector2(8, 23)
 
 [node name="Camera" parent="Greg" instance=ExtResource("8_wwl53")]
 limit_left = -125

@@ -3246,6 +3246,24 @@ DIALOGUE president_inspect
 	(he's lying down in the puddle, wallowing.)
 
 
+DIALOGUE grandma_final_meeting_1
+SOUND sleepy
+	zzzzz... zzzzz...
+	zzz... hrk... mimimimimimi...
+	zzzzzzzz......
+CHAR grandma
+	zzz- hurk!
+	ah, you startled me.
+	welcome to my lair, greg.
+	i took the liberty of rearranging some parts of your-
+	...i mean, my house. i think it's more intuitive this way.
+	...
+	i was planning on having a whole speech here, but i...
+	...procrastinated on it, and i'm not ready.
+	so, uh, let's get this over with.
+# she fights you
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 

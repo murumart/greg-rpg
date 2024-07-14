@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bnwsomlj80hfp"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_7vo6p"]
+[ext_resource type="Texture2D" uid="uid://b6ccqnopkfrjf" path="res://sprites/characters/portraits/spr_portrait_grandma.png" id="1_th4gv"]
+
+[resource]
+script = ExtResource("1_7vo6p")
+name_in_file = &""
+name = "grandma"
+info = "you must really hate her by now!"
+portrait = ExtResource("1_th4gv")
+max_health = 200.0
+health = 200.0
+max_magic = 999999.0
+magic = 999999.0
+level = 89
+experience = 0
+attack = 89.0
+defense = 89.0
+speed = 89.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

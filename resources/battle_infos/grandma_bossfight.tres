@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://c0ncj8xjt5dma"]
+
+[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_3ax2g"]
+
+[resource]
+script = ExtResource("1_3ax2g")
+enemies = Array[StringName]([&"grandma_boss"])
+background = "house_inside"
+music = ""
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "get that house back boy."
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true

@@ -7,15 +7,16 @@ extends OverworldCharacter
 var discovered := false
 
 @onready var r4si := remap(
-	hash(hash(hash(name + LTS.get_current_scene().name))),
+	hash(hash(hash(name + LTS.get_current_scene().name + str(global_position)))),
 	0, 9999999999, 0.0, 1.0)
 
 
 func _ready() -> void:
 	var nr := DAT.get_data("nr", 0.0) as float
 	if not is_equal_approx(
-		snapped(nr, 0.1),
-		snapped(r4si, 0.1)):
+			snapped(nr, 0.1),
+			snapped(r4si, 0.1)
+		):
 			queue_free()
 			return
 	if DAT.get_data(get_save_key("seen"), false):
@@ -26,7 +27,8 @@ func _ready() -> void:
 
 
 func _on_discovered() -> void:
-	if discovered: return
+	if discovered:
+		return
 	discovered = true
 	var tw := create_tween()
 	tw.tween_property(self, "modulate", Color.BLACK, 1.0).from(Color.WHITE)
