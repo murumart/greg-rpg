@@ -29,7 +29,7 @@ var turn := 0
 
 var hurt_sound := preload("res://sounds/hurt.ogg")
 
-var actor_name: StringName
+var actor_name: String
 @onready var character: Character
 
 var accessible := true
@@ -423,8 +423,7 @@ func handle_payload(pld: BattlePayload) -> void:
 			if is_instance_valid(pld.sender):
 				pld.sender.character.add_defeated_character(character.name_in_file)
 
-	character.magic += (pld.magic + (pld.magic_percent / 100.0 * character.magic)
-			+ (pld.max_magic_percent / 100.0 * character.max_magic))
+	character.magic += pld.get_magic_change(character.health, character.max_health)
 
 	for en in pld.effects:
 		if en.name.length() and en.duration:

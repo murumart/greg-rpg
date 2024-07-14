@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmd8863gajglq"]
+[gd_scene load_steps=4 format=3 uid="uid://cmd8863gajglq"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_ae1ek"]
+[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_grandma_boss.gd" id="1_45sk8"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_ywnvn"]
 
-[node name="ScnEnemyGrandmaBoss" type="Node2D"]
-script = ExtResource("1_ae1ek")
+[sub_resource type="Curve" id="Curve_n5fjy"]
+_data = [Vector2(0, 1), 0.0, -0.162233, 0, 0, Vector2(0.244943, 0.929714), 0.0, 0.0, 0, 0, Vector2(0.499915, 0.67523), 0.0, 0.0, 0, 0, Vector2(1, 0.444983), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="GrandmaBoss" type="Node2D"]
+script = ExtResource("1_45sk8")
+enemy_health_toughness_curve = SubResource("Curve_n5fjy")
+effect_center = Vector2i(0, -22)
+toughness = 0.489
+xp_multiplier = 10.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

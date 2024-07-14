@@ -246,5 +246,13 @@ func get_health_change(char_health: float, char_max_health: float) -> float:
 	)
 
 
+func get_magic_change(char_magic: float, char_max_magic: float) -> float:
+	return (
+			magic
+			+ char_magic * (magic_percent * 0.01)
+			+ char_max_magic * (max_magic_percent * 0.01)
+	)
+
+
 func _to_string() -> String:
 	return "BattlePayload:\n" + get_effect_description() + "\n"
