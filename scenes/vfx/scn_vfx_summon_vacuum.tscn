@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs7ow36jvk4yd"]
+
+[ext_resource type="Texture2D" uid="uid://e50g7lqyahrn" path="res://sprites/characters/battle/grandma/spr_vacuum.png" id="1_ikh7b"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s0qgn"]
+particle_flag_disable_z = true
+angle_min = -720.0
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 142.86
+initial_velocity_max = 160.71
+angular_velocity_min = -51.43
+angular_velocity_max = 282.86
+orbit_velocity_min = -0.786
+radial_velocity_min = -73.61
+radial_velocity_max = 104.96
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -41.07
+linear_accel_max = 62.5
+radial_accel_min = -33.93
+radial_accel_max = 25.0
+tangential_accel_min = -44.64
+tangential_accel_max = 85.71
+damping_min = 33.929
+damping_max = 100.0
+
+[node name="SummonVacuum" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 8963
+process_material = SubResource("ParticleProcessMaterial_s0qgn")
+texture = ExtResource("1_ikh7b")
+lifetime = 104.28
+fixed_fps = 120
+trail_enabled = true
