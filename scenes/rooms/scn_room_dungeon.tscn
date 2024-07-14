@@ -2493,7 +2493,7 @@ sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 offsets = PackedFloat32Array(0.620086, 0.705923)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p7o85"]
-frequency = 0.0151
+frequency = 0.0097
 offset = Vector3(560.98, 746.99, 0)
 fractal_type = 3
 fractal_octaves = 2

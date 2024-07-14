@@ -9,6 +9,16 @@ const VAMP_FOUGHT := &"vampire_fought"
 
 var imminence: int = 0
 var bad_condition := false
+var girl_inters: int:
+	get:
+		return DAT.get_data(INTERACTIONS, 0)
+	set(to):
+		DAT.set_data(INTERACTIONS, to)
+var girl_is_intered: bool:
+	get:
+		return DAT.get_data(INTERACTED, false)
+	set(to):
+		DAT.set_data(INTERACTED, to)
 
 var player_dir_timer: Timer
 
@@ -28,45 +38,59 @@ func _ready() -> void:
 		bad_condition = true
 		DAT.set_data(GUY_FOLLOW, false)
 		queue_free()
+		print("v: girl not spawned, bad level/fought")
 		return
 
 	if DAT.get_data(GUY_FOLLOW, false) and LTS.gate_id != &"vampire_cutscene":
+		print("v: uguy follows")
 		uguy_follow()
 		return
 
-	if DAT.get_data(INTERACTIONS, 0) > 2:
+	if girl_inters > 2:
 		girl.queue_free()
 		gg_pos.global_position = get_closest_pos()
 		uguy.inspected.connect(_on_uguy_interacted)
 		uguy.default_lines.append("uguy_lost")
+		print("v: find girl")
 		return
 
 	imminence = level - 40
 	if DAT.seconds % CYCLE > maxi((imminence + 1) * 30, CYCLE):
 		bad_condition = true
 		queue_free()
-		DAT.set_data(INTERACTED, false)
+		girl_is_intered = false
+		print("v: girl not spawned (bad time)")
 		return
 	girl.inspected.connect(_on_girl_interaction)
-	girl.default_lines.append("girl_" + str(randi_range(1, 5)))
+	match girl_inters:
+		0:
+			girl.default_lines.append("girl_" + str(randi_range(1, 5)))
+		1:
+			girl.default_lines.append("girl_follow")
 	uguy.default_lines.append("uguy_" + str(randi_range(1, 4)))
-	if (not DAT.get_data("interacted", false)) and (LTS.gate_id != LTS.GATE_LOADING):
+	if not girl_is_intered and (LTS.gate_id != LTS.GATE_LOADING):
 		gg_pos.global_position = get_rand_pos()
 		DAT.set_data(POSITION, gg_pos.global_position)
 	else:
 		gg_pos.global_position = DAT.get_data(POSITION, gg_pos.global_position)
+	print("v: girl spawned at ", gg_pos.global_position)
 
 
 # note that interacted signal is called before the npc's dialogue logic is ran.
 func _on_girl_interaction() -> void:
 	uguy.direct_walking_animation(girl.global_position - uguy.global_position)
 	if not DAT.get_data(INTERACTED, false):
-		DAT.incri(INTERACTIONS, 1)
-	DAT.set_data(INTERACTED, true)
-	if girl.default_lines.size():
-		SOL.dialogue_closed.connect(func():
-			girl.default_lines.clear()
-		, CONNECT_ONE_SHOT)
+		girl_inters += 1
+	girl_is_intered = true
+	if girl_inters == 3:
+		_girl_angry_cutscene()
+		girl_inters += 1
+		return
+	if girl.default_lines.is_empty():
+		return
+	SOL.dialogue_closed.connect(func():
+		girl.default_lines.clear()
+	, CONNECT_ONE_SHOT)
 
 
 func _on_uguy_interacted() -> void:
@@ -82,7 +106,8 @@ func uguy_follow() -> void:
 	add_child(player_dir_timer)
 	player_dir_timer.start(25)
 	player_dir_timer.timeout.connect(func():
-		SOL.dialogue("uguy_reminder")
+		if DAT.player_capturers.is_empty():
+			SOL.dialogue("uguy_reminder")
 	)
 	for i in animal_spawners:
 		if is_instance_valid(i):
@@ -116,16 +141,42 @@ func _on_uguy_cannot_reach_target() -> void:
 
 
 func get_rand_pos() -> Vector2:
-	return position_markers.get_children().pick_random().global_position
+	var rng := RandomNumberGenerator.new()
+	rng.set_seed(hash(DAT.seconds))
+	return Math.determ_pick_random(position_markers.get_children(), rng).global_position
 
 
 func get_closest_pos() -> Vector2:
-	var poses := position_markers.get_children().map(func(node: Node2D): return node.global_position)
+	var poses := position_markers.get_children().map(func(node: Node2D):
+			return node.global_position)
 	poses.sort_custom(func(a: Vector2, b: Vector2):
-		return a.distance_squared_to(greg.global_position) < b.distance_squared_to(greg.global_position))
+		return (a.distance_squared_to(greg.global_position)
+				< b.distance_squared_to(greg.global_position)))
 	return poses[0]
+
+
+func _girl_angry_cutscene() -> void:
+	var cam: Camera2D = $"../../Greg/Camera"
+	var vamp_color: ColorContainer = $"../../CanvasModulateGroup/VampColor"
+	DAT.capture_player("cutscene")
+	var tw := create_tween()
+	tw.tween_property(SND.current_song_player, "pitch_scale", 0.55, 1.0)
+	tw.parallel().tween_property(cam, "zoom", Vector2(2, 2), 1.0)
+	tw.parallel().tween_property(vamp_color, "color", Color.FIREBRICK, 1.0)
+	tw.finished.connect(func():
+		SOL.dialogue("girl_angry")
+		await SOL.dialogue_closed
+		tw = create_tween()
+		tw.tween_property(SND.current_song_player, "pitch_scale", 1.0, 1.0)
+		tw.parallel().tween_property(cam, "zoom", Vector2.ONE, 1.0)
+		tw.parallel().tween_property(vamp_color, "color", Color.WHITE, 1.0)
+		uguy.default_lines.clear()
+		uguy.default_lines.append("uguy_confused")
+		await tw.finished
+		DAT.free_player("cutscene")
+	)
 
 
 func _save_me() -> void:
 	if LTS.gate_id != LTS.GATE_LOADING:
-		DAT.set_data(INTERACTED, false)
+		girl_is_intered = false

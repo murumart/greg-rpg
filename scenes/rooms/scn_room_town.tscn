@@ -1,7 +1,9 @@
-[gd_scene load_steps=113 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=115 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
+[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_5v2v1"]
+[ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_8fjbe"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_sx16h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fy0lb"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="5_agxnt"]
@@ -666,6 +668,12 @@ size = Vector2(14, 77)
 y_sort_enabled = true
 script = ExtResource("1_mdes8")
 music = "dry_summer"
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+script = ExtResource("2_4wino")
+
+[node name="VampColor" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_8fjbe")
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -2193,6 +2201,7 @@ position = Vector2(-1040, 0)
 script = ExtResource("39_6m0tj")
 
 [node name="PositionMarkers" type="Node2D" parent="Other/VampireGirl"]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
 modulate = Color(62.893, 44.025, 11.635, 1)
@@ -2213,6 +2222,54 @@ position = Vector2(1816, 280)
 [node name="Marker2D5" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
 modulate = Color(62.893, 44.025, 11.635, 1)
 position = Vector2(1236, -249)
+
+[node name="Marker2D6" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1511, -21)
+
+[node name="Marker2D7" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1952, 269)
+
+[node name="Marker2D8" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(2010, -155)
+
+[node name="Marker2D9" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1128, 276)
+
+[node name="Marker2D10" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1181, -157)
+
+[node name="Marker2D11" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1088, 279)
+
+[node name="Marker2D12" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1521, 264)
+
+[node name="Marker2D13" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1677, -41)
+
+[node name="Marker2D14" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1488, -205)
+
+[node name="Marker2D15" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1417, -165)
+
+[node name="Marker2D16" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1271, -165)
+
+[node name="Marker2D17" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
+modulate = Color(62.893, 44.025, 11.635, 1)
+position = Vector2(1503, -248)
 
 [node name="GGPos" type="Node2D" parent="Other/VampireGirl"]
 y_sort_enabled = true

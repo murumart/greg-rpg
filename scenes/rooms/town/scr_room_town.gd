@@ -118,6 +118,7 @@ func lake_hint_npc_setup() -> void:
 		npc.default_lines.append("lake_hint")
 		return
 	npc.default_lines.append("lake_hint_" + str((randi() % 8) + 1))
+	npc.default_lines.append("lake_hint_continue")
 
 func _on_lake_hint_received(force_cutscene: bool = false) -> void:
 	var cs := $Houses/Store/StoreCutscenePlayer as AnimationPlayer
