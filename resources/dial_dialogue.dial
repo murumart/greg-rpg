@@ -3264,6 +3264,11 @@ CHAR grandma
 # she fights you
 
 
+DIALOGUE grandma_final_fight_1
+CHAR grandma
+	items
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
