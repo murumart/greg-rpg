@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://dbl120wnwp7pm"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_toy3w"]
+[ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_t8jyc"]
+[ext_resource type="Texture2D" uid="uid://du7kinrednfqw" path="res://sprites/vfx/soplet.png" id="3_jeyoy"]
+[ext_resource type="Script" path="res://code/scr_sin_animator.gd" id="3_wka33"]
+[ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="5_55j3h"]
+
+[sub_resource type="Curve" id="Curve_2nb7r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0843299, 1), 0.0, 0.0, 0, 0, Vector2(0.814109, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_2x70a"]
+width = 64
+curve = SubResource("Curve_2nb7r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f0mdn"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 0, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 80.36
+initial_velocity_max = 98.22
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_2x70a")
+
+[sub_resource type="GDScript" id="GDScript_xwdo7"]
+script/source = "extends GPUParticles2D
+
+@export var curve: Curve
+
+func _on_washing_machine_hurted(who: BattleActor) -> void:
+	amount_ratio = curve.sample_baked(who.character.health_perc())
+"
+
+[sub_resource type="Curve" id="Curve_qfaqi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0363386, 0.0466903), 0.0, 0.0, 0, 0, Vector2(1, 0.0109859), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx7lw"]
+size = Vector2(34, 36)
+
+[node name="WashingMachine" type="Node2D"]
+script = ExtResource("1_toy3w")
+toughness = 0.526
+vaimulembesus = 0.614
+
+[node name="Puppet" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Puppet"]
+position = Vector2(0, -7)
+scale = Vector2(0.977973, 0.954727)
+texture = ExtResource("2_t8jyc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Sprite2D"]
+position = Vector2(0, -7.44207)
+amount = 500
+amount_ratio = 0.0235
+process_material = SubResource("ParticleProcessMaterial_f0mdn")
+texture = ExtResource("3_jeyoy")
+lifetime = 2.0
+script = SubResource("GDScript_xwdo7")
+curve = SubResource("Curve_qfaqi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_vx7lw")
+
+[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_wka33")
+property_name = &"scale:y"
+target = NodePath("../Puppet/Sprite2D")
+min_value = 1.0
+max_value = 0.15
+
+[node name="SinAnimator2" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_wka33")
+property_name = &"scale:x"
+target = NodePath("../Puppet/Sprite2D")
+min_value = 0.895
+max_value = 0.17
+offset = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_55j3h")
+volume_db = -5.0
+pitch_scale = 0.37
+autoplay = true
+max_distance = 120.0
+attenuation = 0.25
+bus = &"ECHO"
+
+[connection signal="hurted" from="." to="Puppet/Sprite2D/GPUParticles2D" method="_on_washing_machine_hurted"]

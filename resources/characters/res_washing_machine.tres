@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d2j5o7ct2wk0s"]
+
+[ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="1_2bdja"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_xlfvf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnbb4"]
+atlas = ExtResource("1_2bdja")
+region = Rect2(9, 8, 21, 22)
+
+[resource]
+script = ExtResource("1_xlfvf")
+name_in_file = &""
+name = "washing machine"
+info = ""
+portrait = SubResource("AtlasTexture_gnbb4")
+max_health = 140.0
+health = 140.0
+max_magic = 999.0
+magic = 999.0
+level = 74
+experience = 0
+attack = 70.0
+defense = 70.0
+speed = 80.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["splash_attack"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""
