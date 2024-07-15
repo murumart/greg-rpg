@@ -7,6 +7,7 @@ var move := Vector2()
 var clamp_zone_min := Vector2(10, 30)
 var clamp_zone_max := Vector2()
 var gravity := 0.8
+var display_mode := 0
 
 var agit := 1.0
 
@@ -15,6 +16,7 @@ static var sprite_frame_storage := {}
 @onready var sprite := $Sprite as AnimatedSprite2D
 @onready var label := $Label
 @onready var particles := $GPUParticles2D
+@onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
@@ -35,6 +37,7 @@ func init(options := {}) -> void:
 		sprite.sprite_frames = _sprite_frames_from_file(SPRITE_PATH % spirit_name)
 	# else: use default
 	var nam := ResMan.get_spirit(spirit_name).name
+	var cost := ResMan.get_spirit(spirit_name).cost
 	label.text = nam
 	var h := str(hash(nam)).split()
 	var g := []
@@ -42,6 +45,17 @@ func init(options := {}) -> void:
 		g.append(float(i) * 0.01)
 	particles.modulate = Color(g[0], g[1], g[2])
 	sprite.play()
+	timer.wait_time = randfn(3.0, 1.0)
+	timer.timeout.connect(func():
+		if display_mode == 0:
+			display_mode = 1
+			label.text = str(cost)
+			label.modulate = Color.DODGER_BLUE
+		elif display_mode == 1:
+			display_mode = 0
+			label.text = nam
+			label.modulate = Color.WHITE
+	)
 
 
 func _physics_process(delta: float) -> void:

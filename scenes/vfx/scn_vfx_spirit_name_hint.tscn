@@ -55,3 +55,6 @@ offset_right = 56.0
 offset_bottom = 13.0
 text = "hi"
 horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

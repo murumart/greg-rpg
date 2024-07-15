@@ -84,6 +84,12 @@ func ai_action() -> void:
 	attack(target)
 
 
+func hurt(amount: float, gender: int) -> void:
+	super(amount, gender)
+	if randf() < 0.001:
+		heheh_hahah(get_tree().root)
+
+
 func try_use_spirit(spirit: String, on_whom: BattleActor, replenish_magic := true) -> bool:
 	var spirit_instance := ResMan.get_spirit(spirit)
 	var enough_magic := spirit_instance.cost <= character.magic
@@ -195,3 +201,11 @@ static func suitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
 	if enemy.character.armour == "frankling_badge" and spirit == "grandma_electric":
 		return false
 	return not spirit in UNSUITABLE_FOR_BUFFING
+
+
+static func heheh_hahah(node: Node) -> void:
+	for i in node.get_children():
+		heheh_hahah(i)
+	if not "text" in node:
+		return
+	node.text = "he".repeat(randi_range(1, 5)) + " " + "ha".repeat(randi_range(1, 5))
