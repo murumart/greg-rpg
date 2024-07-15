@@ -151,7 +151,7 @@ func attack(whom: BattleActor) -> void:
 	get_tree().create_timer(0.4).timeout.connect(func(): sprite.texture = USUAL)
 
 
-func is_debuffed(whom: BattleActor) -> bool:
+static func is_debuffed(whom: BattleActor) -> bool:
 	return (
 		whom.get_attack() < whom.character.attack
 		or whom.get_defense() < whom.character.defense
@@ -160,7 +160,7 @@ func is_debuffed(whom: BattleActor) -> bool:
 	)
 
 
-func is_buffed(whom: BattleActor) -> bool:
+static func is_buffed(whom: BattleActor) -> bool:
 	return (
 		whom.get_attack() > whom.character.attack
 		or whom.get_defense() > whom.character.defense
@@ -188,7 +188,7 @@ static func get_debuff_severity(whom: BattleActor) -> float:
 	return sev * 0.06
 
 
-func is_unsuitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
+static func is_unsuitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
 	if enemy.character.armour == "frankling_badge" and spirit == "grandma_electric":
 		return false
 	return spirit in UNSUITABLE_FOR_BUFFING
