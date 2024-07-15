@@ -112,6 +112,19 @@ DIALOGUE greenhouse_heal_party_big
 	(that heals you fully.)
 
 
+DIALOGUE gdung_healer
+CHOICES yes,no
+	do you want to eat the vegetables?
+CHOICE_LINK yes
+	these will be tasty. they won't grow back in this darkness, though.
+CHOICE_LINK no
+	maybe later.
+
+
+DIALOGUE gdung_healer_eaten
+	those were tasty. they won't grow back in this darkness, though.
+
+
 DIALOGUE cwarning
 	do not run bell.c!!!
 	bell hell is real

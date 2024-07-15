@@ -1,7 +1,9 @@
 class_name GDUNGDecorator extends Node
 
 const OB_DB := GDUNGObjects.DB
-const EXIT_PORTAL := preload("res://scenes/rooms/grandma_house/gdung_objects/exit_portal.tscn")
+const EXIT_PORTAL := preload(
+		"res://scenes/rooms/grandma_house/gdung_objects/exit_portal.tscn")
+const HEALER := preload("res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.tscn")
 
 @export var generator: GDUNGLayoutGenerator
 @export var greg: PlayerOverworld
@@ -47,9 +49,13 @@ func _decorate_suites() -> void:
 			var suite: GDUNGSuite = to_decorate[i]
 			_decorate_suite(suite, keys_weights, i)
 	var last_suite: GDUNGSuite = generator.suites[path[path.size() - 1]]
+	var second_suite: GDUNGSuite = generator.suites[path[1]]
 	var exit := EXIT_PORTAL.instantiate()
+	var healer := HEALER.instantiate()
 	objects_node.add_child.call_deferred(exit)
+	objects_node.add_child.call_deferred(healer)
 	exit.global_position = last_suite.get_rect().get_center() * 16.0
+	healer.global_position = second_suite.get_rect().get_center() * 16.0
 	print("decorating ", to_decorate.size(), " suites took ", Time.get_ticks_msec() - time)
 
 
@@ -111,6 +117,7 @@ func _get_suites_to_decorate() -> Array[GDUNGSuite]:
 	if not path.is_empty():
 		to_decorate.erase(generator.suites[path[path.size() - 1]])
 		to_decorate.erase(generator.suites[path[0]])
+		to_decorate.erase(generator.suites[path[1]])
 	return to_decorate
 
 
