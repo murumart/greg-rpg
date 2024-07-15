@@ -1,5 +1,9 @@
 extends BattleEnemy
 
+const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png")
+
+@onready var sprite: Sprite2D = $Sprite2D
+
 
 func _ready() -> void:
 	super._ready()
@@ -8,9 +12,11 @@ func _ready() -> void:
 func act() -> void:
 	var greg: BattleActor = reference_to_opposing_array[0]
 	message.emit("grandma attacked greg!")
+	sprite.texture = ATTACK
 	for i in 400:
 		greg.hurt(1, Genders.VAST)
 		await get_tree().process_frame
+		sprite.flip_h = not sprite.flip_h
 		if greg.character.health_perc() < 0.1:
 			break
 	SND.play_song("")

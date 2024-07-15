@@ -45,7 +45,14 @@ func tarikas_lines() -> void:
 					lines_to_set.append("tarikas_40_nomeet")
 
 	elif Math.inrange(level, 50, 59):
-		lines_to_set.append("tarikas_50")
+		if not DAT.get_data("vampire_defeated", false):
+			lines_to_set.append("tarikas_50_nomail")
+		else:
+			lines_to_set.append("tarikas_50")
+	elif Math.inrange(level, 60, 69):
+		lines_to_set.append("tarikas_60")
+	elif Math.inrange(level, 70, 79):
+		lines_to_set.append("tarikas_70")
 	lines_to_set.append("tarikas_finish")
 	tarikas.default_lines = lines_to_set
 

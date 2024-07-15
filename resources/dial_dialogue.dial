@@ -1829,7 +1829,16 @@ CHAR tarikas
 
 DIALOGUE tarikas_60
 CHAR tarikas
-	dasdadadaasdasdasd
+	have you been to the woods yet?
+	mh. there used to be berries and flowers to pick there...
+	now all you see are lone stone columns.
+
+
+DIALOGUE tarikas_70
+CHAR tarikas
+	mh. why did you come to this town?
+	it can't be that you don't have some sort of goal.
+	i'm sure you're close to realising it by now.
 
 
 DIALOGUE tarikas_finish
