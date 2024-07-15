@@ -61,8 +61,9 @@ func ai_action() -> void:
 	if not is_buffed(self) and rng.randf() <= 1.0 - toughness:
 		if not buffing_spirits.is_empty() and rng.randf() < 0.67:
 			var spirit: String = Math.determ_pick_random(buffing_spirits, rng)
-			if try_use_spirit(spirit, self):
-				return
+			if not is_unsuitable_for_buffing(spirit, target):
+				if try_use_spirit(spirit, self):
+					return
 		if not buffing_items.is_empty():
 			var item: String = Math.determ_pick_random(buffing_items, rng)
 			use_item(item, self)
@@ -80,11 +81,13 @@ func ai_action() -> void:
 	attack(target)
 
 
-func try_use_spirit(spirit: String, on_whom: BattleActor) -> bool:
+func try_use_spirit(spirit: String, on_whom: BattleActor, replenish_magic := true) -> bool:
 	var spirit_instance := ResMan.get_spirit(spirit)
 	var enough_magic := spirit_instance.cost <= character.magic
 	if not enough_magic:
-		return magic_replenish(spirit_instance.cost)
+		if replenish_magic:
+			return magic_replenish(spirit_instance.cost)
+		return false
 	use_spirit(spirit, on_whom)
 	return true
 
@@ -106,6 +109,10 @@ func magic_replenish(needed: int) -> bool:
 
 
 func health_replenish() -> bool:
+	if not healing_spirits.is_empty():
+		var spirit: String = Math.determ_pick_random(healing_spirits, rng)
+		if try_use_spirit(spirit, self, false):
+			return true
 	var found := ""
 	for s_item in healing_items:
 		var item := ResMan.get_item(s_item)
@@ -179,3 +186,9 @@ static func get_debuff_severity(whom: BattleActor) -> float:
 		if x.type.s_id == &"sleepy":
 			sev += x.strength * 0.1 + x.duration * 0.3
 	return sev * 0.06
+
+
+func is_unsuitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
+	if enemy.character.armour == "frankling_badge" and spirit == "grandma_electric":
+		return false
+	return spirit in UNSUITABLE_FOR_BUFFING

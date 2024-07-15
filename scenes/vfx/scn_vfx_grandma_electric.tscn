@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5ptog2hofxx7"]
+[gd_scene load_steps=13 format=3 uid="uid://bh7m7o7ayst84"]
 
-[ext_resource type="Texture2D" uid="uid://c27ab6b27ixyf" path="res://sprites/spirit/spr_jglove_local.png" id="1_jolop"]
+[ext_resource type="Texture2D" uid="uid://c27ab6b27ixyf" path="res://sprites/spirit/spr_jglove_local.png" id="1_o8yqr"]
+[ext_resource type="AudioStream" uid="uid://c6q8eqq1ej54a" path="res://sounds/spirit/grandma_electric.ogg" id="1_wevbp"]
 
 [sub_resource type="Animation" id="Animation_3gt45"]
 length = 0.001
@@ -31,6 +32,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_5fjgf"]
 resource_name = "default"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,9 +41,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.14355, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0, 1, 0.505882, 1), Color(0.317647, 1, 0, 0)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -57,14 +59,29 @@ tracks/1/keys = {
 "method": &"queue_free"
 }]
 }
-tracks/2/type = "value"
+tracks/2/type = "audio"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:frame")
-tracks/2/interp = 2
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_wevbp")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 5]
@@ -77,27 +94,27 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34dx6"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsaaa"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkr5d"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qikiy"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3qb5"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mapn2"]
-atlas = ExtResource("1_jolop")
+atlas = ExtResource("1_o8yqr")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iygvc"]
@@ -137,3 +154,5 @@ autoplay = "default"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_iygvc")
 autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
