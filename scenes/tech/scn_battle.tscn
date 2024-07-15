@@ -162,13 +162,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_t32me")
 text = "descriptions go here"
 scroll_active = false
 
-[node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 0
+layout_mode = 2
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 44.0
-offset_bottom = 14.0
+offset_right = 43.0
+offset_bottom = 42.0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../ItemButton")
 focus_neighbor_bottom = NodePath("../SpiritButton")
 focus_next = NodePath("../SpiritButton")
@@ -180,13 +187,10 @@ clip_text = true
 script = ExtResource("4_ht2pp")
 description = "go in with your %s"
 
-[node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+[node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 15.0
-offset_right = 44.0
-offset_bottom = 28.0
+layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../AttackButton")
 focus_neighbor_bottom = NodePath("../ItemButton")
 focus_next = NodePath("../ItemButton")
@@ -198,13 +202,10 @@ clip_text = true
 script = ExtResource("4_ht2pp")
 description = "maybe magic solves this"
 
-[node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions"]
+[node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 29.0
-offset_right = 44.0
-offset_bottom = 42.0
+layout_mode = 2
+size_flags_vertical = 3
 focus_neighbor_top = NodePath("../SpiritButton")
 focus_neighbor_bottom = NodePath("../AttackButton")
 focus_next = NodePath("../AttackButton")
@@ -500,7 +501,7 @@ wait_time = 0.07
 script = ExtResource("10_7y584")
 level_gain = 89
 new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish"])
-replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish"])
+replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler"])
 replace_armour = &"rain_boot"
 force_spirits_into_use = true
 data_overrides = {

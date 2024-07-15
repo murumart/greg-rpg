@@ -40,6 +40,9 @@ func _ready() -> void:
 
 
 func ai_action() -> void:
+	if has_status_effect(&"confusion"):
+		super()
+		return
 	var target := pick_target()
 	print("deb: ", get_debuff_severity(self))
 	print("gregdeb: ", get_debuff_severity(target))
@@ -61,7 +64,7 @@ func ai_action() -> void:
 	if not is_buffed(self) and rng.randf() <= 1.0 - toughness:
 		if not buffing_spirits.is_empty() and rng.randf() < 0.67:
 			var spirit: String = Math.determ_pick_random(buffing_spirits, rng)
-			if not is_unsuitable_for_buffing(spirit, target):
+			if suitable_for_buffing(spirit, target):
 				if try_use_spirit(spirit, self):
 					return
 		if not buffing_items.is_empty():
@@ -188,7 +191,7 @@ static func get_debuff_severity(whom: BattleActor) -> float:
 	return sev * 0.06
 
 
-static func is_unsuitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
+static func suitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
 	if enemy.character.armour == "frankling_badge" and spirit == "grandma_electric":
 		return false
-	return spirit in UNSUITABLE_FOR_BUFFING
+	return not spirit in UNSUITABLE_FOR_BUFFING

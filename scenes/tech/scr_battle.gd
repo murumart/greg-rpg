@@ -62,6 +62,7 @@ var loading_battle := true
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var status_effects_list := $UI/Panel/ScreenMainActions/StatusEffectsList
 @onready var victory_text := %VictoryText
+@onready var buttons_container: VBoxContainer = %ButtonsContainer
 @onready var attack_button := %AttackButton
 @onready var spirit_button := %SpiritButton
 @onready var item_button := %ItemButton
@@ -348,12 +349,16 @@ func _reference_button_pressed(reference) -> void:
 		return
 	match doing:
 		Doings.ATTACK:
+			if current_guy.has_status_effect(&"confusion"):
+				reference = actors.pick_random()
 			current_guy.attack(reference)
 			listening_to_player_input = false
 			append_action_history("attack", {"target": reference})
 			_used_attack = true
 			open_party_info_screen()
 		Doings.SPIRIT:
+			if current_guy.has_status_effect(&"confusion"):
+				reference = actors.pick_random()
 			current_target = reference
 			open_spirit_name_screen()
 			SND.play_sound(preload("res://sounds/gui.ogg"),
@@ -380,6 +385,9 @@ func _on_button_reference_received(reference) -> void:
 		item_info_label.text = str(
 				ResMan.get_item(reference).get_effect_description(),
 				"\n[color=#888888]", ResMan.get_item(reference).description)
+		if current_guy.has_status_effect(&"confusion"):
+			item_info_label.text = Math.typos(Math.typos(Math.typos(Math.typos(Math.typos(
+					Math.typos(item_info_label.text))))))
 
 
 # some actor wants to act!
@@ -481,6 +489,9 @@ func check_end(force := false) -> void:
 
 var _message_log := []
 func message(msg: String, options := {}) -> void:
+	if current_guy.has_status_effect(&"confusion"):
+		msg = Math.typos(Math.typos(Math.typos(Math.typos(Math.typos(Math.typos(
+				Math.typos(msg)))))))
 	log_text.push_message(msg, options)
 	_message_log.append({"msg": msg, "options": options})
 
@@ -501,11 +512,23 @@ func open_main_actions_screen() -> void:
 	hide_screens()
 	resize_panel(44)
 	# sparkle on, it's wednesday! don't forget to be yourself!
-	if Time.get_date_dict_from_system().weekday == \
-			Time.WEEKDAY_WEDNESDAY and randf() <= 0.02:
+	if (Time.get_date_dict_from_system().weekday
+			== Time.WEEKDAY_WEDNESDAY and randf() <= 0.02):
 		attack_button.text = "slay"
 	else:
 		attack_button.text = "tussle"
+	buttons_container.move_child(attack_button, 0)
+	buttons_container.move_child(spirit_button, 1)
+	buttons_container.move_child(item_button, 2)
+	spirit_button.text = "spirit"
+	item_button.text = "object"
+	if current_guy.has_status_effect(&"confusion"):
+		var names := ["tussle", "spirit", "object"]
+		while not names.is_empty():
+			buttons_container.get_child(randi() % 3).text = Math.typos(
+					names.pop_at(randi() % names.size()))
+		for i in 10:
+			buttons_container.move_child(buttons_container.get_child(randi() % 3), randi() % 3)
 	current_info.update(current_guy)
 	inf1.text = str("%s\nlvl %s" %
 			[current_guy.character.name, current_guy.character.level])
@@ -517,6 +540,9 @@ func open_main_actions_screen() -> void:
 			roundi(current_guy.character.max_health),
 			roundi(current_guy.character.magic),
 			roundi(current_guy.character.max_magic)])
+	if current_guy.has_status_effect(&"confusion"):
+		inf1.text = Math.typos(Math.typos(Math.typos(Math.typos(Math.typos(inf1.text)))))
+		inf2.text = Math.typos(Math.typos(Math.typos(Math.typos(Math.typos(inf2.text)))))
 	screen_main_actions.show()
 	attack_button.grab_focus()
 	erase_floating_spirits()
@@ -549,6 +575,8 @@ func open_list_screen() -> void:
 			var array := []
 			array.append_array(enemies)
 			array.append_array(party)
+			if current_guy.has_status_effect(&"confusion"):
+				array.shuffle()
 			Math.load_reference_buttons(
 					array, list_containers,
 					_reference_button_pressed,
@@ -874,6 +902,8 @@ func set_description(text: String) -> void:
 		if current_guy.character.weapon:
 			description_text.text = text % ResMan.get_item(
 					current_guy.character.weapon).name
+	if current_guy.has_status_effect(&"confusion"):
+		description_text.text = Math.typos(Math.typos(Math.typos(description_text.text)))
 
 
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:
@@ -944,6 +974,10 @@ func item_names(opt := {}) -> void:
 		str(count, "x ") if count > 1 else "",
 		item.name
 		).left(15)
+	if current_guy.has_status_effect(&"confusion"):
+		opt.button.text = Math.typos(Math.typos(Math.typos(
+				ResMan.get_item(current_guy.character.inventory.pick_random()).name)))
+		(opt.button as Button)["theme_override_font_sizes/font_size"] = randi_range(6, 10)
 
 
 func remote_transforms(yes: bool) -> void:
@@ -986,6 +1020,10 @@ func is_ui_locked() -> bool:
 
 
 func crittable_display(opt: Dictionary) -> void:
+	if current_guy.has_status_effect(&"confusion"):
+		opt.button.modulate = Color(randf(), randf(), randf()).lightened(0.4)
+		opt.button.text = "???"
+		return
 	if current_guy in opt.reference.crittable:
 		opt.button.modulate = Color.MAGENTA
 	elif opt.reference in current_guy.crittable:
