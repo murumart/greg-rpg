@@ -64,8 +64,8 @@ func dialogue_exists(key: String) -> bool:
 
 
 func _on_dialogue_closed() -> void:
-	dialogue_closed.emit() # so much logic hinges on this single line
 	dialogue_open = false
+	dialogue_closed.emit() # so much logic hinges on this single line
 
 
 # these are used in some places i guess

@@ -2,6 +2,7 @@ MACRO SPIRITCOLOR #7799ff
 MACRO YUKUCOLOR #88aaff
 MACRO WLICOLOR #ff8888
 MACRO GREEN #00ff00
+MACRO PURPLE #ff00ff
 MACRO SUNCOLOR #ffbb99
 MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
@@ -241,7 +242,7 @@ CHAR zerma
 DIALOGUE zerma_fight_3_item_greg
 CHAR zerma
 	you're a natural! ahaha!
-	here comes your final lesson.
+	here comes your next lesson.
 	see that big [color=SPIRITCOLOR]spirit[/color] button?
 SPEED 1.5
 	press it and [color=#ff00ff]select me[/color].
@@ -253,8 +254,7 @@ SPEED 1
 	and you must be quick! spirits are fickle...
 	the spirit whom you must call is known as...
 	[color=SPIRITCOLOR]sideeye[/color].
-	do you understand?
-	...
+	do you understand...?
 	just... type [color=SPIRITCOLOR]sideeye[/color] when you can!
 	good luck!
 
@@ -298,13 +298,16 @@ INSTASKIP
 CHAR zerma
 	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
 	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
-	well!
-	this is actually all for now!
-	of course i could not teach you everything.
-	there are certainly more things to learn...
-	...but i trust in you to learn them yourself...
-	...as you progress!
-	nice battling you! you win!
+	the spirits are kind enough to remind you of...
+	...their names and [color=SPIRITCOLOR]sp[/color] costs in their menu.
+	next up: status effects!
+#well!
+#this is actually all for now!
+#of course i could not teach you everything.
+#there are certainly more things to learn...
+#...but i trust in you to learn them yourself...
+#...as you progress!
+#nice battling you! you win!
 
 
 DIALOGUE zerma_fight_4_spirit_greg
@@ -314,11 +317,9 @@ CHAR zerma
 	but maybe you found out something new about yourself?
 	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
 	you can only use spirits when your [color=SPIRITCOLOR]sp[/color] is high enough.
-	anyway! this concludes my tutorial.
-	there are certainly more things to learn...
-	...but i trust in you to learn them yourself...
-	...as you progress!
-	nice battling you! you win!
+	the spirits are kind enough to remind you of...
+	...their names and [color=SPIRITCOLOR]sp[/color] costs in their menu.
+	next up: status effects!
 
 
 DIALOGUE zerma_fight_4_attack_zerma
@@ -343,6 +344,57 @@ CHAR zerma
 	select me and type [color=SPIRITCOLOR]sideeye[/color].
 
 
+DIALOGUE zerma_fight_4_status_effect
+CHAR zerma
+	you have a regeneration status effect now!
+	this one replenishes your health bit by bit...
+	...every time you act in battle.
+	you can view your active status effects...
+	...by pressing 'c' in your main screen.
+	try acting in any way to progress!
+
+
+DIALOGUE zerma_fight_5_else
+CHAR zerma
+	well done! that sure was an act.
+	finally, let's talk about [color=PURPLE]critical hits[/color].
+	occasionally during your fight, your enemy or you...
+	...will step into an advantageous position.
+	you can see that you have advantage...
+	...if someone's name becomes [color=GREEN]green[/color].
+	conversely, if someone gains advantage over you...
+	...their name will be [color=PURPLE]purple[/color] in menus.
+	attacking someone with a [color=GREEN]green[/color] name guarantees...
+	...that the strike will hurt painfully.
+	someone with a [color=PURPLE]purple[/color] name attacking you...
+	i'll leave you to guess. better prepare then!
+	i'll step into a bad position, so you can see...
+	...what dealing a critical hit feels like.
+	attack me!
+
+
+DIALOGUE zerma_fight_6_attack_zerma
+CHAR zerma
+	owie!
+	well, there you have it! my tutorial.
+	i hope you enjoyed this one, remember to leave a...
+	...good review and to subscribe to my newsletter.
+	this is all for today! you can surely handle...
+	...anything they throw at you from now on!
+	you win!
+
+
+DIALOGUE zerma_fight_6_attack_greg
+CHAR zerma
+	no.. no... no!!!
+	attack meeeeeeeeeeeeeeeee. meeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!
+
+
+DIALOGUE zerma_fight_6_else
+CHAR zerma
+	that wasn't an attack... try again!
+
+
 DIALOGUE zerma_after_fight
 CHAR zerma
 	that went well!
@@ -351,7 +403,7 @@ CHAR zerma
 	and one day... you might even be able to take on...
 	that dastardly old woman.
 	but now i must get going!
-	my people need me. goodbye.
+	my people need me. toodles.
 
 
 DIALOGUE zerma_goodbye
