@@ -30,6 +30,7 @@ gender = 2
 effects = Array[ExtResource("1_ivqmb")]([SubResource("Resource_lvtgf")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
 meta = {}
 

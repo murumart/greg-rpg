@@ -34,6 +34,7 @@ gender = 2
 effects = Array[ExtResource("1_efrol")]([SubResource("Resource_hvl7u"), SubResource("Resource_ise6q")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
 meta = {}
 

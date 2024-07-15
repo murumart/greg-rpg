@@ -30,57 +30,62 @@ func _ready() -> void:
 	super()
 	magic_replenishing_items.sort_custom(func(a, b):
 		return (ResMan.get_item(a).payload.get_magic_change(character.magic, character.max_magic)
-				< ResMan.get_item(b).payload.get_magic_change(character.magic, character.max_magic)))
+				< ResMan.get_item(b).payload.get_magic_change(
+						character.magic, character.max_magic)))
 	healing_items.sort_custom(func(a, b):
 		return (ResMan.get_item(a).payload.get_health_change(character.health, character.max_health)
-				< ResMan.get_item(b).payload.get_health_change(character.health, character.max_health))
+				< ResMan.get_item(b).payload.get_health_change(
+						character.health, character.max_health))
 	)
 
 
 func ai_action() -> void:
-	print("deb: ", get_debuff_severity())
 	var target := pick_target()
+	print("deb: ", get_debuff_severity(self))
+	print("gregdeb: ", get_debuff_severity(target))
 	toughness = enemy_health_toughness_curve.sample_baked(
-			target.character.health_perc() + get_debuff_severity())
-	if character.health_perc() <= toughness:
+			target.character.health_perc() + get_debuff_severity(self))
+	if character.health_perc() <= 1.0 - toughness:
 		if health_replenish():
 			return
 	if target in crittable:
 		attack(target)
 		return
 	if reference_to_team_array.size() < 2:
-		if try_use_spirit("summon_vacuum"):
+		if try_use_spirit("summon_vacuum", self):
+			return
+	if ((not has_status_effect(&"shield") and rng.randf() <= 1.0 - toughness)
+			or self in target.crittable):
+		if try_use_spirit("smallshield", self):
 			return
 	if not is_buffed(self) and rng.randf() <= 1.0 - toughness:
 		if not buffing_spirits.is_empty() and rng.randf() < 0.67:
 			var spirit: String = Math.determ_pick_random(buffing_spirits, rng)
-			if try_use_spirit(spirit):
+			if try_use_spirit(spirit, self):
 				return
 		if not buffing_items.is_empty():
 			var item: String = Math.determ_pick_random(buffing_items, rng)
 			use_item(item, self)
 			return
-	if not has_status_effect(&"shield") and rng.randf() <= 1.0 - toughness:
-		if try_use_spirit("smallshield"):
-			return
-	if not is_debuffed(target) and rng.randf() < 0.95:
+	if (get_debuff_severity(target) < 0.2 * (1.0 - toughness) and rng.randf() < 0.95
+			or target.has_status_effect(&"sleepy") and rng.randf() < 0.89):
 		if not debuffing_spirits.is_empty() and rng.randf() < 0.78:
 			var spirit: String = Math.determ_pick_random(debuffing_spirits, rng)
-			if try_use_spirit(spirit):
+			if try_use_spirit(spirit, target):
 				return
 		if not buffing_items.is_empty():
 			var item: String = Math.determ_pick_random(debuffing_items, rng)
-			use_item(item, self)
+			use_item(item, target)
 			return
 	attack(target)
 
 
-func try_use_spirit(spirit: String) -> bool:
+func try_use_spirit(spirit: String, on_whom: BattleActor) -> bool:
 	var spirit_instance := ResMan.get_spirit(spirit)
 	var enough_magic := spirit_instance.cost <= character.magic
 	if not enough_magic:
 		return magic_replenish(spirit_instance.cost)
-	use_spirit(spirit, self)
+	use_spirit(spirit, on_whom)
 	return true
 
 
@@ -156,9 +161,9 @@ func is_buffed(whom: BattleActor) -> bool:
 	)
 
 
-func get_debuff_severity() -> float:
+static func get_debuff_severity(whom: BattleActor) -> float:
 	var sev := 0.0
-	for x in status_effects.values():
+	for x in whom.status_effects.values():
 		x = x as BattleStatusEffect
 		if ((x.type.s_id == &"attack" or x.type.s_id == &"defense" or x.type.s_id == &"speed")
 				and x.strength < 1):
@@ -166,9 +171,11 @@ func get_debuff_severity() -> float:
 		if x.type.s_id == &"sopping":
 			sev += x.strength * 0.21 + x.duration * 0.08
 		if x.type.s_id == &"fire":
-			sev += x.strength * 0.1 + x.duration * 0.04
+			sev += x.strength * 0.1 + x.duration * 0.07
 		if x.type.s_id == &"poison":
 			sev += x.strength * 0.12 + x.duration * 0.07
 		if x.type.s_id == &"little":
 			sev += x.strength * 0.1 + x.duration * 0.12
+		if x.type.s_id == &"sleepy":
+			sev += x.strength * 0.1 + x.duration * 0.3
 	return sev * 0.06
