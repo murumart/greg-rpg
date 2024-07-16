@@ -127,16 +127,16 @@ func direct_animation() -> void:
 
 
 # for cutscenes and such
-func animate(animation_name: String, moving := false) -> void:
+func animate(animation_name: String, moving := false, speed_scale := 1.0) -> void:
 	if animation_name.is_empty():
 		sprite.stop()
 	sprite.play(animation_name)
-	sprite.speed_scale = 1.0 * float(moving)
+	sprite.speed_scale = 1.0 * float(moving) * speed_scale
 	if updating_armour:
 		if animation_name.is_empty():
 			armour.stop()
 		armour.play(animation_name)
-		armour.speed_scale = 1.0 * float(moving)
+		armour.speed_scale = 1.0 * float(moving) * speed_scale
 
 
 func interact() -> void:

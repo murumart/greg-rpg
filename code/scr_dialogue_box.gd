@@ -82,9 +82,15 @@ func load_dialogue_dict() -> void:
 
 func add_dialogue_file(path: String) -> void:
 	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open(path, FileAccess.READ)
+			DialogueParser.parse_dialogue_from_file(
+					FileAccess.open(path, FileAccess.READ)
 	))
+
+
+func add_dialogue_string(string: String) -> void:
+	dialogues_dict.merge(
+			DialogueParser.parse_dialogue_from_string(string)
+	)
 
 
 func copy_dial(dial: Dialogue) -> Dialogue:

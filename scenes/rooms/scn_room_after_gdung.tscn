@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=45 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_tsr75"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_vr61x"]
 [ext_resource type="PackedScene" uid="uid://cl6k0grvwaxor" path="res://scenes/rooms/grandma_house/gdung_objects/desk_drawer.tscn" id="5_fayv6"]
 [ext_resource type="PackedScene" uid="uid://kqx43gmkaehn" path="res://scenes/rooms/grandma_house/gdung_objects/catface_big.tscn" id="6_320fy"]
+[ext_resource type="Texture2D" uid="uid://w8w2h3ql2nu6" path="res://sprites/world/object/spr_stairs.png" id="6_vvee7"]
 [ext_resource type="PackedScene" uid="uid://dypyknji64gje" path="res://scenes/rooms/grandma_house/gdung_objects/shelf_hanging_flower.tscn" id="7_37dg4"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="7_ltdhb"]
 [ext_resource type="PackedScene" uid="uid://cj517qpsnj0x0" path="res://scenes/rooms/grandma_house/gdung_objects/shelf.tscn" id="8_df8j1"]
@@ -24,6 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://bba783hhp0cep" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_1.tscn" id="17_1hl5q"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/after_gdung_cutscene.gd" id="18_xmmsv"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/ending1.gd" id="21_3a2w4"]
+[ext_resource type="AudioStream" uid="uid://dsecnyf8owaqj" path="res://sounds/choir.ogg" id="22_qjsv1"]
+[ext_resource type="AudioStream" uid="uid://xbktqlmfswa6" path="res://sounds/walking/wood-01.ogg" id="27_gdubp"]
+[ext_resource type="AudioStream" uid="uid://ccylab57h0hqs" path="res://sounds/walking/wood-02.ogg" id="28_3ubdg"]
+[ext_resource type="AudioStream" uid="uid://dgt2b8m22i6g1" path="res://sounds/walking/wood-03.ogg" id="29_5g3wf"]
+[ext_resource type="AudioStream" uid="uid://bvn412ekdb6ev" path="res://sounds/walking/wood-04.ogg" id="30_igvaj"]
+[ext_resource type="Texture2D" uid="uid://cbx7xowh0oxa2" path="res://sprites/cutscene/end/end1picture.png" id="31_rvrit"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nlgg"]
 polygon = PackedVector2Array(-32, 25, -32, 64, -16, 64, -16, -88, -32, -88)
@@ -80,6 +87,42 @@ polygon = PackedVector2Array(-15, -1, -15, -31, 0, -46, 0, -65, 15, -50, 15, -1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_juacr"]
 polygon = PackedVector2Array(-3, 0, -3, -8, -4, -8, -4, -14, 4, -14, 4, -8, 3, -8.12667, 3, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_crlhn"]
+streams_count = 4
+stream_0/stream = ExtResource("27_gdubp")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("28_3ubdg")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("29_5g3wf")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("30_igvaj")
+stream_3/weight = 1.0
+
+[sub_resource type="Shader" id="Shader_iamh2"]
+code = "shader_type canvas_item;
+
+uniform vec4 modulate : source_color = vec4(1.0);
+
+void fragment() {
+	vec2 uv = UV;
+	uv.x += sin(TIME * 0.8 + uv.y) * 0.01;
+	float red_addition = texture(TEXTURE, uv).r;
+	uv.y += cos(TIME * 3.0 + uv.x) * 0.01;
+	float fuck = mix(step(0.5, uv.x * cos(TIME * 20.0) * uv.y * sin(TIME * 20.0)), uv.x, uv.y
+			-(uv.x * sin(TIME) * 0.5)) + 0.5;
+	uv.x = mix(uv.x, fuck, sin(TIME * 0.02) * sin(TIME * 0.2) * sin(TIME * 0.02));
+
+	vec4 textr = modulate * texture(TEXTURE, uv);
+	textr.r -= red_addition * sin(TIME * 0.2 * cos(TIME - uv.x + uv.y * uv.y * uv.x)) * 0.05;
+	COLOR = textr;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkc1w"]
+shader = SubResource("Shader_iamh2")
+shader_parameter/modulate = Color(1, 1, 1, 1)
 
 [node name="AfterGdung" type="Node2D"]
 y_sort_enabled = true
@@ -226,15 +269,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteriorTiles/Grandma/EnterArea"]
 shape = SubResource("RectangleShape2D_jbyid")
 
-[node name="Ending1" type="Node2D" parent="InteriorTiles"]
-script = ExtResource("21_3a2w4")
-
-[node name="Gregpos" type="Node2D" parent="InteriorTiles/Ending1"]
-position = Vector2(8, -100)
-
-[node name="Grandmapos" type="Node2D" parent="InteriorTiles/Ending1"]
-position = Vector2(8, -121)
-
 [node name="Greenhouse" parent="." instance=ExtResource("3_hx4r5")]
 position = Vector2(-72, 73)
 
@@ -250,7 +284,7 @@ modulate = Color(1, 1, 1, 0)
 occluder = SubResource("OccluderPolygon2D_koeod")
 
 [node name="Greg" parent="." instance=ExtResource("7_ltdhb")]
-position = Vector2(8, 23)
+position = Vector2(8, 271)
 
 [node name="Camera" parent="Greg" instance=ExtResource("8_wwl53")]
 limit_left = -125
@@ -258,3 +292,45 @@ limit_right = 125
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Greg"]
 occluder = SubResource("OccluderPolygon2D_juacr")
+
+[node name="Ending1" type="Node2D" parent="."]
+script = ExtResource("21_3a2w4")
+
+[node name="Gregpos" type="Node2D" parent="Ending1"]
+position = Vector2(8, -100)
+
+[node name="Gregpos2" type="Node2D" parent="Ending1"]
+position = Vector2(8, -239)
+
+[node name="Grandmapos" type="Node2D" parent="Ending1"]
+position = Vector2(8, -121)
+
+[node name="AAh" type="AudioStreamPlayer2D" parent="Ending1"]
+stream = ExtResource("22_qjsv1")
+max_distance = 260.0
+attenuation = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="Ending1"]
+z_index = -2
+offset_left = -157.0
+offset_top = -350.0
+offset_right = 176.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="Stairs" type="Sprite2D" parent="Ending1"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(-64, -297)
+texture = ExtResource("6_vvee7")
+centered = false
+
+[node name="Walking" type="AudioStreamPlayer" parent="Ending1"]
+stream = SubResource("AudioStreamRandomizer_crlhn")
+max_polyphony = 4
+bus = &"ECHO"
+
+[node name="Picture" type="Sprite2D" parent="Ending1"]
+material = SubResource("ShaderMaterial_gkc1w")
+texture = ExtResource("31_rvrit")
+centered = false

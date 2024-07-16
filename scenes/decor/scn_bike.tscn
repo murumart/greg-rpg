@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkuu3x2gw38ch"]
+[gd_scene load_steps=14 format=3 uid="uid://bkuu3x2gw38ch"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
 [ext_resource type="Texture2D" uid="uid://cpr2152aq2eya" path="res://sprites/characters/overworld/bike_ghosts.png" id="6_82grt"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_objt5"]
+blend_mode = 1
+
 [sub_resource type="Gradient" id="Gradient_rurkq"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
-colors = PackedColorArray(0, 0.745098, 0.976471, 1, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
+colors = PackedColorArray(0, 0.745098, 0.976471, 0.862745, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6lhb2"]
 gradient = SubResource("Gradient_rurkq")
@@ -288,6 +291,7 @@ _data = {
 script = ExtResource("1_hdwvo")
 
 [node name="Gradient" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_objt5")
 position = Vector2(-16, -32)
 texture = SubResource("GradientTexture2D_6lhb2")
 centered = false
