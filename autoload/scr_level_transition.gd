@@ -86,7 +86,8 @@ func to_game_over_screen() -> void:
 func enter_battle(info: BattleInfo, options := {}) -> void:
 	if entering_battle:
 		return
-	if options.get("sbcheck", false) and skateboard_check(): return
+	if options.get("sbcheck", false) and skateboard_check():
+		return
 	entering_battle = true
 	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE

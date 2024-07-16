@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Resource" uid="uid://wy2pad6a4u0h" path="res://resources/battle_infos/zerma_tutorial.tres" id="2_qsqw4"]
+[ext_resource type="Resource" uid="uid://c0ncj8xjt5dma" path="res://resources/battle_infos/grandma_bossfight.tres" id="2_yh6xr"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -63,7 +63,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_qsqw4")
+load_options = ExtResource("2_yh6xr")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 

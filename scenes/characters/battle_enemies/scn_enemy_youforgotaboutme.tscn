@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://is0v8ehlcn2v"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_08x4p"]
+[ext_resource type="Texture2D" uid="uid://c2ihg2vwsi2k7" path="res://sprites/characters/battle/spr_forgotten_enemy.png" id="2_3uar3"]
+
+[node name="Youforgotabout me" type="Node2D"]
+script = ExtResource("1_08x4p")
+effect_center = Vector2i(0, -15)
+toughness = 0.0
+altruism = 0.0
+innovation = 0.0
+vaimulembesus = 0.0
+auto_ai = false
+xp_multiplier = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("2_3uar3")

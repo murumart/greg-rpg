@@ -190,7 +190,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		set_process_unhandled_input(false)
 
 
-func load_battle(info: BattleInfo) -> void:
+func load_battle(_info: BattleInfo) -> void:
+	var info := _info.duplicate()
+	info._before_load()
 	# second argument of info.get_ is the default value
 	set_background(info.background)
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):

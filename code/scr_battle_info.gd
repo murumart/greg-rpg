@@ -81,3 +81,16 @@ func _to_string() -> String:
 		"victory_music=", victory_music, ", ",
 		"stop_music_before_end=", stop_music_before_end, ") "
 	)
+
+
+func _before_load() -> void:
+	var bike_ghosts_fought := DAT.get_data("bike_ghosts_fought", []) as Array
+	var to_remove := []
+	for enemy in enemies:
+		if (enemy == &"bike_ghost" and not 0 in bike_ghosts_fought
+				or enemy == &"bike_ghost_beta" and not 1 in bike_ghosts_fought):
+			to_remove.append(enemy)
+	if to_remove.size() >= enemies.size():
+		rewards = null
+	for x in to_remove:
+		enemies.erase(x)
