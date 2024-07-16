@@ -239,6 +239,8 @@ static func toexp(string: String) -> Variant:
 	if string.is_valid_float(): return float(string)
 	if string == "false": return false
 	if string == "true": return true
+	if string.begins_with("["):
+		return str_to_var(string)
 	return null
 
 
@@ -287,3 +289,7 @@ static func typos(s: String) -> String:
 		return s
 	s = s.erase(randi_range(1, s.length() - 1))
 	return s
+
+
+static func timer(sec: float) -> void:
+	await DAT.get_tree().create_timer(sec).timeout

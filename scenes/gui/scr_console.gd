@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,win,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -105,6 +105,8 @@ func parse_command() -> void:
 			output("inventory cleared")
 		&"addperk":
 			add_perk(args)
+		&"win":
+			win()
 		&"7":
 			output("7")
 		_:
@@ -174,6 +176,7 @@ func _data_change(type: DataCommands, key: StringName, value: Variant) -> void:
 		value = int(value)
 	elif str(value).is_valid_float():
 		value = float(value)
+	value = Math.toexp(value)
 	match type:
 		DataCommands.SET:
 			DAT.set_data(key, value)
@@ -338,4 +341,12 @@ func goto(args: PackedStringArray) -> void:
 		return
 	LTS.level_transition(room)
 	output("going to " + args[0])
+
+
+func win() -> void:
+	var battle = LTS.get_current_scene()
+	if not battle.name == "Battle":
+		output("not in battle", true)
+		return
+	battle.check_end(true)
 

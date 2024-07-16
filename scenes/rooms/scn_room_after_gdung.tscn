@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=35 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_tsr75"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bo8y8ijengvn8" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_3.tscn" id="16_1ri04"]
 [ext_resource type="PackedScene" uid="uid://bba783hhp0cep" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_1.tscn" id="17_1hl5q"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/after_gdung_cutscene.gd" id="18_xmmsv"]
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/ending1.gd" id="21_3a2w4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nlgg"]
 polygon = PackedVector2Array(-32, 25, -32, 64, -16, 64, -16, -88, -32, -88)
@@ -224,6 +225,15 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteriorTiles/Grandma/EnterArea"]
 shape = SubResource("RectangleShape2D_jbyid")
+
+[node name="Ending1" type="Node2D" parent="InteriorTiles"]
+script = ExtResource("21_3a2w4")
+
+[node name="Gregpos" type="Node2D" parent="InteriorTiles/Ending1"]
+position = Vector2(8, -100)
+
+[node name="Grandmapos" type="Node2D" parent="InteriorTiles/Ending1"]
+position = Vector2(8, -121)
 
 [node name="Greenhouse" parent="." instance=ExtResource("3_hx4r5")]
 position = Vector2(-72, 73)

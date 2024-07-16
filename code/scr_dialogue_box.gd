@@ -83,11 +83,16 @@ func load_dialogue_dict() -> void:
 	))
 	dialogues_dict.merge(
 		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_status_effect_descriptions.dial", FileAccess.READ)
+			FileAccess.open("res://resources/dial_status_effect_descriptions.dial",
+					FileAccess.READ)
 	))
 	dialogues_dict.merge(
 		DialogueParser.parse_dialogue_from_file(
 			FileAccess.open("res://resources/dial_res_phonecalls.dial", FileAccess.READ)
+	))
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open("res://resources/dial_insp.dial", FileAccess.READ)
 	))
 
 
