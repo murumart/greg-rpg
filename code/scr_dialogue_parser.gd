@@ -27,6 +27,11 @@ const NEW_MACRO := &"MACRO "
 
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
+	print("dial " + file.get_path() + " ")
+	return parse_dialogue_from_string(file.get_as_text(true))
+
+
+static func parse_dialogue_from_string(string: String) -> Dictionary:
 	var time := Time.get_ticks_usec() # measuring the time that this takes to run
 	var dialogue_dictionary: Dictionary = {}
 	var dial: Dialogue
@@ -46,10 +51,12 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	var set_data_to_set := PackedStringArray()
 	var portrait_scale_to_set := Vector2(1, 1)
 	var macros := {} # value replaced by key in the final text
+	var split := string.split("\n")
 
-	# going trhough the file line by line
-	while not file.eof_reached():
-		var line := file.get_line()
+	# going trhough the string line by line
+	var i := -1
+	for line: String in split:
+		i += 1
 		if line.length() < 3: # skip empty lines, slight performance boost
 			continue
 		line = line.replace("\r\n", "\n")
@@ -138,8 +145,8 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 		elif line.begins_with(NEW_PORTRAIT_SCALE):
 			var arr := line.right(-NEW_PORTRAIT_SCALE.length()).split(",")
 			portrait_scale_to_set = Vector2(float(arr[0]), float(arr[1]))
-	if file.eof_reached():
+	if i >= split.size() - 1:
 		dialogue_dictionary[dial.name] = dial
-	print("parsing %s took %s ms" % [file.get_path().get_file(), ((Time.get_ticks_usec() - time) * 0.001)])
+	print("parsing took %s ms" % [((Time.get_ticks_usec() - time) * 0.001)])
 	return dialogue_dictionary
 

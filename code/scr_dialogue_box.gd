@@ -71,30 +71,20 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # load the dialogues from files
 func load_dialogue_dict() -> void:
-	dialogues_dict = DialogueParser.parse_dialogue_from_file(
-		FileAccess.open("res://resources/dial_menus.dial", FileAccess.READ))
-	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_dialogue.dial", FileAccess.READ)
-	))
-	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_fisher_dialogue.dial", FileAccess.READ)
-	))
-	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_status_effect_descriptions.dial",
-					FileAccess.READ)
-	))
-	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_res_phonecalls.dial", FileAccess.READ)
-	))
-	dialogues_dict.merge(
-		DialogueParser.parse_dialogue_from_file(
-			FileAccess.open("res://resources/dial_insp.dial", FileAccess.READ)
-	))
+	dialogues_dict = {}
+	add_dialogue_file("res://resources/dial_menus.dial")
+	add_dialogue_file("res://resources/dial_dialogue.dial")
+	add_dialogue_file("res://resources/dial_fisher_dialogue.dial")
+	add_dialogue_file("res://resources/dial_status_effect_descriptions.dial")
+	add_dialogue_file("res://resources/dial_res_phonecalls.dial")
+	add_dialogue_file("res://resources/dial_insp.dial")
 
+
+func add_dialogue_file(path: String) -> void:
+	dialogues_dict.merge(
+		DialogueParser.parse_dialogue_from_file(
+			FileAccess.open(path, FileAccess.READ)
+	))
 
 
 func copy_dial(dial: Dialogue) -> Dialogue:
