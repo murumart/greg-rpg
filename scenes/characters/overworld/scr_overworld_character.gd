@@ -224,16 +224,17 @@ func _on_random_movement_timer_timeout() -> void:
 	if not random_movement:
 		return
 	# test if random target position is reachable
-	for i in RANDOM_MOVEMENT_TRIES:
-		set_target(global_position + Vector2(
-				randi_range(-random_movement_distance, random_movement_distance),
-				randi_range(-random_movement_distance, random_movement_distance)))
-		detection_raycast.target_position = to_local(target)
-		detection_raycast.force_raycast_update()
-		var collider := detection_raycast.get_collider()
-		if collider:
-			target = detection_raycast.get_collision_point()
-			break
+	set_target(global_position + Vector2(
+			randf_range(-1, 1),
+			randf_range(-1, 1)
+	) * random_movement_distance)
+	detection_raycast.target_position = to_local(target)
+	detection_raycast.force_raycast_update()
+	var collider := detection_raycast.get_collider()
+	if collider:
+		target = detection_raycast.get_collision_point()
+		target -= (collision_shape.shape.get_rect().size
+				* -detection_raycast.get_collision_normal())
 	set_state(States.WANDER)
 	random_movement_timer.start(randfn(movement_wait, movement_wait * 0.25))
 
