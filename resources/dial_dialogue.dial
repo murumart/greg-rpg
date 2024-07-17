@@ -3314,20 +3314,22 @@ SOUND sleepy
 	zzzzzzzz......
 CHAR grandma
 	zzz- hurk!
-	ah, you startled me.
-	welcome to my lair, greg.
-	i took the liberty of rearranging some parts of your-
-	...i mean, my house. i think it's more intuitive this way.
-	...
-	i was planning on having a whole speech here, but i...
-	...procrastinated on it, and i'm not ready.
-	so, uh, let's get this over with.
+	ah, you arrived at last! i was getting tired waiting.
+	i see you have trudged through the "extensions"...
+	...that i made to the house.
+	you're strong enough by now, aren't you?
+	this is your final test, greg...
+	do you give up... or do you truly desire this house?
 # she fights you
 
 
 DIALOGUE grandma_final_fight_1
 CHAR grandma
 	items
+
+
+DIALOGUE the_end
+	the end
 
 
 DIALOGUE end_of_the_line

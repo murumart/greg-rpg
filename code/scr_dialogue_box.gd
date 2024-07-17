@@ -136,7 +136,8 @@ func load_dialogue(dial: Dialogue) -> void:
 
 func speak_this_dialogue_part(part: DialogueLine) -> void:
 	# get the data from the dialogue resource
-	if not is_instance_valid(loaded_dialogue): return
+	if not is_instance_valid(loaded_dialogue):
+		return
 	loaded_dialogue_line = null
 	var text := part.text
 	var character_load: String = part.character
@@ -178,7 +179,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	loaded_dialogue_line = part
 
 	portrait.texture = null
-	Math.load_reference_buttons([], [choices_container], _reference_button_pressed, _on_button_reference_received)
+	Math.load_reference_buttons([], [choices_container],
+			_reference_button_pressed, _on_button_reference_received)
 	choices_container.get_parent().hide()
 	choices_open = false
 
@@ -204,7 +206,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	textbox.set_text(text)
 	started_speaking.emit(current_dialogue)
 	# speaking takes as much time as many there are letters to speak
-	textbox.speak_text({"speed": OPT.get_opt("text_speak_time") / text_speed * text.length() * 0.05})
+	textbox.speak_text({"speed": OPT.get_opt("text_speak_time")
+			/ text_speed * text.length() * 0.05})
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
 	else:

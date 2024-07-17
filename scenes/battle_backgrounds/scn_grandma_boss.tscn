@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bleek6adjjnc1"]
+
+[ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_grandma_boss.gd" id="1_np6vw"]
+[ext_resource type="Texture2D" uid="uid://57q3vlc6p4hr" path="res://sprites/photos/spr_insidehouse.png" id="2_vwmfj"]
+
+[sub_resource type="Shader" id="Shader_1u14p"]
+code = "shader_type canvas_item;
+
+uniform float wow = 0.0;
+
+
+void fragment() {
+	vec2 uv = UV;
+
+	uv.x += sin(129.0 + TIME * 0.2 * cos(TIME * 0.08 + uv.x) - sin(uv.y) * 25.0) * 0.02;
+	uv.y += sin(TIME * 0.2 * cos(uv.y - TIME * 0.16 + uv.x) - sin(uv.y) * 25.0) * 0.02;
+	vec4 colora = texture(TEXTURE, uv);
+	float swap = colora.r;
+	colora.r = colora.b;
+	colora.b = swap + wow;
+	uv.x += sin(TIME * 0.2 * cos(TIME * 0.08 + uv.x * wow) - sin(uv.y) * 18.0) * 0.08;
+	uv.y += sin(1216.0 + TIME * 0.02 * cos(TIME * 0.08 + uv.y) - sin(uv.x) * 25.0) * 0.02 - wow;
+
+
+	vec4 color = texture(TEXTURE, uv);
+	COLOR = color * colora;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpsks"]
+shader = SubResource("Shader_1u14p")
+shader_parameter/wow = 0.0
+
+[node name="GrandmaBackgournd" type="Node2D"]
+script = ExtResource("1_np6vw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 3
+material = SubResource("ShaderMaterial_cpsks")
+texture = ExtResource("2_vwmfj")
+centered = false

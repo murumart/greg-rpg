@@ -1,6 +1,6 @@
 [gd_scene load_steps=45 format=3 uid="uid://dagcbtyo58x4e"]
 
-[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_tsr75"]
+[ext_resource type="Script" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_xp1f1"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="3_hx4r5"]
@@ -103,6 +103,7 @@ stream_3/weight = 1.0
 code = "shader_type canvas_item;
 
 uniform vec4 modulate : source_color = vec4(1.0);
+uniform float amount = 1.0;
 
 void fragment() {
 	vec2 uv = UV;
@@ -113,8 +114,9 @@ void fragment() {
 			-(uv.x * sin(TIME) * 0.5)) + 0.5;
 	uv.x = mix(uv.x, fuck, sin(TIME * 0.02) * sin(TIME * 0.2) * sin(TIME * 0.02));
 
-	vec4 textr = modulate * texture(TEXTURE, uv);
-	textr.r -= red_addition * sin(TIME * 0.2 * cos(TIME - uv.x + uv.y * uv.y * uv.x)) * 0.05;
+	vec4 textr = modulate * texture(TEXTURE, mix(UV, uv, amount));
+	textr.r -= red_addition * sin(TIME * 0.2 * cos(TIME - uv.x + uv.y * uv.y * uv.x)) * 0.05
+			* amount;
 	COLOR = textr;
 }
 
@@ -123,10 +125,12 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkc1w"]
 shader = SubResource("Shader_iamh2")
 shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/amount = 0.0
 
 [node name="AfterGdung" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_tsr75")
+script = ExtResource("1_bimlp")
+music = "byddd"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 color = Color(0.669375, 0.655126, 0.568228, 1)
@@ -264,6 +268,7 @@ animation = &"walk_down"
 position = Vector2(0, 67)
 collision_layer = 0
 collision_mask = 2
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteriorTiles/Grandma/EnterArea"]
@@ -331,6 +336,8 @@ max_polyphony = 4
 bus = &"ECHO"
 
 [node name="Picture" type="Sprite2D" parent="Ending1"]
+visible = false
+texture_repeat = 3
 material = SubResource("ShaderMaterial_gkc1w")
 texture = ExtResource("31_rvrit")
 centered = false

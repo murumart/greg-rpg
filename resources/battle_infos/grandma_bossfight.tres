@@ -4,14 +4,14 @@
 
 [resource]
 script = ExtResource("1_3ax2g")
-enemies = Array[StringName]([&"grandma_boss", &"bike_ghost"])
-background = "house_inside"
-music = ""
+enemies = Array[StringName]([&"grandma_boss"])
+background = "grandma_boss"
+music = "grandma_boss"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = "get that house back boy."
 victory_music = &"victory"
 stop_music_before_end = true
 kill_music = true
-play_fanfare = true
+play_fanfare = false
 crits_enabled = true

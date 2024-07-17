@@ -35,6 +35,15 @@ var songs := {
 		"title": "birdsong",
 		"stream": preload("res://music/mus_birds.ogg")
 	},
+	"byddd": {
+		"title": "tenxion",
+		"stream": preload("res://music/mus_byddd.ogg"),
+		"default_volume": 3,
+	},
+	"bymsps": {
+		"title": "blood elevator",
+		"stream": preload("res://music/mus_bymsps.ogg")
+	},
 	"catfight": {
 		"title": "catfight",
 		"stream": preload("res://music/mus_catfight.ogg")
@@ -106,6 +115,10 @@ var songs := {
 	"greenhouse": {
 		"title": "webcatz - greenhouse",
 		"stream": preload("res://music/mus_greenhouse.ogg")
+	},
+	"grandma_boss": {
+		"title": "89 grand mother",
+		"stream": preload("res://music/mus_grandma_boss.ogg")
 	},
 	"grandma_scary": {
 		"title": "mental",

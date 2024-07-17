@@ -24,6 +24,7 @@ const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png"
 					return (b as StatusEffect).name == &"inspiration")))
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var particles: GPUParticles2D = $Sprite/GPUParticles2D
 
 
 func _ready() -> void:
@@ -145,19 +146,28 @@ func use_item(item: String, whom: BattleActor) -> void:
 	debuffing_items.erase(item)
 	magic_replenishing_items.erase(item)
 	sprite.texture = USE_ITEM
-	get_tree().create_timer(0.7).timeout.connect(func(): sprite.texture = USUAL)
+	particles.texture = USE_ITEM
+	get_tree().create_timer(0.7).timeout.connect(func():
+		sprite.texture = USUAL
+		particles.texture = USUAL)
 
 
 func use_spirit(spirit: String, whom: BattleActor) -> void:
 	sprite.texture = USE_SPIRIT
-	get_tree().create_timer(0.7).timeout.connect(func(): sprite.texture = USUAL)
+	particles.texture = USE_SPIRIT
+	get_tree().create_timer(0.7).timeout.connect(func():
+		sprite.texture = USUAL
+		particles.texture = USUAL)
 	super(spirit, whom)
 
 
 func attack(whom: BattleActor) -> void:
 	super(whom)
 	sprite.texture = ATTACK
-	get_tree().create_timer(0.4).timeout.connect(func(): sprite.texture = USUAL)
+	particles.texture = ATTACK
+	get_tree().create_timer(0.4).timeout.connect(func():
+		sprite.texture = USUAL
+		particles.texture = USUAL)
 
 
 static func is_debuffed(whom: BattleActor) -> bool:
