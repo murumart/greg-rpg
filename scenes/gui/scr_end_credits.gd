@@ -14,14 +14,12 @@ var scroll_speed := 0.0
 
 func _ready() -> void:
 	credits_label.text = "\n".repeat(8)
-	credits_label.text += FileAccess.open("res://credits.txt", FileAccess.READ).get_as_text(true)
+	credits_label.text += FileAccess.open("res://credits.txt",
+			FileAccess.READ).get_as_text(true)
 	credits_label.text += "see credits in main menu for full attribution."
-	credits_scroll.hide()
-	image_scroll.hide()
 	_load_pictures()
 	SND.play_song("credits")
 	var duration := SND.current_song_player.stream.get_length()
-	print(duration)
 	await get_tree().process_frame
 	var tw := create_tween()
 	tw.tween_property(credits_scroll, "value", credits_scroll.max_value
@@ -40,7 +38,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _load_pictures() -> void:
-	image_container.get_children().map(func(a): a.queue_free())
 	var screenshot_folder := []
 	screenshot_folder = DIR.get_dir_contents(
 			"user://greg_rpg/screenshots/"
@@ -55,7 +52,7 @@ func _load_pictures() -> void:
 		return FileAccess.get_modified_time(a) > FileAccess.get_modified_time(b)
 	)
 	#print(screenshot_folder)
-	for i in 8:
+	for i in 7:
 		if i >= screenshot_folder.size():
 			break
 		var filename: String = screenshot_folder[i]

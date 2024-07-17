@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8gsbeagl2a3i"]
+[gd_scene load_steps=5 format=3 uid="uid://c8gsbeagl2a3i"]
 
 [ext_resource type="Script" path="res://scenes/gui/scr_end_credits.gd" id="1_yal4k"]
-[ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="2_llwdp"]
 
 [sub_resource type="Gradient" id="Gradient_lt8ie"]
 offsets = PackedFloat32Array(0, 0.213472, 1)
@@ -26,6 +25,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 85.0
 offset_bottom = 118.0
+vertical_scroll_mode = 3
 
 [node name="ImageContainer" type="VBoxContainer" parent="ImageScrollContainer"]
 unique_name_in_owner = true
@@ -33,10 +33,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="ImageScrollContainer/ImageContainer"]
+[node name="Spacer" type="Control" parent="ImageScrollContainer/ImageContainer"]
+custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
-texture = ExtResource("2_llwdp")
-expand_mode = 5
+
+[node name="Label" type="Label" parent="ImageScrollContainer/ImageContainer"]
+layout_mode = 2
+text = "the end."
+
+[node name="Spacer2" type="Control" parent="ImageScrollContainer/ImageContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(111, 60)
@@ -48,6 +55,7 @@ offset_left = 64.0
 offset_top = 2.0
 offset_right = 152.0
 offset_bottom = 118.0
+vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CreditsScrollContainer"]
 layout_mode = 2
