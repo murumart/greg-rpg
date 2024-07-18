@@ -14,7 +14,7 @@ extends Node2D
 @onready var labels := Math.child_dict($TextBoxes)
 @onready var grandma_voice: AudioStreamPlayer = $GrandmaVoice
 @onready var grandma_glow: AnimatedSprite2D = $"../Grandma/GrandmaGlow"
-@onready var canvas_modulate: CanvasModulate = $TextBoxes/CanvasModulate
+@onready var canvas_modulate: ColorContainer = $"../CanvasModulateGroup/CutsceneColor"
 
 
 func _ready() -> void:

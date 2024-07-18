@@ -1,10 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=41 format=3 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
+[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_5eric"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_yjyxo"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_06sfg"]
 [ext_resource type="Texture2D" uid="uid://dedbkkindpw06" path="res://sprites/photos/spr_lakeside.png" id="3_kixp1"]
+[ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_r36ay"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_rlixq"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_wdbgc"]
 [ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="6_etjmo"]
@@ -71,6 +73,17 @@ blend_mode = 2
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+color = Color(0.989274, 0.93166, 0.883877, 1)
+script = ExtResource("2_5eric")
+
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_r36ay")
+color = Color(0.989274, 0.93166, 0.883877, 1)
+
+[node name="CutsceneColor" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_r36ay")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1

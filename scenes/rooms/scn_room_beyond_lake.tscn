@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=49 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -20,30 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/ambient_loop.ogg" id="9_4afe5"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
-
-[sub_resource type="Gradient" id="Gradient_np4ve"]
-offsets = PackedFloat32Array(0, 0.256201, 0.725735, 0.998136)
-colors = PackedColorArray(0, 0, 0.0901961, 1, 0.261103, 0.21774, 0.298783, 1, 0.596112, 0.708291, 0.916918, 1, 0.968627, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ftli"]
-gradient = SubResource("Gradient_np4ve")
-
-[sub_resource type="Environment" id="Environment_rtvwa"]
-background_mode = 3
-ambient_light_source = 1
-glow_levels/1 = 16.0
-glow_levels/2 = 16.0
-glow_levels/3 = 16.0
-glow_levels/4 = 16.0
-glow_levels/5 = 0.0
-glow_intensity = 1.35
-glow_blend_mode = 4
-glow_hdr_threshold = 0.95
-glow_hdr_scale = 0.32
-adjustment_enabled = true
-adjustment_contrast = 0.97
-adjustment_saturation = 1.09
-adjustment_color_correction = SubResource("GradientTexture1D_4ftli")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbrin"]
 shader = ExtResource("2_dujwg")
@@ -265,12 +241,6 @@ script = ExtResource("2_tsxtk")
 [node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_4qote")
 color = Color(0.883179, 0.963229, 1, 1)
-
-[node name="FishWarning" type="Node" parent="CanvasModulateGroup"]
-script = ExtResource("3_4qote")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rtvwa")
 
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11
