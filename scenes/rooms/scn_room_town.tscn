@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=118 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -66,6 +66,8 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
 [ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
+[ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
+[ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -590,6 +592,9 @@ bounce = 0.67
 [sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
 radius = 4.47214
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sms2x"]
+size = Vector2(150, 102)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejp7m"]
 radius = 98.5
 height = 223.0
@@ -701,7 +706,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(-74, -200)
+position = Vector2(1080, 272)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2202,6 +2207,42 @@ save = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("38_nga16")
 animation = &"walk_down"
+
+[node name="CameraArea" type="Area2D" parent="Other/Football"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Football/CameraArea"]
+position = Vector2(35, 50)
+shape = SubResource("RectangleShape2D_sms2x")
+
+[node name="CamCenter" type="Node2D" parent="Other/Football"]
+position = Vector2(41, 51)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Other/Football"]
+position = Vector2(94, 44)
+texture = ExtResource("54_1mauo")
+centered = false
+offset = Vector2(-6, -2)
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Other/Football"]
+position = Vector2(-10, 43)
+texture = ExtResource("54_1mauo")
+centered = false
+offset = Vector2(-6, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/Football"]
+position = Vector2(-12, 59)
+texture = ExtResource("54_83ce0")
+offset = Vector2(0, -14)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Other/Football"]
+position = Vector2(93, 60)
+texture = ExtResource("54_83ce0")
+offset = Vector2(0, -14)
+flip_h = true
 
 [node name="VampireGirl" type="Node2D" parent="Other" groups=["save_me"]]
 y_sort_enabled = true
