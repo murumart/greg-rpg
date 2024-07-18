@@ -291,6 +291,11 @@ position = Vector2(9, -68)
 replenish_seconds = -1
 item = &"diploma"
 
+[node name="TrashBin2" parent="ActualHouse" instance=ExtResource("10_5xp3u")]
+position = Vector2(88, 16)
+replenish_seconds = -1
+item = &"map"
+
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
