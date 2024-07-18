@@ -20,6 +20,7 @@ func interacted() -> void:
 	if DIR.room_exists(destination):
 		LTS.gate_id = gate_id
 		LTS.level_transition(DIR.room_scene_path(destination))
+		SND.play_sound(preload("res://sounds/door/open.ogg"))
 	# otherwise just uselessly knock on the door
 	else:
 		DAT.capture_player("knocking_on_door")
@@ -37,3 +38,4 @@ func apply_spawn_point(player: PlayerOverworld) -> void:
 		if not spawn_point:
 			return
 		player.global_position = spawn_point.global_position
+		SND.play_sound(preload("res://sounds/door/close.ogg"))

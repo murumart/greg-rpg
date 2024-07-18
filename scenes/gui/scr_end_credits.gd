@@ -38,24 +38,12 @@ func _input(event: InputEvent) -> void:
 
 
 func _load_pictures() -> void:
-	var screenshot_folder := []
-	screenshot_folder = DIR.get_dir_contents(
-			"user://greg_rpg/screenshots/"
-	).map(func(screenie: String):
-		var filename := "user://greg_rpg/screenshots/" + screenie + ".png"
-		if not FileAccess.file_exists(filename):
-			return null
-		return filename
-	)
-	screenshot_folder = screenshot_folder.filter(func(a): return a != null)
-	screenshot_folder.sort_custom(func(a, b):
-		return FileAccess.get_modified_time(a) > FileAccess.get_modified_time(b)
-	)
+	var screenshots := DIR.get_screenshots()
 	#print(screenshot_folder)
 	for i in 7:
-		if i >= screenshot_folder.size():
+		if i >= screenshots.size():
 			break
-		var filename: String = screenshot_folder[i]
+		var filename: String = screenshots[i]
 		var display := TextureRect.new()
 		display.texture = ImageTexture.create_from_image(Image.load_from_file(filename))
 		display.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL

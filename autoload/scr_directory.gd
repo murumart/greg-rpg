@@ -118,10 +118,13 @@ func get_dir_contents(path: String, trim: String = "") -> Array[String]:
 		var file_name := dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				pass
-			else:
+				continue
 				# fuck you and your file suffix
-				contents.append(file_name.get_basename().get_basename().get_basename().get_basename().trim_prefix(trim))
+			contents.append(file_name.get_basename()
+					.get_basename()
+					.get_basename()
+					.get_basename()
+					.trim_prefix(trim))
 			file_name = dir.get_next()
 		return contents
 	else:
@@ -199,3 +202,20 @@ func screenshot(small: bool) -> void:
 		"user://greg_rpg/screenshots/" + str(
 				Time.get_datetime_string_from_system().validate_filename()) + ".png"
 	)
+
+
+func get_screenshots() -> Array[String]:
+	const WHERE := "user://greg_rpg/screenshots/"
+	var screenshot_folder := Array(
+			DirAccess.get_files_at(WHERE)).map(func(screenie: String):
+				var filename := WHERE + screenie
+				return filename
+	)
+	screenshot_folder = screenshot_folder.filter(func(a: String): return not a.is_empty())
+	screenshot_folder.sort_custom(func(a: String, b: String):
+		return FileAccess.get_modified_time(a) > FileAccess.get_modified_time(b)
+	)
+	var new: Array[String] = []
+	new.append_array(screenshot_folder)
+	return new
+

@@ -20,6 +20,7 @@ var seconds := 0
 var playtime := 0
 var last_save_second := 0
 var load_second := 0
+const SCREENSHOT_DELAY := 1800
 
 # periods of time during which stuff changes in the world
 const ATGIRL_CYCLE := 1200
@@ -276,6 +277,17 @@ func load_chars_from_data() -> void:
 func _on_game_timer_timeout() -> void:
 	seconds += 1
 	playtime += 1
+	if playtime % 300 == 0:
+		var last_screenshot_second: int
+		var screenies := DIR.get_screenshots()
+		if screenies.is_empty():
+			DIR.screenshot(true)
+			return
+		var time_1 := FileAccess.get_modified_time(screenies[0])
+		var time_2 := Time.get_unix_time_from_system()
+		if time_2 - time_1 >= SCREENSHOT_DELAY:
+			DIR.screenshot(true)
+
 
 
 # storing the level up spirit names here
