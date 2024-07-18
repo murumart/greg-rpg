@@ -12,7 +12,11 @@ func _ready() -> void:
 		random_battle_component.values.clear()
 		random_battle_component.values.append(KeyCurve.create_pair(&"hunk",
 				preload("res://resources/res_curve_one.tres")))
-	SOL.dialogue_box.dial_concat("thug_catch_1", 0, [TWERP_SYNONYMS.pick_random(), ENGAGE_SYNONYMS.pick_random(), TUSSLE_SYNONYMS.pick_random()])
+		animated_sprite.sprite_frames = preload(
+				"res://resources/characters/sfr_hunk_overworld.tres")
+	SOL.dialogue_box.dial_concat("thug_catch_1", 0,
+			[TWERP_SYNONYMS.pick_random(), ENGAGE_SYNONYMS.pick_random(),
+			TUSSLE_SYNONYMS.pick_random()])
 	random_battle_component.set_level(ResMan.get_character("greg").level)
 	battle_info = random_battle_component.get_battle()
 
