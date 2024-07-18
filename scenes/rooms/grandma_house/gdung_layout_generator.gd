@@ -34,6 +34,7 @@ func generate() -> void:
 	if DAT.get_data("gdung_gen_next_floor", false):
 		DAT.incri("gdung_floor", 1)
 	if DAT.get_data("gdung_floor", 0) >= 3:
+		LTS.gate_id = &"gdung-after"
 		LTS.change_scene_to("res://scenes/rooms/scn_room_after_gdung.tscn")
 		return
 	rng.set_seed(DAT.get_data("nr", 0.0) * 1000 + DAT.get_data("gdung_floor", 0) * 2)
