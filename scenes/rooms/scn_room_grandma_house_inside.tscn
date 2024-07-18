@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=44 format=3 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -55,6 +55,21 @@ size = Vector2(17, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnnht"]
 size = Vector2(18, 16)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gp8vc"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_5osbh"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.49125, 0.675278, 0.80375)
+colors = PackedColorArray(0.376471, 0.364706, 0.258824, 0.352941, 0.127473, 0.123489, 0.0876375, 0.119506, 0.0151591, 0.0146854, 0.0104219, 0.0142117, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_duwhq"]
+gradient = SubResource("Gradient_5osbh")
+width = 174
+height = 134
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1s35"]
 shader = ExtResource("2_0lukr")
 shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
@@ -75,12 +90,12 @@ y_sort_enabled = true
 script = ExtResource("1_eampk")
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
-color = Color(0.989274, 0.93166, 0.883877, 1)
+color = Color(0.799382, 0.691576, 0.549892, 1)
 script = ExtResource("2_5eric")
 
 [node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_r36ay")
-color = Color(0.989274, 0.93166, 0.883877, 1)
+color = Color(0.799382, 0.691576, 0.549892, 1)
 
 [node name="CutsceneColor" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_r36ay")
@@ -367,6 +382,20 @@ position = Vector2(63, 30)
 [node name="Sprite2D" parent="Decor/Flower9" index="0"]
 position = Vector2(8, 14)
 offset = Vector2(0, -10)
+
+[node name="Lamp" type="Sprite2D" parent="Decor"]
+z_index = 2
+material = SubResource("CanvasItemMaterial_gp8vc")
+position = Vector2(-1.90735e-06, -24)
+scale = Vector2(0.91954, 1.03731)
+texture = SubResource("GradientTexture2D_duwhq")
+
+[node name="Lamp2" type="Sprite2D" parent="Decor"]
+z_index = 2
+material = SubResource("CanvasItemMaterial_gp8vc")
+position = Vector2(-1.90735e-06, 33)
+scale = Vector2(0.91954, 1.03731)
+texture = SubResource("GradientTexture2D_duwhq")
 
 [node name="FogOfWar" type="CanvasGroup" parent="."]
 
