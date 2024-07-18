@@ -156,6 +156,7 @@ _data = {
 
 [node name="Well" type="Node2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_wttet")
+effect_center = Vector2i(0, -23)
 animator = NodePath("AnimationPlayer")
 toughness = 0.625
 altruism = 0.765
