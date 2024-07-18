@@ -175,6 +175,11 @@ func _character_message_received(msg := &"") -> void:
 		&"cellphone_called":
 			cellphone.phonecall()
 			close_menu()
+		&"map_viewed":
+			var map := preload("res://scenes/gui/scn_map.tscn").instantiate()
+			DAT.capture_player("map")
+			SOL.add_ui_child(map)
+			close_menu()
 
 
 func _save_me() -> void:

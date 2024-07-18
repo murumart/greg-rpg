@@ -199,6 +199,8 @@ func handle_payload(pld: BattlePayload) -> void:
 		message_owner.emit(&"skateboard_equipped")
 	if pld.meta.get("cellphone", false):
 		message_owner.emit(&"cellphone_called")
+	if pld.meta.get("map", false):
+		message_owner.emit(&"map_viewed")
 
 
 func fully_heal() -> void:

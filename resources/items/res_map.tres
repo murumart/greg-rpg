@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dtwakxc2gn5wm"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_m8ftu"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_q3a6t"]
+[ext_resource type="AudioStream" uid="uid://c5p17uasmly0i" path="res://sounds/paper/paper3.ogg" id="2_mqweu"]
+[ext_resource type="Texture2D" uid="uid://c8v0si0vidl6q" path="res://sprites/items/spr_map.png" id="4_xly4p"]
+
+[sub_resource type="Resource" id="Resource_okeek"]
+script = ExtResource("1_m8ftu")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+meta = {
+"map": true
+}
+
+[resource]
+script = ExtResource("1_q3a6t")
+name_in_file = &""
+name = &"town map"
+description = "you've been drawing what you've been seeing."
+texture = ExtResource("4_xly4p")
+attack_animation = ""
+play_sound = ExtResource("2_mqweu")
+price = 7676
+use = -1
+consume_on_use = false
+payload = SubResource("Resource_okeek")

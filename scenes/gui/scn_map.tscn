@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2sar6xbsfymm"]
+
+[ext_resource type="Texture2D" uid="uid://cnc0hxo8r1sr8" path="res://sprites/gui/spr_map.png" id="1_n0u2c"]
+[ext_resource type="Script" path="res://scenes/gui/scr_map.gd" id="2_p6ybc"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_n0u2c")
+centered = false
+script = ExtResource("2_p6ybc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.317647)
