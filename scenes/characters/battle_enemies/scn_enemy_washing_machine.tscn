@@ -45,12 +45,13 @@ size = Vector2(34, 36)
 script = ExtResource("1_toy3w")
 toughness = 0.526
 vaimulembesus = 0.614
+gender = 1
 
 [node name="Puppet" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Puppet"]
 position = Vector2(0, -7)
-scale = Vector2(0.977973, 0.954727)
+scale = Vector2(0.83169, 1.06875)
 texture = ExtResource("2_t8jyc")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Sprite2D"]

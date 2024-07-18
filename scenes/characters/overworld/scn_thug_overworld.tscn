@@ -229,6 +229,9 @@ start_text = "various thug(s) accost you."
 rewards = ExtResource("6_1dlt0")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
 
 [node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")

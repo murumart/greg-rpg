@@ -35,7 +35,7 @@ func _ready() -> void:
 		bike.queue_free()
 	# disable thugs if bounty fulfilled
 	if (DAT.get_data("fulfilled_bounty_thugs", false) and
-	not DAT.get_data("hunks_enabled", false)):
+			not DAT.get_data("hunks_enabled", false)):
 		for i in thug_spawners:
 			i.queue_free()
 	if DAT.get_data("fulfilled_bounty_stray_animals", false):
