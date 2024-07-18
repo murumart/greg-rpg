@@ -68,7 +68,8 @@ func _on_player_act_finished() -> void:
 		await SOL.dialogue_closed
 	# add crittalbe
 	if (dialogue_key == "zerma_fight_5_else"
-			or dialogue_key == "zerma_fight_6_else"):
+			or dialogue_key == "zerma_fight_6_else"
+			or dialogue_key == "zerma_fight_6_attack_greg"):
 		reference_to_opposing_array.front().crittable.append(self)
 	# if we can progress the dialogue
 	if dialogue_key in TUTORIAL_PROGRESS_LINES:
