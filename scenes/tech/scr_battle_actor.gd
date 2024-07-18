@@ -136,11 +136,7 @@ func hurt(amt: float, gendr: int) -> void:
 	character.health = maxf(character.health - amount, 0.0)
 	hurted.emit(self)
 	if character.health <= 0.0:
-		state = States.DEAD
-		SND.play_sound(
-				preload("res://sounds/hurt.ogg"),
-				{"pitch_scale": 0.5, "volume": 4})
-		died.emit(self)
+		die()
 	else:
 		# hurt sound
 		if randf() < 0.0001 and actor_name == "greg":
@@ -162,6 +158,15 @@ func hurt(amt: float, gendr: int) -> void:
 		})
 	# shake the screen (not visible unless high damage)
 	SOL.shake(sqrt(amount)/15.0)
+
+
+func die() -> void:
+	state = States.DEAD
+	character.health = 0.0
+	SND.play_sound(
+			preload("res://sounds/hurt.ogg"),
+			{"pitch_scale": 0.5, "volume": 4})
+	died.emit(self)
 
 
 func _hurt_damage(amount: float, gendr: int) -> float:

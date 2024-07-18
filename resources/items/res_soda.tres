@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_d2ry0"]
 script = ExtResource("1_rpdfm")
 name = &"speed"
-strength = 1.0
+strength = 8.0
 duration = 5
 
 [sub_resource type="Resource" id="Resource_p1ufu"]
@@ -29,6 +29,7 @@ gender = 5
 effects = Array[ExtResource("1_rpdfm")]([SubResource("Resource_d2ry0")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
 meta = {}
 

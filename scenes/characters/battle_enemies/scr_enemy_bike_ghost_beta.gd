@@ -38,6 +38,7 @@ func hurt(amt: float, g: int) -> void:
 		auto_ai = false
 		ignore_my_finishes = true
 		SND.play_song("")
+		SOL.dialogue_open = true
 		for x in 9:
 			use_spirit("radiation_attack", reference_to_opposing_array[0])
 			animator.stop()
@@ -47,6 +48,8 @@ func hurt(amt: float, g: int) -> void:
 		await create_tween().tween_interval(1.0).finished
 		SOL.dialogue("bike_beta_battle_3")
 		await SOL.dialogue_closed
+		die()
+		return
 	elif character.health - _hurt_damage(amt, g) <= 0 and reference_to_team_array.size() == 1:
 		SOL.dialogue("bike_ghost_gdung_defeat")
 		await SOL.dialogue_closed
