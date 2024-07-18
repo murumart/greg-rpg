@@ -357,10 +357,10 @@ offset = Vector2(0, -9)
 position = Vector2(9, 7)
 
 [node name="Flower5" parent="Decor" instance=ExtResource("17_eiynl")]
-position = Vector2(-36, -42)
+position = Vector2(-35, -42)
 
 [node name="Flower6" parent="Decor" instance=ExtResource("17_eiynl")]
-position = Vector2(-26, -45)
+position = Vector2(-32, -45)
 
 [node name="Flower7" parent="Decor" instance=ExtResource("16_exfuk")]
 position = Vector2(-147, -16)
