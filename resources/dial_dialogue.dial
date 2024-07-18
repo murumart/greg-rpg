@@ -2791,7 +2791,7 @@ DIALOGUE lake_hint
 DIALOGUE lake_hint_cutscene_1
 CHAR cashier_nice
 	hello... the company has decided to pay your wage this month.
-	it's as thanks for the rampant adver- tising. keep it up...
+	it's as thanks for the rampant advertising. keep it up...
 CHAR 
 	splendid. with enough money, i can finally buy some [color=YUKUCOLOR]yuku[/color] brand muesli.
 CHAR cashier_nice
