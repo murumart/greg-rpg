@@ -20,6 +20,8 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_i22nc")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, 0.5)

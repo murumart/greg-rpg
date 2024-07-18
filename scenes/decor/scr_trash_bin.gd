@@ -48,6 +48,7 @@ func set_full(to: bool) -> void:
 	full = to
 	var sprite := $Sprite2D
 	sprite.region_rect.position.x = int(not to) * 16
+	$InteractionArea.monitorable = full
 
 
 func save_key(key: String) -> String:
