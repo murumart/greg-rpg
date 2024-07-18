@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	if DAT.get_data("heard_mail_info_played", false):
-		bald_man.queue_free()
+		bald_man.default_lines.append("bald_man_default")
 	elif DAT.get_data("biking_games_finished", 0) and DAT.get_data("heard_mail_info", false):
 		bald_man.default_lines.clear()
 		bald_man.default_lines.append("mail_game_info_played")
@@ -18,7 +18,7 @@ func _ready() -> void:
 				tw.tween_callback(bald_man.queue_free)
 			, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)
-	elif DAT.get_data("biking_games_finished", 0):
-		bald_man.queue_free()
+	elif DAT.get_data("biking_games_finished", 0) > 0:
+		bald_man.default_lines.append("bald_man_default")
 	elif Time.get_datetime_dict_from_system().month == 6:
 		bald_man.default_lines.push_front("mail_game_pride_month")

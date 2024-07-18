@@ -339,12 +339,12 @@ script = ExtResource("1_rym7f")
 music = "lakeside"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
-color = Color(0.772237, 0.929178, 1, 1)
+color = Color(0.883179, 0.963229, 1, 1)
 script = ExtResource("2_trs8b")
 
 [node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_xexyo")
-color = Color(0.772237, 0.929178, 1, 1)
+color = Color(0.883179, 0.963229, 1, 1)
 
 [node name="FishWarning" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_xexyo")

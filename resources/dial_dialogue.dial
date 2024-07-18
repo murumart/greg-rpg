@@ -2602,6 +2602,10 @@ DIALOGUE mail_game_pride_month
 	it is pride month. you know what this means
 
 
+DIALOGUE bald_man_default
+	what's up?
+
+
 DIALOGUE woods_guy_0
 	the woods
 CHOICES no,ok

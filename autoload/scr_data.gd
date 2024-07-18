@@ -278,7 +278,6 @@ func _on_game_timer_timeout() -> void:
 	seconds += 1
 	playtime += 1
 	if playtime % 300 == 0:
-		var last_screenshot_second: int
 		var screenies := DIR.get_screenshots()
 		if screenies.is_empty():
 			DIR.screenshot(true)

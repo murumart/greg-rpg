@@ -1524,7 +1524,7 @@ autostart = true
 script = ExtResource("18_0km5u")
 
 [node name="UuhHouseGreenhouse" parent="Houses/UhhHouse" instance=ExtResource("6_peamb")]
-position = Vector2(99, -88)
+position = Vector2(98, -88)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
@@ -2737,11 +2737,11 @@ polygon = PackedVector2Array(-232, 119, -234, 15, 20, -31, 68, -159, 124, -173, 
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Areas/4Grass"]
 position = Vector2(529, -279)
-polygon = PackedVector2Array(-10, -4, 98, 8, -5, 136)
+polygon = PackedVector2Array(-10, -4, 101, 0, -13, 137)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Areas/4Grass"]
 position = Vector2(619, -188)
-polygon = PackedVector2Array(-7, 86, 164, 34, 222, 88)
+polygon = PackedVector2Array(-8, 92, 163, 24, 222, 93)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Areas/4Grass"]
 position = Vector2(1146, -302)

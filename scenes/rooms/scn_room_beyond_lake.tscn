@@ -1,8 +1,10 @@
-[gd_scene load_steps=50 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=52 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_dujwg"]
+[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_tsxtk"]
+[ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_4qote"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_jy08p"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_janow"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_qfqq5"]
@@ -108,6 +110,9 @@ start_text = "les pommes sont mures."
 rewards = ExtResource("7_uirxy")
 victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
 atlas = ExtResource("7_y64ye")
@@ -252,6 +257,17 @@ y_sort_enabled = true
 script = ExtResource("1_yunbf")
 music = "birds"
 music_fade_time = 0.1
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+color = Color(0.883179, 0.963229, 1, 1)
+script = ExtResource("2_tsxtk")
+
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_4qote")
+color = Color(0.883179, 0.963229, 1, 1)
+
+[node name="FishWarning" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_4qote")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rtvwa")
