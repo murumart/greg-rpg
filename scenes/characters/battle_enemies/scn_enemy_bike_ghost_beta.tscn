@@ -1020,6 +1020,7 @@ effect_center = Vector2i(0, -23)
 animator = NodePath("Animator")
 toughness = 0.527
 altruism = 0.741
+xp_multiplier = 3.0
 
 [node name="Puppet" type="Node2D" parent="."]
 
