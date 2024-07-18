@@ -2293,7 +2293,7 @@ DIALOGUE fish_victim_3
 DATA_LINK first_fish_fight_was_hard,true
 	that's all. i'm satisfied.
 DATA_LINK first_fish_fight_was_hard,false
-	i need to think for a while...
+	i need to think about this for a while...
 
 
 DIALOGUE police_greeting
