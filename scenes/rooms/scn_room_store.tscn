@@ -1002,6 +1002,7 @@ script = ExtResource("23_w6t1x")
 animated_sprite = NodePath("AnimatedSprite2D")
 path_container = NodePath("../PresidentPath")
 interact_on_touch = true
+save_position = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PresidentEncounter/President"]
 position = Vector2(0, -8)
@@ -1120,7 +1121,7 @@ gradient = SubResource("Gradient_gckj0")
 lifetime = 0.0
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
-points = PackedVector2Array(-24, -3, -22.9873, -16.3211, -23.1872, -28.0447, -22.6656, -36.896, -22.5981, -48.8979, -26.312, -62.2899, -25.3105, -74.8935, -22.8344, -85.1393, -24.314, -94.4177, -25, -108)
+points = PackedVector2Array(-24, -3, -25.3689, -13.1117, -22.8789, -24.8516, -26.2371, -37.3872, -22.5094, -50.1721, -22.606, -61.7799, -25.4579, -74.8368, -25.9053, -86.3186, -24.5244, -94.3668, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_m6l7m")
 
