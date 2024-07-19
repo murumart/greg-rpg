@@ -42,3 +42,10 @@ func _car_scared_setup() -> void:
 	if not DAT.get_data("car_scared_overrun", false):
 		$Fishermen/Fisherman33.queue_free()
 
+
+func _on_fisherwoman_inspected() -> void:
+	var dbox := SOL.dialogue_box as DialogueBox
+	dbox.dial_concat("fisherwoman_talk_lake", 3, [DAT.get_data("fishing_high_score")])
+	dbox.dial_concat("fisherwoman_talk_lake", 4, [roundi(
+			DAT.get_data("fishing_max_depth", 0.0) * 0.01)])
+	dbox.dial_concat("fisherwoman_talk_lake", 5, [DAT.get_data("fish_caught")])

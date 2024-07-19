@@ -2220,8 +2220,20 @@ CHAR
 	
 DIALOGUE fisherwoman_talk_lake
 CHAR fisherwoman
-CHOICES you,me,fishing
+CHOICES you,me,fishing,hiscore,tech
 	you want to, like, see the fish again?
+
+CHOICE_LINK hiscore
+DATA_LINK fishings_finished,false
+	like, you have to actually fish...
+	...to have a high score of any kind.
+DATA_LINK fishings_finished,true
+	your high score is [color=YELLOW]%s[/color]!
+	you've managed to go [color=YELLOW]%s meters deep[/color]!
+	in total, you've caught [color=YELLOW]%s[/color] fish!
+	aren't those some numbers, huh!
+DATA_LINK 
+
 CHOICE_LINK you
 	who am i? hahaha! like, who knows?
 	i fish, pal. it's like what i do.
@@ -2233,17 +2245,14 @@ CHOICE_LINK me
 	...
 	nothing? okay. i know that feel.
 CHOICE_LINK fishing
-	you like, wish to fish?
+	you, like, wish to fish?
 	hnngg, same bestie.
 	you can use the fishing pole over there.
-	the lake goes quite deep in around here.
-	who knows what beast you might find!
-	(fish)
-	also, you can't take too long.
-	i can't, like, stand being away from fish for too long.
-	sorry. lmao. such a life ruiner.
-	also! that fishing pole uses new spirit-powered tech.
-	it'll be super illegal once legis- lation catches up!
+	the lake goes quite deep in around here...
+	and there's so much fishhhh....
+CHOICE_LINK tech
+	that fishing pole uses new spirit-powered tech.
+	it'll be super illegal once legislation catches up!
 	but you can catch many, many fish with one cast.
 	try it out if you haven't already!
 

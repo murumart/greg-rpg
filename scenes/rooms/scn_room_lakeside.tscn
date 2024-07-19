@@ -1443,4 +1443,5 @@ region_rect = Rect2(48, 32, 16, 11)
 
 [connection signal="body_entered" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_entered"]
 [connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]
+[connection signal="inspected" from="Buildings/Pier/Fisherwoman" to="." method="_on_fisherwoman_inspected"]
 [connection signal="on_interact" from="Buildings/Pier/Pole/PoleInteraction" to="." method="_on_pole_interacted"]

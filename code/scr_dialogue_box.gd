@@ -53,8 +53,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not is_speaking() and not choices_open:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
-	# pressing z or x allows skipping the babbling
-	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("cancel"):
+	# pressing x allows skipping the babbling
+	elif event.is_action_pressed("cancel"):
 		skip()
 	elif (Input.is_action_pressed("ui_accept")
 			and Input.is_action_pressed("cancel")):
@@ -152,8 +152,18 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		next_dialogue_requested()
 		return
 	if data_link.size() > 1:
-		var dcond := (DAT.get_data(data_link[0], false) ==
-			Math.toexp(data_link[1]) as bool)
+		var key := data_link[0]
+		var data_value: Variant = DAT.get_data(key, false)
+		var value: Variant = Math.toexp(data_link[1])
+		if value is bool:
+			data_value = bool(data_value)
+		elif value is int:
+			data_value = int(data_value)
+		elif value is float:
+			data_value = float(data_value)
+		elif value is String or value is StringName:
+			data_value = str(data_value)
+		var dcond: bool = value == data_value
 		if not (dcond):
 			next_dialogue_requested()
 			return
