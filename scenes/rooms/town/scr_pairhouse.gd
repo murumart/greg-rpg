@@ -15,7 +15,7 @@ func _ready() -> void:
 func pairhouse_guy_setup() -> void:
 	if DAT.get_data("turf_mission_fulfilled", false):
 		door.destination = "super_gaming_house"
-	if ((not DAT.get_data("fulfilled_bounty_stray_animals", false))
+	if ((DAT.get_data("fulfilled_bounty_stray_animals", false))
 			or DAT.get_data("turf_mission_fulfilled", false)
 			or DAT.get_data("expressed_jooky_concern", false)):
 		guy.queue_free()
