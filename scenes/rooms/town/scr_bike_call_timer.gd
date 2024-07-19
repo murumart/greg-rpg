@@ -77,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	bike.global_position += Vector2(movex, movey) * delta * 67 * life_mult
 	#bike.global_position = bike.global_position.round()
 	if distance() < 16:
+		DAT.appenda("bike_ghosts_fought", 0)
 		LTS.enter_battle(bike.G_BATTLE_INFOS[0])
 		set_physics_process(false)
 		DAT.set_data("bike_chasing", false)
