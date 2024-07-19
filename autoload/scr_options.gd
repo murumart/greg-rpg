@@ -69,6 +69,12 @@ var IONS := {
 		"range": [0.0, 1.0],
 		"step": 1.0,
 	},
+	"fullscreen": {
+		"value": 0.0,
+		"default_value": 0.0,
+		"range": [0.0, 1.0],
+		"step": 1.0,
+	},
 	"reset": {}
 }
 # sorting the options
@@ -76,7 +82,7 @@ const CATEGORIES := {
 	"gameplay": ["view_keybinds", "z_skips_dialogue"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
-		"screen_shake_intensity", "text_speak_time",
+		"fullscreen", "screen_shake_intensity", "text_speak_time",
 		"max_fps", "battle_text_opacity", "less_fancy_graphics"
 	],
 	"debug": ["log_data_changes","list_button_focus_deferred"],
@@ -272,6 +278,10 @@ func modify(a: float, reset := false, ifset := false) -> void:
 					not bool(end_value))
 		"view_keybinds":
 			keybinds.visible = bool(end_value)
+		"fullscreen":
+			get_window().mode = (Window.MODE_FULLSCREEN
+					if end_value else Window.MODE_WINDOWED)
+			SND.menusound(1.36)
 		_:
 			SND.menusound(1.36)
 
