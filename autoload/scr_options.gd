@@ -31,13 +31,15 @@ var IONS := {
 		"value": 0.0,
 		"range": [0.0, 1.0],
 		"default_value": 0.0,
-		"step": 1.0
+		"step": 1.0,
+		"display": TYPE_BOOL, # how to display the option (default is number)
 	},
 	"log_data_changes": {
 		"value": 0.0,
 		"range": [0.0, 1.0],
 		"default_value": 0.0,
-		"step": 1.0
+		"step": 1.0,
+		"display": TYPE_BOOL,
 	},
 	"max_fps": {
 		"value": 60.0,
@@ -56,24 +58,28 @@ var IONS := {
 		"range": [0.0, 1.0],
 		"default_value": 0.0,
 		"step": 1.0,
+		"display": TYPE_BOOL,
 	},
 	"view_keybinds": {
 		"value": 0.0,
 		"default_value": 0.0,
 		"range": [0.0, 1.0],
 		"step": 1.0,
+		"display": TYPE_VECTOR2,
 	},
 	"z_skips_dialogue": {
 		"value": 0.0,
 		"default_value": 0.0,
 		"range": [0.0, 1.0],
 		"step": 1.0,
+		"display": TYPE_BOOL,
 	},
 	"fullscreen": {
 		"value": 0.0,
 		"default_value": 0.0,
 		"range": [0.0, 1.0],
 		"step": 1.0,
+		"display": TYPE_BOOL,
 	},
 	"reset": {}
 }
@@ -254,7 +260,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	AudioServer.set_bus_volume_db(0, get_opt("main_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
-	Engine.max_fps = get_opt("max_fps")
+	Engine.max_fps = int(get_opt("max_fps"))
 	if prev_opt == get_opt(type):
 		return
 	match type:
@@ -291,7 +297,16 @@ func modify(a: float, reset := false, ifset := false) -> void:
 # the second one is the value of the option
 func update(container: Container) -> void:
 	container.get_child(0).text = str(container.get_meta("type")).replace("_", " ")
-	container.get_child(1).text = str(snapped(get_opt(container.get_meta("type")), 0.01))
+	var value: float = get_opt(container.get_meta("type"))
+	var value_text := ""
+	var display_type = get_opt_display(container.get_meta("type"))
+	if display_type == TYPE_FLOAT:
+		value_text = str(snapped(value, 0.01))
+	elif display_type == TYPE_BOOL:
+		value_text = "yes" if bool(value) else "no"
+	elif display_type == TYPE_VECTOR2:
+		value_text = "-->"
+	container.get_child(1).text = value_text
 
 
 func gen_option_nodes() -> void:
@@ -306,6 +321,8 @@ func gen_option_nodes() -> void:
 			main_container.add_child(option)
 			option.show()
 			option.set_meta("type", str(j))
+			option.get_child(0).modulate = (Color.DARK_GRAY
+					if options_length % 2 == 0 else Color.LIGHT_GRAY)
 			update(option)
 			options_length += 1
 
@@ -320,7 +337,7 @@ func get_option_nodes() -> Array[Node]:
 
 
 # get various aspects of the stored option value
-func get_opt(key: String) -> Variant:
+func get_opt(key: String) -> float:
 	return IONS.get(key, {}).get("value", 0)
 
 
@@ -338,6 +355,10 @@ func get_opt_default(key: String) -> float:
 
 func get_opt_step(key: String) -> float:
 	return IONS.get(key, {}).get("step", 0.1)
+
+
+func get_opt_display(key: String) -> int:
+	return IONS.get(key, {}).get("display", TYPE_FLOAT)
 
 
 # and set options
