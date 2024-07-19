@@ -54,7 +54,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		next_dialogue_requested()
 		get_viewport().set_input_as_handled()
 	# pressing x allows skipping the babbling
-	elif event.is_action_pressed("cancel"):
+	elif (event.is_action_pressed("cancel")
+			or event.is_action_pressed("ui_accept") and OPT.get_opt("z_skips_dialogue")):
 		skip()
 	elif (Input.is_action_pressed("ui_accept")
 			and Input.is_action_pressed("cancel")):

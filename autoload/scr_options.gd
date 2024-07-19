@@ -63,11 +63,17 @@ var IONS := {
 		"range": [0.0, 1.0],
 		"step": 1.0,
 	},
+	"z_skips_dialogue": {
+		"value": 0.0,
+		"default_value": 0.0,
+		"range": [0.0, 1.0],
+		"step": 1.0,
+	},
 	"reset": {}
 }
 # sorting the options
 const CATEGORIES := {
-	"gameplay": ["view_keybinds"],
+	"gameplay": ["view_keybinds", "z_skips_dialogue"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
 		"screen_shake_intensity", "text_speak_time",
