@@ -1,7 +1,7 @@
 class_name PoliceStation extends Room
 
 @onready var popo1 := $Npcs/Popo1 as OverworldCharacter
-@onready var popo_2 := $Npcs/Popo2 as OverworldCharacter
+@onready var popo2 := $Npcs/Popo2 as OverworldCharacter
 
 var bounty := {}
 const TRACKED_BOUNTIES := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
@@ -174,9 +174,10 @@ func setup_cells() -> void:
 			)
 		else:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
+			$Cells/Vampire/Sprite2D.hide()
 
 	if DAT.get_data("police_standing", 0) < 1:
-		popo_2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
+		popo2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 
 
 # this is source code poetry
