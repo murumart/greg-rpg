@@ -65,6 +65,7 @@ expand_margin_top = 1.0
 blend_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c61xy"]
+content_margin_top = 2.0
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_jniqt"]
@@ -392,11 +393,11 @@ show_percentage = false
 
 [node name="SaveWarningLabel" type="Label" parent="."]
 layout_mode = 0
-offset_top = 113.0
+offset_top = 109.0
 offset_right = 160.0
-offset_bottom = 124.0
+offset_bottom = 120.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_c61xy")
-text = "press ctrl+s to save your game."
+text = "press [v] to save your game."
 horizontal_alignment = 1
 autowrap_mode = 1
 

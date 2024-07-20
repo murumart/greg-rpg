@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://wknpxv3x21lw"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://wknpxv3x21lw"]
 
 [ext_resource type="FontFile" uid="uid://bxukug0aodcpi" path="res://fonts/gregfont.ttf" id="1_6sfhd"]
 [ext_resource type="StyleBox" uid="uid://dj10l6lihc6fn" path="res://resources/thm_main_stylebox_focus.tres" id="2_pr2pj"]
@@ -18,6 +18,10 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gcr"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jma86"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j3k16"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8lty"]
 atlas = ExtResource("4_o06bb")
@@ -112,6 +116,11 @@ Fonts/fonts/large = ExtResource("1_6sfhd")
 Fonts/fonts/normal = ExtResource("1_6sfhd")
 GraphNode/fonts/title_font = ExtResource("1_6sfhd")
 ItemList/fonts/font = ExtResource("1_6sfhd")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_jma86")
+ItemList/styles/hovered = ExtResource("3_dbx1c")
+ItemList/styles/panel = ExtResource("3_dbx1c")
+ItemList/styles/selected = SubResource("StyleBoxEmpty_j3k16")
+ItemList/styles/selected_focus = ExtResource("2_pr2pj")
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_6sfhd")
 LineEdit/colors/font_color = Color(1, 1, 1, 1)

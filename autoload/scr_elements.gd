@@ -29,7 +29,6 @@ func _init() -> void:
 
 func gen() -> void:
 	gen_elements()
-
 	solmass = element_masses[0] + element_masses[0] + element_masses[7]
 
 

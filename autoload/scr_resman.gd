@@ -6,6 +6,7 @@ const SPIRIT_PATH := "res://resources/spirits/res_%s.tres"
 const STATUS_EFFECT_TYPE_PATH := "res://resources/status_effect_types/res_%s.tres"
 const FOREST_QUEST_PATH := "res://resources/forest_quests/%s.tres"
 
+static var resources_loaded := false
 static var items := {}
 static var spirits := {}
 static var characters := {}
@@ -16,13 +17,13 @@ static var gender__effects := {}
 static var use__effects := {}
 
 
-static func _static_init() -> void:
-	var s := Time.get_ticks_msec()
-	load_resources()
-	print("loaded resources in " + str(Time.get_ticks_msec() - s) + "ms")
+static func check_loaded() -> void:
+	if not resources_loaded:
+		load_resources()
 
 
 static func get_character(key: StringName) -> Character:
+	check_loaded()
 	if not key in characters:
 		print("char ", key, " not found")
 		var charc: Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
@@ -32,6 +33,7 @@ static func get_character(key: StringName) -> Character:
 
 
 static func get_item(id: StringName) -> Item:
+	check_loaded()
 	assert(id in items, "item " + id + " doesn't exist")
 	if not id in items:
 		print("item ", id, " not found")
@@ -40,6 +42,7 @@ static func get_item(id: StringName) -> Item:
 
 
 static func get_spirit(id: StringName) -> Spirit:
+	check_loaded()
 	if not id in spirits:
 		print("spirit ", id, " not found")
 		return preload("res://resources/res_default_spirit.tres")
@@ -47,6 +50,7 @@ static func get_spirit(id: StringName) -> Spirit:
 
 
 static func get_effect(id: StringName) -> StatusEffectType:
+	check_loaded()
 	if not id in status_effect_types:
 		printerr("effect type ", id, " not found")
 		return StatusEffectType.new()
@@ -76,6 +80,7 @@ static func load_resources() -> void:
 	for s in _get_dir_contents("res://resources/forest_quests/"):
 		forest_quests[s] = load(FOREST_QUEST_PATH % s) as ForestQuest
 	load_effects()
+	resources_loaded = true
 
 
 static func load_effects() -> void:

@@ -23,10 +23,6 @@ var dialogue_choice := &""
 var effects_dict := {}
 
 
-func _init() -> void:
-	pass
-
-
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	dialogue_box.dialogue_closed.connect(_on_dialogue_closed)
