@@ -32,7 +32,7 @@ var items_available := []
 var possible_perks := [
 	&"snail_repel",
 	&"snail_bail",
-	&"log_repel",
+	&"less_logs",
 	&"nicer_roads",
 	&"fast_earner",
 	&"mail_attraction"]

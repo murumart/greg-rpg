@@ -222,6 +222,8 @@ func load_options() -> void:
 		cur_opt = y
 		modify(0, false, true)
 	keybinds.load_inputs()
+	get_window().mode = (Window.MODE_FULLSCREEN
+			if get_opt("fullscreen") else Window.MODE_WINDOWED)
 
 
 func select(opti: int) -> void:

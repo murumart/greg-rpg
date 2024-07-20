@@ -167,7 +167,7 @@ func _on_obstacle_timer_timeout() -> void:
 	add_child(obstacle)
 	if obstacle.name.contains("Log"):
 		obstacle.rotation = randf_range(-TAU, TAU)
-		if current_perk == "log_repel" and randf() <= 0.95:
+		if current_perk == "less_logs" and randf() <= 0.95:
 			obstacle.queue_free()
 	if obstacle.name.contains("Pothole"):
 		if current_perk == "nicer_roads" and randf() <= 0.95:
