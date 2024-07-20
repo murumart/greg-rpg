@@ -1,19 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxea13a1qe1mf"]
+[gd_scene load_steps=3 format=3 uid="uid://dxea13a1qe1mf"]
 
 [ext_resource type="Script" path="res://scenes/gui/scr_keybinds.gd" id="1_u5ou7"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_4tixd"]
-
-[sub_resource type="GDScript" id="GDScript_ulbtn"]
-resource_name = "keybinds_key_listen_panel"
-script/source = "extends CenterContainer
-
-@export var table: ItemList
-var selected_item: int
-
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	print(event, \" \", selected_item)
-"
 
 [node name="Keybinds" type="Panel"]
 anchors_preset = 15
@@ -56,7 +44,7 @@ item_1/text = "."
 item_2/text = "."
 item_3/text = "."
 
-[node name="KeyListenPanel" type="CenterContainer" parent="." node_paths=PackedStringArray("table")]
+[node name="KeyListenPanel" type="CenterContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -64,8 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_ulbtn")
-table = NodePath("../ItemList")
+focus_mode = 2
 
 [node name="Panel" type="Panel" parent="KeyListenPanel"]
 custom_minimum_size = Vector2(120, 60)
@@ -88,3 +75,6 @@ offset_top = 50.0
 offset_right = 42.0
 offset_bottom = 58.0
 text = "or press escape to stop"
+
+[connection signal="item_activated" from="ItemList" to="." method="_on_item_activated"]
+[connection signal="gui_input" from="KeyListenPanel" to="." method="_on_key_listen_panel_gui_input"]

@@ -25,12 +25,6 @@ func _ready() -> void:
 	#get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	key_listen_panel.set_process_unhandled_key_input(false)
 	_load_table()
-	table.item_activated.connect(func(id: int):
-		key_listen_panel.selected_item = id
-		key_listen_panel.show()
-		await get_tree().process_frame
-		key_listen_panel.set_process_unhandled_key_input(false)
-	)
 
 
 func _load_table() -> void:
@@ -54,3 +48,19 @@ func _load_table() -> void:
 	table.grab_focus()
 
 
+var metadata: Array
+
+
+func _on_item_activated(idx: int) -> void:
+	metadata = table.get_item_metadata(idx)
+	
+	key_listen_panel.show()
+	key_listen_panel.grab_focus()
+	
+
+func _on_key_listen_panel_gui_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		key_listen_panel.hide()
+		InputMap.action_erase_event(metadata[0], metadata[2])
+		InputMap.action_add_event(metadata[0], event)
+		_load_table()
