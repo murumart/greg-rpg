@@ -60,7 +60,7 @@ var IONS := {
 		"step": 1.0,
 		"display": TYPE_BOOL,
 	},
-	"view_keybinds": {
+	"keybinds": {
 		"value": 0.0,
 		"default_value": 0.0,
 		"range": [0.0, 1.0],
@@ -85,7 +85,7 @@ var IONS := {
 }
 # sorting the options
 const CATEGORIES := {
-	"gameplay": ["view_keybinds", "z_skips_dialogue"],
+	"gameplay": ["keybinds", "z_skips_dialogue"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
 		"fullscreen", "screen_shake_intensity", "text_speak_time",
@@ -108,7 +108,7 @@ var top_text := 0
 @onready var main_container := $Root/Panel/ScrollContainer/MainContainer
 @onready var base_option := $Root/BaseOption
 @onready var top_text_label := $Root/Panel/TopTextLabel
-@onready var keybinds := $Keybinds
+@onready var keybinds := $Root/Keybinds
 
 # selection
 var cur_opt := 0
@@ -126,9 +126,7 @@ func _init() -> void:
 func _ready() -> void:
 	gen_option_nodes()
 	remove_child(root)
-	SOL.add_ui_child(root, 128, false) # options gotta be on top
-	remove_child(keybinds)
-	SOL.add_ui_child(keybinds, 128, false) # options gotta be on top
+	SOL.add_ui_child(root, 127, false) # options gotta be on top
 	root.hide()
 	load_options()
 
@@ -177,6 +175,10 @@ func _input(event: InputEvent) -> void:
 		for i in ["save_screen", "debug_console", "overworld_menu"]:
 			if i in DAT.player_capturers:
 				return
+		if keybinds.visible:
+			if not keybinds.key_listen_panel.visible:
+				keybinds.discard()
+			return
 		if not root.visible:
 			root.show()
 			top_text = -1
@@ -190,7 +192,7 @@ func _input(event: InputEvent) -> void:
 			root.hide()
 			get_tree().paused = false
 			options_open = false
-	if not root.visible:
+	if not root.visible or keybinds.visible:
 		return
 	if event is InputEventJoypadMotion:
 		return
@@ -209,6 +211,7 @@ func save_options() -> void:
 		var value = get_opt(c)
 		opt.set_value(c, "value", value)
 	opt.save(OPTION_PATH)
+	keybinds.save_inputs()
 
 
 func load_options() -> void:
@@ -218,6 +221,7 @@ func load_options() -> void:
 	for y in options_length:
 		cur_opt = y
 		modify(0, false, true)
+	keybinds.load_inputs()
 
 
 func select(opti: int) -> void:
@@ -226,8 +230,6 @@ func select(opti: int) -> void:
 	for c in opt_contain:
 		c.modulate = Color.WHITE
 	opt_contain[opti].modulate = Color.CYAN
-	set_opt("view_keybinds", 0.0)
-	keybinds.hide()
 	# this is the custom scrolling implementation since scrollcontainer
 	# would've needed me to use the default focus system as well
 	# which i find unreliable at this point sadly
@@ -282,8 +284,10 @@ func modify(a: float, reset := false, ifset := false) -> void:
 					"_fancy_graphics_option_owners",
 					"_set_fancy_grapics_to",
 					not bool(end_value))
-		"view_keybinds":
-			keybinds.visible = bool(end_value)
+		"keybinds":
+			if end_value:
+				keybinds.display()
+				set_opt("keybinds", 0.0)
 		"fullscreen":
 			get_window().mode = (Window.MODE_FULLSCREEN
 					if end_value else Window.MODE_WINDOWED)

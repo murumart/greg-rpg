@@ -7,6 +7,9 @@ MACRO SUNCOLOR #ffbb99
 MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
+MACRO KEY_MENU ACTION_MENU
+MACRO KEY_QUICK_SAVE ACTION_QUICK_SAVE
+MACRO KEY_UI_ACCEPT ACTION_UI_ACCEPT
 
 
 DIALOGUE intro_convo_0
@@ -350,7 +353,7 @@ CHAR zerma
 	this one replenishes your health bit by bit...
 	...every time you act in battle.
 	you can view your active status effects...
-	...by pressing 'c' in your main screen.
+	...by pressing 'KEY_MENU' in your main screen.
 	try acting in any way to progress!
 
 
@@ -1395,7 +1398,7 @@ DIALOGUE car_scared_1
 
 DIALOGUE car_scared_2
 	oh dear... you look more adept at crossing roads than i am...
-	surely you've "saved your game" with "v"...
+	surely you've "saved your game" with "KEY_QUICK_SAVE"...
 	would you be so kind and lead me across?
 CHOICES yes,no
 	please...?
@@ -2152,12 +2155,12 @@ CHOICE_LINK yes
 	i will grind you to dust!
 CHOICE_LINK help
 	how to play?
-	use the right and left arrows to move your "paddle".
+	use the right and left movement keys to move your "paddle".
 	you control the bottom paddle.
 	you must catch the "ball" with your paddle and bounce it back to me.
 	if you don't, you'll lose a "life".
 	furthermore, to gain points, you must win in a game of...
-	..."rock paper scissors". you navigate between choices with arrows.
+	..."rock paper scissors". you navigate between choices with move keys.
 CHOICES no!!,yes!!
 	do you need help with "rock paper scissors"?
 CHOICE_LINK no!!
@@ -2265,7 +2268,7 @@ CHOICES no,yes
 	do you need advice?
 CHOICE_LINK yes
 	it's easy, bestie:
-	use arrow keys to direct the hook...
+	use movement keys to direct the hook...
 	...try to run into fish!
 	do not run into walls, however. you'll get stuck!
 	and don't take too long without catching anything.
@@ -2565,7 +2568,7 @@ CHOICES yes,no
 	you could be cool too... what do you say?
 CHOICE_LINK yes
 	radical, yo.
-	press arrow keys to slide, z to jump and c to tilt.
+	press movement keys to slide, KEY_UI_ACCEPT to jump and KEY_MENU to tilt.
 	try not to be boring. good luck...
 CHOICE_LINK no
 	uncool. sooner or later you'll come back.
@@ -2692,7 +2695,7 @@ SET_DATA talked_to_tutguy,true
 
 
 DIALOGUE tutguy_open_inventory
-	did you know that you can open your inventory by pressing [color=#ffcccc]c[/color]?
+	did you know that you can open your inventory by pressing [color=#ffcccc]KEY_MENU[/color]?
 SPEED 0.75
 	you can then view your status, use healing items and even equip spirits!
 
@@ -2726,7 +2729,7 @@ SPEED 1.2
 	...to a [color="88ff99"]dance battle!!!
 SPEED 1.0
 	let's take it slower this time, because it's the first time for you.
-	follow your instructed moves quickly by using arrow keys.
+	follow your instructed moves quickly by using movement keys.
 	be nimble about it, because losing to an animal is humiliating.
 
 

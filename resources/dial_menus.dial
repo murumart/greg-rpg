@@ -2,6 +2,7 @@ MACRO GREEN #00ff00
 MACRO SPIRITCOLOR #7799ff
 MACRO PRESCOLOR #ff9999
 MACRO SUNCOLOR #ffbb99
+MACRO KEY_MENU ACTION_MENU
 
 
 DIALOGUE load_warning_superdiff
@@ -19,7 +20,7 @@ CHOICES yes,no,backup
 	are you sure you want to load it?
 CHOICE_LINK backup
 	you can open the save folder and back the save up manually.
-	(press c to do that.)
+	(press KEY_MENU to do that.)
 
 
 DIALOGUE load_warning_empty

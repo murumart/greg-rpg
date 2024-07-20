@@ -7,10 +7,6 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5ou7")
@@ -26,14 +22,13 @@ horizontal_alignment = 1
 
 [node name="ItemList" type="ItemList" parent="."]
 layout_mode = 0
-offset_left = 3.0
+offset_left = 2.0
 offset_top = 10.0
-offset_right = 153.0
-offset_bottom = 113.0
-mouse_filter = 2
+offset_right = 158.0
+offset_bottom = 118.0
+focus_mode = 0
 theme = ExtResource("2_4tixd")
 theme_override_font_sizes/font_size = 6
-allow_reselect = true
 allow_search = false
 text_overrun_behavior = 1
 item_count = 4
@@ -57,6 +52,7 @@ focus_mode = 2
 [node name="Panel" type="Panel" parent="KeyListenPanel"]
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="KeyListenPanel/Panel"]
 layout_mode = 0
@@ -65,16 +61,20 @@ offset_top = 2.0
 offset_right = 42.0
 offset_bottom = 10.0
 text = "press your key now
-or be silent forever."
+or be silent forever
+"
 
 [node name="Label2" type="Label" parent="KeyListenPanel/Panel"]
 self_modulate = Color(0.563, 0.563, 0.563, 1)
 layout_mode = 0
 offset_left = 2.0
-offset_top = 50.0
-offset_right = 42.0
-offset_bottom = 58.0
-text = "or press escape to stop"
+offset_top = 33.0
+offset_right = 113.0
+offset_bottom = 63.0
+theme_override_constants/line_spacing = 1
+text = "or press mouse1 to stop
+or press mouse2
+    to delete keybind"
 
 [connection signal="item_activated" from="ItemList" to="." method="_on_item_activated"]
 [connection signal="gui_input" from="KeyListenPanel" to="." method="_on_key_listen_panel_gui_input"]

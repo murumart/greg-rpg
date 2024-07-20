@@ -405,12 +405,15 @@ func showme():
 	SND.menusound()
 	update_tabs()
 	save_warning_label.hide()
+	save_warning_label.text = ("press [%s] to save your game."
+			% KeybindsSettings.action_string("quick_save"))
 	if not saving_disabled and DAT.seconds - DAT.last_save_second > TIME_AFTER_WARN_SAVE:
 		save_warning_label.show()
 		save_warning_label.modulate.a = 1.0
 		save_warning_tween = create_tween().set_trans(Tween.TRANS_CUBIC)
 		save_warning_tween.tween_interval(2.0)
-		save_warning_tween.tween_property(save_warning_label, "modulate:a", 0.0, 1.0).set_ease(
+		save_warning_tween.tween_property(save_warning_label,
+				"modulate:a", 0.0, 1.0).set_ease(
 				Tween.EASE_OUT).from(1.0)
 		save_warning_tween.tween_callback(save_warning_label.hide)
 

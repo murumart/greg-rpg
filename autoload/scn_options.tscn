@@ -9,6 +9,7 @@ process_mode = 3
 script = ExtResource("1_kip0u")
 
 [node name="Root" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 81.0
@@ -63,8 +64,10 @@ layout_mode = 2
 text = "0.1"
 horizontal_alignment = 2
 
-[node name="Keybinds" parent="." instance=ExtResource("3_n1vjm")]
+[node name="Keybinds" parent="Root" instance=ExtResource("3_n1vjm")]
 visible = false
+layout_mode = 1
+offset_right = 79.0
 
 [node name="TopTextSwitcher" type="Timer" parent="."]
 wait_time = 3.0

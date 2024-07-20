@@ -392,12 +392,13 @@ value = 28.82
 show_percentage = false
 
 [node name="SaveWarningLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_top = 109.0
 offset_right = 160.0
 offset_bottom = 120.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_c61xy")
-text = "press [v] to save your game."
+text = "press [%s] to save your game."
 horizontal_alignment = 1
 autowrap_mode = 1
 
