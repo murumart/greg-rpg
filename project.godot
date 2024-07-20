@@ -28,7 +28,6 @@ SOL="*res://autoload/scn_screen_overlay.tscn"
 OPT="*res://autoload/scn_options.tscn"
 LTS="*res://autoload/scn_level_transition.tscn"
 SND="*res://autoload/scr_sound.gd"
-ELM="res://autoload/scr_elements.gd"
 
 [debug]
 

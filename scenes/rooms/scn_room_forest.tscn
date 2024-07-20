@@ -12,7 +12,7 @@
 
 [sub_resource type="Curve" id="Curve_g5h5i"]
 max_value = 20.0
-_data = [Vector2(0, 3.37031), 0.0, 0.0, 0, 0, Vector2(0.37542, 10.3375), 0.0, 0.0, 0, 0, Vector2(0.746091, 11.9556), -32.6554, -32.6554, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 6.28948), 0.0, 0.0, 0, 0, Vector2(0.37542, 10.3375), 0.0, 0.0, 0, 0, Vector2(0.746091, 11.9556), -32.6554, -32.6554, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d8w40"]

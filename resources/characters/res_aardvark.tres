@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bj78bd783n3ht"]
+
+[ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_5tfoi"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_ht2ut"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gekk"]
+atlas = ExtResource("1_5tfoi")
+region = Rect2(192, 139, 22, 22)
+
+[resource]
+script = ExtResource("1_ht2ut")
+name_in_file = &""
+name = "aardvark"
+info = "this creature's eyes are used as jewellery."
+portrait = SubResource("AtlasTexture_1gekk")
+max_health = 112.0
+health = 112.0
+max_magic = 94.0
+magic = 94.0
+level = 62
+experience = 0
+attack = 67.0
+defense = 55.0
+speed = 55.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["jglove", "vacuum", "sideeye"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

@@ -50,8 +50,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	if active:
-		score -= delta * 0.5
-		enemy_score -= delta * 0.5
+		score = maxf(0.0, score - delta * 0.5)
+		enemy_score = maxf(0.0, enemy_score - delta * 0.5)
 
 	# DEBUG
 	#if Input.is_key_pressed(KEY_9):

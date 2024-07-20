@@ -28,6 +28,7 @@ gender = 1
 effects = Array[ExtResource("1_kpjo1")]([SubResource("Resource_khoax")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
 meta = {}
 

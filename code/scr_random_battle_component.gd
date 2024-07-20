@@ -6,6 +6,7 @@ class_name RandomBattleComponent extends Node
 @export var minimum_enemy_tries := 1
 @export var inject_target: OverworldCharacter
 @export var start_texts: Array[String] = []
+@export var print_test_text := false
 var _level := 0.0
 
 
@@ -14,6 +15,10 @@ func _ready() -> void:
 	if inject_target:
 		inject_target.battle_info = get_battle()
 		#print("RBC: genned battle with level " + str(_level))
+	if print_test_text:
+		for i in 100:
+			_level = i * 0.01
+			prints(i, gen_enemies())
 
 
 func gen_enemies() -> Array[StringName]:

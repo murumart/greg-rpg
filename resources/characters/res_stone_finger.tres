@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dgxappdkk0gpt"]
+
+[ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_2xnv1"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_hiode"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmjme"]
+atlas = ExtResource("1_2xnv1")
+region = Rect2(197, 2, 22, 22)
+
+[resource]
+script = ExtResource("1_hiode")
+name_in_file = &""
+name = "stone finger"
+info = "no children have been named after this enemy."
+portrait = SubResource("AtlasTexture_kmjme")
+max_health = 210.0
+health = 210.0
+max_magic = 0.0
+magic = 0.0
+level = 52
+experience = 0
+attack = 52.0
+defense = 59.0
+speed = 43.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = "brick"

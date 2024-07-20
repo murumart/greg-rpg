@@ -35,7 +35,7 @@ meta = {}
 [resource]
 script = ExtResource("3_fned2")
 name_in_file = &"jglove"
-name = &"jglove"
+name = &"powerup"
 description = "electric hands"
 animation = &""
 use_animation = &""

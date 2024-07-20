@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0upk76t2e4xk"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_g21xo"]
+[ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_hwna8"]
+
+[node name="StoneFinger" type="Node2D"]
+script = ExtResource("1_g21xo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-12, -44)
+texture = ExtResource("2_hwna8")
+centered = false
+region_enabled = true
+region_rect = Rect2(198, 2, 22, 79)

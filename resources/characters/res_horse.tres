@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bw7fgr18eskbj"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_c585j"]
+[ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_mf0v1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r55qo"]
+atlas = ExtResource("1_mf0v1")
+region = Rect2(130, 145, 22, 22)
+
+[resource]
+script = ExtResource("1_c585j")
+name_in_file = &""
+name = "horse"
+info = "neigh"
+portrait = SubResource("AtlasTexture_r55qo")
+max_health = 100.0
+health = 100.0
+max_magic = 70.0
+magic = 70.0
+level = 62
+experience = 0
+attack = 62.0
+defense = 62.0
+speed = 62.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["littleman"])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""

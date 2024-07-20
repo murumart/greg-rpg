@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene load_steps=27 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
@@ -19,8 +19,17 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
+[sub_resource type="Curve" id="Curve_2ddx4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.216011, 0.614639), 0.0, 0.0, 0, 0, Vector2(0.328769, 0.687348), 0.0, 0.0, 0, 0, Vector2(1, 0.190499), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_wf6no"]
+script = ExtResource("5_krk2i")
+key = &"wild_lizard"
+curve = SubResource("Curve_2ddx4")
+
 [sub_resource type="Curve" id="Curve_6c0rn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.505574), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, -0.677595, 0, 0, Vector2(1, 0.505574), -0.413354, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_o4ych"]
@@ -29,8 +38,8 @@ key = &"wild_lizard"
 curve = SubResource("Curve_6c0rn")
 
 [sub_resource type="Curve" id="Curve_gwndq"]
-_data = [Vector2(0, 0.0661118), 0.0, 0.0, 0, 0, Vector2(0.139313, 0.36662), 0.0, 0.0, 0, 0, Vector2(0.492928, 0.690245), 0.0, 0.0, 0, 0, Vector2(1, 0.389451), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.311682), 0.0, 0.934538, 0, 0, Vector2(0.492928, 0.690245), 0.0, 0.0, 0, 0, Vector2(1, 0.638875), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_0bny4"]
 script = ExtResource("5_krk2i")
@@ -54,6 +63,33 @@ point_count = 4
 script = ExtResource("5_krk2i")
 key = &"worm"
 curve = SubResource("Curve_emw14")
+
+[sub_resource type="Curve" id="Curve_rqrjt"]
+_data = [Vector2(0, 0.202617), 0.0, 0.0, 0, 0, Vector2(0.171714, 0.384392), 0.501535, 0.501535, 0, 0, Vector2(0.248228, 0.760058), -0.77657, -0.77657, 0, 0, Vector2(0.348905, 0.67523), 0.0, 0.0, 0, 0, Vector2(0.421392, 0.857004), 0.0, 0.0, 0, 0, Vector2(1, 0.857004), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_jgm32"]
+script = ExtResource("5_krk2i")
+key = &"horse"
+curve = SubResource("Curve_rqrjt")
+
+[sub_resource type="Curve" id="Curve_j857u"]
+_data = [Vector2(0, 0.178381), 0.0, 0.0, 0, 0, Vector2(1, 0.287445), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_6keoo"]
+script = ExtResource("5_krk2i")
+key = &"stone_finger"
+curve = SubResource("Curve_j857u")
+
+[sub_resource type="Curve" id="Curve_6jtsf"]
+_data = [Vector2(0, 0.311682), 0.0, 0.0, 0, 0, Vector2(0.465689, 0.372273), 0.0, 0.0, 0, 0, Vector2(0.739529, 0.529811), 0.0, 0.0, 0, 0, Vector2(1, 0.650994), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_fhegs"]
+script = ExtResource("5_krk2i")
+key = &"aardvark"
+curve = SubResource("Curve_6jtsf")
 
 [sub_resource type="Resource" id="Resource_5excg"]
 script = ExtResource("6_kdwyn")
@@ -96,8 +132,7 @@ animation = &"walk_down"
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_1wms1")
-values = Array[ExtResource("5_krk2i")]([SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb")])
+values = Array[ExtResource("5_krk2i")]([SubResource("Resource_wf6no"), SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb"), SubResource("Resource_jgm32"), SubResource("Resource_6keoo"), SubResource("Resource_fhegs")])
 default_battle = SubResource("Resource_5excg")
-minimum_enemy_tries = 2
 inject_target = NodePath("..")
 start_texts = Array[String](["ravenous.", "hungry.", "wild.", "rampaging.", "found you.", "life."])

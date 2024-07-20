@@ -11,10 +11,10 @@ static func get_curve_by_key(pairs: Array[KeyCurve], key_name: StringName) -> Cu
 	return null
 
 
-static func create_pair(key: StringName, curve: Curve) -> KeyCurve:
+static func create_pair(_key: StringName, _curve: Curve) -> KeyCurve:
 	var pp := KeyCurve.new()
-	pp.key = key
-	pp.curve = curve
+	pp.key = _key
+	pp.curve = _curve
 	return pp
 
 

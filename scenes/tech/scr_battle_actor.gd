@@ -216,7 +216,7 @@ func get_speed() -> float:
 	for e in status_effects.values():
 		x += e.speed_bonus(self)
 	if has_status_effect(&"little"):
-		x *= 0.25
+		x *= (0.75 - 0.075 * (get_status_effect(&"little").strength - 1.0))
 	return maxf(x, 1) * stat_multiplier
 
 
