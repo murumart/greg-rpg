@@ -13,6 +13,7 @@ var starting := false
 
 
 func _ready() -> void:
+	ResMan.load_resources()
 	SOL.load_all_effects()
 	$LoadingScreen.call_deferred("hide")
 	$VBoxContainer/NewGameButton.grab_focus()
