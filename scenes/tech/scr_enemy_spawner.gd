@@ -10,7 +10,11 @@ var enemies := []
 @export var active_range := Vector2i(1, 99)
 @export var wait_time := 1.0
 
+@export var spawn_radius := 32.0
+
 @onready var timer := $Timer
+@onready var raycast: RayCast2D = $RayCast2D
+
 var level: int
 
 
@@ -35,11 +39,23 @@ func _on_timer_timeout() -> void:
 		return
 	if enemies.size() < max_enemies and randf() <= 0.25:
 		var thug := spawn_enemy.instantiate() as OverworldCharacter
-		_place_thug(thug, global_position + Vector2(randf_range(-5, 5), randf_range(-5, 5)))
+		_place_thug(thug, _get_position())
 		# cool fade in when the enemy spawns
 		thug.modulate.a = 0
 		var tw := create_tween()
 		tw.tween_property(thug, "modulate:a", 1.0, 0.33)
+
+
+func _get_position() -> Vector2:
+	for try in 10:
+		raycast.target_position = Vector2.from_angle(PI * 2 * randf()) * spawn_radius
+		raycast.force_raycast_update()
+		var point := raycast.get_collision_point()
+		if point == Vector2.ZERO:
+			point = raycast.target_position + global_position
+		point -= (Vector2(8.0, 8.0) * -raycast.get_collision_normal())
+		return point
+	return global_position
 
 
 func _place_thug(thug: OverworldCharacter, pos: Vector2) -> void:

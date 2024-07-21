@@ -17,4 +17,9 @@ position = Vector2(2.38419e-07, 2.38419e-07)
 scale = Vector2(6, 6)
 texture = ExtResource("2_35lj2")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+self_modulate = Color(0.568627, 0, 1, 1)
+collision_mask = 3
+collide_with_areas = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
