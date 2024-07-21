@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/tech/scr_enemy_spawner.gd" id="1_jv8nd"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_35lj2"]
 
-[node name="EnemySpawner" type="Node2D" groups=["thug_spawners"]]
+[node name="EnemySpawner" type="Node2D" groups=["save_me", "thug_spawners"]]
 y_sort_enabled = true
 script = ExtResource("1_jv8nd")
 

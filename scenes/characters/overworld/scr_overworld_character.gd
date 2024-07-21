@@ -157,9 +157,7 @@ func _physics_process(delta: float) -> void:
 
 # this is also called when "interact on collide" is turned on
 func interacted() -> void:
-	if DAT.player_capturers.size() > 0:
-		if battle_info:
-			set_collision_layer_value(4, false)
+	if DAT.player_capturers.size() > 0 and battle_info:
 		return
 	interactions += 1
 	inspected.emit()
@@ -192,9 +190,7 @@ func interacted() -> void:
 			convo_progress = mini(convo_progress + 1, default_lines.size())
 			return
 	if battle_info:
-		if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-			LTS.enter_battle(battle_info, {"sbcheck": true})
-			set_physics_process(false)
+		if _enter_battle():
 			return
 	if transport_to_scene:
 		LTS.level_transition(transport_to_scene)
@@ -210,12 +206,32 @@ func _on_talking_finished() -> void:
 	SOL.dialogue_closed.disconnect(_on_talking_finished)
 	if action_right_after_dialogue:
 		if battle_info:
-			if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
-				LTS.enter_battle(battle_info, {"sbcheck": true})
-				set_physics_process(false)
+			_enter_battle()
 		if transport_to_scene:
 			LTS.level_transition(transport_to_scene)
 	_on_idle_timer_timeout()
+
+
+func _enter_battle() -> bool:
+	if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
+		LTS.enter_battle(battle_info, {"sbcheck": true})
+		set_physics_process(false)
+		# stop processing of all surrounding npcs
+		# so perhaps their spawners dont save their positions
+		var shashsasha: PhysicsDirectSpaceState2D = (
+				LTS.get_current_scene().get_world_2d().direct_space_state)
+		var params := PhysicsShapeQueryParameters2D.new()
+		params.shape = CircleShape2D.new()
+		params.shape.radius = 48.0
+		params.collision_mask = 0b1000
+		params.transform = global_transform
+		var results := shashsasha.intersect_shape(params)
+		for result in results:
+			if result.collider is OverworldCharacter:
+				result.collider.set_physics_process(false)
+		# did that
+		return true
+	return false
 
 
 func _on_random_movement_timer_timeout() -> void:
@@ -350,10 +366,11 @@ func chase(body: Node2D) -> void:
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
 	var collider_is_target := collider == chase_target
+	var target_immobilised: bool = ("state" in chase_target
+			and chase_target.state == PlayerOverworld.States.NOT_FREE_MOVE)
 
 	# test if the raycast is colliding with another npc who is chasing the same target
-	var same_target_as_collider_condition := false
-	same_target_as_collider_condition = (is_instance_valid(collider)
+	var same_target_as_collider_condition: bool = (is_instance_valid(collider)
 			and "chase_target" in collider
 			and collider.chase_target == chase_target)
 	if not collider_is_target and not same_target_as_collider_condition:
@@ -361,7 +378,12 @@ func chase(body: Node2D) -> void:
 		chase_timer.start(time_between_chase_updates)
 		return
 	time_moved = 0.0
-	set_target_offset(body.global_position, 24 if same_target_as_collider_condition else 4) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
+	var offset := 4
+	if same_target_as_collider_condition:
+		offset *= 3
+	if target_immobilised:
+		offset *= 3
+	set_target_offset(body.global_position, offset) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
 	set_state(States.CHASE) # this also restarts the timer
 	chase_timer.start(time_between_chase_updates)
 
