@@ -207,6 +207,7 @@ CHAR zerma
 	you should probably level up before...
 	...you start taking them on!
 	for easy encounters, scan any tall grass you find.
+	remember... you need to gather the strength for level 72.
 	good luck! toodles!
 
 
@@ -451,6 +452,22 @@ CHAR zerma
 
 DIALOGUE phone_lakeside_under100
 ACTUALLY phone_town_under100
+
+
+DIALOGUE phone_forest
+CHAR zerma
+	hey hey! you're in the woods? great!
+	i spent most of my childhood here, grinding... lizards...
+	some people put up quests on billboards here.
+	you can take on quests for glass rewards!
+	glass can be spent on perks, once you meet salespeople.
+	each perk makes your time in the woods better.
+	more powerful...
+	uh, that won't last once you leave the woods, though.
+	i'm sure it's really easy to leave...
+	...just go backwards a bit.
+	note that you can't save here... so be cautious!
+	leave if you get too weak.
 
 
 DIALOGUE phone_police_station
