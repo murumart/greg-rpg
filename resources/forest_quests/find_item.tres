@@ -9,3 +9,4 @@ data_key = &"find "
 completion_value = 1
 completion_signal = &""
 glass_reward = 0
+meta_weight = 150

@@ -59,7 +59,7 @@ const DB = {
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
 		SIZE: Vector2i(3, 3),
-		WEIGHT: 300,
+		WEIGHT: 800,
 		LIMIT: 1
 	},
 }

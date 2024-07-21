@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmd8863gajglq"]
+[gd_scene load_steps=9 format=3 uid="uid://cmd8863gajglq"]
 
 [ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_grandma_boss.gd" id="1_45sk8"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_ywnvn"]
+[ext_resource type="Script" path="res://code/scr_copy_greg_stats_component.gd" id="3_twl0x"]
 
 [sub_resource type="Curve" id="Curve_n5fjy"]
 _data = [Vector2(0, 1), 0.0, -0.162233, 0, 0, Vector2(0.244943, 0.929714), 0.0, 0.0, 0, 0, Vector2(0.499915, 0.67523), 0.0, 0.0, 0, 0, Vector2(1, 0.444983), 0.0, 0.0, 0, 0]
@@ -45,3 +46,6 @@ show_behind_parent = true
 material = SubResource("CanvasItemMaterial_1ryrp")
 process_material = SubResource("ParticleProcessMaterial_q2iml")
 texture = ExtResource("2_ywnvn")
+
+[node name="CopyGregStatsComponent" type="Node" parent="."]
+script = ExtResource("3_twl0x")

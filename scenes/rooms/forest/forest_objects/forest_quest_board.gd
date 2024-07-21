@@ -28,11 +28,13 @@ func _generate_quests() -> void:
 			["quests", "active", "leave"])
 	var quest_names := {}
 	var tries := 0
+	var quests := ResMan.forest_quests
+	var weights := quests.values().map(func(a: ForestQuest):
+		return a.meta_weight
+	)
 	while questing.available_quests.size() < 3 or tries > 30:
 		tries += 1
-		var quest: ForestQuest = ResMan.forest_quests[
-				ResMan.forest_quests.keys().pick_random()
-				].duplicate()
+		var quest: ForestQuest = Math.weighted_random(quests.values(), weights).duplicate()
 		quest_names[quest.name] = quest_names.get(quest.name, 0) + 1
 		var special := _quest_generation_special(quest)
 		if quest_names[quest.name] > 1:
@@ -54,7 +56,8 @@ func _generate_quests() -> void:
 func _choosed() -> void:
 	match SOL.dialogue_choice:
 		&"quests":
-			var list: ScrollContainer = SOL.get_node("DialogueBox/DialogueBoxPanel/ScrollContainer")
+			var list: ScrollContainer = SOL.get_node(
+					"DialogueBox/DialogueBoxPanel/ScrollContainer")
 			list.size = Vector2(80, 35)
 			#list.position = Vector2(67, -60)
 			var choices := PackedStringArray()

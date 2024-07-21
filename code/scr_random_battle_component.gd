@@ -23,14 +23,18 @@ func _ready() -> void:
 
 func gen_enemies() -> Array[StringName]:
 	var enemies: Array[StringName] = []
-	enemies.append_array(default_battle.get_("enemies", []).duplicate())
-	var loops := maxi(ceili(_level / 10.0), minimum_enemy_tries)
+	enemies.append_array(default_battle.get_("enemies", []))
+	var loopsraw := remap(_level, 0.0, 1.0, 1.0, max_enemies * 1.25)
+	if roundi(loopsraw + 0.25) > roundi(loopsraw) and randf() < 0.5:
+		loopsraw = ceili(loopsraw)
+	var loops := maxi(roundi(loopsraw), minimum_enemy_tries)
 	for i in loops:
 		values.shuffle()
 		for k in values:
-			var curve := k.curve as Curve
+			var curve := k.curve
 			if curve.sample_baked(_level) >= randf():
-				enemies.append(str(k.key))
+				enemies.append(k.key)
+				break
 	enemies.shuffle()
 	if enemies.size() > max_enemies:
 		enemies.resize(max_enemies)

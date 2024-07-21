@@ -6,6 +6,8 @@ class_name ForestQuest extends Resource
 @export var completion_signal := &""
 @export var glass_reward := 0
 
+@export var meta_weight := 100
+
 
 func start() -> Active:
 	var acc := Active.new(self)

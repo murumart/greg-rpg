@@ -9,3 +9,4 @@ data_key = &"trashcans_emptied"
 completion_value = 3
 completion_signal = &""
 glass_reward = 1
+meta_weight = 200

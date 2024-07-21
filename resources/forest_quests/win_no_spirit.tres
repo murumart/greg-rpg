@@ -9,3 +9,4 @@ data_key = &"win_battle_no_spirit"
 completion_value = 1
 completion_signal = &""
 glass_reward = 8
+meta_weight = 88
