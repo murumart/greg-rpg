@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo30s0jr7gxse"]
+[gd_scene load_steps=9 format=3 uid="uid://bo30s0jr7gxse"]
 
 [ext_resource type="Script" path="res://scenes/decor/scr_greenhouse.gd" id="1_xl1wo"]
 [ext_resource type="Texture2D" uid="uid://jliineedmxw6" path="res://sprites/world/building/greenhouse/spr_spr_back_layer.png" id="2_tbboa"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b2dy2b1ynhdmk" path="res://sprites/world/building/greenhouse/spr_front_layer.png" id="5_w5xvm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugha4"]
+size = Vector2(28, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6nbg"]
 size = Vector2(28, 17)
 
 [node name="Greenhouse" type="Node2D"]
@@ -56,5 +59,14 @@ shape = SubResource("RectangleShape2D_ugha4")
 [node name="UpdateTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="PhoneAreaGreenhouse" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneAreaGreenhouse"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_g6nbg")
 
 [connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

@@ -2,7 +2,7 @@ class_name Cellphone extends Node2D
 
 const LEVELS_TEST_COUNT := 2
 const TESTING_FOR_AREA := 0
-const TESTTING_NOT_FOR_AREA := 1
+const TESTING_NOT_FOR_AREA := 1
 
 const SND_CALL := preload("res://sounds/phone/phone_call.ogg")
 const SND_END := preload("res://sounds/phone/call_end.ogg")
@@ -16,7 +16,7 @@ var level := 1:
 		return ResMan.get_character("greg").level
 var room := "":
 	get:
-		return DAT.get_data("current_room", null) as String
+		return DAT.get_data("current_room", "") as String
 
 @onready var scene := LTS.get_current_scene() as Node
 

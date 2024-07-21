@@ -6,6 +6,7 @@ extends Room
 
 func _ready() -> void:
 	super._ready()
+	DAT.set_data("lake_visited", true)
 	_fish_victim_setup()
 	_car_scared_setup()
 

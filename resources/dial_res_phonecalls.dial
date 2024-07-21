@@ -1,5 +1,9 @@
 MACRO SPIRITCOLOR #7799ff
 
+# under checks only even numbers
+# so phone_aadasdasfafs_under99 is not a valid key
+
+
 
 DIALOGUE phone_dial
 	dialing...
@@ -132,7 +136,7 @@ SOUND phone/call_end
 	(they hung up.)
 
 
-DIALOGUE phone_greghouse
+DIALOGUE phone_greghouse_under4
 CHAR zerma
 DATA_LINK called_zerma_before_leaving_for_town,true
 	hello? i said i'm driving! this better be urgent...
@@ -197,21 +201,25 @@ CHAR well
 DIALOGUE phone_town_under6
 CHAR zerma
 	hey! you're at the town?
-	there may be job opportunities here...
-	i've heard crime is high, so beware of the thugs...
-	though, they may be useful combat experience.
-	at your level, though...
-	i recommend scanning any tall grass you find!
-	there may be some experience to be found there.
-	toodles for now!
+	there's job opportunities here!
+	check out the post office and listen around town...
+	be wary of the thugs! i've heard crime is high.
+	you should probably level up before...
+	...you start taking them on!
+	for easy encounters, scan any tall grass you find.
+	good luck! toodles!
 
 
 DIALOGUE phone_town_under10
 CHAR zerma
 	hey! you're at the town?
 	do you think you're strong enough to engage some of those...
-	...uhh...thugs...?
-	be sure to have healing items at hand.
+	...thugs?
+	be sure to have healing items at hand...
+	...rummage through trash or go shopping to find some!
+	i've also heard the man in the post office...
+	...sells healing items at a discount price.
+	scanning tall grass is still useful experience!
 	good luck! toodles!
 
 
@@ -236,18 +244,42 @@ DIALOGUE phone_town_under20
 CHAR zerma
 	hey hey! you're at the town?
 	keep fighting those thugs!
+DATA_LINK biking_games_finished,true
+	keep delivering that mail!
+DATA_LINK biking_games_finished,false
+	try out the mail delivery job!
+DATA_LINK 
 	you can buy healing items from the store...
 	...or find alternative meals. i mean ways...
 	...to heal.
 	good luck! toodles!
 
 
+DIALOGUE phone_lakeside_under20
+CHAR zerma
+	hey hey! oh dear, you're at the lakeside?
+	be very careful! i suggest you turn back!
+	the enemies there are ravenous.
+	even the fish can jump out of the water and beat...
+	...your ass!
+	careful! toodles!
+
+
 DIALOGUE phone_town_under30
 CHAR zerma
 	hey hey! you're at the town?
+DATA_LINK lake_visited,false
 	say, have you gone any farther...
-	i heard there's a lake at your town. have you been there?
-	it's probably to the south somewhere...
+	i heard there's a lake around there... have you been?
+	it's probably to the south-east somewhere...
+	be wary! it might be jam-packed with angry enemies.
+DATA_LINK lake_visited,true
+	how did it go at the lake?
+	the difficult enemies make it treacherous...
+	...but also rewarding to train there.
+	fishing sounds fun too, doesn't it?
+DATA_LINK 
+	good luck for now! toodles!
 
 
 DIALOGUE phone_town_skatepark
@@ -256,6 +288,12 @@ DATA_LINK fulfilled_bounty_thugs,false
 	hey hey! you're at the skatepark?
 	this place looks deserted. maybe by getting rid of...
 	...enough thugs, it could be lively once again?
+DATA_LINK police_standing,false
+	i've heard there's a police station that's generous...
+	...in distributing bounties in town.
+DATA_LINK police_standing,true
+	i'm sure the police have rewards up!
+DATA_LINK 
 	have you ever tried skating?
 	toodles for now! good luck.
 DATA_LINK fulfilled_bounty_thugs,true
@@ -292,6 +330,7 @@ DATA_LINK vampire_defeated,false
 DATA_LINK vampire_defeated,true
 	hey hey! i heard you got rid of the vampire?
 	good work. they can be really dangerous...
+	i'm sure you saved someone's life with that.
 	toodles for now!
 
 
@@ -301,6 +340,39 @@ CHAR zerma
 	supposedly he's shopping at the store.
 	try go meet him before you reach level 60!
 	i'm sure he's left by then.
+	toodles!
+
+
+DIALOGUE phone_town_under72
+CHAR zerma
+	hey! you're at the town!
+	i know of a good place to grind for levels...
+	seek the man in the white shirt. he can help you...
+	...get to the woods. once there, you can fight...
+	...animals and such.
+	i got as strong as i am right now doing that...
+	...hours on end, grinding down animals, as a child.
+	those were instant kills! even if an eyeball remained!
+	uh, where was i...
+	the woods! to the woods with you, greg.
+	good luck! toodles!
+
+
+DIALOGUE phone_town_under100
+CHAR zerma
+	greg... it's time.
+	you're strong enough to return to your house...
+	...and to fight for it.
+	i'm certain you're able to claim it back for yourself.
+	good luck.
+
+
+DIALOGUE phone_town_greenhouse
+CHAR zerma
+	hey hey!
+	you snuck into someone's greenhouse? wow.
+	i hope you relax and enjoy!
+	toodles!
 
 
 DIALOGUE phone_store
@@ -321,6 +393,7 @@ DATA_LINK president_defeated,true
 	hey hey! how did the meeting with the president go?
 	...oh...
 	well, at least.. uh.. you know...
+	experience??
 DATA_LINK 
 	toodles!
 
@@ -335,6 +408,8 @@ CHAR zerma
 	this place is dangerous! but also lucrative...
 	...if you put enough time in to grind those levels.
 	check your surroundings for any attackers!
+	you can also fish up some good items. have you...
+	...tried fishing yet?
 	be careful! toodles!
 
 
@@ -350,11 +425,32 @@ DATA_LINK vampire_defeated,false
 DATA_LINK vampire_defeated,true
 	hey hey! i heard you got rid of the vampire?
 	good work. they can be really dangerous...
+	enjoy the lake air and nature!
 	toodles for now!
 
 
 DIALOGUE phone_lakeside_under60
-ACTUALLY phone_lakeside_under40
+CHAR zerma
+	hey! you're at the lakeside?
+	have you heard that there's a famous president...
+	...visiting the town? i think he might be shopping.
+	you should check him out before you reach level 60!
+	goodbye for now! toodles!
+
+
+DIALOGUE phone_lakeside_under72
+CHAR zerma
+	hey! you're at the lakeside?
+	grinding levels i bet... i heard there's...
+	...a better place to do that, believe me or not.
+	around town, there's a guy that offers to take you...
+	...to the woods. there's a lot of wildlife there...
+	...to practice your skills on.
+	good luck! toodles!
+
+
+DIALOGUE phone_lakeside_under100
+ACTUALLY phone_town_under100
 
 
 DIALOGUE phone_police_station
@@ -374,6 +470,77 @@ CHOICE_LINK no
 CHOICE_LINK yes
 SET_DATA agreed_to_zerma_crime,true
 	nice!...
+
+
+DIALOGUE phone_beyond_lake
+CHAR zerma
+	hey hey! you're where now?
+	beyond the lake... i see.
+DATA_LINK solar_protuberance_defeated,false
+	i'd watch my back if i were you... 
+	something might jump out at any moment.
+DATA_LINK solar_protuberance_defeated,true
+	a spirit "from the sun"? that sounds crazy...
+	i'm glad you're okay, greg!
+DATA_LINK heard_warstory,false
+	is there something else back here?
+	look around, i'm interested...
+	toodles!
+DATA_LINK heard_warstory,true
+	...huh? you heard of a... a what?
+	a war? [color=#aaaaaa]anu armu[/color]?
+	that's interesting. uh, yes, such a thing happened...
+	i'm pretty sure that each person in your town...
+	...has some sort of memory of that time.
+	i'm doubt they'd want to talk about it, though.
+	it's history! toodles!
+
+
+DIALOGUE phone_fisher_hut
+CHAR zerma
+	remember, greg...
+	one tells only truth. the other tells only lies.
+	toodles!
+
+
+DIALOGUE phone_grandma_house_inside
+CHAR zerma
+	you've got this, greg. go forward...
+
+
+DIALOGUE phone_after_gdung
+CHAR zerma
+	you're so very close.
+	finish the job.
+	this is why we're here.
+
+
+DIALOGUE phone_room_dungeon
+CHAR zerma
+DATA_LINK gdung_floor,0
+	hey hey... you seem to be on the first floor...
+	...of some sort of dungeon under your house.
+	or, well... i'm not sure about "under".
+	but, uuh... keep going!
+	i'm sure there's some sort of path marked...
+	and there's more floors to come.
+	good luck. toodles.
+DATA_LINK gdung_floor,1
+	hey hey... floor two.
+	i'm sure there's no surprises here.
+	...
+	hm? boxes? that's strange...
+	good luck...
+DATA_LINK gdung_floor,2
+	hey! floor three! you're almost there!
+	what's with all the boxes everywhere?
+	maybe she was planning on moving out...
+	why? what could that mean...
+	a mystery not unlike the [color=#891382]fish[/color].
+	toodles.
+DATA_LINK gdung_floor,3
+	hey! you're at... the... what?
+	i don't think you're supposed to be there.
 
 
 DIALOGUE phone_call_over

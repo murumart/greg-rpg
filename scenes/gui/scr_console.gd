@@ -168,14 +168,6 @@ func setdata(args: PackedStringArray) -> void:
 
 
 func _data_change(type: DataCommands, key: StringName, value: Variant) -> void:
-	if value == "true":
-		value = true
-	elif value == "false":
-		value = false
-	elif str(value).is_valid_int():
-		value = int(value)
-	elif str(value).is_valid_float():
-		value = float(value)
 	value = Math.toexp(value)
 	match type:
 		DataCommands.SET:

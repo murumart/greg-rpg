@@ -19,6 +19,7 @@ const reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
 
 
 func _ready() -> void:
+	ResMan.load_resources()
 	dialogue_box.load_dialogue_dict()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, {"mouse_interaction": true, "text_left": 14})
