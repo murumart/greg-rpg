@@ -62,6 +62,11 @@ const DB = {
 		WEIGHT: 800,
 		LIMIT: 1
 	},
+	&"lime_head": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/lime_head.tscn"),
+		SIZE: Vector2i(3, 3),
+		WEIGHT: 1,
+	},
 }
 
 

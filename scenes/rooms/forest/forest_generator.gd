@@ -18,9 +18,9 @@ const TRASH := preload("res://scenes/decor/scn_trash_bin.tscn")
 const ENEMY := preload("res://scenes/characters/overworld/scn_wild_lizard_overworld.tscn")
 const GREENHOUSE := preload("res://scenes/decor/scn_greenhouse.tscn")
 const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
-const GREENHOUSE_INTERVAL := 11
-const BOARD_INTERVAL := 4
-const VEGET_GREENHOUSE_INTERVAL := 33
+const GREENHOUSE_INTERVAL := 7
+const BOARD_INTERVAL := 3
+const VEGET_GREENHOUSE_INTERVAL := 21
 
 const BIN_LOOT := {
 	"gummy_worm": 30,

@@ -22,15 +22,18 @@ func _ready() -> void:
 		_traded = true
 	, CONNECT_ONE_SHOT)
 	kid.finished_talking.connect(func():
+		print("kid finished talking")
 		if not _traded:
 			return
+		print("we have traded")
 		if not is_instance_valid(get_parent()):
+			queue_free()
 			return
 		for x in 5:
 			SOL.vfx("bird_flight", global_position,
 					{parent = get_parent(), speed = randf_range(100.0, 120.0)})
 		queue_free()
-	, CONNECT_ONE_SHOT)
+	)
 
 
 func _pick_random_exchanges() -> void:
