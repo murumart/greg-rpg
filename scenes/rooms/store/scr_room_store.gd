@@ -44,6 +44,8 @@ func _ready():
 	SOL.add_ui_child(ui, -1)
 	set_store_wall_colours()
 	mail_man_check_timer.timeout.connect(_mail_man_check)
+	if not is_mail_man_here():
+		mail_man.queue_free()
 
 	for s in shelves:
 		s.item_taken.connect(_on_item_taken)
@@ -237,7 +239,13 @@ func dothethingthething() -> void:
 
 
 func is_mail_man_here() -> bool:
-	return DAT.seconds % 800 < 125
+	if ResMan.get_character("greg").level >= 50 and not DAT.get_data(
+			"vampire_defeated", false):
+		return false
+	if DAT.get_data("you_gotta_see_the_water_drain", false):
+		return false
+	var inter := DAT.seconds % 500
+	return inter > 125 and inter < 225
 
 
 func _mail_man_check() -> void:
