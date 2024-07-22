@@ -237,22 +237,44 @@ func _enter_battle() -> bool:
 func _on_random_movement_timer_timeout() -> void:
 	if not state == States.IDLE:
 		return
+	if path_container:
+		_on_path_target_reached()
+		return
 	if not random_movement:
 		return
 	# test if random target position is reachable
-	set_target(global_position + Vector2(
+	var goto := global_position + Vector2(
 			randf_range(-1, 1),
 			randf_range(-1, 1)
-	) * random_movement_distance)
-	detection_raycast.target_position = to_local(target)
+	) * random_movement_distance
+	goto = _get_good_target(goto)
+	set_target(goto)
+	set_state(States.WANDER)
+	random_movement_timer.start(randfn(movement_wait, movement_wait * 0.25))
+
+
+func _get_good_target(pos: Vector2) -> Vector2:
+	var tpos := pos
+	detection_raycast.target_position = to_local(pos)
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
 	if collider:
-		target = detection_raycast.get_collision_point()
-		target -= (collision_shape.shape.get_rect().size
+		tpos = detection_raycast.get_collision_point()
+		tpos -= (collision_shape.shape.get_rect().size
 				* -detection_raycast.get_collision_normal())
-	set_state(States.WANDER)
-	random_movement_timer.start(randfn(movement_wait, movement_wait * 0.25))
+	return tpos
+
+
+func _get_bounced_target(pos: Vector2) -> Vector2:
+	var tpos := pos
+	detection_raycast.target_position = to_local(pos)
+	detection_raycast.force_raycast_update()
+	var collider := detection_raycast.get_collider()
+	if collider:
+		tpos = detection_raycast.get_collision_point()
+		tpos -= (collision_shape.shape.get_rect().size
+				* -detection_raycast.get_collision_normal() * 6.0 * randf())
+	return tpos
 
 
 func _on_path_target_reached() -> void:
@@ -265,7 +287,7 @@ func _on_path_target_reached() -> void:
 		var current := at_which_path_point()
 		var current_index := path_points.find(current)
 		var next_index := wrapi(current_index + 1, 0, path_points.size())
-		set_target(path_points[next_index].global_position)
+		set_target(_get_bounced_target(path_points[next_index].global_position))
 		set_state(States.PATH)
 
 

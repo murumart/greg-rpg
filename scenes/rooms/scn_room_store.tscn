@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=70 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bnvnuppg0j2rd" path="res://sprites/world/object/store_shelves/spr_products_pile.png" id="19_d71lm"]
 [ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="20_r2fhk"]
 [ext_resource type="Texture2D" uid="uid://jp5n47pb8wf3" path="res://sprites/world/object/store_shelves/spr_wet_floor.png" id="22_5c2h3"]
+[ext_resource type="SpriteFrames" uid="uid://bochwa4w0uny0" path="res://resources/characters/sfr_mail_man.tres" id="23_hj1vt"]
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_president.gd" id="23_w6t1x"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="24_7v6sw"]
 [ext_resource type="Texture2D" uid="uid://bcgdto63oyltb" path="res://sprites/items/spr_milk.png" id="25_ate3i"]
@@ -795,7 +796,7 @@ shortcut_keys_enabled = false
 [node name="StealingArea" type="Area2D" parent="."]
 position = Vector2(0, 72)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 10
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StealingArea"]
@@ -993,6 +994,32 @@ shape = SubResource("RectangleShape2D_dcyjw")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Decor"]
 
+[node name="MailMan" parent="Decor" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("8_0h0ea")]
+position = Vector2(-2, -40)
+animated_sprite = NodePath("AnimatedSprite2D")
+random_movement = true
+default_lines = Array[StringName]([&"mail_man_store_1", &"mail_man_store_2", &"mail_man_store_3", &"mail_man_store_4"])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decor/MailMan"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("23_hj1vt")
+animation = &"walk_down"
+
+[node name="MailManCheckTimer" type="Timer" parent="Decor/MailMan"]
+autostart = true
+
+[node name="MailManExitPath" type="Node2D" parent="Decor"]
+position = Vector2(0, -69)
+
+[node name="Marker2D" type="Marker2D" parent="Decor/MailManExitPath"]
+position = Vector2(0, 30)
+
+[node name="Marker2D2" type="Marker2D" parent="Decor/MailManExitPath"]
+position = Vector2(0, 81)
+
+[node name="Marker2D3" type="Marker2D" parent="Decor/MailManExitPath"]
+position = Vector2(0, 139)
+
 [node name="PresidentEncounter" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(96, -64)
@@ -1121,7 +1148,7 @@ gradient = SubResource("Gradient_gckj0")
 lifetime = 0.0
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
-points = PackedVector2Array(-24, -3, -25.3689, -13.1117, -22.8789, -24.8516, -26.2371, -37.3872, -22.5094, -50.1721, -22.606, -61.7799, -25.4579, -74.8368, -25.9053, -86.3186, -24.5244, -94.3668, -25, -108)
+points = PackedVector2Array(-24, -3, -22.1957, -14.0913, -22.7341, -24.9971, -26.3289, -38.1325, -25.8674, -48.2613, -26.0388, -59.9917, -25.4532, -71.1612, -23.5396, -86.2373, -26.6022, -97.3652, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_m6l7m")
 

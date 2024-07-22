@@ -32,6 +32,8 @@ var wet_slop := false
 @onready var cashier_sprite := $Kassa/Cashier/Sprite
 @onready var cashier := $Kassa/Cashier as OverworldCharacter
 @onready var decor := $Decor
+@onready var mail_man_check_timer: Timer = $Decor/MailMan/MailManCheckTimer
+@onready var mail_man: OverworldCharacter = $Decor/MailMan
 
 
 func _ready():
@@ -41,6 +43,7 @@ func _ready():
 	remove_child(ui)
 	SOL.add_ui_child(ui, -1)
 	set_store_wall_colours()
+	mail_man_check_timer.timeout.connect(_mail_man_check)
 
 	for s in shelves:
 		s.item_taken.connect(_on_item_taken)
@@ -103,7 +106,10 @@ func restock() -> void:
 	for x in store_shelf_count:
 		if shelves[x].cold:
 			cold_shelves.append(x)
-	var arrays := [HEALING_ITEMS, FOOD_ITEMS, BUILDING_ITEMS]
+	var food := FOOD_ITEMS
+	if is_mail_man_here():
+		food = Math.reaap(FOOD_ITEMS.duplicate(), "red_sauce")
+	var arrays := [HEALING_ITEMS, food, BUILDING_ITEMS]
 	var cold_arrays := [COLD_HEALING, COLD_FOOD, COLD_BUILDING]
 
 	store_data["shelves"] = []
@@ -207,7 +213,12 @@ func update_shopping_list() -> void:
 
 
 # final warning. unless you go back and run into the area again
-func _on_stealing_area_entered(_body: Node2D) -> void:
+func _on_stealing_area_entered(body: Node2D) -> void:
+	if body is OverworldCharacter and body.random_movement:
+		var tw := create_tween()
+		tw.tween_property(body, "modulate:a", 0.0, 1.0)
+		tw.tween_callback(func(): body.queue_free())
+		return
 	store_cashier.warn()
 
 
@@ -225,3 +236,14 @@ func dothethingthething() -> void:
 	decor.dothethingthething()
 
 
+func is_mail_man_here() -> bool:
+	return DAT.seconds % 800 < 125
+
+
+func _mail_man_check() -> void:
+	if not is_instance_valid(mail_man):
+		mail_man_check_timer.stop()
+		return
+	if not is_mail_man_here():
+		mail_man.path_container = $Decor/MailManExitPath
+	pass

@@ -751,12 +751,19 @@ CHAR mail_man
 EMO serious
 SET_DATA has_not_asked_about_mail_man_job,true
 	hello... welcome to the post office.
+DATA_LINK met_mail_man_in_store,false
+SET_DATA met_mail_man_in_office,true
 	...
 	...are you from elsewhere?
 EMO 
 	you don't look like any of the local losers.
 EMO content
 	(though you still look like a loser.)
+DATA_LINK met_mail_man_in_store,true
+EMO 
+SET_DATA met_mail_man_in_office,true
+	ah... it's you again! hello!
+	you've found the post office.
 
 
 DIALOGUE mail_man_talk
@@ -1347,7 +1354,56 @@ EMO
 	hey, yours isn't much better.
 	let me cut you a deal: you deliver mail for me...
 	...and i let you sleep on the floor. deal?
-	
+
+
+DIALOGUE mail_man_store_1
+CHAR mail_man
+EMO serious
+SET_DATA met_mail_man_in_store,true
+	...huh?
+DATA_LINK met_mail_man_in_office,false
+	hello... i haven't seen you around here before.
+EMO 
+	we don't get tourists here often.
+DATA_LINK met_mail_man_in_office,true
+EMO 
+	hello! shopping as well i see.
+EMO serious
+	i need to buy cleaning supplies again.
+	some people really like sending envelopes full of...
+	...runny red sauce.
+	not only does that ruin all the other mail...
+	...but more often than not, my clothes too.
+	it's terrible.
+
+
+DIALOGUE mail_man_store_2
+CHAR mail_man
+DATA_LINK biking_games_finished,true
+	i'm glad for the convenience that your...
+	...escapades on my bike provide me.
+	keep it up and i might even manage to scrape...
+	...together enough free days to call it a vacation.
+DATA_LINK biking_games_finished,false
+	you look rather jobless, if you weren't aware.
+	you should come to the post office...
+	...i can provide you with a job.
+	a job with a wage, even.
+	think about it!
+
+
+DIALOGUE mail_man_store_3
+CHAR mail_man
+	we have two cashiers in this store.
+	i like it when the dead-eyed one is at the register.
+	she usually won't notice you carrying something small out.
+
+
+DIALOGUE mail_man_store_4
+CHAR mail_man
+EMO serious
+	...i don't think they sell cleaning supplies here...
+
 
 DIALOGUE thug_catch_1
 	you %s. prepare to %s in a %s.
