@@ -1,7 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://b0hhsgn6wiug6"]
+[gd_scene load_steps=38 format=3 uid="uid://b0hhsgn6wiug6"]
 
 [ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_bg_vampire.gd" id="1_w554i"]
-[ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="2_dows5"]
 [ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="3_3ghhq"]
 [ext_resource type="Texture2D" uid="uid://ch7o5vjvwrmdq" path="res://sprites/photos/spr_forest1.png" id="3_4vmej"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="4_gcitl"]
@@ -990,11 +989,6 @@ offset_right = 164.0
 offset_bottom = 123.0
 color = Color(0.262745, 0.0901961, 0.0901961, 1)
 
-[node name="MusBarCounter" type="Node" parent="."]
-script = ExtResource("2_dows5")
-bpm = 180.0
-beats_per_bar = 5.0
-
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nimk3")
@@ -1064,7 +1058,7 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec7"]
 material = SubResource("CanvasItemMaterial_oaks3")
 position = Vector2(80, 60)
-rotation = 0.0162897
+rotation = 1.87565
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_3ghhq")
 
@@ -1075,7 +1069,7 @@ speed = 8.0
 modulate = Color(1, 1, 1, 0.235294)
 material = SubResource("CanvasItemMaterial_5330b")
 position = Vector2(80, 60)
-rotation = 4.66297
+rotation = 0.68951
 texture = ExtResource("9_f36h7")
 
 [node name="Rotator" parent="BGPieces/Sec7/Sprite2D2" instance=ExtResource("8_ky8u5")]

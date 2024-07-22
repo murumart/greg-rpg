@@ -16,10 +16,8 @@ const SECTION_CHANGES: Array[float] = [
 	127.334 # 12
 ]
 
-var fsec := 0.0
 var section := -1
 @onready var anim := $Anim as AnimationPlayer
-@onready var mbc := $MusBarCounter as MusBarCounter
 
 
 func _ready() -> void:
@@ -28,6 +26,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	var fsec := SND.current_song_player.get_playback_position()
 	if fsec >= SECTION_CHANGES[section]:
 		timeout()
 	fsec += delta
@@ -39,10 +38,6 @@ func timeout() -> void:
 		0:
 			anim.play("RESET")
 			anim.seek(99, true)
-			fsec = 0.0
-			mbc.reset_floats()
-			mbc.reset_measures()
-			mbc.beats_per_bar = 5
 			anim.play("sec1", 1.0)
 		1:
 			anim.play("sec2", 1.0)
@@ -59,25 +54,16 @@ func timeout() -> void:
 			anim.play("RESET")
 			anim.play("sec4", 0, 1.0)
 		7:
-			mbc.reset_floats()
-			mbc.reset_measures()
-			mbc.beats_per_bar = 4
 			anim.play("sec7")
 		8:
 			anim.play("sec3")
 		9:
 			anim.play("RESET")
 			anim.seek(99, true)
-			mbc.reset_floats()
-			mbc.reset_measures()
-			mbc.beats_per_bar = 5
 			anim.play("sec1")
 		10:
 			anim.play("sec2")
 		11:
-			mbc.reset_floats()
-			mbc.reset_measures()
-			mbc.beats_per_bar = 4
 			anim.play("sec2")
 			anim.seek(99, true)
 			anim.play("sec7")
