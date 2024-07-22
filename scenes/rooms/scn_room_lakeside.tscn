@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=81 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="19_sytvq"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
+[ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="32_61gk4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
 shader = ExtResource("2_aroxh")
@@ -353,17 +354,17 @@ script = ExtResource("3_xexyo")
 position = Vector2(425, -103)
 metadata/_edit_group_ = true
 
-[node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
-position = Vector2(0, -9)
-limit_left = -600
-limit_top = -384
-limit_right = 696
-limit_bottom = 400
-
 [node name="CheatNode" type="Node" parent="Greg"]
 script = ExtResource("4_6dg7d")
 level_gain = 32
 new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon"])
+
+[node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
+position = Vector2(0, -6)
+limit_left = -600
+limit_top = -384
+limit_right = 696
+limit_bottom = 400
 
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11
@@ -1440,6 +1441,124 @@ texture = ExtResource("13_cds6h")
 centered = false
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 11)
+
+[node name="StrollingGrandma" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-231, -164)
+
+[node name="Grandma" parent="StrollingGrandma" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("12_tsmfn")]
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_wait = 3.0
+path_container = NodePath("../Path")
+save_position = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StrollingGrandma/Grandma"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("32_61gk4")
+animation = &"walk_down"
+
+[node name="Path" type="Node2D" parent="StrollingGrandma"]
+
+[node name="Marker2D" type="Marker2D" parent="StrollingGrandma/Path"]
+
+[node name="Marker2D2" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(60, 21)
+
+[node name="Marker2D3" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(129, 43)
+
+[node name="Marker2D4" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(190, 70)
+
+[node name="Marker2D5" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(231, 90)
+
+[node name="Marker2D6" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(264, 119)
+
+[node name="Marker2D7" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(335, 127)
+
+[node name="Marker2D8" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(367, 145)
+
+[node name="Marker2D9" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(418, 148)
+
+[node name="Marker2D10" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(488, 158)
+
+[node name="Marker2D11" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(586, 154)
+
+[node name="Marker2D34" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(691, 155)
+
+[node name="Marker2D12" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(763, 159)
+
+[node name="Marker2D13" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(778, 217)
+
+[node name="Marker2D14" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(824, 214)
+
+[node name="Marker2D15" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(880, 198)
+
+[node name="Marker2D16" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(879, 259)
+
+[node name="Marker2D17" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(790, 285)
+
+[node name="Marker2D18" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(774, 350)
+
+[node name="Marker2D19" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(720, 394)
+
+[node name="Marker2D20" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(655, 384)
+
+[node name="Marker2D21" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(573, 403)
+
+[node name="Marker2D22" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(497, 410)
+
+[node name="Marker2D23" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(413, 423)
+
+[node name="Marker2D24" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(275, 415)
+
+[node name="Marker2D25" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(46, 383)
+
+[node name="Marker2D26" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-45, 348)
+
+[node name="Marker2D27" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-101, 280)
+
+[node name="Marker2D28" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-133, 189)
+
+[node name="Marker2D29" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-175, 134)
+
+[node name="Marker2D30" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-156, 74)
+
+[node name="Marker2D31" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-139, 29)
+
+[node name="Marker2D32" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-99, 28)
+
+[node name="Marker2D33" type="Marker2D" parent="StrollingGrandma/Path"]
+position = Vector2(-57, 7)
 
 [connection signal="body_entered" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_entered"]
 [connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]

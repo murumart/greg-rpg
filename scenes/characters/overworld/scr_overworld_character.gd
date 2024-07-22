@@ -68,7 +68,7 @@ func _ready() -> void:
 	if LTS.gate_id == LTS.GATE_LOADING:
 		pass
 	if save_position:
-		set_position(DAT.get_data(get_save_key("position"), global_position))
+		set_global_position(DAT.get_data(get_save_key("position"), global_position))
 	if save_convo_progess:
 		convo_progress = DAT.get_data(get_save_key("convo_progress"), 0)
 	# setup
