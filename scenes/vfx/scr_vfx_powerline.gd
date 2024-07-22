@@ -55,7 +55,7 @@ func init(options := {}) -> void:
 
 func _physics_process(delta: float) -> void:
 	_lifetime += delta
-	if not visible:
+	if not is_visible_in_tree():
 		return
 	_delay += delta
 	if _delay >= delay:

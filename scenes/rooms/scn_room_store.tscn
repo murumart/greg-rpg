@@ -1148,7 +1148,7 @@ gradient = SubResource("Gradient_gckj0")
 lifetime = 0.0
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
-points = PackedVector2Array(-24, -3, -22.1298, -14.3942, -22.5191, -27.3818, -23.737, -39.909, -22.6339, -50.5164, -22.634, -60.7787, -23.1841, -74.3424, -23.588, -83.059, -24.3893, -94.3968, -25, -108)
+points = PackedVector2Array(-24, -3, -23.3421, -12.8204, -22.9567, -27.882, -24.1706, -36.0066, -22.4631, -49.9391, -25.2783, -63.1982, -22.6748, -72.8196, -24.5529, -82.6794, -25.4634, -98.249, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_m6l7m")
 
