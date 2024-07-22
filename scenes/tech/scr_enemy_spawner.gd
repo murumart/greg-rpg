@@ -37,7 +37,8 @@ func _on_timer_timeout() -> void:
 	timer.start(wait_time)
 	if not Math.inrange(level, active_range.x, active_range.y):
 		return
-	if player and player.global_position.distance_squared_to(global_position) < 10_000:
+	if (is_instance_valid(player)
+			and player.global_position.distance_squared_to(global_position) < 10_000):
 		return
 	if enemies.size() < max_enemies and randf() <= 0.25:
 		var thug := spawn_enemy.instantiate() as OverworldCharacter

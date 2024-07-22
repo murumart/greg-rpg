@@ -81,7 +81,7 @@ var IONS := {
 		"step": 1.0,
 		"display": TYPE_BOOL,
 	},
-	"reset": {}
+	"reset": {"display": TYPE_VECTOR2}
 }
 # sorting the options
 const CATEGORIES := {

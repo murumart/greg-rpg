@@ -5,10 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	# TODO make this an actual thing
-	if true:#ResMan.get_character("greg").level >= 7:
-		queue_free()
-		return
-	if DAT.get_data("leave_ending_offered", false):
+	if ResMan.get_character("greg").level >= 7 or DAT.get_data("leave_ending_offered", false):
 		queue_free()
 		return
 	approach_area.body_entered.connect(func(_a):
@@ -19,5 +16,14 @@ func _ready() -> void:
 			if SOL.dialogue_choice == &"yes":
 				# TODO put something normal here
 				$"../../Greg".queue_free()
+				await Math.timer(3.0)
+				SND.play_song("")
+				LTS.level_transition("res://scenes/cutscene/scn_leave_ending.tscn")
 		, CONNECT_ONE_SHOT)
 	)
+
+const AFTER := "
+
+
+
+"

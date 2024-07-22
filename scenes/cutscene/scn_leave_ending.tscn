@@ -1,0 +1,119 @@
+[gd_scene load_steps=16 format=3 uid="uid://dy1g1vyw8gd8s"]
+
+[ext_resource type="Script" path="res://scenes/cutscene/scr_leave_ending.gd" id="1_efdju"]
+[ext_resource type="SpriteFrames" uid="uid://cgg6yedlort55" path="res://resources/characters/sfr_greg.tres" id="2_dkmg4"]
+[ext_resource type="AudioStream" uid="uid://bdvkphr5htspv" path="res://sounds/walking/bye.ogg" id="3_f2ajq"]
+[ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="3_ubqcj"]
+[ext_resource type="Texture2D" uid="uid://o0ja61tpwc4a" path="res://sprites/world/building/spr_road.png" id="4_iu7qt"]
+[ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="4_rn2di"]
+[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="7_4hf52"]
+[ext_resource type="Script" path="res://code/scr_color_container.gd" id="8_850yq"]
+[ext_resource type="AudioStream" uid="uid://byqw0xlh82vyb" path="res://sounds/crickets.ogg" id="9_mq61k"]
+
+[sub_resource type="Shader" id="Shader_hafu8"]
+code = "shader_type canvas_item;
+
+uniform float amount = 1.0;
+
+void fragment() {
+	COLOR.a -= COLOR.b * amount;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mu3cc"]
+shader = SubResource("Shader_hafu8")
+shader_parameter/amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lawmk"]
+atlas = ExtResource("4_rn2di")
+region = Rect2(0, 192, 48, 16)
+
+[sub_resource type="Gradient" id="Gradient_nxtfw"]
+offsets = PackedFloat32Array(0, 0.125891, 0.404961, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 80.459, 81.609, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yk1j1"]
+gradient = SubResource("Gradient_nxtfw")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dwsdq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 60, 1)
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(-50, -9.8, 0)
+linear_accel_min = -23.23
+linear_accel_max = 9.03
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_yk1j1")
+turbulence_enabled = true
+
+[node name="LeaveEnding" type="Node2D"]
+script = ExtResource("1_efdju")
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+script = ExtResource("7_4hf52")
+
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("8_850yq")
+
+[node name="sky" type="ColorRect" parent="."]
+offset_right = 162.0
+offset_bottom = 124.0
+color = Color(0.0745098, 0.2, 0.415686, 1)
+
+[node name="song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f2ajq")
+autoplay = true
+bus = &"Music"
+
+[node name="forest" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_mu3cc")
+offset_left = -1.0
+offset_top = -28.0
+offset_right = 396.0
+offset_bottom = 97.0
+texture = ExtResource("3_ubqcj")
+
+[node name="ground" type="TextureRect" parent="."]
+offset_top = 42.0
+offset_right = 269.0
+offset_bottom = 122.0
+texture = SubResource("AtlasTexture_lawmk")
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+position = Vector2(134.75, 70)
+scale = Vector2(4.21094, 3.10625)
+texture = ExtResource("4_iu7qt")
+region_enabled = true
+region_rect = Rect2(64, 82, 64, 8)
+
+[node name="ground2" type="TextureRect" parent="ground"]
+offset_left = 269.0
+offset_right = 538.0
+offset_bottom = 80.0
+texture = SubResource("AtlasTexture_lawmk")
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ground/ground2"]
+position = Vector2(134.75, 70)
+scale = Vector2(4.21094, 3.10625)
+texture = ExtResource("4_iu7qt")
+region_enabled = true
+region_rect = Rect2(64, 82, 64, 8)
+
+[node name="Gre" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9, 80)
+sprite_frames = ExtResource("2_dkmg4")
+animation = &"walk_right"
+frame_progress = 0.0917944
+
+[node name="bgus" type="GPUParticles2D" parent="."]
+position = Vector2(83, 73)
+process_material = SubResource("ParticleProcessMaterial_dwsdq")
+lifetime = 5.0
+
+[node name="crickets" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_mq61k")
+volume_db = -80.0
