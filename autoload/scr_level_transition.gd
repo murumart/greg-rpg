@@ -29,7 +29,6 @@ func _init() -> void:
 func change_scene_to(path: String, options := {}) -> void:
 	get_current_scene().queue_free()
 	var free_us := get_tree().get_nodes_in_group("free_on_scene_change")
-	DAT.set_data("changing_scene_to", path)
 	if options.get("free_those_nodes", true):
 		for node in free_us:
 			node.call_deferred("queue_free")

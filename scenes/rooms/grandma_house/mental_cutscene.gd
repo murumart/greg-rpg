@@ -24,6 +24,17 @@ func _ready() -> void:
 		queue_free()
 
 
+func _physics_process(_delta: float) -> void:
+	var player := SND.current_song_player
+	if is_instance_valid(player):
+		player.pitch_scale = 1.0
+	Engine.time_scale = 1.0
+	if Input.is_action_pressed("ui_accept") and Input.is_action_pressed("cancel"):
+		Engine.time_scale = 4.0
+		if is_instance_valid(player):
+			player.pitch_scale = 1.0
+
+
 func start() -> void:
 	show()
 	canvas_modulate.color = Color(0.58039218187332, 0.45098039507866, 0.24705882370472)
@@ -107,6 +118,10 @@ func start() -> void:
 	tw.tween_property(canvas_modulate, "color", Color.WHITE, 8)
 	tw.tween_interval(4)
 	tw.tween_callback(func():
+		set_physics_process(false)
+		if is_instance_valid(SND.current_song_player):
+			SND.current_song_player.pitch_scale = 1.0
+		Engine.time_scale = 1.0
 		get_tree().get_processed_tweens().map(func(tew: Tween): if tew.is_valid(): tw.kill())
 		canvas_modulate.color = Color.WHITE
 		print("done now?")
