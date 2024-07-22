@@ -77,6 +77,7 @@ func _on_key_listen_panel_gui_input(event: InputEvent) -> void:
 		if metadata[2] and InputMap.action_has_event(metadata[0], metadata[2]):
 			InputMap.action_erase_event(metadata[0], metadata[2])
 		InputMap.action_add_event(metadata[0], event)
+		DAT.set_data("keybinds_changed", true)
 		_load_table()
 
 

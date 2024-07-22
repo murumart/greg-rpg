@@ -7,7 +7,6 @@ enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
 const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 
-# TODO finish
 const COMPLETED_GAME := {
 	#"zerma_fought": true,
 	#"fought_grandma": true,
@@ -33,7 +32,13 @@ const COMPLETED_GAME := {
 	"atgirl_progress": {"min": 2},
 	"skatings_played": {"min": 1},
 	"snail_hells_survived": {"min": 1},
-	"char_greg_save": {"inventory_has": ["diploma"]}
+	"char_greg_save": {"inventory_has": ["diploma"], "defeated_has": ["car"]},
+	"fishing_high_score": {"min": 400},
+	"birds_scared": {"min": 25},
+	"keybinds_changed": true,
+	"known_status_effects": {"has": [&"regen", &"defense", &"speed", &"poison",
+		&"coughing", &"shield", &"sopping", &"coughing_immunity",
+		&"electric", &"inspiration", &"attack", &"fire", &"magnet"]},
 }
 
 @onready var file_container := $Panel/FileContainer
@@ -282,6 +287,16 @@ func _calc_completion_percent(file: Dictionary) -> float:
 					truth = false
 				else: for item in value.inventory_has:
 					truth = truth and item in gotten.inventory
+			if "defeated_has" in value:
+				if gotten == null:
+					truth = false
+				else: for item in value.defeated_has:
+					truth = truth and item in gotten.defeated_characters
+			if "has" in value:
+				if gotten == null:
+					truth = false
+				else: for thing in value.has:
+					truth = truth and thing in gotten
 		else:
 			truth = value == gotten
 		if truth:
