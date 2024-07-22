@@ -322,6 +322,7 @@ func _on_mail_menu_finished() -> void:
 	# if at the end of the road
 	if get_meter() >= ROAD_LENGTH - 15:
 		var rew := calculate_rewards()
+		DAT.incri("snail_hells_survived", hells_survived)
 		rew.grant()
 		await SOL.dialogue_closed
 		LTS.gate_id = LTS.GATE_EXIT_BIKING

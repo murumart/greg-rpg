@@ -9,10 +9,12 @@ const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 
 # TODO finish
 const COMPLETED_GAME := {
-	"zerma_fought": true,
-	"fought_grandma": true,
+	#"zerma_fought": true,
+	#"fought_grandma": true,
 	"intro_cutscene_over": true,
 	"vampire_defeated": true,
+	"cashier_mean_welcomed": true,
+	"cashier_nice_welcomed": true,
 	"fish_fought": true,
 	"president_defeated": true,
 	"solar_protuberance_defeated": true,
@@ -22,7 +24,16 @@ const COMPLETED_GAME := {
 	"fulfilled_bounty_broken_fishermen": true,
 	"biking_game_played": true,
 	"penni_stong_played": true,
+	"quest_board_introed": true,
+	"witnessed_ushanka_guy_cutscene": true,
 	"bike_ghosts_fought": [0, 1], # TODO add to when another bike ghost gets added
+	"gdung_floor": {"min": 2},
+	"greenhouses_eaten": {"min": 1},
+	"tarikas_talked_to": true,
+	"atgirl_progress": {"min": 2},
+	"skatings_played": {"min": 1},
+	"snail_hells_survived": {"min": 1},
+	"char_greg_save": {"inventory_has": ["diploma"]}
 }
 
 @onready var file_container := $Panel/FileContainer
@@ -258,7 +269,22 @@ func can_walk() -> bool:
 func _calc_completion_percent(file: Dictionary) -> float:
 	var sum := 0.0
 	for key in COMPLETED_GAME:
-		if file.get(key, null) == COMPLETED_GAME[key]:
+		var value: Variant = COMPLETED_GAME[key]
+		var gotten: Variant = file.get(key, null)
+		var truth := true
+		if value is Dictionary:
+			if "min" in value:
+				truth = truth and gotten != null and gotten >= value.min
+			if "max" in value:
+				truth = truth and gotten != null and gotten <= value.max
+			if "inventory_has" in value:
+				if gotten == null:
+					truth = false
+				else: for item in value.inventory_has:
+					truth = truth and item in gotten.inventory
+		else:
+			truth = value == gotten
+		if truth:
 			sum += 1.0
 	return (sum / COMPLETED_GAME.size()) * 100.0
 

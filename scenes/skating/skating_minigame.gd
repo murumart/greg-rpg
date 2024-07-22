@@ -73,5 +73,6 @@ func end() -> void:
 		LTS.gate_id = LTS.GATE_EXIT_GAMING
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "town"))
 	, CONNECT_ONE_SHOT)
+	DAT.incri("skatings_played", 1)
 
 
