@@ -111,7 +111,7 @@ func add_experience(amount: int, speak := false) -> void:
 		if level >= 99:
 			break
 		experience += 1
-		if experience >= xp2lvl(level):
+		if experience >= xp2lvl(level + 1):
 			if speak and (
 					level + 1 == 50 and not DAT.get_data("vampire_defeated", false)
 					or level + 1 == 60 and not DAT.get_data("president_defeated", false)
