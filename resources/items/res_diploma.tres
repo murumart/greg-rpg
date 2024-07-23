@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c5p17uasmly0i" path="res://sounds/paper/paper3.ogg" id="2_1ki4u"]
 [ext_resource type="Texture2D" uid="uid://dx0xr6hvogoyu" path="res://sprites/items/spr_certificate.png" id="2_5gv6a"]
 
-[sub_resource type="Resource" id="Resource_v4nn0"]
+[sub_resource type="Resource" id="Resource_a5igc"]
 script = ExtResource("1_7p8b2")
 health = 0.0
 health_percent = 0.0
@@ -23,8 +23,11 @@ gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
-meta = {}
+meta = {
+"diploma": true
+}
 
 [resource]
 script = ExtResource("1_68my1")
@@ -36,5 +39,5 @@ attack_animation = ""
 play_sound = ExtResource("2_1ki4u")
 price = 1
 use = -1
-consume_on_use = false
-payload = SubResource("Resource_v4nn0")
+consume_on_use = true
+payload = SubResource("Resource_a5igc")

@@ -180,6 +180,10 @@ func _character_message_received(msg := &"") -> void:
 			DAT.capture_player("map")
 			SOL.add_ui_child(map)
 			close_menu()
+		&"diploma_crumpled":
+			close_menu()
+			SOL.dialogue("diploma_crumpled")
+			DAT.grant_item(&"winner_hat")
 
 
 func _save_me() -> void:

@@ -3410,3 +3410,7 @@ DIALOGUE end_of_the_line
 	there is nothing further from here.
 
 
+DIALOGUE diploma_crumpled
+	you crumple the perfectly good diploma,
+	the mint condition collector's item diploma.
+	you make a little hat.
