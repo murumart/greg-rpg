@@ -88,6 +88,12 @@ CHAR zerma
 	i'll wait here...
 
 
+DIALOGUE diploma_crumpled
+	you crumple the perfectly good diploma,
+	the mint condition collector's item diploma.
+	you make a little hat.
+
+
 DIALOGUE intro_grandma_1
 CHAR grandma
 	oh, hello there!
@@ -3409,8 +3415,3 @@ DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.
 
-
-DIALOGUE diploma_crumpled
-	you crumple the perfectly good diploma,
-	the mint condition collector's item diploma.
-	you make a little hat.
