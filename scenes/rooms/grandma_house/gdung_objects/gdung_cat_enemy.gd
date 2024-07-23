@@ -4,7 +4,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	grandma_housecat.inspected.connect(_on_attack)
+	grandma_housecat.inspected.connect(_on_attack, CONNECT_ONE_SHOT)
 	var saved_cats := DAT.get_data("gdung_saved_cats", {}) as Dictionary
 	if not saved_cats:
 		return

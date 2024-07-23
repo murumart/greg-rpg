@@ -298,3 +298,11 @@ DIALOGUE quest_board_active_empty
 	you have no active quests.
 
 
+DIALOGUE ballgame_win
+	you're winner!
+
+
+DIALOGUE ballgame_lose
+	your fool! no level for you.
+
+

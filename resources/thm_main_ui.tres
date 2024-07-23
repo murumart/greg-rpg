@@ -134,6 +134,7 @@ MenuButton/fonts/font = ExtResource("1_6sfhd")
 OptionButton/fonts/font = ExtResource("1_6sfhd")
 OptionButton/icons/arrow = SubResource("AtlasTexture_s8lty")
 Panel/styles/panel = SubResource("StyleBoxFlat_g3oq0")
+PanelContainer/styles/panel = ExtResource("3_dbx1c")
 PopupMenu/font_sizes/font_separator_size = 8
 PopupMenu/font_sizes/font_size = 8
 PopupMenu/fonts/font = ExtResource("1_6sfhd")

@@ -7,6 +7,7 @@ signal dialogue_closed # this is used very often
 
 const SCREEN_SIZE := Vector2(160, 120)
 const HALF_SCREEN_SIZE := Vector2(80, 60)
+const SCREEN_CENTER := HALF_SCREEN_SIZE
 
 @export var show_fps := false
 var fps_label: Label

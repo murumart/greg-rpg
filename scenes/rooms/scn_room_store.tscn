@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=71 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -555,9 +555,15 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
+[sub_resource type="Gradient" id="Gradient_2k0so"]
+resource_local_to_scene = true
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
+colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
+
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m6l7m"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_gckj0")
+gradient = SubResource("Gradient_2k0so")
 fill_from = Vector2(1, 1)
 
 [node name="Store" type="Node2D" groups=["save_me"]]

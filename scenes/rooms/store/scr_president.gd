@@ -30,7 +30,7 @@ func _ready() -> void:
 	if DAT.get_data("president_defeated", false):
 		queue_free()
 		return
-	president.inspected.connect(_president_inspected)
+	president.inspected.connect(_president_inspected, CONNECT_ONE_SHOT)
 	wet_mess_slop.queue_free()
 	delivery_guy.queue_free()
 
@@ -43,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _president_inspected() -> void:
+	print("here")
 	song_pitching = false
 	president.path_container = null
 	president.speed = 0

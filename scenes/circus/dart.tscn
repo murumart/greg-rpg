@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://busagi1l3bw4n"]
+
+[ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="1_v240g"]
+
+[sub_resource type="GDScript" id="GDScript_x2yxb"]
+resource_name = "dart"
+script/source = "extends Node2D
+
+var target := Vector2.ZERO
+
+
+func _physics_process(delta: float) -> void:
+	position.y -= 420.0 * delta
+	var s := remap(absf(global_position.y - target.y), 0.0, 120.0, 0.1, 1.6)
+	scale = Vector2(s, s)
+	if global_position.y - target.y < 0:
+		queue_free()
+"
+
+[node name="Dart" type="Node2D"]
+script = SubResource("GDScript_x2yxb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-13, -13)
+texture = ExtResource("1_v240g")
+centered = false
+region_enabled = true
+region_rect = Rect2(1, 2, 30, 30)

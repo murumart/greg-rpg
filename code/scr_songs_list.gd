@@ -15,6 +15,10 @@ var songs := {
 		"title": "aren't you excited?",
 		"stream": preload("res://music/mus_arent_you_excited.ogg")
 	},
+	"ball_sounds": {
+		"title": "ball sounds",
+		"stream": preload("res://music/mus_ball_sounds.ogg")
+	},
 	"best": {
 		"title": "soundtrack highlight",
 		"stream": preload("res://music/mus_best.ogg")

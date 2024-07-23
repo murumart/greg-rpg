@@ -188,7 +188,7 @@ func side_load_character_data() -> void:
 [color=#ffaa88]def: %s[/color]
 [color=#ffff88]spd: %s[/color]
 [color=#44ff44]hp: %s/%s[/color]
-[color=#88ffff]sp: %s/%s[/color]" % [charct.level, (str(charct.experience) if charct.level < 99 else "en"), (str(charct.xp2lvl(charct.level)) if charct.level < 99 else "ough"), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
+[color=#88ffff]sp: %s/%s[/color]" % [charct.level, (str(charct.experience) if charct.level < 99 else "en"), (str(charct.xp2lvl(charct.level + 1)) if charct.level < 99 else "ough"), charct.get_stat("attack"), charct.get_stat("defense"), charct.get_stat("speed"), roundi(charct.health), roundi(charct.max_health), roundi(charct.magic), roundi(charct.max_magic)])
 	mem_infotext.size = MEM_INFO_DEF_SIZE
 	mem_infotext.position = MEM_INFO_DEF_POS
 
