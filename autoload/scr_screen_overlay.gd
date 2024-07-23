@@ -18,7 +18,7 @@ var dialogue_open := false
 var save_menu_open := false
 
 @onready var dialogue_box: DialogueBox = $DialogueBox as DialogueBox
-@onready var screen_fade: ColorRect = $ScreenFadeOrderer/ScreenFade
+@onready var screen_fade_order := $ScreenFadeOrderer
 
 var dialogue_choice := &""
 var effects_dict := {}
@@ -33,7 +33,6 @@ func _ready() -> void:
 		fps_label = Label.new()
 		fps_label.theme = preload("res://resources/thm_main_ui.tres")
 		add_ui_child(fps_label, 120, false)
-	screen_fade.get_parent().hide()
 
 
 func _input(_event: InputEvent) -> void:
@@ -99,12 +98,20 @@ func dialogue_high_position() -> void:
 
 func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 	var tw := create_tween()
-	screen_fade.get_parent().show()
-	screen_fade.color = start
-	tw.tween_property(screen_fade, "color", end, time)
-	if end.a < 0.5:
-		tw.tween_property(screen_fade.get_parent(), "visible", false, 0.0)
-	tw.tween_callback(emit_signal.bind("fade_finished"))
+	var rect := ColorRect.new()
+	rect.size = SCREEN_SIZE
+	rect.color = start
+	screen_fade_order.add_child(rect)
+	tw.tween_property(rect, "color", end, time)
+	if end.a <= 0.0:
+		tw.tween_callback(func():
+			rect.queue_free()
+		)
+	tw.tween_callback(func():
+		self.fade_finished.emit()
+		if is_instance_valid(rect):
+			rect.queue_free()
+	)
 
 
 # simpler access to shake the camera
