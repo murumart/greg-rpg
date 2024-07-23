@@ -352,3 +352,18 @@ DIALOGUE insp_gdung_box
 
 DIALOGUE insp_gdung_boxes
 	small cardboard boxes for moving.
+
+
+DIALOGUE insp_gdung_fridge
+	the fridge is cold to the touch.
+	it smells of dust and memory.
+	you feel as though something belongs here.
+CHOICES yes,no
+	hang your map back up?
+CHOICE_LINK yes
+CHOICE_LINK no
+
+
+DIALOGUE insp_gdung_fridge_map
+	everything is where it should be.
+	you are, too. welcome home.
