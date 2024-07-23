@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=52 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -23,7 +23,11 @@
 [ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="15_jsbas"]
 [ext_resource type="PackedScene" uid="uid://bo8y8ijengvn8" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_3.tscn" id="16_1ri04"]
 [ext_resource type="PackedScene" uid="uid://bba783hhp0cep" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_1.tscn" id="17_1hl5q"]
+[ext_resource type="PackedScene" uid="uid://s18egu6smh4w" path="res://scenes/rooms/forest/forest_objects/grassy_2.tscn" id="18_2xltg"]
+[ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="18_3nh0l"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/after_gdung_cutscene.gd" id="18_xmmsv"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="20_q8mic"]
+[ext_resource type="Texture2D" uid="uid://c8v0si0vidl6q" path="res://sprites/items/spr_map.png" id="20_v601s"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/ending1.gd" id="21_3a2w4"]
 [ext_resource type="AudioStream" uid="uid://dsecnyf8owaqj" path="res://sounds/choir.ogg" id="22_qjsv1"]
 [ext_resource type="AudioStream" uid="uid://xbktqlmfswa6" path="res://sounds/walking/wood-01.ogg" id="27_gdubp"]
@@ -69,6 +73,34 @@ func _ready() -> void:
 	if randf() >= 0.01:
 		material = null
 "
+
+[sub_resource type="GDScript" id="GDScript_kcpxu"]
+resource_name = "fridge"
+script/source = "extends StaticBody2D
+
+
+func _interact() -> void:
+	if DAT.get_data(\"hung_map\", false):
+		SOL.dialogue(\"insp_gdung_fridge_map\")
+	else:
+		SOL.dialogue(\"insp_gdung_fridge\")
+		await SOL.dialogue_closed
+		
+		if SOL.dialogue_choice == &\"yes\":
+			$Map.show()
+			DAT.set_data(\"hung_map\", true)
+
+
+func _ready() -> void:
+	if DAT.get_data(\"hung_map\", false):
+		$Map.show()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_st0th"]
+size = Vector2(14, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5cva"]
+size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbyid"]
 size = Vector2(52, 6)
@@ -235,11 +267,17 @@ position = Vector2(25, -144)
 [node name="Box" parent="InteriorTiles/Decor" instance=ExtResource("14_gfadn")]
 position = Vector2(-93, 261)
 
+[node name="Box8" parent="InteriorTiles/Decor" instance=ExtResource("14_gfadn")]
+position = Vector2(-112, 77)
+
 [node name="Box2" parent="InteriorTiles/Decor" instance=ExtResource("15_1u8hk")]
 position = Vector2(-59, 256)
 
+[node name="Box9" parent="InteriorTiles/Decor" instance=ExtResource("15_1u8hk")]
+position = Vector2(-43, 53)
+
 [node name="Box3" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
-position = Vector2(-85, 230)
+position = Vector2(-84, 230)
 
 [node name="Box4" parent="InteriorTiles/Decor" instance=ExtResource("17_1hl5q")]
 position = Vector2(48, 198)
@@ -249,6 +287,39 @@ position = Vector2(56, 194)
 
 [node name="Box6" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
 position = Vector2(80, 103)
+
+[node name="Box7" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
+position = Vector2(-109, 86)
+
+[node name="OverworldTiles" parent="InteriorTiles/Decor/Box7" instance=ExtResource("18_2xltg")]
+layer_4/tile_data = PackedInt32Array(1, 655360, 19, -65536, 0, 11, -131071, 589824, 19, -131069, 524288, 19)
+
+[node name="Fridge" type="StaticBody2D" parent="InteriorTiles/Decor"]
+position = Vector2(-49, 49)
+script = SubResource("GDScript_kcpxu")
+
+[node name="Sprite" type="Sprite2D" parent="InteriorTiles/Decor/Fridge"]
+texture = ExtResource("18_3nh0l")
+region_enabled = true
+region_rect = Rect2(16, 64, 16, 20)
+
+[node name="Map" type="Sprite2D" parent="InteriorTiles/Decor/Fridge"]
+visible = false
+position = Vector2(-3, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_v601s")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteriorTiles/Decor/Fridge"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_st0th")
+
+[node name="Dialogue" parent="InteriorTiles/Decor/Fridge" instance=ExtResource("20_q8mic")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+position = Vector2(0, 6)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteriorTiles/Decor/Fridge/Dialogue"]
+shape = SubResource("RectangleShape2D_v5cva")
 
 [node name="Grandma" type="Node2D" parent="InteriorTiles"]
 y_sort_enabled = true
@@ -341,3 +412,5 @@ texture_repeat = 3
 material = SubResource("ShaderMaterial_gkc1w")
 texture = ExtResource("31_rvrit")
 centered = false
+
+[connection signal="on_interact" from="InteriorTiles/Decor/Fridge/Dialogue" to="InteriorTiles/Decor/Fridge" method="_interact"]
