@@ -114,7 +114,7 @@ func get_travel_options() -> PackedStringArray:
 	options.append("nvm")
 	var regs := get_regs()
 	for k: StringName in regs:
-		var d := regs[k] as Dictionary
+		#var d := regs[k] as Dictionary
 		if k == destination_name:
 			continue
 		options.append(String(k))

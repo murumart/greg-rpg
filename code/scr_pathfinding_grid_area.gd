@@ -23,7 +23,7 @@ func _ready() -> void:
 		return
 	set_physics_process(false)
 	var points := get_point_poses()
-	_grid.region = Rect2i(global_position.x, global_position.y,
+	_grid.region = Rect2i(int(global_position.x), int(global_position.y),
 			size.x * point_density, size.y * point_density)
 	_grid.cell_size = Vector2(16, 16)
 	_grid.update()
