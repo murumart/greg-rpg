@@ -103,10 +103,6 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 	rect.color = start
 	screen_fade_order.add_child(rect)
 	tw.tween_property(rect, "color", end, time)
-	if end.a <= 0.0:
-		tw.tween_callback(func():
-			rect.queue_free()
-		)
 	tw.tween_callback(func():
 		self.fade_finished.emit()
 		if is_instance_valid(rect):

@@ -9,5 +9,4 @@ script = ExtResource("1_3f4vq")
 [node name="DialogueBox" parent="." instance=ExtResource("2_1cax3")]
 
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
-visible = false
 z_index = 19
