@@ -31,7 +31,7 @@ func flee() -> void:
 
 func hurt(amt: float, gnd: int) -> void:
 	super(amt, gnd)
-	if randf() <= 0.25 and not hiding:
+	if rng.randf() <= 0.25 and not hiding:
 		hiding = true
 		emit_message("%s rolls up!" % actor_name)
 		add_status_effect(
@@ -42,7 +42,7 @@ func attack(who: BattleActor) -> void:
 	if not hiding:
 		super.attack(who)
 	else:
-		if randf() <= 0.25:
+		if rng.randf() <= 0.25:
 			hiding = false
 			emit_message("%s unrolls!" % actor_name)
 		turn_finished()
