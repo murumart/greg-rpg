@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=50 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/ambient_loop.ogg" id="9_4afe5"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
+[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_mglh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbrin"]
 shader = ExtResource("2_dujwg")
@@ -962,6 +963,11 @@ position = Vector2(-181, 119)
 [node name="Tree115" parent="Trees" instance=ExtResource("4_qfqq5")]
 position = Vector2(114, 108)
 type = 5
+
+[node name="BronzeRifle" parent="." instance=ExtResource("21_mglh5")]
+position = Vector2(85, -130)
+item_type = &"bronze_rifle"
+save = true
 
 [connection signal="inspected" from="Areas/SunSpirit" to="." method="_on_sun_spirit_inspected"]
 [connection signal="inspected" from="Building/StatueBase/Tarikas" to="." method="_on_tarikas_inspected"]
