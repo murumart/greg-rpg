@@ -1157,7 +1157,7 @@ CHAR mail_man
 	the snails forgive you for your crimes so far.
 
 
-DIALOGUE biking_perk_log_repel
+DIALOGUE biking_perk_less_logs
 CHAR mail_man
 	there will be less logs on the next section of road.
 
