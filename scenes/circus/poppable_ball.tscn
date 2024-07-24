@@ -31,12 +31,12 @@ radius = 12.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h6bp3"]
 particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 2
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_e6k7g"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.566166), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_q4ln7"]
@@ -51,7 +51,8 @@ initial_velocity_max = 122.58
 gravity = Vector3(0, 98, 0)
 damping_max = 100.0
 scale_curve = SubResource("CurveTexture_q4ln7")
-anim_offset_max = 0.0323
+anim_offset_min = 0.1705
+anim_offset_max = 0.3721
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8nyv"]
 atlas = ExtResource("1_ws20f")
@@ -198,7 +199,7 @@ shape = SubResource("CircleShape2D_80pfk")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_h6bp3")
 emitting = false
-amount = 32
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_158s2")
 texture = SubResource("AtlasTexture_l8nyv")
 explosiveness = 1.0

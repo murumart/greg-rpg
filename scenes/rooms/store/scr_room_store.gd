@@ -8,7 +8,7 @@ extends Room
 const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
 const COLD_HEALING := ["ice_pack"]
 const FOOD_ITEMS := ["muesli", "mueslibar", "bread", "salt", "cracker_fire"]
-const COLD_FOOD := ["frozen_meat"]
+const COLD_FOOD := ["frozen_meat", "ice_cream"]
 const BUILDING_ITEMS := ["tape", "glue", "fire_cracker"]
 const COLD_BUILDING := ["antifreeze"]
 

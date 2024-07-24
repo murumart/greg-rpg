@@ -3386,6 +3386,63 @@ DIALOGUE president_inspect
 	(he's lying down in the puddle, wallowing.)
 
 
+DIALOGUE troupe_meet
+CHAR ringleader
+	greetings.
+CHOICES you,me,game,bye
+	it was fated for you to approach us.
+CHOICE_LINK you
+	about us? we are the circus. or, will be... or will we?
+	we need a place to set up.
+	don't inform any law enforcement about us...
+	you won't anyway. just letting you know.
+CHOICE_LINK me
+	about you?
+	you look like you're in need of a level up.
+	we'd be happy to provide, for a price, of course...
+CHOICE_LINK game
+	we're hauling a carnival game with us.
+	ask the clown to play it.
+	i'm sure you'll find it fun.
+CHOICE_LINK bye
+	goodbye. i hope to see you soon.
+
+
+DIALOGUE troupe_clown
+CHAR clown
+CHOICES game,you,me,bye
+	...hello...
+CHOICE_LINK you
+	about me... i don't like you...
+CHOICE_LINK me
+	about you... you're not likable to me...
+CHOICE_LINK game
+	it costs 50 silver to play the ball game...
+	if you hit all the balls, you get a level-up...
+CHOICES play,dont
+	if you miss a single one, you get nothing...
+CHOICE_LINK play
+	so be it...
+	aim your darts with movement keys...
+	...and throw a dart with KEY_UI_ACCEPT...
+CHOICE_LINK dont
+	good choice.............
+CHOICE_LINK bye
+	uhuh...
+
+
+DIALOGUE clown_missing_silver
+CHAR clown
+	you don't have enough money...
+	are you poor or something... ew...
+
+
+DIALOGUE troupe_kid
+CHAR kid
+	i'm not actually a circus member.
+	i just follow them around to sell stuff!
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

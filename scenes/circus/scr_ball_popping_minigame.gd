@@ -1,5 +1,7 @@
 extends Node2D
 
+signal finished
+
 const Ball := preload("res://scenes/circus/poppable_ball.tscn")
 const Dart := preload("res://scenes/circus/dart.tscn")
 
@@ -13,21 +15,25 @@ const POINTER_MAX_SPEED := 30.0
 const POINTER_ACCEL := 12.0
 const POINTER_DECEL := 120.0
 var pointer_velocity := Vector2()
-@onready var _space_state: PhysicsDirectSpaceState2D = (
-		get_world_2d().direct_space_state
-)
+@onready var _space_state: PhysicsDirectSpaceState2D = null
 
 @onready var balls_label := %BallsLabel
 @onready var darts_label := %DartsLabel
 var balls_left := 20
-var darts_left := 24
+var darts_left := 22
 
 
 func _ready() -> void:
 	_update_ui()
-	DAT.capture_player("ballgame")
 	lanes.assign($Lanes.get_children())
 	ball_creation_timer.timeout.connect(_create_ball)
+	if LTS.get_current_scene() == self:
+		start()
+
+
+func start() -> void:
+	_space_state = get_world_2d().direct_space_state
+	DAT.capture_player("ballgame")
 	var tw := create_tween()
 	tw.tween_interval(1.0)
 	tw.tween_callback(func():
@@ -68,10 +74,16 @@ func _test_collision() -> Area2D:
 	params.collision_mask = 0b100
 	params.collide_with_areas = true
 	params.collide_with_bodies = false
-	params.position = pointer.global_position
-	var balls := _space_state.intersect_point(params, 1)
+	params.position = pointer.position
+	# usually added as ui child right
+	if not LTS.get_current_scene() == self:
+		params.canvas_instance_id = SOL.get_instance_id()
+	var balls := _space_state.intersect_point(params, 1).map(func(a): return a.collider as Area2D)
+	balls = balls.filter(func(a):
+		return is_instance_valid(a) and a.has_method("explode") and "exploded" in a)
+	print(balls)
 	if not balls.is_empty():
-		return balls[0].collider as Area2D
+		return balls[0] as Area2D
 	return null
 
 
@@ -115,7 +127,8 @@ func _lose() -> void:
 	SOL.dialogue("ballgame_lose")
 	await SOL.dialogue_closed
 	DAT.free_player("ballgame")
-	queue_free()
+	finished.emit()
+	disappear()
 
 
 func _win() -> void:
@@ -130,7 +143,14 @@ func _win() -> void:
 	greg.add_experience(greg.xp2lvl(greg.level + 1), true)
 	await SOL.dialogue_closed
 	DAT.free_player("ballgame")
-	queue_free()
+	finished.emit()
+	disappear()
+
+
+func disappear() -> void:
+	var tw := create_tween()
+	tw.tween_property(self, "modulate:a", 0.0, 1.0)
+	tw.tween_callback(queue_free)
 
 
 func _update_ui() -> void:

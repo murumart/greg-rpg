@@ -107,7 +107,7 @@ static func load_inputs() -> void:
 
 
 static func action_string(action: StringName) -> String:
-	var input := InputMap.action_get_events(action)
+	var input := InputMap.action_get_events(action).filter(func(a): return a is InputEventKey)
 	if input.is_empty():
 		return "unset"
 	return input[0].as_text().trim_suffix(" (Physical)").to_lower()

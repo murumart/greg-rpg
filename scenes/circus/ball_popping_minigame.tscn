@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd4td5fdl0n68"]
+[gd_scene load_steps=9 format=3 uid="uid://dd4td5fdl0n68"]
 
 [ext_resource type="Script" path="res://scenes/circus/scr_ball_popping_minigame.gd" id="1_mb3ox"]
 [ext_resource type="Texture2D" uid="uid://b3lrufphy31w8" path="res://sprites/photos/spr_woods1.png" id="1_q78m0"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="3_gakp2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leb8f"]
+bg_color = Color(0, 1, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Shader" id="Shader_jglkq"]
 code = "shader_type canvas_item;
@@ -40,9 +48,11 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 158.0
 offset_bottom = 117.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_leb8f")
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 modulate = Color(0.243137, 0.294118, 0.133333, 1)
+self_modulate = Color(1, 1, 1, 0.847059)
 layout_mode = 2
 texture = ExtResource("1_q78m0")
 expand_mode = 1

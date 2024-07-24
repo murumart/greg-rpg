@@ -53,7 +53,10 @@ func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 func cam_zoom(to: Vector2, time: float) -> void:
 	if not is_instance_valid(player):
 		return
-	var camera := player.find_child("Camera") as Camera2D
+	var cameras := player.get_children().filter(func(a: Node): return a is Camera2D)
+	if cameras.is_empty():
+		return
+	var camera := cameras[0] as Camera2D
 	if not is_instance_valid(camera):
 		return
 	var tw := create_tween()
@@ -81,9 +84,9 @@ func pleasant() -> void:
 	SOL.dialogue("greenhouse")
 	await SOL.dialogue_closed
 	cam_zoom(Vector2(8, 8), 1)
-	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE)
+	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.0, {"free_rect": false})
 	await get_tree().create_timer(1.1).timeout
-	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT)
+	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 1.0, {"kill_rects": true})
 	DAT.free_player("greenhouse")
 	cam_zoom(Vector2(2, 2), 1)
 	SND.play_song("")

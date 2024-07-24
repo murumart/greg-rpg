@@ -96,7 +96,10 @@ func dialogue_high_position() -> void:
 	$DialogueBox/DialogueBoxPanel/ScrollContainer.position.y = 35
 
 
-func fade_screen(start: Color, end: Color, time := 1.0) -> void:
+func fade_screen(start: Color, end: Color, time := 1.0, options := {}) -> void:
+	if options.get("kill_rects", false):
+		for child: Node in screen_fade_order.get_children():
+			child.queue_free()
 	var tw := create_tween()
 	var rect := ColorRect.new()
 	rect.size = SCREEN_SIZE
@@ -105,7 +108,7 @@ func fade_screen(start: Color, end: Color, time := 1.0) -> void:
 	tw.tween_property(rect, "color", end, time)
 	tw.tween_callback(func():
 		self.fade_finished.emit()
-		if is_instance_valid(rect):
+		if is_instance_valid(rect) and options.get("free_rect", true):
 			rect.queue_free()
 	)
 

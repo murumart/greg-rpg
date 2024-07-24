@@ -10,8 +10,8 @@ signal exchange_completed(exchange: Exchange)
 func _ready() -> void:
 	load_trades()
 	super._ready()
-	default_lines.clear()
-	default_lines.append("kid_hi")
+	if default_lines.is_empty():
+		default_lines.append("kid_hi")
 
 
 func load_trades() -> void:

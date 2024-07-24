@@ -88,9 +88,11 @@ func at_which_path_point() -> Node2D:
 
 
 func _on_collided_with_player(_player) -> void:
-	if not moves: return
+	if not moves or DAT.player_capturers.has("ballgame"):
+		return
 	# cars don't spawncamp
-	if DAT.seconds - DAT.load_second < 2: return
+	if DAT.seconds - DAT.load_second < 2:
+		return
 	moves = false
 	var skateboard_check := LTS.skateboard_check()
 	if not skateboard_check:

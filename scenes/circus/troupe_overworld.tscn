@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tamu3s3ouhh3"]
+[gd_scene load_steps=12 format=3 uid="uid://tamu3s3ouhh3"]
 
 [ext_resource type="Script" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_ydvrp"]
@@ -8,6 +8,23 @@
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="4_wpc6e"]
 [ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="5_g18p5"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="6_0bdbt"]
+[ext_resource type="Script" path="res://code/scr_exchange.gd" id="9_jjxv0"]
+
+[sub_resource type="Resource" id="Resource_58ncv"]
+script = ExtResource("9_jjxv0")
+title = "milkshake"
+silver_required = 230
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"milkshake"])
+
+[sub_resource type="Resource" id="Resource_pmf3d"]
+script = ExtResource("9_jjxv0")
+title = "icecream"
+silver_required = 120
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"ice_cream"])
 
 [node name="Troupe" type="Node2D"]
 y_sort_enabled = true
@@ -20,6 +37,7 @@ movement_wait = 4.0
 random_movement = true
 random_movement_distance = 128
 chase_closeness = 256
+default_lines = Array[StringName]([&"troupe_meet"])
 save_position = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ringleader"]
@@ -37,6 +55,7 @@ random_movement_distance = 128
 chase_target = NodePath("../Ringleader")
 chase_distance = 256
 chase_closeness = 256
+default_lines = Array[StringName]([&"troupe_clown"])
 save_position = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clown"]
@@ -45,6 +64,7 @@ sprite_frames = ExtResource("3_2anys")
 animation = &"walk_down"
 
 [node name="Animal" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
+y_sort_enabled = true
 position = Vector2(-20, -10)
 collision_mask = 9
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -73,19 +93,22 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("5_g18p5")
 animation = &"walk_down"
 
-[node name="Sprite2D" type="Sprite2D" parent="Animal/CagedAnimal"]
-position = Vector2(0, -7)
+[node name="Cage" type="Sprite2D" parent="Animal"]
+position = Vector2(0, -6)
 texture = ExtResource("6_0bdbt")
+offset = Vector2(0, -9)
 region_enabled = true
 region_rect = Rect2(65, 16, 14, 16)
 
 [node name="TroupeKid" parent="." node_paths=PackedStringArray("chase_target") instance=ExtResource("4_0h5t1")]
 position = Vector2(12, -11)
 collision_mask = 9
+trades = Array[ExtResource("9_jjxv0")]([SubResource("Resource_58ncv"), SubResource("Resource_pmf3d")])
 movement_wait = 6.0
 random_movement = true
 random_movement_distance = 128
 chase_target = NodePath("../Animal")
 chase_distance = 256
 chase_closeness = 256
+default_lines = Array[StringName]([&"troupe_kid"])
 save_position = true
