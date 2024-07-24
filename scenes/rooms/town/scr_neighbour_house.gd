@@ -26,7 +26,7 @@ func _ready() -> void:
 					neighbour_wife.inspected.get_connections()[0]["callable"])
 	)
 	car_scared.inspected.connect(car_scared_inspected)
-	if DAT.seconds > 3600 or true:
+	if DAT.seconds > 3600:
 		car_scared.default_lines.clear()
 		car_scared.default_lines.append("car_scared_long")
 
