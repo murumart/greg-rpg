@@ -162,12 +162,13 @@ func hurt(amt: float, gendr: int) -> void:
 
 func die() -> void:
 	state = States.DEAD
-	SOL.vfx(
-		"damage_number",
-		parentless_effcenter(self),
-		{text = absf(roundi(character.health)),
-		color = Color.RED,
-	})
+	if character.health > 0:
+		SOL.vfx(
+			"damage_number",
+			parentless_effcenter(self),
+			{text = absf(roundi(character.health)),
+			color = Color.RED,
+		})
 	character.health = 0.0
 	SND.play_sound(
 			preload("res://sounds/hurt.ogg"),
