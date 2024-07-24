@@ -33,6 +33,12 @@ CHOICES yes,no
 	there might be scary stuff in this!
 
 
+DIALOGUE save_warning_overwrite
+	are you sure you want to overwrite this save file?
+CHOICES no,yes
+	they don't seem to match up.
+
+
 DIALOGUE get_experience
 	%s experience was gained.
 

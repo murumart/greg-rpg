@@ -200,6 +200,16 @@ func _on_button_pressed(reference: Variant) -> void:
 	update_buttons()
 	match mode:
 		SAVE:
+			var data := DIR.get_dict_from_file(SAVE_PATH % reference)
+			var discrepancy: bool = (
+					DAT.seconds < data.get("seconds", -1)
+					or DAT.get_data("nr", 0) != data.get("nr", -1)
+			)
+			if discrepancy:
+				SOL.dialogue("save_warning_overwrite")
+				await SOL.dialogue_closed
+				if SOL.dialogue_choice != "yes":
+					return
 			DAT.save_data(SAVE_PATH % reference)
 			SND.menusound()
 			set_current_button(reference)

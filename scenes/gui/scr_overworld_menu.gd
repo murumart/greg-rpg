@@ -248,24 +248,6 @@ func load_items() -> void:
 	silver_counter.text = str(silver_text, DAT.get_data("silver", 0))
 	item_scroll_container.scroll_horizontal = 0
 
-	for button: Button in item_container.get_children():
-		var item: Item = ResMan.get_item(button.reference)
-
-		#if item.use == Item.Uses.WEAPON:
-			#if party(current_tab).weapon and party(current_tab).weapon != button.reference:
-				#var current: int = ResMan.get_item(party(current_tab).weapon).get_equip_score()
-				#if item.get_equip_score() > current:
-					#_add_better_marker(button, false, true)
-				#elif item.get_equip_score() < current:
-					#_add_better_marker(button, false, false)
-		#elif item.use == Item.Uses.ARMOUR:
-			#if party(current_tab).armour and party(current_tab).armour != button.reference:
-				#var current: int = ResMan.get_item(party(current_tab).armour).get_equip_score()
-				#if item.get_equip_score() > current:
-					#_add_better_marker(button, true, true)
-				#elif item.get_equip_score() < current:
-					#_add_better_marker(button, true, false)
-
 
 func item_names(opt := {}) -> void:
 	# for displaying armour and weapons in char inventory
