@@ -54,7 +54,7 @@ func _ready() -> void:
 
 func pink_haired_girl_setup() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
-	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
+	var time := DAT.seconds % DAT.ATGIRL_CYCLE
 	var progress: int = DAT.get_data("atgirl_progress", 1)
 	atgirl.default_lines.append("atgirl_" + str(progress))
 	if time > DAT.ATGIRL_CYCLE * 0.25: # first quarter she's in town
