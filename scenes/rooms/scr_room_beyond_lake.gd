@@ -46,7 +46,7 @@ func _on_dialogue_closed() -> void:
 		SOL.dialogue_choice = ""
 		DAT.set_data("heard_tarikas_story", true)
 		LTS.level_transition("res://scenes/cutscene/scn_warstory.tscn")
-	elif SOL.dialogue_choice in ["power", "souls", "angels", "human", "inhuman"]:
+	elif SOL.dialogue_choice in ["power", "souls", "desire", "human", "inhuman"]:
 		DAT.set_data("spirit_definition", SOL.dialogue_choice)
 		DIR.sej(14, SOL.dialogue_choice)
 		SOL.dialogue_choice = ""

@@ -2047,53 +2047,59 @@ CHOICE_LINK yes!!
 
 DIALOGUE bike_ghost_fishing_1
 CHAR bike_ghost
-	hello, my nemesis!
-	it's a good day for fishing!
-	i have caught so much old trash!
+	oh... it's you... my nemesis!
+	it's a good day for fishing, my nemesis!
+	i have caught so much old trash.
 CHOICES yes,no
 	you want some?
 CHOICE_LINK yes
 ITEM gummy_fish
-	here you go.
+	here you go. 
 CHAR 
 	(you got something.)
 CHAR bike_ghost
+	you owe me now!
 CHOICE_LINK no
 	too bad, i guess...
 
 
 DIALOGUE bike_ghost_fishing_2
 CHAR bike_ghost
-CHOICES you,me,spirits
-	did you want to talk about anything else?
+CHOICES you,me,victory,spirits
+	you're still bothering me? what about?
 CHOICE_LINK you
-	about me? i am klack. that's what i'm called.
+	about me? i am a mystery.
+	...i'm called [color=SPIRITCOLOR]klack[/color].
 	i "worked" as a transport spirit. until... you know.
 	thinking about becoming a fishing ghost instead.
+	it's serene here.
 CHOICE_LINK me
 	about you? ha ha, you're terrifying.
-	...you'll find out... who you are...
-	...soon enough, hopefully.
+	i think knowing any more would ruin it for you.
+	for you... or for greg? hmm...
+CHOICE_LINK victory
+	you want to rub your victory in my face?
+	go away! we both know it doesn't mean anything!
 CHOICE_LINK spirits
 	what are spirits? quaint question.
 	power given mind?
+	desire given form?
 	souls in purgatory?
-	angels of hell?
 	the human essence?
-	everything not human?
+	all but humanity?
 	pick one, or pick many. whichever you like.
-CHOICES power,souls,angels,human,inhuman
+CHOICES power,desire,souls,human,inhuman
 	contradictions are fun.
 CHOICE_LINK power
 	don't get too comfortable.
 	...didn't ask you to answer there... but have fun!
 	this is a funny game after all.
-CHOICE_LINK souls
-	i'm already in hell so why bother?
+CHOICE_LINK desire
+	your wants can make up a new truth here.
 	...didn't ask you to answer there... but have fun!
 	this is a funny game after all.
-CHOICE_LINK angels
-	you're already in hell so why bother?
+CHOICE_LINK souls
+	i'm already in hell so why bother?
 	...didn't ask you to answer there... but have fun!
 	this is a funny game after all.
 CHOICE_LINK human
