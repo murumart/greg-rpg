@@ -2036,9 +2036,8 @@ CHOICE_LINK yes!!
 DIALOGUE tarikas_beyond_lake_offerstory
 CHAR tarikas
 	mh. i'm an old man, i love telling stories.
-CHOICES yes!!,no!!
 	would you like me to tell you one?
-CHOICE_LINK yes!!,no!!
+CHOICES yes!!,no!!
 	you already know it. it's about anu and the war.
 CHOICE_LINK no!!
 	mh. it was worth a try.
