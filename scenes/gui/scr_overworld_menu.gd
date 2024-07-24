@@ -251,20 +251,20 @@ func load_items() -> void:
 	for button: Button in item_container.get_children():
 		var item: Item = ResMan.get_item(button.reference)
 
-		if item.use == Item.Uses.WEAPON:
-			if party(current_tab).weapon and party(current_tab).weapon != button.reference:
-				var current: int = ResMan.get_item(party(current_tab).weapon).get_equip_score()
-				if item.get_equip_score() > current:
-					_add_better_marker(button, false, true)
-				elif item.get_equip_score() < current:
-					_add_better_marker(button, false, false)
-		elif item.use == Item.Uses.ARMOUR:
-			if party(current_tab).armour and party(current_tab).armour != button.reference:
-				var current: int = ResMan.get_item(party(current_tab).armour).get_equip_score()
-				if item.get_equip_score() > current:
-					_add_better_marker(button, true, true)
-				elif item.get_equip_score() < current:
-					_add_better_marker(button, true, false)
+		#if item.use == Item.Uses.WEAPON:
+			#if party(current_tab).weapon and party(current_tab).weapon != button.reference:
+				#var current: int = ResMan.get_item(party(current_tab).weapon).get_equip_score()
+				#if item.get_equip_score() > current:
+					#_add_better_marker(button, false, true)
+				#elif item.get_equip_score() < current:
+					#_add_better_marker(button, false, false)
+		#elif item.use == Item.Uses.ARMOUR:
+			#if party(current_tab).armour and party(current_tab).armour != button.reference:
+				#var current: int = ResMan.get_item(party(current_tab).armour).get_equip_score()
+				#if item.get_equip_score() > current:
+					#_add_better_marker(button, true, true)
+				#elif item.get_equip_score() < current:
+					#_add_better_marker(button, true, false)
 
 
 func item_names(opt := {}) -> void:
@@ -279,15 +279,27 @@ func item_names(opt := {}) -> void:
 	button.pressed.connect(_get_button_reference_when_press.bind(button))
 	button.text_overrun_behavior = TextServer.OVERRUN_TRIM_CHAR
 	if equipped:
-		#button.modulate = Color(1.0, 0.6, 0.3)
-		button.add_theme_color_override("font_color", Color(1.0, 0.6, 0.3))
-		button.set_meta(&"equipped", true)
-	if DAT.get_data("player_move_mode", 0) == 1 and opt.reference == &"skateboard":
-		#opt.button.modulate = Color(1.0, 0.6, 0.3)
 		button.add_theme_color_override("font_color", Color(1.0, 0.6, 0.3))
 		button.set_meta(&"equipped", true)
 	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
-	var item_name := String(ResMan.get_item(opt.reference).name)
+	var item_id := StringName(opt.reference)
+	var item := ResMan.get_item(item_id)
+	var item_name := item.name
+	var current_char: Character = party(current_tab)
+	if (item.use == Item.Uses.ARMOUR and item_id != current_char.armour
+			and current_char.armour):
+		var comparison := ResMan.get_item(current_char.armour)
+		var better: bool = comparison.get_equip_score() > item.get_equip_score()
+		var worse: bool = comparison.get_equip_score() < item.get_equip_score()
+		if better or worse:
+			_add_better_marker(button, true, not (better and not worse))
+	if (item.use == Item.Uses.WEAPON and item_id != current_char.weapon
+			and current_char.weapon):
+		var comparison := ResMan.get_item(current_char.weapon)
+		var better: bool = comparison.get_equip_score() > item.get_equip_score()
+		var worse: bool = comparison.get_equip_score() < item.get_equip_score()
+		if better or worse:
+			_add_better_marker(button, false, not (better and not worse))
 	# funny typoes
 	if randf() <= 0.01 and Math.inrange(item_name.length(), 4, 8):
 		item_name = Math.typos(item_name)
@@ -460,10 +472,12 @@ func _add_better_marker(button: Button, armour: bool, better: bool) -> void:
 	sprite.centered = false
 	sprite.position.x = 0
 	sprite.z_index += 1
-	button.add_child(sprite)
-	var tw := sprite.create_tween().set_loops(-1).set_trans(Tween.TRANS_SINE)
-	tw.tween_property(sprite, "position:y", 1.0, 1.0)
-	tw.tween_property(sprite, "position:y", -5.0, 1.0)
 	if not better:
 		sprite.modulate = sprite.modulate.darkened(0.3)
+	button.ready.connect(func():
+		button.add_child(sprite)
+		var tw := sprite.create_tween().set_loops(-1).set_trans(Tween.TRANS_SINE)
+		tw.tween_property(sprite, "position:y", 1.0, 1.0)
+		tw.tween_property(sprite, "position:y", -5.0, 1.0)
+	)
 
