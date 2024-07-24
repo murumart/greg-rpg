@@ -244,6 +244,8 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 
 
 func next_dialogue_requested() -> void:
+	if not is_instance_valid(loaded_dialogue):
+		return
 	current_dialogue += 1
 	if is_instance_valid(loaded_dialogue_line) and loaded_dialogue_line.loop > -1:
 		# looping back to an earlier dialogue
