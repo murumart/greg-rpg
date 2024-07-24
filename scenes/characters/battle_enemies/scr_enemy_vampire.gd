@@ -21,7 +21,6 @@ func _ready() -> void:
 	super()
 	if "background_container" in LTS.get_current_scene():
 		background = LTS.get_current_scene().background_container.get_child(0) as BackgroundType
-		background.mbc.new_beat.connect(_vampire_limb_flash)
 	reference_to_opposing_array[0].act_requested.connect(_comments)
 	SOL.dialogue("vampire_battle_start")
 	DAT.set_data("vampire_end_cutscene", true)

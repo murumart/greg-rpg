@@ -1,5 +1,4 @@
-extends BattleActor
-class_name BattleEnemy
+class_name BattleEnemy extends BattleActor
 
 # enemies in battle
 
@@ -41,7 +40,7 @@ func _ready() -> void:
 	animate("idle")
 	super._ready()
 	# manually set rng seed
-	rng.seed = hash(actor_name) + DAT.get_data("nr", 0) * 1000
+	rng.seed = hash(actor_name) + DAT.get_data("nr", 0) * 1000 + battle_hash
 	# sorting the spirits
 	for s in character.spirits:
 		var spirit: Spirit = ResMan.get_spirit(s)

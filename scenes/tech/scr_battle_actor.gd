@@ -1,5 +1,4 @@
-extends Node2D
-class_name BattleActor
+class_name BattleActor extends Node2D
 
 # base class for battle actors
 
@@ -11,6 +10,7 @@ const WAIT_AFTER_FLEE := 1.0
 
 static var player_speed_modifier := 1.0
 static var crits_enabled := true
+static var battle_hash := 0
 
 signal message(msg: String, options: Dictionary)
 signal act_requested(by_whom: BattleActor)
