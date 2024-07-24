@@ -40,8 +40,8 @@ func _on_popo_1_interact_on_interact() -> void:
 			if not DAT.get_data("fulfilled_bounty_%s" % b, false):
 				if not newbounts:
 					SOL.dialogue("bounty_complete_pre" if DAT.get_data(
-						"has_talked_with_police", false
-					) else "bounty_complete_pre_first_interaction")
+						"has_talked_with_police", false)
+							else "bounty_complete_pre_first_interaction")
 					newbounts = true
 				var complete_dial := ("bounty_complete_%s" % b) as String
 				var reward_path := (
