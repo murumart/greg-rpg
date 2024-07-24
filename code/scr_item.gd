@@ -37,3 +37,7 @@ func get_effect_description() -> String:
 
 func get_payload() -> BattlePayload:
 	return payload
+
+
+func get_equip_score() -> int:
+	return payload.attack_increase + payload.defense_increase + payload.speed_increase

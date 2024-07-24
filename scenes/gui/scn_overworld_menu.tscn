@@ -230,30 +230,34 @@ layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 69.0
-offset_bottom = 60.0
+offset_bottom = 66.0
+mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
 [node name="ItemsContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/items/Scroll"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 1
 
 [node name="SilverCounterLabel" type="Label" parent="Panel/ItemSpiritTabs/items"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 63.0
+offset_top = 69.0
 offset_right = 67.0
 offset_bottom = 85.0
+theme_override_constants/line_spacing = 0
 text = "party silver:
 35"
 
 [node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/items"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 61.0
+offset_top = 67.0
 offset_right = 70.0
-offset_bottom = 62.0
+offset_bottom = 68.0
 
 [node name="spirits" type="Panel" parent="Panel/ItemSpiritTabs"]
 visible = false

@@ -23,6 +23,7 @@ var current_tab := 0
 
 @onready var item_spirit_tabs := $Panel/ItemSpiritTabs
 @onready var item_container := $Panel/ItemSpiritTabs/items/Scroll/ItemsContainer
+@onready var item_scroll_container: ScrollContainer = $Panel/ItemSpiritTabs/items/Scroll
 @onready var used_spirit_container := $Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Scroll/UsedSpiritContainer
 @onready var unused_spirit_container := $Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel/Scroll/UnusedSpiritContainer
 @onready var silver_counter := $Panel/ItemSpiritTabs/items/SilverCounterLabel
@@ -245,47 +246,52 @@ func load_items() -> void:
 			{"item": true, "custom_pass_function": item_names})
 	var silver_text := "p. silver:\n" if party_size() > 1 else "silver: "
 	silver_counter.text = str(silver_text, DAT.get_data("silver", 0))
-	
+	item_scroll_container.scroll_horizontal = 0
+
 	for button: Button in item_container.get_children():
 		var item: Item = ResMan.get_item(button.reference)
-		
+
 		if item.use == Item.Uses.WEAPON:
 			if party(current_tab).weapon and party(current_tab).weapon != button.reference:
-				var current: int = ResMan.get_item(party(current_tab).weapon).payload.attack_increase
-				if item.payload.attack_increase > current:
-					button.add_theme_color_override("font_color", Color.GREEN)
-				elif item.payload.attack_increase < current:
-					button.add_theme_color_override("font_color", Color.RED)
+				var current: int = ResMan.get_item(party(current_tab).weapon).get_equip_score()
+				if item.get_equip_score() > current:
+					_add_better_marker(button, false, true)
+				elif item.get_equip_score() < current:
+					_add_better_marker(button, false, false)
 		elif item.use == Item.Uses.ARMOUR:
 			if party(current_tab).armour and party(current_tab).armour != button.reference:
-				var current: int = ResMan.get_item(party(current_tab).armour).payload.defense_increase
-				if item.payload.defense_increase > current:
-					button.add_theme_color_override("font_color", Color.GREEN)
-				elif item.payload.defense_increase < current:
-					button.add_theme_color_override("font_color", Color.RED)
+				var current: int = ResMan.get_item(party(current_tab).armour).get_equip_score()
+				if item.get_equip_score() > current:
+					_add_better_marker(button, true, true)
+				elif item.get_equip_score() < current:
+					_add_better_marker(button, true, false)
 
 
 func item_names(opt := {}) -> void:
 	# for displaying armour and weapons in char inventory
+	var button: Button = opt.button
 	var equipped: int = 0 + (
 		int(opt.reference == party(current_tab).armour) +
 		int(opt.reference == party(current_tab).weapon) +
 		int(opt.reference == &"skateboard" and
 			DAT.get_data("player_move_mode", 0) == 1)
 	)
-	opt.button.pressed.connect(_get_button_reference_when_press.bind(opt.button))
+	button.pressed.connect(_get_button_reference_when_press.bind(button))
+	button.text_overrun_behavior = TextServer.OVERRUN_TRIM_CHAR
 	if equipped:
-		opt.button.modulate = Color(1.0, 0.6, 0.3)
-		opt.button.set_meta(&"equipped", true)
+		#button.modulate = Color(1.0, 0.6, 0.3)
+		button.add_theme_color_override("font_color", Color(1.0, 0.6, 0.3))
+		button.set_meta(&"equipped", true)
 	if DAT.get_data("player_move_mode", 0) == 1 and opt.reference == &"skateboard":
-		opt.button.modulate = Color(1.0, 0.6, 0.3)
-		opt.button.set_meta(&"equipped", true)
+		#opt.button.modulate = Color(1.0, 0.6, 0.3)
+		button.add_theme_color_override("font_color", Color(1.0, 0.6, 0.3))
+		button.set_meta(&"equipped", true)
 	var count: int = party(current_tab).inventory.count(opt.reference) + equipped
 	var item_name := String(ResMan.get_item(opt.reference).name)
 	# funny typoes
 	if randf() <= 0.01 and Math.inrange(item_name.length(), 4, 8):
 		item_name = Math.typos(item_name)
-	opt.button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(11)
+	button.text = ((str(count) + "x ") if count > 1 else "") + item_name.left(11)
 
 
 func spirit_names(opt := {}) -> void:
@@ -444,4 +450,20 @@ func hideme():
 	doing = Doings.PARTY
 	using_menu.hide()
 	#grab_item_focus()
+
+
+func _add_better_marker(button: Button, armour: bool, better: bool) -> void:
+	var sprite := Sprite2D.new()
+	sprite.texture = preload("res://sprites/gui/res_better_marker.tres")
+	sprite.flip_v = better
+	sprite.modulate = Color.GREEN_YELLOW if armour else Color.RED
+	sprite.centered = false
+	sprite.position.x = 0
+	sprite.z_index += 1
+	button.add_child(sprite)
+	var tw := sprite.create_tween().set_loops(-1).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(sprite, "position:y", 1.0, 1.0)
+	tw.tween_property(sprite, "position:y", -5.0, 1.0)
+	if not better:
+		sprite.modulate = sprite.modulate.darkened(0.3)
 
