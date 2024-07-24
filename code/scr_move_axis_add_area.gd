@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 	for body in bodies:
 		if not body.velocity:
 			continue
-		print(int(slope))
 		body.position.y += 60.0 * delta * signf(body.velocity.x) * (slope * 2 - 1)
 
 
