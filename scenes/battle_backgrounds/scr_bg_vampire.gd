@@ -26,6 +26,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not is_instance_valid(SND.current_song_player):
+		return
 	var fsec := SND.current_song_player.get_playback_position()
 	if fsec >= SECTION_CHANGES[section]:
 		timeout()
