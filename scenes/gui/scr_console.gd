@@ -303,9 +303,9 @@ func give_spirit(args: PackedStringArray) -> void:
 
 
 func instakill() -> void:
-	ResMan.get_character("greg").attack = 999999999
+	ResMan.get_character("greg").attack = 2138123812 # because
 	if LTS.get_current_scene().name == "Battle":
-		LTS.get_current_scene().party[0].character.attack = 99999999
+		LTS.get_current_scene().party[0].character.attack = 2138123812
 
 
 func add_perk(args: PackedStringArray) -> void:

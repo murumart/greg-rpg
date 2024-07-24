@@ -8,6 +8,8 @@ const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
 const WAIT_AFTER_ITEM := 1.00
 const WAIT_AFTER_FLEE := 1.0
 
+const ATK_DMG_LVL_CURVE := preload("res://resources/res_attack_damage_level_curve.tres")
+
 static var player_speed_modifier := 1.0
 static var crits_enabled := true
 static var battle_hash := 0
@@ -230,10 +232,12 @@ func get_speed() -> float:
 static func calc_attack_damage(atk: float, random := true) -> float:
 	var x := 0.0
 	x += atk
-	if random: x += randf() * 2
+	if random:
+		x += randf() * 2
 	# funny level-based damage calculation
-	var y := roundf(Math.method_29193(x))
-	return y
+	if atk > 100.0:
+		return roundf(ATK_DMG_LVL_CURVE.sample_baked(1.0) + x - 100)
+	return roundf(ATK_DMG_LVL_CURVE.sample_baked(x * 0.01))
 
 
 # the half of defense is subtracted from the attack damage
@@ -254,7 +258,6 @@ func attack(subject: BattleActor) -> void:
 		turn_finished()
 		return
 	# manual construction of payload
-	#var crit := randf() <= 0.05
 	var crit := subject in crittable
 	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	if crit:

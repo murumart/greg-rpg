@@ -25,12 +25,6 @@ static func dir_from_rot(rotation_radians: float) -> int:
 	return wrapi(int(roundi(rotation_radians/PI*2)), -1, 3)
 
 
-# y = 138.3066 + (2.146303 - 138.3066)/(1 + (x/160.4427)^1.068135)
-static func method_29193(x: float):
-	var y := 138.3066 + (2.146303 - 138.3066)/(1 + pow(x/160.4427, 1.068135))
-	return y
-
-
 static func sign_symbol(x) -> String:
 	if x < 0:
 		return "-"
