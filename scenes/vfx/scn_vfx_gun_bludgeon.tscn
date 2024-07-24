@@ -232,6 +232,7 @@ autoplay = "new_animation"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_f86sk")
+volume_db = 6.0
 
 [node name="DustPuff" parent="." instance=ExtResource("3_l867x")]
 
