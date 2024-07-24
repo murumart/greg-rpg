@@ -2881,10 +2881,14 @@ DIALOGUE lake_hint_continue
 
 
 DIALOGUE lake_hint
+DATA_LINK lake_visited,false
 	have you been to the lakeside yet?
 	it's refreshing taking a walk in the green nature.
 	the [color=YUKUCOLOR]yuku[/color] brand department store gets fresh fish from there.
 	just walk down the road to the southeast from here.
+DATA_LINK lake_visited,true
+	i always do my shopping at the [color=YUKUCOLOR]yuku[/color] brand department stores.
+	that's because they are the only store chain in this region.
 
 
 DIALOGUE lake_hint_cutscene_1
@@ -2895,6 +2899,16 @@ CHAR
 	splendid. with enough money, i can finally buy some [color=YUKUCOLOR]yuku[/color] brand muesli.
 CHAR cashier_nice
 	please don't say things like that to my face ever again.
+
+
+DIALOGUE lake_hint_stroll_1
+	i'm strollin' here! get out of my way!
+	hmm? how do i manage to not have the fish attack me?
+	i just have a really gross personality.
+
+
+DIALOGUE lake_hint_stroll_2
+	[color=YUKUCOLOR]yuku... yuku... yuku...[/color]
 
 
 DIALOGUE girl_1

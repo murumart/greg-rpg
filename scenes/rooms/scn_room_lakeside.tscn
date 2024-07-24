@@ -351,7 +351,7 @@ color = Color(0.883179, 0.963229, 1, 1)
 script = ExtResource("3_xexyo")
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(425, -103)
+position = Vector2(-252, -143)
 metadata/_edit_group_ = true
 
 [node name="CheatNode" type="Node" parent="Greg"]
@@ -1450,6 +1450,7 @@ position = Vector2(-231, -164)
 animated_sprite = NodePath("AnimatedSprite2D")
 movement_wait = 3.0
 path_container = NodePath("../Path")
+default_lines = Array[StringName]([&"lake_hint_stroll_1", &"lake_hint_stroll_2"])
 save_position = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StrollingGrandma/Grandma"]
