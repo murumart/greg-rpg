@@ -55,21 +55,27 @@ func _ready() -> void:
 func pink_haired_girl_setup() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl
 	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
+	var progress: int = DAT.get_data("atgirl_progress", 1)
+	atgirl.default_lines.append("atgirl_" + str(progress))
 	if time > DAT.ATGIRL_CYCLE * 0.25: # first quarter she's in town
 		atgirl.queue_free()
+		# updating progress when leaving, when has been interacted with
+		if DAT.get_data("has_interacted_with_atgirl", false):
+			if SOL.dialogue_exists("atgirl_" + str(progress + 1)):
+				progress += 1
 		DAT.set_data("has_interacted_with_atgirl", false)
+		DAT.set_data("atgirl_progress", progress)
 		return
 
 func _on_atgirl_inspected() -> void:
 	var atgirl := $Houses/HousingBlock/Atgirl as OverworldCharacter
 	var progress: int = DAT.get_data("atgirl_progress", 1)
 	if not DAT.get_data("has_interacted_with_atgirl", false):
-		atgirl.default_lines.clear()
 		DAT.set_data("has_interacted_with_atgirl", true)
-		atgirl.default_lines.append("atgirl_%s" % progress)
-		progress += (1 if SOL.dialogue_box.dialogues_dict.has("atgirl_%s" %
-			str(progress + 1)) else 0)
-		DAT.set_data("atgirl_progress", progress)
+		if progress == 9:
+			progress += 1
+			atgirl.default_lines.clear()
+			DAT.set_data("atgirl_progress", progress)
 
 
 func naturalist_setup() -> void:

@@ -2175,6 +2175,48 @@ DIALOGUE atgirl_4
 	as dull as ever.
 
 
+DIALOGUE atgirl_5
+	...?
+
+
+DIALOGUE atgirl_6
+	what do you want?
+	...
+
+
+DIALOGUE atgirl_7
+	i can't believe the only person checking up on me anymore...
+	...is a complete stranger that i've never seen before.
+	though calling this "checking up" is a huge joke.
+
+
+DIALOGUE atgirl_8
+	what do you want????
+
+
+DIALOGUE atgirl_9
+	where did you come from?
+	stop staring at me like that. i'm asking you seriously.
+	how did you enter the town?
+	no one comes here permanently.
+	no one ever leaves. except for the ones you wish remained, of course.
+	can you just leave if you want to? who brought you here? why??
+CHOICES tell,dont
+	who are you???
+CHOICE_LINK tell
+	...
+	..................
+	...what the hell...
+	you're not a real person... you can't be...
+	...or maybe you're just realllly drunk. man.
+CHOICE_LINK dont
+	i hate youuuuuuu.
+
+
+DIALOGUE atgirl_10
+	leave me alone.
+
+
 DIALOGUE atgirl_at_postoffice_1
 	i'm waiting for a letter from my sister.
 	she said she'd send one once she safely makes it to the mainland.
