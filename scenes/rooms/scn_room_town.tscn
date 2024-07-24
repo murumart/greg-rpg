@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=121 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
+[ext_resource type="Script" path="res://code/scr_move_axis_add_area.gd" id="39_q0krc"]
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
@@ -524,7 +525,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-73, -54), Vector2(-41, -72), Vector2(-3, -72), Vector2(26, -51), Vector2(27, -32), Vector2(-71, -34)]
+"values": [Vector2(-104, -56), Vector2(-73, -72), Vector2(-36, -72), Vector2(-9, -53), Vector2(-16, -32), Vector2(-105, -35)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -756,7 +757,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(923, 5)
+position = Vector2(921, -280)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1630,6 +1631,7 @@ position = Vector2(1008, -304)
 script = ExtResource("28_f5xvh")
 
 [node name="PhoneAreaSkatepark" type="Area2D" parent="Houses/Skatepark"]
+visible = false
 position = Vector2(-87, 51)
 collision_layer = 64
 collision_mask = 0
@@ -1644,7 +1646,7 @@ tile_set = ExtResource("15_1u67x")
 format = 2
 layer_0/y_sort_origin = 1166
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(-196612, 458753, 10, -262148, 458753, 8, -262147, 524289, 8, -262146, 524289, 8, -262145, 524289, 8, -327680, 589825, 8, -262144, 589825, 10, -196609, 524289, 10, -196610, 524289, 10, -196611, 524289, 10, 1, 524289, 9, 65537, 524289, 9, 131073, 524289, 9, -65534, 458753, 8, -65533, 458753, 9, -2, 458753, 8, 65534, 458753, 9, 131070, 458753, 9, 196606, 458753, 9, 262142, 458753, 10, -1, 524289, 8, 65535, 524289, 9, 131071, 524289, 9, 196607, 524289, 9, 262143, 524289, 10, -65536, 589825, 8, 0, 589825, 9, 65536, 589825, 9, 131072, 589825, 9, 196608, 589825, 10, 196609, 524289, 9, 196610, 458753, 10, -65532, 589825, 9, 4, 589825, 9, 65540, 589825, 9, 131076, 589825, 10, 196612, 524289, 10, 196611, 524289, 10, 131074, 458753, 9, 65538, 458753, 9, 2, 458753, 9, 131075, 458753, 10, 65539, 458753, 9, 3, 458753, 9, -131069, 458753, 8, 196613, 589825, 10, -131068, 589825, 8, -65531, 589825, 8, 5, 589825, 9, 65541, 589825, 9, 131077, 589825, 9, -589817, 1048577, 4, -589818, 983041, 4, -589819, 983041, 4, -589820, 983041, 4, -589821, 983041, 4, -589822, 983041, 4, -589823, 983041, 4, -589824, 917505, 4, -524296, 983041, 4, -524297, 917505, 0, -458761, 851969, 1, -393225, 851969, 1, -327689, 851969, 2, -524295, 983041, 4, -524294, 1048577, 4)
+layer_0/tile_data = PackedInt32Array(1, 524289, 9, 65537, 524289, 9, 131073, 524289, 9, -65534, 458753, 8, -65533, 655361, 11, -2, 458753, 8, 65534, 458753, 9, 131070, 458753, 9, 196606, 458753, 9, 262142, 458753, 10, -1, 524289, 8, 65535, 524289, 9, 131071, 524289, 9, 196607, 524289, 9, 262143, 524289, 10, -65536, 589825, 8, 0, 589825, 9, 65536, 589825, 9, 131072, 589825, 9, 196608, 589825, 10, 196609, 524289, 9, 196610, 458753, 10, -65532, 720897, 11, 4, 720897, 11, 65540, 720897, 11, 131076, 589825, 11, 196612, 524289, 11, 196611, 524289, 11, 131074, 458753, 9, 65538, 458753, 9, 2, 458753, 9, 131075, 458753, 11, 65539, 655361, 11, 3, 655361, 11, -131069, 458753, 8, 196613, 589825, 10, -131068, 589825, 8, -65531, 589825, 8, 5, 589825, 9, 65541, 589825, 9, 131077, 589825, 9, -589817, 1048577, 4, -589818, 983041, 4, -589819, 983041, 4, -589820, 983041, 4, -589821, 983041, 4, -589822, 983041, 4, -589823, 983041, 4, -589824, 917505, 4, -524296, 983041, 4, -524297, 917505, 0, -458761, 851969, 1, -393225, 851969, 1, -327689, 851969, 2, -524295, 983041, 4, -524294, 1048577, 4, -262148, 524289, 8, -196612, 524289, 10, -262147, 524289, 8, -196611, 524289, 10, -262146, 589825, 8, -196610, 589825, 10, -262150, 458753, 8, -196614, 458753, 10, -262149, 524289, 8, -196613, 524289, 10, -393214, 655361, 7, -393213, 720897, 7, -393212, 720897, 7, -393211, 720897, 7, -393210, 786433, 7, -327674, 786433, 8, -262138, 786433, 8, -196602, 786433, 9, -196603, 720897, 9, -196604, 720897, 9, -196605, 720897, 9, -196606, 655361, 9, -262142, 655361, 8, -327678, 655361, 8, -262140, 720897, 8, -262141, 720897, 8, -327677, 720897, 8, -327676, 720897, 8, -262139, 720897, 8, -327675, 720897, 8)
 
 [node name="SkateWorry" parent="Houses/Skatepark" instance=ExtResource("10_dem56")]
 position = Vector2(-104, 99)
@@ -1690,7 +1692,7 @@ region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
 
 [node name="Jack2" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
-position = Vector2(-2, -46)
+position = Vector2(61, -100)
 default_lines = Array[StringName]([&"skating_minigame_kid"])
 save = false
 
@@ -1711,6 +1713,39 @@ position = Vector2(2, -144)
 texture = ExtResource("29_fx2ly")
 centered = false
 script = ExtResource("29_v4362")
+
+[node name="SlopeLeft" type="Area2D" parent="Houses/Skatepark"]
+position = Vector2(-112, -97)
+script = ExtResource("39_q0krc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
+polygon = PackedVector2Array(16, 33, 32, 17, 32, 34, 16, 49)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
+polygon = PackedVector2Array(80, 97, 96, 81, 96, 145, 80, 161)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
+polygon = PackedVector2Array(144, 97, 176, 65, 176, 130, 144, 161)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
+polygon = PackedVector2Array(216, 9, 224, 1, 224, 58, 216, 58)
+
+[node name="SlopeRight" type="Area2D" parent="Houses/Skatepark"]
+position = Vector2(-104, -97)
+script = ExtResource("39_q0krc")
+slope = 1
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
+polygon = PackedVector2Array(104, 81, 120, 97, 120, 161, 104, 145)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
+polygon = PackedVector2Array(72, 17, 88, 33, 88, 49, 72, 33)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
+polygon = PackedVector2Array(168, 65, 168, 130, 200, 161, 200, 97)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
+polygon = PackedVector2Array(136, 1, 144, 9, 144, 58, 136, 58)
 
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true
