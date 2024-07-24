@@ -760,7 +760,7 @@ position = Vector2(923, 5)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
-position = Vector2(0, -10)
+position = Vector2(0, -9)
 limit_left = -576
 limit_top = -528
 limit_right = 1480

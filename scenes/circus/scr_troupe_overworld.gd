@@ -16,6 +16,9 @@ var last_music := String()
 
 
 func _ready() -> void:
+	if not Math.inrange(ResMan.get_character("greg").level, 50, 60):
+		queue_free()
+		return
 	clown.inspected.connect(_clown_inspected)
 	for member: OverworldCharacter in inter_members:
 		member.inspected.connect(_stop_moving)
@@ -24,7 +27,7 @@ func _ready() -> void:
 func _clown_inspected() -> void:
 	SOL.dialogue_closed.connect(func():
 		if SOL.dialogue_choice == &"play":
-			if DAT.get_data("silver", 0) >= 50:
+			if DAT.get_data("silver", 0) >= 65:
 				last_music = SND.current_song_key
 				var ballgame := Ballgame.instantiate()
 				ballgame.finished.connect(_ballgame_finished)
