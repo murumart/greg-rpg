@@ -1478,6 +1478,24 @@ DIALOGUE car_scared_4
 	bleghhh
 
 
+DIALOGUE car_scared_long
+	you know, i expected you to help me across the road already...
+	i g-guess you're not nice enough to do that...
+	but i've b-been gathering courage all this t-time...
+	s-so...
+CHOICES oh
+	witness me. as i cross the road myself.
+# shakespear
+# she goes across the road herself
+
+
+DIALOGUE car_scared_long_2
+	u-uuh, i-..
+	n-nevermind...
+INSTASKIP
+	i-i'm gonna come back
+
+
 DIALOGUE car_scared_lake_1
 	oh... it's you...
 	when that car hit me, my life flashed before my eyes...

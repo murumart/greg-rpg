@@ -26,6 +26,10 @@ func _ready() -> void:
 					neighbour_wife.inspected.get_connections()[0]["callable"])
 	)
 	car_scared.inspected.connect(car_scared_inspected)
+	if DAT.seconds > 3600 or true:
+		car_scared.default_lines.clear()
+		car_scared.default_lines.append("car_scared_long")
+
 	if DAT.get_data(CAR_SCARED_DIED, false):
 		car_scared.queue_free()
 	if randf() < 0.2 and DAT.seconds > 600:
@@ -36,17 +40,7 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(car_scared):
 		return
 	if car_scared.global_position.x > -64 and car_scared.is_physics_processing():
-		SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
-		SOL.vfx("explosion", car_scared.global_position,
-				{"parent": self, "scale": Math.v2(0.5)})
-		car_scared.set_physics_process(false)
-		var tw := create_tween()
-		tw.tween_property(car_scared.get_node("Sprite2D"), "position", Vector2(10, 300), 1.0)
-		tw.parallel().tween_property(
-				car_scared.get_node("Sprite2D"), "rotation", TAU * 4, 2.0)
-		car_scared.default_lines.clear()
-		DAT.set_data(CAR_SCARED_DIED, true)
-		tw.finished.connect(car_scared.queue_free)
+		_car_scared_run_over()
 
 
 func neighbour_wife_position() -> void:
@@ -66,5 +60,30 @@ func car_scared_inspected() -> void:
 			car_scared.convo_progress = 0
 			car_scared.default_lines.clear()
 			car_scared.default_lines.append(&"car_scared_3")
+		elif SOL.dialogue_choice == "oh":
+			var tw := create_tween()
+			tw.tween_property(car_scared, "global_position:x", -64.1, 3.0)
+			car_scared.default_lines.clear()
+			tw.tween_interval(2.0)
+			tw.tween_callback(func():
+				SOL.dialogue("car_scared_long_2")
+				SOL.dialogue_closed.connect(func():
+					_car_scared_run_over()
+				, CONNECT_ONE_SHOT)
+			)
 	, CONNECT_ONE_SHOT)
+
+
+func _car_scared_run_over() -> void:
+	SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
+	SOL.vfx("explosion", car_scared.global_position,
+			{"parent": self, "scale": Math.v2(0.5)})
+	car_scared.set_physics_process(false)
+	var tw := create_tween()
+	tw.tween_property(car_scared.get_node("Sprite2D"), "position", Vector2(10, 300), 1.0)
+	tw.parallel().tween_property(
+			car_scared.get_node("Sprite2D"), "rotation", TAU * 4, 2.0)
+	car_scared.default_lines.clear()
+	DAT.set_data(CAR_SCARED_DIED, true)
+	tw.finished.connect(car_scared.queue_free)
 
