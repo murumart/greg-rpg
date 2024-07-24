@@ -28,5 +28,5 @@ func ai_action() -> void:
 
 	if time_away >= max_time_away and not here:
 		here = true
-	elif here and randf() < 0.85 and time_away < -min_time_here:
+	elif here and rng.randf() < 0.85 and time_away < -min_time_here:
 		here = false
