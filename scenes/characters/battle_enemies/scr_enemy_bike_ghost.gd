@@ -75,6 +75,8 @@ func hurt(amount: float, gnd: int) -> void:
 			if reference_to_team_array.size() == 1:
 				SOL.dialogue("bike_ghost_gdung_defeat")
 				await SOL.dialogue_closed
+			die()
+			return
 		super(amount, gnd)
 		return
 	if enemy_powerful:

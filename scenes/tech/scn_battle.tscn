@@ -14,9 +14,9 @@
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 [ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
 
-[sub_resource type="Resource" id="Resource_evm12"]
+[sub_resource type="Resource" id="Resource_m2glr"]
 script = ExtResource("2_qrd2n")
-enemies = Array[StringName]([&"stone_finger", &"aardvark"])
+enemies = Array[StringName]([&"bike_ghost"])
 background = "town"
 music = ""
 party = Array[StringName]([])
@@ -77,7 +77,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = SubResource("Resource_evm12")
+load_options = SubResource("Resource_m2glr")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
@@ -520,7 +520,8 @@ replace_armour = &"rain_boot"
 replace_weapon = &"fish"
 force_spirits_into_use = true
 data_overrides = {
-"bike_ghosts_fought": [1]
+"bike_ghosts_fought": [1, 0],
+"gdung_floor": 1
 }
 
 [editable path="UI/Panel/ScreenMainActions/CurrentInfo"]

@@ -62,6 +62,8 @@ func hurt(amount: float, h_gender: int) -> void:
 		await create_tween().tween_interval(2.0).finished
 		SOL.dialogue("president_die_die_die")
 		await SOL.dialogue_closed
+		die()
+		return
 	super(amount, gender)
 	if h_gender == Genders.ELECTRIC and not DAT.get_data(
 				"president_mentioned_electric_resistance"):

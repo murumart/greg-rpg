@@ -45,7 +45,7 @@ func init(options := {}) -> void:
 		g.append(float(i) * 0.01)
 	particles.modulate = Color(g[0], g[1], g[2])
 	sprite.play()
-	timer.wait_time = randfn(3.0, 1.0)
+	timer.wait_time = maxf(randfn(3.0, 1.0), 0.2)
 	timer.timeout.connect(func():
 		if display_mode == 0:
 			display_mode = 1

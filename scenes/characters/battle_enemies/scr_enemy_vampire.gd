@@ -83,6 +83,8 @@ func hurt(amt: float, g: int) -> void:
 	amt = _progress_check(amt, g)
 	if progress == 4 and SOL.dialogue_open:
 		await SOL.dialogue_closed
+		die()
+		return
 	super(amt, g)
 
 
