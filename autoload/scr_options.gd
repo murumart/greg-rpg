@@ -27,13 +27,6 @@ var IONS := {
 		"default_value": -2.0,
 		"step": 1.0,
 	},
-	"list_button_focus_deferred": {
-		"value": 0.0,
-		"range": [0.0, 1.0],
-		"default_value": 0.0,
-		"step": 1.0,
-		"display": TYPE_BOOL, # how to display the option (default is number)
-	},
 	"log_data_changes": {
 		"value": 0.0,
 		"range": [0.0, 1.0],
@@ -58,7 +51,7 @@ var IONS := {
 		"range": [0.0, 1.0],
 		"default_value": 0.0,
 		"step": 1.0,
-		"display": TYPE_BOOL,
+		"display": TYPE_BOOL, # how to display the option (default is number)
 	},
 	"keybinds": {
 		"value": 0.0,
@@ -91,7 +84,7 @@ const CATEGORIES := {
 		"fullscreen", "screen_shake_intensity", "text_speak_time",
 		"max_fps", "battle_text_opacity", "less_fancy_graphics"
 	],
-	"debug": ["log_data_changes","list_button_focus_deferred"],
+	"debug": ["log_data_changes"],
 	"": ["reset"]
 }
 

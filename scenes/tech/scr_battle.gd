@@ -620,15 +620,12 @@ func open_list_screen() -> void:
 			load_floating_spirits()
 	resize_panel(60)
 	await get_tree().process_frame # <---- of course this needs to be here
-	var deferred: int = OPT.get_opt("list_button_focus_deferred")
 	if screen_list_select.visible:
 		if list_containers[0].get_children().size() > 0:
-			if deferred: list_containers[0].get_child(0).call_deferred("grab_focus")
-			else: list_containers[0].get_child(0).grab_focus()
+			list_containers[0].get_child(0).grab_focus()
 	elif screen_item_select.visible:
 		if item_list_container[0].get_children().size() > 0:
-			if deferred: item_list_container[0].get_child(0).call_deferred("grab_focus")
-			else: item_list_container[0].get_child(0).grab_focus()
+			item_list_container[0].get_child(0).grab_focus()
 
 
 # the one between player acts
