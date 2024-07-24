@@ -299,7 +299,7 @@ DIALOGUE quest_board_active_empty
 
 
 DIALOGUE ballgame_win
-	you're winner!
+	your winner!
 
 
 DIALOGUE ballgame_lose

@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://tamu3s3ouhh3"]
+
+[ext_resource type="Script" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_ydvrp"]
+[ext_resource type="SpriteFrames" uid="uid://c6tvmkd37tsvc" path="res://resources/characters/sfr_ringleader.tres" id="2_pwnpw"]
+[ext_resource type="SpriteFrames" uid="uid://c2u1yb6q4v8ld" path="res://resources/characters/sfr_clown.tres" id="3_2anys"]
+[ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="4_0h5t1"]
+[ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="4_wpc6e"]
+[ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="5_g18p5"]
+[ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="6_0bdbt"]
+
+[node name="Troupe" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_7udv8")
+
+[node name="Ringleader" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
+collision_mask = 9
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_wait = 4.0
+random_movement = true
+random_movement_distance = 128
+chase_closeness = 256
+save_position = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ringleader"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_pwnpw")
+animation = &"walk_down"
+
+[node name="Clown" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
+position = Vector2(12, 0)
+collision_mask = 9
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_wait = 6.0
+random_movement = true
+random_movement_distance = 128
+chase_target = NodePath("../Ringleader")
+chase_distance = 256
+chase_closeness = 256
+save_position = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clown"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("3_2anys")
+animation = &"walk_down"
+
+[node name="Animal" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
+position = Vector2(-20, -10)
+collision_mask = 9
+animated_sprite = NodePath("AnimatedSprite2D")
+movement_wait = 6.0
+random_movement = true
+random_movement_distance = 128
+chase_target = NodePath("../Clown")
+chase_distance = 256
+chase_closeness = 256
+save_position = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("4_wpc6e")
+animation = &"walk_down"
+
+[node name="CagedAnimal" parent="Animal" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 0
+animated_sprite = NodePath("AnimatedSprite2D")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal/CagedAnimal"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("5_g18p5")
+animation = &"walk_down"
+
+[node name="Sprite2D" type="Sprite2D" parent="Animal/CagedAnimal"]
+position = Vector2(0, -7)
+texture = ExtResource("6_0bdbt")
+region_enabled = true
+region_rect = Rect2(65, 16, 14, 16)
+
+[node name="TroupeKid" parent="." node_paths=PackedStringArray("chase_target") instance=ExtResource("4_0h5t1")]
+position = Vector2(12, -11)
+collision_mask = 9
+movement_wait = 6.0
+random_movement = true
+random_movement_distance = 128
+chase_target = NodePath("../Animal")
+chase_distance = 256
+chase_closeness = 256
+save_position = true

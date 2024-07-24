@@ -212,7 +212,7 @@ func xp(args: PackedStringArray) -> void:
 			output("gave %s exp to %s" % [amount, charname])
 			return
 		output("char %s has %s/%s exp" %
-				[amount, chara.experience, chara.xp2lvl(chara.level)])
+				[amount, chara.experience, chara.xp2lvl(chara.level + 1)])
 		return
 	if charname != &"greg":
 		return

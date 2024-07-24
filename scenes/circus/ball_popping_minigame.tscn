@@ -1,8 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd4td5fdl0n68"]
+[gd_scene load_steps=8 format=3 uid="uid://dd4td5fdl0n68"]
 
 [ext_resource type="Script" path="res://scenes/circus/scr_ball_popping_minigame.gd" id="1_mb3ox"]
 [ext_resource type="Texture2D" uid="uid://b3lrufphy31w8" path="res://sprites/photos/spr_woods1.png" id="1_q78m0"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="3_gakp2"]
+
+[sub_resource type="Shader" id="Shader_jglkq"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
+
+
+void fragment() {
+	vec4 screen = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 color = vec4(1.0 - screen.r, 1.0 - screen.g, 1.0 - screen.b, COLOR.a);
+
+
+	COLOR = color * COLOR;
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6uugk"]
+shader = SubResource("Shader_jglkq")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p80hk"]
 atlas = ExtResource("3_gakp2")
@@ -59,6 +79,7 @@ z_index = 1
 position = Vector2(80, 56)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pointer"]
+material = SubResource("ShaderMaterial_6uugk")
 texture = ExtResource("3_gakp2")
 region_enabled = true
 region_rect = Rect2(64, 3, 9, 9)

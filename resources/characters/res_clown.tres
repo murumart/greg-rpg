@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://d2q8ijnh8jtuf"]
+
+[ext_resource type="Texture2D" uid="uid://dt2eikt22f3h6" path="res://sprites/characters/portraits/spr_portrait_clown.png" id="1_g27j5"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_q74ui"]
+
+[resource]
+script = ExtResource("1_q74ui")
+name_in_file = &""
+name = "clown"
+info = "his eyes say it all."
+portrait = ExtResource("1_g27j5")
+max_health = 150.0
+health = 150.0
+max_magic = 180.0
+magic = 180.0
+level = 74
+experience = 0
+attack = 82.0
+defense = 74.0
+speed = 74.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""
