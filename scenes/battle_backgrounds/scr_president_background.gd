@@ -86,7 +86,7 @@ func dish_time(dish: BattleEnemy) -> void:
 	tw.parallel().tween_property(
 			SND.current_song_player, "pitch_scale",
 			2.0, 2.0)
-	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9)
+	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9, {"free_rect": false})
 	tw.finished.connect(func():
 		SND.play_song("", 2992)
 		SND.play_song("dishout", 0.2, {"volume": 2})
@@ -98,7 +98,7 @@ func dish_time(dish: BattleEnemy) -> void:
 				3.0
 		).from(0.5)
 		t.parallel().tween_property(dish, "modulate:a", 1.0, 3.0)
-		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 5.0)
+		SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 5.0, {"kill_rects": true})
 		t.tween_interval(2.0).finished.connect(func():
 			SOL.dialogue("theres_dish")
 			SOL.dialogue_closed.connect(func():

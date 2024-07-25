@@ -84,12 +84,12 @@ func _stdst_bits(line: int) -> void:
 			tw.tween_property(SND.current_song_player, "pitch_scale", 3.0, 1.0)
 			tw.parallel().tween_property(overlay, "pitch_scale", 3.0, 1.0)
 			tw.parallel().tween_property(camera, "zoom", Vector2(3, 3), 1.0)
-			SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.95)
+			SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.95, {"free_rect": false})
 			tw.finished.connect(func():
 				var rtw := get_tree().root.create_tween()
 				rtw.tween_property(wli, "modulate:a", 0.0, 2.0)
 				rtw.finished.connect(wli.queue_free)
-				SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 4.0)
+				SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 4.0, {"kill_rects": true})
 				LTS.gate_id = &"exit_cashier_fight"
 				LTS.change_scene_to("res://scenes/rooms/scn_room_store.tscn")
 			)

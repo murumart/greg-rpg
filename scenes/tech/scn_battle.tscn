@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
-[ext_resource type="Resource" uid="uid://c0ncj8xjt5dma" path="res://resources/battle_infos/grandma_bossfight.tres" id="2_5fajb"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
+[ext_resource type="Resource" uid="uid://dexokqkyaehnb" path="res://resources/battle_infos/cashier_fight.tres" id="2_vpe13"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -63,7 +63,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_5fajb")
+load_options = ExtResource("2_vpe13")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 
