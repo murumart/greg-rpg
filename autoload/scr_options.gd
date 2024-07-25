@@ -267,7 +267,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 			_close()
 			if not LTS.get_current_scene().name == "MainMenu":
 				SOL.dialogue_box.dial_concat("quit_warning", 0,
-						[DAT.playtime - DAT.last_save_second])
+						[DAT.seconds - DAT.last_save_second])
 				SOL.dialogue("quit_warning")
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice == &"yes":

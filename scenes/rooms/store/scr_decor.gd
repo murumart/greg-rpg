@@ -70,7 +70,7 @@ func funny() -> void:
 	if DAT.seconds - DAT.get_data("fake_game_over_second", -1000) < 10:
 		return
 	DAT.set_data("fake_game_over_second", DAT.seconds)
-	DAT.save_to_dict()
+	DAT.save_to_data()
 	LTS.gate_id = &"fake_game_over"
 	LTS.to_game_over_screen()
 

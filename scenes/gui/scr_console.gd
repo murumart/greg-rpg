@@ -94,7 +94,7 @@ func parse_command() -> void:
 		&"goto":
 			goto(args)
 		&"reload":
-			DAT.save_to_dict()
+			DAT.save_to_data()
 			LTS.gate_id = LTS.GATE_LOADING
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		&"instakill":

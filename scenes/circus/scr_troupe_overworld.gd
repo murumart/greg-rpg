@@ -28,6 +28,7 @@ func _clown_inspected() -> void:
 	SOL.dialogue_closed.connect(func():
 		if SOL.dialogue_choice == &"play":
 			if DAT.get_data("silver", 0) >= 65:
+				DAT.incri("silver", -65)
 				last_music = SND.current_song_key
 				var ballgame := Ballgame.instantiate()
 				ballgame.finished.connect(_ballgame_finished)
