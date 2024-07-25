@@ -3,10 +3,10 @@ class_name ForestGenerator
 enum {NORTH, SOUTH, EAST, WEST}
 
 const HAS_ENTRANCE := [
-	[0, 1, 3, 4], # NORTH
-	[0, 1, 5, 6], # SOUTH
-	[1, 2, 4, 6], # EAST
-	[1, 2, 3, 5], # WEST
+	[0, 1, 3, 4, 7, 9, 10], # NORTH
+	[0, 1, 5, 6, 7, 8, 9], # SOUTH
+	[1, 2, 4, 6, 7, 8, 10], # EAST
+	[1, 2, 3, 5, 8, 9, 10], # WEST
 ]
 
 const OBJECT_AMOUNT := 15
@@ -109,12 +109,11 @@ func load_layout() -> void:
 		forest.paths.scale.x = -1
 	for i in forest.paths.get_layers_count():
 		forest.paths.set_layer_enabled(i, false)
-	if layout in [0, 1, 2]:
-		if randf() <= 0.5:
-			forest.paths.scale.x = -1
-		if randf() <= 0.05:
-			forest.paths.scale.y = -1
-			forest.inversion = true
+	if layout in [0, 1, 2, 8, 10] and randf() <= 0.5:
+		forest.paths.scale.x = -1
+	if randf() <= 0.05 and layout in [0, 1, 2, 7, 9]:
+		forest.paths.scale.y = -1
+		forest.inversion = true
 	forest.paths.set_layer_enabled(layout, true)
 	forest.enabled_layer = layout
 	print(" ---- chose layout ", layout, " scale is ", forest.paths.scale)
