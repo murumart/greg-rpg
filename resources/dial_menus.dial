@@ -220,13 +220,18 @@ CHOICES yes,no
 
 
 DIALOGUE store_wont_let_you_in
-	they won't let you in.
-	you might've stolen too much.
+	the cashier currently there won't let you in.
+	you might've stolen too much...
+	there might be a better time.
 
 
 DIALOGUE store_under_cleanup
 	the store is being cleaned up right now.
 	they really hate you in there.
+
+
+DIALOGUE store_cashier_absent
+	there's no cashier left to serve you at this time.
 
 
 DIALOGUE campfire_exchanges

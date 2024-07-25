@@ -160,7 +160,7 @@ func check_restock() -> void:
 func check_cashier_switch() -> void:
 	var which := StoreCashier.which_cashier_should_be_here()
 	store_cashier.cashier = which
-	if which == "dead":
+	if which == "dead" or which == "absent":
 		cashier.queue_free()
 		return
 	# load the current cashier based on their schedule

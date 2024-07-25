@@ -70,12 +70,12 @@ func speak():
 
 # if trying to waltz out while having unpaid items
 func warn() -> void:
-	if cashier == "dead": return
 	var stolen_profit := 0
 	for i in DAT.get_data("unpaid_items", []):
 		var price := ResMan.get_item(i).price
 		stolen_profit += price
-	if stolen_profit < 1: return
+	if stolen_profit < 1:
+		return
 	if cashier == "nice":
 		# just warn you
 		if Math.inrange(stolen_profit, 10, 99):
@@ -101,11 +101,14 @@ static func which_cashier_should_be_here() -> String:
 		return "dead"
 	# load the current cashier based on their schedule
 	var schedule := DAT.seconds % (WAIT_UNTIL_CASHIER_SWITCH * 2)
-	if (not DAT.get_data("cashier_mean_defeated")
-			and schedule > WAIT_UNTIL_CASHIER_SWITCH
-			or LTS.gate_id == &"exit_cashier_fight"):
+	var can_mean: bool = not DAT.get_data("cashier_mean_defeated", false)
+	var nice_not: bool = DAT.get_data("is_cashier_dead_during_vampire_battle", false)
+	if (can_mean and
+			(schedule > WAIT_UNTIL_CASHIER_SWITCH
+			or LTS.gate_id == &"exit_cashier_fight"
+			or nice_not)):
 		return "mean"
-	if (not DAT.get_data("is_cashier_dead_during_vampire_battle", false)):
+	if (not nice_not):
 		return "nice"
-	return "none"
+	return "absent"
 

@@ -458,6 +458,9 @@ DIALOGUE cashier_mean_tutorial
 CHAR cashier_mean
 	hello! welcome to the [color=YUKUCOLOR]yuku[/color] brand grocery store!
 	all the products you will ever need - here!
+DATA_LINK is_cashier_dead_during_vampire_battle,true
+	due to recent events i have been promoted to work double-fulltime!
+DATA_LINK 
 CHOICES buying,stealing,bye
 	do you need any help? i will be glad to help!
 	(smile, smile)
@@ -572,11 +575,16 @@ LOOP 5
 CHOICE_LINK other
 CHAR cashier_mean
 	about the other cashier?
+DATA_LINK is_cashier_dead_during_vampire_battle,false
 	she is nice!
 	we switch places on a schedule!
 	so i apologise if the customer service quality suffers...
 LOOP 5
 	...while i am not here!
+DATA_LINK is_cashier_dead_during_vampire_battle,true
+	she is on extended sick leave!
+	she'll never attain employee of the month status at this rate.
+DATA_LINK 
 CHOICE_LINK bye
 CHAR cashier_mean
 	goodbye! we hope your experience at [color=YUKUCOLOR]yuku[/color] has been great!!
@@ -705,16 +713,16 @@ DIALOGUE cashier_fight_interrupt
 
 DIALOGUE cashier_fight_interrupt_2
 	[color=WLICOLOR]i know the type of person this "greg" is.
-	[color=WLICOLOR]it's pointless.
-	[color=WLICOLOR]he'd win.
+	[color=WLICOLOR]it's pointless. he'd win.
 
 
 DIALOGUE cashier_fight_interrupt_3
 CHAR cashier_mean
 	...
 CHAR 
-	[color=WLICOLOR]the rules are in his favour. stop the battle.
-	[color=WLICOLOR]it's not fun. we're done.
+	[color=WLICOLOR]the rules are in his favour.
+	[color=WLICOLOR]i'm stopping the battle right here.
+	[color=WLICOLOR]we're done.
 
 
 DIALOGUE cashier_after_fight

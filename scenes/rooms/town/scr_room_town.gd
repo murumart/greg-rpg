@@ -13,18 +13,11 @@ const STORE_CLEANUP_TIME_SECONDS := 400
 func _ready() -> void:
 	super._ready()
 
-	if DAT.get_data("stolen_from_store", 0) > 199 and\
-	not DAT.get_data("cashier_dead", false):
-		store_door.destination = ""
-	if store_door.destination != ""\
-			and DAT.seconds - DAT.get_data("store_cleanup_started_second", -31399)\
-			< STORE_CLEANUP_TIME_SECONDS:
-		store_door.destination = ""
-		store_door.fail_dialogue = "store_under_cleanup"
 	if not DAT.get_data("zerma_left", false):
 		DAT.set_data("intro_cutscene_over", true)
 		DAT.set_data("zerma_left", true)
 
+	_store_door_setup()
 	pink_haired_girl_setup()
 	naturalist_setup()
 	kid_setup()
@@ -50,6 +43,25 @@ func _ready() -> void:
 					await get_tree().process_frame
 					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
 			)
+
+
+func _store_door_setup() -> void:
+	var current_cashier := StoreCashier.which_cashier_should_be_here()
+	var stolen: int = DAT.get_data("stolen_from_store", 0)
+	var cleanup_start_second: int = DAT.get_data("store_cleanup_started_second", -31399)
+	prints(current_cashier, stolen)
+	if (stolen > 199
+			and not DAT.get_data("cashier_dead", false)
+			and current_cashier == "nice"):
+		store_door.destination = ""
+	if (store_door.destination != ""
+			and current_cashier == "absent"):
+		store_door.destination = ""
+		store_door.fail_dialogue = "store_cashier_absent"
+	if (store_door.destination != ""
+			and DAT.seconds - cleanup_start_second < STORE_CLEANUP_TIME_SECONDS):
+		store_door.destination = ""
+		store_door.fail_dialogue = "store_under_cleanup"
 
 
 func pink_haired_girl_setup() -> void:
