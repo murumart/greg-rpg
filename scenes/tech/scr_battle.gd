@@ -428,6 +428,8 @@ func _on_actor_died(actor: BattleActor) -> void:
 	if actor in enemies:
 		actor = actor as BattleEnemy
 		dead_enemies.append(enemies.pop_at(enemies.find(actor)))
+		for member in party:
+			member.character.add_defeated_character(actor.character.name_in_file)
 		xp_pool += actor.character.level * actor.xp_multiplier
 	# delete from enemies' vendetta lists
 	# (because they can still attack dead people technically)

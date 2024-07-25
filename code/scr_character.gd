@@ -189,20 +189,12 @@ func handle_item(id: String) -> void:
 
 # no status effects in the overworld for characters
 func handle_payload(pld: BattlePayload) -> void:
-	var health_change := 0.0
-	health_change += pld.health
-	health_change += pld.health_percent / 100.0 * health
-	health_change += pld.max_health_percent / 100.0 * max_health
-	health = minf(health + health_change, max_health)
-	magic = minf(magic + pld.magic + (pld.magic_percent / 100.0 * magic) + (pld.max_magic_percent / 100.0 * max_magic), max_magic)
-	if pld.meta.get("skateboard", false):
-		message_owner.emit(&"skateboard_equipped")
-	if pld.meta.get("cellphone", false):
-		message_owner.emit(&"cellphone_called")
-	if pld.meta.get("map", false):
-		message_owner.emit(&"map_viewed")
-	if pld.meta.get("diploma", false):
-		message_owner.emit(&"diploma_crumpled")
+	var health_change := pld.get_health_change(health, max_health)
+	var magic_change := pld.get_magic_change(magic, max_magic)
+	health = clampf(health + health_change, 1.0, max_health)
+	magic = clampf(magic + magic_change, 0.0, max_magic)
+	if pld.message_user:
+		message_owner.emit(pld.message_user)
 
 
 func fully_heal() -> void:
