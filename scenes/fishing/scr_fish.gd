@@ -10,6 +10,13 @@ const FISH_TEXTURES := [
 	preload("res://sprites/fishing/spr_fish5.png"),
 	preload("res://sprites/fishing/spr_fish6.png"),
 	preload("res://sprites/fishing/spr_fish7.png"),
+	preload("res://sprites/fishing/spr_fish_8.png"),
+	preload("res://sprites/fishing/spr_fish_9.png"),
+	preload("res://sprites/fishing/spr_fish_10.png"),
+	preload("res://sprites/fishing/spr_fish_11.png"),
+	preload("res://sprites/fishing/spr_fish_12.png"),
+	preload("res://sprites/fishing/spr_fish_13.png"),
+	preload("res://sprites/fishing/spr_fish_14.png"),
 ]
 
 var yspeed := 60
@@ -42,10 +49,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if moving:
-		if ymoving: global_position.y -= yspeed * delta
+		if ymoving:
+			global_position.y -= yspeed * delta
 		global_position.x += speed * delta * (1 if direction else -1)
-		if global_position.y < -66: queue_free()
-		if absi(roundi(global_position.x)) > 88: queue_free()
+		if global_position.y < -66:
+			queue_free()
+		if absi(roundi(global_position.x)) > 88:
+			queue_free()
 
 
 func caught() -> void:
@@ -55,7 +65,8 @@ func caught() -> void:
 
 # bouncing
 func _on_wall_hit(_body: Node2D) -> void:
-	if decor: return
+	if decor:
+		return
 	direction = int(not bool(direction))
 	sprite.flip_h = bool(direction)
 
@@ -66,8 +77,10 @@ func assign_value() -> void:
 			sprite.texture = ResMan.get_item(item).texture
 			sprite.material = null
 		return
-	# hehehe
-	var rarity := str(((randi() % maxi(depth, 1)) + depth) / float(depth)).count("8")
+	var rarity := 0
+	var nr := remap(depth, 0, 100, 0.1, 0.9)
+	while randf() < nr and rarity < FISH_TEXTURES.size():
+		rarity += 1
 	value = mini(roundi(pow(2, rarity / 2.0)), 11)
 	if rarity < FISH_TEXTURES.size():
 		sprite.texture = FISH_TEXTURES[rarity]

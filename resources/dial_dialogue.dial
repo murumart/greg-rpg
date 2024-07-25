@@ -1725,6 +1725,15 @@ CHAR bike_ghost_beta
 	i'll try to make it quick, greg. goodbye.
 
 
+DIALOGUE bike_ghost_gdung_solo
+CHAR bike_ghost
+	surprise, asshole.
+	i was rehired with my payment in blood doubled!
+	the stakes are higher than ever, my nemesis!
+	you will surely perish at my hand thiiiis time.
+	let's kill!
+
+
 DIALOGUE bike_ghost_gdung_defeat
 CHAR bike_ghost
 SOUND error

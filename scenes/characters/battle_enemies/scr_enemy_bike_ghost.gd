@@ -11,7 +11,10 @@ func _ready() -> void:
 	super()
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if at_gdung:
-		SOL.dialogue("bike_ghost_gdung_1")
+		if reference_to_team_array.size() != 1:
+			SOL.dialogue("bike_ghost_gdung_1")
+		else:
+			SOL.dialogue("bike_ghost_gdung_solo")
 		animator.speed_scale = 2.57166
 		CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.95)
 

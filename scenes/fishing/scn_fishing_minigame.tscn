@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_thb0r"]
 
 [sub_resource type="Curve" id="Curve_itjb6"]
-_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.268371, 0.152862), 0.718393, 0.718393, 0, 0, Vector2(0.446701, 0), 0.0, 0.0, 0, 0, Vector2(0.533546, 0.279537), 1.93172, 0.0, 0, 0, Vector2(1, 0.0151516), 0.0, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.268371, 0.152862), 0.718393, 0.718393, 0, 0, Vector2(0.405208, 0.0553145), 0.0, 0.0, 0, 0, Vector2(0.505098, 0.297025), 10.3461, 10.3461, 0, 0, Vector2(0.529209, 0.0653858), 0.0, 0.0, 0, 0, Vector2(0.911546, 0.196312), 0.0, 0.0, 0, 0, Vector2(1, 0.0754571), 0.0, 0.0, 0, 0]
+point_count = 7
 
 [sub_resource type="Curve" id="Curve_amim5"]
 bake_resolution = 32
