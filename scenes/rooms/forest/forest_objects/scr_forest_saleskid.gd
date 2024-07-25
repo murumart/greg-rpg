@@ -37,6 +37,7 @@ func _ready() -> void:
 
 
 func _pick_random_exchanges() -> void:
+	kid.trades.clear()
 	for i in 3:
 		var exchange: Exchange = loaded_exchanges[loaded_exchanges.keys().pick_random()]
 		if exchange in kid.trades:
