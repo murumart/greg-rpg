@@ -3,6 +3,7 @@ extends Node2D
 @onready var skate_worry := $SkateWorry as OverworldCharacter
 @onready var goodness: Node2D = $Goodness
 @onready var jack_2 := $Goodness/Jack2 as OverworldCharacter
+@onready var kid: CharacterBody2D = $Goodness/KidOverworld
 
 
 func _ready() -> void:

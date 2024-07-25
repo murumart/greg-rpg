@@ -40,4 +40,4 @@ func get_payload() -> BattlePayload:
 
 
 func get_equip_score() -> int:
-	return payload.attack_increase + payload.defense_increase + payload.speed_increase
+	return int(payload.attack_increase + payload.defense_increase + payload.speed_increase)
