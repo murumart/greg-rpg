@@ -20,7 +20,7 @@ var skip_intro := false
 
 
 func _ready() -> void:
-	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 3.0)
+	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 3.0, {"kill_rects": true})
 	SOL.dialogue_box.started_speaking.connect(new_line)
 	if not skip_intro:
 		SOL.dialogue_open = true
