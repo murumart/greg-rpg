@@ -556,7 +556,21 @@ CHAR zerma
 	this is why we're here.
 
 
-DIALOGUE phone_room_dungeon
+DIALOGUE phone_post_office
+CHAR zerma
+	hey hey! you made it to the post office!
+	i'm sure the mail man would love to have you help him.
+	toodles!
+
+
+DIALOGUE phone_super_gaming_house
+CHAR zerma
+	hey hey! you're just visiting some guy?
+	i'm glad you're making friends!
+	and "video games" sure sound interesting.
+
+
+DIALOGUE phone_dungeon
 CHAR zerma
 DATA_LINK gdung_floor,0
 	hey hey... you seem to be on the first floor...
