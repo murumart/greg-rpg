@@ -33,7 +33,8 @@ func speak():
 			elif Math.inrange(friend_score, 201, 1999):
 				SOL.dialogue("cashier_%s_chat_notfriends" % cashier)
 			elif friend_score >= 2000:
-				SOL.dialogue_box.dial_concat("cashier_%s_chat" % cashier, 11, [silver_spent])
+				if cashier == "nice":
+					SOL.dialogue_box.dial_concat("cashier_%s_chat" % cashier, 12, [silver_spent])
 				SOL.dialogue("cashier_%s_chat" % cashier)
 			else:
 				SOL.dialogue("cashier_%s_tutorial" % cashier)

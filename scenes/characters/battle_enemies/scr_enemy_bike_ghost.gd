@@ -11,7 +11,7 @@ func _ready() -> void:
 	super()
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if at_gdung:
-		if reference_to_team_array.size() != 1:
+		if reference_to_team_array.size() > 0:
 			SOL.dialogue("bike_ghost_gdung_1")
 		else:
 			SOL.dialogue("bike_ghost_gdung_solo")
