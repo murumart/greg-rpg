@@ -3239,12 +3239,33 @@ CHAR vampire
 
 
 DIALOGUE vampire_after_battle_2
+DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
 	you barely aged... i guess it's no wonder that...
 	...we survived against a rookie vampire.
 EMO human
 CHAR vampire
 	that is so mean...
+
+DATA_LINK is_cashier_dead_during_vampire_battle,true
+CHAR cashier_nice
+EMO ouch
+	...uuuuuugh, my head....
+CHAR vampire
+EMO human
+	can you quit whining? i just aged, like, 5 years.
+	i have to readjust my whole life now... again!
+	just when i thought that i could control my own life.
+	but no...
+	so what if i killed people? this guy does that too! right?
+CHAR cashier_nice
+EMO ouch
+	.......medic.......
+CHAR vampire
+EMO human
+	hush!
+
+DATA_LINK 
 	if you'd mind, i'd like a moment for myself now.
 INSTASKIP
 	i need to reflect on
@@ -3252,9 +3273,17 @@ INSTASKIP
 
 DIALOGUE vampire_after_battle_3
 CHAR cashier_nice
+DATA_LINK is_cashier_dead_during_vampire_battle,false
 	...well then.
 	you better clean up here. i'm late for work.
 	goodbye.
+DATA_LINK is_cashier_dead_during_vampire_battle,true
+EMO ouch
+	this is really bad... i'm all out of sick days...
+	...at least a concussion... oh hell...
+	...
+	...i don't think my skull's supposed to be soft there...
+	i need to limp home and put an ice pack on that... bye...
 
 
 DIALOGUE leave_ending_check

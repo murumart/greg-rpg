@@ -7,9 +7,11 @@ extends Node2D
 @onready var uguy := $UGuy as OverworldCharacter
 @onready var greg := $"../../../Greg" as PlayerOverworld
 @onready var vampire_girl := $VampireGirl as OverworldCharacter
-@onready var cashier := $Cashier as OverworldCharacter
-@onready var girl_old: Sprite2D = $VampireGirl/Old
 @onready var vampire_sprite: AnimatedSprite2D = $VampireGirl/VampireSprite
+@onready var girl_old: Sprite2D = $VampireGirl/Old
+@onready var cashier := $Cashier as OverworldCharacter
+@onready var cashier_sprite: AnimatedSprite2D = $Cashier/CashierSprite
+@onready var cashier_hurt_sprite: Sprite2D = $Cashier/HurtSprite
 @onready var thug_spawners := $"../../../Areas".find_children("ThugSpawner*")
 @onready var animal_spawners := $"../../../Areas".find_children("AnimalSpawner*")
 
@@ -94,12 +96,16 @@ func start() -> void:
 
 
 func end() -> void:
+	var cashier_ouch: bool = DAT.get_data("is_cashier_dead_during_vampire_battle", false)
 	end_nuisances()
 	SND.play_song("")
 	DAT.capture_player("cutscene")
 	uguy.queue_free()
 	greg.global_position = greg_pos.global_position
 	cashier.global_position = end_pos.global_position
+	if cashier_ouch:
+		cashier_sprite.hide()
+		cashier_hurt_sprite.show()
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_interval(1)
 	tw.tween_callback(func():
@@ -135,7 +141,12 @@ func end() -> void:
 				SOL.dialogue("vampire_after_battle_3")
 				SOL.dialogue_closed.connect(func():
 					tw = create_tween().set_trans(Tween.TRANS_CUBIC)
-					tw.tween_property(camera, "global_position", greg.global_position, 3.0)
+					tw.tween_property(camera, "global_position", greg.global_position, 3.0
+							+ int(cashier_ouch) * 10.0)
+					if cashier_ouch:
+						cashier_hurt_sprite.hide()
+						cashier_sprite.show()
+						cashier.speed = 900
 					cashier.move_to(Vector2(347, -465))
 					cashier.target_reached.connect(func():
 						cashier.move_to(cashier.global_position + Vector2(300, 0))

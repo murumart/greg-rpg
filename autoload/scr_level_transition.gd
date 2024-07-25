@@ -10,7 +10,7 @@ const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 var gate_id: StringName
 const GATE_LOADING := &"loading"
 const GATE_ENTER_BATTLE := &"entering_battle"
-const GATE_EXIT_BATTLE := &"battle_exit"
+const GATE_EXIT_BATTLE := &"exit_battle"
 const GATE_EXIT_BIKING := &"bike_exit"
 const GATE_EXIT_FISHING := &"fishing_exit"
 const PLAYER_POSITION_LOAD_GATES := [GATE_LOADING, GATE_EXIT_BATTLE, GATE_EXIT_BIKING, GATE_EXIT_FISHING, GATE_EXIT_CUTSCENE, GATE_EXIT_GAMING] # player position gets set to one saved in data if gate is one of these

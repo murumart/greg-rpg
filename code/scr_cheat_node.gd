@@ -39,7 +39,8 @@ func _ready() -> void:
 		charac.level_up(level_gain, true, false)
 		charac.unused_sprits.append_array(new_spirits)
 		if not force_spirits_into_use:
-			while charac.spirits.size() < Character.MAX_SPIRITS:
+			while (charac.spirits.size() < Character.MAX_SPIRITS
+					and not charac.unused_sprits.is_empty()):
 				charac.spirits.append(charac.unused_sprits.pop_front())
 		else:
 			charac.spirits.append_array(charac.unused_sprits)

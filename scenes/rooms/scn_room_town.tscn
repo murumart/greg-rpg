@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=123 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -68,9 +68,11 @@
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
 [ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
+[ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="48_ke24d"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
+[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="72_gr6a1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -766,6 +768,14 @@ limit_left = -576
 limit_top = -528
 limit_right = 1480
 limit_bottom = 352
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("72_gr6a1")
+force_gate_id = &"exit_battle"
+data_overrides = {
+"is_cashier_dead_during_vampire_battle": false,
+"vampire_end_cutscene": true
+}
 
 [node name="Cars" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2053,6 +2063,13 @@ save = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("23_nx27k")
 animation = &"walk_down"
+
+[node name="HurtSprite" type="Sprite2D" parent="Other/CampfireSite/VampireCutscene/Cashier"]
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("48_ke24d")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true

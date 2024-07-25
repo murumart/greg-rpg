@@ -51,8 +51,8 @@ func act() -> void:
 				stole_spirit = true
 				SOL.set_deferred("dialogue_open", true)
 				get_tree().create_timer(1.6).timeout.connect(func():
-					if SOL.dialogue_exists("vampire_steal_%s" % stolen):
-						SOL.dialogue("vampire_steal_%s" % stolen)
+					if SOL.dialogue_exists("vampire_steal_" + stolen):
+						SOL.dialogue("vampire_steal_" + stolen)
 					else:
 						SOL.dialogue("vampire_steal_default")
 				)
@@ -73,8 +73,8 @@ func act() -> void:
 		has_stolen_spirits = true
 		await SOL.dialogue_closed
 	super()
-	if not is_cashier_alive()\
-			and not DAT.get_data("is_cashier_dead_during_vampire_battle", false):
+	if (not is_cashier_alive()
+			and not DAT.get_data("is_cashier_dead_during_vampire_battle", false)):
 		print("cashier died lol!")
 		DAT.set_data("is_cashier_dead_during_vampire_battle", true)
 
@@ -167,7 +167,8 @@ func _comments(actor: BattleActor) -> void:
 		if (comments_made == 0
 				and is_cashier_alive()
 				and greg.character.spirits.size() < 1
-				and progress == 3):
+				and progress == 3
+				and has_stolen_spirits):
 			SOL.dialogue("vampire_steal_all_spirits")
 			comments_made += 1
 
