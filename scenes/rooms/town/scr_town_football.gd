@@ -4,6 +4,7 @@ extends Node2D
 
 @onready var baller_1: CharacterBody2D = $"Baller1"
 @onready var baller_2: CharacterBody2D = $"Baller2"
+@onready var ball: RigidBody2D = $Ball
 
 @onready var ballers := [baller_1, baller_2]
 
@@ -32,7 +33,9 @@ func _screen_exited() -> void:
 		b.set_physics_process(false)
 
 
-func _camera_area_entered(_a) -> void:
+func _camera_area_entered(thing: Node2D) -> void:
+	if not thing == greg:
+		return
 	var pos := camera.global_position
 	greg.remove_child(camera)
 	add_child(camera)
@@ -41,7 +44,13 @@ func _camera_area_entered(_a) -> void:
 	tw.tween_property(camera, "global_position", cam_center, 1.0).from(pos)
 
 
-func _camera_area_exited(_a) -> void:
+func _camera_area_exited(thing: Node2D) -> void:
+	if thing == ball:
+		var tw := create_tween()
+		tw.tween_property(ball, "global_position", cam_center, 1.0)
+		return
+	if not thing == greg:
+		return
 	var pos := camera.global_position
 	remove_child(camera)
 	greg.add_child(camera)
