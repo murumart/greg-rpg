@@ -453,7 +453,6 @@ func _add_better_marker(button: Button, armour: bool, better: bool) -> void:
 	sprite.modulate = Color.GREEN_YELLOW if armour else Color.RED
 	sprite.centered = false
 	sprite.position.x = 0
-	sprite.z_index += 1
 	if not better:
 		sprite.modulate = sprite.modulate.darkened(0.3)
 	button.ready.connect(func():
