@@ -1,6 +1,7 @@
 class_name RandomBattleComponent extends Node
 
 @export var values: Array[KeyCurve] = []
+@export var enemy_amount_by_level: Curve
 @export var default_battle := BattleInfo.new()
 @export_range(1, 6) var max_enemies := 4
 @export var minimum_enemy_tries := 1
@@ -25,6 +26,8 @@ func gen_enemies() -> Array[StringName]:
 	var enemies: Array[StringName] = []
 	enemies.append_array(default_battle.get_("enemies", []))
 	var loopsraw := remap(_level, 0.0, 1.0, 1.0, max_enemies * 1.25)
+	if enemy_amount_by_level:
+		loopsraw = enemy_amount_by_level.sample_baked(_level)
 	if roundi(loopsraw + 0.25) > roundi(loopsraw) and randf() < 0.5:
 		loopsraw = ceili(loopsraw)
 	var loops := maxi(roundi(loopsraw), minimum_enemy_tries)

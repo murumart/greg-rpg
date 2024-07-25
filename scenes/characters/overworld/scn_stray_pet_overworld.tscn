@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://jgjwvx47vp8i"]
+[gd_scene load_steps=21 format=3 uid="uid://jgjwvx47vp8i"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
@@ -22,8 +22,8 @@ radius = 32.0
 
 [sub_resource type="Curve" id="Curve_cuyw6"]
 bake_resolution = 32
-_data = [Vector2(0, 0.287445), 0.0, 0.0, 0, 0, Vector2(0.199885, 0.348037), 0.0, 0.0, 0, 0, Vector2(0.243087, 0.60252), 0.0, 0.0, 0, 0, Vector2(0.334293, 1), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.186149, 1), 0.0, 0.0, 0, 0, Vector2(0.497618, 0.784295), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_nn0xv"]
 script = ExtResource("5_kb7wn")
@@ -32,8 +32,8 @@ curve = SubResource("Curve_cuyw6")
 
 [sub_resource type="Curve" id="Curve_i5jmh"]
 bake_resolution = 32
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.137481, 0), 0.0, 0.0, 0, 0, Vector2(0.252688, 0.154144), 0.0, 0.0, 0, 0, Vector2(0.358295, 1), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0.137481, 0), 0.0, 0.0, 0, 0, Vector2(0.250275, 0.263209), 0.0, 0.0, 0, 0, Vector2(0.358295, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_txo5y"]
 script = ExtResource("5_kb7wn")
@@ -42,7 +42,7 @@ curve = SubResource("Curve_i5jmh")
 
 [sub_resource type="Curve" id="Curve_knvem"]
 bake_resolution = 32
-_data = [Vector2(0.0606758, 0), 0.0, 0.0, 0, 0, Vector2(0.118279, 0.11779), 0.0, 0.0, 0, 0, Vector2(0.199885, 0.481338), 0.0, 0.0, 0, 0, Vector2(0.329493, 0.505574), 0.0, 0.0, 0, 0, Vector2(0.372696, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0606758, 0), 0.0, 0.0, 0, 0, Vector2(0.131184, 0.105671), 0.0, 0.0, 0, 0, Vector2(0.176988, 0.820649), 0.0, 0.0, 0, 0, Vector2(0.372696, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.711585), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Resource" id="Resource_nxfnn"]
@@ -51,13 +51,18 @@ key = &"mole"
 curve = SubResource("Curve_knvem")
 
 [sub_resource type="Curve" id="Curve_jbmfy"]
-_data = [Vector2(0, 0.105671), 0.0, 0.0, 0, 0, Vector2(0.156682, 0.263209), 0.0, 0.0, 0, 0, Vector2(0.300691, 0.311682), 0.0, 0.0, 0, 0, Vector2(0.377496, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.105671), 0.0, 0.0, 0, 0, Vector2(0.156682, 0.263209), 0.0, 0.0, 0, 0, Vector2(0.20447, 0.796413), 0.0, 0.0, 0, 0, Vector2(0.377496, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_lha4a"]
 script = ExtResource("5_kb7wn")
 key = &"rainbird"
 curve = SubResource("Curve_jbmfy")
+
+[sub_resource type="Curve" id="Curve_8mlnm"]
+max_value = 4.0
+_data = [Vector2(0.0710939, 0), 0.0, 0.0, 0, 0, Vector2(0.119317, 1.75834), 0.0, 0.0, 0, 0, Vector2(0.157206, 3.31112), 0.0, 0.0, 0, 0, Vector2(0.219206, 4), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_q6wd0"]
 script = ExtResource("6_2q67l")
@@ -68,8 +73,11 @@ party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
 rewards = ExtResource("5_vwj65")
-victory_music = true
+victory_music = &"victory"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
 
 [node name="StrayPet" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
 script = ExtResource("2_4ypex")
@@ -99,5 +107,7 @@ animation = &"walk_down"
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_l5lw5")
 values = Array[ExtResource("5_kb7wn")]([SubResource("Resource_nn0xv"), SubResource("Resource_txo5y"), SubResource("Resource_nxfnn"), SubResource("Resource_lha4a")])
+enemy_amount_by_level = SubResource("Curve_8mlnm")
 default_battle = SubResource("Resource_q6wd0")
+minimum_enemy_tries = 0
 inject_target = NodePath("..")

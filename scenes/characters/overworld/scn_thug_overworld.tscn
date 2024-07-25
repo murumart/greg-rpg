@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cfs50oh5gonj4"]
+[gd_scene load_steps=44 format=3 uid="uid://cfs50oh5gonj4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
@@ -156,7 +156,7 @@ animations = [{
 }]
 
 [sub_resource type="Curve" id="Curve_361hw"]
-_data = [Vector2(0, 1), 0.0, -1.7326, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.183958, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_1mbru"]
@@ -165,7 +165,7 @@ key = &"chimney"
 curve = SubResource("Curve_361hw")
 
 [sub_resource type="Curve" id="Curve_1hldi"]
-_data = [Vector2(0, 0.0631579), 0.0, 0.0, 0, 0, Vector2(0.102655, 0.384392), 7.72823, 7.72823, 0, 0, Vector2(0.206668, 0.802631), 2.10269, 2.10269, 0, 0, Vector2(1, 0.483652), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0631579), 0.0, 0.0, 0, 0, Vector2(0.0853792, 0.372273), 7.72823, 7.72823, 0, 0, Vector2(0.126603, 0.784295), 2.10269, 2.10269, 0, 0, Vector2(1, 0.483652), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_1t6p2"]
@@ -174,8 +174,8 @@ key = &"well"
 curve = SubResource("Curve_1hldi")
 
 [sub_resource type="Curve" id="Curve_deob2"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125281, 0.28429), 5.7224, 5.7224, 0, 0, Vector2(0.495734, 0.692982), 0.0, 0.0, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125281, 0.28429), 5.7224, 5.7224, 0, 0, Vector2(0.268596, 0.772176), 1.45511, 1.45511, 0, 0, Vector2(0.442653, 0.760058), 0.0, 0.0, 0, 0, Vector2(1, 0.453748), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Resource" id="Resource_j4nm3"]
 script = ExtResource("5_7t3nr")
@@ -183,8 +183,8 @@ key = &"shopping_cart"
 curve = SubResource("Curve_deob2")
 
 [sub_resource type="Curve" id="Curve_v43yn"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.663078), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0762183, 0), 0.0, 0.0, 0, 0, Vector2(0.112862, 0.432865), 0.0, 0.0, 0, 0, Vector2(1, 0.663078), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_yt7r7"]
 script = ExtResource("5_7t3nr")
@@ -192,8 +192,8 @@ key = &"stabbing_fella"
 curve = SubResource("Curve_v43yn")
 
 [sub_resource type="Curve" id="Curve_lwlro"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0972159, 0.0350876), 0.0, 0.0, 0, 0, Vector2(0.248765, 0.543461), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0.154086, 0), 0.0, 0.0, 0, 0, Vector2(0.172407, 0.687348), 0.0, 0.0, 0, 0, Vector2(0.483877, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_a3o1a"]
 script = ExtResource("5_7t3nr")
@@ -201,8 +201,8 @@ key = &"kor_sten"
 curve = SubResource("Curve_lwlro")
 
 [sub_resource type="Curve" id="Curve_rf7mf"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.128087, 0.0350876), 0.0, 0.0, 0, 0, Vector2(0.254378, 0.473684), 0.0, 0.0, 0, 0, Vector2(1, 0.792663), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0.167827, 0), 0.0, 0.0, 0, 0, Vector2(0.190729, 0.723703), 0.0, 0.0, 0, 0, Vector2(1, 0.905477), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Resource" id="Resource_8pvwv"]
 script = ExtResource("5_7t3nr")
@@ -217,6 +217,11 @@ point_count = 2
 script = ExtResource("5_7t3nr")
 key = &"moron"
 curve = SubResource("Curve_wjsfi")
+
+[sub_resource type="Curve" id="Curve_mh4wh"]
+max_value = 4.0
+_data = [Vector2(0, 1.02696), 0.0, 0.0, 0, 0, Vector2(0.0883163, 1.87295), 0.0, 0.0, 0, 0, Vector2(0.174428, 3.04121), 0.0, 0.0, 0, 0, Vector2(0.298429, 4), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Resource" id="Resource_ufuyi"]
 script = ExtResource("7_tiohb")
@@ -263,5 +268,6 @@ animation = &"walk_up"
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_mqdei")
 values = Array[ExtResource("5_7t3nr")]([SubResource("Resource_1mbru"), SubResource("Resource_1t6p2"), SubResource("Resource_j4nm3"), SubResource("Resource_yt7r7"), SubResource("Resource_a3o1a"), SubResource("Resource_8pvwv"), SubResource("Resource_qsnbv")])
+enemy_amount_by_level = SubResource("Curve_mh4wh")
 default_battle = SubResource("Resource_ufuyi")
 inject_target = NodePath("..")
