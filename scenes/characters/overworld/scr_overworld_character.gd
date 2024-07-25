@@ -158,6 +158,8 @@ func _physics_process(delta: float) -> void:
 # this is also called when "interact on collide" is turned on
 func interacted() -> void:
 	if DAT.player_capturers.size() > 0 and battle_info:
+		if chase_target and chase_target is PlayerOverworld:
+			chase_target.set_collision_mask_value(4, false)
 		return
 	interactions += 1
 	inspected.emit()
