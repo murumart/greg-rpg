@@ -304,6 +304,23 @@ DATA_LINK fulfilled_bounty_thugs,true
 	toodles for now!
 
 
+DIALOGUE phone_town_under40
+CHAR zerma
+	heyyyy! you're at the town? bored?
+DATA_LINK lake_visited,false
+	you should totally check out the lakeside!
+DATA_LINK lake_visited,true
+	i'd recommend hanging out at the lake!
+	it's great for grinding experience. and fishing!
+	there's even a bicycle there...
+DATA_LINK 
+	i'm sure someone interesting will show up in town soon...
+	ah, i can't speak for any longer!
+	i'm about to walk into an electric fence!
+INSTASKIP
+	toodlessauwfu8euiejiofsioafoisjajsioajsajfissf
+
+
 DIALOGUE phone_town_under46
 CHAR zerma
 DATA_LINK vampire_defeated,false
