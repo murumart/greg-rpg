@@ -24,9 +24,8 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
-meta = {
-"cellphone": true
-}
+message_user = &"cellphone_called"
+meta = {}
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_6h5xe"]
 

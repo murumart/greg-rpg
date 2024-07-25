@@ -48,6 +48,7 @@ const FIELDS := [
 @export var animation_on_receive := ""
 var equip_as_weapon := false
 var equip_as_armour := false
+@export var message_user := &""
 @export var meta := {}
 
 var sender: BattleActor

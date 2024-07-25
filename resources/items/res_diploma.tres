@@ -25,9 +25,8 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
-meta = {
-"diploma": true
-}
+message_user = &"diploma_crumpled"
+meta = {}
 
 [resource]
 script = ExtResource("1_68my1")

@@ -25,9 +25,8 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
-meta = {
-"skateboard": true
-}
+message_user = &"skateboard_equipped"
+meta = {}
 
 [resource]
 script = ExtResource("1_e5prb")

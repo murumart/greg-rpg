@@ -25,9 +25,8 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
-meta = {
-"map": true
-}
+message_user = &"map_viewed"
+meta = {}
 
 [resource]
 script = ExtResource("1_q3a6t")
