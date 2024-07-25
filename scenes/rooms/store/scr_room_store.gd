@@ -158,20 +158,15 @@ func check_restock() -> void:
 
 
 func check_cashier_switch() -> void:
-	# oops....
-	if DAT.get_data("cashier_dead", false):
+	var which := StoreCashier.which_cashier_should_be_here()
+	store_cashier.cashier = which
+	if which == "dead":
 		cashier.queue_free()
-		store_cashier.cashier = "dead" # happens
-		DIR.sej(144, 1)
 		return
 	# load the current cashier based on their schedule
-	if not DAT.get_data("cashier_mean_defeated") and \
-			(wrapi(DAT.seconds, 0, WAIT_UNTIL_CASHIER_SWITCH * 2) > WAIT_UNTIL_CASHIER_SWITCH or \
-			LTS.gate_id == &"exit_cashier_fight"):
-		store_cashier.cashier = "mean"
+	if which == "mean":
 		cashier_sprite.sprite_frames = load("res://resources/characters/sfr_cashier_mean.tres")
-	else:
-		store_cashier.cashier = "nice"
+	elif which == "nice":
 		cashier_sprite.sprite_frames = load("res://resources/characters/sfr_cashier_nice.tres")
 
 

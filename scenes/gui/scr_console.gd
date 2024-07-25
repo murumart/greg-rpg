@@ -58,7 +58,7 @@ func parse_command() -> void:
 		&"bend":
 			battle_end(args)
 		&"help":
-			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,win,7\ntype command without args to get help")
+			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,win,seconds,7\ntype command without args to get help")
 		&"ex":
 			ex(args)
 		&"clear":
@@ -96,7 +96,8 @@ func parse_command() -> void:
 		&"reload":
 			DAT.save_to_data()
 			LTS.gate_id = LTS.GATE_LOADING
-			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+			DAT.load_data_from_dict(DAT.A, true)
+			#LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		&"instakill":
 			instakill()
 			output("greg's attack stack ridiculous now")
@@ -107,6 +108,8 @@ func parse_command() -> void:
 			add_perk(args)
 		&"win":
 			win()
+		&"seconds":
+			seconds(args)
 		&"7":
 			output("7")
 		_:
@@ -341,4 +344,16 @@ func win() -> void:
 		output("not in battle", true)
 		return
 	battle.check_end(true)
+
+
+func seconds(args: PackedStringArray) -> void:
+	if args.is_empty():
+		output("seconds: " + str(DAT.seconds))
+		return
+	var secs: Variant = Math.toexp(args[0])
+	if not secs is int:
+		output("not a number", true)
+		return
+	DAT.seconds = secs
+	output("set secs to " + args[0])
 

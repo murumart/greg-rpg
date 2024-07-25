@@ -4,6 +4,8 @@ class_name StoreCashier
 # cashier dialogue and interaction logic
 # copied over from old greg i think
 
+const WAIT_UNTIL_CASHIER_SWITCH := 420
+
 signal finished
 signal dothething
 
@@ -91,4 +93,19 @@ func warn() -> void:
 		SOL.dialogue_box.dial_concat("cashier_mean_notice", 2, [stolen_profit])
 		SOL.dialogue("cashier_mean_notice")
 		dothething.emit()
+
+
+static func which_cashier_should_be_here() -> String:
+	if DAT.get_data("cashier_dead", false):
+		DIR.sej(144, 1)
+		return "dead"
+	# load the current cashier based on their schedule
+	var schedule := DAT.seconds % (WAIT_UNTIL_CASHIER_SWITCH * 2)
+	if (not DAT.get_data("cashier_mean_defeated")
+			and schedule > WAIT_UNTIL_CASHIER_SWITCH
+			or LTS.gate_id == &"exit_cashier_fight"):
+		return "mean"
+	if (not DAT.get_data("is_cashier_dead_during_vampire_battle", false)):
+		return "nice"
+	return "none"
 
