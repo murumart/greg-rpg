@@ -356,8 +356,15 @@ DIALOGUE phone_town_under60
 CHAR zerma
 	hey hey! i heard there's a famous president in town.
 	supposedly he's shopping at the store.
+DATA_LINK president_defeated,false
 	try go meet him before you reach level 60!
 	i'm sure he's left by then.
+DATA_LINK president_defeated,true
+	oh, you met him? how did it go?
+	...oh...
+	well, at least.. uh.. you know...
+	experience??
+DATA_LINK 
 	toodles!
 
 

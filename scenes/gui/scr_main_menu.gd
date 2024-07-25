@@ -31,6 +31,7 @@ func _ready() -> void:
 		$VBoxContainer/MailButton.visible = true
 	button_focuses()
 	_load_credits()
+	DAT.player_capturers.clear()
 	if randf() <= 0.008:
 		for x in buttons:
 			var mov := ScreenEdgeBounceComponent.new()

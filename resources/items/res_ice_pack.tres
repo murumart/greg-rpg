@@ -9,7 +9,7 @@
 script = ExtResource("1_hhlui")
 name = &"fire"
 strength = 1.0
-duration = -7
+duration = -20
 
 [sub_resource type="Resource" id="Resource_ap6gj"]
 script = ExtResource("2_45vps")
@@ -29,7 +29,9 @@ gender = 0
 effects = Array[ExtResource("1_hhlui")]([SubResource("Resource_428sp")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
