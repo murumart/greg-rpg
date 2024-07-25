@@ -27,6 +27,7 @@ func _body_entered(body: Node2D) -> void:
 
 
 func _body_exited(body: Node2D) -> void:
-	bodies.erase(body)
+	if body in bodies:
+		bodies.erase(body)
 
 

@@ -136,7 +136,7 @@ SOUND phone/call_end
 	(they hung up.)
 
 
-DIALOGUE phone_greghouse_under4
+DIALOGUE phone_greg_house_under4
 CHAR zerma
 DATA_LINK called_zerma_before_leaving_for_town,true
 	hello? i said i'm driving! this better be urgent...
@@ -151,7 +151,7 @@ SET_DATA called_zerma_before_leaving_for_town,true
 	good luck! toodles!
 
 
-DIALOGUE phone_greghouse_under60
+DIALOGUE phone_greg_house_under60
 CHAR zerma
 	hey hey! oh dear! are you at your house?
 	i think it's too dange- rous for you to be there at the moment!

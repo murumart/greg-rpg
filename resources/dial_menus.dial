@@ -39,6 +39,11 @@ CHOICES no,yes
 	they don't seem to match up.
 
 
+DIALOGUE quit_warning
+CHOICES no,yes
+	you last saved %s seconds ago. are you sure you want to quit?
+
+
 DIALOGUE get_experience
 	%s experience was gained.
 

@@ -352,6 +352,8 @@ func _on_coin_collected() -> void:
 
 
 func _on_snail_hit() -> void:
+	if currently_syrup:
+		return
 	snails_hit += 1
 	update_ui()
 	SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})

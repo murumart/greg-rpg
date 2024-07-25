@@ -41,15 +41,12 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if starting: return
-	if not event is InputEventKey: return
-	var hf := (
-		func buttons_have_focus() -> bool:
-			for b in buttons:
-				if b.has_focus(): return true
-			return false
-	)
-	if not hf.call() and not SOL.save_menu_open:
+	if starting:
+		return
+	if not event is InputEventKey:
+		return
+	var hf := (buttons.any(func(a: Button): return a.has_focus()))
+	if not hf and not SOL.save_menu_open and not SOL.dialogue_open:
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
 	if event.is_action_pressed("cancel"):
 		$VBoxContainer/MailButton/MailPanel.hide()

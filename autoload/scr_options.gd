@@ -74,7 +74,8 @@ var IONS := {
 		"step": 1.0,
 		"display": TYPE_BOOL,
 	},
-	"reset": {"display": TYPE_VECTOR2}
+	"reset": {"display": TYPE_VECTOR2},
+	"leave": {"display": TYPE_VECTOR2},
 }
 # sorting the options
 const CATEGORIES := {
@@ -85,7 +86,7 @@ const CATEGORIES := {
 		"max_fps", "battle_text_opacity", "less_fancy_graphics"
 	],
 	"debug": ["log_data_changes"],
-	"": ["reset"]
+	"": ["reset", "leave"]
 }
 
 # are we open
@@ -181,10 +182,7 @@ func _input(event: InputEvent) -> void:
 			select(cur_opt)
 			options_open = true
 		else:
-			save_options()
-			root.hide()
-			get_tree().paused = false
-			options_open = false
+			_close()
 	if not root.visible or keybinds.visible:
 		return
 	if event is InputEventJoypadMotion:
@@ -264,6 +262,18 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		"reset":
 			reset_options()
 			SND.play_sound(preload("res://sounds/hurt.ogg"), {volume = 4.0})
+		"leave":
+			set_opt("leave", 0)
+			_close()
+			if not LTS.get_current_scene().name == "MainMenu":
+				SOL.dialogue_box.dial_concat("quit_warning", 0,
+						[DAT.playtime - DAT.last_save_second])
+				SOL.dialogue("quit_warning")
+				await SOL.dialogue_closed
+				if SOL.dialogue_choice == &"yes":
+					LTS.level_transition("res://scenes/gui/scn_main_menu.tscn")
+			else:
+				get_tree().quit()
 		"main_volume":
 			SND.menusound(1.76)
 		"music_volume":
@@ -384,3 +394,10 @@ func _on_top_text_switcher_timeout() -> void:
 		2:
 			text = "minutes played: %s" % roundi(DAT.playtime / 60.0)
 	top_text_label.text = text
+
+
+func _close() -> void:
+	save_options()
+	root.hide()
+	get_tree().paused = false
+	options_open = false
