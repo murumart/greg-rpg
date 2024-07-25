@@ -40,12 +40,14 @@ const BIN_LOOT := {
 #const BIN_LOOT := {"gummy_worm": 10} # DEBUG
 
 var forest: ForestPath
+var _space_state: PhysicsDirectSpaceState2D
 var used_poses := []
 var generated_objects := {}
 
 
 func _init(_forest: ForestPath) -> void:
 	forest = _forest
+	_space_state = forest.get_world_2d().direct_space_state
 
 
 func generate() -> void:
@@ -96,6 +98,14 @@ func valid_placement_spot(pos: Vector2) -> bool:
 		if not (not td or (
 			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
 			return false
+	#var params := PhysicsPointQueryParameters2D.new()
+	#params.collision_mask = 0b1
+	#params.position = forest.to_global(Vector2(vpos * 16.0))
+	#var colls := _space_state.intersect_point(params)
+	#print(colls)
+	#if not colls.is_empty():
+		#used_poses.append(vpos)
+		#return false
 	used_poses.append(vpos)
 	return true
 

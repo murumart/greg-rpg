@@ -96,8 +96,10 @@ func parse_command() -> void:
 		&"reload":
 			DAT.save_to_data()
 			LTS.gate_id = LTS.GATE_LOADING
-			DAT.load_data_from_dict(DAT.A, true)
-			#LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+			if args.is_empty():
+				DAT.load_data_from_dict(DAT.A, true)
+			else:
+				LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 		&"instakill":
 			instakill()
 			output("greg's attack stack ridiculous now")
