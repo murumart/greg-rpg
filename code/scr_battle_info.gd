@@ -94,3 +94,7 @@ func _before_load() -> void:
 		rewards = null
 	for x in to_remove:
 		enemies.erase(x)
+
+
+func get_hash() -> int:
+	return hash(str(self))
