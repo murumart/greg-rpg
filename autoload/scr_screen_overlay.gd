@@ -86,6 +86,10 @@ func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := tru
 	node2d.add_child(node)
 
 
+func move_ui_child(child: Node, position: int) -> void:
+	move_child(child.get_parent(), position)
+
+
 func dialogue_low_position() -> void:
 	dialogue_box.position.y = 92
 	$DialogueBox/DialogueBoxPanel/ScrollContainer.position.y = -35

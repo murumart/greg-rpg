@@ -175,6 +175,7 @@ func _input(event: InputEvent) -> void:
 			return
 		if not root.visible:
 			root.show()
+			SOL.move_ui_child(root, -1)
 			top_text = -1
 			_on_top_text_switcher_timeout()
 			get_tree().paused = true
