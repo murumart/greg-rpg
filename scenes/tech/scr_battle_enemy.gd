@@ -173,8 +173,11 @@ func hurt(amount: float, gnd: int) -> void:
 	super(amount, gnd)
 	if state != States.DEAD:
 		animate("hurt")
-	else:
-		animate("death")
+
+
+func die() -> void:
+	super()
+	animate("death")
 
 
 func heal(amount: float) -> void:
@@ -274,3 +277,7 @@ func emit_message(msg: String, options := {}) -> void:
 
 func sort_by_health(a: BattleActor, b: BattleActor) -> bool:
 	return a.character.health_perc() < b.character.health_perc()
+
+
+func get_xp() -> int:
+	return roundi(super() * xp_multiplier)

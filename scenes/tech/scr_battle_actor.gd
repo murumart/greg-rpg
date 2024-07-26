@@ -313,6 +313,11 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		return
 	character.magic = max(character.magic - spirit.cost, 0)
 	emit_message("%s: %s!" % [actor_name, spirit.name])
+	var payload: BattlePayload = spirit.payload.duplicate()
+	payload.set_sender(self).set_defense_pierce(
+			spirit.payload.pierce_defense
+			if spirit.payload.pierce_defense
+			else 1.0).set_type(BattlePayload.Types.SPIRIT)
 	# animating
 	if spirit.animation:
 		SOL.vfx(spirit.animation, Vector2())
@@ -339,12 +344,7 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			if character.health <= 0: break
 			if receiver.character.health <= 0: break
 			receiver.handle_payload(
-					spirit.payload.set_sender(self)
-					.set_defense_pierce(
-							spirit.payload.pierce_defense
-							if spirit.payload.pierce_defense else 1.0)
-					.set_type(BattlePayload.Types.SPIRIT)
-			)
+					payload)
 			# we wait a bit before applying the payload again
 			await get_tree().create_timer(
 				maxf((maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) /
@@ -428,12 +428,7 @@ func handle_payload(pld: BattlePayload) -> void:
 				pld.sender.handle_payload(pld)
 				pld.bounces += 1
 			health_change *= 0.25
-		hurt(health_change, pld.gender)
-		if pld.steal_health and is_instance_valid(pld.sender):
-			pld.sender.heal(health_change * pld.steal_health)
-		if pld.steal_magic and is_instance_valid(pld.sender):
-			pld.sender.character.magic += pld.steal_magic
-			character.magic = maxf(character.magic - pld.steal_magic, 0.0)
+		_handle_hurt(pld, health_change)
 
 	character.magic += pld.get_magic_change(character.health, character.max_health)
 
@@ -465,6 +460,17 @@ func handle_payload(pld: BattlePayload) -> void:
 
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
+
+
+func _handle_hurt(pld: BattlePayload, damage: float) -> void:
+	await hurt(damage, pld.gender)
+	if pld.steal_health and is_instance_valid(pld.sender):
+		pld.sender.heal(damage * pld.steal_health)
+	if pld.steal_magic:
+		var steal := character.magic * pld.steal_magic
+		character.magic = maxf(character.magic - steal, 0.0)
+		if is_instance_valid(pld.sender):
+			pld.sender.character.magic += pld.steal_magic
 
 
 func steal_item(from: BattleActor) -> void:
@@ -673,5 +679,9 @@ func _item_funny_fungus_used_on() -> void:
 			.set_strength(float(rng.randi_range(1, 3)))
 	)
 	add_status_effect(random_effect)
+
+
+func get_xp() -> int:
+	return character.level
 
 

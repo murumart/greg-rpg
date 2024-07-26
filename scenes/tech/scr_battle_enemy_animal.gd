@@ -39,3 +39,8 @@ func hurt(amount: float, gnd: int) -> void:
 		return
 	# dead
 	DAT.incri("killed_" + character.name_in_file, 1)
+
+
+func get_xp() -> int:
+	var xp := super()
+	return roundi(xp + xp * 0.005 * soul)
