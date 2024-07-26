@@ -13,7 +13,7 @@ func _ready() -> void:
 	DAT.capture_player(\"to_be_continue\")
 	AudioServer.set_bus_mute(0, true)
 	animation_player.play(\"new_animation\")
-	animation_player.animation_finished.connect(func(a):
+	animation_player.animation_finished.connect(func(_a):
 		AudioServer.set_bus_mute(0, false)
 		DAT.free_player(\"to_be_continue\")
 		get_tree().paused = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=52 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="9_8hvh6"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="10_2ng1r"]
 [ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="10_i14fl"]
-[ext_resource type="PackedScene" uid="uid://bkuu3x2gw38ch" path="res://scenes/decor/scn_bike.tscn" id="12_nya3x"]
 [ext_resource type="PackedScene" uid="uid://d3r88xccx3cog" path="res://scenes/rooms/grandma_house/gdung_objects/bookshelf.tscn" id="13_4f40q"]
 [ext_resource type="PackedScene" uid="uid://cwunqxest0uvr" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_5.tscn" id="14_gfadn"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="14_hgnfg"]
@@ -246,10 +245,6 @@ position = Vector2(0, 6)
 texture = ExtResource("10_i14fl")
 offset = Vector2(0, -18)
 script = SubResource("GDScript_ynxwh")
-
-[node name="Bike" parent="InteriorTiles/Decor" instance=ExtResource("12_nya3x")]
-position = Vector2(-56, 225)
-destination_name = &"dungeon_exit"
 
 [node name="Bookshelf" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
 position = Vector2(-61, -144)

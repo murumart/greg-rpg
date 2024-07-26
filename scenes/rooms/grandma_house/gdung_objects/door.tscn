@@ -1,12 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbb0ssychwhl1"]
+[gd_scene load_steps=5 format=3 uid="uid://dbb0ssychwhl1"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_awymi"]
-[ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="2_5wbtl"]
+[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_grw8v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8j6b"]
+[sub_resource type="GDScript" id="GDScript_lx5rv"]
+resource_name = "gdung_door"
+script/source = "extends Node2D
+
+
+func _on_interaction_area_on_interact() -> void:
+	SOL.dialogue(\"door_leave_gdung\")
+	await SOL.dialogue_closed
+	if SOL.dialogue_choice == &\"yes\":
+		LTS.gate_id = &\"gdung-house\"
+		LTS.level_transition(\"res://scenes/rooms/scn_room_grandma_house_inside.tscn\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ank8w"]
 size = Vector2(14, 2)
 
 [node name="Door" type="Node2D"]
+script = SubResource("GDScript_lx5rv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, -10)
@@ -14,8 +28,14 @@ texture = ExtResource("1_awymi")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 20)
 
-[node name="DoorArea" parent="." instance=ExtResource("2_5wbtl")]
+[node name="InteractionArea" type="Area2D" parent="."]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("2_grw8v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_e8j6b")
+shape = SubResource("RectangleShape2D_ank8w")
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]

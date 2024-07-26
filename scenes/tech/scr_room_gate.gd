@@ -39,7 +39,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint():
+		return
 	var area: Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
@@ -49,7 +50,8 @@ func _ready() -> void:
 func _on_area_entered(body: Node2D) -> void:
 	if body is PlayerOverworld:
 		var player := body as PlayerOverworld
-		if player.state == PlayerOverworld.States.NOT_FREE_MOVE: return
+		if player.state == PlayerOverworld.States.NOT_FREE_MOVE:
+			return
 		if DIR.room_exists(destination):
 			# set the gate id
 			LTS.gate_id = gate_id

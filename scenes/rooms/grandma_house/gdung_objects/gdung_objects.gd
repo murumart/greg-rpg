@@ -121,7 +121,7 @@ const DB := {
 	&"door": {
 		SCENE: preload("res://scenes/rooms/grandma_house/gdung_objects/door.tscn"),
 		SIZE: Vector2i(1, 2),
-		WEIGHT: [12, 15, 12],
+		WEIGHT: [12, 15, 40],
 		BY_WALL: true,
 	},
 	&"shelf": {

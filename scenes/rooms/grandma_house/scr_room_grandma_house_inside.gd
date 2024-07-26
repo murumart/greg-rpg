@@ -16,6 +16,8 @@ func _ready() -> void:
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
 	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
 		things_to_delete.map(func(a): a.queue_free())
+		if DAT.get_data("gdung_floor", 0) >= 3:
+			door_area.destination = &"after_gdung"
 		door_area.destination = &"dungeon"
 		return
 	# long grandma lol

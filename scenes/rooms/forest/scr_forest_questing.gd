@@ -13,7 +13,7 @@ var available_quests: Array[ForestQuest] = []
 var available_quests_generated := false
 var active_quests: Array[ForestQuest.Active] = []
 
-var active_perks := {}
+var active_perks := {"experience_multiplier": 0.5}
 
 
 #region QUESTING

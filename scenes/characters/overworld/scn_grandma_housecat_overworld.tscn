@@ -67,7 +67,7 @@ curve = SubResource("Curve_a2v2g")
 
 [sub_resource type="Curve" id="Curve_0fswf"]
 max_value = 4.0
-_data = [Vector2(0.505098, 1.10753), 0.0, 0.0, 0, 0, Vector2(0.718655, 1.30896), 0.0, 0.0, 0, 0, Vector2(0.790989, 1.95352), 0.0, 0.0, 0, 0, Vector2(0.811666, 4), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.505098, 1.10753), 0.0, 0.0, 0, 0, Vector2(0.718655, 1.30896), 0.0, 0.0, 0, 0, Vector2(0.735878, 2.50716), 0.0, 0.0, 0, 0, Vector2(0.811666, 4), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_erlxv"]

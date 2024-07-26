@@ -75,7 +75,7 @@ shader = ExtResource("2_0lukr")
 shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3svxc"]
-size = Vector2(14, 21)
+size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcnh"]
 size = Vector2(18, 16)
@@ -410,13 +410,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Areas" type="Node2D" parent="."]
 
-[node name="DoorArea" parent="Areas" instance=ExtResource("10_frp4p")]
+[node name="DoorArea" parent="Areas" node_paths=PackedStringArray("spawn_point") instance=ExtResource("10_frp4p")]
 position = Vector2(132, -90)
+gate_id = &"gdung-house"
+spawn_point = NodePath("Spawnpoint")
 fail_dialogue = "door_locked"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DoorArea"]
-position = Vector2(0, 0.5)
+position = Vector2(0, 5.5)
 shape = SubResource("RectangleShape2D_3svxc")
+
+[node name="Spawnpoint" type="Node2D" parent="Areas/DoorArea"]
+position = Vector2(4, 14)
 
 [node name="Dirtbags" parent="Areas" instance=ExtResource("11_b4a8j")]
 position = Vector2(69, -78)

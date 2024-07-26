@@ -156,6 +156,15 @@ DIALOGUE door_locked
 	it's locked.
 
 
+DIALOGUE door_leave_gdung
+CHOICES yes,no
+	do you want to exit the dungeon?
+CHOICE_LINK no
+	you're very close.
+CHOICE_LINK yes
+	see you soon.
+
+
 DIALOGUE battle_inspect
 	here's the dirt, boss:
 	name: %s

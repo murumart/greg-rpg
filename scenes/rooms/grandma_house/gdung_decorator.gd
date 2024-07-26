@@ -26,7 +26,8 @@ func _ready() -> void:
 func apply_spawn_point(greg_2: PlayerOverworld) -> void:
 	if path.is_empty():
 		return
-	if LTS.gate_id == &"" or DAT.get_data("gdung_gen_next_floor", false):
+	if (LTS.gate_id == &"" or DAT.get_data("gdung_gen_next_floor", false)
+			or LTS.gate_id == &"gdung-house"):
 		DAT.set_data("gdung_gen_next_floor", false)
 		greg_2.global_position = generator.suites[path[0]].get_rect().get_center() * 16.0
 
