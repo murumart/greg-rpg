@@ -21,8 +21,10 @@ static func _fix_sprits_typo(data: Dictionary) -> void:
 	if not greg:
 		return
 	var uspirits: Array[String] = []
-	uspirits.assign(greg.get("unused_sprits"))
+	uspirits.assign(greg.get("unused_sprits", []))
 	greg.erase("unused_sprits")
+	if uspirits.is_empty():
+		return
 	print("fixing unused_sprits name typo")
 	greg["unused_spirits"] = uspirits
 
