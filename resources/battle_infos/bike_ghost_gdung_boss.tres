@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=6 format=3 uid="uid://h3rttp116gqn"]
+
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_rgdim"]
+[ext_resource type="Script" path="res://resources/battle_infos/scr_bike_ghost_gdung_boss.gd" id="1_w8dgi"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="2_tg724"]
+
+[sub_resource type="Resource" id="Resource_bm8lm"]
+script = ExtResource("1_rgdim")
+type = 0
+property = "111"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_jr6wr"]
+script = ExtResource("2_tg724")
+rewards = Array[ExtResource("1_rgdim")]([SubResource("Resource_bm8lm")])
+
+[resource]
+script = ExtResource("1_w8dgi")
+enemies = Array[StringName]([&"bike_ghost", &"bike_ghost_beta"])
+background = "house_inside"
+music = "gdung_beast"
+party = Array[StringName]([])
+death_reason = "gdung"
+start_text = "pourquoi est-ce en francais?"
+rewards = SubResource("Resource_jr6wr")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = false
+play_fanfare = false
+crits_enabled = true

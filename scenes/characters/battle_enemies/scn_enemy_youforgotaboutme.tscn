@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://is0v8ehlcn2v"]
+[gd_scene load_steps=4 format=3 uid="uid://is0v8ehlcn2v"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_08x4p"]
 [ext_resource type="Texture2D" uid="uid://c2ihg2vwsi2k7" path="res://sprites/characters/battle/spr_forgotten_enemy.png" id="2_3uar3"]
+[ext_resource type="Script" path="res://code/scr_copy_greg_stats_component.gd" id="3_slt34"]
 
 [node name="Youforgotabout me" type="Node2D"]
 script = ExtResource("1_08x4p")
@@ -16,3 +17,7 @@ xp_multiplier = 0.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -13)
 texture = ExtResource("2_3uar3")
+
+[node name="CopyGregStatsComponent" type="Node" parent="."]
+script = ExtResource("3_slt34")
+to_copy = Array[StringName]([&"attack", &"defense"])

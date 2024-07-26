@@ -5,18 +5,21 @@ var enemy_powerful := false
 var powerful_progress := 1
 var dead := false
 var at_gdung := false
+var alone := true
 
 
 func _ready() -> void:
 	super()
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if at_gdung:
-		if reference_to_team_array.size() > 0:
-			SOL.dialogue("bike_ghost_gdung_1")
-		else:
-			SOL.dialogue("bike_ghost_gdung_solo")
 		animator.speed_scale = 2.57166
 		CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.95)
+		await get_tree().process_frame # because other enemies haven't been added yet
+		if reference_to_team_array.size() > 1:
+			SOL.dialogue("bike_ghost_gdung_1")
+			alone = false
+		else:
+			SOL.dialogue("bike_ghost_gdung_solo")
 
 
 func act() -> void:
@@ -75,7 +78,7 @@ func hnnng_____the_power() -> void:
 func hurt(amount: float, gnd: int) -> void:
 	if at_gdung:
 		if character.health - _hurt_damage(amount, gnd) <= 0:
-			if reference_to_team_array.size() == 1:
+			if reference_to_team_array.size() == 1 and not alone:
 				SOL.dialogue("bike_ghost_gdung_defeat")
 				await SOL.dialogue_closed
 			die()

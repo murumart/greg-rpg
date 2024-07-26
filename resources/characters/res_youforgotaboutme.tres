@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bswp6hsaf8gs"]
+
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_hv7gu"]
+[ext_resource type="Texture2D" uid="uid://c2ihg2vwsi2k7" path="res://sprites/characters/battle/spr_forgotten_enemy.png" id="1_qgys8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si1sp"]
+atlas = ExtResource("1_qgys8")
+region = Rect2(-1, 0, 22, 22)
+
+[resource]
+script = ExtResource("1_hv7gu")
+name_in_file = &""
+name = "forgotten"
+info = "you're missing out."
+portrait = SubResource("AtlasTexture_si1sp")
+max_health = 40.0
+health = 40.0
+max_magic = 0.0
+magic = 0.0
+level = 1
+experience = 0
+attack = 1.0
+defense = 1.0
+speed = 1.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_sprits = Array[String]([])
+armour = ""
+weapon = ""
