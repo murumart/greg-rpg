@@ -535,8 +535,6 @@ visible_characters_behavior = 1
 visible_ratio = 0.0
 metadata/_edit_lock_ = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="MentalCutscene/TextBoxes"]
-
 [connection signal="on_interact" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
 [connection signal="on_interact" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
 
