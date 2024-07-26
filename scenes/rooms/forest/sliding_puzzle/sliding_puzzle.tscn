@@ -1,0 +1,397 @@
+[gd_scene load_steps=31 format=3 uid="uid://b86f65y4e0huw"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
+[ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="2_8mtsu"]
+[ext_resource type="Texture2D" uid="uid://b313rnbxkx7d7" path="res://sprites/items/spr_pizz.png" id="2_nbvpt"]
+[ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_rjc4u"]
+[ext_resource type="AudioStream" uid="uid://bwrg2j66qd5bf" path="res://sounds/gui/rockslide-01.ogg" id="3_q65jg"]
+[ext_resource type="Material" uid="uid://bjmchbs1h5tdo" path="res://scenes/rooms/forest/sliding_puzzle/rock_pizzle_piece_material.tres" id="4_j12ag"]
+[ext_resource type="AudioStream" uid="uid://c2r3buyh6mdb1" path="res://sounds/gui/rockslide-02.ogg" id="4_ryct8"]
+[ext_resource type="AudioStream" uid="uid://c1jmnwrinq7ik" path="res://sounds/gui/rockslide-03.ogg" id="5_t37dl"]
+[ext_resource type="AudioStream" uid="uid://dchtql6dfhy7p" path="res://sounds/gui/move_slide_selection.ogg" id="7_diur1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyuj7"]
+bg_color = Color(0, 2.40654e-07, 0.40022, 0.647059)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Shader" id="Shader_8myoi"]
+code = "shader_type canvas_item;
+
+
+void fragment() {
+	vec2 uv = UV;
+	uv.y += sin(TIME * 0.1 - UV.x * 2.0) * 0.1;
+	float green = texture(TEXTURE, uv).g;
+	uv.x += cos(UV.y * 1.6666 - TIME * 0.2) * 0.07;
+	float red = texture(TEXTURE, uv).r;
+
+	COLOR = vec4(red - green, green * green + green * 0.25, COLOR.b * green, 1.0);
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yrvbv"]
+shader = SubResource("Shader_8myoi")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxq4w"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(0, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t03m"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(4, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2htj"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(8, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e3nl"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(12, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4obac"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(0, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7ubj"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(4, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwknf"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(8, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cveao"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(12, 4, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0xxa"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(0, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oi5r"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(4, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uemw"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(8, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubjfe"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(12, 8, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmpfo"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(0, 12, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a07jy"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(4, 12, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yep5v"]
+atlas = ExtResource("2_nbvpt")
+region = Rect2(8, 12, 4, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbj7c"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8v4t4"]
+random_pitch = 1.4
+streams_count = 3
+stream_0/stream = ExtResource("3_q65jg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_ryct8")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_t37dl")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u8vir"]
+random_pitch = 1.9
+streams_count = 1
+stream_0/stream = ExtResource("7_diur1")
+stream_0/weight = 1.0
+
+[node name="SlidingPuzzle" type="Node2D"]
+script = ExtResource("1_qo05k")
+image_texture = ExtResource("2_rjc4u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.611765)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 153.0
+offset_bottom = 113.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyuj7")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+show_behind_parent = true
+texture_repeat = 3
+material = SubResource("ShaderMaterial_yrvbv")
+layout_mode = 2
+texture = ExtResource("2_8mtsu")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="TileHaver" type="Panel" parent="."]
+offset_left = 38.0
+offset_top = 18.0
+offset_right = 122.0
+offset_bottom = 102.0
+
+[node name="_TextureRect_23" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 62.0
+offset_top = 2.0
+offset_right = 82.0
+offset_bottom = 22.0
+texture = SubResource("AtlasTexture_mxq4w")
+expand_mode = 1
+
+[node name="_Label_24" type="Label" parent="TileHaver/_TextureRect_23"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "1"
+
+[node name="_TextureRect_25" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 22.0
+offset_top = 62.0
+offset_right = 42.0
+offset_bottom = 82.0
+texture = SubResource("AtlasTexture_7t03m")
+expand_mode = 1
+
+[node name="_Label_26" type="Label" parent="TileHaver/_TextureRect_25"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "2"
+
+[node name="_TextureRect_27" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 62.0
+offset_top = 22.0
+offset_right = 82.0
+offset_bottom = 42.0
+texture = SubResource("AtlasTexture_c2htj")
+expand_mode = 1
+
+[node name="_Label_28" type="Label" parent="TileHaver/_TextureRect_27"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "3"
+
+[node name="_TextureRect_29" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 42.0
+offset_top = 22.0
+offset_right = 62.0
+offset_bottom = 42.0
+texture = SubResource("AtlasTexture_1e3nl")
+expand_mode = 1
+
+[node name="_Label_30" type="Label" parent="TileHaver/_TextureRect_29"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "4"
+
+[node name="_TextureRect_31" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 62.0
+offset_top = 42.0
+offset_right = 82.0
+offset_bottom = 62.0
+texture = SubResource("AtlasTexture_4obac")
+expand_mode = 1
+
+[node name="_Label_32" type="Label" parent="TileHaver/_TextureRect_31"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "5"
+
+[node name="_TextureRect_33" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 42.0
+offset_bottom = 42.0
+texture = SubResource("AtlasTexture_c7ubj")
+expand_mode = 1
+
+[node name="_Label_34" type="Label" parent="TileHaver/_TextureRect_33"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "6"
+
+[node name="_TextureRect_35" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 42.0
+offset_top = 62.0
+offset_right = 62.0
+offset_bottom = 82.0
+texture = SubResource("AtlasTexture_wwknf")
+expand_mode = 1
+
+[node name="_Label_36" type="Label" parent="TileHaver/_TextureRect_35"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "7"
+
+[node name="_TextureRect_37" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 22.0
+texture = SubResource("AtlasTexture_cveao")
+expand_mode = 1
+
+[node name="_Label_38" type="Label" parent="TileHaver/_TextureRect_37"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "8"
+
+[node name="_TextureRect_39" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 2.0
+offset_top = 42.0
+offset_right = 22.0
+offset_bottom = 62.0
+texture = SubResource("AtlasTexture_p0xxa")
+expand_mode = 1
+
+[node name="_Label_40" type="Label" parent="TileHaver/_TextureRect_39"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "9"
+
+[node name="_TextureRect_41" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 62.0
+offset_top = 62.0
+offset_right = 82.0
+offset_bottom = 82.0
+texture = SubResource("AtlasTexture_6oi5r")
+expand_mode = 1
+
+[node name="_Label_42" type="Label" parent="TileHaver/_TextureRect_41"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "10"
+
+[node name="_TextureRect_43" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 2.0
+offset_top = 62.0
+offset_right = 22.0
+offset_bottom = 82.0
+texture = SubResource("AtlasTexture_1uemw")
+expand_mode = 1
+
+[node name="_Label_44" type="Label" parent="TileHaver/_TextureRect_43"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "11"
+
+[node name="_TextureRect_45" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 42.0
+offset_top = 2.0
+offset_right = 62.0
+offset_bottom = 22.0
+texture = SubResource("AtlasTexture_ubjfe")
+expand_mode = 1
+
+[node name="_Label_46" type="Label" parent="TileHaver/_TextureRect_45"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "12"
+
+[node name="_TextureRect_47" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 2.0
+offset_top = 22.0
+offset_right = 22.0
+offset_bottom = 42.0
+texture = SubResource("AtlasTexture_wmpfo")
+expand_mode = 1
+
+[node name="_Label_48" type="Label" parent="TileHaver/_TextureRect_47"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "13"
+
+[node name="_TextureRect_49" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 22.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 22.0
+texture = SubResource("AtlasTexture_a07jy")
+expand_mode = 1
+
+[node name="_Label_50" type="Label" parent="TileHaver/_TextureRect_49"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "14"
+
+[node name="_TextureRect_51" type="TextureRect" parent="TileHaver"]
+material = ExtResource("4_j12ag")
+offset_left = 22.0
+offset_top = 42.0
+offset_right = 42.0
+offset_bottom = 62.0
+texture = SubResource("AtlasTexture_yep5v")
+expand_mode = 1
+
+[node name="_Label_52" type="Label" parent="TileHaver/_TextureRect_51"]
+layout_mode = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "15"
+
+[node name="Pointer" type="Panel" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 12.0
+offset_bottom = 12.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mbj7c")
+
+[node name="RockSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8v4t4")
+pitch_scale = 1.05
+max_polyphony = 5
+bus = &"ECHO"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_u8vir")
+pitch_scale = 1.26
+max_polyphony = 5

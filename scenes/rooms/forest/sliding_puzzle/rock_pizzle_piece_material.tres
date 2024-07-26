@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bjmchbs1h5tdo"]
+
+[sub_resource type="Shader" id="Shader_k3nxa"]
+code = "shader_type canvas_item;
+
+
+void fragment() {
+	vec4 color = COLOR;
+	float avg = (color.r + color.b + color.g) * 0.33333;
+	// https://stackoverflow.com/a/4275343
+	float noise = fract(sin(dot(UV.xy ,vec2(12.9898,78.233))) * 43758.5453);
+
+	COLOR = vec4(avg, avg + noise * 0.1, avg * 1.5, color.a);
+	//COLOR = vec4(noise, noise, noise, color.a);
+}
+
+"
+
+[resource]
+shader = SubResource("Shader_k3nxa")
