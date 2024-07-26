@@ -38,4 +38,7 @@ cost = 21912
 use = 1
 reach = 1
 payload_reception_count = 1
+payload_reception_wait = 0.0
+wait = 0.0
+wait_before = 0.0
 payload = SubResource("Resource_ukid5")

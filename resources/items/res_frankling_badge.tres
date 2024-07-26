@@ -22,14 +22,16 @@ gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
 script = ExtResource("1_m7opm")
 name_in_file = &""
 name = &"frankling badge"
-description = "badge awarded to president franking. reflects electric attacks."
+description = "badge awarded to president frankling. reflects electric attacks."
 texture = ExtResource("3_gtht6")
 attack_animation = ""
 price = 0
