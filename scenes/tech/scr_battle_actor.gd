@@ -259,7 +259,7 @@ func attack(subject: BattleActor) -> void:
 		return
 	# manual construction of payload
 	var crit := subject in crittable
-	var pld := payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
+	var pld := create_payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	if crit:
 		pld.health *= 2.5
 	var weapon: Item
@@ -582,7 +582,7 @@ func offload_character() -> void:
 	basechar.add_defeated_characters(character.defeated_characters)
 
 
-func payload() -> BattlePayload:
+func create_payload() -> BattlePayload:
 	return BattlePayload.new().set_sender(self)
 
 
