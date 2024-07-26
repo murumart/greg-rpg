@@ -198,7 +198,10 @@ func side_load_character_data() -> void:
 func side_load_item_data(id: String) -> void:
 	var item: Item = ResMan.get_item(id)
 	mem_portrait.texture = item.texture
-	mem_infotext.text = str("[color=#888888]", item.description + "\n", "[/color]")
+	var desc := item.description
+	if randf() < 0.02:
+		desc = Math.typos(desc)
+	mem_infotext.text = str("[color=#888888]", desc + "\n", "[/color]")
 	mem_infotext.text += item.get_effect_description()
 	if party(current_tab).inventory.find(id) < 2:
 		if (id == party(current_tab).armour):
@@ -214,7 +217,10 @@ func side_load_item_data(id: String) -> void:
 func side_load_spirit_data(id: String) -> void:
 	var spirit: Spirit = ResMan.get_spirit(id)
 	mem_portrait.texture = null
-	mem_infotext.text = str("[color=#888888]", spirit.description + "\n", "[/color]")
+	var desc := spirit.description
+	if randf() < 0.02:
+		desc = Math.typos(desc)
+	mem_infotext.text = str("[color=#888888]", desc + "\n", "[/color]")
 	mem_infotext.text += spirit.get_effect_description()
 	mem_infotext.text += str("[color=#008888]","cost: ", spirit.cost, "[/color]\n")
 	if id in party(current_tab).unused_spirits:

@@ -211,7 +211,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 
 	show()
 	while true:
-		if randf() > 0.002:
+		if randf() > 0.002 or text.contains("["): # avoids bbcode hopefully
 			break
 		text = Math.typos(text)
 	textbox.set_text(text)
