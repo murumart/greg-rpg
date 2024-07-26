@@ -1,6 +1,8 @@
 class_name SlidingPuzzle extends Node2D
 
-signal finished
+signal finished(win: bool)
+
+enum States {SOMETHING_ELSE, PLAYING}
 
 const PADDING := 2
 const DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
@@ -18,6 +20,7 @@ var pointer_position := Vector2i.ZERO
 @export var image_texture: Texture2D
 
 var tiles: Array[TextureRect] = []
+var state := States.SOMETHING_ELSE
 
 
 func _ready() -> void:
@@ -26,16 +29,14 @@ func _ready() -> void:
 	_generate_puzzleboard()
 	_shuffle()
 	_select_tiles()
+	state = States.PLAYING
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if not state == States.PLAYING:
+		return
 	_select_tiles()
 	_move_tiles()
-	if event.is_action_pressed("ui_home"):
-		clear()
-		await get_tree().process_frame
-		_generate_puzzleboard()
-		_shuffle()
 
 
 func _select_tiles() -> void:
@@ -62,6 +63,9 @@ func _move_tiles() -> void:
 			return
 		_move_tile(pointer_position, direction)
 		rock_sound.play()
+		if is_sorted():
+			state = States.SOMETHING_ELSE
+			finished.emit(true)
 
 
 func _generate_puzzleboard() -> void:
@@ -79,6 +83,7 @@ func _generate_puzzleboard() -> void:
 			rect.size = Vector2(piecesize, piecesize)
 			rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			rect.material = STONE_MAT
+			rect.set_meta("number", tile_nr)
 
 			var tsize := image_texture.get_width()
 			var ttilesize := int(tsize / float(puzzle_size))
@@ -194,4 +199,20 @@ func clear() -> void:
 	tile_haver.get_children().map(func(a: Node): a.queue_free())
 	tiles.clear()
 	pointer_position = Vector2i.ZERO
+
+
+func is_sorted() -> bool:
+	var last := -1
+	if not tiles.back() == null:
+		return false
+	for tile in tiles:
+		#print(tile)
+		if tile == null:
+			continue
+		var nr: int = tile.get_meta("number", -1)
+		#prints(nr, last)
+		if not nr - last == 1:
+			return false
+		last = nr
+	return true
 

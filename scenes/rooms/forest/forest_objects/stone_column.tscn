@@ -9,7 +9,7 @@ size = Vector2(14, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
 
-[node name="Stump" type="StaticBody2D"]
+[node name="StoneColumn" type="StaticBody2D"]
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

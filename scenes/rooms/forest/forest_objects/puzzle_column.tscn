@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dntjjltefm2ch"]
+
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd" id="1_jluyq"]
+[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
+[ext_resource type="Texture2D" uid="uid://bsuymjkbf0oy7" path="res://sprites/world/object/spr_pizzle_stand.png" id="2_tyf8b"]
+
+[sub_resource type="Curve" id="Curve_ioxsh"]
+min_value = 3.0
+max_value = 5.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.102094, 3), 0.0, 0.0, 0, 0, Vector2(0.102104, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.250207, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.253651, 5), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
+size = Vector2(16, 12)
+
+[node name="Puzzles" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_jluyq")
+puzzle_size_curve = SubResource("Curve_ioxsh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_tyf8b")
+region_rect = Rect2(48, 57, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ltmb5")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
+monitoring = false
+script = ExtResource("2_sxuju")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_dxvwd")
+debug_color = Color(1, 0.564706, 1, 0.419608)
+
+[connection signal="on_interact" from="InteractionArea" to="." method="_interactde"]

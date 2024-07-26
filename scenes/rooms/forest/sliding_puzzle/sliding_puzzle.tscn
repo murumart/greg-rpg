@@ -124,6 +124,7 @@ stream_0/weight = 1.0
 
 [node name="SlidingPuzzle" type="Node2D"]
 script = ExtResource("1_qo05k")
+puzzle_size = 3
 image_texture = ExtResource("2_rjc4u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -384,6 +385,13 @@ offset_top = 7.0
 offset_right = 12.0
 offset_bottom = 12.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mbj7c")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 103.0
+offset_right = 49.0
+offset_bottom = 111.0
+text = "press x to give up"
 
 [node name="RockSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8v4t4")
