@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bovgdlsbwhyo4"
-path="res://.godot/imported/spr_splash_attack_hint.png-eba6d46d91fca00e131663a425366039.ctex"
+path="res://.godot/imported/spr_blue_carpet_hint.png-c8d1c29a78fa0c5f9730818908f8f3b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spirit/spr_splash_attack_hint.png"
-dest_files=["res://.godot/imported/spr_splash_attack_hint.png-eba6d46d91fca00e131663a425366039.ctex"]
+source_file="res://sprites/spirit/spr_blue_carpet_hint.png"
+dest_files=["res://.godot/imported/spr_blue_carpet_hint.png-c8d1c29a78fa0c5f9730818908f8f3b3.ctex"]
 
 [params]
 
