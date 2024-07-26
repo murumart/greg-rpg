@@ -25,6 +25,6 @@ speed = 15.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["shopping_cart"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

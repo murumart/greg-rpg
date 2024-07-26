@@ -25,6 +25,6 @@ speed = 45.0
 defeated_characters = null
 inventory = null
 spirits = Array[String](["overrun", "rev"])
-unused_sprits = null
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

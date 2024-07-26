@@ -23,6 +23,6 @@ speed = 10.0
 defeated_characters = null
 inventory = Array[String](["gummy_worm", "gummy_worm", "sugar_lemon"])
 spirits = Array[String](["alpha_radio", "ghostpunches"])
-unused_sprits = null
+unused_spirits = Array[String]([])
 armour = ""
 weapon = "bike_ghost_arm"

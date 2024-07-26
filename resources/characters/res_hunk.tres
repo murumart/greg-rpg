@@ -25,6 +25,6 @@ speed = 50.0
 defeated_characters = {}
 inventory = Array[String](["egg", "egg_cooked", "meat", "meat_cooked", "plaster"])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

@@ -25,6 +25,6 @@ speed = 30.0
 defeated_characters = {}
 inventory = Array[String](["bread"])
 spirits = Array[String](["fish_attack", "fish_spawn"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = "fish"

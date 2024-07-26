@@ -21,6 +21,6 @@ speed = 72.0
 defeated_characters = {}
 inventory = Array[String](["gummy_worm", "gummy_worm", "gummy_worm", "gummy_worm", "gummy_worm", "gummy_worm", "gummy_worm", "gummy_worm", "gummy_fish", "gummy_fish", "gummy_fish", "gummy_fish", "mueslibar", "mueslibar", "milkshake", "sugar_lemon", "sugar_lemon", "sugar_lemon", "sugar_lemon", "sugar_lemon", "meat", "lighter", "medkit", "milk", "milk", "milk", "milk", "milk", "milk", "milk", "muesli", "plaster", "plaster", "plaster", "pocket_candy", "pocket_candy", "pocket_candy", "pocket_candy", "soda", "tumbler", "tape", "water_balloon", "water_balloon", "water_balloon", "water_balloon", "water_balloon", "water_balloon", "glue", "glue", "glue", "glue", "sleepy_flower", "sleepy_flower"])
 spirits = Array[String](["summon_vacuum", "smallshield", "grandma_debuff", "grandma_electric"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

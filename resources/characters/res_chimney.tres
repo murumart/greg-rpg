@@ -25,6 +25,6 @@ speed = 6.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["airspace_violation", "bigger_airspace_violation"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

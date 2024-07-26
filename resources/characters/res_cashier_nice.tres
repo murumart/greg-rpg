@@ -21,6 +21,6 @@ speed = 14.0
 defeated_characters = {}
 inventory = Array[String](["glue", "glue", "glue", "glue", "glue", "mirror", "salt", "meat", "meat", "medkit"])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

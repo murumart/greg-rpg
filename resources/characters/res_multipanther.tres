@@ -21,6 +21,6 @@ speed = 76.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["catcall"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = "panther_attack"

@@ -21,6 +21,6 @@ speed = 55.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = "frankling_badge"
 weapon = ""

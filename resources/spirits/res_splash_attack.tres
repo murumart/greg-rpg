@@ -28,19 +28,24 @@ gender = 2
 effects = Array[ExtResource("1_n8fvb")]([SubResource("Resource_tnp6i")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
 script = ExtResource("1_ghah2")
 name_in_file = &""
 name = &"you sop"
-description = "wet"
+description = "dousing tunes"
 animation = &""
 use_animation = &""
 receive_animation = &"splash"
 cost = 40
-use = 1
+use = 3
 reach = 0
 payload_reception_count = 1
+payload_reception_wait = 0.0
+wait = 0.0
+wait_before = 0.0
 payload = SubResource("Resource_1bpx5")

@@ -36,7 +36,7 @@ meta = {}
 [resource]
 script = ExtResource("3_ldvkx")
 name_in_file = &""
-name = &"you sop"
+name = &"blue carpet"
 description = "dousing tunes"
 animation = &""
 use_animation = &""

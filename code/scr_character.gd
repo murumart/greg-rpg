@@ -41,7 +41,7 @@ const UPGRADE_MAX := {
 @export_group("Items and Spirits")
 @export var inventory: Array[String] = []
 @export var spirits: Array[String] = []
-@export var unused_sprits: Array[String] = []
+@export var unused_spirits: Array[String] = []
 @export var armour: String = ""
 @export var weapon: String = ""
 
@@ -60,7 +60,7 @@ func get_saveable_dict() -> Dictionary:
 		"defeated_characters": defeated_characters,
 		"inventory": inventory,
 		"spirits": spirits,
-		"unused_sprits": unused_sprits,
+		"unused_spirits": unused_spirits,
 		"armour": armour,
 		"weapon": weapon,
 	}
@@ -239,5 +239,5 @@ func get_defeated_character(nimi: StringName) -> int:
 
 
 func has_spirit(type: String) -> bool:
-	return type in spirits or type in unused_sprits
+	return type in spirits or type in unused_spirits
 

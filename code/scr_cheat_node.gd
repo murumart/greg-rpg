@@ -38,14 +38,14 @@ func _ready() -> void:
 		if charac.level != 1 and require_clean_char:
 			continue
 		charac.level_up(level_gain, true, false)
-		charac.unused_sprits.append_array(new_spirits)
+		charac.unused_spirits.append_array(new_spirits)
 		if not force_spirits_into_use:
 			while (charac.spirits.size() < Character.MAX_SPIRITS
-					and not charac.unused_sprits.is_empty()):
-				charac.spirits.append(charac.unused_sprits.pop_front())
+					and not charac.unused_spirits.is_empty()):
+				charac.spirits.append(charac.unused_spirits.pop_front())
 		else:
-			charac.spirits.append_array(charac.unused_sprits)
-			charac.unused_sprits.clear()
+			charac.spirits.append_array(charac.unused_spirits)
+			charac.unused_spirits.clear()
 		if replace_spirits:
 			charac.spirits.clear()
 			if replace_spirits[0]:

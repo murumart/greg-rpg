@@ -217,7 +217,7 @@ func side_load_spirit_data(id: String) -> void:
 	mem_infotext.text = str("[color=#888888]", spirit.description + "\n", "[/color]")
 	mem_infotext.text += spirit.get_effect_description()
 	mem_infotext.text += str("[color=#008888]","cost: ", spirit.cost, "[/color]\n")
-	if id in party(current_tab).unused_sprits:
+	if id in party(current_tab).unused_spirits:
 		mem_infotext.append_text("\n[color=#888888]unused. select to equip")
 	else:
 		mem_infotext.append_text("\n[color=#888888]select to unequip")
@@ -297,7 +297,7 @@ func load_spirits() -> void:
 	var spirit_array := []
 	var unused_spirit_array := []
 	spirit_array.append_array(party(current_tab).spirits)
-	unused_spirit_array.append_array(party(current_tab).unused_sprits)
+	unused_spirit_array.append_array(party(current_tab).unused_spirits)
 	Math.load_reference_buttons(spirit_array, [used_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false, "custom_pass_function": spirit_names})
 	Math.load_reference_buttons(unused_spirit_array, [unused_spirit_container], _reference_button_pressed, _on_button_reference_received, {"spirit": true, "adjust_focus": false, "custom_pass_function": spirit_names})
 
@@ -375,9 +375,9 @@ func _reference_button_pressed(reference) -> void:
 		using_item = reference
 		load_using_menu()
 	if item_spirit_tabs.current_tab == 1 and doing == Doings.INNER:
-		if reference in party(current_tab).unused_sprits:
+		if reference in party(current_tab).unused_spirits:
 			if used_spirit_container.get_child_count() < Character.MAX_SPIRITS:
-				party(current_tab).unused_sprits.erase(reference)
+				party(current_tab).unused_spirits.erase(reference)
 				party(current_tab).spirits.append(reference)
 				load_spirits()
 				SND.play_sound(preload("res://sounds/spirit/spirit_equip.ogg"))
@@ -388,7 +388,7 @@ func _reference_button_pressed(reference) -> void:
 				mem_infotext.text = "can only equip %s spirits at a time" % Character.MAX_SPIRITS
 		elif reference in party(current_tab).spirits:
 			party(current_tab).spirits.erase(reference)
-			party(current_tab).unused_sprits.append(reference)
+			party(current_tab).unused_spirits.append(reference)
 			load_spirits()
 			SND.play_sound(preload("res://sounds/spirit/spirit_dequip.ogg"))
 			await get_tree().process_frame
