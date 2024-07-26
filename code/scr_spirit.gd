@@ -22,6 +22,9 @@ const USES_NEGATIVE := [Uses.HURTING, Uses.DEBUFFING]
 @export var use := Uses.NONE
 @export var reach := Reach.LOCAL
 @export var payload_reception_count := 1
+@export var payload_reception_wait := 0.0
+@export var wait := 0.0
+@export var wait_before := 0.0
 @export var payload: BattlePayload
 
 

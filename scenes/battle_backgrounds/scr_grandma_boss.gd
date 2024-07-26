@@ -2,7 +2,7 @@ extends "res://scenes/battle_backgrounds/scr_battle_background.gd"
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	sprite.material["shader_parameter/wow"] = 0.0
 	var song := SND.current_song_player
 	if not is_instance_valid(song):

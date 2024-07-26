@@ -1,0 +1,232 @@
+[gd_scene load_steps=22 format=3 uid="uid://c4hc8cv64guil"]
+
+[ext_resource type="AudioStream" uid="uid://c46uvc4p3uc0s" path="res://sounds/hurt.ogg" id="1_t2ibo"]
+[ext_resource type="Texture2D" uid="uid://dnc1n4fbnamgn" path="res://sprites/spirit/spr_mooncity_local.png" id="2_7ey72"]
+
+[sub_resource type="Animation" id="Animation_f38ew"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.15, 0.95]
+}
+
+[sub_resource type="Animation" id="Animation_kntfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mpqp1"]
+_data = {
+"RESET": SubResource("Animation_kntfx"),
+"new_animation": SubResource("Animation_f38ew")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxig0"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(0, 0, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjpm1"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(40, 0, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p5hc"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(80, 0, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i0yi"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(120, 0, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fbnn"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(160, 0, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpiyc"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(0, 60, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrp61"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(40, 60, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1aaea"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(80, 60, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2y0d"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(120, 60, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g874s"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(160, 60, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r05s"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(0, 120, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr4op"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(40, 120, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_athir"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(80, 120, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_725d5"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(120, 120, 40, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkol7"]
+atlas = ExtResource("2_7ey72")
+region = Rect2(160, 120, 40, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivbg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxig0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjpm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p5hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i0yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fbnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpiyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrp61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1aaea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2y0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g874s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r05s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr4op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_athir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_725d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkol7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MooncityLocal" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_t2ibo")
+pitch_scale = 3.15
+bus = &"ECHO"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mpqp1")
+}
+autoplay = "new_animation"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_ivbg7")

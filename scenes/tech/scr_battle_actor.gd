@@ -4,7 +4,6 @@ class_name BattleActor extends Node2D
 
 const WAIT_AFTER_ATTACK := 1.0
 const WAIT_AFTER_SPIRIT := 1.0
-const WAIT_AFTER_SPIRIT_MULTI_ATTACK := 0.1
 const WAIT_AFTER_ITEM := 1.00
 const WAIT_AFTER_FLEE := 1.0
 
@@ -318,11 +317,6 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			spirit.payload.pierce_defense
 			if spirit.payload.pierce_defense
 			else 1.0).set_type(BattlePayload.Types.SPIRIT)
-	# animating
-	if spirit.animation:
-		SOL.vfx(spirit.animation, Vector2())
-	if spirit.use_animation:
-		SOL.vfx(spirit.use_animation, get_effect_center(self))
 	# who should be targeted by the spirit
 	var targets: Array[BattleActor]
 	if spirit.reach == Spirit.Reach.TEAM:
@@ -331,10 +325,19 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 		targets = reference_to_actor_array.duplicate()
 	else:
 		targets = [subject]
+	# animating
+	if spirit.animation:
+		SOL.vfx(spirit.animation, Vector2())
+	if spirit.use_animation:
+		SOL.vfx(spirit.use_animation, get_effect_center(self))
+	if spirit.wait_before:
+		await Math.timer(spirit.wait_before)
 	# functions
 	if self.has_method("_used_spirit_%s" % id):
 		call("_used_spirit_%s" % id)
 	# loop through all
+	var wait_between := maxf(maxf((maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2))
+			/ float(spirit.payload_reception_count), 0.01), spirit.payload_reception_wait)
 	for receiver in targets:
 		if character.health <= 0: break
 		if spirit.receive_animation:
@@ -346,15 +349,12 @@ func use_spirit(id: String, subject: BattleActor) -> void:
 			receiver.handle_payload(
 					payload)
 			# we wait a bit before applying the payload again
-			await get_tree().create_timer(
-				maxf((maxf(WAIT_AFTER_SPIRIT - 0.8, 0.2)) /
-				float(spirit.payload_reception_count), 0.01)
-			).timeout
+			await Math.timer(wait_between)
 		# function
 		if receiver.has_method("_spirit_%s_used_on" % id):
 			receiver.call("_spirit_%s_used_on" % id)
 
-	await get_tree().create_timer(WAIT_AFTER_SPIRIT).timeout
+	await Math.timer(WAIT_AFTER_SPIRIT + spirit.wait)
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
 	turn_finished()

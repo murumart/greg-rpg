@@ -85,8 +85,8 @@ func ai_action() -> void:
 	attack(target)
 
 
-func hurt(amount: float, gender: int) -> void:
-	super(amount, gender)
+func hurt(amount: float, h_gender: int) -> void:
+	super(amount, h_gender)
 	if randf() < 0.001:
 		heheh_hahah(get_tree().root)
 

@@ -11,6 +11,7 @@ class_name CheatNode extends Node
 @export var replace_weapon: StringName = &""
 @export var force_spirits_into_use := false
 @export var fill_resources: bool = true
+@export var lots_of_magic: bool = false
 @export var require_clean_char: bool = true
 @export var remove_when_gate_id := true
 @export var force_gate_id := &""
@@ -58,6 +59,8 @@ func _ready() -> void:
 		if fill_resources:
 			charac.health = charac.max_health
 			charac.magic = charac.max_magic
+		if lots_of_magic:
+			charac.magic = 999999999999999999
 	print(self, " cheats applied.")
 
 

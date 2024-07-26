@@ -7,7 +7,7 @@
 script = ExtResource("1_7dndk")
 health = 0.0
 health_percent = 0.0
-max_health_percent = -9.8
+max_health_percent = -2.0
 pierce_defense = 0.0
 steal_health = 0.0
 magic = 0.0
@@ -21,7 +21,9 @@ gender = 6
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
@@ -29,11 +31,14 @@ script = ExtResource("2_l7sxr")
 name_in_file = &"mooncity"
 name = &"moon city"
 description = "turn that world upside down"
-animation = &""
+animation = &"mooncity_global"
 use_animation = &""
-receive_animation = &""
+receive_animation = &"mooncity_local"
 cost = 200
 use = 1
 reach = 2
-payload_reception_count = 10
+payload_reception_count = 49
+payload_reception_wait = 0.05
+wait = 3.0
+wait_before = 1.5
 payload = SubResource("Resource_1m4tw")
