@@ -8,4 +8,5 @@ name = "hoarder"
 data_key = &"win_battle_no_item"
 completion_value = 1
 completion_signal = &""
-glass_reward = 7
+glass_reward = 5
+meta_weight = 100
