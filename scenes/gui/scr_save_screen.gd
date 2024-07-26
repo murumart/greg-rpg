@@ -1,11 +1,11 @@
-extends Control
-class_name SaveScreen
+class_name SaveScreen extends Control
 
 # little save and load popup
 
 enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
 const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
+const UNKNOWN_VERSION := Vector3(-4, 0, 0)
 
 const COMPLETED_GAME := {
 	#"zerma_fought": true,
@@ -216,6 +216,7 @@ func _on_button_pressed(reference: Variant) -> void:
 			vfx_msg("saved!")
 		LOAD:
 			if load_warning_message:
+				SOL.dialogue_choice = ""
 				SOL.dialogue("load_warning_" + load_warning_message)
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice != "yes":
@@ -254,16 +255,19 @@ func version_string(data: Dictionary) -> String:
 	if data.is_empty():
 		load_warning_message = "empty"
 		return ""
-	var version := data.get("version", Vector3(-4, 0, 4)) as Vector3
+	var version := data.get("version", UNKNOWN_VERSION) as Vector3
 	var super_difference := DAT.VERSION.x - version.x as int
 	var major_difference := DAT.VERSION.y - version.y as int
-	var _minor_difference := DAT.VERSION.z - version.z as int
+	var minor_difference := DAT.VERSION.z - version.z as int
 	var text := ""
-	if not version == Vector3(-4, 0, 4):
+	if not version == UNKNOWN_VERSION:
 		text += "version: %s\n" % DAT.version_str(version)
 	else:
 		text += "unknown version"
-	if super_difference:
+	if super_difference < 0 or major_difference < 0 or minor_difference < 0:
+		load_warning_message = "outdatedgame"
+		text = "[color=#ff0000]%s[/color]" % text
+	elif super_difference:
 		text = "[color=#ff0000]%s[/color]" % text
 		load_warning_message = "superdiff"
 	elif major_difference:

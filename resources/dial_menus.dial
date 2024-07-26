@@ -5,6 +5,11 @@ MACRO SUNCOLOR #ffbb99
 MACRO KEY_MENU ACTION_MENU
 
 
+DIALOGUE load_warning_outdatedgame
+	this file was saved with a newer version of the game.
+	update your game to load it!
+
+
 DIALOGUE load_warning_superdiff
 	this save file is bugged or from a very old version of greg.
 CHOICES no,yes
