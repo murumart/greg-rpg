@@ -463,14 +463,18 @@ func handle_payload(pld: BattlePayload) -> void:
 
 
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:
+	var oldhp := character.health
 	await hurt(damage, pld.gender)
+	var change := absf(character.health - oldhp)
 	if pld.steal_health and is_instance_valid(pld.sender):
-		pld.sender.heal(damage * pld.steal_health)
+		pld.sender.heal(change * pld.steal_health)
 	if pld.steal_magic:
-		var steal := character.magic * pld.steal_magic
+		var steal := change * pld.steal_magic
 		character.magic = maxf(character.magic - steal, 0.0)
+		print(self, " from stealing magic: ", steal)
 		if is_instance_valid(pld.sender):
-			pld.sender.character.magic += pld.steal_magic
+			print("sending back to ", pld.sender)
+			pld.sender.character.magic += steal
 
 
 func steal_item(from: BattleActor) -> void:

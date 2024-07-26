@@ -5,15 +5,15 @@
 
 [sub_resource type="Resource" id="Resource_50eww"]
 script = ExtResource("1_0bjtd")
-health = null
+health = -67.0
 health_percent = 0.0
-max_health_percent = -49.0
+max_health_percent = -11.0
 pierce_defense = 0.0
-steal_health = 0.0
+steal_health = 0.4
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
-steal_magic = 0.2
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
@@ -34,7 +34,7 @@ description = "to the inevitable end"
 animation = &"roundup"
 use_animation = &""
 receive_animation = &""
-cost = 81
+cost = 92
 use = 1
 reach = 2
 payload_reception_count = 1

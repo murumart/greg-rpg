@@ -6,14 +6,14 @@
 [sub_resource type="Resource" id="Resource_2etd8"]
 script = ExtResource("1_obkfa")
 health = -55.0
-health_percent = -22.0
+health_percent = -11.0
 max_health_percent = 0.0
 pierce_defense = 0.0
-steal_health = 0.75
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
-steal_magic = 0.0
+steal_magic = 0.35
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
@@ -23,6 +23,7 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
