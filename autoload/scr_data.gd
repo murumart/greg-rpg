@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(0, 9, 4)
+const VERSION := Vector3(0, 9, 5)
 const GDUNG_LEVEL := 72
 
 signal player_captured(capture: bool)
@@ -141,7 +141,9 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 	if dict.size() < 1:
 		print("no data to load!")
 		return
-
+	if DataUpdater.needs_updating(dict):
+		print("updating data dict")
+		DataUpdater.update_data(dict)
 	print("overwriting data...")
 	if not overwrite:
 		# again option to not overwrite everything
@@ -231,19 +233,19 @@ func grant_silver(amount: int, dialogue := true) -> void:
 
 func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> void:
 	var charc: Character = ResMan.get_character(A.get("party", ["greg"])[party_index])
-	if spirit in charc.unused_sprits or spirit in charc.spirits: return
+	if spirit in charc.unused_spirits or spirit in charc.spirits: return
 	# this implementation looks so kooky because typed arrays if i remember right
-	var uuspirits: Array[String] = charc.unused_sprits.duplicate()
+	var uuspirits: Array[String] = charc.unused_spirits.duplicate()
 	uuspirits.append(spirit)
-	charc.unused_sprits = uuspirits
+	charc.unused_spirits = uuspirits
 	# horrible but necessary with the current implementation of characters
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
 		if !battle.party.is_empty():
 			var character_is: Character = battle.party[party_index].character
-			var list: Array[String] = character_is.unused_sprits.duplicate()
+			var list: Array[String] = character_is.unused_spirits.duplicate()
 			list.append(spirit)
-			character_is.unused_sprits = list
+			character_is.unused_spirits = list
 	if not dialogue: return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [ResMan.get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
