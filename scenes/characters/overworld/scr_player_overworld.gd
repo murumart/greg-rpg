@@ -62,6 +62,10 @@ func _physics_process(delta: float) -> void:
 	input = Vector2()
 
 	if state == States.FREE_MOVE:
+		#input = Vector2(
+			#Input.get_axis("move_left", "move_right"),
+			#Input.get_axis("move_up", "move_down")
+		#)
 		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		if input:
 			direct_raycast()
@@ -75,6 +79,7 @@ func _physics_process(delta: float) -> void:
 
 func set_state(to: States) -> void:
 	state = to
+	set_collision_mask_value(4, bool(int(to)))
 	if not is_inside_tree():
 		return
 	#direct_animation()
@@ -84,7 +89,7 @@ func movement(delta: float) -> void:
 	match move_mode:
 		MoveModes.WALK:
 			velocity = Vector2()
-			velocity = input * SPEED * delta
+			velocity = (input * SPEED * delta)
 			var _collided := move_and_slide()
 
 		MoveModes.SKATE:
@@ -95,7 +100,6 @@ func movement(delta: float) -> void:
 			var collided := move_and_slide()
 			if collided:
 				velocity *= 0.5
-	#if not input:
 	global_position.x = roundi(global_position.x)
 	global_position.y = roundi(global_position.y)
 
@@ -147,6 +151,7 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
+	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 		return

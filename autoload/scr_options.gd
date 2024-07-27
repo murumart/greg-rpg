@@ -128,7 +128,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	# DEBUG
 	# remember to remove this when releasing the game
-	if not DIR.standalone() and event is InputEventKey:
+	if not DIR.standalone() and event is InputEventKey and event.is_pressed():
 		match event.keycode:
 			KEY_KP_0:
 				DAT.copy_data()
@@ -153,7 +153,7 @@ func _input(event: InputEvent) -> void:
 					get_viewport().get_camera_2d().free_cam\
 					 = !get_viewport().get_camera_2d().free_cam
 			KEY_KP_4:
-				get_tree().debug_collisions_hint = !get_tree().debug_collisions_hint
+				get_tree().debug_collisions_hint = not get_tree().debug_collisions_hint
 				print("collisions ", "showing" if
 				get_tree().debug_collisions_hint else "hidden")
 			KEY_KP_7, KEY_7:

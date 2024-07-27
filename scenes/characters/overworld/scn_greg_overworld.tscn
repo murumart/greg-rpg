@@ -151,6 +151,7 @@ size = Vector2(4, 4)
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
+safe_margin = 0.5
 script = ExtResource("1_gx1l0")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

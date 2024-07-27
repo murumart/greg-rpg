@@ -110,6 +110,10 @@ func parse_command() -> void:
 			add_perk(args)
 		&"win":
 			win()
+		&"csm":
+			get_window().content_scale_mode = (Window.CONTENT_SCALE_MODE_VIEWPORT
+					if get_window().content_scale_mode == Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+					else Window.CONTENT_SCALE_MODE_CANVAS_ITEMS)
 		&"seconds":
 			seconds(args)
 		&"7":
