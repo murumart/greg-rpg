@@ -44,6 +44,7 @@ func _key() -> String:
 
 
 func _pick_item(puzzle: SlidingPuzzle) -> void:
+	rewards.clear()
 	const ITEM_CHANCES := ForestGenerator.BIN_LOOT
 	var level := (DAT.get_data("forest_depth", 0) as int) * 0.01
 	var chosen_thing: StringName
@@ -59,7 +60,9 @@ func _pick_item(puzzle: SlidingPuzzle) -> void:
 		puzzle.image_texture = ResMan.get_item(chosen_thing).texture
 		var amount := 1
 		if chosen_thing in ITEM_CHANCES:
-			amount += randi_range(0, int(sqrt(ITEM_CHANCES[chosen_thing])))
+			var wishful_thinking := puzzle.puzzle_size + randi_range(-1, 1)
+			amount += randi_range(0,
+					mini(sqrt(ITEM_CHANCES[chosen_thing]), wishful_thinking))
 		for a in amount:
 			rewards.add(Reward.new({"type": BattleRewards.Types.ITEM,
 					"property": str(chosen_thing)}))

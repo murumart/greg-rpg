@@ -478,7 +478,7 @@ DIALOGUE phone_lakeside_under100
 ACTUALLY phone_town_under100
 
 
-DIALOGUE phone_forest
+DIALOGUE phone_forest_under72
 CHAR zerma
 	hey hey! you're in the woods? great!
 	i spent most of my childhood here, grinding... lizards...
@@ -495,6 +495,17 @@ CHAR zerma
 	last thing... you passively earny more experience here...
 	...and you can increase the amount by buying extra!
 	well, good luck! hope your stay goes well!
+	toodles!
+
+
+DIALOGUE phone_forest
+CHAR zerma
+	hey hey! you're in the woods?
+	greg... it's time.
+	you're at level 72... or higher!
+	i can't really see your level through the phone.
+	anyway, that's strong enough to go back... and take what's yours.
+	anytime you're ready...
 	toodles!
 
 

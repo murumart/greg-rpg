@@ -1,11 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene load_steps=35 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
 [ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_1wms1"]
 [ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_krk2i"]
+[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="6_fm10m"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="6_kdwyn"]
+[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="7_celod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
 resource_local_to_scene = true
@@ -96,6 +98,38 @@ max_value = 4.0
 _data = [Vector2(0.0676494, 1.14782), 0.0, 0.0, 0, 0, Vector2(0.139983, 2.03409), 0.0, 0.0, 0, 0, Vector2(0.191651, 3.12178), 0.0, 0.0, 0, 0, Vector2(0.363874, 4), 0.0, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="Resource" id="Resource_qlh54"]
+script = ExtResource("6_fm10m")
+type = 0
+property = "range 2,12"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_ucie8"]
+script = ExtResource("6_fm10m")
+type = 1
+property = "meat"
+chance = 0.045
+unique = false
+
+[sub_resource type="Resource" id="Resource_uuitj"]
+script = ExtResource("6_fm10m")
+type = 4
+property = "1"
+chance = 0.375
+unique = false
+
+[sub_resource type="Resource" id="Resource_2kuia"]
+script = ExtResource("6_fm10m")
+type = 1
+property = "egg"
+chance = 0.135
+unique = false
+
+[sub_resource type="Resource" id="Resource_4d0j7"]
+script = ExtResource("7_celod")
+rewards = Array[ExtResource("6_fm10m")]([SubResource("Resource_qlh54"), SubResource("Resource_ucie8"), SubResource("Resource_uuitj"), SubResource("Resource_2kuia")])
+
 [sub_resource type="Resource" id="Resource_5excg"]
 script = ExtResource("6_kdwyn")
 enemies = Array[StringName]([])
@@ -104,6 +138,7 @@ music = "lion"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""
+rewards = SubResource("Resource_4d0j7")
 victory_music = &""
 stop_music_before_end = false
 kill_music = false

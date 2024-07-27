@@ -57,7 +57,7 @@ key = &"bread"
 curve = SubResource("Curve_1lbha")
 
 [sub_resource type="Curve" id="Curve_ua36m"]
-_data = [Vector2(0, 0.0571982), 0.0, 0.0, 0, 0, Vector2(0.117442, 0.287445), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0571982), 0.0, 0.0, 0, 0, Vector2(0.0991205, 0.444983), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_ifyqd"]
@@ -66,7 +66,7 @@ key = &"greg"
 curve = SubResource("Curve_ua36m")
 
 [sub_resource type="Curve" id="Curve_x5mac"]
-_data = [Vector2(0.117442, 0), 0.0, 0.0, 0, 0, Vector2(0.176988, 0.202617), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.117442, 0), 0.0, 0.0, 0, 0, Vector2(0.163247, 0.493456), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_icfqo"]

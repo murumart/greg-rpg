@@ -9,8 +9,12 @@ enum Types {SILVER, ITEM, SPIRIT, EXP, GLASS}
 @export var rewards: Array[Reward] = []
 
 
-func add(reward: Reward):
+func add(reward: Reward) -> void:
 	rewards.append(reward)
+
+
+func clear() -> void:
+	rewards.clear()
 
 
 func valid() -> bool:
@@ -32,7 +36,8 @@ func grant(speak := true) -> void:
 				DAT.appenda("unique_rewards", str(reward))
 			else: continue
 		var prp := reward.property
-		if not prp.length(): continue
+		if not prp.length():
+			continue
 		var prop = process_property(prp)
 		match reward.type:
 			Types.SILVER:
@@ -80,8 +85,12 @@ func process_property(prp: String) -> Variant:
 			return 0
 		var range_0 := float(split[0])
 		var range_1 := float(split[1])
-		return float(roundi(randf_range(range_0, range_1)))
+		return roundf(randf_range(range_0, range_1))
 	elif prp in ResMan.items.keys() or prp in ResMan.spirits.keys():
 		return prp
 	push_error("invalid reward property")
 	return 0
+
+
+func _to_string() -> String:
+	return "rewards: " + str(rewards)
