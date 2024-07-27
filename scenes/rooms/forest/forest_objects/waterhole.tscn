@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://62rrfr2yajow"]
+[gd_scene load_steps=19 format=3 uid="uid://62rrfr2yajow"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_4wi4g"]
 [ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_waterhole.gd" id="2_5ey5h"]
@@ -64,9 +64,16 @@ property = "gummy_fish"
 chance = 0.333
 unique = false
 
+[sub_resource type="Resource" id="Resource_syyg1"]
+script = ExtResource("5_061cc")
+type = 1
+property = "water_balloon"
+chance = 0.324
+unique = false
+
 [sub_resource type="Resource" id="Resource_yhm1s"]
 script = ExtResource("6_eg5q7")
-rewards = Array[ExtResource("5_061cc")]([SubResource("Resource_wgka0"), SubResource("Resource_rtn5j")])
+rewards = Array[ExtResource("5_061cc")]([SubResource("Resource_wgka0"), SubResource("Resource_rtn5j"), SubResource("Resource_syyg1")])
 
 [sub_resource type="Resource" id="Resource_dsehx"]
 script = ExtResource("7_fcvjd")
@@ -81,6 +88,7 @@ victory_music = &""
 stop_music_before_end = false
 kill_music = false
 play_fanfare = false
+crits_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54qvo"]
 size = Vector2(90, 88)
