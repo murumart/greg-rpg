@@ -25,6 +25,9 @@ var state := States.SOMETHING_ELSE
 
 func _ready() -> void:
 	pointer.size = Math.v2(get_piece_size())
+	if is_instance_valid(SND.current_song_player):
+		var tw := create_tween()
+		tw.tween_property(SND.current_song_player, "pitch_scale", 0.88, 0.6)
 	clear()
 	_generate_puzzleboard()
 	_shuffle()
@@ -32,7 +35,7 @@ func _ready() -> void:
 	state = States.PLAYING
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if not state == States.PLAYING:
 		return
 	_select_tiles()
@@ -58,8 +61,8 @@ func _select_tiles() -> void:
 
 func _move_tiles() -> void:
 	if Input.is_action_just_pressed("cancel"):
-		state = States.SOMETHING_ELSE
-		finished.emit(false)
+		_lose()
+		return
 	if Input.is_action_just_pressed("ui_accept"):
 		var direction := _get_tile_move_direction(pointer_position)
 		if direction == Vector2i.ZERO:
@@ -67,8 +70,25 @@ func _move_tiles() -> void:
 		_move_tile(pointer_position, direction)
 		rock_sound.play()
 		if is_sorted():
-			state = States.SOMETHING_ELSE
-			finished.emit(true)
+			_win()
+
+
+func _win() -> void:
+	state = States.SOMETHING_ELSE
+	await get_tree().process_frame
+	SND.play_sound(preload("res://sounds/pennistong/pennistong_win.ogg"))
+	SOL.dialogue("sliding_puzzle_win")
+	await SOL.dialogue_closed
+	finished.emit(true)
+
+
+func _lose() -> void:
+	state = States.SOMETHING_ELSE
+	await get_tree().process_frame
+	SND.play_sound(preload("res://sounds/pennistong/pennistong_lose.ogg"))
+	SOL.dialogue("sliding_puzzle_lose")
+	await SOL.dialogue_closed
+	finished.emit(false)
 
 
 func _generate_puzzleboard() -> void:

@@ -59,7 +59,7 @@ const DB = {
 	&"pizzle_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/puzzle_column.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 100,
+		WEIGHT: 111,
 		LIMIT: 1
 	},
 	&"saleskid": {

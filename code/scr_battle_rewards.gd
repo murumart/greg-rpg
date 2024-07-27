@@ -4,7 +4,7 @@ class_name BattleRewards extends Resource
 
 signal granted
 
-enum Types {SILVER, ITEM, SPIRIT, EXP}
+enum Types {SILVER, ITEM, SPIRIT, EXP, GLASS}
 
 @export var rewards: Array[Reward] = []
 
@@ -22,6 +22,7 @@ func grant(speak := true) -> void:
 	var spirit_pool: Array[String] = []
 	var item_pool: Array[String] = []
 	var exp_pool: int = 0
+	var glass_pool: int = 0
 	# interpret rewards' properties and store results in pools
 	for reward in rewards:
 		# unique rewards can only be gotten once
@@ -46,6 +47,9 @@ func grant(speak := true) -> void:
 			Types.EXP:
 				if randf() <= reward.chance:
 					exp_pool += prop
+			Types.GLASS:
+				if randf() <= reward.chance:
+					glass_pool += prop
 	# then go through the pools and give stuff. to the player
 	if silver_pool:
 		DAT.grant_silver(silver_pool, speak)
@@ -59,6 +63,8 @@ func grant(speak := true) -> void:
 			DAT.grant_spirit(i, 0, speak)
 	if exp_pool < 1 and spirit_pool.is_empty() and item_pool.is_empty() and silver_pool < 1:
 		SOL.dialogue("emptyreward")
+	if glass_pool and DAT.get_data("forest_questing", null):
+		(DAT.get_data("forest_questing") as ForestQuesting).glass += glass_pool
 	granted.emit()
 
 

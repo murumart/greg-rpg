@@ -1,14 +1,141 @@
-[gd_scene load_steps=7 format=3 uid="uid://dntjjltefm2ch"]
+[gd_scene load_steps=36 format=3 uid="uid://dntjjltefm2ch"]
 
 [ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd" id="1_jluyq"]
 [ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
 [ext_resource type="Texture2D" uid="uid://bsuymjkbf0oy7" path="res://sprites/world/object/spr_pizzle_stand.png" id="2_tyf8b"]
+[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="2_uyq8g"]
 
 [sub_resource type="Curve" id="Curve_ioxsh"]
 min_value = 3.0
-max_value = 5.0
-_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.102094, 3), 0.0, 0.0, 0, 0, Vector2(0.102104, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.250207, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.253651, 5), 0.0, 0.0, 0, 0]
+max_value = 6.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.050427, 3), 0.0, 0.0, 0, 0, Vector2(0.0538715, 4.01468), 0.0, 0.0, 0, 0, Vector2(0.250207, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.253651, 5), 0.0, 0.0, 0, 0, Vector2(0.501653, 4.96694), 0.0, 0.0, 0, 0, Vector2(0.508542, 6), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Curve" id="Curve_ulb7b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0762183, 0.129908), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_d3n61"]
+script = ExtResource("2_uyq8g")
+key = &"gummy_worm"
+curve = SubResource("Curve_ulb7b")
+
+[sub_resource type="Curve" id="Curve_nmq21"]
+_data = [Vector2(0, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.0716379, 0.554047), 0.0, 0.0, 0, 0, Vector2(0.158666, 0.360155), 0.0, 0.0, 0, 0, Vector2(0.30066, 0.372273), 0.0, 0.0, 0, 0, Vector2(0.387688, 0.650994), 0.0, 0.0, 0, 0]
 point_count = 5
+
+[sub_resource type="Resource" id="Resource_d56of"]
+script = ExtResource("2_uyq8g")
+key = &"gummy_fish"
+curve = SubResource("Curve_nmq21")
+
+[sub_resource type="Curve" id="Curve_6cchc"]
+_data = [Vector2(0.502199, 0), 0.0, 0.0, 0, 0, Vector2(0.534262, 0.0450798), 0.0, 0.0, 0, 0, Vector2(1, 0.0571982), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_kk0fw"]
+script = ExtResource("2_uyq8g")
+key = &"pizz"
+curve = SubResource("Curve_6cchc")
+
+[sub_resource type="Curve" id="Curve_r0e3s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0991205, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.20447, 0.226854), 0.0, 0.0, 0, 0, Vector2(0.502199, 0.348037), 0.0, 0.0, 0, 0, Vector2(1, 0.505574), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_oukl8"]
+script = ExtResource("2_uyq8g")
+key = &"berries"
+curve = SubResource("Curve_r0e3s")
+
+[sub_resource type="Curve" id="Curve_1lbha"]
+_data = [Vector2(0, 0.687348), 0.0, 0.0, 0, 0, Vector2(0.163247, 0.481338), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_wrhe1"]
+script = ExtResource("2_uyq8g")
+key = &"bread"
+curve = SubResource("Curve_1lbha")
+
+[sub_resource type="Curve" id="Curve_ua36m"]
+_data = [Vector2(0, 0.0571982), 0.0, 0.0, 0, 0, Vector2(0.117442, 0.287445), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ifyqd"]
+script = ExtResource("2_uyq8g")
+key = &"greg"
+curve = SubResource("Curve_ua36m")
+
+[sub_resource type="Curve" id="Curve_x5mac"]
+_data = [Vector2(0.117442, 0), 0.0, 0.0, 0, 0, Vector2(0.176988, 0.202617), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_icfqo"]
+script = ExtResource("2_uyq8g")
+key = &"kid"
+curve = SubResource("Curve_x5mac")
+
+[sub_resource type="Curve" id="Curve_i48bo"]
+_data = [Vector2(0, 0.517693), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_2sghh"]
+script = ExtResource("2_uyq8g")
+key = &"egg"
+curve = SubResource("Curve_i48bo")
+
+[sub_resource type="Curve" id="Curve_sfq5q"]
+_data = [Vector2(0, 0.129908), 0.0, 0.0, 0, 0, Vector2(0.19531, 0.275327), 0.0, 0.0, 0, 0, Vector2(0.378527, 0.202617), 0.0, 0.0, 0, 0, Vector2(0.570905, 0.384392), 0.0, 0.0, 0, 0, Vector2(0.744962, 0.202617), 0.0, 0.0, 0, 0, Vector2(1, 0.420746), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_5r0ry"]
+script = ExtResource("2_uyq8g")
+key = &"free_hugs_coupon"
+curve = SubResource("Curve_sfq5q")
+
+[sub_resource type="Curve" id="Curve_he4k7"]
+_data = [Vector2(0, 0.0450798), 0.0, 0.0, 0, 0, Vector2(0.259436, 0.238972), 0.0, 0.0, 0, 0, Vector2(0.51594, 0.166263), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_ofsq1"]
+script = ExtResource("2_uyq8g")
+key = &"frozen_meat"
+curve = SubResource("Curve_he4k7")
+
+[sub_resource type="Curve" id="Curve_fc8ui"]
+_data = [Vector2(0, 0.0208433), 0.0, 0.0, 0, 0, Vector2(0.172407, 0.11779), 0.0, 0.0, 0, 0, Vector2(0.30982, 0.129908), 0.0, 0.0, 0, 0, Vector2(0.557164, 0.11779), 0.0, 0.0, 0, 0, Vector2(0.749542, 0.178381), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_pc8fa"]
+script = ExtResource("2_uyq8g")
+key = &"lighter"
+curve = SubResource("Curve_fc8ui")
+
+[sub_resource type="Curve" id="Curve_jq51q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19531, 0), 0.0, 0.0, 0, 0, Vector2(0.259436, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.749542, 0.0450798), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_eoi1n"]
+script = ExtResource("2_uyq8g")
+key = &"mirror"
+curve = SubResource("Curve_jq51q")
+
+[sub_resource type="Curve" id="Curve_x7qbm"]
+_data = [Vector2(0.286918, 0), 0.0, 0.0, 0, 0, Vector2(0.392268, 0.105671), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_xgie4"]
+script = ExtResource("2_uyq8g")
+key = &"muesli"
+curve = SubResource("Curve_x7qbm")
+
+[sub_resource type="Curve" id="Curve_j2ufn"]
+_data = [Vector2(0, 0.214736), 0.0, 0.0, 0, 0, Vector2(0.245694, 0.384392), 0.0, 0.0, 0, 0, Vector2(1, 0.129908), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_lf5yd"]
+script = ExtResource("2_uyq8g")
+key = &"water_balloon"
+curve = SubResource("Curve_j2ufn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
 size = Vector2(14, 10)
@@ -20,6 +147,7 @@ size = Vector2(16, 12)
 collision_mask = 0
 script = ExtResource("1_jluyq")
 puzzle_size_curve = SubResource("Curve_ioxsh")
+puzzle_items = Array[ExtResource("2_uyq8g")]([SubResource("Resource_d3n61"), SubResource("Resource_d56of"), SubResource("Resource_kk0fw"), SubResource("Resource_oukl8"), SubResource("Resource_wrhe1"), SubResource("Resource_ifyqd"), SubResource("Resource_icfqo"), SubResource("Resource_2sghh"), SubResource("Resource_5r0ry"), SubResource("Resource_ofsq1"), SubResource("Resource_pc8fa"), SubResource("Resource_eoi1n"), SubResource("Resource_xgie4"), SubResource("Resource_lf5yd")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)

@@ -336,3 +336,21 @@ DIALOGUE ballgame_lose
 	your fool! no level for you.
 
 
+DIALOGUE sliding_pizzle_what
+	this stone column houses an ancient secret.
+CHOICES yes,no
+	would you like to try extract it?
+CHOICE_LINK yes
+	good luck.
+CHOICE_LINK no
+	maybe some other adventurer will, then.
+
+
+DIALOGUE sliding_puzzle_win
+	you solved the puzzle!
+
+
+DIALOGUE sliding_puzzle_lose
+	then the mystery is lost forever.
+
+
