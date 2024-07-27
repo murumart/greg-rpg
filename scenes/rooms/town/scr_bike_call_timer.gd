@@ -34,7 +34,7 @@ func _ready() -> void:
 		return
 	timeout.connect(func():
 		if (
-				Math.inrange(ResMan.get_character("greg").level, 10, 20)
+				Math.inrange(ResMan.get_character("greg").level, 11, 20)
 				and DAT.get_data("bike_ghosts_fought", []).size() < 1
 				and not active
 				and not chasing
@@ -44,7 +44,7 @@ func _ready() -> void:
 			SOL.dialogue_closed.connect(func(): active = true, CONNECT_ONE_SHOT)
 		elif active and not is_close_enough():
 			cycles += 1
-			if cycles > 9 and cycles < 100:
+			if cycles > 14 and cycles < 100:
 				cycles = 300 # disable
 				SOL.dialogue("phone_bike_ghost_call_ignore")
 				SND.play_song("")
