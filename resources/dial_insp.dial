@@ -1,3 +1,6 @@
+MACRO SUNCOLOR #ffbb99
+
+
 DIALOGUE insp_snowdrops
 	spring flowers.
 
