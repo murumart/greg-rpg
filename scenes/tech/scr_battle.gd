@@ -215,6 +215,7 @@ func load_battle(_info: BattleInfo) -> void:
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
 	BattleActor.battle_hash = _info.get_hash()
+	print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
 		var damage := questing.get_perk_enemy_start_damage() as int
