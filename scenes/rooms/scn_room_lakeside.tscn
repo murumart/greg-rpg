@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=82 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -106,9 +106,16 @@ property = "gummy_fish"
 chance = 0.3
 unique = false
 
+[sub_resource type="Resource" id="Resource_vkvty"]
+script = ExtResource("7_7ppah")
+type = 1
+property = "water_balloon"
+chance = 0.189
+unique = false
+
 [sub_resource type="Resource" id="Resource_k01d4"]
 script = ExtResource("8_ecjdo")
-rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt"), SubResource("Resource_mc386")])
+rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt"), SubResource("Resource_mc386"), SubResource("Resource_vkvty")])
 
 [sub_resource type="Resource" id="Resource_o50vv"]
 script = ExtResource("9_8d332")

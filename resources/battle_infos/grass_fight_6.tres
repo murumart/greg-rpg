@@ -8,7 +8,7 @@
 script = ExtResource("1_84jqd")
 type = 1
 property = "gummy_worm"
-chance = 0.4
+chance = 0.496
 unique = false
 
 [sub_resource type="Resource" id="Resource_j25ci"]
@@ -22,7 +22,7 @@ unique = false
 script = ExtResource("1_84jqd")
 type = 1
 property = "water_balloon"
-chance = 0.473
+chance = 0.125
 unique = false
 
 [sub_resource type="Resource" id="Resource_mqcxo"]
