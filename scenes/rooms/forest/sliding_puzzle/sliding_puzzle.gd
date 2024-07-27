@@ -57,6 +57,9 @@ func _select_tiles() -> void:
 
 
 func _move_tiles() -> void:
+	if Input.is_action_just_pressed("cancel"):
+		state = States.SOMETHING_ELSE
+		finished.emit(false)
 	if Input.is_action_just_pressed("ui_accept"):
 		var direction := _get_tile_move_direction(pointer_position)
 		if direction == Vector2i.ZERO:

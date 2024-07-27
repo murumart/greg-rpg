@@ -156,6 +156,7 @@ offset_bottom = 102.0
 
 [node name="_TextureRect_23" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 62.0
 offset_top = 2.0
 offset_right = 82.0
@@ -171,6 +172,7 @@ text = "1"
 
 [node name="_TextureRect_25" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 22.0
 offset_top = 62.0
 offset_right = 42.0
@@ -186,6 +188,7 @@ text = "2"
 
 [node name="_TextureRect_27" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 62.0
 offset_top = 22.0
 offset_right = 82.0
@@ -201,6 +204,7 @@ text = "3"
 
 [node name="_TextureRect_29" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 42.0
 offset_top = 22.0
 offset_right = 62.0
@@ -216,6 +220,7 @@ text = "4"
 
 [node name="_TextureRect_31" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 62.0
 offset_top = 42.0
 offset_right = 82.0
@@ -231,6 +236,7 @@ text = "5"
 
 [node name="_TextureRect_33" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 22.0
 offset_top = 22.0
 offset_right = 42.0
@@ -246,6 +252,7 @@ text = "6"
 
 [node name="_TextureRect_35" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 42.0
 offset_top = 62.0
 offset_right = 62.0
@@ -261,6 +268,7 @@ text = "7"
 
 [node name="_TextureRect_37" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 22.0
@@ -276,6 +284,7 @@ text = "8"
 
 [node name="_TextureRect_39" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 2.0
 offset_top = 42.0
 offset_right = 22.0
@@ -291,6 +300,7 @@ text = "9"
 
 [node name="_TextureRect_41" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 62.0
 offset_top = 62.0
 offset_right = 82.0
@@ -306,6 +316,7 @@ text = "10"
 
 [node name="_TextureRect_43" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 2.0
 offset_top = 62.0
 offset_right = 22.0
@@ -321,6 +332,7 @@ text = "11"
 
 [node name="_TextureRect_45" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 42.0
 offset_top = 2.0
 offset_right = 62.0
@@ -336,6 +348,7 @@ text = "12"
 
 [node name="_TextureRect_47" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 2.0
 offset_top = 22.0
 offset_right = 22.0
@@ -351,6 +364,7 @@ text = "13"
 
 [node name="_TextureRect_49" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 22.0
 offset_top = 2.0
 offset_right = 42.0
@@ -366,6 +380,7 @@ text = "14"
 
 [node name="_TextureRect_51" type="TextureRect" parent="TileHaver"]
 material = ExtResource("4_j12ag")
+layout_mode = 0
 offset_left = 22.0
 offset_top = 42.0
 offset_right = 42.0
