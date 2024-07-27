@@ -103,7 +103,7 @@ func shuffle(line: int) -> void:
 		guy.move_to(uguy_pos_2.global_position)
 
 
-func look(line: int) -> void:
+func look(_line: int) -> void:
 	if SOL.dialogue_box.loaded_dialogue_line.character == "mail_man":
 		guy.direct_walking_animation(Vector2.UP)
 		return

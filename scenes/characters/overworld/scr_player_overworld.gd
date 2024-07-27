@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 
 func set_state(to: States) -> void:
 	state = to
-	set_collision_mask_value(4, bool(int(to)))
+	set_collision_mask_value(4, not bool(int(to)))
 	if not is_inside_tree():
 		return
 	#direct_animation()
@@ -151,7 +151,6 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
-	print(collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 		return
