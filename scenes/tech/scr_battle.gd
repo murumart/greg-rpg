@@ -719,6 +719,8 @@ func _on_spirit_name_submitted(submission: String) -> void:
 
 			await get_tree().create_timer(1.5).timeout
 			current_guy.use_spirit(spirit_id, current_target)
+			SOL.vfx_damage_number(Vector2(0, 32), "-" + str(spirit.cost),
+					Color.DEEP_SKY_BLUE)
 			append_action_history(
 					"spirit", {"spirit":
 						spirit_id, "target": current_target})
