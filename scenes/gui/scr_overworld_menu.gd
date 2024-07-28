@@ -21,7 +21,7 @@ var current_tab := 0
 @onready var mem_portrait := $Panel/InfoPanel/MemberInfo/Portrait
 @onready var mem_infotext := $Panel/InfoPanel/MemberInfo/MainInfoText
 
-@onready var item_spirit_tabs := $Panel/ItemSpiritTabs
+@onready var item_spirit_tabs := $Panel/ItemSpiritTabs as TabContainer
 @onready var item_container := $Panel/ItemSpiritTabs/items/Scroll/ItemsContainer
 @onready var item_scroll_container: ScrollContainer = $Panel/ItemSpiritTabs/items/Scroll
 @onready var used_spirit_container := $Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Scroll/UsedSpiritContainer

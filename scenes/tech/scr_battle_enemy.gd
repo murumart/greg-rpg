@@ -219,7 +219,8 @@ func pick_target(who: int = 0) -> BattleActor:
 			target = Math.determ_pick_random(reference_to_opposing_array, rng)
 			if is_instance_valid(target):
 				return target
-		target = Math.determ_pick_random(extra_targets, rng)
+		target = Math.determ_pick_random(extra_targets
+				.filter(func(a: BattleActor): return a.state != States.DEAD), rng)
 		if is_instance_valid(target):
 			return target
 	return null
