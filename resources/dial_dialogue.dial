@@ -3,7 +3,6 @@ MACRO YUKUCOLOR #88aaff
 MACRO WLICOLOR #ff8888
 MACRO GREEN #00ff00
 MACRO PURPLE #ff00ff
-MACRO SUNCOLOR #ffbb99
 MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
@@ -250,6 +249,13 @@ CHAR zerma
 
 DIALOGUE zerma_fight_3_item_greg
 CHAR zerma
+	that wasn't a pocket candy, greg!
+	you're supposed to use a pocket candy!!
+	try again!
+
+
+DIALOGUE zerma_fight_3_item_greg_pocket_candy
+CHAR zerma
 	you're a natural! ahaha!
 	here comes your next lesson.
 	see that big [color=SPIRITCOLOR]spirit[/color] button?
@@ -268,12 +274,16 @@ SPEED 1
 	good luck!
 
 
-DIALOGUE zerma_fight_3_item_zerma
+DIALOGUE zerma_fight_3_item_zerma_pocket_candy
 CHAR zerma
 	no... use the healing item on yourself.
 	don't heal the enemy you're trying to defeat!
 	here, take another healing item.
 	use it on yourself!
+
+
+DIALOGUE zerma_fight_3_item
+ACTUALLY zerma_fight_3_else
 
 
 DIALOGUE zerma_fight_3_attack_zerma

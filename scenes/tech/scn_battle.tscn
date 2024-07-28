@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="Resource" uid="uid://wy2pad6a4u0h" path="res://resources/battle_infos/zerma_tutorial.tres" id="2_cg588"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Resource" uid="uid://c0ncj8xjt5dma" path="res://resources/battle_infos/grandma_bossfight.tres" id="2_wi702"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -63,7 +63,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_wi702")
+load_options = ExtResource("2_cg588")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 ignore_rotation = false
@@ -502,7 +502,7 @@ wait_time = 0.07
 script = ExtResource("10_7y584")
 level_gain = 88
 new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish"])
-replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler"])
+replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler", &"pocket_candy", &"pocket_candy", &"pocket_candy"])
 replace_armour = &"rain_boot"
 replace_weapon = &"bronze_rifle"
 force_spirits_into_use = true

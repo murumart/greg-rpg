@@ -1,7 +1,7 @@
 extends BattleEnemy
 
 const TUTORIAL_PROGRESS_LINES := ["zerma_fight_2_attack_zerma",
-	"zerma_fight_3_item_greg", "zerma_fight_4_spirit_zerma",
+	"zerma_fight_3_item_greg_pocket_candy", "zerma_fight_4_spirit_zerma",
 	"zerma_fight_4_spirit_greg", "zerma_fight_5_else", "zerma_fight_6_attack_zerma"]
 const DISABLE_SELF_HARM_LINES := ["zerma_fight_3_attack_zerma",
 	"zerma_fight_3_attack_greg", "zerma_fight_4_attack_zerma",
@@ -39,8 +39,15 @@ func hurt(amount: float, gender: int) -> void:
 
 
 func _on_player_act_finished() -> void:
-	var dialogue_key := "zerma_fight_%s_%s_%s" % [progress, get_la().get("type"),
-		get_la_parm("target").character.name_in_file if get_la_parm("target") else ""]
+	var last_action := get_la()
+	var last_action_type := last_action.get("type") as String
+	var target := get_la_parm("target") as BattleActor
+	var dialogue_key := ""
+	dialogue_key = "zerma_fight_%s_%s_%s" % [progress, last_action_type,
+			target.character.name_in_file if target else ""]
+	if last_action_type == "item":
+		if SOL.dialogue_exists(dialogue_key + "_" + get_la_parm("item")):
+			dialogue_key += "_" + get_la_parm("item")
 	if not SOL.dialogue_exists(dialogue_key):
 		dialogue_key = "zerma_fight_%s_else" % progress
 	await get_tree().process_frame
