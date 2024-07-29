@@ -410,6 +410,7 @@ text = "press x to give up"
 
 [node name="RockSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8v4t4")
+volume_db = 2.0
 pitch_scale = 1.05
 max_polyphony = 5
 bus = &"ECHO"
