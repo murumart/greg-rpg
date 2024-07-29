@@ -196,6 +196,8 @@ func _input(event: InputEvent) -> void:
 		SND.menusound()
 	select(cur_opt)
 	modify(move.x)
+	if event.is_action_pressed("ui_accept"):
+		toggle()
 
 
 func save_options() -> void:
@@ -216,6 +218,16 @@ func load_options() -> void:
 	keybinds.load_inputs()
 	get_window().mode = (Window.MODE_FULLSCREEN
 			if get_opt("fullscreen") else Window.MODE_WINDOWED)
+
+
+func toggle() -> void:
+	var opt_contain := get_option_nodes()
+	var container := opt_contain[cur_opt]
+	var type: String = container.get_meta("type", "")
+	var option := IONS.get(type, {}) as Dictionary
+	if option.get("display", TYPE_FLOAT) in [TYPE_BOOL, TYPE_VECTOR2]:
+		var value := option.get("value") as float
+		modify(-1.0 if value else 1.0)
 
 
 func select(opti: int) -> void:
