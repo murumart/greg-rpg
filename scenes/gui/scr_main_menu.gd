@@ -47,11 +47,15 @@ func _input(event: InputEvent) -> void:
 	if not event is InputEventKey:
 		return
 	var hf := (buttons.any(func(a: Button): return a.has_focus()))
-	if not hf and not SOL.save_menu_open and not SOL.dialogue_open:
+	if (not hf
+			and not SOL.save_menu_open
+			and not SOL.dialogue_open
+			and not $VBoxContainer/CreditsButton/TextPanel.visible):
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
-	if event.is_action_pressed("cancel"):
+	elif (event.is_action_pressed("cancel") and not SOL.dialogue_open):
 		$VBoxContainer/MailButton/MailPanel.hide()
 		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
+		$VBoxContainer/CreditsButton/TextPanel.hide()
 
 
 func _on_new_game_button_pressed() -> void:
@@ -141,6 +145,7 @@ func button_focuses() -> void:
 
 
 func _on_credits_button_pressed() -> void:
+	get_window().gui_release_focus()
 	$VBoxContainer/CreditsButton/TextPanel.show()
 	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.reset.call_deferred()
 	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.check.call_deferred()

@@ -91,7 +91,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# by popular demand: you can use multiple keys to do it
 	if (event.is_action_pressed("cancel")
 			or event.is_action_pressed("menu")
-			or event.is_action_pressed("escape")):
+			or event.is_action_pressed("escape")) and not SOL.dialogue_open:
 		DAT.free_player("save_screen")
 		queue_free()
 	# i like this input scheme i've devised.
@@ -107,7 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if old_button != current_button:
 		SND.menusound(2.0)
 	if event.is_action_pressed("ui_text_delete"):
-		if erasure_enabled:
+		if erasure_enabled and FileAccess.file_exists(ABSOLUTE_SAVE_PATH % current_button):
 			SOL.dialogue("save_deletion_confirmation")
 			SOL.dialogue_closed.connect(func():
 				if SOL.dialogue_choice != &"no":
@@ -204,7 +204,7 @@ func _on_button_pressed(reference: Variant) -> void:
 			var discrepancy: bool = (
 					DAT.seconds < data.get("seconds", -1)
 					or DAT.get_data("nr", 0) != data.get("nr", -1)
-			)
+			) and not data.is_empty()
 			if discrepancy:
 				SOL.dialogue("save_warning_overwrite")
 				await SOL.dialogue_closed

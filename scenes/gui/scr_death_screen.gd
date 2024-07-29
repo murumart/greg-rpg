@@ -73,6 +73,8 @@ const DEATH_REASONS := {
 @onready var retry_button: Button = $HBoxContainer/RetryButton
 @onready var quit_button: Button = $HBoxContainer/QuitButton
 
+var leaving := false
+
 
 func _ready() -> void:
 	DAT.free_player("all")
@@ -111,4 +113,7 @@ func _on_retry_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	if leaving:
+		return
 	LTS.level_transition("res://scenes/gui/scn_main_menu.tscn")
+	leaving = true
