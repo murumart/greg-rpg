@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+signal finished
+
 const SlidingPuzzleLoad := preload("res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.tscn")
 
 @export var puzzle_size_curve: Curve
@@ -36,6 +38,7 @@ func _play_game() -> void:
 		DAT.free_player("sliding_puzzle")
 		if won:
 			rewards.grant(true)
+		self.finished.emit()
 	)
 
 

@@ -60,7 +60,8 @@ const DB = {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/puzzle_column.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 111,
-		LIMIT: 1
+		LIMIT: 1,
+		FUNCTION: &"_connect_pizzle_finish",
 	},
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),

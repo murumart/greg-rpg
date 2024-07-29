@@ -355,3 +355,7 @@ func _delete_item_on_pickup(a: PickableItem) -> void:
 		generated_objects.erase(a.global_position)
 	)
 
+
+func _connect_pizzle_finish(a: Node2D) -> void:
+	a.finished.connect(forest.hud.update_exp_display)
+

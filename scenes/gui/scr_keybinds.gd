@@ -93,7 +93,7 @@ static func load_inputs() -> void:
 	var config := ConfigFile.new()
 	var err := config.load("user://greg_rpg/keybinds.cfg")
 	if err != OK:
-		printerr("err config file not")
+		print("keybinds config file doesn't exist")
 		return
 	for action in CHANGEABLE:
 		var events := InputMap.action_get_events(action)

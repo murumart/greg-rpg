@@ -21,8 +21,8 @@ key = &"gummy_worm"
 curve = SubResource("Curve_ulb7b")
 
 [sub_resource type="Curve" id="Curve_nmq21"]
-_data = [Vector2(0, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.0716379, 0.554047), 0.0, 0.0, 0, 0, Vector2(0.158666, 0.360155), 0.0, 0.0, 0, 0, Vector2(0.30066, 0.372273), 0.0, 0.0, 0, 0, Vector2(0.387688, 0.650994), 0.0, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 0.0935529), 0.0, 0.0, 0, 0, Vector2(0.0716379, 0.554047), 0.0, 0.0, 0, 0, Vector2(0.30066, 0.372273), 0.0, 0.0, 0, 0, Vector2(0.387688, 0.650994), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Resource" id="Resource_d56of"]
 script = ExtResource("2_uyq8g")
@@ -57,7 +57,7 @@ key = &"bread"
 curve = SubResource("Curve_1lbha")
 
 [sub_resource type="Curve" id="Curve_ua36m"]
-_data = [Vector2(0, 0.0571982), 0.0, 0.0, 0, 0, Vector2(0.0991205, 0.444983), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.0571982), 0.0, 0.0, 0, 0, Vector2(0.0491803, 0.714286), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_ifyqd"]

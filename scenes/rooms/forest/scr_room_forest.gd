@@ -46,7 +46,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func _setup_gates() -> void:
 	var gates := $Gates
-	hud.update_compass(ForestGenerator.NORTH)
+	hud.update_compass(-1)
 	for i in gates.get_child_count():
 		var gate := gates.get_child(i) as Area2D
 		gate.body_entered.connect(
