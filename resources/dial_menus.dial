@@ -92,6 +92,10 @@ DIALOGUE spirit_equip_tutorial
 	remember to equip it to use it in battle.
 
 
+DIALOGUE getglass
+	%s glass were received.
+
+
 DIALOGUE emptyreward
 	you are not fit for a reward.
 

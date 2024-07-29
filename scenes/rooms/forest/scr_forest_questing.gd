@@ -98,3 +98,9 @@ func get_perk_enemy_start_damage() -> int:
 func get_perk_experience_multiplier() -> float:
 	return active_perks.get("experience_multiplier", 0.0)
 #endregion
+
+
+func grant_glass(amount: int) -> void:
+	glass += amount
+	SOL.dialogue_box.dial_concat("getglass", 0, [absi(amount)])
+	SOL.dialogue("getglass")

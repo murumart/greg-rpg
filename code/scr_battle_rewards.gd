@@ -69,7 +69,7 @@ func grant(speak := true) -> void:
 	if exp_pool < 1 and spirit_pool.is_empty() and item_pool.is_empty() and silver_pool < 1:
 		SOL.dialogue("emptyreward")
 	if glass_pool and DAT.get_data("forest_questing", null):
-		(DAT.get_data("forest_questing") as ForestQuesting).glass += glass_pool
+		(DAT.get_data("forest_questing") as ForestQuesting).grant_glass(glass_pool)
 	granted.emit()
 
 
