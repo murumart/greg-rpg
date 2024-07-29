@@ -92,7 +92,9 @@ func valid_placement_spot(pos: Vector2) -> bool:
 	var tds := [
 		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos),
 		forest.paths.get_cell_tile_data(
-			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.UP))
+			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.UP)),
+		forest.paths.get_cell_tile_data(
+			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.DOWN))
 	]
 	for td: TileData in tds:
 		if not (not td or (

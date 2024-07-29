@@ -892,7 +892,7 @@ altruism = 0.949
 innovation = 0.5
 xp_multiplier = 4.0
 gender = 4
-effect_immunities = Array[String](["little", "sopping"])
+effect_immunities = Array[StringName]([&"little", &"sopping"])
 
 [node name="Node" type="Node" parent="."]
 
