@@ -26,6 +26,10 @@ func _ready() -> void:
 	for x in other_kids:
 		if is_instance_valid(x):
 			x.queue_free()
+	var can_teleport: bool = sin(DAT.get_data("nr", 0) * 16.0) < 0.0
+	if can_teleport:
+		for member: OverworldCharacter in members:
+			member.cannot_reach_target.connect(_cannot_reach_target.bind(member))
 	clown.inspected.connect(_clown_inspected)
 	for member: OverworldCharacter in inter_members:
 		member.inspected.connect(_stop_moving)
@@ -72,3 +76,13 @@ func _ballgame_finished() -> void:
 	greg.set_collision_mask_value(1, true)
 	greg.set_collision_mask_value(4, true)
 	SND.play_song(last_music)
+
+
+func _cannot_reach_target(who: OverworldCharacter) -> void:
+	if not is_instance_valid(who.chase_target):
+		return
+	var tw := create_tween()
+	SND.play_sound_2d(preload("res://sounds/teleport.ogg"),
+			who.chase_target.global_position,
+			{"pitch_scale": randf_range(0.9, 1.2)})
+	tw.tween_property(who, "global_position", who.chase_target.global_position, 0.1)

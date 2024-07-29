@@ -136,8 +136,32 @@ func play_sound(sound: AudioStream, options := {}) -> AudioStreamPlayer:
 	player.bus = options.get("bus", "Master")
 	player.volume_db = options.get("volume", 0.0)
 	player.pitch_scale = maxf(options.get("pitch_scale", 1.0), 0.001)
-	if options.get("autofree", true): playing_sounds.append(player)
+	if options.get("autofree", true):
+		playing_sounds.append(player)
 	add_child(player)
+	player.play()
+	if not options.get("return", false):
+		return null
+	return player
+
+
+func play_sound_2d(sound: AudioStream,
+		position: Vector2, options := {}) -> AudioStreamPlayer2D:
+	if playing_sounds.size() >= MAX_SOUNDS_PLAYING:
+		return null
+	var player := AudioStreamPlayer2D.new()
+	if "loop" in sound:
+		sound.loop = false
+	player.name = str(sound)
+	player.stream = sound
+	player.bus = options.get("bus", "Master")
+	player.volume_db = options.get("volume", 0.0)
+	player.pitch_scale = maxf(options.get("pitch_scale", 1.0), 0.001)
+	player.max_distance = options.get("max_distance", 120.0)
+	if options.get("autofree", true):
+		playing_sounds.append(player)
+	add_child(player)
+	player.global_position = position
 	player.play()
 	if not options.get("return", false):
 		return null
@@ -152,9 +176,12 @@ func menusound(pitch := 1.0, options := {}) -> void:
 # clearing silent audio players
 func _on_sound_clear_timer_timeout() -> void:
 	for s in playing_sounds:
-		if not is_instance_valid(s): continue
-		var player := s as AudioStreamPlayer
-		if !player.playing and !player.stream_paused:
+		if not is_instance_valid(s):
+			continue
+		var player = s as AudioStreamPlayer
+		if not player:
+			player = s as AudioStreamPlayer2D
+		if not player.playing and not player.stream_paused:
 			playing_sounds.erase(player)
 			player.call_deferred("queue_free")
 	for s in playing_sounds:
