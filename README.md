@@ -1,6 +1,6 @@
 # Greg RPG
 
-Greetings. Welcome to the Greg RPG Github page. I wonder how you ended up here... Anyway, gear up with your `await get_tree().process_frame` and enjoy the show. Laugh at my code, it is better than crying.
+Greetings. Welcome to the Greg RPG Git repository. Please play the game before perusing the files. Don't spoil anything for others or yourself.
 
 
 ## What is "Greg RPG"?
@@ -9,7 +9,9 @@ I started developing this game with a clear idea in my head. A crudely drawn, sh
 
 Then I started caring about Greg. So in April of 2024, it'll have been 2 years since the very start of the whole project. The current project folder was created in January of 2023, and is nowhere near complete. Maybe because I keep adding nonsensical features that do not progress the story. Maybe... snif.. maybe.
 
-More info about Greg RPG can be found [here](https://murumart.neocities.org/g/gregrpg). 
+It will be released on Itch and Game Jolt in the summer of 2024. Soon!
+
+More info about Greg RPG can be found [here](https://murumart.neocities.org/g/gregrpg).
 
 
 ## Running the game from Github source
