@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/decor/scr_overworld_car.gd" id="1_vjj1t"]
 [ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="2_m88pi"]
-[ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/snd_car_motor.ogg" id="3_e1sfs"]
+[ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="3_e1sfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jn82m"]
 resource_local_to_scene = true
@@ -18,7 +18,7 @@ region_rect = Rect2(0, 0, 28, 14)
 
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_layer = 12
-collision_mask = 2
+collision_mask = 10
 
 [node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea"]
 shape = SubResource("RectangleShape2D_jn82m")

@@ -1,4 +1,4 @@
-extends Node2D
+class_name CarOverworld extends Node2D
 
 # cars that drive around and hit people (you (greg))
 
@@ -42,7 +42,7 @@ func _ready() -> void:
 		return
 	if not moves:
 		$VroomVroom.stop()
-	collision_area.body_entered.connect(_on_collided_with_player)
+	collision_area.body_entered.connect(_on_collision)
 	position = DAT.get_data(get_save_key("position"), position)
 	current_target = DAT.get_data(get_save_key("current_target"), current_target)
 	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
@@ -69,8 +69,9 @@ func set_target(add: int) -> void:
 	if pause:
 		moves = false
 		paused.emit()
-		get_tree().create_timer(pause).timeout.connect(
-			func(): moves = true; resumed.emit())
+		get_tree().create_timer(pause).timeout.connect(func():
+			moves = true
+			resumed.emit())
 	if path_points:
 		current_target = wrapi(current_target + add, 0, path_points.size())
 		target = (path_points[current_target].global_position)
@@ -87,8 +88,18 @@ func at_which_path_point() -> Node2D:
 	return null
 
 
-func _on_collided_with_player(_player) -> void:
-	if not moves or DAT.player_capturers.has("ballgame"):
+func _on_collision(ob: Node2D) -> void:
+	if not moves:
+		return
+	if ob is PlayerOverworld:
+		_on_collided_with_player(ob)
+	elif ob is OverworldCharacter:
+		if ob.has_method("_car_collision_response"):
+			ob._car_collision_response(self)
+
+
+func _on_collided_with_player(_pl: PlayerOverworld) -> void:
+	if DAT.player_capturers.has("ballgame"):
 		return
 	# cars don't spawncamp
 	if DAT.seconds - DAT.load_second < 2:
