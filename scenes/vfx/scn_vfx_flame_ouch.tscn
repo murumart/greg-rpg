@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://3vhlgnq68xoh"]
+
+[ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="1_olqhc"]
+[ext_resource type="AudioStream" uid="uid://b64cuxds1ww1a" path="res://sounds/fire.ogg" id="2_ojpai"]
+[ext_resource type="AudioStream" uid="uid://gv3cwxlrc2ww" path="res://sounds/spirit/grassyvengeance.ogg" id="3_gvw5i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2tqx7"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6e4br"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.188679, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_45jv5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.421384, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_lp4yh"]
+curve_x = SubResource("Curve_6e4br")
+curve_y = SubResource("Curve_45jv5")
+
+[sub_resource type="Curve" id="Curve_dbwph"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.264151, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.54945), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbjdx"]
+width = 100
+curve = SubResource("Curve_dbwph")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4yx0n"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 53.76
+initial_velocity_max = 75.27
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_lp4yh")
+gravity = Vector3(0, 25, 0)
+radial_accel_min = 32.0
+radial_accel_max = 32.8
+scale_curve = SubResource("CurveTexture_fbjdx")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 0.3495
+
+[sub_resource type="Animation" id="Animation_4eo6e"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ojpai")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 1.2204,
+"stream": ExtResource("3_gvw5i")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8lse7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4tbv"]
+_data = {
+"RESET": SubResource("Animation_8lse7"),
+"new_animation": SubResource("Animation_4eo6e")
+}
+
+[node name="VfxFlameOuch" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2tqx7")
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_4yx0n")
+texture = ExtResource("1_olqhc")
+explosiveness = 0.59
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v4tbv")
+}
+autoplay = "new_animation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 3
+bus = &"ECHO"

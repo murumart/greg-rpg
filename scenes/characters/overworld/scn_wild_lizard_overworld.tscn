@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene load_steps=37 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
@@ -93,6 +93,15 @@ script = ExtResource("5_krk2i")
 key = &"aardvark"
 curve = SubResource("Curve_6jtsf")
 
+[sub_resource type="Curve" id="Curve_xgdos"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10084, 0.0879121), 0.0, 0.0, 0, 0, Vector2(0.210084, 0.43956), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_jmlxt"]
+script = ExtResource("5_krk2i")
+key = &"forest_fire"
+curve = SubResource("Curve_xgdos")
+
 [sub_resource type="Curve" id="Curve_xxdpe"]
 max_value = 4.0
 _data = [Vector2(0.0676494, 1.14782), 0.0, 0.0, 0, 0, Vector2(0.139983, 2.03409), 0.0, 0.0, 0, 0, Vector2(0.191651, 3.12178), 0.0, 0.0, 0, 0, Vector2(0.363874, 4), 0.0, 0.0, 0, 0]
@@ -172,7 +181,7 @@ animation = &"walk_down"
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_1wms1")
-values = Array[ExtResource("5_krk2i")]([SubResource("Resource_wf6no"), SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb"), SubResource("Resource_jgm32"), SubResource("Resource_6keoo"), SubResource("Resource_fhegs")])
+values = Array[ExtResource("5_krk2i")]([SubResource("Resource_wf6no"), SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb"), SubResource("Resource_jgm32"), SubResource("Resource_6keoo"), SubResource("Resource_fhegs"), SubResource("Resource_jmlxt")])
 enemy_amount_by_level = SubResource("Curve_xxdpe")
 default_battle = SubResource("Resource_5excg")
 inject_target = NodePath("..")

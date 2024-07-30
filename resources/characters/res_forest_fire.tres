@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d3hh3nts3jwb"]
+
+[ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="1_miep6"]
+[ext_resource type="Script" path="res://code/scr_character.gd" id="1_t1mcr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1yyl"]
+atlas = ExtResource("1_miep6")
+region = Rect2(18, 18, 22, 22)
+
+[resource]
+script = ExtResource("1_t1mcr")
+name_in_file = &""
+name = "forest fire"
+info = "it burns! fire! fire! fire!"
+portrait = SubResource("AtlasTexture_j1yyl")
+max_health = 50.0
+health = 50.0
+max_magic = 30.0
+magic = 30.0
+level = 67
+experience = 0
+attack = 72.0
+defense = 55.0
+speed = 67.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["flame_ouch"])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = "forest_fire_attack"

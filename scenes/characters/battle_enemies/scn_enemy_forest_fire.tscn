@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://c34sc0n27wh2t"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_x23wt"]
+[ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="2_ra7f7"]
+[ext_resource type="Texture2D" uid="uid://5m1le3nirur1" path="res://sprites/vfx/spr_fire.png" id="3_slqds"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mlt5e"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_fh2ot"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.264151, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.54945), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g68js"]
+width = 100
+curve = SubResource("Curve_fh2ot")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jpr34"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 25, 1)
+gravity = Vector3(0, 25, 0)
+scale_curve = SubResource("CurveTexture_g68js")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 0.3495
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_50p1f"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_n4dja"]
+_data = [Vector2(0, 0.791209), 0.0, 0.0, 0, 0, Vector2(0.201258, 1), 0.0, 0.0, 0, 0, Vector2(0.352201, 1), 0.0, 0.0, 0, 0, Vector2(0.849057, 0.714286), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_37qgb"]
+width = 100
+curve = SubResource("Curve_n4dja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2r1ab"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 40.0
+gravity = Vector3(0, 10, 0)
+alpha_curve = SubResource("CurveTexture_37qgb")
+anim_speed_min = 0.5
+anim_speed_max = 1.0
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 1.31
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = -14.1
+
+[sub_resource type="Gradient" id="Gradient_grjen"]
+offsets = PackedFloat32Array(0, 0.267176, 0.59542, 0.969466)
+colors = PackedColorArray(0, 0, 0, 1, 0.89313, 0.89313, 0.89313, 1, 0.679555, 0.679555, 0.679555, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_01u3h"]
+gradient = SubResource("Gradient_grjen")
+
+[sub_resource type="Curve" id="Curve_qme83"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.264151, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.54945), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nbgbw"]
+width = 100
+curve = SubResource("Curve_qme83")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vrtfu"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 25, 1)
+angle_min = -15.5
+gravity = Vector3(0, 25, 0)
+scale_curve = SubResource("CurveTexture_nbgbw")
+color_ramp = SubResource("GradientTexture1D_01u3h")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_offset_max = 0.3495
+turbulence_enabled = true
+turbulence_noise_strength = 10.09
+turbulence_noise_scale = 2.737
+turbulence_noise_speed_random = 1.05
+turbulence_influence_max = 0.666
+turbulence_initial_displacement_min = -6.1
+turbulence_initial_displacement_max = 27.3
+
+[node name="ForestFire" type="Node2D"]
+script = ExtResource("1_x23wt")
+gender = 3
+effect_immunities = Array[StringName]([&"fire"])
+
+[node name="Particals" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particals"]
+material = SubResource("CanvasItemMaterial_mlt5e")
+process_material = SubResource("ParticleProcessMaterial_jpr34")
+texture = ExtResource("2_ra7f7")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Particals"]
+material = SubResource("CanvasItemMaterial_50p1f")
+amount = 28
+process_material = SubResource("ParticleProcessMaterial_2r1ab")
+texture = ExtResource("3_slqds")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particals"]
+material = SubResource("CanvasItemMaterial_mlt5e")
+process_material = SubResource("ParticleProcessMaterial_vrtfu")
+texture = ExtResource("2_ra7f7")
+lifetime = 4.0
