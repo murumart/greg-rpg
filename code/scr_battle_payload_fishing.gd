@@ -37,4 +37,5 @@ func get_effect_description() -> String:
 
 func set_fishing_data() -> void:
 	DAT.set_data("fishing_hook_data", item_id)
+	SND.play_sound(preload("res://sounds/equip.ogg"))
 
