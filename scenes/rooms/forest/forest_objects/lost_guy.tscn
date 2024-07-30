@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cya1prmls7nvb"]
+[gd_scene load_steps=8 format=3 uid="uid://cya1prmls7nvb"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_3t03i"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_3lid5"]
+[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_forest_lost_guy.gd" id="2_rsy27"]
+[ext_resource type="AudioStream" uid="uid://bgx5l2m38m32d" path="res://sounds/skating/s14.ogg" id="3_my1tx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xowwq"]
 resource_local_to_scene = true
@@ -16,8 +18,8 @@ resource_local_to_scene = true
 radius = 32.0
 
 [node name="LostGuy" instance=ExtResource("1_3t03i")]
-default_lines = Array[StringName]([&"lost_guy_1", &"lost_guy_2"])
-save = false
+script = ExtResource("2_rsy27")
+chase_distance = 32
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_xowwq")
@@ -36,3 +38,8 @@ position = Vector2(0, -8)
 texture = ExtResource("2_3lid5")
 region_enabled = true
 region_rect = Rect2(32, 16, 16, 16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("3_my1tx")
+pitch_scale = 0.1
+bus = &"ECHO"

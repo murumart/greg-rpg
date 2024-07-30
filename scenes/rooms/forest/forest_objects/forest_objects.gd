@@ -23,7 +23,7 @@ const DB = {
 	&"lost_guy": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/lost_guy.tscn"),
 		SIZE: Vector2i(1, 1),
-		WEIGHT: 12,
+		WEIGHT: 1,
 		LIMIT: 1
 	},
 	&"stump": {
