@@ -24,6 +24,7 @@ func _ready() -> void:
 	_draw_path()
 	canvas_modulate.color = canvas_modulate.color.darkened(0.1
 			* DAT.get_data("gdung_floor", 0))
+	await Math.timer(1.0)
 	if is_instance_valid(SND.current_song_player):
 		SND.current_song_player.pitch_scale = (
 				remap(DAT.get_data("gdung_floor", 0), 0, 2, 1.0, 0.94))
