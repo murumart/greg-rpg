@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleRewards" load_steps=9 format=3 uid="uid://dj6asjxe3g3g6"]
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=14 format=3 uid="uid://dj6asjxe3g3g6"]
 
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_pd5p8"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_temya"]
@@ -45,6 +45,41 @@ property = "water_balloon"
 chance = 0.405
 unique = false
 
+[sub_resource type="Resource" id="Resource_q2hy0"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "coin_lure"
+chance = 0.01
+unique = false
+
+[sub_resource type="Resource" id="Resource_emp5e"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "combo_lure"
+chance = 0.02
+unique = false
+
+[sub_resource type="Resource" id="Resource_74upe"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "drill_lure"
+chance = 0.08
+unique = false
+
+[sub_resource type="Resource" id="Resource_o8i7d"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "green_lure"
+chance = 0.03
+unique = false
+
+[sub_resource type="Resource" id="Resource_vrmrw"]
+script = ExtResource("1_pd5p8")
+type = 1
+property = "umbrella_lure"
+chance = 0.05
+unique = false
+
 [resource]
 script = ExtResource("1_temya")
-rewards = Array[ExtResource("1_pd5p8")]([SubResource("Resource_mkvpt"), SubResource("Resource_f2hp2"), SubResource("Resource_0v8c3"), SubResource("Resource_ccxbs"), SubResource("Resource_35lja"), SubResource("Resource_wd1w2")])
+rewards = Array[ExtResource("1_pd5p8")]([SubResource("Resource_mkvpt"), SubResource("Resource_f2hp2"), SubResource("Resource_0v8c3"), SubResource("Resource_ccxbs"), SubResource("Resource_35lja"), SubResource("Resource_wd1w2"), SubResource("Resource_q2hy0"), SubResource("Resource_emp5e"), SubResource("Resource_74upe"), SubResource("Resource_o8i7d"), SubResource("Resource_vrmrw")])

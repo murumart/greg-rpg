@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dak1nh3ur2kw0"]
+
+[ext_resource type="Script" path="res://code/scr_battle_payload_fishing.gd" id="1_fxs1i"]
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_ww0ef"]
+[ext_resource type="Texture2D" uid="uid://c04xmshynmbf5" path="res://sprites/fishing/spr_umbrella_lure.png" id="3_nvw0u"]
+
+[sub_resource type="Resource" id="Resource_jch0o"]
+script = ExtResource("1_fxs1i")
+world_hitbox_size_multiplier = 1.0
+horizontal_movement_speed_multiplier = 1.5
+vertical_movement_speed_multiplier = 0.75
+fish_hitbox_size_multiplier = 1.0
+combo_time_multiplier = 1.0
+point_multiplier = 1.0
+item_id = &"umbrella_lure"
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+
+[resource]
+script = ExtResource("1_ww0ef")
+name_in_file = &""
+name = &"the umbrella"
+description = "you won't get rained on during your long trek to the depths."
+texture = ExtResource("3_nvw0u")
+attack_animation = ""
+price = 190
+use = -1
+consume_on_use = true
+payload = SubResource("Resource_jch0o")

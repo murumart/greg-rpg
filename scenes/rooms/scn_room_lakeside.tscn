@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=83 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="7_7ppah"]
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
-[ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
 [ext_resource type="Script" path="res://code/scr_battle_info.gd" id="9_8d332"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="10_w8d1t"]
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/water_river.ogg" id="11_n82my"]
@@ -305,14 +305,6 @@ input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"gummy_fish"])
 
-[sub_resource type="Resource" id="Resource_n07d0"]
-script = ExtResource("18_7yl5j")
-title = "berries"
-silver_required = 100
-input = Array[StringName]([])
-silver_granted = 0
-output = Array[StringName]([&"berries"])
-
 [sub_resource type="Resource" id="Resource_gi2lg"]
 script = ExtResource("18_7yl5j")
 title = "balloon"
@@ -320,6 +312,22 @@ silver_required = 125
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"water_balloon"])
+
+[sub_resource type="Resource" id="Resource_jmtv4"]
+script = ExtResource("18_7yl5j")
+title = "lure"
+silver_required = 300
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"green_lure"])
+
+[sub_resource type="Resource" id="Resource_n07d0"]
+script = ExtResource("18_7yl5j")
+title = "berries"
+silver_required = 100
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"berries"])
 
 [sub_resource type="Resource" id="Resource_xyn8f"]
 script = ExtResource("18_7yl5j")
@@ -668,7 +676,7 @@ shape = SubResource("RectangleShape2D_0d6pt")
 
 [node name="KidOverworld" parent="Buildings/KidStand" instance=ExtResource("17_un030")]
 position = Vector2(0, 1)
-trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_qe2fe"), SubResource("Resource_n07d0"), SubResource("Resource_gi2lg"), SubResource("Resource_xyn8f")])
+trades = Array[ExtResource("18_7yl5j")]([SubResource("Resource_qe2fe"), SubResource("Resource_gi2lg"), SubResource("Resource_jmtv4"), SubResource("Resource_n07d0"), SubResource("Resource_xyn8f")])
 collision_extents = Vector2i(8, 5)
 
 [node name="Stand" type="Sprite2D" parent="Buildings/KidStand"]

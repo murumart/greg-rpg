@@ -37,11 +37,11 @@ meta = {}
 [resource]
 script = ExtResource("1_d8xq4")
 name_in_file = &""
-name = &"green lure"
+name = &"the green lure"
 description = "double points! close catch."
 texture = ExtResource("3_wbyv4")
 attack_animation = ""
-price = 0
+price = 240
 use = -1
 consume_on_use = true
 payload = SubResource("Resource_tymgo")
