@@ -13,6 +13,7 @@ var starting := false
 
 
 func _ready() -> void:
+	DAT.A = {}
 	ResMan.load_resources()
 	SOL.load_all_effects()
 	$LoadingScreen.call_deferred("hide")

@@ -83,6 +83,14 @@ static func load_resources() -> void:
 	resources_loaded = true
 
 
+static func kill_resources_forever() -> void:
+	characters.clear()
+	items.clear()
+	spirits.clear()
+	status_effect_types.clear()
+	forest_quests.clear()
+
+
 static func load_effects() -> void:
 	var effnames := _get_dir_contents("res://resources/status_effect_types/").map(
 		func(name: String):

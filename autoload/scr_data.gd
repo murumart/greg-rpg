@@ -313,6 +313,11 @@ func log_dat_chgs() -> bool:
 
 func init_data() -> void:
 	A.clear()
+	ResMan.kill_resources_forever()
+	ResMan.load_resources()
+	seconds = 0
+	playtime = 0
+	player_capturers.clear()
 	set_data("party", ["greg"])
 	set_data("nr", 0.0)
 	DAT.set_data("dance_battle_tutorialed", false)
