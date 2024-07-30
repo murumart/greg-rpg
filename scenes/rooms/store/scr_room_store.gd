@@ -171,6 +171,9 @@ func check_cashier_switch() -> void:
 
 
 func _on_kassa_speak_on_interact() -> void:
+	if _is_store_empty() and DAT.get_data("unpaid_items", []).is_empty():
+		SOL.dialogue("cashier_%s_store_empty" % store_cashier.cashier)
+		return
 	if wet_slop:
 		SOL.dialogue("cashier_%s_after_president_fight" % store_cashier.cashier)
 		return
@@ -250,3 +253,10 @@ func _mail_man_check() -> void:
 	if not is_mail_man_here():
 		mail_man.path_container = $Decor/MailManExitPath
 	pass
+
+
+func _is_store_empty() -> bool:
+	for shelf in shelves:
+		if int(shelf.type) != 0:
+			return false
+	return true

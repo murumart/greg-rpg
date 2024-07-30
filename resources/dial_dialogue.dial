@@ -450,12 +450,35 @@ CHAR cashier_nice
 	...and bring them here to pay.
 
 
+DIALOGUE cashier_nice_store_empty
+CHAR cashier_nice
+	get your items from the shelves...
+	...and bring them here to pay.
+	...
+	...no, there really are no items on the shelves.
+	i don't know why you're looking at me like that.
+	i'm not really responsible for anything.
+
+
 DIALOGUE cashier_mean_welcome
 ACTUALLY cashier_mean_tutorial
 
 
+DIALOGUE cashier_mean_store_empty
+CHAR cashier_nice
+	i'm sorry but the store has no stock at the moment!!
+	i'm sure we'll get this sorted soon though!!
+	the [color=YUKUCOLOR]yuku[/color] brand is committed to grant the best...
+	...customer experience possible!!
+	(smile, smile)
+
+
 DIALOGUE cashier_absent_welcome
 	there's no cashier here at the moment.
+
+
+DIALOGUE cashier_absent_store_empty
+	it's completely deserted in here.
 
 
 DIALOGUE cashier_nice_tutorial
