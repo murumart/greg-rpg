@@ -17,12 +17,17 @@ func _ready() -> void:
 	credits_label.text += FileAccess.open("res://credits.txt",
 			FileAccess.READ).get_as_text(true)
 	credits_label.text += "see credits in main menu for full attribution."
+	credits_label.text = "\n\n\n\n\n" + credits_label.text
 	_load_pictures()
-	SND.play_song("credits")
-	var duration := SND.current_song_player.stream.get_length()
+	#SND.play_song("credits")
+	var duration := 40.0
+	if is_instance_valid(SND.current_song_player):
+		duration = SND.current_song_player.stream.get_length()
 	await get_tree().process_frame
 	var tw := create_tween()
-	tw.tween_property(credits_scroll, "value", credits_scroll.max_value
+	tw.tween_property(self, "modulate:a", 1.0, 6.0).from(0.0)
+	tw.tween_interval(8.0)
+	tw.parallel().tween_property(credits_scroll, "value", credits_scroll.max_value
 			- credits_scroll.size.y, duration)
 	tw.parallel().tween_property(image_scroll, "value", image_scroll.max_value
 			- image_scroll.size.y, duration)

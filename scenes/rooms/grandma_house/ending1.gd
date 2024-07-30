@@ -84,7 +84,8 @@ func play() -> void:
 	e.append(1)
 	DIR.sej(3, e)
 	await Math.timer(8.0)
-	LTS.level_transition("res://scenes/gui/scn_end_credits.tscn")
+	var endcredits: Node = preload("res://scenes/gui/scn_end_credits.tscn").instantiate()
+	SOL.add_ui_child(endcredits)
 
 
 func _line_start(line: int) -> void:
