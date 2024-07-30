@@ -461,7 +461,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
 	
-	if pld is BattlePayloadFishing:
+	if pld is BattlePayloadFishing and character.name_in_file in DAT.get_data(
+			"party", ["greg"]):
 		pld.set_fishing_data()
 
 

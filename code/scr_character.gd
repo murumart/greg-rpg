@@ -195,7 +195,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	magic = clampf(magic + magic_change, 0.0, max_magic)
 	if pld.message_user:
 		message_owner.emit(pld.message_user)
-	if pld is BattlePayloadFishing:
+	if pld is BattlePayloadFishing and name_in_file in DAT.get_data("party", ["greg"]):
 		pld.set_fishing_data()
 
 
