@@ -2561,12 +2561,13 @@ layer_2/tile_data = PackedInt32Array()
 [node name="LayoutGenerator" type="Node" parent="Tiles"]
 script = ExtResource("3_1an2q")
 
-[node name="Decorator" type="Node" parent="Tiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line") groups=["room_gates"]]
+[node name="Decorator" type="Node" parent="Tiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line", "canvas_modulate") groups=["room_gates"]]
 script = ExtResource("4_hfwjo")
 generator = NodePath("../LayoutGenerator")
 greg = NodePath("../../Greg")
 objects_node = NodePath("../../Objects")
 path_line = NodePath("../../PathLine")
+canvas_modulate = NodePath("../../CanvasModulate")
 
 [node name="Greg" parent="." instance=ExtResource("5_vka64")]
 position = Vector2(24, 26)

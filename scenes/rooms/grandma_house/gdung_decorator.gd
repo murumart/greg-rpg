@@ -10,6 +10,7 @@ const HEALER := preload("res://scenes/rooms/grandma_house/gdung_objects/gdung_he
 @onready var tilemap: TileMap = get_parent()
 @export var objects_node: Node2D
 @export var path_line: Line2D
+@export var canvas_modulate: CanvasModulate
 var _decor_id := -1
 var path := PackedInt64Array()
 
@@ -21,6 +22,11 @@ func _ready() -> void:
 		return
 	_decorate_suites()
 	_draw_path()
+	canvas_modulate.color = canvas_modulate.color.darkened(0.1
+			* DAT.get_data("gdung_floor", 0))
+	if is_instance_valid(SND.current_song_player):
+		SND.current_song_player.pitch_scale = (
+				remap(DAT.get_data("gdung_floor", 0), 0, 2, 1.0, 0.94))
 
 
 func apply_spawn_point(greg_2: PlayerOverworld) -> void:
