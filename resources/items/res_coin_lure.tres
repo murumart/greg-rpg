@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bis4if0hkfkom"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_4m7j7"]
+[ext_resource type="Script" path="res://code/scr_battle_payload_fishing.gd" id="1_mf264"]
+[ext_resource type="Texture2D" uid="uid://clda7kcwbx7x8" path="res://sprites/fishing/spr_coin_lure.png" id="3_ypflm"]
+
+[sub_resource type="Resource" id="Resource_kr2em"]
+script = ExtResource("1_mf264")
+world_hitbox_size_multiplier = 2.0
+horizontal_movement_speed_multiplier = 0.8
+vertical_movement_speed_multiplier = 0.8
+fish_hitbox_size_multiplier = 0.5
+combo_time_multiplier = 0.1
+point_multiplier = 4.0
+item_id = &"coin_lure"
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+
+[resource]
+script = ExtResource("1_4m7j7")
+name_in_file = &""
+name = &"the money"
+description = "fish love money, right?"
+texture = ExtResource("3_ypflm")
+attack_animation = ""
+price = 0
+use = -1
+consume_on_use = true
+payload = SubResource("Resource_kr2em")

@@ -460,6 +460,9 @@ func handle_payload(pld: BattlePayload) -> void:
 
 	if pld.animation_on_receive:
 		SOL.vfx(pld.animation_on_receive, get_effect_center(self), {parent = self})
+	
+	if pld is BattlePayloadFishing:
+		pld.set_fishing_data()
 
 
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:

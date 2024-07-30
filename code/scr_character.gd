@@ -195,6 +195,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	magic = clampf(magic + magic_change, 0.0, max_magic)
 	if pld.message_user:
 		message_owner.emit(pld.message_user)
+	if pld is BattlePayloadFishing:
+		pld.set_fishing_data()
 
 
 func fully_heal() -> void:

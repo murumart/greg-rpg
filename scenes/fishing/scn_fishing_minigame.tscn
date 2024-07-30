@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=35 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_mb35u"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="4_ohvva"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="4_s301t"]
-[ext_resource type="Texture2D" uid="uid://q4juphcg852w" path="res://sprites/fishing/spr_hook_important.png" id="5_5lcx3"]
 [ext_resource type="Texture2D" uid="uid://madwfefthwfd" path="res://sprites/fishing/spr_cow_ant.png" id="5_e8u18"]
 [ext_resource type="Texture2D" uid="uid://caxtnijbq1v7k" path="res://sprites/photos/spr_shopping_cart.png" id="6_jrqy2"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_thb0r"]
@@ -1219,9 +1218,11 @@ offset = Vector2(-7.96791, 0)
 [node name="Look2" type="Sprite2D" parent="Hook/Look"]
 self_modulate = Color(8.49, 10.38, 9.12, 1)
 position = Vector2(4, 8)
-texture = ExtResource("5_5lcx3")
+texture = ExtResource("4_s301t")
 centered = false
 offset = Vector2(-7.96791, 0)
+region_enabled = true
+region_rect = Rect2(4, 8, 8, 8)
 
 [node name="HookCollision" type="Area2D" parent="Hook"]
 position = Vector2(0, 11)

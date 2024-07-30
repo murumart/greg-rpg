@@ -19,6 +19,8 @@ const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
 var processed_ypos := 1
 @onready var noise: FastNoiseLite = $NoiseSprite.texture.noise
 @onready var hook := $Hook
+@onready var hook_sprite_main: Sprite2D = $Hook/Look
+@onready var hook_sprite_sub: Sprite2D = $Hook/Look/Look2
 @onready var hook_animator := $Hook/HookAnimator
 @onready var line_drawer := $LineDrawer
 var hook_positions := [Vector2(0,-60)]
@@ -49,6 +51,8 @@ var battle_info: BattleInfo
 @export var depth_item_increase_curve: Curve
 @export var random_items: WeightedRandomContainer
 
+var hook_data := BattlePayloadFishing.new()
+
 # funny
 var kiosk_enabled := false
 @onready var mail_kiosk := $FishParent/MailKiosk
@@ -64,6 +68,8 @@ var cow_ant_enabled := false
 
 func _ready() -> void:
 	_set_fancy_grapics_to(bool(not OPT.get_opt("less_fancy_graphics")))
+	$Hook/HookCollision/CollisionShape2D.shape.size = Vector2(2, 3
+			) * hook_data.world_hitbox_size_multiplier
 	state = States.MOVE
 	noise.seed = randi()
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
@@ -72,11 +78,18 @@ func _ready() -> void:
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	SND.play_song("fishing_game", 1.0, {start_volume = 0, play_from_beginning = true})
+	if DAT.get_data("fishing_hook_data", ""):
+		hook_data = ResMan.get_item(DAT.get_data("fishing_hook_data")).payload
+		hook_sprite_main.texture = ResMan.get_item(hook_data.item_id).texture
+		hook_sprite_sub.texture = ResMan.get_item(hook_data.item_id).texture
+	DAT.set_data("fishing_hook_data", "")
 
 
 func _physics_process(delta: float) -> void:
 	# combo stuff
-	recent_fish_caught = maxf(recent_fish_caught - delta * pow(2, recent_fish_caught * 0.6), 0.0)
+	recent_fish_caught = maxf(recent_fish_caught - delta
+			* pow(2, recent_fish_caught * 0.6)
+			* (1.0 / hook_data.combo_time_multiplier), 0.0)
 	combo_bar.value = recent_fish_caught
 	# depth and time display
 	depth_label.text = str("depth: %s m" % roundi(depth * 0.01))
@@ -88,16 +101,22 @@ func _physics_process(delta: float) -> void:
 			# world moves to give illusion of going deeper
 			tilemap.position.y -= speed * delta
 			# decorations
-			if kiosk_enabled: mail_kiosk.position.y -= speed * delta
-			if fisherman_enabled: fisherman.position.y -= speed * delta
-			if shopping_cart_enabled: shopping_cart.position.y -= speed * delta
-			if cow_ant_enabled: cow_ant.position.y -= speed * delta
+			if kiosk_enabled:
+				mail_kiosk.position.y -= speed * delta
+			if fisherman_enabled:
+				fisherman.position.y -= speed * delta
+			if shopping_cart_enabled:
+				shopping_cart.position.y -= speed * delta
+			if cow_ant_enabled:
+				cow_ant.position.y -= speed * delta
 			noise.offset.y += (speed * delta) / 16.0
 			depth += delta * speed
 			process_tilemap()
 			# darker as it gets deeper
-			set_water_color(Color("#0054b549").lerp(Color("000e1c49"), remap(depth, 0, 3000, 0.0, 1.0)))
-			time_left -= maxf(delta * (time_left * 0.55), delta * 0.5) * float(bool(fish_caught))
+			set_water_color(Color("#0054b549").lerp(Color("000e1c49"),
+					remap(depth, 0, 3000, 0.0, 1.0)))
+			time_left -= maxf(delta * (time_left * 0.55),
+					delta * 0.5) * float(bool(fish_caught))
 			time_left = minf(time_left, 40.0)
 			if time_left <= 0.0:
 				SND.play_sound(SND_TMOUT)
@@ -106,7 +125,10 @@ func _physics_process(delta: float) -> void:
 
 func hook_movement(delta: float) -> void:
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	hook.global_position += input * hook_speed * 1 * delta
+	var movement := input * hook_speed * delta
+	movement.x *= hook_data.horizontal_movement_speed_multiplier
+	movement.y *= hook_data.vertical_movement_speed_multiplier
+	hook.global_position += movement
 	hook.global_position.y = clampf(hook.global_position.y, -60, 50)
 	# swaying left-right
 	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, hook_speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
@@ -132,7 +154,8 @@ func _on_hook_collision(node: Node2D) -> void:
 		hook_animator.advance(0)
 		hook_animator.play("hit")
 		SOL.shake(0.2)
-	if state == States.STOP: return
+	if state == States.STOP:
+		return
 	# hitting an obstacle
 	if node is TileMap or node.get_parent().get("hazardous"):
 		#get_tree().reload_current_scene()
@@ -149,14 +172,15 @@ func _on_hook_collision(node: Node2D) -> void:
 		if node.moving and not node.decor:
 			if not node.item:
 				var combo := roundi(recent_fish_caught)
-				points += node.value + combo
+				var pts := roundi(node.value + combo) * hook_data.point_multiplier
+				points += pts
 				time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
 				update_points_display()
 				SOL.vfx(
 					"damage_number",
 					node.global_position,
 					{
-						"text": str("+", node.value + combo),
+						"text": str("+", pts),
 						"color": Color(1, 1, 1, 0.5) if not combo else
 						Color(1.0, 0.8, 0.6, 0.8),
 						"speed": 3
@@ -241,12 +265,10 @@ func process_tilemap() -> void:
 			rock_array.append(cell)
 		else: #spawn fish
 			if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.5:
-				pass
 				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
 			if depth >= 7500:
 				if (randf() < depth_fish_increase_curve.sample(depth * 5e-05)
 						* 0.0625):
-					pass
 					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
 			if (randf() < depth_item_increase_curve.sample(depth * 5e-05)
 					* 0.00285714):
@@ -255,7 +277,6 @@ func process_tilemap() -> void:
 						tilemap.to_global(tilemap.map_to_local(cell)))
 		# background fish
 		if randf() < depth_fish_increase_curve.sample(depth * 5e-05):
-			pass
 			spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
 	# background
 	var bg_rock_array := []
@@ -305,6 +326,7 @@ func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> v
 		node.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
 		node.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
 	fish_parent.add_child(node)
+	node.hook_area_collision.scale *= hook_data.fish_hitbox_size_multiplier
 	if background:
 		node.wallrun_area.queue_free()
 		node.hook_area.queue_free()

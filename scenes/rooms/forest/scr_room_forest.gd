@@ -30,7 +30,7 @@ func _ready() -> void:
 	_setup_gates()
 	generator = ForestGenerator.new(self)
 	canvas_modulate.color = canvas_modulate.color.lerp(
-			Color(0.735003054142, 0.89518678188324, 0.22227722406387),
+			Color(0.735, 0.895, 0.222),
 			remap(current_room, 0, 100, 0.0, 1.0))
 	questing.update_quests()
 	if LTS.gate_id == LTS.GATE_EXIT_BATTLE or LTS.gate_id == LTS.GATE_LOADING:

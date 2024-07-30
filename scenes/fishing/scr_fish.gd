@@ -36,6 +36,7 @@ var value := 0
 @onready var sprite := $Sprite
 @onready var hook_area: Area2D = $HookArea
 @onready var wallrun_area: Area2D = $WallrunArea
+@onready var hook_area_collision: CollisionShape2D = $HookArea/CollisionShape2D
 
 
 func _ready() -> void:
