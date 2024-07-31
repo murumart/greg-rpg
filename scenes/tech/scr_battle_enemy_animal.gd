@@ -43,4 +43,4 @@ func hurt(amount: float, gnd: int) -> void:
 
 func get_xp() -> int:
 	var xp := super()
-	return roundi(xp + xp * 0.005 * soul)
+	return roundi(xp + xp * 0.0025 * soul)
