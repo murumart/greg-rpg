@@ -300,6 +300,11 @@ DIALOGUE bounty_notification
 	acquire your rewards at the police station.
 
 
+DIALOGUE turf_quest_notification
+	supposedly, you have completed a "quest".
+	just like in a "video game".
+
+
 DIALOGUE quest_board
 DATA_LINK quest_board_introed,false
 	(it's a lone bulletin board among the trees.)

@@ -180,11 +180,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and doing == Doings.DONE:
 		# leave the battle
 		LTS.gate_id = LTS.GATE_EXIT_BATTLE
-		var looper: Array[BattleActor] = []
-		looper.append_array(party)
-		looper.append_array(dead_party)
-		for p in looper:
-			p.offload_character()
 		LTS.level_transition(LTS.ROOM_SCENE_PATH %
 				DAT.get_data("current_room", "test_room"))
 		set_process_unhandled_input(false)
@@ -750,6 +745,11 @@ func open_end_screen(victory: bool) -> void:
 	screen_end.show()
 	screen_party_info.show()
 	if victory:
+		var looper: Array[BattleActor] = []
+		looper.append_array(party)
+		looper.append_array(dead_party)
+		for p in looper:
+			p.offload_character()
 		resize_panel(60)
 		if not play_victory_music.is_empty():
 			SND.play_song(
@@ -812,6 +812,16 @@ func _check_on_bounties() -> void:
 				and PoliceStation.is_bounty_fulfilled_static(k)):
 			DAT.set_data(notif_save_key, true)
 			SOL.dialogue("bounty_notification")
+	var turf_killed: int = (
+			ResMan.get_character("greg").get_defeated_character("turf")
+			- DAT.get_data("mission_start_turf_killed", 0))
+	print("!!!!!!tuifrf ", turf_killed)
+	if (not DAT.get_data("turf_mission_notified", false)
+			and DAT.get_data("turf_mission_active", false)
+			and turf_killed >=
+			preload("res://scenes/rooms/town/scr_pairhouse.gd").TURF_NEEDED_TO_DIE):
+		SOL.dialogue("turf_quest_notification")
+		DAT.set_data("turf_mission_notified", true)
 
 
 # main screen buttons wired to these
