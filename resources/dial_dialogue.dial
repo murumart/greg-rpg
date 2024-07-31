@@ -1190,6 +1190,7 @@ CHAR mail_man
 
 DIALOGUE biking_perk_mail_attraction
 CHAR mail_man
+EMO 
 	mail will gravitate towards boxes on its own.
 
 
@@ -1211,6 +1212,12 @@ CHAR mail_man
 DIALOGUE biking_perk_fast_earner
 CHAR mail_man
 	someone spilled a bunch of coins! but you have to go fast to grab them.
+
+
+DIALOGUE biking_perk_sauce_mail
+CHAR mail_man
+EMO serious
+	someone ruined another bag of mail by trying to mail red sauce... irritating!
 
 
 DIALOGUE biking_perk_else

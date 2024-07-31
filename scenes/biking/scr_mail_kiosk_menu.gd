@@ -35,7 +35,8 @@ var possible_perks := [
 	&"less_logs",
 	&"nicer_roads",
 	&"fast_earner",
-	&"mail_attraction"]
+	&"mail_attraction",
+	&"sauce_mail"]
 var perks_available := []
 var deletion_possible := false
 

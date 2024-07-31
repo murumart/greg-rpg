@@ -28,8 +28,8 @@ var hits := 0
 @onready var collision_area := $CollisionArea
 
 const MAIL_LOAD := preload("res://scenes/biking/moving_objects/scn_biking_mail.tscn")
-var super_mail := false
-var following_mail := false
+enum MailModes {NORMAL, FOLLOW, SAUCE, SUPER}
+var mail_mode := MailModes.NORMAL
 
 var effects := {}
 
@@ -63,8 +63,10 @@ func _physics_process(delta: float) -> void:
 
 	if speed > 0 and not paused:
 		if Input.is_action_pressed("ui_accept"):
-			if super_mail: lob(2.0)
-			else: fire_held = clampf(fire_held + delta, 1.0, 3.0)
+			if mail_mode == MailModes.SUPER:
+				lob(2.0)
+			else:
+				fire_held = clampf(fire_held + delta, 1.0, 3.0)
 			lob_in()
 		if Input.is_action_just_released("ui_accept"):
 			lob(fire_held)
@@ -171,7 +173,7 @@ func lob(speede: float) -> void:
 		animation_tree.set("parameters/lobbing_speed/scale", to)
 	mail_speed = speede
 	animation_tree.set("parameters/play_lob_in/request", abor)
-	if super_mail: # cool secret perk activated
+	if mail_mode == MailModes.SUPER: # cool secret perk activated
 		spd.call(2.0) # speed faster
 		if animation_tree.get("parameters/play_lob/active") == true:
 			mail_speed = randf_range(1.0, 3.0)
@@ -194,7 +196,11 @@ func throw_mail() -> void:
 	LTS.get_current_scene().add_child(mail)
 	mail.global_position = mail_sprite.global_position
 	mail.apply_impulse(Vector2(100 * mail_speed, -100 * mail_speed)) # whee
-	mail.following = following_mail
-	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * ((int(super_mail) * 1.3) + 1)
+	mail.following = mail_mode == MailModes.FOLLOW
+	paper_throw_audio.pitch_scale = randf_range(1.0, 1.2) * (
+			(int(mail_mode == MailModes.SUPER) * 1.3) + 1)
+	if mail_mode == MailModes.SAUCE:
+		mail.set_saucy()
+		paper_throw_audio.pitch_scale *= 0.89
 	paper_throw_audio.play()
 

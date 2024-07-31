@@ -96,8 +96,7 @@ func _physics_process(delta: float) -> void:
 		current_perk = ""
 		if currently_syrup: stop_syrup()
 		set_speed(60)
-		bike.super_mail = false
-		bike.following_mail = false
+		bike.mail_mode = bike.MailModes.NORMAL
 		the_kiosk()
 
 	# at the end of the road, do some testing and fixing if necess
@@ -337,9 +336,11 @@ func _on_mail_menu_finished() -> void:
 	if current_perk == "fast_earner":
 		set_speed(80)
 	elif current_perk == "super_mail":
-		bike.super_mail = true
+		bike.mail_mode = bike.MailModes.SUPER
 	elif current_perk == "mail_attraction":
-		bike.following_mail = true
+		bike.mail_mode = bike.MailModes.FOLLOW
+	elif current_perk == "sauce_mail":
+		bike.mail_mode = bike.MailModes.SAUCE
 	elif current_perk == "snail_bail":
 		snails_hit = 0
 		update_ui()
