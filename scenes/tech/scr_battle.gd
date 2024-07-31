@@ -815,7 +815,6 @@ func _check_on_bounties() -> void:
 	var turf_killed: int = (
 			ResMan.get_character("greg").get_defeated_character("turf")
 			- DAT.get_data("mission_start_turf_killed", 0))
-	print("!!!!!!tuifrf ", turf_killed)
 	if (not DAT.get_data("turf_mission_notified", false)
 			and DAT.get_data("turf_mission_active", false)
 			and turf_killed >=
