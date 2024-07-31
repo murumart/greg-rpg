@@ -2697,6 +2697,19 @@ CHOICE_LINK no
 	goodbye.
 
 
+DIALOGUE kid_hi_forest_secredt_fucked_up_version
+CHAR kid
+CHOICES yes,no
+	is there something we can do for you?
+CHOICE_LINK yes
+CHOICES 
+	the forest is a pathway to unnatural prowess.
+CHOICE_LINK nvm
+	we'll never meet again.
+CHOICE_LINK no
+	goodbye.
+
+
 DIALOGUE kid_trade_confirmation
 CHAR kid
 CHOICES yes,no

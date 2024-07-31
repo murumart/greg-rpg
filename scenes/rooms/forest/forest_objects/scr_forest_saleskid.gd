@@ -13,17 +13,24 @@ static func _static_init() -> void:
 
 
 func _ready() -> void:
+	if DAT.get_data("kid_never_meet_again", false):
+		queue_free()
+		return
 	const KidType := preload("res://scenes/characters/overworld/scr_kid_overworld.gd")
 	_pick_random_exchanges()
 	kid = kid as KidType
 	kid.load_trades()
 	kid.default_lines[0] = "kid_hi_forest"
+	if _creeptpasta():
+		kid.default_lines[0] = "kid_hi_forest_secredt_fucked_up_version"
 	kid.exchange_completed.connect(func(_a):
 		_traded = true
 	, CONNECT_ONE_SHOT)
 	kid.finished_talking.connect(func():
 		print("kid finished talking")
 		if not _traded:
+			if _creeptpasta():
+				DAT.set_data("kid_never_meet_again", true)
 			return
 		print("we have traded")
 		if not is_instance_valid(get_parent()):
@@ -43,3 +50,10 @@ func _pick_random_exchanges() -> void:
 		if exchange in kid.trades:
 			continue
 		kid.trades.append(exchange)
+
+
+func _creeptpasta() -> bool:
+	return (Math.inrange(DAT.get_data("nr", 0), 0.55, 0.56)
+			and randf() < 0.01
+			and ResMan.get_character("greg").level > 85
+			and DAT.get_data("forest_depth", 0) > 11)
