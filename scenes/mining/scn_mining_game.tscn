@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
 [ext_resource type="Texture2D" uid="uid://ccdo56bo12oem" path="res://sprites/mining/spr_station_background.png" id="2_mm17a"]
-[ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/mining/scn_greg_platformer.tscn" id="3_hjwtw"]
+[ext_resource type="PackedScene" path="res://scenes/mining/scn_greg_platformer.tscn" id="3_hjwtw"]
 [ext_resource type="Texture2D" uid="uid://b43ogq1oinca3" path="res://sprites/mining/spr_tiles_grass.png" id="4_8ef0h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
 [ext_resource type="FastNoiseLite" uid="uid://cxil6cn3ygldh" path="res://scenes/mining/resources/gas_noise.tres" id="4_xuf81"]

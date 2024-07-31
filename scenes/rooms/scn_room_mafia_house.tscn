@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="4_3esa6"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_0srwq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_ce38q"]
-[ext_resource type="SpriteFrames" uid="uid://b0t8ga0kjvhvl" path="res://resources/characters/sfr_mafia_1.tres" id="6_xapwm"]
-[ext_resource type="SpriteFrames" uid="uid://kykioywl8mt7" path="res://resources/characters/sfr_mafia_2.tres" id="7_fxb1w"]
+[ext_resource type="SpriteFrames" uid="uid://cxls2ofavlaoe" path="res://resources/characters/sfr_mafia_1.tres" id="6_xapwm"]
+[ext_resource type="SpriteFrames" uid="uid://baycgm88q1d50" path="res://resources/characters/sfr_mafia_2.tres" id="7_fxb1w"]
 [ext_resource type="Script" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57vqo"]
@@ -78,11 +78,10 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("7_fxb1w")
 animation = &"walk_down"
 
-[node name="RoomGate" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ce38q")]
+[node name="RoomGate" parent="." instance=ExtResource("5_ce38q")]
 position = Vector2(104, 22)
 destination = &"town"
 gate_id = &"mafiahouse-town"
-player = NodePath("../Greg")
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -15)
 
