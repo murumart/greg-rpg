@@ -23,6 +23,9 @@ func _ready() -> void:
 	var duration := 40.0
 	if is_instance_valid(SND.current_song_player):
 		duration = SND.current_song_player.stream.get_length()
+		if not (SND.current_song_player.stream is AudioStreamOggVorbis
+				and SND.current_song_player.stream.loop):
+			duration -= SND.current_song_player.get_playback_position()
 	await get_tree().process_frame
 	var tw := create_tween()
 	tw.tween_property(self, "modulate:a", 1.0, 6.0).from(0.0)

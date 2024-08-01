@@ -209,7 +209,7 @@ position = Vector2(-60, 224)
 position = Vector2(105, 178)
 replenish_minutes = -1
 replenish_seconds = -60
-item = &"muesli"
+item = &"mueslibar"
 
 [node name="TrashBin2" parent="InteriorTiles/Decor" instance=ExtResource("9_8hvh6")]
 position = Vector2(105, 189)

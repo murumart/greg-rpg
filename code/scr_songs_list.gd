@@ -83,6 +83,11 @@ var songs := {
 		"title": "entirely just",
 		"stream": preload("res://music/mus_entirely_just.ogg")
 	},
+	"evil_end": {
+		"title": "",
+		"stream": preload("res://music/mus_evilending.ogg"),
+		"loop": false,
+	},
 	"extremophile": {
 		"title": "extremophile",
 		"stream": preload("res://music/mus_extremophile.ogg"),
