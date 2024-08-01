@@ -5,6 +5,8 @@ var bpm := 111.0
 var bps := 60.0 / bpm
 const SONG_BARS_LENGTH := 56
 
+@onready var imgs := Math.child_dict($CenterContainer/Images)
+
 
 func _ready() -> void:
 	SND.play_song("evil_end")
@@ -40,10 +42,19 @@ func do_something() -> void:
 	match bar:
 		1:
 			talk("with the end of your influence, greg was left with no directions to continue.")
+			var tw := create_tween()
+			imgs.directionless.show()
+			tw.tween_property(imgs.directionless, "modulate:a", 1.0, 2.0).from(0.0)
 		4:
 			talk("left alone, he thus resumed with the only thing he had learned from this journey:")
+			var tw := create_tween()
+			tw.tween_property(imgs.directionless, "modulate:a", 0.0, 2.0)
+			tw.tween_callback(imgs.directionless.hide)
 		6:
 			talk("growing in might through violence.")
+			var tw := create_tween()
+			imgs.violence.show()
+			tw.tween_property(imgs.violence, "modulate:a", 1.0, 1.0).from(0.0)
 		8:
 			talk("")
 		16:
