@@ -33,3 +33,6 @@ start_text = ""
 rewards = SubResource("Resource_qddtr")
 victory_music = &"extremophile"
 stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
