@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=40 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
@@ -17,7 +17,7 @@ point_count = 7
 
 [sub_resource type="Curve" id="Curve_amim5"]
 bake_resolution = 32
-_data = [Vector2(0, 0.122293), 0.0, 0.0, 0, 0, Vector2(0.492013, 0.485384), 0.0, 0.0, 0, 0, Vector2(0.738019, 1), 0.560372, 0.560372, 0, 0]
+_data = [Vector2(0, 0.204191), 0.0, 0.0, 0, 0, Vector2(0.492013, 0.485384), 0.0, 0.0, 0, 0, Vector2(0.738019, 1), 0.560372, 0.560372, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_ak44i"]
@@ -45,9 +45,34 @@ script = ExtResource("2_8qmcw")
 id = &"water_balloon"
 weight = 12
 
+[sub_resource type="Resource" id="Resource_qflo4"]
+script = ExtResource("2_8qmcw")
+id = &"coin_lure"
+weight = 1
+
+[sub_resource type="Resource" id="Resource_ps4ll"]
+script = ExtResource("2_8qmcw")
+id = &"combo_lure"
+weight = 4
+
+[sub_resource type="Resource" id="Resource_swvdc"]
+script = ExtResource("2_8qmcw")
+id = &"drill_lure"
+weight = 4
+
+[sub_resource type="Resource" id="Resource_tbueb"]
+script = ExtResource("2_8qmcw")
+id = &"green_lure"
+weight = 3
+
+[sub_resource type="Resource" id="Resource_qvlaj"]
+script = ExtResource("2_8qmcw")
+id = &"umbrella_lure"
+weight = 5
+
 [sub_resource type="Resource" id="Resource_inxmd"]
 script = ExtResource("2_clupb")
-elements = Array[ExtResource("2_8qmcw")]([SubResource("Resource_ak44i"), SubResource("Resource_gk55d"), SubResource("Resource_ylpm1"), SubResource("Resource_yawqg"), SubResource("Resource_w2a5d")])
+elements = Array[ExtResource("2_8qmcw")]([SubResource("Resource_ak44i"), SubResource("Resource_gk55d"), SubResource("Resource_ylpm1"), SubResource("Resource_yawqg"), SubResource("Resource_w2a5d"), SubResource("Resource_qflo4"), SubResource("Resource_ps4ll"), SubResource("Resource_swvdc"), SubResource("Resource_tbueb"), SubResource("Resource_qvlaj")])
 
 [sub_resource type="Environment" id="Environment_3gpcx"]
 background_mode = 3

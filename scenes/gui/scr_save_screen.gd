@@ -96,6 +96,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		queue_free()
 	# i like this input scheme i've devised.
 	var move := Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
+	get_window().set_input_as_handled()
 	var old_mode := mode
 	var old_button := current_button
 	if not can_walk():

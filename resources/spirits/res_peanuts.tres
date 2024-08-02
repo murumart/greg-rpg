@@ -34,7 +34,9 @@ gender = 2
 effects = Array[ExtResource("1_nrd11")]([SubResource("Resource_hvl7u"), SubResource("Resource_ise6q")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
@@ -49,4 +51,7 @@ cost = 39
 use = 3
 reach = 0
 payload_reception_count = 1
+payload_reception_wait = 0.0
+wait = 0.0
+wait_before = 0.0
 payload = SubResource("Resource_476qf")
