@@ -57,6 +57,10 @@ func do_something() -> void:
 			tw.tween_property(imgs.violence, "modulate:a", 1.0, 1.0).from(0.0)
 		8:
 			talk("")
+			imgs.destruction.show()
+			imgs.violence.hide()
+			var tw := create_tween()
+			tw.tween_property(imgs.destruction, "position:x", -130, 30.0)
 		16:
 			talk("amassing more and more spirit power as he plowed through the land")
 		18:
@@ -65,6 +69,12 @@ func do_something() -> void:
 			talk("")
 		24:
 			talk("his path was cut short while he was crossing over to the northern continent.")
+			imgs.sea.show()
+			var tw := create_tween()
+			tw.tween_property(imgs.destruction, "modulate:a", 0.0, 2.0)
+			tw.parallel().tween_property(imgs.sea, "modulate:a", 1.0, 2.0).from(0.0)
+			tw.parallel().tween_property(imgs.sea.texture, "region:position:x", 599940, 9999)
+			tw.parallel().tween_property(imgs.sea.texture, "region:position:y", -399960, 9999)
 		26:
 			talk("in a display of heroism, the guards of the country stood against him.")
 		28: 

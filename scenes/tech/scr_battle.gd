@@ -1044,3 +1044,7 @@ func crittable_display(opt: Dictionary) -> void:
 		opt.button.modulate = (opt.button.modulate as Color)\
 				.blend(Color.GREEN)
 
+
+func _exit_tree() -> void:
+	erase_floating_spirits()
+

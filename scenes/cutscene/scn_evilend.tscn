@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr8u35o2ygx4e"]
+[gd_scene load_steps=10 format=3 uid="uid://dr8u35o2ygx4e"]
 
 [ext_resource type="Script" path="res://scenes/cutscene/scr_evilend.gd" id="1_h2ccp"]
 [ext_resource type="Script" path="res://code/scr_textbox.gd" id="2_bqngp"]
 [ext_resource type="Texture2D" uid="uid://f73get17mu6y" path="res://sprites/cutscene/evilend/directionless.png" id="3_5w75a"]
 [ext_resource type="Texture2D" uid="uid://10tupsx2ss52" path="res://sprites/cutscene/evilend/violence.png" id="4_df1x5"]
+[ext_resource type="Texture2D" uid="uid://ba0w5datd1057" path="res://sprites/cutscene/evilend/destruction.png" id="5_v0qsg"]
+[ext_resource type="Texture2D" uid="uid://53xxskq3gb0n" path="res://sprites/cutscene/evilend/sea.png" id="6_0xgl4"]
 
 [sub_resource type="Shader" id="Shader_34xtc"]
 code = "shader_type canvas_item;
@@ -25,6 +27,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2prwr"]
 shader = SubResource("Shader_34xtc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txhwo"]
+atlas = ExtResource("6_0xgl4")
+region = Rect2(0, 0, 130, 48)
 
 [node name="Evilend" type="Node2D"]
 script = ExtResource("1_h2ccp")
@@ -69,3 +75,21 @@ layout_mode = 2
 offset_right = 130.0
 offset_bottom = 48.0
 texture = ExtResource("4_df1x5")
+
+[node name="Destruction" type="TextureRect" parent="CenterContainer/Images"]
+visible = false
+material = SubResource("ShaderMaterial_2prwr")
+layout_mode = 2
+offset_right = 130.0
+offset_bottom = 48.0
+texture = ExtResource("5_v0qsg")
+
+[node name="Sea" type="TextureRect" parent="CenterContainer/Images"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_2prwr")
+layout_mode = 2
+offset_right = 130.0
+offset_bottom = 48.0
+texture = SubResource("AtlasTexture_txhwo")
+stretch_mode = 1
