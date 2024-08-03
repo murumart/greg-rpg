@@ -42,7 +42,14 @@ func change_scene_to(path: String, options := {}) -> void:
 		DAT.free_player("level_transition")
 	scene_changed.emit()
 
-
+func updateDiscordRPC(details, state):
+	DiscordRPC.app_id = 1269059373137789009 # Application ID
+	DiscordRPC.details = details
+	DiscordRPC.state = state
+	DiscordRPC.large_image = "gregface" # Image key from "Art Assets"
+	DiscordRPC.large_image_text = "greg"
+	# DiscordRPC.end_timestamp = int(Time.get_unix_time_from_system()) + 3600 # +1 hour in unix time / "01:00:00 remaining"
+	DiscordRPC.refresh() # Always refresh after changing the values!
 # this should be a default gdscript function cmon
 # turns out it kinda is already. damn
 func get_current_scene() -> Node:
@@ -87,6 +94,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 		return
 	if options.get("sbcheck", false) and skateboard_check():
 		return
+	updateDiscordRPC("In battle!", "")
 	entering_battle = true
 	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE
@@ -101,6 +109,7 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
 	await scene_changed
+	updateDiscordRPC("greg", "")
 	entering_battle = false
 	DAT.free_player("entering_battle")
 
