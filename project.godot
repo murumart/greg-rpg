@@ -28,6 +28,7 @@ SOL="*res://autoload/scn_screen_overlay.tscn"
 OPT="*res://autoload/scn_options.tscn"
 LTS="*res://autoload/scn_level_transition.tscn"
 SND="*res://autoload/scr_sound.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [debug]
 
@@ -51,6 +52,10 @@ window/stretch/mode="viewport"
 
 movie_writer/mix_rate=41000
 movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [file_customization]
 

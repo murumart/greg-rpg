@@ -78,6 +78,7 @@ func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 
 
+
 # i just bit an apple and its skin got stuck between my two front teeth
 # how do i get it ou
 # welp
@@ -199,9 +200,9 @@ func get_playtime(data: Dictionary) -> String:
 
 func _on_button_pressed(reference: Variant) -> void:
 	update_buttons()
+	var data := DIR.get_dict_from_file(SAVE_PATH % reference)
 	match mode:
 		SAVE:
-			var data := DIR.get_dict_from_file(SAVE_PATH % reference)
 			var discrepancy: bool = (
 					DAT.seconds < data.get("seconds", -1)
 					or DAT.get_data("nr", 0) != data.get("nr", -1)
