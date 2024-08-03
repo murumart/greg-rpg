@@ -52,6 +52,7 @@ func _ready() -> void:
 func start_game() -> void:
 	init_data()
 	set_data("nr", randf())
+	LTS.updateDiscordRPC("Starting a new gregventure!", "")
 	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 
 
@@ -325,3 +326,4 @@ func init_data() -> void:
 
 static func version_str(version: Vector3 = VERSION) -> String:
 	return "%s.%s.%s" % [version.x, version.y, version.z]
+
