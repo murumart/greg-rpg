@@ -16,6 +16,7 @@ var walk_timer := Timer.new()
 
 
 func _ready() -> void:
+	show()
 	add_child(walk_timer)
 	walk_timer.timeout.connect(_walk_sound)
 

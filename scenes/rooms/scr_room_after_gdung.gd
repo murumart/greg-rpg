@@ -1,6 +1,7 @@
 extends Room
 
 @onready var ending_1 := $Ending1
+@onready var ending_2 := $Ending2
 
 
 func _ready() -> void:
@@ -12,5 +13,5 @@ func _ready() -> void:
 
 
 func select_ending() -> void:
-	ending_1.play()
+	ending_2.play()
 

@@ -81,6 +81,10 @@ func do_something() -> void:
 			talk("while not a mission without losses, greg was in the end outsmarted")
 		30:
 			talk("and cast away into the folds of time, severed from destiny itself")
+			var tw := create_tween()
+			tw.tween_property(imgs.sea, "modulate:a", 0.0, 4.0)
+			imgs.dead.show()
+			tw.parallel().tween_property(imgs.dead, "modulate:a", 1.0, 4.0).from(0.0)
 		32:
 			talk("never able to truly leave a mark on this world.")
 		36:

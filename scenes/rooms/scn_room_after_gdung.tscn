@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=54 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -33,6 +33,8 @@
 [ext_resource type="AudioStream" uid="uid://dgt2b8m22i6g1" path="res://sounds/walking/wood-03.ogg" id="29_5g3wf"]
 [ext_resource type="AudioStream" uid="uid://bvn412ekdb6ev" path="res://sounds/walking/wood-04.ogg" id="30_igvaj"]
 [ext_resource type="Texture2D" uid="uid://cbx7xowh0oxa2" path="res://sprites/cutscene/end/end1picture.png" id="31_rvrit"]
+[ext_resource type="Script" path="res://scenes/rooms/grandma_house/ending2.gd" id="34_v2rsy"]
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="35_oxlxy"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="36_qaro5"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="36_s6jsr"]
 
@@ -122,7 +124,7 @@ fill_from = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-15, -1, -15, -31, 0, -46, 0, -65, 15, -50, 15, -1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_juacr"]
-polygon = PackedVector2Array(-3, 0, -3, -8, -4, -8, -4, -14, 4, -14, 4, -8, 3, -8.12667, 3, 0)
+polygon = PackedVector2Array(-3, 0, -3, -8, -4, -8, -4, -14, 4, -14, 4, -8, 3, -8, 3, 0)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_crlhn"]
 streams_count = 4
@@ -367,6 +369,7 @@ limit_right = 125
 occluder = SubResource("OccluderPolygon2D_juacr")
 
 [node name="Ending1" type="Node2D" parent="."]
+visible = false
 script = ExtResource("21_3a2w4")
 
 [node name="Gregpos" type="Node2D" parent="Ending1"]
@@ -410,10 +413,31 @@ material = SubResource("ShaderMaterial_gkc1w")
 texture = ExtResource("31_rvrit")
 centered = false
 
+[node name="Ending2" type="Node2D" parent="."]
+script = ExtResource("34_v2rsy")
+
+[node name="GregPos" type="Node2D" parent="Ending2"]
+position = Vector2(8, -99)
+
+[node name="Mirror" type="Sprite2D" parent="Ending2"]
+z_index = -1
+position = Vector2(3, -161)
+texture = ExtResource("35_oxlxy")
+centered = false
+region_enabled = true
+region_rect = Rect2(82, 96, 11, 16)
+
+[node name="ColorRect" type="ColorRect" parent="Ending2"]
+custom_minimum_size = Vector2(160, 120)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("36_s6jsr")
 level_gain = 79
 new_items = Array[StringName]([&"map"])
+force_gate_id = &"exit_battle"
 
 [node name="RoomGate" parent="." instance=ExtResource("36_qaro5")]
 position = Vector2(8, 294)
