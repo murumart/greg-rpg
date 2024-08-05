@@ -511,7 +511,6 @@ texture = ExtResource("37_ivlg4")
 script = ExtResource("36_s6jsr")
 level_gain = 79
 new_items = Array[StringName]([&"map"])
-force_gate_id = &"exit_battle"
 
 [node name="RoomGate" parent="." instance=ExtResource("36_qaro5")]
 position = Vector2(8, 294)
