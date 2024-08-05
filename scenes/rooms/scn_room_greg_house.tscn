@@ -60,6 +60,7 @@ size = Vector2(26, 7)
 [node name="GregHouse" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_nk2dh")
+play_intro = true
 music = "birds"
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]

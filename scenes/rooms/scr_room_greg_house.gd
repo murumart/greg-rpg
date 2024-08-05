@@ -143,6 +143,7 @@ func move_to_car() -> void:
 	intro_progress = 4
 	zerma.inspected.connect(func():
 		SOL.dialogue_closed.connect(func():
+			zerma.default_lines.clear()
 			zerma.move_to(car_stop_pos.global_position)
 			zerma.set_collision_mask_value(1, false)
 			zerma.target_reached.connect(func():
@@ -174,7 +175,7 @@ func line_by_line(line: int) -> void:
 
 
 func delete_nuisances() -> void:
-	[$Areas/CatSpawners/Cats1, $Areas/CatSpawners/Cats2, $Areas/CatSpawners/Cats3, $Areas/CatSpawners/Cats4, $Areas/CatSpawners/Cats5, $Areas/CatSpawners/Cats6].map(func(a): a.queue_free())
+	[$Areas/CatSpawners/Cats1, $Areas/CatSpawners/Cats2, $Areas/CatSpawners/Cats3, $Areas/CatSpawners/Cats5, $Areas/CatSpawners/Cats6].map(func(a): a.queue_free())
 
 
 func delete_escape_routes() -> void:
