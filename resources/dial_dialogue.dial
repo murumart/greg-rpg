@@ -1148,7 +1148,7 @@ DATA_LINK mail_heard_name,true
 DATA_LINK mail_heard_name,false
 	well done! you have reached the end of the road.
 DATA_LINK 
-	you will be rewarded according to your performance.
+	let's see how good you did and discuss appropriate payment.
 
 
 DIALOGUE biking_end
@@ -1223,6 +1223,14 @@ EMO serious
 DIALOGUE biking_perk_else
 CHAR mail_man
 	uuh, this perk... how did it get here?
+
+
+DIALOGUE biking_end_no_mail_delivered
+CHAR mail_man
+EMO serious
+	...is this a joke?
+	you didn't deliver a single envelope of mail.
+	that was your entire damn job... i'm not paying you for this.
 
 
 DIALOGUE biking_end_reward_nohit

@@ -449,18 +449,20 @@ func _on_punishment_timer_timeout() -> void:
 func calculate_rewards() -> BattleRewards:
 	var rewd := BattleRewards.new()
 	# usual rewards
-	if mail_hits > 0:
+	if mail_hits <= 0:
+		SOL.dialogue("biking_end_no_mail_delivered")
+		return rewd # stop here
+	elif mail_hits > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
 		rew.property = str(roundf(mail_hits * 0.89))
 		rewd.add(rew)
-	if mail_hits > 0:
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.EXP
+		var rew2 := Reward.new()
+		rew2.type = BattleRewards.Types.EXP
 		var xp := mail_hits * 0.25
 		xp *= pow(hells_survived + 1, 2.3)
-		rew.property = str(roundf(xp))
-		rewd.add(rew)
+		rew2.property = str(roundf(xp))
+		rewd.add(rew2)
 	if silver_collected > 0:
 		var rew := Reward.new()
 		rew.type = BattleRewards.Types.SILVER
@@ -486,9 +488,9 @@ func calculate_rewards() -> BattleRewards:
 		rew.property = str(100)
 		rewd.add(rew)
 		DAT.incri("no_hit_biking_runs", 1)
-	if DAT.get_data("biking_games_finished", 0) > 11 and\
-	DAT.get_data("no_hit_biking_runs", 0) > 0 and\
-	not DAT.get_data("got_mail_hat", false):
+	if (DAT.get_data("biking_games_finished", 0) > 11
+			and DAT.get_data("no_hit_biking_runs", 0) > 0
+			and not DAT.get_data("got_mail_hat", false)):
 		SOL.dialogue("biking_end_reward_hat")
 		DAT.set_data("got_mail_hat", true)
 		var rew := Reward.new() as Reward
