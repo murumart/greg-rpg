@@ -90,6 +90,7 @@ region_enabled = true
 region_rect = Rect2(64, 82, 64, 8)
 
 [node name="ground2" type="TextureRect" parent="ground"]
+layout_mode = 0
 offset_left = 269.0
 offset_right = 538.0
 offset_bottom = 80.0

@@ -29,6 +29,7 @@ func _ready() -> void:
 	groundtw.tween_property(ground, "global_position:x", -269, time).from(0.0)
 	tw.parallel().tween_property(forest, "global_position:x", -230, loops * time)
 	tw.parallel().tween_property(song, "pitch_scale", 0.96, loops * time)
+	tw.parallel().tween_property(gre, "speed_scale", 0.96, loops * time)
 	gre.play("walk_right")
 	await tw.finished
 	gre.play("walk_right", 0.0)
