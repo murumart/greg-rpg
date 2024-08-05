@@ -16,12 +16,12 @@ var walk_timer := Timer.new()
 
 
 func _ready() -> void:
-	show()
 	add_child(walk_timer)
 	walk_timer.timeout.connect(_walk_sound)
 
 
 func play() -> void:
+	show()
 	SOL.dialogue_box.add_dialogue_string(DIALOGUE)
 	DAT.capture_player("cutscene")
 	tilemap.set_layer_enabled(1, false)

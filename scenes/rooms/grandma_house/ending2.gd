@@ -11,10 +11,11 @@ extends Node2D
 
 
 func _ready() -> void:
-	show()
+	hide()
 
 
 func play() -> void:
+	show()
 	$Mirror.show()
 	remove_child(darkness)
 	SOL.add_ui_child(darkness)
