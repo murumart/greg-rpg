@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=60 format=3 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_2w38n"]
@@ -35,8 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://cbx7xowh0oxa2" path="res://sprites/cutscene/end/end1picture.png" id="31_rvrit"]
 [ext_resource type="Script" path="res://scenes/rooms/grandma_house/ending2.gd" id="34_v2rsy"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="35_oxlxy"]
+[ext_resource type="Texture2D" uid="uid://bjrn4cs8cm4rd" path="res://sprites/cutscene/evilend/staregreg.png" id="36_h40ch"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="36_qaro5"]
 [ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="36_s6jsr"]
+[ext_resource type="Texture2D" uid="uid://dypm4git30eek" path="res://sprites/cutscene/evilend/stareanu.png" id="37_ivlg4"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nlgg"]
 polygon = PackedVector2Array(-32, 25, -32, 64, -16, 64, -16, -88, -32, -88)
@@ -164,6 +166,60 @@ void fragment() {
 shader = SubResource("Shader_iamh2")
 shader_parameter/modulate = Color(1, 1, 1, 1)
 shader_parameter/amount = 0.0
+
+[sub_resource type="Shader" id="Shader_34xtc"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	float red = texture(TEXTURE, vec2(UV.x - cos(UV.y) * 0.05, UV.y - sin(TIME - UV.y * 20.0) * 0.05)).r;
+	COLOR = vec4(COLOR.r + red, COLOR.g, COLOR.b, COLOR.a);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lgg4"]
+shader = SubResource("Shader_34xtc")
+
+[sub_resource type="Shader" id="Shader_tbd3n"]
+code = "shader_type canvas_item;
+
+uniform float mix_amount = 0.5;
+
+
+void fragment() {
+	float red = texture(TEXTURE, vec2(UV.x - cos(UV.y) * 0.05, UV.y - sin(TIME - UV.y * 20.0) * 0.05)).r;
+	float green = texture(
+		TEXTURE, 
+		vec2(
+			UV.x * cos(UV.x + TIME * 0.2) * 0.5 + 0.65,
+			UV.y - sin(TIME - cos(UV.y) * 0.5) * 0.1
+		)
+	).g;
+	vec4 greencol = vec4(green, green, green, 1.0);
+	vec4 normcol = vec4(COLOR.r * green + red, COLOR.g * red + green, COLOR.b + red * green, COLOR.a);
+	vec4 mixed = vec4(
+		mix(green, normcol.r, mix_amount),
+		mix(green, normcol.g, mix_amount),
+		mix(green, normcol.b, mix_amount),
+		COLOR.a
+	);
+	COLOR = mixed;
+	//COLOR = greencol;
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8ut1"]
+shader = SubResource("Shader_tbd3n")
+shader_parameter/mix_amount = -0.01
 
 [node name="AfterGdung" type="Node2D"]
 y_sort_enabled = true
@@ -414,12 +470,14 @@ texture = ExtResource("31_rvrit")
 centered = false
 
 [node name="Ending2" type="Node2D" parent="."]
+visible = false
 script = ExtResource("34_v2rsy")
 
 [node name="GregPos" type="Node2D" parent="Ending2"]
 position = Vector2(8, -99)
 
 [node name="Mirror" type="Sprite2D" parent="Ending2"]
+visible = false
 z_index = -1
 position = Vector2(3, -161)
 texture = ExtResource("35_oxlxy")
@@ -432,6 +490,22 @@ custom_minimum_size = Vector2(160, 120)
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
+
+[node name="Greg" type="TextureRect" parent="Ending2/Darkness"]
+visible = false
+material = SubResource("ShaderMaterial_6lgg4")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("36_h40ch")
+
+[node name="Anu" type="TextureRect" parent="Ending2/Darkness"]
+visible = false
+material = SubResource("ShaderMaterial_f8ut1")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("37_ivlg4")
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("36_s6jsr")

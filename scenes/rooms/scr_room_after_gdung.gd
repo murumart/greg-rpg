@@ -13,5 +13,8 @@ func _ready() -> void:
 
 
 func select_ending() -> void:
-	ending_2.play()
+	if ResMan.get_character("greg").level > 95:
+		ending_2.play()
+		return
+	ending_1.play()
 

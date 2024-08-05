@@ -88,8 +88,11 @@ func do_something() -> void:
 		32:
 			talk("never able to truly leave a mark on this world.")
 		36:
-			talk("and then there was peace again, for a fleeting moment.")
+			talk("and then there was peace again, for a while.")
 		38:
+			var e: Array = DIR.gej(3, [])
+			e.append(3)
+			DIR.sej(3, e)
 			talk("")
 			var cds := preload("res://scenes/gui/scn_end_credits.tscn").instantiate()
 			SOL.add_ui_child(cds)
