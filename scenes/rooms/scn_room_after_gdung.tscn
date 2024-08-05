@@ -427,7 +427,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(82, 96, 11, 16)
 
-[node name="ColorRect" type="ColorRect" parent="Ending2"]
+[node name="Darkness" type="ColorRect" parent="Ending2"]
 custom_minimum_size = Vector2(160, 120)
 offset_right = 40.0
 offset_bottom = 40.0
