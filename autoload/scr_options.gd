@@ -74,12 +74,18 @@ var IONS := {
 		"step": 1.0,
 		"display": TYPE_BOOL,
 	},
+	"autosave_interval": {
+		"value": 2.0,
+		"default_value": 2.0,
+		"range": [0.5, 10.0],
+		"step": 0.5,
+	},
 	"reset": {"display": TYPE_VECTOR2},
 	"leave": {"display": TYPE_VECTOR2},
 }
 # sorting the options
 const CATEGORIES := {
-	"gameplay": ["keybinds", "z_skips_dialogue"],
+	"gameplay": ["keybinds", "autosave_interval", "z_skips_dialogue"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
 		"fullscreen", "screen_shake_intensity", "text_speak_time",

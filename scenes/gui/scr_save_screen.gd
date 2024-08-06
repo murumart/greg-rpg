@@ -6,6 +6,7 @@ enum {SAVE, LOAD}
 const SAVE_PATH := "greg_save_%s.grs"
 const ABSOLUTE_SAVE_PATH := "user://greg_rpg/greg_save_%s.grs"
 const UNKNOWN_VERSION := Vector3(-4, 0, 0)
+const AUTOSAVE_NAME := "auto"
 
 const COMPLETED_GAME := {
 	#"zerma_fought": true,
@@ -41,7 +42,8 @@ const COMPLETED_GAME := {
 		&"electric", &"inspiration", &"attack", &"fire", &"magnet"]},
 }
 
-@onready var file_container := $Panel/FileContainer
+@onready var file_container := %FileContainer
+@onready var scroll_container := %SaveScroll
 @onready var file_count := file_container.get_child_count()
 @onready var tab_container := $Panel/TabContainer
 @onready var info_label := $InfoLabel
@@ -125,12 +127,19 @@ func set_current_button(to: int) -> void:
 	current_button = to
 	for b in file_container.get_children():
 		b.self_modulate = Color.WHITE
+	var max_scroll: int = maxi(file_container.size.y - scroll_container.size.y, 0)
+	scroll_container.scroll_vertical = ceili(remap(to, 0,
+			file_container.get_child_count() - 1, 0, max_scroll))
 	if not Math.inrange(current_button, 0, file_count):
 		return
 	file_container.get_child(to).self_modulate = Color.CYAN
 	var path := SAVE_PATH % current_button
+	var abspath := ABSOLUTE_SAVE_PATH % current_button
+	if is_autosave(current_button):
+		path = SAVE_PATH % AUTOSAVE_NAME
+		abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
 	var data: Dictionary
-	if DIR.file_exists(ABSOLUTE_SAVE_PATH % current_button):
+	if DIR.file_exists(abspath):
 		data = DIR.get_dict_from_file(path)
 	if not data.is_empty():
 		var text := "[center]save file info[/center]\n[color=#eeefef]"
@@ -171,9 +180,13 @@ func update_buttons() -> void:
 		var child := file_container.get_child(i)
 		match mode:
 			SAVE:
-				child.disabled = false
+				# autosave file
+				child.disabled = is_autosave(i)
 			LOAD:
-				child.disabled = not DIR.file_exists(ABSOLUTE_SAVE_PATH % i)
+				var abspath := ABSOLUTE_SAVE_PATH % i
+				if is_autosave(i):
+					abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
+				child.disabled = not DIR.file_exists(abspath)
 
 
 func get_playtime(data: Dictionary) -> String:
@@ -196,11 +209,13 @@ func get_playtime(data: Dictionary) -> String:
 	return s
 
 
-func _on_button_pressed(reference: Variant) -> void:
+func _on_button_pressed(which_button: int) -> void:
 	update_buttons()
 	match mode:
 		SAVE:
-			var data := DIR.get_dict_from_file(SAVE_PATH % reference)
+			if file_container.get_child(which_button).disabled:
+				return
+			var data := DIR.get_dict_from_file(SAVE_PATH % which_button)
 			var discrepancy: bool = (
 					DAT.seconds < data.get("seconds", -1)
 					or DAT.get_data("nr", 0) != data.get("nr", -1)
@@ -210,9 +225,10 @@ func _on_button_pressed(reference: Variant) -> void:
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice != "yes":
 					return
-			DAT.save_data(SAVE_PATH % reference)
+			var savefile_path := SAVE_PATH % which_button
+			DAT.save_data(savefile_path)
 			SND.menusound()
-			set_current_button(reference)
+			set_current_button(which_button)
 			vfx_msg("saved!")
 		LOAD:
 			if load_warning_message:
@@ -221,7 +237,10 @@ func _on_button_pressed(reference: Variant) -> void:
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice != "yes":
 					return
-			DAT.load_data(SAVE_PATH % reference)
+			var savefile_path := SAVE_PATH % which_button
+			if is_autosave(which_button):
+				savefile_path = SAVE_PATH % AUTOSAVE_NAME
+			DAT.load_data(savefile_path)
 			set_current_button(12839)
 			DAT.free_player("save_screen")
 			queue_free()
@@ -323,3 +342,7 @@ func vfx_msg(msg: String) -> void:
 			file_container.get_child(current_button).global_position
 			- Vector2(SOL.SCREEN_SIZE) / 2.0
 			+ file_container.get_child(current_button).size / 2.0, msg)
+
+
+func is_autosave(which: int) -> bool:
+	return which >= file_container.get_child_count() - 1

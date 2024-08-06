@@ -76,7 +76,8 @@ func get_save_key(param: String) -> StringName:
 
 func _save_me() -> void:
 	var saved := enemies.filter(func(a):
-		return a is OverworldCharacter and a.is_physics_processing())
+		return (is_instance_valid(a) and a is OverworldCharacter
+				and a.is_physics_processing()))
 	var savekey := get_save_key("thugs")
 	DAT.set_data(savekey, [])
 	for thug: OverworldCharacter in saved:

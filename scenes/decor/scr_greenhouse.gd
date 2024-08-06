@@ -48,6 +48,8 @@ func _on_inside_area_body_exited(_body: PlayerOverworld) -> void:
 	SND.play_song(previous_song_key)
 	player.menu_disabled = false
 	player.saving_disabled = false or _player_saving_disabled
+	if not player.saving_disabled:
+		DAT.save_autosave()
 
 
 func cam_zoom(to: Vector2, time: float) -> void:

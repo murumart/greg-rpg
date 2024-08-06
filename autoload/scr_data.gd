@@ -99,23 +99,22 @@ func save_to_data() -> void:
 	set_data("version", VERSION)
 
 
-func save_data(filename := "save.grs", overwrite := true) -> void:
+func save_data(filename := "save.grs", set_filename_data := true) -> void:
 	save_to_data()
-	set_data("save_file", filename)
+	if set_filename_data:
+		set_data("save_file", filename)
 	last_save_second = seconds
 
 	var stuff := {}
-	# technical possibility of not replacing the entire dict but only
-	# replacing existing keys and keeping ones that are not in the new one.
-	# that explanation sucks
-	if not overwrite:
-		stuff = DIR.get_dict_from_file(filename)
-		for k in A.keys():
-			stuff[k] = A[k]
-	else:
-		stuff = A
+	stuff = A
 
 	DIR.write_dict_to_file(stuff, filename)
+
+
+func save_autosave() -> void:
+	print("autosaving!")
+	var filename := get_data("save_file", "") as String
+	save_data(SaveScreen.SAVE_PATH % SaveScreen.AUTOSAVE_NAME, filename == "")
 
 
 # change some key inside the actual save file
@@ -279,6 +278,16 @@ func load_chars_from_data() -> void:
 func _on_game_timer_timeout() -> void:
 	seconds += 1
 	playtime += 1
+	
+	if seconds % 60 == 0:
+		var greg := get_tree().get_first_node_in_group("players")
+		if not greg:
+			return
+		var interval := OPT.get_opt("autosave_interval") * 60 as float
+		if (seconds - last_save_second >= interval
+				and not greg.saving_disabled):
+			save_autosave()
+	
 	if playtime % 300 == 0:
 		var screenies := DIR.get_screenshots()
 		if screenies.is_empty():

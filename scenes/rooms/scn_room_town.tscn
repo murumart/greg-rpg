@@ -1003,9 +1003,6 @@ layer_3/tile_data = PackedInt32Array(196604, 65537, 2, 196605, 589825, 2, 196606
 
 [node name="NeighboursGreenhouse" parent="Houses/NeighbourHouse" instance=ExtResource("6_peamb")]
 position = Vector2(108, -141)
-grows_in_seconds = null
-has_vegetables = null
-save = null
 
 [node name="Roof" parent="Houses/NeighbourHouse" instance=ExtResource("2_5v2v1")]
 self_modulate = Color(0.219608, 0.443137, 0.517647, 1)
@@ -1590,9 +1587,6 @@ script = ExtResource("18_0km5u")
 position = Vector2(98, -88)
 rotation = 3.14159
 scale = Vector2(1, -1)
-grows_in_seconds = null
-has_vegetables = null
-save = null
 
 [node name="UhhHouse2" type="Node2D" parent="Houses"]
 y_sort_enabled = true
