@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=123 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="26_ac4pt"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_uhh_house.gd" id="26_w7wx6"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_store.gd" id="26_yxj03"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="27_00mvv"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_skatepark.gd" id="28_f5xvh"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_town_park.gd" id="29_1p6ww"]
@@ -758,7 +759,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(1070, -51)
+position = Vector2(893, 277)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1332,6 +1333,7 @@ tutorial_type = 1
 [node name="Store" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(880, 176)
+script = ExtResource("26_yxj03")
 
 [node name="OverworldTiles" parent="Houses/Store" instance=ExtResource("2_5v2v1")]
 layer_0/tile_data = PackedInt32Array(196600, 65537, 2, 196601, 131073, 2, 196602, 131073, 2, 196603, 131073, 2, 196604, 131073, 2, 196605, 131073, 2, 196606, 131073, 2, 196607, 196609, 2, 131072, 589825, 0, 131073, 589825, 0, 131074, 131073, 2, 131075, 131073, 2, 131076, 131073, 2, 131077, 131073, 2, 131078, 131073, 2, 131079, 131073, 2, 131080, 131073, 2, 131081, 196609, 2, 65545, 196609, 1, 9, 196609, 1, -65527, 196609, 1, -131063, 196609, 0, -131064, 131073, 0, -131065, 131073, 0, -131066, 131073, 0, -131068, 131073, 0, -131067, 131073, 0, -131069, 131073, 0, -131070, 131073, 0, -131071, 131073, 0, -131072, 131073, 0, -65537, 131073, 0, -65538, 131073, 0, -65539, 131073, 0, -65540, 131073, 0, -65541, 131073, 0, -65542, 131073, 0, -65543, 131073, 0, -65544, 65537, 0, -8, 65537, 1, 65528, 65537, 1, 131064, 65537, 1, 131065, 720897, 1, 131066, 131073, 1, 65530, 131073, 1, 65529, 131073, 1, -7, 131073, 1, -6, 131073, 1, 131067, 720897, 1, 131068, 131073, 1, 65532, 131073, 1, 65533, 131073, 1, -3, 131073, 1, -5, 131073, 1, 65531, 131073, 1, -2, 131073, 1, -1, 131073, 1, -65535, 131073, 1, -65536, 131073, 1, -65533, 131073, 1, -65534, 131073, 1, -65531, 131073, 1, -65532, 131073, 1, -65530, 131073, 1, -4, 131073, 1, 65534, 131073, 1, 65535, 131073, 1, 0, 131073, 1, 1, 131073, 1, 2, 131073, 1, 131069, 720897, 1, 131070, 131073, 1, 65536, 131073, 2, 131071, 131073, 1, 65537, 131073, 1, 65539, 393217, 1, 65538, 131073, 1, 65541, 131073, 1, 65540, 720897, 1, 65542, 720897, 1, 65543, 131073, 1, 65544, 720897, 1, 8, 131073, 1, 6, 131073, 1, 7, 131073, 1, 5, 131073, 1, 3, 131073, 1, 4, 131073, 1, -65529, 131073, 1, -65528, 131073, 1, -196599, 458753, 2, -262135, 458753, 1, -327671, 458753, 1, -393207, 458753, 1, -196600, 393217, 2, -262136, 393217, 1, -327672, 393217, 1, -393208, 393217, 1, -196601, 393217, 2, -262137, 393217, 1, -327673, 393217, 1, -393209, 393217, 1, -196602, 393217, 2, -262138, 393217, 1, -327674, 393217, 1, -393210, 393217, 1, -196603, 393217, 2, -262139, 393217, 1, -327675, 393217, 1, -393211, 393217, 1, -196604, 393217, 2, -262140, 393217, 1, -327676, 393217, 1, -393212, 393217, 1, -196605, 393217, 2, -262141, 393217, 1, -327677, 393217, 1, -393213, 393217, 1, -196606, 393217, 2, -262142, 393217, 1, -327678, 393217, 1, -393214, 393217, 1, -196607, 393217, 2, -262143, 393217, 1, -327679, 393217, 1, -393215, 393217, 1, -196608, 393217, 2, -262144, 393217, 1, -327680, 393217, 1, -393216, 393217, 1, -131073, 393217, 2, -196609, 393217, 1, -262145, 393217, 1, -327681, 393217, 1, -131074, 393217, 2, -196610, 393217, 1, -262146, 393217, 1, -327682, 393217, 1, -131075, 393217, 2, -196611, 393217, 1, -262147, 393217, 1, -327683, 393217, 1, -131076, 393217, 2, -196612, 393217, 1, -262148, 393217, 1, -327684, 393217, 1, -131077, 393217, 2, -196613, 393217, 1, -262149, 393217, 1, -327685, 393217, 1, -131078, 393217, 2, -196614, 393217, 1, -262150, 393217, 1, -327686, 393217, 1, -131079, 393217, 2, -196615, 393217, 1, -262151, 393217, 1, -327687, 393217, 1, -131080, 327681, 2, -196616, 327681, 1, -262152, 327681, 1, -327688, 327681, 1, -458743, 458753, 1, -524279, 458753, 1, -589815, 458753, 0, -458744, 393217, 1, -524280, 393217, 1, -589816, 393217, 0, -458745, 393217, 1, -524281, 393217, 1, -589817, 393217, 0, -458746, 393217, 1, -524282, 393217, 1, -589818, 393217, 0, -458747, 393217, 1, -524283, 393217, 1, -589819, 393217, 0, -458748, 393217, 1, -524284, 393217, 1, -589820, 393217, 0, -458749, 393217, 1, -524285, 393217, 1, -589821, 393217, 0, -458750, 393217, 1, -524286, 393217, 1, -589822, 393217, 0, -458751, 393217, 1, -524287, 393217, 1, -589823, 393217, 0, -458752, 393217, 1, -524288, 393217, 1, -589824, 393217, 0, -393217, 393217, 1, -458753, 393217, 1, -524289, 393217, 0, -393218, 393217, 1, -458754, 393217, 1, -524290, 393217, 0, -393219, 393217, 1, -458755, 393217, 1, -524291, 393217, 0, -393220, 393217, 1, -458756, 393217, 1, -524292, 393217, 0, -393221, 393217, 1, -458757, 393217, 1, -524293, 393217, 0, -393222, 393217, 1, -458758, 393217, 1, -524294, 393217, 0, -393223, 393217, 1, -458759, 393217, 1, -524295, 393217, 0, -393224, 327681, 1, -458760, 327681, 1, -524296, 327681, 0)
@@ -1466,6 +1468,53 @@ offset = Vector2(0, -7)
 libraries = {
 "": SubResource("AnimationLibrary_8mgoo")
 }
+
+[node name="UguyWalk" parent="Houses/Store" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("10_dem56")]
+position = Vector2(17, 54)
+animated_sprite = NodePath("AnimatedSprite2D")
+speed = 2000
+movement_wait = 1.0
+path_container = NodePath("../UguyPath")
+default_lines = Array[StringName]([&"guy_walk_home_1", &"guy_walk_home_2"])
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Houses/Store/UguyWalk"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("43_n6mbw")
+animation = &"walk_down"
+
+[node name="UguyPath" type="Node2D" parent="Houses/Store"]
+position = Vector2(17, 53)
+
+[node name="Node2D" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-4, 26)
+
+[node name="Node2D2" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-67, 32)
+
+[node name="Node2D3" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-132, 35)
+
+[node name="Node2D4" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-207, 42)
+
+[node name="Node2D5" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-270, 48)
+
+[node name="Node2D6" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-339, 52)
+
+[node name="Node2D7" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-389, 55)
+
+[node name="Node2D8" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-424, 47)
+
+[node name="Node2D9" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-425, 18)
+
+[node name="Node2D10" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(-425, -2)
 
 [node name="PostOffice" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1999,6 +2048,7 @@ replenish_seconds = 1440
 item = &"glue"
 
 [node name="VampireCutscene" type="Node2D" parent="Other/CampfireSite"]
+visible = false
 y_sort_enabled = true
 script = ExtResource("33_v2bux")
 

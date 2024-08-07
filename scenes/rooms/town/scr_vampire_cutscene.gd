@@ -30,6 +30,7 @@ func _ready() -> void:
 
 func start() -> void:
 	end_nuisances()
+	show()
 	DAT.capture_player("cutscene")
 	SOL.dialogue_low_position()
 	SND.call_deferred("play_song", "")

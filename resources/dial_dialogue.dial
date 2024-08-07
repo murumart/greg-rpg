@@ -3132,6 +3132,37 @@ DIALOGUE lake_hint_stroll_2
 	[color=YUKUCOLOR]yuku... yuku... yuku...[/color]
 
 
+DIALOGUE guy_walk_home_1
+DATA_LINK witnessed_ushanka_guy_cutscene,false
+	i'm walkin' here!
+	i just bought myself a treat and i'm walking home to enjoy it...
+	...and there's nothing you can do about it!
+DATA_LINK witnessed_ushanka_guy_cutscene,true
+	oh, hey! i'm walking home to enjoy my treat i just bought.
+	no, you can't come with.
+	i know you didn't ask verbally, but you just look like you would've.
+	the only one sleeping on my couch is me!
+DATA_LINK vampire_defeated,true
+	by the way... good job with the vampire girl!
+	i really didn't think a girl could be that mean.
+	i only wanted to help...
+DATA_LINK mail_man_dead,true
+	...
+	i still can't believe the mail man is dead...
+	he was such a good person... driving our town forward...
+	that dastardly girl... how could she...
+
+
+DIALOGUE guy_walk_home_2
+	it's nice that the store is so close.
+	i don't have to expend too much energy on stuff like "going outside"...
+	...and "exercising".
+
+
+DIALOGUE guy_walk_home_door
+	bye bye.
+
+
 DIALOGUE girl_1
 	i love this little town!
 	i have been to many places, but this one...

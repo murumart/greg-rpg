@@ -1,13 +1,11 @@
 extends Room
 
-const STORE_CLEANUP_TIME_SECONDS := 400
-
-@onready var store_door := $Houses/Store/DoorArea
 @onready var bike := $Houses/UhhHouse/Bike
 
 @onready var thug_spawners := $Areas.find_children("ThugSpawner*")
 @onready var animal_spawners := $Areas.find_children("AnimalSpawner*")
 @onready var vampire_cutscene: Node2D = $Other/CampfireSite/VampireCutscene
+@onready var store: Node2D = $Houses/Store
 
 
 func _ready() -> void:
@@ -17,11 +15,10 @@ func _ready() -> void:
 		DAT.set_data("intro_cutscene_over", true)
 		DAT.set_data("zerma_left", true)
 
-	_store_door_setup()
+	store.setup()
 	pink_haired_girl_setup()
 	naturalist_setup()
 	kid_setup()
-	lake_hint_npc_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	if ResMan.get_character("greg").level < 9:
@@ -43,25 +40,6 @@ func _ready() -> void:
 					await get_tree().process_frame
 					$Other/BirdBlocker/InspectArea.key = "blocking_bird"
 			)
-
-
-func _store_door_setup() -> void:
-	var current_cashier := StoreCashier.which_cashier_should_be_here()
-	var stolen: int = DAT.get_data("stolen_from_store", 0)
-	var cleanup_start_second: int = DAT.get_data("store_cleanup_started_second", -31399)
-	prints(current_cashier, stolen)
-	if (stolen > 199
-			and not DAT.get_data("cashier_dead", false)
-			and current_cashier == "nice"):
-		store_door.destination = ""
-	if (store_door.destination != ""
-			and current_cashier == "absent"):
-		store_door.destination = ""
-		store_door.fail_dialogue = "store_cashier_absent"
-	if (store_door.destination != ""
-			and DAT.seconds - cleanup_start_second < STORE_CLEANUP_TIME_SECONDS):
-		store_door.destination = ""
-		store_door.fail_dialogue = "store_under_cleanup"
 
 
 func pink_haired_girl_setup() -> void:
@@ -119,40 +97,4 @@ func kid_first_encounter() -> void:
 
 func _on_trash_guy_inspected() -> void:
 	DAT.set_data("trash_guy_inspected", true)
-
-
-func lake_hint_npc_setup() -> void:
-	var npc := $Houses/Store/LakeHintNpc as OverworldCharacter
-	var time := DAT.seconds % DAT.LAKE_HINT_CYCLE as int
-	var cyc := DAT.LAKE_HINT_CYCLE as int
-	if not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
-		npc.queue_free()
-		DAT.set_data("lake_hint_received", false)
-		return
-	npc.inspected.connect(_on_lake_hint_received)
-	var level := ResMan.get_character("greg").level
-	if level >= 24 and not "lakeside" in DAT.get_data("visited_rooms", []):
-		npc.default_lines.append("lake_hint")
-		return
-	npc.default_lines.append("lake_hint_" + str((randi() % 8) + 1))
-	npc.default_lines.append("lake_hint_continue")
-
-func _on_lake_hint_received(force_cutscene: bool = false) -> void:
-	var cs := $Houses/Store/StoreCutscenePlayer as AnimationPlayer
-	if not DAT.get_data("lake_hint_received", false):
-		DAT.incri("store_ad_progress", 1)
-	DAT.set_data("lake_hint_received", true)
-	if force_cutscene or (DAT.get_data("store_ad_progress", 0) >= 3 and
-			not DAT.get_data("saw_ad_cutscene", false)):
-		DAT.set_data("saw_ad_cutscene", true)
-		DAT.capture_player("cutscene")
-		cs.play("cutscene_start")
-		cs.animation_finished.connect(func(_a):
-			SOL.dialogue("lake_hint_cutscene_1")
-			SOL.dialogue_closed.connect(func():
-				cs.play("cutscene_end")
-				DAT.free_player("cutscene")
-			, CONNECT_ONE_SHOT)
-		, CONNECT_ONE_SHOT)
-
 
