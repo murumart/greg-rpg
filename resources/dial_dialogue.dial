@@ -885,6 +885,29 @@ CHOICE_LINK no
 EMO serious
 	then why bother coming here? don't waste my time.
 
+CHOICE_LINK vampire
+EMO serious
+	...the vampire?
+	...you mean that girl that was around for a while...?
+EMO fear
+	...
+EMO exasperated
+	i was a target?
+	i wondered why she seemed so interested in me.
+EMO 
+	of course, i suspected nothing romantic.
+EMO exasperated
+	but a vampire... after me... what does that say about me...?
+EMO 
+	don't worry, though. i was never in any real danger.
+	if she did try something...
+EMO intimidating
+SET_DATA mail_man_vampire_mentioned,true
+	her blood would have betrayed her.
+EMO 
+LOOP 1
+	anyway, biking.
+
 
 DIALOGUE biking_welcome_1
 CHAR mail_man
@@ -3224,7 +3247,7 @@ DATA_LINK mail_heard_name,false
 DIALOGUE vampire_note
 	(there is a note left on his table.)
 	"dear people of stupidtown or whatever it's called,
-	with utmost respect, i have murdered your mailman.
+	with utmost respect, i have easily murdered your mailman.
 	and i also took his spirit power for myself.
 	you will not hear from me ever again! tata!
 	- the vampire"

@@ -9,6 +9,12 @@ var hes_dead := false
 
 func _ready() -> void:
 	super._ready()
+	var dbox := SOL.dialogue_box as DialogueBox
+	dbox.adjust("mail_man_jobtalk", 1, "choices", ["yes", "no"])
+	if (DAT.get_data("vampire_fought", false)
+			and not DAT.get_data("mail_man_vampire_mentioned", false)):
+		dbox.adjust("mail_man_jobtalk", 1, "choices", ["vampire", "yes", "no"])
+		
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
 		mail_man_welcome_after_biking()
 		ushanka_guy_cutscene.cleanup()
@@ -17,7 +23,9 @@ func _ready() -> void:
 		ushanka_guy_cutscene.start()
 	else:
 		ushanka_guy_cutscene.cleanup()
-	if not DAT.get_data("vampire_fought", false) and ResMan.get_character("greg").level > 49:
+	
+	if (not DAT.get_data("vampire_fought", false)
+			and ResMan.get_character("greg").level > 49):
 		hes_dead = true
 		notes.show()
 		ushanka_guy_cutscene.consequences()
