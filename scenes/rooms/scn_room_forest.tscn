@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=18 format=3 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_2kpjx"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_g7xsi"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="3_q2vky"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_255qu"]
-[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="6_bbhas"]
 [ext_resource type="Script" path="res://scenes/rooms/forest/scr_forest_hud.gd" id="7_yb0vi"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_d6fx5"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
@@ -120,13 +119,6 @@ limit_left = -288
 limit_top = -256
 limit_right = 288
 limit_bottom = 256
-
-[node name="CheatNode" type="Node" parent="Greg"]
-script = ExtResource("6_bbhas")
-level_gain = 60
-new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"mueslibar", &"mueslibar"])
-replace_armour = &"rain_boot"
-replace_weapon = &"fish"
 
 [node name="Gates" type="Node2D" parent="."]
 

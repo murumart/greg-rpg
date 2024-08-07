@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=84 format=3 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_trs8b"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_r61au"]
 [ext_resource type="Script" path="res://code/scr_color_container.gd" id="3_xexyo"]
-[ext_resource type="Script" path="res://code/scr_cheat_node.gd" id="4_6dg7d"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_so2nw"]
@@ -382,11 +381,6 @@ script = ExtResource("3_xexyo")
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
 position = Vector2(-252, -143)
 metadata/_edit_group_ = true
-
-[node name="CheatNode" type="Node" parent="Greg"]
-script = ExtResource("4_6dg7d")
-level_gain = 32
-new_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon"])
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
 position = Vector2(0, -6)
