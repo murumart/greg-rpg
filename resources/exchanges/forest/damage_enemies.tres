@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_o7j6m"]
 script = ExtResource("1_f4rh2")
 key = &"enemy_start_damage"
-value = 7.0
+value = 11.0
 
 [resource]
 script = ExtResource("1_orrgm")
