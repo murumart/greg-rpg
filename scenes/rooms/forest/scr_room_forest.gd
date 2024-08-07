@@ -83,7 +83,8 @@ func leave() -> void:
 	DAT.set_data("forest_last_gate_entered", -1)
 	DAT.set_data("forest_depth", 0)
 	LTS.gate_id = &"forest-house"
-	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn")
+	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn",
+			{"ask_save_confirmation": true})
 
 
 func _save_me() -> void:

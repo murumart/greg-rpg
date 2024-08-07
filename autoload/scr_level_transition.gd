@@ -58,7 +58,8 @@ func level_transition(path: String, op := {}) -> void:
 	SOL.fade_screen(
 		op.get("start_color", Color(0, 0, 0, 0)),
 		op.get("end_color", Color.BLACK),
-		fadetime
+		fadetime,
+		{"free_rect": not op.get("ask_save_confirmation", false)}
 	)
 	await SOL.fade_finished
 	DAT.save_nodes_data()
@@ -66,12 +67,19 @@ func level_transition(path: String, op := {}) -> void:
 	change_scene_to(path, op)
 	await scene_changed
 	if not op.get("abrupt_end", false):
+		if op.get("ask_save_confirmation", false):
+			SOL.dialogue("save_after_transition_ask")
+			await SOL.dialogue_closed
+			if SOL.dialogue_choice == &"yes":
+				SOL.save_menu(false, {})
 		SOL.fade_screen(
 			op.get("end_color", Color.BLACK),
 			op.get("start_color", Color(0, 0, 0, 0)),
-			fadetime
+			fadetime,
+			{"kill_rects": op.get("ask_save_confirmation", false)}
 		)
 	else:
+		
 		SOL.fade_screen(Color.TRANSPARENT, Color.TRANSPARENT, 0.1)
 	if op.get("stealing_enabled", true):
 		handle_stolen_items()

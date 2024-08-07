@@ -6,7 +6,7 @@
 [node name="SOL" type="CanvasLayer"]
 script = ExtResource("1_3f4vq")
 
-[node name="DialogueBox" parent="." instance=ExtResource("2_1cax3")]
-
 [node name="ScreenFadeOrderer" type="Node2D" parent="."]
-z_index = 19
+z_index = 11
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_1cax3")]

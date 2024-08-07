@@ -44,6 +44,11 @@ CHOICES no,yes
 	they don't seem to match up.
 
 
+DIALOGUE save_after_transition_ask
+CHOICES yes,no
+	would you like to save?
+
+
 DIALOGUE quit_warning
 CHOICES no,yes
 	you last saved %s seconds ago. are you sure you want to quit?
