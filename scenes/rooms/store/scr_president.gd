@@ -96,6 +96,7 @@ func _after_battle() -> void:
 	var powerline := $WetMessSlop/DeliveryGuy/VfxPowerline
 	wet_mess_slop.show()
 	delivery_guy.modulate.a = 0.0
+	delivery_guy.global_position = greg_poses[1].global_position
 	wet_animation.play("drain")
 	var tw: Tween
 	greg.global_position = greg_poses[0].global_position

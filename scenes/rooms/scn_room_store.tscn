@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=70 format=3 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="PackedScene" uid="uid://7v6bq0p8ea7t" path="res://scenes/scn_interior_tiles.tscn" id="2_bdr84"]
@@ -228,10 +228,10 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.34, 0.54, 0.72, 1.27, 1.39),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.72, 1.27, 1.39),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0152272, 2.34495, 0.208428, 0.00885487, 0.013999]
+"values": [0.0, 0.208428, 0.00885487, 0.013999]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -555,15 +555,9 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_2k0so"]
-resource_local_to_scene = true
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
-colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
-
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_m6l7m"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_2k0so")
+gradient = SubResource("Gradient_gckj0")
 fill_from = Vector2(1, 1)
 
 [node name="Store" type="Node2D" groups=["save_me"]]
@@ -1032,6 +1026,7 @@ position = Vector2(96, -64)
 script = ExtResource("23_w6t1x")
 
 [node name="President" parent="PresidentEncounter" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("8_0h0ea")]
+position = Vector2(-14, -8)
 animated_sprite = NodePath("AnimatedSprite2D")
 path_container = NodePath("../PresidentPath")
 interact_on_touch = true
@@ -1154,7 +1149,7 @@ gradient = SubResource("Gradient_gckj0")
 lifetime = 0.0
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
-points = PackedVector2Array(-24, -3, -23.3421, -12.8204, -22.9567, -27.882, -24.1706, -36.0066, -22.4631, -49.9391, -25.2783, -63.1982, -22.6748, -72.8196, -24.5529, -82.6794, -25.4634, -98.249, -25, -108)
+points = PackedVector2Array(-24, -3, -24.451, -12.6958, -24.4705, -28.3179, -23.3057, -36.2842, -26.4443, -49.6942, -25.8346, -59.7958, -22.8818, -73.9024, -24.4311, -82.6969, -23.678, -97.9251, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_m6l7m")
 
