@@ -360,6 +360,7 @@ spawn_enemy = ExtResource("10_20mcq")
 max_enemies = 1
 player = NodePath("../../../Greg")
 active_range = Vector2i(4, 99)
+wait_time = 6.0
 
 [node name="Cats2" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
 position = Vector2(-259, 11)
@@ -367,6 +368,7 @@ spawn_enemy = ExtResource("10_20mcq")
 max_enemies = 2
 player = NodePath("../../../Greg")
 active_range = Vector2i(4, 99)
+wait_time = 4.0
 
 [node name="Cats3" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
 position = Vector2(207, -49)
