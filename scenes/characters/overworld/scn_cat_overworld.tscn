@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsdq5h3auf48d"]
+[gd_scene load_steps=18 format=3 uid="uid://bsdq5h3auf48d"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_4qwvp"]
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
@@ -45,6 +45,11 @@ point_count = 1
 script = ExtResource("5_opow6")
 key = &"cat"
 curve = SubResource("Curve_34vmh")
+
+[sub_resource type="Curve" id="Curve_ehcju"]
+max_value = 3.0
+_data = [Vector2(0, 0.9922), 0.0, 0.0, 0, 0, Vector2(0.713208, 1.81357), 0.0, 0.0, 0, 0, Vector2(0.735849, 0.779251), 0.0, 0.0, 0, 0, Vector2(0.754717, 0.74883), 0.0, 0.0, 0, 0, Vector2(0.762264, 1.69189), 0.0, 0.0, 0, 0, Vector2(0.762274, 2.23947), 0.0, 0.0, 0, 0, Vector2(0.766038, 1.26599), 0.0, 0.0, 0, 0, Vector2(0.811321, 1.47894), 0.0, 0.0, 0, 0, Vector2(0.901887, 1.84399), 0.0, 0.0, 0, 0, Vector2(1, 2.45242), 0.0, 0.0, 0, 0]
+point_count = 10
 
 [sub_resource type="Resource" id="Resource_7jt7c"]
 script = ExtResource("5_fc8d6")
@@ -93,6 +98,7 @@ offset = Vector2(0, -1)
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_tjrt7")
 values = Array[ExtResource("5_opow6")]([SubResource("Resource_byucl"), SubResource("Resource_w5bnk"), SubResource("Resource_7ox55")])
+enemy_amount_by_level = SubResource("Curve_ehcju")
 default_battle = SubResource("Resource_7jt7c")
 max_enemies = 3
 inject_target = NodePath("..")

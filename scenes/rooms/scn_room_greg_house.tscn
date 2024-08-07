@@ -355,23 +355,23 @@ shape = SubResource("RectangleShape2D_0wj7p")
 y_sort_enabled = true
 
 [node name="Cats1" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(-64, 95)
+position = Vector2(38, 109)
 spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 3
+max_enemies = 1
 player = NodePath("../../../Greg")
 active_range = Vector2i(4, 99)
 
 [node name="Cats2" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
-position = Vector2(-182, -37)
+position = Vector2(-259, 11)
 spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 4
+max_enemies = 2
 player = NodePath("../../../Greg")
 active_range = Vector2i(4, 99)
 
 [node name="Cats3" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
 position = Vector2(207, -49)
 spawn_enemy = ExtResource("10_20mcq")
-max_enemies = 1
+max_enemies = 2
 player = NodePath("../../../Greg")
 
 [node name="Cats5" parent="Areas/CatSpawners" node_paths=PackedStringArray("player") instance=ExtResource("9_xism4")]
