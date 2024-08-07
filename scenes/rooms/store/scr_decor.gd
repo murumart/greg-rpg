@@ -31,11 +31,17 @@ func product_placement() -> void:
 
 # the neighbour wife can appear in the store
 func neighbour_wife_position() -> void:
-	var neighbour_wife := $NeighbourWife
+	var neighbour_wife := $NeighbourWife as OverworldCharacter
 	if store_cashier.cashier == "dead":
 		neighbour_wife.queue_free()
 		return
 	var time := wrapi(DAT.seconds, 0, NEIGHBOUR_WIFE_CYCLE)
+	if DAT.get_data("you_gotta_see_the_water_drain", false):
+		neighbour_wife.default_lines.clear()
+		neighbour_wife.convo_progress = 0
+		neighbour_wife.default_lines.append("neighbour_wife_talk_after_franking")
+		neighbour_wife.default_lines.append("neighbour_wife_talk_after_franking_2")
+		neighbour_wife.default_lines.append("neighbour_wife_talk_4")
 	if time < NEIGHBOUR_WIFE_CYCLE / 2:
 		neighbour_wife.queue_free()
 
@@ -47,7 +53,7 @@ func dothethingthething() -> void:
 	cashier.speed = 0
 	cashier.direct_walking_animation(greg.global_position - cashier.global_position)
 	tw.parallel().tween_property(canvas_modulate, "color",
-			(Color(0.51764708757401, 0.66666668653488, 0.59607845544815)), 10.0)
+			(Color(0.517, 0.666, 0.596)), 10.0)
 	await SOL.dialogue_closed
 	SND.play_sound(preload("res://sounds/spirit/wli_up.ogg"))
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)

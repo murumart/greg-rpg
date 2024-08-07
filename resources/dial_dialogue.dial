@@ -1507,6 +1507,16 @@ DIALOGUE neighbour_wife_talk_store_1
 	it's easy to tell you're not a local.
 
 
+DIALOGUE neighbour_wife_talk_after_franking
+	...wow...
+	...i didn't expect... this...
+	at least i didn't get any of my actual clothes wet.
+
+
+DIALOGUE neighbour_wife_talk_after_franking_2
+	you're very interesting... i'll have to report this.
+
+
 DIALOGUE car_scared_1
 	oh dear... how am i supposed to cross the road here...
 	...if there are cars zooming about?
