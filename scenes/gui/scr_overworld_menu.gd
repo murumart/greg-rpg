@@ -347,10 +347,12 @@ func update_using_portraits() -> void:
 
 
 func _reference_button_pressed(reference) -> void:
+	print("reference: ", reference)
 	if (reference in party(current_tab).inventory
 			or reference == party(current_tab).armour
 			or reference == party(current_tab).weapon
-			or DAT.get_data("player_move_mode", 0) == 1):
+			or (DAT.get_data("player_move_mode", 0) == 1
+				and reference == &"skateboard")):
 		if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 			if (reference == party(current_tab).armour):
 				party(current_tab).armour = ""
