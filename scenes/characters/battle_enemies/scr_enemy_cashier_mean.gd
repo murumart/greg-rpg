@@ -34,7 +34,8 @@ func act() -> void:
 
 
 func hurt(amt: float, g: int) -> void:
-	if (character.health - amt) / character.max_health < 0.1:
+	var after_this := character.health - _hurt_damage(amt, g)
+	if (after_this < 0):
 		amt += (character.health - amt) - character.max_health * 0.1
 		DAT.set_data("cashier_defeated_thru_damage", true)
 	super(amt, g)
