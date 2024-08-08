@@ -30,23 +30,25 @@ var over := false
 var score := 0:
 	set(to):
 		score = to
-		$UI/S/Player/Score.text = "score: " + str(score)
+		$UI/S/Player/Score.text = str(score)
 		if to >= 3000:
 			win()
 var enscore := 0:
 	set(to):
 		enscore = to
-		$UI/S/Enemy/Score.text = "score: " + str(enscore)
+		$UI/S/Enemy/Score.text = str(enscore)
 		if to >= 3000:
 			lose()
 var lives := 0:
 	set(to):
 		lives = to
-		$UI/S/Player/Lives.text = "lives: " + str(lives)
+		for x in 3 - lives:
+			$UI/S/Player/Lives.get_child(x).visible = false
 var enlives := 0:
 	set(to):
 		enlives = to
-		$UI/S/Enemy/Lives.text = "lives: " + str(enlives)
+		for x in 3 - enlives:
+			$UI/S/Enemy/Lives.get_child(x).visible = false
 
 
 func _ready() -> void:

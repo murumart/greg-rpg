@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ycujm54lg8r5"]
+[gd_scene load_steps=16 format=3 uid="uid://ycujm54lg8r5"]
 
 [ext_resource type="Script" path="res://scenes/pennistong/penni_stong.gd" id="1_l60sq"]
 [ext_resource type="Texture2D" uid="uid://ewqspdu3o3op" path="res://sprites/penni_stong/rps.png" id="2_r0guw"]
@@ -35,6 +35,22 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6qs8"]
 size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y63v6"]
+atlas = ExtResource("2_r0guw")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejx3w"]
+atlas = ExtResource("2_r0guw")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3jqf"]
+atlas = ExtResource("2_r0guw")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwava"]
+atlas = ExtResource("2_r0guw")
+region = Rect2(32, 48, 16, 16)
 
 [node name="PenniStong" type="Node2D"]
 script = ExtResource("1_l60sq")
@@ -148,12 +164,27 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Player" type="Label" parent="UI/S/Player"]
+[node name="Lives" type="HBoxContainer" parent="UI/S/Player"]
 layout_mode = 2
-size_flags_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-text = "you: "
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/S/Player/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_y63v6")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/S/Player/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_y63v6")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/S/Player/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_y63v6")
+expand_mode = 1
 
 [node name="Score" type="Label" parent="UI/S/Player"]
 layout_mode = 2
@@ -162,23 +193,31 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "score: "
 
-[node name="Lives" type="Label" parent="UI/S/Player"]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-text = "lives: "
-
 [node name="Enemy" type="VBoxContainer" parent="UI/S"]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Enemy" type="Label" parent="UI/S/Enemy"]
+[node name="Lives" type="HBoxContainer" parent="UI/S/Enemy"]
 layout_mode = 2
-size_flags_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-text = "him: "
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/S/Enemy/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_ejx3w")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/S/Enemy/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_d3jqf")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/S/Enemy/Lives"]
+custom_minimum_size = Vector2(12.74, 14.79)
+layout_mode = 2
+texture = SubResource("AtlasTexture_kwava")
+expand_mode = 1
 
 [node name="Score" type="Label" parent="UI/S/Enemy"]
 layout_mode = 2
@@ -186,10 +225,3 @@ size_flags_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "score: "
-
-[node name="Lives" type="Label" parent="UI/S/Enemy"]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-text = "lives: "

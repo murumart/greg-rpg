@@ -2709,7 +2709,7 @@ scale = Vector2(-1, 1)
 type = 2
 
 [node name="Tree54" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(215, -297)
+position = Vector2(215, -300)
 scale = Vector2(-1, 1)
 type = 2
 
@@ -2719,7 +2719,7 @@ scale = Vector2(-1, 1)
 type = 2
 
 [node name="Tree56" parent="Trees" instance=ExtResource("8_l27gf")]
-position = Vector2(217, -220)
+position = Vector2(217, -224)
 scale = Vector2(-1, 1)
 type = 2
 
