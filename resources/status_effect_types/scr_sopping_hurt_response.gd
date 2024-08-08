@@ -2,7 +2,7 @@ func hr(actor: BattleActor, container: BattleStatusEffect, attack_gender: int, d
 	var amt := damage_amount
 	SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
 			{"pitch_scale": 1.3, "volume": 2})
-	damage_amount += amt * (0.4 + (container.strength * 0.2))
+	damage_amount += amt * (0.2 + (container.strength * 0.15))
 	if attack_gender == Genders.FLAMING:
 		damage_amount *= 0.5
 	elif attack_gender == Genders.ELECTRIC:

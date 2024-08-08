@@ -29,7 +29,9 @@ gender = 0
 effects = Array[Resource("res://code/scr_status_effect.gd")]([])
 delay = null
 summon_enemy = null
+max_enemies = 6
 animation_on_receive = null
+message_user = &""
 meta = null
 
 [resource]

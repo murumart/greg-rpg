@@ -45,11 +45,13 @@ offset_left = 2.0
 offset_top = 23.0
 offset_right = 159.0
 offset_bottom = 118.0
+horizontal_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FirstScreen/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FirstScreen/ScrollContainer/HBoxContainer"]
 clip_contents = true

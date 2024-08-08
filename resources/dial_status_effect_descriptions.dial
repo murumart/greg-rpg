@@ -1,3 +1,6 @@
+MACRO SPIRITCOLOR #7799ff
+
+
 DIALOGUE what_does_stefde_stand_for
 	it stands for status effect description.
 
@@ -20,14 +23,17 @@ DIALOGUE stefde_poison_immunity
 
 DIALOGUE stefde_coughing
 	you will painfully cough every once in a while.
+	this will damage you.
 
 
 DIALOGUE stefde_fire
 	you're on fire, taking damage every time you act.
+	the damage is a set part of your life.
 
 
 DIALOGUE setefde_confusion
 	you're not quite sure whom you're going to hit...
+	sit this one out if you can.
 
 
 DIALOGUE stefde_attack
@@ -47,7 +53,7 @@ DIALOGUE stefde_magnet
 
 
 DIALOGUE stefde_inspiration
-	you regain some [color=#00ffff]spirit power[/color] every time you act.
+	you regain some [color=SPIRITCOLOR]spirit power[/color] every time you act.
 
 
 DIALOGUE stefde_regeneration
@@ -55,7 +61,8 @@ DIALOGUE stefde_regeneration
 
 
 DIALOGUE stefde_shield
-	a third of dealt damage will be blocked.
+	a third of received damage will be blocked.
+	most sources of damage are accounted.
 
 
 DIALOGUE stefde_sleepy
@@ -65,20 +72,21 @@ DIALOGUE stefde_sleepy
 
 DIALOGUE stefde_sopping
 	you're wet and pathetic and receive extra damage for it.
-	electric type damage will hurt badly.
-	flaming type damage done to you will be weakened, though.
+	electric type damage will hurt badly, but fire will be put out.
+	flaming type damage done to you will be weakened as well.
 
 
 DIALOGUE stefde_appetising
 	animals will first attack anyone with this effect.
+	they just love the smell.
 
 
 DIALOGUE stefde_little
-	you're tiny, which makes you slower, but not any weaker.
+	you're tiny, which makes you quite a bit slower, but not any weaker.
 
 
 DIALOGUE stefde_electric
-	you are a bit stronger! 
+	your natural attacks are slightly stronger! 
 	your physical attacks deal electric type damage.
 
 

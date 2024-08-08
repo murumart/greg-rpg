@@ -16,13 +16,18 @@ const reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
 @onready var character_choice: OptionButton = $SecondScreen/CharacterChoice
 @onready var portrait_sprite: Sprite2D = $SecondScreen/DialogueBox2/DialogueBoxPanel/PortraitSprite
 
+var refbutton_options := {
+	"mouse_interaction": true,
+	"text_left": 18,
+	"custom_pass_function": button_funny
+}
 
 
 func _ready() -> void:
 	ResMan.load_resources()
 	dialogue_box.load_dialogue_dict()
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
-	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, {"mouse_interaction": true, "text_left": 14})
+	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, refbutton_options)
 	for charc in ResMan.characters:
 		var chara := ResMan.get_character(charc) as Character
 		character_choice.add_icon_item(chara.portrait, chara.name_in_file)
@@ -39,7 +44,16 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 				array2.append(i)
 	else:
 		array2 = array
-	Math.load_reference_buttons(array2, containers, _reference_button_pressed, _on_button_reference_received, {"mouse_interaction": true, "text_left": 14})
+	Math.load_reference_buttons(array2, containers,
+			_reference_button_pressed,
+			_on_button_reference_received,
+			refbutton_options
+	)
+
+
+func button_funny(things: Dictionary) -> void:
+	var butt: Button = things.button
+	butt.add_theme_font_size_override("font_size", 6)
 
 
 func _reference_button_pressed(reference) -> void:
