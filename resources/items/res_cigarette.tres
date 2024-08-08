@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://0vvln54pbnnu"]
+
+[ext_resource type="Script" path="res://code/scr_item.gd" id="1_lkvka"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_uwnfg"]
+[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_62ign"]
+[ext_resource type="Texture2D" uid="uid://bkhs1kcfpuare" path="res://sprites/items/spr_item_cigarette.png" id="2_rd64e"]
+
+[sub_resource type="Resource" id="Resource_gpl83"]
+script = ExtResource("1_uwnfg")
+name = &"coughing"
+strength = 3.0
+duration = 4
+
+[sub_resource type="Resource" id="Resource_04ddk"]
+script = ExtResource("2_62ign")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 3
+effects = Array[ExtResource("1_uwnfg")]([SubResource("Resource_gpl83")])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+
+[resource]
+script = ExtResource("1_lkvka")
+name_in_file = &""
+name = &"cigarette"
+description = "this is bad for your lungs! don't smoke!!"
+texture = ExtResource("2_rd64e")
+attack_animation = ""
+price = 9
+use = 3
+consume_on_use = true
+payload = SubResource("Resource_04ddk")

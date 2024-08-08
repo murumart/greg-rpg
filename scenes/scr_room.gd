@@ -31,8 +31,19 @@ func _ready() -> void:
 			"save_audio_position": music_save_progress
 		}
 	)
+	spawn_cigarettes()
 
 
 func _save_me() -> void:
 	DAT.set_data("current_room", name.to_snake_case())
 
+
+func spawn_cigarettes() -> void:
+	var key := "cigarettes_in_" + name.to_snake_case()
+	var positions := DAT.get_data(key, {}) as Dictionary
+	for pos: Vector2 in positions:
+		var cig := CigaretteOverworld.SCENE.instantiate()
+		add_child(cig)
+		cig.global_position = pos
+		cig.rotation = positions[pos]["rotation"]
+		cig.start_timer(positions[pos]["time"])

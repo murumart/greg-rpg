@@ -29,3 +29,7 @@ stream = ExtResource("3_e1sfs")
 autoplay = true
 max_distance = 200.0
 attenuation = 1.86607
+
+[node name="CigaretteTimer" type="Timer" parent="."]
+wait_time = 6.815
+autostart = true

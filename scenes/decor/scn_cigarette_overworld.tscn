@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccr6ytgfbwa3a"]
+
+[ext_resource type="Script" path="res://scenes/decor/scr_cigarette_overworld.gd" id="1_6m0dp"]
+[ext_resource type="Texture2D" uid="uid://bw687u1lbrodi" path="res://sprites/vfx/cigarette.png" id="2_4vegs"]
+[ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="3_76v3f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3luv"]
+size = Vector2(2, 4)
+
+[sub_resource type="Curve" id="Curve_4y5jp"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 0.565961), 0.0, 0.0, 0, 0, Vector2(0.675781, 0.28013), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_i1um3"]
+width = 32
+curve = SubResource("Curve_4y5jp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qxlep"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2, 2, 1)
+gravity = Vector3(0, -5, 0)
+scale_curve = SubResource("CurveTexture_i1um3")
+
+[node name="CigaretteOverworld" type="Area2D" groups=["save_me"]]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_6m0dp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h3luv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_4vegs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_qxlep")
+texture = ExtResource("3_76v3f")
+lifetime = 4.0
+visibility_rect = Rect2(-25, -41, 50, 50)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

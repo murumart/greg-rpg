@@ -13,6 +13,7 @@ const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 @onready var sprite: Sprite2D = $Sprite
 @onready var collision_area: Area2D = $CollisionArea
 @onready var collision_shape: CollisionShape2D = $CollisionArea/CollisionShape
+@onready var cigarette_timer: Timer = $CigaretteTimer
 
 @export var path_container: Node
 @export var moves := true: set = set_moves
@@ -42,11 +43,16 @@ func _ready() -> void:
 		return
 	if not moves:
 		$VroomVroom.stop()
+	cigarette_timer.timeout.connect(_cigarette_timer)
 	collision_area.body_entered.connect(_on_collision)
 	position = DAT.get_data(get_save_key("position"), position)
 	current_target = DAT.get_data(get_save_key("current_target"), current_target)
-	battle_info = BattleInfo.new().set_enemies(["car"]).set_background("cars")\
-	.set_music("overrun").set_death_reason("car").set_start_text("hope you saved before this!")
+	battle_info = (BattleInfo.new()
+			.set_enemies(["car"])
+			.set_background("cars")
+			.set_music("overrun")
+			.set_death_reason("car")
+			.set_start_text("hope you saved before this!"))
 	set_color(color)
 	set_target(0)
 
@@ -160,5 +166,15 @@ func texture_setup() -> void:
 		Rect2i(0, 0, sx / 2, sy / 2),
 		Rect2i(sx / 2, 0, sx / 4, sy),
 		Rect2i(0, sy / 2, sx / 2, sy / 2)]
+
+
+func _cigarette_timer() -> void:
+	cigarette_timer.start(randf() * 6.618 + 6.618)
+	if not moves:
+		return
+	var cig := CigaretteOverworld.SCENE.instantiate()
+	cig.global_position = global_position
+	LTS.get_current_scene().add_child(cig)
+	cig.tumble()
 
 
