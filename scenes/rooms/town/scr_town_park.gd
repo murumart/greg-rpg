@@ -53,6 +53,8 @@ func tarikas_lines() -> void:
 		lines_to_set.append("tarikas_60")
 	elif Math.inrange(level, 70, 79):
 		lines_to_set.append("tarikas_70")
+	elif Math.inrange(level, 80, 89):
+		lines_to_set.append("tarikas_80")
 	lines_to_set.append("tarikas_finish")
 	tarikas.default_lines = lines_to_set
 

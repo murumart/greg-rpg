@@ -2076,6 +2076,18 @@ CHAR tarikas
 	i'm sure you're close to realising it by now.
 
 
+DIALOGUE tarikas_80
+CHAR tarikas
+DATA_LINK gdung_floor,2
+	you're really close.
+	i wonder why you're really here.
+DATA_LINK gdung_floor,1
+	ta ree ra rum ta ta..
+	ta ree ra raa ta rum ta ta..
+DATA_LINK gdung_floor,0
+	wonder is all we do nowadays.
+
+
 DIALOGUE tarikas_finish
 CHAR tarikas
 	mh. come back later.
@@ -2344,7 +2356,7 @@ DIALOGUE ph_guy_hello
 	my pet, jooky, has had a stomachache for a while.
 	it's because of those stray grass blades.
 	she just can't resist eating them!
-	my mission for you is to murder [color=#aaff88] 30 turf[/color].
+	my mission for you is to murder [color=#aaff88]30 turf[/color].
 	then she won't want to eat them, she only eats things that still wriggle.
 	if you do that, i'll show you something cool...
 
@@ -2361,7 +2373,7 @@ DIALOGUE ph_guy_turfwin
 
 
 DIALOGUE ph_guy_jooky_missing_1
-	hello. have you seen my pet jooky anywhere?
+	hello. have you seen my pet, jooky, anywhere?
 	i'm rather concerned. she seems to be missing...
 
 
