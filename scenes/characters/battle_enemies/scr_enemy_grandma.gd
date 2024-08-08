@@ -29,3 +29,7 @@ func act() -> void:
 
 func _item_diploma_used_on() -> void:
 	SOL.dialogue("grandma_diploma_use")
+
+
+func _item_winner_hat_used_on() -> void:
+	SOL.dialogue("grandma_winner_hat_use")

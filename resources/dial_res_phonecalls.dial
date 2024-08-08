@@ -198,6 +198,29 @@ CHAR well
 	...to forget about my wife...
 
 
+DIALOGUE phone_in_battle_grandma_boss
+CHAR grandma
+	huh? someone's calling me? give me that.
+	hello?
+CHAR zerma
+	uh, hello? miss?
+	i advise that you reconsider the whole house thing with greg...
+	i'm sure you could come to a reasonable compromise.
+CHAR grandma
+	hahahaha!
+CHAR zerma
+	hehehehehe!
+CHAR grandma
+	thank you, are you a comedian somewhere?
+	this is pretty funny.
+CHAR zerma
+	hehe, you could say that!
+CHAR grandma
+	good work, young man. goodbye.
+CHAR zerma
+	toodles!
+
+
 DIALOGUE phone_town_under6
 CHAR zerma
 	hey! you're at the town?

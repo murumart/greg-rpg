@@ -165,6 +165,13 @@ CHAR grandma
 	anyway...
 
 
+DIALOGUE grandma_winner_hat_use
+CHAR grandma
+	oh, look, you found one of those "diplomas".
+	i guess you found an actual use for it -
+	- a hat to look like an idiot! well done!
+
+
 DIALOGUE grandma_fight_end
 CHAR grandma
 	get off my floor! you're drooling all over it.
