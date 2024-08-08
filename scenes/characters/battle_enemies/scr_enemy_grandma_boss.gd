@@ -170,6 +170,13 @@ func attack(whom: BattleActor) -> void:
 		particles.texture = USUAL)
 
 
+func _item_free_hugs_coupon_used_on() -> void:
+	SOL.dialogue("free_hugs_grandma")
+	character.attack = 9999999999999
+	await SOL.dialogue_closed
+	attack(pick_target())
+
+
 static func is_debuffed(whom: BattleActor) -> bool:
 	return (
 		whom.get_attack() < whom.character.attack

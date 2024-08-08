@@ -36,6 +36,7 @@ enemy_health_toughness_curve = SubResource("Curve_n5fjy")
 effect_center = Vector2i(0, -22)
 toughness = 0.489
 xp_multiplier = 10.0
+effect_immunities = Array[StringName]([&"crying"])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

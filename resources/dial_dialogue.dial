@@ -3834,6 +3834,13 @@ CHAR grandma
 	items
 
 
+DIALOGUE free_hugs_grandma
+CHAR grandma
+	free hug? you want a hug?
+	you pathetic... man.
+	alright. here you go.
+
+
 DIALOGUE the_end
 	the end
 
