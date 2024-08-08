@@ -3,13 +3,21 @@ extends Room
 @onready var spirit := $Areas/SunSpirit
 @onready var tarikas := $Building/StatueBase/Tarikas
 @onready var fisher_ghost := $Areas/BikeGhostFishing
+@onready var second_sun_spirit_encounter: Area2D = $Areas/SecondSunSpiritEncounter
+@onready var greg: PlayerOverworld = $Greg
+@onready var wherepos: Node2D = $Areas/SecondSunSpiritEncounter/Wherepos
+@onready var third_sun_spirit_encounter: Area2D = $Areas/ThirdSunSpiritEncounter
 
 
 func _ready() -> void:
 	super._ready()
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
+	second_sun_spirit_encounter.body_entered.connect(_second_sunspirit_test)
+	third_sun_spirit_encounter.body_entered.connect(_third_sunspirit_test)
 	if DAT.get_data("sun_spirit_engaged", false):
 		spirit.queue_free()
+		second_sun_spirit_encounter.queue_free()
+		third_sun_spirit_encounter.queue_free()
 		$Greg.saving_disabled = false
 	else: tarikas.queue_free()
 	if not DAT.get_data("nr", 0.0) < 0.1:
@@ -21,6 +29,7 @@ func _ready() -> void:
 
 func _on_sun_spirit_inspected() -> void:
 	$Areas/SunSpirit/AmbientLoop.playing = false
+	spirit.random_movement = true
 	DAT.set_data("sun_spirit_engaged", true)
 	DAT.set_data("sun_spirit_engagement_position", $Greg.global_position)
 
@@ -52,6 +61,15 @@ func _on_dialogue_closed() -> void:
 		SOL.dialogue_choice = ""
 
 
+func _second_sunspirit_test(body: Node2D) -> void:
+	if body == greg:
+		spirit.global_position = wherepos.global_position
+		spirit.chase_target = null
+		spirit.default_lines.clear()
+		spirit.default_lines.append("sun_spirit_walk_past")
 
 
-
+func _third_sunspirit_test(body: Node2D) -> void:
+	if body == greg:
+		spirit.chase_target = greg
+		spirit.chase(greg)

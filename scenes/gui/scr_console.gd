@@ -289,6 +289,9 @@ func give_item(args: PackedStringArray) -> void:
 		output("usage: gitem itemname")
 		return
 	var itemname := args[0]
+	if not itemname in ResMan.items:
+		output("item doesn't exist", true)
+		return
 	DAT.grant_item(itemname)
 	output("gave item " + args[0])
 
@@ -307,6 +310,9 @@ func give_spirit(args: PackedStringArray) -> void:
 		output("usage: gspirit spiritname")
 		return
 	var spiritname := args[0]
+	if not spiritname in ResMan.spirits:
+		output("spirit doesn't exist", true)
+		return
 	DAT.grant_spirit(spiritname)
 	output("gave spirit " + args[0])
 

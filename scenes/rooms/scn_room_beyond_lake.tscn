@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=52 format=3 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_8nsf0"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/ambient_loop.ogg" id="9_4afe5"]
-[ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
+[ext_resource type="PackedScene" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_mglh5"]
 
@@ -226,6 +226,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf0of"]
+size = Vector2(20, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoqp4"]
+size = Vector2(20, 166)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq4ig"]
 size = Vector2(52, 53)
 
@@ -412,6 +418,31 @@ type = 4
 line_length = 51
 flip = true
 custom_lines = PackedStringArray("bike_ghost_fishing_1", "bike_ghost_fishing_2")
+
+[node name="SecondSunSpiritEncounter" type="Area2D" parent="Areas"]
+position = Vector2(639, -76)
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/SecondSunSpiritEncounter"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_nf0of")
+debug_color = Color(0.756863, 1, 1, 0.419608)
+
+[node name="Wherepos" type="Node2D" parent="Areas/SecondSunSpiritEncounter"]
+position = Vector2(159, -4)
+
+[node name="ThirdSunSpiritEncounter" type="Area2D" parent="Areas"]
+position = Vector2(851, -13)
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/ThirdSunSpiritEncounter"]
+position = Vector2(-1, 14)
+shape = SubResource("RectangleShape2D_aoqp4")
+debug_color = Color(0.756863, 1, 1, 0.419608)
 
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
 position = Vector2(-416, 6)

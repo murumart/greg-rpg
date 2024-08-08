@@ -6,6 +6,7 @@ MACRO PURPLE #ff00ff
 MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
+MACRO SUNCOLOR #ffbb99
 MACRO KEY_MENU ACTION_MENU
 MACRO KEY_QUICK_SAVE ACTION_QUICK_SAVE
 MACRO KEY_UI_ACCEPT ACTION_UI_ACCEPT
@@ -2255,6 +2256,10 @@ DIALOGUE fisherman_attack
 DIALOGUE fisherman_in_hut_warning
 	there are two fishermen in this hut.
 	one tells only truth, the other tells only lies.
+
+
+DIALOGUE sun_spirit_walk_past
+	[color=SUNCOLOR]buddy. you're not supposed to get past me.
 
 
 DIALOGUE atgirl_1

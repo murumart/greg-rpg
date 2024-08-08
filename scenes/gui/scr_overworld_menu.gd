@@ -347,7 +347,6 @@ func update_using_portraits() -> void:
 
 
 func _reference_button_pressed(reference) -> void:
-	print("reference: ", reference)
 	if (reference in party(current_tab).inventory
 			or reference == party(current_tab).armour
 			or reference == party(current_tab).weapon

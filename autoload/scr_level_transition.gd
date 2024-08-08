@@ -128,6 +128,7 @@ func skateboard_check() -> bool:
 	var greg := get_tree().get_first_node_in_group("players") as PlayerOverworld
 	if greg.move_mode == PlayerOverworld.MoveModes.SKATE:
 		greg.move_mode = greg.MoveModes.WALK
+		DAT.set_data("player_move_mode", 0)
 		SOL.vfx("explosion", greg.get_global_transform_with_canvas().origin
 		- SOL.SCREEN_SIZE / 2, {scale = Vector2(0.25, 0.25)})
 		return true

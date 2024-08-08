@@ -217,7 +217,7 @@ func _on_talking_finished() -> void:
 func _enter_battle() -> bool:
 	if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 		LTS.enter_battle(battle_info, {"sbcheck": true})
-		set_physics_process(false)
+		freeze_and_thaw()
 		# stop processing of all surrounding npcs
 		# so perhaps their spawners dont save their positions
 		var shashsasha: PhysicsDirectSpaceState2D = (
@@ -230,7 +230,7 @@ func _enter_battle() -> bool:
 		var results := shashsasha.intersect_shape(params)
 		for result in results:
 			if result.collider is OverworldCharacter:
-				result.collider.set_physics_process(false)
+				result.collider.freeze_and_thaw()
 		# did that
 		return true
 	return false
@@ -402,12 +402,14 @@ func chase(body: Node2D) -> void:
 		chase_timer.start(time_between_chase_updates)
 		return
 	time_moved = 0.0
+	# if a bunch of npcs are chasing the same target,
+	# this will help make them not clump up together
 	var offset := 4
 	if same_target_as_collider_condition:
 		offset *= 3
 	if target_immobilised:
 		offset *= 3
-	set_target_offset(body.global_position, offset) # if a bunch of npcs are chasing the same target, this will help make them not clump up together
+	set_target_offset(body.global_position, offset) 
 	set_state(States.CHASE) # this also restarts the timer
 	chase_timer.start(time_between_chase_updates)
 
@@ -447,5 +449,12 @@ func sort_by_distance(a: Node2D, b: Node2D) -> bool:
 	return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position)
 
 
+# entering battles. if you have a skateboard, it cancels the entering
+# but then we need to eventually make the npc move again
+func freeze_and_thaw() -> void:
+	set_physics_process(false)
+	var tw := create_tween()
+	tw.tween_interval(4.0)
+	tw.tween_callback(set_physics_process.bind(true))
 
 
