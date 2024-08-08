@@ -1789,6 +1789,7 @@ CHAR bike_ghost
 	...that too... but that's just motivation for us!
 	you won't survive our true [color=SPIRITCOLOR]double radiation friendship attack!!!
 CHAR bike_ghost_beta
+SET_DATA gdung_bike_ghosts_fought,true
 	i wish not to be associated with this individual.
 CHAR bike_ghost
 	you fool! the crone's power outmatches our rivalry!
@@ -1870,9 +1871,18 @@ SPEED 0.8
 
 DIALOGUE bike_ghost_afterdefeat
 CHAR bike_ghost
+
+DATA_LINK gdung_bike_ghosts_fought,false
 	what now? want to rub your victory in my face?
 CHOICES travel,bye
 	go away!
+
+DATA_LINK gdung_bike_ghosts_fought,true
+	...
+CHOICES travel,bye
+	we continue to exist.
+
+DATA_LINK gdung_bike_ghosts_fought,false
 CHOICE_LINK bye
 	yeahhh, show pity to me! how gracious!
 CHOICE_LINK travel
@@ -1881,6 +1891,12 @@ DATA_LINK fast_travel_tutorialed,false
 	it's a lot to ask for after beating me up!
 SET_DATA fast_travel_tutorialed,true
 	b-but i'll do it... sure...
+
+DATA_LINK gdung_bike_ghosts_fought,true
+CHOICE_LINK bye
+	farewell.
+CHOICE_LINK travel
+	let's travel.
 
 
 DIALOGUE bike_ghost_travel_nodests
@@ -1894,13 +1910,18 @@ CHAR bike_ghost
 CHOICES nvm
 	travel where?
 CHOICE_LINK nvm
+DATA_LINK gdung_bike_ghosts_fought,false
 	good riddance.
+DATA_LINK gdung_bike_ghosts_fought,true
+	alright.
 
 
 DIALOGUE bike_ghost_travel
 CHAR bike_ghost
+DATA_LINK gdung_bike_ghosts_fought,false
 	hope i don't see you again soon.
-
+DATA_LINK gdung_bike_ghosts_fought,true
+	be it so.
 
 DIALOGUE bike_beta_interact_1
 	...fast travel...
@@ -1938,6 +1959,9 @@ DIALOGUE bike_beta_afterdefeat
 CHAR bike_ghost_beta
 CHOICES travel,bye
 	why are you back? you know i can't kill you.
+DATA_LINK gdung_bike_ghosts_fought,true
+	but i know of one that you could kill... i wish to assist.
+DATA_LINK 
 CHOICE_LINK bye
 	i suppose this is goodbye.
 CHOICE_LINK travel
@@ -1952,6 +1976,7 @@ CHAR bike_ghost_beta
 CHOICES nvm
 	where do you wish to travel?
 CHOICE_LINK nvm
+DATA_LINK gdung_bike_ghosts_fought,false
 	...you don't want to go anywhere?
 	i had all my space folds mapped and mana links warmed up.
 	and you just decide to not travel...?
@@ -1959,6 +1984,8 @@ CHOICE_LINK nvm
 	imagine booking a bus and when it arrives saying:
 	"no, i do not actually want to go anywhere."
 	your impatience and indecisiveness is very irritating.
+DATA_LINK gdung_bike_ghosts_fought,true
+	i'm not here to waste your time.
 
 
 DIALOGUE bike_beta_travel_nodests
