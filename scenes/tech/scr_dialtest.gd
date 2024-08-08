@@ -33,6 +33,15 @@ func _ready() -> void:
 		character_choice.add_icon_item(chara.portrait, chara.name_in_file)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu"):
+		var current := get_window().gui_get_focus_owner()
+		if current is Button and "reference" in current:
+			var ref = current.reference
+			var dialname: String = current.reference.erence
+			print(dialogue_box.dialogues_dict[dialname])
+
+
 func _on_text_edit_text_submitted(new_text: String) -> void:
 	print(new_text)
 	dialogue_box.load_dialogue_dict()
@@ -54,11 +63,15 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 func button_funny(things: Dictionary) -> void:
 	var butt: Button = things.button
 	butt.add_theme_font_size_override("font_size", 6)
+	butt.reference = {"ref": butt, "erence": butt.reference}
 
 
 func _reference_button_pressed(reference) -> void:
-	dialogue_box.prepare_dialogue(reference)
+	var dname = reference.erence
+	dialogue_box.prepare_dialogue(dname)
 	get_window().gui_release_focus()
+	await dialogue_box.dialogue_closed
+	reference.ref.grab_focus()
 
 
 func _on_button_reference_received(_reference) -> void:

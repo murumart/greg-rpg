@@ -24,6 +24,8 @@ func get_line(index: int) -> DialogueLine:
 
 func _to_string() -> String:
 	var string := "DIALOGUE %s, %s lines:" % [name, lines.size()]
+	var i := 0
 	for line in lines:
-		string += "\n\t" + str(line)
+		string += "\n\t" + "l:" + str(i) + " " + str(line)
+		i += 1
 	return string + "\n"

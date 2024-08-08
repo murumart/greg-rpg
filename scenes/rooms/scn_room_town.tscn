@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=124 format=3 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -64,6 +64,7 @@
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="41_q4dt7"]
+[ext_resource type="Script" path="res://scenes/rooms/town/scr_campfire_site.gd" id="42_h4aju"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_leave_ending.gd" id="42_njd4g"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 [ext_resource type="Script" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
@@ -759,7 +760,7 @@ layer_2/tile_data = PackedInt32Array(-655398, 983040, 8, -720934, 983040, 7, -78
 layer_3/tile_data = PackedInt32Array(-1966005, 131072, 11, -1900468, 131072, 11, -1900469, 131072, 11, -1966002, 0, 11, -2162611, 131072, 11, -2162610, 65536, 11, -2162608, 131072, 11, -2097070, 65536, 11, -2097071, 65536, 11, -1769396, 131072, 11, -1703859, 0, 11, -1834930, 65536, 11, -1965999, 65536, 11, -2031531, 65536, 11, -2031529, 0, 11, -1965992, 131072, 11, -1965993, 0, 11, -2031530, 131072, 11, -1965989, 65536, 11, -1900452, 65536, 11, -1900451, 65536, 11, -1834915, 131072, 11, -2162596, 0, 11, -2097059, 65536, 11, -2031522, 0, 11, -2097057, 65536, 11, -2031521, 0, 11, -2031520, 65536, 11, -1965983, 65536, 11, -2097055, 0, 11, -1965985, 0, 11, -2097054, 131072, 11, -2162598, 65536, 11, -2097061, 0, 11, -2162602, 0, 11, -1965981, 131072, 11, -2031516, 65536, 11, -1769376, 131072, 11, -1703838, 131072, 11, -1769372, 131072, 11, -1703835, 0, 11, -1638322, 0, 11)
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(893, 277)
+position = Vector2(322, -394)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1913,6 +1914,7 @@ y_sort_enabled = true
 [node name="CampfireSite" type="Node2D" parent="Other"]
 y_sort_enabled = true
 position = Vector2(370, -457)
+script = ExtResource("42_h4aju")
 
 [node name="Logs" type="StaticBody2D" parent="Other/CampfireSite"]
 y_sort_enabled = true
@@ -2113,6 +2115,29 @@ position = Vector2(0, -8)
 texture = ExtResource("48_ke24d")
 region_enabled = true
 region_rect = Rect2(0, 64, 16, 16)
+
+[node name="Naturalist" parent="Other/CampfireSite" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+position = Vector2(-36, 40)
+animated_sprite = NodePath("AnimatedSprite2D")
+default_lines = Array[StringName]([&"naturalist_campsite"])
+save_position = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/CampfireSite/Naturalist"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("29_25qm4")
+animation = &"walk_down"
+
+[node name="Path" type="Node2D" parent="Other/CampfireSite"]
+position = Vector2(-26, 33)
+
+[node name="Node2D" type="Node2D" parent="Other/CampfireSite/Path"]
+position = Vector2(0, -24)
+
+[node name="Node2D2" type="Node2D" parent="Other/CampfireSite/Path"]
+position = Vector2(35, -23)
+
+[node name="Node2D3" type="Node2D" parent="Other/CampfireSite/Path"]
+position = Vector2(34, -1)
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true

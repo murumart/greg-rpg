@@ -1688,6 +1688,187 @@ CHAR naturalist
 	shh! don't frighten the birds!
 
 
+DIALOGUE naturalist_campsite
+CHAR naturalist
+	it's nice and calm here nowadays.
+	the thugs have left this place alone.
+CHOICES you,me,campsite,stray,turf,birds,snails,fish,bye
+	what are you up to?
+CHOICE_LINK you
+	about me? i'm a naturalist.
+	i study the flora and the fauna. it's very interesting.
+	the flora and fauna, i mean.
+LOOP 2
+	and the studying!
+CHOICE_LINK me
+	about you? you're new in town, i think.
+	i don't pay too much attention to such matters.
+	people coming and going, i mean.
+LOOP 2
+	even though it barely ever happens.
+CHOICE_LINK stray
+	about the stray pets?
+	they've been pretty devastating for the local ecosystem.
+	well, so have the people.
+	interestingly, the pets' population seems to have declined sharply.
+CHOICES ok,pets
+	i suppose there's some good in that.
+	
+CHOICE_LINK pets
+	about the lizards in general...
+	this sounds like a first-grade topic of discussion.
+	they're domesticated.
+	some people think they're cute, and keep them as company.
+	farmers use them to herd animals, hunters too.
+	the lizards tend to return to a wild state when neglected, though...
+LOOP 2
+	so any "professional" animals have to be very well trained.
+	
+CHOICE_LINK turf
+	it's an interesting symbiotic adaptation.
+	the turf, i mean. it's not a single organism.
+	the blades of grass itself benefit from the frequent change of soil...
+	...and the leeches that transport it around benefit from the cover...
+	...and we think, even from the grass' photosynthesis.
+CHOICES ok,flora
+	they also eat worms in the soil together.
+	
+CHOICE_LINK flora
+	about the flora? i love these questions!
+	it's strangely bland in this region, to be quite honest.
+	there's a few tree species, and the turf i talked about is very abundant.
+	in the woods, not much new...
+	the very same trees, the very same grass.
+CHOICES ok,trees,flowers,shrubs,bushes,algae
+	and the flowers that make you sleepy, you know.
+
+CHOICE_LINK trees
+	about the trees? i'm very adjusted to the sight of them.
+	some are coniferous, but most here are broadleaf trees.
+	the lakeside has trees adapted to the wetter soil.
+LOOP 2
+	but, strangely, that's it.
+CHOICE_LINK flowers
+	about the flowers? there's a few...
+	uh, there's... there's the little white ones in the grass...
+	...and in the woods, the flowers that make you sleepy.
+	...yeah, it's really bland. i feel compelled to apologise.
+LOOP 2
+	even though, you know, i'm not responsible for the lack of diversity.
+CHOICE_LINK shrubs
+	about shrubs? completely underrepresented.
+	in the woods, there's only trees and a very consistent grass cover.
+LOOP 2
+	no shrubs to speak of. i can't say what has caused this.
+CHOICE_LINK bushes
+	about bushes? i haven't seen any around here.
+	not in the woods, either, nothing.
+	really nothing between the groundcover and canopy... now that i think...
+LOOP 2
+	i don't particularily enjoy it, but it's something unique here.
+CHOICE_LINK algae
+LOOP 2
+	we don't talk about the algae.
+
+CHOICE_LINK birds
+	i love birds!
+	they eat all kinds of bugs that could annoy a gardener.
+	and cigarette butts.
+	there's some bigger birds around town as well.
+	it's interesting to see that some have adapted to fly with four wings...
+	...leaving the feet for walking, but some fly with only two wings.
+	the phylogeny in that regard is also very interesting.
+CHOICES ok,name
+	i love birds!
+	
+CHOICE_LINK name
+	name all birds? sure!
+	%s, %s, %s...
+	%s, %s, %s...
+	%s, %s, %s...
+	%s, %s, and %s...
+	%s, %s, %s...
+	...%s, %s... uh, %s...
+	%s, %s, %s...
+	the great tit, %s, %s...
+LOOP 2
+	i'm getting tired... i hope that was enough of a selection.
+
+CHOICE_LINK snails
+	about the snails?
+	a gardener's nightmare, but visible on streets, too, once it gets dry.
+	their defense mechanism is wonderfully unique...
+	but some people misuse it...
+	i mean, i guess it's fine if you're doing it for, like, inspiration...
+	some of the artists on the mainland have... uh... credited...
+	...their works to snail-induced dreams, but, uh...
+	i don't... i just don't think it's... well... 
+LOOP 2
+	uhm...
+CHOICE_LINK fish
+	about the fish? the ones in this region can be rather aggressive.
+	the tendency to jump out of the water and beat peoples' asses...
+	...is a local adaptation. to what, we're not sure.
+	the fishermen here have to be hardened souls.
+	of course, humans don't actually have souls.
+CHOICES ok,humans
+	that was just a saying, i mean.
+
+CHOICE_LINK humans
+	about humans?
+	...are you sure you didn't miss first grade?
+	...
+	...i mean, i can humor you... don't have to be snarky at me like that...
+	we're pretty sure humans were transported here magically.
+	there's a few theories on how that could have happened.
+	and a few fanatical sects. more of the latter, really.
+	i mean, less people care about... uh... the science of it...
+	...grumble...
+	in short, we're an invasive species. and the spirits are very secretive about it.
+	should be obvious... we don't have six limbs like other vertebrates.
+CHOICES ok,spirits
+	unless you think we were descended from insects...
+
+CHOICE_LINK spirits
+	about spirits...
+	that's not exactly my area of expertise, though sometimes...
+	...it is needed to consider the spirits' effect on the flora and fauna.
+	animals and plants live in symbiosis with spirits quite often.
+	up to a point, of course... spirits usually turn out to be parasites.
+CHOICES ok,origin
+	never trust a spirit, ha ha. that's my, uh, advice.
+
+CHOICE_LINK origin
+	the origin of spirits... i don't know, man...
+	it'd be so much easier if they didn't exist.
+	but nooo... we have to account for "intelligent design" and such issues.
+	i mean, some spirits can affect the world as they wish.
+	it could be why the flora is this bland in this region.
+	i'd say the spirit who designed this was just lazy, though.
+	origin... it could be the same place where humans originate.
+	or maybe they were the ones to transport us here.
+	that's the easiest explanation to any issue, really...
+LOOP 2
+	but not really, because the question then transforms to "why" that happened.
+
+CHOICE_LINK campsite
+	about this campsite?
+	i think this place used to be livelier.
+	the town used to come together here in summers, i believe.
+	but now it's just a place for thugs to congregate.
+	or, i mean, was. there's no more thugs.
+	i'm sure someone could get the campfire going again...
+LOOP 2
+	...just by using something to light it.
+
+CHOICE_LINK ok
+LOOP 2
+	where was i...
+CHOICE_LINK bye
+	farewell. i hope the nature treats you kindly. and you it.
+	i mean, in a reciprocal way. you treat it kindly too.
+
+
 DIALOGUE bike_ghost_interact_1
 	hmm?
 	you look like you want to steal my bike.
