@@ -7,11 +7,13 @@ var state: States = States.STOP
 
 const FISH_LOAD := preload("res://scenes/fishing/scn_fish.tscn")
 const MINE_LOAD := preload("res://scenes/fishing/scn_sea_mine.tscn")
+const CAR_LOAD := preload("res://scenes/fishing/scn_fish_car.tscn")
 
 const SND_CATCH := preload("res://sounds/fishing/catch.ogg")
 const SND_CRASH := preload("res://sounds/fishing/crash.ogg")
 const SND_HISCR := preload("res://sounds/fishing/highscore.ogg")
 const SND_TMOUT := preload("res://sounds/fishing/timeout.ogg")
+const SND_CAR := preload("res://sounds/car_overrun.ogg")
 
 const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
 
@@ -28,6 +30,7 @@ var hook_speed := 80
 
 @onready var fish_parent := $FishParent
 @onready var ui := $Ui
+@onready var fish_car_label: Label = $Ui/FishCarLabel
 
 @onready var water_layers := $Layers.get_children()
 
@@ -63,6 +66,8 @@ var shopping_cart_enabled := false
 var cow_ant_enabled := false
 @onready var cow_ant := $FishParent/CowAnt
 
+@onready var fish_car_timer: Timer = $FishCarTimer
+
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 
@@ -70,6 +75,7 @@ func _ready() -> void:
 	_set_fancy_grapics_to(bool(not OPT.get_opt("less_fancy_graphics")))
 	$Hook/HookCollision/CollisionShape2D.shape.size = Vector2(2, 3
 			) * hook_data.world_hitbox_size_multiplier
+	fish_car_timer.timeout.connect(_fish_car_timer)
 	state = States.MOVE
 	noise.seed = randi()
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
@@ -121,6 +127,13 @@ func _physics_process(delta: float) -> void:
 			if time_left <= 0.0:
 				SND.play_sound(SND_TMOUT)
 				stop_game()
+	if fish_car_timer.time_left and Engine.get_physics_frames() % 16 == 0:
+		SOL.vfx_damage_number(
+				fish_car_label.position - SOL.HALF_SCREEN_SIZE
+						+ fish_car_label.size * 0.5,
+				"fish car!!!",
+				Color(1.0, 1.0, 1.0, delta * 16.0)
+		)
 
 
 func hook_movement(delta: float) -> void:
@@ -299,6 +312,8 @@ func process_tilemap() -> void:
 		cow_ant_enabled = true
 
 	processed_ypos = ypos
+	if randf() < 0.0001:
+		fish_car_timer.start(0.5)
 
 
 # the most process intensive part of process_tilemap
@@ -446,3 +461,31 @@ func _set_fancy_grapics_to(fancy: bool) -> void:
 	envir = world_environment.environment
 	world_environment.set_environment(null)
 
+
+var cars := 0
+func _fish_car_timer() -> void:
+	_spawn_fish_car()
+	cars += 1
+	if cars > 30 or state == States.STOP:
+		fish_car_timer.stop()
+		cars = 0
+		if state != States.STOP:
+			points += 666
+	fish_car_label.visible = fish_car_timer.time_left > 0
+
+
+func _spawn_fish_car() -> void:
+	var player := $FishCarTimer/AudioStreamPlayer2D
+	var dir_left := true if randf() < 0.5 else false
+	var spawn_pos := Vector2(
+			87 if dir_left else -87,
+			randf_range(-30, 80)
+	)
+	var instance := CAR_LOAD.instantiate()
+	instance.direction = int(not dir_left)
+	spawn_swimmer(instance, spawn_pos, false)
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(instance, "speed", 90.0, 0.6).from(10.0)
+	player.global_position = spawn_pos
+	player.stop()
+	player.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dvkgcfmj35dlj"]
+[gd_scene load_steps=41 format=3 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
 [ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://madwfefthwfd" path="res://sprites/fishing/spr_cow_ant.png" id="5_e8u18"]
 [ext_resource type="Texture2D" uid="uid://caxtnijbq1v7k" path="res://sprites/photos/spr_shopping_cart.png" id="6_jrqy2"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_thb0r"]
+[ext_resource type="AudioStream" uid="uid://bhr82d56ke3am" path="res://sounds/car_overrun.ogg" id="11_ee500"]
 
 [sub_resource type="Curve" id="Curve_itjb6"]
 _data = [Vector2(0, 0.0350878), 0.0, 0.358852, 0, 0, Vector2(0.268371, 0.152862), 0.718393, 0.718393, 0, 0, Vector2(0.405208, 0.0553145), 0.0, 0.0, 0, 0, Vector2(0.505098, 0.297025), 10.3461, 10.3461, 0, 0, Vector2(0.529209, 0.0653858), 0.0, 0.0, 0, 0, Vector2(0.911546, 0.196312), 0.0, 0.0, 0, 0, Vector2(1, 0.0754571), 0.0, 0.0, 0, 0]
@@ -1320,5 +1321,27 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_4e5s6")
 max_value = 10.0
 value = 10.0
 show_percentage = false
+
+[node name="FishCarLabel" type="Label" parent="Ui"]
+visible = false
+layout_mode = 0
+offset_left = 49.0
+offset_top = 2.0
+offset_right = 121.0
+offset_bottom = 14.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 12
+text = "fish car!!!"
+
+[node name="FishCarTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FishCarTimer"]
+position = Vector2(-86, 1)
+stream = ExtResource("11_ee500")
+volume_db = 4.0
+max_distance = 400.0
+panning_strength = 2.3
 
 [connection signal="timeout" from="Ui/AfterCrashTimer" to="." method="_on_after_crash_timer_timeout" flags=6]
