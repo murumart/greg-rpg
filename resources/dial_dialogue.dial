@@ -1767,8 +1767,9 @@ CHOICE_LINK bushes
 LOOP 2
 	i don't particularily enjoy it, but it's something unique here.
 CHOICE_LINK algae
-LOOP 2
 	we don't talk about the algae.
+LOOP 2
+	it's rude to talk behind someone's back while they're listening.
 
 CHOICE_LINK birds
 	i love birds!
