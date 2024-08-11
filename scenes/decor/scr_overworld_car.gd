@@ -169,7 +169,7 @@ func texture_setup() -> void:
 
 
 func _cigarette_timer() -> void:
-	cigarette_timer.start(randf() * 6.618 + 6.618)
+	cigarette_timer.start(randf() * 24.618 + 6.618)
 	if not moves:
 		return
 	var cig := CigaretteOverworld.SCENE.instantiate()
