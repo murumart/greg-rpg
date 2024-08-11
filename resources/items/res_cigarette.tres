@@ -37,8 +37,8 @@ meta = {}
 [resource]
 script = ExtResource("1_lkvka")
 name_in_file = &""
-name = &"cigarette"
-description = "this is bad for your lungs! don't smoke!!"
+name = &"cigarette butt"
+description = "unsightly garbage expelled by negligent drivers."
 texture = ExtResource("2_rd64e")
 attack_animation = ""
 price = 9
