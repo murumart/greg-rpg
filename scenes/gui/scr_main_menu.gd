@@ -10,6 +10,8 @@ var starting := false
 	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/CreditsButton, $VBoxContainer/QuitButton,
 ]
 @onready var version_text: Label = $VersionText
+@onready var logo_texture: TextureRect = $LogoTexture
+@onready var logo_animated: AnimatedSprite2D = $LogoAnimated
 
 
 func _ready() -> void:
@@ -40,6 +42,10 @@ func _ready() -> void:
 			mov.bounce_rect.size.x -= 90
 			x.add_child(mov)
 	DIR.incj(0, 1)
+	var e: Array = DIR.gej(3, [])
+	if e.size() > 1 and DAT.seconds > 1:
+		logo_texture.hide()
+		logo_animated.show()
 
 
 func _input(event: InputEvent) -> void:

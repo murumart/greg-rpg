@@ -1,12 +1,42 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=51 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
 [ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
+[ext_resource type="Texture2D" uid="uid://uk0d78vhvwrh" path="res://sprites/gui/logo/frame1.png" id="5_r8pra"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
+[ext_resource type="Texture2D" uid="uid://cs02cg8e54lpb" path="res://sprites/gui/logo/frame2.png" id="6_nuuuh"]
 [ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
+[ext_resource type="Texture2D" uid="uid://cd7yklshn48cf" path="res://sprites/gui/logo/frame3.png" id="7_fwud4"]
+[ext_resource type="Texture2D" uid="uid://ds8smlbqmtchs" path="res://sprites/gui/logo/frame4.png" id="8_efsq0"]
 [ext_resource type="Script" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
+[ext_resource type="Texture2D" uid="uid://dfn1k8hh2y2wj" path="res://sprites/gui/logo/frame5.png" id="9_elwlr"]
+[ext_resource type="Texture2D" uid="uid://bbth7paq02jl4" path="res://sprites/gui/logo/frame6.png" id="10_a25ga"]
+[ext_resource type="Texture2D" uid="uid://cnuf5bl2hvhj0" path="res://sprites/gui/logo/frame7.png" id="11_irrrl"]
+[ext_resource type="Texture2D" uid="uid://dli6by4fve1r2" path="res://sprites/gui/logo/frame8.png" id="12_v4h5d"]
+[ext_resource type="Texture2D" uid="uid://vad6v458j4be" path="res://sprites/gui/logo/frame9.png" id="13_3opuw"]
+[ext_resource type="Texture2D" uid="uid://djc4cpnou0g8o" path="res://sprites/gui/logo/frame10.png" id="14_k2wyy"]
+[ext_resource type="Texture2D" uid="uid://bjf1bq8lm1nde" path="res://sprites/gui/logo/frame11.png" id="15_qt0vi"]
+[ext_resource type="Texture2D" uid="uid://b76bfgshqwt4m" path="res://sprites/gui/logo/frame12.png" id="16_jn52n"]
+[ext_resource type="Texture2D" uid="uid://oay4l72ifaf1" path="res://sprites/gui/logo/frame13.png" id="17_p5w5e"]
+[ext_resource type="Texture2D" uid="uid://dwbqtgwrbpx6h" path="res://sprites/gui/logo/frame14.png" id="18_ac2sl"]
+[ext_resource type="Texture2D" uid="uid://d12jtifjysvh5" path="res://sprites/gui/logo/frame15.png" id="19_dxrpb"]
+[ext_resource type="Texture2D" uid="uid://c3ixqm8eehtu8" path="res://sprites/gui/logo/frame16.png" id="20_jx055"]
+[ext_resource type="Texture2D" uid="uid://bxu357v0utxc4" path="res://sprites/gui/logo/frame17.png" id="21_2tqx1"]
+[ext_resource type="Texture2D" uid="uid://cxlhwo2p6t7m0" path="res://sprites/gui/logo/frame18.png" id="22_hwmm8"]
+[ext_resource type="Texture2D" uid="uid://c5i5130k2vccd" path="res://sprites/gui/logo/frame19.png" id="23_u6ilo"]
+[ext_resource type="Texture2D" uid="uid://dffopra3uqoli" path="res://sprites/gui/logo/frame20.png" id="24_tgqgw"]
+[ext_resource type="Texture2D" uid="uid://cds48sn0wvk0y" path="res://sprites/gui/logo/frame21.png" id="25_lrqmp"]
+[ext_resource type="Texture2D" uid="uid://tlvaeh3dgxk1" path="res://sprites/gui/logo/frame22.png" id="26_2hbsk"]
+[ext_resource type="Texture2D" uid="uid://dea2k12w0jxtn" path="res://sprites/gui/logo/frame23.png" id="27_vgr3x"]
+[ext_resource type="Texture2D" uid="uid://cy30obs3hpif0" path="res://sprites/gui/logo/frame24.png" id="28_sgiy3"]
+[ext_resource type="Texture2D" uid="uid://d2e446pl4jpt4" path="res://sprites/gui/logo/frame25.png" id="29_fkq1i"]
+[ext_resource type="Texture2D" uid="uid://bm7wulbj44y4x" path="res://sprites/gui/logo/frame26.png" id="30_gxyv1"]
+[ext_resource type="Texture2D" uid="uid://cgatled7wcvew" path="res://sprites/gui/logo/frame27.png" id="31_3y4df"]
+[ext_resource type="Texture2D" uid="uid://ct1qlq3to71rt" path="res://sprites/gui/logo/frame28.png" id="32_fi7sl"]
+[ext_resource type="Texture2D" uid="uid://cuur7s4nx4en2" path="res://sprites/gui/logo/frame29.png" id="33_5ed08"]
+[ext_resource type="Texture2D" uid="uid://dlfy6bruhgf81" path="res://sprites/gui/logo/frame30.png" id="34_8h6ir"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -17,6 +47,271 @@ gradient = SubResource("Gradient_wbkcl")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0obdr"]
 shader = ExtResource("3_ku6te")
 shader_parameter/Gradient = SubResource("GradientTexture1D_qpb5b")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm0s2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_r8pra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nuuuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fwud4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_efsq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_elwlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a25ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_irrrl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v4h5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3opuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_k2wyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_qt0vi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jn52n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_p5w5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ac2sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_dxrpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jx055")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2tqx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_hwmm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_u6ilo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_tgqgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lrqmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_2hbsk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_vgr3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_sgiy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_fkq1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_gxyv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_3y4df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_fi7sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_5ed08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_8h6ir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xpk8j"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ytb4v"]
+offsets = PackedFloat32Array(0, 0.507692, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.235242, 0.455002, 0.188169, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qwou2"]
+gradient = SubResource("Gradient_ytb4v")
+width = 2
+height = 12
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Curve" id="Curve_41kmt"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.261719, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3nkmp"]
+width = 64
+texture_mode = 1
+curve = SubResource("Curve_41kmt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3acqa"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 1, 0)
+alpha_curve = SubResource("CurveTexture_3nkmp")
+hue_variation_min = 0.59
+hue_variation_max = 1.0
+
+[sub_resource type="Animation" id="Animation_y2q1y"]
+resource_name = "default"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3.06383, 6.13699), Vector2(-3.06383, 6.13699)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(251.234, 7.30594), Vector2(251.234, 4.96804)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Things/Sprite2D:texture:gradient:offsets")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.9, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [PackedFloat32Array(0, 0.507692, 1), PackedFloat32Array(0, 0.323077, 1), PackedFloat32Array(0, 0.761538, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Things/Sprite2D:texture:gradient:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.9, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [PackedColorArray(0, 0, 0, 1, 0.235242, 0.455002, 0.188169, 1, 0, 0, 0, 1), PackedColorArray(0, 0, 0, 1, 0.235242, 0.455002, 0.188169, 1, 0, 0, 0, 1), PackedColorArray(0, 0, 0, 1, 0.235242, 0.455002, 0.188169, 1, 0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e38rc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-3.06383, 6.13699)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(251.234, 7.30594)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Things/Sprite2D:texture:gradient:offsets")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedFloat32Array(0, 0.507692, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Things/Sprite2D:texture:gradient:colors")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedColorArray(0, 0, 0, 1, 0.235242, 0.455002, 0.188169, 1, 0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gof5g"]
+_data = {
+"RESET": SubResource("Animation_e38rc"),
+"default": SubResource("Animation_y2q1y")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -45,12 +340,41 @@ offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="LogoTexture" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_right = 144.0
 offset_bottom = 64.0
 texture = ExtResource("3_fpmeo")
+
+[node name="LogoAnimated" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(80, 32.5)
+scale = Vector2(0.326389, 0.570312)
+sprite_frames = SubResource("SpriteFrames_hm0s2")
+autoplay = "default"
+frame_progress = 0.910839
+
+[node name="Things" type="Node2D" parent="LogoAnimated"]
+show_behind_parent = true
+
+[node name="Sprite2D" type="Sprite2D" parent="LogoAnimated/Things"]
+material = SubResource("CanvasItemMaterial_xpk8j")
+position = Vector2(-3.06383, 6.13699)
+scale = Vector2(251.234, 7.30594)
+texture = SubResource("GradientTexture2D_qwou2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LogoAnimated/Things/Sprite2D"]
+process_material = SubResource("ParticleProcessMaterial_3acqa")
+lifetime = 4.0
+trail_enabled = true
+trail_lifetime = 0.34
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LogoAnimated"]
+libraries = {
+"": SubResource("AnimationLibrary_gof5g")
+}
+autoplay = "default"
 
 [node name="Label" type="RichTextLabel" parent="."]
 layout_mode = 0
