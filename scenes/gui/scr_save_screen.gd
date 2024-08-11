@@ -70,12 +70,12 @@ func _ready() -> void:
 		button.reference = i
 		button.return_reference.connect(_on_button_pressed)
 	set_mode(mode)
-	set_current_button(0)
+	set_current_button(1) # autosave is 0
 	# find current save file number to highlight it
 	var save_file_name: String = DAT.get_data("save_file", "")
-	var save_file_nr := save_file_name.trim_prefix("greg_save_").trim_suffix(".grs")
+	var save_file_nr := _get_file_nr(save_file_name)
 	if save_file_nr.is_valid_float():
-		set_current_button(int(save_file_nr))
+		set_current_button(int(save_file_nr) + 1) # autosave is 0
 	get_window().gui_release_focus()
 	get_window().files_dropped.connect(_on_files_dropped)
 
@@ -109,11 +109,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if old_button != current_button:
 		SND.menusound(2.0)
 	if event.is_action_pressed("ui_text_delete"):
-		if erasure_enabled and FileAccess.file_exists(ABSOLUTE_SAVE_PATH % current_button):
+		# autosave is 0
+		var abs_filename := ABSOLUTE_SAVE_PATH % (current_button - 1)
+		if erasure_enabled and FileAccess.file_exists(abs_filename):
 			SOL.dialogue("save_deletion_confirmation")
 			SOL.dialogue_closed.connect(func():
 				if SOL.dialogue_choice != &"no":
-					DirAccess.remove_absolute(ABSOLUTE_SAVE_PATH % current_button)
+					DirAccess.remove_absolute(abs_filename)
 					update_buttons()
 			, CONNECT_ONE_SHOT)
 	if event.is_action_pressed("ui_accept"):
@@ -129,21 +131,17 @@ func set_current_button(to: int) -> void:
 		b.self_modulate = Color.WHITE
 	var max_scroll: int = maxi(file_container.size.y - scroll_container.size.y, 0)
 	scroll_container.scroll_vertical = ceili(remap(to, 0,
-			file_container.get_child_count() - 1, 0, max_scroll))
+			file_count - 1, 0, max_scroll))
 	if not Math.inrange(current_button, 0, file_count):
 		return
 	file_container.get_child(to).self_modulate = Color.CYAN
-	var path := SAVE_PATH % current_button
-	var abspath := ABSOLUTE_SAVE_PATH % current_button
-	if is_autosave(current_button):
-		path = SAVE_PATH % AUTOSAVE_NAME
-		abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
-	var data: Dictionary
-	if DIR.file_exists(abspath):
-		data = DIR.get_dict_from_file(path)
+	var data := _get_data(current_button)
 	if not data.is_empty():
 		var text := "[center]save file info[/center]\n[color=#eeefef]"
-		text += "\ndate: %s\n" % data.get("date", "?")
+		text += "\n"
+		if not DIR.standalone():
+			text += "file: [font_size=6]%s[/font_size]\n" % data.get("save_file", "?")
+		text += "date: %s\n" % data.get("date", "?")
 		text += "time: %s\n" % data.get("time", "?")
 		text += "playtime: %s\n" % get_playtime(data)
 		text += "level: %s\n" % data.get("char_greg_save", {}).get("level", "?")
@@ -183,7 +181,7 @@ func update_buttons() -> void:
 				# autosave file
 				child.disabled = is_autosave(i)
 			LOAD:
-				var abspath := ABSOLUTE_SAVE_PATH % i
+				var abspath := ABSOLUTE_SAVE_PATH % (i - 1) # autosave is 0
 				if is_autosave(i):
 					abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
 				child.disabled = not DIR.file_exists(abspath)
@@ -215,7 +213,7 @@ func _on_button_pressed(which_button: int) -> void:
 		SAVE:
 			if file_container.get_child(which_button).disabled:
 				return
-			var data := DIR.get_dict_from_file(SAVE_PATH % which_button)
+			var data := _get_data(which_button)
 			var discrepancy: bool = (
 					DAT.seconds < data.get("seconds", -1)
 					or DAT.get_data("nr", 0) != data.get("nr", -1)
@@ -225,9 +223,11 @@ func _on_button_pressed(which_button: int) -> void:
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice != "yes":
 					return
+			which_button -= 1 # autosave is 0
 			var savefile_path := SAVE_PATH % which_button
 			DAT.save_data(savefile_path)
 			SND.menusound()
+			which_button += 1
 			set_current_button(which_button)
 			vfx_msg("saved!")
 		LOAD:
@@ -237,7 +237,8 @@ func _on_button_pressed(which_button: int) -> void:
 				await SOL.dialogue_closed
 				if SOL.dialogue_choice != "yes":
 					return
-			var savefile_path := SAVE_PATH % which_button
+			# autosave is 0
+			var savefile_path := SAVE_PATH % (which_button - 1)
 			if is_autosave(which_button):
 				savefile_path = SAVE_PATH % AUTOSAVE_NAME
 			DAT.load_data(savefile_path)
@@ -345,4 +346,21 @@ func vfx_msg(msg: String) -> void:
 
 
 func is_autosave(which: int) -> bool:
-	return which >= file_container.get_child_count() - 1
+	#return which >= file_container.get_child_count() - 1
+	return which == 0
+
+
+func _get_data(button: int) -> Dictionary:
+	var path := SAVE_PATH % (button - 1) # autosave is 0
+	var abspath := ABSOLUTE_SAVE_PATH % (button - 1)
+	if is_autosave(button):
+		path = SAVE_PATH % AUTOSAVE_NAME
+		abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
+	var data: Dictionary
+	if DIR.file_exists(abspath):
+		data = DIR.get_dict_from_file(path)
+	return data
+
+
+func _get_file_nr(filename: String) -> String:
+	return filename.trim_prefix("greg_save_").trim_suffix(".grs")

@@ -68,6 +68,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 1
 
+[node name="Autosave" type="Button" parent="Panel/SaveScroll/FileContainer"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/outline_size = 0
+button_mask = 0
+text = "autosave"
+script = ExtResource("3_1c2wv")
+
 [node name="File1" type="Button" parent="Panel/SaveScroll/FileContainer"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
@@ -116,16 +126,6 @@ mouse_filter = 2
 theme_override_constants/outline_size = 0
 button_mask = 0
 text = "file 5 "
-script = ExtResource("3_1c2wv")
-
-[node name="Autosave" type="Button" parent="Panel/SaveScroll/FileContainer"]
-custom_minimum_size = Vector2(0, 14)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/outline_size = 0
-button_mask = 0
-text = "autosave"
 script = ExtResource("3_1c2wv")
 
 [node name="TabContainer" type="HBoxContainer" parent="Panel"]
