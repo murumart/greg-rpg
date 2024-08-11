@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleRewards" load_steps=7 format=3 uid="uid://do3hvtj7osq1x"]
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=9 format=3 uid="uid://do3hvtj7osq1x"]
 
 [ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_1qtej"]
 [ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_e6fb7"]
@@ -28,9 +28,23 @@ unique = false
 script = ExtResource("1_e6fb7")
 type = 1
 property = "plaster"
-chance = 0.137
+chance = 0.29
+unique = false
+
+[sub_resource type="Resource" id="Resource_viutk"]
+script = ExtResource("1_e6fb7")
+type = 1
+property = "cigarette"
+chance = 0.288
+unique = false
+
+[sub_resource type="Resource" id="Resource_niwcy"]
+script = ExtResource("1_e6fb7")
+type = 3
+property = "range 16,24"
+chance = 1.0
 unique = false
 
 [resource]
 script = ExtResource("1_1qtej")
-rewards = Array[ExtResource("1_e6fb7")]([SubResource("Resource_mtfgt"), SubResource("Resource_w0vb5"), SubResource("Resource_knw01"), SubResource("Resource_r48nf")])
+rewards = Array[ExtResource("1_e6fb7")]([SubResource("Resource_mtfgt"), SubResource("Resource_w0vb5"), SubResource("Resource_knw01"), SubResource("Resource_r48nf"), SubResource("Resource_viutk"), SubResource("Resource_niwcy")])
