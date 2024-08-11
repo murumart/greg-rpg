@@ -30,7 +30,9 @@ gender = 0
 effects = Array[ExtResource("1_e4y7v")]([SubResource("Resource_dopbm")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
@@ -41,7 +43,7 @@ description = "smells disgusting."
 texture = ExtResource("4_nwwcm")
 attack_animation = ""
 play_sound = ExtResource("3_uypww")
-price = 78
+price = 98
 use = 3
 consume_on_use = true
 payload = SubResource("Resource_5jfbm")

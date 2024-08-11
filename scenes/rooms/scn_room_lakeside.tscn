@@ -329,7 +329,7 @@ output = Array[StringName]([&"water_balloon"])
 [sub_resource type="Resource" id="Resource_jmtv4"]
 script = ExtResource("18_7yl5j")
 title = "lure"
-silver_required = 300
+silver_required = 190
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"green_lure"])
