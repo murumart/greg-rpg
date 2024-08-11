@@ -11,7 +11,7 @@ func _timer_tick() -> void:
 	
 	if randf() < 0.0000012:
 		SOL.vfx("to_be_continue")
-	elif (randf() < 0.002 and Math.inrange(nr, 0.35, 0.69)
+	elif (randf() < 0.0002 and Math.inrange(nr, 0.35, 0.69)
 			and not DAT.get_data("strange_calle_received", false)):
 		SOL.dialogue("hpone_zerma")
 		DAT.set_data("strange_calle_received", true)
