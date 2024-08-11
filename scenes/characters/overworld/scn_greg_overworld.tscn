@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dx3mkrjbqpref"]
+[gd_scene load_steps=26 format=3 uid="uid://dx3mkrjbqpref"]
 
 [ext_resource type="Script" path="res://scenes/characters/overworld/scr_player_overworld.gd" id="1_gx1l0"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_y11nw"]
 [ext_resource type="SpriteFrames" uid="uid://d30x2g8amqx0f" path="res://resources/armours/sfr_cool_jacket.tres" id="3_58jt5"]
 [ext_resource type="Texture2D" uid="uid://c6aqs76nq2oi1" path="res://sprites/characters/overworld/spr_greg_skateboard.png" id="4_pnyn0"]
 [ext_resource type="Script" path="res://code/res_cellphone_logic.gd" id="5_aokf4"]
+[ext_resource type="Script" path="res://code/scr_random_events.gd" id="6_qsmj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
 atlas = ExtResource("2_y11nw")
@@ -197,3 +198,11 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cellphone/SpecialAreaDetector"]
 shape = SubResource("RectangleShape2D_c5a0v")
+
+[node name="Events" type="Node2D" parent="."]
+script = ExtResource("6_qsmj6")
+
+[node name="EventTimer" type="Timer" parent="Events"]
+autostart = true
+
+[connection signal="timeout" from="Events/EventTimer" to="Events" method="_timer_tick"]

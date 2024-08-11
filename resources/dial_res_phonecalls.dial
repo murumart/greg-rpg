@@ -248,6 +248,7 @@ CHAR zerma
 
 
 DIALOGUE phone_bike_ghost_call
+SOUND phone/phone_call
 	...
 	(this call appears to be from an anonymous number.)
 	there is something important that you must see.
@@ -256,6 +257,7 @@ DIALOGUE phone_bike_ghost_call
 
 
 DIALOGUE phone_bike_ghost_call_ignore
+SOUND phone/phone_call
 	(another call from the same number as last time.)
 	...
 	so... you've decided to ignore my call.
@@ -325,6 +327,26 @@ DATA_LINK fulfilled_bounty_thugs,true
 	and you got rid of the thugs? wonderful!
 	have you ever tried skating?
 	toodles for now!
+
+
+DIALOGUE hpone_zerma
+SOUND phone/phone_call
+	it's a call from a strange number.
+CHAR zerma
+PORTRAIT_SCALE -1,1
+	toodls.. tooodel...s tooooodeleees.....
+PORTRAIT_SCALE -1,1
+	helloo..... greeeeeeeeeg........
+PORTRAIT_SCALE -1,1
+	i'm your frieeeeeend... . zerrreee e mmmmmyyyyyyy
+PORTRAIT_SCALE -1,1
+	hh heheeeehheh eeh hehheh eheeee..........
+PORTRAIT_SCALE -1,1
+	tooooo o  o ood leeeeee eee e ss   ss  s
+CHAR 
+SOUND phone/call_end
+	(it hung up.)
+	
 
 
 DIALOGUE phone_town_under40
@@ -599,6 +621,8 @@ DIALOGUE phone_post_office
 CHAR zerma
 	hey hey! you made it to the post office!
 	i'm sure the mail man would love to have you help him.
+	make sure you save before you go on a run, though!
+	just in case something bad happens.
 	toodles!
 
 
@@ -607,6 +631,7 @@ CHAR zerma
 	hey hey! you're just visiting some guy?
 	i'm glad you're making friends!
 	and "video games" sure sound interesting.
+	toodles!
 
 
 DIALOGUE phone_dungeon

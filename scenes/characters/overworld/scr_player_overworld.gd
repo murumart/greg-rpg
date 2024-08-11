@@ -73,8 +73,6 @@ func _physics_process(delta: float) -> void:
 			interact()
 		direct_animation()
 	movement(delta)
-	if randf() < 0.000_000_02 and state == States.FREE_MOVE:
-		SOL.vfx("to_be_continue")
 
 
 func set_state(to: States) -> void:
