@@ -26,6 +26,7 @@ var intro_progress := 0:
 
 func _ready() -> void:
 	super()
+	$Areas/ExitExplainer.body_entered.connect(_explain_exit.unbind(1))
 	if intro_progress == 0 and (LTS.gate_id == &"intro" or play_intro):
 		start()
 		SOL.dialogue("intro_convo_2")
@@ -180,13 +181,19 @@ func delete_nuisances() -> void:
 
 func delete_escape_routes() -> void:
 	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = true)
+	$Areas/ExitExplainer.monitoring = true
 
 
 func enable_gates() -> void:
 	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = false)
+	$Areas/ExitExplainer.monitoring = false
 
 
 func _exit_tree() -> void:
 	if intro_progress >= 4:
 		if not &"cellphone" in ResMan.get_character("greg").inventory:
 			ResMan.get_character("greg").inventory.append(&"cellphone")
+
+
+func _explain_exit() -> void:
+	SOL.dialogue("intro_exit_explain")

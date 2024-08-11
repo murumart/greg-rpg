@@ -179,6 +179,11 @@ CHAR grandma
 	now get out.
 
 
+DIALOGUE intro_exit_explain
+	this is where you would walk into town from...
+	...if you had completed the intro.
+
+
 DIALOGUE zerma_fight_preface
 CHAR zerma
 	oh dear... looks like you were just lifted out!

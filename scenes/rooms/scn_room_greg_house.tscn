@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=32 format=3 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
@@ -46,6 +46,9 @@ size = Vector2(19, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wj7p"]
 size = Vector2(16, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23cv8"]
+size = Vector2(18, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a8p1"]
 resource_local_to_scene = true
@@ -389,6 +392,22 @@ spawn_enemy = ExtResource("10_20mcq")
 max_enemies = 2
 player = NodePath("../../../Greg")
 active_range = Vector2i(20, 99)
+
+[node name="ExitExplainer" type="Area2D" parent="Areas"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/ExitExplainer"]
+position = Vector2(338, 231.5)
+shape = SubResource("RectangleShape2D_23cv8")
+debug_color = Color(0.631373, 0.784314, 1, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/ExitExplainer"]
+position = Vector2(332, -169)
+shape = SubResource("RectangleShape2D_23cv8")
+debug_color = Color(0.631373, 0.784314, 1, 0.419608)
 
 [node name="Cutscenes" type="Node2D" parent="."]
 y_sort_enabled = true
