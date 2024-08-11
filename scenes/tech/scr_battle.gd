@@ -762,7 +762,6 @@ func open_end_screen(victory: bool) -> void:
 		battle_rewards.add(xp_reward)
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
-			#await battle_rewards.granted
 		_check_on_bounties()
 		await SOL.dialogue_closed
 		doing = Doings.DONE

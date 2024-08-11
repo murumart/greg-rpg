@@ -211,14 +211,15 @@ func free_player(type := &"") -> void:
 
 
 func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:
-	ResMan.get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
-	if LTS.get_current_scene().name == "Battle":
+	if dialogue:
+		SOL.dialogue_box.dial_concat("getitem", 0, [ResMan.get_item(item).name])
+		SOL.dialogue("getitem")
+	if (LTS.get_current_scene().name == "Battle"
+			and not LTS.get_current_scene().party.is_empty()):
 		var battle = LTS.get_current_scene()
-		if battle.party.is_empty(): return
 		battle.party[party_index].character.inventory.append(item)
-	if not dialogue: return
-	SOL.dialogue_box.dial_concat("getitem", 0, [ResMan.get_item(item).name])
-	SOL.dialogue("getitem")
+		return
+	ResMan.get_character(A.get("party", ["greg"])[party_index]).inventory.append(item)
 
 
 func grant_silver(amount: int, dialogue := true) -> void:
