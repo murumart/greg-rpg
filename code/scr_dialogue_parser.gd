@@ -66,9 +66,6 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		if line.begins_with(NEW_MACRO):
 			var t := line.trim_prefix(NEW_MACRO).split(" ")
 			macros[t[0]] = t[1]
-			if t[1].begins_with(NEW_KEY_ACTION):
-				var action_name := t[1].trim_prefix(NEW_KEY_ACTION).to_lower()
-				macros[t[0]] = KeybindsSettings.action_string(action_name)
 		elif line.begins_with(NEW_DIAL):
 			if not dial == null:
 				# if we have a dialogue at hand, we store a duplicate of it

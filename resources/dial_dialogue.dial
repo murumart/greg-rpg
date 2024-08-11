@@ -7,9 +7,6 @@ MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
 MACRO SUNCOLOR #ffbb99
-MACRO KEY_MENU ACTION_MENU
-MACRO KEY_QUICK_SAVE ACTION_QUICK_SAVE
-MACRO KEY_UI_ACCEPT ACTION_UI_ACCEPT
 
 
 DIALOGUE intro_convo_0
@@ -377,7 +374,7 @@ CHAR zerma
 	this one replenishes your health bit by bit...
 	...every time you act in battle.
 	you can view your active status effects...
-	...by pressing 'KEY_MENU' in your main screen.
+	...by pressing '{ACTION_MENU}' in your main screen.
 	try acting in any way to progress!
 
 
@@ -1557,7 +1554,7 @@ DIALOGUE car_scared_1
 
 DIALOGUE car_scared_2
 	oh dear... you look more adept at crossing roads than i am...
-	surely you've "saved your game" with "KEY_QUICK_SAVE"...
+	surely you've "saved your game" with "{ACTION_QUICK_SAVE}"...
 	would you be so kind and lead me across?
 CHOICES yes,no
 	please...?
@@ -3047,7 +3044,7 @@ CHOICES yes,no
 	you could be cool too... what do you say?
 CHOICE_LINK yes
 	radical, yo.
-	press movement keys to slide, KEY_UI_ACCEPT to jump and KEY_MENU to tilt.
+	press movement keys to slide, {ACTION_UI_ACCEPT} to jump and {ACTION_MENU} to tilt.
 	try not to be boring. good luck...
 CHOICE_LINK no
 	uncool. sooner or later you'll come back.
@@ -3235,7 +3232,7 @@ SET_DATA talked_to_tutguy,true
 
 
 DIALOGUE tutguy_open_inventory
-	did you know that you can open your inventory by pressing [color=#ffcccc]KEY_MENU[/color]?
+	did you know that you can open your inventory by pressing [color=#ffcccc]{ACTION_MENU}[/color]?
 SPEED 0.75
 	you can then view your status, use healing items and even equip spirits!
 
@@ -3976,7 +3973,7 @@ CHOICES play,dont
 CHOICE_LINK play
 	so be it...
 	aim your darts with movement keys...
-	...and throw a dart with KEY_UI_ACCEPT...
+	...and throw a dart with {ACTION_UI_ACCEPT}...
 CHOICE_LINK dont
 	good choice.............
 CHOICE_LINK bye

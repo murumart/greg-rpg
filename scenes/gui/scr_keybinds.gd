@@ -111,3 +111,10 @@ static func action_string(action: StringName) -> String:
 	if input.is_empty():
 		return "unset"
 	return input[0].as_text().trim_suffix(" (Physical)").to_lower()
+
+
+static func capital_action_action_string_dict() -> Dictionary:
+	var dict := {}
+	for action: String in CHANGEABLE:
+		dict[action.to_upper()] = action_string(action)
+	return dict

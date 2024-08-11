@@ -210,6 +210,10 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(0)
 
 	show()
+	if text.contains(DialogueParser.NEW_KEY_ACTION):
+		text = text.replace(DialogueParser.NEW_KEY_ACTION, "")
+		var dict := KeybindsSettings.capital_action_action_string_dict()
+		text = text.format(dict)
 	while true:
 		if randf() > 0.002 or text.contains("["): # avoids bbcode hopefully
 			break
