@@ -1,4 +1,5 @@
 MACRO SUNCOLOR #ffbb99
+MACRO RED #aa1111
 
 
 DIALOGUE insp_snowdrops
@@ -194,24 +195,27 @@ CHAR popo_2
 
 
 DIALOGUE insp_sun_spirit_rage_1
-	[color=SUNCOLOR]congratulations, you absolute fool.
-	[color=SUNCOLOR]you have drained me of the energy to escape this world.
-	[color=SUNCOLOR]very well done! and what is your reward?
+	[color=SUNCOLOR]congratulations! your victory over me is ab-so-lute!
+	[color=SUNCOLOR]i am drained wholly of the energy needed to exit this world.
+	[color=SUNCOLOR]you, hero! you will receive a fitting reward, no?
+	[color=SUNCOLOR]here it is - i will share with you a secret...
+
 
 DIALOGUE insp_sun_spirit_rage_2
-	...
-	[color=SUNCOLOR]...well, i don't want to ruin the surprise...
-	[color=SUNCOLOR]...actually, i do want to ruin the surprise.
-	[color=SUNCOLOR]you will not survive "grandma's" true attack.
-	[color=SUNCOLOR]enjoy the fleeting moments. you have my curse.
+	[color=SUNCOLOR]whenever you feel that you have achieved anything...
+	[color=SUNCOLOR]whenever you seem sure that what you're doing is just...
+	[color=SUNCOLOR]in this world, dream and reality are not quite separate...
+	[color=SUNCOLOR]..and their edges blur.
+	[color=SUNCOLOR]so... what exactly are you fighting for? and fighting whom?
+	[color=SUNCOLOR]you have my [color=RED]curse.[/color]
 
 
 DIALOGUE insp_sun_spirit
 CHAR popo_2
-	it's no use talking to that one.
+	it's no use talking to that spirit.
 	i don't think it can even speak. i've tried...
 	by the way. good job with defeating it...
-	quite a nasty spirit, with history...
+	quite a nasty thing, with history...
 
 
 DIALOGUE insp_vampire_cell
