@@ -17,6 +17,10 @@ const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 func _ready() -> void:
 	ResMan.get_character("greg").inventory.erase(&"cellphone")
+	if (Input.is_action_pressed("cancel")
+			and Input.is_action_pressed("ui_accept")):
+		exit_intro()
+		return
 	car.turn(PI / 2)
 	car.moves = false
 	car.position.y = -80
