@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=11 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
@@ -6,7 +6,6 @@
 [ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
 [ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="6_y22vi"]
 [ext_resource type="Script" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
@@ -215,13 +214,7 @@ offset_right = 88.0
 offset_bottom = 12.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
-text = "pre-relase version"
-
-[node name="ScreenEdgeBounceComponent" type="Node" parent="VersionText" node_paths=PackedStringArray("target")]
-script = ExtResource("6_y22vi")
-target = NodePath("..")
-bounce_rect = Rect2i(0, 0, 72, 112)
-speed = 30.0
+text = "ver "
 
 [node name="LoadingScreen" type="ColorRect" parent="."]
 visible = false
