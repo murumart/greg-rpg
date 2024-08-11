@@ -353,7 +353,6 @@ position = Vector2(80, 32.5)
 scale = Vector2(0.326389, 0.570312)
 sprite_frames = SubResource("SpriteFrames_hm0s2")
 autoplay = "default"
-frame_progress = 0.910839
 
 [node name="Things" type="Node2D" parent="LogoAnimated"]
 show_behind_parent = true
