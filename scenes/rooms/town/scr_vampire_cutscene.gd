@@ -97,6 +97,7 @@ func start() -> void:
 
 
 func end() -> void:
+	show()
 	var cashier_ouch: bool = DAT.get_data("is_cashier_dead_during_vampire_battle", false)
 	end_nuisances()
 	SND.play_song("")
