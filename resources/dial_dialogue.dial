@@ -3656,6 +3656,12 @@ CHAR vampire
 	let's try it on you! i wanna see what it does!
 
 
+DIALOGUE vampire_steal_blue_carpet
+CHAR vampire
+	how about we get you all sopped up?
+	i hear you take extra damage when pathetic and wet.
+
+
 DIALOGUE vampire_steal_default
 CHAR vampire
 	your spirit is mine now! brace yourself.
