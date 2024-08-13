@@ -39,11 +39,6 @@ func _ready() -> void:
 	generator.generate()
 
 
-# DEBUG
-func _unhandled_input(_event: InputEvent) -> void:
-	pass
-
-
 func _setup_gates() -> void:
 	var gates := $Gates
 	hud.update_compass(-1)

@@ -7,14 +7,14 @@ class_name EditorHelperTool extends Node
 
 
 func _ready() -> void:
-	if not Engine.is_editor_hint() or not OS.has_feature("editor"):
+	if not Engine.is_editor_hint() or DIR.standalone():
 		queue_free()
 		return
 	auto()
 
 
 func auto() -> void:
-	if not Engine.is_editor_hint() or not OS.has_feature("editor"):
+	if not Engine.is_editor_hint() or DIR.standalone():
 		return
 	set_project_version()
 

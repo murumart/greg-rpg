@@ -32,9 +32,6 @@ var last_save_file := 0
 
 var cat_names := []
 
-# DEBUG
-var check_for_key := ""
-
 
 func _init() -> void:
 	randomize() # only place where this is called
@@ -58,9 +55,6 @@ func start_game() -> void:
 # set a data key to a value
 func set_data(key: StringName, value) -> void:
 	if log_dat_chgs():
-		if key == check_for_key:
-			SND.play_sound(preload("res://sounds/error.ogg"))
-			SOL.vfx_damage_number(Vector2(SOL.SCREEN_SIZE / 2), str(value), Color.WHITE, 2)
 		print("data key %s set to %s" % [key, value])
 	A[key] = value
 

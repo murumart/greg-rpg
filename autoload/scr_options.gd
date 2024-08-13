@@ -84,14 +84,13 @@ var IONS := {
 	"leave": {"display": TYPE_VECTOR2},
 }
 # sorting the options
-const CATEGORIES := {
+var categories := {
 	"gameplay": ["keybinds", "autosave_interval", "z_skips_dialogue"],
 	"sound": ["main_volume", "music_volume"],
 	"graphics": [
 		"fullscreen", "screen_shake_intensity", "text_speak_time",
 		"max_fps", "battle_text_opacity", "less_fancy_graphics"
 	],
-	"debug": ["log_data_changes"],
 	"": ["reset", "leave"]
 }
 
@@ -121,6 +120,8 @@ func _init() -> void:
 		opt.set_value("promo", "website", "https://murumart.neocities.org/") # :3
 		opt.save(OPTION_PATH)
 	opt.load(OPTION_PATH)
+	if not DIR.standalone():
+		categories["debug"] = ["log_data_changes"]
 
 
 func _ready() -> void:
@@ -163,7 +164,7 @@ func _input(event: InputEvent) -> void:
 				print("collisions ", "showing" if
 				get_tree().debug_collisions_hint else "hidden")
 			KEY_KP_7, KEY_7:
-				if not root.visible and OS.has_feature("editor"):
+				if not root.visible:
 					SOL.debug_console()
 	if event.is_action_pressed("small_screenshot"):
 		DIR.screenshot(true)
@@ -339,8 +340,8 @@ func update(container: Container) -> void:
 
 func gen_option_nodes() -> void:
 	options_length = 0
-	for i in CATEGORIES.keys():
-		var opts := CATEGORIES[i] as Array
+	for i in categories.keys():
+		var opts := categories[i] as Array
 		var label := Label.new()
 		main_container.add_child(label)
 		label.text = "  " + i

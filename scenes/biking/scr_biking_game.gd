@@ -117,11 +117,12 @@ func _physics_process(delta: float) -> void:
 	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
 
 	# DEBUG (rememmber to remove)
-	if Input.is_action_pressed("ui_page_down"):
-		distance += 60
-	if Input.is_action_just_pressed("ui_end"):
-		while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
-			distance += 1
+	#if not DIR.standalone():
+		#if Input.is_action_pressed("ui_page_down"):
+			#distance += 60
+		#if Input.is_action_just_pressed("ui_end"):
+			#while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
+				#distance += 1
 
 	if currently_syrup and get_meter() >= syrup_stop_meter:
 		stop_syrup()

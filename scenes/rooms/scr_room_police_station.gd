@@ -22,7 +22,8 @@ const BOUNTY_CATCHES := {
 func _ready() -> void:
 	super._ready()
 	load_bounties()
-	if DAT.seconds < 1 and not LTS.gate_id: fulfill_bounty("all") #DEBUG
+	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone():
+		fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
