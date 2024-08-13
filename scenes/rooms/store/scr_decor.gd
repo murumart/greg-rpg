@@ -91,7 +91,6 @@ func _bits(line: int) -> void:
 
 
 func exit_cashier_fight() -> void:
-	print("globus")
 	store_cashier.cashier = "absent"
 	DAT.set_data("cashier_mean_defeated", true)
 	SND.current_song_player.pitch_scale = 0.89

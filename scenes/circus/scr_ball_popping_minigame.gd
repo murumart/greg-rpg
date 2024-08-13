@@ -81,7 +81,6 @@ func _test_collision() -> Area2D:
 	var balls := _space_state.intersect_point(params, 1).map(func(a): return a.collider as Area2D)
 	balls = balls.filter(func(a):
 		return is_instance_valid(a) and a.has_method("explode") and "exploded" in a)
-	print(balls)
 	if not balls.is_empty():
 		return balls[0] as Area2D
 	return null

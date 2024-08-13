@@ -21,7 +21,6 @@ func skatepark_setup() -> void:
 	else:
 		skate_worry.default_lines.append_array(["skate_worry_good", "skate_worry_3"])
 	jack_2.inspected.connect(func():
-		print("h")
 		SOL.dialogue_closed.connect(func():
 			if SOL.dialogue_choice == "yes":
 				LTS.level_transition("res://scenes/skating/skating_minigame.tscn")

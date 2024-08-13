@@ -10,7 +10,6 @@ func _ready() -> void:
 	if prog >= 15:
 		queue_free()
 	inspected.connect(func():
-		prints("blaab", prog, increases)
 		if not visible:
 			return
 		if increases < 2:

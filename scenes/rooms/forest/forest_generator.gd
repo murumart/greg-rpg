@@ -51,7 +51,7 @@ func _init(_forest: ForestPath) -> void:
 
 
 func generate() -> void:
-	print(" --- generating new room")
+	#print(" --- generating new room")
 	forest.questing.available_quests.clear()
 	forest.questing.available_quests_generated = false
 	load_layout()
@@ -128,7 +128,7 @@ func load_layout() -> void:
 		forest.inversion = true
 	forest.paths.set_layer_enabled(layout, true)
 	forest.enabled_layer = layout
-	print(" ---- chose layout ", layout, " scale is ", forest.paths.scale)
+	#print(" ---- chose layout ", layout, " scale is ", forest.paths.scale)
 
 
 func gen_trees() -> void:
@@ -141,7 +141,7 @@ func gen_trees() -> void:
 		tree.type = randi() % tree.TYPES_SIZE
 		if randf() < 0.2:
 			tree.face_visible = true
-	print(" ---- generated ", amount, " trees")
+	#print(" ---- generated ", amount, " trees")
 
 
 func gen_board() -> void:
@@ -149,7 +149,7 @@ func gen_board() -> void:
 		return
 	var pos := rand_pos() * 16
 	_place_board(pos)
-	print(" ---- placed quest board at ", pos)
+	#print(" ---- placed quest board at ", pos)
 
 
 func _place_board(pos: Vector2) -> void:
@@ -179,7 +179,7 @@ func gen_bins() -> void:
 		trash.opened.connect(forest.questing.update_quests)
 		trash.got_item.connect(forest.questing._trash_item_got)
 		bin_loot(trash)
-	print(" ---- generated ", trash_count, " bins")
+	#print(" ---- generated ", trash_count, " bins")
 
 
 func bin_loot(bin: TrashBin) -> void:
@@ -212,7 +212,7 @@ func gen_enemies() -> void:
 		var pos := rand_pos().floor()
 		enemy.global_position = pos * 16
 		enemy.add_to_group("enemies")
-	print(" ---- added ", enemy_count, " enemies")
+	#print(" ---- added ", enemy_count, " enemies")
 
 
 func gen_greenhouse() -> void:
@@ -222,7 +222,7 @@ func gen_greenhouse() -> void:
 	forest.greenhouse.save = false
 	forest.add_child(forest.greenhouse)
 	forest.greenhouse.set_vegetables(forest.current_room % VEGET_GREENHOUSE_INTERVAL == 0)
-	print(" ---- greenhouse added")
+	#print(" ---- greenhouse added")
 
 
 func gen_objects() -> void:
@@ -246,8 +246,8 @@ func gen_objects() -> void:
 			continue
 		if gen_object(obkey):
 			amounts[obkey] = amounts.get(obkey, 0) + 1
-	print(" ---- generated ", amounts.values(
-			).reduce(func(accum, number): return accum + number, 0), " objects")
+	#print(" ---- generated ", amounts.values(
+	#		).reduce(func(accum, number): return accum + number, 0), " objects")
 
 
 

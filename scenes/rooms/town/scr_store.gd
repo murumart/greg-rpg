@@ -16,7 +16,6 @@ func _store_door_setup() -> void:
 	var current_cashier := StoreCashier.which_cashier_should_be_here()
 	var stolen: int = DAT.get_data("stolen_from_store", 0)
 	var cleanup_start_second: int = DAT.get_data("store_cleanup_started_second", -31399)
-	prints(current_cashier, stolen)
 	if (stolen > 199
 			and not DAT.get_data("cashier_dead", false)
 			and current_cashier == "nice"):

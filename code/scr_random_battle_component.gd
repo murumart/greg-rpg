@@ -16,7 +16,7 @@ func _ready() -> void:
 	if inject_target:
 		inject_target.battle_info = get_battle()
 		#print("RBC: genned battle with level " + str(_level))
-	if print_test_text:
+	if print_test_text and not DIR.standalone():
 		for i in 100:
 			_level = i * 0.01
 			prints(i, gen_enemies())

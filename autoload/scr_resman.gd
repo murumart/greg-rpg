@@ -25,7 +25,7 @@ static func check_loaded() -> void:
 static func get_character(key: StringName) -> Character:
 	check_loaded()
 	if not key in characters:
-		print("char ", key, " not found")
+		printerr("char ", key, " not found")
 		var charc: Character = load("res://resources/characters/res_default_character.tres").duplicate(true)
 		charc.name = key
 		return charc
@@ -36,7 +36,7 @@ static func get_item(id: StringName) -> Item:
 	check_loaded()
 	assert(id in items, "item " + id + " doesn't exist")
 	if not id in items:
-		print("item ", id, " not found")
+		printerr("item ", id, " not found")
 		return preload("res://resources/res_default_item.tres")
 	return items[id]
 
@@ -44,7 +44,7 @@ static func get_item(id: StringName) -> Item:
 static func get_spirit(id: StringName) -> Spirit:
 	check_loaded()
 	if not id in spirits:
-		print("spirit ", id, " not found")
+		printerr("spirit ", id, " not found")
 		return preload("res://resources/res_default_spirit.tres")
 	return spirits[id]
 

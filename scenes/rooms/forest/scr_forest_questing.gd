@@ -24,7 +24,7 @@ func start_quest(quest: ForestQuest) -> void:
 
 
 func update_quests() -> void:
-	print(" --- checking quests")
+	#print(" --- checking quests")
 	var removing := []
 	for q: ForestQuest.Active in active_quests:
 		if not q:
@@ -47,12 +47,12 @@ func has_quest(quest_name: String) -> bool:
 
 
 func _trash_item_got(item: StringName) -> void:
-	print("trash item got ", item)
+	#print("trash item got ", item)
 	var togrant := active_quests.filter(func(a):
-		print(a.get_meta_list())
+		#print(a.get_meta_list())
 		return a.quest_reference.get_meta("correct_item", "") == item
 	)
-	print(togrant)
+	#print(togrant)
 	for quest: ForestQuest.Active in togrant:
 		quest.complete()
 #endregion

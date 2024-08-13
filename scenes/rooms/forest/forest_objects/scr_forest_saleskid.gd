@@ -27,12 +27,10 @@ func _ready() -> void:
 		_traded = true
 	, CONNECT_ONE_SHOT)
 	kid.finished_talking.connect(func():
-		print("kid finished talking")
 		if not _traded:
 			if _creeptpasta():
 				DAT.set_data("kid_never_meet_again", true)
 			return
-		print("we have traded")
 		if not is_instance_valid(get_parent()):
 			queue_free()
 			return

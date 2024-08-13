@@ -210,7 +210,7 @@ func load_battle(_info: BattleInfo) -> void:
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
 	BattleActor.battle_hash = _info.get_hash()
-	print("hash: ", BattleActor.battle_hash)
+	#print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
 		var damage := questing.get_perk_enemy_start_damage() as int
@@ -393,7 +393,8 @@ func _on_button_reference_received(reference) -> void:
 func _on_act_requested(actor: BattleActor) -> void:
 	if is_end():
 		return
-	print(actor, " requested act")
+	if actor._logsalot:
+		print(actor, " requested act")
 	open_party_info_screen()
 	set_actor_states(BattleActor.States.IDLE)
 	actor.act()

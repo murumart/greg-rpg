@@ -45,8 +45,6 @@ func ai_action() -> void:
 		super()
 		return
 	var target := pick_target()
-	print("deb: ", get_debuff_severity(self))
-	print("gregdeb: ", get_debuff_severity(target))
 	toughness = enemy_health_toughness_curve.sample_baked(
 			target.character.health_perc() + get_debuff_severity(self))
 	if character.health_perc() <= 1.0 - toughness:

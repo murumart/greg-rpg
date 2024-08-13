@@ -90,7 +90,6 @@ func play() -> void:
 
 
 func _line_start(line: int) -> void:
-	print(line)
 	if line == 3:
 		var tw := create_tween()
 		tw.tween_property(

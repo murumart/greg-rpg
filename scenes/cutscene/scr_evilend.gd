@@ -34,7 +34,6 @@ func new_beat() -> void:
 var bar := 0
 func new_bar() -> void:
 	bar += 1
-	print("bar: ", bar)
 	do_something()
 
 

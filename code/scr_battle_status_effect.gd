@@ -35,7 +35,8 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 			oldeff._removed_text(actor)
 			return null
 		oldeff._adjusted_text(actor, (addition.strength if addition else 0.0) - olds)
-		print(actor.actor_name, " changed effect ", oldeff, " -> ", addition)
+		if actor._logsalot:
+			print(actor.actor_name, " changed effect ", oldeff, " -> ", addition)
 		return addition
 	neweff._add_text(actor)
 	neweff.added(actor)

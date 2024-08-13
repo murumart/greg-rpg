@@ -17,7 +17,6 @@ const SPIRIT_PATH := "res://resources/spirits/res_%s"
 
 
 func _init() -> void:
-	print("project is standalone" if standalone() else "project is editor version")
 	# assure that a greg_rpg folder exists in user data
 	if not DirAccess.dir_exists_absolute(GREG_USER_FOLDER_PATH):
 		DirAccess.make_dir_absolute(GREG_USER_FOLDER_PATH)
@@ -139,7 +138,6 @@ func load_cat_names() -> Array:
 	var F := FileAccess
 	var fail: FileAccess
 	if F.file_exists(path_external):
-		print_debug("custom cats.txt exists")
 		fail = F.open(path_external, FileAccess.READ)
 	else: # if cats.txt in custom doesn't exist, create it
 		print_debug("custom cats.txt does not exist")

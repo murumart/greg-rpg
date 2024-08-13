@@ -14,7 +14,6 @@ enum Statements {CRITERIA, RETURNS}
 
 
 func exchange(inventory: Array) -> bool:
-	print("exchanging!")
 	if not has_input(inventory):
 		SOL.dialogue("exchange_missing_input")
 		return false

@@ -55,12 +55,14 @@ var rng := RandomNumberGenerator.new()
 @export var effect_immunities: Array[StringName] = []
 @export_range(0.0, 1.0) var stat_multiplier: = 1.0
 @export var wait := 1.0
+@export var _logsalot := false
 var ignore_my_finishes := false # cutscenes and such?
 
 
 # battle script accesses actors through the group
 func _init() -> void:
 	self.add_to_group("battle_actors")
+	_logsalot = _logsalot or OPT.get_opt("log_data_changes")
 
 
 # the character is loaded before _ready()
@@ -397,7 +399,8 @@ func use_item(id: String, subject: BattleActor) -> void:
 
 # squeeze empty the payload, copy everything over
 func handle_payload(pld: BattlePayload) -> void:
-	print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
+	if _logsalot:
+		print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
 	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
 	if character.health <= 0:
@@ -475,9 +478,7 @@ func _handle_hurt(pld: BattlePayload, damage: float) -> void:
 	if pld.steal_magic:
 		var steal := change * pld.steal_magic
 		character.magic = maxf(character.magic - steal, 0.0)
-		print(self, " from stealing magic: ", steal)
 		if is_instance_valid(pld.sender):
-			print("sending back to ", pld.sender)
 			pld.sender.character.magic += steal
 
 
@@ -510,7 +511,8 @@ func add_status_effect(eff: StatusEffect) -> void:
 	var effect := BattleStatusEffect.add(self, eff)
 	if effect:
 		status_effects[effect.type.s_id] = effect
-		print("added effect ", effect, " to ", self)
+		if _logsalot:
+			print("added effect ", effect, " to ", self)
 
 
 func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> void:
@@ -528,12 +530,12 @@ func get_status_effect(nimi: StringName) -> BattleStatusEffect:
 
 
 func remove_status_effect(nimi: StringName) -> void:
-	print(nimi)
 	var eff := status_effects.get(nimi) as BattleStatusEffect
 	if eff:
 		eff.removed(self)
 		status_effects.erase(nimi)
-		print("removed effect ", eff, " from ", self)
+		if _logsalot:
+			print("removed effect ", eff, " from ", self)
 		if status_effects.is_empty():
 			create_tween().tween_property(self, "modulate", Color.WHITE, 2.0)
 
@@ -545,7 +547,8 @@ func status_effect_update() -> void:
 		# remove if immune
 		if is_immune_to(eff):
 			remove_status_effect(eff)
-		print(self, ": ", effect)
+		if _logsalot:
+			print(self, ": ", effect)
 
 
 func is_immune_to(what: StringName) -> bool:

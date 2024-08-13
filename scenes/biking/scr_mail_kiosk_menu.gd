@@ -323,14 +323,14 @@ func game_get(thing: String, default: Variant = null) -> Variant:
 
 
 func game_set(thing: String, to: Variant) -> void:
-	if !game:
+	if not game:
 		printerr("no game")
 		return
 	game.set(thing, to)
 
 
 func game_call(method: String, arguments: Array = []) -> void:
-	if !game:
+	if not game:
 		printerr("no game")
 		return
 	game.callv(method, arguments)

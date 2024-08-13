@@ -124,7 +124,7 @@ func start() -> void:
 		Engine.time_scale = 1.0
 		get_tree().get_processed_tweens().map(func(tew: Tween): if tew.is_valid(): tw.kill())
 		canvas_modulate.color = Color.WHITE
-		print("done now?")
+		#print("done now?")
 		camera.zoom = Vector2.ONE
 		camera.position = Vector2(0, -25)
 		camera.rotation = 0

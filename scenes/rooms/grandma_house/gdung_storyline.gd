@@ -19,14 +19,16 @@ func _ready() -> void:
 
 
 func _greg_entered_suite(suite: GDUNGSuiteScene) -> void:
-	var suite_id := suite.suite.id
-	var where_on_path := path.find(suite_id)
-	if where_on_path == -1:
-		return
-	if where_on_path <= _path_completion:
-		return
-	_path_completion = where_on_path
-	print(path_completion)
+	# this doesn't do anything.
+	pass
+	#var suite_id := suite.suite.id
+	#var where_on_path := path.find(suite_id)
+	#if where_on_path == -1:
+		#return
+	#if where_on_path <= _path_completion:
+		#return
+	#_path_completion = where_on_path
+	#print(path_completion)
 
 
 func _save_me() -> void:

@@ -94,7 +94,6 @@ func _sprite_frames_from_file(sprite_path: String) -> SpriteFrames:
 		return sprite_frame_storage[sprite_path]
 	var frames = SpriteFrames.new()
 	var texture := load(sprite_path) as CompressedTexture2D
-	print(load(sprite_path))
 	const WIDTH = 16
 	var hframes = texture.get_height() / WIDTH
 	for i in hframes:

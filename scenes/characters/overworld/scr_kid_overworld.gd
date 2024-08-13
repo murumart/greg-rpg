@@ -39,14 +39,12 @@ func interacted() -> void:
 			var success := trades_dict[key].exchange(
 					ResMan.get_character("greg").inventory) as bool
 			if success:
-				print("trade success")
 				SOL.dialogue("kid_trade_success")
 				DAT.incri("kid_reputation", 1)
 				exchange_completed.emit(trades_dict[key])
 			else:
 				SOL.dialogue("kid_trade_fail")
 			SOL.dialogue_closed.connect(func():
-				print("emitting finished talking")
 				self.finished_talking.emit()
 			, CONNECT_ONE_SHOT)
 		,CONNECT_ONE_SHOT)

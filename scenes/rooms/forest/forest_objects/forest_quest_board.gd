@@ -122,7 +122,7 @@ func get_quest_by_name(q_name: String) -> ForestQuest:
 
 func _active_line_finished(line: int) -> void:
 	if not questing.active_quests.is_empty():
-		print(" --- quest in question: " + str(questing.active_quests[line - 1]))
+		#print(" --- quest in question: " + str(questing.active_quests[line - 1]))
 		if SOL.dialogue_choice == &"cancel":
 			questing.active_quests[line - 1] = null # starting at explanatory line 0
 

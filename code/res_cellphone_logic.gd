@@ -24,7 +24,6 @@ var room := "":
 
 
 func phonecall() -> void:
-	print("calling!")
 	var found_call := false
 	SOL.dialogue("phone_dial")
 	var init_id := CSTART + room

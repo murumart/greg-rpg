@@ -54,7 +54,7 @@ func _setup_gates() -> void:
 
 
 func gate_entered(which: int) -> void:
-	print("gate ", which)
+	#print("gate ", which)
 	LTS.gate_id = &"forest_transition"
 	if which != ForestGenerator.dir_oppos(
 			DAT.get_data("forest_last_gate_entered", -1)):
@@ -67,7 +67,7 @@ func gate_entered(which: int) -> void:
 
 
 func load_from_save() -> void:
-	print(" --- loadign forest from memory")
+	#print(" --- loadign forest from memory")
 	generator.load_from_save()
 
 
@@ -84,7 +84,7 @@ func leave() -> void:
 
 func _save_me() -> void:
 	if LTS.gate_id == LTS.GATE_ENTER_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
-		print(" --- forest saving data!")
+		#print(" --- forest saving data!")
 		var forest_save := {}
 		var trees_dict := {}
 		var bins_dict := {}

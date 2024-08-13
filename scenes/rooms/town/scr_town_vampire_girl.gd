@@ -38,11 +38,11 @@ func _ready() -> void:
 		bad_condition = true
 		DAT.set_data(GUY_FOLLOW, false)
 		queue_free()
-		print("v: girl not spawned, bad level/fought")
+		#print("v: girl not spawned, bad level/fought")
 		return
 
 	if DAT.get_data(GUY_FOLLOW, false) and LTS.gate_id != &"vampire_cutscene":
-		print("v: uguy follows")
+		#print("v: uguy follows")
 		uguy_follow()
 		return
 
@@ -51,7 +51,7 @@ func _ready() -> void:
 		gg_pos.global_position = get_closest_pos()
 		uguy.inspected.connect(_on_uguy_interacted)
 		uguy.default_lines.append("uguy_lost")
-		print("v: find girl")
+		#print("v: find girl")
 		return
 
 	imminence = level - 40
@@ -59,7 +59,7 @@ func _ready() -> void:
 		bad_condition = true
 		queue_free()
 		girl_is_intered = false
-		print("v: girl not spawned (bad time)")
+		#print("v: girl not spawned (bad time)")
 		return
 	girl.inspected.connect(_on_girl_interaction)
 	match girl_inters:
@@ -73,7 +73,7 @@ func _ready() -> void:
 		DAT.set_data(POSITION, gg_pos.global_position)
 	else:
 		gg_pos.global_position = DAT.get_data(POSITION, gg_pos.global_position)
-	print("v: girl spawned at ", gg_pos.global_position)
+	#print("v: girl spawned at ", gg_pos.global_position)
 
 
 # note that interacted signal is called before the npc's dialogue logic is ran.
@@ -124,7 +124,6 @@ func uguy_follow() -> void:
 	uguy._on_detection_area_body_entered(greg) # this is dirty
 	uguy.global_position = DAT.get_data(uguy.get_save_key("position"), uguy.global_position)
 	campsite_area.body_entered.connect(func(body: Node2D):
-		print(body)
 		if body != greg or not DAT.get_data(GUY_FOLLOW, false):
 			return
 		LTS.gate_id = &"vampire_cutscene"

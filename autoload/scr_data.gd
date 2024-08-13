@@ -54,8 +54,7 @@ func start_game() -> void:
 
 # set a data key to a value
 func set_data(key: StringName, value) -> void:
-	if log_dat_chgs():
-		print("data key %s set to %s" % [key, value])
+	if log_dat_chgs(): print("data key %s set to %s" % [key, value])
 	A[key] = value
 
 
