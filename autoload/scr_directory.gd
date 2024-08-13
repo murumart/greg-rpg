@@ -197,7 +197,7 @@ func screenshot(small: bool) -> void:
 		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
 	var img := get_viewport().get_texture().get_image()
 	if not small:
-		img.resize(img.get_size().x * 5.0, img.get_size().y * 5.0, Image.INTERPOLATE_NEAREST)
+		img.resize(img.get_size().x * 5, img.get_size().y * 5, Image.INTERPOLATE_NEAREST)
 	img.save_png(
 		"user://greg_rpg/screenshots/" + str(
 				Time.get_datetime_string_from_system().validate_filename()) + ".png"

@@ -72,7 +72,7 @@ func update_exp_display() -> void:
 	var greg := ResMan.get_character("greg")
 	var split := current_exp_label.text.split("/")
 	var old_xp := int(split[0])
-	var old_next := int(split[1])
+	var _old_next := int(split[1])
 	var xp := greg.experience
 	var next := greg.xp2lvl(greg.level + 1)
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)

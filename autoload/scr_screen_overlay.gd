@@ -222,3 +222,16 @@ func load_all_effects() -> void:
 			var scene := load(fpath)
 			effects_dict[file.trim_prefix("scn_vfx_")] = scene
 	print("loading effects took ", Time.get_ticks_msec() - time, " ms")
+
+
+var _ldisplay_label_y := 0.0
+func make_display_label(object: Object, thing: StringName) -> Label:
+	var label := Label.new()
+	var np := NodePath(thing)
+	add_ui_child(label)
+	get_tree().process_frame.connect(func():
+		label.text = str(object.get_indexed(np))
+	)
+	label.position.y = _ldisplay_label_y
+	_ldisplay_label_y += label.size.y + 4.0
+	return label
