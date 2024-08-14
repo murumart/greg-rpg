@@ -292,7 +292,8 @@ DIALOGUE insp_forest_bench
 
 DIALOGUE insp_gdung_bookshelf
 	it's pages and pages of utter nonsense.
-	[color=GREEN]"all work and no games, or no games and no bacon?"
+	[color=GREEN]"would you rather have all work and no games..."
+	[color=GREEN]"or unlimited, games, no work, but no games?"
 
 
 DIALOGUE insp_gdung_trashbag
