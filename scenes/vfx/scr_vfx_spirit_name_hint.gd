@@ -92,10 +92,10 @@ func del() -> void:
 func _sprite_frames_from_file(sprite_path: String) -> SpriteFrames:
 	if sprite_path in sprite_frame_storage.keys():
 		return sprite_frame_storage[sprite_path]
-	var frames = SpriteFrames.new()
+	var frames := SpriteFrames.new()
 	var texture := load(sprite_path) as CompressedTexture2D
-	const WIDTH = 16
-	var hframes = texture.get_height() / WIDTH
+	const WIDTH := 16
+	var hframes := texture.get_height() / WIDTH
 	for i in hframes:
 		var at := AtlasTexture.new()
 		at.atlas = texture
