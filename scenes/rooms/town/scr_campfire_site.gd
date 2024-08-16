@@ -3,7 +3,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	
+
 	_naturalist_setup()
 
 
@@ -57,7 +57,7 @@ func _generate_unique_bird_names() -> Array[String]:
 	const PREXES := [
 		"the ", "green-", "blue-", "golden-", "red-throated ",
 		"razor-winged ", "yellow-", "night ", "the blue ", "domestic ",
-		"black-chested ", "boat-billed ", "band-tailed ", "banded ", 
+		"black-chested ", "boat-billed ", "band-tailed ", "banded ",
 		"bare-faced ", "bald ", "common ", "the common ", "common green ",
 		"chestnut-", "chestnut-bellied ", "dark-sided ", "dark-faced ",
 		"geumian ", "eastern ", "eastern-", "sea ", "western ",
@@ -77,7 +77,7 @@ func _generate_unique_bird_names() -> Array[String]:
 			basename += Math.determ_pick_random(SYLLABS, rng)
 			if basename.length() > 7:
 				break
-		
+
 		if rng.randf() < 0.75:
 			basename = Math.determ_pick_random(PREXES, rng) + basename
 		if rng.randf() < 0.05:

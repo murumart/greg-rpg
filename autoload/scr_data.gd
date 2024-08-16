@@ -272,7 +272,7 @@ func load_chars_from_data() -> void:
 func _on_game_timer_timeout() -> void:
 	seconds += 1
 	playtime += 1
-	
+
 	if seconds % 60 == 0:
 		var greg := get_tree().get_first_node_in_group("players")
 		if not greg:
@@ -281,7 +281,7 @@ func _on_game_timer_timeout() -> void:
 		if (seconds - last_save_second >= interval
 				and not greg.saving_disabled):
 			save_autosave()
-	
+
 	if playtime % 300 == 0:
 		var screenies := DIR.get_screenshots()
 		if screenies.is_empty():

@@ -409,7 +409,7 @@ func chase(body: Node2D) -> void:
 		offset *= 3
 	if target_immobilised:
 		offset *= 3
-	set_target_offset(body.global_position, offset) 
+	set_target_offset(body.global_position, offset)
 	set_state(States.CHASE) # this also restarts the timer
 	chase_timer.start(time_between_chase_updates)
 

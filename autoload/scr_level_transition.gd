@@ -78,7 +78,7 @@ func level_transition(path: String, op := {}) -> void:
 			{"kill_rects": op.get("ask_save_confirmation", false)}
 		)
 	else:
-		
+
 		SOL.fade_screen(Color.TRANSPARENT, Color.TRANSPARENT, 0.1)
 	if op.get("stealing_enabled", true):
 		handle_stolen_items()

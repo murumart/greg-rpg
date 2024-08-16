@@ -7,7 +7,7 @@ Greetings. Welcome to the Greg RPG Git repository. Please play the game before p
 
 I started developing this game with a clear idea in my head. A crudely drawn, short, simplistic RPG that would let me dip my toes in releasing games before I start making things I actually care about.
 
-Then I started caring about Greg. So in April of 2024, it'll have been 2 years since the very start of the whole project. The current project folder was created in January of 2023, and is nowhere near complete. Maybe because I keep adding nonsensical features that do not progress the story. Maybe... snif.. maybe.
+Then I started caring about Greg. So it took over 2 years to finish the game. But maybe that's good... I am proud of parts of the final product.
 
 It will be released on Itch and Game Jolt in the summer of 2024. Soon!
 
