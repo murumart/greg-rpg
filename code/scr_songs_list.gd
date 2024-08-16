@@ -177,10 +177,6 @@ var songs := {
 		"title": "snail mourning",
 		"stream": preload("res://music/mus_snail_mourning.ogg")
 	},
-	"staredown": {
-		"title": "staredown",
-		"stream": preload("res://music/mus_staredown.ogg")
-	},
 	"mail_man": {
 		"title": "the friendly postman",
 		"stream": preload("res://music/mus_mail_man.ogg")
