@@ -52,11 +52,6 @@ var songs := {
 		"title": "catfight",
 		"stream": preload("res://music/mus_catfight.ogg")
 	},
-	"credits": {
-		"title": "credits",
-		"stream": preload("res://music/mus_credits.ogg"),
-		"loop": false,
-	},
 	"daylightthief": {
 		"title": "daylightthief",
 		"stream": preload("res://music/mus_daylightthief.ogg")
