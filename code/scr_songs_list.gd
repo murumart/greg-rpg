@@ -74,9 +74,9 @@ var songs := {
 		"title": "dry summer",
 		"stream": preload("res://music/mus_dry_summer.ogg")
 	},
-	"entirely_just": {
-		"title": "entirely just",
-		"stream": preload("res://music/mus_entirely_just.ogg")
+	"mean_cashier_fight": {
+		"title": "vermin grinder",
+		"stream": preload("res://music/mus_mean_cashier_fight.ogg")
 	},
 	"evil_end": {
 		"title": "",
@@ -97,7 +97,7 @@ var songs := {
 		"stream": preload("res://music/mus_fisher_hut.ogg"),
 	},
 	"fishing_game": {
-		"title": "i will dip you in saurce",
+		"title": "a spirit named dip",
 		"stream": preload("res://music/mus_fishing_game.ogg"),
 	},
 	"foreign_fauna": {
@@ -105,7 +105,7 @@ var songs := {
 		"stream": preload("res://music/mus_animal_fight.ogg"),
 	},
 	"gaming": {
-		"title": "gaming",
+		"title": "super gaming house",
 		"stream": preload("res://music/mus_gaming.ogg")
 	},
 	"gdung": {
@@ -182,7 +182,7 @@ var songs := {
 		"stream": preload("res://music/mus_mail_man.ogg")
 	},
 	"president_fight": {
-		"title": "touch me",
+		"title": "franking it up",
 		"stream": preload("res://music/mus_president_fight.ogg")
 	},
 	"touch_me": {
