@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(0, 9, 9)
+const VERSION := Vector3(1, 0, 0)
 const GDUNG_LEVEL := 72
 
 signal player_captured(capture: bool)
