@@ -276,6 +276,8 @@ func version_string(data: Dictionary) -> String:
 		load_warning_message = "empty"
 		return ""
 	var version := data.get("version", UNKNOWN_VERSION) as Vector3
+	var complete_comparison_version := (version.x * 10000
+			+ version.y * 1000 + version.z * 100)
 	var super_difference := DAT.VERSION.x - version.x as int
 	var major_difference := DAT.VERSION.y - version.y as int
 	var minor_difference := DAT.VERSION.z - version.z as int
@@ -284,7 +286,9 @@ func version_string(data: Dictionary) -> String:
 		text += "version: %s\n" % DAT.version_str(version)
 	else:
 		text += "unknown version"
-	if super_difference < 0 or major_difference < 0 or minor_difference < 0:
+	if (super_difference < 0
+			or (not super_difference and (major_difference < 0 or minor_difference < 0))
+			or (not super_difference and not major_difference and minor_difference < 0)):
 		load_warning_message = "outdatedgame"
 		text = "[color=#ff0000]%s[/color]" % text
 	elif super_difference:
