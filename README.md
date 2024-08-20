@@ -9,7 +9,7 @@ I started developing this game with a clear idea in my head. A crudely drawn, sh
 
 Then I started caring about Greg. So it took over 2 years to finish the game. But maybe that's good... I am proud of parts of the final product.
 
-It will be released on Itch and Game Jolt in the summer of 2024. Soon!
+It was [released on itch.io](https://murumart.itch.io/greg-rpg) on 18.08.2024.
 
 More info about Greg RPG can be found [here](https://murumart.neocities.org/g/gregrpg).
 
