@@ -51,13 +51,16 @@ func _ready() -> void:
 # ugly
 func _unhandled_input(event: InputEvent) -> void:
 	# open the save menu (no idea why this is controlled here)
-	if Input.is_action_just_pressed("quick_save") or Input.is_action_just_pressed("quick_load"):
+	if (Input.is_action_just_pressed("quick_save")
+			or Input.is_action_just_pressed("quick_load")):
 		if (DAT.player_capturers.is_empty()
 				or (DAT.player_capturers.size() == 1
-					and "overworld_menu" in DAT.player_capturers)):
+				and "overworld_menu" in DAT.player_capturers)):
 			if not saving_disabled:
 				SOL.save_menu(Input.is_action_just_pressed("quick_load"))
 				close_requested.emit()
+			else:
+				SOL.vfx_damage_number(Vector2(0, SOL.SCREEN_CENTER.y), "saving disabled!")
 	if not visible:
 		return
 	get_viewport().set_input_as_handled()
