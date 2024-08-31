@@ -207,8 +207,11 @@ func update_shopping_list() -> void:
 	var silver: int = DAT.get_data("silver", 0)
 	if silver < total:
 		text += "[color=red]"
+	var svtext := "silver: "
+	if randf() < 0.0002:
+		svtext = "liver: "
 	if total > 0:
-		text += "silver: " + str(silver) + "\n"
+		text += svtext + str(silver) + "\n"
 	shopping_list.text = text
 
 
