@@ -408,7 +408,8 @@ DATA_LINK president_defeated,true
 	oh, you met him? how did it go?
 	...oh...
 	well, at least.. uh.. you know...
-	experience??
+	you got experience... which you'll need to reach level 60!
+	which is when the next cool thing happens!
 DATA_LINK 
 	toodles!
 
@@ -463,7 +464,8 @@ DATA_LINK president_defeated,true
 	hey hey! how did the meeting with the president go?
 	...oh...
 	well, at least.. uh.. you know...
-	experience??
+	you got some experience toward level 60!
+	which is a good level to be at, i reckon.
 DATA_LINK 
 	toodles!
 
