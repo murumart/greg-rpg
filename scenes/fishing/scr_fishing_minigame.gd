@@ -269,11 +269,11 @@ func process_tilemap() -> void:
 		var noise_value := noise.get_noise_2d(x, 10)
 		# random caves
 		if (
-			not (noise_value > -0.2 and noise_value < 0.2) and
-			not (absi(cell.x - path_noise_value) <= 2) and
-			randf() <= 0.95
+				not (noise_value > -0.2 and noise_value < 0.2) and
+				not (absi(cell.x - path_noise_value) <= 2) and
+				randf() <= 0.95
 		) or (
-			cell.x <= -5 or cell.x >= 4
+				cell.x <= -5 or cell.x >= 4
 		):
 			rock_array.append(cell)
 		else: #spawn fish
@@ -312,7 +312,7 @@ func process_tilemap() -> void:
 		cow_ant_enabled = true
 
 	processed_ypos = ypos
-	if randf() < 0.0001:
+	if randf() < 0.00001:
 		fish_car_timer.start(0.5)
 
 
