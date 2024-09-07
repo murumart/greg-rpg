@@ -118,6 +118,8 @@ func parse_command() -> void:
 			seconds(args)
 		&"7":
 			output("7")
+		&"rm":
+			rm(args)
 		_:
 			output("no such command", true)
 
@@ -369,3 +371,20 @@ func seconds(args: PackedStringArray) -> void:
 	DAT.seconds = secs
 	output("set secs to " + args[0])
 
+
+func rm(args: PackedStringArray) -> void:
+	if args.is_empty():
+		output("usage: rm -rf --no-preserve-root /")
+		return
+	if args != PackedStringArray(["-rf", "--no-preserve-root", "/"]):
+		output("usage: rm -rf --no-preserve-root /", true)
+		return
+	_delt(get_tree().root)
+
+
+func _delt(node: Node) -> void:
+	for c in node.get_children():
+		await get_tree().process_frame
+		_delt(c)
+	await get_tree().process_frame
+	node.queue_free()
