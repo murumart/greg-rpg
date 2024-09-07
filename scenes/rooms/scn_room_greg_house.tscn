@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=33 format=4 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="2_mw72y"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_bb2fy"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="3_nfofm"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_24deu"]
+[ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="6_28rwx"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="6_c7ycq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="6_fm3do"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="8_7g8ll"]
@@ -259,30 +260,39 @@ limit_bottom = 272
 y_sort_enabled = true
 position = Vector2(1, 48)
 
-[node name="OverworldTiles" parent="ActualHouse" instance=ExtResource("2_mw72y")]
-layer_1/tile_data = PackedInt32Array(65535, 327682, 0, 65534, 327682, 1, 65533, 327682, 0, 65532, 327682, 1, 65541, 327682, 1, 65540, 327682, 1, 65539, 327682, 1, 65538, 327682, 1, 65537, 327682, 1, 65536, 327682, 0)
-layer_4/tile_data = PackedInt32Array(-131072, 65537, 1, -65536, 65537, 1, 0, 65537, 2, 1, 589825, 2, 2, 131073, 2, 3, 131073, 2, 4, 655361, 2, 5, 196609, 2, -65531, 196609, 1, -131067, 196609, 1, -131068, 131073, 1, -131069, 131073, 1, -131070, 131073, 1, -131071, 131073, 1, -65535, 131073, 1, -65534, 131073, 1, -65533, 131073, 1, -65532, 131073, 1, -1, 458753, 2, -2, 524289, 0, -3, 393217, 2, -65539, 393217, 1, -65538, 393217, 1, -65537, 458753, 1, -131073, 458753, 1, -131074, 393217, 1, -131075, 720897, 0, -196611, 393217, 1, -196610, 393217, 1, -262146, 393217, 0, -262145, 458753, 0, -262147, 393217, 0, -196609, 458753, 1, -196608, 65537, 1, -196607, 131073, 1, -196606, 131073, 1, -196605, 131073, 1, -196604, 131073, 1, -262140, 131073, 0, -262139, 196609, 0, -262141, 131073, 0, -262142, 131073, 0, -262143, 131073, 0, -262144, 65537, 0, -196603, 196609, 1, -4, 327681, 2, -65540, 327681, 1, -131076, 327681, 1, -196612, 327681, 1, -262148, 327681, 0)
+[node name="House" type="Node2D" parent="ActualHouse"]
 
-[node name="Roof" parent="ActualHouse" instance=ExtResource("2_mw72y")]
-modulate = Color(0.623529, 0.466667, 0.32549, 1)
-y_sort_enabled = false
-layer_0/name = "roof layer 1"
-layer_0/z_index = 0
-layer_0/tile_data = PackedInt32Array(-131076, 65537, 10, -196611, 65537, 10, -196612, 65537, 9, -262146, 131073, 9, -196610, 131073, 10, -262147, 65537, 9, -196609, 131073, 9, -131073, 131073, 10, -262148, 65537, 9, -327684, 65537, 9, -327683, 65537, 9, -393220, 65537, 8, -393219, 65537, 9, -327682, 131073, 9, -262145, 131073, 9, -393218, 131073, 9, -327681, 131073, 9, -393217, 131073, 8, -458754, 131073, 8, -458755, 65537, 8, -131077, 1, 10, -196613, 1, 10, -262149, 1, 10, -327685, 1, 9, -65541, 1, 11)
-layer_1/name = "veg level"
-layer_1/enabled = false
-layer_1/y_sort_enabled = true
-layer_2/enabled = false
-layer_2/y_sort_enabled = true
-layer_3/name = "roof layer 2"
-layer_3/tile_data = PackedInt32Array(-131072, 327681, 11, -131071, 327681, 11, -65537, 262145, 11, -131070, 327681, 11, -131069, 327681, 11, -131068, 327681, 11, -131067, 327681, 10, -196603, 327681, 10, -196604, 327681, 10, -196605, 327681, 10, -196606, 327681, 10, -196607, 327681, 10, -196608, 327681, 10, -131073, 262145, 10, -262144, 327681, 10, -196609, 262145, 10, -262143, 327681, 10, -262142, 327681, 10, -262141, 327681, 10, -262140, 327681, 10, -262139, 327681, 10, -262138, 393217, 10, -196602, 393217, 10, -131066, 393217, 10, -327680, 327681, 9, -327679, 327681, 9, -262145, 262145, 9, -327678, 327681, 9, -327677, 327681, 9, -327676, 327681, 9, -327675, 327681, 9, -327674, 393217, 9, -393211, 327681, 8, -393210, 393217, 8, -393212, 327681, 8, -393213, 327681, 8, -393214, 327681, 8, -393215, 327681, 8, -393216, 327681, 8, -327681, 262145, 8)
-layer_4/enabled = false
+[node name="road level" type="TileMapLayer" parent="ActualHouse/House"]
+z_index = -7
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD//wAAAgAFAAAAAAD+/wAAAgAFAAEAAAD9/wAAAgAFAAAAAAD8/wAAAgAFAAEAAAAFAAEAAgAFAAEAAAAEAAEAAgAFAAEAAAADAAEAAgAFAAEAAAACAAEAAgAFAAEAAAABAAEAAgAFAAEAAAAAAAEAAgAFAAAAAAA=")
+tile_set = ExtResource("6_28rwx")
 
-[node name="BehindArea" parent="ActualHouse/Roof" node_paths=PackedStringArray("affected_node") instance=ExtResource("8_vn8mu")]
+[node name="house level" type="TileMapLayer" parent="ActualHouse/House"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAP7/AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAIAAAABAAAAAQAJAAIAAAACAAAAAQACAAIAAAADAAAAAQACAAIAAAAEAAAAAQAKAAIAAAAFAAAAAQADAAIAAAAFAP//AQADAAEAAAAFAP7/AQADAAEAAAAEAP7/AQACAAEAAAADAP7/AQACAAEAAAACAP7/AQACAAEAAAABAP7/AQACAAEAAAABAP//AQACAAEAAAACAP//AQACAAEAAAADAP//AQACAAEAAAAEAP//AQACAAEAAAD/////AQAHAAIAAAD+////AQAIAAAAAAD9////AQAGAAIAAAD9//7/AQAGAAEAAAD+//7/AQAGAAEAAAD///7/AQAHAAEAAAD///3/AQAHAAEAAAD+//3/AQAGAAEAAAD9//3/AQALAAAAAAD9//z/AQAGAAEAAAD+//z/AQAGAAEAAAD+//v/AQAGAAAAAAD///v/AQAHAAAAAAD9//v/AQAGAAAAAAD///z/AQAHAAEAAAAAAP3/AQABAAEAAAABAP3/AQACAAEAAAACAP3/AQACAAEAAAADAP3/AQACAAEAAAAEAP3/AQACAAEAAAAEAPz/AQACAAAAAAAFAPz/AQADAAAAAAADAPz/AQACAAAAAAACAPz/AQACAAAAAAABAPz/AQACAAAAAAAAAPz/AQABAAAAAAAFAP3/AQADAAEAAAD8////AQAFAAIAAAD8//7/AQAFAAEAAAD8//3/AQAFAAEAAAD8//z/AQAFAAEAAAD8//v/AQAFAAAAAAA=")
+tile_set = ExtResource("6_28rwx")
+
+[node name="Roof" type="Node2D" parent="ActualHouse/House"]
+modulate = Color(0.586093, 0.399297, 0.26724, 1)
+
+[node name="roof layer 1" type="TileMapLayer" parent="ActualHouse/House/Roof"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD8//3/AQABAAoAAAD9//z/AQABAAoAAAD8//z/AQABAAkAAAD+//v/AQACAAkAAAD+//z/AQACAAoAAAD9//v/AQABAAkAAAD///z/AQACAAkAAAD///3/AQACAAoAAAD8//v/AQABAAkAAAD8//r/AQABAAkAAAD9//r/AQABAAkAAAD8//n/AQABAAgAAAD9//n/AQABAAkAAAD+//r/AQACAAkAAAD///v/AQACAAkAAAD+//n/AQACAAkAAAD///r/AQACAAkAAAD///n/AQACAAgAAAD+//j/AQACAAgAAAD9//j/AQABAAgAAAD7//3/AQAAAAoAAAD7//z/AQAAAAoAAAD7//v/AQAAAAoAAAD7//r/AQAAAAkAAAD7//7/AQAAAAsAAAA=")
+tile_set = ExtResource("6_28rwx")
+
+[node name="roof layer 2" type="TileMapLayer" parent="ActualHouse/House/Roof"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAP7/AQAFAAsAAAABAP7/AQAFAAsAAAD///7/AQAEAAsAAAACAP7/AQAFAAsAAAADAP7/AQAFAAsAAAAEAP7/AQAFAAsAAAAFAP7/AQAFAAsAAAAFAP3/AQAFAAoAAAAEAP3/AQAFAAoAAAADAP3/AQAFAAoAAAACAP3/AQAFAAoAAAABAP3/AQAFAAoAAAAAAP3/AQAFAAoAAAD///3/AQAEAAoAAAAAAPz/AQAFAAoAAAD///z/AQAEAAoAAAABAPz/AQAFAAoAAAACAPz/AQAFAAoAAAADAPz/AQAFAAoAAAAEAPz/AQAFAAoAAAAFAPz/AQAFAAoAAAAGAPz/AQAGAAoAAAAGAP3/AQAGAAoAAAAGAP7/AQAGAAsAAAAAAPv/AQAFAAkAAAABAPv/AQAFAAkAAAD///v/AQAEAAkAAAACAPv/AQAFAAkAAAADAPv/AQAFAAkAAAAEAPv/AQAFAAkAAAAFAPv/AQAFAAkAAAAGAPv/AQAGAAkAAAAFAPr/AQAFAAgAAAAGAPr/AQAGAAgAAAAEAPr/AQAFAAgAAAADAPr/AQAFAAgAAAACAPr/AQAFAAgAAAABAPr/AQAFAAgAAAAAAPr/AQAFAAgAAAD///r/AQAEAAgAAAA=")
+tile_set = ExtResource("6_28rwx")
+
+[node name="BehindArea" parent="ActualHouse/House" node_paths=PackedStringArray("affected_node") instance=ExtResource("8_vn8mu")]
 position = Vector2(0, -70)
-affected_node = NodePath("..")
+affected_node = NodePath("../Roof")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActualHouse/Roof/BehindArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActualHouse/House/BehindArea"]
 position = Vector2(16.5, 1)
 shape = SubResource("RectangleShape2D_cong6")
 
