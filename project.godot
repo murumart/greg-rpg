@@ -31,11 +31,13 @@ SND="*res://autoload/scr_sound.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/standalone_expression=2
 gdscript/warnings/standalone_ternary=2
 gdscript/warnings/static_called_on_instance=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/confusable_local_declaration=0
+gdscript/warnings/confusable_capture_reassignment=0
 shapes/collision/shape_color=Color(1, 1, 1, 0.419608)
 
 [display]

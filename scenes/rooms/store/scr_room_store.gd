@@ -3,6 +3,7 @@ extends Room
 # the store room scene
 # copied over from old greg and adjusted
 
+const ShelfType := preload("res://scenes/decor/scr_store_shelf.gd")
 
 # item types stored here
 const HEALING_ITEMS := ["medkit", "plaster", "pills", "cough_syrup"]
@@ -73,10 +74,10 @@ func _ready():
 
 
 func set_store_wall_colours():
-	var store_wall := $InteriorTiles as TileMap
-	var mn = Math.süsarv()
-	var color = Color(mn, 0.5, 0.8 - mn * 0.5).lightened(0.2)
-	store_wall.set_layer_modulate(1, color)
+	var store_wall := $InteriorTiles/Layer1 as TileMapLayer
+	var mn := Math.süsarv()
+	var color := Color(mn, 0.5, 0.8 - mn * 0.5).lightened(0.2)
+	store_wall.modulate = color
 
 
 func _on_item_taken(ittype: String):
@@ -92,7 +93,7 @@ func load_store_data():
 	if store_data.is_empty():
 		restock()
 	for s in store_data.get("shelves", []).size():
-		var shelf = store_data.get("shelves")[s]
+		var shelf: Dictionary = store_data.get("shelves")[s]
 		shelves[s].inventory = shelf["inventory"]
 		shelves[s].set_type(shelf["type"])
 

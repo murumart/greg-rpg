@@ -97,4 +97,3 @@ func _on_interaction_area_on_interact() -> void:
 
 func take_item(ittype: StringName):
 	emit_signal("item_taken", ittype)
-
