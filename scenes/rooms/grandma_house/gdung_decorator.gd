@@ -7,7 +7,7 @@ const HEALER := preload("res://scenes/rooms/grandma_house/gdung_objects/gdung_he
 
 @export var generator: GDUNGLayoutGenerator
 @export var greg: PlayerOverworld
-@onready var tilemap: TileMap = get_parent()
+@onready var tilemap: TilemapLayerParent = get_parent()
 @export var objects_node: Node2D
 @export var path_line: Line2D
 @export var canvas_modulate: CanvasModulate
@@ -162,5 +162,3 @@ func _draw_path() -> void:
 	path_line.clear_points()
 	for id in path:
 		path_line.add_point(generator.suites[id].get_rect().get_center() * 16.0)
-
-

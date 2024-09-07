@@ -10,7 +10,7 @@ var suite_layout := START_LAYOUT.duplicate()
 var rng := RandomNumberGenerator.new()
 var astar := AStar3D.new()
 
-@onready var tilemap: TileMap = get_parent()
+@onready var tilemap: TilemapLayerParent = get_parent()
 
 
 func _ready() -> void:
@@ -30,6 +30,7 @@ func _ready() -> void:
 
 
 func generate() -> void:
+	tilemap.update_layers()
 	tilemap.queue_redraw()
 	if DAT.get_data("gdung_gen_next_floor", false):
 		DAT.incri("gdung_floor", 1)
@@ -267,4 +268,3 @@ func globalise_rect(r: Rect2) -> Rect2:
 
 func _greg_entered_scene(suite: GDUNGSuiteScene) -> void:
 	greg_entered_suite.emit(suite)
-
