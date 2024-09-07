@@ -17,7 +17,10 @@ const SND_CAR := preload("res://sounds/car_overrun.ogg")
 
 const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
 
-@onready var tilemap := $Blocks as TileMap
+@onready var tmap_layers := $Blocks
+@onready var tmap_background: TileMapLayer = $Blocks/background
+@onready var tmap_foreground: TileMapLayer = $Blocks/foreground
+
 var processed_ypos := 1
 @onready var noise: FastNoiseLite = $NoiseSprite.texture.noise
 @onready var hook := $Hook
@@ -105,7 +108,7 @@ func _physics_process(delta: float) -> void:
 		States.MOVE:
 			hook_movement(delta)
 			# world moves to give illusion of going deeper
-			tilemap.position.y -= speed * delta
+			tmap_layers.position.y -= speed * delta
 			# decorations
 			if kiosk_enabled:
 				mail_kiosk.position.y -= speed * delta
@@ -121,7 +124,7 @@ func _physics_process(delta: float) -> void:
 			# darker as it gets deeper
 			set_water_color(Color("#0054b549").lerp(Color("000e1c49"),
 					remap(depth, 0, 3000, 0.0, 1.0)))
-			time_left -= maxf(delta * (time_left * 0.55),
+			time_left -= maxf(delta * (time_left * 0.54),
 					delta * 0.5) * float(bool(fish_caught))
 			time_left = minf(time_left, 40.0)
 			if time_left <= 0.0:
@@ -170,7 +173,7 @@ func _on_hook_collision(node: Node2D) -> void:
 	if state == States.STOP:
 		return
 	# hitting an obstacle
-	if node is TileMap or node.get_parent().get("hazardous"):
+	if node is TileMapLayer or node.get_parent().get("hazardous"):
 		#get_tree().reload_current_scene()
 		if node.get_parent().has_method("caught"):
 			node.get_parent().call("caught")
@@ -250,13 +253,13 @@ func _on_line_draw() -> void:
 
 func process_tilemap() -> void:
 	# the tilemap actually continuously
-	var ypos := roundi(tilemap.position.y * 0.0625)
+	var ypos := roundi(tmap_layers.position.y * 0.0625)
 	if ypos == processed_ypos:
 		return
 	update_points_display()
 	var path_noise_value := roundi((remap(
-			noise.get_noise_1d(tilemap.position.y * 0.000125), -1, 1, -6, 6)
-			+ remap(noise.get_noise_1d((tilemap.position.y + 1) * 0.000125),
+			noise.get_noise_1d(tmap_layers.position.y * 0.000125), -1, 1, -6, 6)
+			+ remap(noise.get_noise_1d((tmap_layers.position.y + 1) * 0.000125),
 			-1, 1, -6, 6)) * 0.5)
 
 	# this might optimise things. i hope
@@ -278,19 +281,21 @@ func process_tilemap() -> void:
 			rock_array.append(cell)
 		else: #spawn fish
 			if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.5:
-				spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)))
+				spawn_fish(tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
 			if depth >= 7500:
 				if (randf() < depth_fish_increase_curve.sample(depth * 5e-05)
 						* 0.0625):
-					spawn_mine(tilemap.to_global(tilemap.map_to_local(cell)))
+					spawn_mine(
+							tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
 			if (randf() < depth_item_increase_curve.sample(depth * 5e-05)
 					* 0.00285714):
 				spawn_item(
 						random_items.get_random_id(),
-						tilemap.to_global(tilemap.map_to_local(cell)))
+						tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
 		# background fish
 		if randf() < depth_fish_increase_curve.sample(depth * 5e-05):
-			spawn_fish(tilemap.to_global(tilemap.map_to_local(cell)), true)
+			spawn_fish(tmap_foreground.to_global(
+					tmap_foreground.map_to_local(cell)), true)
 	# background
 	var bg_rock_array := []
 	for x in 12:
@@ -319,14 +324,14 @@ func process_tilemap() -> void:
 # the most process intensive part of process_tilemap
 func _set_cells(rock_array: Array, bg_rock_array: Array) -> void:
 	if world_environment.environment:
-		tilemap.set_cells_terrain_connect(1, rock_array, 0, 0)
-		tilemap.set_cells_terrain_connect(0, bg_rock_array, 0, 1)
+		tmap_foreground.set_cells_terrain_connect(rock_array, 0, 0)
+		tmap_background.set_cells_terrain_connect(bg_rock_array, 0, 1)
 		return
 	# lower graphics
 	for pos in rock_array:
-		tilemap.set_cell(1, pos, 0, Vector2i(13, 16))
+		tmap_foreground.set_cell(pos, 0, Vector2i(13, 16))
 	for pos in bg_rock_array:
-		tilemap.set_cell(0, pos, 1, Vector2i(13, 16))
+		tmap_background.set_cell(pos, 1, Vector2i(13, 16))
 
 
 func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> void:
@@ -375,8 +380,8 @@ func spawn_item(item_id: StringName, coords: Vector2) -> void:
 func delete_offscreen_tiles(ypos: int) -> void:
 	for x in 12:
 		var cell := Vector2i(x - 6, -ypos - 6)
-		tilemap.erase_cell(0, cell)
-		tilemap.erase_cell(1, cell)
+		tmap_foreground.erase_cell(cell)
+		tmap_background.erase_cell(cell)
 
 
 # game ends here
