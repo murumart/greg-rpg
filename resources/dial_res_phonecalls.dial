@@ -645,12 +645,14 @@ DATA_LINK gdung_floor,0
 	but, uuh... keep going!
 	i'm sure there's some sort of path marked...
 	and there's more floors to come.
+	if you need to leave, there might be doors around.
 	good luck. toodles.
 DATA_LINK gdung_floor,1
 	hey hey... floor two.
 	i'm sure there's no surprises here.
 	...
 	hm? boxes? that's strange...
+	if you need to leave, there might be doors around.
 	good luck...
 DATA_LINK gdung_floor,2
 	hey! floor three! you're almost there!
@@ -658,6 +660,7 @@ DATA_LINK gdung_floor,2
 	maybe she was planning on moving out...
 	why? what could that mean...
 	a mystery not unlike the [color=#891382]fish[/color].
+	if you need to leave, there might be doors around.
 	toodles.
 DATA_LINK gdung_floor,3
 	hey! you're at... the... what?
