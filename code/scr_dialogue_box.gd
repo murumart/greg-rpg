@@ -3,6 +3,7 @@ class_name DialogueBox
 
 # main game dialogue box
 
+@warning_ignore("unused_signal")
 signal dialogue_closed
 signal started_speaking(line: int)
 signal changed_dialogue
@@ -361,4 +362,3 @@ func _on_button_reference_received(_reference) -> void:
 
 func _set_current_choice(to: StringName) -> void:
 	current_choice = to
-

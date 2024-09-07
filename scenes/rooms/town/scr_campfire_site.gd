@@ -34,7 +34,7 @@ func _naturalist_setup() -> void:
 
 func _generate_unique_bird_names() -> Array[String]:
 	var array: Array[String] = []
-	var seed := DAT.get_data("nr", 0) as float
+	var bseed := DAT.get_data("nr", 0) as float
 	var rng := RandomNumberGenerator.new()
 	const SYLLABS := [
 		"wa", "an", "ne", "tai", "ta", "pa", "cu", "lo",
@@ -70,7 +70,7 @@ func _generate_unique_bird_names() -> Array[String]:
 		"grey-hooded ", "the ", "the ", "the "
 	]
 	const BIRD_NAME_AMOUNT := 64
-	rng.seed = seed * 10000
+	rng.seed = bseed * 10000
 	while array.size() < BIRD_NAME_AMOUNT:
 		var basename: String = Math.determ_pick_random(FIRST_SYLLABS, rng)
 		for i in randi_range(1, 4):
@@ -86,5 +86,3 @@ func _generate_unique_bird_names() -> Array[String]:
 			continue
 		array.append(basename)
 	return array
-
-

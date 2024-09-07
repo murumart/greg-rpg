@@ -65,7 +65,7 @@ func _pick_item(puzzle: SlidingPuzzle) -> void:
 		if chosen_thing in ITEM_CHANCES:
 			var wishful_thinking := puzzle.puzzle_size + randi_range(-1, 1)
 			amount += randi_range(0,
-					mini(sqrt(ITEM_CHANCES[chosen_thing]), wishful_thinking))
+					mini(roundi(sqrt(ITEM_CHANCES[chosen_thing])), wishful_thinking))
 		for a in amount:
 			rewards.add(Reward.new({"type": BattleRewards.Types.ITEM,
 					"property": str(chosen_thing)}))
@@ -78,4 +78,3 @@ func _pick_item(puzzle: SlidingPuzzle) -> void:
 		rewards.add(Reward.new({"type": BattleRewards.Types.EXP, "property":
 				str(randi_range(greg.xp2lvl(greg.level + 1),
 				greg.xp2lvl(greg.level + 2)))}))
-

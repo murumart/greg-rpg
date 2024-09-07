@@ -35,7 +35,7 @@ static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 static func parse_dialogue_from_string(string: String) -> Dictionary:
 	var time := Time.get_ticks_usec() # measuring the time that this takes to run
 	var dialogue_dictionary: Dictionary = {}
-	var dial: Dialogue
+	var dial: Dialogue = null
 	var dial_line: DialogueLine
 	var char_to_set := ""
 	var text_speed_to_set := 1.0
@@ -150,4 +150,3 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		dialogue_dictionary[dial.name] = dial
 	print("parsing took %s ms" % [((Time.get_ticks_usec() - time) * 0.001)])
 	return dialogue_dictionary
-

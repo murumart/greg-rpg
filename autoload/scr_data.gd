@@ -6,6 +6,7 @@ extends Node
 const VERSION := Vector3(1, 0, 2)
 const GDUNG_LEVEL := 72
 
+@warning_ignore("unused_signal")
 signal player_captured(capture: bool)
 
 # DATA
@@ -41,7 +42,7 @@ func _ready() -> void:
 	init_data()
 	print("DAT is ready!")
 	DIR.incj(1, 1)
-	DAT.set_data("dance_battle_tutorialed", true)
+	DAT.set_data("dance_battle_tutorialed", true) # DEBUG
 
 
 # entry point for a new game

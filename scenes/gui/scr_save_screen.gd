@@ -276,7 +276,7 @@ func version_string(data: Dictionary) -> String:
 		load_warning_message = "empty"
 		return ""
 	var version := data.get("version", UNKNOWN_VERSION) as Vector3
-	var complete_comparison_version := (version.x * 10000
+	var _complete_comparison_version := (version.x * 10000
 			+ version.y * 1000 + version.z * 100)
 	var super_difference := DAT.VERSION.x - version.x as int
 	var major_difference := DAT.VERSION.y - version.y as int

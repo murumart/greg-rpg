@@ -188,7 +188,7 @@ func _on_hook_collision(node: Node2D) -> void:
 		if node.moving and not node.decor:
 			if not node.item:
 				var combo := roundi(recent_fish_caught)
-				var pts := roundi(node.value + combo) * hook_data.point_multiplier
+				var pts := roundi((node.value + combo) * hook_data.point_multiplier)
 				points += pts
 				time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
 				update_points_display()
