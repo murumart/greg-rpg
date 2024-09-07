@@ -39,4 +39,3 @@ void fragment() {
 	COLOR.b *= (3.0 + cos(UV.x * 12.0 * uv.y + TIME));
 	COLOR.a *= modulate_a;
 }
-

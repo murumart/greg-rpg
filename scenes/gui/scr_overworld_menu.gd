@@ -474,4 +474,3 @@ func _add_better_marker(button: Button, armour: bool, better: bool) -> void:
 		tw.tween_property(sprite, "position:y", 1.0, 1.0)
 		tw.tween_property(sprite, "position:y", -5.0, 1.0)
 	)
-

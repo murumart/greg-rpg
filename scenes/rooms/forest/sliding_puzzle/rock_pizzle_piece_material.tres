@@ -13,7 +13,6 @@ void fragment() {
 	COLOR = vec4(avg, avg + noise * 0.1, avg * 1.5, color.a);
 	//COLOR = vec4(noise, noise, noise, color.a);
 }
-
 "
 
 [resource]

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://b5u6jxs10wsp7"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://b5u6jxs10wsp7"]
 
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_68txs"]
 [ext_resource type="Script" path="res://code/scr_item.gd" id="1_r8sk6"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_t3mrb"]
 [ext_resource type="Texture2D" uid="uid://py2cbbxelpag" path="res://sprites/items/spr_cellphone.png" id="2_syrgf"]
@@ -19,7 +20,7 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_68txs")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6

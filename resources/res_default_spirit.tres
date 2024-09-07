@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://d4mtl2hxqpixv"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://d4mtl2hxqpixv"]
 
 [ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_5vpic"]
+[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_13f35"]
 [ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_gbsxx"]
 
 [sub_resource type="Resource" id="Resource_ukid5"]
@@ -18,7 +19,7 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_13f35")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6
