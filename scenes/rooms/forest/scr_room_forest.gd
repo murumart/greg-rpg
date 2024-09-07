@@ -5,7 +5,7 @@ const HudType := preload("res://scenes/rooms/forest/scr_forest_hud.gd")
 var greenhouse: ForestGenerator.GreenhouseType = null
 
 @onready var greg := $Greg as PlayerOverworld
-@onready var paths: TileMap = $Tilemaps/Paths
+@onready var paths: TilemapLayerParent = $Tilemaps/Paths
 var enabled_layer := 0
 
 @onready var current_room := DAT.get_data(
@@ -123,5 +123,3 @@ func _save_me() -> void:
 			"board": board_dict,
 		}
 		DAT.set_data("forest_save", forest_save)
-
-
