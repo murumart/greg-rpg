@@ -6,7 +6,7 @@ var store_cashier: StoreCashier
 @onready var cashier := $"../Kassa/Cashier" as OverworldCharacter
 @onready var wli_particles: GPUParticles2D = $"../Kassa/Cashier/WLIParticles"
 
-@onready var products := get_tree().get_nodes_in_group("products")
+@onready var products: Array[Node2D] = Array($Products.get_children(), TYPE_OBJECT, "Node2D", null)
 @onready var funny_area: Area2D = $FunnyArea
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var camera := $"../Greg/Camera"

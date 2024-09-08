@@ -87,4 +87,3 @@ static func get_db_keys_by_weights() -> Dictionary:
 
 static func get_object(key: StringName) -> Dictionary:
 	return DB[key]
-

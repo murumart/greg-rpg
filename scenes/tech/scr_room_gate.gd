@@ -4,6 +4,7 @@ extends Node2D
 # gates between rooms in the overworld
 
 signal entered
+signal leaving
 
 @export_group("Technical")
 @export_node_path("Area2D") var area_path: NodePath
@@ -56,6 +57,7 @@ func _on_area_entered(body: Node2D) -> void:
 			# set the gate id
 			LTS.gate_id = gate_id
 			# and off we go
+			leaving.emit()
 			LTS.level_transition(DIR.room_scene_path(destination))
 		entered.emit()
 

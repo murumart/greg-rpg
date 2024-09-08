@@ -1,8 +1,13 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://dt3lfhxd4k6k4"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://dt3lfhxd4k6k4"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_mks6k"]
 resource_name = "Compressor"
 threshold = -0.5
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_clqyy"]
+resource_name = "LowPassFilter"
+cutoff_hz = 1620.0
+resonance = 0.52
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_uw2d4"]
 resource_name = "Delay"
@@ -55,6 +60,8 @@ bus/1/mute = false
 bus/1/bypass_fx = false
 bus/1/volume_db = 0.0
 bus/1/send = &"Radio Music 2"
+bus/1/effect/0/effect = SubResource("AudioEffectLowPassFilter_clqyy")
+bus/1/effect/0/enabled = false
 bus/2/name = &"Speech"
 bus/2/solo = false
 bus/2/mute = false
