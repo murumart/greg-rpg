@@ -42,8 +42,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if "poster" in DAT.player_capturers:
 			DAT.free_player("poster")
 			ui.hide()
-	if event.keycode == KEY_HOME and event.is_pressed():
-		refill_trash()
 
 
 func _collect_trash() -> void:
