@@ -57,4 +57,3 @@ func _load_pictures() -> void:
 		display.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 		display.stretch_mode = TextureRect.STRETCH_SCALE
 		image_container.add_child(display)
-

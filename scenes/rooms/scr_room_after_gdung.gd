@@ -17,4 +17,3 @@ func select_ending() -> void:
 		ending_2.play()
 		return
 	ending_1.play()
-

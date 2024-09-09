@@ -81,5 +81,3 @@ func nova_process(add: float) -> void:
 
 func _used_spirit_flare() -> void:
 	heal(10)
-
-

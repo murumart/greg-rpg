@@ -191,4 +191,3 @@ func _load_credits() -> void:
 	text += var_to_str(Engine.get_copyright_info())
 
 	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel.text = text
-

@@ -127,4 +127,3 @@ func get_gate_id(where: StringName) -> StringName:
 
 func get_regs() -> Dictionary:
 	return (DAT.get_data(DAT_DESTS, {}) as Dictionary)
-

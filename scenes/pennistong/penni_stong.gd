@@ -256,4 +256,3 @@ func end() -> void:
 
 static func xpreward(player_score: int, enemy_score: int) -> int:
 	return maxi(player_score - pow(enemy_score, 1.02), 10) / 11.0
-

@@ -112,4 +112,3 @@ static func which_cashier_should_be_here() -> String:
 	if (not nice_not):
 		return "nice"
 	return "absent"
-

@@ -81,5 +81,3 @@ func manage_display(target_pos: Vector2, _direction: int, delta: float) -> void:
 	display.position = display.position.lerp(target_pos, delta * 24)
 	display.position -= Math.v2(0.5)
 	display.size = Math.v2(TSIZE + 2)
-
-

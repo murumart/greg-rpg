@@ -155,4 +155,3 @@ func disappear() -> void:
 func _update_ui() -> void:
 	balls_label.text = str(balls_left)
 	darts_label.text = str(darts_left)
-

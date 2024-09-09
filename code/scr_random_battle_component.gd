@@ -58,5 +58,3 @@ func get_battle() -> BattleInfo:
 
 func set_level(nr_1_99: float) -> void:
 	_level = remap(nr_1_99, 1, 99, 0.001, 1.0)
-
-

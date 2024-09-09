@@ -216,4 +216,3 @@ func get_screenshots() -> Array[String]:
 	var new: Array[String] = []
 	new.append_array(screenshot_folder)
 	return new
-

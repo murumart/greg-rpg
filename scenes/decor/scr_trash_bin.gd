@@ -5,6 +5,7 @@ class_name TrashBin extends Node2D
 
 signal opened
 signal got_item(type: StringName)
+signal failed_to_open
 
 @export var full := true: set = set_full
 @export var replenish_minutes := 25:
@@ -26,22 +27,24 @@ func _ready() -> void:
 
 
 func _on_interaction_area_on_interact() -> void:
-	if full:
-		if save:
-			DAT.set_data(save_key("emptied_second"), DAT.seconds)
-		full = false
-		SND.play_sound(preload("res://sounds/trashbin.ogg"))
-		if item:
-			DAT.grant_item(item)
-			got_item.emit(item)
-		if silver:
-			DAT.grant_silver(silver)
-		if (item.length() < 1) and (not bool(silver)):
-			SOL.dialogue("nothing")
-			if randf() < 0.0001:
-				SND.play_sound(preload("res://sounds/gui/nothinghere.ogg"))
-		DAT.incri("trashcans_emptied", 1)
-		opened.emit()
+	if not full:
+		failed_to_open.emit()
+		return
+	if save:
+		DAT.set_data(save_key("emptied_second"), DAT.seconds)
+	full = false
+	SND.play_sound(preload("res://sounds/trashbin.ogg"))
+	if item:
+		DAT.grant_item(item)
+		got_item.emit(item)
+	if silver:
+		DAT.grant_silver(silver)
+	if (item.length() < 1) and (not bool(silver)):
+		SOL.dialogue("nothing")
+		if randf() < 0.0001:
+			SND.play_sound(preload("res://sounds/gui/nothinghere.ogg"))
+	DAT.incri("trashcans_emptied", 1)
+	opened.emit()
 
 
 func set_full(to: bool) -> void:

@@ -86,4 +86,3 @@ func _car_scared_run_over() -> void:
 	car_scared.default_lines.clear()
 	DAT.set_data(CAR_SCARED_DIED, true)
 	tw.finished.connect(car_scared.queue_free)
-

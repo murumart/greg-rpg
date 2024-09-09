@@ -79,4 +79,3 @@ func update_display() -> void:
 func wobble() -> void:
 	for p in divisions - 2:
 		line.points[p + 1] += Vector2.from_angle(randf_range(-PI, PI)) * deviation_distance
-

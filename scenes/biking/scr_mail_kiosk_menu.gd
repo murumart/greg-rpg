@@ -334,5 +334,3 @@ func game_call(method: String, arguments: Array = []) -> void:
 		printerr("no game")
 		return
 	game.callv(method, arguments)
-
-

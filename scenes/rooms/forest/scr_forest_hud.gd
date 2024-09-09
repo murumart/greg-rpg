@@ -82,4 +82,3 @@ func update_exp_display() -> void:
 	, old_xp, xp, 0.5)
 	tw.parallel().tween_property(exp_progress, "value", xp, 0.5)
 	nextlevel_exp_label.text = "lvl " + str(greg.level)
-

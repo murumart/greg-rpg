@@ -40,4 +40,3 @@ func delete() -> void:
 	cigarette_positions.erase(global_position)
 	DAT.set_data(save_key(), cigarette_positions)
 	queue_free()
-

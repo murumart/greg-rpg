@@ -101,4 +101,3 @@ func talk(text: String, speed := 1.0) -> void:
 	textbox.text = text
 	textbox.visible_ratio = 0.0
 	textbox.speak_text({"speed": (20.0 / text.length() * 0.5) * speed})
-

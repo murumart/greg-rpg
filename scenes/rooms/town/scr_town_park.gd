@@ -60,4 +60,3 @@ func tarikas_lines() -> void:
 
 func _on_tarikas_inspected() -> void:
 	DAT.set_data("tarikas_talked_to", true)
-

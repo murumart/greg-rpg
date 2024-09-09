@@ -58,4 +58,3 @@ func get_phone_area() -> String:
 	if areas:
 		return areas[0].name.trim_prefix("PhoneArea").to_snake_case()
 	return ""
-

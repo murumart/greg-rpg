@@ -210,4 +210,3 @@ func fadeout(what: Node2D, dur := 1.0) -> void:
 func move(what: Node2D, where: Vector2, dur := 1.0) -> void:
 	var tw := create_tween()
 	tw.tween_property(what, "position", where, dur)
-

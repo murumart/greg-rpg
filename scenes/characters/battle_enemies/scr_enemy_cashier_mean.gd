@@ -96,4 +96,3 @@ func _stdst_bits(line: int) -> void:
 				LTS.change_scene_to("res://scenes/rooms/scn_room_store.tscn")
 			)
 		)
-

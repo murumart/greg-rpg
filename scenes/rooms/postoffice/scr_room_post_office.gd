@@ -97,7 +97,3 @@ func can_ushanka_guy_cutscene() -> bool:
 	if DAT.get_data("uguy_following", false): return false
 	DAT.set_data("witnessed_ushanka_guy_cutscene", true)
 	return true
-
-
-
-

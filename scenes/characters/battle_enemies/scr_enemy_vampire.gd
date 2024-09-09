@@ -178,4 +178,3 @@ func is_cashier_alive() -> bool:
 			reference_to_opposing_array.size() > 1
 			and reference_to_opposing_array[1].character.health > 0
 	)
-

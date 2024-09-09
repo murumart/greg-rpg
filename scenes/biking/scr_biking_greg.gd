@@ -203,4 +203,3 @@ func throw_mail() -> void:
 		mail.set_saucy()
 		paper_throw_audio.pitch_scale *= 0.89
 	paper_throw_audio.play()
-

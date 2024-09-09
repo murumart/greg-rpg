@@ -1047,4 +1047,3 @@ func crittable_display(opt: Dictionary) -> void:
 
 func _exit_tree() -> void:
 	erase_floating_spirits()
-

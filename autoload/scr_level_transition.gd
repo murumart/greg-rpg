@@ -133,4 +133,3 @@ func skateboard_check() -> bool:
 		return true
 
 	return false
-

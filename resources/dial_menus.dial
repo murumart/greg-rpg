@@ -367,3 +367,7 @@ DIALOGUE sliding_puzzle_lose
 	then the mystery is lost forever.
 
 
+DIALOGUE daily_trash_wait
+	you have %s left until your next daily item.
+
+

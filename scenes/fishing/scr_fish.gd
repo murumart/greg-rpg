@@ -89,4 +89,3 @@ func assign_value() -> void:
 
 func explode() -> void:
 	SOL.vfx("explosion", self.global_position)
-

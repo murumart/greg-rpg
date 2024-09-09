@@ -11,4 +11,3 @@ func init(options := {}):
 			preload("res://sounds/explosion/explosion_3.ogg"),
 		].pick_random()
 	)
-

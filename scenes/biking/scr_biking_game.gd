@@ -531,4 +531,3 @@ func coinify_snails() -> void:
 		coin.coin_got.connect(_on_coin_collected)
 		SOL.vfx("dustpuff", coin.global_position, {parent = coin})
 		snail.queue_free()
-

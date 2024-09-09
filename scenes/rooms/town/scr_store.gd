@@ -90,4 +90,3 @@ func _guy_target_reached() -> void:
 		tw.tween_property(guy, "modulate:a", 0.0, 1.0)
 		SND.play_sound_2d(preload("res://sounds/door/open.ogg"), guy.global_position)
 		tw.finished.connect(guy.queue_free)
-

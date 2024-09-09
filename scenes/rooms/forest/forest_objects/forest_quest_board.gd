@@ -138,4 +138,3 @@ func _quest_generation_special(quest: ForestQuest) -> bool:
 			quest.glass_reward = maxi(ceili(sqrt(rarity)), 1)
 			return true
 	return false
-

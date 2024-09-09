@@ -38,5 +38,3 @@ func _car_collision_response(car: CarOverworld) -> void:
 	var moveto := (car.global_position - car.target).normalized() * car.speed
 	tw.tween_property(self, "global_position", moveto, 1.0)
 	tw.tween_callback(queue_free)
-
-

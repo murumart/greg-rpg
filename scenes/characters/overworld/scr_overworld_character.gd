@@ -456,5 +456,3 @@ func freeze_and_thaw() -> void:
 	var tw := create_tween()
 	tw.tween_interval(4.0)
 	tw.tween_callback(set_physics_process.bind(true))
-
-

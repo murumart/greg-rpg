@@ -176,5 +176,3 @@ func _cigarette_timer() -> void:
 	cig.global_position = global_position
 	LTS.get_current_scene().add_child(cig)
 	cig.tumble()
-
-

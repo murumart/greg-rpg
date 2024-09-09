@@ -238,4 +238,3 @@ func is_sorted() -> bool:
 			return false
 		last = nr
 	return true
-

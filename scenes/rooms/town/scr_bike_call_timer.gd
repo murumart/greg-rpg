@@ -81,4 +81,3 @@ func _physics_process(delta: float) -> void:
 		LTS.enter_battle(bike.G_BATTLE_INFOS[0])
 		set_physics_process(false)
 		DAT.set_data("bike_chasing", false)
-

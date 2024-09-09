@@ -51,4 +51,3 @@ func _ready() -> void:
 	e.append(2)
 	DIR.sej(3, e)
 	LTS.level_transition("res://scenes/gui/scn_main_menu.tscn")
-

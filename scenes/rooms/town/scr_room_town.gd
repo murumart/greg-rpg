@@ -97,4 +97,3 @@ func kid_first_encounter() -> void:
 
 func _on_trash_guy_inspected() -> void:
 	DAT.set_data("trash_guy_inspected", true)
-

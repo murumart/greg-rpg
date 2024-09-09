@@ -119,4 +119,3 @@ func set_output(to: Array) -> Exchange:
 	output.clear()
 	output.append_array(to)
 	return self
-

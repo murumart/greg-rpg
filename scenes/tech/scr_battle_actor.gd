@@ -694,5 +694,3 @@ func _item_funny_fungus_used_on() -> void:
 
 func get_xp() -> int:
 	return character.level
-
-

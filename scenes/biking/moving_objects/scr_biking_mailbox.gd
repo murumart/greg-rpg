@@ -31,4 +31,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 # just the item using animation but uses the checkmark texture. is also silent
 func checkmark_animation() -> void:
 	SOL.vfx("use_item", global_position + Vector2(0, -30), {"item_texture": preload("res://sprites/gui/spr_gui_checkmark.png"), "parent": self, "silent": true})
-
