@@ -24,8 +24,7 @@ func _on_text_submitted(new_text: String) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
-		DAT.free_player("debug_console")
-		queue_free()
+		exit()
 	# these dont work
 	if event.is_action_pressed("move_up"):
 		print("up")
@@ -39,9 +38,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 
+func exit() -> void:
+	DAT.free_player("debug_console")
+	queue_free()
+
+
 func parse_command() -> void:
 	if current_command == "":
-		output("")
+		output("\n")
 		return
 	var args := current_command.split(" ", false)
 	if args.size() < 1:
@@ -49,79 +53,15 @@ func parse_command() -> void:
 		return
 	var cmd := args[0]
 	args.remove_at(0)
+	
+	if command_exists(cmd):
+		call("_cmd_" + cmd, args)
+		return
+	output("no such command", true)
 
-	match StringName(cmd):
-		&"greg":
-			output("gregged.")
-		&"bset":
-			battle_set(args)
-		&"bend":
-			battle_end(args)
-		&"help":
-			output("available commands are: greg,bset,bend,help,ex,clear,history,vfx,printdata,xp,lvup,dial,gitem,gspirit,gsilver,reload,instakill,clearinv,goto,win,seconds,7\ntype command without args to get help")
-		&"ex":
-			ex(args)
-		&"clear":
-			output("\n\n\n\n\n\n\n\n\n\n")
-		&"history":
-			print(history)
-		&"vfx":
-			vfx(args)
-		&"printdata":
-			print(DAT.A)
-		&"setdata":
-			setdata(args)
-		&"xp":
-			xp(args)
-		&"lvup":
-			lvup(args)
-		&"hurt":
-			hurt(args)
-		&"dial":
-			if args.size() < 1:
-				output("need dialogue key", true)
-				return
-			if not args[0] in SOL.dialogue_box.dialogues_dict.keys():
-				output("key doesn't exist", true)
-				return
-			SOL.dialogue(args[0])
-		&"gitem":
-			give_item(args)
-		&"gspirit":
-			give_spirit(args)
-		&"gsilver":
-			give_silver(args)
-		&"goto":
-			goto(args)
-		&"reload":
-			DAT.save_to_data()
-			LTS.gate_id = LTS.GATE_LOADING
-			if args.is_empty():
-				DAT.load_data_from_dict(DAT.A, true)
-			else:
-				LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
-		&"instakill":
-			instakill()
-			output("greg's attack stack ridiculous now")
-		&"clearinv":
-			ResMan.get_character("greg").inventory.clear()
-			output("inventory cleared")
-		&"addperk":
-			add_perk(args)
-		&"win":
-			win()
-		&"csm":
-			get_window().content_scale_mode = (Window.CONTENT_SCALE_MODE_VIEWPORT
-					if get_window().content_scale_mode == Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-					else Window.CONTENT_SCALE_MODE_CANVAS_ITEMS)
-		&"seconds":
-			seconds(args)
-		&"7":
-			output("7")
-		&"rm":
-			rm(args)
-		_:
-			output("no such command", true)
+
+func command_exists(command: StringName) -> bool:
+	return has_method("_cmd_" + command)
 
 
 func output(s: String, error := false) -> void:
@@ -129,7 +69,59 @@ func output(s: String, error := false) -> void:
 	clog.append_text("\n" + s)
 
 
-func battle_set(args: PackedStringArray) -> void:
+func _cmd_reload(args: PackedStringArray) -> void:
+	DAT.save_to_data()
+	LTS.gate_id = LTS.GATE_LOADING
+	if args.is_empty():
+		DAT.load_data_from_dict(DAT.A, true)
+	else:
+		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+
+
+func _cmd_dial(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("need dialogue key", true)
+		return
+	if not args[0] in SOL.dialogue_box.dialogues_dict.keys():
+		output("key doesn't exist", true)
+		return
+	SOL.dialogue(args[0])
+
+
+func _cmd_csm(args: PackedStringArray) -> void:
+	get_window().content_scale_mode = (Window.CONTENT_SCALE_MODE_VIEWPORT
+			if get_window().content_scale_mode == Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+			else Window.CONTENT_SCALE_MODE_CANVAS_ITEMS)
+
+
+func _cmd_clearinv(args: PackedStringArray) -> void:
+	ResMan.get_character("greg").inventory.clear()
+	output("inventory cleared")
+
+
+func _cmd_help(args: PackedStringArray) -> void:
+	if args.size() > 0:
+		if command_exists(args[0]):
+			output("command exists. type it without arguments for help")
+		else:
+			output("no such command found", true)
+		return
+	var cmds: String = (get_method_list()
+			.map(func(a: Dictionary) -> Variant: return a.name)
+			.filter(func(a: StringName) -> bool: return a.begins_with("_cmd_"))
+			.reduce(func(a: String, b: StringName) -> String: return a.trim_prefix("_cmd_") + "," + b.trim_prefix("_cmd_")))
+	output("available commands: " + cmds)
+
+
+func _cmd_clear(args: PackedStringArray) -> void:
+	output("\n\n\n\n\n\n\n\n\n\n")
+
+
+func _cmd_exit(args: PackedStringArray) -> void:
+	exit()
+
+
+func _cmd_bset(args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
 		output("needs to be used in battle", true)
@@ -158,7 +150,7 @@ func battle_set(args: PackedStringArray) -> void:
 	output("set %s %s property %s to %s" % ["enemy" if team == 1 else "party member", str(get_team[nr]), variant, value])
 
 
-func battle_end(_args: PackedStringArray) -> void:
+func _cmd_bend(_args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
 		output("needs to be used in battle", true)
@@ -166,7 +158,7 @@ func battle_end(_args: PackedStringArray) -> void:
 	(cs).check_end(true)
 
 
-func setdata(args: PackedStringArray) -> void:
+func _cmd_setdata(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: setdata key value")
 		return
@@ -189,7 +181,7 @@ func _data_change(type: DataCommands, key: StringName, value: Variant) -> void:
 			output("incremented %s to %s" % [key, DAT.get_data(key)])
 
 
-func ex(args: PackedStringArray) -> void:
+func _cmd_ex(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: ex gdscript_expression")
 		return
@@ -210,7 +202,7 @@ func ex(args: PackedStringArray) -> void:
 		output(expr.get_error_text(), true)
 
 
-func xp(args: PackedStringArray) -> void:
+func _cmd_xp(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: xp charname amount")
 		return
@@ -237,7 +229,7 @@ func xp(args: PackedStringArray) -> void:
 			[amount, chara.experience, chara.xp2lvl(chara.level + 1)])
 
 
-func lvup(args: PackedStringArray) -> void:
+func _cmd_lvup(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: lvup charname amount")
 		return
@@ -250,9 +242,9 @@ func lvup(args: PackedStringArray) -> void:
 	output("leveled %s to %s" % [charname, amount + 1])
 
 
-func hurt(args: PackedStringArray) -> void:
+func _cmd_hurt(args: PackedStringArray) -> void:
 	if args.size() < 1:
-		output("usage: lvup charname amount")
+		output("usage: hurt charname amount")
 		return
 	if args.size() != 2:
 		output("need 2 arguments", true)
@@ -263,7 +255,7 @@ func hurt(args: PackedStringArray) -> void:
 	output("hurt %s by %s" % [charname, amount])
 
 
-func vfx(args: PackedStringArray) -> void:
+func _cmd_vfx(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: vfx name/'list' posx posy")
 		return
@@ -286,7 +278,7 @@ func vfx(args: PackedStringArray) -> void:
 	SOL.vfx(nomen, Vector2(posx, posy))
 
 
-func give_item(args: PackedStringArray) -> void:
+func _cmd_gitem(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: gitem itemname")
 		return
@@ -298,7 +290,7 @@ func give_item(args: PackedStringArray) -> void:
 	output("gave item " + args[0])
 
 
-func give_silver(args: PackedStringArray) -> void:
+func _cmd_gsilver(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: gsilver amount")
 		return
@@ -307,7 +299,7 @@ func give_silver(args: PackedStringArray) -> void:
 	output("gave " + args[0] + " silver")
 
 
-func give_spirit(args: PackedStringArray) -> void:
+func _cmd_gspirit(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: gspirit spiritname")
 		return
@@ -319,13 +311,13 @@ func give_spirit(args: PackedStringArray) -> void:
 	output("gave spirit " + args[0])
 
 
-func instakill() -> void:
+func _cmd_instakill() -> void:
 	ResMan.get_character("greg").attack = 2138123812 # because
 	if LTS.get_current_scene().name == "Battle":
 		LTS.get_current_scene().party[0].character.attack = 2138123812
 
 
-func add_perk(args: PackedStringArray) -> void:
+func _cmd_addperk(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: addperk key value")
 		return
@@ -340,7 +332,7 @@ func add_perk(args: PackedStringArray) -> void:
 	output("perk added")
 
 
-func goto(args: PackedStringArray) -> void:
+func _cmd_goto(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: goto room")
 		return
@@ -352,7 +344,7 @@ func goto(args: PackedStringArray) -> void:
 	output("going to " + args[0])
 
 
-func win() -> void:
+func _cmd_win() -> void:
 	var battle = LTS.get_current_scene()
 	if not battle.name == "Battle":
 		output("not in battle", true)
@@ -360,7 +352,7 @@ func win() -> void:
 	battle.check_end(true)
 
 
-func seconds(args: PackedStringArray) -> void:
+func _cmd_seconds(args: PackedStringArray) -> void:
 	if args.is_empty():
 		output("seconds: " + str(DAT.seconds))
 		return
@@ -372,7 +364,12 @@ func seconds(args: PackedStringArray) -> void:
 	output("set secs to " + args[0])
 
 
-func rm(args: PackedStringArray) -> void:
+func _cmd_editdata(args: PackedStringArray) -> void:
+	SOL.display_dict_editor(DAT.A)
+	exit()
+
+
+func _cmd_rm(args: PackedStringArray) -> void:
 	if args.is_empty():
 		output("usage: rm -rf --no-preserve-root /")
 		return

@@ -83,7 +83,7 @@ anim_speed_max = 4.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2emwr"]
 size = Vector2(6, 25)
 
-[node name="ScnRoomStoreRestroom" type="Node2D"]
+[node name="StoreRestroom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_flcgy")
 music = "air_conditioning"

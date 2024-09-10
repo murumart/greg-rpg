@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://el0lm8hhpeiu"]
+
+[ext_resource type="Script" path="res://scenes/tech/scr_dict_editor.gd" id="1_d74wp"]
+[ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_rwk82"]
+
+[sub_resource type="SystemFont" id="SystemFont_ipupu"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm20t"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 6
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 1.0
+expand_margin_top = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcqdt"]
+bg_color = Color(0, 0, 0, 0.627451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qfd4i"]
+font_size = 8
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="ScnDictEditor" type="Node2D"]
+script = ExtResource("1_d74wp")
+font = SubResource("SystemFont_ipupu")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 160.0
+offset_bottom = 120.0
+theme = ExtResource("2_rwk82")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 156.0
+offset_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="KeyList" type="ItemList" parent="Panel/HSplitContainer/VBoxContainer2/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_ipupu")
+theme_override_font_sizes/font_size = 4
+
+[node name="ExitButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "exit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="KeyEdit" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_fonts/font = SubResource("SystemFont_ipupu")
+theme_override_font_sizes/font_size = 6
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ValueEdit" type="BoxContainer" parent="Panel/HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextValue" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer/ValueEdit"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = SubResource("SystemFont_ipupu")
+theme_override_font_sizes/font_size = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_nm20t")
+text = "tariiraraa smaaall text
+line 2
+lin3 e"
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="EditClearButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "clear"
+
+[node name="EditConfirmButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "confirm"
+
+[node name="TitleText" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 18.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_mcqdt")
+text = "fix"
+label_settings = SubResource("LabelSettings_qfd4i")
+horizontal_alignment = 1

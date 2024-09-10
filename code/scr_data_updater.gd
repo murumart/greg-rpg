@@ -8,7 +8,7 @@ static func needs_updating(data: Dictionary) -> bool:
 	var super_difference := DAT.VERSION.x - version.x as int
 	var major_difference := DAT.VERSION.y - version.y as int
 	var minor_difference := DAT.VERSION.z - version.z as int
-	return super_difference > 0 or major_difference > 0 or minor_difference > 0
+	return super_difference != 0 or major_difference != 0 or minor_difference != 0
 
 
 static func update_data(data: Dictionary) -> void:
@@ -51,4 +51,3 @@ static func _replace_you_sop(data: Dictionary) -> void:
 		spirits.erase("splash_attack")
 		spirits.append("blue_carpet")
 		greg["spirits"] = spirits
-

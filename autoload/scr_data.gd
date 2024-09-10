@@ -152,10 +152,25 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 	# change the scene to the one inside the save file
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.
-	capture_player("level_transition")
 	var room_to_load: String = dict.get("current_room", "test")
+	
+	# check that the room exists. if not, provide developer option
+	# to set and fix the save file manually.
+	while not DIR.file_exists(LTS.ROOM_SCENE_PATH % room_to_load):
+		SND.play_song("", 9)
+		var editor: Variant = SOL.display_dict_editor(dict,
+				{
+					"title_text": "fix broken current_room",
+					"key_limit": ["current_room"]
+				})
+		await editor.done
+		await get_tree().process_frame
+		room_to_load = dict.get("current_room", "test")
+		
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
+	
+	capture_player("level_transition")
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
 	SOL.fade_screen(Color(0, 0, 0, 1), Color(0, 0, 0, 0), 0.5)

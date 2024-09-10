@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://wknpxv3x21lw"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://wknpxv3x21lw"]
 
 [ext_resource type="FontFile" uid="uid://bxukug0aodcpi" path="res://fonts/gregfont.ttf" id="1_6sfhd"]
 [ext_resource type="StyleBox" uid="uid://dj10l6lihc6fn" path="res://resources/thm_main_stylebox_focus.tres" id="2_pr2pj"]
@@ -18,6 +18,20 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gcr"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2obd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axfux"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cougb"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pk27m"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+border_width_top = 1
+border_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jma86"]
 
@@ -115,6 +129,10 @@ ColorPickerButton/fonts/font = ExtResource("1_6sfhd")
 Fonts/fonts/large = ExtResource("1_6sfhd")
 Fonts/fonts/normal = ExtResource("1_6sfhd")
 GraphNode/fonts/title_font = ExtResource("1_6sfhd")
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_j2obd")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_axfux")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_cougb")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_pk27m")
 ItemList/fonts/font = ExtResource("1_6sfhd")
 ItemList/styles/focus = SubResource("StyleBoxEmpty_jma86")
 ItemList/styles/hovered = ExtResource("3_dbx1c")

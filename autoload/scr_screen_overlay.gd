@@ -135,12 +135,24 @@ func save_menu(loading := false, options := {}) -> void:
 	DAT.capture_player("save_screen")
 
 
-func debug_console() -> void:
-	if "debug_console" in DAT.player_capturers: return
+func display_debug_console() -> void:
+	if "debug_console" in DAT.player_capturers:
+		return
 	var cnsole := load("res://scenes/gui/scn_console.tscn").instantiate() as DebugConsole
 	#cnsole.position += Vector2(SOL.SCREEN_SIZE / 2)
 	add_ui_child(cnsole, 0, false)
 	DAT.capture_player("debug_console")
+
+
+func display_dict_editor(dict: Dictionary, options := {}) -> DebugDictEditor:
+	if "dict_editor" in DAT.player_capturers:
+		return
+	var editor := load("res://scenes/tech/scn_dict_editor.tscn").instantiate() as DebugDictEditor
+	add_ui_child(editor, 0, false)
+	editor.handle_options(options)
+	editor.load_dict(dict)
+	DAT.capture_player("dict_editor")
+	return editor
 
 
 func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0, options := {}) -> void:

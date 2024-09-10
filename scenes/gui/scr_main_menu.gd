@@ -57,12 +57,14 @@ func _input(event: InputEvent) -> void:
 	if (not hf
 			and not SOL.save_menu_open
 			and not SOL.dialogue_open
-			and not $VBoxContainer/CreditsButton/TextPanel.visible):
-		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
-	elif (event.is_action_pressed("cancel") and not SOL.dialogue_open):
-		$VBoxContainer/MailButton/MailPanel.hide()
-		$VBoxContainer/NewGameButton.grab_focus.call_deferred()
-		$VBoxContainer/CreditsButton/TextPanel.hide()
+			#and not $VBoxContainer/CreditsButton/TextPanel.visible
+			and DAT.player_capturers.is_empty()):
+		if event.is_action_pressed("cancel"):
+			$VBoxContainer/MailButton/MailPanel.hide()
+			$VBoxContainer/NewGameButton.grab_focus.call_deferred()
+			$VBoxContainer/CreditsButton/TextPanel.hide()
+		elif event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
+			$VBoxContainer/NewGameButton.grab_focus.call_deferred()
 
 
 func _on_new_game_button_pressed() -> void:

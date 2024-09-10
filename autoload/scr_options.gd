@@ -112,6 +112,7 @@ var top_text := 0
 # selection
 var cur_opt := 0
 var options_length := 0
+var debug_camera_change_allowed := true
 
 
 func _init() -> void:
@@ -148,7 +149,7 @@ func _input(event: InputEvent) -> void:
 			KEY_KP_2:
 				print(get_viewport().gui_get_focus_owner())
 			KEY_KP_3, KEY_3:
-				if not event.is_pressed():
+				if not event.is_pressed() or not debug_camera_change_allowed:
 					return
 				if not get_viewport().get_camera_2d():
 					var cam := preload(
@@ -165,7 +166,7 @@ func _input(event: InputEvent) -> void:
 				get_tree().debug_collisions_hint else "hidden")
 			KEY_KP_7, KEY_7:
 				if not root.visible:
-					SOL.debug_console()
+					SOL.display_debug_console()
 	if event.is_action_pressed("small_screenshot"):
 		DIR.screenshot(true)
 	elif event.is_action_pressed("screenshot"):
