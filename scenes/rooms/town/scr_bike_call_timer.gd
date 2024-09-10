@@ -39,10 +39,15 @@ func _ready() -> void:
 				and not active
 				and not chasing
 				and not is_close_enough()
-				and DAT.player_capturers.is_empty()):
+				and DAT.player_capturers.is_empty()
+		):
 			SOL.dialogue("phone_bike_ghost_call")
 			SOL.dialogue_closed.connect(func(): active = true, CONNECT_ONE_SHOT)
-		elif active and not is_close_enough():
+		elif (
+				active
+				and not is_close_enough()
+				and DAT.player_capturers.is_empty()
+		):
 			cycles += 1
 			if cycles > 14 and cycles < 100:
 				cycles = 300 # disable
