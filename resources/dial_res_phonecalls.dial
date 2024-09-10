@@ -254,6 +254,8 @@ SOUND phone/phone_call
 	there is something important that you must see.
 	find the 'bicycle'...
 	near the skatepark...
+SOUND phone/call_end
+	(they hung up.)
 
 
 DIALOGUE phone_bike_ghost_call_ignore
@@ -263,6 +265,9 @@ SOUND phone/phone_call
 	so... you've decided to ignore my call.
 	very well. if you can't move the mountain...
 	go to the mountain yourself.
+SOUND phone/call_end
+	(they hung up.)
+	(something evil approaches...!)
 # it fucking gets you
 
 
