@@ -31,7 +31,11 @@ func standalone() -> bool:
 # dicts are stored to file in the format provided by var2bytes
 # rather unreadable
 func write_dict_to_file(data: Dictionary, filename: String) -> void:
-	var file := FileAccess.open(GREG_USER_FOLDER_PATH + "/" + filename, FileAccess.WRITE)
+	write_dict_to_global_file(data, GREG_USER_FOLDER_PATH + "/" + filename)
+
+
+func write_dict_to_global_file(data: Dictionary, filename: String) -> void:
+	var file := FileAccess.open(filename, FileAccess.WRITE)
 	file.store_var(var_to_bytes(data))
 	file.flush()
 
