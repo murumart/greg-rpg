@@ -184,7 +184,7 @@ func update_buttons() -> void:
 				var abspath := ABSOLUTE_SAVE_PATH % (i - 1) # autosave is 0
 				if is_autosave(i):
 					abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
-				child.disabled = not DIR.file_exists(abspath)
+				child.disabled = not FileAccess.file_exists(abspath)
 
 
 func get_playtime(data: Dictionary) -> String:
@@ -361,7 +361,7 @@ func _get_data(button: int) -> Dictionary:
 		path = SAVE_PATH % AUTOSAVE_NAME
 		abspath = ABSOLUTE_SAVE_PATH % AUTOSAVE_NAME
 	var data: Dictionary
-	if DIR.file_exists(abspath):
+	if FileAccess.file_exists(abspath):
 		data = DIR.get_dict_from_file(path)
 	return data
 

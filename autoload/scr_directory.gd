@@ -62,14 +62,6 @@ func enemy_scene_exists(name_in_file: String) -> bool:
 	return name_in_file in dir
 
 
-# this feels a bit redundant but the complain functionality might be useful
-func file_exists(path, complain := false) -> bool:
-	if FileAccess.file_exists(path):
-		return true
-	if complain: printerr("path %s does not exist" % path)
-	return false
-
-
 # these are all shorter than calling DIR.CHAR_PATH % charname. I think.
 func get_char_path(charname: String) -> String:
 	return CHAR_PATH % charname + ".tres"

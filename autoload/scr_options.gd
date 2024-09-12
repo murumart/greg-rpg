@@ -117,7 +117,7 @@ var debug_camera_change_allowed := true
 
 func _init() -> void:
 	# if we don't have an options file yet, create it
-	if not DIR.file_exists(OPTION_PATH, true):
+	if not FileAccess.file_exists(OPTION_PATH):
 		opt.set_value("promo", "website", "https://murumart.neocities.org/") # :3
 		opt.save(OPTION_PATH)
 	opt.load(OPTION_PATH)

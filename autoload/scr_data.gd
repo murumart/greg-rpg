@@ -6,7 +6,6 @@ extends Node
 const VERSION := Vector3(1, 0, 2)
 const GDUNG_LEVEL := 72
 
-@warning_ignore("unused_signal")
 signal player_captured(capture: bool)
 
 # DATA
@@ -20,8 +19,10 @@ var player_capturers := []
 var seconds := 0
 var playtime := 0
 var last_save_second := 0
+const AUTOSAVE_TEST_INTERVAL_SEC := 10
 var load_second := 0
 const SCREENSHOT_DELAY := 1800
+const SCREENSHOT_TEST_INTERVAL_SEC := 650
 
 # periods of time during which stuff changes in the world
 const ATGIRL_CYCLE := 1200
@@ -156,8 +157,8 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 	
 	# check that the room exists. if not, provide developer option
 	# to set and fix the save file manually.
-	while not DIR.file_exists(LTS.ROOM_SCENE_PATH % room_to_load):
-		SND.play_song("", 9)
+	while not ResourceLoader.exists(LTS.ROOM_SCENE_PATH % room_to_load):
+		printerr("room ", room_to_load, " doesn't exist.")
 		var editor: Variant = SOL.display_dict_editor(dict,
 				{
 					"title_text": "fix broken current_room",
@@ -199,7 +200,8 @@ func set_copied_data() -> void:
 # this is for the overworld greg
 # if greg is captured, he cannot be moved around by the player
 func capture_player(type := &"", overlap := false, dial_closed := true) -> void:
-	if not overlap and type in player_capturers: return
+	if not overlap and type in player_capturers:
+		return
 	var noncap := [&"dialogue", &"greenhouse"]
 	# multiple things can capture the player
 	# they are stored as strings inside this array
@@ -215,7 +217,8 @@ func free_player(type := &"") -> void:
 	if type == &"all":
 		player_capturers.clear()
 	# the player can only move if the capturers array is empty
-	if player_capturers.size() > 0: return
+	if player_capturers.size() > 0:
+		return
 	emit_signal("player_captured", false)
 
 
@@ -235,14 +238,16 @@ func grant_silver(amount: int, dialogue := true) -> void:
 	var dialid := "getsilver"
 	if amount < 0: dialid = "losesilver"
 	incri("silver", amount)
-	if not dialogue: return
+	if not dialogue:
+		return
 	SOL.dialogue_box.dial_concat(dialid, 0, [absi(amount)])
 	SOL.dialogue(dialid)
 
 
 func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> void:
 	var charc: Character = ResMan.get_character(A.get("party", ["greg"])[party_index])
-	if spirit in charc.unused_spirits or spirit in charc.spirits: return
+	if spirit in charc.unused_spirits or spirit in charc.spirits:
+		return
 	# this implementation looks so kooky because typed arrays if i remember right
 	var uuspirits: Array[String] = charc.unused_spirits.duplicate()
 	uuspirits.append(spirit)
@@ -250,12 +255,13 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 	# horrible but necessary with the current implementation of characters
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
-		if !battle.party.is_empty():
+		if not battle.party.is_empty():
 			var character_is: Character = battle.party[party_index].character
 			var list: Array[String] = character_is.unused_spirits.duplicate()
 			list.append(spirit)
 			character_is.unused_spirits = list
-	if not dialogue: return
+	if not dialogue:
+		return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [ResMan.get_spirit(spirit).name])
 	SOL.dialogue("getspirit")
 	if not DAT.get_data("spirits_gotten", 0):
@@ -289,7 +295,7 @@ func _on_game_timer_timeout() -> void:
 	seconds += 1
 	playtime += 1
 
-	if seconds % 60 == 0:
+	if seconds % AUTOSAVE_TEST_INTERVAL_SEC == 0:
 		var greg := get_tree().get_first_node_in_group("players")
 		if not greg:
 			return
@@ -298,7 +304,7 @@ func _on_game_timer_timeout() -> void:
 				and not greg.saving_disabled):
 			save_autosave()
 
-	if playtime % 300 == 0:
+	if playtime % SCREENSHOT_TEST_INTERVAL_SEC == 0:
 		var screenies := DIR.get_screenshots()
 		if screenies.is_empty():
 			DIR.screenshot(true)
