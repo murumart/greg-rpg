@@ -2731,7 +2731,9 @@ CHOICE_LINK tech
 
 DIALOGUE fisherwoman_pole_tutorial
 CHAR fisherwoman
+CHOICES yes,nvm
 	oh, you're, like, going fishing?
+CHOICE_LINK yes
 CHOICES no,yes
 	do you need advice?
 CHOICE_LINK yes

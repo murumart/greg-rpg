@@ -17,6 +17,8 @@ func _ready() -> void:
 func _on_pole_interacted() -> void:
 	SOL.dialogue("fisherwoman_pole_tutorial")
 	SOL.dialogue_closed.connect(func():
+		if SOL.dialogue_choice == &"nvm":
+			return
 		SND.play_song("")
 		LTS.level_transition("res://scenes/fishing/scn_fishing_minigame.tscn")
 		, CONNECT_ONE_SHOT)
