@@ -1,5 +1,7 @@
 class_name KeybindsSettings extends Panel
 
+enum {CODE = 0, COLUMN = 1, INPUT = 2}
+
 const CHANGEABLE := {
 	"ui_accept": "accept",
 	"cancel": "cancel",
@@ -35,19 +37,27 @@ func discard() -> void:
 
 
 func _load_table() -> void:
+	var joypad_connected := not Input.get_connected_joypads().is_empty()
+	
 	table.clear()
 	for code in CHANGEABLE:
 		var code_id := table.add_item(CHANGEABLE[code])
 		table.set_item_disabled(code_id, true)
 		var inps := InputMap.action_get_events(code).filter(func(a: InputEvent):
-			return a is InputEventKey)
+			if not joypad_connected:
+				return a is InputEventKey
+			return a is InputEventKey or a is InputEventJoypadButton)
 		for column in COLUMNS:
 			if column >= inps.size():
 				var id := table.add_item(".")
 				table.set_item_metadata(id, [code, column, null])
 				continue
-			var input := inps[column] as InputEventKey
-			var key_name := input.as_text().trim_suffix(" (Physical)").to_lower()
+			var input := inps[column] as InputEvent
+			var key_name := (input.as_text()
+					.to_lower()
+					.trim_suffix(" (physical)")
+					.trim_prefix("joypad button ")
+					.left(11))
 			var id := table.add_item(key_name)
 			table.set_item_metadata(id, [code, column, input])
 
@@ -65,18 +75,21 @@ func _on_item_activated(idx: int) -> void:
 func _on_key_listen_panel_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if metadata[2] and InputMap.action_has_event(metadata[0], metadata[2]):
-				InputMap.action_erase_event(metadata[0], metadata[2])
+			if metadata[INPUT] and InputMap.action_has_event(metadata[CODE], metadata[INPUT]):
+				InputMap.action_erase_event(metadata[CODE], metadata[INPUT])
 		key_listen_panel.hide()
 		_load_table()
 		return
-	if not event is InputEventKey:
+	#if not event is InputEventKey:
+		#return
+	if not "pressed" in event:
 		return
 	if event.pressed and not event.is_action_pressed("escape"):
 		key_listen_panel.hide()
-		if metadata[2] and InputMap.action_has_event(metadata[0], metadata[2]):
-			InputMap.action_erase_event(metadata[0], metadata[2])
-		InputMap.action_add_event(metadata[0], event)
+		if metadata[INPUT] and InputMap.action_has_event(
+				metadata[CODE], metadata[INPUT]):
+			InputMap.action_erase_event(metadata[CODE], metadata[INPUT])
+		InputMap.action_add_event(metadata[CODE], event)
 		DAT.set_data("keybinds_changed", true)
 		_load_table()
 
