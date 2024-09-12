@@ -23,6 +23,10 @@ const COLUMNS := 3
 @onready var key_listen_panel := $KeyListenPanel
 
 
+func _ready() -> void:
+	table.item_selected.connect(_item_selected)
+
+
 func display() -> void:
 	show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -65,7 +69,7 @@ func _load_table() -> void:
 var metadata: Array
 
 
-func _on_item_activated(idx: int) -> void:
+func _item_selected(idx: int) -> void:
 	metadata = table.get_item_metadata(idx)
 
 	key_listen_panel.show()

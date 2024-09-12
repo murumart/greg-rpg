@@ -76,5 +76,4 @@ text = "or press mouse1 to stop
 or press mouse2
     to delete keybind"
 
-[connection signal="item_activated" from="ItemList" to="." method="_on_item_activated"]
 [connection signal="gui_input" from="KeyListenPanel" to="." method="_on_key_listen_panel_gui_input"]
