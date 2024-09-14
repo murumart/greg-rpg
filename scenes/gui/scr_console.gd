@@ -53,7 +53,7 @@ func parse_command() -> void:
 		return
 	var cmd := args[0]
 	args.remove_at(0)
-	
+
 	if command_exists(cmd):
 		call("_cmd_" + cmd, args)
 		return

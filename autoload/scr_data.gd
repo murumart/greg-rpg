@@ -154,7 +154,7 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 	# this resets everything and allows nodes that
 	# have persistent data to load their stuff.
 	var room_to_load: String = dict.get("current_room", "test")
-	
+
 	# check that the room exists. if not, provide developer option
 	# to set and fix the save file manually.
 	while not ResourceLoader.exists(LTS.ROOM_SCENE_PATH % room_to_load):
@@ -167,10 +167,10 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 		await editor.done
 		await get_tree().process_frame
 		room_to_load = dict.get("current_room", "test")
-		
+
 	LTS.gate_id = LTS.GATE_LOADING
 	load_second = seconds
-	
+
 	capture_player("level_transition")
 	LTS.change_scene_to(LTS.ROOM_SCENE_PATH % room_to_load)
 	# SLIGHTLY less jarring with this fade.
