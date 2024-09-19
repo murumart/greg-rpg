@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform float wave_speed = 3.0; //wave loop speed
 uniform float wave_freq = 10.0; //wave vertical freq
-uniform float wave_width = 1; //wave width 
+uniform float wave_width = 1; //wave width
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 
 void fragment(){
