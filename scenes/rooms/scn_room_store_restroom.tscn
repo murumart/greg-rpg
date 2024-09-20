@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cc13veoqxe5gd"]
+[gd_scene load_steps=32 format=4 uid="uid://cc13veoqxe5gd"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_flcgy"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_01ui4"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://b7kgpcxdacnq7" path="res://sprites/world/object/spr_restroom_stalls.png" id="13_a2olc"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="14_dhvoq"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="15_hvmee"]
+[ext_resource type="Script" path="res://scenes/rooms/store/restroom/scr_gambling_ui.gd" id="17_51g13"]
+[ext_resource type="PackedScene" uid="uid://lg42yh13ebp1" path="res://scenes/rooms/store/restroom/scn_trash_display.tscn" id="17_pcmp6"]
+[ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="17_vx1by"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gkmwl"]
 blend_mode = 3
@@ -331,3 +334,62 @@ script = ExtResource("10_x1fn2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea4"]
 shape = SubResource("RectangleShape2D_0bo5q")
+
+[node name="GamblingUI" type="Control" parent="Stalls"]
+visible = false
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_51g13")
+
+[node name="ColorRect" type="ColorRect" parent="Stalls/GamblingUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.215686, 0.541176)
+
+[node name="CenterContainer" type="CenterContainer" parent="Stalls/GamblingUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Stalls/GamblingUI/CenterContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="Stalls/GamblingUI/CenterContainer/Panel"]
+self_modulate = Color(1, 1, 1, 0.415686)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_vx1by")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Stalls/GamblingUI/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrashDisplay" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+layout_mode = 2
+
+[node name="TrashDisplay2" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+layout_mode = 2
+
+[node name="TrashDisplay3" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+layout_mode = 2

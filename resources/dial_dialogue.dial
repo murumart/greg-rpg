@@ -2784,7 +2784,7 @@ DIALOGUE restroom_default
 
 
 DIALOGUE restroom_0_0
-	sorry, i'm in singleplayer mode right now.
+	sorry, i'm in "singleplayer mode" right now.
 
 
 DIALOGUE restroom_1_0
@@ -2858,6 +2858,36 @@ DIALOGUE restroom_0_3
 DIALOGUE restroom_1_3
 	it's criminal how dirty the restrooms are.
 	i should report this to the police.
+
+
+DIALOGUE restroom_clown
+CHAR clown
+DATA_LINK restroom_clown_thing,2
+	you already opened a random prize today....
+	come back later.....
+	%s.....
+DATA_LINK restroom_clown_thing,0
+	oh, goody.......
+	someone wants to talk to me while i'm in the restroom.
+SET_DATA restroom_clown_thing,1
+	it must be because anyone can open up a random prize...
+DATA_LINK restroom_clown_thing,1
+	do you want to buy that random prize. it's so great..
+CHOICES yes,no
+	it only costs %s silver.
+CHOICE_LINK no
+	then i curse your crops and salt your fields....
+
+
+DIALOGUE restroom_clown_littlemoney
+CHAR clown
+	you can't even afford the random prize.....
+	despicable........
+
+
+DIALOGUE restroom_clown_gamble
+CHAR clown
+	pick the best trashcan with the most loot in it....
 
 
 DIALOGUE police_greeting

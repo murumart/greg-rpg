@@ -88,12 +88,14 @@ func _cmd_dial(args: PackedStringArray) -> void:
 	SOL.dialogue(args[0])
 
 
+@warning_ignore("unused_parameter")
 func _cmd_csm(args: PackedStringArray) -> void:
 	get_window().content_scale_mode = (Window.CONTENT_SCALE_MODE_VIEWPORT
 			if get_window().content_scale_mode == Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 			else Window.CONTENT_SCALE_MODE_CANVAS_ITEMS)
 
 
+@warning_ignore("unused_parameter")
 func _cmd_clearinv(args: PackedStringArray) -> void:
 	ResMan.get_character("greg").inventory.clear()
 	output("inventory cleared")
@@ -113,10 +115,12 @@ func _cmd_help(args: PackedStringArray) -> void:
 	output("available commands: " + cmds)
 
 
+@warning_ignore("unused_parameter")
 func _cmd_clear(args: PackedStringArray) -> void:
 	output("\n\n\n\n\n\n\n\n\n\n")
 
 
+@warning_ignore("unused_parameter")
 func _cmd_exit(args: PackedStringArray) -> void:
 	exit()
 
@@ -364,6 +368,7 @@ func _cmd_seconds(args: PackedStringArray) -> void:
 	output("set secs to " + args[0])
 
 
+@warning_ignore("unused_parameter")
 func _cmd_editdata(args: PackedStringArray) -> void:
 	SOL.display_dict_editor(DAT.A)
 	exit()
