@@ -1,5 +1,6 @@
 extends Node2D
 
+const CLOWN_TEXTURE := preload("res://sprites/characters/overworld/spr_clown_overworld.png")
 const KEY_STALL_OCCUPIERS := &"restroom_stall_occupiers"
 const OCCUPIERS := 4
 
@@ -35,14 +36,29 @@ func _display_occupiers() -> void:
 	var i := 0
 	for occ in stall_occupiers:
 		if occ.type == StallOccupier.Type.TOWNSPERSON:
+			# sprite with region and townspeople texture
 			people.get_child(i).show()
 			people.get_child(i).region_rect.position = occ.tp_region_position * 16
-
+		elif occ.type == StallOccupier.Type.CLOWN:
+			people.get_child(i).show()
+			people.get_child(i).texture = CLOWN_TEXTURE
 		i += 1
 
 
 func _stall_interacted(which: int) -> void:
-	print(which)
+	var occ := stall_occupiers[which]
+	print(occ)
+	var sound := SND.play_sound(preload("res://sounds/door_knock.ogg"),
+			{"return": true, "bus": "ECHO"})
+	DAT.capture_player("door_knock")
+	await sound.finished
+	DAT.free_player("door_knock")
+	if occ.type == StallOccupier.Type.TOWNSPERSON:
+		var dial_id := (&"restroom_" + str(occ.tp_region_position.x)
+				+ "_" + str(occ.tp_region_position.y)) as StringName
+		if not SOL.dialogue_exists(dial_id):
+			dial_id = &"restroom_default"
+		SOL.dialogue(dial_id)
 
 
 func _create_occupier() -> StallOccupier:
@@ -53,6 +69,8 @@ func _create_occupier() -> StallOccupier:
 	if randf() < 0.2:
 		so.type = StallOccupier.Type.TOWNSPERSON
 		so.tp_region_position = Vector2(randi_range(0, 3), randi_range(0, 3))
+	elif not have_occupier_of_type(StallOccupier.Type.CLOWN):
+		so.type = StallOccupier.Type.CLOWN
 
 	return so
 
@@ -62,9 +80,16 @@ func _save_me() -> void:
 			stall_occupiers.map(func(a: StallOccupier) -> Dictionary: return a.serialise()))
 
 
+func have_occupier_of_type(type: StallOccupier.Type) -> bool:
+	return stall_occupiers.any(
+		func(a: StallOccupier) -> bool:
+			return is_instance_valid(a) and a.type == type
+	)
+
+
 class StallOccupier:
 
-	enum Type {EMPTY, TOWNSPERSON}
+	enum Type {EMPTY, TOWNSPERSON, CLOWN}
 
 	var type := Type.EMPTY
 	var tp_region_position := Vector2.ZERO
@@ -90,3 +115,7 @@ class StallOccupier:
 		if type == Type.TOWNSPERSON:
 			dict["tp_region_position"] = tp_region_position
 		return dict
+	
+	
+	func _to_string() -> String:
+		return Type.find_key(type) + "(" + str(start_second, ", ", end_second) + ")"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cc13veoqxe5gd"]
+[gd_scene load_steps=29 format=4 uid="uid://cc13veoqxe5gd"]
 
 [ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_flcgy"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_01ui4"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/rooms/store/restroom/scr_stalls.gd" id="13_371wy"]
 [ext_resource type="Texture2D" uid="uid://b7kgpcxdacnq7" path="res://sprites/world/object/spr_restroom_stalls.png" id="13_a2olc"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="14_dhvoq"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="15_hvmee"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gkmwl"]
 blend_mode = 3
@@ -241,24 +242,31 @@ region_rect = Rect2(0, 48, 16, 16)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Stalls/People"]
 visible = false
-position = Vector2(22, 2)
+position = Vector2(8, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
 [node name="Sprite2D4" type="Sprite2D" parent="Stalls/People"]
 visible = false
-position = Vector2(7, 2)
+position = Vector2(24, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="Sprite2D" type="Sprite2D" parent="Stalls"]
+[node name="Shadow" type="Sprite2D" parent="Stalls"]
+modulate = Color(0, 0, 0, 0.211765)
+clip_children = 2
+position = Vector2(1.40071e-06, 13)
+scale = Vector2(64, 4.5)
+texture = ExtResource("15_hvmee")
+
+[node name="Stall" type="Sprite2D" parent="Stalls"]
 self_modulate = Color(0.815018, 0.547878, 0.175156, 1)
 clip_children = 2
 texture = ExtResource("13_a2olc")
 
-[node name="TextureRect2" type="TextureRect" parent="Stalls/Sprite2D"]
+[node name="TextureRect2" type="TextureRect" parent="Stalls/Stall"]
 material = SubResource("CanvasItemMaterial_gkmwl")
 offset_left = -106.0
 offset_top = 13.0
@@ -267,10 +275,10 @@ offset_bottom = 141.0
 rotation = -0.683666
 texture = SubResource("NoiseTexture2D_6jute")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Stalls"]
+[node name="Collision" type="StaticBody2D" parent="Stalls"]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Collision"]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_1ljgr")
 

@@ -2779,6 +2779,87 @@ DATA_LINK first_fish_fight_was_hard,false
 	i need to think about this for a while...
 
 
+DIALOGUE restroom_default
+	...
+
+
+DIALOGUE restroom_0_0
+	sorry, i'm in singleplayer mode right now.
+
+
+DIALOGUE restroom_1_0
+	leave me alone, i'm trying to escape from social situations right now.
+
+
+DIALOGUE restroom_2_0
+ACTUALLY skaters
+
+
+DIALOGUE restroom_3_0
+ACTUALLY skaters
+
+
+DIALOGUE restroom_0_1
+ACTUALLY skaters
+
+
+DIALOGUE restroom_1_1
+SPEED 0.8
+	...how can i help you?
+	i am very helpful. very helpful.
+	...
+	no, i can't help you with that. hahaha.
+	hahaha.
+	...
+
+
+DIALOGUE restroom_2_1
+	i have mastered the spirit of [color=SPIRITCOLOR]blender explode...
+	that can't be far off from [color=RED]brain explode.
+	be very careful.
+
+
+DIALOGUE restroom_3_1
+	i will tell you a secret... don't tell anyone about this.
+	the [color=YUKUCOLOR]yuku[/color] brand muesli isn't very digestible.
+
+
+DIALOGUE restroom_0_2
+	THE WOODS YEARN FOR US BOTH.
+	JOIN ME.
+
+
+DIALOGUE restroom_1_2
+	the spirits did not foretell me about this constipation.
+
+
+DIALOGUE restroom_2_2
+	i first met mail man when i was around ten years old.
+	his family had just been moved here, and they all looked apprehensive.
+	i suppose they expected us to be angrier at them.
+	of course we didn't like them. of course we gossiped behind their backs.
+	but they were all so young.
+	you can't choose where you're born...
+	...so why punish them for it?
+	i remember him especially looking tiny and miserable.
+	but i don't feel bad about that anymore. he grew up into an asshole.
+
+
+DIALOGUE restroom_3_2
+	s-sometimes i feel that... there is no one there...
+	... ...to w-watch us, i mean.
+
+
+DIALOGUE restroom_0_3
+	do not use the restrooms!
+	there's a fish in here with me! help! aagh! help!
+
+
+DIALOGUE restroom_1_3
+	it's criminal how dirty the restrooms are.
+	i should report this to the police.
+
+
 DIALOGUE police_greeting
 CHAR popo_1
 	greetings, citizen! 
