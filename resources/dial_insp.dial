@@ -375,3 +375,7 @@ CHOICE_LINK no
 DIALOGUE insp_gdung_fridge_map
 	everything is where it should be.
 	you are, too. welcome home.
+
+
+DIALOGUE insp_restroom_sinks
+	these are sinks. you fear washing your hands in here will make them dirtier.

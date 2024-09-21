@@ -66,24 +66,27 @@ func _stall_interacted(which: int) -> void:
 			dial_id = &"restroom_default"
 		SOL.dialogue(dial_id)
 	elif occ.type == StallOccupier.Type.CLOWN:
-		gambling_ui.reset()
-		var buy_cost := 65
-		SOL.dialogue_box.dial_concat("restroom_clown", 7, [buy_cost])
-		SOL.dialogue("restroom_clown")
-		await SOL.dialogue_closed
-		if SOL.dialogue_choice == &"yes":
-			if buy_cost > DAT.get_data("silver", 0):
-				SOL.dialogue("restroom_clown_littlemoney")
-				return
-			SOL.dialogue("restroom_clown_gamble")
-			await SOL.dialogue_closed
-			DAT.incri("silver", -buy_cost)
-			DAT.capture_player("gambling")
-			gambling_ui.display()
-			gambling_ui.finished.connect(func():
-				gambling_ui.hide()
-				gambling_ui.reset()
-			)
+		return
+		# TODO do more gambling
+		#gambling_ui.reset()
+		#var buy_cost := 65
+		#SOL.dialogue_box.dial_concat("restroom_clown", 7, [buy_cost])
+		#SOL.dialogue("restroom_clown")
+		#await SOL.dialogue_closed
+		#if SOL.dialogue_choice == &"yes":
+			#if buy_cost > DAT.get_data("silver", 0):
+				#SOL.dialogue("restroom_clown_littlemoney")
+				#return
+			#SOL.dialogue("restroom_clown_gamble")
+			#await SOL.dialogue_closed
+			#DAT.incri("silver", -buy_cost)
+			#DAT.capture_player("gambling")
+			#gambling_ui.display()
+			#gambling_ui.finished.connect(func():
+				#gambling_ui.hide()
+				#gambling_ui.reset()
+				#DAT.free_player("gambling")
+			#)
 
 
 func _create_occupier() -> StallOccupier:
@@ -94,8 +97,9 @@ func _create_occupier() -> StallOccupier:
 	if randf() < 0.2:
 		so.type = StallOccupier.Type.TOWNSPERSON
 		so.tp_region_position = _get_random_tp_position()
-	elif not have_occupier_of_type(StallOccupier.Type.CLOWN):
-		so.type = StallOccupier.Type.CLOWN
+	# TODO add clown
+	#elif not have_occupier_of_type(StallOccupier.Type.CLOWN):
+		#so.type = StallOccupier.Type.CLOWN
 
 	return so
 

@@ -64,7 +64,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			reset()
 			_accepts_input = true
 		)
-		finished.emit()
 
 
 func remove_bin(index: int) -> void:
