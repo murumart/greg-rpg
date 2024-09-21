@@ -18,7 +18,7 @@ func _ready() -> void:
 
 	_load_occupiers()
 	_display_occupiers()
-	
+
 	remove_child(gambling_ui)
 	SOL.add_ui_child(gambling_ui)
 
@@ -80,6 +80,10 @@ func _stall_interacted(which: int) -> void:
 			DAT.incri("silver", -buy_cost)
 			DAT.capture_player("gambling")
 			gambling_ui.display()
+			gambling_ui.finished.connect(func():
+				gambling_ui.hide()
+				gambling_ui.reset()
+			)
 
 
 func _create_occupier() -> StallOccupier:
@@ -150,7 +154,7 @@ class StallOccupier:
 		if type == Type.TOWNSPERSON:
 			dict["tp_region_position"] = tp_region_position
 		return dict
-	
-	
+
+
 	func _to_string() -> String:
 		return Type.find_key(type) + "(" + str(start_second, ", ", end_second) + ")"

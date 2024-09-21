@@ -155,6 +155,17 @@ func display_dict_editor(dict: Dictionary, options := {}) -> DebugDictEditor:
 	return editor
 
 
+func display_user_prompt(rect: Rect2, options := {}) -> UserPrompt:
+	if "user_prompt" in DAT.player_capturers:
+		return
+	var prompt := load("res://scenes/gui/scn_user_prompt.tscn").instantiate() as UserPrompt
+	options[UserPrompt.RECT] = rect
+	add_ui_child(prompt)
+	prompt.init(options)
+	DAT.capture_player("user_prompt", true)
+	return prompt
+
+
 func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size := 1.0, options := {}) -> void:
 	var o := {"text": text, "size": size, "color": color}
 	o.merge(options)

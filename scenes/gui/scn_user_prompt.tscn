@@ -57,6 +57,7 @@ theme_override_constants/v_separation = 1
 
 [node name="TextLine" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 placeholder_text = "write  in me"
 alignment = 1
