@@ -315,7 +315,7 @@ func _cmd_gspirit(args: PackedStringArray) -> void:
 	output("gave spirit " + args[0])
 
 
-func _cmd_instakill() -> void:
+func _cmd_instakill(_args: PackedStringArray) -> void:
 	ResMan.get_character("greg").attack = 2138123812 # because
 	if LTS.get_current_scene().name == "Battle":
 		LTS.get_current_scene().party[0].character.attack = 2138123812
