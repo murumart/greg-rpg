@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tamu3s3ouhh3"]
+[gd_scene load_steps=13 format=3 uid="uid://tamu3s3ouhh3"]
 
 [ext_resource type="Script" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_ydvrp"]
@@ -9,6 +9,9 @@
 [ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="5_g18p5"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="6_0bdbt"]
 [ext_resource type="Script" path="res://code/scr_exchange.gd" id="9_jjxv0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj61p"]
+size = Vector2(14, 30)
 
 [sub_resource type="Resource" id="Resource_58ncv"]
 script = ExtResource("9_jjxv0")
@@ -100,8 +103,13 @@ offset = Vector2(0, -9)
 region_enabled = true
 region_rect = Rect2(65, 16, 14, 16)
 
+[node name="SafeguardCollision" type="CollisionShape2D" parent="Animal"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_oj61p")
+disabled = true
+
 [node name="TroupeKid" parent="." node_paths=PackedStringArray("chase_target") instance=ExtResource("4_0h5t1")]
-position = Vector2(12, -11)
+position = Vector2(-35, -16)
 collision_mask = 9
 trades = Array[ExtResource("9_jjxv0")]([SubResource("Resource_58ncv"), SubResource("Resource_pmf3d")])
 movement_wait = 6.0

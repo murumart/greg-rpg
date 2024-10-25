@@ -348,7 +348,7 @@ func _cmd_goto(args: PackedStringArray) -> void:
 	output("going to " + args[0])
 
 
-func _cmd_win() -> void:
+func _cmd_win(_args: PackedStringArray) -> void:
 	var battle = LTS.get_current_scene()
 	if not battle.name == "Battle":
 		output("not in battle", true)

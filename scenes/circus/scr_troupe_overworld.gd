@@ -9,6 +9,7 @@ const Ballgame := preload("res://scenes/circus/ball_popping_minigame.tscn")
 @onready var members := [ringleader, clown, animal, troupe_kid]
 @onready var inter_members := [ringleader, clown, troupe_kid]
 @onready var caged_animal: OverworldCharacter = $Animal/CagedAnimal
+@onready var safeguard_collision: CollisionShape2D = $Animal/SafeguardCollision
 
 @onready var other_kids := [get_node_or_null("../../Houses/NeighbourHouse/KidEncounter"),
 	get_node_or_null("../../Houses/Skatepark/Goodness/KidOverworld"),
@@ -51,6 +52,7 @@ func _clown_inspected() -> void:
 				greg.set_collision_mask_value(1, false)
 				greg.set_collision_mask_value(4, false)
 				animal.add_child(greg, true)
+				safeguard_collision.disabled = false
 				greg.global_position = caged_animal.global_position
 				caged_animal.hide()
 			else:
@@ -72,6 +74,7 @@ func _ballgame_finished() -> void:
 	greg_parent.add_child(greg, true)
 	greg.global_position = caged_animal.global_position
 	caged_animal.show()
+	safeguard_collision.disabled = true
 	greg.set_collision_layer_value(2, true)
 	greg.set_collision_mask_value(1, true)
 	greg.set_collision_mask_value(4, true)
