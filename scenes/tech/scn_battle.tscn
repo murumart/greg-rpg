@@ -16,7 +16,7 @@
 
 [sub_resource type="Resource" id="Resource_ixljq"]
 script = ExtResource("2_uomiy")
-enemies = Array[StringName]([&"broken_fisherman"])
+enemies = Array[StringName]([&"vampire"])
 background = "lakeside"
 music = "lake_battle"
 party = Array[StringName]([])

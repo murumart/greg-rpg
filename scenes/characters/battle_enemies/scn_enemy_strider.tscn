@@ -360,7 +360,6 @@ tracks/27/keys = {
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwcib"]
 streams_count = 1
 stream_0/stream = ExtResource("4_mem2l")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_4wnu1"]
 resource_name = "death"
@@ -721,7 +720,6 @@ tracks/28/use_blend = true
 random_pitch = 1.17
 streams_count = 1
 stream_0/stream = ExtResource("3_6fvfj")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_ml5or"]
 resource_name = "hurt"
@@ -1263,7 +1261,6 @@ _data = {
 random_pitch = 1.19
 streams_count = 1
 stream_0/stream = ExtResource("3_8w2fy")
-stream_0/weight = 1.0
 
 [node name="Strider" type="Node2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_sut8r")
@@ -1271,7 +1268,7 @@ effect_center = Vector2i(0, -20)
 animator = NodePath("AnimationPlayer")
 vaimulembesus = 0.63
 gender = 5
-effect_immunities = Array[String](["sopping", "poison", "sleepy"])
+effect_immunities = Array[StringName]([&"sopping", &"poison", &"sleepy"])
 
 [node name="Puppet" type="Node2D" parent="."]
 position = Vector2(0, -23)

@@ -243,15 +243,15 @@ wiggle_range = Vector2(12, 1)
 texture = ExtResource("2_b4rfq")
 
 [node name="Head" type="Sprite2D" parent="OutlineMe"]
-position = Vector2(-4.4293, -10.3473)
-rotation = 5.34839
+position = Vector2(-5.31499, -10.5498)
+rotation = 5.28056
 texture = ExtResource("5_mgowv")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 16)
 
 [node name="Head" type="Sprite2D" parent="OutlineMe/Head"]
-position = Vector2(11.9347, 8.13706)
-rotation = 8.13706
+position = Vector2(12.1199, 8.11832)
+rotation = 8.11832
 texture = ExtResource("5_mgowv")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 16)

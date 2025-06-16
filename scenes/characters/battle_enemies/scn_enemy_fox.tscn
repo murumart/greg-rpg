@@ -1060,7 +1060,6 @@ position = Vector2(0, -13)
 
 [node name="TailBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
 position = Vector2(15, 0)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 27, -2)
 auto_calculate_length_and_angle = false
 length = 48.136
@@ -1091,7 +1090,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1137,7 +1135,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1183,7 +1180,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1259,7 +1255,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1305,7 +1300,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0
@@ -1351,7 +1345,6 @@ region_rect = Rect2(8, 113, 10, 16)
 
 [node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D"]
 position = Vector2(-2, 14)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
 length = 5.0

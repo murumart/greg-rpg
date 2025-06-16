@@ -54,6 +54,7 @@ window/stretch/mode="viewport"
 movie_writer/mix_rate=41000
 movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
 movie_writer/fps=24
+export/convert_text_resources_to_binary=false
 
 [file_customization]
 
