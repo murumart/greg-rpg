@@ -74,6 +74,10 @@ var songs := {
 		"title": "dry summer",
 		"stream": preload("res://music/mus_dry_summer.ogg")
 	},
+	"forestguy": {
+		"title": "forestguy",
+		"stream": preload("res://music/mus_forestguy.ogg")
+	},
 	"mean_cashier_fight": {
 		"title": "vermin grinder",
 		"stream": preload("res://music/mus_mean_cashier_fight.ogg")

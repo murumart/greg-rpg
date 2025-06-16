@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbas43xc8v0x7"]
+
+[ext_resource type="Script" uid="uid://b3uiqfbr2yi1t" path="res://scenes/characters/battle_enemies/woods_guy_fight/rose_bullet.gd" id="1_ufviu"]
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="2_106p3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
+radius = 3.0
+
+[node name="RoseBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_ufviu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_106p3")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2v3to")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.6, 0.6)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

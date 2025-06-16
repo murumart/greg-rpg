@@ -1,44 +1,43 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1whcru0fbstr"]
+[gd_scene load_steps=19 format=3 uid="uid://dha4afjf0xt7t"]
 
-[ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="1_1kmkn"]
-[ext_resource type="Script" uid="uid://cbwre3bnoel8q" path="res://scenes/vfx/scr_vfx_bird_flight.gd" id="1_qmt70"]
-[ext_resource type="AudioStream" uid="uid://d0hdnl64at3ls" path="res://sounds/birdflap.ogg" id="2_xnohw"]
-[ext_resource type="Texture2D" uid="uid://btvgtu24mmlud" path="res://sprites/vfx/feather.png" id="4_mqisx"]
+[ext_resource type="Script" uid="uid://b3uiqfbr2yi1t" path="res://scenes/characters/battle_enemies/woods_guy_fight/rose_bullet.gd" id="1_fnjvn"]
+[ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_fnjvn"]
+[ext_resource type="Texture2D" uid="uid://btvgtu24mmlud" path="res://sprites/vfx/feather.png" id="3_y02p6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke3ye"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tra1h"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jup1v"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4cew"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0ycv"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owubg"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0i47"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxq8o"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ntaoa"]
-atlas = ExtResource("1_1kmkn")
+atlas = ExtResource("2_fnjvn")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7w216"]
@@ -109,10 +108,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fxpli"]
-random_volume_offset_db = 2.8
-streams_count = 1
-stream_0/stream = ExtResource("2_xnohw")
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fnjvn"]
+blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_24jyq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113794, 1), 0.0, 0.0, 0, 0, Vector2(0.628617, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
@@ -121,11 +118,11 @@ point_count = 4
 [sub_resource type="CurveTexture" id="CurveTexture_6ybi2"]
 curve = SubResource("Curve_24jyq")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o4343"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ctd8h"]
 particle_flag_disable_z = true
 angle_min = -114.3
 angle_max = 205.7
-direction = Vector3(0, -1, 0)
+direction = Vector3(0, 1, 0)
 spread = 60.0
 initial_velocity_min = 10.0
 initial_velocity_max = 30.0
@@ -136,10 +133,19 @@ radial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_6ybi2")
 
-[node name="ScnVfxBirdFlight" type="Node2D"]
-script = ExtResource("1_qmt70")
+[sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
+radius = 3.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="RoseBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_fnjvn")
+
+[node name="ScnVfxBirdFlight" type="Node2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight"]
 position = Vector2(-8, -15)
 sprite_frames = SubResource("SpriteFrames_7w216")
 animation = &"fly"
@@ -147,21 +153,25 @@ autoplay = "fly"
 frame_progress = 0.690738
 centered = false
 
-[node name="FlapSound" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_fxpli")
-max_distance = 200.0
-panning_strength = 1.35
-area_mask = 0
+[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight/Sprite"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_fnjvn")
+position = Vector2(-3, -3)
+scale = Vector2(1.375, 1.375)
+sprite_frames = SubResource("SpriteFrames_7w216")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.690738
+centered = false
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ScnVfxBirdFlight"]
+texture = ExtResource("3_y02p6")
+process_material = SubResource("ParticleProcessMaterial_ctd8h")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 2
-texture = ExtResource("4_mqisx")
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_o4343")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2v3to")
 
-[connection signal="timeout" from="Timer" to="." method="queue_free"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.6, 0.6)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

@@ -1,7 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4kmrdxuewqcx"]
+[gd_scene load_steps=14 format=3 uid="uid://d4kmrdxuewqcx"]
 
 [ext_resource type="Script" uid="uid://bmtyx3acqli6q" path="res://scenes/characters/battle_enemies/woods_guy_fight/zoom_bullet.gd" id="1_qsolb"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_qccqe"]
+[ext_resource type="AudioStream" uid="uid://63vckcp1s5gh" path="res://sounds/chemistry/evaporate.ogg" id="3_qccqe"]
+[ext_resource type="AudioStream" uid="uid://bgo6cc6087nfv" path="res://sounds/teleport.ogg" id="4_n4ctl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n4ctl"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6go7"]
+atlas = ExtResource("2_qccqe")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="Curve" id="Curve_h31wg"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0223068, 0.449577), 0.0, 0.0, 0, 0, Vector2(0.363825, 0.176353), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_n4ctl"]
+width = 64
+curve = SubResource("Curve_h31wg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxxk3"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_n4ctl")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n4ctl"]
 radius = 5.09902
@@ -31,6 +53,13 @@ texture = ExtResource("2_qccqe")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+material = SubResource("CanvasItemMaterial_n4ctl")
+texture = SubResource("AtlasTexture_s6go7")
+lifetime = 0.1
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_cxxk3")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n4ctl")
 
@@ -38,3 +67,11 @@ shape = SubResource("CircleShape2D_n4ctl")
 libraries = {
 &"": SubResource("AnimationLibrary_lqqhc")
 }
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qccqe")
+volume_db = 13.333
+
+[node name="Tp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n4ctl")
+pitch_scale = 1.41

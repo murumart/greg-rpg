@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckqn4csbruevf"]
+
+[ext_resource type="Script" uid="uid://6fhrly3iunws" path="res://scenes/characters/battle_enemies/woods_guy_fight/warning.gd" id="1_j3nke"]
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="1_tafks"]
+[ext_resource type="AudioStream" uid="uid://bgo6cc6087nfv" path="res://sounds/teleport.ogg" id="3_2vksp"]
+[ext_resource type="AudioStream" uid="uid://dfmsv32r5iucg" path="res://sounds/error.ogg" id="3_i6mvi"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i6mvi"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_7lfy5"]
+resource_name = "atk1"
+length = 0.8775
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0), Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tp2:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tp3:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqhc"]
+_data = {
+&"atk1": SubResource("Animation_7lfy5")
+}
+
+[node name="Warning" type="Node2D"]
+script = ExtResource("1_j3nke")
+
+[node name="Marker" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_i6mvi")
+texture = ExtResource("1_tafks")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
+[node name="Tp3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2vksp")
+volume_db = 14.49
+pitch_scale = 0.34
+
+[node name="Tp2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i6mvi")
+pitch_scale = 1.99
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lqqhc")
+}
+autoplay = "atk1"

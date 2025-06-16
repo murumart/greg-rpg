@@ -20,7 +20,7 @@ texture = ExtResource("2_m1yuo")
 position = Vector2(0, -15)
 
 [node name="Background" type="TileMapLayer" parent="Battle"]
-modulate = Color(0.17523, 0.276717, 0.154891, 1)
+modulate = Color(0.1286, 0.276366, 0.253298, 1)
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAD+/wEAAQAAAAAAAAD+/wAAAQAAAAAAAAD+////AQAAAAAAAAD+//7/AQAAAAAAAAD///7/AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAABAP7/AQAAAAAAAAA=")
 tile_set = ExtResource("3_3wbfi")
 metadata/_edit_lock_ = true

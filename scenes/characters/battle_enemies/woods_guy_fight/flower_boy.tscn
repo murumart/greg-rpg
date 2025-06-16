@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhw0c460xejq6"]
+
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="1_f66wo"]
+[ext_resource type="Script" uid="uid://cb26hnfstpdxs" path="res://scenes/characters/battle_enemies/woods_guy_fight/flower_boy.gd" id="1_tav60"]
+[ext_resource type="AudioStream" uid="uid://cslof0ym068kr" path="res://sounds/gui/squelch.ogg" id="3_b0e31"]
+
+[node name="FlowerBoy" type="Node2D"]
+script = ExtResource("1_tav60")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f66wo")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Throw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b0e31")
+volume_db = 8.722
+pitch_scale = 1.82
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]
