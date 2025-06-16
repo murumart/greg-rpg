@@ -128,7 +128,7 @@ func heal(amount: float) -> void:
 	SOL.vfx(
 			"damage_number",
 			parentless_effcenter(self),
-			{text = absf(roundi(amount)),
+			{text = absi(roundi(amount)),
 			color=Color.GREEN_YELLOW})
 
 
@@ -156,7 +156,7 @@ func hurt(amt: float, gendr: int) -> void:
 	SOL.vfx(
 		"damage_number",
 		parentless_effcenter(self),
-		{text = absf(roundi(amount)),
+		{text = absi(roundi(amount)),
 		color = Color.RED,
 		})
 	# shake the screen (not visible unless high damage)

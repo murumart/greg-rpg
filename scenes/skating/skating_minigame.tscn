@@ -29,6 +29,10 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp0j1"]
+atlas = ExtResource("15_gc7jg")
+region = Rect2(0, 0, 64, 16)
+
 [sub_resource type="Curve" id="Curve_v5yiu"]
 _limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.742169, 74.4546), 0.0, 0.0, 0, 0, Vector2(1, 98.6912), 0.0, 0.0, 0, 0]
@@ -53,10 +57,6 @@ anim_speed_curve = SubResource("CurveTexture_7unhf")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kp0j1"]
-atlas = ExtResource("15_gc7jg")
-region = Rect2(0, 0, 64, 16)
 
 [node name="SkatingMinigame" type="Node2D"]
 script = ExtResource("1_e2i3m")
@@ -283,7 +283,7 @@ material = SubResource("CanvasItemMaterial_vunw8")
 position = Vector2(-24, 31)
 emitting = false
 amount = 21
-process_material = SubResource("ParticleProcessMaterial_q8ybc")
 texture = SubResource("AtlasTexture_kp0j1")
 lifetime = 2.0
 trail_lifetime = 1.82
+process_material = SubResource("ParticleProcessMaterial_q8ybc")

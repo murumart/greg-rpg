@@ -69,49 +69,49 @@ func get_effect_description() -> String:
 		else:
 			health_change += "health: "
 		if health:
-			health_change += str(absf(health)) + " "
+			health_change += str(int(abs(health))) + " "
 		if health_percent:
 			if health: health_change += "+"
-			health_change += str(absf(health_percent)) + "% hp "
+			health_change += str(int(absf(health_percent))) + "% hp "
 		if max_health_percent:
 			if health_percent: health_change += "+"
-			health_change += str(absf(max_health_percent)) + "% max hp "
+			health_change += str(int(absf(max_health_percent))) + "% max hp "
 		var colour := "[color=#880000]%s[/color]" if harm else "[color=#008800]%s[/color]"
 		health_change = colour % health_change
 		text += health_change + "\n"
 	if steal_health:
 		text += "[color=#448800]%s[/color]\n" % (
-			("steal %s" % (steal_health * 100)) + "% dmg as hp")
+			("steal %s" % int(steal_health * 100)) + "% dmg as hp")
 	if magic or magic_percent or max_magic_percent:
 		var magic_change := ""
 		var harm := magic < 0 or magic_percent < 0 or max_magic_percent < 0
 		if harm: magic_change += "-magic: "
 		else: magic_change += "+magic: "
-		if magic: magic_change += str(absf(magic)) + " "
+		if magic: magic_change += str(int(absf(magic))) + " "
 		if magic_percent:
 			if magic: magic_change += "+"
-			magic_change += str(absf(magic_percent)) + "% sp "
+			magic_change += str(int(absf(magic_percent))) + "% sp "
 		if max_magic_percent:
 			if magic_percent: magic_change += "+"
-			magic_change += str(absf(max_magic_percent)) + "% max sp "
+			magic_change += str(int(absf(max_magic_percent))) + "% max sp "
 		var colour := "[color=#880088]%s[/color]" if harm else "[color=#008888]%s[/color]"
 		magic_change = colour % magic_change
 		text += magic_change + "\n"
 	if steal_magic:
 		text += "[color=#004488]%s[/color]\n" % (
-			("steal %s" % (steal_magic * 100)) + "% dmg as sp")
+			("steal %s" % int(steal_magic * 100)) + "% dmg as sp")
 	if attack_increase:
 		var harm := attack_increase < 0
 		var c := "[color=#884400]%s%s atk[/color]" if not harm else "[color=#880044]%s%s atk[/color]"
-		text += c % [Math.sign_symbol(attack_increase), absf(attack_increase)] + "\n"
+		text += c % [Math.sign_symbol(attack_increase), int(absf(attack_increase))] + "\n"
 	if defense_increase:
 		var harm := defense_increase < 0
 		var c := "[color=#008822]%s%s def[/color]" if not harm else "[color=#884400]%s%s def[/color]"
-		text += c % [Math.sign_symbol(defense_increase), absf(defense_increase)] + "\n"
+		text += c % [Math.sign_symbol(defense_increase), int(absf(defense_increase))] + "\n"
 	if speed_increase:
 		var harm := speed_increase < 0
 		var c := "[color=#888800]%s%s spd[/color]" if not harm else "[color=#884400]%s%s spd[/color]"
-		text += c % [Math.sign_symbol(speed_increase), absf(speed_increase)] + "\n"
+		text += c % [Math.sign_symbol(speed_increase), int(absf(speed_increase))] + "\n"
 	for eff in effects:
 		var fid := eff.name
 		if eff.duration < -1:
@@ -133,13 +133,13 @@ func get_effect_description() -> String:
 			efftxt += "[color=#%s]%s[/color]" % [effcolor,
 			# the horrors
 					(fname + ((" " + Math.sign_symbol(eff.strength) + str(
-					absf(eff.strength)) + " ") if eff.strength != 1
+					int(absf(eff.strength))) + " ") if eff.strength != 1
 					else " ") + "for %s\n" % eff.duration)
 				]
 		else:
 			efftxt += ("[color=#%s]%s[/color]" % [effcolor,
 					(fname + ((" " + Math.sign_symbol(eff.strength) + str(
-					absf(eff.strength)) + " ")  if eff.strength != 1 else " "))
+					int(absf(eff.strength))) + " ")  if eff.strength != 1 else " "))
 				] + "for %s\n" % eff.duration)
 		text += efftxt
 	if gender:

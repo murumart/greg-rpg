@@ -62,7 +62,7 @@ func _on_phone_interacted() -> void:
 	if DAT.get_data("pranked", false):
 		SOL.dialogue("prank_call_enough")
 		return
-	var number: float = DAT.get_data("nr", 0.0) * 10.0 + 1
+	var number: int = int(DAT.get_data("nr", 0.0) * 10.0 + 1)
 	if prank_call_force > -1:
 		number = prank_call_force
 	var call_name := "prank_call_%s"

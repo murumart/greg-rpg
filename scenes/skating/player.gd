@@ -192,4 +192,3 @@ func sprite_look(force_cool := false) -> void:
 func text(txt: String, col: Color = Color.WHITE, options := {}) -> void:
 	options.merge({"color": col, "parent": self, "text": txt})
 	SOL.vfx("damage_number", Vector2(0, -24), options)
-

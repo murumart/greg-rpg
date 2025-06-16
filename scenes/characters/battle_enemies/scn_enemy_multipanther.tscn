@@ -14,15 +14,15 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.955846, 0, 0, 0, 0.78941, 0, 0,
 gradient = SubResource("Gradient_xkt0a")
 fill_from = Vector2(1, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1thi"]
+atlas = ExtResource("5_mgowv")
+region = Rect2(4, 8, 12, 4)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of1m1"]
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(120, 32, 1)
 gravity = Vector3(0, 0, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1thi"]
-atlas = ExtResource("5_mgowv")
-region = Rect2(4, 8, 12, 4)
 
 [sub_resource type="Shader" id="Shader_1mr4d"]
 code = "shader_type canvas_item;
@@ -112,9 +112,9 @@ texture = SubResource("GradientTexture2D_p0ibm")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, 68)
-process_material = SubResource("ParticleProcessMaterial_of1m1")
 texture = SubResource("AtlasTexture_l1thi")
 lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_of1m1")
 
 [node name="OutlineMe" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_8ke1u")

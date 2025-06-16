@@ -1341,7 +1341,7 @@ texture = SubResource("GradientTexture2D_bbysd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4p0kj")
+&"": SubResource("AnimationLibrary_4p0kj")
 }
 autoplay = "idle"
 

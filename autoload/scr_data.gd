@@ -349,4 +349,4 @@ func init_data() -> void:
 
 
 static func version_str(version: Vector3 = VERSION) -> String:
-	return "%s.%s.%s" % [version.x, version.y, version.z]
+	return "%s.%s.%s" % [int(version.x), int(version.y), int(version.z)]
