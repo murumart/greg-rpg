@@ -113,6 +113,7 @@ func get_dir_contents(path: String, trim: String = "") -> Array[String]:
 		var file_name := dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
+				file_name = dir.get_next()
 				continue
 				# fuck you and your file suffix
 			contents.append(file_name.get_basename()
