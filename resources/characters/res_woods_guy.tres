@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dnm88vv2nt73a"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_mtbxe"]
+
+[resource]
+script = ExtResource("1_mtbxe")
+name_in_file = &""
+name = "woods guy"
+info = ""
+max_health = 100.0
+health = 100.0
+max_magic = 30.0
+magic = 30.0
+level = 72
+experience = 0
+attack = 72.0
+defense = 72.0
+speed = 72.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""
+metadata/_custom_type_script = "uid://cvf0g4tgojs8x"
