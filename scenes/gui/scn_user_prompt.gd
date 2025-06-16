@@ -79,7 +79,7 @@ func _ref_button_pressed(reference: Variant) -> void:
 	queue_free()
 
 
-func _ref_received(reference: Variant) -> void:
+func _ref_received(_reference: Variant) -> void:
 	pass
 
 

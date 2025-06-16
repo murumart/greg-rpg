@@ -70,7 +70,7 @@ func _generate_unique_bird_names() -> Array[String]:
 		"grey-hooded ", "the ", "the ", "the "
 	]
 	const BIRD_NAME_AMOUNT := 64
-	rng.seed = bseed * 10000
+	rng.seed = int(bseed * 10000)
 	while array.size() < BIRD_NAME_AMOUNT:
 		var basename: String = Math.determ_pick_random(FIRST_SYLLABS, rng)
 		for i in randi_range(1, 4):

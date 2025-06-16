@@ -1,3 +1,4 @@
+@tool
 extends InteractionArea
 
 var level := 1.0

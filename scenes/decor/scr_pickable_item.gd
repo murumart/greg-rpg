@@ -1,3 +1,4 @@
+@tool
 class_name PickableItem extends InteractionArea
 
 @export var item_type := &""
