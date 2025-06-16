@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1bw3nluoktrc"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_2fmfa"]
-[ext_resource type="Script" path="res://scenes/decor/scr_campfire.gd" id="2_02woc"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_mwsdn"]
+[ext_resource type="Script" uid="uid://dwbv3dxq05g70" path="res://scenes/decor/scr_campfire.gd" id="2_02woc"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_mwsdn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0drw"]
 size = Vector2(31, 15)

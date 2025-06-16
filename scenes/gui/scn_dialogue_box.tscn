@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://8e6qtrpg4jaf"]
 
-[ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="1_gs5cq"]
+[ext_resource type="Script" uid="uid://dwqmbejm2fknv" path="res://code/scr_dialogue_box.gd" id="1_gs5cq"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_iqel7"]
-[ext_resource type="Script" path="res://code/scr_textbox.gd" id="3_mdvfn"]
+[ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="3_mdvfn"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="4_bbuws"]
-[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="5_ki6u1"]
+[ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="5_ki6u1"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="6_sakjq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3s8v"]

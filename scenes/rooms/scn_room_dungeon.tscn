@@ -1,15 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://cu84ipbqt3xqx"]
 
-[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_rk5ny"]
-[ext_resource type="Script" path="res://code/scr_tilemap_layer_parent.gd" id="2_ps0sp"]
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_layout_generator.gd" id="3_1an2q"]
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_rk5ny"]
+[ext_resource type="Script" uid="uid://trdp1tp7ibo0" path="res://code/scr_tilemap_layer_parent.gd" id="2_ps0sp"]
+[ext_resource type="Script" uid="uid://bhq2otvo384kb" path="res://scenes/rooms/grandma_house/gdung_layout_generator.gd" id="3_1an2q"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="3_kf5r7"]
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_decorator.gd" id="4_hfwjo"]
+[ext_resource type="Script" uid="uid://br1waq65ys3vd" path="res://scenes/rooms/grandma_house/gdung_decorator.gd" id="4_hfwjo"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_pruij"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vka64"]
-[ext_resource type="Shader" path="res://shaders/shd_gdung_pathline.gdshader" id="8_hje8f"]
+[ext_resource type="Shader" uid="uid://b31h4uou73tqd" path="res://shaders/shd_gdung_pathline.gdshader" id="8_hje8f"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="9_qfv8t"]
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_storyline.gd" id="10_76lej"]
+[ext_resource type="Script" uid="uid://d0ys5mspf30h4" path="res://scenes/rooms/grandma_house/gdung_storyline.gd" id="10_76lej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("3_kf5r7")

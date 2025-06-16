@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dle611dx2r6im"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dle611dx2r6im"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_mhvf1"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="2_i6027"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_dramx"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_mhvf1"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="2_i6027"]
 [ext_resource type="Texture2D" uid="uid://bt137ay04xh8f" path="res://sprites/items/spr_item_plaster.png" id="3_04dkq"]
 
 [sub_resource type="Resource" id="Resource_vqlt5"]
@@ -10,16 +11,22 @@ health = 25.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
+steal_magic = 0.0
 attack_increase = null
 defense_increase = null
 speed_increase = null
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+gender = 0
+effects = Array[ExtResource("1_dramx")]([])
+delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
-reveal_enemy_info = false
+message_user = &""
+meta = {}
 
 [resource]
 script = ExtResource("2_i6027")

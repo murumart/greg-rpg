@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://b8sd7w8etqyb8"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_fx360"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_hut0d"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_r274j"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_fx360"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_hut0d"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_r274j"]
 [ext_resource type="AudioStream" uid="uid://kj0itrrs7tm0" path="res://sounds/use_mirror.ogg" id="3_3kf14"]
 [ext_resource type="Texture2D" uid="uid://cfvono8ibnw8v" path="res://sprites/items/spr_mirror.png" id="5_w72mr"]
 
@@ -30,7 +30,9 @@ gender = 5
 effects = Array[ExtResource("1_fx360")]([SubResource("Resource_yerl5")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

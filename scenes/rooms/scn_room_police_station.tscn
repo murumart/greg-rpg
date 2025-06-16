@@ -1,14 +1,14 @@
 [gd_scene load_steps=59 format=4 uid="uid://d4bhpxcyqdld8"]
 
-[ext_resource type="Script" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
+[ext_resource type="Script" uid="uid://dnq030bmpvqqd" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="3_7lec2"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_uu3hw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_prdld"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_gqxff"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="6_enl1v"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="6_enl1v"]
 [ext_resource type="PackedScene" uid="uid://l3bq5b3qrfgl" path="res://scenes/decor/scn_police_cell.tscn" id="6_y0r06"]
-[ext_resource type="Script" path="res://code/scr_even_spread.gd" id="7_qmjry"]
+[ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="7_qmjry"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="7_rnkj8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="7_wtpef"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="9_pwyr1"]
@@ -17,8 +17,8 @@
 [ext_resource type="SpriteFrames" uid="uid://c10typ0iofprp" path="res://resources/characters/sfr_popo_2.tres" id="12_j788g"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="13_tbltf"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="14_3gwec"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="14_3kw1r"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="15_8e2iq"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="14_3kw1r"]
+[ext_resource type="Script" uid="uid://8ycmg7qfn2b1" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="15_8e2iq"]
 [ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="16_ro10j"]
 [ext_resource type="Texture2D" uid="uid://d0bynei1atpgu" path="res://sprites/items/ash_bucket.png" id="18_cskhu"]
 [ext_resource type="Texture2D" uid="uid://bnusfluirkrpi" path="res://sprites/characters/overworld/spr_president_overworld.png" id="19_dpo5f"]
@@ -2273,8 +2273,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cpah"]
 _data = {
-"RESET": SubResource("Animation_cevt3"),
-"default": SubResource("Animation_r4m7c")
+&"RESET": SubResource("Animation_cevt3"),
+&"default": SubResource("Animation_r4m7c")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_378vf"]

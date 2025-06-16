@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://btmuekw61xs7e"]
 
-[ext_resource type="Script" path="res://autoload/scr_data.gd" id="1_jydat"]
+[ext_resource type="Script" uid="uid://dp5kxv3xbhrew" path="res://autoload/scr_data.gd" id="1_jydat"]
 
 [node name="DAT" type="Node"]
 script = ExtResource("1_jydat")

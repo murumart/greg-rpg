@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://opa872mcst0n"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_d7dvf"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_d7dvf"]
 [ext_resource type="Texture2D" uid="uid://ce2rfa5xfip6v" path="res://sprites/characters/battle/animals/spr_mole.png" id="1_nh5f0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufq7g"]

@@ -90,8 +90,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m64q3"]
 _data = {
-"RESET": SubResource("Animation_1q67w"),
-"enter_battle": SubResource("Animation_rnits")
+&"RESET": SubResource("Animation_1q67w"),
+&"enter_battle": SubResource("Animation_rnits")
 }
 
 [node name="BattleEnter" type="Node2D"]

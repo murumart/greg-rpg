@@ -184,8 +184,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0vrqe"]
 _data = {
-"RESET": SubResource("Animation_x1qyd"),
-"default": SubResource("Animation_biqrw")
+&"RESET": SubResource("Animation_x1qyd"),
+&"default": SubResource("Animation_biqrw")
 }
 
 [node name="VfxStarNebula" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dm6o78hlxv64n"]
 
-[ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_nkv13"]
+[ext_resource type="Script" uid="uid://baf0m66n60bwa" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_nkv13"]
 
 [node name="BattleBackground" type="Node2D"]
 z_index = -50

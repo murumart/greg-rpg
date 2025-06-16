@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7vd3hg6exwa1"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_stwf7"]
-[ext_resource type="Script" path="res://scenes/gui/scr_death_screen.gd" id="2_c5eij"]
-[ext_resource type="Script" path="res://code/scr_textbox.gd" id="2_pk72b"]
+[ext_resource type="Script" uid="uid://wu5vq5o8rcho" path="res://scenes/gui/scr_death_screen.gd" id="2_c5eij"]
+[ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="2_pk72b"]
 [ext_resource type="Texture2D" uid="uid://m2mms3pjc366" path="res://sprites/death/spr_default.png" id="3_squjp"]
 
 [node name="DeathScreen" type="Control"]

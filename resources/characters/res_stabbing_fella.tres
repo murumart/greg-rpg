@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d1xixue6a2cfj"]
 
 [ext_resource type="Texture2D" uid="uid://bb30ke8j1icxj" path="res://sprites/characters/battle/thugs/spr_stabbing_fella.png" id="1_ounx4"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_u8i6k"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_u8i6k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqgx8"]
 atlas = ExtResource("1_ounx4")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bjd1t3e7dfjtk"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_ff76o"]
-[ext_resource type="Script" path="res://scenes/cutscene/scr_intro.gd" id="1_lcxob"]
+[ext_resource type="Script" uid="uid://bq2lsgxi2trj5" path="res://scenes/cutscene/scr_intro.gd" id="1_lcxob"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="2_6a7ua"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_lb5fr"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="5_vttp0"]
@@ -267,11 +267,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s7w5v"]
 _data = {
-"RESET": SubResource("Animation_odaft"),
-"default": SubResource("Animation_1jsoh"),
-"part2": SubResource("Animation_1dcq4"),
-"part3": SubResource("Animation_lgcxv"),
-"part4": SubResource("Animation_iht8l")
+&"RESET": SubResource("Animation_odaft"),
+&"default": SubResource("Animation_1jsoh"),
+&"part2": SubResource("Animation_1dcq4"),
+&"part3": SubResource("Animation_lgcxv"),
+&"part4": SubResource("Animation_iht8l")
 }
 
 [node name="Intro" type="Node2D"]

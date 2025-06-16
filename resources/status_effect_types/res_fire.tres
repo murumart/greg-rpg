@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="StatusEffectType" load_steps=7 format=3 uid="uid://byfxa4rckxhj1"]
+[gd_resource type="Resource" script_class="StatusEffectType" load_steps=8 format=3 uid="uid://byfxa4rckxhj1"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="1_5yp11"]
+[ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="1_5yp11"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_xevga"]
-[ext_resource type="Script" path="res://code/res_status_effect_payload.gd" id="3_w20ub"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="3_gf37o"]
+[ext_resource type="Script" uid="uid://cc6ol4wb61hru" path="res://code/res_status_effect_payload.gd" id="3_w20ub"]
 [ext_resource type="AudioStream" uid="uid://b64cuxds1ww1a" path="res://sounds/fire.ogg" id="4_76i3h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxf4h"]
@@ -27,7 +28,7 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("3_gf37o")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6

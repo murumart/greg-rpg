@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://c3mjeyetn1tvn"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_2au0w"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_tctkg"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="2_gt1t1"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_2au0w"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_tctkg"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="2_gt1t1"]
 
 [sub_resource type="Resource" id="Resource_21q4b"]
 script = ExtResource("1_2au0w")
@@ -24,10 +24,13 @@ steal_magic = 0.0
 attack_increase = 2.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 0
 effects = Array[ExtResource("1_2au0w")]([SubResource("Resource_21q4b")])
 delay = 0.1
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

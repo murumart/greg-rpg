@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_62a6f"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_8rkar"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_tutorial_guy.gd" id="2_ujwv4"]
+[ext_resource type="Script" uid="uid://xputfcafco2m" path="res://scenes/characters/overworld/scr_tutorial_guy.gd" id="2_ujwv4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_baiym"]
 resource_local_to_scene = true

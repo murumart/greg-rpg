@@ -1,9 +1,9 @@
 [gd_scene load_steps=41 format=4 uid="uid://dvkgcfmj35dlj"]
 
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="1_k0etp"]
-[ext_resource type="Script" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
-[ext_resource type="Script" path="res://code/scr_weighted_random_pair.gd" id="2_8qmcw"]
-[ext_resource type="Script" path="res://code/scr_weighted_random_container.gd" id="2_clupb"]
+[ext_resource type="Script" uid="uid://co20r30ivr7p8" path="res://scenes/fishing/scr_fishing_minigame.gd" id="1_v6q63"]
+[ext_resource type="Script" uid="uid://cbln448bu2tat" path="res://code/scr_weighted_random_pair.gd" id="2_8qmcw"]
+[ext_resource type="Script" uid="uid://cj7keq8nk1wh3" path="res://code/scr_weighted_random_container.gd" id="2_clupb"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_mb35u"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="4_ohvva"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="4_s301t"]
@@ -921,8 +921,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qnjc6"]
 _data = {
-"RESET": SubResource("Animation_tdrb4"),
-"hit": SubResource("Animation_5qvrl")
+&"RESET": SubResource("Animation_tdrb4"),
+&"hit": SubResource("Animation_5qvrl")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l3rk"]

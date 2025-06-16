@@ -1,7 +1,7 @@
 [gd_scene load_steps=66 format=3 uid="uid://csysyuokc0kef"]
 
 [ext_resource type="AudioStream" uid="uid://dctixbicj6c78" path="res://sounds/spirit/moon_city_loud.ogg" id="1_8n013"]
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_mooncity_global.gd" id="1_x23ul"]
+[ext_resource type="Script" uid="uid://bvg5wd7gqgsx1" path="res://scenes/vfx/scr_vfx_mooncity_global.gd" id="1_x23ul"]
 [ext_resource type="Texture2D" uid="uid://dg1ckvgc2rwcc" path="res://sprites/spirit/spr_mooncity_global.png" id="2_21ruw"]
 [ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="3_w60g1"]
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="4_naeej"]
@@ -664,8 +664,8 @@ tracks/18/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6q6g0"]
 _data = {
-"RESET": SubResource("Animation_droqv"),
-"new_animation": SubResource("Animation_yxcyb")
+&"RESET": SubResource("Animation_droqv"),
+&"new_animation": SubResource("Animation_yxcyb")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qstth"]

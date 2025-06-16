@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bb4sfjrnpxfl7"]
 
 [ext_resource type="Texture2D" uid="uid://bm4rwxl0motml" path="res://sprites/characters/portraits/spr_portrait_mail_man.png" id="1_iw8xs"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="2_52w2x"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_52w2x"]
 [ext_resource type="AudioStream" uid="uid://bsdqr2oplof1f" path="res://sounds/talking/mail.ogg" id="3_lhw58"]
 
 [resource]

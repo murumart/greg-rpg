@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lvdqg7mjwheo"]
 
-[ext_resource type="Script" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
+[ext_resource type="Script" uid="uid://cisqduhi0kcg0" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="2_1cax3"]
 
 [node name="SOL" type="CanvasLayer"]

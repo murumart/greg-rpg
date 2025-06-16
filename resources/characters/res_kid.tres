@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cj83rlehgx4e4"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_0tfpc"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_0tfpc"]
 [ext_resource type="Texture2D" uid="uid://dlvwq2ey45kni" path="res://sprites/characters/portraits/spr_portrait_kid.png" id="1_gfsa7"]
-[ext_resource type="AudioStream" uid="uid://bcnqrnq04ckj" path="res://sounds/talking/snd_kid.ogg" id="3_jmpkt"]
+[ext_resource type="AudioStream" uid="uid://bcnqrnq04ckj" path="res://sounds/talking/kid.ogg" id="3_jmpkt"]
 
 [resource]
 script = ExtResource("1_0tfpc")
@@ -23,6 +23,6 @@ speed = 10.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

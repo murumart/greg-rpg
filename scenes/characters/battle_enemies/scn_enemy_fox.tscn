@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://g6h0jepyhdep"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_c5qhk"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_c5qhk"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_7p2rh"]
 
 [sub_resource type="Animation" id="Animation_uab4r"]
@@ -1045,8 +1045,8 @@ tracks/41/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ee5y8"]
 _data = {
-"RESET": SubResource("Animation_uab4r"),
-"idle": SubResource("Animation_uwssv")
+&"RESET": SubResource("Animation_uab4r"),
+&"idle": SubResource("Animation_uwssv")
 }
 
 [node name="Fox" type="Node2D"]

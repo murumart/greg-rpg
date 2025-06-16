@@ -1,12 +1,12 @@
 [gd_scene load_steps=44 format=3 uid="uid://cfs50oh5gonj4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
+[ext_resource type="Script" uid="uid://ui7g1lg4kusx" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
 [ext_resource type="Texture2D" uid="uid://ccux1unnbr2jb" path="res://sprites/characters/overworld/spr_thug_overworld.png" id="3_26wux"]
-[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_mqdei"]
-[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_7t3nr"]
+[ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_mqdei"]
+[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_7t3nr"]
 [ext_resource type="Resource" uid="uid://do3hvtj7osq1x" path="res://resources/rewards/res_thug_reward.tres" id="6_1dlt0"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_tiohb"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_tiohb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv4y4"]
 resource_local_to_scene = true
@@ -219,7 +219,7 @@ key = &"moron"
 curve = SubResource("Curve_wjsfi")
 
 [sub_resource type="Curve" id="Curve_mh4wh"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 1.02696), 0.0, 0.0, 0, 0, Vector2(0.0883163, 1.87295), 0.0, 0.0, 0, 0, Vector2(0.174428, 3.04121), 0.0, 0.0, 0, 0, Vector2(0.298429, 4), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
 point_count = 5
 

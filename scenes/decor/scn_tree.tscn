@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bp4upclobui8l"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_tree.gd" id="1_ntvbr"]
+[ext_resource type="Script" uid="uid://bdupaiut4r6sl" path="res://scenes/decor/scr_tree.gd" id="1_ntvbr"]
 [ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/spr_trees.png" id="2_mh3gg"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://lhriw3yp2r3y"]
 
 [ext_resource type="Texture2D" uid="uid://dyep8f2c4jh0d" path="res://sprites/characters/battle/lakeside/spr_strider.png" id="1_23kcn"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_ci6ee"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_ci6ee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpk3y"]
 atlas = ExtResource("1_23kcn")

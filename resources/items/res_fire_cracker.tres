@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://0qbllbvcdhim"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://0qbllbvcdhim"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_hnqyn"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_nri4k"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_80q78"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_hnqyn"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_nri4k"]
 [ext_resource type="AudioStream" uid="uid://cdk4slfbfto5w" path="res://sounds/use_firecracker.ogg" id="2_ytesq"]
 [ext_resource type="Texture2D" uid="uid://djabr4eh4eyd2" path="res://sprites/items/spr_firecracker.png" id="4_y52mh"]
 
@@ -20,11 +21,12 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 3
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_80q78")]([])
 delay = 1.08
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = "explosion"
+message_user = &""
 meta = {}
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=74 format=4 uid="uid://bgj726r0ubr21"]
 
-[ext_resource type="Script" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
+[ext_resource type="Script" uid="uid://dsuq4ss3rx5" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_ud36p"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_t0r6d"]
@@ -17,23 +17,23 @@
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="11_jnio5"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="12_mfggk"]
 [ext_resource type="SpriteFrames" uid="uid://du74aw0jrys3e" path="res://resources/characters/sfr_neighbour_wife.tres" id="15_70cgv"]
-[ext_resource type="Script" path="res://scenes/rooms/store/scr_decor.gd" id="18_8t4i1"]
+[ext_resource type="Script" uid="uid://ctp7fnu0ldwkc" path="res://scenes/rooms/store/scr_decor.gd" id="18_8t4i1"]
 [ext_resource type="Texture2D" uid="uid://ceukg4w8cdlw0" path="res://sprites/world/object/store_shelves/spr_plant.png" id="18_aqsfi"]
 [ext_resource type="Texture2D" uid="uid://bnvnuppg0j2rd" path="res://sprites/world/object/store_shelves/spr_products_pile.png" id="19_d71lm"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="20_r2fhk"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="20_r2fhk"]
 [ext_resource type="Texture2D" uid="uid://jp5n47pb8wf3" path="res://sprites/world/object/store_shelves/spr_wet_floor.png" id="22_5c2h3"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="23_6roqa"]
 [ext_resource type="SpriteFrames" uid="uid://bochwa4w0uny0" path="res://resources/characters/sfr_mail_man.tres" id="23_hj1vt"]
 [ext_resource type="Texture2D" uid="uid://cni1jgut4eqlt" path="res://sprites/world/object/spr_restroom_door.png" id="23_hrk15"]
-[ext_resource type="Script" path="res://scenes/rooms/store/scr_president.gd" id="23_w6t1x"]
+[ext_resource type="Script" uid="uid://ckccdahxst7d7" path="res://scenes/rooms/store/scr_president.gd" id="23_w6t1x"]
 [ext_resource type="SpriteFrames" uid="uid://unx5ufy0r3l8" path="res://resources/characters/sfr_president.tres" id="24_7v6sw"]
 [ext_resource type="Texture2D" uid="uid://bcgdto63oyltb" path="res://sprites/items/spr_milk.png" id="25_ate3i"]
 [ext_resource type="Texture2D" uid="uid://cu1gacaq6b85f" path="res://sprites/characters/overworld/spr_pizz_delivery_guy.png" id="25_jrixr"]
 [ext_resource type="AudioStream" uid="uid://ctrw1twry0k57" path="res://sounds/flee.ogg" id="26_r8ymx"]
 [ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="26_tunbu"]
 [ext_resource type="AudioStream" uid="uid://ctadct610sv6e" path="res://sounds/spirit/splash_attack.ogg" id="27_rosy8"]
-[ext_resource type="Shader" path="res://shaders/shd_store_damage.gdshader" id="28_6e1rh"]
-[ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="29_tkyvl"]
+[ext_resource type="Shader" uid="uid://cwmprltwdx2ek" path="res://shaders/shd_store_damage.gdshader" id="28_6e1rh"]
+[ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="29_tkyvl"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="30_3immg"]
 [ext_resource type="AudioStream" uid="uid://7bdt4ovexyd5" path="res://sounds/drain.ogg" id="31_bq8wf"]
 
@@ -75,8 +75,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hrc5"]
 _data = {
-"RESET": SubResource("Animation_2fxen"),
-"hover": SubResource("Animation_o4503")
+&"RESET": SubResource("Animation_2fxen"),
+&"hover": SubResource("Animation_o4503")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v231s"]
@@ -316,8 +316,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wmnhc"]
 _data = {
-"RESET": SubResource("Animation_x8gl0"),
-"milkfall": SubResource("Animation_dpbpc")
+&"RESET": SubResource("Animation_x8gl0"),
+&"milkfall": SubResource("Animation_dpbpc")
 }
 
 [sub_resource type="Curve" id="Curve_hynko"]
@@ -550,8 +550,8 @@ tracks/6/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mit1f"]
 _data = {
-"RESET": SubResource("Animation_y4ovi"),
-"drain": SubResource("Animation_qos5f")
+&"RESET": SubResource("Animation_y4ovi"),
+&"drain": SubResource("Animation_qos5f")
 }
 
 [sub_resource type="Gradient" id="Gradient_gckj0"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://e2pf3odrvrgn"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_grandma.gd" id="1_mvopl"]
+[ext_resource type="Script" uid="uid://fbywi60tq6kw" path="res://scenes/characters/battle_enemies/scr_enemy_grandma.gd" id="1_mvopl"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_okygw"]
 
 [node name="Grandma" type="Node2D"]

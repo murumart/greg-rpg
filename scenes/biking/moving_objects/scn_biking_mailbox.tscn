@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://vw1imlch4fml"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_mailbox.gd" id="1_m5ewb"]
+[ext_resource type="Script" uid="uid://ejrbfuer6n5k" path="res://scenes/biking/moving_objects/scr_biking_mailbox.gd" id="1_m5ewb"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_xhk8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7n2r"]
@@ -100,8 +100,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5qfpm"]
 _data = {
-"RESET": SubResource("Animation_r35li"),
-"yum": SubResource("Animation_ve5me")
+&"RESET": SubResource("Animation_r35li"),
+&"yum": SubResource("Animation_ve5me")
 }
 
 [node name="Mailbox" type="Node2D" groups=["biking_mailboxes"]]

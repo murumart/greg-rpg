@@ -257,8 +257,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a04b2"]
 _data = {
-"RESET": SubResource("Animation_7c7vp"),
-"default": SubResource("Animation_kug1l")
+&"RESET": SubResource("Animation_7c7vp"),
+&"default": SubResource("Animation_kug1l")
 }
 
 [node name="PeptideSpell" type="Node2D"]

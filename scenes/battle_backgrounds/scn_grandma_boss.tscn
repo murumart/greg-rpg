@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bleek6adjjnc1"]
 
-[ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_grandma_boss.gd" id="1_np6vw"]
+[ext_resource type="Script" uid="uid://dhdfc555dnmyt" path="res://scenes/battle_backgrounds/scr_grandma_boss.gd" id="1_np6vw"]
 [ext_resource type="Texture2D" uid="uid://57q3vlc6p4hr" path="res://sprites/photos/spr_insidehouse.png" id="2_vwmfj"]
 
 [sub_resource type="Shader" id="Shader_1u14p"]

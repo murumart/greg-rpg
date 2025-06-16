@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://e2f0lq8pk3rk"]
 
 [ext_resource type="Texture2D" uid="uid://ddtn5wrqi5pa5" path="res://sprites/characters/battle/thugs/spr_stray_cart.png" id="1_jdyiw"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_osi47"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_osi47"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7p7xq"]
 atlas = ExtResource("1_jdyiw")

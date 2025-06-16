@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://tamu3s3ouhh3"]
 
-[ext_resource type="Script" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
+[ext_resource type="Script" uid="uid://d38ignl46l54q" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_ydvrp"]
 [ext_resource type="SpriteFrames" uid="uid://c6tvmkd37tsvc" path="res://resources/characters/sfr_ringleader.tres" id="2_pwnpw"]
 [ext_resource type="SpriteFrames" uid="uid://c2u1yb6q4v8ld" path="res://resources/characters/sfr_clown.tres" id="3_2anys"]
@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="4_wpc6e"]
 [ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="5_g18p5"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="6_0bdbt"]
-[ext_resource type="Script" path="res://code/scr_exchange.gd" id="9_jjxv0"]
+[ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="9_jjxv0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oj61p"]
 size = Vector2(14, 30)

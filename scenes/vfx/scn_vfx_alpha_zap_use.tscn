@@ -150,8 +150,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hyo8b"]
 _data = {
-"RESET": SubResource("Animation_toqq4"),
-"default": SubResource("Animation_50bh7")
+&"RESET": SubResource("Animation_toqq4"),
+&"default": SubResource("Animation_50bh7")
 }
 
 [node name="VfxAlphaZap" type="Node2D"]

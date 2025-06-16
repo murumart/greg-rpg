@@ -219,8 +219,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_31j8l"]
 _data = {
-"RESET": SubResource("Animation_tn7nw"),
-"default": SubResource("Animation_paqq8")
+&"RESET": SubResource("Animation_tn7nw"),
+&"default": SubResource("Animation_paqq8")
 }
 
 [node name="VfxHookAttack" type="Node2D"]

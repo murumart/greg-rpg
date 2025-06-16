@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dknu48mwph60"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
+[ext_resource type="Script" uid="uid://srd1rbfrklke" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
 [ext_resource type="Texture2D" uid="uid://dgr3wuk3enp53" path="res://sprites/characters/battle/sunspirit/spr_sunspirit.png" id="2_sivrd"]
 [ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="3_g30y0"]
 
@@ -9,7 +9,7 @@ offsets = PackedFloat32Array(0, 0.191111, 0.814676, 0.861439, 0.949281, 0.952549
 colors = PackedColorArray(1, 1, 1, 1, 1.19, 1.36, 0.35, 1, 4.71, 0, 0, 1, 31.13, 0, 0.01, 1, 1.23, 0.27, 0.22, 1, 2.83, 2.21, 2.2, 1)
 
 [sub_resource type="Curve" id="Curve_m7siq"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.95, 4), 3.15789, 0.0, 1, 0, Vector2(1, 0.99), 8.41718, 8.41718, 0, 0]
 point_count = 3
 
@@ -2208,11 +2208,11 @@ tracks/37/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_thwtv"]
 _data = {
-"RESET": SubResource("Animation_tp53r"),
-"attack": SubResource("Animation_ge35c"),
-"idle": SubResource("Animation_mxvnp"),
-"keys": SubResource("Animation_8wnue"),
-"use_spirit": SubResource("Animation_00071")
+&"RESET": SubResource("Animation_tp53r"),
+&"attack": SubResource("Animation_ge35c"),
+&"idle": SubResource("Animation_mxvnp"),
+&"keys": SubResource("Animation_8wnue"),
+&"use_spirit": SubResource("Animation_00071")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fcit"]

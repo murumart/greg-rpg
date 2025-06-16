@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://b4m723gqwp7le"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_bj5km"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_bj5km"]
 [ext_resource type="Texture2D" uid="uid://cqska2jrnb17i" path="res://sprites/characters/battle/thugs/spr_well.png" id="1_dvt0h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0o7k"]

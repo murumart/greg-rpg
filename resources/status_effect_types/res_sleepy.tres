@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://gckadrv2pw8n"]
 
-[ext_resource type="Script" path="res://resources/status_effect_types/scr_sleepy_hurt_response.gd" id="1_atppw"]
+[ext_resource type="Script" uid="uid://b3cry06f7ba86" path="res://resources/status_effect_types/scr_sleepy_hurt_response.gd" id="1_atppw"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_jkkak"]
-[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="1_smvp1"]
+[ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="1_smvp1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi5b1"]
 atlas = ExtResource("1_jkkak")

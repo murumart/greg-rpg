@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bswp6hsaf8gs"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_hv7gu"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_hv7gu"]
 [ext_resource type="Texture2D" uid="uid://c2ihg2vwsi2k7" path="res://sprites/characters/battle/spr_forgotten_enemy.png" id="1_qgys8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_si1sp"]

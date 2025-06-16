@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ycujm54lg8r5"]
 
-[ext_resource type="Script" path="res://scenes/pennistong/penni_stong.gd" id="1_l60sq"]
+[ext_resource type="Script" uid="uid://d1uea0l538s2l" path="res://scenes/pennistong/penni_stong.gd" id="1_l60sq"]
 [ext_resource type="Texture2D" uid="uid://ewqspdu3o3op" path="res://sprites/penni_stong/rps.png" id="2_r0guw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3xgc5"]

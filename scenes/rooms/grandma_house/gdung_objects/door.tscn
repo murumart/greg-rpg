@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbb0ssychwhl1"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_awymi"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_grw8v"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_grw8v"]
 
 [sub_resource type="GDScript" id="GDScript_lx5rv"]
 resource_name = "gdung_door"

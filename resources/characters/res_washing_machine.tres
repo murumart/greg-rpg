@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d2j5o7ct2wk0s"]
 
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="1_2bdja"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_xlfvf"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_xlfvf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gnbb4"]
 atlas = ExtResource("1_2bdja")

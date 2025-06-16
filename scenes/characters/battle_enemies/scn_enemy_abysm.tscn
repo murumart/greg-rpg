@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ig4plm5gwocf"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_a5pmr"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_a5pmr"]
 [ext_resource type="Texture2D" uid="uid://bhnvl7ldjih6p" path="res://sprites/characters/battle/lakeside/spr_abysm_coat.png" id="2_y0l3u"]
 [ext_resource type="Texture2D" uid="uid://cxbrsfky38cnn" path="res://sprites/characters/battle/lakeside/spr_abysm_head.png" id="3_nht1y"]
 
@@ -309,10 +309,10 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cpnlk"]
 _data = {
-"RESET": SubResource("Animation_011cy"),
-"death": SubResource("Animation_p2x66"),
-"idle": SubResource("Animation_r2kyp"),
-"use_spirit": SubResource("Animation_5tvgc")
+&"RESET": SubResource("Animation_011cy"),
+&"death": SubResource("Animation_p2x66"),
+&"idle": SubResource("Animation_r2kyp"),
+&"use_spirit": SubResource("Animation_5tvgc")
 }
 
 [node name="Benthon" type="Node2D" node_paths=PackedStringArray("animator")]

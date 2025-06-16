@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="ManaGate" load_steps=2 format=3 uid="uid://bjuchmdynrqtp"]
 
-[ext_resource type="Script" path="res://code/scr_mana_gate.gd" id="1_lracc"]
+[ext_resource type="Script" uid="uid://8yc8cim0j2kt" path="res://code/scr_mana_gate.gd" id="1_lracc"]
 
 [resource]
 script = ExtResource("1_lracc")
 use = 1
+gender = 7

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1yb8i3bjtnci"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_or80m"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_erwuj"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_erwuj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_15gbx"]
 size = Vector2(16, 2)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://kqx43gmkaehn"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_triqe"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="2_vqd7j"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_vqd7j"]
 
 [sub_resource type="Animation" id="Animation_5abij"]
 length = 0.001
@@ -61,8 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bc7vf"]
 _data = {
-"RESET": SubResource("Animation_5abij"),
-"squish": SubResource("Animation_hjbix")
+&"RESET": SubResource("Animation_5abij"),
+&"squish": SubResource("Animation_hjbix")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ajm0"]

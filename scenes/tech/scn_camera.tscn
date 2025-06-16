@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ekxwo70dmot1"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_camera.gd" id="1_0h3mb"]
+[ext_resource type="Script" uid="uid://37fa36a8rhj0" path="res://scenes/tech/scr_camera.gd" id="1_0h3mb"]
 
 [node name="Camera" type="Camera2D"]
 process_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://emxihek3ybla"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_store_shelf.gd" id="1_ysbrw"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_ueb27"]
+[ext_resource type="Script" uid="uid://dywxnc33otryc" path="res://scenes/decor/scr_store_shelf.gd" id="1_ysbrw"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_ueb27"]
 [ext_resource type="Texture2D" uid="uid://kqe5b54mesmb" path="res://sprites/world/object/store_shelves/spr_empty.png" id="3_kbg3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okccm"]

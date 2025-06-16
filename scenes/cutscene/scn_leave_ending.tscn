@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://dy1g1vyw8gd8s"]
 
-[ext_resource type="Script" path="res://scenes/cutscene/scr_leave_ending.gd" id="1_efdju"]
+[ext_resource type="Script" uid="uid://b6k17cgh5v427" path="res://scenes/cutscene/scr_leave_ending.gd" id="1_efdju"]
 [ext_resource type="SpriteFrames" uid="uid://cgg6yedlort55" path="res://resources/characters/sfr_greg.tres" id="2_dkmg4"]
 [ext_resource type="AudioStream" uid="uid://bdvkphr5htspv" path="res://sounds/walking/bye.ogg" id="3_f2ajq"]
 [ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="3_ubqcj"]
 [ext_resource type="Texture2D" uid="uid://o0ja61tpwc4a" path="res://sprites/world/building/spr_road.png" id="4_iu7qt"]
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="4_rn2di"]
-[ext_resource type="Script" path="res://code/scr_canvas_modulate_group.gd" id="7_4hf52"]
-[ext_resource type="Script" path="res://code/scr_color_container.gd" id="8_850yq"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="7_4hf52"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="8_850yq"]
 [ext_resource type="AudioStream" uid="uid://byqw0xlh82vyb" path="res://sounds/crickets.ogg" id="9_mq61k"]
 
 [sub_resource type="Shader" id="Shader_hafu8"]

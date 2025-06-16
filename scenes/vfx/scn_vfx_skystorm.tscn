@@ -254,8 +254,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_12bn6"]
 _data = {
-"RESET": SubResource("Animation_xnsgn"),
-"default": SubResource("Animation_3vh50")
+&"RESET": SubResource("Animation_xnsgn"),
+&"default": SubResource("Animation_3vh50")
 }
 
 [sub_resource type="Gradient" id="Gradient_22207"]

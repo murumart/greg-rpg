@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwdd3nrn7i2ob"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_0fybo"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_0fybo"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_51pa8"]
 
 [sub_resource type="Animation" id="Animation_qwsky"]
@@ -256,9 +256,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vwm51"]
 _data = {
-"RESET": SubResource("Animation_qwsky"),
-"attack": SubResource("Animation_ngrfr"),
-"idle": SubResource("Animation_vsq6t")
+&"RESET": SubResource("Animation_qwsky"),
+&"attack": SubResource("Animation_ngrfr"),
+&"idle": SubResource("Animation_vsq6t")
 }
 
 [node name="Aardvark" type="Node2D" node_paths=PackedStringArray("animator")]

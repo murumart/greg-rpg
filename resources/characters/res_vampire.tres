@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://vqh6hrkc2qpk"]
 
 [ext_resource type="Texture2D" uid="uid://umffkrmgtydd" path="res://sprites/characters/portraits/spr_portrait_vampire_girl.png" id="1_5mjvp"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_o02g4"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_o02g4"]
 
 [resource]
 script = ExtResource("1_o02g4")

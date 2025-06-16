@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ou1blsidn1su"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_enemy_spawner.gd" id="1_jv8nd"]
+[ext_resource type="Script" uid="uid://bggty3j3px056" path="res://scenes/tech/scr_enemy_spawner.gd" id="1_jv8nd"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_35lj2"]
 
 [node name="EnemySpawner" type="Node2D" groups=["save_me", "thug_spawners"]]

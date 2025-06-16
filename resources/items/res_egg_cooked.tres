@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://clreif7f5rcqn"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://clreif7f5rcqn"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_2kplr"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="2_5ah5i"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_2kplr"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_glktu"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="2_5ah5i"]
 [ext_resource type="Texture2D" uid="uid://dlc5g4jf7ussx" path="res://sprites/items/spr_cooked_egg.png" id="3_adbbg"]
 
 [sub_resource type="Resource" id="Resource_gn6gu"]
@@ -10,17 +11,22 @@ health = 89.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+gender = 0
+effects = Array[ExtResource("1_glktu")]([])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
-reveal_enemy_info = false
+message_user = &""
+meta = {}
 
 [resource]
 script = ExtResource("2_5ah5i")

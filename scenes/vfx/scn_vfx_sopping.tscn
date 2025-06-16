@@ -69,8 +69,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_db3hx"]
 _data = {
-"RESET": SubResource("Animation_p4bq1"),
-"default": SubResource("Animation_o6ob2")
+&"RESET": SubResource("Animation_p4bq1"),
+&"default": SubResource("Animation_o6ob2")
 }
 
 [node name="VfxSopping" type="Node2D"]

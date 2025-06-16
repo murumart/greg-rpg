@@ -89,8 +89,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqvcl"]
 _data = {
-"RESET": SubResource("Animation_3gt45"),
-"default": SubResource("Animation_5fjgf")
+&"RESET": SubResource("Animation_3gt45"),
+&"default": SubResource("Animation_5fjgf")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34dx6"]

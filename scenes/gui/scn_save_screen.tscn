@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bju0euwxosrud"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_mqtim"]
-[ext_resource type="Script" path="res://scenes/gui/scr_save_screen.gd" id="2_h7lsi"]
-[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="3_1c2wv"]
+[ext_resource type="Script" uid="uid://ds6qefaaj5v4u" path="res://scenes/gui/scr_save_screen.gd" id="2_h7lsi"]
+[ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="3_1c2wv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rer5"]
 content_margin_left = 1.0

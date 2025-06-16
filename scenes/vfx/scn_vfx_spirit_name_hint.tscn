@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bn42modbosehc"]
 
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_spirit_name_hint.gd" id="1_s5mtt"]
+[ext_resource type="Script" uid="uid://b3dni0eskfx76" path="res://scenes/vfx/scr_vfx_spirit_name_hint.gd" id="1_s5mtt"]
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ogb4b"]
 [ext_resource type="SpriteFrames" uid="uid://ddlqe2u756lpy" path="res://scenes/vfx/sfr_spirit_unknown.tres" id="3_r8ijn"]
 

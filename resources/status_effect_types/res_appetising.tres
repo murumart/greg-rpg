@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="StatusEffectType" load_steps=4 format=3 uid="uid://01wa724bajsf"]
 
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_rmino"]
-[ext_resource type="Script" path="res://code/scr_status_effect_type.gd" id="2_ffxiv"]
+[ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="2_ffxiv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1fhd"]
 atlas = ExtResource("1_rmino")

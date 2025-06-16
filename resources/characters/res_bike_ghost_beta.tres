@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://cbsinrwa443op"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_fnh2w"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_fnh2w"]
 [ext_resource type="Texture2D" uid="uid://b20yovsmiif8x" path="res://sprites/characters/portraits/spr_portrait_bike_beta.png" id="1_p5706"]
 [ext_resource type="AudioStream" uid="uid://d2jk7oc1csuhy" path="res://sounds/talking/bike_ghost.ogg" id="3_c7i3b"]
 
@@ -8,7 +8,6 @@
 random_pitch = 1.33
 streams_count = 1
 stream_0/stream = ExtResource("3_c7i3b")
-stream_0/weight = 1.0
 
 [resource]
 script = ExtResource("1_fnh2w")

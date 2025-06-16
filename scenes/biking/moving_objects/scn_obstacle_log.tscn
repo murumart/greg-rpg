@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ynums4xe2afs"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_obstacle.gd" id="1_f0ahl"]
+[ext_resource type="Script" uid="uid://d1o6aamqs7471" path="res://scenes/biking/moving_objects/scr_biking_obstacle.gd" id="1_f0ahl"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_c2srh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lre6j"]

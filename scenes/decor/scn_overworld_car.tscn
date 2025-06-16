@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dutagwpfyc38h"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_overworld_car.gd" id="1_vjj1t"]
+[ext_resource type="Script" uid="uid://dh56rpisdardm" path="res://scenes/decor/scr_overworld_car.gd" id="1_vjj1t"]
 [ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="2_m88pi"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="3_e1sfs"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtvsshfr18lnh"]
+[gd_scene load_steps=8 format=3 uid="uid://dtvsshfr18lnh"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_lt34x"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_kid_overworld.gd" id="2_6yd75"]
+[ext_resource type="Script" uid="uid://ds7ssk5r687ax" path="res://scenes/characters/overworld/scr_kid_overworld.gd" id="2_6yd75"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="3_rr505"]
+[ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="3_vys0y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdw3p"]
 resource_local_to_scene = true
@@ -18,7 +19,7 @@ radius = 32.0
 
 [node name="KidOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_lt34x")]
 script = ExtResource("2_6yd75")
-trades = Array[Resource("res://code/scr_exchange.gd")]([])
+trades = Array[ExtResource("3_vys0y")]([])
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape" parent="." index="0"]

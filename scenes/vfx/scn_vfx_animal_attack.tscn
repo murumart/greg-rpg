@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://d33kkt8vspgkd"]
 
 [ext_resource type="Texture2D" uid="uid://b2uhkhasj6gxs" path="res://sprites/vfx/spr_animalattack.png" id="1_vb3uu"]
-[ext_resource type="AudioStream" uid="uid://bmwvwsbjkvcdk" path="res://sounds/snd_animal_bite.ogg" id="2_uq82k"]
+[ext_resource type="AudioStream" uid="uid://bmwvwsbjkvcdk" path="res://sounds/animal_bite.ogg" id="2_uq82k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8psf"]
 atlas = ExtResource("1_vb3uu")
@@ -193,8 +193,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ymrr"]
 _data = {
-"RESET": SubResource("Animation_ksxin"),
-"default": SubResource("Animation_g58wv")
+&"RESET": SubResource("Animation_ksxin"),
+&"default": SubResource("Animation_g58wv")
 }
 
 [node name="VfxAnimalAttack" type="Node2D"]

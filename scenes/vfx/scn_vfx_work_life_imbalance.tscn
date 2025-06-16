@@ -118,8 +118,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q0wug"]
 _data = {
-"RESET": SubResource("Animation_6plfd"),
-"default": SubResource("Animation_3jdeo")
+&"RESET": SubResource("Animation_6plfd"),
+&"default": SubResource("Animation_3jdeo")
 }
 
 [node name="VfxWorkLifeImbalance" type="Node2D"]

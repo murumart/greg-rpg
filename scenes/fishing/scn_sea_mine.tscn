@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://x1o51mb3ov33"]
 
-[ext_resource type="Script" path="res://scenes/fishing/scr_fish.gd" id="1_803tt"]
+[ext_resource type="Script" uid="uid://emr5i8v8dqoq" path="res://scenes/fishing/scr_fish.gd" id="1_803tt"]
 [ext_resource type="Texture2D" uid="uid://u28qdmce8gse" path="res://sprites/fishing/spr_blurry_sea_mine.png" id="2_efmaa"]
-[ext_resource type="Shader" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_mgsme"]
+[ext_resource type="Shader" uid="uid://tkxwqkbtxfo8" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_mgsme"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_udhu3"]
 shader = ExtResource("2_mgsme")
@@ -37,7 +37,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hoqcx"]
 _data = {
-"catch": SubResource("Animation_styve")
+&"catch": SubResource("Animation_styve")
 }
 
 [node name="FishingSeaMine" type="Node2D" groups=["fishing_fish"]]

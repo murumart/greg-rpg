@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://c2gl4k6xnmud6"]
 
 [ext_resource type="Texture2D" uid="uid://dnknk25juokeu" path="res://sprites/characters/portraits/spr_portrait_bike_ghost.png" id="1_68e1p"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="2_4e27u"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_4e27u"]
 [ext_resource type="AudioStream" uid="uid://d2jk7oc1csuhy" path="res://sounds/talking/bike_ghost.ogg" id="3_qh8ga"]
 
 [resource]

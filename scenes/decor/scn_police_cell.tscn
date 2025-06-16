@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://l3bq5b3qrfgl"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_police_cell.gd" id="1_0xvi1"]
+[ext_resource type="Script" uid="uid://djb42sig5e55m" path="res://scenes/decor/scr_police_cell.gd" id="1_0xvi1"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="2_micmi"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="3_p24br"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="3_p24br"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kn5e"]
 size = Vector2(10, 5)

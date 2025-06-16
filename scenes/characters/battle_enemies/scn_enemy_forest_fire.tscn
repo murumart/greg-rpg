@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c34sc0n27wh2t"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_x23wt"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_x23wt"]
 [ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="2_ra7f7"]
 [ext_resource type="Texture2D" uid="uid://5m1le3nirur1" path="res://sprites/vfx/spr_fire.png" id="3_slqds"]
 

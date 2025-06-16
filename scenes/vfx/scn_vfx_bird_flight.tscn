@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://d1whcru0fbstr"]
 
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="1_1kmkn"]
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_bird_flight.gd" id="1_qmt70"]
+[ext_resource type="Script" uid="uid://cbwre3bnoel8q" path="res://scenes/vfx/scr_vfx_bird_flight.gd" id="1_qmt70"]
 [ext_resource type="AudioStream" uid="uid://d0hdnl64at3ls" path="res://sounds/birdflap.ogg" id="2_xnohw"]
 [ext_resource type="Texture2D" uid="uid://btvgtu24mmlud" path="res://sprites/vfx/feather.png" id="4_mqisx"]
 
@@ -113,7 +113,6 @@ animations = [{
 random_volume_offset_db = 2.8
 streams_count = 1
 stream_0/stream = ExtResource("2_xnohw")
-stream_0/weight = 1.0
 
 [sub_resource type="Curve" id="Curve_24jyq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.113794, 1), 0.0, 0.0, 0, 0, Vector2(0.628617, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]

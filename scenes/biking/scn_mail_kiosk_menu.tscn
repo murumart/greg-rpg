@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://c4nce4mpsr7k6"]
 
-[ext_resource type="Script" path="res://scenes/biking/scr_mail_kiosk_menu.gd" id="1_0a2qn"]
+[ext_resource type="Script" uid="uid://dhjyhs7sxousu" path="res://scenes/biking/scr_mail_kiosk_menu.gd" id="1_0a2qn"]
 [ext_resource type="Texture2D" uid="uid://bj0rqyhomlrjn" path="res://sprites/characters/portraits/spr_front_mail_man.png" id="2_5be7v"]
 [ext_resource type="Texture2D" uid="uid://dk7grnw6404li" path="res://sprites/biking/background/spr_mail_man_table.png" id="2_8in00"]
-[ext_resource type="Script" path="res://code/scr_dialogue_box.gd" id="2_85fyn"]
+[ext_resource type="Script" uid="uid://dwqmbejm2fknv" path="res://code/scr_dialogue_box.gd" id="2_85fyn"]
 [ext_resource type="Texture2D" uid="uid://dnllcdqtg4q84" path="res://sprites/items/spr_item_bike_helmet.png" id="3_e0yq6"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="5_8wxff"]
-[ext_resource type="Script" path="res://code/scr_textbox.gd" id="6_bw1u3"]
-[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="8_cw2k1"]
+[ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="6_bw1u3"]
+[ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="8_cw2k1"]
 [ext_resource type="Texture2D" uid="uid://bm4rwxl0motml" path="res://sprites/characters/portraits/spr_portrait_mail_man.png" id="9_f427b"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="9_qnob4"]
 

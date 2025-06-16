@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://0dl2g8vd0wn7"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_8toiu"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_8toiu"]
 [ext_resource type="Texture2D" uid="uid://cn6wt2cfuv03q" path="res://sprites/characters/battle/animals/spr_wild_lizard.png" id="2_mkrpv"]
-[ext_resource type="Script" path="res://code/scr_copy_greg_stats_component.gd" id="3_wqo30"]
+[ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="3_wqo30"]
 
 [node name="WildLizard" type="Node2D"]
 script = ExtResource("1_8toiu")

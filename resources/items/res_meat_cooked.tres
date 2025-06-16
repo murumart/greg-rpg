@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://b3cfwun3f5x4r"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_3aqc5"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_bcncu"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_p0fje"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_3aqc5"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_bcncu"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_p0fje"]
 [ext_resource type="Texture2D" uid="uid://eu1h3bhv5er4" path="res://sprites/items/spr_item_meat_cooked.png" id="3_ts2n4"]
 
 [sub_resource type="Resource" id="Resource_xlvor"]
@@ -29,7 +29,9 @@ gender = 0
 effects = Array[ExtResource("1_3aqc5")]([SubResource("Resource_xlvor")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

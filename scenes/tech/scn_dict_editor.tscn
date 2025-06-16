@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://el0lm8hhpeiu"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_dict_editor.gd" id="1_d74wp"]
+[ext_resource type="Script" uid="uid://c3enp3x7pdk47" path="res://scenes/tech/scr_dict_editor.gd" id="1_d74wp"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_rwk82"]
 
 [sub_resource type="SystemFont" id="SystemFont_ipupu"]

@@ -56,8 +56,8 @@ noise = SubResource("FastNoiseLite_x55jn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_huapp"]
 shader = SubResource("Shader_07h0l")
-shader_parameter/speed_mult = 1.0
 shader_parameter/noise_sampler = SubResource("NoiseTexture2D_fn4x0")
+shader_parameter/speed_mult = 1.0
 
 [sub_resource type="Curve" id="Curve_cvkma"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

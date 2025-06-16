@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3grs3liet5e4"]
 
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_powerline.gd" id="1_dnkul"]
+[ext_resource type="Script" uid="uid://b0kgs17cw8xw5" path="res://scenes/vfx/scr_vfx_powerline.gd" id="1_dnkul"]
 
 [sub_resource type="Gradient" id="Gradient_22rxs"]
 resource_local_to_scene = true

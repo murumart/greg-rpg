@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3fchv7x6qrpx"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_pickable_item.gd" id="1_vh1ta"]
+[ext_resource type="Script" uid="uid://dvtsobojio3jm" path="res://scenes/decor/scr_pickable_item.gd" id="1_vh1ta"]
 [ext_resource type="Texture2D" uid="uid://c0tclfmp77fkd" path="res://sprites/items/spr_sleepy_flower.png" id="2_1vmns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wuhv"]

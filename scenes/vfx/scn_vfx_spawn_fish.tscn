@@ -118,8 +118,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1tx34"]
 _data = {
-"RESET": SubResource("Animation_etrih"),
-"default": SubResource("Animation_nuh0s")
+&"RESET": SubResource("Animation_etrih"),
+&"default": SubResource("Animation_nuh0s")
 }
 
 [node name="VfxSpawnFish" type="Node2D"]

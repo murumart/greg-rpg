@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://j0hlaeya17sp"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_multipanther.gd" id="1_7nxnl"]
+[ext_resource type="Script" uid="uid://bkrmc838v7cgw" path="res://scenes/characters/battle_enemies/scr_enemy_multipanther.gd" id="1_7nxnl"]
 [ext_resource type="Texture2D" uid="uid://0h7fiv6qxdyd" path="res://sprites/characters/battle/cats/spr_multipanther.png" id="2_b4rfq"]
-[ext_resource type="Script" path="res://scenes/tech/scr_line_wiggler.gd" id="3_urbci"]
-[ext_resource type="Script" path="res://code/scr_sin_animator.gd" id="4_q27c4"]
+[ext_resource type="Script" uid="uid://ddv1bewkt7e4b" path="res://scenes/tech/scr_line_wiggler.gd" id="3_urbci"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="4_q27c4"]
 [ext_resource type="Texture2D" uid="uid://bauv3inxqco72" path="res://sprites/characters/battle/cats/spr_cat.png" id="5_mgowv"]
 
 [sub_resource type="Gradient" id="Gradient_xkt0a"]

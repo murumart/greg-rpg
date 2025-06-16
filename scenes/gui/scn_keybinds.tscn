@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxea13a1qe1mf"]
 
-[ext_resource type="Script" path="res://scenes/gui/scr_keybinds.gd" id="1_u5ou7"]
+[ext_resource type="Script" uid="uid://eb27tkj7ajlx" path="res://scenes/gui/scr_keybinds.gd" id="1_u5ou7"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_4tixd"]
 
 [node name="Keybinds" type="Panel"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1ofiww22d6i3"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_oy1h3"]
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_damage_number.gd" id="1_yuwj6"]
+[ext_resource type="Script" uid="uid://jvrxmv7grruv" path="res://scenes/vfx/scr_vfx_damage_number.gd" id="1_yuwj6"]
 
 [sub_resource type="Animation" id="Animation_duk1x"]
 length = 0.001
@@ -121,8 +121,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_63jk0"]
 _data = {
-"RESET": SubResource("Animation_duk1x"),
-"default": SubResource("Animation_2p12k")
+&"RESET": SubResource("Animation_duk1x"),
+&"default": SubResource("Animation_2p12k")
 }
 
 [node name="DamageNumber" type="Node2D"]

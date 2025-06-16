@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_3qde5"]
 [ext_resource type="Texture2D" uid="uid://cubr172ay7b1l" path="res://sprites/photos/spr_sun.png" id="2_obota"]
-[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_ubha3"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="2_ubha3"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qix36"]
 input_name = "time"

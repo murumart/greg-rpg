@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://u236x81t2hu5"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_pil78"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_pil78"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_tn5wl"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_worm_component.gd" id="3_wncoe"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="4_cnnnr"]
+[ext_resource type="Script" uid="uid://dsgd3lhs4v205" path="res://scenes/characters/battle_enemies/scr_worm_component.gd" id="3_wncoe"]
+[ext_resource type="Script" uid="uid://b66w5glrigri6" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="4_cnnnr"]
 
 [node name="Worm" type="Node2D"]
 script = ExtResource("1_pil78")

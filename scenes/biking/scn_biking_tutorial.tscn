@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bsauwwb1gxpvo"]
 
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="1_u5wnd"]
-[ext_resource type="Script" path="res://scenes/biking/scr_biking_tutorial.gd" id="1_ylibt"]
+[ext_resource type="Script" uid="uid://b1e8g4nnmopj5" path="res://scenes/biking/scr_biking_tutorial.gd" id="1_ylibt"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_43iti"]
 [ext_resource type="Texture2D" uid="uid://bfr6g67ugdoth" path="res://sprites/characters/overworld/spr_mail_man_overworld.png" id="3_svac5"]
 [ext_resource type="AudioStream" uid="uid://xwiyr3u3ojec" path="res://sounds/biking_harp.ogg" id="4_37iql"]
@@ -110,8 +110,8 @@ tracks/3/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x6mdt"]
 _data = {
-"RESET": SubResource("Animation_e24rn"),
-"intro": SubResource("Animation_b1bsh")
+&"RESET": SubResource("Animation_e24rn"),
+&"intro": SubResource("Animation_b1bsh")
 }
 
 [node name="BikingTutorial" type="Node2D"]

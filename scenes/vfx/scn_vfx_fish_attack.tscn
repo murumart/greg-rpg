@@ -251,8 +251,8 @@ tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gwqs"]
 _data = {
-"RESET": SubResource("Animation_42bvx"),
-"default": SubResource("Animation_wsw6e")
+&"RESET": SubResource("Animation_42bvx"),
+&"default": SubResource("Animation_wsw6e")
 }
 
 [node name="VfxFishAttack" type="Node2D"]

@@ -139,8 +139,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hpt1j"]
 _data = {
-"RESET": SubResource("Animation_sia1s"),
-"default": SubResource("Animation_u68tp")
+&"RESET": SubResource("Animation_sia1s"),
+&"default": SubResource("Animation_u68tp")
 }
 
 [node name="VfxIsotoxin" type="Node2D"]

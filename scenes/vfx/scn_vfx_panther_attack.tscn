@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqyo7vmw7nsxo"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_line_wiggler.gd" id="1_8w2pk"]
+[ext_resource type="Script" uid="uid://ddv1bewkt7e4b" path="res://scenes/tech/scr_line_wiggler.gd" id="1_8w2pk"]
 [ext_resource type="AudioStream" uid="uid://bdeurbfc2b2j1" path="res://sounds/cat_attack.ogg" id="2_yw2t8"]
 
 [sub_resource type="Shader" id="Shader_4yfe3"]
@@ -24,6 +24,21 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i5tj"]
 shader = SubResource("Shader_4yfe3")
+
+[sub_resource type="Animation" id="Animation_y5x5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OutlineMe:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bpu4r"]
 resource_name = "new_animation"
@@ -70,25 +85,10 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_y5x5b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("OutlineMe:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j6e4m"]
 _data = {
-"RESET": SubResource("Animation_y5x5b"),
-"new_animation": SubResource("Animation_bpu4r")
+&"RESET": SubResource("Animation_y5x5b"),
+&"new_animation": SubResource("Animation_bpu4r")
 }
 
 [node name="PantherAttack" type="Node2D"]

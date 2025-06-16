@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cn2uab4x1iug5"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_h08xf"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_h08xf"]
 [ext_resource type="Texture2D" uid="uid://bcdj7lnnje8bf" path="res://sprites/characters/battle/car/spr_car_battle.png" id="1_uwc46"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_luskk"]

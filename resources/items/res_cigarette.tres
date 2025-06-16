@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://0vvln54pbnnu"]
 
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_lkvka"]
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_uwnfg"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_62ign"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_lkvka"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_uwnfg"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_62ign"]
 [ext_resource type="Texture2D" uid="uid://bkhs1kcfpuare" path="res://sprites/items/spr_item_cigarette.png" id="2_rd64e"]
 
 [sub_resource type="Resource" id="Resource_gpl83"]

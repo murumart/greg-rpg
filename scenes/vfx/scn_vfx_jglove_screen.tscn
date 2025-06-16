@@ -202,8 +202,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_181w8"]
 _data = {
-"RESET": SubResource("Animation_cr5wy"),
-"default": SubResource("Animation_f5gxb")
+&"RESET": SubResource("Animation_cr5wy"),
+&"default": SubResource("Animation_f5gxb")
 }
 
 [node name="VfxJgloveScreen" type="Node2D"]

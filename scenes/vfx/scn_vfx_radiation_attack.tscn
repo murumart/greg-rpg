@@ -15,8 +15,7 @@ gradient = SubResource("Gradient_77wge")
 use_hdr = true
 
 [sub_resource type="Curve" id="Curve_h4xxd"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, -10.5264), 0.0, 0.0, 0, 0, Vector2(0.269783, -18.5009), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -38,6 +37,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 18.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -139.6
 angle_max = 174.5
 spread = 180.0
@@ -219,8 +219,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ie1wd"]
 _data = {
-"RESET": SubResource("Animation_xgt6k"),
-"default": SubResource("Animation_kc76t")
+&"RESET": SubResource("Animation_xgt6k"),
+&"default": SubResource("Animation_kc76t")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ynwit"]

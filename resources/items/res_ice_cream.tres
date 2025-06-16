@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://baqtwsbjph2uw"]
 
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_clmmb"]
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_i6xc3"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_7rm8t"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_clmmb"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_i6xc3"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_7rm8t"]
 [ext_resource type="Texture2D" uid="uid://c74y45c80ykek" path="res://sprites/items/spr_ice_cream.png" id="4_7twml"]
 
 [sub_resource type="Resource" id="Resource_1crn8"]
@@ -37,6 +37,7 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

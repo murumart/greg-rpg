@@ -109,8 +109,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qk8gv"]
 _data = {
-"RESET": SubResource("Animation_1ioka"),
-"default": SubResource("Animation_bpvym")
+&"RESET": SubResource("Animation_1ioka"),
+&"default": SubResource("Animation_bpvym")
 }
 
 [node name="BattleBackground" instance=ExtResource("1_g01qy")]

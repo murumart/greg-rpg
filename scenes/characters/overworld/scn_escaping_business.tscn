@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_p3bpj"]
 [ext_resource type="Texture2D" uid="uid://d0unrqngckm85" path="res://sprites/characters/overworld/spr_business_overworld.png" id="2_8my1b"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_escaping_business.gd" id="2_j3y10"]
+[ext_resource type="Script" uid="uid://crncmo2owp1y3" path="res://scenes/characters/overworld/scr_escaping_business.gd" id="2_j3y10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esqgc"]
 resource_local_to_scene = true

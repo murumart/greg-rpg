@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dv7g42ix5k5le"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_6k3xs"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_6k3xs"]
 [ext_resource type="Texture2D" uid="uid://bcdj7lnnje8bf" path="res://sprites/characters/battle/car/spr_car_battle.png" id="2_kloqt"]
 [ext_resource type="Texture2D" uid="uid://col772eny3tlj" path="res://sprites/characters/battle/car/spr_car_lights.png" id="3_8yjnt"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_car_sprite.gd" id="3_i52wk"]
+[ext_resource type="Script" uid="uid://dtwrrpchdv887" path="res://scenes/characters/battle_enemies/scr_car_sprite.gd" id="3_i52wk"]
 [ext_resource type="Texture2D" uid="uid://crjjioqirx860" path="res://sprites/characters/battle/car/spr_car_blur.png" id="4_3ilxp"]
 
 [sub_resource type="Animation" id="Animation_e3j8s"]
@@ -298,10 +298,10 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvbyp"]
 _data = {
-"RESET": SubResource("Animation_e3j8s"),
-"attack": SubResource("Animation_jkxeh"),
-"idle": SubResource("Animation_ahhd2"),
-"use_spirit": SubResource("Animation_obxov")
+&"RESET": SubResource("Animation_e3j8s"),
+&"attack": SubResource("Animation_jkxeh"),
+&"idle": SubResource("Animation_ahhd2"),
+&"use_spirit": SubResource("Animation_obxov")
 }
 
 [node name="Car" type="Node2D" node_paths=PackedStringArray("animator") groups=["battle_actors"]]

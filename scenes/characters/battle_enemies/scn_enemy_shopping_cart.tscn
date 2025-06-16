@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cko1ubxcv6llv"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_pvxis"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_pvxis"]
 [ext_resource type="Texture2D" uid="uid://ddtn5wrqi5pa5" path="res://sprites/characters/battle/thugs/spr_stray_cart.png" id="2_07h6y"]
 [ext_resource type="Texture2D" uid="uid://caxtnijbq1v7k" path="res://sprites/photos/spr_shopping_cart.png" id="3_wijol"]
 
@@ -160,9 +160,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e40oi"]
 _data = {
-"RESET": SubResource("Animation_3nsy4"),
-"death": SubResource("Animation_lo0il"),
-"idle": SubResource("Animation_rb56y")
+&"RESET": SubResource("Animation_3nsy4"),
+&"death": SubResource("Animation_lo0il"),
+&"idle": SubResource("Animation_rb56y")
 }
 
 [node name="ShoppingCart" type="Node2D" node_paths=PackedStringArray("animator")]

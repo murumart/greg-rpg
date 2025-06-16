@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dv6xs1kilheff"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_ivqmb"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_wi6ms"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_ussbw"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_ivqmb"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_wi6ms"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_ussbw"]
 [ext_resource type="AudioStream" uid="uid://ctadct610sv6e" path="res://sounds/spirit/splash_attack.ogg" id="3_7noqs"]
 [ext_resource type="Texture2D" uid="uid://c2u242vhto3fc" path="res://sprites/items/spr_water_balloon.png" id="5_bytt0"]
 
@@ -32,6 +32,7 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

@@ -1,26 +1,26 @@
 [gd_scene load_steps=36 format=4 uid="uid://cc13veoqxe5gd"]
 
-[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_flcgy"]
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_flcgy"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_01ui4"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_dfshh"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_mgdvh"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_hdt53"]
-[ext_resource type="Script" path="res://scenes/rooms/store/restroom/scr_daily_trash.gd" id="6_4d1bw"]
+[ext_resource type="Script" uid="uid://bru6318raaf7o" path="res://scenes/rooms/store/restroom/scr_daily_trash.gd" id="6_4d1bw"]
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="7_k1mj7"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="7_n8fep"]
 [ext_resource type="Texture2D" uid="uid://dmrheciqdly6b" path="res://sprites/gui/spr_daily_item_poster.png" id="8_wl6bd"]
 [ext_resource type="Texture2D" uid="uid://crxj362hugdvo" path="res://sprites/world/object/spr_daily_poster.png" id="9_83jlk"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="10_x1fn2"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="10_x1fn2"]
 [ext_resource type="AudioStream" uid="uid://drgf3g33njdra" path="res://sounds/coin.ogg" id="11_0k1ew"]
-[ext_resource type="Script" path="res://scenes/rooms/store/restroom/scr_stalls.gd" id="13_371wy"]
+[ext_resource type="Script" uid="uid://cq4vl2mihdeeo" path="res://scenes/rooms/store/restroom/scr_stalls.gd" id="13_371wy"]
 [ext_resource type="Texture2D" uid="uid://b7kgpcxdacnq7" path="res://sprites/world/object/spr_restroom_stalls.png" id="13_a2olc"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="14_dhvoq"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="15_hvmee"]
-[ext_resource type="Script" path="res://scenes/rooms/store/restroom/scr_gambling_ui.gd" id="17_51g13"]
+[ext_resource type="Script" uid="uid://c5mgwp4lc2il0" path="res://scenes/rooms/store/restroom/scr_gambling_ui.gd" id="17_51g13"]
 [ext_resource type="PackedScene" uid="uid://lg42yh13ebp1" path="res://scenes/rooms/store/restroom/scn_trash_display.tscn" id="17_pcmp6"]
 [ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="17_vx1by"]
 [ext_resource type="Texture2D" uid="uid://x4cs3ynswavu" path="res://sprites/world/object/spr_restroom_sinks.png" id="20_qcn5b"]
-[ext_resource type="Script" path="res://scenes/tech/scr_inspect_area.gd" id="21_0qtim"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="21_0qtim"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gkmwl"]
 blend_mode = 3
@@ -80,6 +80,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 8.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 1.0

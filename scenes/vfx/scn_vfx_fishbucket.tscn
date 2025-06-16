@@ -47,6 +47,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(1, -2, 0)
 spread = 121.36
 initial_velocity_min = 24.24
@@ -249,8 +250,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yjrw8"]
 _data = {
-"RESET": SubResource("Animation_6iv1m"),
-"default": SubResource("Animation_qm840")
+&"RESET": SubResource("Animation_6iv1m"),
+&"default": SubResource("Animation_qm840")
 }
 
 [node name="VfxFishbucket" type="Node2D"]

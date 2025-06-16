@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://d1ftyp8xgkjof"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_5r2v8"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_eolns"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_udgv0"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_5r2v8"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_eolns"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_udgv0"]
 [ext_resource type="Texture2D" uid="uid://bmq62bg26n2p6" path="res://sprites/items/spr_cough_syrup.png" id="3_tjm61"]
 
 [sub_resource type="Resource" id="Resource_abky5"]
@@ -17,16 +17,22 @@ health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
+steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
+gender = 0
 effects = Array[ExtResource("1_5r2v8")]([SubResource("Resource_abky5")])
+delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
-reveal_enemy_info = false
+message_user = &""
+meta = {}
 
 [resource]
 script = ExtResource("1_eolns")

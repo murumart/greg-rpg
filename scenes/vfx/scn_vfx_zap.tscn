@@ -131,8 +131,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33eru"]
 _data = {
-"RESET": SubResource("Animation_h5umf"),
-"default": SubResource("Animation_ralit")
+&"RESET": SubResource("Animation_h5umf"),
+&"default": SubResource("Animation_ralit")
 }
 
 [node name="VfxZap" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddl8nwc21ugoo"]
 
-[ext_resource type="Script" path="res://scenes/gui/scn_user_prompt.gd" id="1_28p0v"]
+[ext_resource type="Script" uid="uid://o55o3ei4xbvb" path="res://scenes/gui/scn_user_prompt.gd" id="1_28p0v"]
 
 [node name="UserPrompt" type="Control"]
 layout_mode = 3

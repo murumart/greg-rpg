@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_bxxlt"]
 [ext_resource type="Texture2D" uid="uid://mo7ixf0806dr" path="res://sprites/spirit/spr_airspace_violation.png" id="2_1ox2j"]
-[ext_resource type="AudioStream" uid="uid://ckunj5u2giug7" path="res://sounds/spirit/snd_airspace_violation.ogg" id="3_5sb15"]
+[ext_resource type="AudioStream" uid="uid://ckunj5u2giug7" path="res://sounds/spirit/airspace_violation.ogg" id="3_5sb15"]
 
 [sub_resource type="Curve" id="Curve_bruvx"]
 bake_resolution = 64

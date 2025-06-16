@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
-[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_1wms1"]
-[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_krk2i"]
-[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="6_fm10m"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="6_kdwyn"]
-[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="7_celod"]
+[ext_resource type="Script" uid="uid://dttammgao7yih" path="res://scenes/characters/overworld/scr_wild_lizard_overworld.gd" id="2_4xx1x"]
+[ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_1wms1"]
+[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_krk2i"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="6_fm10m"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="6_kdwyn"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="7_celod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
 resource_local_to_scene = true
@@ -103,7 +103,7 @@ key = &"forest_fire"
 curve = SubResource("Curve_xgdos")
 
 [sub_resource type="Curve" id="Curve_xxdpe"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0.0676494, 1.14782), 0.0, 0.0, 0, 0, Vector2(0.139983, 2.03409), 0.0, 0.0, 0, 0, Vector2(0.191651, 3.12178), 0.0, 0.0, 0, 0, Vector2(0.363874, 4), 0.0, 0.0, 0, 0]
 point_count = 4
 

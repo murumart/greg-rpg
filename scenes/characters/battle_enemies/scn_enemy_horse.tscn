@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bsieajjshq3hc"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_nnlas"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_nnlas"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_hxcqq"]
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="3_tnim7"]
 
@@ -491,9 +491,9 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lvt0a"]
 _data = {
-"RESET": SubResource("Animation_bx7m1"),
-"death": SubResource("Animation_mvpb3"),
-"idle": SubResource("Animation_q2owa")
+&"RESET": SubResource("Animation_bx7m1"),
+&"death": SubResource("Animation_mvpb3"),
+&"idle": SubResource("Animation_q2owa")
 }
 
 [node name="Horse" type="Node2D" node_paths=PackedStringArray("animator")]

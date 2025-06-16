@@ -114,8 +114,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_udih8"]
 _data = {
-"RESET": SubResource("Animation_2boe0"),
-"default": SubResource("Animation_fnqoa")
+&"RESET": SubResource("Animation_2boe0"),
+&"default": SubResource("Animation_fnqoa")
 }
 
 [node name="VfxGotCarted" type="Node2D"]

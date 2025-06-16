@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8k7knoii14p4"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_kkb43"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_kkb43"]
 [ext_resource type="Texture2D" uid="uid://dbduaoa67tnbc" path="res://sprites/characters/battle/thugs/spr_kor_sten.png" id="2_4b1i1"]
 
 [node name="KorSten" type="Node2D"]

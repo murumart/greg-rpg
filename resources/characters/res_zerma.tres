@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://ygudmc7s2r3n"]
 
 [ext_resource type="Texture2D" uid="uid://o5gcfg3083ej" path="res://sprites/characters/portraits/spr_portrait_zerma.png" id="1_3u0nh"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="2_eugr0"]
-[ext_resource type="AudioStream" uid="uid://daxs2anjd0g3g" path="res://sounds/talking/snd_zeremy.ogg" id="3_hkgsh"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_eugr0"]
+[ext_resource type="AudioStream" uid="uid://daxs2anjd0g3g" path="res://sounds/talking/zeremy.ogg" id="3_hkgsh"]
 
 [resource]
 script = ExtResource("2_eugr0")
@@ -23,6 +23,6 @@ speed = 4.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["hotel"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

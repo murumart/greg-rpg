@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://e5p36iavtsuc"]
 
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_bird.gd" id="1_8xof1"]
+[ext_resource type="Script" uid="uid://ekq3dj5scw77" path="res://scenes/characters/overworld/scr_bird.gd" id="1_8xof1"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_2dony"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke3ye"]

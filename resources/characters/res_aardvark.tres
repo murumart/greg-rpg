@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bj78bd783n3ht"]
 
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_5tfoi"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_ht2ut"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_ht2ut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gekk"]
 atlas = ExtResource("1_5tfoi")

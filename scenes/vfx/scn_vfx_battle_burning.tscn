@@ -17,22 +17,36 @@ curve = SubResource("Curve_5oawr")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nt11s"]
 lifetime_randomness = 1.0
+particle_flag_disable_z = true
 emission_shape = 6
 emission_ring_axis = Vector3(1, 0, 0)
 emission_ring_height = 8.0
 emission_ring_radius = 5.0
 emission_ring_inner_radius = 0.0
-particle_flag_disable_z = true
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, -1, 0)
-gravity = Vector3(0, 10, 0)
 initial_velocity_max = 10.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 10, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_n8m36")
 anim_speed_min = 2.81
 anim_speed_max = 4.75
+
+[sub_resource type="Animation" id="Animation_i7u2p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ty0gp"]
 resource_name = "defauly"
@@ -64,25 +78,10 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_i7u2p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8yst"]
 _data = {
-"RESET": SubResource("Animation_i7u2p"),
-"defauly": SubResource("Animation_ty0gp")
+&"RESET": SubResource("Animation_i7u2p"),
+&"defauly": SubResource("Animation_ty0gp")
 }
 
 [node name="VfxBattleBurning" type="Node2D"]

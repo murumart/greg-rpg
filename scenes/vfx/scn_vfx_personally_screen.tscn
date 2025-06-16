@@ -177,8 +177,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bofr3"]
 _data = {
-"RESET": SubResource("Animation_cprpx"),
-"new_animation": SubResource("Animation_xr55n")
+&"RESET": SubResource("Animation_cprpx"),
+&"new_animation": SubResource("Animation_xr55n")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rmtos"]

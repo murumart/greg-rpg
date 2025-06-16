@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7kiypobvkptg"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_fish.gd" id="1_a6he8"]
+[ext_resource type="Script" uid="uid://66l1h6ymjt1x" path="res://scenes/characters/battle_enemies/scr_enemy_fish.gd" id="1_a6he8"]
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="2_1cvso"]
 
 [sub_resource type="Animation" id="Animation_reqq0"]
@@ -38,8 +38,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_078ep"]
 _data = {
-"RESET": SubResource("Animation_reqq0"),
-"idle": SubResource("Animation_mkstr")
+&"RESET": SubResource("Animation_reqq0"),
+&"idle": SubResource("Animation_mkstr")
 }
 
 [node name="Fish" type="Node2D"]

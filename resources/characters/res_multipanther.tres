@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bwgeojj6g0bdr"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_o0dki"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_o0dki"]
 [ext_resource type="Texture2D" uid="uid://bauv3inxqco72" path="res://sprites/characters/battle/cats/spr_cat.png" id="1_yagas"]
 
 [resource]

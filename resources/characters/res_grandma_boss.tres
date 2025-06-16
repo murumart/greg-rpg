@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bnwsomlj80hfp"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_7vo6p"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_7vo6p"]
 [ext_resource type="Texture2D" uid="uid://b6ccqnopkfrjf" path="res://sprites/characters/portraits/spr_portrait_grandma.png" id="1_th4gv"]
 
 [resource]

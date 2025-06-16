@@ -133,8 +133,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_humfs"]
 _data = {
-"RESET": SubResource("Animation_l6553"),
-"default": SubResource("Animation_u71q3")
+&"RESET": SubResource("Animation_l6553"),
+&"default": SubResource("Animation_u71q3")
 }
 
 [node name="SeeTownCutscene" type="CanvasGroup"]

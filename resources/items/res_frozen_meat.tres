@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bfd0toschsmxq"]
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bfd0toschsmxq"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_ejsvt"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_wlvkc"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ejsvt"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_vlcfa"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_wlvkc"]
 [ext_resource type="Texture2D" uid="uid://c36joninrwbp5" path="res://sprites/items/spr_frozen_meat.png" id="3_cophs"]
 
 [sub_resource type="Resource" id="Resource_x228n"]
@@ -19,11 +20,12 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 0
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_vlcfa")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = "brick_attack"
+message_user = &""
 meta = {}
 
 [resource]

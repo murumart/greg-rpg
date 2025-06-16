@@ -203,8 +203,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ns035"]
 _data = {
-"RESET": SubResource("Animation_humlw"),
-"new_animation": SubResource("Animation_0cii1")
+&"RESET": SubResource("Animation_humlw"),
+&"new_animation": SubResource("Animation_0cii1")
 }
 
 [node name="VfxGunBludgeon" type="Node2D"]

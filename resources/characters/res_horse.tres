@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bw7fgr18eskbj"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_c585j"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_c585j"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_mf0v1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r55qo"]

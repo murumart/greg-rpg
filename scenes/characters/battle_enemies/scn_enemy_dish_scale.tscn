@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_etmw4"]
 [ext_resource type="Texture2D" uid="uid://dnqlcua0daxsu" path="res://sprites/characters/battle/president/spr_dish.png" id="2_6xc3v"]
 [ext_resource type="Texture2D" uid="uid://d0qjrqilh0m6l" path="res://sprites/characters/battle/president/spr_dish_neck.png" id="3_s4hdd"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_neck_line_point_one_follow.gd" id="4_if78n"]
+[ext_resource type="Script" uid="uid://cbnvm4xw18q8w" path="res://scenes/characters/battle_enemies/scr_neck_line_point_one_follow.gd" id="4_if78n"]
 
 [sub_resource type="Animation" id="Animation_r8ct8"]
 length = 0.001
@@ -3110,13 +3110,13 @@ tracks/38/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5cdq0"]
 _data = {
-"RESET": SubResource("Animation_r8ct8"),
-"attack": SubResource("Animation_mx28t"),
-"death": SubResource("Animation_kbbt6"),
-"hurt": SubResource("Animation_oymie"),
-"idle": SubResource("Animation_guutq"),
-"spin": SubResource("Animation_0wycc"),
-"use_spirit": SubResource("Animation_a70di")
+&"RESET": SubResource("Animation_r8ct8"),
+&"attack": SubResource("Animation_mx28t"),
+&"death": SubResource("Animation_kbbt6"),
+&"hurt": SubResource("Animation_oymie"),
+&"idle": SubResource("Animation_guutq"),
+&"spin": SubResource("Animation_0wycc"),
+&"use_spirit": SubResource("Animation_a70di")
 }
 
 [node name="DishScale" instance=ExtResource("1_etmw4")]

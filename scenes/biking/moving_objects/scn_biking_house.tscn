@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://8jbnp2sxu8sc"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_house.gd" id="1_jah46"]
+[ext_resource type="Script" uid="uid://vjrcvtd0te4g" path="res://scenes/biking/moving_objects/scr_biking_house.gd" id="1_jah46"]
 [ext_resource type="Texture2D" uid="uid://dmwde5xnn0j72" path="res://sprites/biking/background/spr_houses.png" id="2_u7ael"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="4_0uru3"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_qesuu"]

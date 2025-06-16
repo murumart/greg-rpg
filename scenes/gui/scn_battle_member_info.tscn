@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsrntxiwcuv2v"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_qos12"]
-[ext_resource type="Script" path="res://scenes/gui/scr_battle_member_info.gd" id="2_kv8cv"]
+[ext_resource type="Script" uid="uid://cfdr23rggg00o" path="res://scenes/gui/scr_battle_member_info.gd" id="2_kv8cv"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="3_4g8c8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nw40l"]

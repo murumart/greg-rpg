@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://dnml4e1ipm7jj"]
 
-[ext_resource type="Script" path="res://scenes/fishing/scr_fish.gd" id="1_uv0y4"]
+[ext_resource type="Script" uid="uid://emr5i8v8dqoq" path="res://scenes/fishing/scr_fish.gd" id="1_uv0y4"]
 [ext_resource type="Texture2D" uid="uid://ckqqgopvkjqog" path="res://sprites/fishing/spr_fish1.png" id="2_nads7"]
-[ext_resource type="Shader" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_yqy35"]
+[ext_resource type="Shader" uid="uid://tkxwqkbtxfo8" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_yqy35"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wlj8a"]
 shader = ExtResource("2_yqy35")
@@ -228,8 +228,8 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l3i56"]
 _data = {
-"RESET": SubResource("Animation_icwn2"),
-"catch": SubResource("Animation_s8j6f")
+&"RESET": SubResource("Animation_icwn2"),
+&"catch": SubResource("Animation_s8j6f")
 }
 
 [node name="Fish" type="Node2D" groups=["fishing_fish"]]

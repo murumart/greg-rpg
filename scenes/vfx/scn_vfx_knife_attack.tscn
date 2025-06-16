@@ -147,8 +147,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mri1t"]
 _data = {
-"RESET": SubResource("Animation_vh1l7"),
-"default": SubResource("Animation_bmw17")
+&"RESET": SubResource("Animation_vh1l7"),
+&"default": SubResource("Animation_bmw17")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0ehd"]

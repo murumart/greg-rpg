@@ -1,13 +1,12 @@
 [gd_scene load_steps=36 format=3 uid="uid://dntjjltefm2ch"]
 
-[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd" id="1_jluyq"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
+[ext_resource type="Script" uid="uid://rw5d0l7g3eh2" path="res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd" id="1_jluyq"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
 [ext_resource type="Texture2D" uid="uid://bsuymjkbf0oy7" path="res://sprites/world/object/spr_pizzle_stand.png" id="2_tyf8b"]
-[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="2_uyq8g"]
+[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="2_uyq8g"]
 
 [sub_resource type="Curve" id="Curve_ioxsh"]
-min_value = 3.0
-max_value = 6.0
+_limits = [3.0, 6.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.050427, 3), 0.0, 0.0, 0, 0, Vector2(0.0538715, 4.01468), 0.0, 0.0, 0, 0, Vector2(0.250207, 4.05733), 0.0, 0.0, 0, 0, Vector2(0.253651, 5), 0.0, 0.0, 0, 0, Vector2(0.501653, 4.96694), 0.0, 0.0, 0, 0, Vector2(0.508542, 6), 0.0, 0.0, 0, 0]
 point_count = 7
 

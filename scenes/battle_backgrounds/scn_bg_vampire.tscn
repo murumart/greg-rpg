@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://b0hhsgn6wiug6"]
 
-[ext_resource type="Script" path="res://scenes/battle_backgrounds/scr_bg_vampire.gd" id="1_w554i"]
+[ext_resource type="Script" uid="uid://bjke51w7lchyj" path="res://scenes/battle_backgrounds/scr_bg_vampire.gd" id="1_w554i"]
 [ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="3_3ghhq"]
 [ext_resource type="Texture2D" uid="uid://ch7o5vjvwrmdq" path="res://sprites/photos/spr_forest1.png" id="3_4vmej"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="4_gcitl"]
@@ -862,12 +862,12 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nimk3"]
 _data = {
-"RESET": SubResource("Animation_12d4v"),
-"sec1": SubResource("Animation_2c341"),
-"sec2": SubResource("Animation_64rce"),
-"sec3": SubResource("Animation_kaya5"),
-"sec4": SubResource("Animation_2rmmg"),
-"sec7": SubResource("Animation_blwd8")
+&"RESET": SubResource("Animation_12d4v"),
+&"sec1": SubResource("Animation_2c341"),
+&"sec2": SubResource("Animation_64rce"),
+&"sec3": SubResource("Animation_kaya5"),
+&"sec4": SubResource("Animation_2rmmg"),
+&"sec7": SubResource("Animation_blwd8")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fpas6"]
@@ -945,8 +945,7 @@ blend_mode = 2
 blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_5y7lv"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, -7.4649), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 

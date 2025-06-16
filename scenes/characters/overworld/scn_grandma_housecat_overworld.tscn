@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_c6a5i"]
 [ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="2_6sx7j"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_n14ej"]
-[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="3_23not"]
-[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="4_hjfs6"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="5_8ihca"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/cats/gdung_housecat_detector.gd" id="7_52pu2"]
+[ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_n14ej"]
+[ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="3_23not"]
+[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="4_hjfs6"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="5_8ihca"]
+[ext_resource type="Script" uid="uid://b7d2ugw0rwbop" path="res://scenes/characters/overworld/cats/gdung_housecat_detector.gd" id="7_52pu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33s1w"]
 resource_local_to_scene = true
@@ -66,7 +66,7 @@ key = &"washing_machine"
 curve = SubResource("Curve_a2v2g")
 
 [sub_resource type="Curve" id="Curve_0fswf"]
-max_value = 4.0
+_limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0.505098, 1.10753), 0.0, 0.0, 0, 0, Vector2(0.718655, 1.30896), 0.0, 0.0, 0, 0, Vector2(0.735878, 2.50716), 0.0, 0.0, 0, 0, Vector2(0.811666, 4), 0.0, 0.0, 0, 0]
 point_count = 4
 

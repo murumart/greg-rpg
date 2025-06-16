@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://b2dtucrnjqlj7"]
 
 [ext_resource type="Texture2D" uid="uid://d3b2afl8yht35" path="res://sprites/characters/battle/lakeside/spr_super_fisherman.png" id="1_bdwd2"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="2_au1hy"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_au1hy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uauxx"]
 atlas = ExtResource("1_bdwd2")

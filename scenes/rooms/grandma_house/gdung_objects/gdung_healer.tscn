@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbcdsllk3863s"]
 
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.gd" id="1_fhxrm"]
+[ext_resource type="Script" uid="uid://d8clhe602dnw" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.gd" id="1_fhxrm"]
 [ext_resource type="Texture2D" uid="uid://uq2d54i8sd1n" path="res://sprites/world/building/greenhouse/spr_floor.png" id="2_vywjg"]
 [ext_resource type="Texture2D" uid="uid://cfvd6h5eit3vc" path="res://sprites/world/building/greenhouse/spr_vegetables_1.png" id="3_8h343"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="4_6co3f"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="4_6co3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh73m"]
 size = Vector2(6, 18)

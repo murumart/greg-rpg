@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bsqgtxdrih7sr"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_dcebe"]
+[ext_resource type="Script" uid="uid://bdsdnb8ryyok3" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_dcebe"]
 [ext_resource type="Texture2D" uid="uid://c8nm0q51lp42k" path="res://sprites/characters/battle/animals/spr_bird.png" id="2_fnmdv"]
 
 [sub_resource type="Gradient" id="Gradient_5jqtl"]
@@ -304,9 +304,9 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvf27"]
 _data = {
-"RESET": SubResource("Animation_hmp2e"),
-"swoop_in": SubResource("Animation_6tyod"),
-"swoop_out": SubResource("Animation_fbupd")
+&"RESET": SubResource("Animation_hmp2e"),
+&"swoop_in": SubResource("Animation_6tyod"),
+&"swoop_out": SubResource("Animation_fbupd")
 }
 
 [node name="Bird" type="Node2D" node_paths=PackedStringArray("animator")]

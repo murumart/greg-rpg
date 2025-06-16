@@ -1,10 +1,10 @@
 [gd_scene load_steps=43 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
-[ext_resource type="Script" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
+[ext_resource type="Script" uid="uid://di2ov3idlu4ln" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
 [ext_resource type="Texture2D" uid="uid://d2hgl4bddaykp" path="res://sprites/biking/background/spr_background_sky.png" id="2_4w4l6"]
 [ext_resource type="Texture2D" uid="uid://nfu7bpddugd1" path="res://sprites/biking/background/spr_background_trees.png" id="3_0esb8"]
-[ext_resource type="Script" path="res://scenes/biking/scr_biking_greg.gd" id="3_eueen"]
+[ext_resource type="Script" uid="uid://wv31dvn686yw" path="res://scenes/biking/scr_biking_greg.gd" id="3_eueen"]
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
 [ext_resource type="Texture2D" uid="uid://dirs0ik1uh6lm" path="res://sprites/biking/background/spr_town.png" id="5_0mqsj"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="7_pxwvr"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_t4p2q"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
-[ext_resource type="Script" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
+[ext_resource type="Script" uid="uid://c36opwdihcsqn" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
 [ext_resource type="AudioStream" uid="uid://ctje0ls4qog7u" path="res://sounds/paper/paper4.ogg" id="10_5fkpw"]
 [ext_resource type="Texture2D" uid="uid://dvsd0jvyaskrw" path="res://sprites/items/spr_item_masking_tape.png" id="12_hbmle"]
 
@@ -708,10 +708,10 @@ tracks/14/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl418"]
 _data = {
-"RESET": SubResource("Animation_s2qva"),
-"lob_lob": SubResource("Animation_nakyj"),
-"lob_prepare": SubResource("Animation_vfbms"),
-"pedaling": SubResource("Animation_58k4y")
+&"RESET": SubResource("Animation_s2qva"),
+&"lob_lob": SubResource("Animation_nakyj"),
+&"lob_prepare": SubResource("Animation_vfbms"),
+&"pedaling": SubResource("Animation_58k4y")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tnvd6"]

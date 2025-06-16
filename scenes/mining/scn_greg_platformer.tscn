@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://ca56k2yykgyfs"]
 
-[ext_resource type="Script" path="res://scenes/mining/scr_greg_platformer.gd" id="1_hj66a"]
+[ext_resource type="Script" uid="uid://dovrp187cie0l" path="res://scenes/mining/scr_greg_platformer.gd" id="1_hj66a"]
 [ext_resource type="Texture2D" uid="uid://ba7j8ayhal8sw" path="res://sprites/mining/spr_platformer_greg.png" id="2_dnayx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dttm6"]
@@ -806,12 +806,12 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qv11b"]
 _data = {
-"RESET": SubResource("Animation_mucxo"),
-"fall": SubResource("Animation_4ckjo"),
-"idle": SubResource("Animation_qsv5m"),
-"jump": SubResource("Animation_sta87"),
-"swing": SubResource("Animation_cm333"),
-"walking": SubResource("Animation_tnjny")
+&"RESET": SubResource("Animation_mucxo"),
+&"fall": SubResource("Animation_4ckjo"),
+&"idle": SubResource("Animation_qsv5m"),
+&"jump": SubResource("Animation_sta87"),
+&"swing": SubResource("Animation_cm333"),
+&"walking": SubResource("Animation_tnjny")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g7mgb"]

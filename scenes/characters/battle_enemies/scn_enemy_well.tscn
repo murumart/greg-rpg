@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bv38sai68pkah"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_wttet"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_wttet"]
 [ext_resource type="Texture2D" uid="uid://cqska2jrnb17i" path="res://sprites/characters/battle/thugs/spr_well.png" id="2_lahef"]
 
 [sub_resource type="Animation" id="Animation_g2u58"]
@@ -149,9 +149,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dyp6w"]
 _data = {
-"RESET": SubResource("Animation_g2u58"),
-"death": SubResource("Animation_8fvyl"),
-"idle": SubResource("Animation_grt3c")
+&"RESET": SubResource("Animation_g2u58"),
+&"death": SubResource("Animation_8fvyl"),
+&"idle": SubResource("Animation_grt3c")
 }
 
 [node name="Well" type="Node2D" node_paths=PackedStringArray("animator")]

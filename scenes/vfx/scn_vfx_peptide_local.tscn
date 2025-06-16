@@ -113,8 +113,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lkfmf"]
 _data = {
-"RESET": SubResource("Animation_1m8fq"),
-"default": SubResource("Animation_kepfu")
+&"RESET": SubResource("Animation_1m8fq"),
+&"default": SubResource("Animation_kepfu")
 }
 
 [node name="PeptideLocalSpell" type="Node2D"]

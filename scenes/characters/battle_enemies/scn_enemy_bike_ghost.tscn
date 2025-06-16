@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_axreb"]
 [ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/alpha.png" id="2_mvywq"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_lines.gd" id="2_s7p5t"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost.gd" id="2_v7npc"]
+[ext_resource type="Script" uid="uid://qsk80kho1c8w" path="res://scenes/characters/battle_enemies/scr_lines.gd" id="2_s7p5t"]
+[ext_resource type="Script" uid="uid://div6cnbbbvhui" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost.gd" id="2_v7npc"]
 
 [sub_resource type="Animation" id="Animation_r8ct8"]
 length = 0.001
@@ -3447,13 +3447,13 @@ tracks/38/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5cdq0"]
 _data = {
-"RESET": SubResource("Animation_r8ct8"),
-"attack": SubResource("Animation_mx28t"),
-"death": SubResource("Animation_kbbt6"),
-"hurt": SubResource("Animation_oymie"),
-"idle": SubResource("Animation_1isrs"),
-"spin": SubResource("Animation_0wycc"),
-"use_spirit": SubResource("Animation_a70di")
+&"RESET": SubResource("Animation_r8ct8"),
+&"attack": SubResource("Animation_mx28t"),
+&"death": SubResource("Animation_kbbt6"),
+&"hurt": SubResource("Animation_oymie"),
+&"idle": SubResource("Animation_1isrs"),
+&"spin": SubResource("Animation_0wycc"),
+&"use_spirit": SubResource("Animation_a70di")
 }
 
 [node name="BikeGhost" node_paths=PackedStringArray("animator") instance=ExtResource("1_axreb")]

@@ -101,8 +101,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p35r"]
 _data = {
-"RESET": SubResource("Animation_pqg0w"),
-"default": SubResource("Animation_3pvms")
+&"RESET": SubResource("Animation_pqg0w"),
+&"default": SubResource("Animation_3pvms")
 }
 
 [node name="Carrev" type="Node2D"]

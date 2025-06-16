@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://by5mxebgvif7a"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_wnrui"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_wnrui"]
 
 [resource]
 script = ExtResource("1_wnrui")
@@ -19,6 +19,6 @@ speed = 55.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

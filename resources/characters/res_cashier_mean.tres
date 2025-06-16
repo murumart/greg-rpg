@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://dbwip50ofkg8x"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_18wpw"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_18wpw"]
 [ext_resource type="Texture2D" uid="uid://cfcqfp8bl8rov" path="res://sprites/characters/portraits/spr_portrait_cashier_mean.png" id="1_ky6uf"]
 
 [resource]

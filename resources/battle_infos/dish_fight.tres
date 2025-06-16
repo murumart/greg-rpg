@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BattleInfo" load_steps=7 format=3 uid="uid://dq15d2quoe8li"]
 
-[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_7w6y5"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="1_oh4at"]
-[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="2_eonsj"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_7w6y5"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="1_oh4at"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="2_eonsj"]
 
 [sub_resource type="Resource" id="Resource_5vc6s"]
 script = ExtResource("1_7w6y5")

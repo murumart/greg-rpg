@@ -99,8 +99,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ynaw"]
 _data = {
-"RESET": SubResource("Animation_b0xal"),
-"default": SubResource("Animation_mx5ei")
+&"RESET": SubResource("Animation_b0xal"),
+&"default": SubResource("Animation_mx5ei")
 }
 
 [node name="VfxRockDropped" type="Node2D"]

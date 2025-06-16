@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://l703mpu0fwkw"]
 
 [ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="1_aq6ed"]
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_use_item.gd" id="1_jnb8y"]
+[ext_resource type="Script" uid="uid://c46pgnhflvvly" path="res://scenes/vfx/scr_vfx_use_item.gd" id="1_jnb8y"]
 [ext_resource type="AudioStream" uid="uid://cl2pqsq7v68vx" path="res://sounds/use_item.ogg" id="2_0qawy"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_kl3y2"]
 
@@ -164,8 +164,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljlxc"]
 _data = {
-"RESET": SubResource("Animation_ello3"),
-"default": SubResource("Animation_s0awb")
+&"RESET": SubResource("Animation_ello3"),
+&"default": SubResource("Animation_s0awb")
 }
 
 [sub_resource type="Gradient" id="Gradient_tkn53"]

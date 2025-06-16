@@ -203,8 +203,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ri4d7"]
 _data = {
-"RESET": SubResource("Animation_jl0ew"),
-"new_animation": SubResource("Animation_3dcf5")
+&"RESET": SubResource("Animation_jl0ew"),
+&"new_animation": SubResource("Animation_3dcf5")
 }
 
 [sub_resource type="Gradient" id="Gradient_w2dnw"]

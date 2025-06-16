@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://j12da57vuv2v"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="1_40une"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="1_40une"]
 
 [node name="InteractionArea" type="Area2D"]
 modulate = Color(0.647059, 0.462745, 0.690196, 1)

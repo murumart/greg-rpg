@@ -181,8 +181,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yahsl"]
 _data = {
-"RESET": SubResource("Animation_bvorb"),
-"default": SubResource("Animation_rciol")
+&"RESET": SubResource("Animation_bvorb"),
+&"default": SubResource("Animation_rciol")
 }
 
 [node name="VfxPeanutsScreen" type="Node2D"]

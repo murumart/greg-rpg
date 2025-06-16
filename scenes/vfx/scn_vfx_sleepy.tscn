@@ -65,8 +65,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tphai"]
 _data = {
-"RESET": SubResource("Animation_c5klp"),
-"default": SubResource("Animation_xyigk")
+&"RESET": SubResource("Animation_c5klp"),
+&"default": SubResource("Animation_xyigk")
 }
 
 [node name="VfxSleepy" type="Node2D"]

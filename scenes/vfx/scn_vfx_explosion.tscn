@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://oby8hwvjmaw1"]
 
-[ext_resource type="Script" path="res://scenes/vfx/scr_vfx_explosion.gd" id="1_fr4dm"]
+[ext_resource type="Script" uid="uid://bcfpxm4mdpi52" path="res://scenes/vfx/scr_vfx_explosion.gd" id="1_fr4dm"]
 [ext_resource type="Texture2D" uid="uid://plui5dnb4250" path="res://sprites/vfx/coolexplosion.png" id="1_ucts6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht2ks"]
@@ -170,8 +170,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c70lo"]
 _data = {
-"RESET": SubResource("Animation_smj0i"),
-"explode": SubResource("Animation_olxhx")
+&"RESET": SubResource("Animation_smj0i"),
+&"explode": SubResource("Animation_olxhx")
 }
 
 [node name="VfxExplosion" type="Node2D"]

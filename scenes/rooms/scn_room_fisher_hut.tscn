@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=4 uid="uid://caxvkt4bap60u"]
 
-[ext_resource type="Script" path="res://scenes/rooms/lakeside/scn_room_fisher_hut.gd" id="1_ksuj6"]
+[ext_resource type="Script" uid="uid://bps7we41hflck" path="res://scenes/rooms/lakeside/scn_room_fisher_hut.gd" id="1_ksuj6"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="3_muv4n"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="3_qgihv"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_qod8f"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_fisherman.gd" id="5_m48fe"]
+[ext_resource type="Script" uid="uid://dj88ixhm22ied" path="res://scenes/characters/overworld/scr_fisherman.gd" id="5_m48fe"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_0pvhh"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="7_7kq3q"]
-[ext_resource type="Script" path="res://scenes/tech/scr_interaction_area.gd" id="7_67ble"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="7_67ble"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="9_qcuil"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]

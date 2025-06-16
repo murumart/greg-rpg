@@ -146,8 +146,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1cngr"]
 _data = {
-"RESET": SubResource("Animation_iu4uw"),
-"default": SubResource("Animation_xrve7")
+&"RESET": SubResource("Animation_iu4uw"),
+&"default": SubResource("Animation_xrve7")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vqwc"]
@@ -217,18 +217,16 @@ width = 64
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 130.86
-gravity = Vector3(0, 98, 0)
 initial_velocity_min = 28.74
 initial_velocity_max = 28.74
 angular_velocity_min = -165.52
 angular_velocity_max = 157.24
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_sgwsi")
-turbulence_enabled = true
-turbulence_noise_strength = 5.71
 anim_speed_min = 0.46
 anim_speed_max = 1.11
+turbulence_enabled = true
+turbulence_noise_strength = 5.71
 
 [node name="VfxBiggerPoison" type="Node2D"]
 

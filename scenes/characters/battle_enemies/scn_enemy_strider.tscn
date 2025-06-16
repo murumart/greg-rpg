@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://b5k6k4dsuo7gs"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_sut8r"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_sut8r"]
 [ext_resource type="Texture2D" uid="uid://dyep8f2c4jh0d" path="res://sprites/characters/battle/lakeside/spr_strider.png" id="2_t00q0"]
 [ext_resource type="AudioStream" uid="uid://qxmm1skbywb8" path="res://sounds/strider/hit.ogg" id="3_6fvfj"]
 [ext_resource type="AudioStream" uid="uid://cdw2asvtq2axl" path="res://sounds/strider/hi.ogg" id="3_8w2fy"]
 [ext_resource type="AudioStream" uid="uid://b7oh6h7jjo2ne" path="res://sounds/strider/die.ogg" id="4_mem2l"]
-[ext_resource type="Script" path="res://code/scr_copy_greg_stats_component.gd" id="6_w8vk7"]
+[ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="6_w8vk7"]
 
 [sub_resource type="Gradient" id="Gradient_k2iad"]
 offsets = PackedFloat32Array(0, 0.375862, 0.768966)
@@ -1251,10 +1251,10 @@ tracks/20/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4p0kj"]
 _data = {
-"RESET": SubResource("Animation_iew7k"),
-"death": SubResource("Animation_4wnu1"),
-"hurt": SubResource("Animation_ml5or"),
-"idle": SubResource("Animation_u2yq8")
+&"RESET": SubResource("Animation_iew7k"),
+&"death": SubResource("Animation_4wnu1"),
+&"hurt": SubResource("Animation_ml5or"),
+&"idle": SubResource("Animation_u2yq8")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aq7aw"]

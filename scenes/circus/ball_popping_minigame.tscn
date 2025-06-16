@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dd4td5fdl0n68"]
 
-[ext_resource type="Script" path="res://scenes/circus/scr_ball_popping_minigame.gd" id="1_mb3ox"]
+[ext_resource type="Script" uid="uid://bwcvung88txia" path="res://scenes/circus/scr_ball_popping_minigame.gd" id="1_mb3ox"]
 [ext_resource type="Texture2D" uid="uid://b3lrufphy31w8" path="res://sprites/photos/spr_woods1.png" id="1_q78m0"]
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="3_gakp2"]
 

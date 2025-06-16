@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1a1gu4tumyl4"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_president.gd" id="1_2r85o"]
+[ext_resource type="Script" uid="uid://bd6b1nc31d3xt" path="res://scenes/characters/battle_enemies/scr_enemy_president.gd" id="1_2r85o"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="2_r6iib"]
 
 [sub_resource type="Animation" id="Animation_408t0"]
@@ -8,7 +8,7 @@ resource_name = "hurt"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcdku"]
 _data = {
-"hurt": SubResource("Animation_408t0")
+&"hurt": SubResource("Animation_408t0")
 }
 
 [node name="President" type="Node2D" node_paths=PackedStringArray("animator")]

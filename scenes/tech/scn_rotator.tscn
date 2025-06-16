@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmqriao5lqsnv"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_rotator.gd" id="1_xc1yl"]
+[ext_resource type="Script" uid="uid://dw4cp3sxaiy4" path="res://scenes/tech/scr_rotator.gd" id="1_xc1yl"]
 
 [node name="Rotator" type="Node2D"]
 script = ExtResource("1_xc1yl")

@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Item" load_steps=13 format=3 uid="uid://mu5cq3jmeemy"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_0g3x0"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_qs6s3"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_0g3x0"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_qs6s3"]
 [ext_resource type="AudioStream" uid="uid://becr6llrgnc3k" path="res://sounds/use_pizz.ogg" id="1_yem6o"]
 [ext_resource type="Texture2D" uid="uid://b313rnbxkx7d7" path="res://sprites/items/spr_pizz.png" id="2_7xgec"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_fonkw"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_fonkw"]
 
 [sub_resource type="Resource" id="Resource_jfiny"]
 script = ExtResource("1_0g3x0")
@@ -60,7 +60,9 @@ gender = 0
 effects = Array[ExtResource("1_0g3x0")]([SubResource("Resource_jfiny"), SubResource("Resource_ikffy"), SubResource("Resource_a0u52"), SubResource("Resource_iv22t"), SubResource("Resource_wyxlf"), SubResource("Resource_p7xru")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]

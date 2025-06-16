@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://ce4yfyycyqs2e"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://ce4yfyycyqs2e"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_bba6c"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_krq1w"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_bba6c"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_krq1w"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_mh2l3"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="3_1ft1p"]
 
 [sub_resource type="Resource" id="Resource_g7puc"]
@@ -19,11 +20,12 @@ attack_increase = 2.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 2
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_mh2l3")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s75my"]

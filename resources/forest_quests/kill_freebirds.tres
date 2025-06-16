@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://diwn4xcxr547m"]
 
-[ext_resource type="Script" path="res://scenes/rooms/forest/forest_quest.gd" id="1_5poxq"]
+[ext_resource type="Script" uid="uid://clmohrd5ib7ey" path="res://scenes/rooms/forest/forest_quest.gd" id="1_5poxq"]
 
 [resource]
 script = ExtResource("1_5poxq")
@@ -9,3 +9,4 @@ data_key = &"killed_freebird"
 completion_value = 1
 completion_signal = &""
 glass_reward = 3
+meta_weight = 100

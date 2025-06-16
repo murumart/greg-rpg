@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://50csctmtw55r"]
 
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_fisherman.gd" id="1_0spjj"]
+[ext_resource type="Script" uid="uid://dj88ixhm22ied" path="res://scenes/characters/overworld/scr_fisherman.gd" id="1_0spjj"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="1_itcb7"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_n6n77"]
 

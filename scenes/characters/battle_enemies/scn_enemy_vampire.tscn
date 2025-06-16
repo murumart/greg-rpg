@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dvdnvagmho443"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_vampire.gd" id="1_7550x"]
+[ext_resource type="Script" uid="uid://w6cut2tevwn7" path="res://scenes/characters/battle_enemies/scr_enemy_vampire.gd" id="1_7550x"]
 [ext_resource type="Texture2D" uid="uid://cjlkdo3wvxdud" path="res://sprites/characters/battle/vampire/spr_girl.png" id="2_cxoyq"]
 [ext_resource type="Texture2D" uid="uid://d3sugvvf4uga4" path="res://sprites/characters/battle/vampire/spr_vampire.png" id="3_1v6ng"]
 [ext_resource type="Texture2D" uid="uid://b4o8y1p66jyjk" path="res://sprites/characters/battle/vampire/spr_core.png" id="3_7o6g0"]
@@ -1753,10 +1753,10 @@ tracks/36/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkiiy"]
 _data = {
-"RESET": SubResource("Animation_oujih"),
-"death": SubResource("Animation_26g32"),
-"idle": SubResource("Animation_g63u3"),
-"use_spirit": SubResource("Animation_jcmfh")
+&"RESET": SubResource("Animation_oujih"),
+&"death": SubResource("Animation_26g32"),
+&"idle": SubResource("Animation_g63u3"),
+&"use_spirit": SubResource("Animation_jcmfh")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rs18"]

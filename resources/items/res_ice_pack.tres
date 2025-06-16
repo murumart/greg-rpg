@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://1hlxrwejdph4"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_hhlui"]
-[ext_resource type="Script" path="res://code/scr_item.gd" id="1_mex6q"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_45vps"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_hhlui"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_mex6q"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_45vps"]
 [ext_resource type="Texture2D" uid="uid://b1a60q1j28r1n" path="res://sprites/items/spr_icepack.png" id="4_gyp70"]
 
 [sub_resource type="Resource" id="Resource_428sp"]

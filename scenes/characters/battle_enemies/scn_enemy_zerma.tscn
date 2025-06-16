@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi5ixw3imxgvg"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_zerma.gd" id="1_bbso1"]
+[ext_resource type="Script" uid="uid://c7r4lkua7pbmn" path="res://scenes/characters/battle_enemies/scr_enemy_zerma.gd" id="1_bbso1"]
 [ext_resource type="Texture2D" uid="uid://bf4u78ydslmh4" path="res://sprites/characters/battle/zerma/spr_fight.png" id="2_p5hpa"]
 
 [node name="Zerma" type="Node2D"]

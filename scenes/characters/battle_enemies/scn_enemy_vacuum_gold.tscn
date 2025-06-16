@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://do6u3qoe6mt0w"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_1a3e0"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_1a3e0"]
 [ext_resource type="Texture2D" uid="uid://b603kx61lguoq" path="res://sprites/characters/battle/grandma/spr_vacuum_gold.png" id="2_tbq3c"]
 [ext_resource type="Texture2D" uid="uid://cjxrmebv5gngc" path="res://sprites/characters/battle/grandma/spr_vacuum_pipe_gold.png" id="3_lwcma"]
 [ext_resource type="AudioStream" uid="uid://coha6tsckbogr" path="res://sounds/vacuum_cleaner.ogg" id="4_lp3ph"]

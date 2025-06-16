@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://vefult5kme02"]
 
-[ext_resource type="Script" path="res://scenes/rooms/scr_room_super_gaming_house.gd" id="1_6764e"]
+[ext_resource type="Script" uid="uid://xtodq8wjiqb4" path="res://scenes/rooms/scr_room_super_gaming_house.gd" id="1_6764e"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_bygc4"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_pnfqq"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_we5ug"]
@@ -2225,8 +2225,8 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbxdy"]
 _data = {
-"RESET": SubResource("Animation_i5qxj"),
-"computer_loop": SubResource("Animation_nrnct")
+&"RESET": SubResource("Animation_i5qxj"),
+&"computer_loop": SubResource("Animation_nrnct")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mysui"]

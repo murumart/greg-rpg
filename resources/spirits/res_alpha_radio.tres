@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://dntv3or2pkpbd"]
 
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_1t8ni"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_3yrfh"]
-[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_e5252"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_1t8ni"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_3yrfh"]
+[ext_resource type="Script" uid="uid://cmr7ybf3j71jj" path="res://code/scr_spirit.gd" id="1_e5252"]
 
 [sub_resource type="Resource" id="Resource_m1el1"]
 script = ExtResource("1_1t8ni")
@@ -28,7 +28,9 @@ gender = 4
 effects = Array[ExtResource("1_1t8ni")]([SubResource("Resource_m1el1")])
 delay = 0.0
 summon_enemy = ""
+max_enemies = 6
 animation_on_receive = ""
+message_user = &""
 meta = {}
 
 [resource]
@@ -43,4 +45,7 @@ cost = 15
 use = 1
 reach = 0
 payload_reception_count = 1
+payload_reception_wait = 0.0
+wait = 0.0
+wait_before = 0.0
 payload = SubResource("Resource_qpt23")

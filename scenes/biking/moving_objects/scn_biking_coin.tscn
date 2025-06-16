@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://5i0wek400rn3"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_coin.gd" id="1_nsihm"]
+[ext_resource type="Script" uid="uid://cn67627o8p6ud" path="res://scenes/biking/moving_objects/scr_biking_coin.gd" id="1_nsihm"]
 [ext_resource type="Texture2D" uid="uid://ci6mhv0bic0pe" path="res://sprites/vfx/spr_coin.png" id="2_lbs03"]
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ql27p"]
 
@@ -80,6 +80,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 8.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 1.0

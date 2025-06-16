@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://i2clqqkd2570"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_r8h6s"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_r8h6s"]
 [ext_resource type="Texture2D" uid="uid://bb30ke8j1icxj" path="res://sprites/characters/battle/thugs/spr_stabbing_fella.png" id="2_3fyih"]
-[ext_resource type="Script" path="res://code/scr_copy_greg_stats_component.gd" id="3_grl1v"]
+[ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="3_grl1v"]
 
 [node name="StabbingFella" type="Node2D"]
 script = ExtResource("1_r8h6s")

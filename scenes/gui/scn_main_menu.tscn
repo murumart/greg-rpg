@@ -1,16 +1,16 @@
 [gd_scene load_steps=51 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
-[ext_resource type="Script" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
+[ext_resource type="Script" uid="uid://ct0h5y2kta1vs" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
 [ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="3_fpmeo"]
-[ext_resource type="Shader" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
 [ext_resource type="Texture2D" uid="uid://uk0d78vhvwrh" path="res://sprites/gui/logo/frame1.png" id="5_r8pra"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
 [ext_resource type="Texture2D" uid="uid://cs02cg8e54lpb" path="res://sprites/gui/logo/frame2.png" id="6_nuuuh"]
-[ext_resource type="Script" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
+[ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
 [ext_resource type="Texture2D" uid="uid://cd7yklshn48cf" path="res://sprites/gui/logo/frame3.png" id="7_fwud4"]
 [ext_resource type="Texture2D" uid="uid://ds8smlbqmtchs" path="res://sprites/gui/logo/frame4.png" id="8_efsq0"]
-[ext_resource type="Script" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
+[ext_resource type="Script" uid="uid://dr7a15hp7bulc" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
 [ext_resource type="Texture2D" uid="uid://dfn1k8hh2y2wj" path="res://sprites/gui/logo/frame5.png" id="9_elwlr"]
 [ext_resource type="Texture2D" uid="uid://bbth7paq02jl4" path="res://sprites/gui/logo/frame6.png" id="10_a25ga"]
 [ext_resource type="Texture2D" uid="uid://cnuf5bl2hvhj0" path="res://sprites/gui/logo/frame7.png" id="11_irrrl"]
@@ -309,8 +309,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gof5g"]
 _data = {
-"RESET": SubResource("Animation_e38rc"),
-"default": SubResource("Animation_y2q1y")
+&"RESET": SubResource("Animation_e38rc"),
+&"default": SubResource("Animation_y2q1y")
 }
 
 [node name="MainMenu" type="Control"]

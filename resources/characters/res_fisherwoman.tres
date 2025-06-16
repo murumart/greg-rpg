@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://drkh16pddftbs"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_nyj1h"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_nyj1h"]
 [ext_resource type="Texture2D" uid="uid://dtxhcst1a4wlq" path="res://sprites/characters/portraits/spr_portrait_fisherwoman.png" id="1_y26vu"]
 
 [resource]
@@ -21,6 +21,6 @@ speed = 65.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String](["fish_attack"])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = "fish"

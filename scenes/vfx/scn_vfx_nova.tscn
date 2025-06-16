@@ -186,8 +186,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpheg"]
 _data = {
-"RESET": SubResource("Animation_322n8"),
-"default": SubResource("Animation_xuuga")
+&"RESET": SubResource("Animation_322n8"),
+&"default": SubResource("Animation_xuuga")
 }
 
 [sub_resource type="Gradient" id="Gradient_usxji"]
@@ -216,7 +216,7 @@ width = 32
 use_hdr = true
 
 [sub_resource type="Curve" id="Curve_mg2bj"]
-max_value = 8.0
+_limits = [0.0, 8.0, 0.0, 1.0]
 _data = [Vector2(0, 0.200956), 0.0, -1.40937, 0, 0, Vector2(1, 8), 24.4469, 0.0, 0, 0]
 point_count = 2
 
@@ -243,8 +243,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.765023, 0.207628)
 
 [sub_resource type="Curve" id="Curve_8xhr7"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 9.40985), 0.0, 0.0, 0, 0, Vector2(0.879509, 13.3971), 0.0, 0.0, 0, 0, Vector2(1, 160.925), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -252,7 +251,7 @@ point_count = 3
 curve = SubResource("Curve_8xhr7")
 
 [sub_resource type="Curve" id="Curve_osbw0"]
-max_value = 8.0
+_limits = [0.0, 8.0, 0.0, 1.0]
 _data = [Vector2(0, 0.264354), 0.0, 0.0, 0, 0, Vector2(1, 4.9059), -4.26184, 0.0, 0, 0]
 point_count = 2
 
@@ -261,8 +260,7 @@ width = 32
 curve = SubResource("Curve_osbw0")
 
 [sub_resource type="Curve" id="Curve_1wkkt"]
-min_value = -200.0
-max_value = 200.0
+_limits = [-200.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 53.2695), 0.0, 0.0, 0, 0]
 point_count = 2
 

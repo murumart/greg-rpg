@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqwtid764cix4"]
 
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_suite_scene.gd" id="1_l1qte"]
+[ext_resource type="Script" uid="uid://xajvsrxcfccq" path="res://scenes/rooms/grandma_house/gdung_suite_scene.gd" id="1_l1qte"]
 
 [node name="GdungSuite" type="Area2D"]
 collision_layer = 0

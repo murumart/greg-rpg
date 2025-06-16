@@ -162,8 +162,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tr5ke"]
 _data = {
-"RESET": SubResource("Animation_2oq5o"),
-"new_animation": SubResource("Animation_yawlk")
+&"RESET": SubResource("Animation_2oq5o"),
+&"new_animation": SubResource("Animation_yawlk")
 }
 
 [sub_resource type="Gradient" id="Gradient_51o74"]
@@ -173,7 +173,7 @@ colors = PackedColorArray(0, 0.603922, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_51o74")
 
 [sub_resource type="Curve" id="Curve_7hvva"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 2.5015), 0.0, 0.0, 0, 0, Vector2(1, 1.26992), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -188,6 +188,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 128.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 0)
 radial_velocity_min = -89.55
 radial_velocity_max = -74.62

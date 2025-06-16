@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cs4gy581cc8ok"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_biking_moving_object.gd" id="1_roptq"]
+[ext_resource type="Script" uid="uid://4ugcchwppld5" path="res://scenes/biking/moving_objects/scr_biking_moving_object.gd" id="1_roptq"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_52pfa"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="3_x3vbo"]
 

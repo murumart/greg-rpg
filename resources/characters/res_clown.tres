@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://d2q8ijnh8jtuf"]
 
 [ext_resource type="Texture2D" uid="uid://dt2eikt22f3h6" path="res://sprites/characters/portraits/spr_portrait_clown.png" id="1_g27j5"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_q74ui"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_q74ui"]
 
 [resource]
 script = ExtResource("1_q74ui")

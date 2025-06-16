@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://j654jl7ae7j6"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_sky_target.gd" id="1_3nnj5"]
+[ext_resource type="Script" uid="uid://p7jdb2o6m87d" path="res://scenes/biking/moving_objects/scr_sky_target.gd" id="1_3nnj5"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_nx8ts"]
 [ext_resource type="AudioStream" uid="uid://cfyp1oblps16w" path="res://sounds/snail_beam.ogg" id="3_6stkp"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="4_8pvyk"]
@@ -354,9 +354,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nhvyx"]
 _data = {
-"RESET": SubResource("Animation_p0vgg"),
-"beam": SubResource("Animation_d4l5o"),
-"start": SubResource("Animation_8munm")
+&"RESET": SubResource("Animation_p0vgg"),
+&"beam": SubResource("Animation_d4l5o"),
+&"start": SubResource("Animation_8munm")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ngr4u"]

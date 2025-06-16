@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://dyjcd2w81thvw"]
 
-[ext_resource type="Script" path="res://scenes/scr_room.gd" id="1_xrpuv"]
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_xrpuv"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_332tv"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_k4axw"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="4_3esa6"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_ce38q"]
 [ext_resource type="SpriteFrames" uid="uid://cxls2ofavlaoe" path="res://resources/characters/sfr_mafia_1.tres" id="6_xapwm"]
 [ext_resource type="SpriteFrames" uid="uid://baycgm88q1d50" path="res://resources/characters/sfr_mafia_2.tres" id="7_fxb1w"]
-[ext_resource type="Script" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
+[ext_resource type="Script" uid="uid://cfelp6jino56j" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("2_332tv")

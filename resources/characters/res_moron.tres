@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dif2k8tsnxsw"]
 
 [ext_resource type="Texture2D" uid="uid://ovhj42qt6nen" path="res://sprites/death/spr_moron.png" id="1_hqlvw"]
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_whg12"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_whg12"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ommi"]
 atlas = ExtResource("1_hqlvw")

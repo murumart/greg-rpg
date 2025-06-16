@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=4 format=3 uid="uid://b7d5kjol5wpkt"]
+[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://b7d5kjol5wpkt"]
 
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="1_7dndk"]
-[ext_resource type="Script" path="res://code/scr_spirit.gd" id="2_l7sxr"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_5d5nq"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_7dndk"]
+[ext_resource type="Script" uid="uid://cmr7ybf3j71jj" path="res://code/scr_spirit.gd" id="2_l7sxr"]
 
 [sub_resource type="Resource" id="Resource_1m4tw"]
 script = ExtResource("1_7dndk")
@@ -18,7 +19,7 @@ attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
 gender = 6
-effects = Array[Resource("res://code/scr_status_effect.gd")]([])
+effects = Array[ExtResource("1_5d5nq")]([])
 delay = 0.0
 summon_enemy = ""
 max_enemies = 6

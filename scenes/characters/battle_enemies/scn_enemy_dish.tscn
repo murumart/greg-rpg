@@ -1,11 +1,11 @@
 [gd_scene load_steps=42 format=3 uid="uid://dhve75utx7fh7"]
 
 [ext_resource type="Texture2D" uid="uid://bwng2xhy78hng" path="res://sprites/characters/battle/president/spr_dish_big.png" id="2_7agk0"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
-[ext_resource type="Shader" path="res://shaders/shd_dish_iridescence.gdshader" id="2_x2g0d"]
+[ext_resource type="Script" uid="uid://bqxnprkdxhh7w" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
+[ext_resource type="Shader" uid="uid://c5ynpoiwyyfnf" path="res://shaders/shd_dish_iridescence.gdshader" id="2_x2g0d"]
 [ext_resource type="Texture2D" uid="uid://dc4khr6yps6nm" path="res://sprites/spirit/spr_dish_use.png" id="3_s1scl"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="4_k0s8a"]
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_dish_pizz_cutscene.gd" id="5_jvhgd"]
+[ext_resource type="Script" uid="uid://cr1viahr4g13l" path="res://scenes/characters/battle_enemies/scr_enemy_dish_pizz_cutscene.gd" id="5_jvhgd"]
 [ext_resource type="Texture2D" uid="uid://c34u2d6fe3rix" path="res://sprites/characters/battle/president/spr_pizza_delivery_guy.png" id="5_ov1ks"]
 [ext_resource type="Texture2D" uid="uid://ct6siq546arn3" path="res://sprites/characters/battle/president/pizz.png" id="7_8uiop"]
 [ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="7_v1iur"]
@@ -19,9 +19,9 @@ noise = SubResource("FastNoiseLite_j267r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38e2f"]
 shader = ExtResource("2_x2g0d")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_4csr8")
 shader_parameter/iridescence_reducer = 0.85
 shader_parameter/iridescence_reducer_multiplier = 1.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_4csr8")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_js0um"]
 blend_mode = 1
@@ -259,8 +259,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4sxmm"]
 _data = {
-"RESET": SubResource("Animation_kfc1w"),
-"pizz": SubResource("Animation_lsna7")
+&"RESET": SubResource("Animation_kfc1w"),
+&"pizz": SubResource("Animation_lsna7")
 }
 
 [sub_resource type="Animation" id="Animation_p50l1"]
@@ -876,12 +876,12 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0btp4"]
 _data = {
-"RESET": SubResource("Animation_p50l1"),
-"attack": SubResource("Animation_vc1hr"),
-"death": SubResource("Animation_nugcd"),
-"hurt": SubResource("Animation_56w3f"),
-"idle": SubResource("Animation_8yxc3"),
-"use_spirit": SubResource("Animation_dpfpo")
+&"RESET": SubResource("Animation_p50l1"),
+&"attack": SubResource("Animation_vc1hr"),
+&"death": SubResource("Animation_nugcd"),
+&"hurt": SubResource("Animation_56w3f"),
+&"idle": SubResource("Animation_8yxc3"),
+&"use_spirit": SubResource("Animation_dpfpo")
 }
 
 [node name="Dish" type="Node2D" node_paths=PackedStringArray("animator")]

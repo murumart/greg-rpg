@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://bsdq5h3auf48d"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_4qwvp"]
-[ext_resource type="Script" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
+[ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
 [ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="3_8yccp"]
-[ext_resource type="Script" path="res://code/scr_random_battle_component.gd" id="4_tjrt7"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="5_fc8d6"]
-[ext_resource type="Script" path="res://code/key_curve_pair.gd" id="5_opow6"]
+[ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_tjrt7"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="5_fc8d6"]
+[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_opow6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7uk"]
 resource_local_to_scene = true
@@ -47,7 +47,7 @@ key = &"cat"
 curve = SubResource("Curve_34vmh")
 
 [sub_resource type="Curve" id="Curve_ehcju"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 0.9922), 0.0, 0.0, 0, 0, Vector2(0.713208, 1.81357), 0.0, 0.0, 0, 0, Vector2(0.735849, 0.779251), 0.0, 0.0, 0, 0, Vector2(0.754717, 0.74883), 0.0, 0.0, 0, 0, Vector2(0.762264, 1.69189), 0.0, 0.0, 0, 0, Vector2(0.762274, 2.23947), 0.0, 0.0, 0, 0, Vector2(0.766038, 1.26599), 0.0, 0.0, 0, 0, Vector2(0.811321, 1.47894), 0.0, 0.0, 0, 0, Vector2(0.901887, 1.84399), 0.0, 0.0, 0, 0, Vector2(1, 2.45242), 0.0, 0.0, 0, 0]
 point_count = 10
 

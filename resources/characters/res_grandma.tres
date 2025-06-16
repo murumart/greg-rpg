@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://1hn5g0moeicb"]
 
-[ext_resource type="Script" path="res://code/scr_character.gd" id="1_gvou3"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_gvou3"]
 [ext_resource type="Texture2D" uid="uid://b6ccqnopkfrjf" path="res://sprites/characters/portraits/spr_portrait_grandma.png" id="1_wob4v"]
-[ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/snd_grandma.ogg" id="3_kbt7d"]
+[ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/grandma.ogg" id="3_kbt7d"]
 
 [resource]
 script = ExtResource("1_gvou3")
@@ -23,6 +23,6 @@ speed = 85.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])
-unused_sprits = Array[String]([])
+unused_spirits = Array[String]([])
 armour = ""
 weapon = ""

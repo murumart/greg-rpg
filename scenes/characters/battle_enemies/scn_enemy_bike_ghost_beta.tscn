@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d0gwrevpps1h1"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost_beta.gd" id="1_qawkf"]
+[ext_resource type="Script" uid="uid://b5cskx765ymxf" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost_beta.gd" id="1_qawkf"]
 [ext_resource type="Texture2D" uid="uid://b8u56xy3uqblk" path="res://sprites/characters/battle/bike_ghosts/beta.png" id="2_oadhf"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="3_eel2a"]
 
@@ -1009,9 +1009,9 @@ tracks/19/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jv4wv"]
 _data = {
-"RESET": SubResource("Animation_rbseb"),
-"idle": SubResource("Animation_it52x"),
-"use_spirit": SubResource("Animation_n5pqx")
+&"RESET": SubResource("Animation_rbseb"),
+&"idle": SubResource("Animation_it52x"),
+&"use_spirit": SubResource("Animation_n5pqx")
 }
 
 [node name="BikeGhostBeta" type="Node2D" node_paths=PackedStringArray("animator")]

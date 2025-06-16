@@ -1,12 +1,12 @@
 [gd_scene load_steps=7 format=3 uid="uid://cami7pi4o2hiw"]
 
-[ext_resource type="Script" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
+[ext_resource type="Script" uid="uid://cfnowsqwbfckx" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
 [ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/gui/spr_dancer.png" id="2_i1uev"]
 [ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/gui/spr_animal_dancer.png" id="3_nyl0p"]
-[ext_resource type="Script" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
+[ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
 
 [sub_resource type="Curve" id="Curve_g0gmc"]
-max_value = 3.0
+_limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.0854271, 1.09697), 0.0, 0.0, 0, 0, Vector2(1, 0.709091), 0.0, 0.0, 0, 0]
 point_count = 3
 

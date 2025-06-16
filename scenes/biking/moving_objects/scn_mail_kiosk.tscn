@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cjmaxd7xmufyv"]
 
-[ext_resource type="Script" path="res://scenes/biking/moving_objects/scr_mail_kiosk.gd" id="1_qiq00"]
+[ext_resource type="Script" uid="uid://csu65yetj8vg2" path="res://scenes/biking/moving_objects/scr_mail_kiosk.gd" id="1_qiq00"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_tkq2f"]
 [ext_resource type="SpriteFrames" uid="uid://bochwa4w0uny0" path="res://resources/characters/sfr_mail_man.tres" id="4_gwts7"]
 
@@ -123,9 +123,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8s3qq"]
 _data = {
-"RESET": SubResource("Animation_yae84"),
-"enter": SubResource("Animation_e0v10"),
-"hide": SubResource("Animation_ljs3m")
+&"RESET": SubResource("Animation_yae84"),
+&"enter": SubResource("Animation_e0v10"),
+&"hide": SubResource("Animation_ljs3m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dvvft"]

@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://dx54lbvrlmhrq"]
 
-[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_os0mr"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="1_os0mr"]
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_qywqv"]
 parameter_name = "waveX"
@@ -46,7 +46,7 @@ uniform float waveX = 0.96799999475479;
 uniform float waveY = 0.09399999678135;
 uniform float distortX = 0.16099999845028;
 uniform float distortY = 0.07000000029802;
-uniform float speed = 1;
+uniform float speed = 1.0;
 
 
 // DistortionUVAnimated

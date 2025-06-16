@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://byxv0c510ftyr"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_behind_area.gd" id="1_s3gn8"]
+[ext_resource type="Script" uid="uid://jfcd5xbk65us" path="res://scenes/tech/scr_behind_area.gd" id="1_s3gn8"]
 
 [node name="BehindArea" type="Area2D"]
 modulate = Color(0.392157, 0.419608, 0.717647, 0.356863)

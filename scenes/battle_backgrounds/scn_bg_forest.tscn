@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2s52bg0hwmxb"]
 
 [ext_resource type="Texture2D" uid="uid://b3lrufphy31w8" path="res://sprites/photos/spr_woods1.png" id="1_188vl"]
-[ext_resource type="Shader" path="res://shaders/shd_forest_bg.gdshader" id="1_fov3e"]
+[ext_resource type="Shader" uid="uid://dhsa6lmyqol33" path="res://shaders/shd_forest_bg.gdshader" id="1_fov3e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nnnr6"]
 shader = ExtResource("1_fov3e")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BattleRewards" load_steps=5 format=3 uid="uid://cbo4cwne17ch5"]
 
-[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="1_kbm7u"]
-[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="1_kvaj6"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="1_kbm7u"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_kvaj6"]
 
 [sub_resource type="Resource" id="Resource_t2ypg"]
 script = ExtResource("1_kvaj6")

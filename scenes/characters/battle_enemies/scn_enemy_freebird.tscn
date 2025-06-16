@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfh0g6uryjrkk"]
 
-[ext_resource type="Script" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_yr8i8"]
+[ext_resource type="Script" uid="uid://bdsdnb8ryyok3" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_yr8i8"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_l2o71"]
 
 [sub_resource type="Animation" id="Animation_mbgw4"]
@@ -1139,11 +1139,11 @@ tracks/18/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xprky"]
 _data = {
-"RESET": SubResource("Animation_mbgw4"),
-"death": SubResource("Animation_kel30"),
-"idle": SubResource("Animation_q4st5"),
-"swoop_in": SubResource("Animation_05sps"),
-"swoop_out": SubResource("Animation_lsx41")
+&"RESET": SubResource("Animation_mbgw4"),
+&"death": SubResource("Animation_kel30"),
+&"idle": SubResource("Animation_q4st5"),
+&"swoop_in": SubResource("Animation_05sps"),
+&"swoop_out": SubResource("Animation_lsx41")
 }
 
 [node name="Freebird" type="Node2D" node_paths=PackedStringArray("animator")]

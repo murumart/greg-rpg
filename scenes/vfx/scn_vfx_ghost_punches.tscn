@@ -124,8 +124,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dsiyh"]
 _data = {
-"RESET": SubResource("Animation_wbnqd"),
-"defauly": SubResource("Animation_essqs")
+&"RESET": SubResource("Animation_wbnqd"),
+&"defauly": SubResource("Animation_essqs")
 }
 
 [sub_resource type="Curve" id="Curve_mjk5d"]
@@ -144,6 +144,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 5.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -48.0
 angle_max = 48.0
 spread = 180.0
@@ -172,6 +173,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 5.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = -48.0
 angle_max = 48.0
 spread = 180.0

@@ -131,8 +131,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qae7x"]
 _data = {
-"RESET": SubResource("Animation_i8leo"),
-"default": SubResource("Animation_g1sk3")
+&"RESET": SubResource("Animation_i8leo"),
+&"default": SubResource("Animation_g1sk3")
 }
 
 [node name="VfxPowerpunch" type="Node2D"]

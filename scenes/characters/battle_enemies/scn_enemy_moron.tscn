@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://baproajqq3ac4"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_oi4ic"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_oi4ic"]
 [ext_resource type="Texture2D" uid="uid://drjqmxlk4s80r" path="res://sprites/characters/battle/thugs/spr_moron.png" id="2_u0koo"]
 
 [node name="Moron" type="Node2D"]

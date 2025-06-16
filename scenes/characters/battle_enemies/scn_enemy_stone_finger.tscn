@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0upk76t2e4xk"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_g21xo"]
+[ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_g21xo"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_hwna8"]
 
 [node name="StoneFinger" type="Node2D"]

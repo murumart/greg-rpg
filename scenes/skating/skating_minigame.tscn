@@ -1,16 +1,16 @@
 [gd_scene load_steps=23 format=3 uid="uid://ct32b3bmill01"]
 
-[ext_resource type="Script" path="res://scenes/skating/skating_minigame.gd" id="1_e2i3m"]
+[ext_resource type="Script" uid="uid://csvg7bpud0h7c" path="res://scenes/skating/skating_minigame.gd" id="1_e2i3m"]
 [ext_resource type="Texture2D" uid="uid://c2pqp3l5n4wv0" path="res://sprites/skating/backgrouind.png" id="2_avmvn"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_ern6p"]
 [ext_resource type="Texture2D" uid="uid://cwe4j13vtfj35" path="res://sprites/skating/bagground1.png" id="2_o68lv"]
-[ext_resource type="Script" path="res://scenes/skating/ui.gd" id="3_84nc0"]
-[ext_resource type="Script" path="res://scenes/skating/player.gd" id="3_i87m7"]
+[ext_resource type="Script" uid="uid://ddt3fxoiv3hmv" path="res://scenes/skating/ui.gd" id="3_84nc0"]
+[ext_resource type="Script" uid="uid://qc1yl5hnpi11" path="res://scenes/skating/player.gd" id="3_i87m7"]
 [ext_resource type="Texture2D" uid="uid://s8cung1men77" path="res://sprites/skating/greg.png" id="4_e53a1"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="4_f883l"]
 [ext_resource type="AudioStream" uid="uid://c1xi4uxrnbs18" path="res://sounds/skating/s12.ogg" id="5_m0kbv"]
 [ext_resource type="AudioStream" uid="uid://dqno5cq5eh7q3" path="res://sounds/skating/s13.ogg" id="6_k2w4j"]
-[ext_resource type="VideoStream" path="res://scenes/skating/output.ogv" id="8_6p0aw"]
+[ext_resource type="VideoStream" uid="uid://dgwx1fpompccj" path="res://scenes/skating/output.ogv" id="8_6p0aw"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="9_nfu84"]
 [ext_resource type="AudioStream" uid="uid://c5rfklorfwi3t" path="res://sounds/skating/s1.ogg" id="10_tddx3"]
 [ext_resource type="Texture2D" uid="uid://cgvikoo32h15w" path="res://sprites/skating/jumpscare.png.png" id="12_g3s73"]
@@ -30,7 +30,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_v5yiu"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.742169, 74.4546), 0.0, 0.0, 0, 0, Vector2(1, 98.6912), 0.0, 0.0, 0, 0]
 point_count = 3
 

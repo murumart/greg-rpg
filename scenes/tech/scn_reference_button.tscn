@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcrvvycxe0ptv"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_bsana"]
-[ext_resource type="Script" path="res://scenes/tech/scr_reference_button.gd" id="1_pndbc"]
+[ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="1_pndbc"]
 
 [node name="ReferenceButton" type="Button" groups=["reference_buttons"]]
 offset_right = 22.0

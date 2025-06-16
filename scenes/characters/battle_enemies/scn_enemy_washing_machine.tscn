@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://dbl120wnwp7pm"]
 
-[ext_resource type="Script" path="res://scenes/tech/scr_battle_enemy.gd" id="1_toy3w"]
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_toy3w"]
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_t8jyc"]
 [ext_resource type="Texture2D" uid="uid://du7kinrednfqw" path="res://sprites/vfx/soplet.png" id="3_jeyoy"]
-[ext_resource type="Script" path="res://code/scr_sin_animator.gd" id="3_wka33"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="3_wka33"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="5_55j3h"]
 
 [sub_resource type="Curve" id="Curve_2nb7r"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://dey5y1ha0cy66"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_2tnge"]
-[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="2_6p1ib"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="2_6p1ib"]
 [ext_resource type="Texture2D" uid="uid://ddllavac2lvyi" path="res://sprites/photos/spr_store.png" id="2_ge82g"]
 
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_iwcv3"]
@@ -288,8 +288,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nkqxk"]
 _data = {
-"RESET": SubResource("Animation_acvmp"),
-"default": SubResource("Animation_08hhe")
+&"RESET": SubResource("Animation_acvmp"),
+&"default": SubResource("Animation_08hhe")
 }
 
 [sub_resource type="Animation" id="Animation_dlwoi"]
@@ -387,8 +387,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25ivg"]
 _data = {
-"RESET": SubResource("Animation_dlwoi"),
-"intro": SubResource("Animation_agjg7")
+&"RESET": SubResource("Animation_dlwoi"),
+&"intro": SubResource("Animation_agjg7")
 }
 
 [node name="BattleBackground" instance=ExtResource("1_2tnge")]

@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://62rrfr2yajow"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_4wi4g"]
-[ext_resource type="Script" path="res://scenes/rooms/forest/forest_objects/scr_waterhole.gd" id="2_5ey5h"]
-[ext_resource type="Shader" path="res://shaders/shd_stolen_water.gdshader" id="2_asjqi"]
+[ext_resource type="Script" uid="uid://djecg32vk7oid" path="res://scenes/rooms/forest/forest_objects/scr_waterhole.gd" id="2_5ey5h"]
+[ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_asjqi"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_u0tpm"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="4_8vm30"]
-[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="5_061cc"]
-[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="6_eg5q7"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="7_fcvjd"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="5_061cc"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="6_eg5q7"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_fcvjd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ekv"]
 shader = ExtResource("2_asjqi")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://d1ij7qt5ukfif"]
 
-[ext_resource type="Script" path="res://code/scr_spirit.gd" id="1_lwihp"]
-[ext_resource type="Script" path="res://code/scr_status_effect.gd" id="1_taeeq"]
-[ext_resource type="Script" path="res://code/scr_battle_payload.gd" id="2_csxgx"]
+[ext_resource type="Script" uid="uid://cmr7ybf3j71jj" path="res://code/scr_spirit.gd" id="1_lwihp"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_taeeq"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_csxgx"]
 
 [sub_resource type="Resource" id="Resource_r0wck"]
 script = ExtResource("1_taeeq")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://x12vt5wvj4qb"]
 
-[ext_resource type="Script" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
-[ext_resource type="Shader" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
-[ext_resource type="Script" path="res://code/scr_battle_reward.gd" id="2_1je23"]
-[ext_resource type="Script" path="res://code/scr_battle_info.gd" id="2_qq1bq"]
-[ext_resource type="Script" path="res://code/scr_battle_rewards.gd" id="3_ijuw0"]
+[ext_resource type="Script" uid="uid://bl4dof5ylfonl" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
+[ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_1je23"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_qq1bq"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_ijuw0"]
 [ext_resource type="Resource" uid="uid://h3rttp116gqn" path="res://resources/battle_infos/bike_ghost_gdung_boss.tres" id="5_fu8ys"]
 
 [sub_resource type="Resource" id="Resource_4cc3d"]

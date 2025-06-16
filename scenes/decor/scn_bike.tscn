@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bkuu3x2gw38ch"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
+[ext_resource type="Script" uid="uid://l45eiqhxoib7" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
 [ext_resource type="Texture2D" uid="uid://cpr2152aq2eya" path="res://sprites/characters/overworld/bike_ghosts.png" id="6_82grt"]
@@ -282,9 +282,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcfhw"]
 _data = {
-"RESET": SubResource("Animation_vj6m1"),
-"emerge": SubResource("Animation_08kbm"),
-"hover": SubResource("Animation_fhef4")
+&"RESET": SubResource("Animation_vj6m1"),
+&"emerge": SubResource("Animation_08kbm"),
+&"hover": SubResource("Animation_fhef4")
 }
 
 [node name="Bike" type="Node2D" groups=["room_gates"]]

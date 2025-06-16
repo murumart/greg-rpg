@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cexlbm2px6nxs"]
 
 [ext_resource type="Texture2D" uid="uid://cd3v2kb4186ep" path="res://sprites/items/spr_item_brick.png" id="1_m62yb"]
-[ext_resource type="AudioStream" uid="uid://bffxmtq4bt5ac" path="res://sounds/snd_attack_brick.ogg" id="2_0k383"]
+[ext_resource type="AudioStream" uid="uid://bffxmtq4bt5ac" path="res://sounds/attack_brick.ogg" id="2_0k383"]
 [ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="3_sb5lk"]
 [ext_resource type="PackedScene" uid="uid://bgepjvtvo82in" path="res://scenes/vfx/scn_vfx_dustpuff.tscn" id="4_5pebe"]
 
@@ -116,8 +116,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tlwvv"]
 _data = {
-"RESET": SubResource("Animation_v6umf"),
-"default": SubResource("Animation_tuw5j")
+&"RESET": SubResource("Animation_v6umf"),
+&"default": SubResource("Animation_tuw5j")
 }
 
 [node name="VfxBrickAttack" type="Node2D"]

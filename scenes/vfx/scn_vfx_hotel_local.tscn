@@ -136,8 +136,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xutw0"]
 _data = {
-"RESET": SubResource("Animation_jalwc"),
-"default": SubResource("Animation_4hjw7")
+&"RESET": SubResource("Animation_jalwc"),
+&"default": SubResource("Animation_4hjw7")
 }
 
 [node name="LocalHotel" type="Node2D"]

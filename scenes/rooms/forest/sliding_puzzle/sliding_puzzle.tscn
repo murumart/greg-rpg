@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://b86f65y4e0huw"]
 
-[ext_resource type="Script" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
+[ext_resource type="Script" uid="uid://dvkemvv7le4bq" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="2_8mtsu"]
 [ext_resource type="Texture2D" uid="uid://b313rnbxkx7d7" path="res://sprites/items/spr_pizz.png" id="2_nbvpt"]
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_rjc4u"]
@@ -110,17 +110,13 @@ border_color = Color(0, 1, 1, 1)
 random_pitch = 1.4
 streams_count = 3
 stream_0/stream = ExtResource("3_q65jg")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("4_ryct8")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("5_t37dl")
-stream_2/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u8vir"]
 random_pitch = 1.9
 streams_count = 1
 stream_0/stream = ExtResource("7_diur1")
-stream_0/weight = 1.0
 
 [node name="SlidingPuzzle" type="Node2D"]
 script = ExtResource("1_qo05k")

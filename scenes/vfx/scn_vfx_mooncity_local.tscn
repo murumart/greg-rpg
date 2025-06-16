@@ -3,6 +3,45 @@
 [ext_resource type="AudioStream" uid="uid://c46uvc4p3uc0s" path="res://sounds/hurt.ogg" id="1_t2ibo"]
 [ext_resource type="Texture2D" uid="uid://dnc1n4fbnamgn" path="res://sprites/spirit/spr_mooncity_local.png" id="2_7ey72"]
 
+[sub_resource type="Animation" id="Animation_kntfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.15]
+}
+
 [sub_resource type="Animation" id="Animation_f38ew"]
 resource_name = "new_animation"
 tracks/0/type = "value"
@@ -56,49 +95,10 @@ tracks/3/keys = {
 "values": [3.15, 0.95]
 }
 
-[sub_resource type="Animation" id="Animation_kntfx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:pitch_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.15]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mpqp1"]
 _data = {
-"RESET": SubResource("Animation_kntfx"),
-"new_animation": SubResource("Animation_f38ew")
+&"RESET": SubResource("Animation_kntfx"),
+&"new_animation": SubResource("Animation_f38ew")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yxig0"]

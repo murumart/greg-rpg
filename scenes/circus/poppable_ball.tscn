@@ -176,8 +176,8 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibhxp"]
 _data = {
-"RESET": SubResource("Animation_fh4nh"),
-"explode": SubResource("Animation_5ey4u")
+&"RESET": SubResource("Animation_fh4nh"),
+&"explode": SubResource("Animation_5ey4u")
 }
 
 [node name="Ball" type="Area2D" groups=["poppable_balls"]]

@@ -261,8 +261,8 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4w8f0"]
 _data = {
-"RESET": SubResource("Animation_yf8yi"),
-"default": SubResource("Animation_byci8")
+&"RESET": SubResource("Animation_yf8yi"),
+&"default": SubResource("Animation_byci8")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rk5e8"]
