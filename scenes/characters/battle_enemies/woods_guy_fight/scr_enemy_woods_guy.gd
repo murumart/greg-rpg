@@ -6,9 +6,15 @@ const FlowerBoy = preload("res://scenes/characters/battle_enemies/woods_guy_figh
 const BirdAttrack = preload("res://scenes/characters/battle_enemies/woods_guy_fight/bird_attrack.gd")
 const Warning = preload("res://scenes/characters/battle_enemies/woods_guy_fight/warning.gd")
 
+const TREE := preload("res://scenes/decor/scn_tree.tscn")
+
+const TX_WOODSMAN = preload("res://sprites/characters/battle/woodsman/woodsman.png")
+const TX_WOODSMAN_LOOK = preload("res://sprites/characters/battle/woodsman/woodsman_look.png")
+
 const BOARD_CENTRE := Vector2(0, -26)
 const TRANS_TIME := 0.75
 const MINUSO := Vector2.ONE * -1
+const DEFAULT_INVTIME := 0.5
 
 @onready var board: Node2D = $Battle
 @onready var greeble: PlayerOverworld = $Battle/Greg
@@ -16,6 +22,8 @@ const MINUSO := Vector2.ONE * -1
 
 var attack_ix := 0
 var attacks: Array[Callable]
+var invtime := 0.0
+var max_invtime := DEFAULT_INVTIME
 
 
 func _ready() -> void:
@@ -29,61 +37,104 @@ func _ready() -> void:
 	)
 	hide_board()
 	attacks = [
-		#func() -> void:
-			#await circle_attack(0.6, 1, 0, 32, 0, board.global_position)
-			#,
-		#func() -> void:
-			#await random_attack(4, 0.5)
-			#,
-		#func() -> void:
-			#await circle_attack(1.4, 4, 0, 36, PI * 0.25, board.global_position)
-			#,
-		#func() -> void:
-			#await random_attack(10, 0.3),
-		#func() -> void:
-			#await circle_attack(0.8, 8, 0.7, 36)
-			#,
-		#func() -> void:
-			#for i in 3:
-				#var fb := FlowerBoy.create(rng, greeble, 2)
-				#fb.global_position = board.global_position + Vector2(rng.randf_range(38, 56) * (-1 if rng.randf() < 0.5 else 1), -38)
-				#board.add_child(fb)
-				#await Math.timer(0.6)
-			#await Math.timer(3)
-			#,
-		#func() -> void:
-			#var b := BirdAttrack.create(rng, 0.8)
-			#board.add_child(b)
-			#b.global_position = board.global_position + Vector2(0, -38)
-			#await Math.timer(7)
-			#b.queue_free()
-			#,
+		func() -> void:
+			await circle_attack(0.6, 1, 0, 32, 0, board.global_position)
+			,
+		func() -> void:
+			await random_attack(7, 0.5)
+			,
+		func() -> void:
+			await circle_attack(1.4, 4, 0, 42, PI * 0.25, board.global_position)
+			await Math.timer(0.8)
+			await circle_attack(1.3, 4, 0, 36, PI, board.global_position)
+			,
+		func() -> void:
+			await random_attack(12, 0.3)
+			await warning_attack(Rect2(0, 0, 4, 2))
+			,
+		func() -> void:
+			flowerboy_attack(4, 1.2, 1, 60)
+			await Math.timer(4)
+			,
+		func() -> void:
+			await circle_attack(0.9, 8, 1.1, 36)
+			,
+		func() -> void:
+			for i in 4:
+				await circle_attack(1.4, 4, 0, 48, TAU * (i / 8.0), board.global_position)
+				await Math.timer(0.8)
+			,
+		func() -> void:
+			flowerboy_attack(6, 0.8, 2, 60.0)
+			await Math.timer(5)
+			,
 		func () -> void:
-			var b := Warning.create(rng, Rect2(0, 0, 4, 2))
-			board.add_child(b)
-			await b.attack()
-			b = Warning.create(rng, Rect2(0, 2, 4, 2))
-			board.add_child(b)
-			await b.attack()
-			b = Warning.create(rng, Rect2(0, 0, 2, 4))
-			board.add_child(b)
-			await b.attack()
+			var t := TREE.instantiate()
+			board.add_child(t)
+			t.position = Vector2(7, 21)
+			await warning_attack(Rect2(0, 0, 4, 3))
+			await warning_attack(Rect2(0, 1, 4, 3))
+			await warning_attack(Rect2(0, 0, 3, 4))
+			await warning_attack(Rect2(1, 0, 3, 4))
+			t.queue_free()
 			,
 		func() -> void:
-			for i in 6:
-				var fb := FlowerBoy.create(rng, greeble, 2, 15.0)
-				fb.global_position = board.global_position + Vector2(rng.randf_range(38, 56) * (-1 if rng.randf() < 0.5 else 1), -38)
-				board.add_child(fb)
-				await Math.timer(0.6)
-			await Math.timer(3)
+			for i in 8:
+				await circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
+				await Math.timer(0.8)
+			,
+		func() -> void:
+			flowerboy_attack(6, 0.6, 4, 15.0)
+			await Math.timer(7)
+			,
+		func() -> void:
+			await bird_attack(0.8, 7)
+			,
+		func() -> void:
+			random_attack(12, 0.3)
+			await warning_attack(Rect2(0, 0, 4, 2))
+			await warning_attack(Rect2(0, 2, 4, 2))
+			random_attack(24, 0.2)
+			await warning_attack(Rect2(2, 2, 2, 2))
+			await warning_attack(Rect2(0, 0, 2, 2))
+			await warning_attack(Rect2(2, 0, 2, 2))
+			await warning_attack(Rect2(0, 2, 2, 2))
+			,
+		func() -> void:
+			circle_attack(7.0, 10, 0.1, 42, 0, board.global_position)
+			circle_attack(7.0, 10, 0.1, 42, 0, board.global_position)
+			await bird_attack(0.5, 10)
+			await Math.timer(1.0)
 			,
 		func() -> void:
 			await circle_attack(0.6, 40, 0.05, 40, 0, board.global_position)
 			await circle_attack(0.6, 40, 0.05, 40, 0, board.global_position)
 			await circle_attack(0.6, 40, 0.05, 40, 0, board.global_position)
 			await circle_attack(0.6, 40, 0.05, 40, 0, board.global_position)
+			,
+		func() -> void:
+			flowerboy_attack(6, 0.6, 4, 15.0)
+			await Math.timer(6)
+			,
+		func() -> void:
+			for i in 8:
+				await circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
+				await Math.timer(0.8)
+			,
+		func() -> void:
+			await bird_attack(0.8, 7)
 			,
 	]
+
+
+func _process(delta: float) -> void:
+	super(delta)
+	if greeble.state == PlayerOverworld.States.FREE_MOVE:
+		invtime = maxf(0.0, invtime - delta)
+		if invtime > 0:
+			greeble.modulate.a = 0.2 + (sin(invtime * 30) + 1) * 0.3
+		else:
+			greeble.modulate.a = 1
 
 
 func act() -> void:
@@ -107,7 +158,7 @@ func reveal_board() -> void:
 	board.show()
 	tw.tween_property(board, "scale", Vector2.ONE, TRANS_TIME)
 	tw.parallel().tween_property(board, "modulate", Color.WHITE, TRANS_TIME)
-	tw.parallel().tween_property(board, "rotation", TAU * 4, TRANS_TIME)
+	tw.parallel().tween_property(board, "rotation", TAU * 1, TRANS_TIME)
 	await tw.finished
 	greeble.state = PlayerOverworld.States.FREE_MOVE
 
@@ -124,15 +175,16 @@ func hide_board() -> void:
 
 func hit_area_entered(area: Area2D) -> void:
 	var target := pick_target()
-	if is_instance_valid(target):
+	if is_instance_valid(target) and invtime <= 0 and greeble.state == PlayerOverworld.States.FREE_MOVE:
 		target.hurt(20, Genders.BRAIN)
+		invtime = max_invtime
 
 
 func pick_attack() -> void:
+	if attack_ix >= attacks.size():
+		attack_ix = attacks.size() - rng.randi_range(1, 3)
 	await attacks[attack_ix].call()
 	attack_ix += 1
-	if attack_ix >= attacks.size():
-		attack_ix = attacks.size() - rng.randi() % 2
 
 
 func circle_attack(
@@ -166,3 +218,28 @@ func random_attack(n: int, delay: float, gridlock := false) -> void:
 		b.global_position = pos
 		board.add_child(b)
 		await Math.timer(delay)
+
+
+func flowerboy_attack(n: int, delay: float, flowercount: int, flowerspeed: float) -> void:
+	for i in n:
+		var fb := FlowerBoy.create(rng, greeble, flowercount, flowerspeed)
+		var side := (-1 if rng.randf() < 0.5 else 1)
+		fb.global_position = board.global_position + Vector2(rng.randf_range(38, 56) * side, -38)
+		board.add_child(fb)
+		await Math.timer(delay)
+
+
+func warning_attack(rect: Rect2) -> void:
+	var b := Warning.create(rng, rect)
+	board.add_child(b)
+	await b.attack()
+
+
+func bird_attack(delay: float, time: float) -> void:
+	max_invtime = 0.67
+	var b := BirdAttrack.create(rng, delay)
+	board.add_child(b)
+	b.global_position = board.global_position + Vector2(0, -38)
+	await Math.timer(time)
+	b.queue_free()
+	max_invtime = DEFAULT_INVTIME

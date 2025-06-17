@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhw0c460xejq6"]
+[gd_scene load_steps=9 format=3 uid="uid://dhw0c460xejq6"]
 
-[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="1_f66wo"]
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="1_f66wo"]
 [ext_resource type="Script" uid="uid://cb26hnfstpdxs" path="res://scenes/characters/battle_enemies/woods_guy_fight/flower_boy.gd" id="1_tav60"]
 [ext_resource type="AudioStream" uid="uid://cslof0ym068kr" path="res://sounds/gui/squelch.ogg" id="3_b0e31"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c7qqm"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_681xm"]
+atlas = ExtResource("1_f66wo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Curve" id="Curve_k1a4y"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0223068, 0.449577), 0.0, 0.0, 0, 0, Vector2(0.363825, 0.176353), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_grdxl"]
+width = 64
+curve = SubResource("Curve_k1a4y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b0e31"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_grdxl")
 
 [node name="FlowerBoy" type="Node2D"]
 script = ExtResource("1_tav60")
@@ -11,6 +31,14 @@ script = ExtResource("1_tav60")
 texture = ExtResource("1_f66wo")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Particles" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_c7qqm")
+texture = SubResource("AtlasTexture_681xm")
+lifetime = 0.2
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_b0e31")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

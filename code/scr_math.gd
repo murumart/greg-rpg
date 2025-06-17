@@ -285,5 +285,5 @@ static func typos(s: String) -> String:
 	return s
 
 
-static func timer(sec: float) -> void:
-	await DAT.get_tree().create_timer(sec).timeout
+static func timer(sec: float, process_always := false) -> void:
+	await DAT.get_tree().create_timer(sec, process_always).timeout

@@ -5,6 +5,8 @@ const FlowerBoy = preload("res://scenes/characters/battle_enemies/woods_guy_figh
 const FLOWER_BOY = preload("res://scenes/characters/battle_enemies/woods_guy_fight/flower_boy.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var particles: GPUParticles2D = $Sprite2D/Particles
+
 @onready var throw: AudioStreamPlayer = $Throw
 
 var delay := 0.0
@@ -30,9 +32,11 @@ func _physics_process(delta: float) -> void:
 	delay -= delta
 	if delay <= 0.5:
 		sprite.region_rect.position.y = 0
+		particles.texture.region.position.y = 0
 	if delay <= 0:
 		delay = 1
 		sprite.region_rect.position.y = 16
+		particles.texture.region.position.y = 16
 		throw.play()
 		if not is_instance_valid(target):
 			print("no target")
@@ -42,5 +46,5 @@ func _physics_process(delta: float) -> void:
 			add_sibling(rb)
 			rb.global_position = global_position
 			rb.direction = global_position.direction_to(target.global_position)
-			rb.direction += Vector2.from_angle(deg_to_rad(randf_range(-20, 20)))
+			rb.direction = rb.direction.rotated(deg_to_rad(randf_range(-20, 20)))
 			rb.direction *= flower_speed

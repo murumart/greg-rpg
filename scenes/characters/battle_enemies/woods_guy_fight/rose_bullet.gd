@@ -7,6 +7,9 @@ const RoseBullet = preload("res://scenes/characters/battle_enemies/woods_guy_fig
 var direction := Vector2()
 var reduction := 1.0
 
+@export var line: Line2D
+@export var audio: AudioStreamPlayer
+
 
 static func create() -> RoseBullet:
 	return ROSE_BULLET.instantiate()

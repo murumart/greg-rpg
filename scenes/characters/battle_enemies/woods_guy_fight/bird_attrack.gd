@@ -20,9 +20,11 @@ func _physics_process(delta: float) -> void:
 	time += delta
 	if time > 1:
 		time = delay
-		var pos := Vector2(rng.randf_range(-120, 120), rng.randf_range(80, 120))
+		var pos := Vector2(rng.randf_range(-200, 200), rng.randf_range(80, 120))
 		var bird := RoseBullet.create_bird()
 		add_sibling(bird)
 		bird.global_position = pos
 		bird.direction = pos.direction_to(global_position) * rng.randf_range(50, 80)
-		bird.reduction = 1.01
+		bird.line.points[1] = bird.direction * 20
+		bird.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC).tween_property(bird.line, "modulate:a", 0.0, 4.0)
+		bird.audio.play()

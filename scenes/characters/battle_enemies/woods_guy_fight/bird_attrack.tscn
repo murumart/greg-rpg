@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7t36y3r024xn"]
+[gd_scene load_steps=17 format=3 uid="uid://c7t36y3r024xn"]
 
 [ext_resource type="Script" uid="uid://ubw41wbkgk7h" path="res://scenes/characters/battle_enemies/woods_guy_fight/bird_attrack.gd" id="1_1utea"]
-[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="1_x4xgy"]
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="1_x4xgy"]
 [ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="2_o326f"]
 [ext_resource type="AudioStream" uid="uid://dsecnyf8owaqj" path="res://sounds/choir.ogg" id="4_ibd47"]
 
@@ -40,32 +40,8 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_g32n6")
 alpha_curve = SubResource("CurveTexture_grdxl")
 
-[sub_resource type="Animation" id="Animation_g32n6"]
-resource_name = "ready"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.17, 0.96]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibd47"]
+size = Vector2(5, 14)
 
 [sub_resource type="Animation" id="Animation_bbdd3"]
 length = 0.001
@@ -94,6 +70,33 @@ tracks/1/keys = {
 "values": [0.17]
 }
 
+[sub_resource type="Animation" id="Animation_g32n6"]
+resource_name = "ready"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.17, 0.96]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ojunq"]
 _data = {
 &"RESET": SubResource("Animation_bbdd3"),
@@ -105,7 +108,7 @@ script = ExtResource("1_1utea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(3.05698, 0)
+position = Vector2(-19.6326, 0)
 texture = ExtResource("1_x4xgy")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
@@ -131,8 +134,157 @@ script = ExtResource("2_o326f")
 property_name = &"position:x"
 target = NodePath("..")
 min_value = -4.0
-max_value = 16.0
+max_value = 32.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D2" type="Area2D" parent="Sprite2D"]
+position = Vector2(9.83016, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D2"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D3" type="Area2D" parent="Sprite2D"]
+position = Vector2(-9.65842, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D3"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D4" type="Area2D" parent="Sprite2D"]
+position = Vector2(-19.5134, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D4"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D5" type="Area2D" parent="Sprite2D"]
+position = Vector2(19.0404, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D5"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D6" type="Area2D" parent="Sprite2D"]
+position = Vector2(4.95967, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D6"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D7" type="Area2D" parent="Sprite2D"]
+position = Vector2(14.7898, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D7"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D8" type="Area2D" parent="Sprite2D"]
+position = Vector2(-4.69876, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D8"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D9" type="Area2D" parent="Sprite2D"]
+position = Vector2(-14.5538, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D9"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D10" type="Area2D" parent="Sprite2D"]
+position = Vector2(24, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D10"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D11" type="Area2D" parent="Sprite2D"]
+position = Vector2(-3.58748, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D11"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D12" type="Area2D" parent="Sprite2D"]
+position = Vector2(6.24268, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D12"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D13" type="Area2D" parent="Sprite2D"]
+position = Vector2(-13.2459, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D13"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D14" type="Area2D" parent="Sprite2D"]
+position = Vector2(-23.1009, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D14"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
+
+[node name="Area2D15" type="Area2D" parent="Sprite2D"]
+position = Vector2(15.4529, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D15"]
+position = Vector2(-0.0653753, 0)
+shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ibd47")

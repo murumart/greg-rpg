@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dib5ead4jgl61"
-path="res://.godot/imported/spr_woodsguy_attacks.png-bc2d40925c1887436b6721de8a97fe5b.ctex"
+uid="uid://bdt2yqcxh2f5m"
+path="res://.godot/imported/woodsman_look.png-1dadd8396f6988003628520e82724289.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/battle/spr_woodsguy_attacks.png"
-dest_files=["res://.godot/imported/spr_woodsguy_attacks.png-bc2d40925c1887436b6721de8a97fe5b.ctex"]
+source_file="res://sprites/characters/battle/woodsman/woodsman_look.png"
+dest_files=["res://.godot/imported/woodsman_look.png-1dadd8396f6988003628520e82724289.ctex"]
 
 [params]
 

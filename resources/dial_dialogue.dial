@@ -3246,6 +3246,10 @@ CHOICES no,yes
 	it's woods time for you
 
 
+DIALOGUE woods_guy_battle
+	
+
+
 DIALOGUE woods_guy_tooearly
 CHOICES darn
 	it's not woods time for you yet.

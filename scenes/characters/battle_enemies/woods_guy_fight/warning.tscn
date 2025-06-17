@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckqn4csbruevf"]
 
 [ext_resource type="Script" uid="uid://6fhrly3iunws" path="res://scenes/characters/battle_enemies/woods_guy_fight/warning.gd" id="1_j3nke"]
-[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/spr_woodsguy_attacks.png" id="1_tafks"]
+[ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="1_tafks"]
 [ext_resource type="AudioStream" uid="uid://bgo6cc6087nfv" path="res://sounds/teleport.ogg" id="3_2vksp"]
 [ext_resource type="AudioStream" uid="uid://dfmsv32r5iucg" path="res://sounds/error.ogg" id="3_i6mvi"]
 

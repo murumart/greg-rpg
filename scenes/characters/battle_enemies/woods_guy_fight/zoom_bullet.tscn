@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmtyx3acqli6q" path="res://scenes/characters/battle_enemies/woods_guy_fight/zoom_bullet.gd" id="1_qsolb"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_qccqe"]
-[ext_resource type="AudioStream" uid="uid://63vckcp1s5gh" path="res://sounds/chemistry/evaporate.ogg" id="3_qccqe"]
+[ext_resource type="AudioStream" uid="uid://d0hdnl64at3ls" path="res://sounds/birdflap.ogg" id="3_n4ctl"]
 [ext_resource type="AudioStream" uid="uid://bgo6cc6087nfv" path="res://sounds/teleport.ogg" id="4_n4ctl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n4ctl"]
@@ -28,12 +28,12 @@ alpha_curve = SubResource("CurveTexture_n4ctl")
 [sub_resource type="CircleShape2D" id="CircleShape2D_n4ctl"]
 radius = 5.09902
 
+[sub_resource type="Animation" id="Animation_ktlo7"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_7lfy5"]
 resource_name = "atk1"
 length = 2.5
-
-[sub_resource type="Animation" id="Animation_ktlo7"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lqqhc"]
 _data = {
@@ -54,14 +54,16 @@ region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
 material = SubResource("CanvasItemMaterial_n4ctl")
 texture = SubResource("AtlasTexture_s6go7")
 lifetime = 0.1
-trail_lifetime = 0.1
+trail_lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_cxxk3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n4ctl")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -69,9 +71,10 @@ libraries = {
 }
 
 [node name="Whoosh" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_qccqe")
-volume_db = 13.333
+stream = ExtResource("3_n4ctl")
+volume_db = 4.0
+pitch_scale = 1.51
 
 [node name="Tp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n4ctl")
-pitch_scale = 1.41
+pitch_scale = 1.02
