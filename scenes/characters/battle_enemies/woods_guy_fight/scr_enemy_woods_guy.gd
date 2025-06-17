@@ -19,6 +19,7 @@ const DEFAULT_INVTIME := 0.5
 @onready var board: Node2D = $Battle
 @onready var greeble: PlayerOverworld = $Battle/Greg
 @onready var hit_area: Area2D = $Battle/Greg/HitArea
+@onready var sprite: Sprite2D = $Sprite
 
 var attack_ix := 0
 var attacks: Array[Callable]
@@ -41,7 +42,7 @@ func _ready() -> void:
 			await circle_attack(0.6, 1, 0, 32, 0, board.global_position)
 			,
 		func() -> void:
-			await random_attack(7, 0.5)
+			await random_attack(7, 0.4)
 			,
 		func() -> void:
 			await circle_attack(1.4, 4, 0, 42, PI * 0.25, board.global_position)
@@ -50,7 +51,7 @@ func _ready() -> void:
 			,
 		func() -> void:
 			await random_attack(12, 0.3)
-			await warning_attack(Rect2(0, 0, 4, 2))
+			await warning_attack(Rect2(0, 0, 4, 2)) # watch me beat it.
 			,
 		func() -> void:
 			flowerboy_attack(4, 1.2, 1, 60)
@@ -60,7 +61,7 @@ func _ready() -> void:
 			await circle_attack(0.9, 8, 1.1, 36)
 			,
 		func() -> void:
-			for i in 4:
+			for i in 4: # kill or be killed
 				await circle_attack(1.4, 4, 0, 48, TAU * (i / 8.0), board.global_position)
 				await Math.timer(0.8)
 			,
@@ -68,7 +69,7 @@ func _ready() -> void:
 			flowerboy_attack(6, 0.8, 2, 60.0)
 			await Math.timer(5)
 			,
-		func () -> void:
+		func() -> void:
 			var t := TREE.instantiate()
 			board.add_child(t)
 			t.position = Vector2(7, 21)
@@ -76,7 +77,7 @@ func _ready() -> void:
 			await warning_attack(Rect2(0, 1, 4, 3))
 			await warning_attack(Rect2(0, 0, 3, 4))
 			await warning_attack(Rect2(1, 0, 3, 4))
-			t.queue_free()
+			t.queue_free() # sorry about the tree
 			,
 		func() -> void:
 			for i in 8:
@@ -124,6 +125,12 @@ func _ready() -> void:
 		func() -> void:
 			await bird_attack(0.8, 7)
 			,
+		func() -> void:
+			await warning_attack(Rect2(0, 0, 4, 3))
+			await warning_attack(Rect2(0, 1, 4, 3))
+			await warning_attack(Rect2(0, 0, 3, 4))
+			await warning_attack(Rect2(1, 0, 3, 4))
+			,
 	]
 
 
@@ -139,10 +146,13 @@ func _process(delta: float) -> void:
 
 func act() -> void:
 	var greglvl := ResMan.get_character("greg").level
-	if greglvl < 50:
-		ai_action()
-		return
 	ignore_my_finishes = true
+	sprite.texture = TX_WOODSMAN_LOOK
+	var dlgstr := "woods_guy_battle_" + str(turn + 1)
+	if SOL.dialogue_exists(dlgstr):
+		SOL.dialogue(dlgstr)
+		await SOL.dialogue_closed
+	sprite.texture = TX_WOODSMAN
 	await reveal_board()
 	await Math.timer(0.7)
 	await pick_attack()
@@ -182,7 +192,7 @@ func hit_area_entered(area: Area2D) -> void:
 
 func pick_attack() -> void:
 	if attack_ix >= attacks.size():
-		attack_ix = attacks.size() - rng.randi_range(1, 3)
+		attack_ix = attacks.size() - rng.randi_range(1, 4)
 	await attacks[attack_ix].call()
 	attack_ix += 1
 

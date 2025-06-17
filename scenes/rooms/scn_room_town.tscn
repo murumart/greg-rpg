@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=125 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -51,7 +51,6 @@
 [ext_resource type="Script" uid="uid://duxvpsyqmlgud" path="res://scenes/rooms/town/scr_fake_cat.gd" id="29_v4362"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
-[ext_resource type="Script" uid="uid://brnlo2uy8wbjq" path="res://scenes/rooms/town/scr_town_woods_guy.gd" id="33_73ctx"]
 [ext_resource type="Script" uid="uid://lxu2lp5c0pkw" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" uid="uid://ct4x4l2aeh408" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
 [ext_resource type="Texture2D" uid="uid://bbsu0n0yi30cw" path="res://sprites/characters/overworld/spr_vampire_girl_overworld.png" id="36_ou4sv"]
@@ -72,7 +71,9 @@
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="48_ke24d"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
+[ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="62_qhmci"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -798,7 +799,7 @@ tile_map_data = PackedByteArray("AAD+/wcAAAABAAsAAAD//wYAAAACAAsAAAD//wQAAAACAAs
 tile_set = ExtResource("15_1u67x")
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(263, -214)
+position = Vector2(78, 342)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1503,7 +1504,7 @@ region_rect = Rect2(0, 80, 48, 32)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Houses/Store/Decor/Sign"]
 libraries = {
-"": SubResource("AnimationLibrary_1313b")
+&"": SubResource("AnimationLibrary_1313b")
 }
 autoplay = "glow"
 
@@ -1562,7 +1563,7 @@ offset = Vector2(0, -7)
 
 [node name="StoreCutscenePlayer" type="AnimationPlayer" parent="Houses/Store"]
 libraries = {
-"": SubResource("AnimationLibrary_8mgoo")
+&"": SubResource("AnimationLibrary_8mgoo")
 }
 
 [node name="UguyWalk" parent="Houses/Store" node_paths=PackedStringArray("animated_sprite", "path_container") instance=ExtResource("10_dem56")]
@@ -1846,7 +1847,7 @@ y_sort_enabled = true
 
 [node name="Nice" type="AnimationPlayer" parent="Houses/Skatepark/Goodness"]
 libraries = {
-"": SubResource("AnimationLibrary_gfdhj")
+&"": SubResource("AnimationLibrary_gfdhj")
 }
 autoplay = "nice"
 
@@ -2442,33 +2443,6 @@ escape_offset = Vector2(0, -60)
 position = Vector2(-456, -431)
 escape_offset = Vector2(0, -60)
 
-[node name="WoodsGuy" type="Node2D" parent="Other"]
-y_sort_enabled = true
-position = Vector2(-692, -28)
-script = ExtResource("33_73ctx")
-
-[node name="Spots" type="Node" parent="Other/WoodsGuy"]
-
-[node name="Marker2D" type="Marker2D" parent="Other/WoodsGuy/Spots"]
-position = Vector2(470, -168)
-
-[node name="Marker2D2" type="Marker2D" parent="Other/WoodsGuy/Spots"]
-position = Vector2(1004, -185)
-
-[node name="Marker2D3" type="Marker2D" parent="Other/WoodsGuy/Spots"]
-position = Vector2(1015, 248)
-
-[node name="Marker2D4" type="Marker2D" parent="Other/WoodsGuy/Spots"]
-position = Vector2(306, 263)
-
-[node name="WoodsGuy" parent="Other/WoodsGuy" instance=ExtResource("10_dem56")]
-
-[node name="Sprite2D" type="Sprite2D" parent="Other/WoodsGuy/WoodsGuy"]
-position = Vector2(0, -8)
-texture = ExtResource("16_o4xvl")
-region_enabled = true
-region_rect = Rect2(0, 32, 16, 16)
-
 [node name="IsFootballVisible" type="VisibleOnScreenNotifier2D" parent="Other"]
 position = Vector2(1241, 238)
 scale = Vector2(6.75, 4.55)
@@ -2708,6 +2682,7 @@ shape = SubResource("CapsuleShape2D_ejp7m")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 position = Vector2(40, 344)
+script = ExtResource("61_qhmci")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Other/BirdBlocker"]
 collision_mask = 0
@@ -2716,7 +2691,7 @@ collision_mask = 0
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_067aq")
 
-[node name="Sprite2D" type="Sprite2D" parent="Other/BirdBlocker"]
+[node name="BirdSprite" type="Sprite2D" parent="Other/BirdBlocker"]
 position = Vector2(-3, -4)
 texture = ExtResource("41_q4dt7")
 centered = false
@@ -2725,11 +2700,25 @@ region_rect = Rect2(4, 10, 7, 5)
 
 [node name="InspectArea" parent="Other/BirdBlocker" instance=ExtResource("18_4rtss")]
 position = Vector2(0, -5)
-key = "blocking_bird"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BirdBlocker/InspectArea"]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ycxhg")
+
+[node name="WoodsGuy" parent="Other/BirdBlocker" instance=ExtResource("10_dem56")]
+position = Vector2(0, 28)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/BirdBlocker/WoodsGuy"]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
+[node name="CheatNode" type="Node" parent="Other/BirdBlocker"]
+script = ExtResource("62_qhmci")
+level_gain = 55
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="LeaveEnding" type="Node2D" parent="Other"]
 position = Vector2(-184, -518)
@@ -2802,7 +2791,7 @@ shape = SubResource("RectangleShape2D_dmry3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Other/PoliceBlocker"]
 libraries = {
-"": SubResource("AnimationLibrary_ut0a6")
+&"": SubResource("AnimationLibrary_ut0a6")
 }
 
 [node name="InspectArea" parent="Other/PoliceBlocker" instance=ExtResource("18_4rtss")]

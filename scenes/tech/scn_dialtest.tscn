@@ -156,6 +156,7 @@ offset_bottom = 44.0
 selected = 0
 item_count = 1
 popup/item_0/text = "empty"
+popup/item_0/id = 0
 
 [node name="GoButton" type="Button" parent="SecondScreen"]
 layout_mode = 0

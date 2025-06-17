@@ -253,8 +253,16 @@ DIALOGUE insp_lonetire
 	there is a lone car tyre on the road, blocking your way forward.
 
 
+DIALOGUE insp_blocking_bird_low
+	the road is blocked here. this bird is too intimidating...
+	but maybe, once you're strong enough...
+
+
 DIALOGUE insp_blocking_bird
-	the road is blocked here. you can't get past this bird.
+	the bird is blocking this road.
+	you look it in the eye and it meets your gaze.
+CHOICES yes,no
+	will you move it out of your way with force?
 
 
 DIALOGUE insp_blocking_bird_2

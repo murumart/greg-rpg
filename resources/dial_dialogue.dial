@@ -2825,8 +2825,7 @@ DIALOGUE restroom_3_1
 
 
 DIALOGUE restroom_0_2
-	THE WOODS YEARN FOR US BOTH.
-	JOIN ME.
+	you can't take a dump like this in the woods.
 
 
 DIALOGUE restroom_1_2
@@ -3213,41 +3212,72 @@ DIALOGUE bald_man_default
 	what's up?
 
 
-DIALOGUE woods_guy_0
-	the woods
-CHOICES no,ok
-	teleport to the woods
+DIALOGUE woods_guy_approach
+	a little birdie told me someone was ogling the roses.
 
 
-DIALOGUE woods_guy_1
-CHOICES no,to the woods
-	teleport?
+DIALOGUE woods_guy_battle_1
+	in the woods there is a pathway to unnatural prowess.
+	its a tale undertaken by those who are worthy.
 
 
-DIALOGUE woods_guy_2
-CHOICES no,me
-	woods time for...
+DIALOGUE woods_guy_battle_2
+	do you think scaring away a little bird is enough?
+	let me scare you for a change.
 
 
-DIALOGUE woods_guy_3
-CHOICES no,ok
-	woods time for you
+DIALOGUE woods_guy_battle_3
+	trust me. it really isn't woods time until you learn...
+	...that getting hit by projectiles hurts.
 
 
-DIALOGUE woods_guy_4
-CHOICES no,yes
-	teleport to the woods
+DIALOGUE woods_guy_battle_4
+	you are not worthy. see that little greg?
+	that is your ass. watch me beat it.
 
 
-DIALOGUE woods_guy_5
-	the woods
-	teleport to the woods
-CHOICES no,yes
-	it's woods time for you
+DIALOGUE woods_guy_battle_5
+	red roses. red roses on the path of victors.
 
 
-DIALOGUE woods_guy_battle
-	
+DIALOGUE woods_guy_battle_6
+	but the rest can only hope to dream of it.
+
+
+DIALOGUE woods_guy_battle_7
+	in the woods, it's kill or be killed.
+	have you been killed enough to know the difference?
+
+
+DIALOGUE woods_guy_battle_8
+	that is who i am. a flower boy on your path to victory.
+
+
+DIALOGUE woods_guy_battle_9
+	sorry about the tree...
+
+
+DIALOGUE woods_guy_battle_10
+	in the shape of the stones... four sides. six sides.
+	eight-sided blocks of mystery.
+
+
+DIALOGUE woods_guy_battle_11
+	the blox... what's under them?
+	what i found was what shaped this body.... unghhh.,,,,
+
+
+DIALOGUE woods_guy_battle_12
+	its composition...
+
+
+DIALOGUE woods_guy_battle_13
+	its integrity... can you withstand it?
+
+
+DIALOGUE woods_guy_battle_14
+	you've made it to the circle that takes us back.
+	see you ahead, flower boy...
 
 
 DIALOGUE woods_guy_tooearly

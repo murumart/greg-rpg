@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=6 format=3 uid="uid://6itneer8usqe"]
+
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_wphy8"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="2_wnru3"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="3_owa4v"]
+
+[sub_resource type="Resource" id="Resource_s7pj0"]
+script = ExtResource("1_wphy8")
+type = 0
+property = "36"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_ekjgu"]
+script = ExtResource("2_wnru3")
+rewards = Array[ExtResource("1_wphy8")]([SubResource("Resource_s7pj0")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[resource]
+script = ExtResource("3_owa4v")
+enemies = Array[StringName]([&"woods_guy"])
+background = "town"
+music = "forestguy"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "it's woods time for you"
+rewards = SubResource("Resource_ekjgu")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = false

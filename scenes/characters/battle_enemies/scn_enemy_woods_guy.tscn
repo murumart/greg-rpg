@@ -14,7 +14,7 @@ height = 6.0
 script = ExtResource("1_vs3ya")
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_yuoru")
 
 [node name="Battle" type="Node2D" parent="."]
