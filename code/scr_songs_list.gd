@@ -161,6 +161,10 @@ var songs := {
 		"title": "mail mission",
 		"stream": preload("res://music/mus_mail_mission.ogg")
 	},
+	"overrun": {
+		"title": "overrun",
+		"stream": preload("res://music/mus_overrun.ogg")
+	},
 	"police": {
 		"title": "poosetajad",
 		"stream": preload("res://music/mus_police.ogg")
@@ -169,10 +173,6 @@ var songs := {
 		"title": "perturberance",
 		"stream": preload("res://music/mus_perturberance.ogg")
 	},
-	"overrun": {
-		"title": "overrun",
-		"stream": preload("res://music/mus_overrun.ogg")
-	},
 	"shitty_entrance_of_the_gladiators": {
 		"title": "julius fucik - entrance of the gladiators",
 		"stream": preload("res://music/mus_entrance_of_the_gladiators.ogg")
@@ -180,6 +180,10 @@ var songs := {
 	"snail_mourning": {
 		"title": "snail mourning",
 		"stream": preload("res://music/mus_snail_mourning.ogg")
+	},
+	"sunset": {
+		"title": "sunset",
+		"stream": preload("res://music/mus_sunset.ogg")
 	},
 	"mail_man": {
 		"title": "the friendly postman",

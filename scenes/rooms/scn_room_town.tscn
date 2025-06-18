@@ -1,10 +1,11 @@
-[gd_scene load_steps=125 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=126 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_8fjbe"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_sx16h"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fy0lb"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_smefo"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="5_agxnt"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="6_peamb"]
 [ext_resource type="Texture2D" uid="uid://khsdxjhxfbjs" path="res://sprites/world/car/spr_car_popo.png" id="6_ygtrw"]
@@ -743,6 +744,17 @@ script = ExtResource("2_4wino")
 [node name="VampColor" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_8fjbe")
 
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_8fjbe")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_smefo")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+room = NodePath("..")
+sunset_music = "sunset"
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
+
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
 collision_mask = 0
 
@@ -799,7 +811,7 @@ tile_map_data = PackedByteArray("AAD+/wcAAAABAAsAAAD//wYAAAACAAsAAAD//wQAAAACAAs
 tile_set = ExtResource("15_1u67x")
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(78, 342)
+position = Vector2(102, 343)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1218,7 +1230,8 @@ shape = SubResource("RectangleShape2D_ynb2e")
 [node name="Pairhouse" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(-32, -288)
-scale = Vector2(-1, 1)
+rotation = -3.14159
+scale = Vector2(1, -1)
 script = ExtResource("20_ytcnn")
 
 [node name="HouseBase" type="Node2D" parent="Houses/Pairhouse"]
@@ -2717,7 +2730,7 @@ region_rect = Rect2(0, 32, 16, 16)
 
 [node name="CheatNode" type="Node" parent="Other/BirdBlocker"]
 script = ExtResource("62_qhmci")
-level_gain = 55
+level_gain = 70
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="LeaveEnding" type="Node2D" parent="Other"]
