@@ -25,6 +25,7 @@ var attack_ix := 0
 var attacks: Array[Callable]
 var invtime := 0.0
 var max_invtime := DEFAULT_INVTIME
+var shield_tried := false
 
 
 func _ready() -> void:

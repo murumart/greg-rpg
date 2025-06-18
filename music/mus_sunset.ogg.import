@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/mus_sunset.ogg-f9726da7e16661f43dc8025ff43a3d
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

@@ -19,7 +19,7 @@ var move_mode: MoveModes = MoveModes.WALK:
 		skateboard.visible = bool(int(to))
 
 @onready var raycast: RayCast2D = $InteractionRay
-@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = %Sprite
 @onready var skateboard: Sprite2D = $Skateboard
 @onready var cellphone := $Cellphone as Cellphone
 

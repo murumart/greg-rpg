@@ -3216,6 +3216,10 @@ DIALOGUE woods_guy_approach
 	a little birdie told me someone was ogling the roses.
 
 
+DIALOGUE woods_guy_try_shield
+	there is no shielding yourself from the path.
+
+
 DIALOGUE woods_guy_battle_1
 	in the woods there is a pathway to unnatural prowess.
 	its a tale undertaken by those who are worthy.
@@ -3446,7 +3450,7 @@ DIALOGUE lake_hint_2
 
 DIALOGUE lake_hint_3
 	[color=YUKUCOLOR]yuku[/color] brand department stores have bought all the competition...
-	...in the local region. they rose their prices afterwards, but...
+	...in the local region. they rose the prices afterwards, but...
 	...at least it's convenient having a fixed price, i guess.
 
 

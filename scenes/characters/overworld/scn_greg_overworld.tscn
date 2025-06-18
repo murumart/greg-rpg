@@ -155,13 +155,23 @@ motion_mode = 1
 safe_margin = 0.5
 script = ExtResource("1_gx1l0")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_76min")
 animation = &"walk_down"
 autoplay = "walk_down"
 frame_progress = 0.265417
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+offset_left = -15.0
+offset_top = -21.0
+offset_right = 15.0
+offset_bottom = 9.0
+color = Color(0.521569, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
