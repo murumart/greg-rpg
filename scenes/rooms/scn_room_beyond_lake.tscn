@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=54 format=4 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" uid="uid://bnqmhrhi6tdkj" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_dujwg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_4qote"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="3_jy08p"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_janow"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_ojo5n"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_qfqq5"]
 [ext_resource type="Texture2D" uid="uid://dhq11jug8fwm8" path="res://sprites/vfx/burn_mark.png" id="5_1xh3s"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vb5rp"]
@@ -20,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/ambient_loop.ogg" id="9_4afe5"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="17_7tg3y"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_mglh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbrin"]
@@ -249,6 +251,16 @@ script = ExtResource("2_tsxtk")
 script = ExtResource("3_4qote")
 color = Color(0.883179, 0.963229, 1, 1)
 
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_4qote")
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_ojo5n")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+room = NodePath("..")
+sunset_trigger_gates = Array[StringName]([&"none"])
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
+
 [node name="Water" type="ColorRect" parent="."]
 z_index = -11
 material = SubResource("ShaderMaterial_fbrin")
@@ -263,11 +275,11 @@ z_index = 2
 z_as_relative = false
 position = Vector2(1115, 76)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_c14ba")
 texture = ExtResource("3_jy08p")
 lifetime = 16.0
 preprocess = 4.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
+process_material = SubResource("ParticleProcessMaterial_c14ba")
 
 [node name="OverworldTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -465,6 +477,16 @@ position = Vector2(-1, 14)
 shape = SubResource("RectangleShape2D_aoqp4")
 debug_color = Color(0.756863, 1, 1, 0.419608)
 
+[node name="FishScaredSunHint" parent="Areas" instance=ExtResource("6_y1l2p")]
+position = Vector2(216, -92)
+default_lines = Array[StringName]([&"sunset_sun_hint", &"sunset_sun_hint_2"])
+
+[node name="Sprite2D" type="Sprite2D" parent="Areas/FishScaredSunHint"]
+position = Vector2(0, -8)
+texture = ExtResource("17_7tg3y")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
+
 [node name="Greg" parent="." instance=ExtResource("5_vb5rp")]
 position = Vector2(-416, 6)
 saving_disabled = true
@@ -507,6 +529,8 @@ animation = &"walk_down"
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("4_qfqq5")]
 position = Vector2(-406, -51)

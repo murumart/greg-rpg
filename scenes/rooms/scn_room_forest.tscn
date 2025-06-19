@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=21 format=4 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" uid="uid://dww2ebr18ffrx" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xshqe"]
 [ext_resource type="Script" uid="uid://trdp1tp7ibo0" path="res://code/scr_tilemap_layer_parent.gd" id="3_0ites"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_g7xsi"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_mqh78"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="3_q2vky"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_255qu"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_vjkwb"]
 [ext_resource type="Script" uid="uid://di376kbtrdu7p" path="res://scenes/rooms/forest/scr_forest_hud.gd" id="7_yb0vi"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_d6fx5"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
@@ -46,7 +49,24 @@ trash_amount_curve = SubResource("Curve_g5h5i")
 music = "lion"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.911176, 0.921089, 0.870525, 1)
+color = Color(0.917647, 1, 0.858824, 1)
+script = ExtResource("2_xshqe")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="DeepWoods" type="Node" parent="CanvasModulate"]
+script = ExtResource("3_mqh78")
+color = Color(0.917647, 1, 0.858824, 1)
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sun" type="Node" parent="CanvasModulate"]
+script = ExtResource("3_mqh78")
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_vjkwb")
+sky_modulate = NodePath("../CanvasModulate/Sun")
+room = NodePath("..")
+sunset_trigger_gates = Array[StringName]([&"none"])
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Edgecoll" type="StaticBody2D" parent="."]
 collision_mask = 0

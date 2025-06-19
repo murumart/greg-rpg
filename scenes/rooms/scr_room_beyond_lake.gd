@@ -14,12 +14,16 @@ func _ready() -> void:
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
 	second_sun_spirit_encounter.body_entered.connect(_second_sunspirit_test)
 	third_sun_spirit_encounter.body_entered.connect(_third_sunspirit_test)
-	if DAT.get_data("sun_spirit_engaged", false):
-		spirit.queue_free()
-		second_sun_spirit_encounter.queue_free()
-		third_sun_spirit_encounter.queue_free()
-		$Greg.saving_disabled = false
-	else: tarikas.queue_free()
+	if not DAT.get_data("sunset_triggered", false):
+		if DAT.get_data("sun_spirit_engaged", false):
+			_remove_spirit()
+			$Greg.saving_disabled = false
+		else:
+			tarikas.queue_free()
+	else:
+		_remove_spirit()
+		tarikas.queue_free()
+		$BronzeRifle.queue_free()
 	if not DAT.get_data("nr", 0.0) < 0.1:
 		fisher_ghost.queue_free()
 	if DAT.get_data("sun_spirit_engagement_position", false):
@@ -73,3 +77,9 @@ func _third_sunspirit_test(body: Node2D) -> void:
 	if body == greg:
 		spirit.chase_target = greg
 		spirit.chase(greg)
+
+
+func _remove_spirit() -> void:
+	spirit.queue_free()
+	second_sun_spirit_encounter.queue_free()
+	third_sun_spirit_encounter.queue_free()

@@ -1,8 +1,11 @@
-[gd_scene load_steps=32 format=4 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=35 format=4 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" uid="uid://yuwrdtodd6hx" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_qea7a"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_agme8"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_bb2fy"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="3_nfofm"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_3t2i8"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_24deu"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="6_28rwx"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="6_c7ycq"]
@@ -64,6 +67,20 @@ size = Vector2(26, 7)
 y_sort_enabled = true
 script = ExtResource("1_nk2dh")
 music = "birds"
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+script = ExtResource("2_qea7a")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_agme8")
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_3t2i8")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+room = NodePath("..")
+sunset_trigger_gates = Array[StringName]([&"none"])
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]
 collision_mask = 0

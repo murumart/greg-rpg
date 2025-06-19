@@ -25,8 +25,7 @@ func _on_pole_interacted() -> void:
 
 
 func _on_enemy_encounter_area_body_entered(_body: Node2D) -> void:
-	create_tween().tween_property(canvas_modulate, "color", Color(
-			0.60029411315918, 0.9275940656662, 0.99999982118607), 0.4)
+	create_tween().tween_property(canvas_modulate, "color", Color(0.592, 0.93, 1.0), 0.4)
 
 
 func _on_enemy_encounter_area_body_exited(_body: Node2D) -> void:
@@ -35,6 +34,9 @@ func _on_enemy_encounter_area_body_exited(_body: Node2D) -> void:
 
 func _fish_victim_setup() -> void:
 	var fish_victim := $Areas/FishVictim as OverworldCharacter
+	if DAT.get_data("sunset_triggered", false):
+		fish_victim.queue_free()
+		return
 	if DAT.get_data("fish_fought", false):
 		fish_victim.default_lines.clear()
 		fish_victim.default_lines.append(&"fish_victim_after_fight")

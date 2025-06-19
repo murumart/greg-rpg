@@ -17,7 +17,7 @@ var inversion := false
 
 var generator: ForestGenerator
 var questing: ForestQuesting
-@onready var canvas_modulate: CanvasModulate = $CanvasModulate
+@onready var woods_color: ColorContainer = $CanvasModulate/DeepWoods
 @onready var hud := $UI as HudType
 
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 	hud.forest_ready(self)
 	_setup_gates()
 	generator = ForestGenerator.new(self)
-	canvas_modulate.color = canvas_modulate.color.lerp(
+	woods_color.color = woods_color.color.lerp(
 			Color(0.735, 0.895, 0.222),
 			remap(current_room, 0, 100, 0.0, 1.0))
 	questing.update_quests()

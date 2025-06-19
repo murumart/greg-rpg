@@ -2492,6 +2492,14 @@ DIALOGUE sun_spirit_walk_past
 	[color=SUNCOLOR]buddy. you're not supposed to get past me.
 
 
+DIALOGUE sunset_sun_hint
+	the sun's really hot during the day here, so it's getting bearable now.
+
+
+DIALOGUE sunset_sun_hint_2
+	also, the spirit that usually attacks passersby goes to sleep or something.
+
+
 DIALOGUE atgirl_1
 	what a dull day.
 

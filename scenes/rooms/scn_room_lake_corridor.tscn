@@ -1,7 +1,10 @@
-[gd_scene load_steps=21 format=4 uid="uid://q4xw2dche40p"]
+[gd_scene load_steps=24 format=4 uid="uid://q4xw2dche40p"]
 
 [ext_resource type="Script" uid="uid://cllk0m2ywar46" path="res://scenes/rooms/scr_room_lake_corridor.gd" id="1_0lfh4"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_k2qia"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_ai4se"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_ba3n7"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_3jkxc"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_n2n5i"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_5nos6"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_gmg23"]
@@ -72,6 +75,20 @@ y_sort_enabled = true
 script = ExtResource("1_0lfh4")
 music = "birds"
 music_fade_time = 0.135
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+script = ExtResource("2_k2qia")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_ai4se")
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_3jkxc")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+room = NodePath("..")
+sunset_trigger_gates = Array[StringName]([&"none"])
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="OverworldTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -255,8 +272,8 @@ z_index = 2
 z_as_relative = false
 position = Vector2(106, 644)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_ipct4")
 texture = ExtResource("13_f4g7x")
 lifetime = 16.0
 preprocess = 4.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
+process_material = SubResource("ParticleProcessMaterial_ipct4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=85 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="4_ab10q"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_so2nw"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_u5pcv"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_xwmth"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_gxb62"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
@@ -378,6 +379,16 @@ color = Color(0.883179, 0.963229, 1, 1)
 [node name="FishWarning" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_xexyo")
 
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_xexyo")
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
+script = ExtResource("4_u5pcv")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+room = NodePath("..")
+sunset_trigger_gates = Array[StringName]([&"none"])
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
+
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
 position = Vector2(-252, -143)
 metadata/_edit_group_ = true
@@ -403,11 +414,11 @@ z_index = 2
 z_as_relative = false
 position = Vector2(750, 497)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_q7n2y")
 texture = ExtResource("3_r61au")
 lifetime = 16.0
 preprocess = 8.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
+process_material = SubResource("ParticleProcessMaterial_q7n2y")
 
 [node name="WorldCollision" type="StaticBody2D" parent="."]
 collision_mask = 0
