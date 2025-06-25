@@ -387,3 +387,10 @@ DIALOGUE insp_gdung_fridge_map
 
 DIALOGUE insp_restroom_sinks
 	these are sinks. you fear washing your hands in here will make them dirtier.
+
+
+DIALOGUE insp_grill
+CHOICES yes,no
+	would you like to take 1 fire damage from the grill?
+CHOICE_LINK yes
+	the grill is cold.
