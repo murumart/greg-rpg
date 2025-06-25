@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=87 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="19_sytvq"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
+[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_wb2do"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="32_61gk4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
@@ -84,6 +85,9 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y3e8c"]
 normal = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5pcv"]
+size = Vector2(20, 94)
 
 [sub_resource type="Resource" id="Resource_sy3e8"]
 script = ExtResource("7_7ppah")
@@ -390,7 +394,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-252, -143)
+position = Vector2(-536, 151)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -438,6 +442,10 @@ shape = SubResource("WorldBoundaryShape2D_3lhu4")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="WorldCollision"]
 position = Vector2(-600, 47)
 shape = SubResource("WorldBoundaryShape2D_y3e8c")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="WorldCollision"]
+position = Vector2(-413, -338)
+shape = SubResource("RectangleShape2D_u5pcv")
 
 [node name="OverworldTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -620,6 +628,11 @@ region_rect = Rect2(0, 48, 16, 16)
 position = Vector2(485, -135)
 ghost = 1
 destination_name = &"fishhut"
+
+[node name="SleepyFlower" parent="Areas" instance=ExtResource("21_wb2do")]
+position = Vector2(37, 396)
+item_type = &"egg"
+save = true
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true

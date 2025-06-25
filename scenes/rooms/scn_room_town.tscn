@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=124 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -64,7 +64,6 @@
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="41_q4dt7"]
 [ext_resource type="Script" uid="uid://gd45euqx63yv" path="res://scenes/rooms/town/scr_campfire_site.gd" id="42_h4aju"]
-[ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="42_njd4g"]
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 [ext_resource type="Script" uid="uid://rbsftcdpv7ce" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
 [ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
@@ -664,13 +663,10 @@ radius = 98.5
 height = 223.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
-size = Vector2(77, 15)
+size = Vector2(78, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycxhg"]
 size = Vector2(20, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssv86"]
-size = Vector2(79, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2o7eh"]
 size = Vector2(22, 82)
@@ -811,7 +807,7 @@ tile_map_data = PackedByteArray("AAD+/wcAAAABAAsAAAD//wYAAAACAAsAAAD//wQAAAACAAs
 tile_set = ExtResource("15_1u67x")
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(102, 343)
+position = Vector2(-172, -492)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2694,32 +2690,34 @@ rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ejp7m")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
-position = Vector2(40, 344)
+y_sort_enabled = true
+position = Vector2(-164, -507)
 script = ExtResource("61_qhmci")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Other/BirdBlocker"]
+position = Vector2(-20, -15)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BirdBlocker/StaticBody2D"]
-position = Vector2(-0.5, 2.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_067aq")
 
 [node name="BirdSprite" type="Sprite2D" parent="Other/BirdBlocker"]
-position = Vector2(-3, -4)
+position = Vector2(-23, -13)
 texture = ExtResource("41_q4dt7")
 centered = false
 region_enabled = true
 region_rect = Rect2(4, 10, 7, 5)
 
 [node name="InspectArea" parent="Other/BirdBlocker" instance=ExtResource("18_4rtss")]
-position = Vector2(0, -5)
+position = Vector2(-20, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BirdBlocker/InspectArea"]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ycxhg")
 
 [node name="WoodsGuy" parent="Other/BirdBlocker" instance=ExtResource("10_dem56")]
-position = Vector2(0, 28)
+position = Vector2(0, -34)
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Other/BirdBlocker/WoodsGuy"]
@@ -2732,19 +2730,6 @@ region_rect = Rect2(0, 32, 16, 16)
 script = ExtResource("62_qhmci")
 level_gain = 70
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
-
-[node name="LeaveEnding" type="Node2D" parent="Other"]
-position = Vector2(-184, -518)
-script = ExtResource("42_njd4g")
-
-[node name="ApproachArea" type="Area2D" parent="Other/LeaveEnding"]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/LeaveEnding/ApproachArea"]
-position = Vector2(-0.5, 7)
-shape = SubResource("RectangleShape2D_ssv86")
 
 [node name="PoliceBlocker" type="Node2D" parent="Other"]
 position = Vector2(1467, -104)
@@ -3212,11 +3197,18 @@ active_range = Vector2i(7, 99)
 wait_time = 2.0
 
 [node name="LakeCorridorGate" parent="Areas" instance=ExtResource("9_0hylv")]
-position = Vector2(1128, 354)
+position = Vector2(41, 353)
 destination = &"lake_corridor"
 gate_id = &"town-lake"
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-31, -15)
+
+[node name="RoomGate3" parent="Areas" instance=ExtResource("9_0hylv")]
+position = Vector2(-184, -523)
+destination = &"forest_entrance"
+gate_id = &"town-woods"
+extents = Vector2i(38, 8)
+spawnpoint = Vector2i(40, 13)
 
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
 [connection signal="inspected" from="Houses/HousingBlock/Atgirl" to="." method="_on_atgirl_inspected"]

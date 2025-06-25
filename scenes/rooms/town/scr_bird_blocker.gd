@@ -36,6 +36,7 @@ func _cutscene_before() -> void:
 	var tw := create_tween()
 	DAT.capture_player("cutscene")
 	bird_sprite.hide()
+	SND.play_song("")
 	SOL.vfx("bird_flight", global_position, {"parent": self})
 	tw.tween_interval(2.0)
 	tw.tween_property(woods_guy, "global_position", global_position, 1.0)
