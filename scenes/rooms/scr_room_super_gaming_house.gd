@@ -30,10 +30,10 @@ func _on_computer_interacted() -> void:
 
 func after_game_dial() -> void:
 	var games_played: int = DAT.get_data("pennistongs_played", 0)
-	if games_played == 1:
-		SOL.dialogue("after_pennistong_first")
 	if DAT.get_data("last_pennistong_game_win", true):
 		SOL.dialogue("after_pennistong_win")
 	else:
 		SOL.dialogue("after_pennistong_lose")
+	if games_played == 1:
+		SOL.dialogue("after_pennistong_first")
 	SOL.dialogue("after_pennistong_finish")
