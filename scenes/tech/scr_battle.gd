@@ -200,6 +200,7 @@ func load_battle(_info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards",
 			preload("res://resources/rewards/res_default_reward.tres"
 			)).duplicate(true)
+	screen_dance_battle.mbc.bpm = SND.current_song_player.stream.bpm
 	message(info.get_("start_text",
 			("%s lunges at you!" % enemies.front().actor_name)
 			if enemies.size() else "no one is here."
@@ -869,12 +870,13 @@ func open_dance_battle_screen(actor: EnemyAnimal, target: BattleActor) -> void:
 		var bpm := screen_dance_battle.mbc.bpm
 		var stream := SND.current_song_player.stream
 		var calculated_pitch := bpm / float(stream.bpm)
-		create_tween().tween_property(
+		var tw := create_tween().set_parallel()
+		tw.tween_property(
 			SND.current_song_player,
 			"pitch_scale",
-			calculated_pitch,
-			0.5
-		)
+			SND.current_song_player.pitch_scale * 1.25,
+			0.5)
+		tw.tween_property(screen_dance_battle.mbc, "bpm", screen_dance_battle.mbc.bpm * 1.25, 0.5)
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
@@ -888,17 +890,25 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	var winner := (player if pwin else actor) as BattleActor
 	var loser := (actor if pwin else player) as BattleActor
 	if is_instance_valid(SND.current_song_player):
-		create_tween().tween_property(
+		var tw := create_tween().set_parallel()
+		tw.tween_property(
 				SND.current_song_player,
 				"pitch_scale",
 				1.0,
 				0.5
 		)
-	loser.handle_payload(BattlePayload.new().set_sender(
-				actor).set_health(-(wscore - 0.333 * lscore
-		)).set_defense_pierce(1).set_effects(
-				[StatusEffect.new().set_effect_name("defense"
-				).set_duration(8).set_strength(-55)]))
+		tw.tween_property(screen_dance_battle.mbc, "bpm", screen_dance_battle.mbc.bpm / 1.25, 0.5)
+	loser.handle_payload(
+		BattlePayload.new()
+		.set_sender(actor)
+		.set_health(-(wscore * 1.5 - 0.333 * lscore))
+		.set_defense_pierce(1)
+		.set_effects([
+			StatusEffect.new()
+				.set_effect_name("defense")
+				.set_duration(8)
+				.set_strength(-55)])
+	)
 	message("%s punished %s" %
 			[winner.character.name, loser.character.name],
 			{"alignment": HORIZONTAL_ALIGNMENT_CENTER})

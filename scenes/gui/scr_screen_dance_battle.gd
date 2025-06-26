@@ -87,14 +87,14 @@ func _new_beat() -> void:
 		return
 	if not SOL.dialogue_open:
 		beat += 1
-	if streak > 0:
-		player_dance()
-	if enemy_streak > 0:
-		enemy_dance()
+	#if streak > 0:
+		#dance(dancer)
+	#if enemy_streak > 0:
+		#dance(animal_dancer)
 	if beat > beats_to_play:
 		return
-	var beat_to_test := 2 * (2 * int(tutorial))
-	if beat % (beat_to_test + 2) == 0:
+	var beat_to_test := 2 if not tutorial else 4
+	if beat % (beat_to_test) == 0:
 		create_tween().tween_property(score_text, "modulate", Color.WHITE, 0.2).from(Color.YELLOW)
 		if SOL.dialogue_open:
 			return
@@ -106,21 +106,23 @@ func _new_beat() -> void:
 		if randf() <= 0.22:
 			if randf() <= 0.5:
 				create_arrow()
-			if randf() <= 0.5:
 				create_arrow(1)
 
 
 func create_arrow(alignment := 0) -> void:
 	var arrow := Arrow.new()
 	arrow.accuracy_curve = accuracy_curve
+	arrow.enemy_difficulty = remap(enemy_level, 1, 99, 0.36, 0.99)
 	falling_arrows.add_child(arrow)
-	var bps := mbc.bpm / 60.0
-	arrow.speed = randf_range(120, 150) # pixels per sec
+	#var bps := mbc.bpm / 60.0
+	var spb := 60.0 / mbc.bpm
+	var base_speed := remap(enemy_level, 1, 99, 75, 200)
+	arrow.speed = randfn(base_speed, 8) # pixels per sec
 	if tutorial:
 		arrow.speed *= 0.75
 
-	arrow.position.y = -(arrow.speed * bps)
-	arrow.scale.x = 1 + arrow.speed * bps * 0.01
+	arrow.position.y = -(arrow.speed * spb) * 4
+	arrow.scale.x = 1 + arrow.speed * spb * 4 * 0.01
 	arrow.scale.y = arrow.scale.x
 	var trail := preload("res://scenes/vfx/scn_vfx_dance_arrow_trail.tscn").instantiate()
 	arrow.add_child(trail)
@@ -138,7 +140,7 @@ func create_arrow(alignment := 0) -> void:
 func _success_hit(accuracy: float) -> void:
 	if not active:
 		return
-	player_dance()
+	dance(dancer)
 	streak += 1
 	hits += 1
 	score += accuracy * maxi(streak, 1)
@@ -161,16 +163,16 @@ func _fail_miss() -> void:
 	if beat > beats_to_play: end_game()
 
 
-func _enemy_action(success := true) -> void:
+func _enemy_action(success: bool, accuracy: float) -> void:
 	if not active:
 		return
 	if success:
 		if tutorial and beat % 4 == 0:
-			_enemy_action(false)
+			_enemy_action(false, -1)
 			return
-		enemy_dance()
+		dance(animal_dancer)
 		enemy_streak += 1
-		enemy_score += 2.0 * maxi(enemy_streak, 1)
+		enemy_score += accuracy * maxi(enemy_streak, 1)
 		enemy_hits += 1
 		greg_ancestors.amount_ratio = enemy_streak / float(STREAK_CONGRATS.size())
 		SOL.vfx("spark_splash", enemy_splash.global_position, {parent = enemy_splash})
@@ -195,18 +197,21 @@ func set_score_text() -> void:
 	score_text.text = text
 
 
-func player_dance() -> void:
-	dancer.texture.region.position.y = randi() % 2 * 32
-	dancer.texture.region.position.x = randi() % 3 * 32
-
-
-func enemy_dance() -> void:
-	animal_dancer.texture.region.position.y = randi() % 2 * 32
-	animal_dancer.texture.region.position.x = randi() % 3 * 32
+func dance(who: Sprite2D) -> void:
+	who.texture.region.position.y = randi() % 2 * 32
+	who.texture.region.position.x = randi() % 3 * 32
+	squash(who)
 
 
 func squash(who: Sprite2D) -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	var endsc := Vector2.ONE
+	if randf() < 0.5:
+		endsc = Vector2(0.8, 1.2)
+	else:
+		endsc = Vector2(1.2, 0.8)
+	tw.tween_property(who, "scale", endsc, 0.1)
+	tw.tween_property(who, "scale", Vector2.ONE, 0.1)
 
 
 func end_game() -> void:
@@ -241,7 +246,7 @@ class Arrow extends Sprite2D:
 
 	signal hit(accuracy: float)
 	signal miss
-	signal enemy_action(success: bool)
+	signal enemy_action(success: bool, accuracy: float)
 
 	const INPUTS := ["move_left", "move_right", "move_down", "move_up"]
 
@@ -295,15 +300,17 @@ class Arrow extends Sprite2D:
 
 		elif enemy and ypos >= randi_range(-grace_area/2, grace_area/2) and active:
 			var succ := randf() <= enemy_difficulty
-			if succ: get_hit()
-			else: get_miss()
-			enemy_action.emit(succ)
+			if succ:
+				get_hit()
+			else:
+				get_miss()
 			active = false
 			received_input = true
 
 		if ypos > grace_area:
 			modulate.a -= delta * 5
-			if modulate.a <= 0.0: queue_free()
+			if modulate.a <= 0.0:
+				queue_free()
 
 		cyc = wrapi(cyc + 1, 0, 4)
 
@@ -314,11 +321,13 @@ class Arrow extends Sprite2D:
 		var tw := create_tween().set_parallel(true)
 		tw.tween_property(self, "scale", Vector2(1.2, 1.2), 0.2)
 		tw.tween_property(self, "modulate:a", 0.0, 0.2)
-		var distance = absf(99 - position.y)
-		var accuracy := accuracy_curve.sample_baked(remap(distance, 0.0, 8.0, 0.0, 1.0))
+		var distance := absf(position.y)
+		var accuracy := accuracy_curve.sample_baked(remap(distance, 0.0, grace_area, 0.0, 1.0))
 		if not enemy:
 			hit.emit(accuracy)
 			can_receive_input = false
+		else:
+			enemy_action.emit(true, accuracy)
 
 
 	func get_miss():
@@ -327,3 +336,5 @@ class Arrow extends Sprite2D:
 		if not enemy:
 			miss.emit()
 			can_receive_input = false
+		else:
+			enemy_action.emit(false, -1)
