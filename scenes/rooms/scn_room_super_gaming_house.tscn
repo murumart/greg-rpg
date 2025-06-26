@@ -2336,7 +2336,7 @@ region_rect = Rect2(64, 58, 16, 22)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EntertainmentSystem"]
 libraries = {
-"": SubResource("AnimationLibrary_lbxdy")
+&"": SubResource("AnimationLibrary_lbxdy")
 }
 autoplay = "computer_loop"
 

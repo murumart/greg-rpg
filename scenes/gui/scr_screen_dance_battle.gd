@@ -6,11 +6,18 @@ signal end(data: Dictionary)
 const STREAK_CONGRATS := ["", "ok", "good!", "cool!", "wonderful!", "amazing!", "truly great.", "extraordinary.", "super duper!", "gjepörgkpoaüjapowäef", "i walked into an electric fence!"]
 
 @onready var falling_arrows: Node2D = $FallingArrows
-@onready var debug: Label = $debug
 @onready var mbc := $MusBarCounter as MusBarCounter
 @onready var dancer: Sprite2D = $Dancer
 @onready var animal_dancer: Sprite2D = $AnimalDancer
 @onready var score_text: RichTextLabel = $ScoreText
+
+@onready var good_sound: AudioStreamPlayer = $GoodSound
+@onready var bad_sound: AudioStreamPlayer = $BadSound
+@onready var win_sound: AudioStreamPlayer = $WinSound
+@onready var player_splash: Node2D = $InTheRye/PlayerSplash
+@onready var enemy_splash: Node2D = $EnCatcher/EnemySplash
+@onready var greg_ancestors: GPUParticles2D = $Dancer/GregAncestors
+@onready var animal_ancestors: GPUParticles2D = $AnimalDancer/AnimalAncestors
 
 @export var accuracy_curve: Curve
 var tutorial := false
@@ -55,6 +62,7 @@ func _physics_process(delta: float) -> void:
 
 	# DEBUG
 	#if Input.is_key_pressed(KEY_9):
+		#SND.play_song("lion")
 		#reset()
 		#active = true
 
@@ -69,6 +77,8 @@ func reset() -> void:
 	enemy_score = 0
 	enemy_streak = 0
 	beat = 0
+	greg_ancestors.amount_ratio = 0.0
+	animal_ancestors.amount_ratio = 0.0
 	set_score_text()
 
 
@@ -109,7 +119,9 @@ func create_arrow(alignment := 0) -> void:
 	if tutorial:
 		arrow.speed *= 0.75
 
-	arrow.position.y = -arrow.speed * bps
+	arrow.position.y = -(arrow.speed * bps)
+	arrow.scale.x = 1 + arrow.speed * bps * 0.01
+	arrow.scale.y = arrow.scale.x
 	var trail := preload("res://scenes/vfx/scn_vfx_dance_arrow_trail.tscn").instantiate()
 	arrow.add_child(trail)
 	if alignment == 1:
@@ -131,16 +143,21 @@ func _success_hit(accuracy: float) -> void:
 	hits += 1
 	score += accuracy * maxi(streak, 1)
 	set_score_text()
+	good_sound.play()
+	SOL.vfx("spark_splash", player_splash.global_position, {parent = player_splash})
+	greg_ancestors.amount_ratio = streak / float(STREAK_CONGRATS.size())
 	if beat > beats_to_play: end_game()
 
 
 func _fail_miss() -> void:
 	if not active:
 		return
-	dancer.region_rect.position.y = 32
-	dancer.region_rect.position.x = 96
+	dancer.texture.region.position.y = 32
+	dancer.texture.region.position.x = 96
 	streak = 0
 	set_score_text()
+	greg_ancestors.amount_ratio = 0.0
+	bad_sound.play()
 	if beat > beats_to_play: end_game()
 
 
@@ -155,9 +172,12 @@ func _enemy_action(success := true) -> void:
 		enemy_streak += 1
 		enemy_score += 2.0 * maxi(enemy_streak, 1)
 		enemy_hits += 1
+		greg_ancestors.amount_ratio = enemy_streak / float(STREAK_CONGRATS.size())
+		SOL.vfx("spark_splash", enemy_splash.global_position, {parent = enemy_splash})
 	else:
-		animal_dancer.region_rect.position.y = 32
-		animal_dancer.region_rect.position.x = 96
+		animal_dancer.texture.region.position.y = 32
+		animal_dancer.texture.region.position.x = 96
+		greg_ancestors.amount_ratio = 0.0
 		enemy_streak = 0
 	set_score_text()
 
@@ -176,13 +196,17 @@ func set_score_text() -> void:
 
 
 func player_dance() -> void:
-	dancer.region_rect.position.y = randi() % 2 * 32
-	dancer.region_rect.position.x = randi() % 3 * 32
+	dancer.texture.region.position.y = randi() % 2 * 32
+	dancer.texture.region.position.x = randi() % 3 * 32
 
 
 func enemy_dance() -> void:
-	animal_dancer.region_rect.position.y = randi() % 2 * 32
-	animal_dancer.region_rect.position.x = randi() % 3 * 32
+	animal_dancer.texture.region.position.y = randi() % 2 * 32
+	animal_dancer.texture.region.position.x = randi() % 3 * 32
+
+
+func squash(who: Sprite2D) -> void:
+	var tw := create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
 func end_game() -> void:
@@ -194,6 +218,8 @@ func end_game() -> void:
 	score_text.text =  "[center]dance off end!![/center]
 
 [left]%s[/left] [right]%s[/right]" % [pscore, enscore]
+	if pscore > enscore:
+		win_sound.play()
 	get_tree().create_timer(2.0).timeout.connect(_ended)
 
 
@@ -225,8 +251,8 @@ class Arrow extends Sprite2D:
 	var enemy := false
 	var enemy_difficulty := 0.66
 	var speed := 60.0
-	var grace_area := 14
-	var yspace := 99
+	var grace_area := 10
+	var yspace := 0
 	var active := false
 	var moving := true
 	var can_receive_input := true
@@ -242,17 +268,20 @@ class Arrow extends Sprite2D:
 
 	var cyc := 0
 	func _physics_process(delta: float) -> void:
-		if moving: global_position.y += delta * speed
+		if moving:
+			global_position.y += delta * speed
+			scale.x -= delta * speed * 0.01
+			scale.y -= delta * speed * 0.01
 		var ypos := position.y
 
-		if ypos >= 80 and not received_input:
+		if ypos >= -19 and not received_input:
 			active = true
 
 		if can_receive_input and active:
 			var dir := cyc as Dirs
 			var input := Input.is_action_pressed(INPUTS[cyc])
 			var succ_hit := (dir == direction and input and
-				(ypos > yspace - 14 and ypos < yspace + 14))
+				Math.inrange(ypos, yspace - grace_area, yspace + grace_area))
 
 			if input and not succ_hit:
 				received_input = true
@@ -261,10 +290,10 @@ class Arrow extends Sprite2D:
 				received_input = true
 				get_hit()
 
-			if ypos > 112:
+			if ypos > grace_area:
 				get_miss()
 
-		elif enemy and ypos >= 99 and active:
+		elif enemy and ypos >= randi_range(-grace_area/2, grace_area/2) and active:
 			var succ := randf() <= enemy_difficulty
 			if succ: get_hit()
 			else: get_miss()
@@ -272,7 +301,7 @@ class Arrow extends Sprite2D:
 			active = false
 			received_input = true
 
-		if position.y > 128:
+		if ypos > grace_area:
 			modulate.a -= delta * 5
 			if modulate.a <= 0.0: queue_free()
 

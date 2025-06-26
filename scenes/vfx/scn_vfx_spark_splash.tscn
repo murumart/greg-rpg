@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://btjbkpg3p1pf6"]
+
+[ext_resource type="Texture2D" uid="uid://bxn3kuhhohw8r" path="res://sprites/vfx/spr_bangspark.png" id="1_kpkbe"]
+
+[sub_resource type="Curve" id="Curve_vapns"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0584058, 0.933929), 0.0, 0.0, 0, 0, Vector2(0.555973, 0.958768), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_j0uxn"]
+width = 32
+curve = SubResource("Curve_vapns")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sa00i"]
+lifetime_randomness = 0.46
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3.5, 3.5, 1)
+angle_min = -194.6
+angle_max = 154.3
+direction = Vector3(0, -1, 0)
+spread = 92.143
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_j0uxn")
+
+[node name="SparkSplash" type="GPUParticles2D"]
+emitting = false
+amount = 16
+texture = ExtResource("1_kpkbe")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.82
+process_material = SubResource("ParticleProcessMaterial_sa00i")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="ready" from="." to="." method="set_emitting" binds= [true]]
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

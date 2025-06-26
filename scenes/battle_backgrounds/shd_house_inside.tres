@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://duyc827l1g47w"]
 
-[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_cw3qb"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="1_cw3qb"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_12jt3"]
 source = 2

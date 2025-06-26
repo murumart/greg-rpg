@@ -384,6 +384,24 @@ func _cmd_rm(args: PackedStringArray) -> void:
 	_delt(get_tree().root)
 
 
+func _cmd_dance(_args: PackedStringArray) -> void:
+	var battle = LTS.get_current_scene()
+	if not battle.name == "Battle":
+		output("not in battle", true)
+		return
+	var enemies = battle.enemies
+	var found := false
+	for en: BattleEnemy in enemies:
+		if en is EnemyAnimal:
+			found = true
+			en.soul = 999
+			en.act()
+			return
+
+	if not found:
+		output("no animals", true)
+
+
 func _delt(node: Node) -> void:
 	for c in node.get_children():
 		await get_tree().process_frame

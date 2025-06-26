@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=11 format=3 uid="uid://fr6t6fx74m15"]
 
-[ext_resource type="Script" path="res://shaders/scr_rotate_uv.gd" id="1_1muvg"]
+[ext_resource type="Script" uid="uid://cklk4axk560s7" path="res://shaders/scr_rotate_uv.gd" id="1_1muvg"]
 
 [sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_uqcwa"]
 default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, 0.5]
@@ -43,8 +43,8 @@ default_value_enabled = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform float zoom = 1;
-uniform float white = 0;
+uniform float zoom = 1.0;
+uniform float white = 0.0;
 uniform sampler2D screen_tex_frg_3 : hint_screen_texture;
 
 

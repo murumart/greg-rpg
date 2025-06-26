@@ -1,14 +1,84 @@
-[gd_scene load_steps=7 format=3 uid="uid://cami7pi4o2hiw"]
+[gd_scene load_steps=24 format=3 uid="uid://cami7pi4o2hiw"]
 
 [ext_resource type="Script" uid="uid://cfnowsqwbfckx" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
 [ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/gui/spr_dancer.png" id="2_i1uev"]
+[ext_resource type="Shader" uid="uid://bsvqgtta6kr4l" path="res://shaders/scr_tree_sway.gdshader" id="2_sypoc"]
+[ext_resource type="Texture2D" uid="uid://ch7o5vjvwrmdq" path="res://sprites/photos/spr_forest1.png" id="3_b22q7"]
 [ext_resource type="Texture2D" uid="uid://bs5vehuo4aavq" path="res://sprites/gui/spr_animal_dancer.png" id="3_nyl0p"]
 [ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="4_sifqe"]
+[ext_resource type="AudioStream" uid="uid://dqno5cq5eh7q3" path="res://sounds/skating/s13.ogg" id="7_tfkoh"]
+[ext_resource type="AudioStream" uid="uid://ccdg73jwsfxcb" path="res://sounds/skating/s7.ogg" id="8_fu7ux"]
+[ext_resource type="AudioStream" uid="uid://bn6rfdircrf1q" path="res://sounds/skating/s9.ogg" id="8_ijg1f"]
 
 [sub_resource type="Curve" id="Curve_g0gmc"]
 _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.0854271, 1.09697), 0.0, 0.0, 0, 0, Vector2(1, 0.709091), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tfkoh"]
+shader = ExtResource("2_sypoc")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sypoc"]
+atlas = ExtResource("2_i1uev")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijg1f"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_fu7ux"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.197743, 0.288127), 0.0, 0.0, 0, 0, Vector2(0.444026, 0.623447), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vapns"]
+width = 64
+curve = SubResource("Curve_fu7ux")
+
+[sub_resource type="Gradient" id="Gradient_j0uxn"]
+offsets = PackedFloat32Array(0, 0.333333, 0.850746, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.407843, 0.407843, 1, 1, 0.721569, 1, 0.203922, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sa00i"]
+gradient = SubResource("Gradient_j0uxn")
+width = 64
+
+[sub_resource type="Curve" id="Curve_xeilq"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1.32638), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cxd8v"]
+width = 64
+curve = SubResource("Curve_xeilq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m1fvd"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(-90, 0, 0)
+linear_accel_min = -44.44
+linear_accel_max = -16.09
+tangential_accel_min = 14.56
+tangential_accel_max = 14.56
+scale_curve = SubResource("CurveTexture_cxd8v")
+color_ramp = SubResource("GradientTexture1D_sa00i")
+alpha_curve = SubResource("CurveTexture_vapns")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijg1f"]
+atlas = ExtResource("3_nyl0p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijg1f"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(90, 0, 0)
+linear_accel_min = -44.44
+linear_accel_max = -16.09
+tangential_accel_min = 14.56
+tangential_accel_max = 14.56
+scale_curve = SubResource("CurveTexture_cxd8v")
+color_ramp = SubResource("GradientTexture1D_sa00i")
+alpha_curve = SubResource("CurveTexture_vapns")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqmis"]
 bg_color = Color(0, 0, 0, 0.305882)
@@ -27,17 +97,65 @@ layout_mode = 0
 offset_right = 160.0
 offset_bottom = 44.0
 
+[node name="TextureRect" type="ColorRect" parent="Panel"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_top = 0.045
+anchor_right = 0.987
+anchor_bottom = 0.955
+offset_left = 0.0799999
+offset_top = 0.02
+offset_right = 0.0799866
+offset_bottom = -0.0200005
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/TextureRect"]
+material = SubResource("ShaderMaterial_tfkoh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_b22q7")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Panel/TextureRect/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.803922)
+
 [node name="Dancer" type="Sprite2D" parent="."]
 position = Vector2(21, 22)
-texture = ExtResource("2_i1uev")
-region_enabled = true
+texture = SubResource("AtlasTexture_sypoc")
 region_rect = Rect2(0, 0, 32, 32)
+
+[node name="GregAncestors" type="GPUParticles2D" parent="Dancer"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_ijg1f")
+amount = 20
+amount_ratio = 0.0
+texture = SubResource("AtlasTexture_sypoc")
+process_material = SubResource("ParticleProcessMaterial_m1fvd")
 
 [node name="AnimalDancer" type="Sprite2D" parent="."]
 position = Vector2(137, 22)
-texture = ExtResource("3_nyl0p")
-region_enabled = true
+texture = SubResource("AtlasTexture_ijg1f")
 region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimalAncestors" type="GPUParticles2D" parent="AnimalDancer"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_ijg1f")
+amount = 20
+amount_ratio = 0.0
+texture = SubResource("AtlasTexture_ijg1f")
+process_material = SubResource("ParticleProcessMaterial_ijg1f")
 
 [node name="InTheRye" type="Panel" parent="."]
 layout_mode = 0
@@ -46,6 +164,9 @@ offset_top = 13.0
 offset_right = 58.0
 offset_bottom = 29.0
 
+[node name="PlayerSplash" type="Node2D" parent="InTheRye"]
+position = Vector2(8, 8)
+
 [node name="EnCatcher" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 102.0
@@ -53,18 +174,15 @@ offset_top = 13.0
 offset_right = 118.0
 offset_bottom = 29.0
 
+[node name="EnemySplash" type="Node2D" parent="EnCatcher"]
+position = Vector2(8, 8)
+
 [node name="FallingArrows" type="Node2D" parent="."]
-position = Vector2(50, -76)
+position = Vector2(50, 21)
 
 [node name="MusBarCounter" type="Node" parent="."]
 script = ExtResource("4_sifqe")
 bpm = 150.0
-
-[node name="debug" type="Label" parent="."]
-layout_mode = 0
-offset_top = -76.0
-offset_right = 40.0
-offset_bottom = -68.0
 
 [node name="ScoreText" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -77,3 +195,16 @@ text = "[center]õnnitl.[/center]
 
 [left]33[/left] [right]44[/right]"
 scroll_active = false
+
+[node name="GoodSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tfkoh")
+volume_db = -10.196
+pitch_scale = 1.2
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fu7ux")
+volume_db = -2.0
+pitch_scale = 0.9
+
+[node name="BadSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ijg1f")

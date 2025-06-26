@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://cx4vj8ph8r5wj"]
 
-[ext_resource type="Script" path="res://shaders/scr_distortion_uv.gd" id="1_xdtc2"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="1_xdtc2"]
 
 [sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_f0qac"]
 default_input_values = [1, 1.0, 2, 2.0, 3, 0.1, 4, 0.2, 5, 0.2, 6, 0.0]
@@ -15,6 +15,8 @@ source = 2
 
 [resource]
 code = "shader_type canvas_item;
+render_mode blend_mix;
+
 
 
 // DistortionUVAnimated
