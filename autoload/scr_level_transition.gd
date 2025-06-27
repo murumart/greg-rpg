@@ -37,20 +37,20 @@ func change_scene_to(path: String, options := {}) -> void:
 	if options.get("free_those_nodes", true):
 		for node in free_us:
 			node.call_deferred("queue_free")
-			
+
 	await get_tree().process_frame
-	
+
 	var new_scene: Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
-	
+
 	if new_scene.has_method("_option_init"):
 		new_scene._option_init(options)
-		
+
 	RunFlags.reset_scene_flags()
-	
+
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
-		
+
 	scene_changed.emit()
 
 

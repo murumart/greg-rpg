@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=114 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://khsdxjhxfbjs" path="res://sprites/world/car/spr_car_popo.png" id="6_ygtrw"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="7_ce3xq"]
 [ext_resource type="Script" uid="uid://twu3g0cxdejw" path="res://scenes/rooms/town/scr_neighbour_house.gd" id="7_fnqrf"]
-[ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="8_eh8k8"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_l27gf"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_0hylv"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="9_8v8jp"]
@@ -28,7 +27,6 @@
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="15_1u67x"]
 [ext_resource type="PackedScene" uid="uid://ynums4xe2afs" path="res://scenes/biking/moving_objects/scn_obstacle_log.tscn" id="15_8m0ks"]
 [ext_resource type="PackedScene" uid="uid://cyrwyy0hn2q3u" path="res://scenes/characters/overworld/scn_tutorial_guy.tscn" id="16_2feir"]
-[ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="16_lcsjq"]
 [ext_resource type="PackedScene" uid="uid://circf0p10655i" path="res://scenes/biking/moving_objects/scn_obstacle_pothole.tscn" id="16_ndfvs"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_o4xvl"]
 [ext_resource type="Texture2D" uid="uid://dwx8ihpd2biow" path="res://sprites/characters/overworld/spr_trashguy_overworld.png" id="17_bger3"]
@@ -46,11 +44,8 @@
 [ext_resource type="Script" uid="uid://d3ou8r8xmeefi" path="res://scenes/rooms/town/scr_uhh_house.gd" id="26_w7wx6"]
 [ext_resource type="Script" uid="uid://c2gv7d4ggcs5" path="res://scenes/rooms/town/scr_store.gd" id="26_yxj03"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="27_00mvv"]
-[ext_resource type="Script" uid="uid://dthwjus2ctg7m" path="res://scenes/rooms/town/scr_skatepark.gd" id="28_f5xvh"]
 [ext_resource type="Script" uid="uid://y0t2b0j22rkh" path="res://scenes/rooms/town/scr_town_park.gd" id="29_1p6ww"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
-[ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="29_fx2ly"]
-[ext_resource type="Script" uid="uid://duxvpsyqmlgud" path="res://scenes/rooms/town/scr_fake_cat.gd" id="29_v4362"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" uid="uid://lxu2lp5c0pkw" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
@@ -59,7 +54,6 @@
 [ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Script" uid="uid://sntqywsquyrf" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
-[ext_resource type="Script" uid="uid://bot6miaxo87sk" path="res://code/scr_move_axis_add_area.gd" id="39_q0krc"]
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
@@ -111,9 +105,6 @@ size = Vector2(14, 9.99994)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smefo"]
 size = Vector2(16.0001, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3o4w"]
-size = Vector2(276, 52)
 
 [sub_resource type="GDScript" id="GDScript_so86e"]
 resource_name = "roof_hide_funny"
@@ -452,182 +443,10 @@ size = Vector2(24, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0kbj"]
 size = Vector2(14, 18)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqiln"]
-size = Vector2(257, 210)
-
-[sub_resource type="Animation" id="Animation_t87sn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Aric:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-73, -56)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Aric:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Aric:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Jack:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-36, 29)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Jack:rotation")
-tracks/4/interp = 4
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Jack:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_cnwtd"]
-resource_name = "nice"
-length = 3.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Aric:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-104, -56), Vector2(-73, -72), Vector2(-36, -72), Vector2(-9, -53), Vector2(-16, -32), Vector2(-105, -35)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Aric:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.3, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.785397, -0.785397, 0.0, 0.0, 0.0, 0.785397, 0.785397, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Aric:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.8, 2, 3, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(-1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Jack:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8, 1.2, 1.4, 1.7, 1.9, 2.3, 2.7, 2.9, 3.2, 3.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-36, 29), Vector2(-8, 14), Vector2(0, 13), Vector2(22, 32), Vector2(64, -7.99999), Vector2(74, -28), Vector2(59.9999, -40), Vector2(48, -4), Vector2(22, 32), Vector2(0, 13), Vector2(-8, 14), Vector2(-36, 29), Vector2(-44, 29)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Jack:rotation")
-tracks/4/interp = 3
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.8, 0.9, 1.2, 1.3, 1.5, 1.6, 1.7, 1.9, 2, 2.1, 2.2, 2.4, 2.7, 3, 3.1, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.785397, -0.785397, 0.0, 0.785397, 0.785397, 0.0, -0.785397, -0.785397, -1.13064, -3.77692, -5.86623, -6.9324, -6.12323, -0.785398, -0.785398, 0.0, 0.785397, 0.0, -0.785397, -1.0472, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Jack:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfdhj"]
-_data = {
-&"RESET": SubResource("Animation_t87sn"),
-&"nice": SubResource("Animation_cnwtd")
-}
-
-[sub_resource type="Resource" id="Resource_nubog"]
-script = ExtResource("26_ac4pt")
-title = "skateboard"
-silver_required = 550
-input = Array[StringName]([])
-silver_granted = 0
-output = Array[StringName]([&"skateboard"])
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3utb"]
 size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gn1su"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymuyp"]
-size = Vector2(12, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6yajp"]
 size = Vector2(18, 7)
@@ -1014,15 +833,10 @@ position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_jv1pm")
 
 [node name="BNtrash" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
-position = Vector2(-8, 53)
+position = Vector2(-8, 51)
 replenish_minutes = 40
 replenish_seconds = 2400
 item = &"pills"
-
-[node name="BNtrash2" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
-position = Vector2(-21, 53)
-replenish_minutes = 2
-replenish_seconds = 120
 
 [node name="BNtrash4" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
 position = Vector2(-69, 113)
@@ -1036,6 +850,12 @@ replenish_minutes = 70
 replenish_seconds = 4200
 silver = 45
 
+[node name="Btrash2" parent="Houses/BlockNeighbours" instance=ExtResource("12_rk0rd")]
+position = Vector2(-20, 51)
+replenish_minutes = -1
+replenish_seconds = -60
+item = &"brick"
+
 [node name="Trashguy" type="Sprite2D" parent="Houses/BlockNeighbours"]
 position = Vector2(-74, 111)
 texture = ExtResource("17_bger3")
@@ -1048,6 +868,10 @@ keys = Array[String](["trashguy_1", "trashguy_2"])
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/BlockNeighbours/Trashguy/TrashGuyInspect"]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_ynb2e")
+
+[node name="EquipBrick" parent="Houses/BlockNeighbours" instance=ExtResource("16_2feir")]
+position = Vector2(-38, 53)
+tutorial_type = 1
 
 [node name="Pairhouse" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1184,93 +1008,6 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/Grill/InspectArea"]
 shape = SubResource("RectangleShape2D_smefo")
-
-[node name="HousingBlock" type="Node2D" parent="Houses"]
-y_sort_enabled = true
-position = Vector2(264, 586)
-
-[node name="OverworldTiles" type="Node2D" parent="Houses/HousingBlock"]
-y_sort_enabled = true
-
-[node name="road level" type="TileMapLayer" parent="Houses/HousingBlock/OverworldTiles"]
-z_index = -7
-use_parent_material = true
-tile_map_data = PackedByteArray("AAABAAQAAgAFAAEAAAACAAQAAgAFAAAAAAADAAQAAgAFAAAAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="house level" type="TileMapLayer" parent="Houses/HousingBlock/OverworldTiles"]
-y_sort_enabled = true
-use_parent_material = true
-tile_map_data = PackedByteArray("AAD6/wQAAQABAAIAAAD7/wQAAQACAAIAAAD8/wQAAQACAAIAAAD9/wQAAQACAAIAAAD+/wQAAQACAAIAAAD//wQAAQACAAIAAAAAAAQAAQADAAIAAAAAAAMAAQADAAEAAAD//wMAAQAJAAIAAAD+/wMAAQACAAEAAAD9/wMAAQAJAAIAAAD8/wMAAQACAAEAAAD7/wMAAQAJAAIAAAD6/wMAAQABAAEAAAD6/wIAAQABAAEAAAD6/wEAAQABAAEAAAD6/wAAAQABAAEAAAD6////AQABAAEAAAD6//7/AQABAAEAAAD7//7/AQACAAEAAAD7////AQACAAEAAAD8////AQACAAEAAAD9////AQACAAEAAAD+/wAAAQACAAEAAAD//wAAAQAIAAIAAAD//wEAAQACAAEAAAD//wIAAQACAAEAAAAAAAIAAQADAAEAAAAAAAEAAQADAAEAAAAAAAAAAQADAAEAAAAAAP//AQADAAEAAAD/////AQACAAEAAAD///7/AQACAAEAAAD+//7/AQACAAEAAAD9//7/AQACAAEAAAD8//7/AQACAAEAAAD7/wAAAQAIAAIAAAD8/wIAAQACAAEAAAD8/wEAAQACAAEAAAD8/wAAAQACAAEAAAD9/wIAAQACAAEAAAD+/wIAAQACAAEAAAD+/wEAAQACAAEAAAD+////AQACAAEAAAD9/wEAAQACAAEAAAD9/wAAAQAIAAIAAAAAAP7/AQADAAEAAAD6//3/AQABAAEAAAD8//3/AQACAAEAAAD7//3/AQACAAEAAAD+//3/AQACAAEAAAD9//3/AQACAAEAAAD///3/AQACAAEAAAAAAP3/AQADAAEAAAAAAPz/AQADAAAAAAD///z/AQACAAAAAAD+//z/AQACAAAAAAD9//z/AQACAAAAAAD8//z/AQACAAAAAAD7//z/AQACAAAAAAD6//z/AQABAAAAAAAEAPz/AQABAAAAAAAEAP3/AQABAAEAAAAEAP7/AQABAAEAAAAEAP//AQABAAEAAAAEAAAAAQABAAEAAAAEAAIAAQABAAEAAAAEAAEAAQABAAEAAAAEAAMAAQABAAEAAAAEAAQAAQABAAIAAAAFAAQAAQACAAIAAAAFAAMAAQAIAAIAAAAFAAIAAQACAAEAAAAFAAEAAQACAAEAAAAFAAAAAQAKAAIAAAAFAP//AQACAAEAAAAFAP7/AQACAAEAAAAFAP3/AQACAAEAAAAFAPz/AQACAAAAAAAGAPz/AQACAAAAAAAGAP3/AQACAAEAAAAGAP7/AQACAAEAAAAGAP//AQACAAEAAAAGAAAAAQACAAEAAAAGAAEAAQACAAEAAAAGAAIAAQACAAEAAAAGAAMAAQACAAEAAAAGAAQAAQACAAIAAAAHAAQAAQACAAIAAAAHAAMAAQAIAAIAAAAHAAIAAQACAAEAAAAHAAEAAQACAAEAAAAHAAAAAQAKAAIAAAAHAP//AQACAAEAAAAIAP//AQACAAEAAAAIAP7/AQACAAEAAAAIAP3/AQACAAEAAAAIAPz/AQACAAAAAAAJAPz/AQACAAAAAAAJAP3/AQACAAEAAAAHAPz/AQACAAAAAAAHAP3/AQACAAEAAAAHAP7/AQACAAEAAAAIAAAAAQACAAEAAAAIAAEAAQACAAEAAAAIAAIAAQACAAEAAAAIAAMAAQACAAEAAAAJAAQAAQACAAIAAAAJAAMAAQAIAAIAAAAJAAIAAQACAAEAAAAJAAEAAQACAAEAAAAJAAAAAQAKAAIAAAAJAP//AQACAAEAAAAJAP7/AQACAAEAAAAIAAQAAQACAAIAAAAKAAQAAQADAAIAAAAKAAMAAQADAAEAAAAKAAIAAQADAAEAAAAKAAEAAQADAAEAAAAKAAAAAQADAAEAAAAKAP//AQADAAEAAAAKAP7/AQADAAEAAAAKAP3/AQADAAEAAAAKAPz/AQADAAAAAAABAAMAAQAFAAIAAAACAAMAAQAJAAAAAAADAAMAAQAHAAIAAAADAAIAAQAHAAEAAAACAAIAAQAGAAEAAAABAAIAAQAFAAEAAAABAAEAAQAFAAEAAAACAAEAAQALAAAAAAADAAEAAQAHAAEAAAADAAAAAQAHAAEAAAACAAAAAQAGAAEAAAABAAAAAQAFAAEAAAABAP//AQAFAAEAAAACAP//AQALAAAAAAADAP//AQAHAAEAAAADAP7/AQAHAAEAAAACAP7/AQAGAAEAAAABAP7/AQAFAAEAAAADAP3/AQAHAAEAAAACAP3/AQAGAAEAAAABAP3/AQAFAAEAAAABAPz/AQAFAAAAAAACAPz/AQAGAAAAAAADAPz/AQAHAAAAAAD7/wEAAQAGAAEAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="Roof" type="Node2D" parent="Houses/HousingBlock"]
-modulate = Color(0.494118, 0.494118, 0.494118, 1)
-
-[node name="roof level" type="TileMapLayer" parent="Houses/HousingBlock/Roof"]
-y_sort_enabled = true
-use_parent_material = true
-tile_map_data = PackedByteArray("AAD6//z/AQAFAAoAAAD7//z/AQAFAAoAAAD5//z/AQAEAAoAAAD8//z/AQAFAAoAAAD7//3/AQAFAAsAAAD8//3/AQAFAAsAAAD6//3/AQAFAAsAAAD5//3/AQAEAAsAAAD9//3/AQAFAAsAAAD+//3/AQAFAAsAAAD///3/AQAFAAsAAAAAAP3/AQAFAAsAAAABAP3/AQAFAAsAAAAAAPz/AQAFAAoAAAD///z/AQAFAAoAAAABAPz/AQAFAAoAAAD+//z/AQAFAAoAAAD9//z/AQAFAAoAAAD6//v/AQAFAAoAAAD7//v/AQAFAAoAAAD5//v/AQAEAAoAAAD8//v/AQAFAAoAAAD9//v/AQAFAAoAAAD+//v/AQAFAAoAAAD///v/AQAFAAoAAAAAAPv/AQAFAAoAAAABAPv/AQAFAAoAAAACAPv/AQAFAAoAAAACAPz/AQAFAAoAAAADAPz/AQAFAAoAAAAEAPz/AQAFAAoAAAAFAPz/AQAFAAoAAAAGAPz/AQAFAAoAAAAHAPz/AQAFAAoAAAACAP3/AQAFAAsAAAADAP3/AQAFAAsAAAAEAP3/AQAFAAsAAAAFAP3/AQAFAAsAAAAGAP3/AQAFAAsAAAAHAP3/AQAFAAsAAAAIAP3/AQAFAAsAAAAJAP3/AQAFAAsAAAAKAP3/AQAFAAsAAAALAP3/AQAGAAsAAAAKAPz/AQAFAAoAAAAJAPz/AQAFAAoAAAALAPz/AQAGAAoAAAAKAPv/AQAFAAoAAAAJAPv/AQAFAAoAAAALAPv/AQAGAAoAAAAIAPv/AQAFAAoAAAAHAPv/AQAFAAoAAAAGAPv/AQAFAAoAAAAFAPv/AQAFAAoAAAAEAPv/AQAFAAoAAAADAPv/AQAFAAoAAAAIAPz/AQAFAAoAAAD6//r/AQAFAAkAAAD7//r/AQAFAAkAAAD5//r/AQAEAAkAAAD8//r/AQAFAAkAAAD9//r/AQAFAAkAAAD+//r/AQAFAAkAAAD///r/AQAFAAkAAAAAAPr/AQAFAAkAAAABAPr/AQAFAAkAAAACAPr/AQAFAAkAAAADAPr/AQAFAAkAAAAEAPr/AQAFAAkAAAAFAPr/AQAFAAkAAAAGAPr/AQAFAAkAAAAHAPr/AQAFAAkAAAAIAPr/AQAFAAkAAAAJAPr/AQAFAAkAAAAKAPr/AQAFAAkAAAALAPr/AQAGAAkAAAAKAPn/AQAFAAgAAAALAPn/AQAGAAgAAAAJAPn/AQAFAAgAAAAHAPn/AQAFAAgAAAAIAPn/AQAFAAgAAAAGAPn/AQAFAAgAAAAFAPn/AQAFAAgAAAAEAPn/AQAFAAgAAAACAPn/AQAFAAgAAAADAPn/AQAFAAgAAAABAPn/AQAFAAgAAAAAAPn/AQAFAAgAAAD///n/AQAFAAgAAAD+//n/AQAFAAgAAAD9//n/AQAFAAgAAAD8//n/AQAFAAgAAAD7//n/AQAFAAgAAAD6//n/AQAFAAgAAAD5//n/AQAEAAgAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="BehindArea" parent="Houses/HousingBlock" node_paths=PackedStringArray("affected_node") instance=ExtResource("8_eh8k8")]
-position = Vector2(-88, -101)
-affected_node = NodePath("../Roof")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/BehindArea"]
-position = Vector2(128, 16)
-shape = SubResource("RectangleShape2D_i3o4w")
-
-[node name="DoorArea4" parent="Houses/HousingBlock" instance=ExtResource("7_ce3xq")]
-z_index = 1
-position = Vector2(40, 49)
-rotation = 3.14159
-scale = Vector2(1, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/DoorArea4"]
-position = Vector2(0, 5.25)
-shape = SubResource("RectangleShape2D_jv1pm")
-
-[node name="Btrash" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
-position = Vector2(22, 66)
-replenish_minutes = 12
-replenish_seconds = 720
-item = &"bread"
-
-[node name="Btrash2" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
-position = Vector2(72, 83)
-replenish_minutes = -1
-replenish_seconds = -60
-item = &"brick"
-
-[node name="Btrash3" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
-position = Vector2(169, -80)
-silver = 11
-
-[node name="Btrash4" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
-position = Vector2(154, -80)
-replenish_minutes = 27
-replenish_seconds = 1620
-item = &"gummy_worm"
-
-[node name="Btrash5" parent="Houses/HousingBlock" instance=ExtResource("12_rk0rd")]
-position = Vector2(137, -81)
-replenish_minutes = 1440
-replenish_seconds = 86400
-item = &"tumbler"
-
-[node name="Atgirl" parent="Houses/HousingBlock" instance=ExtResource("10_dem56")]
-position = Vector2(6, 81)
-
-[node name="Sprite2D" type="Sprite2D" parent="Houses/HousingBlock/Atgirl"]
-position = Vector2(0, -8)
-texture = ExtResource("16_lcsjq")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="EquipBrick" parent="Houses/HousingBlock" instance=ExtResource("16_2feir")]
-position = Vector2(95, 85)
-tutorial_type = 1
 
 [node name="Store" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1648,140 +1385,6 @@ item = &"sugar_lemon"
 position = Vector2(106, 25)
 type = 1
 
-[node name="Skatepark" type="Node2D" parent="Houses"]
-y_sort_enabled = true
-position = Vector2(661, 644)
-script = ExtResource("28_f5xvh")
-
-[node name="PhoneAreaSkatepark" type="Area2D" parent="Houses/Skatepark"]
-visible = false
-position = Vector2(-87, 51)
-collision_layer = 64
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Skatepark/PhoneAreaSkatepark"]
-position = Vector2(88.5, -57)
-shape = SubResource("RectangleShape2D_qqiln")
-
-[node name="TileMap" type="Node2D" parent="Houses/Skatepark"]
-y_sort_enabled = true
-
-[node name="Layer0" type="TileMapLayer" parent="Houses/Skatepark/TileMap"]
-z_index = -1
-use_parent_material = true
-tile_map_data = PackedByteArray("AAABAAAAAQAIAAkAAAABAAEAAQAIAAkAAAABAAIAAQAIAAkAAAACAP//AQAHAAgAAAADAP//AQAKAAsAAAD+////AQAHAAgAAAD+/wAAAQAHAAkAAAD+/wEAAQAHAAkAAAD+/wIAAQAHAAkAAAD+/wMAAQAHAAoAAAD/////AQAIAAgAAAD//wAAAQAIAAkAAAD//wEAAQAIAAkAAAD//wIAAQAIAAkAAAD//wMAAQAIAAoAAAAAAP//AQAJAAgAAAAAAAAAAQAJAAkAAAAAAAEAAQAJAAkAAAAAAAIAAQAJAAkAAAAAAAMAAQAJAAoAAAABAAMAAQAIAAkAAAACAAMAAQAHAAoAAAAEAP//AQALAAsAAAAEAAAAAQALAAsAAAAEAAEAAQALAAsAAAAEAAIAAQAJAAsAAAAEAAMAAQAIAAsAAAADAAMAAQAIAAsAAAACAAIAAQAHAAkAAAACAAEAAQAHAAkAAAACAAAAAQAHAAkAAAADAAIAAQAHAAsAAAADAAEAAQAKAAsAAAADAAAAAQAKAAsAAAADAP7/AQAHAAgAAAAFAAMAAQAJAAoAAAAEAP7/AQAJAAgAAAAFAP//AQAJAAgAAAAFAAAAAQAJAAkAAAAFAAEAAQAJAAkAAAAFAAIAAQAJAAkAAAAHAPf/AQAQAAQAAAAGAPf/AQAPAAQAAAAFAPf/AQAPAAQAAAAEAPf/AQAPAAQAAAADAPf/AQAPAAQAAAACAPf/AQAPAAQAAAABAPf/AQAPAAQAAAAAAPf/AQAOAAQAAAD4//f/AQAPAAQAAAD3//f/AQAOAAAAAAD3//j/AQANAAEAAAD3//n/AQANAAEAAAD3//r/AQANAAIAAAD5//f/AQAPAAQAAAD6//f/AQAQAAQAAAD8//v/AQAIAAgAAAD8//z/AQAIAAoAAAD9//v/AQAIAAgAAAD9//z/AQAIAAoAAAD+//v/AQAJAAgAAAD+//z/AQAJAAoAAAD6//v/AQAHAAgAAAD6//z/AQAHAAoAAAD7//v/AQAIAAgAAAD7//z/AQAIAAoAAAACAPr/AQAKAAcAAAADAPr/AQALAAcAAAAEAPr/AQALAAcAAAAFAPr/AQALAAcAAAAGAPr/AQAMAAcAAAAGAPv/AQAMAAgAAAAGAPz/AQAMAAgAAAAGAP3/AQAMAAkAAAAFAP3/AQALAAkAAAAEAP3/AQALAAkAAAADAP3/AQALAAkAAAACAP3/AQAKAAkAAAACAPz/AQAKAAgAAAACAPv/AQAKAAgAAAAEAPz/AQALAAgAAAADAPz/AQALAAgAAAADAPv/AQALAAgAAAAEAPv/AQALAAgAAAAFAPz/AQALAAgAAAAFAPv/AQALAAgAAAA=")
-tile_set = ExtResource("15_1u67x")
-y_sort_origin = 1166
-
-[node name="Layer1" type="TileMapLayer" parent="Houses/Skatepark/TileMap"]
-y_sort_enabled = true
-use_parent_material = true
-tile_map_data = PackedByteArray("AAAGAPn/AQAQAAkAAAAFAPn/AQAPAAkAAAAEAPn/AQAPAAkAAAADAPn/AQAPAAkAAAACAPn/AQAOAAkAAAD7//j/AQAPAAkAAAD8//j/AQAPAAkAAAD9//j/AQAPAAkAAAD+//j/AQAPAAkAAAD///j/AQAPAAkAAAD3//v/AQANAAYAAAD3//z/AQANAAcAAAD3//3/AQANAAgAAAA=")
-tile_set = ExtResource("15_1u67x")
-y_sort_origin = 8
-
-[node name="SkateWorry" parent="Houses/Skatepark" instance=ExtResource("10_dem56")]
-position = Vector2(-104, 99)
-default_lines = Array[StringName]([&"skate_worry_1", &"skate_worry_2", &"skate_worry_3"])
-save = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Houses/Skatepark/SkateWorry"]
-position = Vector2(0, -8)
-texture = ExtResource("16_o4xvl")
-region_enabled = true
-region_rect = Rect2(17, 0, 14, 16)
-
-[node name="Goodness" type="Node2D" parent="Houses/Skatepark"]
-y_sort_enabled = true
-
-[node name="Nice" type="AnimationPlayer" parent="Houses/Skatepark/Goodness"]
-libraries = {
-&"": SubResource("AnimationLibrary_gfdhj")
-}
-autoplay = "nice"
-
-[node name="Aric" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
-position = Vector2(-73, -56)
-collision_layer = 4
-default_lines = Array[StringName]([&"skaters"])
-save = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Houses/Skatepark/Goodness/Aric"]
-position = Vector2(0, -7)
-texture = ExtResource("16_o4xvl")
-region_enabled = true
-region_rect = Rect2(32, 0, 16, 16)
-
-[node name="Jack" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
-position = Vector2(-36, 29)
-collision_layer = 4
-default_lines = Array[StringName]([&"skaters"])
-save = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack"]
-position = Vector2(0, -8)
-scale = Vector2(0.90971, 1)
-texture = ExtResource("16_o4xvl")
-region_enabled = true
-region_rect = Rect2(48, 0, 16, 16)
-
-[node name="Jack2" parent="Houses/Skatepark/Goodness" instance=ExtResource("10_dem56")]
-position = Vector2(76, -106)
-default_lines = Array[StringName]([&"skating_minigame_kid"])
-save = false
-
-[node name="Sprite2D2" type="Sprite2D" parent="Houses/Skatepark/Goodness/Jack2"]
-position = Vector2(-9, -15)
-texture = ExtResource("16_o4xvl")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 16, 16, 16)
-
-[node name="KidOverworld" parent="Houses/Skatepark/Goodness" instance=ExtResource("25_ffcbh")]
-position = Vector2(55, 76)
-trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_nubog")])
-
-[node name="Cat" type="Sprite2D" parent="Houses/Skatepark/Goodness"]
-visible = false
-position = Vector2(2, -144)
-texture = ExtResource("29_fx2ly")
-centered = false
-script = ExtResource("29_v4362")
-
-[node name="SlopeLeft" type="Area2D" parent="Houses/Skatepark"]
-position = Vector2(-112, -97)
-script = ExtResource("39_q0krc")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
-polygon = PackedVector2Array(16, 33, 32, 17, 32, 34, 16, 49)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
-polygon = PackedVector2Array(80, 97, 96, 81, 96, 145, 80, 161)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
-polygon = PackedVector2Array(144, 97, 176, 65, 176, 130, 144, 161)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeLeft"]
-polygon = PackedVector2Array(216, 9, 224, 1, 224, 58, 216, 58)
-
-[node name="SlopeRight" type="Area2D" parent="Houses/Skatepark"]
-position = Vector2(-104, -97)
-script = ExtResource("39_q0krc")
-slope = 1
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
-polygon = PackedVector2Array(104, 81, 120, 97, 120, 161, 104, 145)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
-polygon = PackedVector2Array(72, 17, 88, 33, 88, 49, 72, 33)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
-polygon = PackedVector2Array(168, 65, 168, 130, 200, 161, 200, 97)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
-polygon = PackedVector2Array(136, 1, 144, 9, 144, 58, 136, 58)
-
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(720, -264)
@@ -1874,52 +1477,6 @@ position = Vector2(-71, -192)
 rotation = 3.14159
 scale = Vector2(1, -1)
 grows_in_seconds = 1200
-
-[node name="MafiaHouse" type="Node2D" parent="Houses"]
-y_sort_enabled = true
-position = Vector2(954, 645)
-
-[node name="Wall" type="Node2D" parent="Houses/MafiaHouse"]
-y_sort_enabled = true
-
-[node name="house level" type="TileMapLayer" parent="Houses/MafiaHouse/Wall"]
-y_sort_enabled = true
-use_parent_material = true
-tile_map_data = PackedByteArray("AAAAAAAAAQACAAUAAAD//wAAAQACAAUAAAD+/wAAAQACAAUAAAD9/wAAAQAMAAAAAAD8/wAAAQABAAUAAAD8////AQABAAUAAAD9////AQACAAUAAAD+////AQACAAUAAAD/////AQACAAUAAAAAAP//AQACAAUAAAABAP//AQACAAUAAAACAP//AQACAAUAAAADAP//AQACAAUAAAADAAAAAQADAAUAAAACAAAAAQAMAAAAAAABAAAAAQACAAUAAAADAAEAAQADAAYAAAACAAEAAQACAAYAAAABAAEAAQACAAYAAAAAAAEAAQACAAYAAAD//wEAAQACAAYAAAD+/wEAAQACAAYAAAD9/wEAAQACAAYAAAD8/wEAAQABAAYAAAAEAP//AQACAAUAAAAEAAAAAQABAAYAAAAFAAAAAQAKAAAAAAAGAAAAAQADAAYAAAAGAP//AQADAAUAAAAGAP7/AQADAAQAAAAEAP7/AQACAAQAAAAFAP//AQACAAUAAAAFAP7/AQACAAQAAAACAP7/AQACAAQAAAABAP7/AQACAAQAAAAAAP7/AQACAAQAAAD///7/AQACAAQAAAD+//7/AQACAAQAAAD9//7/AQACAAQAAAD8//7/AQABAAQAAAADAP7/AQACAAQAAAD4/wcAAQAFAAYAAAD5/wcAAQAGAAcAAAD6/wcAAQAGAAcAAAD7/wcAAQAGAAcAAAD9/wcAAQAGAAcAAAD8/wcAAQAGAAcAAAD+/wcAAQAGAAcAAAD//wcAAQAGAAcAAAAAAAcAAQAGAAcAAAABAAcAAQAGAAcAAAACAAcAAQAGAAcAAAADAAcAAQAGAAcAAAAEAAcAAQAGAAcAAAAFAAcAAQAGAAcAAAAGAAcAAQAGAAcAAAAHAAcAAQAGAAcAAAAIAAcAAQAHAAYAAAAIAAYAAQAEAAUAAAAIAAUAAQAEAAUAAAAIAAQAAQAEAAUAAAAIAAMAAQAEAAUAAAAIAAIAAQAEAAUAAAAIAAEAAQAEAAUAAAAIAAAAAQAEAAUAAAAIAP//AQAEAAUAAAAIAP7/AQAEAAUAAAD4//3/AQAEAAUAAAD4//7/AQAEAAUAAAD4////AQAEAAUAAAD4/wAAAQAEAAUAAAD4/wEAAQAEAAUAAAD4//z/AQAFAAQAAAD5//z/AQAGAAcAAAD6//z/AQAGAAcAAAD7//z/AQAGAAcAAAD8//z/AQAGAAcAAAD9//z/AQAGAAcAAAD+//z/AQAGAAcAAAD///z/AQAGAAcAAAAAAPz/AQAGAAcAAAACAPz/AQAGAAcAAAABAPz/AQAGAAcAAAADAPz/AQAGAAcAAAAEAPz/AQAGAAcAAAAFAPz/AQAGAAcAAAAGAPz/AQAGAAcAAAAHAPz/AQAGAAcAAAAIAP3/AQAEAAUAAAAIAPz/AQAHAAQAAAD4/wIAAQAEAAYAAAD4/wYAAQAEAAUAAAD4/wUAAQAEAAUAAAD4/wQAAQAEAAQAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="Roof" type="Node2D" parent="Houses/MafiaHouse"]
-y_sort_enabled = true
-
-[node name="le roof" type="TileMapLayer" parent="Houses/MafiaHouse/Roof"]
-modulate = Color(0.67451, 0.533333, 0.243137, 1)
-use_parent_material = true
-tile_map_data = PackedByteArray("AAD8////AQAFAAsAAAD9////AQAFAAsAAAD7////AQAEAAsAAAD+////AQAFAAsAAAD/////AQAFAAsAAAAAAP//AQAFAAsAAAABAP//AQAFAAsAAAACAP//AQAFAAsAAAADAP//AQAFAAsAAAAEAP//AQAGAAsAAAADAP7/AQAFAAoAAAACAP7/AQAFAAoAAAAEAP7/AQAFAAsAAAABAP7/AQAFAAoAAAAAAP7/AQAFAAoAAAD///7/AQAFAAoAAAD+//7/AQAFAAoAAAD9//7/AQAFAAoAAAD8//7/AQAFAAoAAAD7//7/AQAEAAoAAAD8//3/AQAFAAoAAAD7//3/AQAEAAoAAAD9//3/AQAFAAoAAAD+//3/AQAFAAoAAAD///3/AQAFAAoAAAAAAP3/AQAFAAoAAAABAP3/AQAFAAoAAAACAP3/AQAFAAoAAAADAP3/AQAFAAoAAAAEAP3/AQAFAAoAAAD8//z/AQAFAAkAAAD9//z/AQAFAAkAAAD7//z/AQAEAAkAAAD+//z/AQAFAAkAAAD///z/AQAFAAkAAAAAAPz/AQAFAAkAAAABAPz/AQAFAAkAAAACAPz/AQAFAAkAAAADAPz/AQAFAAkAAAAEAPz/AQAFAAoAAAADAPv/AQAFAAgAAAAEAPv/AQAFAAkAAAACAPv/AQAFAAgAAAABAPv/AQAFAAgAAAAAAPv/AQAFAAgAAAD///v/AQAFAAgAAAD+//v/AQAFAAgAAAD9//v/AQAFAAgAAAD8//v/AQAFAAgAAAD7//v/AQAEAAgAAAAFAP7/AQAFAAsAAAAGAP7/AQAFAAsAAAAHAP7/AQAFAAsAAAAIAP7/AQAGAAsAAAAHAP3/AQAFAAoAAAAGAP3/AQAFAAoAAAAIAP3/AQAGAAoAAAAFAP3/AQAFAAoAAAAFAPz/AQAFAAoAAAAGAPz/AQAFAAoAAAAHAPz/AQAFAAoAAAAIAPz/AQAGAAoAAAAFAPv/AQAFAAkAAAAGAPv/AQAFAAkAAAAHAPv/AQAFAAkAAAAIAPv/AQAGAAkAAAAHAPr/AQAFAAgAAAAIAPr/AQAGAAgAAAAGAPr/AQAFAAgAAAAFAPr/AQAFAAgAAAAEAPr/AQAFAAgAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="DoorArea" parent="Houses/MafiaHouse" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_ce3xq")]
-position = Vector2(88, 16)
-gate_id = &"mafiahouse-town"
-spawn_point = NodePath("Marker2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/MafiaHouse/DoorArea"]
-position = Vector2(0, -7.5)
-shape = SubResource("RectangleShape2D_ymuyp")
-
-[node name="Marker2D" type="Marker2D" parent="Houses/MafiaHouse/DoorArea"]
-position = Vector2(0, 5)
-
-[node name="MafiaTrash" parent="Houses/MafiaHouse" instance=ExtResource("12_rk0rd")]
-position = Vector2(71, 19)
-replenish_minutes = 13
-replenish_seconds = 780
-item = &"sugar_lemon"
-
-[node name="MafiaTrash2" parent="Houses/MafiaHouse" instance=ExtResource("12_rk0rd")]
-position = Vector2(104, 19)
-replenish_minutes = 24
-replenish_seconds = 1440
-silver = 20
 
 [node name="Other" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2287,12 +1844,8 @@ position = Vector2(-80, -640)
 
 [node name="Men" type="Node2D" parent="Other"]
 
-[node name="EscapingBusiness" parent="Other/Men" instance=ExtResource("32_lci3r")]
-position = Vector2(1453, 301)
-escape_offset = Vector2(60, 0)
-
 [node name="EscapingBusiness2" parent="Other/Men" instance=ExtResource("32_lci3r")]
-position = Vector2(1243, -464)
+position = Vector2(936, -287)
 escape_offset = Vector2(0, -60)
 
 [node name="EscapingBusiness3" parent="Other/Men" instance=ExtResource("32_lci3r")]
@@ -2994,4 +2547,3 @@ extents = Vector2i(38, 8)
 spawnpoint = Vector2i(40, 13)
 
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
-[connection signal="inspected" from="Houses/HousingBlock/Atgirl" to="." method="_on_atgirl_inspected"]
