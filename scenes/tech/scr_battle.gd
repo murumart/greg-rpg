@@ -854,6 +854,7 @@ func _on_item_pressed() -> void:
 	SND.menusound()
 
 
+var dance_bpm := 175.0
 func open_dance_battle_screen(actor: EnemyAnimal, target: BattleActor) -> void:
 	doing = Doings.DANCE_BATTLE
 	listening_to_player_input = true
@@ -863,20 +864,21 @@ func open_dance_battle_screen(actor: EnemyAnimal, target: BattleActor) -> void:
 	resize_panel(44)
 	screen_dance_battle.active = true
 	screen_dance_battle.enemy_level = actor.character.attack as int
+	dance_bpm = remap(actor.character.attack, 1, 99, 110, 230)
 	screen_dance_battle.target_level = target.character.attack as int
 	screen_dance_battle.enemy_reference = actor
 	screen_dance_battle.target_reference = target
+	screen_dance_battle.beats_to_play = int(remap(actor.character.attack, 1, 99, 20, 60))
 	if is_instance_valid(SND.current_song_player):
 		var bpm := screen_dance_battle.mbc.bpm
 		var stream := SND.current_song_player.stream
-		var calculated_pitch := bpm / float(stream.bpm)
 		var tw := create_tween().set_parallel()
 		tw.tween_property(
 			SND.current_song_player,
 			"pitch_scale",
-			SND.current_song_player.pitch_scale * 1.25,
+			dance_bpm / bpm,
 			0.5)
-		tw.tween_property(screen_dance_battle.mbc, "bpm", screen_dance_battle.mbc.bpm * 1.25, 0.5)
+		tw.tween_property(screen_dance_battle.mbc, "bpm", dance_bpm, 0.5)
 
 
 func _dance_battle_ended(data: Dictionary) -> void:
@@ -897,11 +899,11 @@ func _dance_battle_ended(data: Dictionary) -> void:
 				1.0,
 				0.5
 		)
-		tw.tween_property(screen_dance_battle.mbc, "bpm", screen_dance_battle.mbc.bpm / 1.25, 0.5)
+		tw.tween_property(screen_dance_battle.mbc, "bpm", SND.current_song_player.stream.bpm, 0.5)
 	loser.handle_payload(
 		BattlePayload.new()
 		.set_sender(actor)
-		.set_health(-(wscore * 1.5 - 0.333 * lscore))
+		.set_health(-(wscore * 2.5 - 0.333 * lscore))
 		.set_defense_pierce(1)
 		.set_effects([
 			StatusEffect.new()

@@ -80,8 +80,11 @@ scale_curve = SubResource("CurveTexture_cxd8v")
 color_ramp = SubResource("GradientTexture1D_sa00i")
 alpha_curve = SubResource("CurveTexture_vapns")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqmis"]
-bg_color = Color(0, 0, 0, 0.305882)
+[sub_resource type="LabelSettings" id="LabelSettings_ijg1f"]
+font_size = 8
+outline_color = Color(5.05373e-07, 0, 0.339718, 1)
+shadow_size = 0
+shadow_color = Color(0.0422852, 4.57242e-07, 0.298603, 0.745098)
 
 [node name="ScreenDanceBattle" type="Control"]
 layout_mode = 3
@@ -177,24 +180,44 @@ offset_bottom = 29.0
 [node name="EnemySplash" type="Node2D" parent="EnCatcher"]
 position = Vector2(8, 8)
 
+[node name="ScoreDisplay" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -45.0
+offset_right = 151.0
+offset_bottom = -5.0
+
+[node name="StreakLabel" type="Label" parent="ScoreDisplay"]
+z_index = -1
+layout_mode = 2
+size_flags_vertical = 6
+text = "õniit"
+label_settings = SubResource("LabelSettings_ijg1f")
+horizontal_alignment = 1
+
+[node name="ScoreTexts" type="HBoxContainer" parent="ScoreDisplay"]
+custom_minimum_size = Vector2(142, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScoreDisplay/ScoreTexts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "you..."
+
+[node name="Label2" type="Label" parent="ScoreDisplay/ScoreTexts"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "animal..q"
+horizontal_alignment = 2
+
 [node name="FallingArrows" type="Node2D" parent="."]
 position = Vector2(50, 21)
 
 [node name="MusBarCounter" type="Node" parent="."]
 script = ExtResource("4_sifqe")
 bpm = 150.0
-
-[node name="ScoreText" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 19.0
-offset_top = -40.0
-offset_right = 141.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_kqmis")
-bbcode_enabled = true
-text = "[center]õnnitl.[/center]
-
-[left]33[/left] [right]44[/right]"
-scroll_active = false
 
 [node name="GoodSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tfkoh")

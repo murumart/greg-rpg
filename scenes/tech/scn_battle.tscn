@@ -16,9 +16,9 @@
 
 [sub_resource type="Resource" id="Resource_putf3"]
 script = ExtResource("2_2esdu")
-enemies = Array[StringName]([&"wild_lizard", &"aardvark"])
+enemies = Array[StringName]([&"stray_pet", &"wild_lizard", &"aardvark"])
 background = "town"
-music = "foreign_fauna"
+music = "lion"
 party = Array[StringName]([])
 death_reason = "default"
 start_text = ""

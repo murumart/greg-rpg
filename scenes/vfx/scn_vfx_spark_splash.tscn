@@ -27,7 +27,6 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_j0uxn")
 
 [node name="SparkSplash" type="GPUParticles2D"]
-emitting = false
 amount = 16
 texture = ExtResource("1_kpkbe")
 lifetime = 0.3

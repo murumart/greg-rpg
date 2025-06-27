@@ -3,13 +3,14 @@ class_name ScreenDanceBattle extends Control
 signal kill_arrows
 signal end(data: Dictionary)
 
-const STREAK_CONGRATS := ["", "ok", "good!", "cool!", "wonderful!", "amazing!", "truly great.", "extraordinary.", "super duper!", "gjepörgkpoaüjapowäef", "i walked into an electric fence!"]
+const STREAK_CONGRATS := ["", "", "ok", "good!", "cool!", "great!", "wonderful!", "amazing!", "fantastic.", "extraordinary.", "super duper!", "gjepörgkpoaüjapowäef", "i walked into an electric fence!"]
 
 @onready var falling_arrows: Node2D = $FallingArrows
 @onready var mbc := $MusBarCounter as MusBarCounter
 @onready var dancer: Sprite2D = $Dancer
 @onready var animal_dancer: Sprite2D = $AnimalDancer
-@onready var score_text: RichTextLabel = $ScoreText
+@onready var score_text: HBoxContainer = $ScoreDisplay/ScoreTexts
+@onready var streak_label: Label = $ScoreDisplay/StreakLabel
 
 @onready var good_sound: AudioStreamPlayer = $GoodSound
 @onready var bad_sound: AudioStreamPlayer = $BadSound
@@ -79,6 +80,7 @@ func reset() -> void:
 	beat = 0
 	greg_ancestors.amount_ratio = 0.0
 	animal_ancestors.amount_ratio = 0.0
+	streak_label_fun(0, "")
 	set_score_text()
 
 
@@ -111,6 +113,8 @@ func _new_beat() -> void:
 
 func create_arrow(alignment := 0) -> void:
 	var arrow := Arrow.new()
+	var dir := (randi() % 4)
+	arrow.direction = dir
 	arrow.accuracy_curve = accuracy_curve
 	arrow.enemy_difficulty = remap(enemy_level, 1, 99, 0.36, 0.99)
 	falling_arrows.add_child(arrow)
@@ -126,6 +130,7 @@ func create_arrow(alignment := 0) -> void:
 	arrow.scale.y = arrow.scale.x
 	var trail := preload("res://scenes/vfx/scn_vfx_dance_arrow_trail.tscn").instantiate()
 	arrow.add_child(trail)
+	trail.material.set_shader_parameter("line_colour", arrow.COLORS[dir])
 	if alignment == 1:
 		arrow.enemy = true
 		arrow.global_position.x = 110
@@ -134,7 +139,7 @@ func create_arrow(alignment := 0) -> void:
 	else:
 		arrow.hit.connect(_success_hit)
 		arrow.miss.connect(_fail_miss)
-	kill_arrows.connect(arrow.queue_free)
+	kill_arrows.connect(arrow.die)
 
 
 func _success_hit(accuracy: float) -> void:
@@ -144,7 +149,8 @@ func _success_hit(accuracy: float) -> void:
 	streak += 1
 	hits += 1
 	score += accuracy * maxi(streak, 1)
-	set_score_text()
+
+	set_score_text(0)
 	good_sound.play()
 	SOL.vfx("spark_splash", player_splash.global_position, {parent = player_splash})
 	greg_ancestors.amount_ratio = streak / float(STREAK_CONGRATS.size())
@@ -181,20 +187,28 @@ func _enemy_action(success: bool, accuracy: float) -> void:
 		animal_dancer.texture.region.position.x = 96
 		greg_ancestors.amount_ratio = 0.0
 		enemy_streak = 0
-	set_score_text()
+	set_score_text(1)
 
 
-func set_score_text() -> void:
+func set_score_text(gain := -1) -> void:
 	var sz := STREAK_CONGRATS.size()
 	var congrats: String = STREAK_CONGRATS[mini(streak, sz - 1)]
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
 
-	var text := "[center]%s[/center]
+	var l := score_text.get_child(0) as Label
+	var r := score_text.get_child(1) as Label
 
-[left]%s[/left] [right]%s[/right]" % [congrats, pscore, enscore]
+	l.text = str(pscore)
+	r.text = str(enscore)
 
-	score_text.text = text
+	if gain > -1:
+		var tw := create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		var p: float = [l, r][gain].position.y
+		tw.tween_property([l, r][gain], "position:y", p - 5, 0.06)
+		tw.tween_property([l, r][gain], "position:y", p, 0.1)
+
+	streak_label_fun(streak, congrats)
 
 
 func dance(who: Sprite2D) -> void:
@@ -220,9 +234,8 @@ func end_game() -> void:
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
 
-	score_text.text =  "[center]dance off end!![/center]
-
-[left]%s[/left] [right]%s[/right]" % [pscore, enscore]
+	set_score_text()
+	streak_label_fun(99, "danceoff end!!")
 	if pscore > enscore:
 		win_sound.play()
 	get_tree().create_timer(2.0).timeout.connect(_ended)
@@ -240,6 +253,35 @@ func _ended() -> void:
 	end.emit(end_data)
 
 
+func streak_label_fun(intensity: int, text: String) -> void:
+	var sl := streak_label
+	var ls := sl.label_settings
+	if intensity == 0:
+		ls.font_color = Color.WHITE
+		var tw := create_tween()
+		tw.tween_property(ls, "shadow_color", Color(0.042, 0.0, 0.299, 0.745), 0.1)
+		tw.parallel().tween_property(ls, "font_size", 8, 0.2)
+	else:
+		var tgthue := wrapf(ls.shadow_color.ok_hsl_h + 0.1 * intensity, 0.0, 1.0)
+		var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(ls, "shadow_color:ok_hsl_h", tgthue, 0.1)
+		tw.parallel().tween_property(ls, "shadow_color:ok_hsl_l", ls.shadow_color.ok_hsl_l + tgthue * 0.1, 0.1)
+		if intensity % 4 == 0:
+			tw.parallel().tween_property(ls, "font_size", ls.font_size + 1, 0.2)
+		shake(sl, streak * 0.5)
+	streak_label.text = text
+
+
+func shake(n: Control, intensity: float) -> void:
+	var tw := n.create_tween()
+	var pos := n.position
+	var max := 15.0
+	for i in max:
+		var dec := (max - i) / max
+		tw.tween_property(n, "position", n.position + Vector2(randf_range(-1, 1), randf_range(-1, 1)) * intensity * dec, 0.3 / max)
+	tw.tween_property(n, "position", pos, 0.05)
+
+
 
 class Arrow extends Sprite2D:
 	enum Dirs {LEFT, RIGHT, DOWN, UP}
@@ -248,7 +290,13 @@ class Arrow extends Sprite2D:
 	signal miss
 	signal enemy_action(success: bool, accuracy: float)
 
-	const INPUTS := ["move_left", "move_right", "move_down", "move_up"]
+	const INPUTS := [&"move_left", &"move_right", &"move_down", &"move_up"]
+	const COLORS := [
+		Color(0.5, 0.0, 0.0),
+		Color(0.5, 0.0, 0.5),
+		Color(0.0, 0.0, 0.5),
+		Color(0.0, 0.5, 0.0),
+	]
 
 	var accuracy_curve: Curve
 
@@ -267,7 +315,6 @@ class Arrow extends Sprite2D:
 	func _ready() -> void:
 		texture = preload("res://sprites/gui/spr_dancer_arrows.png")
 		region_enabled = true
-		direction = (randi() % 4) as Dirs
 		region_rect = Rect2(0, int(direction) * 16, 16, 16)
 
 
@@ -338,3 +385,9 @@ class Arrow extends Sprite2D:
 			can_receive_input = false
 		else:
 			enemy_action.emit(false, -1)
+
+
+	func die() -> void:
+		var tw := self.create_tween().set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(self, "modulate:a", 0.0, 0.3)
+		tw.tween_callback(self.queue_free)

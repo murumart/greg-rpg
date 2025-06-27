@@ -3,26 +3,27 @@
 [ext_resource type="Shader" uid="uid://dpfuqkiyjn0e6" path="res://shaders/shd_canvas_group_outline.gdshader" id="1_qi8nq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ycqa"]
+resource_local_to_scene = true
 shader = ExtResource("1_qi8nq")
-shader_parameter/line_colour = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 3
+shader_parameter/line_colour = Color(0.533985, 0.151532, 1, 1)
+shader_parameter/line_thickness = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3bgy3"]
 
 [sub_resource type="Gradient" id="Gradient_xr35p"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0.5, 0.557851)
+offsets = PackedFloat32Array(0, 0.390042)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_67lgd"]
 gradient = SubResource("Gradient_xr35p")
-width = 32
-height = 32
+width = 48
+height = 48
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_4nkj3"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0550239, 1), 0.0, 0.0, 0, 0, Vector2(0.784689, 0.874748), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0550239, 1), 0.0, 0.0, 0, 0, Vector2(0.657431, 0.92151), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_7ca8o"]
@@ -32,19 +33,22 @@ curve = SubResource("Curve_4nkj3")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2ng6"]
 particle_flag_disable_z = true
 spread = 180.0
-initial_velocity_max = 45.25
+initial_velocity_max = 12.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.25
 scale_curve = SubResource("CurveTexture_7ca8o")
 
 [node name="VfxDanceArrowTrail" type="CanvasGroup"]
+show_behind_parent = true
+z_index = -1
 material = SubResource("ShaderMaterial_0ycqa")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-z_index = -1
 material = SubResource("CanvasItemMaterial_3bgy3")
+position = Vector2(0, 8)
+amount = 16
 texture = SubResource("GradientTexture2D_67lgd")
-lifetime = 0.25
+lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_e2ng6")
 
 [node name="GPUParticles2D2" type="CPUParticles2D" parent="."]

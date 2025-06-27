@@ -8,6 +8,10 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_angle_interpolation_type_conflicting=false
+
 [application]
 
 config/name="Greg RPG"
