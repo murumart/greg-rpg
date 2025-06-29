@@ -394,3 +394,7 @@ CHOICES yes,no
 	would you like to take 1 fire damage from the grill?
 CHOICE_LINK yes
 	the grill is cold.
+
+
+DIALOGUE insp_factory_vines
+	emerald vines.
