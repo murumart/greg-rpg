@@ -6,7 +6,7 @@ var increases := 0
 
 func _ready() -> void:
 	super()
-	
+
 	if prog >= 15:
 		queue_free()
 	inspected.connect(func():

@@ -327,12 +327,12 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-494, -488)
+position = Vector2(-818, -127)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]
 position = Vector2(0, -9)
-limit_left = -576
+limit_left = -846
 limit_top = -528
 limit_right = 956
 limit_bottom = 352

@@ -9,7 +9,7 @@ enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
 const SPEED := 3800
 const INTERACTION_LENGTH := 8
-const ROTS = [&"up", &"right", &"down", &"left"]
+const ROTS = [&"walk_up", &"walk_right", &"walk_down", &"walk_left"]
 
 var input := Vector2()
 var state: int: set = set_state
@@ -108,7 +108,7 @@ func direct_raycast() -> void:
 
 func direct_animation() -> void:
 	var dir := Math.dir_from_rot(raycast.target_position.angle())
-	var animation_name : String = "walk_" + ROTS[dir + 1]
+	var animation_name: StringName = ROTS[dir + 1]
 	sprite.play(animation_name)
 	sprite.speed_scale = 0.0
 	if updating_armour:

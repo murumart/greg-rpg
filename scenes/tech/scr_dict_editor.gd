@@ -39,10 +39,10 @@ func _ready() -> void:
 	get_window().files_dropped.connect(_on_files_dropped)
 	load_file_button.pressed.connect(_load_pressed)
 	save_file_button.pressed.connect(_save_pressed)
-	
+
 	_clear_kv_display()
 	_text_changed()
-	
+
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	OPT.debug_camera_change_allowed = false
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
@@ -98,7 +98,7 @@ func _key_selected(index: int) -> void:
 	current_key = key_list.get_item_text(index)
 	current_value = loaded_dict[current_key]
 	if not _key_limit.is_empty() and not current_key in _key_limit:
-		_clear_kv_display() 
+		_clear_kv_display()
 	_display_kv()
 
 
@@ -171,7 +171,7 @@ func set_external_files_enabled(to: bool) -> void:
 		await ready
 	%FileButtons.visible = to
 	%ExitButton.visible = not to
-	
+
 
 func _save_pressed() -> void:
 	var filemenu := FileDialog.new()

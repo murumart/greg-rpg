@@ -50,4 +50,3 @@ func play() -> void:
 		SND.play_song("")
 		LTS.level_transition("res://scenes/cutscene/scn_evilend.tscn")
 	)
-	

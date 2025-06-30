@@ -65,8 +65,8 @@ vec2 r0tateUVFunc(vec2 _uv_r0tate, vec2 _pivot_r0tate, float _r0tation_r0tate){
 
 func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
-	
+
 	if input_vars[0]:
 		uv = input_vars[0]
-	
+
 	return output_vars[0] + " = r0tateUVFunc(%s, %s.xy, %s);" % [uv, input_vars[2], input_vars[1]]

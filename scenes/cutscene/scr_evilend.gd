@@ -76,7 +76,7 @@ func do_something() -> void:
 			tw.parallel().tween_property(imgs.sea.texture, "region:position:y", -399960, 9999)
 		26:
 			talk("in a display of heroism, the guards of the country stood against him.")
-		28: 
+		28:
 			talk("while not a mission without losses, greg was in the end outsmarted")
 		30:
 			talk("and cast away into the folds of time, severed from destiny itself")

@@ -258,8 +258,10 @@ func _fill_some_wall(rect: Rect2i) -> void:
 
 
 func _end_wall_definition() -> void:
+	var time := Time.get_ticks_msec()
 	tilemap.set_cells_terrain_connect(1, walls, 1, 3)
 	walls.clear()
+	print("ending wall defiińition took ", Time.get_ticks_msec() - time)
 
 
 func globalise_rect(r: Rect2) -> Rect2:

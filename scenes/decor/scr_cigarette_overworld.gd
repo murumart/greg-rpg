@@ -29,7 +29,7 @@ func _save_me() -> void:
 func tumble() -> void:
 	start_timer(randf_range(6, 9))
 	var tw := create_tween()
-	tw.tween_property(self, "global_position", 
+	tw.tween_property(self, "global_position",
 			global_position + Vector2(randf_range(-2, 2), randf_range(-2, 2)),
 			1.0)
 	tw.parallel().tween_property(self, "rotation", TAU * randf_range(-8, 8), 1.0)

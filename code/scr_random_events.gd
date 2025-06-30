@@ -8,7 +8,7 @@ func _timer_tick() -> void:
 	if not greg.state == greg.States.FREE_MOVE:
 		return
 	var nr: float = DAT.get_data("nr", 0.0)
-	
+
 	if randf() < 0.0000012:
 		SOL.vfx("to_be_continue")
 	elif (randf() < 0.0002 and Math.inrange(nr, 0.35, 0.69)

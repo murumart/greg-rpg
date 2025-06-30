@@ -42,7 +42,7 @@ func discard() -> void:
 
 func _load_table() -> void:
 	var joypad_connected := not Input.get_connected_joypads().is_empty()
-	
+
 	table.clear()
 	for code in CHANGEABLE:
 		var code_id := table.add_item(CHANGEABLE[code])
