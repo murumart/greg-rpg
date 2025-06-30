@@ -200,7 +200,9 @@ func load_battle(_info: BattleInfo) -> void:
 	battle_rewards = info.get_("rewards",
 			preload("res://resources/rewards/res_default_reward.tres"
 			)).duplicate(true)
-	screen_dance_battle.mbc.bpm = SND.current_song_player.stream.bpm
+	if SND.current_song_player:
+		if SND.current_song_player.stream:
+			screen_dance_battle.mbc.bpm = SND.current_song_player.stream.bpm
 	message(info.get_("start_text",
 			("%s lunges at you!" % enemies.front().actor_name)
 			if enemies.size() else "no one is here."

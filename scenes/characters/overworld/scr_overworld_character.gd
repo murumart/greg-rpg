@@ -9,7 +9,7 @@ signal inspected
 signal cannot_reach_target
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
-const ROTS := [&"up", &"right", &"down", &"left"]
+const ROTS := [&"walk_up", &"walk_right", &"walk_down", &"walk_left"]
 enum States {IDLE, TALKING, WANDER, CHASE, PATH}
 var state := States.IDLE
 
@@ -318,7 +318,7 @@ func direct_walking_animation(direction: Vector2) -> void:
 		animated_sprite.stop()
 		return
 	idle_timer.start(randfn(8, 3))
-	var animation_name : String = "walk_" + ROTS[Math.dir_from_rot(direction.angle()) + 1]
+	var animation_name: StringName = ROTS[Math.dir_from_rot(direction.angle()) + 1]
 	if not animated_sprite.sprite_frames.has_animation(animation_name):
 		return
 	animated_sprite.play(animation_name)

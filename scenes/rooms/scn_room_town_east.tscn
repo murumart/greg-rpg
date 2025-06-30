@@ -41,6 +41,41 @@ size = Vector2(276, 52)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mmes"]
 size = Vector2(21, 21.5)
 
+[sub_resource type="GDScript" id="GDScript_k0yp4"]
+script/source = "extends Node
+
+@export var girl: OverworldCharacter
+
+
+func _ready() -> void:
+	pink_haired_girl_setup()
+
+
+func pink_haired_girl_setup() -> void:
+	var time := DAT.seconds % DAT.ATGIRL_CYCLE
+	var progress: int = DAT.get_data(\"atgirl_progress\", 1)
+	girl.default_lines.append(\"atgirl_\" + str(progress))
+	if time > DAT.ATGIRL_CYCLE * 0.25: # first quarter she's in town
+		girl.queue_free()
+		# updating progress when leaving, when has been interacted with
+		if DAT.get_data(\"has_interacted_with_atgirl\", false):
+			if SOL.dialogue_exists(\"atgirl_\" + str(progress + 1)):
+				progress += 1
+		DAT.set_data(\"has_interacted_with_atgirl\", false)
+		DAT.set_data(\"atgirl_progress\", progress)
+		return
+
+
+func _on_atgirl_inspected() -> void:
+	var progress: int = DAT.get_data(\"atgirl_progress\", 1)
+	if not DAT.get_data(\"has_interacted_with_atgirl\", false):
+		DAT.set_data(\"has_interacted_with_atgirl\", true)
+		if progress == 9:
+			progress += 1
+			girl.default_lines.clear()
+			DAT.set_data(\"atgirl_progress\", progress)
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0ru"]
 size = Vector2(257, 210)
 
@@ -219,41 +254,6 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
 
-[sub_resource type="GDScript" id="GDScript_k0yp4"]
-script/source = "extends Node
-
-
-func _ready() -> void:
-	pink_haired_girl_setup()
-
-
-func pink_haired_girl_setup() -> void:
-	var atgirl := $\"../Houses/HousingBlock/Atgirl\"
-	var time := DAT.seconds % DAT.ATGIRL_CYCLE
-	var progress: int = DAT.get_data(\"atgirl_progress\", 1)
-	atgirl.default_lines.append(\"atgirl_\" + str(progress))
-	if time > DAT.ATGIRL_CYCLE * 0.25: # first quarter she's in town
-		atgirl.queue_free()
-		# updating progress when leaving, when has been interacted with
-		if DAT.get_data(\"has_interacted_with_atgirl\", false):
-			if SOL.dialogue_exists(\"atgirl_\" + str(progress + 1)):
-				progress += 1
-		DAT.set_data(\"has_interacted_with_atgirl\", false)
-		DAT.set_data(\"atgirl_progress\", progress)
-		return
-
-
-func _on_atgirl_inspected() -> void:
-	var atgirl := $\"../Houses/HousingBlock/Atgirl\" as OverworldCharacter
-	var progress: int = DAT.get_data(\"atgirl_progress\", 1)
-	if not DAT.get_data(\"has_interacted_with_atgirl\", false):
-		DAT.set_data(\"has_interacted_with_atgirl\", true)
-		if progress == 9:
-			progress += 1
-			atgirl.default_lines.clear()
-			DAT.set_data(\"atgirl_progress\", progress)
-"
-
 [node name="ScnRoomTownEast" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u5kw4")
@@ -397,6 +397,10 @@ position = Vector2(163, -91)
 replenish_minutes = 1440
 replenish_seconds = 86400
 item = &"tumbler"
+
+[node name="PHG" type="Node" parent="Houses/HousingBlock" node_paths=PackedStringArray("girl")]
+script = SubResource("GDScript_k0yp4")
+girl = NodePath("../Atgirl")
 
 [node name="Atgirl" parent="Houses/HousingBlock" instance=ExtResource("11_bu27y")]
 position = Vector2(6, 81)
@@ -665,6 +669,3 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/InspectArea"]
 position = Vector2(4, 17)
 shape = SubResource("RectangleShape2D_bu27y")
-
-[node name="PHG" type="Node" parent="."]
-script = SubResource("GDScript_k0yp4")
