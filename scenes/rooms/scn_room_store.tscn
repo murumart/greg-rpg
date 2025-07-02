@@ -738,9 +738,9 @@ random_movement = true
 [node name="WLIParticles" type="GPUParticles2D" parent="Kassa/Cashier"]
 visible = false
 position = Vector2(0, -6)
-process_material = ExtResource("10_pghuq")
 texture = SubResource("AtlasTexture_e3ktr")
 fixed_fps = 60
+process_material = ExtResource("10_pghuq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Kassa/Cashier"]
 position = Vector2(0, -8)
@@ -749,7 +749,7 @@ animation = &"walk_down"
 
 [node name="HoverAnimation" type="AnimationPlayer" parent="Kassa/Cashier"]
 libraries = {
-"": SubResource("AnimationLibrary_1hrc5")
+&"": SubResource("AnimationLibrary_1hrc5")
 }
 
 [node name="KassaSpeak" parent="Kassa" instance=ExtResource("10_nn5u3")]
@@ -1072,7 +1072,7 @@ text = "(milk)"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PresidentEncounter/President/Milk"]
 libraries = {
-"": SubResource("AnimationLibrary_wmnhc")
+&"": SubResource("AnimationLibrary_wmnhc")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PresidentEncounter/President/Milk/AnimationPlayer"]
@@ -1083,9 +1083,9 @@ stream = ExtResource("27_rosy8")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="PresidentEncounter/President/Milk"]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_7la5g")
 lifetime = 2.0
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7la5g")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="PresidentEncounter/President/Milk/GPUParticles2D"]
 occluder = SubResource("OccluderPolygon2D_46con")
@@ -1138,7 +1138,7 @@ offset = Vector2(0, -0.584699)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PresidentEncounter/WetMessSlop/ColorRect2"]
 libraries = {
-"": SubResource("AnimationLibrary_mit1f")
+&"": SubResource("AnimationLibrary_mit1f")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PresidentEncounter/WetMessSlop/ColorRect2"]

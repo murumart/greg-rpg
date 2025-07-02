@@ -349,7 +349,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-228, -140)
+position = Vector2(-480, -229)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -450,6 +450,8 @@ spawnpoint = Vector2i(0, 14)
 battle = ExtResource("12_2ir7c")
 increase = 0.2
 player = NodePath("../../Greg")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="MajorShape" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
 position = Vector2(66, 108.5)

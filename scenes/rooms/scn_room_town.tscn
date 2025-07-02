@@ -1130,7 +1130,6 @@ item = &"bread"
 position = Vector2(105, 52)
 replenish_minutes = 60
 replenish_seconds = 3600
-item = &"mueslibar"
 
 [node name="Greenhouse" parent="Houses/Store" instance=ExtResource("16_2feir")]
 position = Vector2(-35, 57)

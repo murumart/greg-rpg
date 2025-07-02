@@ -37,10 +37,24 @@ func _fish_victim_setup() -> void:
 	if DAT.get_data("sunset_triggered", false):
 		fish_victim.queue_free()
 		return
-	if DAT.get_data("fish_fought", false):
-		fish_victim.default_lines.clear()
-		fish_victim.default_lines.append(&"fish_victim_after_fight")
-		fish_victim.default_lines.append(&"fish_victim_3")
+	fish_victim.inspected.connect(func() -> void:
+		if (&"fish_victim_bootful" in fish_victim.default_lines
+			or &"fish_victim_bootless_again" in fish_victim.default_lines
+		) and ResMan.get_character("greg").armour != &"rubber_boots":
+			fish_victim.default_lines = [&"fish_victim_bootless_again"]
+		elif ResMan.get_character("greg").armour != &"rubber_boots":
+			fish_victim.default_lines = [&"fish_victim_bootless"]
+		elif &"fish_victim_bootless" in fish_victim.default_lines:
+			if ResMan.get_character("greg").armour == &"rubber_boots":
+				fish_victim.default_lines = [&"fish_victim_bootful"]
+		elif &"fish_victim_bootless_again" in fish_victim.default_lines:
+			fish_victim.default_lines = [&"fish_victim_defeat"]
+		elif &"fish_victim_defeat" in fish_victim.default_lines:
+			pass
+		else:
+			if DAT.get_data("fish_fought", false):
+				fish_victim.default_lines = [&"fish_victim_after_fight", &"fish_victim_3"]
+	)
 
 
 func _car_scared_setup() -> void:

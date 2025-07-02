@@ -4,6 +4,7 @@ const STORE_CLEANUP_TIME_SECONDS := 400
 
 @onready var store_door := $DoorArea
 @onready var guy: OverworldCharacter = $UguyWalk
+@onready var boot_trash: TrashBin = $Strash3
 
 
 func setup() -> void:

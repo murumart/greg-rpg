@@ -1710,7 +1710,7 @@ DIALOGUE naturalist_lcorridor_oneboot
 CHAR naturalist
 	sorry about the missing boot.
 	i'm sure you're resourceful enough to find another one...
-	in town, maybe?
+	in the town park, the [color=#ffaaff]old man sitting on the bench[/color] might know something.
 
 
 DIALOGUE naturalist_lcorridor_first
@@ -2845,6 +2845,24 @@ DATA_LINK first_fish_fight_was_hard,true
 	that's all. i'm satisfied.
 DATA_LINK first_fish_fight_was_hard,false
 	i need to think about this for a while...
+
+
+DIALOGUE fish_victim_bootless
+	hey...! are you out of your mind?
+	you can't go around the lake with no [color=#88ff88]rubber boots...
+	your feet get drenched... and then you [color=#ff0000]die...
+
+
+DIALOGUE fish_victim_bootful
+	good... you came to your senses!
+
+
+DIALOGUE fish_victim_bootless_again
+	why did you take them off again???
+
+
+DIALOGUE fish_victim_defeat
+	i don't care about your boots anymore... i'm so tired...
 
 
 DIALOGUE restroom_default
