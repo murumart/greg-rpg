@@ -210,7 +210,6 @@ func load_battle(_info: BattleInfo) -> void:
 	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
-	print("greg speed")
 	set_greg_speed()
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
@@ -220,7 +219,6 @@ func load_battle(_info: BattleInfo) -> void:
 		for p in party:
 			if p.character.armour == armor:
 				continue
-			print(p, " is missing ", armor, ", punishment will be swipt")
 			p.handle_payload(pload)
 	#print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting

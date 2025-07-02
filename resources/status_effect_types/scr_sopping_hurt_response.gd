@@ -12,7 +12,3 @@ func hr(actor: BattleActor, container: BattleStatusEffect, attack_gender: int, d
 		actor.global_position + Vector2(randf_range(-4, 4), -16),
 		{"parent": actor})
 	return damage_amount - amt
-
-
-func hey() -> void:
-	print("I am here! I exist!")

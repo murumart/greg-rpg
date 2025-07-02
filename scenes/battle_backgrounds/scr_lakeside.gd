@@ -13,18 +13,14 @@ var flbeat := 0.0
 
 
 func _spaghetti_setup(battle: Battle) -> void:
-	print("asss")
 	battle.ending.connect(func() -> void:
 		effect.hide()
 		AudioServer.set_bus_effect_enabled(1, 0, false)
 	)
 	for p in battle.party:
-		print(p)
 		p.effect_received.connect(func(e: BattleStatusEffect) -> void:
-			print(e)
 			if e.type.s_id != &"drenchfoot":
 				return
-			print("bbefdbdf5")
 			if not effect.visible:
 				remove_child(effect)
 				SOL.add_ui_child(effect, 99)

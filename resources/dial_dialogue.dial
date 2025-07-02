@@ -1640,6 +1640,14 @@ DIALOGUE car_scared_lake_8
 	i-i'm out of things to say... i'm sorry...
 
 
+DIALOGUE rubber_boots_make
+	the rain boots were combined masterfully.
+
+
+DIALOGUE rubber_boots_cant_make
+	you need two boots to wear them.
+
+
 DIALOGUE naturalist_grass_1
 CHAR naturalist
 	hush! be careful!

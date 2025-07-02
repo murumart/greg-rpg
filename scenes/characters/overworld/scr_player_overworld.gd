@@ -187,6 +187,16 @@ func _character_message_received(msg := &"") -> void:
 			close_menu()
 			SOL.dialogue("diploma_crumpled")
 			DAT.grant_item(&"winner_hat")
+		&"rain_boot_used":
+			close_menu()
+			var inv := ResMan.get_character("greg").inventory
+			if inv.count("rain_boot") >= 2:
+				inv.erase("rain_boot")
+				inv.erase("rain_boot")
+				SOL.dialogue("rubber_boots_make")
+				DAT.grant_item(&"rubber_boots", 0, false)
+			else:
+				SOL.dialogue("rubber_boots_cant_make")
 
 
 func _save_me() -> void:

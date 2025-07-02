@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doeqie2ty07sr"
-path="res://.godot/imported/spr_rain_boot.png-c56fd590af4d0f751e3b60c81d91c370.ctex"
+uid="uid://cxble4thedstv"
+path="res://.godot/imported/spr_rubber_boots.png-ee41d923867e59f1fc8b7c680d68d75a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/overworld/armours/spr_rain_boot.png"
-dest_files=["res://.godot/imported/spr_rain_boot.png-c56fd590af4d0f751e3b60c81d91c370.ctex"]
+source_file="res://sprites/characters/overworld/armours/spr_rubber_boots.png"
+dest_files=["res://.godot/imported/spr_rubber_boots.png-ee41d923867e59f1fc8b7c680d68d75a.ctex"]
 
 [params]
 

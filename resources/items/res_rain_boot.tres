@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://csky7axc521o3"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://csky7axc521o3"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_6wdii"]
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_o15n8"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_xbmn8"]
 [ext_resource type="Texture2D" uid="uid://qxfrwbirh5rv" path="res://sprites/items/spr_rain_boot.png" id="2_uccpr"]
+[ext_resource type="AudioStream" uid="uid://7l2tvhh72nko" path="res://sounds/chemistry/bounce.ogg" id="3_k8ar8"]
 
 [sub_resource type="Resource" id="Resource_6wdii"]
 script = ExtResource("1_xbmn8")
@@ -25,7 +26,7 @@ delay = 0.0
 summon_enemy = ""
 max_enemies = 6
 animation_on_receive = ""
-message_user = &""
+message_user = &"rain_boot_used"
 meta = {}
 metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
@@ -36,7 +37,8 @@ name = &"rain boot"
 description = "you need two to boot good."
 texture = ExtResource("2_uccpr")
 attack_animation = ""
+play_sound = ExtResource("3_k8ar8")
 price = 1000
 use = -1
-consume_on_use = true
+consume_on_use = false
 payload = SubResource("Resource_6wdii")
