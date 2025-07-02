@@ -134,6 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				if item_spirit_tabs.current_tab == 0:
 					if using_menu_choice == party_size(): # trashcan
 						party(current_tab).inventory.erase(using_item)
+						DAT.appenda("erased_items", using_item)
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
 						if using_item == &"cellphone":
 							party(current_tab).inventory.append("cellphone")
