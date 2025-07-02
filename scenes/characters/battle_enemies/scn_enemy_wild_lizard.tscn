@@ -14,3 +14,9 @@ texture = ExtResource("2_mkrpv")
 [node name="CopyGregStatsComponent" type="Node" parent="."]
 script = ExtResource("3_wqo30")
 multiplier = 0.84
+copy_params = Dictionary[int, float]({
+0: 0.84,
+1: 0.84,
+2: 0.84,
+3: 0.84
+})

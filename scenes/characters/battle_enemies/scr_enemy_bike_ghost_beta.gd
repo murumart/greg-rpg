@@ -4,13 +4,13 @@ var at_gdung := false
 
 
 func _ready() -> void:
-	super()
+	super ()
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if not at_gdung:
 		SOL.dialogue("bike_beta_battle_1")
 		return
 	animator.speed_scale = 1.575
-	CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.99)
+	CopyGregStatsComponent.copy_stats_if_im_less(ResMan.get_character("greg"), character, 0.99)
 
 
 func act() -> void:
@@ -28,7 +28,7 @@ func act() -> void:
 					actor.flee()
 			, CONNECT_ONE_SHOT)
 			return
-	super()
+	super ()
 
 
 func hurt(amt: float, g: int) -> void:
@@ -53,7 +53,7 @@ func hurt(amt: float, g: int) -> void:
 	elif character.health - _hurt_damage(amt, g) <= 0 and reference_to_team_array.size() == 1:
 		SOL.dialogue("bike_ghost_gdung_defeat")
 		await SOL.dialogue_closed
-	super(amt, g)
+	super (amt, g)
 
 
 func _flee_at_right_time(line: int) -> void:

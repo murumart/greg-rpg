@@ -9,11 +9,11 @@ var alone := true
 
 
 func _ready() -> void:
-	super()
+	super ()
 	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
 	if at_gdung:
 		animator.speed_scale = 2.57166
-		CopyGregStatsComponent.copy_stats_from(ResMan.get_character("greg"), character, 0.95)
+		CopyGregStatsComponent.copy_stats_if_im_less(ResMan.get_character("greg"), character, 0.95)
 		await get_tree().process_frame # because other enemies haven't been added yet
 		if reference_to_team_array.size() > 1:
 			SOL.dialogue("bike_ghost_gdung_1")
@@ -83,7 +83,7 @@ func hurt(amount: float, gnd: int) -> void:
 				await SOL.dialogue_closed
 			die()
 			return
-		super(amount, gnd)
+		super (amount, gnd)
 		return
 	if enemy_powerful:
 		hnnng_____the_power()

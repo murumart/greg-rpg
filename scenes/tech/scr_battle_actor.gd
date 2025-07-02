@@ -9,7 +9,10 @@ const WAIT_AFTER_FLEE := 1.0
 
 const ATK_DMG_LVL_CURVE := preload("res://resources/res_attack_damage_level_curve.tres")
 
-static var player_speed_modifier := 1.0
+static var player_speed_modifier := 1.0:
+	set(to):
+		player_speed_modifier = to
+		print("player speed modifier set to ", to)
 static var crits_enabled := true
 static var battle_hash := 0
 

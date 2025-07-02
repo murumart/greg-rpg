@@ -21,3 +21,7 @@ texture = ExtResource("2_3uar3")
 [node name="CopyGregStatsComponent" type="Node" parent="."]
 script = ExtResource("3_slt34")
 to_copy = Array[StringName]([&"attack", &"defense"])
+copy_params = Dictionary[int, float]({
+1: 1.0,
+2: 1.0
+})

@@ -1354,3 +1354,9 @@ autoplay = true
 
 [node name="CopyGregStatsComponent" type="Node" parent="."]
 script = ExtResource("6_w8vk7")
+copy_params = Dictionary[int, float]({
+0: 1.0,
+1: 1.0,
+2: 1.0,
+3: 1.0
+})

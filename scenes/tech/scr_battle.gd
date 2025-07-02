@@ -209,6 +209,7 @@ func load_battle(_info: BattleInfo) -> void:
 	) + "\n", {"alignment": HORIZONTAL_ALIGNMENT_CENTER})
 	play_victory_music = info.victory_music
 	stop_music_before_end = info.stop_music_before_end
+	print("greg speed")
 	set_greg_speed()
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
@@ -1039,8 +1040,8 @@ func _on_dance_battle_requested(actor: EnemyAnimal, target: BattleActor) -> void
 
 
 func set_greg_speed() -> void:
-	BattleActor.player_speed_modifier = 5.0 / float(party.map(func(a):
-		return a.character.speed).max())
+	BattleActor.player_speed_modifier = 5.0 / float(party.map(func(a: BattleActor):
+		return a.get_speed()).max())
 
 
 func is_ui_locked() -> bool:

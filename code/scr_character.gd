@@ -242,3 +242,7 @@ func get_defeated_character(nimi: StringName) -> int:
 
 func has_spirit(type: String) -> bool:
 	return type in spirits or type in unused_spirits
+
+
+func _to_string() -> String:
+	return "Character " + name + "(l%sa%sd%ss%s)" % [level, attack, defense, speed]

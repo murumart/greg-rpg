@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfb7l37bxkl8d"]
+[gd_scene load_steps=15 format=3 uid="uid://cfb7l37bxkl8d"]
 
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_axreb"]
 [ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/alpha.png" id="2_mvywq"]
 [ext_resource type="Script" uid="uid://qsk80kho1c8w" path="res://scenes/characters/battle_enemies/scr_lines.gd" id="2_s7p5t"]
 [ext_resource type="Script" uid="uid://div6cnbbbvhui" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost.gd" id="2_v7npc"]
+[ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="5_bfaqi"]
 
 [sub_resource type="Animation" id="Animation_r8ct8"]
 length = 0.001
@@ -3456,6 +3457,11 @@ _data = {
 &"use_spirit": SubResource("Animation_a70di")
 }
 
+[sub_resource type="Curve" id="Curve_bfaqi"]
+_limits = [50.0, 200.0, 1.0, 99.0]
+_data = [Vector2(1, 50), 0.0, 0.0, 0, 0, Vector2(26.3585, 97.9058), 0.0, 0.0, 0, 0, Vector2(99, 200), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="BikeGhost" node_paths=PackedStringArray("animator") instance=ExtResource("1_axreb")]
 script = ExtResource("2_v7npc")
 effect_center = Vector2i(0, -20)
@@ -3633,6 +3639,20 @@ region_rect = Rect2(31, 37, 8, 11)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_5cdq0")
+&"": SubResource("AnimationLibrary_5cdq0")
 }
 autoplay = "idle"
+
+[node name="CopyGregStatsComponent" type="Node" parent="." index="1"]
+script = ExtResource("5_bfaqi")
+to_copy = Array[StringName]([])
+copy_params = Dictionary[int, float]({
+0: 1.0,
+1: 1.0,
+2: 1.0,
+3: 1.0
+})
+copy_params_curve = Dictionary[int, Curve]({
+5: SubResource("Curve_bfaqi")
+})
+metadata/_custom_type_script = "uid://dkna7fhou1pf7"

@@ -18,3 +18,6 @@ texture = ExtResource("2_3fyih")
 script = ExtResource("3_grl1v")
 multiplier = 0.904
 to_copy = Array[StringName]([&"speed"])
+copy_params = Dictionary[int, float]({
+3: 0.94
+})

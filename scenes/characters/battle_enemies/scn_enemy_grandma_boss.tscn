@@ -45,8 +45,14 @@ texture = ExtResource("2_ywnvn")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_1ryrp")
-process_material = SubResource("ParticleProcessMaterial_q2iml")
 texture = ExtResource("2_ywnvn")
+process_material = SubResource("ParticleProcessMaterial_q2iml")
 
 [node name="CopyGregStatsComponent" type="Node" parent="."]
 script = ExtResource("3_twl0x")
+copy_params = Dictionary[int, float]({
+0: 1.0,
+1: 1.0,
+2: 1.0,
+3: 1.0
+})
