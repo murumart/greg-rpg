@@ -253,22 +253,9 @@ SOUND phone/phone_call
 	(this call appears to be from an anonymous number.)
 	there is something important that you must see.
 	find the 'bicycle'...
-	near the skatepark...
+	in the park...
 SOUND phone/call_end
 	(they hung up.)
-
-
-DIALOGUE phone_bike_ghost_call_ignore
-SOUND phone/phone_call
-	(another call from the same number as last time.)
-	...
-	so... you've decided to ignore my call.
-	very well. if you can't move the mountain...
-	go to the mountain yourself.
-SOUND phone/call_end
-	(they hung up.)
-	(something evil approaches...!)
-# it fucking gets you
 
 
 DIALOGUE phone_town_under20

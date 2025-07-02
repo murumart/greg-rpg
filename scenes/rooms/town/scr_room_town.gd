@@ -1,7 +1,5 @@
 extends Room
 
-@onready var bike := $Houses/UhhHouse/Bike
-
 @onready var thug_spawners := $Areas.find_children("ThugSpawner*")
 @onready var animal_spawners := $Areas.find_children("AnimalSpawner*")
 @onready var vampire_cutscene: Node2D = $Other/CampfireSite/VampireCutscene
@@ -20,8 +18,6 @@ func _ready() -> void:
 	kid_setup()
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
-	if ResMan.get_character("greg").level < 9:
-		bike.queue_free()
 	# disable thugs if bounty fulfilled
 	if (DAT.get_data("fulfilled_bounty_thugs", false) and
 			not DAT.get_data("hunks_enabled", false)):
