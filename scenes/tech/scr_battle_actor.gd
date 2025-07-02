@@ -54,7 +54,7 @@ var rng := RandomNumberGenerator.new()
 	"Ghost", "Brain", "Vast"
 	) var gender: int = 0
 @export var effect_immunities: Array[StringName] = []
-@export_range(0.0, 1.0) var stat_multiplier: = 1.0
+@export_range(0.0, 1.0) var stat_multiplier := 1.0
 @export var wait := 1.0
 @export var _logsalot := false
 var ignore_my_finishes := false # cutscenes and such?
@@ -130,7 +130,7 @@ func heal(amount: float) -> void:
 			"damage_number",
 			parentless_effcenter(self),
 			{text = absi(roundi(amount)),
-			color=Color.GREEN_YELLOW})
+			color = Color.GREEN_YELLOW})
 
 
 func hurt(amt: float, gendr: int) -> void:
@@ -161,7 +161,7 @@ func hurt(amt: float, gendr: int) -> void:
 		color = Color.RED,
 		})
 	# shake the screen (not visible unless high damage)
-	SOL.shake(sqrt(amount)/15.0)
+	SOL.shake(sqrt(amount) / 15.0)
 
 
 func die() -> void:
@@ -196,7 +196,7 @@ func flee() -> void:
 	SOL.vfx(
 			"damage_number",
 			get_effect_center(self),
-			{text = "bye!", color=Color.WHITE})
+			{text = "bye!", color = Color.WHITE})
 	# so that it won't be acting anymore
 	set_state(States.DEAD)
 	fled.emit(self)
@@ -245,7 +245,7 @@ static func calc_attack_damage(atk: float, random := true) -> float:
 # the half of defense is subtracted from the attack damage
 func account_defense(x: float) -> float:
 	var def := get_defense()
-	var result := maxf(abs(x) - (def**0.77), 0)
+	var result := maxf(abs(x) - (def ** 0.77), 0)
 	return roundf(result)
 
 
@@ -255,7 +255,7 @@ func attack(subject: BattleActor) -> void:
 		SOL.vfx(
 				"damage_number",
 				get_effect_center(self),
-				{text = "miss!", color=Color.WHITE})
+				{text = "miss!", color = Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 		turn_finished()
 		return
@@ -367,7 +367,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 	if not subject.accessible:
 		SND.play_sound(preload("res://sounds/flee.ogg"))
 		SOL.vfx("damage_number", get_effect_center(self),
-				{text = "miss!", color=Color.WHITE})
+				{text = "miss!", color = Color.WHITE})
 		await get_tree().create_timer(WAIT_AFTER_ITEM).timeout
 		turn_finished()
 		return
@@ -425,9 +425,9 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
 			SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 		# frankling badge
-		if pld.gender == Genders.ELECTRIC\
+		if pld.gender == Genders.ELECTRIC \
 				and character.armour == &"frankling_badge":
-			if is_instance_valid(pld.sender)\
+			if is_instance_valid(pld.sender) \
 					and pld.bounces < BattlePayload.MAX_BOUNCES:
 				pld.sender.handle_payload(pld)
 				pld.bounces += 1
@@ -452,7 +452,7 @@ func handle_payload(pld: BattlePayload) -> void:
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
 		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
 		SOL.dialogue_box.dial_concat("battle_inspect", 3,
-				[get_attack(), get_defense(), get_speed(), Genders.NAMES[get_gender()]])
+				[roundi(get_attack()), roundi(get_defense()), roundi(get_speed()), Genders.NAMES[get_gender()]])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
 

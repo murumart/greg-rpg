@@ -69,10 +69,10 @@ func _on_phone_interacted() -> void:
 	if number == 10:
 		if musicplayer.playing:
 			musicplayer.stop()
-	SOL.dialogue_box.dial_concat("prank_call_0", 1, [floorf(number)])
+	SOL.dialogue_box.dial_concat("prank_call_0", 1, [number])
 	SOL.dialogue("prank_call_0")
-	if call_name % floorf(number) in SOL.dialogue_box.dialogues_dict.keys():
-		SOL.dialogue(call_name % floorf(number))
+	if call_name % number in SOL.dialogue_box.dialogues_dict.keys():
+		SOL.dialogue(call_name % number)
 	else:
 		SOL.dialogue("prank_call_else")
 	SOL.dialogue("prank_call_over")

@@ -20,7 +20,7 @@ static func add(actor: BattleActor, eff: StatusEffect) -> BattleStatusEffect:
 	# duration < -1 means an immunity effect instead
 	if eff.duration < -1:
 		neweff.set_type_s(eff.name + "_immunity")
-		neweff.duration = -neweff.duration
+		neweff.duration = - neweff.duration
 		actor.remove_status_effect(eff.name)
 	if actor.is_immune_to(neweff.type.s_id):
 		neweff._immune_text(actor)
@@ -146,7 +146,7 @@ func _add_text(actor: BattleActor) -> void:
 		{
 			text = "%s%s %s" % [
 				Math.sign_symbol(strength),
-				str(absf(strength)) if strength != 1 else "",
+				str(int(absf(strength))) if strength != 1 else "",
 				type.name
 			],
 			color = Color.YELLOW, speed = 0.5
@@ -155,7 +155,7 @@ func _add_text(actor: BattleActor) -> void:
 	actor.emit_message("@%s %s%s %s" % [
 		actor.actor_name,
 		Math.sign_symbol(strength),
-		str(absf(strength)) if strength != 1 else "",
+		str(int(absf(strength))) if strength != 1 else "",
 		type.name
 	])
 
@@ -169,7 +169,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 		{
 			text = "%s%s %s" % [
 				Math.sign_symbol(streng),
-				str(absf(streng)) if streng != 1 else "",
+				str(int(absf(streng))) if streng != 1 else "",
 				type.name
 			],
 			color = Color.LIGHT_YELLOW, speed = 0.5
@@ -178,7 +178,7 @@ func _adjusted_text(actor: BattleActor, streng: float) -> void:
 	actor.emit_message("@%s %s%s %s" % [
 		actor.actor_name,
 		Math.sign_symbol(streng),
-		str(absf(streng)) if streng != 1 else "",
+		str(int(absf(streng))) if streng != 1 else "",
 		type.name
 	])
 
