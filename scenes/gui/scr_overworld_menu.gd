@@ -4,6 +4,7 @@ extends Control
 
 signal close_requested
 signal skateboard_dequipped
+signal armour_changed
 
 const TIME_AFTER_WARN_SAVE := 60
 
@@ -358,10 +359,12 @@ func _reference_button_pressed(reference) -> void:
 			or reference == party(current_tab).armour
 			or reference == party(current_tab).weapon
 			or (DAT.get_data("player_move_mode", 0) == 1
-				and reference == &"skateboard")):
+				and reference == &"skateboard")
+	):
 		if item_spirit_tabs.current_tab == 0 and doing == Doings.INNER:
 			if (reference == party(current_tab).armour):
 				party(current_tab).armour = ""
+				party(current_tab).armour_changed.emit("")
 				party(current_tab).inventory.append(reference)
 				SND.menusound(0.4)
 				load_items()
@@ -424,10 +427,13 @@ func party_size() -> int:
 	return DAT.get_data("party", [0]).size()
 
 
-# return either a party memeber or the party array
-func party(index: int = -1):
+func party(index: int = -1) -> Character:
 	if index > -1 and index < party_size():
 		return ResMan.get_character(DAT.get_data("party", ["greg"])[index])
+	return null
+
+
+func fullparty() -> Array:
 	return (DAT.get_data("party", ["greg"]))
 
 

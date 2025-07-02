@@ -16,6 +16,7 @@ class_name BattleInfo
 @export var kill_music := true
 @export var play_fanfare := true
 @export var crits_enabled := true
+@export var player_missing_armour_effects: Dictionary[StringName, BattlePayload]
 
 
 func set_enemies(x: Array[StringName]) -> BattleInfo:

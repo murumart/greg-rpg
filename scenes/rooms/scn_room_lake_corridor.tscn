@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=4 uid="uid://q4xw2dche40p"]
+[gd_scene load_steps=27 format=4 uid="uid://q4xw2dche40p"]
 
-[ext_resource type="Script" uid="uid://cllk0m2ywar46" path="res://scenes/rooms/scr_room_lake_corridor.gd" id="1_0lfh4"]
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_k2qia"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_k2qia"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_ai4se"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_ba3n7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="6_ntlyd"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="7_6kw6p"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_bkiuy"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="10_ai4se"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="10_y2oa7"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="11_o5atk"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="12_eb763"]
@@ -40,6 +41,10 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = true
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("10_ai4se")]({})
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2qia"]
+size = Vector2(84, 20)
 
 [sub_resource type="Curve" id="Curve_qejha"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.357544, 0.287445), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -70,11 +75,101 @@ turbulence_influence_max = 0.114
 turbulence_initial_displacement_min = -27.1
 turbulence_initial_displacement_max = 41.4
 
+[sub_resource type="GDScript" id="GDScript_k2qia"]
+script/source = "extends Node
+
+const Bird = preload(\"res://scenes/characters/overworld/scr_bird.gd\")
+
+const RBOOTS := &\"rubber_boots\"
+const TOOTH := &\"tooth\"
+
+@export var naturalist: OverworldCharacter
+@export var birds_container: Node
+@export var warning_area: Area2D
+
+var birds_here := true
+var warned := false
+var did_tooth_quest: bool:
+	set(to):
+		DAT.set_data(\"nat_did_toothquest\", to)
+	get:
+		return DAT.get_data(\"nat_did_toothquest\", false)
+var tooth_quest_on: bool:
+	set(to):
+		DAT.set_data(\"nat_toothquest_on\", to)
+	get:
+		return DAT.get_data(\"nat_toothquest_on\", false)
+
+
+func _ready() -> void:
+	for b: Bird in birds_container.get_children():
+		b.frightened.connect(func() -> void: birds_here = false)
+	warning_area.body_entered.connect(func(player: PlayerOverworld) -> void:
+		var greg := ResMan.get_character(\"greg\")
+		if LTS.gate_id == &\"corridor-lake\":
+			return
+		if greg.armour == RBOOTS:
+			return
+		if warned:
+			return
+		warned = true
+		SOL.dialogue(\"naturalist_lcorridor_heywait_1\")
+		await SOL.dialogue_closed
+		DAT.capture_player(\"cutscene\")
+		player.animate(\"walk_up\")
+		naturalist.random_movement = false
+		naturalist.move_to(warning_area.global_position - Vector2(0, 30))
+		naturalist.speed *= 4
+
+		var p2 := func() -> void:
+			SOL.dialogue(\"naturalist_lcorridor_heywait_2\")
+			await SOL.dialogue_closed
+			DAT.free_player(\"cutscene\")
+			naturalist.speed /= 4
+			naturalist.random_movement = true
+			naturalist.random_movement_timer.start(1)
+			player.animate(\"walk_down\")
+
+		naturalist.target_reached.connect(p2, CONNECT_ONE_SHOT)
+		naturalist.cannot_reach_target.connect(p2, CONNECT_ONE_SHOT)
+
+	)
+	naturalist.inspected.connect(func() -> void:
+		naturalist.default_lines = _choose_lines()
+	)
+
+
+func _choose_lines() -> Array[StringName]:
+	var n := naturalist
+	var greg := ResMan.get_character(\"greg\")
+
+	if greg.armour == RBOOTS:
+		if not birds_here:
+			return [&\"naturalist_lcorridor_birds\"]
+		return [&\"naturalist_lcorridor_birds_none\"]
+
+	if RBOOTS in greg.inventory:
+		return [&\"naturalist_lcorridor_putbootson\"]
+
+	if did_tooth_quest:
+		return [&\"naturalist_lcorridor_bootsgone\"]
+
+	if tooth_quest_on:
+		if TOOTH in greg.inventory:
+			did_tooth_quest = true
+			tooth_quest_on = false
+			greg.inventory.erase(TOOTH)
+			DAT.grant_item.bind(&\"rain_boot\").call_deferred()
+			return [&\"naturalist_lcorridor_toothquestcomplete\"]
+		return [&\"naturalist_lcorridor_toothqueston\"]
+
+	tooth_quest_on = true
+	return [&\"naturalist_lcorridor_first\"]
+"
+
 [node name="LakeCorridor" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_0lfh4")
-music = "birds"
-music_fade_time = 0.135
+script = ExtResource("1_k2qia")
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 script = ExtResource("2_k2qia")
@@ -168,8 +263,19 @@ player = NodePath("../../Greg")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Areas/Grasses"]
 polygon = PackedVector2Array(94, 192, 36, 188, 48, 166, 57, 100, 34, 73, 49, 75)
 
+[node name="Area2D" type="Area2D" parent="Areas"]
+position = Vector2(-8, 188)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Area2D"]
+shape = SubResource("RectangleShape2D_k2qia")
+
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Tree" parent="Trees" instance=ExtResource("6_ntlyd")]
 position = Vector2(-69, -63)
@@ -277,3 +383,9 @@ lifetime = 16.0
 preprocess = 4.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
 process_material = SubResource("ParticleProcessMaterial_ipct4")
+
+[node name="ToLakeInteractions" type="Node" parent="." node_paths=PackedStringArray("naturalist", "birds_container", "warning_area")]
+script = SubResource("GDScript_k2qia")
+naturalist = NodePath("../Naturalist")
+birds_container = NodePath("../Birds")
+warning_area = NodePath("../Areas/Area2D")

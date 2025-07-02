@@ -1662,32 +1662,77 @@ CHAR naturalist
 	the grass... the grass...
 
 
-DIALOGUE naturalist_lake_underleveled
+DIALOGUE naturalist_lcorridor_heywait_1
 CHAR naturalist
-	this path takes you to the lake.
-	but looking at you right now...
-	you are only level %s, correct?
-	i mean, the wildlife at the lake is exciting for sure...
-	...but you are not ready.
+	hey, wait!
 
 
-DIALOGUE naturalist_lake_underleveled_2
+DIALOGUE naturalist_lcorridor_heywait_2
 CHAR naturalist
-	i mean, you will be killed.
-	at such a low level.
-	maybe even by the exciting wildlife.
+	think carefully about going to the lake without boots!
+	i'm warning you! it won't end up pretty.
 
 
-DIALOGUE naturalist_lake_underleveled_but_went_and_survived_anyway
+DIALOGUE naturalist_lcorridor_warning_first
 CHAR naturalist
-	oh, you just came from the lake...
-	at your level...
-	well, i hope the wildlife is still okay.
+	hey! this road takes you to the lakeside, and you aren't wearing any boots!
+	you need rubber boots to not get your feet horribly wet, i mean.
+	
+
+DIALOGUE naturalist_lcorridor_putbootson
+CHAR naturalist
+	you have your boots on you, but not on your feet.
+	i mean, you have to wear them. equip them. all that.
+	it'd be bad to go to the lakeside without them on.
 
 
-DIALOGUE naturalist_lake_birds
+DIALOGUE naturalist_lcorridor_bootsgone
+CHAR naturalist
+	where are your boots? you need them to go to the lakeside!
+
+
+DIALOGUE naturalist_lcorridor_toothqueston
+CHAR naturalist
+	did you bring the tooth?
+	boots for a tooth, boots for a tooth.
+	the animals in town have plenty of teeth - i just want one.
+
+
+DIALOGUE naturalist_lcorridor_first
+CHAR naturalist
+	are you thinking about going to the lakeside?
+	you're not ready.
+	i mean, you don't even have rubber boots on. you really need them.
+	you'll get horribly wet without boots...
+	...that's no state to enjoy the lakeside nature in.
+	tell you what. i can see you really want to go there.
+	i mean, i do too, sometimes.
+	that's why i carry my extra pair of boots with me...
+	you've seen the animals around town, right?
+	i'd like to study their dentition, but getting close is tricky.
+	you look like someone who enjoys punching animals.
+	i can lend my boots to you if you bring me a [color=#ffff88]tooth[/color].
+	i'm sure it's easy for you to get them from some animal in town.
+
+
+DIALOGUE naturalist_lcorridor_toothquestcomplete
+CHAR naturalist
+	ah, the tooth i asked you for!
+	well done. i can trust you will take care of my pair of boots...
+	...huh... wait...
+	i only have one boot here... where did the other one get to?
+	i mean, i promised you the boots... here, at least have this one.
+	maybe you'll find the other one around town.
+
+
+DIALOGUE naturalist_lcorridor_birds
 CHAR naturalist
 	shh! don't frighten the birds!
+
+
+DIALOGUE naturalist_lcorridor_birds_none
+CHAR naturalist
+	well... there's no birds here.
 
 
 DIALOGUE naturalist_campsite

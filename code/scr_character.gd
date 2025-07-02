@@ -3,6 +3,7 @@ class_name Character
 
 signal leveled_up
 signal message_owner
+signal armour_changed(to: StringName)
 
 # resource for storing character data
 # this will be interpreted by the battle system and dialogue system
@@ -175,6 +176,7 @@ func handle_item(id: String) -> void:
 		if armour:
 			inventory.append(armour)
 		armour = id
+		armour_changed.emit(id)
 		SND.play_sound(load("res://sounds/equip.ogg"))
 		DAT.set_data("equipped_item", true)
 	elif item.use == Item.Uses.WEAPON:

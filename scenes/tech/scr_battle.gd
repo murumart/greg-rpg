@@ -7,6 +7,7 @@ class_name Battle
 # others cannot act. once one team is defeated, the battle ends.
 
 signal player_finished_acting
+signal ending
 
 # this is the default for testing
 @export var load_options: BattleInfo = null
@@ -189,12 +190,12 @@ func load_battle(_info: BattleInfo) -> void:
 	var info := _info.duplicate()
 	info._before_load()
 	# second argument of info.get_ is the default value
-	set_background(info.background)
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):
 		add_party_member(m)
 	current_guy = party.front()
 	for e in info.enemies:
 		add_enemy(e)
+	set_background(info.background)
 	death_reason = info.death_reason
 	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
 	battle_rewards = info.get_("rewards",
@@ -214,6 +215,13 @@ func load_battle(_info: BattleInfo) -> void:
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
 	BattleActor.battle_hash = _info.get_hash()
+	for armor in _info.player_missing_armour_effects:
+		var pload := _info.player_missing_armour_effects[armor]
+		for p in party:
+			if p.character.armour == armor:
+				continue
+			print(p, " is missing ", armor, ", punishment will be swipt")
+			p.handle_payload(pload)
 	#print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
@@ -306,11 +314,14 @@ func arrange_enemies():
 
 func set_background(id: String) -> void:
 	var path := DIR.battle_background_scene_path(id)
+	var scn: Node
 	if DIR.battle_background_scene_exists(id):
-		background_container.add_child(load(path).instantiate())
+		scn = load(path).instantiate()
 	else:
-		background_container.add_child(
-			load("res://scenes/battle_backgrounds/scn_town.tscn").instantiate())
+		scn = load("res://scenes/battle_backgrounds/scn_town.tscn").instantiate()
+	background_container.add_child(scn)
+	if "_spaghetti_setup" in scn:
+		scn.call("_spaghetti_setup", self)
 
 
 # update the panel visuals
@@ -777,10 +788,12 @@ func open_end_screen(victory: bool) -> void:
 			DAT.incri("win_battle_no_spirit", 1)
 		if not _used_item:
 			DAT.incri("win_battle_no_item", 1)
+		ending.emit()
 		return
 	if DAT.death_reason == "default":
 		DAT.death_reason = death_reason
 	await get_tree().create_timer(1.0).timeout
+	ending.emit()
 	SOL.clear_vfx()
 	LTS.to_game_over_screen()
 

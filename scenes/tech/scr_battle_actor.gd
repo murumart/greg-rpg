@@ -9,10 +9,7 @@ const WAIT_AFTER_FLEE := 1.0
 
 const ATK_DMG_LVL_CURVE := preload("res://resources/res_attack_damage_level_curve.tres")
 
-static var player_speed_modifier := 1.0:
-	set(to):
-		player_speed_modifier = to
-		print("player speed modifier set to ", to)
+static var player_speed_modifier := 1.0
 static var crits_enabled := true
 static var battle_hash := 0
 
@@ -25,6 +22,7 @@ signal died(who: BattleActor)
 signal fled(who: BattleActor)
 signal teammate_requested(who: BattleActor, whom: String)
 signal critically_hitted
+signal effect_received(eff: BattleStatusEffect)
 
 enum States {IDLE = -1, COOLDOWN, ACTING, DEAD}
 var state: States = States.IDLE: set = set_state
@@ -516,6 +514,7 @@ func add_status_effect(eff: StatusEffect) -> void:
 		status_effects[effect.type.s_id] = effect
 		if _logsalot:
 			print("added effect ", effect, " to ", self)
+		effect_received.emit(effect)
 
 
 func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> void:

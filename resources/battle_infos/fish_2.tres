@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=15 format=3 uid="uid://cdxssqcaay35g"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_gp5g6"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_6m4cd"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="2_j21ym"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_j21ym"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_8nto2"]
+
+[sub_resource type="Resource" id="Resource_8nto2"]
+script = ExtResource("2_j21ym")
+name = &"drenchfoot"
+strength = 1.0
+duration = 9999
+metadata/_custom_type_script = "uid://dr10ikau5bgrg"
+
+[sub_resource type="Resource" id="Resource_gvojf"]
+script = ExtResource("1_gp5g6")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("2_j21ym")]([SubResource("Resource_8nto2")])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[sub_resource type="Resource" id="Resource_sy3e8"]
+script = ExtResource("2_6m4cd")
+type = 0
+property = "8"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_277tt"]
+script = ExtResource("2_6m4cd")
+type = 0
+property = "range 2,16"
+chance = 0.392
+unique = false
+
+[sub_resource type="Resource" id="Resource_mc386"]
+script = ExtResource("2_6m4cd")
+type = 1
+property = "gummy_fish"
+chance = 0.3
+unique = false
+
+[sub_resource type="Resource" id="Resource_vkvty"]
+script = ExtResource("2_6m4cd")
+type = 1
+property = "water_balloon"
+chance = 0.189
+unique = false
+
+[sub_resource type="Resource" id="Resource_bd23k"]
+script = ExtResource("2_6m4cd")
+type = 1
+property = "combo_lure"
+chance = 0.082
+unique = false
+
+[sub_resource type="Resource" id="Resource_mxp6f"]
+script = ExtResource("2_6m4cd")
+type = 1
+property = "green_lure"
+chance = 0.098
+unique = false
+
+[sub_resource type="Resource" id="Resource_k01d4"]
+script = ExtResource("3_j21ym")
+rewards = Array[ExtResource("2_6m4cd")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt"), SubResource("Resource_mc386"), SubResource("Resource_vkvty"), SubResource("Resource_bd23k"), SubResource("Resource_mxp6f")])
+
+[resource]
+script = ExtResource("4_8nto2")
+enemies = Array[StringName]([&"fish", &"fish"])
+background = "lakeside"
+music = "lake_battle"
+party = Array[StringName]([])
+death_reason = "lakeside"
+start_text = ""
+rewards = SubResource("Resource_k01d4")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_gp5g6")]({
+&"rubber_boots": SubResource("Resource_gvojf")
+})

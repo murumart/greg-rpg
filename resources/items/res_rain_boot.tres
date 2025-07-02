@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_xbmn8"]
 [ext_resource type="Texture2D" uid="uid://qxfrwbirh5rv" path="res://sprites/items/spr_rain_boot.png" id="2_uccpr"]
 
-[sub_resource type="Resource" id="Resource_uiuu3"]
+[sub_resource type="Resource" id="Resource_6wdii"]
 script = ExtResource("1_xbmn8")
 health = 0.0
 health_percent = 0.0
@@ -17,8 +17,8 @@ magic_percent = 0.0
 max_magic_percent = 0.0
 steal_magic = 0.0
 attack_increase = 0.0
-defense_increase = 4.0
-speed_increase = -4.0
+defense_increase = 0.0
+speed_increase = 0.0
 gender = 0
 effects = Array[ExtResource("1_6wdii")]([])
 delay = 0.0
@@ -27,15 +27,16 @@ max_enemies = 6
 animation_on_receive = ""
 message_user = &""
 meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [resource]
 script = ExtResource("1_o15n8")
 name_in_file = &""
 name = &"rain boot"
-description = "your foot won't get wet now."
+description = "you need two to boot good."
 texture = ExtResource("2_uccpr")
 attack_animation = ""
 price = 1000
-use = 5
+use = -1
 consume_on_use = true
-payload = SubResource("Resource_uiuu3")
+payload = SubResource("Resource_6wdii")

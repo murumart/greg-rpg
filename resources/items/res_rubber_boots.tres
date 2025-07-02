@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dvi5c5cu48gdp"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_330tp"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_cdkoj"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_p04nn"]
+[ext_resource type="Texture2D" uid="uid://414xujo5unv5" path="res://sprites/items/rubber_boots.png" id="4_dwwuk"]
+
+[sub_resource type="Resource" id="Resource_k4ngj"]
+script = ExtResource("2_p04nn")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 4.0
+speed_increase = -2.0
+gender = 0
+effects = Array[ExtResource("1_330tp")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("1_cdkoj")
+name_in_file = &""
+name = &"rubber boots"
+description = "wearing these protects you from the lakeside's wetness."
+texture = ExtResource("4_dwwuk")
+attack_animation = ""
+price = 2000
+use = 5
+consume_on_use = true
+payload = SubResource("Resource_k4ngj")
+metadata/_custom_type_script = "uid://cyql48l3hr5kl"

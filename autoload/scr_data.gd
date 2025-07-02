@@ -198,7 +198,11 @@ func set_copied_data() -> void:
 
 
 # this is for the overworld greg
-# if greg is captured, he cannot be moved around by the player
+## If greg is captured, he cannot be moved around by the player.
+## If [param overlap] is true (default false), multiple capturers of the same name
+## are registred and must be removed separately.
+## If [param dial_closed] is true (default) and the [param key]'s either
+## `&"dialogue"` or `&"greenhouse"`, then dialogue is forcefully closed.
 func capture_player(type := &"", overlap := false, dial_closed := true) -> void:
 	if not overlap and type in player_capturers:
 		return

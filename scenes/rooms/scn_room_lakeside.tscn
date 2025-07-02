@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=79 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -12,14 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_xwmth"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_gxb62"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
-[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="7_7ppah"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="8_0d8jh"]
-[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="8_ecjdo"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="9_8d332"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="10_w8d1t"]
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/water_river.ogg" id="11_n82my"]
 [ext_resource type="PackedScene" uid="uid://cuq7r8jwkjto0" path="res://scenes/characters/overworld/scn_broken_fisherman_overworld.tscn" id="11_wk6gi"]
+[ext_resource type="Resource" uid="uid://cdxssqcaay35g" path="res://resources/battle_infos/fish_2.tres" id="12_2ir7c"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="12_tsmfn"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="13_cds6h"]
 [ext_resource type="Texture2D" uid="uid://ct0g7lwo7tapk" path="res://sprites/characters/overworld/spr_fisherwoman_overworld.png" id="13_fsvee"]
@@ -89,66 +87,23 @@ normal = Vector2(1, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5pcv"]
 size = Vector2(20, 94)
 
-[sub_resource type="Resource" id="Resource_sy3e8"]
-script = ExtResource("7_7ppah")
-type = 0
-property = "8"
-chance = 1.0
-unique = false
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ir7c"]
+size = Vector2(1372, 925)
 
-[sub_resource type="Resource" id="Resource_277tt"]
-script = ExtResource("7_7ppah")
-type = 0
-property = "range 2,16"
-chance = 0.392
-unique = false
+[sub_resource type="GDScript" id="GDScript_2ir7c"]
+resource_name = "majorshape"
+script/source = "extends CollisionShape2D
 
-[sub_resource type="Resource" id="Resource_mc386"]
-script = ExtResource("7_7ppah")
-type = 1
-property = "gummy_fish"
-chance = 0.3
-unique = false
 
-[sub_resource type="Resource" id="Resource_vkvty"]
-script = ExtResource("7_7ppah")
-type = 1
-property = "water_balloon"
-chance = 0.189
-unique = false
+func _ready() -> void:
+	_check()
+	ResMan.get_character(\"greg\").armour_changed.connect(_check.unbind(1))
 
-[sub_resource type="Resource" id="Resource_bd23k"]
-script = ExtResource("7_7ppah")
-type = 1
-property = "combo_lure"
-chance = 0.082
-unique = false
 
-[sub_resource type="Resource" id="Resource_mxp6f"]
-script = ExtResource("7_7ppah")
-type = 1
-property = "green_lure"
-chance = 0.098
-unique = false
-
-[sub_resource type="Resource" id="Resource_k01d4"]
-script = ExtResource("8_ecjdo")
-rewards = Array[ExtResource("7_7ppah")]([SubResource("Resource_sy3e8"), SubResource("Resource_277tt"), SubResource("Resource_mc386"), SubResource("Resource_vkvty"), SubResource("Resource_bd23k"), SubResource("Resource_mxp6f")])
-
-[sub_resource type="Resource" id="Resource_o50vv"]
-script = ExtResource("9_8d332")
-enemies = Array[StringName]([&"fish", &"fish"])
-background = "lakeside"
-music = "lake_battle"
-party = Array[StringName]([])
-death_reason = "lakeside"
-start_text = ""
-rewards = SubResource("Resource_k01d4")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
+func _check() -> void:
+	var greg := ResMan.get_character(\"greg\")
+	disabled = greg.armour == &\"rubber_boots\"
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsg2b"]
 size = Vector2(218, 42.5)
@@ -394,7 +349,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-536, 151)
+position = Vector2(-228, -140)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -492,8 +447,13 @@ extents = Vector2i(26, 8)
 spawnpoint = Vector2i(0, 14)
 
 [node name="EnemyEncounterArea" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
-battle = SubResource("Resource_o50vv")
+battle = ExtResource("12_2ir7c")
 player = NodePath("../../Greg")
+
+[node name="MajorShape" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+position = Vector2(66, 108.5)
+shape = SubResource("RectangleShape2D_2ir7c")
+script = SubResource("GDScript_2ir7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
 position = Vector2(25, 222)
@@ -1295,6 +1255,8 @@ scale = Vector2(-1, 1)
 
 [node name="Fishermen" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Fisherman" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(27, -39)

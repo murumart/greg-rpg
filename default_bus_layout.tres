@@ -6,8 +6,8 @@ threshold = -0.5
 
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_clqyy"]
 resource_name = "LowPassFilter"
-cutoff_hz = 1620.0
-resonance = 0.52
+cutoff_hz = 1821.0
+resonance = 0.26
 
 [sub_resource type="AudioEffectDelay" id="AudioEffectDelay_uw2d4"]
 resource_name = "Delay"

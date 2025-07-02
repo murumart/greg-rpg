@@ -1,5 +1,7 @@
 extends Node2D
 
+signal frightened
+
 enum States {STAND, SKITTER, PECK, FLY, MAX}
 var state := States.STAND: set = set_state
 
@@ -74,5 +76,4 @@ func disturbed() -> void:
 			i.timer.stop()
 			DAT.incri("birds_scared", 1)
 			i.state = States.FLY
-
-
+	frightened.emit()

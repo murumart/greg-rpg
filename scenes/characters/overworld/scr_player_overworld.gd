@@ -132,6 +132,7 @@ func direct_animation() -> void:
 func animate(animation_name: String, moving := false, speed_scale := 1.0) -> void:
 	if animation_name.is_empty():
 		sprite.stop()
+	assert(sprite.sprite_frames.has_animation(animation_name))
 	sprite.play(animation_name)
 	sprite.speed_scale = 1.0 * float(moving) * speed_scale
 	if updating_armour:
