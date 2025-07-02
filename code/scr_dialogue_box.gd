@@ -39,7 +39,7 @@ var default_textbox_position := Vector2()
 
 func _ready() -> void:
 	hide()
-	#load_dialogue_dict()
+	#_load_dialogue_files()
 	default_textbox_size = textbox.size
 	default_textbox_position = textbox.position
 
@@ -72,24 +72,24 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # load the dialogues from files
-func load_dialogue_dict() -> void:
+func _load_dialogue_files() -> void:
 	dialogues_dict = {}
-	add_dialogue_file("res://resources/dial_menus.dial")
-	add_dialogue_file("res://resources/dial_dialogue.dial")
-	add_dialogue_file("res://resources/dial_fisher_dialogue.dial")
-	add_dialogue_file("res://resources/dial_status_effect_descriptions.dial")
-	add_dialogue_file("res://resources/dial_res_phonecalls.dial")
-	add_dialogue_file("res://resources/dial_insp.dial")
+	load_dialogue_file("res://resources/dial_menus.dial")
+	load_dialogue_file("res://resources/dial_dialogue.dial")
+	load_dialogue_file("res://resources/dial_fisher_dialogue.dial")
+	load_dialogue_file("res://resources/dial_status_effect_descriptions.dial")
+	load_dialogue_file("res://resources/dial_res_phonecalls.dial")
+	load_dialogue_file("res://resources/dial_insp.dial")
 
 
-func add_dialogue_file(path: String) -> void:
+func load_dialogue_file(path: String) -> void:
 	dialogues_dict.merge(
 			DialogueParser.parse_dialogue_from_file(
 					FileAccess.open(path, FileAccess.READ)
 	))
 
 
-func add_dialogue_string(string: String) -> void:
+func load_dialogue_string(string: String) -> void:
 	dialogues_dict.merge(
 			DialogueParser.parse_dialogue_from_string(string)
 	)
@@ -105,29 +105,30 @@ func copy_dial(dial: Dialogue) -> Dialogue:
 	return nd
 
 
-func prepare_dialogue(key: String) -> void:
+func prepare_dialogue_key(key: String) -> void:
 	if dialogues_dict.is_empty():
-		load_dialogue_dict()
+		_load_dialogue_files()
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
+	prepare_dialogue_d(dialogues_dict.get(key, preload("res://resources/res_default_dialogue.tres")))
+
+
+func prepare_dialogue_d(dial: Dialogue) -> void:
 	if is_instance_valid(loaded_dialogue):
 		# if a dialogue is loaded, add the new one to the queue
 		# we duplicate the new dialogue
-		var dial_to_append := copy_dial(dialogues_dict.get(key, Dialogue.new()))
-		# why all this? ha ha ha! typed array jank!!!!  god dannnnnnnn
-		dialogue_queue.append(dial_to_append)
+		dialogue_queue.append(copy_dial(dial))
 		return
-	load_dialogue(dialogues_dict.get(key,
-			preload("res://resources/res_default_dialogue.tres")))
+	load_dialogue(copy_dial(dial))
 	set_finished_marker(0)
 
 
 func load_dialogue(dial: Dialogue) -> void:
-	loaded_dialogue = copy_dial(dial)
+	loaded_dialogue = dial
 	changed_dialogue.emit()
 	if loaded_dialogue.alias != "":
 		var alias := loaded_dialogue.alias
 		loaded_dialogue = null
-		prepare_dialogue(alias)
+		prepare_dialogue_key(alias)
 		return
 	DAT.capture_player("dialogue", false)
 	assert(is_instance_valid(loaded_dialogue), "dialogue isn't valid!")
@@ -216,7 +217,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		var dict := KeybindsSettings.capital_action_action_string_dict()
 		text = text.format(dict)
 	while true:
-		if randf() > 0.002 or text.contains("["): # avoids bbcode hopefully
+		if randf() > 0.001 or text.contains("[") or text.contains("{"): # avoids bbcode hopefully
 			break
 		text = Math.typos(text)
 	textbox.set_text(text)
@@ -236,7 +237,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		next_dialogue_requested()
 		return
 
-	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() -1 else 2)
+	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() - 1 else 2)
 
 	if choices:
 		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received, {"text_left": int(choices_container.size.x * 0.25 - 1)})
@@ -305,22 +306,22 @@ func adjust_line(key: String, line_id: int, to: String) -> void:
 	adjust(key, line_id, "text", to)
 
 
-func adjust(key: String, line_id: int, param: String, to: Variant) -> void:
+func adjust(key: String, line_id: int, param: StringName, to: Variant) -> void:
 	if dialogues_dict.is_empty():
-		load_dialogue_dict()
+		_load_dialogue_files()
 	dialogues_dict.get(key).get_line(line_id).set(param, to)
 
 
-func adjust_dial(key: String, param: String, to: Variant) -> void:
+func adjust_dial(key: String, param: StringName, to: Variant) -> void:
 	if dialogues_dict.is_empty():
-		load_dialogue_dict()
+		_load_dialogue_files()
 	dialogues_dict[key].set(param, to)
 
 
 # replace the %s in dialogue strings with something else
 func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if dialogues_dict.is_empty():
-		load_dialogue_dict()
+		_load_dialogue_files()
 	assert(key in dialogues_dict, "can't concat nonexistent line")
 	var get_key := key + "_" + str(line_id)
 	if not get_key in unmodified_dialogue_lines:

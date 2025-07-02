@@ -50,12 +50,12 @@ func dialogue(key: String) -> void:
 			dialogue_low_position()
 		else:
 			dialogue_high_position()
-	dialogue_box.prepare_dialogue(key)
+	dialogue_box.prepare_dialogue_key(key)
 
 
 func dialogue_exists(key: String) -> bool:
 	if dialogue_box.dialogues_dict.is_empty():
-		dialogue_box.load_dialogue_dict()
+		dialogue_box._load_dialogue_files()
 	return key in dialogue_box.dialogues_dict
 
 

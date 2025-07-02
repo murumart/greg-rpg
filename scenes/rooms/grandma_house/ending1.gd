@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func play() -> void:
 	show()
-	SOL.dialogue_box.add_dialogue_string(DIALOGUE)
+	SOL.dialogue_box.load_dialogue_string(DIALOGUE)
 	DAT.capture_player("cutscene")
 	tilemap.set_layer_enabled(1, false)
 	greg.global_position = gregpos

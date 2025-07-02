@@ -18,7 +18,7 @@ DIALOGUE end_1
 
 
 func _ready() -> void:
-	SOL.dialogue_box.add_dialogue_string(DIAL)
+	SOL.dialogue_box.load_dialogue_string(DIAL)
 	bgus.emitting = false
 	color_container.color = Color.WHITE
 	var loops := 18
