@@ -81,6 +81,7 @@ script/source = "extends Node
 const Bird = preload(\"res://scenes/characters/overworld/scr_bird.gd\")
 
 const RBOOTS := &\"rubber_boots\"
+const RBOOT := &\"rain_boot\"
 const TOOTH := &\"tooth\"
 
 @export var naturalist: OverworldCharacter
@@ -145,8 +146,8 @@ func _choose_lines() -> Array[StringName]:
 
 	if greg.armour == RBOOTS:
 		if not birds_here:
-			return [&\"naturalist_lcorridor_birds\"]
-		return [&\"naturalist_lcorridor_birds_none\"]
+			return [&\"naturalist_lcorridor_birds_none\"]
+		return [&\"naturalist_lcorridor_birds\"]
 
 	if RBOOTS in greg.inventory:
 		return [&\"naturalist_lcorridor_putbootson\"]

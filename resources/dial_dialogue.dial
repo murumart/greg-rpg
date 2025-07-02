@@ -1706,6 +1706,13 @@ CHAR naturalist
 	the animals in town have plenty of teeth - i just want one.
 
 
+DIALOGUE naturalist_lcorridor_oneboot
+CHAR naturalist
+	sorry about the missing boot.
+	i'm sure you're resourceful enough to find another one...
+	in town, maybe?
+
+
 DIALOGUE naturalist_lcorridor_first
 CHAR naturalist
 	are you thinking about going to the lakeside?
