@@ -153,6 +153,8 @@ func _choose_lines() -> Array[StringName]:
 		return [&\"naturalist_lcorridor_putbootson\"]
 
 	if did_tooth_quest:
+		if RBOOT in greg.inventory:
+			return [&\"naturalist_lcorridor_oneboot\"]
 		return [&\"naturalist_lcorridor_bootsgone\"]
 
 	if tooth_quest_on:
@@ -160,7 +162,7 @@ func _choose_lines() -> Array[StringName]:
 			did_tooth_quest = true
 			tooth_quest_on = false
 			greg.inventory.erase(TOOTH)
-			DAT.grant_item.bind(&\"rain_boot\").call_deferred()
+			DAT.grant_item.bind(RBOOT).call_deferred()
 			return [&\"naturalist_lcorridor_toothquestcomplete\"]
 		return [&\"naturalist_lcorridor_toothqueston\"]
 

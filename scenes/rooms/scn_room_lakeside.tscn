@@ -448,12 +448,15 @@ spawnpoint = Vector2i(0, 14)
 
 [node name="EnemyEncounterArea" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
 battle = ExtResource("12_2ir7c")
+increase = 0.2
 player = NodePath("../../Greg")
 
 [node name="MajorShape" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
 position = Vector2(66, 108.5)
 shape = SubResource("RectangleShape2D_2ir7c")
+debug_color = Color(1, 1, 1, 0)
 script = SubResource("GDScript_2ir7c")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
 position = Vector2(25, 222)

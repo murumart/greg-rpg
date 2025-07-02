@@ -26,15 +26,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		exit()
 	# these dont work
-	if event.is_action_pressed("move_up"):
-		print("up")
-		line.text = history[0]
-		down_history.append(history[0])
-		history.remove_at(0)
-	elif event.is_action_pressed("ui_down"):
-		line.text = down_history[0]
-		history.append(down_history[0])
-		down_history.remove_at(0)
+	#if event.is_action_pressed("move_up"):
+		#print("up")
+		#line.text = history[0]
+		#down_history.append(history[0])
+		#history.remove_at(0)
+	#elif event.is_action_pressed("ui_down"):
+		#line.text = down_history[0]
+		#history.append(down_history[0])
+		#down_history.remove_at(0)
 	get_viewport().set_input_as_handled()
 
 

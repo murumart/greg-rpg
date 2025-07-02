@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jgjwvx47vp8i"]
+[gd_scene load_steps=22 format=3 uid="uid://jgjwvx47vp8i"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
 [ext_resource type="Script" uid="uid://c2wi6wkdi6t3a" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_kb7wn"]
 [ext_resource type="Resource" uid="uid://conmwehiq2ivg" path="res://resources/rewards/res_animal_fight_rewards.tres" id="5_vwj65"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="6_2q67l"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_e0xo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r02ng"]
 resource_local_to_scene = true
@@ -78,6 +79,7 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = true
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("6_e0xo0")]({})
 
 [node name="StrayPet" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
 script = ExtResource("2_4ypex")

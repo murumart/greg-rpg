@@ -21,5 +21,12 @@ func _init(opt := {}) -> void:
 	pass
 
 
+func unique_gotten() -> bool:
+	if unique:
+		if str(self) in DAT.get_data("unique_rewards", []):
+			return true
+	return false
+
+
 func _to_string() -> String:
 	return "reward_%s_%s" % [BattleRewards.Types.find_key(type), property]

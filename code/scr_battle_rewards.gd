@@ -29,12 +29,8 @@ func grant(speak := true) -> void:
 	var glass_pool: int = 0
 	# interpret rewards' properties and store results in pools
 	for reward in rewards:
-		# unique rewards can only be gotten once
-		# hopefully this string key is good enough for storing them
-		if reward.unique:
-			if not str(reward) in DAT.get_data("unique_rewards", []):
-				DAT.appenda("unique_rewards", str(reward))
-			else: continue
+		if reward.unique_gotten():
+			continue
 		var prp := reward.property
 		if not prp.length():
 			continue
@@ -46,9 +42,11 @@ func grant(speak := true) -> void:
 			Types.ITEM:
 				if randf() <= reward.chance:
 					item_pool.append(prop)
+					handle_uniqueness(reward)
 			Types.SPIRIT:
 				if randf() <= reward.chance:
 					spirit_pool.append(prop)
+					handle_uniqueness(reward)
 			Types.EXP:
 				if randf() <= reward.chance:
 					exp_pool += prop
@@ -94,3 +92,11 @@ func process_property(prp: String) -> Variant:
 
 func _to_string() -> String:
 	return "rewards: " + str(rewards)
+
+
+func handle_uniqueness(reward: Reward) -> void:
+	# unique rewards can only be gotten once
+	# hopefully this string key is good enough for storing them
+	if reward.unique:
+		if not str(reward) in DAT.get_data("unique_rewards", []):
+			DAT.appenda("unique_rewards", str(reward))

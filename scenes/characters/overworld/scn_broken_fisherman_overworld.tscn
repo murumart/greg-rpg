@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene load_steps=47 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Script" uid="uid://cqf72qhvq0eq8" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_2m4wv"]
 [ext_resource type="Resource" uid="uid://dj6asjxe3g3g6" path="res://resources/rewards/res_lakeside_reward.tres" id="6_5ctlp"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="6_7wttt"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_il21p"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="7_c4ac7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ulo7"]
 resource_local_to_scene = true
@@ -218,6 +220,37 @@ script = ExtResource("5_2m4wv")
 key = &"strider"
 curve = SubResource("Curve_1qt73")
 
+[sub_resource type="Resource" id="Resource_8nto2"]
+script = ExtResource("7_c4ac7")
+name = &"drenchfoot"
+strength = 1.0
+duration = 9999
+metadata/_custom_type_script = "uid://dr10ikau5bgrg"
+
+[sub_resource type="Resource" id="Resource_gvojf"]
+script = ExtResource("6_il21p")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("7_c4ac7")]([SubResource("Resource_8nto2")])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
 [sub_resource type="Resource" id="Resource_v2hfp"]
 script = ExtResource("6_7wttt")
 enemies = Array[StringName]([&"broken_fisherman"])
@@ -232,6 +265,9 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = true
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("6_il21p")]({
+&"rubber_boots": SubResource("Resource_gvojf")
+})
 
 [node name="BrokenFisherman" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
 script = ExtResource("2_1psk0")

@@ -21,6 +21,8 @@ func _spaghetti_setup(battle: Battle) -> void:
 		p.effect_received.connect(func(e: BattleStatusEffect) -> void:
 			if e.type.s_id != &"drenchfoot":
 				return
+			SND.play_sound(preload("res://sounds/super_wet.ogg"))
+			battle.message("your feet are drenched!")
 			if not effect.visible:
 				remove_child(effect)
 				SOL.add_ui_child(effect, 99)
