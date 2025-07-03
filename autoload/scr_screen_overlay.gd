@@ -42,6 +42,16 @@ func _input(_event: InputEvent) -> void:
 
 # speak a dialogue
 func dialogue(key: String) -> void:
+	_position_dialogue_box()
+	dialogue_box.prepare_dialogue_key(key)
+
+
+func dialogue_d(dial: Dialogue) -> void:
+	_position_dialogue_box()
+	dialogue_box.prepare_dialogue_d(dial)
+
+
+func _position_dialogue_box() -> void:
 	var player: PlayerOverworld = get_tree().get_first_node_in_group("players")
 	if is_instance_valid(player) and DAT.player_capturers.is_empty():
 		# position the dialogue box up or down so the player is visible
@@ -50,7 +60,6 @@ func dialogue(key: String) -> void:
 			dialogue_low_position()
 		else:
 			dialogue_high_position()
-	dialogue_box.prepare_dialogue_key(key)
 
 
 func dialogue_exists(key: String) -> bool:

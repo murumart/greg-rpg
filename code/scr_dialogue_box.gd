@@ -147,27 +147,26 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	var character: Character = null
 	var text_speed: float = part.text_speed
 	var choice_link: StringName = part.choice_link
-	var data_link: PackedStringArray = part.data_link
+	var data_link: Array = part.data_link
 	var choices: PackedStringArray = part.choices
 	var emotion: String = part.emotion
 	# if the line is linked to a choice or bool data, skip to the next one
 	if choice_link != &"" and (choice_link != current_choice):
 		next_dialogue_requested()
 		return
-	if data_link.size() > 1:
-		var key := data_link[0]
-		var data_value: Variant = DAT.get_data(key, false)
-		var value: Variant = Math.toexp(data_link[1])
-		if value is bool:
+	if not data_link.is_empty():
+		var data_value: Variant = DAT.get_data(data_link[0], false)
+		var expected_value: Variant = data_link[1]
+		# type conversions for e.g. if we expect true from data that is an int
+		if expected_value is bool:
 			data_value = bool(data_value)
-		elif value is int:
+		elif expected_value is int:
 			data_value = int(data_value)
-		elif value is float:
+		elif expected_value is float:
 			data_value = float(data_value)
-		elif value is String or value is StringName:
+		elif expected_value is String or expected_value is StringName:
 			data_value = str(data_value)
-		var dcond: bool = value == data_value
-		if not (dcond):
+		if expected_value != data_value:
 			next_dialogue_requested()
 			return
 	if part.sound:
@@ -181,12 +180,9 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	if part.silver_to_give:
 		DAT.grant_silver(part.silver_to_give, false)
 
-	if part.set_data.size() > 0:
-		var key: String = part.set_data[0]
-		var read: String = part.set_data[1]
-		var value: Variant = 0
-		if Math.toexp(read) != null: value = Math.toexp(read)
-		else: value = read
+	if not part.set_data.is_empty():
+		var key: StringName = part.set_data[0]
+		var value: Variant = part.set_data[1]
 		DAT.set_data(key, value)
 
 	loaded_dialogue_line = part

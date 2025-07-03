@@ -22,7 +22,7 @@ static func num_string_type(input: String) -> int:
 
 # get either -1, 0, 1, 2 to represent the 4 cardinal directions
 static func dir_from_rot(rotation_radians: float) -> int:
-	return wrapi(int(roundi(rotation_radians/PI*2)), -1, 3)
+	return wrapi(int(roundi(rotation_radians / PI * 2)), -1, 3)
 
 
 static func sign_symbol(x) -> String:
@@ -228,13 +228,15 @@ static func v2(from: float) -> Vector2:
 
 
 # convert a string to a usable type
-static func toexp(string: String) -> Variant:
+static func toexp(string: String, keep_str := false) -> Variant:
 	if string.is_valid_int(): return int(string)
 	if string.is_valid_float(): return float(string)
 	if string == "false": return false
 	if string == "true": return true
 	if string.begins_with("["):
 		return str_to_var(string)
+	if keep_str:
+		return string
 	return null
 
 

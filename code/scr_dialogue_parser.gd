@@ -41,7 +41,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 	var text_speed_to_set := 1.0
 	var choices_to_set: PackedStringArray = []
 	var choice_link_to_set := ""
-	var data_link_to_set := PackedStringArray()
+	var data_link_to_set := []
 	var instaskip_to_set := false
 	var loop_to_set := -1
 	var item_to_give := ""
@@ -49,7 +49,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 	var silver_to_give := 0
 	var sound_to_set: AudioStream = null
 	var emotion_to_set := ""
-	var set_data_to_set := PackedStringArray()
+	var set_data_to_set := []
 	var portrait_scale_to_set := Vector2(1, 1)
 	var macros := {} # value replaced by key in the final text
 	var split := string.split("\n")
@@ -124,11 +124,19 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		elif line.begins_with(NEW_CHOICE_LINK):
 			choice_link_to_set = line.right(-NEW_CHOICE_LINK.length())
 		elif line.begins_with(NEW_DATA_LINK):
-			data_link_to_set = line.right(-NEW_DATA_LINK.length()).split(",")
+			var spl := line.right(-NEW_DATA_LINK.length()).split(",")
+			if spl.is_empty():
+				data_link_to_set = []
+			else:
+				data_link_to_set = [StringName(spl[0]), Math.toexp(spl[1], true)]
 		elif line.begins_with(NEW_EMOTION):
 			emotion_to_set = line.right(-NEW_EMOTION.length())
 		elif line.begins_with(NEW_SET_DATA):
-			set_data_to_set = line.right(-NEW_SET_DATA.length()).split(",")
+			var spl := line.right(-NEW_SET_DATA.length()).split(",")
+			if spl.is_empty():
+				set_data_to_set = []
+			else:
+				set_data_to_set = [StringName(spl[0]), Math.toexp(spl[1], true)]
 		elif line.begins_with(NEW_INSTASKIP):
 			instaskip_to_set = true
 		elif line.begins_with(NEW_TXT_SPD):

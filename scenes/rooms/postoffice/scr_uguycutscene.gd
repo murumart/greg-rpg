@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func start() -> void:
 	DAT.capture_player("cutscene")
+	show()
 	guy.show()
 	SOL.dialogue_box.started_speaking.connect(shuffle)
 	greg.global_position = greg_start_pos.global_position - Vector2(0, 11)
