@@ -78,7 +78,7 @@ func _load_dict() -> void:
 		if not _key_limit.is_empty() and not key in _key_limit:
 			continue
 		key_list.add_item(str(key))
-		key_list.set_item_disabled(key_list.item_count - 1, key is not String)
+		key_list.set_item_disabled(key_list.item_count - 1, key is not String and key is not StringName)
 
 
 func handle_options(options: Dictionary) -> void:

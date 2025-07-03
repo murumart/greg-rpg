@@ -31,6 +31,7 @@ font = SubResource("SystemFont_ipupu")
 _allow_external = true
 
 [node name="Panel" type="Panel" parent="."]
+process_mode = 3
 offset_right = 160.0
 offset_bottom = 120.0
 theme = ExtResource("2_rwk82")

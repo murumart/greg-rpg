@@ -371,7 +371,7 @@ func _cmd_seconds(args: PackedStringArray) -> void:
 
 @warning_ignore("unused_parameter")
 func _cmd_editdata(args: PackedStringArray) -> void:
-	SOL.display_dict_editor(DAT.A)
+	get_tree().create_timer(0.1).timeout.connect(SOL.display_dict_editor.bind(DAT.A))
 	exit()
 
 

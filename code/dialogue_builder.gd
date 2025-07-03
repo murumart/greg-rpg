@@ -21,6 +21,11 @@ func clear_char() -> DialogueBuilder:
 	return self
 
 
+func set_emo(emo: StringName) -> DialogueBuilder:
+	_cur_emo = emo
+	return self
+
+
 func clear_emo() -> DialogueBuilder:
 	_cur_emo = &""
 	return self
@@ -51,18 +56,28 @@ func add_line(line: DialogueLine) -> DialogueBuilder:
 	return self
 
 
+func reset() -> DialogueBuilder:
+	_dial = Dialogue.new()
+	return self
+
+
 func get_dial() -> Dialogue:
-	var d := _dial
-	_dial = null
-	return d
+	return _dial
 
 
-func speak() -> void:
-	SOL.dialogue_d(get_dial())
+func speak(box: DialogueBox = null) -> void:
+	if not box:
+		SOL.dialogue_d(get_dial())
+		return
+	box.prepare_dialogue_d(_dial)
 
 
-func speak_choice() -> StringName:
-	speak()
-	await SOL.dialogue_closed
+func speak_choice(box: DialogueBox = null) -> StringName:
+	speak(box)
+	if not box:
+		await SOL.dialogue_closed
+	else:
+		await box.dialogue_closed
 	var c := SOL.dialogue_choice
+	SOL.dialogue_choice = &""
 	return c
