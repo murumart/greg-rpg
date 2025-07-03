@@ -26,6 +26,10 @@ height = 6.0
 radius = 4.0
 height = 8.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_clfkk"]
+atlas = ExtResource("8_t4p2q")
+region = Rect2(0, 124, 4, 4)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0da2"]
 particle_flag_disable_z = true
 direction = Vector3(0, -2, 0)
@@ -38,10 +42,6 @@ gravity = Vector3(0, 98, 0)
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_clfkk"]
-atlas = ExtResource("8_t4p2q")
-region = Rect2(0, 124, 4, 4)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dj1p"]
 radius = 2.0
@@ -934,9 +934,9 @@ shape = SubResource("CapsuleShape2D_0t7cf")
 position = Vector2(2, -3)
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_u0da2")
 texture = SubResource("AtlasTexture_clfkk")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_u0da2")
 
 [node name="Larm" type="RigidBody2D" parent="Bike/Greg"]
 show_behind_parent = true
@@ -1027,7 +1027,7 @@ shape = SubResource("CapsuleShape2D_p7ng5")
 
 [node name="PedalingAnimation" type="AnimationPlayer" parent="Bike/Greg"]
 libraries = {
-"": SubResource("AnimationLibrary_tl418")
+&"": SubResource("AnimationLibrary_tl418")
 }
 autoplay = "pedaling"
 

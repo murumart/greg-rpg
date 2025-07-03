@@ -54,10 +54,8 @@ func display_health(new_value: float) -> void:
 
 func display_coins(new_value: int) -> void:
 	var _old_value = int(coin_label.text)
-	# no cool slide because str :(
 	var tw := create_tween()
-	tw.tween_property(coin_label, "text", str(new_value), 0.5)
-	coin_label.text = str(new_value)
+	tw.tween_method(func(l: float) -> void: coin_label.text = str(ceili(l)), _old_value, new_value, 0.1)
 
 
 func display_mail(new_value: int) -> void:
