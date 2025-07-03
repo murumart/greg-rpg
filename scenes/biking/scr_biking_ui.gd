@@ -60,20 +60,20 @@ func display_coins(new_value: int) -> void:
 	coin_label.text = str(new_value)
 
 
-func display_mail(new_value: float) -> void:
+func display_mail(new_value: int) -> void:
 	mail_label.text = str(new_value)
 
 
-func display_snail(new_value: float) -> void:
+func display_snail(new_value: int) -> void:
 	snail_label.text = "%s/%s" % [new_value, game.snails_until_hell]
 	snail_label.get_parent().modulate = Color(1, 1, 1).lerp(Color(1, 0, 0), new_value / game.snails_until_hell)
 
 
-func display_hell_snail(new_value: float) -> void:
+func display_hell_snail(new_value: int) -> void:
 	hell_snail_label.text = "%s/%s" % [new_value, game.snails_to_escape_hell]
 
 
-func display_hell_time(new_value: float) -> void:
+func display_hell_time(new_value: int) -> void:
 	hell_time_label.text = str(new_value)
 
 
@@ -107,7 +107,7 @@ func use_item(item: StringName) -> void:
 	update_item_menu()
 	if item == &"tape":
 		game.bike.heal(roundi(
-			ResMan.get_item("tape").payload.health/2.0))
+			ResMan.get_item("tape").payload.health / 2.0))
 	elif item == &"magnet":
 		game.bike.effects["coin_magnet"] = {"time": 20.0}
 	elif item == &"cough_syrup":
@@ -133,5 +133,3 @@ func close_hell_menu() -> void:
 	tw.tween_property(hell_menu, "position:y", -40.0, 2.0)
 	tw.tween_property(road_parts, "position:y", 0.0, 2.0)
 	tw.tween_property(counter_container, "position:y", 14.0, 2.0)
-
-
