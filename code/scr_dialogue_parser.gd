@@ -125,7 +125,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 			choice_link_to_set = line.right(-NEW_CHOICE_LINK.length())
 		elif line.begins_with(NEW_DATA_LINK):
 			var spl := line.right(-NEW_DATA_LINK.length()).split(",")
-			if spl.is_empty():
+			if spl.size() < 2:
 				data_link_to_set = []
 			else:
 				data_link_to_set = [StringName(spl[0]), Math.toexp(spl[1], true)]
@@ -133,7 +133,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 			emotion_to_set = line.right(-NEW_EMOTION.length())
 		elif line.begins_with(NEW_SET_DATA):
 			var spl := line.right(-NEW_SET_DATA.length()).split(",")
-			if spl.is_empty():
+			if spl.size() < 2:
 				set_data_to_set = []
 			else:
 				set_data_to_set = [StringName(spl[0]), Math.toexp(spl[1], true)]

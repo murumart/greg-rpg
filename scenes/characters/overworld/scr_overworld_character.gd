@@ -11,7 +11,10 @@ signal cannot_reach_target
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 const ROTS := [&"walk_up", &"walk_right", &"walk_down", &"walk_left"]
 enum States {IDLE, TALKING, WANDER, CHASE, PATH}
-var state := States.IDLE
+var state := States.IDLE # :
+	#set(to):
+	#	state = to
+	#	print("set ", self, " state to ", States.find_key(to))
 
 @export_group("Nodes")
 @export var animated_sprite: AnimatedSprite2D
@@ -111,6 +114,7 @@ func _physics_process(delta: float) -> void:
 		States.IDLE:
 			velocity = Vector2()
 		States.TALKING:
+			velocity = Vector2()
 			# idle if no longer talking
 			if (not is_instance_valid(SOL.dialogue_box.loaded_dialogue)
 					or SOL.dialogue_box.loaded_dialogue.size() < 1):
@@ -163,18 +167,10 @@ func interacted() -> void:
 		return
 	interactions += 1
 	inspected.emit()
-	if detection_area:
-		var bods := detection_area.get_overlapping_bodies()
-		bods.erase(self)
-		bods.sort_custom(func(a, b):
-			return (global_position.distance_squared_to(a.global_position) <
-					global_position.distance_squared_to(b.global_position))
-			)
-		if bods.size():
-			direct_walking_animation(bods[0].global_position - global_position)
 	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
-		set_state(States.TALKING)
-	velocity = Vector2()
+		enter_a_state_of_conversation()
+	elif velocity.length_squared() <= 0.1:
+		face_me()
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():
@@ -187,8 +183,8 @@ func interacted() -> void:
 			if convo_progress >= default_lines.size():
 				convo_progress = 0
 			SOL.dialogue(default_lines[convo_progress])
-			if not SOL.dialogue_closed.is_connected(_on_talking_finished):
-				SOL.dialogue_closed.connect(_on_talking_finished)
+			if not SOL.dialogue_closed.is_connected(finish_talking):
+				SOL.dialogue_closed.connect(finish_talking)
 			convo_progress = mini(convo_progress + 1, default_lines.size())
 			return
 	if battle_info:
@@ -200,12 +196,31 @@ func interacted() -> void:
 		return
 
 
-func _on_talking_finished() -> void:
+func face_me() -> void:
+	if not detection_area:
+		return
+	var bods := detection_area.get_overlapping_bodies()
+	bods.erase(self)
+	bods.sort_custom(func(a, b):
+		return (global_position.distance_squared_to(a.global_position) <
+				global_position.distance_squared_to(b.global_position))
+		)
+	if bods.size():
+		direct_walking_animation(bods[0].global_position - global_position)
+
+
+func enter_a_state_of_conversation() -> void:
+	set_state(States.TALKING)
+	face_me()
+
+
+func finish_talking() -> void:
 	if path_container:
 		path_timer.paused = false
 		if path_timer.time_left == 0:
 			_on_path_target_reached()
-	SOL.dialogue_closed.disconnect(_on_talking_finished)
+	if SOL.dialogue_closed.is_connected(finish_talking):
+		SOL.dialogue_closed.disconnect(finish_talking)
 	if action_right_after_dialogue:
 		if battle_info:
 			_enter_battle()
