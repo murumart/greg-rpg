@@ -28,5 +28,25 @@ func unique_gotten() -> bool:
 	return false
 
 
+func stype(t: BattleRewards.Types) -> Reward:
+	type = t
+	return self
+
+
+func sproperty(to: String) -> Reward:
+	property = to
+	return self
+
+
+func schance(to: float) -> Reward:
+	chance = to
+	return self
+
+
+func sunique(to: bool) -> Reward:
+	unique = to
+	return self
+
+
 func _to_string() -> String:
 	return "reward_%s_%s" % [BattleRewards.Types.find_key(type), property]
