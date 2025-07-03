@@ -1,74 +1,66 @@
 extends Room
 
-@export var force_atgirl := false
-var hes_dead := false
+const MimTalker = preload("res://scenes/rooms/postoffice/src_mail_man_talker.gd")
+
 @onready var mail_man: OverworldCharacter = $Decoration/MailMan
 @onready var notes: Sprite2D = $Decoration/Paper/Notes
 @onready var ushanka_guy_cutscene := $Decoration/UshankaGuyCutscene
+@onready var talker: MimTalker = $MailManTalker
+
+@export var force_atgirl := false
+
+var hes_dead := false
+var interacted := false
+
+
+func _option_init(opt: Dictionary) -> void:
+	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
+		ready.connect(func() -> void: talker.returntalk(opt["biking_results"]))
 
 
 func _ready() -> void:
 	super._ready()
-	var dbox := SOL.dialogue_box as DialogueBox
-	dbox.adjust("mail_man_jobtalk", 1, "choices", ["yes", "no"])
-	if (DAT.get_data("vampire_fought", false)
-			and not DAT.get_data("mail_man_vampire_mentioned", false)):
-		dbox.adjust("mail_man_jobtalk", 1, "choices", ["vampire", "yes", "no"])
-
-	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
-		mail_man_welcome_after_biking()
-		ushanka_guy_cutscene.cleanup()
-		return
-	if can_ushanka_guy_cutscene():
-		ushanka_guy_cutscene.start()
-	else:
-		ushanka_guy_cutscene.cleanup()
-
+	talker.job_request.connect(enter_job)
 	if (not DAT.get_data("vampire_fought", false)
 			and ResMan.get_character("greg").level > 49):
 		hes_dead = true
 		notes.show()
 		ushanka_guy_cutscene.consequences()
+	elif can_ushanka_guy_cutscene():
+		ushanka_guy_cutscene.start()
+	else:
+		ushanka_guy_cutscene.cleanup()
+
 	pink_haired_girl_setup(force_atgirl)
 
 
 func _on_interaction_area_on_interact() -> void:
 	if not hes_dead:
-		if not DAT.get_data("has_talked_to_mail_man", false):
-			mail_man_welcome()
-		elif not DAT.get_data("asked_about_mail_man_job", false):
-			mail_man_talk()
-		else:
-			mail_man_jobtalk()
-		if LTS.gate_id == "town-postoffice" and not get_meta("interacted", false):
+		talker.interact()
+		if LTS.gate_id == "town-postoffice" and not interacted:
 			DAT.incri("post_office_enters", 1)
-			set_meta("interacted", true)
-		return
-	# he's dead
-	SOL.dialogue("vampire_note")
+		interacted = true
+	else:
+		# he's dead
+		SOL.dialogue("vampire_note")
+
+
+func speak(key: StringName) -> void:
+	mail_man.default_lines = [key]
+	mail_man.interacted()
 
 
 func mail_man_welcome() -> void:
-	SOL.dialogue("mail_man_hello")
+	speak("mail_man_hello")
 	DAT.set_data("has_talked_to_mail_man", true)
 
 func mail_man_talk() -> void:
-	SOL.dialogue("mail_man_talk")
+	speak("mail_man_talk")
 
-func mail_man_jobtalk() -> void:
-	SOL.dialogue_choice = ""
-	SOL.dialogue("mail_man_jobtalk")
-	await SOL.dialogue_closed
-	if SOL.dialogue_choice == "yes":
-		SND.play_song("")
-		LTS.level_transition("res://scenes/biking/scn_biking_tutorial.tscn")
 
-func mail_man_welcome_after_biking() -> void:
-	var biked: int = DAT.get_data("biking_games_finished", 0)
-	if biked < 2:
-		SOL.dialogue("mail_man_welcomeback")
-	else:
-		SOL.dialogue("mail_man_afterbiking")
+func enter_job() -> void:
+	SND.play_song("")
+	LTS.level_transition("res://scenes/biking/scn_biking_tutorial.tscn")
 
 
 func pink_haired_girl_setup(force := false) -> void:

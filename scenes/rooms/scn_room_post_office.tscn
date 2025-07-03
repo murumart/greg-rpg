@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://07nnb30j8ogd"]
+[gd_scene load_steps=43 format=4 uid="uid://07nnb30j8ogd"]
 
 [ext_resource type="Script" uid="uid://dboti4liwcn4v" path="res://scenes/rooms/postoffice/scr_room_post_office.gd" id="1_j8r7h"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_fl4yv"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://di36xvotwk4lq" path="res://scenes/rooms/postoffice/scr_uguycutscene.gd" id="8_y60po"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="10_j37ws"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="11_ojfnp"]
+[ext_resource type="Script" uid="uid://5pa50fxm7acc" path="res://scenes/rooms/postoffice/src_mail_man_talker.gd" id="15_vcbr6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("2_fl4yv")
@@ -2465,6 +2466,7 @@ sprite_frames = SubResource("SpriteFrames_xwda5")
 animation = &"walk_left"
 
 [node name="UshankaGuyCutscene" type="Node2D" parent="Decoration"]
+visible = false
 y_sort_enabled = true
 script = ExtResource("8_y60po")
 
@@ -2538,5 +2540,9 @@ offset_right = 135.0
 offset_bottom = 112.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="MailManTalker" type="Node" parent="." node_paths=PackedStringArray("mail_man")]
+script = ExtResource("15_vcbr6")
+mail_man = NodePath("../Decoration/MailMan")
 
 [connection signal="on_interact" from="Areas/InteractionArea" to="." method="_on_interaction_area_on_interact"]

@@ -3,15 +3,17 @@ extends Control
 # mail man kiosk again
 # i',m not commenting this any more than it already is. good lcuk
 
+const MimTalker = preload("res://scenes/rooms/postoffice/src_mail_man_talker.gd")
+
 const MAX_INV_SIZE := 3
 
 signal closed
 
-var game #: BikingGame but NOT because cyclic resource inclusion!!! ahhahaaha
+var game # : BikingGame but NOT because cyclic resource inclusion!!! ahhahaaha
 
 const REF_BUTTON_LOAD := preload("res://scenes/tech/scn_reference_button.tscn")
 
-@onready var dlbox := $DialogueBox
+@onready var dlbox: DialogueBox = $DialogueBox
 @onready var button_container := $ScrollContainer/ButtonContainer
 @onready var item_info_label := $ItemInfoLabel
 @onready var item_picture := $ItemPanel/Sprite2D
@@ -49,11 +51,11 @@ func _ready() -> void:
 	item_info_label.text = ""
 	items_available = gen_items()
 	perks_available = gen_perks()
-	dlbox.prepare_dialogue(get_welcome_message())
+	dlbox.prepare_dialogue_key(get_welcome_message())
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	await dlbox.dialogue_closed
 	if dlbox.current_choice == "browse":
-		dlbox.prepare_dialogue("biking_browse")
+		dlbox.prepare_dialogue_key("biking_browse")
 		load_items()
 	else:
 		bye()
@@ -86,7 +88,7 @@ func load_perks() -> void:
 # future future me here. this could be a lot worse. not touching it tho
 func bye(choseperk := false) -> void:
 	if ending:
-		dlbox.prepare_dialogue("biking_end")
+		dlbox.prepare_dialogue_key("biking_end")
 		await dlbox.dialogue_closed
 		closed.emit()
 		for v in RESETTABLE_DAT_VARIABLES:
@@ -97,7 +99,7 @@ func bye(choseperk := false) -> void:
 	if choseperk:
 		dlbox.skip()
 		dlbox.loaded_dialogue = null
-		dlbox.prepare_dialogue("biking_bye_3")
+		dlbox.prepare_dialogue_key("biking_bye_3")
 		await dlbox.dialogue_closed
 		closed.emit()
 		queue_free()
@@ -105,21 +107,21 @@ func bye(choseperk := false) -> void:
 	get_viewport().gui_release_focus()
 	dlbox.current_choice = ""
 	if stage < 2:
-		dlbox.prepare_dialogue("biking_bye_1")
+		dlbox.prepare_dialogue_key("biking_bye_1")
 	elif stage == 2:
-		dlbox.prepare_dialogue("biking_bye_2")
+		dlbox.prepare_dialogue_key("biking_bye_2")
 		dlbox.current_choice = "no"
 	await dlbox.dialogue_closed
 	if stage == 2:
 		closed.emit()
 		queue_free()
 	if dlbox.current_choice == "no" or stage == 2:
-		dlbox.prepare_dialogue("biking_bye_2")
+		dlbox.prepare_dialogue_key("biking_bye_2")
 		await dlbox.dialogue_closed
 		closed.emit()
 		queue_free()
 	else:
-		dlbox.prepare_dialogue("biking_perks")
+		dlbox.prepare_dialogue_key("biking_perks")
 		load_perks()
 		await dlbox.dialogue_closed
 		button_container.get_child(0).call_deferred("grab_focus")
@@ -230,25 +232,25 @@ func _reference_button_pressed(reference) -> void:
 
 func item_reference_pressed(reference) -> void:
 	var item := ResMan.get_item(reference)
-	var price = roundi(item.price / 4.0)
+	var price = roundi(item.price / 3.0)
 	var inventory: Array = game_get("inventory", [])
 	var silver: int = game_get("silver_collected", 0)
 	dlbox.dial_concat("biking_do_you_wish_to_buy", 0, [item.name])
-	dlbox.prepare_dialogue("biking_do_you_wish_to_buy")
+	dlbox.prepare_dialogue_key("biking_do_you_wish_to_buy")
 	get_viewport().gui_release_focus()
 	await dlbox.dialogue_closed
 	if dlbox.current_choice == "no":
-		dlbox.prepare_dialogue("biking_browse_2")
+		dlbox.prepare_dialogue_key("biking_browse_2")
 		button_container.get_child(0).grab_focus()
 	else:
 		if price > silver:
-			dlbox.prepare_dialogue("biking_man_not_enough_money")
+			dlbox.prepare_dialogue_key("biking_man_not_enough_money")
 			await dlbox.dialogue_closed
 			button_container.get_child(0).grab_focus()
 		else:
 			if inventory.size() < MAX_INV_SIZE:
 				dlbox.dial_concat("biking_man_buy_item", 0, [item.name])
-				dlbox.prepare_dialogue("biking_man_buy_item")
+				dlbox.prepare_dialogue_key("biking_man_buy_item")
 				inventory.append(reference)
 				items_available.erase(reference)
 				game_set("inventory", inventory)
@@ -259,7 +261,7 @@ func item_reference_pressed(reference) -> void:
 				button_container.get_child(0).grab_focus()
 			else:
 				dlbox.dial_concat("biking_man_not_enough_space", 0, [MAX_INV_SIZE])
-				dlbox.prepare_dialogue("biking_man_not_enough_space")
+				dlbox.prepare_dialogue_key("biking_man_not_enough_space")
 				if not deletion_possible:
 					items_available.insert(items_available.size() - 1, &"delete")
 					load_items()
@@ -274,7 +276,7 @@ func delete_items() -> void:
 	inventory.clear()
 	items_available.erase(&"delete")
 	load_items()
-	dlbox.prepare_dialogue("biking_delete_items")
+	dlbox.prepare_dialogue_key("biking_delete_items")
 	await dlbox.dialogue_closed
 	button_container.get_child(0).grab_focus()
 	deletion_possible = false
@@ -313,7 +315,7 @@ func perk_reference_received(reference) -> void:
 		dialogue_name = "biking_perk_else"
 	dlbox.skip()
 	dlbox.loaded_dialogue = null
-	dlbox.prepare_dialogue(dialogue_name)
+	dlbox.prepare_dialogue_key(dialogue_name)
 
 
 func game_get(thing: String, default: Variant = null) -> Variant:

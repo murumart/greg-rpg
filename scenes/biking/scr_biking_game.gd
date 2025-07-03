@@ -117,12 +117,12 @@ func _physics_process(delta: float) -> void:
 	background_field.region_rect.position.x = wrapf(background_field.region_rect.position.x + speed * delta * 0.77, 0.0, background_field.region_rect.size.x * 2.0)
 
 	# DEBUG (rememmber to remove)
-	#if not DIR.standalone():
-		#if Input.is_action_pressed("ui_page_down"):
-			#distance += 60
-		#if Input.is_action_just_pressed("ui_end"):
-			#while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
-				#distance += 1
+	if not DIR.standalone():
+		if Input.is_action_pressed("ui_page_down"):
+			distance += 60
+		if Input.is_action_just_pressed("ui_end"):
+			while not (roundi(get_meter() + KIOSK_BUFFER) % MAIL_KIOSK_INTERVAL) == 0:
+				distance += 1
 
 	if currently_syrup and get_meter() >= syrup_stop_meter:
 		stop_syrup()
@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 func set_speed(to: int) -> void:
 	speed = to
 	get_tree().set_group("speedsters", "speed", speed)
-	$Bike/RoadCollision.constant_linear_velocity.x = -speed
+	$Bike/RoadCollision.constant_linear_velocity.x = - speed
 
 
 func _on_died() -> void:
@@ -321,12 +321,21 @@ func _on_mailman_approached() -> void:
 func _on_mail_menu_finished() -> void:
 	# if at the end of the road
 	if get_meter() >= ROAD_LENGTH - 15:
-		var rew := calculate_rewards()
+		#var rew := calculate_rewards()
 		DAT.incri("snail_hells_survived", hells_survived)
-		rew.grant()
-		await SOL.dialogue_closed
+		#rew.grant()
 		LTS.gate_id = LTS.GATE_EXIT_BIKING
-		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
+		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"), {
+			biking_results = {
+				mail_hits = mail_hits,
+				silver_collected = silver_collected,
+				hells_survived = hells_survived,
+				inventory = inventory,
+				bike_hits = bike.hits,
+				bike_health_proportion = bike.health / roundf(ResMan.get_character("greg").max_health),
+				kiosks_activated = kiosks_activated,
+			}
+		})
 		DAT.incri("biking_games_finished", 1)
 		return
 
@@ -444,62 +453,6 @@ func exit_hell() -> void:
 func _on_punishment_timer_timeout() -> void:
 	hell_time += 1
 	update_ui()
-
-
-# giving rewards after biking
-func calculate_rewards() -> BattleRewards:
-	var rewd := BattleRewards.new()
-	# usual rewards
-	if mail_hits <= 0:
-		SOL.dialogue("biking_end_no_mail_delivered")
-		return rewd # stop here
-	elif mail_hits > 0:
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.SILVER
-		rew.property = str(roundf(mail_hits * 0.89))
-		rewd.add(rew)
-		var rew2 := Reward.new()
-		rew2.type = BattleRewards.Types.EXP
-		var xp := mail_hits * 0.25
-		xp *= pow(hells_survived + 1, 2.3)
-		rew2.property = str(roundf(xp))
-		rewd.add(rew2)
-	if silver_collected > 0:
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.SILVER
-		rew.property = str(float(silver_collected))
-		rewd.add(rew)
-	for i in inventory:
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.ITEM
-		rew.property = str(i)
-		rewd.add(rew)
-	# special conditional rewards
-	if true:
-		# first time finishing
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.ITEM
-		rew.property = str("bike_helmet")
-		rewd.add(rew)
-		rew.unique = true
-	if bike.hits < 1:
-		SOL.dialogue("biking_end_reward_nohit")
-		var rew := Reward.new()
-		rew.type = BattleRewards.Types.SILVER
-		rew.property = str(100)
-		rewd.add(rew)
-		DAT.incri("no_hit_biking_runs", 1)
-	if (DAT.get_data("biking_games_finished", 0) > 11
-			and DAT.get_data("no_hit_biking_runs", 0) > 0
-			and not DAT.get_data("got_mail_hat", false)):
-		SOL.dialogue("biking_end_reward_hat")
-		DAT.set_data("got_mail_hat", true)
-		var rew := Reward.new() as Reward
-		rew.type = BattleRewards.Types.ITEM
-		rew.property = str("mail_hat")
-		rewd.add(rew)
-		rew.unique = true
-	return rewd
 
 
 # skip 100m of road
