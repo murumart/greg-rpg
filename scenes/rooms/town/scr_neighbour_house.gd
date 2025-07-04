@@ -39,7 +39,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(car_scared):
 		return
-	if car_scared.global_position.x > -64 and car_scared.is_physics_processing():
+	if car_scared.global_position.x > -125 and car_scared.is_physics_processing():
 		_car_scared_run_over()
 
 
@@ -62,7 +62,7 @@ func car_scared_inspected() -> void:
 			car_scared.default_lines.append(&"car_scared_3")
 		elif SOL.dialogue_choice == "oh":
 			var tw := create_tween()
-			tw.tween_property(car_scared, "global_position:x", -64.1, 3.0)
+			tw.tween_property(car_scared, "global_position:x", -150, 3.0)
 			car_scared.default_lines.clear()
 			tw.tween_interval(2.0)
 			tw.tween_callback(func():

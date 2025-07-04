@@ -2544,6 +2544,7 @@ spawnpoint = Vector2i(40, 13)
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("62_qhmci")
 level_gain = 9
+add_seconds = 3610
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
