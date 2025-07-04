@@ -154,6 +154,8 @@ func _choose_lines() -> Array[StringName]:
 
 	if did_tooth_quest:
 		if RBOOT in greg.inventory:
+			if greg.inventory.count(RBOOT) > 1:
+				return [&\"naturalist_lcorridor_twoboot\"]
 			return [&\"naturalist_lcorridor_oneboot\"]
 		return [&\"naturalist_lcorridor_bootsgone\"]
 
