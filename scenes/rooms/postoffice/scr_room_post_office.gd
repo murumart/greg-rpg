@@ -15,14 +15,19 @@ var interacted := false
 
 func _option_init(opt: Dictionary) -> void:
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING:
-		ready.connect(func() -> void: talker.returntalk(opt["biking_results"]))
+		ready.connect(func() -> void:
+			mail_man.enter_a_state_of_conversation()
+			await talker.returntalk(opt["biking_results"])
+			mail_man.finish_talking()
+		)
 
 
 func _ready() -> void:
 	super._ready()
 	talker.job_request.connect(enter_job)
 	if (not DAT.get_data("vampire_fought", false)
-			and ResMan.get_character("greg").level > 49):
+			and ResMan.get_character("greg").level > 49
+			and LTS.gate_id != LTS.GATE_EXIT_BIKING):
 		hes_dead = true
 		notes.show()
 		ushanka_guy_cutscene.consequences()

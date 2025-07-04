@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bd1blyxhih57f"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_g5jsy"]
+[ext_resource type="AudioStream" uid="uid://bvs1w2uets6qb" path="res://sounds/talking/uguy.ogg" id="2_pvdsx"]
+
+[resource]
+script = ExtResource("1_g5jsy")
+name_in_file = &""
+name = ""
+info = ""
+voice_sound = ExtResource("2_pvdsx")
+max_health = 100.0
+health = 100.0
+max_magic = 30.0
+magic = 30.0
+level = 45
+experience = 0
+attack = 10.0
+defense = 67.0
+speed = 45.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""
+metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

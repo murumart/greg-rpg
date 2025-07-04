@@ -7,6 +7,7 @@ MACRO VAMPCOLOR #ff2089
 MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
 MACRO SUNCOLOR #ffbb99
+MACRO FLOWERCOLOR #99ff61
 
 
 DIALOGUE intro_convo_0
@@ -803,120 +804,7 @@ CHAR
 	(you can hear her teeth be ground down gradually.)
 
 
-DIALOGUE mail_man_hello
-CHAR mail_man
-EMO serious
-SET_DATA has_not_asked_about_mail_man_job,true
-	hello... welcome to the post office.
-DATA_LINK met_mail_man_in_store,false
-SET_DATA met_mail_man_in_office,true
-	...
-	...are you from elsewhere?
-EMO 
-	you don't look like any of the local losers.
-EMO content
-	(though you still look like a loser.)
-DATA_LINK met_mail_man_in_store,true
-EMO 
-SET_DATA met_mail_man_in_office,true
-	ah... it's you again! hello!
-	you've found the post office.
 
-
-DIALOGUE mail_man_talk
-CHAR mail_man
-EMO 
-CHOICES you,me,job,bye
-	so, why are you here?
-
-CHOICE_LINK bye
-DATA_LINK asked_about_mail_man_job,false
-EMO content
-	ah, finally, you're leaving me alone. goodbye.
-DATA_LINK asked_about_mail_man_job,true
-	see you again soon!
-
-DATA_LINK 
-CHOICE_LINK me
-	about you?
-EMO serious
-	i already told you i have no idea who you are.
-	and i don't care about your name.
-EMO 
-	but you can tell me it anyway. maybe i'll even remember.
-EMO serious
-SET_DATA mail_heard_name,true
-	...greg? 
-EMO 
-LOOP 0
-	your parents must've been interesting!
-
-CHOICE_LINK you
-	about me?
-	i'm the mail man. hello.
-	i deliver mail. i am also a man.
-	it's quite self-explanatory.
-EMO serious
-	...
-	a very thankless job.
-	you have no idea how ravenous some of the...
-	...animals in this town are.
-	not to mention the rampant crime.
-EMO content
-LOOP 0
-	...but i have my ways of dealing with it.
-
-CHOICE_LINK job
-EMO 
-SET_DATA has_not_asked_about_mail_man_job,false
-	it's great that you ask. i do have a job for you!
-SET_DATA asked_about_mail_man_job,true
-	what does it entail? ah, nothing much!
-	you'd just have to take a little tour through town.
-	on my bike.
-	and deliver mail.
-	easy, isn't it?
-	i need a break from biking, so i will be sitting instead...
-	...in a little kiosk. if you come across me, say hi.
-	don't worry, you will be paid...
-	well, what do you say, newspaper boy?
-LOOP 0
-	talk to me again later if you wish to run this errand.
-
-
-DIALOGUE mail_man_jobtalk
-CHAR mail_man
-	ah, the newspaper boy!
-CHOICES yes,no
-	are you ready to go now?
-CHOICE_LINK yes
-	excellent! off you go!
-CHOICE_LINK no
-EMO serious
-	then why bother coming here? don't waste my time.
-
-CHOICE_LINK vampire
-EMO serious
-	...the vampire?
-	...you mean that girl that was around for a while...?
-EMO fear
-	...
-EMO exasperated
-	i was a target?
-	i wondered why she seemed so interested in me.
-EMO 
-	of course, i suspected nothing romantic.
-EMO exasperated
-	but a vampire... after me... what does that say about me...?
-EMO 
-	don't worry, though. i was never in any real danger.
-	if she did try something...
-EMO intimidating
-SET_DATA mail_man_vampire_mentioned,true
-	her blood would have betrayed her.
-EMO 
-LOOP 1
-	anyway, biking.
 
 
 DIALOGUE biking_welcome_1
@@ -1258,85 +1146,38 @@ CHAR mail_man
 	uuh, this perk... how did it get here?
 
 
-DIALOGUE biking_end_no_mail_delivered
-CHAR mail_man
-EMO serious
-	...is this a joke?
-	you didn't deliver a single envelope of mail.
-	that was your entire damn job... i'm not paying you for this.
-
-
-DIALOGUE biking_end_reward_nohit
-CHAR mail_man
-EMO 
-	remarkable! you managed to not...
-	...damage my bike at all this time...
-	you will be especially rewarded.
-
-
-DIALOGUE biking_end_reward_hat
-CHAR mail_man
-EMO content
-DATA_LINK mail_heard_name,true
-	greg! i am very happy with your work thus far.
-DATA_LINK mail_heard_name,false
-	newspaper boy! i am very happy with your work thus far.
-DATA_LINK 
-	i wish to reward you with a valuable item...
-	a mail man hat of your own!
-EMO 
-	wear it and be reminded of your true calling.
-
-
-DIALOGUE mail_man_welcomeback
-CHAR mail_man
-	that wasn't too bad, huh?
-	sorry for not warning you about the road quality.
-	...
-EMO content
-	that was a lie. i am not actually sorry.
-EMO 
-	it was really funny.
-	come back another time!
-
-
-DIALOGUE mail_man_afterbiking
-CHAR mail_man
-	another successful venture on the job market for you, no?
-	come back another time!
-
-
 DIALOGUE pocutscene_1
-	...and then the koonders said "are you going to eat that?"
+CHAR uguy
+	...and then the koonder said "are ya gonna eat that?"
 CHAR mail_man
-EMO serious
-	...that was a great joke.
-CHAR 
-	i know right?! i love it when my daughter sends me jokes!
-	she is doing well in the city, by the way.
+EMO exasperated
+	...what a sublime joke.
+CHAR uguy
+	i know right?! i love when my daughter sends me jokes!
+	she is doin well in the city, by the by.
 	found a job worthy of her degree!
 CHAR mail_man
 	...great.
-CHAR 
-	though i sometimes worry for her...
+CHAR uguy
+	though i also worry for her...
 	who knows what those city slickers have planned!
-	it's hard enough for people from here to make it there...
-	i'm sure city people won't be making her life easier.
+	s'hard enough for people from here to make it there...
+	i'm sure city people won't be makin her life any easier.
 CHAR mail_man
 	...for sure.
-CHAR 
-	speaking of easy life... is the felon still sending those...
+CHAR uguy
+	speakin of easy life... is that felon still sendin those...
 	...envelopes full of red sauce?
 CHAR mail_man
-	...yeah.
-CHAR 
-	man, i wish i could help you! i asked everyone if they knew...
-	...anything about it, but no one did.
-	and the police are still of no help?
+	...yes.
+CHAR uguy
+	man, i wish i could help ya! i asked everyone...
+	...if they knew anythin about it, but nada.
+	and the police, still, not helpin either?
 CHAR mail_man
-	...yeah.
-EMO 
+	...no.
 DATA_LINK mail_heard_name,false
+EMO serious
 	by the way, newspaper boy...
 DATA_LINK mail_heard_name,true
 	by the way, greg...
@@ -1344,17 +1185,18 @@ DATA_LINK
 	do you happen to know anything about this?
 	envelopes full of red sauce arriving at the post office...
 	...that ruin entire bags of mail?
-	come forward. don't be shy.
+EMO 
+	come forward. do not be shy.
 
 
 DIALOGUE pocutscene_2
+CHAR uguy
 DATA_LINK mail_heard_name,true
 	why, greg! what a strange name!
-
 DATA_LINK mail_heard_name,false
-	why, the newspaper boy!
+	why, the newspaper boy himself!
 CHOICES tell,don't
-	do you have a name? what's your name?
+	don'tcha have a name? what's your name?
 CHOICE_LINK tell
 SET_DATA mail_heard_name,true
 	so, greg? greg, was it?
@@ -1364,91 +1206,96 @@ CHOICE_LINK don't
 DATA_LINK 
 CHOICE_LINK 
 	nice to meet you!
-	very interesting! so this foreigner just appeared one day?
-CHAR mail_man
-	yeah.
-CHAR 
-	and you immediately put him to work?
+	very interestin! so this foreigner just arrived...
+	...and you put him to work right away?
 CHAR mail_man
 EMO content
-	yeah.
+	yes.
 EMO 
-CHAR 
-	true entrepeneurship is rare to see in this town!
-	how glad i am that you are here, mail man!
+CHAR uguy
+	that's entrepeneurship, i say!
+	true entrepeneurship's rare to see in this town!
+	we're so lucky to have you here, mail man!!
 CHAR mail_man
 EMO serious
-	...yeah.
-CHAR 
-	hey, have you heard of the vampire in town?
+	...okay.
+CHAR uguy
+	hey, haven'cha heard talk of the vampire in town?
 	supposedly, one recently arrived.
-	pretty scary! i've been carrying some salt with me.
+	pretty scary! i've been carryin some salt with me.
 CHAR mail_man
 	...salt?
-CHAR 
-	yes! it's supposed to help against vampires.
+CHAR uguy
+	yes! 's supposed to ward off vampires.
 	...
 
 
 DIALOGUE pocutscene_3
-	mail man... are you thinking... what i'm thinking?
+CHAR uguy
+	mail man... are you thinkin.. what i'm thinkin?
 CHAR mail_man
 EMO exasperated
-	...
-	guy whose name i never learned...
-	...are you thinking what i'm thinking?
-CHAR 
+	...annoying man whose name i never learned...
+	...are you thinking what i am thinking?
+CHAR uguy
 	...
 	...
 	...a vampire recently appeared...
-	...and this guy... also did that...
+	...and this guy... never before seen either...
 CHAR mail_man
 	...
 EMO serious
-	...are you kidding me?
-INSTASKIP
-	this guy is the loserest person ever,      
-INSTASKIP
-EMO 
-	no offense,      
-EMO serious
-	if he was a vampire he would have been found out...
-	...and pitchforked to death many times over by now.
-CHAR 
-	oh?
-	then what were you thinking about...
+	...is that another joke?
+CHAR uguy
+	...well, vampires are serious business...  
 CHAR mail_man
-EMO content
-	your talk of salt made me hungry.
+EMO serious
+	the man in question is a menial laborer.
+	vampires have ambition. but he?
 EMO 
-	anyway, it's about time we got going home.
-	it's late, a good workday was had by all.
-CHAR 
-INSTASKIP
+	i think all he likes to do is to inhale snail fumes.
+CHAR uguy
+	oh?
+	then what were you thinkin about with me...
+CHAR mail_man
+	your talk of salt made me hungry.
+EMO content
+	in any case, it is about time we all went home.
+EMO 
+	it has been a long day.
+CHAR uguy
 	but it's barely past noon........
 CHAR mail_man
 EMO serious
-	don't question it.
-CHAR 
-	oh okay! bye then!
+	see how much time we have wasted?
+	get going.
+CHAR uguy
+	oh, okay! bye then!!!
 # he leaves
 
 
 DIALOGUE pocutscene_4
 CHAR mail_man
 EMO serious
+	...
 DATA_LINK mail_heard_name,true
-	truth be told, greg...
+	greg...
 DATA_LINK mail_heard_name,false
-	truth be told, newspaper boy...
+	newspaper boy...
 DATA_LINK 
-	i always work. i also live here.
-	not one moment is spared for me to rest.
+	it is not true that you are ambitionless.
+	you are looking for [color=FLOWERCOLOR]flowers[/color], correct?
+	maybe that is good.
+	that man from earlier... is very worried about...
+	...external threats.
+	but, knowing the kind of people that live here...
+	...i would be more concerned about my own back.
 EMO 
-	such is the life of a mail man.
-	hey, yours isn't much better.
-	let me cut you a deal: you deliver mail for me...
-	...and i let you sleep on the floor. deal?
+	hey! newspaper boy!
+	our collaboration has been great thus far.
+	if your won't end up getting those [color=FLOWERCOLOR]flowers[/color]...
+EMO content
+	maybe i will let you sleep on the floor as payment.
 
 
 DIALOGUE mail_man_store_1
