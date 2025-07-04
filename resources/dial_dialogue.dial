@@ -95,7 +95,7 @@ DIALOGUE diploma_crumpled
 DIALOGUE intro_grandma_1
 CHAR grandma
 	oh, hello there!
-	welcome to my [color=#88ff88]flower shop[/color]!
+	welcome to my [color=FLOWERCOLOR]flower shop[/color]!
 	take your time to browse the stock.
 	come back to me once you've made a choice!
 	don't be shy to ask questions if needed!
