@@ -47,7 +47,8 @@ func first_time_dialogue() -> void:
 	var loops := 0
 	dlg = DB.new().set_char("mail_man")
 	dlg.add_line(dl.mk("welcome to the post office."))
-	dlg.add_line(dl.mk("hey... you are the new guy in town, right?"))
+	dlg.add_line(dl.mk("the window to the outside world."))
+	dlg.add_line(dl.mk("are you not the new guy in town?"))
 	dlg.add_line(dl.mk("i only just heard about you."))
 	dlg.add_line(dl.mk("not even settled in yet, and waiting for mail already?"))
 	await dlg.speak_choice()

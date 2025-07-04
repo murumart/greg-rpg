@@ -804,26 +804,26 @@ CHAR
 	(you can hear her teeth be ground down gradually.)
 
 
-
-
-
 DIALOGUE biking_welcome_1
 CHAR mail_man
 EMO 
 DATA_LINK mail_heard_name,true
-	hello, greg! you made it to my checkpoint.
+	hello there, greg. you made it to my checkpoint.
 DATA_LINK mail_heard_name,false
-	hello, newspaper boy! you made it to my checkpoint.
+	hello there, newspaper boy. you made it to my checkpoint.
 DATA_LINK 
 CHOICES browse,leave,help
-	i sell things that might aid you on your mission.
+	i sell items to help you do your job.
 CHOICE_LINK help
 EMO serious
-	confused? not surprised... you can buy items from me.
-	and then you use the items while biking. to help yourself.
-	do note that items here do not behave like you'd expect them to.
+	confused? unsurprising. you can buy items from me.
+EMO 
+	and then you will use the items while biking. to help yourself.
+	it will make this menial job much more bearable.
+	do note that items here do not behave like in battles.
+EMO serious
 LOOP 2
-	better pick up all the silver on the road.
+	will i tell you what they do? no. i am not made of time.
 
 
 DIALOGUE biking_welcome_2
@@ -837,38 +837,33 @@ DIALOGUE biking_welcome_3
 CHAR mail_man
 EMO serious
 CHOICES browse,leave
-	heeeey. not much new i can say.
+	hello there. not much new i can say.
 
 
 DIALOGUE biking_welcome_4
 CHAR mail_man
 EMO 
 CHOICES browse,leave
-	at least it's not raining!
+	good weather we are having.
 
 
 DIALOGUE biking_welcome_5
 CHAR mail_man
-EMO 
-	it's me, the mail man.
 CHOICES browse,leave
-	you should buy my items!
+	here is your chance to stock up.
 
 
 DIALOGUE biking_welcome_6
 CHAR mail_man
 EMO 
-	it's me, the mail man.
-	did you know i sell items cheaper than the store does?
 CHOICES browse,leave
-	what a bargain, huh!
+	these items are cheaper than in the store.
 
 
 DIALOGUE biking_welcome_7
 CHAR mail_man
 EMO 
-	it's me, the mail man.
-	milk is good for your bones!
+	milk... it is good for your bones.
 CHOICES browse,leave
 	drink milk to not take damage for a while.
 
@@ -876,30 +871,30 @@ CHOICES browse,leave
 DIALOGUE biking_welcome_8
 CHAR mail_man
 EMO 
-	it's me, the mail man.
-	have you ever wondered what they put in the cough syrup?
 CHOICES browse,leave
-	it's what gets me going in the morning, whatever it is.
+	do you ever wonder what they put in the cough syrup?	
 
 
 DIALOGUE biking_welcome_beforelast
 CHAR mail_man
 EMO 
-	you're getting close to the end of the street!
+	you are getting close to the end of your shift.
 CHOICES browse,leave
-	final chance to give me your money.
+	this is your final chance to give me your money.
 
 
 DIALOGUE biking_welcome_lowhealth
 CHAR mail_man
+EMO serious
 	hey. watch it with your health over there.
 CHOICES browse,leave
-	you know what i'll do to you if you break my bike?
+	you are aware of do to you if you break my bike?
 
 
 DIALOGUE biking_welcome_snailwarning
 CHAR mail_man
-	i don't think running over this many snails is healthy.
+EMO serious
+	i do not think running over this many snails is healthy.
 CHOICES browse,leave
 	you should avoid them more carefully.
 
@@ -907,89 +902,81 @@ CHOICES browse,leave
 DIALOGUE biking_welcome_afterwhile
 CHAR mail_man
 EMO 
-	been a while, huh?
 CHOICES browse,leave
-	what do you wish to do.
+	it is good for you to see me again.
 
 
 DIALOGUE biking_welcome_hellmention
 CHAR mail_man
 EMO 
-	warned you! i told you to not crush the snails!
 CHOICES browse,leave
-	anyway. shopping.
+	i warned you! i told you to not crush the snails!
 
 
 DIALOGUE biking_welcome_2hells
 CHAR mail_man
 EMO serious
-	...you're being ridiculous. risking everything just...
-	...to step on more snails?
+	okay. wonderful idea. crushing so many snails.
 CHOICES browse,leave
-	you are very weird.
+	see where that gets you.
 
 
 DIALOGUE biking_welcome_3hells
 CHAR mail_man
 EMO 
-	clearly, crushing as many snails as possible is your goal.
-	maybe it actually helps you with some sort of internal problem.
-	i don't know.
 CHOICES browse,leave
-	you are very, very weird indeed.
+	you have problems, don't you?
 
 
 DIALOGUE biking_welcome_morehells
 CHAR mail_man
+EMO serious
+	...are you addicted to the snail fumes or...?
 EMO 
-	are you addicted to the snail fumes?
-	i never thought one could feel a high from the hallucinogen...
-	...that snails produce as self-defense.
-	i'll just take it as something normal from now on, i guess.
+	i don't know. i will just pretend nothing is happening.
 CHOICES browse,leave
 	buy my items now.
 
 
 DIALOGUE biking_welcome_smalltalk_1
 CHAR mail_man
-EMO 
-	you come back here a lot.
 EMO serious
-	...
-	i think i appreciate it. hasn't been dull in a while.
+	you come back here a lot.
 EMO 
-	always leave it to the weird foreigner to liven the place up.
+	of course, it is a prestigious job. i understand.	
+EMO content
 CHOICES browse,leave
-	right, i'm selling you items.
+	maybe one day i will promote you to work in the office.
 
 
 DIALOGUE biking_welcome_smalltalk_2
 CHAR mail_man
-EMO 
+EMO serious
 DATA_LINK mail_heard_name,true
-	so, greg... where exactly are you from?
+	mysterious greg... where exactly are you from?
 DATA_LINK mail_heard_name,false
-	so, unskilled foreign worker... where exactly are you from?
+	mysterious newspaper boy... where exactly are you from?
 DATA_LINK 
+	they have not assigned anyone here for years now.
+	you really had to want to come here, then.
+	why?
 	...
+	no answer?
+EMO 
+	correct answer.
 CHOICES browse,leave
-	no answer? i have always liked your straightforwardness.
+	keep it distant.
 
 
 DIALOGUE biking_welcome_smalltalk_3
 CHAR mail_man
 EMO 
-	remember my problem with the asshole mailing envelopes full of sauce?
+	remember my problem with some asshole mailing envelopes full of food?
 EMO serious
 	that is still an issue.
 	every few days, one of those envelopes appears in my bag...
-	...and subsequently smears red sauce over all the contents of the bag.
-	i have questioned many people, including the pink haired girl...
-	...that likes spending time in the post office, for some reason.
-	i guess she hopes to make a letter materialise out of desperation...
-	...after she rechecks her mailbox for the 10th time.
-	anyway, yeah. the red sauce.
-	i've tried talking to the police, but to no avail.
+	...and subsequently smears red sauce over everything else in it.
+	i have questioned many people. the police will not help.
 EMO 
 	maybe you should try instead.
 	you look like someone the police would like.
@@ -997,32 +984,10 @@ CHOICES browse,leave
 	in any case, buy items.
 
 
-DIALOGUE biking_welcome_smalltalk_4
-CHAR mail_man
-EMO 
-	before you showed up today, i was ambushed and attacked...
-	...and by "ambushed and attacked" i mean "approached"...
-	...by the man in the strange red hat, again.
-EMO serious
-	you look clueless, so let me tell you this.
-	this town is essentially cut off from the rest of the world.
-EMO 
-	"good people don't end up here", is what we're told.
-	it makes sense for people to go insane in this isolation.
-	his insanity is that infatuation with me and my job.
-	i thought a bit about what my insanity could be.
-	i did not like what i came up with. i don't think anyone would.
-	you could think about your own insanity, you know.
-	but if you don't, don't worry.
-	we all have yours figured out already.
-CHOICES browse,leave
-	have i mentioned i sell helpful items?
-
-
 DIALOGUE biking_browse
 CHAR mail_man
 EMO 
-	don't waste too much time choosing!
+	this is what i have available now.
 
 
 DIALOGUE biking_browse_2
@@ -1039,15 +1004,14 @@ CHAR mail_man
 DIALOGUE biking_perks
 CHAR mail_man
 EMO 
-	perks will help you during the next section of road!
-	they are even free! (how kind of me.)
+	perks are a little magic for the next section of road.
 
 
 DIALOGUE biking_bye_1
 CHAR mail_man
 CHOICES ok,no
 EMO 
-	leaving already? perhaps consider trying a perk?
+	before you leave, get yourself a perk. they are free.
 
 
 DIALOGUE biking_bye_2
@@ -1059,7 +1023,7 @@ EMO serious
 DIALOGUE biking_bye_3
 CHAR mail_man
 EMO 
-	good! off you go.
+	good. off you go.
 
 
 DIALOGUE biking_last_stop
@@ -1069,12 +1033,7 @@ DATA_LINK mail_heard_name,true
 DATA_LINK mail_heard_name,false
 	well done! you have reached the end of the road.
 DATA_LINK 
-	let's see how good you did and discuss appropriate payment.
-
-
-DIALOGUE biking_end
-CHAR mail_man
-	see you again soon...
+	let us meet in the office and discuss your payment.
 
 
 DIALOGUE biking_do_you_wish_to_buy
@@ -1087,13 +1046,13 @@ CHOICES yes,no
 DIALOGUE biking_man_not_enough_money
 CHAR mail_man
 EMO serious
-	you haven't enough money for that!
+	you can not afford that.
 
 
 DIALOGUE biking_man_buy_item
 CHAR mail_man
 EMO 
-	nice! enjoy your %s!
+	one %s for the road.
 
 
 DIALOGUE biking_man_not_enough_space
@@ -1117,7 +1076,7 @@ EMO
 
 DIALOGUE biking_perk_snail_bail
 CHAR mail_man
-	the snails forgive you for your crimes so far.
+	the snails forgive you for your transgressions so far.
 
 
 DIALOGUE biking_perk_less_logs
@@ -1132,7 +1091,7 @@ CHAR mail_man
 
 DIALOGUE biking_perk_fast_earner
 CHAR mail_man
-	someone spilled a bunch of coins! but you have to go fast to grab them.
+	many coins were spilled recently. you have to go fast to grab them, however.
 
 
 DIALOGUE biking_perk_sauce_mail
@@ -1300,51 +1259,37 @@ EMO content
 
 DIALOGUE mail_man_store_1
 CHAR mail_man
-EMO serious
-SET_DATA met_mail_man_in_store,true
-	...huh?
-DATA_LINK met_mail_man_in_office,false
-	hello... i haven't seen you around here before.
 EMO 
-	we don't get tourists here often.
-DATA_LINK met_mail_man_in_office,true
-EMO 
-	hello! shopping as well i see.
+	hello there! shopping as well i see.
 EMO serious
 	i need to buy cleaning supplies again.
-	some people really like sending envelopes full of...
+	some people really like mailing envelopes full of...
 	...runny red sauce.
 	not only does that ruin all the other mail...
 	...but more often than not, my clothes too.
-	it's terrible.
+	it is terrible.
 
 
 DIALOGUE mail_man_store_2
 CHAR mail_man
 DATA_LINK biking_games_finished,true
-	i'm glad for the convenience that your...
+	i am glad for the convenience that your...
 	...escapades on my bike provide me.
 	keep it up and i might even manage to scrape...
 	...together enough free days to call it a vacation.
-DATA_LINK biking_games_finished,false
-	you look rather jobless, if you weren't aware.
-	you should come to the post office...
-	...i can provide you with a job.
-	a job with a wage, even.
-	think about it!
 
 
 DIALOGUE mail_man_store_3
 CHAR mail_man
 	we have two cashiers in this store.
 	i like it when the dead-eyed one is at the register.
-	she usually won't notice you carrying something small out.
+	she usually will not notice you carrying something small out.
 
 
 DIALOGUE mail_man_store_4
 CHAR mail_man
 EMO serious
-	...i don't think they sell cleaning supplies here...
+	...i do not think they sell cleaning supplies here...
 
 
 DIALOGUE thug_catch_1

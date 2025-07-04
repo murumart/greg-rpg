@@ -55,14 +55,6 @@ func speak(key: StringName) -> void:
 	mail_man.interacted()
 
 
-func mail_man_welcome() -> void:
-	speak("mail_man_hello")
-	DAT.set_data("has_talked_to_mail_man", true)
-
-func mail_man_talk() -> void:
-	speak("mail_man_talk")
-
-
 func enter_job() -> void:
 	SND.play_song("")
 	LTS.level_transition("res://scenes/biking/scn_biking_tutorial.tscn")
@@ -83,8 +75,8 @@ func pink_haired_girl_setup(force := false) -> void:
 
 
 func can_ushanka_guy_cutscene() -> bool:
-	if not DAT.get_data("has_talked_to_mail_man", false): return false
 	if DAT.get_data("biking_games_finished", 0) < 2: return false
+	if talker.relationship < 5: return false
 	if DAT.get_data("post_office_enters", 0) < 3: return false
 	if LTS.gate_id == LTS.GATE_EXIT_BIKING: return false
 	if LTS.gate_id == LTS.GATE_LOADING: return false

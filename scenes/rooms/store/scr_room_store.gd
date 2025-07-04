@@ -246,6 +246,8 @@ func is_mail_man_here() -> bool:
 		return false
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
 		return false
+	if DAT.get_data("biking_games_finished", 0) < 1:
+		return false
 	var inter := DAT.seconds % 500
 	return inter > 125 and inter < 225
 

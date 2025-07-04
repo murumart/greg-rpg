@@ -88,8 +88,6 @@ func load_perks() -> void:
 # future future me here. this could be a lot worse. not touching it tho
 func bye(choseperk := false) -> void:
 	if ending:
-		dlbox.prepare_dialogue_key("biking_end")
-		await dlbox.dialogue_closed
 		closed.emit()
 		for v in RESETTABLE_DAT_VARIABLES:
 			DAT.set_data(v, false)
@@ -162,14 +160,21 @@ func get_welcome_message() -> String:
 	if DAT.seconds - DAT.get_data("last_kiosk_open_second", 0) > 60 + 30 + 60:
 		return "biking_welcome_afterwhile"
 	if Math.inrange(kiosks_opened, 2, 3):
-		if DAT.get_data("witnessed_ushanka_guy_cutscene", false) and not DAT.get_data("biking_small_talked"):
+		if (DAT.get_data("witnessed_ushanka_guy_cutscene", false)
+			and not DAT.get_data("biking_small_talked")
+			and MimTalker.relationship > 5
+		):
 			DAT.set_data("biking_small_talked", true)
 			var p := DAT.get_data("mail_man_smalltalk_progress", 0) as int
 			if SOL.dialogue_exists("biking_welcome_smalltalk_" + str(p + 1)):
 				p += 1
 				DAT.set_data("mail_man_smalltalk_progress", p)
+				MimTalker.relationship += 1
 				return "biking_welcome_smalltalk_" + str(p)
-		return "biking_welcome_" + str((randi() % 7) + 2)
+		if MimTalker.relationship > 0:
+			return "biking_welcome_" + str((randi() % 7) + 2)
+		else:
+			return "biking_welcome_2"
 	if kiosks_opened == 4:
 		return "biking_welcome_beforelast"
 	return "biking_welcome_1"
