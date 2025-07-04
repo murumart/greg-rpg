@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_8b6ff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w52c6"]
-size = Vector2(18, 18)
+resource_local_to_scene = true
+size = Vector2(18, 19)
 
 [node name="Flower1" type="Node2D"]
 y_sort_enabled = true
@@ -21,5 +22,5 @@ script = ExtResource("2_8b6ff")
 key = "other_flowers"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
-position = Vector2(8, 8)
+position = Vector2(8, 7.5)
 shape = SubResource("RectangleShape2D_w52c6")

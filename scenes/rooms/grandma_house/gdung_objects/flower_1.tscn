@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_kp3lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w52c6"]
+resource_local_to_scene = true
 size = Vector2(18, 18)
 
 [node name="Flower1" type="Node2D"]

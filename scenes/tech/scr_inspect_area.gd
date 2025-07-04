@@ -9,6 +9,7 @@ const INTERACTION_DIALOGUE_BASE := "insp_"
 
 @export var key := ""
 @export var keys: Array[String]
+@export var dialogue: Dialogue
 var progress: int = 0
 @export var save_progress := false
 
@@ -32,6 +33,8 @@ func interacted() -> void:
 		progress = mini(progress + 1, keys.size() - 1)
 		if save_progress:
 			DAT.incri(save_key("progress"), 1)
+	elif dialogue:
+		SOL.dialogue_d(dialogue)
 
 
 func save_key(n: String) -> String:

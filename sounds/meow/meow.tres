@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://6pdofcrhmf61"]
+
+[ext_resource type="AudioStream" uid="uid://dlm3ie106mnq4" path="res://sounds/meow/oskitty-2.ogg" id="1_n8ud1"]
+[ext_resource type="AudioStream" uid="uid://dlo5waxpihpst" path="res://sounds/meow/oskitty-3.ogg" id="2_qg4gd"]
+[ext_resource type="AudioStream" uid="uid://skm76pe071a5" path="res://sounds/meow/oskitty-4.ogg" id="3_hoadv"]
+[ext_resource type="AudioStream" uid="uid://ditcf1152ywdp" path="res://sounds/meow/oskitty-5.ogg" id="4_2dyel"]
+[ext_resource type="AudioStream" uid="uid://dcu53l5u6h1x6" path="res://sounds/meow/oskitty.ogg" id="5_1uvn4"]
+
+[resource]
+streams_count = 5
+stream_0/stream = ExtResource("1_n8ud1")
+stream_1/stream = ExtResource("2_qg4gd")
+stream_2/stream = ExtResource("3_hoadv")
+stream_3/stream = ExtResource("4_2dyel")
+stream_4/stream = ExtResource("5_1uvn4")
+stream_4/weight = 0.01

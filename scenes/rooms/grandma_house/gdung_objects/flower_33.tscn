@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://560xc7yjtkcs"]
+
+[ext_resource type="Texture2D" uid="uid://2v3qstvc8x5q" path="res://sprites/world/nature/plants2.png" id="1_6jsod"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_psug0"]
+[ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="3_ji4vp"]
+[ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="4_eowwa"]
+
+[sub_resource type="Resource" id="Resource_hjuf7"]
+script = ExtResource("3_ji4vp")
+text = "it's been growing well."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_6n840"]
+script = ExtResource("4_eowwa")
+name = &""
+lines = Array[ExtResource("3_ji4vp")]([SubResource("Resource_hjuf7")])
+alias = ""
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w52c6"]
+size = Vector2(12, 9)
+
+[node name="Flower1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_6jsod")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(64, 11, 23, 22)
+
+[node name="InspectArea" type="Area2D" parent="."]
+script = ExtResource("2_psug0")
+dialogue = SubResource("Resource_6n840")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(8, 11)
+shape = SubResource("RectangleShape2D_w52c6")

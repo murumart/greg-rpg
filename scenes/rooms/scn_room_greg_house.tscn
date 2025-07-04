@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://k2hdljqvd8b"]
+[gd_scene load_steps=37 format=4 uid="uid://k2hdljqvd8b"]
 
 [ext_resource type="Script" uid="uid://yuwrdtodd6hx" path="res://scenes/rooms/scr_room_greg_house.gd" id="1_nk2dh"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_qea7a"]
@@ -19,6 +19,8 @@
 [ext_resource type="SpriteFrames" uid="uid://o5esampj4xk6" path="res://resources/characters/sfr_zerma.tres" id="10_8xtxa"]
 [ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="10_20mcq"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="10_h38ha"]
+[ext_resource type="PackedScene" uid="uid://br04qlywiqgw6" path="res://scenes/rooms/forest/forest_objects/bench.tscn" id="12_agme8"]
+[ext_resource type="PackedScene" uid="uid://jj6bwkmk6vr8" path="res://scenes/rooms/grandma_house/gdung_objects/flower_6.tscn" id="13_3t2i8"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="13_bun5o"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="14_rld88"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="21_bcrgk"]
@@ -341,6 +343,12 @@ position = Vector2(9, -68)
 replenish_seconds = -1
 item = &"diploma"
 
+[node name="Stump" parent="ActualHouse" instance=ExtResource("12_agme8")]
+position = Vector2(-47, 3)
+
+[node name="Flower1" parent="ActualHouse" instance=ExtResource("13_3t2i8")]
+position = Vector2(-64, -8)
+
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -518,5 +526,8 @@ position = Vector2(-24, 106)
 [node name="EscapingBusiness" parent="." instance=ExtResource("21_bcrgk")]
 position = Vector2(298, -173)
 escape_offset = Vector2(100, 0)
+
+[node name="TrashBin" parent="." instance=ExtResource("10_5xp3u")]
+position = Vector2(9, 65)
 
 [editable path="Cutscenes/ZermCar"]

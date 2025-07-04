@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsdq5h3auf48d"]
+[gd_scene load_steps=20 format=3 uid="uid://bsdq5h3auf48d"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_4qwvp"]
 [ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_tjrt7"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="5_fc8d6"]
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_opow6"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_4ntbf"]
+[ext_resource type="AudioStream" uid="uid://6pdofcrhmf61" path="res://sounds/meow/meow.tres" id="8_gu7w3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7uk"]
 resource_local_to_scene = true
@@ -64,6 +66,7 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = true
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("6_4ntbf")]({})
 
 [node name="Cat" instance=ExtResource("1_4qwvp")]
 y_sort_enabled = true
@@ -89,11 +92,10 @@ shape = SubResource("RectangleShape2D_a5p2c")
 shape = SubResource("CircleShape2D_0h7is")
 
 [node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
-position = Vector2(0, -7)
 sprite_frames = ExtResource("3_8yccp")
 animation = &"idle"
 frame_progress = 0.397401
-offset = Vector2(0, -1)
+offset = Vector2(0, -8)
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_tjrt7")
@@ -103,3 +105,7 @@ default_battle = SubResource("Resource_7jt7c")
 max_enemies = 3
 inject_target = NodePath("..")
 start_texts = Array[String](["ravenous beasts!", "meowmeowmeowmeow"])
+
+[node name="Meow" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("8_gu7w3")
+bus = &"Speech"

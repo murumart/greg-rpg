@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddmhsjs4i6hu1"]
+
+[ext_resource type="Texture2D" uid="uid://2v3qstvc8x5q" path="res://sprites/world/nature/plants2.png" id="1_8dvjl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtm35"]
+size = Vector2(10, 6)
+
+[node name="Plant" type="StaticBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 10)
+texture = ExtResource("1_8dvjl")
+offset = Vector2(0, -15)
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_gtm35")
