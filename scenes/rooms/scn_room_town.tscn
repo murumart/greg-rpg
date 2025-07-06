@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=116 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 [ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
+[ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="62_omkxg"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="62_qhmci"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
@@ -634,7 +635,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(236, -434)
+position = Vector2(-88, -187)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2203,6 +2204,22 @@ wait_time = 6.0
 autostart = true
 script = ExtResource("18_0km5u")
 greg = NodePath("../../../Greg")
+
+[node name="Poles" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="UtilityPole" parent="Poles" node_paths=PackedStringArray("draw_target") instance=ExtResource("62_omkxg")]
+position = Vector2(-132, -166)
+draw_target = NodePath("../UtilityPole2")
+
+[node name="UtilityPole2" parent="Poles" instance=ExtResource("62_omkxg")]
+position = Vector2(130, -166)
+
+[node name="UtilityPole3" parent="Poles" instance=ExtResource("62_omkxg")]
+position = Vector2(489, -167)
+
+[node name="UtilityPole4" parent="Poles" instance=ExtResource("62_omkxg")]
+position = Vector2(845, -164)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
