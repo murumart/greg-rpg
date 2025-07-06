@@ -2647,6 +2647,10 @@ position = Vector2(32, 6)
 position = Vector2(9, 21)
 offset = Vector2(0, -15)
 
+[node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" index="0"]
+position = Vector2(8, 13.5)
+shape = SubResource("RectangleShape2D_76b83")
+
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower5"]
 position = Vector2(6, 23)
 texture = ExtResource("7_fqnfh")
@@ -2654,10 +2658,6 @@ centered = false
 offset = Vector2(-7, -20)
 region_enabled = true
 region_rect = Rect2(80, 16, 17, 15)
-
-[node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" index="0"]
-position = Vector2(8, 13.5)
-shape = SubResource("RectangleShape2D_76b83")
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor"]
 position = Vector2(-5.33824, -8.96301)

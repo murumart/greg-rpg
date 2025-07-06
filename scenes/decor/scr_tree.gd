@@ -5,6 +5,12 @@ class_name TreeDecor extends Node2D
 
 @export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type: int = 0: set = set_type
 const TYPES_SIZE := 4
+
+@onready var sprite := $Sprite
+@onready var face: Sprite2D = $Sprite/Face
+@onready var behind_area: Area2D = $BehindArea
+@onready var visibility_notif: VisibleOnScreenNotifier2D = $VisibilityNotif
+
 @export var randomise_trees := false: set = activate_randomise_trees
 @export var face_visible := false:
 	set(to):
@@ -14,7 +20,14 @@ const TYPES_SIZE := 4
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		$Sprite.hide()
+		screen(false)
+		visibility_notif.screen_entered.connect(screen.bind(true))
+		visibility_notif.screen_exited.connect(screen.bind(false))
+
+
+func screen(on: bool) -> void:
+	behind_area.monitoring = on
+	sprite.visible = on
 
 
 func set_type(to: int) -> void:
