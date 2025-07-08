@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp4upclobui8l"]
+[gd_scene load_steps=8 format=3 uid="uid://bp4upclobui8l"]
 
 [ext_resource type="Script" uid="uid://bdupaiut4r6sl" path="res://scenes/decor/scr_tree.gd" id="1_ntvbr"]
 [ext_resource type="Texture2D" uid="uid://c7n8id1ah7sau" path="res://sprites/world/nature/spr_trees.png" id="2_mh3gg"]
+[ext_resource type="Shader" uid="uid://bsvqgtta6kr4l" path="res://shaders/scr_tree_sway.gdshader" id="2_wd6e0"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_s4k00"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pr6ca"]
+shader = ExtResource("2_wd6e0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o55p1"]
 size = Vector2(6, 6)
@@ -19,6 +23,7 @@ position = Vector2(1.43051e-06, -56)
 scale = Vector2(2.4, 6.4)
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pr6ca")
 position = Vector2(0, -56)
 texture = ExtResource("2_mh3gg")
 region_enabled = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkm2rk2w5ibna"]
 
 [ext_resource type="Script" uid="uid://cw3a5ul3cowc" path="res://scenes/decor/scr_utilitypole.gd" id="1_1r5vv"]
-[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_q5sfs"]
+[ext_resource type="Texture2D" uid="uid://kuv3j4sehv0m" path="res://sprites/world/object/spr_utilitypole.png" id="2_1r5vv"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_odlp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o55p1"]
@@ -10,8 +10,9 @@ size = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
 size = Vector2(16, 88)
 
-[node name="UtilityPole" type="Node2D"]
+[node name="UtilityPole" type="Node2D" node_paths=PackedStringArray("drawer")]
 script = ExtResource("1_1r5vv")
+drawer = NodePath("PtsDrawer")
 
 [node name="VisibilityNotif" type="VisibleOnScreenNotifier2D" parent="."]
 modulate = Color(1, 1, 1, 0.0823529)
@@ -19,9 +20,8 @@ position = Vector2(1.43051e-06, -56)
 scale = Vector2(2.4, 6.4)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
-scale = Vector2(6, 86)
-texture = ExtResource("2_q5sfs")
+position = Vector2(0, -57)
+texture = ExtResource("2_1r5vv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -38,3 +38,6 @@ affected_node = NodePath("../Sprite2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_38uvm")
+
+[node name="PtsDrawer" type="Node2D" parent="."]
+position = Vector2(-2, -83)

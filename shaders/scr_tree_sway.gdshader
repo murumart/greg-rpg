@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+global uniform float wind_strength;
+
 // SimplexNoise2D
 
 vec3 _permute_simplex2_n0ise(vec3 x) {
@@ -53,53 +55,27 @@ void vertex() {
 }
 
 void fragment() {
-// Input:17
-	vec3 get_uv = vec3(UV, 0.0);
-
-// SinTIME:13
-	float scaled_time_1 = 4.00000 * sin(0.25000 * TIME);
-
-// VectorCompose:12
-	vec3 time_uv = vec3(scaled_time_1, 0.0, 0.0);
+	float scaled_time = sin(0.25000 * TIME);
 
 // SimplexNoise2D:9
-	float get_noise = simplex2dN0iseFunc((get_uv.xy + time_uv.xy) * 1.0);
-
-// Input:8
-	vec3 n_out8p0 = vec3(UV, 0.0);
-
-// VectorDecompose:7
-	float n_out7p0 = n_out8p0.x;
-	float n_out7p1 = n_out8p0.y;
-	float n_out7p2 = n_out8p0.z;
+	float get_noise = simplex2dN0iseFunc(UV + vec2(scaled_time));
 
 // InverseColor:16
-	float n_in16p2 = 1.00000;
-	vec3 n_out16p0;
-	float n_out16p1;
-	{
-		n_out16p0 = inverseC0l0rFunc(vec3(n_out7p1), n_in16p2);
-		n_out16p1 = n_out7p1;
-	}
+	vec3 invcol = inverseC0l0rFunc(vec3(UV.y), 1.00000);
 
 // ScalarOp:14
-	float n_in14p0 = 0.03000;
-	float n_out14p0 = n_in14p0 * dot(n_out16p0, vec3(0.333333, 0.333333, 0.333333));
+	float dotreslt = wind_strength * dot(invcol, vec3(0.33333, 0.333333, 0.333333));
 
 // VectorMix:11
-	vec3 n_out11p0 = mix(get_uv, get_uv * vec3(get_noise), vec3(n_out14p0));
+	vec2 readuv = mix(UV, UV * vec2(get_noise), vec2(dotreslt));
 
 // Texture:2
-	vec4 _tex_read = texture(TEXTURE, n_out11p0.xy);
+	vec4 _tex_read = texture(TEXTURE, readuv);
 	vec3 texture_colours = _tex_read.rgb;
-	float n_out2p1;
-	{
-		n_out2p1 = _tex_read.a;
-	}
 
 // Output:0
 	COLOR.rgb = texture_colours;
-	COLOR.a = n_out2p1;
+	COLOR.a = _tex_read.a;
 
 }
 

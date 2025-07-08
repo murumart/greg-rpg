@@ -2212,14 +2212,12 @@ y_sort_enabled = true
 position = Vector2(-132, -166)
 draw_target = NodePath("../UtilityPole2")
 
-[node name="UtilityPole2" parent="Poles" instance=ExtResource("62_omkxg")]
-position = Vector2(130, -166)
+[node name="UtilityPole2" parent="Poles" node_paths=PackedStringArray("draw_target") instance=ExtResource("62_omkxg")]
+position = Vector2(126, -168)
+draw_target = NodePath("../UtilityPole3")
 
 [node name="UtilityPole3" parent="Poles" instance=ExtResource("62_omkxg")]
-position = Vector2(489, -167)
-
-[node name="UtilityPole4" parent="Poles" instance=ExtResource("62_omkxg")]
-position = Vector2(845, -164)
+position = Vector2(297, -166)
 
 [node name="Trees" type="Node2D" parent="."]
 y_sort_enabled = true
