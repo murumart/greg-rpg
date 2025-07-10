@@ -61,6 +61,7 @@ func exit_intro() -> void:
 	#SND.play_song("birds", 0.05)
 	LTS.gate_id = &"intro"
 	#LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
+	SND.room_music_blockers += 1
 	LTS.level_transition("res://scenes/rooms/scn_room_town_east.tscn", {fade_speed = 0.05})
 
 
