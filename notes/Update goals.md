@@ -2,7 +2,9 @@
 	- [ ] Getting in here
 		- [ ] Police mention of other side of town
 		- [ ] Police bounty board UI
-		- [ ] Getting enough bounties is entrance condition (cars go away)
+		- [ ] Get the sleepy flower bounty to enter the other side of town
+			- [x] (get sleepy flower from forest)
+			- [ ] dialogue
 	- [ ] Map
 	- [ ] Mayor
 		- [ ] Sprites
@@ -36,6 +38,20 @@
 		- [x] Things i did already
 	- [ ] Store cutscene w/ grandma
 		- [ ] Hide greg when she barges in
+- [ ] Forest changes
+	- [ ] Entrance changes
+		- [ ] Flowerboy bossfight
+			- [ ] Good dialogue
+			- [x] Attacks
+		- [ ] Flowerboy at the entrance to give tutorial
+	- [ ] Damaging bullet spawners
+		- [ ] Straight bullet block
+		- [ ] Rotating bullet block
+		- [ ] Spew bullet block (just make all of them the same spanwer. copy it from that jam game)
+	- [ ] Display HP in top bar
+	- [ ] Checkpoints
+	- [ ] Quest board UI
+		- [ ] you can give quests descriptions now
 - [ ] Dungeon changes
 	- [ ] Remove prodecural floors (for now)
 	- [ ] NPCS
@@ -52,12 +68,14 @@
 				- [ ] Get beam in correct place
 			- [ ] Dodge sun action sequence
 			- [ ] Dodge rotating beams (SHIT IM MKING DELTATUNRE)
+			- [ ] Zerma call
 		- [ ] Direcvtion 2
 			- [ ] Starlight theme
 			Growth inside only
 			- [ ] Rotate circle to match up dots puzzle
 			- [ ] Dodge floating stars
 				- [ ] Advances: parallax, rotating
+			- [ ] Zerma call
 		- [ ] Direction three
 			- [ ] Life/love theme
 			Growth outside only
@@ -65,6 +83,7 @@
 				- [ ] MAKE IT CLEAR DECREASED QUALITY IS INTENTIONAL
 			- [ ] Color matching puzzle..?
 				- [ ] Bring correct color water to correct plant to proceed (timed)
+			- [ ] Zerma call
 	- [ ] Grandma bossfight changes
 		- [ ] Make it shorter
 		- [ ] Make it a bit too easy
