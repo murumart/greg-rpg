@@ -1,0 +1,103 @@
+- [ ] Industry area
+	- [ ] Getting in here
+		- [ ] Police mention of other side of town
+		- [ ] Police bounty board UI
+		- [ ] Getting enough bounties is entrance condition (cars go away)
+	- [ ] Map
+	- [ ] Mayor
+		- [ ] Sprites
+		- [ ] Voice sound
+		- [x] music
+	- [ ] Mayor intro
+	- [ ] Mayor key quest
+		- [ ] Ladder from skatepark from good enough score
+		- [ ] Up into mayor's room
+		- [ ] Find the key (like how you find him)
+		- [ ] Explosive from mining minigame - with key open factory door
+	- [ ] Factory interior
+	- [ ] Mayor bossfight
+- [ ] Intro changes
+	- [ ] Ride around town
+	- [x] Better interior for house
+	- [ ] Initial interaction cutscene
+		- [ ] Make her static at first
+		- [ ] Stretcehy animation's
+			- [ ] Make her animation system reusable
+			- [ ] Remove dialogue portrait
+		- [ ] Replaced dialogue
+	- [ ] Battle changes (retaliate after first attack)
+	- [ ] Post-battle
+		- [ ] Make it more low-key
+		- [ ] Ask to collect flowers
+- [ ] Town changes
+	- [ ] Sunset time
+	- [ ] Utility poles
+	- [ ] Move to industry
+		- [x] Things i did already
+	- [ ] Store cutscene w/ grandma
+		- [ ] Hide greg when she barges in
+- [ ] Dungeon changes
+	- [ ] Remove prodecural floors (for now)
+	- [ ] NPCS
+		- [ ] flower freaks
+		- [ ] cat freaks
+	- [ ] Central room, Three away-ways (Secret Garden? OS hideout)
+		- [ ] Three keys to grandma's room
+		- [ ] Lots of filler in the directions to make them feel longer
+		- [ ] Direction one
+			- [ ] Sunlight theme
+			Growth inside and outside
+			- [ ] Light reflection puzzles
+				- [ ] Light beam, block that rotates it 90 degrees
+				- [ ] Get beam in correct place
+			- [ ] Dodge sun action sequence
+			- [ ] Dodge rotating beams (SHIT IM MKING DELTATUNRE)
+		- [ ] Direcvtion 2
+			- [ ] Starlight theme
+			Growth inside only
+			- [ ] Rotate circle to match up dots puzzle
+			- [ ] Dodge floating stars
+				- [ ] Advances: parallax, rotating
+		- [ ] Direction three
+			- [ ] Life/love theme
+			Growth outside only
+			- [ ] Make this one short and underwhelming if possible
+				- [ ] MAKE IT CLEAR DECREASED QUALITY IS INTENTIONAL
+			- [ ] Color matching puzzle..?
+				- [ ] Bring correct color water to correct plant to proceed (timed)
+	- [ ] Grandma bossfight changes
+		- [ ] Make it shorter
+		- [ ] Make it a bit too easy
+		- [ ] Final attack -> transition to boss
+- [ ] Final boss![[Pasted image 20250710193306.png]]
+	- [ ] Monster
+		- [ ] many parts puppet
+		- [ ] jiggly bones?
+		- [ ] flies around
+		- [ ] bouncy speech bubble
+		- [ ] scary sounds
+	- [ ] Enemy
+		- [ ] First phase is normal fight but you do like no damage
+		- [ ] Spirit resistance that you wear down
+			- [ ] minigames
+				- [ ] they should get more difficult as you repeat them
+				- [ ] Fishing minigame
+					- [ ] Box that you maneuver to the bottom of
+					- [ ] Rotates the box after you get to goal
+					- [ ] Move back to top
+					- [ ] Lose penalty: ouch
+					- [ ] Stars
+				- [ ] Healing minigame (only for healing)
+					- [ ] shuffle a couple of greenhouses
+					- [ ] pick the correct one
+					- [ ] lose penalty: ouch
+					- [ ] Love
+				- [ ] Pong minigame
+					- [ ] Loser gets damaged
+					- [ ] Ball gets faster
+					- [ ] screen shake, sound effects (intense)
+					- [ ] Bounce the SUN
+			- [ ] Once it's depleted: ending animation
+				- [ ] Credits
+	- [ ] Background
+	- [ ] 

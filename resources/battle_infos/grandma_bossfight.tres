@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=2 format=3 uid="uid://c0ncj8xjt5dma"]
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://c0ncj8xjt5dma"]
 
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="1_3ax2g"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_j423y"]
 
 [resource]
 script = ExtResource("1_3ax2g")
@@ -15,3 +16,4 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = false
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_j423y")]({})

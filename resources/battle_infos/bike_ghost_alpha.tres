@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://dtp0dndpfu60u"]
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://dtp0dndpfu60u"]
 
 [ext_resource type="Resource" uid="uid://bjdta44b75tuj" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="1_mdgh0"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_pbh4l"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_hiioj"]
 
 [resource]
@@ -17,3 +18,4 @@ stop_music_before_end = true
 kill_music = true
 play_fanfare = true
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_pbh4l")]({})
