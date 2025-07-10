@@ -4,6 +4,7 @@ class_name CarOverworld extends Node2D
 
 signal paused
 signal resumed
+signal path_point_reached(pathpoint: Marker2D)
 
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 # different rotations are in the same sprite sheet
@@ -58,13 +59,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if moves:
-		# moving towards the target
-		global_position = global_position.move_toward(target, delta * speed)
-		turn(int(global_position.angle_to_point(target)))
-		# once reached the target
-		if global_position.distance_squared_to(target) < 2:
-			set_target(1)
+	if not moves:
+		return
+	# moving towards the target
+	global_position = global_position.move_toward(target, delta * speed)
+	turn(int(global_position.angle_to_point(target)))
+	# once reached the target
+	if global_position.distance_squared_to(target) < 2:
+		set_target(1)
 
 
 func set_target(add: int) -> void:
@@ -79,6 +81,7 @@ func set_target(add: int) -> void:
 			moves = true
 			resumed.emit())
 	if path_points:
+		path_point_reached.emit(path_points[current_target])
 		current_target = wrapi(current_target + add, 0, path_points.size())
 		target = (path_points[current_target].global_position)
 

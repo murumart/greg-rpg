@@ -18,6 +18,9 @@ var playing_sounds := []
 
 var sound_clear_timer := Timer.new()
 
+# ugly solution for stopping rooms from playing music
+var room_music_blockers := 0
+
 
 func _ready() -> void:
 	add_child(sound_clear_timer)

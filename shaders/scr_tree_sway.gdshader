@@ -48,10 +48,10 @@ vec3 inverseC0l0rFunc(vec3 _c0l0r_to_inverse, float _inverse_c0l0r_intensity){
 	return mix(_c0l0r_to_inverse.rgb, 1.0 - _c0l0r_to_inverse.rgb, _inverse_c0l0r_intensity);
 }
 
+varying vec4 vtx_color;
 
 void vertex() {
-// Output:0
-
+	vtx_color = COLOR;
 }
 
 void fragment() {
@@ -74,8 +74,8 @@ void fragment() {
 	vec3 texture_colours = _tex_read.rgb;
 
 // Output:0
-	COLOR.rgb = texture_colours;
-	COLOR.a = _tex_read.a;
+	COLOR.rgb = texture_colours * vtx_color.rgb;
+	COLOR.a = _tex_read.a * vtx_color.a;
 
 }
 

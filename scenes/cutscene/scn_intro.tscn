@@ -338,6 +338,6 @@ centered = false
 
 [node name="BeginningAnimation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_s7w5v")
+&"": SubResource("AnimationLibrary_s7w5v")
 }
 autoplay = "default"

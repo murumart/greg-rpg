@@ -6,6 +6,7 @@ const SPEED := 95
 @onready var car := $ZermCar
 @onready var trees := $Trees
 var tree_load := preload("res://scenes/decor/scn_tree.tscn")
+var skipping_enabled := true
 @onready var cars := $Cars
 const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
@@ -28,6 +29,7 @@ func _ready() -> void:
 	SND.play_song("arent_you_excited", 2931, {play_from_beginning = true, save_audio_position = false})
 
 	await animator.animation_finished
+	skipping_enabled = false
 
 	var tw := create_tween()
 	tw.tween_property(car, "position:y", 0.0, 1.0)
@@ -56,9 +58,10 @@ func exit_intro() -> void:
 	var tw := create_tween()
 	tw.tween_property(car, "position:y", 180, 2.0)
 	await tw.step_finished
-	SND.play_song("birds", 0.05)
+	#SND.play_song("birds", 0.05)
 	LTS.gate_id = &"intro"
-	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
+	#LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
+	LTS.level_transition("res://scenes/rooms/scn_room_town_east.tscn", {fade_speed = 0.05})
 
 
 func _physics_process(delta: float) -> void:
@@ -79,6 +82,13 @@ func _physics_process(delta: float) -> void:
 
 	var input := Input.get_axis("ui_left", "ui_right")
 	car.position.x = clampf(car.position.x + input, -38, -16)
+
+	if Input.is_action_pressed("cancel") and Input.is_action_pressed("ui_accept") and skipping_enabled:
+		skipping_enabled = false
+		get_tree().get_processed_tweens().map(func(p: Tween) -> void: p.kill())
+		LTS.gate_id = &"intro"
+		SND.room_music_blockers += 1
+		LTS.level_transition("res://scenes/rooms/scn_room_town_east.tscn", {fade_speed = 0.05})
 
 
 func spawn_tree() -> void:

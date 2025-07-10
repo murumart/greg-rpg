@@ -1,6 +1,7 @@
-[gd_scene load_steps=38 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=40 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_qcw6l"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_3jvnm"]
 [ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_s1sou"]
@@ -22,10 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://6kw7miy8f3tw" path="res://sprites/world/building/factory/overlay.png" id="20_fhxp8"]
 [ext_resource type="Texture2D" uid="uid://dcfpaki7ir318" path="res://sprites/world/building/factory/shadow.png" id="21_stciw"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
+[ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="24_w54ah"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
 normal = Vector2(0, 1)
-distance = 18.2483
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2xgli"]
 normal = Vector2(1, 0)
@@ -259,6 +260,11 @@ y_sort_enabled = true
 script = ExtResource("1_u5kw4")
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("2_0834g")
+force_gate_id = &"intro"
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
+
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 script = ExtResource("2_qcw6l")
 
@@ -276,7 +282,7 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EdgeCollision"]
-position = Vector2(383, -532)
+position = Vector2(-270, -638)
 shape = SubResource("WorldBoundaryShape2D_y5qk4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EdgeCollision"]
@@ -669,3 +675,23 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/InspectArea"]
 position = Vector2(4, 17)
 shape = SubResource("RectangleShape2D_bu27y")
+
+[node name="RideAroundTown" parent="." node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("24_w54ah")]
+position = Vector2(82, -722)
+greg = NodePath("../Greg")
+greg_camera = NodePath("../Greg/Camera")
+final_destination = NodePath("CarPath/Marker2D2")
+dialogue_line = "intro_convo_2"
+next_room = "uid://d0ypwtjm1o5tg"
+next_music = "arent_you_excited"
+
+[node name="ZermCar" parent="RideAroundTown" index="0"]
+position = Vector2(0, 71)
+
+[node name="Marker2D" type="Marker2D" parent="RideAroundTown/CarPath" index="0"]
+position = Vector2(-11, 598)
+
+[node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
+position = Vector2(-961, 595)
+
+[editable path="RideAroundTown"]

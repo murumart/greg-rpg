@@ -70,7 +70,7 @@
 [ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
 [ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="62_omkxg"]
-[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="62_qhmci"]
+[ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="71_omkxg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkqsn"]
 normal = Vector2(0, 1)
@@ -2562,10 +2562,30 @@ gate_id = &"town-woods"
 extents = Vector2i(38, 8)
 spawnpoint = Vector2i(40, 13)
 
-[node name="CheatNode" type="Node" parent="."]
-script = ExtResource("62_qhmci")
-level_gain = 9
-add_seconds = 3610
-metadata/_custom_type_script = "uid://dkf3yix03l3hc"
+[node name="RideAroundTown" parent="." node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("71_omkxg")]
+position = Vector2(1007, -123)
+greg = NodePath("../Greg")
+greg_camera = NodePath("../Greg/Camera")
+final_destination = NodePath("CarPath/Marker2D4")
+dialogue_line = "intro_convo_3"
+next_room = "uid://k2hdljqvd8b"
+next_music = "birds"
+
+[node name="ZermCar" parent="RideAroundTown" index="0"]
+position = Vector2(-39, -2)
+
+[node name="Marker2D" type="Marker2D" parent="RideAroundTown/CarPath" index="0"]
+position = Vector2(-28, 5)
+
+[node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
+position = Vector2(-1157, 1)
+
+[node name="Marker2D3" type="Marker2D" parent="RideAroundTown/CarPath" index="2"]
+position = Vector2(-1157, 423)
+
+[node name="Marker2D4" type="Marker2D" parent="RideAroundTown/CarPath" index="3"]
+position = Vector2(-1620, 423)
 
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
+
+[editable path="RideAroundTown"]

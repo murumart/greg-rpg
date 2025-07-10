@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxwgxx66m8k4a"]
+
+[ext_resource type="Script" uid="uid://dg7p2scfkymhg" path="res://scenes/rooms/town/intro_east_ride_around_town.gd" id="1_agioo"]
+[ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="2_7nl3h"]
+
+[node name="RideAroundTown" type="Node2D"]
+script = ExtResource("1_agioo")
+
+[node name="ZermCar" parent="." node_paths=PackedStringArray("path_container") instance=ExtResource("2_7nl3h")]
+position = Vector2(0, -27)
+path_container = NodePath("../CarPath")
+speed = 200.0
+disable_saving = true
+color = Color(0.270588, 0.337255, 0.486275, 1)
+
+[node name="CarPath" type="Node2D" parent="."]

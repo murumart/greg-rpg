@@ -13,7 +13,7 @@ MACRO FLOWERCOLOR #99ff61
 DIALOGUE intro_convo_0
 CHAR zerma
 	greg, wake up!
-	we are getting close to your destination!
+	we're getting close to your destination!
 CHAR greg
 SPEED 0.5
 	...?
@@ -35,33 +35,38 @@ DIALOGUE intro_spection_2
 
 DIALOGUE intro_convo_1
 CHAR zerma
-	your childhood town, greg!
-	that's where i'm taking you.
+	i'm taking you to your childhood town, greg!
 	it's been a while, right?
-CHAR greg
-INSTASKIP
-	i think 
-CHAR zerma
-	how many people can you still remember?
-	can they still remember you?
 	aren't you excited?
-	hey, look, we're almost there...
+	hey, look, we're almost there...!
 
 
 DIALOGUE intro_convo_2
 CHAR zerma
-	woah...
-	what a nice town this is!
-	overflowing with nature.
+	woah!
+	this town is cool!
+	look at all those... bricks!
 
 
 DIALOGUE intro_convo_3
 CHAR zerma
-	well, here we are.
-	look, your house over there!
+	and, damn! all this nature!
+	i love this stuff!
+	you must've had so much fun as a kid!
 
 
 DIALOGUE intro_convo_4
+CHAR zerma
+	last turn, greg! here we go!
+
+
+DIALOGUE intro_convo_5
+CHAR zerma
+	we made it, greg!
+	look, your house, over there!
+
+
+DIALOGUE intro_convo_6
 CHAR zerma
 	why don't you go take a look?
 	maybe someone familiar is inside to welcome you?
@@ -70,19 +75,18 @@ CHAR zerma
 DIALOGUE intro_inspect_zerma_1
 CHAR zerma
 	don't be shy!
-	go and knock on the door.
+	you can do it! go knock on that door!
 
 
 DIALOGUE intro_inspect_zerma_2
 CHAR zerma
-	how'd it go?
+	well? how'd it go, dude?
 CHAR greg
 INSTASKIP
 	i think
 CHAR zerma
 	you should talk to whoever you saw inside!
-	i'm sure they have things to tell you.
-	and you have things to tell them.
+	you gotta have a lot of catching up to do!
 	i'll wait here...
 
 

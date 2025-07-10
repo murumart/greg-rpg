@@ -29,7 +29,7 @@ func _ready() -> void:
 	$Areas/ExitExplainer.body_entered.connect(_explain_exit.unbind(1))
 	if intro_progress == 0 and (LTS.gate_id == &"intro" or play_intro):
 		start()
-		SOL.dialogue("intro_convo_2")
+		SOL.dialogue("intro_convo_4")
 	elif intro_progress == 1:
 		leave_house()
 	elif intro_progress == 2:
@@ -55,17 +55,19 @@ func start() -> void:
 	zerm_car.turn(Math.ANGLE_LEFT)
 	camera.global_position = zerm_car.global_position
 	set_car_noise(true)
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(zerm_car, "global_position", car_stop_pos.global_position, 6.0)
-	tw.parallel().tween_property(vroom_vroom, "pitch_scale", 0.75, 6.0).from(1.3)
+	var tw := create_tween()
+	tw.tween_property(zerm_car, "global_position", car_stop_pos.global_position, 2.0)
+	tw.parallel().tween_property(vroom_vroom, "pitch_scale", 0.75, 2.0).from(1.3)
 	tw.tween_interval(0.5)
 	tw.tween_callback(func():
 		set_car_noise(false)
+		#await SOL.dialogue_closed
+		SND.play_sound(preload("res://sounds/door/close.ogg"))
 		greg.show()
 		greg.global_position = zerm_car.global_position + Vector2(0, -5)
 		zerma.show()
 		zerma.global_position = zerm_car.global_position + Vector2(0, 10)
-		await create_tween().tween_interval(0.5).finished
+		await create_tween().tween_interval(1.0).finished
 		zerm_car.remove_child(camera)
 		greg.add_child(camera, true)
 		zerma.move_to(zerma.global_position + Vector2(20, 0))
@@ -77,14 +79,14 @@ func start() -> void:
 		greg.animate("walk_up")
 		tw = create_tween()
 		tw.tween_property(greg, "global_position:y", greg.global_position.y - 20, 3.5)
-		SOL.dialogue("intro_convo_3")
+		SOL.dialogue("intro_convo_5")
 		SOL.dialogue_box.started_speaking.connect(line_by_line)
 		SOL.dialogue_closed.connect(func():
 			tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 			tw.tween_property(camera, "global_position", greg.global_position, 2.0)
 			tw.parallel().tween_property(camera, "position:y", -8, 2.0)
 			tw.tween_callback(func():
-				SOL.dialogue("intro_convo_4")
+				SOL.dialogue("intro_convo_6")
 				SOL.dialogue_closed.connect(func():
 					DAT.free_player("cutscene")
 					greg.direct_animation()

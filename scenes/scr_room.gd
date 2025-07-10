@@ -24,13 +24,16 @@ func _ready() -> void:
 	DAT.set_data("visited_rooms", visited_rooms)
 	SOL.dialogue_choice = ""
 
-	SND.play_song(music, music_fade_time,
-		{
-			"start_volume": music_start_volume,
-			"play_from_beginning": music_play_from_beginning,
-			"save_audio_position": music_save_progress
-		}
-	)
+	if SND.room_music_blockers > 0:
+		SND.room_music_blockers -= 1
+	else:
+		SND.play_song(music, music_fade_time,
+			{
+				"start_volume": music_start_volume,
+				"play_from_beginning": music_play_from_beginning,
+				"save_audio_position": music_save_progress
+			}
+		)
 	spawn_cigarettes()
 
 
