@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://cjug5v3lju2m1"]
+
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_1lcgd"]
+[ext_resource type="Script" uid="uid://bk08et24oac2d" path="res://scenes/characters/overworld/scr_grandma_overworld.gd" id="2_1nrk4"]
+[ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="3_ax1l2"]
+[ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="4_atdc0"]
+[ext_resource type="Texture2D" uid="uid://dlp16sgqwkg03" path="res://sprites/characters/overworld/spr_grandma_epic.png" id="5_8148k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nrk4"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax1l2"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atdc0"]
+resource_local_to_scene = true
+radius = 32.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8148k"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr0hl"]
+atlas = ExtResource("5_8148k")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="Curve" id="Curve_8148k"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0223068, 0.449577), 0.0, 0.0, 0, 0, Vector2(0.363825, 0.176353), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ocrfj"]
+width = 64
+curve = SubResource("Curve_8148k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_258q6"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 1, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_ocrfj")
+
+[node name="Grandma" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_1lcgd")]
+script = ExtResource("2_1nrk4")
+animated_sprite = NodePath("Sprite")
+save = false
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_1nrk4")
+
+[node name="CollisionDetectionArea" parent="." index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_ax1l2")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_atdc0")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("3_ax1l2")
+animation = &"walk_down"
+frame_progress = 0.0525306
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="TextureCopier" type="Node" parent="Sprite" index="0" node_paths=PackedStringArray("from", "to")]
+script = ExtResource("4_atdc0")
+from = NodePath("..")
+to = NodePath("../Particles")
+
+[node name="Particles" type="GPUParticles2D" parent="Sprite" index="1"]
+visible = false
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_8148k")
+position = Vector2(0, -8)
+amount = 16
+amount_ratio = 0.0
+texture = SubResource("AtlasTexture_sr0hl")
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_258q6")

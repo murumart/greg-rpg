@@ -11,7 +11,7 @@ class_name PathfindingGridArea extends Node2D
 		queue_redraw()
 @export_flags_2d_physics var collide_with: int = 0b01
 
-@export var room: Room
+@export var room: Node2D
 @onready var _space_state: PhysicsDirectSpaceState2D = (
 		room.get_parent().get_world_2d().direct_space_state)
 

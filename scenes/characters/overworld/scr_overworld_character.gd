@@ -373,7 +373,7 @@ func _on_collision_timer_timeout() -> void:
 
 func _on_idle_timer_timeout() -> void:
 	idle_timer.start(randfn(8, 3))
-	if animated_sprite:
+	if animated_sprite and is_physics_processing():
 		if animated_sprite.animation != &"walk_down":
 			direct_walking_animation(Vector2.DOWN)
 		elif randf() < 0.33:

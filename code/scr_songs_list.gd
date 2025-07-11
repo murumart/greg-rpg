@@ -78,10 +78,6 @@ var songs := {
 		"title": "forestguy",
 		"stream": preload("res://music/mus_forestguy.ogg")
 	},
-	"mean_cashier_fight": {
-		"title": "vermin grinder",
-		"stream": preload("res://music/mus_mean_cashier_fight.ogg")
-	},
 	"evil_end": {
 		"title": "",
 		"stream": preload("res://music/mus_evilending.ogg"),
@@ -129,6 +125,10 @@ var songs := {
 		"title": "webcatz - greenhouse",
 		"stream": preload("res://music/mus_greenhouse.ogg")
 	},
+	"grand": {
+		"title": "gramd theme",
+		"stream": preload("res://music/mus_grand.ogg")
+	},
 	"grandma_boss": {
 		"title": "89 grand mother",
 		"stream": preload("res://music/mus_grandma_boss.ogg")
@@ -160,6 +160,10 @@ var songs := {
 	"mail_mission": {
 		"title": "mail mission",
 		"stream": preload("res://music/mus_mail_mission.ogg")
+	},
+	"mean_cashier_fight": {
+		"title": "vermin grinder",
+		"stream": preload("res://music/mus_mean_cashier_fight.ogg")
 	},
 	"overrun": {
 		"title": "overrun",

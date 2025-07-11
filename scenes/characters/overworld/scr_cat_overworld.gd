@@ -14,7 +14,8 @@ func _ready() -> void:
 
 func interacted() -> void:
 	super()
-	meow.play()
+	if is_instance_valid(meow):
+		meow.play()
 
 
 func _physics_process(delta: float) -> void:

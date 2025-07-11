@@ -19,7 +19,7 @@
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
 - [ ] Intro changes
-	- [ ] Ride around town
+	- [x] Ride around town
 	- [x] Better interior for house
 	- [ ] Initial interaction cutscene
 		- [ ] Make her static at first

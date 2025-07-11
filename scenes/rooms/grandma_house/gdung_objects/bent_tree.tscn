@@ -10,11 +10,12 @@ y_sort_enabled = true
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9, 7)
+position = Vector2(8, 8)
 texture = ExtResource("1_p1k8a")
-offset = Vector2(-7, -14)
+centered = false
+offset = Vector2(-18, -36)
 region_enabled = true
-region_rect = Rect2(96, 1, 23, 38)
+region_rect = Rect2(96, 1, 24, 38)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
