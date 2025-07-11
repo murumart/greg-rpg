@@ -81,3 +81,7 @@ func speak_choice(box: DialogueBox = null) -> StringName:
 	var c := SOL.dialogue_choice
 	SOL.dialogue_choice = &""
 	return c
+
+
+static func ml(text: String) -> DialogueLine:
+	return DialogueLine.mk(text)

@@ -185,6 +185,9 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		var value: Variant = part.set_data[1]
 		DAT.set_data(key, value)
 
+	if part.callback.is_valid():
+		part.callback.call()
+
 	loaded_dialogue_line = part
 
 	portrait.texture = null

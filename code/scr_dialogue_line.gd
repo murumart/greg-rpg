@@ -25,6 +25,8 @@ const MAX_TEXT_LENGTH := 66
 
 @export var set_data := []
 
+@export var callback: Callable
+
 
 static func mk(text_: String) -> DialogueLine:
 	var l := DialogueLine.new()
@@ -74,6 +76,11 @@ func sinstaskip(to: bool) -> DialogueLine:
 
 func sloop(to: int) -> DialogueLine:
 	loop = to
+	return self
+
+
+func scallback(to: Callable) -> DialogueLine:
+	callback = to
 	return self
 
 

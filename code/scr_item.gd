@@ -1,5 +1,4 @@
-extends Resource
-class_name Item
+class_name Item extends Resource
 
 # resource for storing item data
 

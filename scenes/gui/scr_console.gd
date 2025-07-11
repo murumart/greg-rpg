@@ -385,6 +385,12 @@ func _cmd_rm(args: PackedStringArray) -> void:
 	_delt(get_tree().root)
 
 
+func _cmd_free(args: PackedStringArray) -> void:
+	var capturer := &"all" if args.is_empty() else StringName(args[0])
+	DAT.free_player(capturer)
+	output("freed player from " + capturer)
+
+
 func _cmd_dance(_args: PackedStringArray) -> void:
 	var battle = LTS.get_current_scene()
 	if not battle.name == "Battle":

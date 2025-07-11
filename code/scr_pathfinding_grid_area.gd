@@ -44,14 +44,27 @@ func _draw() -> void:
 	for pos in get_point_poses():
 		draw_circle(pos, 1.0,
 			Color.FIREBRICK if not is_point_collision(pos) else Color.CYAN)
+	var closes := get_closest_id(to_local(get_global_mouse_position()))
+	draw_circle(Vector2(closes * size), 2, Color.GREEN, false)
 
 
 func _physics_process(_delta: float) -> void:
 	queue_redraw()
 
 
-func get_point_poses() -> Array[Vector2]:
-	var poses: Array[Vector2] = []
+func get_point_path(from_id: Vector2i, to_id: Vector2i) -> PackedVector2Array:
+	return _grid.get_point_path(from_id, to_id)
+
+
+func get_closest_id(local: Vector2) -> Vector2i:
+	local /= 16
+	local *= 2
+	return Vector2i(local)
+	#return Vector2i.ZERO
+
+
+func get_point_poses() -> PackedVector2Array:
+	var poses: PackedVector2Array = []
 	var points_y := roundi(size.y * point_density)
 	var points_x := roundi(size.x * point_density)
 	var posdiff := Vector2(

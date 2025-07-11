@@ -133,7 +133,9 @@ func play_sound(sound: AudioStream, options := {}) -> AudioStreamPlayer:
 		return null
 	var player := AudioStreamPlayer.new()
 	if "loop" in sound:
+		var old_loop: bool = sound.loop
 		sound.loop = false
+		player.finished.connect(func() -> void: sound.loop = old_loop)
 	player.name = str(sound)
 	player.stream = sound
 	player.bus = options.get("bus", "Master")
