@@ -6,10 +6,21 @@ var music_last_song: String
 @export_range(-1, 10) var prank_call_force := -1
 @onready var door_area: Area2D = $Door/DoorArea
 
+@export var radio_song: AudioStreamRandomizer
+@export var radio_other_song: AudioStreamRandomizer
+
 
 func _ready() -> void:
 	super._ready()
-	SOL.dialogue_closed.connect(_on_dialogue_closed)
+	SOL.dialogue_closed.connect(func() -> void:
+		if SOL.dialogue_choice == "house":
+			LTS.enter_battle(
+				BattleInfo.new().set_background(
+						"house_inside").set_enemies(["grandma"]).set_music("lily_lesson")
+				)
+			SOL.dialogue_choice = ""
+	)
+
 	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
 		get_tree().get_nodes_in_group("empty_delete").map(func(a): a.queue_free())
 		if DAT.get_data("gdung_floor", 0) >= 3:
@@ -17,11 +28,11 @@ func _ready() -> void:
 		door_area.destination = &"dungeon"
 		return
 	# long grandma lol
-	if Math.inrange(DAT.get_data("nr", 0), 0.15, 0.16):
+	if Math.inrange(DAT.get_data("nr", 0), 0.665, 0.67) and not DAT.get_data("sscyr", false):
+		DAT.set_data("sscyr", true)
 		$Grandma/AnimatedSprite2D.scale.y = 4.875
 		$Grandma.default_lines.clear()
 		$Grandma.default_lines.append(&"grandma_fight_1")
-		DAT.incrf("nr", 0.02)
 
 
 func _on_radio_interaction_on_interact() -> void:
@@ -29,29 +40,11 @@ func _on_radio_interaction_on_interact() -> void:
 	if musicplayer.playing:
 		music_last_position = musicplayer.get_playback_position()
 		musicplayer.stop()
-		SND.play_song("favourable_silence" if randf() <= 0.95 else "development_hell", 3.0, {"play_from_beginning": true})
+		SND.play_song("favourable_silence", 3.0, {"play_from_beginning": true})
 	else:
-		if randf() >= 0.95:
-			musicplayer.stream = load(Math.weighted_random([
-				"res://music/mus_catfight.ogg",
-				"res://music/mus_arent_you_excited.ogg",
-				"res://music/mus_birds.ogg",
-				"res://music/mus_dry_summer.ogg"
-			], [1, 1, 3, 2]))
-		else:
-			musicplayer.stream = preload("res://music/mus_grandma_radio.ogg")
-			musicplayer.seek(music_last_position)
-		musicplayer.play()
+		musicplayer.stream = radio_song
+		musicplayer.play(music_last_position)
 		SND.play_song("", 1727)
-
-
-func _on_dialogue_closed() -> void:
-	if SOL.dialogue_choice == "house":
-		LTS.enter_battle(
-			BattleInfo.new().set_background(
-					"house_inside").set_enemies(["grandma"]).set_music("lily_lesson")
-			)
-		SOL.dialogue_choice = ""
 
 
 func _on_phone_interacted() -> void:

@@ -13,7 +13,7 @@ extends Node2D
 		ShaderMaterial).get_shader_parameter("Gradient") as GradientTexture1D).gradient
 @onready var labels := Math.child_dict($TextBoxes)
 @onready var grandma_voice: AudioStreamPlayer = $GrandmaVoice
-@onready var grandma_glow: AnimatedSprite2D = $"../Grandma/GrandmaGlow"
+#@onready var grandma_glow: AnimatedSprite2D = $"../Grandma/GrandmaGlow"
 @onready var canvas_modulate: ColorContainer = $"../CanvasModulateGroup/CutsceneColor"
 
 
@@ -49,8 +49,8 @@ func start() -> void:
 	grandma.time_moved_limit = 2500
 	grandma.random_movement = false
 	grandma.move_to(grandma_start_pos.global_position + Vector2(0, 45))
-	grandma_glow.show()
-	create_tween().tween_property(grandma_glow, "scale", Vector2(2, 2), 10)
+	#grandma_glow.show()
+	#create_tween().tween_property(grandma_glow, "scale", Vector2(2, 2), 10)
 	create_tween().tween_property(canvas_modulate, "color", Color(0.27865263819695, 0.3454495370388, 0.11286202818155), 10).set_trans(Tween.TRANS_CUBIC)
 	(func():
 		var t := create_tween()
@@ -131,7 +131,7 @@ func start() -> void:
 		camera.ignore_rotation = true
 		camera.limit_bottom = 80
 		grandma.direct_walking_animation(Vector2.DOWN)
-		grandma_glow.hide()
+		#grandma_glow.hide()
 		background_gradient.set_color(0, Color.BLACK)
 		background_gradient.set_color(1, Color.BLACK)
 		$TextBoxes.queue_free()

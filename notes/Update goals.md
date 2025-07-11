@@ -22,10 +22,10 @@
 	- [x] Ride around town
 	- [x] Better interior for house
 	- [ ] Initial interaction cutscene
-		- [ ] Make her static at first
-		- [ ] Stretcehy animation's
-			- [ ] Make her animation system reusable
-			- [ ] Remove dialogue portrait
+		- [x] Make her static at first
+		- [x] Stretcehy animation's
+			- [x] Make her animation system reusable
+			- [x] Remove dialogue portrait
 		- [ ] Replaced dialogue
 	- [ ] Battle changes (retaliate after first attack)
 	- [ ] Post-battle

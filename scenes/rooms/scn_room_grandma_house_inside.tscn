@@ -1,14 +1,17 @@
-[gd_scene load_steps=58 format=4 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=64 format=4 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" uid="uid://d3yw0nn7j0dck" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_5eric"]
+[ext_resource type="AudioStream" uid="uid://bhqbms0iecpfu" path="res://music/mus_dry_summer.ogg" id="3_2fxrg"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_06sfg"]
 [ext_resource type="Texture2D" uid="uid://dedbkkindpw06" path="res://sprites/photos/spr_lakeside.png" id="3_kixp1"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_r36ay"]
+[ext_resource type="AudioStream" uid="uid://jvngmfe8ngkw" path="res://music/mus_catfight.ogg" id="4_cpg8x"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_rlixq"]
-[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_wdbgc"]
-[ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="6_etjmo"]
+[ext_resource type="AudioStream" uid="uid://go2donefvdbd" path="res://music/mus_arent_you_excited.ogg" id="5_mdvsf"]
+[ext_resource type="AudioStream" uid="uid://csyoppd5ty3ld" path="res://music/mus_birds.ogg" id="6_3hvci"]
+[ext_resource type="AudioStream" uid="uid://bwabfdjv8n7sp" path="res://music/mus_development_hell.ogg" id="7_cpg8x"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="7_fqnfh"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="8_3j6wt"]
 [ext_resource type="AudioStream" uid="uid://hy3n726fcxds" path="res://music/mus_grandma_radio.ogg" id="8_cxs6r"]
@@ -32,6 +35,22 @@
 [ext_resource type="PackedScene" uid="uid://bqf4273xxdhf1" path="res://scenes/rooms/grandma_house/gdung_objects/flower_1.tscn" id="19_yh75l"]
 [ext_resource type="PackedScene" uid="uid://ddmhsjs4i6hu1" path="res://scenes/rooms/grandma_house/gdung_objects/bent_tree_2.tscn" id="21_la406"]
 [ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="22_mpjws"]
+[ext_resource type="PackedScene" uid="uid://cjug5v3lju2m1" path="res://scenes/characters/overworld/scn_grandma_overworld.tscn" id="32_76b83"]
+[ext_resource type="Script" uid="uid://bssh70cd3jquw" path="res://scenes/rooms/grandma_house/talk_cutscene.gd" id="33_k563r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
+playback_mode = 1
+streams_count = 6
+stream_0/stream = ExtResource("8_cxs6r")
+stream_0/weight = 8.0
+stream_1/stream = ExtResource("3_2fxrg")
+stream_1/weight = 2.0
+stream_2/stream = ExtResource("4_cpg8x")
+stream_3/stream = ExtResource("5_mdvsf")
+stream_4/stream = ExtResource("6_3hvci")
+stream_4/weight = 3.0
+stream_5/stream = ExtResource("7_cpg8x")
+stream_5/weight = 0.5
 
 [sub_resource type="Gradient" id="Gradient_8myy1"]
 colors = PackedColorArray(0.0130485, 0.0130484, 0.0130484, 1, 0.00423512, 0.00423512, 0.00423512, 1)
@@ -2033,9 +2052,6 @@ terrain_set_2/terrain_1/name = "table_darkwood"
 terrain_set_2/terrain_1/color = Color(0.415686, 0.12549, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ntlc"]
-blend_mode = 1
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euhv1"]
 size = Vector2(14, 17.5)
 
@@ -2046,7 +2062,7 @@ size = Vector2(17, 17)
 size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnnht"]
-size = Vector2(18, 16)
+size = Vector2(6, 9.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gp8vc"]
 blend_mode = 1
@@ -2079,6 +2095,7 @@ spirit_to_give = &""
 silver_to_give = 0
 portrait_scale = Vector2(1, 1)
 set_data = []
+callback = Callable()
 metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
 
 [sub_resource type="Resource" id="Resource_ixip8"]
@@ -2115,9 +2132,13 @@ blend_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1xbmq"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k563r"]
+size = Vector2(14, 17)
+
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
+radio_song = SubResource("AudioStreamRandomizer_qw5xy")
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 color = Color(0.799382, 0.691576, 0.549892, 1)
@@ -2150,7 +2171,7 @@ position = Vector2(71.5, -75)
 shape = SubResource("RectangleShape2D_8xnu1")
 
 [node name="Greg" parent="." instance=ExtResource("3_06sfg")]
-position = Vector2(7, 34)
+position = Vector2(112, -27)
 saving_disabled = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_rlixq")]
@@ -2160,6 +2181,9 @@ limit_left = -72
 limit_top = -112
 limit_right = 240
 limit_bottom = 80
+
+[node name="Grandma" parent="." instance=ExtResource("32_76b83")]
+position = Vector2(144, -60)
 
 [node name="InteriorTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2192,28 +2216,6 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAAHAPz/AQANAAcAAAAIAPz/AQAOAAgAAAAJAPz/AQAPAAgAAAAHAPv/AQAMAAUAAAAMAPv/AQANAAgAAAANAPv/AQAPAAgAAAAFAP//AQAMAAcAAAAFAP7/AQAMAAUAAAALAP//AQAMAAcAAAALAP7/AQAMAAUAAAD///3/AQANAAgAAAAAAP3/AQAOAAgAAAABAP3/AQAPAAgAAAANAAAAAQAMAAgAAAANAP7/AQAMAAgAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 metadata/_edit_lock_ = true
-
-[node name="Grandma" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_wdbgc")]
-position = Vector2(145, -73)
-animated_sprite = NodePath("AnimatedSprite2D")
-collision_extents = Vector2i(10, 6)
-speed = 2000
-movement_wait = 3.0
-random_movement = true
-default_lines = Array[StringName]([&"intro_grandma_1", &"intro_grandma_2"])
-save_convo_progess = true
-
-[node name="GrandmaGlow" type="AnimatedSprite2D" parent="Grandma"]
-visible = false
-material = SubResource("CanvasItemMaterial_3ntlc")
-sprite_frames = ExtResource("6_etjmo")
-animation = &"walk_down"
-offset = Vector2(0, -8)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Grandma"]
-position = Vector2(0, -8)
-sprite_frames = ExtResource("6_etjmo")
-animation = &"walk_down"
 
 [node name="Radio" type="Node2D" parent="."]
 position = Vector2(216, -69)
@@ -2316,7 +2318,7 @@ script = ExtResource("13_kx26r")
 key = "carnations"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Sprite2D5/InspectArea"]
-position = Vector2(-1, -4)
+position = Vector2(1, 0.75)
 shape = SubResource("RectangleShape2D_mnnht")
 
 [node name="Lamp" type="Sprite2D" parent="Decor"]
@@ -2708,11 +2710,10 @@ friendly = true
 position = Vector2(112, -4)
 friendly = true
 
-[node name="Cat3" parent="Cats" node_paths=PackedStringArray("chase_target") instance=ExtResource("13_wcuw7")]
+[node name="Cat3" parent="Cats" instance=ExtResource("13_wcuw7")]
 position = Vector2(167, 1)
 friendly = true
 speed = 400
-chase_target = NodePath("../../Grandma")
 
 [node name="MentalCutscene" type="Node2D" parent="."]
 script = ExtResource("17_ey6yv")
@@ -2794,8 +2795,26 @@ visible_characters_behavior = 1
 visible_ratio = 0.0
 metadata/_edit_lock_ = true
 
-[connection signal="on_interact" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
-[connection signal="on_interact" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
+[node name="TalkCutscene" type="Node2D" parent="."]
+position = Vector2(239, -40)
+script = ExtResource("33_k563r")
+
+[node name="RoomCenter" type="Marker2D" parent="TalkCutscene"]
+position = Vector2(-100, 8)
+
+[node name="InteractionArea" type="Area2D" parent="TalkCutscene"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+position = Vector2(-93, -14)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("9_r0b2n")
+metadata/_custom_type_script = "uid://b4lqogy5daqbf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkCutscene/InteractionArea"]
+position = Vector2(-3, -1.5)
+shape = SubResource("RectangleShape2D_k563r")
+
+[connection signal="interacted" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
 
 [editable path="Decor/Flower1"]
 [editable path="Decor/Flower3"]
