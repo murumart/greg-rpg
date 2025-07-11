@@ -2505,4 +2505,4 @@ gate_id = &"gdung-house"
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -13)
 
-[connection signal="on_interact" from="InteriorTiles/Decor/Fridge/Dialogue" to="InteriorTiles/Decor/Fridge" method="_interact"]
+[connection signal="interacted" from="InteriorTiles/Decor/Fridge/Dialogue" to="InteriorTiles/Decor/Fridge" method="_interact"]

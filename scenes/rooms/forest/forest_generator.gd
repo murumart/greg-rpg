@@ -351,7 +351,7 @@ func _set_fungus_funny(a) -> void:
 
 
 func _delete_item_on_pickup(a: PickableItem) -> void:
-	a.on_interact.connect(func():
+	a.interacted.connect(func():
 		generated_objects.erase(a.global_position)
 	)
 

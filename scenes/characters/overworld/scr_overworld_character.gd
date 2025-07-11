@@ -96,7 +96,7 @@ func _ready() -> void:
 	add_child(idle_timer)
 	idle_timer.timeout.connect(_on_idle_timer_timeout)
 	idle_timer.start(8)
-	collision_detection_area.on_interact.connect(interacted)
+	collision_detection_area.interacted.connect(interacted)
 	collision_detection_area.body_entered.connect(_on_collision)
 	collision_detection_area.body_exited.connect(_on_collision_ended)
 	add_child(player_collision_timer)

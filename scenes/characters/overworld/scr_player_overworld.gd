@@ -157,8 +157,8 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, false)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
-	if is_instance_valid(collider) and collider.has_method("interacted"):
-		collider.call("interacted")
+	if is_instance_valid(collider) and collider.has_method("on_interaction"):
+		collider.call("on_interaction")
 	# the interaction areas have the interacted function that this calls
 
 

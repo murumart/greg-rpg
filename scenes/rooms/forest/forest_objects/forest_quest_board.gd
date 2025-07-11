@@ -5,7 +5,7 @@ var level := 1.0
 var questing: ForestQuesting = null
 
 
-func interacted() -> void:
+func on_interaction() -> void:
 	super()
 	if questing.available_quests_generated:
 		if questing.available_quests.is_empty():

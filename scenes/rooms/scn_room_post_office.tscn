@@ -2545,4 +2545,4 @@ metadata/_edit_lock_ = true
 script = ExtResource("15_vcbr6")
 mail_man = NodePath("../Decoration/MailMan")
 
-[connection signal="on_interact" from="Areas/InteractionArea" to="." method="_on_interaction_area_on_interact"]
+[connection signal="interacted" from="Areas/InteractionArea" to="." method="_on_interaction_area_on_interact"]

@@ -334,4 +334,4 @@ autoplay = "RESET"
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, 5)
 
-[connection signal="on_interact" from="InteractionArea" to="." method="_interacted"]
+[connection signal="interacted" from="InteractionArea" to="." method="_interacted"]

@@ -45,4 +45,4 @@ points = PackedVector2Array(1, 0, 1, 30)
 width = 1.0
 default_color = Color(0, 0, 0, 1)
 
-[connection signal="on_interact" from="InteractionArea" to="." method="_on_interact"]
+[connection signal="interacted" from="InteractionArea" to="." method="_on_interact"]

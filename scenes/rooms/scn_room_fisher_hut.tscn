@@ -2178,5 +2178,5 @@ offset = Vector2(-5, -7)
 region_enabled = true
 region_rect = Rect2(64, 48, 9, 5)
 
-[connection signal="on_interact" from="Fisherman/InteractionArea" to="." method="_on_fisherman_interacted" binds= [1]]
-[connection signal="on_interact" from="Fisherman2/InteractionArea" to="." method="_on_fisherman_interacted" binds= [2]]
+[connection signal="interacted" from="Fisherman/InteractionArea" to="." method="_on_fisherman_interacted" binds= [1]]
+[connection signal="interacted" from="Fisherman2/InteractionArea" to="." method="_on_fisherman_interacted" binds= [2]]

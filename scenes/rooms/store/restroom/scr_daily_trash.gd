@@ -28,7 +28,7 @@ func _ready() -> void:
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	ui.hide()
-	interaction_area.on_interact.connect(_poster_viewed)
+	interaction_area.interacted.connect(_poster_viewed)
 
 	_check_refill()
 	refill_timer.timeout.connect(func(): if not trash_bin.full: _check_refill())

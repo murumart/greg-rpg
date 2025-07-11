@@ -4,7 +4,7 @@ class_name InteractionArea
 
 # player interaction detector area
 
-signal on_interact
+signal interacted
 
 
 func _ready() -> void:
@@ -13,5 +13,5 @@ func _ready() -> void:
 	modulate = Color.from_string("#e7a3ff", Color.WHITE)
 
 
-func interacted() -> void:
-	on_interact.emit()
+func on_interaction() -> void:
+	interacted.emit()

@@ -14,7 +14,7 @@ var stall_occupiers: Array[StallOccupier] = []
 
 func _ready() -> void:
 	for i in $Interactions.get_children().size():
-		$Interactions.get_child(i).on_interact.connect(_stall_interacted.bind(i))
+		$Interactions.get_child(i).interacted.connect(_stall_interacted.bind(i))
 
 	_load_occupiers()
 	_display_occupiers()

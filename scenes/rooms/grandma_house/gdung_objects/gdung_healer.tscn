@@ -48,4 +48,4 @@ script = ExtResource("4_6co3f")
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_lktmr")
 
-[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction"]
+[connection signal="interacted" from="InteractionArea" to="." method="_on_interaction"]

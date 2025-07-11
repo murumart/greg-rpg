@@ -3,7 +3,7 @@ extends Room
 
 func _ready() -> void:
 	super._ready()
-	$EntertainmentSystem/ComputerInteract.on_interact.connect(_on_computer_interacted)
+	$EntertainmentSystem/ComputerInteract.interacted.connect(_on_computer_interacted)
 	if LTS.gate_id == LTS.GATE_EXIT_GAMING:
 		after_game_dial()
 

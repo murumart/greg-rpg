@@ -38,4 +38,4 @@ modulate = Color(0.34902, 1, 1, 1)
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_d6uwn")
 
-[connection signal="on_interact" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]
+[connection signal="interacted" from="InteractionArea" to="." method="_on_interaction_area_on_interact"]

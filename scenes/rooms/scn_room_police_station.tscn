@@ -2769,5 +2769,5 @@ color = Color(0, 0, 0, 1)
 position = Vector2(0, -17)
 texture = ExtResource("20_8g7l1")
 
-[connection signal="on_interact" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
-[connection signal="on_interact" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]
+[connection signal="interacted" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
+[connection signal="interacted" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]

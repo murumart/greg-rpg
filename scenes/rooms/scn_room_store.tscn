@@ -1166,7 +1166,7 @@ position = Vector2(-24, -3)
 [node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2"]
 position = Vector2(-25, -108)
 
-[connection signal="on_interact" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
+[connection signal="interacted" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]
 [connection signal="body_entered" from="StealingArea" to="." method="_on_stealing_area_entered"]
 

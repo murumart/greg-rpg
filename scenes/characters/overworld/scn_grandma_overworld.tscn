@@ -61,7 +61,7 @@ shape = SubResource("CircleShape2D_atdc0")
 [node name="Sprite" type="AnimatedSprite2D" parent="." index="3"]
 sprite_frames = ExtResource("3_ax1l2")
 animation = &"walk_down"
-frame_progress = 0.0525306
+frame_progress = 0.608557
 centered = false
 offset = Vector2(-8, -16)
 
