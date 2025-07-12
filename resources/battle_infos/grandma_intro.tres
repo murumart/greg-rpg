@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://dqy0jr0d6pchp"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_5ooif"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_opxqo"]
+
+[resource]
+script = ExtResource("2_opxqo")
+enemies = Array[StringName]([&"grandma"])
+background = "house_inside"
+music = "lily_lesson"
+party = Array[StringName]([])
+death_reason = "default"
+start_text = "worthy or not, here i come!"
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = false
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_5ooif")]({})
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

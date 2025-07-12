@@ -13,6 +13,7 @@ const FLOWERCOLOR := "#99ff61"
 @onready var color_container: ColorContainer = $"../CanvasModulateGroup/ColorContainer"
 var initial_color: Color
 
+
 func _ready() -> void:
 	grandma.inspected.connect(initial_interaction)
 	$InteractionArea.interacted.connect(initial_interaction)
@@ -240,12 +241,30 @@ func cs_talk_2() -> void:
 			dlg.reset().set_char("grandma_talk")
 			dlg.add_line(dlg.ml("this house?"))
 			dlg.add_line(dlg.ml("i got it recently! it's a lovely spot next to the woods."))
-			dlg.add_line(dlg.ml("although, not very good for business...").schoices(["give"]))
+			dlg.add_line(dlg.ml("although, not very good for business...").schoices(["mine"]))
+			dlg.add_line(dlg.ml("huh? so you have lived here? that's why your face seemed familiar!").schoices(["give"]))
 			dlg.add_line(dlg.ml("...what?").schoices(["give house"]))
-			dlg.add_line(dlg.ml("no??? it's my house???").schoices(["i need it"]))
+			dlg.add_line(dlg.ml("no??? it's my house???").schoices(["i need it"])
+				.scallback(func() -> void:
+					grandma.tanim_shake(10, 4.0)
+					grandma.sanimate("shock")
+			))
 			dlg.add_line(dlg.ml("no!!").schoices(["give me house"]))
 			dlg.add_line(dlg.ml("stop that!!").schoices(["mmm house"]))
+			dlg.add_line(dlg.ml("fine! if you're really that persistent...")
+				.scallback(func() -> void:
+					grandma.sanimate("")
+					grandma.direct_walking_animation(Vector2.DOWN)
+			))
+			dlg.add_line(dlg.ml("i'll test you.")
+				.scallback(func() -> void:
+					grandma.sanimate("smile")
+			))
+			dlg.add_line(dlg.ml("are you worthy of this place? or was leaving in the first place..."))
+			dlg.add_line(dlg.ml("...the weakness that still follows you?"))
 
 			await dlg.speak_choice()
-		else:
+			LTS.enter_battle(preload("res://resources/battle_infos/grandma_intro.tres"))
 			break
+		else:
+			assert(false)

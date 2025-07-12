@@ -1,7 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://dqqpj387k5o24"]
+[gd_resource type="SpriteFrames" load_steps=35 format=3 uid="uid://dqqpj387k5o24"]
 
 [ext_resource type="Texture2D" uid="uid://dlp16sgqwkg03" path="res://sprites/characters/overworld/spr_grandma_epic.png" id="1_ojyvb"]
 [ext_resource type="Texture2D" uid="uid://dg4okikxkw6c1" path="res://sprites/characters/overworld/spr_grandma_overworld.png" id="1_ssng8"]
+[ext_resource type="Texture2D" uid="uid://p5mwm556okmq" path="res://sprites/characters/overworld/grandma_epic.png" id="3_awe3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awe3p"]
 atlas = ExtResource("1_ojyvb")
@@ -34,6 +35,10 @@ region = Rect2(48, 16, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrt37"]
 atlas = ExtResource("1_ojyvb")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khqi5"]
+atlas = ExtResource("3_awe3p")
+region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfud3"]
 atlas = ExtResource("1_ojyvb")
@@ -200,6 +205,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khqi5")
+}],
+"loop": true,
+"name": &"shock",
 "speed": 5.0
 }, {
 "frames": [{
