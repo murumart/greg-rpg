@@ -9,7 +9,7 @@ const FLOWERCOLOR := "#99ff61"
 @onready var room_center: Marker2D = $RoomCenter
 @onready var radio: Node2D = $"../Radio"
 @onready var radio_music: AudioStreamPlayer2D = $"../Radio/RadioMusic"
-@onready var zoom_gradient: TextureRect = $ZoomGradient
+@onready var zoom_gradient: TextureRect = $"../ZoomGradient"
 @onready var color_container: ColorContainer = $"../CanvasModulateGroup/ColorContainer"
 var initial_color: Color
 
@@ -20,8 +20,11 @@ func _ready() -> void:
 	initial_color = color_container.color
 
 
+
 func initial_interaction() -> void:
 	DAT.capture_player("cutscene")
+	zoom_gradient.get_parent().remove_child(zoom_gradient)
+	room_center.add_child(zoom_gradient)
 	grandma.inspected.disconnect(initial_interaction)
 	$InteractionArea.interacted.disconnect(initial_interaction)
 	grandma.inspected.connect(second_interaction)
@@ -243,7 +246,12 @@ func cs_talk_2() -> void:
 			dlg.add_line(dlg.ml("i got it recently! it's a lovely spot next to the woods."))
 			dlg.add_line(dlg.ml("although, not very good for business...").schoices(["mine"]))
 			dlg.add_line(dlg.ml("huh? so you have lived here? that's why your face seemed familiar!").schoices(["give"]))
-			dlg.add_line(dlg.ml("...what?").schoices(["give house"]))
+			dlg.add_line(dlg.ml("...what?").schoices(["give house"])
+				.scallback(func() -> void:
+					if is_instance_valid(SND.current_song_player):
+						var tw := create_tween()
+						tw.tween_property(SND.current_song_player, ^"pitch_scale", 0.88, 4.0)
+			))
 			dlg.add_line(dlg.ml("no??? it's my house???").schoices(["i need it"])
 				.scallback(func() -> void:
 					grandma.tanim_shake(10, 4.0)

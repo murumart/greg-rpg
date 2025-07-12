@@ -1,10 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://e2pf3odrvrgn"]
+[gd_scene load_steps=5 format=3 uid="uid://e2pf3odrvrgn"]
 
 [ext_resource type="Script" uid="uid://fbywi60tq6kw" path="res://scenes/characters/battle_enemies/scr_enemy_grandma.gd" id="1_mvopl"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_okygw"]
+[ext_resource type="Texture2D" uid="uid://bwh2lhys38lun" path="res://sprites/photos/hand.png" id="3_8drdp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8brbc"]
+blend_mode = 3
 
 [node name="Grandma" type="Node2D"]
 script = ExtResource("1_mvopl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_okygw")
+
+[node name="Hand" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-16, -6)
+scale = Vector2(0.315789, 0.301587)
+texture = ExtResource("3_8drdp")
+flip_h = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("CanvasItemMaterial_8brbc")
+offset_left = -154.0
+offset_top = -39.0
+offset_right = 207.0
+offset_bottom = 158.0
+metadata/_edit_lock_ = true
