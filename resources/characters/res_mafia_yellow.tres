@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://ik3tsrsb0y3k"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_nkv0j"]
+[ext_resource type="AudioStream" uid="uid://biikha1vyoofk" path="res://sounds/talking/mafia_yellow.ogg" id="2_nkv0j"]
+
+[resource]
+script = ExtResource("1_nkv0j")
+name_in_file = &""
+name = "blue mafioso"
+info = ""
+voice_sound = ExtResource("2_nkv0j")
+max_health = 170.0
+health = 170.0
+max_magic = 300.0
+magic = 300.0
+level = 65
+experience = 0
+attack = 65.0
+defense = 65.0
+speed = 65.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""
+metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

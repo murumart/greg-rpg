@@ -36,6 +36,14 @@ func set_cell(
 	layers[layer].set_cell(coords, source_id, atlas_coords, alternative_tile)
 
 
+func get_cell_source_id(layer: int, coords: Vector2i) -> int:
+	return layers[layer].get_cell_source_id(coords)
+
+
+func erase_cell(layer: int, coords: Vector2i) -> void:
+	layers[layer].erase_cell(coords)
+
+
 func clear_layer(layer: int) -> void:
 	layers[layer].clear()
 

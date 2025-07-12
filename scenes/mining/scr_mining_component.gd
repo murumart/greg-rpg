@@ -4,7 +4,8 @@ const TileDefinitions := preload("res://scenes/mining/resources/scr_tile_definit
 
 @export var target: PlatformerGreg
 @export var display: Panel
-@export var tilemap: TileMap
+@export var tilemap_solid: TileMapLayer
+@export var tilemap_liquid: TileMapLayer
 
 const TSIZE := 8
 
@@ -15,17 +16,14 @@ var input: Vector2 = Vector2()
 
 func _ready() -> void:
 	assert(target, "no target available")
-	assert(tilemap, "no tilemap available")
+	assert(tilemap_solid, "no tilemap available")
+	assert(tilemap_liquid, "no tilemap available")
 
 
 func _input(event: InputEvent) -> void:
 	# DEBUG
 	if event is InputEventMouseButton and event.is_pressed():
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		var pos := tilemap.local_to_map(tilemap.to_local(get_global_mouse_position()))
-		#print(tilemap.local_to_map(tilemap.to_local(get_global_mouse_position())))
-		#tilemap.set_cell(0, pos, 0, Vector2i(0, 3))
-		print(tilemap.get_cell_source_id(0, pos))
 
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +58,7 @@ func tile_action(pos: Vector2) -> void:
 	var tile := get_tile(pos)
 	var def := get_tile_definition(tile)
 	if not tile in UNMINEABLE:
-		tilemap.set_cells_terrain_connect(0, [Vector2i(pos)], 0, -1)
+		tilemap_solid.set_cells_terrain_connect([Vector2i(pos)], 0, -1)
 	target.atree.set("parameters/hitshot/request", PlatformerGreg.FIRE)
 
 
@@ -69,7 +67,7 @@ func tpos() -> Vector2:
 
 
 func get_tile(where: Vector2) -> int:
-	return tilemap.get_cell_source_id(0, Vector2i(where))
+	return tilemap_solid.get_cell_source_id(Vector2i(where))
 
 
 func get_tile_definition(id: int) -> TileDefinitions.Tile:

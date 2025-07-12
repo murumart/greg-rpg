@@ -2,17 +2,18 @@ class_name MiningGame extends Node2D
 
 const TileDefinitions := preload("res://scenes/mining/resources/scr_tile_definitions.gd")
 
-@onready var tiles := $Tiles
+@export var solid_tiles: TileMapLayer
+@export var liquid_tiles: TileMapLayer
 @onready var wall := $Wall
 @onready var greg := $GregPlatform as PlatformerGreg
 @onready var camera: Camera2D = $GregPlatform/Camera
 @onready var update_timer: Timer = $UpdateTimer
 
-var hole_noise := preload("res://scenes/mining/resources/hole_noise.tres")
-var cave_noise_thin := preload("res://scenes/mining/resources/cave_noise_thin.tres")
-var main_tunnel_noise := preload("res://scenes/mining/resources/main_tunnel_noise.tres")
-var water_noise := preload("res://scenes/mining/resources/water_noise.tres")
-var gas_noise := preload("res://scenes/mining/resources/gas_noise.tres")
+@export var hole_noise: FastNoiseLite
+@export var cave_noise_thin: FastNoiseLite
+@export var main_tunnel_noise: FastNoiseLite
+@export var water_noise: FastNoiseLite
+@export var gas_noise: FastNoiseLite
 
 # in tiles
 var map_height := 200
@@ -102,29 +103,31 @@ func check_dirt(x: int, y: int) -> bool:
 func update_map() -> void:
 	var time := Time.get_ticks_msec()
 
-	for w in get_cells_by_definition(TileDefinitions.WATER, 1):
-		var pos := Vector2i(w)
+	for pos in get_cells_by_definition(TileDefinitions.WATER, 1):
 		tile_flowing(pos, TileDefinitions.WATER, FLOW_LIQUID_DOWN, [3, 4])
-	for w in get_cells_by_definition(TileDefinitions.GAS, 1):
-		var pos := Vector2i(w)
+	for pos in get_cells_by_definition(TileDefinitions.GAS, 1):
 		tile_flowing(pos, TileDefinitions.GAS, FLOW_GAS_UP)
-	for f in get_cells_by_definition(TileDefinitions.FIRE, 1):
-		var pos := Vector2i(f)
-		fire_works(f)
+	for pos in get_cells_by_definition(TileDefinitions.FIRE, 1):
+		fire_works(pos)
 
 	#print("finished map update: ", Time.get_ticks_msec() - time)
 
 
-func tile_flowing(pos: Vector2i, definition: TileDefinitions.Tile, neighbors: Array[Vector2i], extra_air := []) -> void:
+func tile_flowing(
+	pos: Vector2i,
+	definition: TileDefinitions.Tile,
+	neighbors: Array[Vector2i],
+	extra_air := []
+) -> void:
 	if pos.y > map_height + start_height:
-		tiles.erase_cell(1, pos)
+		liquid_tiles.erase_cell(pos)
 		return
 	if pos.y < 0:
-		tiles.erase_cell(1, pos)
+		liquid_tiles.erase_cell(pos)
 		return
 	for n: Vector2i in neighbors:
 		if is_air(pos + n, extra_air, 0) and is_air(pos + n, extra_air, 1):
-			tiles.erase_cell(1, pos)
+			liquid_tiles.erase_cell(pos)
 			if randf() <= 0.01: return
 			set_cell(pos + n, definition, 1)
 			return
@@ -134,7 +137,7 @@ func fire_works(pos: Vector2i) -> void:
 	if randf() <= 0.5:
 		set_cell(pos, TileDefinitions.FIRE)
 	if randf() <= 0.05:
-		tiles.erase_cell(0, pos)
+		solid_tiles.erase_cell(pos)
 		return
 	var neigs := NEIGHBOURS.duplicate()
 	neigs.shuffle()
@@ -146,7 +149,7 @@ func fire_works(pos: Vector2i) -> void:
 				return
 			if randf() <= 0.2 and is_air(pos + n):
 				set_cell(pos + n, TileDefinitions.FIRE, 1)
-				tiles.erase_cell(0, pos)
+				solid_tiles.erase_cell(pos)
 				return
 
 
@@ -156,22 +159,33 @@ func _update_timer() -> void:
 
 func set_cell(coords: Vector2i, tile: TileDefinitions.Tile, layer := 0) -> void:
 	if tile.terrain > -1:
-		tiles.set_cells_terrain_connect(layer, [coords], 0, tile.terrain)
+		if layer == 0:
+			solid_tiles.set_cells_terrain_connect([coords], 0, tile.terrain)
+		else:
+			liquid_tiles.set_cells_terrain_connect([coords], 0, tile.terrain)
 		return
-	tiles.set_cell(layer, coords, tile.source, tile.atlas)
+	if layer == 0:
+		solid_tiles.set_cell(coords, tile.source, tile.atlas)
+		return
+	liquid_tiles.set_cell(coords, tile.source, tile.atlas)
 
 
 func get_cell(pos: Vector2i, layer := 0) -> TileDefinitions.Tile:
-	var tiledata := tiles.get_cell_source_id(layer, pos) as int
+	var tiledata: int
+	if layer == 0:
+		tiledata = solid_tiles.get_cell_source_id(pos) as int
+	else:
+		tiledata = liquid_tiles.get_cell_source_id(pos)
 	return TileDefinitions.tile(tiledata)
 
 
 func is_air(coords: Vector2i, extra_defs := [], layer := 0) -> bool:
-	return (
-		tiles.get_cell_source_id(layer, coords) <= -1 or
-		tiles.get_cell_source_id(layer, coords) in extra_defs
-	)
+	if layer == 0:
+		return solid_tiles.get_cell_source_id(coords) <= -1
+	return liquid_tiles.get_cell_source_id(coords) <= -1
 
 
 func get_cells_by_definition(tile: TileDefinitions.Tile, layer: int) -> Array[Vector2i]:
-	return tiles.get_used_cells_by_id(layer, tile.source)
+	if layer == 0:
+		return solid_tiles.get_used_cells_by_id(tile.source)
+	return liquid_tiles.get_used_cells_by_id(tile.source)

@@ -6,6 +6,7 @@ extends Area2D
 @onready var mafia_2_sprite: AnimatedSprite2D = $"../../Decorations/Mafia2/AnimatedSprite2D"
 @onready var greg: CharacterBody2D = $"../../Greg"
 
+
 func _ready() -> void:
 	SOL.dialogue("mafia_mumbles_1")
 

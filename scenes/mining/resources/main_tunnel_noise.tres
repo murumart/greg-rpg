@@ -2,3 +2,4 @@
 
 [resource]
 frequency = 0.04
+fractal_octaves = 1

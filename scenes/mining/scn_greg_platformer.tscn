@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dovrp187cie0l" path="res://scenes/mining/scr_greg_platformer.gd" id="1_hj66a"]
 [ext_resource type="Texture2D" uid="uid://ba7j8ayhal8sw" path="res://sprites/mining/spr_platformer_greg.png" id="2_dnayx"]
+[ext_resource type="Texture2D" uid="uid://buvll7fa8e06l" path="res://sprites/items/spr_item_shovel_full.png" id="3_k1m2p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dttm6"]
 radius = 3.0
 height = 12.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3uvxe"]
-size = Vector2(4, 4)
 
 [sub_resource type="Animation" id="Animation_mucxo"]
 length = 0.001
@@ -917,8 +915,11 @@ region_enabled = true
 region_rect = Rect2(9, 16, 4, 5)
 
 [node name="HeldItem" type="Sprite2D" parent="Puppet/RightArm"]
-position = Vector2(0, 3)
-texture = SubResource("PlaceholderTexture2D_3uvxe")
+show_behind_parent = true
+position = Vector2(7.24995, -6.24995)
+rotation = 0.849475
+scale = Vector2(0.499183, 0.499183)
+texture = ExtResource("3_k1m2p")
 centered = false
 
 [node name="LeftArm" type="Sprite2D" parent="Puppet"]
@@ -932,14 +933,11 @@ region_rect = Rect2(9, 16, 4, 5)
 
 [node name="PuppetAnimator" type="AnimationPlayer" parent="Puppet"]
 libraries = {
-"": SubResource("AnimationLibrary_qv11b")
+&"": SubResource("AnimationLibrary_qv11b")
 }
 autoplay = "idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="Puppet"]
-libraries = {
-"": SubResource("AnimationLibrary_qv11b")
-}
 tree_root = SubResource("AnimationNodeBlendTree_xanbp")
 anim_player = NodePath("../PuppetAnimator")
 parameters/fallornot/add_amount = 0.0

@@ -3239,13 +3239,17 @@ SPEED 1.0
 
 
 DIALOGUE mafia_mumbles_1
+CHAR mafia_blue
 	so... yes... the water...
+CHAR mafia_yellow
 	...explosive soap... perfect...
 
 
 DIALOGUE mafia_interrupt
+CHAR mafia_blue
 	hey! intruder!
 	trespassing will be punished severely.
+CHAR mafia_yellow
 	you don't mess with the mafia, got that?
 
 

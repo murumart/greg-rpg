@@ -19,6 +19,8 @@
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
 	- [ ] Mining minigame
+		- [ ] Mafia house interior
+		- [ ] Mafia talking
 		- [ ] win condition: get to the bottom
 		- [ ] lose condition: die (you die)
 - [x] Intro changes
@@ -36,7 +38,7 @@
 		- [x] Make it more low-key
 		- [x] Ask to collect flowers
 - [ ] Town changes
-	- [ ] Sunset time
+	- [x] Sunset time
 	- [ ] Utility poles
 	- [ ] Move to industry
 		- [x] Things i did already

@@ -1,13 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://jiwivi764dxc"]
+[gd_scene load_steps=27 format=4 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" uid="uid://ct525lpipas5" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
 [ext_resource type="Texture2D" uid="uid://ccdo56bo12oem" path="res://sprites/mining/spr_station_background.png" id="2_mm17a"]
+[ext_resource type="FastNoiseLite" uid="uid://cpyr5gt4auq6p" path="res://scenes/mining/resources/hole_noise.tres" id="2_potsg"]
 [ext_resource type="PackedScene" uid="uid://ca56k2yykgyfs" path="res://scenes/mining/scn_greg_platformer.tscn" id="3_hjwtw"]
+[ext_resource type="FastNoiseLite" uid="uid://bu04lo888owps" path="res://scenes/mining/resources/cave_noise_thin.tres" id="3_yqho5"]
 [ext_resource type="Texture2D" uid="uid://b43ogq1oinca3" path="res://sprites/mining/spr_tiles_grass.png" id="4_8ef0h"]
+[ext_resource type="Script" uid="uid://trdp1tp7ibo0" path="res://code/scr_tilemap_layer_parent.gd" id="4_kcfpy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_khxvi"]
+[ext_resource type="FastNoiseLite" uid="uid://dqd7hcwdawb2a" path="res://scenes/mining/resources/main_tunnel_noise.tres" id="4_qrari"]
 [ext_resource type="FastNoiseLite" uid="uid://cxil6cn3ygldh" path="res://scenes/mining/resources/gas_noise.tres" id="4_xuf81"]
 [ext_resource type="Texture2D" uid="uid://01geuoxs60qh" path="res://sprites/mining/spr_tiles_water.png" id="5_ltenm"]
+[ext_resource type="FastNoiseLite" uid="uid://ttpcqjvye5rg" path="res://scenes/mining/resources/water_noise.tres" id="5_ompu0"]
 [ext_resource type="Texture2D" uid="uid://b5nsc0govxden" path="res://sprites/mining/spr_tiles_gas.png" id="6_p6bfi"]
 [ext_resource type="Script" uid="uid://dkvi11k1n4ok1" path="res://scenes/mining/scr_mining_component.gd" id="6_qjefl"]
 [ext_resource type="Texture2D" uid="uid://xfmuis2asrxq" path="res://sprites/mining/spr_tiles_fire.png" id="7_udqbk"]
@@ -474,8 +479,15 @@ anti_aliasing = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fnne"]
 size = Vector2(8, 160)
 
-[node name="MiningGame" type="Node2D"]
+[node name="MiningGame" type="Node2D" node_paths=PackedStringArray("solid_tiles", "liquid_tiles")]
 script = ExtResource("1_0eiox")
+solid_tiles = NodePath("Tiles/solids")
+liquid_tiles = NodePath("Tiles/liquids")
+hole_noise = ExtResource("2_potsg")
+cave_noise_thin = ExtResource("3_yqho5")
+main_tunnel_noise = ExtResource("4_qrari")
+water_noise = ExtResource("5_ompu0")
+gas_noise = ExtResource("4_xuf81")
 
 [node name="BgWall" type="Node2D" parent="."]
 z_index = -2
@@ -506,14 +518,19 @@ centered = false
 [node name="UpdateTimer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Tiles" type="TileMap" parent="."]
+[node name="Tiles" type="Node2D" parent="."]
+script = ExtResource("4_kcfpy")
+metadata/_custom_type_script = "uid://trdp1tp7ibo0"
+
+[node name="solids" type="TileMapLayer" parent="Tiles"]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAEAA0AAAACAAAAAAAFAA0AAAACAAAAAAAGAA0AAAACAAAAAAAHAA0AAAACAAAAAAAIAA0AAAACAAAAAAAJAA0AAAACAAAAAAAKAA0AAAACAAAAAAALAA0AAAACAAAAAAALAAoAAAACAAAAAAALAAsAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAACAAAAAAANAAwAAAACAAAAAAAOAAwAAAACAAAAAAAPAAwAAAACAAAAAAAQAAwAAAACAAAAAAARAAwAAAACAAAAAAARAAsAAAACAAAAAAARAAoAAAACAAAAAAAKAAwAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_ivaes")
 rendering_quadrant_size = 8
-format = 2
-layer_0/name = "solids"
-layer_0/tile_data = PackedInt32Array(851972, 131072, 0, 851973, 131072, 0, 851974, 131072, 0, 851975, 131072, 0, 851976, 131072, 0, 851977, 131072, 0, 851978, 131072, 0, 851979, 131072, 0, 655371, 131072, 0, 720907, 131072, 0, 786443, 131072, 0, 786444, 131072, 0, 786445, 131072, 0, 786446, 131072, 0, 786447, 131072, 0, 786448, 131072, 0, 786449, 131072, 0, 720913, 131072, 0, 655377, 131072, 0, 786442, 131072, 0)
-layer_1/name = "liquids"
-layer_1/tile_data = PackedInt32Array()
+
+[node name="liquids" type="TileMapLayer" parent="Tiles"]
+use_parent_material = true
+tile_set = SubResource("TileSet_ivaes")
 
 [node name="NoiseDisplay" type="Sprite2D" parent="."]
 visible = false
@@ -530,12 +547,13 @@ limit_left = 0
 limit_right = 160
 position_smoothing_enabled = true
 
-[node name="MiningComponent" type="Node2D" parent="GregPlatform" node_paths=PackedStringArray("target", "display", "tilemap")]
+[node name="MiningComponent" type="Node2D" parent="GregPlatform" node_paths=PackedStringArray("target", "display", "tilemap_solid", "tilemap_liquid")]
 top_level = true
 script = ExtResource("6_qjefl")
 target = NodePath("..")
 display = NodePath("Panel")
-tilemap = NodePath("../../Tiles")
+tilemap_solid = NodePath("../../Tiles/solids")
+tilemap_liquid = NodePath("../../Tiles/liquids")
 
 [node name="Panel" type="Panel" parent="GregPlatform/MiningComponent"]
 material = SubResource("CanvasItemMaterial_vmols")
