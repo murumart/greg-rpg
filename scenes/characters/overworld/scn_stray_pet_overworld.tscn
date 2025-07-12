@@ -80,6 +80,7 @@ kill_music = true
 play_fanfare = true
 crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("6_e0xo0")]({})
+increment_data_with_enemies = &"stray_animals_fought"
 
 [node name="StrayPet" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
 script = ExtResource("2_4ypex")

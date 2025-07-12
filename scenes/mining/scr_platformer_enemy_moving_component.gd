@@ -1,6 +1,6 @@
 class_name PlatformerEnemyMovingComponent extends Node
 
-var STATS := preload("res://scenes/mining/scr_platformer_stats.gd").new()
+var STATS := PlatformerGreg.Stats.new()
 
 enum States {WALK, FALL, JUMP}
 const S := States

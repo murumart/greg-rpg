@@ -44,7 +44,7 @@ func hurt(amt: float, gnd: int) -> void:
 			SOL.vfx("star_nebula")
 			super.hurt(3000, Genders.VAST)
 			dead = true
-			DAT.set_data("solar_protuberance_defeated", true)
+			DAT.set_data("sun_spirit_fought", true)
 	var change := absf(character.health - oldhp)
 	nova_process(pow(change * 1.01, 1.35) / character.max_health)
 

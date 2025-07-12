@@ -6,9 +6,6 @@ const TQKEY := &"nat_toothquest_on"
 
 
 func interacted() -> void:
-	if not RunFlags.animals_battled_changed:
-		DAT.incri("stray_animals_fought", battle_info.enemies.size())
-		RunFlags.animals_battled_changed = true
 	if DAT.get_data(TQKEY, false) and ResMan.get_character("greg").level >= 20:
 		tooth_reward.chance = 1
 	super()

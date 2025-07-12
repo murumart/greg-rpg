@@ -258,10 +258,10 @@ static func weighted_random(
 
 
 # put children of a node in a dictionary
-static func child_dict(node: Node) -> Dictionary:
-	var dict := {}
+static func child_dict(node: Node) -> Dictionary[StringName, Node]:
+	var dict: Dictionary[StringName, Node] = {}
 	for i in node.get_children():
-		dict[i.name.to_snake_case()] = i
+		dict[StringName(i.name.to_snake_case())] = i
 	return dict
 
 

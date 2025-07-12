@@ -242,7 +242,7 @@ func dothethingthething() -> void:
 
 func is_mail_man_here() -> bool:
 	if ResMan.get_character("greg").level >= 50 and not DAT.get_data(
-			"vampire_defeated", false):
+			"vampire_fought", false):
 		return false
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
 		return false

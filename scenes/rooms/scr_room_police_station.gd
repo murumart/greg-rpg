@@ -1,28 +1,52 @@
 class_name PoliceStation extends Room
 
+const BountyBoard = preload("res://scenes/gui/scr_bounty_board.gd")
+
 @onready var popo1 := $Npcs/Popo1 as OverworldCharacter
 @onready var popo2 := $Npcs/Popo2 as OverworldCharacter
 
-var bounty := {}
-const TRACKED_BOUNTIES := ["thugs", "stray_animals", "broken_fishermen", "sun_spirit", "president", "vampire", "circus"]
-#var thugs := ["chimney", "well", "shopping_cart", "kor_sten", "benthon", "moron", "stabbing_fella"]
-#var broken := ["broken_fisherman", "not_fish", "sopping"]
-#var animals := ["mole", "rainbird", "stray_pet", "wild_lizard"]
-const BOUNTY_CATCHES := {
-	"thugs": 40,
-	"stray_animals": 40,
-	"broken_fishermen": 40,
+#var bounty: Dictionary[StringName, int]
+const TRACKED_BOUNTIES := {
+	&"thugs": {
+		&"catches": 40,
+		&"description": """there are plenty of petty criminals running around town.
+catch them! lock em up! put them in jail!""",
+	},
+	&"stray_animals": {
+		&"name": "strays",
+		&"catches": 40,
+		&"description": """some pet owners really need to keep their pets inside...
+as long as they don't, they're a safety issue for you to solve."""
+	},
+	&"broken_fishermen": {
+		&"name": "fishermen",
+		&"catches": 40,
+		&"description": """some people really can't handle losing their loved ones.
+others can't handle losing a fish off their hook."""
+	},
+	&"sun_spirit": {
+		&"description": """rumor has it that a rogue spirit from the sun is in the forest somewhere.
+it attacks on sight... but surely you can take care of it?""",
+		&"hidden": true,
+	},
+	&"president": {
+		&"description": """a citizen claiming to be the president of some- where is shopping in town.
+this sounds like a security issue... please remove him."""
+	},
+	&"vampire": {
+		&"description": """there is talk of a vampire in this town... that's horrible!
+vampires are unlicensed spirit users, which is illegal."""
+	},
 }
 
 @onready var cells := Math.child_dict($Cells)
-
 @onready var rage := $SunSpiritRage as Node2D
 
 
 func _ready() -> void:
 	super._ready()
-	load_bounties()
-	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone():
+	#load_bounties()
+	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone() and false:
 		fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
@@ -30,32 +54,29 @@ func _ready() -> void:
 	_waiter_setup()
 
 
-func _exit_tree() -> void:
-	pass
-
-
 func _on_popo_1_interact_on_interact() -> void:
 	var newbounts := false
 	for b in TRACKED_BOUNTIES:
-		if is_bounty_fulfilled(b):
-			if not DAT.get_data("fulfilled_bounty_%s" % b, false):
-				if not newbounts:
-					SOL.dialogue("bounty_complete_pre" if DAT.get_data(
-						"has_talked_with_police", false)
-							else "bounty_complete_pre_first_interaction")
-					newbounts = true
-				var complete_dial := ("bounty_complete_%s" % b) as String
-				var reward_path := (
-					"res://resources/rewards/bounty/res_%s.tres" % b) as String
-				var reward: BattleRewards = null
-				if ResourceLoader.exists(reward_path):
-					reward = load(reward_path)
-				if complete_dial in SOL.dialogue_box.dialogues_dict:
-					SOL.dialogue(complete_dial)
-				if reward:
-					reward.grant()
-				DAT.set_data("fulfilled_bounty_%s" % b, true)
-				DAT.incri("police_standing", 1)
+		if not is_bounty_fulfilled(b):
+			continue
+		if DAT.get_data("is_it_known_that_greg_fulfilled_bounty_%s" % b, false):
+			continue
+		if not newbounts:
+			SOL.dialogue("bounty_complete_pre" if DAT.get_data(
+				"has_talked_with_police", false)
+					else "bounty_complete_pre_first_interaction")
+			newbounts = true
+		var complete_dial := "bounty_complete_%s" % b
+		var reward_path := "res://resources/rewards/bounty/res_%s.tres" % b
+		var reward: BattleRewards = null
+		if ResourceLoader.exists(reward_path):
+			reward = load(reward_path)
+		if complete_dial in SOL.dialogue_box.dialogues_dict:
+			SOL.dialogue(complete_dial)
+		if reward:
+			reward.grant()
+		DAT.set_data("is_it_known_that_greg_fulfilled_bounty_%s" % b, true)
+		DAT.incri("police_standing", 1)
 	SOL.dialogue(get_greeting())
 	SOL.dialogue("police_main")
 	if DAT.get_data("police_standing", 0) < 1:
@@ -65,55 +86,29 @@ func _on_popo_1_interact_on_interact() -> void:
 
 
 func _bounty_interacted() -> void:
-	get_bounty_info()
-	SOL.dialogue("bounty_board")
-
-
-func load_bounties() -> void:
-	bounty["thugs"] = int(DAT.get_data("thugs_fought", 0))
-	bounty["stray_animals"] = int(DAT.get_data("stray_animals_fought", 0))
-	bounty["broken_fishermen"] = int(DAT.get_data("broken_fishermen_fought", 0))
-	bounty["sun_spirit"] = int(DAT.get_data("solar_protuberance_defeated", false))
-	bounty["vampire"] = int(DAT.get_data("vampire_defeated", false))
-	bounty["president"] = int(DAT.get_data("president_defeated", false))
-	bounty["circus"] = int(DAT.get_data("circus_defeated", false))
+	var quests: Array[BountyBoard.Quest] = []
+	for b: StringName in TRACKED_BOUNTIES:
+		if TRACKED_BOUNTIES[b].get(&"hidden", false) and not is_bounty_fulfilled(b):
+			continue
+		var q := BountyBoard.Quest.new(
+			b.replace("_", " ") if not &"name" in TRACKED_BOUNTIES[b]
+				else TRACKED_BOUNTIES[b][&"name"],
+			TRACKED_BOUNTIES[b][&"description"],
+			get_bounty_progress(b),
+			get_bounty_required(b))
+		quests.append(q)
+	var bb := BountyBoard.make(quests)
+	bb.close_requested.connect(func() -> void:
+		bb.queue_free()
+		DAT.free_player("bounty")
+	)
+	SOL.add_ui_child(bb)
+	bb.title_label.text = "bounty board"
+	DAT.capture_player("bounty")
 
 
 func cd(w: Character, c: StringName) -> int:
 	return w.get_defeated_character(c)
-
-
-func get_bounty_info() -> void:
-	var choices: PackedStringArray = ["exit"]
-	choices.append_array([
-		"thugs","stryanmls","brknfishr","vampire","president"])
-	SOL.dialogue_box.dial_concat("bounty_board", 3, [
-		bounty.get("thugs", 0),
-		BOUNTY_CATCHES["thugs"]
-	])
-	SOL.dialogue_box.dial_concat("bounty_board", 6, [
-		bounty.get("stray_animals", 0),
-		BOUNTY_CATCHES["stray_animals"]
-	])
-	SOL.dialogue_box.dial_concat("bounty_board", 9, [
-		bounty.get("broken_fishermen", 0),
-		BOUNTY_CATCHES["broken_fishermen"]
-	])
-	if is_bounty_fulfilled("sun_spirit"):
-		choices.append("sunspirit")
-	SOL.dialogue_box.dial_concat("bounty_board", 12, [
-		" not " if not is_bounty_fulfilled("sun_spirit") else " "
-	])
-	SOL.dialogue_box.dial_concat("bounty_board", 15, [
-		" not " if not is_bounty_fulfilled("president") else " "
-	])
-	SOL.dialogue_box.dial_concat("bounty_board", 18, [
-		" not " if not is_bounty_fulfilled("circus") else " "
-	])
-	SOL.dialogue_box.dial_concat("bounty_board", 21, [
-		" not " if not is_bounty_fulfilled("vampire") else " "
-	])
-	SOL.dialogue_box.adjust("bounty_board", 0, "choices", choices)
 
 
 func get_greeting() -> String:
@@ -125,21 +120,31 @@ func get_greeting() -> String:
 	return "police_greeting"
 
 
-func is_bounty_fulfilled(nomen: String) -> bool:
-	return bounty[nomen] >= (BOUNTY_CATCHES[nomen] if nomen in BOUNTY_CATCHES else 1)
+static func get_bounty_required(nomen: StringName) -> int:
+	var req := 0
+	if not &"catches" in TRACKED_BOUNTIES[nomen]:
+		req = 1
+	else:
+		req = TRACKED_BOUNTIES[nomen][&"catches"]
+	return req
+
+
+static func get_bounty_progress(nomen: StringName) -> int:
+	return int(DAT.get_data(nomen + "_fought", 0))
 
 
 # for external use :) :3 😘
-static func is_bounty_fulfilled_static(nomen: String) -> bool:
-	return int(DAT.get_data(nomen + "_fought", 0)) >= BOUNTY_CATCHES[nomen]
+static func is_bounty_fulfilled(nomen: StringName) -> bool:
+	return get_bounty_progress(nomen) >= get_bounty_required(nomen)
 
 
 func fulfill_bounty(nomen: String) -> void:
-	if nomen == "all":
+	if nomen == &"all":
 		for i in TRACKED_BOUNTIES:
 			fulfill_bounty(i)
 		return
-	bounty[nomen] = (BOUNTY_CATCHES[nomen] if nomen in BOUNTY_CATCHES else 1)
+	DAT.set_data(nomen + "_fought", get_bounty_required(nomen))
+	#bounty[nomen] = (BOUNTY_CATCHES[nomen] if nomen in BOUNTY_CATCHES else 1)
 
 
 func setup_cells() -> void:

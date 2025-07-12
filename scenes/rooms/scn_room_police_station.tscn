@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=60 format=4 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" uid="uid://dnq030bmpvqqd" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bnusfluirkrpi" path="res://sprites/characters/overworld/spr_president_overworld.png" id="19_dpo5f"]
 [ext_resource type="Texture2D" uid="uid://cmqrw5vtp48wc" path="res://sprites/cutscene/spr_sun_spirit_rage.png" id="20_8g7l1"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="22_g7l2g"]
+[ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="24_ngus0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("3_7lec2")
@@ -2293,7 +2294,7 @@ size = Vector2(14, 4)
 size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa1vx"]
-size = Vector2(42, 11)
+size = Vector2(42, 12)
 
 [node name="PoliceStation" type="Node2D"]
 y_sort_enabled = true
@@ -2443,7 +2444,7 @@ offset = Vector2(0, -8)
 
 [node name="SunSpiritAnimator" type="AnimationPlayer" parent="Cells/SunSpirit"]
 libraries = {
-"": SubResource("AnimationLibrary_0cpah")
+&"": SubResource("AnimationLibrary_0cpah")
 }
 autoplay = "default"
 
@@ -2487,9 +2488,6 @@ key = "president_cell"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/President/PresidentInspect"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_378vf")
-
-[node name="Circus" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(74, 0)
 
 [node name="Npcs" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2740,19 +2738,15 @@ offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(20, 68, 8, 12)
 
-[node name="Chair4" type="Sprite2D" parent="Decor/Chair"]
-position = Vector2(-28, 0)
-texture = ExtResource("13_tbltf")
-offset = Vector2(0, -4)
-region_enabled = true
-region_rect = Rect2(20, 68, 8, 12)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="Decor/Chair"]
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Chair/StaticBody2D"]
-position = Vector2(-11, -4.5)
+position = Vector2(-11, -4)
 shape = SubResource("RectangleShape2D_fa1vx")
+
+[node name="Chair" parent="Decor/Chair" instance=ExtResource("24_ngus0")]
+position = Vector2(-28, -1)
 
 [node name="SunSpiritRage" type="Node2D" parent="."]
 visible = false

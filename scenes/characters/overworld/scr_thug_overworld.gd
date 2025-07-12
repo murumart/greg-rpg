@@ -21,13 +21,6 @@ func _ready() -> void:
 	battle_info = random_battle_component.get_battle()
 
 
-func interacted() -> void:
-	super()
-	if not RunFlags.thugs_battled_changed:
-		DAT.incri("thugs_fought", battle_info.enemies.size())
-		RunFlags.thugs_battled_changed = true
-
-
 func _car_collision_response(car: CarOverworld) -> void:
 	SOL.vfx("dustpuff", global_position, {"parent": get_parent()})
 	SOL.vfx("bangspark", global_position, {"parent": get_parent()})

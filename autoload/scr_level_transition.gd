@@ -46,8 +46,6 @@ func change_scene_to(path: String, options := {}) -> void:
 	if new_scene.has_method("_option_init"):
 		new_scene._option_init(options)
 
-	RunFlags.reset_scene_flags()
-
 	if options.get("free_player", true):
 		DAT.free_player("level_transition")
 
@@ -105,6 +103,8 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 		return
 	if options.get("sbcheck", false) and skateboard_check():
 		return
+	if info.increment_data_with_enemies:
+		DAT.incri(info.increment_data_with_enemies, info.enemies.size())
 	entering_battle = true
 	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE

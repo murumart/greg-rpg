@@ -1,0 +1,18 @@
+- [ ] playtest session june
+	- [ ] pan around town in the intro (instead of following the car only)
+	- [ ] intro car slower
+	- [ ] secretn plant dialogue(bnech?)
+	- [ ] gramdma face the radio and and wait at the radio
+	- [ ] gaster secret room grandma (SCARY)
+	- [ ] grandma MEANER
+	- [ ] remove greg
+	- [ ] grandma meaner when you ask for house
+	- [ ] friendlier zerma? offer to tutorial
+	- [ ] tarikas tells you to approach from frong
+	- [ ] fix intro skip
+	- [ ] more diagetic immersion for intro room exit area dialogue
+	- [ ] dont turn off radio when its off
+	- [ ] more grnamda item interaction
+	- [ ] put boot in trash can
+	- [ ] rebind screenshit
+- [ ] change greandma green dialo

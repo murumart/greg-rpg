@@ -38,6 +38,7 @@
 		- [x] Make it more low-key
 		- [x] Ask to collect flowers
 - [ ] Town changes
+	- [ ] Update map
 	- [x] Sunset time
 	- [ ] Utility poles
 	- [ ] Move to industry

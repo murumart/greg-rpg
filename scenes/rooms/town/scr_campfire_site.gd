@@ -12,9 +12,9 @@ func _naturalist_setup() -> void:
 			not (not DAT.get_data("vampire_fought", false)
 					and Math.inrange(ResMan.get_character("greg").level, 40, 49))
 			and LTS.gate_id != &"vampire_cutscene"
-			and (PoliceStation.is_bounty_fulfilled_static("thugs")
+			and (PoliceStation.is_bounty_fulfilled("thugs")
 					and not DAT.get_data("hunks_enabled", false))
-			and PoliceStation.is_bounty_fulfilled_static("stray_animals"))
+			and PoliceStation.is_bounty_fulfilled("stray_animals"))
 	if not exists_here:
 		naturalist.queue_free()
 		return

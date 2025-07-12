@@ -41,7 +41,7 @@ unique = false
 [sub_resource type="Resource" id="Resource_niwcy"]
 script = ExtResource("1_e6fb7")
 type = 3
-property = "range 16,24"
+property = "range 0,12"
 chance = 1.0
 unique = false
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=47 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene load_steps=46 format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
-[ext_resource type="Script" uid="uid://cqf72qhvq0eq8" path="res://scenes/characters/overworld/scr_broken_fisherman_overworld.gd" id="2_1psk0"]
 [ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="2_23irk"]
 [ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_txuqq"]
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_2m4wv"]
@@ -268,10 +267,9 @@ crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("6_il21p")]({
 &"rubber_boots": SubResource("Resource_gvojf")
 })
+increment_data_with_enemies = &"broken_fishermen_fought"
 
-[node name="BrokenFisherman" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
-script = ExtResource("2_1psk0")
-animated_sprite = NodePath("AnimatedSprite2D")
+[node name="BrokenFisherman" instance=ExtResource("1_57ade")]
 random_movement = true
 random_movement_distance = 128
 action_right_after_dialogue = true
