@@ -12,14 +12,6 @@ var music_last_song: String
 
 func _ready() -> void:
 	super._ready()
-	SOL.dialogue_closed.connect(func() -> void:
-		if SOL.dialogue_choice == "house":
-			LTS.enter_battle(
-				BattleInfo.new().set_background(
-						"house_inside").set_enemies(["grandma"]).set_music("lily_lesson")
-				)
-			SOL.dialogue_choice = ""
-	)
 
 	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
 		get_tree().get_nodes_in_group("empty_delete").map(func(a): a.queue_free())

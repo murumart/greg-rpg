@@ -8,7 +8,7 @@ enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 @export var menu_disabled := false
 
 const SPEED := 3800
-const INTERACTION_LENGTH := 8
+const INTERACTION_LENGTH := 12
 const ROTS = [&"walk_up", &"walk_right", &"walk_down", &"walk_left"]
 
 var input := Vector2()

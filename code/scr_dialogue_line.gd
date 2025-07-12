@@ -34,12 +34,12 @@ static func mk(text_: String) -> DialogueLine:
 	return l
 
 
-func scharacter(to: String) -> DialogueLine:
+func scharacter(to: String = "") -> DialogueLine:
 	character = to
 	return self
 
 
-func semotion(to: String) -> DialogueLine:
+func semotion(to: String = "") -> DialogueLine:
 	emotion = to
 	return self
 
@@ -69,7 +69,7 @@ func schoices(to: PackedStringArray) -> DialogueLine:
 	return self
 
 
-func sinstaskip(to: bool) -> DialogueLine:
+func sinstaskip(to: bool = true) -> DialogueLine:
 	instaskip = to
 	return self
 

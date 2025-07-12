@@ -4,15 +4,18 @@ extends OverworldCharacter
 
 
 func sanimate(anim: StringName, aspd := 1.0) -> void:
+	var fsize := Math.v2(16.0)
 	if not anim:
 		set_physics_process(true)
+		animated_sprite.offset.y = -fsize.y
+		pemit.position.y = -fsize.y * 0.5
 		return
+	fsize = animated_sprite.sprite_frames.get_frame_texture(anim, 0).get_size()
+	animated_sprite.offset.y = -fsize.y
+	pemit.position.y = -fsize.y * 0.5
 	set_physics_process(false)
 	animated_sprite.speed_scale = aspd
 	animated_sprite.play(anim)
-	var fsize := animated_sprite.sprite_frames.get_frame_texture(anim, 0).get_size()
-	animated_sprite.offset.y = -fsize.y
-	pemit.position.y = -fsize.y * 0.5
 
 
 func tanim_shake(amt: int, strength: float, aspd := 1.0) -> void:

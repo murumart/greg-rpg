@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=68 format=4 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" uid="uid://d3yw0nn7j0dck" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="22_mpjws"]
 [ext_resource type="PackedScene" uid="uid://cjug5v3lju2m1" path="res://scenes/characters/overworld/scn_grandma_overworld.tscn" id="32_76b83"]
 [ext_resource type="Script" uid="uid://bssh70cd3jquw" path="res://scenes/rooms/grandma_house/talk_cutscene.gd" id="33_k563r"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="38_mdvsf"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
 playback_mode = 1
@@ -2135,6 +2136,17 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k563r"]
 size = Vector2(14, 17)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mdvsf"]
+
+[sub_resource type="Gradient" id="Gradient_3hvci"]
+offsets = PackedFloat32Array(0, 0.152542, 0.36017, 0.788136)
+colors = PackedColorArray(0, 0.383333, 1, 0, 0.088, 0.1386, 0.22, 0.239216, 0.00599999, 0.0803666, 0.2, 0.823529, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qw5xy"]
+gradient = SubResource("Gradient_3hvci")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
@@ -2813,6 +2825,39 @@ metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TalkCutscene/InteractionArea"]
 position = Vector2(-3, -1.5)
 shape = SubResource("RectangleShape2D_k563r")
+
+[node name="ZoomGradient" type="TextureRect" parent="TalkCutscene"]
+visible = false
+z_index = 10
+material = SubResource("CanvasItemMaterial_mdvsf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -205.359
+offset_top = -100.112
+offset_right = -5.35918
+offset_bottom = 99.8879
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_qw5xy")
+
+[node name="SinAnimator" type="Node" parent="TalkCutscene/ZoomGradient" node_paths=PackedStringArray("target")]
+script = ExtResource("38_mdvsf")
+property_name = &"position:x"
+target = NodePath("..")
+min_value = -201.0
+max_value = 20.0
+offset = 3.14
+metadata/_custom_type_script = "uid://durusiw115m3o"
+
+[node name="SinAnimator2" type="Node" parent="TalkCutscene/ZoomGradient" node_paths=PackedStringArray("target")]
+script = ExtResource("38_mdvsf")
+property_name = &"position:y"
+target = NodePath("..")
+speed = 1.5
+min_value = -92.3
+max_value = 20.0
+metadata/_custom_type_script = "uid://durusiw115m3o"
 
 [connection signal="interacted" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
 

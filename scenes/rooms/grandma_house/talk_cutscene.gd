@@ -9,11 +9,14 @@ const FLOWERCOLOR := "#99ff61"
 @onready var room_center: Marker2D = $RoomCenter
 @onready var radio: Node2D = $"../Radio"
 @onready var radio_music: AudioStreamPlayer2D = $"../Radio/RadioMusic"
-
+@onready var zoom_gradient: TextureRect = $ZoomGradient
+@onready var color_container: ColorContainer = $"../CanvasModulateGroup/ColorContainer"
+var initial_color: Color
 
 func _ready() -> void:
 	grandma.inspected.connect(initial_interaction)
 	$InteractionArea.interacted.connect(initial_interaction)
+	initial_color = color_container.color
 
 
 func initial_interaction() -> void:
@@ -32,8 +35,9 @@ func second_interaction() -> void:
 
 func cs_setup() -> void:
 	SND.play_sound(preload("res://sounds/talking/grandma.ogg"), {loop = false})
-	SND.play_song("grandma_scary", 0.3, {pitch_scale = 0.76})
+	SND.play_song("")
 	SOL.vfx_damage_number(grandma.global_position, "oh!", Color.WHITE, 1.0, {parent = grandma})
+	grandma.direct_walking_animation(Vector2.DOWN)
 	await grandma.tanim_shake(8, 4)
 	await Math.timer(0.2)
 	grandma.speed = 9000
@@ -60,8 +64,14 @@ func cs_setup() -> void:
 
 
 func cs_talk_1() -> void:
+	SND.play_song("grandma_scary", 0.3, {pitch_scale = 0.76})
 	var dlg := DialogueBuilder.new().set_char("grandma_talk")
 	dlg.add_line(dlg.ml("well well well... look who it is..."))
+	var t2 := create_tween().set_trans(Tween.TRANS_BOUNCE)
+	zoom_gradient.show()
+	t2.tween_property(zoom_gradient, "modulate:a", 1.0, 7.0).from(0.0)
+	t2.parallel().tween_property(color_container, "color",
+		Color(0.512, 0.629, 0.815), 7.0)
 	grandma.sanimate("walk_left", 0.001)
 	await dlg.speak_choice()
 	var tw := create_tween()
@@ -81,6 +91,9 @@ func cs_talk_1() -> void:
 	SND.play_song("grand", 99.0, {play_from_beginning = true})
 	grandma.tanim_shake(10, 4.0)
 	grandma.sanimate("happy")
+	t2.kill()
+	zoom_gradient.hide()
+	color_container.color = initial_color
 	await dlg.speak_choice()
 	grandma.sanimate("flip")
 	await Math.timer(1.5)
@@ -92,10 +105,16 @@ func cs_talk_1() -> void:
 		.scallback(grandma.sanimate.bind("dance")))
 	dlg.add_line(dlg.ml("birthdays! dates! first day of school!")
 		.scallback(grandma.sanimate.bind("spin")))
-	dlg.add_line(dlg.ml("last day of school! breakups! walking your dog!")
-		.scallback(func() -> void: grandma.tanim_shake(20, 4.0); grandma.sanimate("halgful_left")))
+	dlg.add_line(dlg.ml("last day of school! divorce! walking your dog!")
+		.scallback(func() -> void:
+			grandma.tanim_shake(20, 4.0)
+			grandma.sanimate("halgful_left")
+	))
 	dlg.add_line(dlg.ml("there is a flower for every occasion.")
-		.scallback(func() -> void: grandma.tanim_bounce(1.0); grandma.sanimate("smile")))
+		.scallback(func() -> void:
+			grandma.tanim_bounce(1.4)
+			grandma.sanimate("smile")
+	))
 	dlg.add_line(dlg.ml("here, dear, to celebrate - a flower on the house!")
 		.scallback(func() -> void:
 			grandma.sanimate("")
@@ -109,6 +128,8 @@ func cs_talk_1() -> void:
 func cs_talk_2() -> void:
 	var aval_choices := ["aboutyou", "aboutme", "house", "bye"]
 	var dlg := DialogueBuilder.new()
+	var about_talked := false
+	DAT.free_player("cutscene")
 	while true:
 		dlg.reset().set_char("grandma_talk")
 		var welcome := "wonderful young man! what do you wish to do?"
@@ -129,7 +150,6 @@ func cs_talk_2() -> void:
 			))
 			await dlg.speak_choice()
 			grandma.sanimate("")
-			DAT.free_player("cutscene")
 			break
 		elif choice == &"aboutyou":
 			dlg.reset().set_char("grandma_talk")
@@ -139,10 +159,92 @@ func cs_talk_2() -> void:
 					grandma.direct_walking_animation(Vector2.DOWN)
 			))
 			dlg.add_line(dlg.ml("i'm just a lonely old florist, dear.")
+				.scallback(grandma.direct_walking_animation.bind(
+					grandma.global_position.direction_to(greg.global_position))
+			))
+			dlg.add_line(dlg.ml("but you can call me grandma for short!")
+				.scallback(grandma.sanimate.bind("spin")))
+			dlg.add_line(dlg.ml("i don't get called that often anymore.")
+				.scallback(grandma.sanimate.bind("sad")))
+			dlg.add_line(dlg.ml("people tend to forget things with age, you see..."))
+			dlg.add_line(dlg.ml("i have no idea where my grandchildren are!")
 				.scallback(func() -> void:
+					grandma.tanim_shake(20, 4.0)
+					grandma.sanimate("halgful_right")
+			))
+			dlg.add_line(dlg.ml("i've forgotten where all of them went!")
+				.scallback(func() -> void:
+					grandma.tanim_shake(20, 4.0)
+					grandma.sanimate("halgful_left")
+			))
+			dlg.add_line(dlg.ml("i say good riddance! i don't even want to see them!")
+				.scallback(func() -> void:
+					grandma.tanim_bounce(1.2)
+					grandma.sanimate("smile")
+			))
+			dlg.add_line(dlg.ml("to explain, dear, what i have failed to grow in people...")
+				.scallback(func() -> void:
+					grandma.sanimate("")
 					grandma.direct_walking_animation(
 						grandma.global_position.direction_to(greg.global_position))
 			))
+			dlg.add_line(dlg.ml("...i make up for in plants. and such.")
+				.scallback(grandma.sanimate.bind("spin")))
+
+			await dlg.speak_choice()
+		elif choice == &"aboutme":
+			dlg.reset().set_char("grandma_talk")
+			if not about_talked:
+				dlg.add_line(dlg.ml("about you?")
+					.scallback(func() -> void:
+						grandma.sanimate("")
+						grandma.direct_walking_animation(Vector2.DOWN)
+				))
+				dlg.add_line(dlg.ml("you want to know more about yourself, dear?")
+					.scallback(grandma.direct_walking_animation.bind(
+						grandma.global_position.direction_to(greg.global_position))))
+				dlg.add_line(dlg.ml("i don't know if i can help you with that, sorry..."))
+				dlg.add_line(dlg.ml("say... listen to this old florist's advice:"))
+				dlg.add_line(dlg.ml("keep yourself occupied! there's so much to do in the world...")
+					.scallback(grandma.sanimate.bind("spin")))
+				dlg.add_line(dlg.ml("places to go! plants to care for! people to water!")
+					.scallback(grandma.sanimate.bind("spin_fast")))
+				dlg.add_line(dlg.ml("ahh, so much to do!! i want to explode!!")
+					.scallback(func() -> void:
+						grandma.sanimate("spin_fast", 2.0)
+						grandma.tanim_shake(20, 8)
+						grandma.particles(1.0, 0.2, 8.0)
+				))
+				dlg.add_line(dlg.ml("this week, i think i will focus on cleaning up.")
+					.scallback(func() -> void:
+						grandma.tanim_bounce(1.2)
+						grandma.sanimate("smile")
+						grandma.particles()
+				))
+				dlg.add_line(dlg.ml("there are some loose ends here and there."))
+				about_talked = true
+			else:
+				dlg.add_line(dlg.ml("...")
+					.scallback(func() -> void:
+						grandma.sanimate("")
+						grandma.direct_walking_animation(Vector2.DOWN)))
+				dlg.add_line(dlg.ml("haven't i seen you before, dear?")
+					.scallback(grandma.direct_walking_animation.bind(
+						grandma.global_position.direction_to(greg.global_position))))
+				dlg.add_line(dlg.ml("it could have been a long time ago."))
+				dlg.add_line(dlg.ml("have you lived here before?"))
+
+			await dlg.speak_choice()
+			grandma.sanimate("")
+		elif choice == &"house":
+			dlg.reset().set_char("grandma_talk")
+			dlg.add_line(dlg.ml("this house?"))
+			dlg.add_line(dlg.ml("i got it recently! it's a lovely spot next to the woods."))
+			dlg.add_line(dlg.ml("although, not very good for business...").schoices(["give"]))
+			dlg.add_line(dlg.ml("...what?").schoices(["give house"]))
+			dlg.add_line(dlg.ml("no??? it's my house???").schoices(["i need it"]))
+			dlg.add_line(dlg.ml("no!!").schoices(["give me house"]))
+			dlg.add_line(dlg.ml("stop that!!").schoices(["mmm house"]))
 
 			await dlg.speak_choice()
 		else:

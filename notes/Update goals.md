@@ -18,6 +18,9 @@
 		- [ ] Explosive from mining minigame - with key open factory door
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
+	- [ ] Mining minigame
+		- [ ] win condition: get to the bottom
+		- [ ] lose condition: die (you die)
 - [ ] Intro changes
 	- [x] Ride around town
 	- [x] Better interior for house
@@ -27,6 +30,7 @@
 			- [x] Make her animation system reusable
 			- [x] Remove dialogue portrait
 		- [ ] Replaced dialogue
+		- [ ] Make work after leaving and reentering house (save state)
 	- [ ] Battle changes (retaliate after first attack)
 	- [ ] Post-battle
 		- [ ] Make it more low-key
@@ -38,6 +42,8 @@
 		- [x] Things i did already
 	- [ ] Store cutscene w/ grandma
 		- [ ] Hide greg when she barges in
+- [ ] Zerma dialogue rewrite
+	- [ ] just imagine jerma speaking in your head to write them
 - [ ] Forest changes
 	- [ ] Entrance changes
 		- [ ] Flowerboy bossfight

@@ -19,6 +19,7 @@ spirit_to_give = &""
 silver_to_give = 0
 portrait_scale = Vector2(1, 1)
 set_data = []
+callback = Callable()
 
 [resource]
 script = ExtResource("1_7ji3j")

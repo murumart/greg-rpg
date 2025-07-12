@@ -2,7 +2,7 @@
 class_name SinAnimator extends Node
 
 @export var property_name := &""
-@export var target: Node2D
+@export var target: Node
 @export var speed := 1.0
 @export var min_value := 0.0
 @export var max_value := 1.0
