@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=4 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
-[ext_resource type="Resource" uid="uid://dqy0jr0d6pchp" path="res://resources/battle_infos/grandma_intro.tres" id="2_2esdu"]
+[ext_resource type="Resource" uid="uid://wy2pad6a4u0h" path="res://resources/battle_infos/zerma_tutorial.tres" id="2_2esdu"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="4_3v3ux"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=71 format=4 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" uid="uid://d3yw0nn7j0dck" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -39,7 +39,6 @@
 [ext_resource type="Script" uid="uid://bssh70cd3jquw" path="res://scenes/rooms/grandma_house/talk_cutscene.gd" id="33_k563r"]
 [ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="38_mdvsf"]
 [ext_resource type="Script" uid="uid://ey2th5yjtw1k" path="res://scenes/rooms/grandma_house/after_fight_cutscene.gd" id="39_3hvci"]
-[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="39_qw5xy"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="41_u5i7e"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
@@ -2845,11 +2844,6 @@ min_value = -92.3
 max_value = 20.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="CheatNode" type="Node" parent="."]
-script = ExtResource("39_qw5xy")
-force_gate_id = &"lol"
-metadata/_custom_type_script = "uid://dkf3yix03l3hc"
-
 [node name="TalkCutscene" type="Node2D" parent="."]
 position = Vector2(239, -40)
 script = ExtResource("33_k563r")
@@ -2892,6 +2886,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="interacted" from="Radio/RadioInteraction" to="." method="_on_radio_interaction_on_interact"]
+[connection signal="interacted" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
 
 [editable path="Decor/Flower1"]
 [editable path="Decor/Flower3"]

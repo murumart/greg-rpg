@@ -21,20 +21,20 @@
 	- [ ] Mining minigame
 		- [ ] win condition: get to the bottom
 		- [ ] lose condition: die (you die)
-- [ ] Intro changes
+- [x] Intro changes
 	- [x] Ride around town
 	- [x] Better interior for house
-	- [ ] Initial interaction cutscene
+	- [x] Initial interaction cutscene
 		- [x] Make her static at first
 		- [x] Stretcehy animation's
 			- [x] Make her animation system reusable
 			- [x] Remove dialogue portrait
-		- [ ] Replaced dialogue
-		- [ ] Make work after leaving and reentering house (save state)
-	- [ ] Battle changes (retaliate after first attack)
-	- [ ] Post-battle
-		- [ ] Make it more low-key
-		- [ ] Ask to collect flowers
+		- [x] Replaced dialogue
+		- [x] Make work after leaving and reentering house (save state)
+	- [x] Battle changes (retaliate after first attack)
+	- [x] Post-battle
+		- [x] Make it more low-key
+		- [x] Ask to collect flowers
 - [ ] Town changes
 	- [ ] Sunset time
 	- [ ] Utility poles

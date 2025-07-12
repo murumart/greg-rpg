@@ -15,7 +15,7 @@ func _enter_tree() -> void:
 	add_to_group("room_gates")
 
 
-func interacted() -> void:
+func on_interaction() -> void:
 	# if a destination exists, go there
 	if DIR.room_exists(destination):
 		LTS.gate_id = gate_id

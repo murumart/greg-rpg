@@ -96,63 +96,6 @@ DIALOGUE diploma_crumpled
 	you make a little hat.
 
 
-DIALOGUE intro_grandma_1
-CHAR grandma
-	oh, hello there!
-	welcome to my [color=FLOWERCOLOR]flower shop[/color]!
-	take your time to browse the stock.
-	come back to me once you've made a choice!
-	don't be shy to ask questions if needed!
-
-
-DIALOGUE intro_grandma_2
-CHAR grandma
-	ah, you've made a choice?
-CHOICES bye,flowers,aboutyou,house
-	well? or do you need some other help?
-CHOICE_LINK bye
-	oh... i see you did not choose to buy anything.
-	but i hope to see you again soon! goodbye!
-CHOICE_LINK flowers
-	ah, need advice?
-	flowers are useful on many occasions!
-	different ones have different meanings, you know...
-	for example...
-	"yellow carnations" signal trust in someone.
-	a single "daffodil" wishes good luck!
-	"larkspurs" wish a clear mind!
-	"poppies" wish a long, energetic life!
-	"black roses" to wish for artistic inspiration!
-LOOP 1
-	well? eh? there's something here for any situation!
-CHOICE_LINK aboutyou
-	ah, it's good to see a new face in town...
-	it is not a lively one.
-	i've taken the job of the town's florist...
-	every town needs one, you see.
-	and this spot, this house...
-LOOP 1
-	it was made for me!
-CHOICE_LINK house
-	i bought this house recently. what a lovely spot!
-	the edge of the forest... what picturesque views.
-	the previous owners?
-	i'm sure they would be glad to have the house...
-	...not stay empty and decay.
-CHAR greg
-INSTASKIP
-	i think
-CHAR grandma
-	what? you say you lived in this house?
-	when you were a child?
-	and now you want it back?
-	have you gone mad?!
-	...
-	youth these days...
-	you ought to be taught a lesson!
-# she fights you
-
-
 DIALOGUE grandma_fight_1
 PORTRAIT_SCALE 1,4.895
 CHAR grandma
@@ -162,26 +105,15 @@ CHAR grandma
 DIALOGUE grandma_diploma_use
 CHAR grandma
 	a "diploma?"
-	i dig up these all around my garden all the time!
-	stop waving trash around my face! completely worthless!
-	anyway...
+	i dig these up all around my garden constantly!
+	completely worthless! stop waving trash around my face!
 
 
 DIALOGUE grandma_winner_hat_use
 CHAR grandma
-	oh, look, you found one of those "diplomas".
+	oh, look, you got one of those "diplomas".
 	i guess you found an actual use for it -
 	- a hat to look like an idiot! well done!
-
-
-DIALOGUE grandma_fight_end
-CHAR grandma
-	get off my floor! you're drooling all over it.
-	i didn't even push you that hard.
-	youth these days...
-	you should go and level up before you can get...
-	...what you want! that's how it works.
-	now get out.
 
 
 DIALOGUE intro_exit_explain
@@ -191,68 +123,68 @@ DIALOGUE intro_exit_explain
 
 DIALOGUE zerma_fight_preface
 CHAR zerma
-	oh dear... looks like you were just lifted out!
-	you must be very weak, greg, if that...
-	...old woman could do that to you.
-	you need to learn to fight...
-	to stand up for yourself...
-	greg...
-	would you like me... to teach you?
+	hahaha! wow!!
+	that old lady just kicked your ass! dude!
+	that's not even funny. you're a complete wimp.
+	looks like lil' old me will have to train you...
 CHOICES yes,no
-	teach you how to fight?
+	teach you how to fight...
 CHOICE_LINK yes
-	splendid! en guarde!
+	let's go!
 CHOICE_LINK no
-	oh... i guess... you can figure it out...
-	...by yourself... ... ...
-	i guess i'll get going now!
-	uh, bye!
+	...no? you don't want my tutorial?
+	i had all this dialogue prepared...
+	...for all of the wacky things you could do.
+	whatever, man! suit yourself!
+	i gotta get going, anyway.
 
 
 DIALOGUE zerma_fight_1
 CHAR zerma
 	welcome to the battle screen, greg!
-	you will be here a lot, so let's get acquainted.
+	let me tell you - you're gonna battle a lot.
+	so let's jump into the tutorial!
 	battles happen in turns!
 	faster fighters get to have more turns...
 	...that means they can act more often.
-	you, however, will always get the first strike.
-	your turn is coming! press the [color=SPIRITCOLOR]tussle[/color] button...
-	...and then select my name from the list.
+	you, however, can always act first! nifty!
+	your turn is coming up! press the [color=SPIRITCOLOR]tussle[/color] button...
+	...and then select my name from the list - to attack me!
 	(my name is zeremy.)
 
 
 DIALOGUE zerma_fight_2_attack_zerma
 CHAR zerma
-	well done! that almost hurt!
-	don't worry, you will learn to be more violent...
-	...as you grow more experienced!
-	my turn!
+	nice going, dude! that almost hurt!
+	don't worry, violence is a learned behavior!
+	you're gonna hit harder as you level up.
+	okay, my turn!
 
 
 DIALOGUE zerma_fight_2_he_attacks
 CHAR zerma
 	sorry, all part of the learning process!
-	you're hurt, so why don't you heal?
+	you're hurt now, so let's try healing!
 	press the [color=SPIRITCOLOR]object[/color] button...
 	...and use a healing item on yourself!
-	there's surely something in your pockets.
+	there's gotta be something useful in your pockets.
 
 
 DIALOGUE zerma_fight_2_attack_greg
 CHAR zerma
-	oh! yikes! don't hit yourself!
+	dude?? don't hit yourself!
 	what are you doing!?
-	please, try to attack enemies...
-	no, you are not your own enemy.
+	you have to defeat the enemies!
+	can't do that like that.
+	no, you are not your own enemy!
 	you can do it...
 
 
 DIALOGUE zerma_fight_2_spirit_fail_
 CHAR zerma
 	yeah, you don't know how to catch spirits yet!
-	i will teach you in due time.
-	try attacking me!
+	i will teach you in a sec!
+	try attacking me now!
 
 
 DIALOGUE zerma_fight_2_else
@@ -272,26 +204,26 @@ CHAR zerma
 DIALOGUE zerma_fight_3_item_greg_pocket_candy
 CHAR zerma
 	you're a natural! ahaha!
-	here comes your next lesson.
+	here comes the next lesson.
 	see that big [color=SPIRITCOLOR]spirit[/color] button?
 SPEED 1.5
 	press it and [color=#ff00ff]select me[/color].
 SPEED 1
-	you need to chant the name of the spirit...
-	...whom you want to summon to be used!
+	and prepare to chant the name of a spirit!
+	that's how you summon and use them.
 	do you understand?
-	you must type the name of the spirit.
-	and you must be quick! spirits are fickle...
-	the spirit whom you must call is known as...
+	you gotta type the name of the spirit. use your keyboard!
+	and you hafta be quick! spirits are fickle...
+	so, the only spirit you know right now is...
 	[color=SPIRITCOLOR]sideeye[/color].
 	do you understand...?
 	just... type [color=SPIRITCOLOR]sideeye[/color] when you can!
-	good luck!
+	you can do it, greg!
 
 
 DIALOGUE zerma_fight_3_item_zerma_pocket_candy
 CHAR zerma
-	no... use the healing item on yourself.
+	no!! use the healing item on yourself!
 	don't heal the enemy you're trying to defeat!
 	here, take another healing item.
 	use it on yourself!
@@ -303,7 +235,7 @@ ACTUALLY zerma_fight_3_else
 
 DIALOGUE zerma_fight_3_attack_zerma
 CHAR zerma
-	ow! wasn't prepared for that...
+	ow! scared me there!
 	uh, let me just disable... that.
 CHAR 
 	(he files your nails.)
@@ -311,7 +243,7 @@ CHAR
 
 DIALOGUE zerma_fight_3_attack_greg
 CHAR zerma
-	ahh! don't harm yourself!
+	stop hitting yourself!!
 	uh, let me just disable... that.
 CHAR 
 	(he files your nails.)
@@ -325,23 +257,16 @@ CHAR zerma
 
 DIALOGUE zerma_fight_4_spirit_zerma
 CHAR zerma
-	well done! what did it say? i'm curious.
+	well done! so, what did the spirit say? i'm curious.
 CHAR greg
 INSTASKIP
 	...it sa
 CHAR zerma
-	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
+	you saw how your magic [color=SPIRITCOLOR]spirit points[/color] decreased, right?
 	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
-	the spirits are kind enough to remind you of...
-	...their names and [color=SPIRITCOLOR]sp[/color] costs in their menu.
+	don't worry if you don't remember their names!
+	you can see that and their [color=SPIRITCOLOR]sp[/color] costs in their menu.
 	next up: status effects!
-#well!
-#this is actually all for now!
-#of course i could not teach you everything.
-#there are certainly more things to learn...
-#...but i trust in you to learn them yourself...
-#...as you progress!
-#nice battling you! you win!
 
 
 DIALOGUE zerma_fight_4_spirit_greg
@@ -349,10 +274,10 @@ CHAR zerma
 	you see, the spying spell would be more useful...
 	...when used on someone who you don't know!
 	but maybe you found out something new about yourself?
-	did you see how your magic [color=SPIRITCOLOR]spirit points[/color] decreased?
-	you can only use spirits when your [color=SPIRITCOLOR]sp[/color] is high enough.
-	the spirits are kind enough to remind you of...
-	...their names and [color=SPIRITCOLOR]sp[/color] costs in their menu.
+	you saw how your magic [color=SPIRITCOLOR]spirit points[/color] decreased, right?
+	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
+	don't worry if you don't remember their names!
+	you can see that and their [color=SPIRITCOLOR]sp[/color] costs in their menu.
 	next up: status effects!
 
 
@@ -366,14 +291,14 @@ ACTUALLY zerma_fight_3_attack_greg
 
 DIALOGUE zerma_fight_4_spirit_fail_
 CHAR zerma
-	oh dear, try again!
+	no, no, try again!
 	select me and type [color=SPIRITCOLOR]sideeye[/color]!
-	and be quick about it.
+	and do it quickly!
 
 
 DIALOGUE zerma_fight_4_else
 CHAR zerma
-	oh dear, that's not quite right.
+	no!! [incorrect buzzer noise]!! wrong!
 	the spirit button, greg!
 	select me and type [color=SPIRITCOLOR]sideeye[/color].
 
@@ -381,40 +306,40 @@ CHAR zerma
 DIALOGUE zerma_fight_4_status_effect
 CHAR zerma
 	you have a regeneration status effect now!
-	this one replenishes your health bit by bit...
+	it's gonna replenish your health bit by bit...
 	...every time you act in battle.
 	you can view your active status effects...
 	...by pressing '{ACTION_MENU}' in your main screen.
+	status effects don't do anything outside of battle!
 	try acting in any way to progress!
 
 
 DIALOGUE zerma_fight_5_else
 CHAR zerma
-	well done! that sure was an act.
-	finally, let's talk about [color=PURPLE]critical hits[/color].
-	occasionally during your fight, your enemy or you...
-	...will step into an advantageous position.
+	nicely done, greg! you're... awesome!!
+	last thing: let's talk about [color=PURPLE]critical hits[/color].
+	sometimes, as you fight, your enemy or you...
+	...will gain a critical hit against someone.
 	you can see that you have advantage...
 	...if someone's name becomes [color=GREEN]green[/color].
-	conversely, if someone gains advantage over you...
+	if someone gains advantage over you...
 	...their name will be [color=PURPLE]purple[/color] in menus.
-	attacking someone with a [color=GREEN]green[/color] name guarantees...
-	...that the strike will hurt painfully.
+	attacking someone with a [color=GREEN]green[/color] name ensures...
+	...that the strike will hurt like a devil!
 	someone with a [color=PURPLE]purple[/color] name attacking you...
-	i'll leave you to guess. better prepare then!
-	i'll step into a bad position, so you can see...
+	hahaha! guess what happens!
+	i'll give you a free crit on me, so you can see...
 	...what dealing a critical hit feels like.
 	attack me!
 
 
 DIALOGUE zerma_fight_6_attack_zerma
 CHAR zerma
-	owie!
-	well, there you have it! my tutorial.
-	i hope you enjoyed this one, remember to leave a...
-	...good review and to subscribe to my newsletter.
-	this is all for today! you can surely handle...
-	...anything they throw at you from now on!
+	ouchie wouchie!
+	well, there you have it, greg!! 
+	i hope you enjoyed my tutorial, remember to leave a...
+	...good review and to subscribe to my newsletter!
+	this is all for today!
 	you win!
 
 
@@ -431,8 +356,8 @@ CHAR zerma
 
 DIALOGUE zerma_after_fight
 CHAR zerma
-	that went well!
-	you must've noticed that you leveled up?
+	phew, what a battle!
+	you noticed that you leveled up, right?
 	as you get more experience, you get stronger.
 	and one day... you might even be able to take on...
 	that dastardly old woman.
@@ -442,11 +367,10 @@ CHAR zerma
 
 DIALOGUE zerma_goodbye
 CHAR zerma
-	no, greg, i will not take you with me.
-	you need to grow as a person...
-	or something like that.
+	no, greg, i can't take you with me.
+	you need to grow as a person, or something like that.
 	i'm getting the hell outta here!
-	oh, final thing.
+	hmmm... but you look so sad... i have an idea!
 	if you need help... try calling me!
 	maybe i can help!
 	here's a cell phone.

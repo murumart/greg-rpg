@@ -12,13 +12,21 @@ const FLOWERCOLOR := "#99ff61"
 @onready var zoom_gradient: TextureRect = $"../ZoomGradient"
 @onready var color_container: ColorContainer = $"../CanvasModulateGroup/ColorContainer"
 var initial_color: Color
+var got_to_talk: bool:
+	set(to):
+		DAT.set_data("inhouse_secondtalk", to)
+	get:
+		return DAT.get_data("inhouse_secondtalk", false)
 
 
 func _ready() -> void:
-	grandma.inspected.connect(initial_interaction)
-	$InteractionArea.interacted.connect(initial_interaction)
 	initial_color = color_container.color
-
+	if not got_to_talk:
+		grandma.inspected.connect(initial_interaction)
+		$InteractionArea.interacted.connect(initial_interaction)
+	else:
+		grandma.inspected.connect(second_interaction)
+		grandma.global_position = room_center.global_position + Vector2(room_center.gizmo_extents, 0)
 
 
 func initial_interaction() -> void:
@@ -130,6 +138,7 @@ func cs_talk_1() -> void:
 
 
 func cs_talk_2() -> void:
+	got_to_talk = true
 	var aval_choices := ["aboutyou", "aboutme", "house", "bye"]
 	var dlg := DialogueBuilder.new()
 	var about_talked := false
