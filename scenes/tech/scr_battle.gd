@@ -821,7 +821,7 @@ func _grant_rewards() -> void:
 
 
 func _check_on_bounties() -> void:
-	for k: String in PoliceStation.BOUNTY_CATCHES.keys():
+	for k: StringName in PoliceStation.TRACKED_BOUNTIES:
 		var notif_save_key := "bounty_" + k + "_notified"
 		if (not DAT.get_data(notif_save_key, false)
 				and PoliceStation.is_bounty_fulfilled(k)):

@@ -58,6 +58,7 @@
 		- [ ] Rotating bullet block
 		- [ ] Spew bullet block (just make all of them the same spanwer. copy it from that jam game)
 	- [ ] Display HP in top bar
+	- [ ] Display room interesting things in top bar
 	- [ ] Checkpoints
 	- [ ] Quest board UI
 		- [ ] you can give quests descriptions now

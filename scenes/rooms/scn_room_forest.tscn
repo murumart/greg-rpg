@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=22 format=4 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" uid="uid://dww2ebr18ffrx" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xshqe"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://di376kbtrdu7p" path="res://scenes/rooms/forest/scr_forest_hud.gd" id="7_yb0vi"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_d6fx5"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="12_mqh78"]
 
 [sub_resource type="Curve" id="Curve_g5h5i"]
 _limits = [0.0, 20.0, 0.0, 1.0]
@@ -341,3 +342,8 @@ text = "999"
 [node name="MessageContainer" parent="UI" instance=ExtResource("9_dsf2t")]
 life_time = 2.3
 metadata/_edit_lock_ = true
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("12_mqh78")
+level_gain = 72
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"

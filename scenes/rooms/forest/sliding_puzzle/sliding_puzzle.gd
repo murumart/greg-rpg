@@ -21,6 +21,7 @@ var pointer_position := Vector2i.ZERO
 
 var tiles: Array[TextureRect] = []
 var state := States.SOMETHING_ELSE
+var time := 0.0
 
 
 func _ready() -> void:
@@ -35,8 +36,15 @@ func _ready() -> void:
 	state = States.PLAYING
 
 
+func _process(delta: float) -> void:
+	time += delta
+
+
 func _unhandled_key_input(_event: InputEvent) -> void:
 	if not state == States.PLAYING:
+		return
+	if Input.is_action_just_pressed("cancel") and time > 1.0:
+		_lose()
 		return
 	_select_tiles()
 	_move_tiles()
@@ -60,9 +68,6 @@ func _select_tiles() -> void:
 
 
 func _move_tiles() -> void:
-	if Input.is_action_just_pressed("cancel"):
-		_lose()
-		return
 	if Input.is_action_just_pressed("ui_accept"):
 		var direction := _get_tile_move_direction(pointer_position)
 		if direction == Vector2i.ZERO:
