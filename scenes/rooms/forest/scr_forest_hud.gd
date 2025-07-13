@@ -93,12 +93,14 @@ func update_greebles_display() -> void:
 	var board: bool = forest.current_room % ForestGenerator.BOARD_INTERVAL == 0
 	var greenhouse: bool = forest.current_room % ForestGenerator.GREENHOUSE_INTERVAL == 0 and forest.current_room >= 2
 	var enemies: int = get_tree().get_node_count_in_group("forest_enemies")
+	var hazards: int = get_tree().get_node_count_in_group("forest_hazards")
 
 	_right_greeble(trash_greeble, trash)
 	_right_greeble(question_greeble, curiosities)
 	_right_greeble(board_greeble, int(board))
 	_right_greeble(greenhouse_greeble, int(greenhouse))
 	_right_greeble(enemy_greeble, enemies)
+	_right_greeble(hazard_greeble, hazards)
 
 
 func _right_greeble(key: TextureRect, amt: int) -> void:

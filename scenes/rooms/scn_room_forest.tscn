@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=32 format=4 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" uid="uid://dww2ebr18ffrx" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xshqe"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://di376kbtrdu7p" path="res://scenes/rooms/forest/scr_forest_hud.gd" id="7_yb0vi"]
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="8_d6fx5"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
+[ext_resource type="PackedScene" uid="uid://bsfbdos2ow8xt" path="res://scenes/tech/player_hit_area.tscn" id="9_vjkwb"]
+[ext_resource type="Script" uid="uid://batwscwrsgd1b" path="res://scenes/tech/scr_battle_actor.gd" id="10_ni3vs"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="12_mqh78"]
 
 [sub_resource type="Curve" id="Curve_g5h5i"]
@@ -220,6 +222,13 @@ limit_left = -288
 limit_top = -256
 limit_right = 288
 limit_bottom = 256
+
+[node name="HitArea" parent="Greg" instance=ExtResource("9_vjkwb")]
+
+[node name="GregActor" type="Node2D" parent="Greg"]
+position = Vector2(0, -10)
+script = ExtResource("10_ni3vs")
+metadata/_custom_type_script = "uid://batwscwrsgd1b"
 
 [node name="Gates" type="Node2D" parent="."]
 

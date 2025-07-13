@@ -41,10 +41,4 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(target):
 			print("no target")
 			return
-		for __ in bullets:
-			var rb := RoseBullet.create()
-			add_sibling(rb)
-			rb.global_position = global_position
-			rb.direction = global_position.direction_to(target.global_position)
-			rb.direction = rb.direction.rotated(deg_to_rad(randf_range(-20, 20)))
-			rb.direction *= flower_speed
+		RoseBullet.splort(bullets, get_parent(), target.global_position, flower_speed)

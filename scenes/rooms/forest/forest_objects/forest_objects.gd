@@ -94,6 +94,12 @@ const DB = {
 		WEIGHT: 70,
 		FUNCTION: &"_connect_poles",
 	},
+	&"bird_hazard": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/bird_hazard.tscn"),
+		SIZE: Vector2i(1, 1),
+		WEIGHT: 7000,
+		LIMIT: 1,
+	},
 }
 
 

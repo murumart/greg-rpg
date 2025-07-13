@@ -77,6 +77,10 @@ folder_colors={
 import/blender/enabled=false
 import/fbx/enabled=false
 
+[global_group]
+
+forest_hazards=""
+
 [gui]
 
 theme/custom="res://resources/thm_main_ui.tres"
@@ -217,7 +221,7 @@ small_screenshot={
 2d_physics/layer_2="player"
 2d_physics/layer_3="player_interactable"
 2d_physics/layer_4="npc"
-2d_physics/layer_5="biking_obstacle"
+2d_physics/layer_5="player_hurter"
 2d_physics/layer_6="biking_mail"
 2d_physics/layer_7="phone_area"
 2d_physics/layer_9="gdung enemy physics"

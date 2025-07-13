@@ -1,19 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbas43xc8v0x7"]
+[gd_scene load_steps=5 format=3 uid="uid://cbas43xc8v0x7"]
 
 [ext_resource type="Script" uid="uid://b3uiqfbr2yi1t" path="res://scenes/characters/battle_enemies/woods_guy_fight/rose_bullet.gd" id="1_ufviu"]
 [ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="2_106p3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_106p3"]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
 radius = 3.0
 
 [node name="RoseBullet" type="Area2D"]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_ufviu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_106p3")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="Sprite"]
+self_modulate = Color(1, 1, 1, 0.266667)
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_106p3")
+position = Vector2(-5, -5)
+scale = Vector2(1.375, 1.375)
+texture = ExtResource("2_106p3")
+centered = false
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 

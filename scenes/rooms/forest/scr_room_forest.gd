@@ -5,6 +5,9 @@ const HudType := preload("res://scenes/rooms/forest/scr_forest_hud.gd")
 var greenhouse: ForestGenerator.GreenhouseType = null
 
 @onready var greg := $Greg as PlayerOverworld
+@onready var greg_actor: BattleActor = $Greg/GregActor
+@onready var hit_area: Area2D = $Greg/HitArea
+
 @onready var paths: TilemapLayerParent = $Tilemaps/Paths
 var enabled_layer := 0
 
@@ -23,6 +26,9 @@ var questing: ForestQuesting
 
 func _ready() -> void:
 	super._ready()
+	greg_actor.character = ResMan.get_character("greg")
+	hit_area.area_entered.connect(_hit)
+	greg_actor.died.connect(_hurt_died.unbind(1))
 	if not DAT.get_data("forest_questing", null):
 		DAT.set_data("forest_questing", ForestQuesting.new())
 	if DAT.get_data("forest_save", {}).is_empty():
@@ -82,6 +88,19 @@ func leave() -> void:
 	LTS.gate_id = &"forest-house"
 	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn",
 			{"ask_save_confirmation": true})
+
+
+func _hit(hurter: Area2D) -> void:
+	greg_actor.hurt(20, Genders.NONE)
+	hud.update_exp_display()
+
+
+func _hurt_died() -> void:
+	DAT.capture_player("death")
+	greg.rotate(PI * 0.5)
+	SND.play_song("", 99)
+	await Math.timer(1.0)
+	LTS.to_game_over_screen()
 
 
 func _save_me() -> void:

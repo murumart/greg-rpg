@@ -5,10 +5,7 @@
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="3_3wbfi"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="3_yuoru"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_yuoru"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yuoru"]
-radius = 2.0
-height = 6.0
+[ext_resource type="PackedScene" uid="uid://bsfbdos2ow8xt" path="res://scenes/tech/player_hit_area.tscn" id="6_7lfy5"]
 
 [node name="WoodsGuy" type="Node2D"]
 script = ExtResource("1_vs3ya")
@@ -40,13 +37,6 @@ collision_mask = 1
 saving_disabled = true
 menu_disabled = true
 
-[node name="HitArea" type="Area2D" parent="Battle/Greg"]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle/Greg/HitArea"]
-position = Vector2(0, -3)
-shape = SubResource("CapsuleShape2D_yuoru")
+[node name="HitArea" parent="Battle/Greg" instance=ExtResource("6_7lfy5")]
 
 [editable path="Battle/Greg"]

@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbbuhjlfppnwq"]
+
+[ext_resource type="Script" uid="uid://cw7khm5jf2uhn" path="res://scenes/rooms/forest/forest_objects/bird_hazard.gd" id="1_xfo64"]
+[ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_hbmky"]
+[ext_resource type="AudioStream" uid="uid://d0hdnl64at3ls" path="res://sounds/birdflap.ogg" id="3_xfo64"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xfo64"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyxes"]
+atlas = ExtResource("2_hbmky")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="Curve" id="Curve_xfo64"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0424078, 1), 0.0, 0.0, 0, 0, Vector2(0.870585, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vyxes"]
+width = 64
+curve = SubResource("Curve_xfo64")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vyxes"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 22.84
+spread = 180.0
+initial_velocity_min = -40.0
+angular_velocity_min = -12.41
+angular_velocity_max = 16.55
+orbit_velocity_min = -0.31
+orbit_velocity_max = 0.0580001
+radial_velocity_min = -3.00002
+radial_velocity_max = 18.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -2.23517e-06
+tangential_accel_min = -18.96
+tangential_accel_max = 2.88
+damping_min = 18.678
+damping_max = 37.644
+scale_curve = SubResource("CurveTexture_vyxes")
+anim_speed_min = 6.28
+anim_speed_max = 8.76
+turbulence_noise_strength = 15.31
+turbulence_noise_scale = 0.942
+turbulence_noise_speed = Vector3(25.685, 0, 0)
+turbulence_influence_min = 1.0
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_min = -2.5
+turbulence_initial_displacement_max = 2.2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vyxes"]
+random_pitch = 2.0
+random_volume_offset_db = 4.0
+streams_count = 1
+stream_0/stream = ExtResource("3_xfo64")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xfo64"]
+radius = 62.1691
+
+[node name="BirdHazard" type="Node2D" groups=["forest_hazards"]]
+script = ExtResource("1_xfo64")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+self_modulate = Color(0.402213, 0.402213, 0.402213, 1)
+material = SubResource("CanvasItemMaterial_xfo64")
+amount = 5
+texture = SubResource("AtlasTexture_vyxes")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_vyxes")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xfo64")
+amount = 12
+texture = SubResource("AtlasTexture_vyxes")
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_vyxes")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vyxes")
+volume_db = 2.0
+max_distance = 234.0
+attenuation = 2.0
+max_polyphony = 12
+
+[node name="Timer" type="Timer" parent="AudioStreamPlayer2D"]
+wait_time = 0.11
+autostart = true
+
+[node name="PlayerAra" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAra"]
+shape = SubResource("CircleShape2D_xfo64")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AudioStreamPlayer2D/Timer" to="AudioStreamPlayer2D" method="play"]

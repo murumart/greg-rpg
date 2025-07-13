@@ -108,7 +108,7 @@ script = ExtResource("1_1utea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-19.6326, 0)
+position = Vector2(5.93824, 0)
 texture = ExtResource("1_x4xgy")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
@@ -138,7 +138,7 @@ max_value = 32.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -148,7 +148,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D2" type="Area2D" parent="Sprite2D"]
 position = Vector2(9.83016, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -158,7 +158,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D3" type="Area2D" parent="Sprite2D"]
 position = Vector2(-9.65842, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -168,7 +168,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D4" type="Area2D" parent="Sprite2D"]
 position = Vector2(-19.5134, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -178,7 +178,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D5" type="Area2D" parent="Sprite2D"]
 position = Vector2(19.0404, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -188,7 +188,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D6" type="Area2D" parent="Sprite2D"]
 position = Vector2(4.95967, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -198,7 +198,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D7" type="Area2D" parent="Sprite2D"]
 position = Vector2(14.7898, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -208,7 +208,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D8" type="Area2D" parent="Sprite2D"]
 position = Vector2(-4.69876, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -218,7 +218,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D9" type="Area2D" parent="Sprite2D"]
 position = Vector2(-14.5538, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -228,7 +228,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D10" type="Area2D" parent="Sprite2D"]
 position = Vector2(24, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -238,7 +238,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D11" type="Area2D" parent="Sprite2D"]
 position = Vector2(-3.58748, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -248,7 +248,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D12" type="Area2D" parent="Sprite2D"]
 position = Vector2(6.24268, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -258,7 +258,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D13" type="Area2D" parent="Sprite2D"]
 position = Vector2(-13.2459, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -268,7 +268,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D14" type="Area2D" parent="Sprite2D"]
 position = Vector2(-23.1009, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 
@@ -278,7 +278,7 @@ shape = SubResource("RectangleShape2D_ibd47")
 
 [node name="Area2D15" type="Area2D" parent="Sprite2D"]
 position = Vector2(15.4529, 0)
-collision_layer = 4
+collision_layer = 16
 collision_mask = 0
 monitoring = false
 

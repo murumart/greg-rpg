@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dha4afjf0xt7t"]
 
-[ext_resource type="Script" uid="uid://b3uiqfbr2yi1t" path="res://scenes/characters/battle_enemies/woods_guy_fight/rose_bullet.gd" id="1_fnjvn"]
+[ext_resource type="Script" uid="uid://bxkykctmdyl8l" path="res://scenes/characters/battle_enemies/woods_guy_fight/bird_bullet.gd" id="1_y02p6"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_fnjvn"]
 [ext_resource type="Texture2D" uid="uid://btvgtu24mmlud" path="res://sprites/vfx/feather.png" id="3_y02p6"]
 [ext_resource type="AudioStream" uid="uid://bgpi8xbpgxsdn" path="res://sounds/bump.ogg" id="4_y02p6"]
@@ -147,13 +147,11 @@ scale_curve = SubResource("CurveTexture_6ybi2")
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
 radius = 3.0
 
-[node name="RoseBullet" type="Area2D" node_paths=PackedStringArray("line", "audio")]
-collision_layer = 4
+[node name="RoseBullet" type="Area2D"]
+collision_layer = 16
 collision_mask = 0
 monitoring = false
-script = ExtResource("1_fnjvn")
-line = NodePath("Line")
-audio = NodePath("AudioStreamPlayer")
+script = ExtResource("1_y02p6")
 
 [node name="Line" type="Line2D" parent="."]
 material = SubResource("CanvasItemMaterial_y02p6")
@@ -194,8 +192,9 @@ shape = SubResource("CircleShape2D_2v3to")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.6, 0.6)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="WarningAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_y02p6")
+volume_db = -7.0
 pitch_scale = 9.46
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]
