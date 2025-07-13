@@ -1,4 +1,4 @@
 - [ ] Interaction areas dont work
 	- [ ] bird in town
 	- [ ] house doors
-- [ ] 
+- [ ] displays float in battle status effect menu

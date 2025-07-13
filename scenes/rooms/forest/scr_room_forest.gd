@@ -87,41 +87,41 @@ func leave() -> void:
 func _save_me() -> void:
 	if LTS.gate_id == LTS.GATE_ENTER_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
 		#print(" --- forest saving data!")
-		var forest_save := {}
+		var forest_save: Dictionary = DAT.get_data("forest_save", {})
 		var trees_dict := {}
 		var bins_dict := {}
 		var greenhouse_dict := {
-			"exists": (current_room % ForestGenerator.GREENHOUSE_INTERVAL == 0
-					and current_room > 3),
-			"has_vegetables": greenhouse.has_vegetables if greenhouse else false
+			&"exists": (current_room % ForestGenerator.GREENHOUSE_INTERVAL == 0
+					and current_room > 2),
+			&"has_vegetables": greenhouse.has_vegetables if greenhouse else false
 		}
 		var board_dict := {
-			"exists": current_room % ForestGenerator.BOARD_INTERVAL == 0,
-			"position": get_tree().get_first_node_in_group(
-					"forest_quest_boards").global_position
+			&"exists": current_room % ForestGenerator.BOARD_INTERVAL == 0,
+			&"position": get_tree().get_first_node_in_group(
+					&"forest_quest_boards").global_position
 							if current_room % ForestGenerator.BOARD_INTERVAL == 0
 							else null
 		}
 		var objects_dict := generator.generated_objects
-		for tree in get_tree().get_nodes_in_group("trees"):
+		for tree in get_tree().get_nodes_in_group(&"trees"):
 			tree = tree as TreeDecor
 			trees_dict[tree.global_position] = tree.type
-		for bin in get_tree().get_nodes_in_group("forest_bins"):
+		for bin in get_tree().get_nodes_in_group(&"forest_bins"):
 			bin = bin as TrashBin
 			bins_dict[bin.global_position] = {
-				"item": bin.item,
-				"silver": bin.silver,
-				"full": bin.full
+				&"item": bin.item,
+				&"silver": bin.silver,
+				&"full": bin.full
 			}
 			bin.replenish_seconds = -1
-		forest_save = {
-			"layout": enabled_layer,
-			"pscale": paths.scale,
-			"room_nr": current_room,
-			"trees": trees_dict,
-			"bins": bins_dict,
-			"greenhouse": greenhouse_dict,
-			"objects": objects_dict,
-			"board": board_dict,
-		}
-		DAT.set_data("forest_save", forest_save)
+		forest_save.merge({
+			&"layout": enabled_layer,
+			&"pscale": paths.scale,
+			&"room_nr": current_room,
+			&"trees": trees_dict,
+			&"bins": bins_dict,
+			&"greenhouse": greenhouse_dict,
+			&"objects": objects_dict,
+			&"board": board_dict,
+		}, true)
+		DAT.set_data(&"forest_save", forest_save)

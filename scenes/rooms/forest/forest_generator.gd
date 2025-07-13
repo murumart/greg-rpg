@@ -358,7 +358,8 @@ func _delete_item_on_pickup(a: PickableItem) -> void:
 
 const PizzleColumn = preload("res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd")
 func _connect_pizzle_finish(a: PizzleColumn) -> void:
-	a.add_to_group("forest_curiosities")
+	if not a.played:
+		a.add_to_group("forest_curiosities")
 	a.finished.connect(forest.hud.update_exp_display)
 	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
 

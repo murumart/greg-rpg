@@ -45,7 +45,7 @@ func _play_game() -> void:
 
 
 func _key() -> String:
-	return "pizzle_column_" + name + str(DAT.get_data("forest_depth", 0)) + "_played"
+	return "pizzle_column_" + str(DAT.get_data("forest_depth", 0)) + "_played"
 
 
 func _pick_item(puzzle: SlidingPuzzle) -> void:
