@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm50hcqbtdc1q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75fq"]
+bg_color = Color(0.329412, 0.164706, 0.329412, 1)
+expand_margin_top = 1.0
+
+[node name="Header" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "quests"
+horizontal_alignment = 1
+justification_flags = 162
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_a75fq")

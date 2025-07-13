@@ -86,7 +86,8 @@ func _on_popo_1_interact_on_interact() -> void:
 
 
 func _bounty_interacted() -> void:
-	var quests: Array[BountyBoard.Quest] = []
+	var quests: Array[BountyBoard.QuestListElement] = []
+	quests.append(BountyBoard.QuestListElement.new("bounties"))
 	for b: StringName in TRACKED_BOUNTIES:
 		if TRACKED_BOUNTIES[b].get(&"hidden", false) and not is_bounty_fulfilled(b):
 			continue
@@ -95,14 +96,17 @@ func _bounty_interacted() -> void:
 				else TRACKED_BOUNTIES[b][&"name"],
 			TRACKED_BOUNTIES[b][&"description"],
 			get_bounty_progress(b),
-			get_bounty_required(b))
+			get_bounty_required(b),
+			null,
+			true)
 		quests.append(q)
-	var bb := BountyBoard.make(quests)
+	var bb := BountyBoard.make()
 	bb.close_requested.connect(func() -> void:
 		bb.queue_free()
 		DAT.free_player("bounty")
 	)
 	SOL.add_ui_child(bb)
+	bb.fill(quests)
 	bb.title_label.text = "bounty board"
 	DAT.capture_player("bounty")
 
