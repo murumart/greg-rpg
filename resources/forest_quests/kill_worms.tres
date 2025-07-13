@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_q5wwt")
 name = "mole"
+description = "stop the worms from eating trees! reward for killing a worm!"
 data_key = &"killed_worm"
 completion_value = 1
 completion_signal = &""

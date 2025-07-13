@@ -44,9 +44,9 @@ color = Color(0, 0, 0, 0.396078)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.025
-anchor_top = 0.0166667
+anchor_top = 0.0416667
 anchor_right = 0.975
-anchor_bottom = 0.966667
+anchor_bottom = 0.991667
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_lm6ru")
@@ -102,6 +102,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="TitleLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -114,24 +115,25 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="QuestsPanel" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lm6ru")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuestsPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="QuestList" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ScrollContainer"]
+[node name="QuestList" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuestsPanel/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
-[node name="Header" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ScrollContainer/QuestList" instance=ExtResource("4_vltfb")]
+[node name="Header" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuestsPanel/ScrollContainer/QuestList" instance=ExtResource("4_vltfb")]
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -154,7 +156,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "select a quest..."
+text = "no quests available or undertaken."
 
 [node name="DescriptionAutoscroll" type="Node" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/DescriptionText" node_paths=PackedStringArray("target")]
 unique_name_in_owner = true
@@ -162,24 +164,25 @@ script = ExtResource("2_xqogb")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://5ft3meh2ry86"
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList"]
+[node name="ProgressPanel" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lm6ru")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/ProgressPanel"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/ProgressPanel/VBoxContainer"]
 layout_mode = 2
 text = "progress"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/ProgressPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/ProgressPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
@@ -187,8 +190,9 @@ size_flags_horizontal = 3
 theme_override_styles/fill = SubResource("StyleBoxFlat_xqogb")
 max_value = 1.0
 
-[node name="ClaimButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ClaimButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/InfoList/ProgressPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 text = "claim reward"

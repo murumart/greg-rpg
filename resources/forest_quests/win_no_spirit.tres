@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_jr6pv")
 name = "secularist"
+description = "challenge: win a battle without needing any of those stinking spirits... you can never trust them!"
 data_key = &"win_battle_no_spirit"
 completion_value = 1
 completion_signal = &""

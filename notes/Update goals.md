@@ -23,8 +23,10 @@
 		- [ ] Mafia talking
 		- [ ] win condition: get to the bottom
 		- [ ] lose condition: die (you die)
-- [x] Intro changes
-	- [x] Ride around town
+- [ ] Intro changes
+	- [ ] Ride around town
+		- [ ] pan around town as the car moves, don't follow it
+		- [ ] wait on a black screen if dialogue isn't complete
 	- [x] Better interior for house
 	- [x] Initial interaction cutscene
 		- [x] Make her static at first

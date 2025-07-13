@@ -203,6 +203,7 @@ func bin_loot(bin: TrashBin) -> void:
 
 
 func gen_enemies() -> void:
+	if forest.current_room < 1: return
 	var enemy_count := clampi(forest.current_room / 5, 1, 12)
 	for i in enemy_count:
 		var enemy := ENEMY.instantiate()

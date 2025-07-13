@@ -7,6 +7,7 @@ const SCN_REFERENCE_BUTTON = preload("res://scenes/tech/scn_reference_button.tsc
 const SCN_QUEST_SEPARATOR = preload("res://scenes/gui/scn_quest_separator.tscn")
 
 signal close_requested
+signal quest_activated(q: Quest)
 
 @onready var quest_list: VBoxContainer = %QuestList
 @onready var description_text: RichTextLabel = %DescriptionText
@@ -33,8 +34,8 @@ func fill(quests: Array[QuestListElement]) -> QuestBoard:
 func _buttons() -> void:
 	for q in quest_list.get_children():
 		q.free()
-	if _quests.is_empty():
-		return
+	%QuestsPanel.visible = not _quests.is_empty()
+	%ProgressPanel.visible = not _quests.is_empty()
 	for q in _quests:
 		if q is Quest:
 			var rb := SCN_REFERENCE_BUTTON.instantiate()
@@ -88,8 +89,7 @@ func _claim_pressed(q: Quest) -> void:
 
 
 func _quest_started(q: Quest) -> void:
-	q.ongoiong = true
-	fill(_quests)
+	quest_activated.emit(q)
 
 
 func _quest_button_pressed() -> void:

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ukt5k")
 name = "poacher"
+description = "these rare animals stalk around ponds! kill it to hear a funny sound!"
 data_key = &"killed_strider"
 completion_value = 1
 completion_signal = &""

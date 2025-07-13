@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_dcaod")
 name = "salvager"
+description = "clean up the woods! take away more trash than you bring in!"
 data_key = &"trashcans_emptied"
 completion_value = 3
 completion_signal = &""

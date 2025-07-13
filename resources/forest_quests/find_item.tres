@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_5a4fd")
 name = "detective"
+description = "missing item! last seen: in trash"
 data_key = &"find "
 completion_value = 1
 completion_signal = &""

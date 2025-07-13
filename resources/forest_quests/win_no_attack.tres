@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_2vug6")
 name = "pacifist"
+description = "challenge: win a battle without laying a finger on the enemy! of course, other sources of damage still exist..."
 data_key = &"win_battle_no_attack"
 completion_value = 1
 completion_signal = &""

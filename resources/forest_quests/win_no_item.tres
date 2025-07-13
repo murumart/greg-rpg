@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_4xld8")
 name = "hoarder"
+description = "challenge: win a battle without using any items!"
 data_key = &"win_battle_no_item"
 completion_value = 1
 completion_signal = &""

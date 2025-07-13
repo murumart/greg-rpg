@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_8eowu")
 name = "golddigger"
+description = "aardvarks are abundant! annihilate appropriate animals."
 data_key = &"killed_aardvark"
 completion_value = 1
 completion_signal = &""

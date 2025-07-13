@@ -16,3 +16,4 @@
 	- [ ] put boot in trash can
 	- [ ] rebind screenshit
 - [ ] change greandma green dialo
+- [ ] lore: last 2 police bounties from grandma

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_5poxq")
 name = "birdhunter"
+description = "missing: pet lizard! last seen: carried away by stupid birds!"
 data_key = &"killed_freebird"
 completion_value = 1
 completion_signal = &""

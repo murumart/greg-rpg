@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_xflk6")
 name = "foxhunter"
+description = "sick animals are running around! reward for \"doctors\" who \"cure\"  foxes."
 data_key = &"killed_fox"
 completion_value = 1
 completion_signal = &""

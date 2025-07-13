@@ -1,6 +1,7 @@
 class_name ForestQuest extends Resource
 
 @export var name := ""
+@export_multiline var description := ""
 @export var data_key := &""
 @export var completion_value: int
 @export var completion_signal := &""
@@ -12,6 +13,12 @@ class_name ForestQuest extends Resource
 func start() -> Active:
 	var acc := Active.new(self)
 	return acc
+
+
+func get_long_description() -> String:
+	return (description + "\n"
+		+ data_key.replace("_", " ") + ": " + str(completion_value)
+		+ "\n" + "reward: " + str(glass_reward) + " glass")
 
 
 func _to_string() -> String:
@@ -28,8 +35,7 @@ class Active:
 	var _completed := false # set by signal
 
 
-	func _init(
-			_quest_reference: ForestQuest) -> void:
+	func _init(_quest_reference: ForestQuest) -> void:
 		data_key = _quest_reference.data_key
 		completion_value = _quest_reference.completion_value + DAT.get_data(data_key, 0)
 		quest_reference = _quest_reference

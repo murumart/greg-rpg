@@ -1,32 +1,57 @@
 @tool
 extends InteractionArea
 
+const QuestBoard = preload("res://scenes/gui/scr_bounty_board.gd")
+
 var level := 1.0
 var questing: ForestQuesting = null
 
 
 func on_interaction() -> void:
 	super()
-	if questing.available_quests_generated:
-		if questing.available_quests.is_empty():
-			SOL.dialogue_box.adjust("quest_board", 3, "choices",
-					["active", "leave"])
-	else:
+
+	var qb := QuestBoard.make()
+	qb.close_requested.connect(func() -> void:
+		qb.queue_free()
+		DAT.free_player("board")
+	)
+	DAT.capture_player("board")
+	SOL.add_ui_child(qb)
+
+	if not questing.available_quests_generated:
 		_generate_quests()
-	SOL.dialogue("quest_board")
-	SOL.dialogue_closed.connect(_choosed, CONNECT_ONE_SHOT)
-	# DEBUG
-	#for x in 30:
-		#_generate_quests()
-		#level += 1
-		#print(questing.available_quests)
-		#print(level, "\n")
-		#questing.available_quests.clear()
+
+	var quests: Array[QuestBoard.QuestListElement] = []
+	if not questing.available_quests.is_empty():
+		quests.append(QuestBoard.QuestListElement.new("available"))
+		for q in questing.available_quests:
+			var qu := QuestBoard.Quest.new(
+				q.name, q.get_long_description(),
+				0, q.completion_value,
+				null, false
+			)
+			qu.set_meta("quest_object", q)
+			quests.append(qu)
+	if not questing.active_quests.is_empty():
+		quests.append(QuestBoard.QuestListElement.new("active"))
+		for q in questing.active_quests:
+			quests.append(QuestBoard.Quest.new(
+				q.quest_reference.name,
+				q.quest_reference.get_long_description(),
+				q.quest_reference.completion_value - q.get_remaining(),
+				q.quest_reference.completion_value,
+				null, true
+			))
+
+	qb.quest_activated.connect(func(q: QuestBoard.Quest) -> void:
+		questing.start_quest(q.get_meta("quest_object"))
+		qb.close_requested.emit()
+		#on_interaction.call_deferred()
+	)
+	qb.fill(quests)
 
 
 func _generate_quests() -> void:
-	SOL.dialogue_box.adjust("quest_board", 3, "choices",
-			["quests", "active", "leave"])
 	var quest_names := {}
 	var tries := 0
 	var quests := ResMan.forest_quests
@@ -52,80 +77,6 @@ func _generate_quests() -> void:
 			quest.glass_reward = maxi(reward_desired, reward)
 		questing.available_quests.append(quest)
 		questing.available_quests_generated = true
-
-
-func _choosed() -> void:
-	match SOL.dialogue_choice:
-		&"quests":
-			var list: ScrollContainer = SOL.get_node(
-					"DialogueBox/DialogueBoxPanel/ScrollContainer")
-			list.size = Vector2(80, 35)
-			#list.position = Vector2(67, -60)
-			var choices := PackedStringArray()
-			choices.append("nvm")
-			for q in questing.available_quests:
-				choices.append(q.name)
-			SOL.dialogue_box.adjust("quest_board_available_quests",
-					0, "choices", choices)
-			SOL.dialogue("quest_board_available_quests")
-			SOL.dialogue_closed.connect(_chose_quest_display, CONNECT_ONE_SHOT)
-		&"active":
-			var lines: Array[DialogueLine] = []
-			var start_line := DialogueLine.new()
-			start_line.text = "these are your active quests:"
-			lines.append(start_line)
-			if questing.active_quests.is_empty():
-				SOL.dialogue("quest_board_active_empty")
-				return
-			for q: ForestQuest.Active in questing.active_quests:
-				if not q:
-					continue
-				var line := DialogueLine.new()
-				line.text = str(q)
-				line.choices = ["ok", "cancel"]
-				lines.append(line)
-			SOL.dialogue_box.adjust_dial("quest_board_active", "lines", lines)
-			SOL.dialogue("quest_board_active")
-			SOL.dialogue_box.finished_speaking.connect(_active_line_finished)
-			SOL.dialogue_closed.connect(func():
-				var dbox := SOL.dialogue_box as DialogueBox
-				if dbox.finished_speaking.is_connected(self._active_line_finished):
-					dbox.finished_speaking.disconnect(self._active_line_finished)
-			, CONNECT_ONE_SHOT)
-
-
-func _chose_quest_display() -> void:
-	var list: ScrollContainer = SOL.get_node("DialogueBox/DialogueBoxPanel/ScrollContainer")
-	list.size = Vector2(40, 35)
-	#list.position = Vector2(98, -35)
-	if SOL.dialogue_choice == &"nvm":
-		return
-	var quest := get_quest_by_name(SOL.dialogue_choice)
-	SOL.dialogue_box.dial_concat(
-			"quest_details", 0,
-			[str(quest)])
-	SOL.dialogue("quest_details")
-	SOL.dialogue_closed.connect(func():
-		if SOL.dialogue_choice == &"yes":
-			questing.start_quest(quest)
-		elif SOL.dialogue_choice == &"no":
-			SOL.dialogue_choice = &"quests"
-			_choosed()
-	, CONNECT_ONE_SHOT)
-
-
-func get_quest_by_name(q_name: String) -> ForestQuest:
-	return questing.available_quests.filter(
-			func(a):
-				return (a as ForestQuest).name == q_name
-	)[0]
-
-
-func _active_line_finished(line: int) -> void:
-	if not questing.active_quests.is_empty():
-		#print(" --- quest in question: " + str(questing.active_quests[line - 1]))
-		if SOL.dialogue_choice == &"cancel":
-			questing.active_quests[line - 1] = null # starting at explanatory line 0
 
 
 func _quest_generation_special(quest: ForestQuest) -> bool:

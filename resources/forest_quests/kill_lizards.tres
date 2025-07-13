@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_lm5fx")
 name = "dogfighter"
+description = "help quell lizard overpopulation!"
 data_key = &"killed_wild_lizard"
 completion_value = 1
 completion_signal = &""

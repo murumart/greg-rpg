@@ -7,11 +7,11 @@ const STATUS_EFFECT_TYPE_PATH := "res://resources/status_effect_types/res_%s.tre
 const FOREST_QUEST_PATH := "res://resources/forest_quests/%s.tres"
 
 static var resources_loaded := false
-static var items := {}
-static var spirits := {}
-static var characters := {}
-static var status_effect_types := {}
-static var forest_quests := {}
+static var items: Dictionary[StringName, Item] = {}
+static var spirits: Dictionary[StringName, Spirit] = {}
+static var characters: Dictionary[StringName, Character] = {}
+static var status_effect_types: Dictionary[StringName, StatusEffectType] = {}
+static var forest_quests: Dictionary[StringName, ForestQuest] = {}
 
 static var gender__effects := {}
 static var use__effects := {}
