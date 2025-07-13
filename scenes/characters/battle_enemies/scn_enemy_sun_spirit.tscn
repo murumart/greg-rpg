@@ -2232,7 +2232,7 @@ toughness = 1.0
 altruism = 0.0
 xp_multiplier = 4.0
 gender = 3
-effect_immunities = Array[String](["fire", "crying"])
+effect_immunities = Array[StringName]([&"fire", &"crying"])
 
 [node name="Puppet" type="Node2D" parent="."]
 
@@ -2318,51 +2318,44 @@ position = Vector2(0, -24)
 
 [node name="Ray" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun"]
 z_index = -1
+rotation = 2.00131
 metadata/_edit_group_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray1" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
 position = Vector2(0, 2.38419e-07)
+rotation = 0.897099
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(32, 0)
+centered = false
 
-[node name="Sprite2D3" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -1.57079
+[node name="Ray2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 1.79594
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(33, -7.33018e-05)
+centered = false
 
-[node name="Sprite2D4" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -1.57079
+[node name="Ray3" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 2.69304
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(-32.0001, 9.3969e-05)
-flip_h = true
-flip_v = true
+centered = false
 
-[node name="Sprite2D5" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -3.14159
+[node name="Ray4" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 3.59014
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(32, 0.999714)
+centered = false
 
-[node name="Sprite2D6" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -0.785397
+[node name="Ray5" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 4.48724
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(32, 0)
+centered = false
 
-[node name="Sprite2D7" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -2.35619
+[node name="Ray6" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 5.38609
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(33, -7.33018e-05)
+centered = false
 
-[node name="Sprite2D8" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -2.35619
+[node name="Ray7" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+rotation = 6.28319
 texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(-32.0001, 9.3969e-05)
-flip_h = true
-flip_v = true
-
-[node name="Sprite2D9" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
-rotation = -3.92699
-texture = SubResource("GradientTexture2D_hivxi")
-offset = Vector2(32, 0.999714)
+centered = false
 
 [node name="Rotator" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" instance=ExtResource("3_g30y0")]
 enabled_in_editor = false
@@ -2418,7 +2411,7 @@ region_rect = Rect2(37, 28, 26, 48)
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_thwtv")
+&"": SubResource("AnimationLibrary_thwtv")
 }
 autoplay = "idle"
 
