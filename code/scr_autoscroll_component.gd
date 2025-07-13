@@ -1,8 +1,17 @@
 class_name AutoscrollComponent extends Node
 
-const SPEED_MULT := 0.05
 
-var scroller: Tween
+enum State {
+	WAIT,
+	SCROLL_DOWN,
+	SCROLL_UP,
+}
+
+const SCROLL_SPEED_MULT := 16.0
+
+var state: State
+var next_state: State
+var _delay: float
 
 @export var target: RichTextLabel
 @export var speed := 1.0
@@ -11,47 +20,51 @@ var scroller: Tween
 
 func _ready() -> void:
 	assert(target, "no target set!")
-	check()
+	reset()
 
 
-func check() -> void:
-	#if not target.is_visible_in_tree():
-		#return
-	if target.get_v_scroll_bar():
-		var scrollbar := target.get_v_scroll_bar() as VScrollBar
-		if scrollbar.max_value != scrollbar.page:
-			if scrollbar.value == 0:
-				scroll_down(scrollbar)
-				return
-			else:
-				scroll_up(scrollbar)
-				return
+func _process(delta: float) -> void:
+	if not target.is_visible_in_tree():
+		return
+	var scrollbar := target.get_v_scroll_bar() as VScrollBar
+	match state:
+		State.WAIT:
+			_delay -= delta * speed
+			if _delay <= 0:
+				if next_state == State.SCROLL_DOWN:
+					_delay = 0
+				elif next_state == State.SCROLL_UP:
+					_delay = scrollbar.max_value - scrollbar.page
+				state = next_state
+		State.SCROLL_DOWN:
+			scroll_down(scrollbar, delta * speed * SCROLL_SPEED_MULT)
+		State.SCROLL_UP:
+			scroll_up(scrollbar, delta * speed * SCROLL_SPEED_MULT)
 
 
-func scroll_down(bar: VScrollBar) -> void:
-	if is_instance_valid(scroller) and scroller.is_valid():
-		scroller.kill()
-	scroller = create_tween()
-	var distance := bar.max_value - bar.page
-	scroller.tween_interval(read_time)
-	scroller.tween_property(bar, "value", distance, speed * SPEED_MULT * distance).from(0)
-	scroller.tween_callback(check)
+func scroll_down(bar: VScrollBar, delta: float) -> void:
+	_delay += delta
+	bar.value = roundf(_delay)
+	if bar.value >= bar.max_value - bar.page:
+		state = State.WAIT
+		_delay = read_time
+		next_state = State.SCROLL_UP
 
 
-func scroll_up(bar: VScrollBar) -> void:
-	if is_instance_valid(scroller) and scroller.is_valid():
-		scroller.kill()
-	scroller = create_tween()
-	var distance := bar.max_value - bar.page
-	scroller.tween_interval(read_time)
-	scroller.tween_property(bar, "value", 0, speed * SPEED_MULT * distance)
-	scroller.tween_callback(check)
+func scroll_up(bar: VScrollBar, delta: float) -> void:
+	_delay -= delta
+	bar.value = roundf(_delay)
+	if bar.value <= 0:
+		state = State.WAIT
+		_delay = read_time
+		next_state = State.SCROLL_DOWN
 
 
 func reset() -> void:
+	_delay = read_time
+	state = State.WAIT
+	next_state = State.SCROLL_DOWN
 	if not target.get_v_scroll_bar():
 		return
 	var scrollbar := target.get_v_scroll_bar() as VScrollBar
-	if is_instance_valid(scroller) and scroller.is_valid():
-		scroller.kill()
 	scrollbar.value = 0

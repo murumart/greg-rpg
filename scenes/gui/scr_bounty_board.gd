@@ -12,8 +12,10 @@ signal close_requested
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var claim_button: Button = %ClaimButton
 @onready var title_label: Label = %TitleLabel
+@onready var description_autoscroll: AutoscrollComponent = %DescriptionAutoscroll
 
 var _quests: Array[Quest]
+var _current_quest: Quest
 
 
 static func make(quests: Array[Quest]) -> BountyBoard:
@@ -30,16 +32,34 @@ func _ready() -> void:
 		bounty_list.add_child(rb)
 		rb.text = q.name
 		rb.reference = q
-		rb.return_reference.connect(_quest_selected)
-	(bounty_list.get_child(0) as Control).grab_focus.call_deferred()
+		rb.selected_return_reference.connect(_quest_selected)
+	_refocus()
 	claim_button.hide()
+
+
+func _refocus() -> void:
+	(bounty_list.get_child(0) as Control).grab_focus.call_deferred()
 
 
 func _quest_selected(q: Quest) -> void:
 	description_text.text = q.description
+	description_autoscroll.reset()
 	progress_bar.value = float(q.completion_numerator) / float(q.completion_denominator)
 	claim_button.visible = is_instance_valid(q.reward)
 	claim_button.disabled = q.completion_numerator < q.completion_denominator
+	_current_quest = q
+	Math.remove_connections(claim_button.pressed)
+	claim_button.pressed.connect(_claim_pressed.bind(q))
+
+
+func _claim_pressed(q: Quest) -> void:
+	if not is_instance_valid(q.reward):
+		return
+	if q.completion_numerator < q.completion_denominator:
+		return
+	q.reward.grant(true)
+	await SOL.dialogue_closed
+	_refocus()
 
 
 func _unhandled_input(event: InputEvent) -> void:

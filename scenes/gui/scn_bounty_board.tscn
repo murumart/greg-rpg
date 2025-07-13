@@ -1,9 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjydg3w4s2qx1"]
+[gd_scene load_steps=11 format=3 uid="uid://cjydg3w4s2qx1"]
 
 [ext_resource type="Script" uid="uid://cw1yxef3md45g" path="res://scenes/gui/scr_bounty_board.gd" id="1_yln5i"]
+[ext_resource type="StyleBox" uid="uid://xk10anp7is0m" path="res://resources/thm_quest_board_stylebox.tres" id="2_lm6ru"]
 [ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="2_xqogb"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="3_a75fq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xqogb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vltfb"]
+atlas = ExtResource("3_a75fq")
+region = Rect2(57, 0, 28, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vddnq"]
+atlas = ExtResource("3_a75fq")
+region = Rect2(4, 12, 8, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yvdt"]
+font_size = 12
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a75fq"]
+font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75fq"]
+bg_color = Color(0.329412, 0.164706, 0.329412, 1)
+expand_margin_top = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqogb"]
+bg_color = Color(0.491574, 1, 0.493478, 1)
 
 [node name="BountyBoard" type="Node2D"]
 script = ExtResource("1_yln5i")
@@ -32,105 +55,160 @@ anchor_right = 0.975
 anchor_bottom = 0.966667
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_lm6ru")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control/Panel"]
+layout_mode = 2
+offset_left = 114.0
+offset_top = 2.0
+offset_right = 142.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_vltfb")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Panel"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 36.0
+offset_bottom = 25.0
+texture = SubResource("AtlasTexture_vltfb")
+stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Panel"]
+layout_mode = 2
+offset_left = 122.0
+offset_top = 19.0
+offset_right = 150.0
+offset_bottom = 41.0
+rotation = -1.66389
+scale = Vector2(0.560452, 0.560452)
+texture = SubResource("AtlasTexture_vddnq")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.000157894
+anchor_top = 0.009
+anchor_right = 1.00032
+anchor_bottom = 0.999544
+offset_left = 0.0239999
+offset_top = -0.0260004
+offset_right = -0.0480042
+offset_bottom = 0.0519638
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="Control/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "quest board"
+label_settings = SubResource("LabelSettings_6yvdt")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_lm6ru")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme_override_constants/separation = 2
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "bounties"
+label_settings = SubResource("LabelSettings_a75fq")
 horizontal_alignment = 1
+justification_flags = 162
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxFlat_a75fq")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BountyList" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="BountyList" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("2_lm6ru")
 text = "bounty info"
+label_settings = SubResource("LabelSettings_a75fq")
 horizontal_alignment = 1
 
-[node name="BountyList" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+[node name="BountyList" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DescriptionText" type="RichTextLabel" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList"]
+[node name="DescriptionText" type="RichTextLabel" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "select a quest..."
 
-[node name="AutoscrollComponent" type="Node" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/DescriptionText" node_paths=PackedStringArray("target")]
+[node name="DescriptionAutoscroll" type="Node" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/DescriptionText" node_paths=PackedStringArray("target")]
+unique_name_in_owner = true
 script = ExtResource("2_xqogb")
 target = NodePath("..")
 metadata/_custom_type_script = "uid://5ft3meh2ry86"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList"]
 layout_mode = 2
-size_flags_vertical = 10
+theme_override_styles/panel = ExtResource("2_lm6ru")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "progress"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/VBoxContainer/HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_xqogb")
 max_value = 1.0
 
-[node name="ClaimButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/VBoxContainer/HBoxContainer"]
+[node name="ClaimButton" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "claim reward"
-
-[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/BountyList/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_xqogb")

@@ -19,3 +19,4 @@ kill_music = true
 play_fanfare = true
 crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("1_pbh4l")]({})
+increment_data_with_enemies = &""

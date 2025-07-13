@@ -157,7 +157,6 @@ func _on_credits_button_pressed() -> void:
 	get_window().gui_release_focus()
 	$VBoxContainer/CreditsButton/TextPanel.show()
 	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.reset.call_deferred()
-	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.check.call_deferred()
 
 
 func _load_credits() -> void:

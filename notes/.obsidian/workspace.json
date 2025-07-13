@@ -35,7 +35,8 @@
               "title": "Update goals"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -182,11 +183,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cfbe9572ff8bd75",
+  "active": "75ba75063ceb51c4",
   "lastOpenFiles": [
+    "Notes.md",
     "Update goals.md",
     "Pasted image 20250710193306.png",
-    "Notes.md",
     "Bugs.md",
     "New Text Document.txt",
     "Pasted image 20250710193306.png.import",

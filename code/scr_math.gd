@@ -289,3 +289,9 @@ static func typos(s: String) -> String:
 
 static func timer(sec: float, process_always := false) -> void:
 	await DAT.get_tree().create_timer(sec, process_always).timeout
+
+
+static func remove_connections(sig: Signal) -> void:
+	var cnncts := sig.get_connections()
+	for c: Dictionary in cnncts:
+		sig.disconnect(c[&"callable"])

@@ -257,12 +257,14 @@ func load_all_effects() -> void:
 
 
 var _ldisplay_label_y := 0.0
-func make_display_label(object: Object, thing: StringName) -> Label:
+func make_display_label(object: Object, fun: Callable) -> Label:
 	var label := Label.new()
-	var np := NodePath(thing)
 	add_ui_child(label)
 	get_tree().process_frame.connect(func():
-		label.text = str(object.get_indexed(np))
+		if not is_instance_valid(object):
+			label.free()
+			return
+		label.text = str(fun.call())
 	)
 	label.position.y = _ldisplay_label_y
 	_ldisplay_label_y += label.size.y + 4.0
