@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkm2rk2w5ibna"]
 
-[ext_resource type="Script" uid="uid://cw3a5ul3cowc" path="res://scenes/decor/scr_utilitypole.gd" id="1_1r5vv"]
+[ext_resource type="Script" path="res://scenes/decor/scr_utilitypole.gd" id="1_1r5vv"]
 [ext_resource type="Texture2D" uid="uid://kuv3j4sehv0m" path="res://sprites/world/object/spr_utilitypole.png" id="2_1r5vv"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_odlp3"]
 
@@ -10,7 +10,7 @@ size = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
 size = Vector2(16, 88)
 
-[node name="UtilityPole" type="Node2D" node_paths=PackedStringArray("drawer")]
+[node name="UtilityPole" type="Node2D" node_paths=PackedStringArray("drawer") groups=["utility_poles"]]
 script = ExtResource("1_1r5vv")
 drawer = NodePath("PtsDrawer")
 
@@ -40,4 +40,5 @@ position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_38uvm")
 
 [node name="PtsDrawer" type="Node2D" parent="."]
+z_index = 1
 position = Vector2(-2, -83)

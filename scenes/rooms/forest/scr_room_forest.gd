@@ -25,6 +25,8 @@ func _ready() -> void:
 	super._ready()
 	if not DAT.get_data("forest_questing", null):
 		DAT.set_data("forest_questing", ForestQuesting.new())
+	if DAT.get_data("forest_save", {}).is_empty():
+		DAT.set_data("forest_save", {})
 	questing = DAT.get_data("forest_questing")
 	hud.forest_ready(self)
 	_setup_gates()
@@ -104,7 +106,7 @@ func _save_me() -> void:
 		for tree in get_tree().get_nodes_in_group("trees"):
 			tree = tree as TreeDecor
 			trees_dict[tree.global_position] = tree.type
-		for bin in get_tree().get_nodes_in_group("bins"):
+		for bin in get_tree().get_nodes_in_group("forest_bins"):
 			bin = bin as TrashBin
 			bins_dict[bin.global_position] = {
 				"item": bin.item,

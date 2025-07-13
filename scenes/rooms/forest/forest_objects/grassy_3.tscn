@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cakmvhd0koh6v"]
+
+[ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="1_tl5b0"]
+
+[node name="GrassyClearing" type="Node2D"]
+
+[node name="OverworldTiles" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="grass level" type="TileMapLayer" parent="OverworldTiles"]
+z_index = -8
+use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 19, 0, 0, 0, 255, 255, 255, 255, 0, 0, 9, 0, 19, 0, 0, 0, 0, 0, 255, 255, 0, 0, 8, 0, 19, 0, 0, 0, 255, 255, 0, 0, 0, 0, 8, 0, 19, 0, 0, 0)
+tile_set = ExtResource("1_tl5b0")

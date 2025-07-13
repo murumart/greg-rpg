@@ -9,7 +9,7 @@ const HAS_ENTRANCE := [
 	[1, 2, 3, 5, 8, 9, 10], # WEST
 ]
 
-const OBJECT_AMOUNT := 15
+const OBJECT_AMOUNT := 64
 
 const TREE := preload("res://scenes/decor/scn_tree.tscn")
 const TREE_COUNT := 45
@@ -42,7 +42,7 @@ const BIN_LOOT := {
 var forest: ForestPath
 var _space_state: PhysicsDirectSpaceState2D
 var used_poses := []
-var generated_objects := {}
+var generated_objects: Dictionary[Vector2, StringName] = {}
 
 
 func _init(_forest: ForestPath) -> void:
@@ -183,7 +183,7 @@ func gen_bins() -> void:
 
 
 func bin_loot(bin: TrashBin) -> void:
-	bin.add_to_group("bins")
+	bin.add_to_group("forest_bins")
 	if randf() <= 0.06:
 		return
 	if randf() <= 0.11:
@@ -212,7 +212,7 @@ func gen_enemies() -> void:
 		forest.add_child(enemy)
 		var pos := rand_pos().floor()
 		enemy.global_position = pos * 16
-		enemy.add_to_group("enemies")
+		enemy.add_to_group("forest_enemies")
 	#print(" ---- added ", enemy_count, " enemies")
 
 
@@ -227,28 +227,26 @@ func gen_greenhouse() -> void:
 
 
 func gen_objects() -> void:
-	var weights := ForestObjects.get_db_keys_by_weights()
-	var amounts := {}
+	#var t := Time.get_ticks_msec()
+	var fo = ForestObjects
+	var weights := fo.get_db_keys_by_weights()
+	var amounts: Dictionary[StringName, int] = {}
 	var tries := 0
 	while generated_objects.size() < OBJECT_AMOUNT and tries < 100:
 		tries += 1
-		var obkey: StringName = Math.weighted_random(
-				weights.keys(), weights.values())
-		var object := ForestObjects.get_object(obkey)
+		var obkey: StringName = Math.weighted_random(weights.keys(), weights.values())
+		var object := fo.get_object(obkey)
 		if (
-				amounts.get(obkey, 0) >= object.get(ForestObjects.LIMIT, 999)
-				or forest.current_room % object.get(
-						ForestObjects.EVERY_X_ROOMS, 1) != 0
-				or forest.current_room < object.get(
-						ForestObjects.MIN_ROOM, 0)
-				or forest.current_room > object.get(
-						ForestObjects.MAX_ROOM, 19919991)
+				amounts.get(obkey, 0) >= object.get(fo.LIMIT, 999)
+				or forest.current_room % object.get(fo.EVERY_X_ROOMS, 1) != 0
+				or forest.current_room < object.get(fo.MIN_ROOM, 0)
+				or forest.current_room > object.get(fo.MAX_ROOM, 19919991)
 		):
 			continue
 		if gen_object(obkey):
 			amounts[obkey] = amounts.get(obkey, 0) + 1
-	#print(" ---- generated ", amounts.values(
-	#		).reduce(func(accum, number): return accum + number, 0), " objects")
+	#t = Time.get_ticks_msec() - t
+	#print(" ---- generated ", amounts.values().reduce(func(accum, number): return accum + number, 0), " objects in " + str(tries) + " tries (max " + str(OBJECT_AMOUNT) + ") took " + str(t) + "ms ")
 
 
 
@@ -316,7 +314,7 @@ func load_from_save() -> void:
 		bin.silver = d.bins[b].silver
 		bin.full = d.bins[b].full
 		bin.save = false
-		bin.add_to_group("bins")
+		bin.add_to_group("forest_bins")
 		bin.replenish_seconds = -1
 		bin.opened.connect(forest.questing.update_quests)
 		bin.got_item.connect(forest.questing._trash_item_got)
@@ -352,10 +350,20 @@ func _set_fungus_funny(a) -> void:
 
 
 func _delete_item_on_pickup(a: PickableItem) -> void:
+	a.add_to_group("forest_curiosities")
 	a.interacted.connect(func():
 		generated_objects.erase(a.global_position)
 	)
 
 
-func _connect_pizzle_finish(a: Node2D) -> void:
+const PizzleColumn = preload("res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd")
+func _connect_pizzle_finish(a: PizzleColumn) -> void:
+	a.add_to_group("forest_curiosities")
 	a.finished.connect(forest.hud.update_exp_display)
+	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
+
+
+const Pole = preload("res://scenes/decor/scr_utilitypole.gd")
+func _connect_poles(a: Pole) -> void:
+	if &"pole" in generated_objects.values():
+		a.draw_target = forest.get_tree().get_first_node_in_group("utility_poles")

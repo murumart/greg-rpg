@@ -13,6 +13,7 @@ static func _static_init() -> void:
 
 
 func _ready() -> void:
+	add_to_group("forest_curiosities")
 	if DAT.get_data("kid_never_meet_again", false):
 		queue_free()
 		return
@@ -37,6 +38,7 @@ func _ready() -> void:
 		for x in 5:
 			SOL.vfx("bird_flight", global_position,
 					{parent = get_parent(), speed = randf_range(100.0, 120.0)})
+		remove_from_group("forest_curiosities")
 		queue_free()
 	)
 

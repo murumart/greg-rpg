@@ -8,21 +8,23 @@ const SlidingPuzzleLoad := preload("res://scenes/rooms/forest/sliding_puzzle/sli
 @export var puzzle_items: Array[KeyCurve] = []
 
 var rewards := BattleRewards.new()
+var played: bool:
+	get: return DAT.get_data("forest_save", {}).get(_key(), false)
+	set(to): DAT.get_data("forest_save", {})[_key()] = to
+
 
 
 func _interactde() -> void:
-	var forest_data := DAT.get_data("forest_save", {}) as Dictionary
-	var played: bool = forest_data.get(_key(), false)
-	if not played:
-		SOL.dialogue("sliding_pizzle_what")
-		await SOL.dialogue_closed
-		if SOL.dialogue_choice == &"yes":
-			_play_game()
+	if played:
+		return
+	SOL.dialogue("sliding_pizzle_what")
+	await SOL.dialogue_closed
+	if SOL.dialogue_choice == &"yes":
+		_play_game()
 
 
 func _play_game() -> void:
-	var forest_data := DAT.get_data("forest_save", {}) as Dictionary
-	forest_data[_key()] = true
+	played = true
 
 	var puzzle := SlidingPuzzleLoad.instantiate()
 	var level := (DAT.get_data("forest_depth", 0) as int) * 0.01
@@ -43,7 +45,7 @@ func _play_game() -> void:
 
 
 func _key() -> String:
-	return "pizzle_column_" + str(DAT.get_data("forest_depth", 0)) + "_played"
+	return "pizzle_column_" + name + str(DAT.get_data("forest_depth", 0)) + "_played"
 
 
 func _pick_item(puzzle: SlidingPuzzle) -> void:

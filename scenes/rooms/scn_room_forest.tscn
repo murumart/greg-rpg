@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=30 format=4 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" uid="uid://dww2ebr18ffrx" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xshqe"]
@@ -35,6 +35,9 @@ size = Vector2(48, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyc05"]
 size = Vector2(8, 48)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh78"]
+bg_color = Color(0, 0, 0, 0.662745)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3fvw8"]
 atlas = ExtResource("8_d6fx5")
 region = Rect2(24, 16, 5, 7)
@@ -42,6 +45,33 @@ region = Rect2(24, 16, 5, 7)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dy2op"]
 atlas = ExtResource("8_d6fx5")
 region = Rect2(16, 17, 6, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjkwb"]
+bg_color = Color(0, 0, 0, 0.164706)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni3vs"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(39, 16, 3, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyq4r"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(44, 16, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvd07"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(51, 16, 3, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr03k"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(55, 16, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqh78"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(61, 16, 3, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjkwb"]
+atlas = ExtResource("8_d6fx5")
+region = Rect2(65, 16, 5, 7)
 
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
@@ -248,30 +278,25 @@ position = Vector2(16, 0)
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 160.0
+offset_bottom = 120.0
 script = ExtResource("7_yb0vi")
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 9.0
-color = Color(0, 0, 0, 0.815686)
-
 [node name="ExpProgress" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.552941)
 layout_mode = 0
-offset_top = 9.0
+offset_top = 117.0
 offset_right = 160.0
-offset_bottom = 11.0
+offset_bottom = 119.0
 show_percentage = false
 
 [node name="CurrentExp" type="Label" parent="UI/ExpProgress"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 2.0
+offset_top = -6.0
 offset_right = 41.0
-offset_bottom = 10.0
+offset_bottom = 2.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.239216)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 6
@@ -280,28 +305,43 @@ text = "0/0"
 [node name="NextlevelExp" type="Label" parent="UI/ExpProgress"]
 layout_mode = 0
 offset_left = 119.0
-offset_top = 2.0
+offset_top = -6.0
 offset_right = 159.0
-offset_bottom = 10.0
+offset_bottom = 1.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.239216)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 6
-text = "0
-"
+text = "0"
 horizontal_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+self_modulate = Color(0, 1, 0.259064, 0.552941)
 layout_mode = 0
-offset_top = 1.0
+offset_top = 119.0
 offset_right = 160.0
-offset_bottom = 9.0
+offset_bottom = 120.0
+show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+offset_right = 160.0
+offset_bottom = 19.0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mqh78")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/PanelContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="Compass" type="Control" parent="UI/HBoxContainer"]
+[node name="Compass" type="Control" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(6, 0)
 layout_mode = 2
 
-[node name="Needle" type="Sprite2D" parent="UI/HBoxContainer/Compass"]
+[node name="CompassNeedle" type="Sprite2D" parent="UI/VBoxContainer/PanelContainer/HBoxContainer/Compass"]
+unique_name_in_owner = true
 position = Vector2(4, 4)
 texture = ExtResource("8_d6fx5")
 centered = false
@@ -309,37 +349,87 @@ offset = Vector2(-3, -3)
 region_enabled = true
 region_rect = Rect2(32, 17, 5, 5)
 
-[node name="VSeparator2" type="VSeparator" parent="UI/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="RoomCounter" type="HBoxContainer" parent="UI/HBoxContainer"]
+[node name="RoomCounter" type="HBoxContainer" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/RoomCounter"]
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/PanelContainer/HBoxContainer/RoomCounter"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_3fvw8")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="UI/HBoxContainer/RoomCounter"]
+[node name="RoomLabel" type="Label" parent="UI/VBoxContainer/PanelContainer/HBoxContainer/RoomCounter"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 
-[node name="VSeparator" type="VSeparator" parent="UI/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="GlassCounter" type="HBoxContainer" parent="UI/HBoxContainer"]
+[node name="GlassCounter" type="HBoxContainer" parent="UI/VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 
-[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/GlassCounter"]
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/PanelContainer/HBoxContainer/GlassCounter"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_dy2op")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="UI/HBoxContainer/GlassCounter"]
+[node name="GlassLabel" type="Label" parent="UI/VBoxContainer/PanelContainer/HBoxContainer/GlassCounter"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "999"
 
+[node name="PanelContainer2" type="PanelContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vjkwb")
+
+[node name="Greebles" type="HBoxContainer" parent="UI/VBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="QuestionGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_ni3vs")
+stretch_mode = 2
+
+[node name="BoardGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_cyq4r")
+
+[node name="TrashGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_bvd07")
+stretch_mode = 2
+
+[node name="GreenhouseGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_jr03k")
+stretch_mode = 2
+
+[node name="EnemyGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_mqh78")
+stretch_mode = 2
+
+[node name="HazardGreeble" type="TextureRect" parent="UI/VBoxContainer/PanelContainer2/Greebles"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_vjkwb")
+stretch_mode = 2
+
 [node name="MessageContainer" parent="UI" instance=ExtResource("9_dsf2t")]
+unique_name_in_owner = true
 life_time = 2.3
 metadata/_edit_lock_ = true
 
