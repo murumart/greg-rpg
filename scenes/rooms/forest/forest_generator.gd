@@ -168,6 +168,8 @@ func gen_bins() -> void:
 	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
 		forest.current_room / 100.0) * randf()
 		+ forest.questing.get_perk_extra_trash_amount())
+	if forest.questing.get_perk_double_trash():
+		trash_count *= 2
 	for i in trash_count:
 		var trash := TRASH.instantiate() as TrashBin
 		trash.save = false
@@ -202,6 +204,8 @@ func bin_loot(bin: TrashBin) -> void:
 
 func gen_enemies() -> void:
 	if forest.current_room < 1: return
+	if forest.questing.get_perk_no_enemies():
+		return
 	var enemy_count := clampi(forest.current_room / 5, 1, 12)
 	for i in enemy_count:
 		var enemy := ENEMY.instantiate()

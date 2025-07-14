@@ -20,7 +20,7 @@ var save_menu_open := false
 @onready var dialogue_box: DialogueBox = $DialogueBox as DialogueBox
 @onready var screen_fade_order := $ScreenFadeOrderer
 
-var dialogue_choice := &""
+var dialogue_choice: StringName = &""
 var effects_dict := {}
 
 

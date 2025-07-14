@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj0fqo2oyg3tk"]
+[gd_scene load_steps=16 format=3 uid="uid://cj0fqo2oyg3tk"]
 
 [ext_resource type="Script" uid="uid://c7ni2eovoem6q" path="res://scenes/rooms/forest/forest_objects/yellow_column.gd" id="1_e6dt0"]
 [ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="3_uocl1"]
@@ -110,13 +110,30 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ihfqe"]
+resource_name = "active"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/GPUParticles2D:amount_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2073]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uocl1"]
 _data = {
 &"RESET": SubResource("Animation_uocl1"),
-&"activate": SubResource("Animation_vjta2")
+&"activate": SubResource("Animation_vjta2"),
+&"active": SubResource("Animation_ihfqe")
 }
 
-[node name="Puzzles" type="StaticBody2D" node_paths=PackedStringArray("interaction_area")]
+[node name="Puzzles" type="StaticBody2D" node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
 collision_mask = 0
 script = ExtResource("1_e6dt0")
 interaction_area = NodePath("InteractionArea")

@@ -36,7 +36,7 @@ var actor_name: String
 
 var accessible := true
 
-var status_effects := {}
+var status_effects: Dictionary[StringName, BattleStatusEffect] = {}
 
 var reference_to_team_array: Array[BattleActor] = []
 var reference_to_opposing_array: Array[BattleActor] = []
@@ -293,7 +293,7 @@ func attack(subject: BattleActor) -> void:
 				{parent = subject, random_rotation = true})
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
-	turn_finished()
+	await turn_finished()
 
 
 func get_attack_payload(target: BattleActor) -> BattlePayload:
@@ -519,17 +519,18 @@ func steal_item(from: BattleActor) -> void:
 # STATUS EFFECTS
 
 
-func add_status_effect(eff: StatusEffect) -> void:
+func add_status_effect(eff: StatusEffect) -> BattleStatusEffect:
 	var effect := BattleStatusEffect.add(self, eff)
 	if effect:
 		status_effects[effect.type.s_id] = effect
 		if _logsalot:
 			print("added effect ", effect, " to ", self)
 		effect_received.emit(effect)
+	return effect
 
 
-func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> void:
-	add_status_effect(
+func add_status_effect_s(nimi: StringName, strength: float, duration: int) -> BattleStatusEffect:
+	return add_status_effect(
 		StatusEffect.new().set_effect_name(nimi).set_strength(strength).set_duration(duration)
 	)
 
@@ -554,9 +555,9 @@ func remove_status_effect(nimi: StringName) -> void:
 
 
 func status_effect_update() -> void:
-	for eff in status_effects.keys():
-		var effect := status_effects[eff] as BattleStatusEffect
-		effect.turn(self)
+	for eff in status_effects:
+		var effect := status_effects[eff]
+		await effect.turn(self)
 		# remove if immune
 		if is_immune_to(eff):
 			remove_status_effect(eff)
@@ -579,7 +580,7 @@ func effect_visuals() -> void:
 
 func turn_finished() -> void:
 	act_finished.emit(self)
-	status_effect_update()
+	await status_effect_update()
 	turn += 1
 
 

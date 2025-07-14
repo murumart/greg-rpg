@@ -37,7 +37,6 @@ func update_quests() -> void:
 			quest_completed.emit(q)
 	for q in removing:
 		active_quests.erase(q)
-	update_room_timed_perks()
 
 
 func has_quest(quest_name: String) -> bool:
@@ -72,6 +71,10 @@ func add_perk(key: StringName, value: float) -> Perk:
 	return null
 
 
+func append_perk(perk: Perk) -> void:
+	active_perks.append(perk)
+
+
 func get_perk_silver_multiplier() -> float:
 	return amount_sum(get_key_perks(&"silver_multiplier_increase"))
 
@@ -100,6 +103,18 @@ func get_perk_enemy_start_damage() -> float:
 
 func get_perk_experience_multiplier() -> float:
 	return amount_sum(get_key_perks(&"experience_multiplier"))
+
+
+func get_perk_no_enemies() -> bool:
+	return amount_sum(get_key_perks(&"no_enemies")) > 0
+
+
+func get_perk_double_trash() -> bool:
+	return amount_sum(get_key_perks(&"double_trash")) > 0
+
+
+func get_perk_enemy_flames() -> float:
+	return amount_sum(get_key_perks(&"enemy_flames"))
 #endregion
 
 

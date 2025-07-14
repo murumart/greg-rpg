@@ -29,7 +29,7 @@ func turn(actor: BattleActor, container: BattleStatusEffect) -> void:
 	if turn_script:
 		turn_script.new().turn(actor, container)
 	if turn_payload:
-		actor.handle_payload(turn_payload.get_payload_b(container))
+		await actor.handle_payload(turn_payload.get_payload_b(container))
 	if turn_visual:
 		SOL.vfx(turn_visual, actor.get_effect_center() + SOL.SCREEN_SIZE / 2 +
 			Vector2(randf_range(-2, 2), randf_range(-2, 2)), {"parent": actor})

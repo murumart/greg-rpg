@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GlassExchange" load_steps=4 format=3 uid="uid://ve1dfv2j1hjh"]
+
+[ext_resource type="Script" uid="uid://ia6c8pg30u3p" path="res://code/scr_key_float_pair.gd" id="1_7wjqb"]
+[ext_resource type="Script" uid="uid://bp3cwrx5enstb" path="res://code/scr_exchange_forest.gd" id="1_i4o2t"]
+
+[sub_resource type="Resource" id="Resource_yqukl"]
+script = ExtResource("1_7wjqb")
+key = &"no_enemies"
+value = 1.0
+metadata/_custom_type_script = "uid://ia6c8pg30u3p"
+
+[resource]
+script = ExtResource("1_i4o2t")
+glass_required = 0
+gold_required = 1
+add_to_perk = SubResource("Resource_yqukl")
+perk_time = 15
+description = "with this boon, no animals will accost you for fourteen rooms.
+but, then again, that's less opportunities to grow..."
+title = "0animal"
+silver_required = 0
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([])
+metadata/_custom_type_script = "uid://bp3cwrx5enstb"

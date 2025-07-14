@@ -102,7 +102,7 @@ func turn(actor: BattleActor) -> void:
 	duration -= 1
 	if duration <= 0:
 		actor.remove_status_effect(type.s_id)
-	type.turn(actor, self)
+	await type.turn(actor, self)
 
 
 func hurt_damage(amount: float, gender: int, actor: BattleActor) -> float:

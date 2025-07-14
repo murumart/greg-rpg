@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bip8066h1vkjp"]
+[gd_scene load_steps=5 format=3 uid="uid://bip8066h1vkjp"]
 
 [ext_resource type="Script" uid="uid://bmxcxoxkgrg6s" path="res://scenes/gui/scr_console.gd" id="1_emplj"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="2_ohhmw"]
+[ext_resource type="FontFile" uid="uid://bxukug0aodcpi" path="res://fonts/gregfont.ttf" id="2_xioe7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4w8y"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -16,9 +18,10 @@ script = ExtResource("1_emplj")
 
 [node name="Line" type="LineEdit" parent="."]
 layout_mode = 0
-offset_top = 60.0
+offset_top = 62.0
 offset_right = 160.0
-offset_bottom = 70.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("2_xioe7")
 placeholder_text = "command..."
 context_menu_enabled = false
 middle_mouse_paste_enabled = false
@@ -28,6 +31,9 @@ modulate = Color(1, 1, 1, 0.968627)
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 59.0
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = ExtResource("2_ohhmw")
+theme_override_font_sizes/normal_font_size = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_q4w8y")
 bbcode_enabled = true
 text = "welcome to the debug console."

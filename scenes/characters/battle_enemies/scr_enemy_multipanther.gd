@@ -3,7 +3,7 @@ extends BattleEnemy
 const WigglerType := preload("res://scenes/tech/scr_line_wiggler.gd")
 
 
-func animate(animation: String, queue_idle := true) -> void:
+func animate(animation: StringName, queue_idle := true) -> void:
 	super(animation, queue_idle)
 	if animation in ["attack", "use_spirit", "use_item"]:
 		for child in $OutlineMe.get_children():

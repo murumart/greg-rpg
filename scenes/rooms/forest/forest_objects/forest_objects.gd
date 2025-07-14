@@ -80,7 +80,7 @@ const DB = {
 	&"yellow_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/yellow_column.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 80,
+		WEIGHT: 808888,
 		LIMIT: 1,
 		FUNCTION: &"_connect_yellow",
 	},

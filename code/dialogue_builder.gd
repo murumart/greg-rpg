@@ -78,7 +78,7 @@ func speak_choice(box: DialogueBox = null) -> StringName:
 		await SOL.dialogue_closed
 	else:
 		await box.dialogue_closed
-	var c := SOL.dialogue_choice
+	var c: StringName = SOL.dialogue_choice
 	SOL.dialogue_choice = &""
 	return c
 

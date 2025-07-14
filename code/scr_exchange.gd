@@ -57,6 +57,14 @@ func _grant_parts(inventory: Array) -> void:
 		SOL.dialogue("exchange_silver")
 
 
+func state_criteria() -> void:
+	state(Statements.CRITERIA)
+
+
+func state_returns() -> void:
+	state(Statements.RETURNS)
+
+
 func state(what: Statements) -> void:
 	var informations := []
 	# criterion strings

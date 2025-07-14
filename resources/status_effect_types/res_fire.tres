@@ -12,9 +12,8 @@ region = Rect2(12, 0, 6, 6)
 
 [sub_resource type="Resource" id="Resource_qubst"]
 script = ExtResource("3_w20ub")
-health_strength_modifier = 0.67
+health_strength_modifier = 1.0
 magic_strength_modifier = 1.0
-applied_effect_duration_strength_modifier = 1.0
 health = 0.0
 health_percent = -7.0
 max_health_percent = 0.0

@@ -225,10 +225,13 @@ func load_battle(_info: BattleInfo) -> void:
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
 		var damage := roundi(questing.get_perk_enemy_start_damage())
-		if damage < 1:
-			return
-		for i in enemies:
-			i.hurt(damage, Genders.NONE)
+		if damage >= 1:
+			for i in enemies:
+				i.hurt(damage, Genders.NONE)
+		var flames := questing.get_perk_enemy_flames()
+		if flames > 0:
+			for i in enemies:
+				i.add_status_effect_s("fire", flames * 10, 7)
 	for c in actors:
 		if c.character.health <= 0:
 			c.die()

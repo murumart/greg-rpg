@@ -143,6 +143,37 @@ func _cmd_enemanim(args: PackedStringArray) -> void:
 	(enemies[nr] as BattleEnemy).animate(args[1])
 
 
+func _cmd_beffect(args: PackedStringArray) -> void:
+	var cs: Node = LTS.get_current_scene()
+	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+		output("needs to be used in battle", true)
+		return
+	var target: BattleActor
+	var team := 0
+	var effect: StringName
+	var strength: float
+	var duration: int
+	if args.size() != 5:
+		output("usage: beffect team nr effect strength duration")
+		return
+	if args[0].is_valid_int() and int(args[0]) in range(0, 2):
+		team = int(args[0])
+	else:
+		output("argument 1 should be 0 or 1", true)
+		return
+	var get_team: Array = cs.enemies if team == 1 else cs.party
+	if args[1].is_valid_int() and int(args[1]) in range(0, get_team.size()):
+		target = get_team[int(args[1])]
+	else:
+		output("argument 2 should be actor index of team", true)
+		return
+	effect = args[2]
+	strength = float(args[3])
+	duration = int(args[4])
+	var value := args[3]
+	var sex := target.add_status_effect_s(effect, strength, duration)
+	output("added effect %s to %s" % [sex, target])
+
 
 func _cmd_bset(args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()

@@ -294,6 +294,10 @@ DIALOGUE insp_stone_column
 	what is the purpose of this lone stone column?
 
 
+DIALOGUE insp_yellow_column_active
+	you feel pretty booned right now.
+
+
 DIALOGUE insp_forest_bench
 	this is no time for resting.
 

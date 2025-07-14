@@ -71,6 +71,7 @@ func gate_entered(which: int) -> void:
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 		DAT.incri("total_forest_rooms_traveled", 1)
 		DAT.incri("forest_depth", 1)
+		questing.update_room_timed_perks()
 		return
 	leave()
 

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="GlassExchange" load_steps=4 format=3 uid="uid://c7b3ibhbglvef"]
+
+[ext_resource type="Script" uid="uid://ia6c8pg30u3p" path="res://code/scr_key_float_pair.gd" id="1_q1c0y"]
+[ext_resource type="Script" uid="uid://bp3cwrx5enstb" path="res://code/scr_exchange_forest.gd" id="2_k3nov"]
+
+[sub_resource type="Resource" id="Resource_yqukl"]
+script = ExtResource("1_q1c0y")
+key = &"experience_multiplier"
+value = 2.0
+metadata/_custom_type_script = "uid://ia6c8pg30u3p"
+
+[resource]
+script = ExtResource("2_k3nov")
+glass_required = 0
+gold_required = 1
+add_to_perk = SubResource("Resource_yqukl")
+perk_time = 8
+description = "with this boon, experience will rain around you as you battle.
+it lasts for seven rooms."
+title = "+exp"
+silver_required = 0
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([])
+metadata/_custom_type_script = "uid://bp3cwrx5enstb"
