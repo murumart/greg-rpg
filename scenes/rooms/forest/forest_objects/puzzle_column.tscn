@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dntjjltefm2ch"]
+[gd_scene load_steps=41 format=3 uid="uid://dntjjltefm2ch"]
 
 [ext_resource type="Script" uid="uid://dgkp1dv3rncpc" path="res://scenes/rooms/forest/forest_objects/pizzle_column.gd" id="1_ruw20"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
@@ -137,6 +137,26 @@ script = ExtResource("2_uyq8g")
 key = &"water_balloon"
 curve = SubResource("Curve_j2ufn")
 
+[sub_resource type="Curve" id="Curve_56t3a"]
+_data = [Vector2(0, 0.180534), 0.0, 0.0, 0, 0, Vector2(0.161094, 0.528839), 0.0, 0.0, 0, 0, Vector2(0.249646, 0.212198), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_wuu8m"]
+script = ExtResource("2_uyq8g")
+key = &"rose_petals"
+curve = SubResource("Curve_56t3a")
+metadata/_custom_type_script = "uid://cbtl2xny34q67"
+
+[sub_resource type="Curve" id="Curve_wuu8m"]
+_data = [Vector2(0, 0.043323), 0.0, 0.0, 0, 0, Vector2(0.17172, 0.708269), 0.0, 0.0, 0, 0, Vector2(0.178804, 0.444401), 0.0, 0.0, 0, 0, Vector2(0.249646, 0.48662), 0.0, 0.0, 0, 0, Vector2(0.299235, 0.127761), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_yelfp"]
+script = ExtResource("2_uyq8g")
+key = &"rose_thorns"
+curve = SubResource("Curve_wuu8m")
+metadata/_custom_type_script = "uid://cbtl2xny34q67"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
 size = Vector2(14, 10)
 
@@ -147,7 +167,7 @@ size = Vector2(16, 12)
 collision_mask = 0
 script = ExtResource("1_ruw20")
 puzzle_size_curve = SubResource("Curve_ioxsh")
-puzzle_items = Array[ExtResource("2_uyq8g")]([SubResource("Resource_d3n61"), SubResource("Resource_d56of"), SubResource("Resource_kk0fw"), SubResource("Resource_oukl8"), SubResource("Resource_wrhe1"), SubResource("Resource_ifyqd"), SubResource("Resource_icfqo"), SubResource("Resource_2sghh"), SubResource("Resource_5r0ry"), SubResource("Resource_ofsq1"), SubResource("Resource_pc8fa"), SubResource("Resource_eoi1n"), SubResource("Resource_xgie4"), SubResource("Resource_lf5yd")])
+puzzle_items = Array[ExtResource("2_uyq8g")]([SubResource("Resource_d3n61"), SubResource("Resource_d56of"), SubResource("Resource_kk0fw"), SubResource("Resource_oukl8"), SubResource("Resource_wrhe1"), SubResource("Resource_ifyqd"), SubResource("Resource_icfqo"), SubResource("Resource_2sghh"), SubResource("Resource_5r0ry"), SubResource("Resource_ofsq1"), SubResource("Resource_pc8fa"), SubResource("Resource_eoi1n"), SubResource("Resource_xgie4"), SubResource("Resource_lf5yd"), SubResource("Resource_wuu8m"), SubResource("Resource_yelfp")])
 interaction_area = NodePath("InteractionArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

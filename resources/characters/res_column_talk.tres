@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://d353ml1lb8eky"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_oetth"]
+[ext_resource type="AudioStream" uid="uid://demmpxyrs0r7l" path="res://sounds/talking/column.ogg" id="2_oetth"]
+
+[resource]
+script = ExtResource("1_oetth")
+name_in_file = &""
+name = "voice in the column"
+info = ""
+voice_sound = ExtResource("2_oetth")
+max_health = 999.0
+health = 999.0
+max_magic = 999.0
+magic = 999.0
+level = 99
+experience = 6667
+attack = 99.0
+defense = 99.0
+speed = 99.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""

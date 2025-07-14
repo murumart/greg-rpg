@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="GlassExchange" load_steps=4 format=3 uid="uid://sh6vhg6p2wyx"]
+
+[ext_resource type="Script" uid="uid://ia6c8pg30u3p" path="res://code/scr_key_float_pair.gd" id="1_3vrb6"]
+[ext_resource type="Script" uid="uid://bp3cwrx5enstb" path="res://code/scr_exchange_forest.gd" id="2_ffch0"]
+
+[sub_resource type="Resource" id="Resource_rm5v1"]
+script = ExtResource("1_3vrb6")
+key = &"item_rose_thorns_chance_increase"
+value = 3.0
+
+[resource]
+script = ExtResource("2_ffch0")
+glass_required = 1
+gold_required = 0
+add_to_perk = SubResource("Resource_rm5v1")
+perk_time = 0
+description = ""
+title = "mueslibar+"
+silver_required = 0
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([])

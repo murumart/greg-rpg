@@ -24,7 +24,7 @@ func _interacted() -> void:
 	if active:
 		SOL.dialogue("insp_yellow_column_active")
 		return
-	var dlg := DialogueBuilder.new()
+	var dlg := DialogueBuilder.new().set_char("column_talk")
 	if not DAT.get_data("yellow_column_lore", false):
 		DAT.set_data("yellow_column_lore", true)
 		dlg.add_line(dlg.ml("the people of this world deal only in silver."))
@@ -36,7 +36,7 @@ func _interacted() -> void:
 		dlg.add_line(dlg.ml("then, if you want to rule the world, together, once more..."))
 		dlg.add_line(dlg.ml("please, bring me some gold."))
 		await dlg.speak_choice()
-	dlg.reset().add_line(dlg.ml("in exchange for gold, i can bless a breath of your journey."))
+	dlg.reset().set_char("column_talk").add_line(dlg.ml("in exchange for gold, i can bless a breath of your journey."))
 	var inv := ResMan.get_character("greg").inventory
 	if not &"gold" in inv:
 		dlg.add_line(dlg.ml("however, you don't have any at this time."))
@@ -48,24 +48,24 @@ func _interacted() -> void:
 		for t in trades:
 			print(t)
 			aval_choices.push_front(StringName(loaded_exchanges[t].title))
-		dlg.reset().add_line(dlg.ml("this is what i have available for you...").schoices(aval_choices))
+		dlg.reset().set_char("column_talk").add_line(dlg.ml("this is what i have available for you...").schoices(aval_choices))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
-			dlg.reset().add_line(dlg.ml("goodbye, then."))
+			dlg.reset().set_char("column_talk").add_line(dlg.ml("goodbye, then."))
 			await dlg.speak_choice()
 			break
 		else:
 			var exchange: GlassExchange = loaded_exchanges.values().filter(func(a: GlassExchange) -> bool: return a.title == choice)[0]
-			dlg.reset()
+			dlg.reset().set_char("column_talk")
 			for line in exchange.description.split("\n", false):
 				dlg.add_line(dlg.ml(line))
 			dlg.add_line(dlg.ml("all i want in exchange is " + str(exchange.gold_required) + " gold."))
 			await dlg.speak_choice()
 			if exchange.has_input(inv):
-				dlg.reset().add_line(dlg.ml("will you commit to this trade?").schoices(["yes", "no"]))
+				dlg.reset().set_char("column_talk").add_line(dlg.ml("will you commit to this trade?").schoices(["yes", "no"]))
 				choice = await dlg.speak_choice()
 				if choice == &"yes":
-					dlg.reset().add_line(dlg.ml("the pact is sealed, then."))
+					dlg.reset().set_char("column_talk").add_line(dlg.ml("the pact is sealed, then."))
 					await dlg.speak_choice()
 					exchange.exchange(inv)
 					animation_player.play(&"activate")
@@ -73,7 +73,7 @@ func _interacted() -> void:
 					active = true
 					break
 			else:
-				dlg.reset().add_line(dlg.ml("but, you don't have enough gold."))
+				dlg.reset().set_char("column_talk").add_line(dlg.ml("but, you don't have enough gold."))
 				await dlg.speak_choice()
 
 

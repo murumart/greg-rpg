@@ -18,7 +18,7 @@ blend_mode = 1
 [sub_resource type="Gradient" id="Gradient_uocl1"]
 colors = PackedColorArray(1, 1, 1, 1, 0.498039, 0.329412, 0.164706, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ihfqe"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vjta2"]
 gradient = SubResource("Gradient_uocl1")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_706dv"]
@@ -29,7 +29,7 @@ gravity = Vector3(0, -8.32, 0)
 radial_accel_min = 5.23
 radial_accel_max = 10.46
 color = Color(0.996078, 0.996078, 0.498039, 1)
-color_ramp = SubResource("GradientTexture1D_ihfqe")
+color_ramp = SubResource("GradientTexture1D_vjta2")
 
 [sub_resource type="Animation" id="Animation_uocl1"]
 length = 0.001

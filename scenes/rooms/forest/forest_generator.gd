@@ -22,19 +22,21 @@ const GREENHOUSE_INTERVAL := 7
 const BOARD_INTERVAL := 3
 const VEGET_GREENHOUSE_INTERVAL := 21
 
-const BIN_LOOT := {
-	"gummy_worm": 30,
-	"eggshell": 6,
-	"egg_cooked": 3,
-	"egg": 5,
-	"lighter": 1,
-	"bread": 5,
-	"plaster": 3,
-	"pills": 6,
-	"tape": 1,
-	"sugar_lemon": 3,
-	"gummy_fish": 8,
-	"mueslibar": 1,
+const BIN_LOOT: Dictionary[StringName, int] = {
+	&"gummy_worm": 30,
+	&"gummy_fish": 8,
+	&"rose_petals": 4,
+	&"rose_thorns": 2,
+	&"eggshell": 6,
+	&"egg_cooked": 3,
+	&"egg": 5,
+	&"lighter": 1,
+	&"bread": 5,
+	&"plaster": 3,
+	&"pills": 6,
+	&"tape": 1,
+	&"sugar_lemon": 3,
+	&"mueslibar": 1,
 }
 
 #const BIN_LOOT := {"gummy_worm": 10} # DEBUG
@@ -363,12 +365,6 @@ func _connect_pizzle_finish(a: PizzleColumn) -> void:
 	if not a.active:
 		a.add_to_group("forest_curiosities")
 	a.finished.connect(forest.hud.update_exp_display)
-	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
-
-
-func _connect_yellow(a: PizzleColumn) -> void:
-	if not a.active:
-		a.add_to_group("forest_curiosities")
 	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
 
 

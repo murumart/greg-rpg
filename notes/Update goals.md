@@ -61,9 +61,9 @@
 	- [x] Display room interesting things in top bar
 	- [ ] Checkpoints
 	- [ ] 2 more stone columns
-		- [ ] yellow
-			- [ ] sun's blessings (like biking game perks)
-			- [ ] price (gold)
+		- [x] yellow
+			- [x] sun's blessings (like biking game perks)
+			- [x] price (gold)
 		- [ ] purple (exchanges)
 			- [ ] transmute bio materials
 			- [ ] transmute silver to gold
@@ -137,4 +137,8 @@
 			- [ ] Once it's depleted: ending animation
 				- [ ] Credits
 	- [ ] Background
-	- [ ] 
+	- [ ] Newe game pluys
+		- [ ] challenges
+			- [ ] dark mode
+			- [ ] no clothes allowed
+		- [ ] 

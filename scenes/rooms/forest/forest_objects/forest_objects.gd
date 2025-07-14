@@ -80,9 +80,14 @@ const DB = {
 	&"yellow_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/yellow_column.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 808888,
+		WEIGHT: 110,
 		LIMIT: 1,
-		FUNCTION: &"_connect_yellow",
+	},
+	&"purple_column": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/purple_column.tscn"),
+		SIZE: Vector2i(2, 2),
+		WEIGHT: 109,
+		LIMIT: 1,
 	},
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
