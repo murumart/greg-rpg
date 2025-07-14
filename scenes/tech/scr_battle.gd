@@ -885,7 +885,6 @@ func open_dance_battle_screen(actor: EnemyAnimal, target: BattleActor) -> void:
 	screen_dance_battle.beats_to_play = int(remap(actor.character.attack, 1, 99, 20, 60))
 	if is_instance_valid(SND.current_song_player):
 		var bpm := screen_dance_battle.mbc.bpm
-		var stream := SND.current_song_player.stream
 		var tw := create_tween().set_parallel()
 		tw.tween_property(
 			SND.current_song_player,

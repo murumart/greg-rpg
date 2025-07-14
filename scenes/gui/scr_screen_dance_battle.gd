@@ -113,7 +113,7 @@ func _new_beat() -> void:
 
 func create_arrow(alignment := 0) -> void:
 	var arrow := Arrow.new()
-	var dir := (randi() % 4)
+	var dir := (randi() % 4) as Arrow.Dirs
 	arrow.direction = dir
 	arrow.accuracy_curve = accuracy_curve
 	arrow.enemy_difficulty = remap(enemy_level, 1, 99, 0.36, 0.99)
@@ -275,10 +275,10 @@ func streak_label_fun(intensity: int, text: String) -> void:
 func shake(n: Control, intensity: float) -> void:
 	var tw := n.create_tween()
 	var pos := n.position
-	var max := 15.0
-	for i in max:
-		var dec := (max - i) / max
-		tw.tween_property(n, "position", n.position + Vector2(randf_range(-1, 1), randf_range(-1, 1)) * intensity * dec, 0.3 / max)
+	var maxim := 15.0
+	for i in maxim:
+		var dec := (maxim - i) / maxim
+		tw.tween_property(n, "position", n.position + Vector2(randf_range(-1, 1), randf_range(-1, 1)) * intensity * dec, 0.3 / maxim)
 	tw.tween_property(n, "position", pos, 0.05)
 
 

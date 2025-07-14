@@ -446,5 +446,5 @@ metadata/_edit_lock_ = true
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("12_mqh78")
-level_gain = 72
+level_gain = 60
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"

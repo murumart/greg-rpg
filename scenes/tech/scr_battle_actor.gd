@@ -472,6 +472,7 @@ func handle_payload(pld: BattlePayload) -> void:
 
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:
 	var oldhp := character.health
+	@warning_ignore("redundant_await")
 	await hurt(damage, pld.gender)
 	var change := absf(character.health - oldhp)
 	if pld.steal_health and is_instance_valid(pld.sender):

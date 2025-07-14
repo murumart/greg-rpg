@@ -28,8 +28,8 @@ func _ready() -> void:
 	#draw_droopy_line(Vector2.ZERO, to_local(get_global_mouse_position()), 1.0)
 #
 #
-func _physics_process(delta: float) -> void:
-	drawer.queue_redraw()
+#func _physics_process(_delta: float) -> void:
+	#drawer.queue_redraw()
 
 
 func draw_droopy_line(from: Vector2, to: Vector2, droopiness: float) -> void:

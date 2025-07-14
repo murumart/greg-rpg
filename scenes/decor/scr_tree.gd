@@ -31,7 +31,7 @@ func screen(on: bool) -> void:
 
 
 func set_type(to: int) -> void:
-	var sprite: Sprite2D = $Sprite
+	sprite = $Sprite
 	sprite.region_rect.position.x = 16 + to * 48
 	type = to
 
