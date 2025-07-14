@@ -11,11 +11,11 @@ static func create() -> RoseBullet:
 	return ROSE_BULLET.instantiate()
 
 
-static func splort(amount: int, parent: Node, target: Vector2, flower_speed: float) -> void:
+static func splort(amount: int, sib: Node, target: Vector2, flower_speed: float) -> void:
 	for __ in amount:
 		var rb := RoseBullet.create()
-		parent.add_child(rb)
-		rb.global_position = parent.global_position
+		sib.add_sibling(rb)
+		rb.global_position = sib.global_position
 		rb.direction = rb.global_position.direction_to(target)
 		rb.direction = rb.direction.rotated(deg_to_rad(randf_range(-20, 20)))
 		rb.direction *= flower_speed

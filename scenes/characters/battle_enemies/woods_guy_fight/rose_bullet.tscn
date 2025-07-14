@@ -23,6 +23,7 @@ region_rect = Rect2(16, 0, 8, 8)
 [node name="Sprite" type="Sprite2D" parent="Sprite"]
 self_modulate = Color(1, 1, 1, 0.266667)
 show_behind_parent = true
+z_index = -1
 material = SubResource("CanvasItemMaterial_106p3")
 position = Vector2(-5, -5)
 scale = Vector2(1.375, 1.375)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene load_steps=47 format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_1wms1"]
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_krk2i"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="6_fm10m"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_i1l7e"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="6_kdwyn"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="7_celod"]
+[ext_resource type="Texture2D" uid="uid://bawch37iessfy" path="res://sprites/characters/overworld/spr_wild_lizard.png" id="10_va32c"]
+[ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="11_gtn0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
 resource_local_to_scene = true
@@ -153,6 +156,43 @@ stop_music_before_end = false
 kill_music = false
 play_fanfare = false
 crits_enabled = false
+player_missing_armour_effects = Dictionary[StringName, ExtResource("6_i1l7e")]({})
+increment_data_with_enemies = &""
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i1l7e"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x00gp"]
+atlas = ExtResource("10_va32c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Curve" id="Curve_va32c"]
+_data = [Vector2(0, 0.140188), 0.0, 0.0, 0, 0, Vector2(0.197724, 0.507387), 0.0, 0.0, 0, 0, Vector2(0.508082, 0.224926), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gtn0g"]
+width = 64
+curve = SubResource("Curve_va32c")
+
+[sub_resource type="Curve" id="Curve_52yhe"]
+_data = [Vector2(0, 0.902833), 0.0, 0.778329, 0, 0, Vector2(0.440191, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tsaws"]
+width = 64
+curve = SubResource("Curve_52yhe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i1l7e"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -2.61
+tangential_accel_max = 1.31
+scale_min = 1.2
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_tsaws")
+alpha_curve = SubResource("CurveTexture_gtn0g")
 
 [node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
 script = ExtResource("2_4xx1x")
@@ -186,3 +226,18 @@ enemy_amount_by_level = SubResource("Curve_xxdpe")
 default_battle = SubResource("Resource_5excg")
 inject_target = NodePath("..")
 start_texts = Array[String](["ravenous.", "hungry.", "wild.", "rampaging.", "found you.", "life."])
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="5"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_i1l7e")
+position = Vector2(0, -8)
+amount = 6
+texture = SubResource("AtlasTexture_x00gp")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_i1l7e")
+
+[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="." index="6" node_paths=PackedStringArray("from", "to")]
+script = ExtResource("11_gtn0g")
+from = NodePath("../AnimatedSprite2D")
+to = NodePath("../GPUParticles2D")
+metadata/_custom_type_script = "uid://b4no27m8ikd0y"

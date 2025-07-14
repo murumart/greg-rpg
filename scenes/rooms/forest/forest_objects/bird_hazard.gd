@@ -10,7 +10,6 @@ var player: PlayerOverworld
 
 func _ready() -> void:
 	player_ara.body_entered.connect(func(p: PlayerOverworld) -> void:
-		print("heyyy")
 		player = p
 	)
 	player_ara.body_exited.connect(func(_p: PlayerOverworld) -> void:
@@ -24,6 +23,6 @@ func _ready() -> void:
 func _timer() -> void:
 	if is_instance_valid(player):
 		var bb := BirdBullet.create_bird()
-		bb.direction = global_position.direction_to(player.global_position) * 80
+		bb.direction = global_position.direction_to(player.global_position + Vector2.UP * 8) * 80
 		add_sibling(bb)
 		bb.global_position = global_position

@@ -157,6 +157,10 @@ var songs := {
 		"title": "lion",
 		"stream": preload("res://music/mus_lion.ogg")
 	},
+	"lion_heavy": {
+		"title": "lion (heavy)",
+		"stream": preload("res://sounds/silent.ogg")
+	},
 	"mail_mission": {
 		"title": "mail mission",
 		"stream": preload("res://music/mus_mail_mission.ogg")

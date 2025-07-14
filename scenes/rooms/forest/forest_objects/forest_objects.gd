@@ -97,8 +97,9 @@ const DB = {
 	&"bird_hazard": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/bird_hazard.tscn"),
 		SIZE: Vector2i(1, 1),
-		WEIGHT: 7000,
+		WEIGHT: 700,
 		LIMIT: 1,
+		MIN_ROOM: 3,
 	},
 }
 

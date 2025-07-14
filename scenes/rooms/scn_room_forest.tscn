@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bd35pfu0qvhvt"]
+[gd_scene load_steps=34 format=4 uid="uid://bd35pfu0qvhvt"]
 
 [ext_resource type="Script" uid="uid://dww2ebr18ffrx" path="res://scenes/rooms/forest/scr_room_forest.gd" id="1_8ih16"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xshqe"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
 [ext_resource type="PackedScene" uid="uid://bsfbdos2ow8xt" path="res://scenes/tech/player_hit_area.tscn" id="9_vjkwb"]
 [ext_resource type="Script" uid="uid://batwscwrsgd1b" path="res://scenes/tech/scr_battle_actor.gd" id="10_ni3vs"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="12_cyq4r"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="12_mqh78"]
 
 [sub_resource type="Curve" id="Curve_g5h5i"]
@@ -36,6 +37,11 @@ size = Vector2(48, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyc05"]
 size = Vector2(8, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bvd07"]
+font = ExtResource("12_cyq4r")
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.215686)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqh78"]
 bg_color = Color(0, 0, 0, 0.662745)
@@ -303,24 +309,20 @@ show_percentage = false
 [node name="CurrentExp" type="Label" parent="UI/ExpProgress"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = -6.0
+offset_top = -11.0
 offset_right = 41.0
-offset_bottom = 2.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.239216)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 6
+offset_bottom = 1.0
 text = "0/0"
+label_settings = SubResource("LabelSettings_bvd07")
 
 [node name="NextlevelExp" type="Label" parent="UI/ExpProgress"]
 layout_mode = 0
 offset_left = 119.0
-offset_top = -6.0
+offset_top = -11.0
 offset_right = 159.0
 offset_bottom = 1.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.239216)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 6
 text = "0"
+label_settings = SubResource("LabelSettings_bvd07")
 horizontal_alignment = 2
 
 [node name="HealthBar" type="ProgressBar" parent="UI"]

@@ -364,14 +364,14 @@ scale = Vector2(251.234, 7.30594)
 texture = SubResource("GradientTexture2D_qwou2")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="LogoAnimated/Things/Sprite2D"]
-process_material = SubResource("ParticleProcessMaterial_3acqa")
 lifetime = 4.0
 trail_enabled = true
 trail_lifetime = 0.34
+process_material = SubResource("ParticleProcessMaterial_3acqa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LogoAnimated"]
 libraries = {
-"": SubResource("AnimationLibrary_gof5g")
+&"": SubResource("AnimationLibrary_gof5g")
 }
 autoplay = "default"
 

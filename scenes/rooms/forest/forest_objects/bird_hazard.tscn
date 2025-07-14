@@ -59,7 +59,7 @@ streams_count = 1
 stream_0/stream = ExtResource("3_xfo64")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xfo64"]
-radius = 62.1691
+radius = 91.444
 
 [node name="BirdHazard" type="Node2D" groups=["forest_hazards"]]
 script = ExtResource("1_xfo64")
@@ -83,7 +83,7 @@ process_material = SubResource("ParticleProcessMaterial_vyxes")
 stream = SubResource("AudioStreamRandomizer_vyxes")
 volume_db = 2.0
 max_distance = 234.0
-attenuation = 2.0
+attenuation = 1.36604
 max_polyphony = 12
 
 [node name="Timer" type="Timer" parent="AudioStreamPlayer2D"]

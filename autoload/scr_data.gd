@@ -12,7 +12,7 @@ signal player_captured(capture: bool)
 var A: Dictionary
 
 # for forbidding player movement
-var player_capturers := []
+var player_capturers: Array[StringName] = []
 
 # counting playtime
 @onready var game_timer := $GameTimer

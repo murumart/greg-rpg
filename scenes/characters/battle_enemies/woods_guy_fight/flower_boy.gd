@@ -41,4 +41,4 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(target):
 			print("no target")
 			return
-		RoseBullet.splort(bullets, get_parent(), target.global_position, flower_speed)
+		RoseBullet.splort(bullets, self, target.global_position, flower_speed)

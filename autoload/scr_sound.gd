@@ -115,10 +115,10 @@ func _on_fadeout_tween_step_finished(_int_stupid: int, player, options := {}):
 	player.queue_free()
 
 
-func get_music_playback_position():
+func get_music_playback_position() -> float:
 	if not is_instance_valid(current_song_player):
 		printerr("current song player invalid")
-		return
+		return 0.0
 	return current_song_player.get_playback_position()
 
 

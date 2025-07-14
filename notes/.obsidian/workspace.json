@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -198,10 +198,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "75ba75063ceb51c4",
+  "active": "071cf5586867746e",
   "lastOpenFiles": [
-    "Bugs.md",
     "Update goals.md",
+    "Bugs.md",
     "Notes.md",
     "Pasted image 20250710193306.png",
     "New Text Document.txt",
