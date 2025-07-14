@@ -15,7 +15,7 @@ func _ready() -> void:
 	player_ara.body_exited.connect(func(_p: PlayerOverworld) -> void:
 		player = null
 	)
-	timer.wait_time = remap(DAT.get_data("forest_depth", 1), 1, 99, 0.5, 4.0)
+	timer.wait_time = remap(DAT.get_data("forest_depth", 1), 1, 99, 0.45, 2.0)
 	$PlayerAra/CollisionShape2D.shape.radius = remap(DAT.get_data("forest_depth", 1), 1, 99, 90, 400)
 	timer.timeout.connect(_timer)
 	timer.start()

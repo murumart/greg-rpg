@@ -38,7 +38,8 @@ const DB = {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/lost_guy.tscn"),
 		SIZE: Vector2i(1, 1),
 		WEIGHT: 1,
-		LIMIT: 1
+		LIMIT: 1,
+		MIN_ROOM: 10,
 	},
 	&"stump": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/stump.tscn"),
@@ -55,14 +56,16 @@ const DB = {
 		SIZE: Vector2i(3, 2),
 		WEIGHT: 60,
 		LIMIT: 1,
-		FUNCTION: &"_set_flower_sleepy"
+		FUNCTION: &"_set_flower_sleepy",
+		MIN_ROOM: 8,
 	},
 	&"funny_fungus": {
 		SCENE: preload("res://scenes/decor/scn_pickable_item.tscn"),
 		SIZE: Vector2i(3, 2),
 		WEIGHT: 20,
 		LIMIT: 1,
-		FUNCTION: &"_set_fungus_funny"
+		FUNCTION: &"_set_fungus_funny",
+		MIN_ROOM: 8,
 	},
 	&"stone_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/stone_column.tscn"),
@@ -76,29 +79,34 @@ const DB = {
 		WEIGHT: 56,
 		LIMIT: 1,
 		FUNCTION: &"_connect_pizzle_finish",
+		MIN_ROOM: 5,
 	},
 	&"yellow_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/yellow_column.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 55,
 		LIMIT: 1,
+		MIN_ROOM: 5,
 	},
 	&"purple_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/purple_column.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 54,
 		LIMIT: 1,
+		MIN_ROOM: 5,
 	},
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
 		SIZE: Vector2i(3, 3),
 		WEIGHT: 800,
-		LIMIT: 1
+		LIMIT: 1,
+		MIN_ROOM: 5,
 	},
 	&"lime_head": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/lime_head.tscn"),
 		SIZE: Vector2i(3, 3),
 		WEIGHT: 1,
+		MIN_ROOM: 21,
 	},
 	&"pole": {
 		SCENE: preload("res://scenes/decor/scn_utilitypole.tscn"),

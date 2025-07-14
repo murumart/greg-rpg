@@ -85,11 +85,10 @@ func leave() -> void:
 	DAT.set_data("forest_save", {})
 	DAT.set_data("forest_questing", null)
 	DAT.set_data("forest_active_quests", [])
-	DAT.set_data("forest_last_gate_entered", -1)
+	DAT.set_data("forest_last_gate_entered", ForestGenerator.EAST)
 	DAT.set_data("forest_depth", 0)
-	LTS.gate_id = &"forest-house"
-	LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn",
-			{"ask_save_confirmation": true})
+	LTS.gate_id = &"entrance-woods"
+	LTS.level_transition("res://scenes/rooms/scn_room_forest_entrance.tscn")
 
 
 func _hit(_hurter: Area2D) -> void:
