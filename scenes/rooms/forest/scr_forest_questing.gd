@@ -79,13 +79,13 @@ func get_perk_silver_multiplier() -> float:
 	return amount_sum(get_key_perks(&"silver_multiplier_increase"))
 
 
-func get_perk_item_weight_addition_dictionary() -> Dictionary[StringName, Perk]:
-	var dict: Dictionary[StringName, Perk] = {}
+func get_perk_item_weight_addition_dictionary() -> Dictionary[StringName, float]:
+	var dict: Dictionary[StringName, float] = {}
 	for item: StringName in ForestGenerator.BIN_LOOT.keys():
 		var key := &"item_" + item + &"_chance_increase"
 		var kp := get_key_perks(key)
 		if not kp.is_empty():
-			dict[item].amount = amount_sum(kp)
+			dict[item] = amount_sum(kp)
 	return dict
 
 
