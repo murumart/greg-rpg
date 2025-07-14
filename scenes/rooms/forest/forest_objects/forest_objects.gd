@@ -77,6 +77,13 @@ const DB = {
 		LIMIT: 1,
 		FUNCTION: &"_connect_pizzle_finish",
 	},
+	&"yellow_column": {
+		SCENE: preload("res://scenes/rooms/forest/forest_objects/yellow_column.tscn"),
+		SIZE: Vector2i(2, 2),
+		WEIGHT: 80,
+		LIMIT: 1,
+		FUNCTION: &"_connect_yellow",
+	},
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
 		SIZE: Vector2i(3, 3),

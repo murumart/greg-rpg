@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvenx7ncp0g7y"
-path="res://.godot/imported/spr_stone_column.png-ea806f5d364419ff22375269d420386d.ctex"
+uid="uid://dv8go5ikd456q"
+path="res://.godot/imported/spr_forest_columns.png-d1e58aae33839460ddd58832f7f4d5bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/world/object/spr_stone_column.png"
-dest_files=["res://.godot/imported/spr_stone_column.png-ea806f5d364419ff22375269d420386d.ctex"]
+source_file="res://sprites/world/object/spr_forest_columns.png"
+dest_files=["res://.godot/imported/spr_forest_columns.png-d1e58aae33839460ddd58832f7f4d5bb.ctex"]
 
 [params]
 

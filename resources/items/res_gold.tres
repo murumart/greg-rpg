@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://b510g7p4ddnux"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_36vhu"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_jy08j"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_psytl"]
+[ext_resource type="Texture2D" uid="uid://dunkdc5smgx58" path="res://sprites/items/spr_gold.png" id="4_5jakx"]
+
+[sub_resource type="Resource" id="Resource_8cuoq"]
+script = ExtResource("2_psytl")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_36vhu")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("1_jy08j")
+name_in_file = &""
+name = &"gold"
+description = "a round piece of lustrous metal."
+texture = ExtResource("4_5jakx")
+attack_animation = ""
+price = 100
+use = -1
+consume_on_use = false
+payload = SubResource("Resource_8cuoq")
+metadata/_custom_type_script = "uid://cyql48l3hr5kl"

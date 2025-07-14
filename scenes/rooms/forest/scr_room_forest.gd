@@ -41,6 +41,7 @@ func _ready() -> void:
 			Color(0.735, 0.895, 0.222),
 			remap(current_room, 0, 100, 0.0, 1.0))
 	questing.update_quests()
+
 	if LTS.gate_id == LTS.GATE_EXIT_BATTLE or LTS.gate_id == LTS.GATE_LOADING:
 		load_from_save()
 		return

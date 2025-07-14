@@ -4,6 +4,8 @@ class_name Math
 # math operations that can be useful
 # most of these are only used in like 1 place forever lol
 
+const INT_MAX := 9223372036854775807
+
 const LEVEL_UP_CURVE := preload("res://resources/res_levelup_curve.tres")
 
 const ANGLE_LEFT := 3.14159

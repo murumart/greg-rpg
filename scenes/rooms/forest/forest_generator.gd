@@ -130,7 +130,7 @@ func load_layout() -> void:
 
 
 func gen_trees() -> void:
-	var amount := TREE_COUNT - forest.questing.get_perk_tree_reduction()
+	var amount := TREE_COUNT - int(forest.questing.get_perk_tree_reduction())
 	for i in amount:
 		var tree := TREE.instantiate()
 		forest.add_child(tree)
@@ -356,9 +356,15 @@ func _delete_item_on_pickup(a: PickableItem) -> void:
 
 const PizzleColumn = preload("res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd")
 func _connect_pizzle_finish(a: PizzleColumn) -> void:
-	if not a.played:
+	if not a.active:
 		a.add_to_group("forest_curiosities")
 	a.finished.connect(forest.hud.update_exp_display)
+	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
+
+
+func _connect_yellow(a: PizzleColumn) -> void:
+	if not a.active:
+		a.add_to_group("forest_curiosities")
 	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
 
 

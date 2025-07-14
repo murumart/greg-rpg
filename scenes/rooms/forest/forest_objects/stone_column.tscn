@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cmmplrqu5g683"]
 
-[ext_resource type="Texture2D" uid="uid://cvenx7ncp0g7y" path="res://sprites/world/object/spr_stone_column.png" id="1_nivfg"]
+[ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="1_f5equ"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_hw5mx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
@@ -14,8 +14,9 @@ collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
-texture = ExtResource("1_nivfg")
-region_rect = Rect2(48, 57, 16, 16)
+texture = ExtResource("1_f5equ")
+region_enabled = true
+region_rect = Rect2(64, 24, 16, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ltmb5")

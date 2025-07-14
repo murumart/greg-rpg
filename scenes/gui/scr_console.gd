@@ -353,7 +353,7 @@ func _cmd_addperk(args: PackedStringArray) -> void:
 	if not is_instance_valid(questing):
 		output("must be in forest", true)
 		return
-	questing.add_perk({args[0]: Math.toexp(args[1])})
+	questing.add_perk(args[0], Math.toexp(args[1]))
 	output("perk added")
 
 

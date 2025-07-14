@@ -11,6 +11,7 @@ value = 0.15
 [resource]
 script = ExtResource("1_1folf")
 glass_required = 2
+gold_required = 0
 add_to_perk = SubResource("Resource_trgl1")
 title = "silverbin+"
 silver_required = 0

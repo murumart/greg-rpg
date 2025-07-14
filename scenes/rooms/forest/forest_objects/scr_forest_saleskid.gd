@@ -7,9 +7,9 @@ var _traded := false
 
 
 static func _static_init() -> void:
-	for s in ResMan._get_dir_contents("res://resources/exchanges/forest/"):
+	for s in ResMan._get_dir_contents("res://resources/exchanges/forest/kid/"):
 		loaded_exchanges[s] = load(
-				"res://resources/exchanges/forest/" + s + ".tres") as Exchange
+				"res://resources/exchanges/forest/kid/" + s + ".tres") as Exchange
 
 
 func _ready() -> void:

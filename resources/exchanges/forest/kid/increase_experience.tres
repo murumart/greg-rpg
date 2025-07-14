@@ -11,6 +11,7 @@ value = 0.1
 [resource]
 script = ExtResource("1_10eb5")
 glass_required = 1
+gold_required = 0
 add_to_perk = SubResource("Resource_x6px6")
 title = "fastlearner"
 silver_required = 0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://dntjjltefm2ch"]
+[gd_scene load_steps=37 format=3 uid="uid://dntjjltefm2ch"]
 
-[ext_resource type="Script" uid="uid://rw5d0l7g3eh2" path="res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd" id="1_jluyq"]
+[ext_resource type="Script" uid="uid://dgkp1dv3rncpc" path="res://scenes/rooms/forest/forest_objects/pizzle_column.gd" id="1_ruw20"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_sxuju"]
-[ext_resource type="Texture2D" uid="uid://bsuymjkbf0oy7" path="res://sprites/world/object/spr_pizzle_stand.png" id="2_tyf8b"]
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="2_uyq8g"]
+[ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="3_ruw20"]
+[ext_resource type="AudioStream" uid="uid://dqj2bpifpcegb" path="res://sounds/gui/column_activate.ogg" id="5_56t3a"]
 
 [sub_resource type="Curve" id="Curve_ioxsh"]
 _limits = [3.0, 6.0, 0.0, 1.0]
@@ -142,16 +143,18 @@ size = Vector2(14, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
 
-[node name="Puzzles" type="StaticBody2D"]
+[node name="Puzzles" type="StaticBody2D" node_paths=PackedStringArray("interaction_area")]
 collision_mask = 0
-script = ExtResource("1_jluyq")
+script = ExtResource("1_ruw20")
 puzzle_size_curve = SubResource("Curve_ioxsh")
 puzzle_items = Array[ExtResource("2_uyq8g")]([SubResource("Resource_d3n61"), SubResource("Resource_d56of"), SubResource("Resource_kk0fw"), SubResource("Resource_oukl8"), SubResource("Resource_wrhe1"), SubResource("Resource_ifyqd"), SubResource("Resource_icfqo"), SubResource("Resource_2sghh"), SubResource("Resource_5r0ry"), SubResource("Resource_ofsq1"), SubResource("Resource_pc8fa"), SubResource("Resource_eoi1n"), SubResource("Resource_xgie4"), SubResource("Resource_lf5yd")])
+interaction_area = NodePath("InteractionArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
-texture = ExtResource("2_tyf8b")
-region_rect = Rect2(48, 57, 16, 16)
+texture = ExtResource("3_ruw20")
+region_enabled = true
+region_rect = Rect2(48, 24, 16, 24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ltmb5")
@@ -167,4 +170,7 @@ script = ExtResource("2_sxuju")
 shape = SubResource("RectangleShape2D_dxvwd")
 debug_color = Color(1, 0.564706, 1, 0.419608)
 
-[connection signal="interacted" from="InteractionArea" to="." method="_interactde"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_56t3a")
+volume_db = -16.045
+pitch_scale = 4.0

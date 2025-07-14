@@ -56,14 +56,20 @@
 			- [x] Attacks
 		- [ ] Flowerboy at the entrance to give tutorial
 	- [ ] Damaging bullet spawners
-		- [ ] Straight bullet block
-		- [ ] Rotating bullet block
-		- [ ] Spew bullet block (just make all of them the same spanwer. copy it from that jam game)
-	- [ ] Display HP in top bar
-	- [ ] Display room interesting things in top bar
+		- [x] bird bullets
+	- [x] Display HP in top bar
+	- [x] Display room interesting things in top bar
 	- [ ] Checkpoints
-	- [ ] Quest board UI
-		- [ ] you can give quests descriptions now
+	- [ ] 2 more stone columns
+		- [ ] yellow
+			- [ ] sun's blessings (like biking game perks)
+			- [ ] price (gold)
+		- [ ] purple (exchanges)
+			- [ ] transmute bio materials
+			- [ ] transmute silver to gold
+			- [ ] rose stem for rose flower (remember flowerboy holds the rose)
+	- [x] Quest board UI
+		- [x] you can give quests descriptions now
 - [ ] Dungeon changes
 	- [ ] Remove prodecural floors (for now)
 	- [ ] NPCS

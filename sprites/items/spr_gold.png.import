@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsuymjkbf0oy7"
-path="res://.godot/imported/spr_pizzle_stand.png-7975d3cfde93dc133a510878c27cfa41.ctex"
+uid="uid://dunkdc5smgx58"
+path="res://.godot/imported/spr_gold.png-cc589385b9966c64105ac4070a3466a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/world/object/spr_pizzle_stand.png"
-dest_files=["res://.godot/imported/spr_pizzle_stand.png-7975d3cfde93dc133a510878c27cfa41.ctex"]
+source_file="res://sprites/items/spr_gold.png"
+dest_files=["res://.godot/imported/spr_gold.png-cc589385b9966c64105ac4070a3466a0.ctex"]
 
 [params]
 
