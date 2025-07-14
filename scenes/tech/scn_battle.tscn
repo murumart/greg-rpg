@@ -524,10 +524,10 @@ replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"g
 replace_weapon = &"brick"
 force_spirits_into_use = true
 lots_of_magic = true
-data_overrides = {
-"bike_ghosts_fought": [1, 0],
-"gdung_floor": -1
-}
+data_overrides = Dictionary[StringName, Variant]({
+&"bike_ghosts_fought": [1, 0],
+&"gdung_floor": -1
+})
 
 [editable path="UI/Panel/ScreenMainActions/CurrentInfo"]
 [editable path="UI/Panel/ScreenListSelect/SelectedGuy"]

@@ -31,8 +31,6 @@ enum Doings {
 }
 var doing := Doings.NOTHING:
 	set(to):
-		if is_end():
-			return
 		#print("doin " + Doings.find_key(to))
 		doing = to
 var action_history := []
@@ -226,7 +224,7 @@ func load_battle(_info: BattleInfo) -> void:
 	#print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
-		var damage := questing.get_perk_enemy_start_damage() as int
+		var damage := roundi(questing.get_perk_enemy_start_damage())
 		if damage < 1:
 			return
 		for i in enemies:
@@ -577,7 +575,8 @@ func open_main_actions_screen() -> void:
 			item_button.grab_focus()
 		Doings.SPIRIT:
 			spirit_button.grab_focus()
-	doing = Doings.NOTHING
+	if not is_end():
+		doing = Doings.NOTHING
 	remote_transforms(false)
 	#await get_tree().process_frame
 	current_info.remote_transform.remote_path = current_guy.get_path()
@@ -649,7 +648,8 @@ func open_party_info_screen() -> void:
 	listening_to_player_input = false
 	for i in party_member_panel_container.get_children():
 		i.remote_transform.update_position = true
-	doing = Doings.NOTHING
+	if not is_end():
+		doing = Doings.NOTHING
 	held_item_id = ""
 	hide_screens()
 	screen_party_info.show()
