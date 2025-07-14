@@ -917,25 +917,31 @@ func _dance_battle_ended(data: Dictionary) -> void:
 				0.5
 		)
 		tw.tween_property(screen_dance_battle.mbc, "bpm", SND.current_song_player.stream.bpm, 0.5)
-	loser.handle_payload(
-		BattlePayload.new()
-		.set_sender(actor)
-		.set_health(-(wscore * 2.5 - 0.333 * lscore))
-		.set_defense_pierce(1)
-		.set_effects([
-			StatusEffect.new()
-				.set_effect_name("defense")
-				.set_duration(8)
-				.set_strength(-55)])
-	)
-	message("%s punished %s" %
-			[winner.character.name, loser.character.name],
+	message("%s won the dance-off!" %
+		winner.character.name,
+		{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+	if pwin:
+		loser.ignore_my_finishes = true
+		loser.flee()
+	else:
+		winner.character.attack *= 3
+		winner.character.defense *= 3
+		winner.character.speed *= 3
+		winner.character.level *= 3
+		message("%s powers up tremendously!" %
+			winner.character.name,
 			{"alignment": HORIZONTAL_ALIGNMENT_CENTER})
+		var tw := create_tween().set_loops(10)
+		tw.tween_callback(func() -> void:
+			SOL.vfx("use_item", winner.get_effect_center() + Vector2.from_angle(randf() * TAU) * randfn(15, 10), {item_texture = preload("res://sprites/items/spr_item_meat.png"), parent = winner})
+		)
+		tw.tween_interval(0.15)
 	open_party_info_screen()
 	get_tree().create_timer(0.5).timeout.connect(winner.turn_finished)
 	if pwin and player in party:
 		DAT.incri("dance_battles_won", 1)
 		xp_pool += ceili((pscore - enscore) / 3.0)
+		xp_pool += roundi(loser.get_xp() * 0.5) # other half of xp gotten after fleeing
 
 
 func set_description(text: String) -> void:

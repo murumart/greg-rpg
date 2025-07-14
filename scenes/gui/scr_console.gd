@@ -125,6 +125,25 @@ func _cmd_exit(args: PackedStringArray) -> void:
 	exit()
 
 
+func _cmd_enemanim(args: PackedStringArray) -> void:
+	var cs: Node = LTS.get_current_scene()
+	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+		output("needs to be used in battle", true)
+		return
+	if args.size() != 2:
+		output("usage: enemanim nr animation")
+		return
+	var enemies: Array[BattleActor] = cs.enemies
+	var nr: int
+	if args[0].is_valid_int() and int(args[0]) in range(0, enemies.size()):
+		nr = int(args[0])
+	else:
+		output("argument 2 should be actor index of team", true)
+		return
+	(enemies[nr] as BattleEnemy).animate(args[1])
+
+
+
 func _cmd_bset(args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()
 	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
@@ -148,6 +167,7 @@ func _cmd_bset(args: PackedStringArray) -> void:
 		nr = int(args[1])
 	else:
 		output("argument 2 should be actor index of team", true)
+		return
 	var variant := args[2]
 	var value := args[3]
 	get_team[nr].set_indexed(variant, value)

@@ -54,7 +54,7 @@ func _setup_gates() -> void:
 		var gate := gates.get_child(i) as Area2D
 		gate.body_entered.connect(
 				gate_entered.bind(i).unbind(1))
-		if DAT.get_data("forest_last_gate_entered", -1) == i:
+		if DAT.get_data("forest_last_gate_entered", ForestGenerator.EAST) == i:
 			if not LTS.gate_id == LTS.GATE_EXIT_BATTLE:
 				greg.global_position = gates.get_child(
 						ForestGenerator.dir_oppos(i)).get_child(1).global_position
@@ -65,7 +65,7 @@ func gate_entered(which: int) -> void:
 	#print("gate ", which)
 	LTS.gate_id = &"forest_transition"
 	if which != ForestGenerator.dir_oppos(
-			DAT.get_data("forest_last_gate_entered", -1)):
+			DAT.get_data("forest_last_gate_entered", ForestGenerator.EAST)):
 		DAT.set_data("forest_last_gate_entered", which)
 		LTS.level_transition("res://scenes/rooms/scn_room_forest.tscn")
 		DAT.incri("total_forest_rooms_traveled", 1)

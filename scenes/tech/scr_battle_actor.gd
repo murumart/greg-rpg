@@ -2,9 +2,9 @@ class_name BattleActor extends Node2D
 
 # base class for battle actors
 
-const WAIT_AFTER_ATTACK := 1.0
+const WAIT_AFTER_ATTACK := 0.66
 const WAIT_AFTER_SPIRIT := 1.0
-const WAIT_AFTER_ITEM := 1.00
+const WAIT_AFTER_ITEM := 0.75
 const WAIT_AFTER_FLEE := 1.0
 
 const ATK_DMG_LVL_CURVE := preload("res://resources/res_attack_damage_level_curve.tres")
@@ -261,21 +261,7 @@ func attack(subject: BattleActor) -> void:
 		return
 	# manual construction of payload
 	var crit := subject in crittable
-	var pld := create_payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
-	if crit:
-		pld.health *= 2.5
-	var weapon: Item
-	if character.weapon:
-		# manually copy over stuff from the item's payload
-		weapon = ResMan.get_item(character.weapon)
-		pld.set_defense_pierce(weapon.payload.pierce_defense)
-		pld.effects = weapon.payload.effects
-		pld.delay = weapon.payload.delay
-		pld.animation_on_receive = weapon.payload.animation_on_receive
-		if weapon.payload.gender:
-			pld.gender = weapon.payload.gender
-	if get_gender():
-		pld.gender = get_gender()
+	var pld := get_attack_payload(subject)
 	subject.handle_payload(pld) # the actual attack
 	if crit:
 		SOL.vfx(
@@ -292,9 +278,13 @@ func attack(subject: BattleActor) -> void:
 	if subject.has_method("_hurt_by_%s" % character.name_in_file):
 		call("_hurt_by_%s" % character.name_in_file)
 	# animations
-	if weapon != null and weapon.attack_animation.length() > 0:
-		SOL.vfx(weapon.attack_animation,
-				get_effect_center(subject), {parent = subject})
+	if character.weapon:
+		var weapon: Item
+		# manually copy over stuff from the item's payload
+		weapon = ResMan.get_item(character.weapon)
+		if weapon != null and weapon.attack_animation.length() > 0:
+			SOL.vfx(weapon.attack_animation,
+					get_effect_center(subject), {parent = subject})
 	else:
 		blunt_visuals(subject)
 	if get_gender() == Genders.ELECTRIC:
@@ -304,6 +294,26 @@ func attack(subject: BattleActor) -> void:
 	emit_message("%s attacked %s" % [actor_name, subject.actor_name])
 	await get_tree().create_timer(WAIT_AFTER_ATTACK).timeout
 	turn_finished()
+
+
+func get_attack_payload(target: BattleActor) -> BattlePayload:
+	var crit := target in crittable
+	var pld := create_payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
+	if crit:
+		pld.health *= 2.5
+	var weapon: Item
+	if character.weapon:
+		# manually copy over stuff from the item's payload
+		weapon = ResMan.get_item(character.weapon)
+		pld.set_defense_pierce(weapon.payload.pierce_defense)
+		pld.effects = weapon.payload.effects
+		pld.delay = weapon.payload.delay
+		pld.animation_on_receive = weapon.payload.animation_on_receive
+		if weapon.payload.gender:
+			pld.gender = weapon.payload.gender
+	if get_gender():
+		pld.gender = get_gender()
+	return pld
 
 
 func use_spirit(id: String, subject: BattleActor) -> void:
@@ -407,7 +417,7 @@ func handle_payload(pld: BattlePayload) -> void:
 	if character.health <= 0:
 		return
 	if pld.delay:
-		await get_tree().create_timer(pld.delay).timeout
+		await Math.timer(pld.delay)
 	var health_change := pld.get_health_change(
 			character.health, character.max_health)
 	if health_change > 0:
@@ -425,10 +435,10 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
 			SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
 		# frankling badge
-		if pld.gender == Genders.ELECTRIC \
-				and character.armour == &"frankling_badge":
-			if is_instance_valid(pld.sender) \
-					and pld.bounces < BattlePayload.MAX_BOUNCES:
+		if (pld.gender == Genders.ELECTRIC
+				and character.armour == &"frankling_badge"):
+			if (is_instance_valid(pld.sender)
+					and pld.bounces < BattlePayload.MAX_BOUNCES):
 				pld.sender.handle_payload(pld)
 				pld.bounces += 1
 			health_change *= 0.25

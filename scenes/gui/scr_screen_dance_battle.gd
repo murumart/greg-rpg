@@ -154,7 +154,7 @@ func _success_hit(accuracy: float) -> void:
 	good_sound.play()
 	SOL.vfx("spark_splash", player_splash.global_position, {parent = player_splash})
 	greg_ancestors.amount_ratio = streak / float(STREAK_CONGRATS.size())
-	if beat > beats_to_play: end_game()
+	check_end()
 
 
 func _fail_miss() -> void:
@@ -166,7 +166,8 @@ func _fail_miss() -> void:
 	set_score_text()
 	greg_ancestors.amount_ratio = 0.0
 	bad_sound.play()
-	if beat > beats_to_play: end_game()
+	target_reference.handle_payload(enemy_reference.get_attack_payload(target_reference))
+	check_end()
 
 
 func _enemy_action(success: bool, accuracy: float) -> void:
@@ -228,16 +229,27 @@ func squash(who: Sprite2D) -> void:
 	tw.tween_property(who, "scale", Vector2.ONE, 0.1)
 
 
+func check_end() -> void:
+	if (target_reference.character.health <= 0
+		or enemy_reference.character.health <= 0
+		or beat > beats_to_play
+	):
+		end_game()
+
+
 func end_game() -> void:
 	kill_arrows.emit()
 	active = false
 	var pscore := snappedf(score + hits, 0.1)
 	var enscore := snappedf(enemy_score + enemy_hits, 0.1)
 
-	set_score_text()
-	streak_label_fun(99, "danceoff end!!")
-	if pscore > enscore:
-		win_sound.play()
+	if target_reference.character.health > 0:
+		set_score_text()
+		streak_label_fun(99, "danceoff end!!")
+		if pscore > enscore:
+			win_sound.play()
+	else:
+		pscore = -999
 	get_tree().create_timer(2.0).timeout.connect(_ended)
 
 
