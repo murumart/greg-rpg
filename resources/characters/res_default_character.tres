@@ -18,7 +18,7 @@ modules/text_server_adv/text_server_adv.cpp:5723 - Condition \"!sd\" is true. Re
 voice_sound = ExtResource("3_iw6tg")
 portrait = ExtResource("1_t1yav")
 max_health = 2089.0
-health = 2088.0
+health = 0.0
 max_magic = 10000.0
 magic = 9999.0
 level = 89

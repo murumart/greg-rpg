@@ -59,8 +59,13 @@ func get_current_scene() -> Node:
 	return get_tree().root.get_child(-1)
 
 
+var transitioning := false
 # change level with fancy fade
 func level_transition(path: String, op := {}) -> void:
+	assert(not transitioning, "don't level transition when one is goin on already")
+	if transitioning:
+		return
+	transitioning = true
 	DAT.capture_player("level_transition")
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	var fadetime: float = op.get("fade_time", 0.4)
@@ -74,6 +79,7 @@ func level_transition(path: String, op := {}) -> void:
 	DAT.save_nodes_data()
 	change_scene_to(path, op)
 	await scene_changed
+	transitioning = false
 	if not op.get("abrupt_end", false):
 		if op.get("ask_save_confirmation", false):
 			SOL.dialogue("save_after_transition_ask")
@@ -87,7 +93,6 @@ func level_transition(path: String, op := {}) -> void:
 			{"kill_rects": op.get("ask_save_confirmation", false)}
 		)
 	else:
-
 		SOL.fade_screen(Color.TRANSPARENT, Color.TRANSPARENT, 0.1)
 	if op.get("stealing_enabled", true):
 		handle_stolen_items()

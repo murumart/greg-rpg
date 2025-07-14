@@ -15,7 +15,7 @@ class_name CheatNode extends Node
 @export var require_clean_char: bool = true
 @export var remove_when_gate_id := true
 @export var force_gate_id := &""
-@export var data_overrides := {}
+@export var data_overrides: Dictionary[StringName, Variant] = {}
 @export var add_seconds := 0
 
 

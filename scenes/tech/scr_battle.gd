@@ -31,6 +31,9 @@ enum Doings {
 }
 var doing := Doings.NOTHING:
 	set(to):
+		if is_end():
+			return
+		#print("doin " + Doings.find_key(to))
 		doing = to
 var action_history := []
 
@@ -228,6 +231,9 @@ func load_battle(_info: BattleInfo) -> void:
 			return
 		for i in enemies:
 			i.hurt(damage, Genders.NONE)
+	for c in actors:
+		if c.character.health <= 0:
+			c.die()
 
 
 func set_actor_states(to: BattleActor.States, only_party := false) -> void:
@@ -298,9 +304,7 @@ func add_party_member(id: String) -> void:
 			"res://scenes/tech/scn_battle_actor.tscn").instantiate()
 	party_member.load_character(id)
 	DAT.save_char_to_data(id)
-
 	add_actor(party_member, Teams.PARTY)
-
 	update_party()
 
 
