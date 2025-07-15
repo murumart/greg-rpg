@@ -10,6 +10,11 @@ var questing: ForestQuesting = null
 func on_interaction() -> void:
 	super()
 
+	if not DAT.get_data("quest_board_introed", false):
+		DAT.set_data("quest_board_introed", true)
+		SOL.dialogue("quest_board")
+		await SOL.dialogue_closed
+
 	var qb := QuestBoard.make()
 	qb.close_requested.connect(func() -> void:
 		qb.queue_free()

@@ -29,7 +29,7 @@ var current_dialogue: int
 var current_choice := &"": set = _set_current_choice
 var choices_open := false
 
-var dialogues_dict := {}
+var dialogues_dict: Dictionary[StringName, Dialogue] = {}
 
 var unmodified_dialogue_lines := {}
 
@@ -105,7 +105,7 @@ func copy_dial(dial: Dialogue) -> Dialogue:
 	return nd
 
 
-func prepare_dialogue_key(key: String) -> void:
+func prepare_dialogue_key(key: StringName) -> void:
 	if dialogues_dict.is_empty():
 		_load_dialogue_files()
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)

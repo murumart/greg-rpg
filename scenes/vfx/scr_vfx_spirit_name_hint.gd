@@ -18,6 +18,8 @@ static var sprite_frame_storage := {}
 @onready var particles := $GPUParticles2D
 @onready var timer: Timer = $Timer
 
+@export var sname: StringName
+
 
 func _ready() -> void:
 	clamp_zone_max = Vector2(SOL.SCREEN_SIZE.x - 10, SOL.SCREEN_SIZE.y / 2.0)
@@ -30,7 +32,7 @@ func _ready() -> void:
 
 
 func init(options := {}) -> void:
-	var spirit_name := options.get("spirit", "unknown") as String
+	var spirit_name := options.get("spirit", "unknown") as StringName if not sname else sname
 	if ResourceLoader.exists(FRAMES_PATH % spirit_name):
 		sprite.sprite_frames = load(FRAMES_PATH % spirit_name)
 	elif ResourceLoader.exists(SPRITE_PATH % spirit_name):

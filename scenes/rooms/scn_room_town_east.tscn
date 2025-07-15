@@ -255,7 +255,7 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
 
-[node name="ScnRoomTownEast" type="Node2D"]
+[node name="TownEast" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u5kw4")
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"

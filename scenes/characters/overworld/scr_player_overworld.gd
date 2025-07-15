@@ -6,6 +6,7 @@ enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
 @export var saving_disabled := false: set = set_saving_disabled
 @export var menu_disabled := false
+@export var _debug_prints := false
 
 const SPEED := 3800
 const INTERACTION_LENGTH := 12
@@ -150,6 +151,7 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, true)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
+	if _debug_prints: print("npc collider: ", collider)
 	if is_instance_valid(collider) and collider.has_method("interacted"):
 		collider.call("interacted")
 		return
@@ -157,6 +159,7 @@ func interact() -> void:
 	raycast.set_collision_mask_value(4, false)
 	raycast.force_raycast_update()
 	collider = raycast.get_collider()
+	if _debug_prints: print("interactable collider: ", collider)
 	if is_instance_valid(collider) and collider.has_method("on_interaction"):
 		collider.call("on_interaction")
 	# the interaction areas have the interacted function that this calls

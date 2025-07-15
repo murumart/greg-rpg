@@ -41,7 +41,7 @@ func _input(_event: InputEvent) -> void:
 
 
 # speak a dialogue
-func dialogue(key: String) -> void:
+func dialogue(key: StringName) -> void:
 	_position_dialogue_box()
 	dialogue_box.prepare_dialogue_key(key)
 

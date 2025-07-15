@@ -1,0 +1,243 @@
+[gd_scene load_steps=28 format=4 uid="uid://b1s6bpbq6txjm"]
+
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_gcwa5"]
+[ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_2d71n"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_wepxp"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_2d71n"]
+[ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="4_3m0jq"]
+[ext_resource type="AudioStream" uid="uid://b0gbrqb6p6ff1" path="res://music/mus_bymsps.ogg" id="6_x7u0m"]
+[ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="7_e6ise"]
+[ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="8_cnmt8"]
+[ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="9_mesc2"]
+[ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="10_mesc2"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="11_nd7hs"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="12_wepxp"]
+
+[sub_resource type="Gradient" id="Gradient_metlk"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.172297, 0.246622, 0.402027, 0.449324, 0.506757, 0.577703, 0.685811, 0.756757, 0.820946, 0.881757, 0.976351)
+colors = PackedColorArray(0.834459, 0.834459, 0.834459, 1, 0.224533, 0.224533, 0.224533, 1, 1, 1, 1, 1, 0.271436, 0.271436, 0.271436, 1, 0.313933, 0.00419795, 0.649021, 1, 0.00419795, 0.632887, 0.649021, 1, 1, 1, 1, 1, 0.878808, 0.878808, 0.878808, 1, 1, 1, 1, 1, 1, 0.989447, 0.989447, 1, 0.912851, 0.912851, 0.912851, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_elsyf"]
+gradient = SubResource("Gradient_metlk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7u0m"]
+shader = ExtResource("2_wepxp")
+shader_parameter/Gradient = SubResource("GradientTexture1D_elsyf")
+
+[sub_resource type="Resource" id="Resource_nd7hs"]
+script = ExtResource("8_cnmt8")
+text = "there is no door here."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_wepxp"]
+script = ExtResource("9_mesc2")
+name = &""
+lines = Array[ExtResource("8_cnmt8")]([SubResource("Resource_nd7hs")])
+alias = ""
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0sx3"]
+size = Vector2(14, 12)
+
+[sub_resource type="Resource" id="Resource_metlk"]
+script = ExtResource("8_cnmt8")
+text = "locked."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_elsyf"]
+script = ExtResource("9_mesc2")
+name = &""
+lines = Array[ExtResource("8_cnmt8")]([SubResource("Resource_metlk")])
+alias = ""
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wepxp"]
+size = Vector2(12, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_metlk"]
+size = Vector2(10, 4)
+
+[sub_resource type="Resource" id="Resource_yxl6a"]
+script = ExtResource("8_cnmt8")
+text = "i'm still waiting for her."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_4gvlq"]
+script = ExtResource("8_cnmt8")
+text = "will she even show up?"
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_b08nx"]
+script = ExtResource("8_cnmt8")
+text = "...."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_03wcc"]
+script = ExtResource("9_mesc2")
+name = &""
+lines = Array[ExtResource("8_cnmt8")]([SubResource("Resource_yxl6a"), SubResource("Resource_4gvlq"), SubResource("Resource_b08nx")])
+alias = ""
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elsyf"]
+size = Vector2(12, 6)
+
+[node name="WaitingRoom" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_gcwa5")
+metadata/_custom_type_script = "uid://bpfj25n4ytmas"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_x7u0m")
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 161.0
+offset_bottom = 121.0
+
+[node name="floor" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+position = Vector2(82, 69)
+tile_map_data = PackedByteArray("AAAIAAUAAQALAAgAAAAIAAQAAQALAAgAAAAIAAMAAQALAAgAAAAIAAIAAQALAAgAAAAIAAEAAQALAAgAAAAIAAAAAQALAAgAAAAIAP//AQALAAgAAAAIAP7/AQALAAgAAAAIAP3/AQALAAgAAAAIAPz/AQALAAgAAAAHAPn/AQAJAAgAAAAHAPj/AQAJAAgAAAAHAPf/AQAGAAcAAAAHAPb/AQALAAYAAAAGAPj/AQAJAAgAAAAGAPf/AQAJAAgAAAAGAPb/AQAKAAYAAAAFAPj/AQAJAAgAAAAFAPf/AQAJAAgAAAAFAPb/AQAKAAYAAAAEAPj/AQAJAAgAAAAEAPf/AQAJAAgAAAAEAPb/AQAKAAYAAAADAPj/AQAJAAgAAAADAPf/AQAJAAgAAAADAPb/AQAKAAYAAAACAPj/AQAJAAgAAAACAPf/AQAJAAgAAAACAPb/AQAKAAYAAAABAPj/AQAJAAgAAAABAPf/AQAJAAgAAAABAPb/AQAKAAYAAAAAAPj/AQAJAAgAAAAAAPf/AQAJAAgAAAAAAPb/AQAKAAYAAAD///j/AQAJAAgAAAD///f/AQAJAAgAAAD///b/AQAKAAYAAAD+//j/AQAJAAgAAAD+//f/AQAJAAgAAAD+//b/AQAKAAYAAAD9//j/AQAJAAgAAAD9//f/AQAJAAgAAAD9//b/AQAKAAYAAAD8//j/AQAJAAgAAAD8//f/AQAJAAgAAAD8//b/AQAKAAYAAAD7//j/AQAJAAgAAAD7//f/AQAJAAgAAAD7//b/AQAKAAYAAAD6//n/AQAJAAgAAAD6//j/AQAJAAgAAAD6//f/AQAJAAgAAAD6//b/AQAKAAYAAAD5//n/AQAJAAgAAAD5//j/AQAJAAgAAAD5//f/AQAJAAgAAAD5//b/AQAKAAYAAAD4/wYAAQAJAAkAAAD4/wUAAQAJAAgAAAD4/wQAAQAJAAgAAAD4/wMAAQAJAAgAAAD4/wIAAQAJAAgAAAD4/wEAAQAJAAgAAAD4/wAAAQAJAAgAAAD4//v/AQAJAAgAAAD4//r/AQAJAAgAAAD4//n/AQAJAAgAAAD4//j/AQAJAAgAAAD4//f/AQAJAAgAAAD4//b/AQAKAAYAAAD3/wYAAQAJAAkAAAD3/wUAAQAJAAgAAAD3/wQAAQAJAAgAAAD3/wMAAQAJAAgAAAD3/wIAAQAJAAgAAAD3/wEAAQAJAAgAAAD3/wAAAQAJAAgAAAD3////AQAJAAgAAAD3//v/AQAJAAgAAAD3//r/AQAJAAgAAAD3//n/AQAJAAgAAAD3//j/AQAJAAgAAAD3//f/AQAJAAgAAAD3//b/AQAKAAYAAAD2/wYAAQAIAAkAAAD2/wUAAQAIAAcAAAD2/wQAAQAIAAcAAAD2/wMAAQAIAAcAAAD2/wIAAQAIAAcAAAD2/wEAAQAIAAcAAAD2/wAAAQAIAAcAAAD2////AQAIAAcAAAD2//7/AQAIAAcAAAD2//3/AQAIAAcAAAD2//z/AQAIAAcAAAD2//v/AQAIAAcAAAD2//r/AQAIAAcAAAD2//n/AQAIAAcAAAD2//j/AQAIAAcAAAD2//f/AQAIAAcAAAD2//b/AQAIAAYAAAAIAAYAAQALAAkAAAAIAPv/AQALAAgAAAAIAPr/AQALAAgAAAAIAPn/AQALAAgAAAAIAPj/AQALAAgAAAAIAPf/AQALAAYAAAD7//n/AQAJAAgAAAD8//n/AQAJAAgAAAD9//n/AQAJAAgAAAD+//n/AQAJAAgAAAD///n/AQAJAAgAAAAAAPn/AQAJAAgAAAABAPn/AQAJAAgAAAACAPn/AQAJAAgAAAADAPn/AQAJAAgAAAAEAPn/AQAJAAgAAAAFAPn/AQAJAAgAAAAGAPn/AQAJAAgAAAD5/wAAAQAJAAgAAAD5/wEAAQAJAAgAAAD5/wIAAQAJAAgAAAD5/wMAAQAJAAgAAAD5/wQAAQAJAAgAAAD5/wUAAQAJAAgAAAD5/wYAAQAJAAgAAAD6/wAAAQAGAAgAAAD6/wEAAQALAAgAAAD6/wIAAQALAAgAAAD6/wYAAQAJAAgAAAD7/wAAAQAJAAkAAAD7/wIAAQACAAQAAAD7/wYAAQAJAAgAAAD8/wAAAQALAAkAAAD8/wIAAQACAAUAAAD8/wYAAQAJAAgAAAD9//3/AQAJAAkAAAD9////AQACAAUAAAD9/wAAAQADAAQAAAD9/wEAAQADAAUAAAD9/wIAAQADAAUAAAD9/wYAAQAJAAgAAAD+//3/AQAJAAkAAAD+/wAAAQABAAoAAAD+/wIAAQADAAQAAAD+/wYAAQAJAAgAAAD///3/AQALAAkAAAD/////AQADAAUAAAD//wAAAQADAAYAAAD//wEAAQAAAAcAAAD//wIAAQAEAAcAAAD//wMAAQAFAAcAAAD//wYAAQAJAAgAAAAAAPz/AQAJAAkAAAAAAP7/AQACAAQAAAAAAP//AQACAAUAAAAAAAAAAQADAAUAAAAAAAEAAQADAAQAAAAAAAIAAQAKAAYAAAAAAAMAAQAJAAgAAAAAAAQAAQAJAAgAAAAAAAUAAQAJAAgAAAAAAAYAAQAJAAgAAAABAPz/AQAJAAkAAAABAP7/AQADAAQAAAABAP//AQACAAQAAAABAAAAAQACAAUAAAABAAEAAQACAAUAAAABAAIAAQAKAAYAAAABAAMAAQAJAAgAAAABAAQAAQAJAAgAAAABAAUAAQAJAAgAAAABAAYAAQAJAAgAAAACAPz/AQAJAAkAAAACAP7/AQADAAQAAAACAP//AQADAAQAAAACAAAAAQACAAUAAAACAAEAAQACAAQAAAACAAIAAQAKAAYAAAACAAMAAQAJAAgAAAACAAQAAQAJAAgAAAACAAUAAQAJAAgAAAACAAYAAQAJAAgAAAADAPz/AQAJAAkAAAADAP7/AQADAAUAAAADAP//AQADAAUAAAADAAAAAQADAAQAAAADAAEAAQACAAQAAAADAAIAAQAKAAYAAAADAAMAAQAJAAgAAAADAAQAAQAJAAgAAAADAAUAAQAJAAgAAAADAAYAAQAJAAgAAAAEAPz/AQAFAAgAAAAEAP7/AQAIAAcAAAAEAP//AQAIAAcAAAAEAAAAAQAIAAcAAAAEAAEAAQAIAAcAAAAEAAIAAQAFAAcAAAAEAAMAAQAJAAgAAAAEAAQAAQAJAAgAAAAEAAUAAQAJAAgAAAAEAAYAAQAJAAgAAAAFAPz/AQAJAAgAAAAFAP3/AQAJAAgAAAAFAP7/AQAJAAgAAAAFAP//AQAJAAgAAAAFAAAAAQAJAAgAAAAFAAEAAQAJAAgAAAAFAAIAAQAJAAgAAAAFAAMAAQAJAAgAAAAFAAQAAQAJAAgAAAAFAAUAAQAJAAgAAAAFAAYAAQAJAAgAAAAGAPz/AQAJAAgAAAAGAP3/AQAJAAgAAAAGAP7/AQAJAAgAAAAGAP//AQAJAAgAAAAGAAAAAQAJAAgAAAAGAAEAAQAJAAgAAAAGAAIAAQAJAAgAAAAGAAMAAQAJAAgAAAAGAAQAAQAJAAgAAAAGAAUAAQAJAAgAAAAGAAYAAQAJAAgAAAAHAPz/AQAJAAgAAAAHAP3/AQAJAAgAAAAHAP7/AQAJAAgAAAAHAP//AQAJAAgAAAAHAAAAAQAJAAgAAAAHAAEAAQAJAAgAAAAHAAIAAQAJAAgAAAAHAAMAAQAJAAgAAAAHAAQAAQAJAAgAAAAHAAUAAQAJAAgAAAAHAAYAAQAJAAgAAAD5/wcAAQAJAAgAAAD5/wgAAQAJAAkAAAD6/wcAAQAJAAgAAAD6/wgAAQAJAAkAAAD7/wcAAQAJAAgAAAD7/wgAAQAJAAkAAAD8/wcAAQAJAAgAAAD8/wgAAQAJAAkAAAD9//z/AQAJAAgAAAD9/wcAAQAJAAgAAAD9/wgAAQAJAAkAAAD+//z/AQAJAAgAAAD+////AQADAAUAAAD+/wcAAQAJAAgAAAD+/wgAAQAJAAkAAAD///z/AQAGAAgAAAD//wcAAQAJAAgAAAD//wgAAQAJAAkAAAAAAAcAAQAJAAgAAAAAAAgAAQAJAAkAAAABAAcAAQAJAAgAAAABAAgAAQAJAAkAAAACAAcAAQAJAAgAAAACAAgAAQAJAAkAAAADAAcAAQAJAAgAAAADAAgAAQAJAAkAAAAEAAcAAQAJAAgAAAAEAAgAAQAJAAkAAAAFAAcAAQAJAAgAAAAFAAgAAQAJAAkAAAAGAAcAAQAJAAgAAAAGAAgAAQAJAAkAAAAHAAcAAQAJAAgAAAAHAAgAAQAJAAkAAAD6/wMAAQAGAAcAAAD7/wQAAQAJAAgAAAD8/wQAAQAJAAgAAAD9/wQAAQAJAAgAAAD+/wQAAQAJAAgAAAD//wQAAQAJAAgAAAD+/wMAAQAKAAYAAAD9/wMAAQAJAAYAAAD8/wMAAQAKAAYAAAD7/wMAAQAKAAYAAAD//wUAAQAJAAgAAAD+/wUAAQAJAAgAAAD9/wUAAQAJAAgAAAD8/wUAAQAJAAgAAAD7/wUAAQAJAAgAAAD6/wUAAQAJAAgAAAD6/wQAAQAJAAgAAAAEAP3/AQAIAAcAAAAEAPv/AQAJAAgAAAADAPv/AQAJAAgAAAADAPr/AQAJAAgAAAAEAPr/AQAJAAgAAAAFAPr/AQAJAAgAAAAFAPv/AQAJAAgAAAACAPv/AQAJAAgAAAABAPr/AQAJAAgAAAACAPr/AQAJAAgAAAABAPv/AQAJAAgAAAAAAPv/AQAJAAgAAAD///v/AQAJAAgAAAD///r/AQAJAAgAAAD+//r/AQAJAAgAAAAAAPr/AQAJAAgAAAD9//r/AQAJAAgAAAD8//r/AQAJAAgAAAD8//v/AQAJAAgAAAD7//v/AQAJAAgAAAD9//v/AQAJAAgAAAD+//v/AQAJAAgAAAD7//r/AQAJAAgAAAD6//r/AQAJAAgAAAD6//v/AQAJAAgAAAD5//v/AQAJAAgAAAD5//r/AQAJAAgAAAAGAPr/AQAJAAgAAAAGAPv/AQAJAAgAAAAHAPv/AQAJAAgAAAAHAPr/AQAJAAgAAAD8////AQALAAgAAAD8//7/AQALAAgAAAD8//3/AQAGAAgAAAD7//3/AQAJAAgAAAD7//z/AQAJAAgAAAD6//z/AQAJAAgAAAD6//3/AQAJAAgAAAD6//7/AQAJAAgAAAD6////AQAJAAgAAAD7////AQAJAAgAAAD7//7/AQAJAAgAAAD5//3/AQAJAAgAAAD5//7/AQAJAAgAAAD5////AQAJAAgAAAD5//z/AQAJAAgAAAD8//z/AQAJAAgAAAD4//z/AQAJAAgAAAD4//3/AQAJAAgAAAD4//7/AQAJAAgAAAD4////AQAJAAgAAAD3//z/AQAJAAgAAAD3//3/AQAJAAgAAAD3//7/AQAJAAgAAAA=")
+tile_set = ExtResource("2_2d71n")
+y_sort_origin = -60
+
+[node name="ontop" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAGAAMAAQANAAgAAAAHAAMAAQAPAAgAAAA=")
+tile_set = ExtResource("2_2d71n")
+
+[node name="Greg" parent="." instance=ExtResource("3_2d71n")]
+position = Vector2(40, 108)
+saving_disabled = true
+menu_disabled = true
+_debug_prints = true
+
+[node name="Chair" parent="." instance=ExtResource("4_3m0jq")]
+position = Vector2(123, 53)
+
+[node name="Chair2" parent="." instance=ExtResource("4_3m0jq")]
+position = Vector2(105, 53)
+
+[node name="Chair3" parent="." instance=ExtResource("4_3m0jq")]
+position = Vector2(134, 56)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_x7u0m")
+volume_db = -30.02
+pitch_scale = 0.85
+autoplay = true
+
+[node name="InspectArea" parent="." instance=ExtResource("7_e6ise")]
+position = Vector2(42, 118)
+dialogue = SubResource("Resource_wepxp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_t0sx3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100, 27)
+texture = ExtResource("10_mesc2")
+region_enabled = true
+region_rect = Rect2(162, 12, 12, 20)
+
+[node name="InspectArea" type="Area2D" parent="Sprite2D"]
+script = ExtResource("11_nd7hs")
+dialogue = SubResource("Resource_elsyf")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/InspectArea"]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_wepxp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(87, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_metlk")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -8)
+texture = ExtResource("12_wepxp")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)
+
+[node name="InspectArea" type="Area2D" parent="StaticBody2D"]
+script = ExtResource("11_nd7hs")
+dialogue = SubResource("Resource_03wcc")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/InspectArea"]
+shape = SubResource("RectangleShape2D_elsyf")

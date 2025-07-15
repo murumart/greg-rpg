@@ -24,7 +24,7 @@ func _ready() -> void:
 		progress = mini(DAT.get_data(save_key("progress"), 0), keys.size() - 1)
 
 
-func interacted() -> void:
+func on_interaction() -> void:
 	inspected.emit()
 	if key:
 		SOL.dialogue(INTERACTION_DIALOGUE_BASE + key)

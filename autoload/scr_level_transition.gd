@@ -36,10 +36,14 @@ func change_scene_to(path: String, options := {}) -> void:
 	var free_us := get_tree().get_nodes_in_group("free_on_scene_change")
 	if options.get("free_those_nodes", true):
 		for node in free_us:
-			node.call_deferred("queue_free")
+			node.queue_free.call_deferred()
 
 	await get_tree().process_frame
 
+	if not ResourceLoader.exists(path):
+		push_error(path + ": scene does not exist")
+		assert(false, "Scene does not exist!!")
+		path = "res://scenes/rooms/scn_room_waiting_room.tscn"
 	var new_scene: Node = load(path).instantiate()
 	get_tree().root.call_deferred("add_child", new_scene, false)
 

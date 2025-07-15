@@ -310,35 +310,9 @@ DIALOGUE turf_quest_notification
 
 
 DIALOGUE quest_board
-DATA_LINK quest_board_introed,false
 	(it's a lone bulletin board among the trees.)
 	(there are many tasks posted on it.)
-SET_DATA quest_board_introed,true
 	(who does these in the forest?)
-DATA_LINK 
-CHOICES quests,active,leave
-	welcome to the quest board! what would you like to do now?
-CHOICE_LINK leave
-	fare well.
-
-
-DIALOGUE quest_board_available_quests
-CHOICES nvm
-	what available quest to see in detail?
-	
-
-DIALOGUE quest_details
-	%s
-CHOICES yes,no
-	would you like to take on this quest?
-
-
-DIALOGUE quest_board_active
-	these are your active quests:
-
-
-DIALOGUE quest_board_active_empty
-	you have no active quests.
 
 
 DIALOGUE ballgame_win
