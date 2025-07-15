@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://derlrmf2kmbcd"]
+
+[ext_resource type="Shader" uid="uid://dpfuqkiyjn0e6" path="res://shaders/shd_canvas_group_outline.gdshader" id="1_1jg3a"]
+[ext_resource type="Texture2D" uid="uid://b1uyvhl2kkxuy" path="res://sprites/characters/overworld/spr_silhouette.png" id="1_1l71f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpvvp"]
+shader = ExtResource("1_1jg3a")
+shader_parameter/line_colour = Color(0, 1.658, 0, 1)
+shader_parameter/line_thickness = 2
+
+[sub_resource type="Gradient" id="Gradient_1l71f"]
+offsets = PackedFloat32Array(0.0954774, 0.236181, 0.442211, 0.502513, 0.557789, 1)
+colors = PackedColorArray(0, 0, 0, 0.873, 0.06, 1.1, 0.129, 0.127, 0.047, 0, 0.101, 1, 0.071, 2, 0.152, 0.221, 0.071, 0, 0.152, 1, 0.071, 0, 0.152, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1jg3a"]
+gradient = SubResource("Gradient_1l71f")
+
+[sub_resource type="Curve" id="Curve_1l71f"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.758427), 0.0, 0.0, 0, 0, Vector2(0.493333, 1.26405), 0.0, 0.0, 0, 0, Vector2(0.751111, 0.674157), 0.0, 0.0, 0, 0, Vector2(1, 0.202247), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1jg3a"]
+width = 64
+curve = SubResource("Curve_1l71f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kpvvp"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+damping_max = 10.0
+scale_curve = SubResource("CurveTexture_1jg3a")
+color_ramp = SubResource("GradientTexture1D_1jg3a")
+
+[node name="Menacing" type="Node2D"]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_kpvvp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup"]
+amount = 128
+texture = ExtResource("1_1l71f")
+fixed_fps = 60
+visibility_rect = Rect2(-200, -200, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_kpvvp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_1l71f")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
