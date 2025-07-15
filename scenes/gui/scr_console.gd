@@ -335,14 +335,17 @@ func _cmd_vfx(args: PackedStringArray) -> void:
 
 func _cmd_gitem(args: PackedStringArray) -> void:
 	if args.size() < 1:
-		output("usage: gitem itemname force")
+		output("usage: gitem itemname amount")
 		return
 	var itemname := args[0]
-	var force := args.size() > 1 and bool(Math.toexp(args[1]))
-	if not itemname in ResMan.items and not force:
+	var amount := 1
+	if args.size() > 1:
+		amount = int(args[1])
+	if not itemname in ResMan.items:
 		output("item doesn't exist", true)
 		return
-	DAT.grant_item(itemname)
+	for i in amount:
+		DAT.grant_item(itemname)
 	output("gave item " + args[0])
 
 

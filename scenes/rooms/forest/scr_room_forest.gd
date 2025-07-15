@@ -86,6 +86,7 @@ func leave() -> void:
 	DAT.set_data("forest_questing", null)
 	DAT.set_data("forest_active_quests", [])
 	DAT.set_data("forest_last_gate_entered", ForestGenerator.EAST)
+	DAT.set_data("forest_max_depth", maxi(DAT.get_data("forest_depth", 0), DAT.get_data("forest_max_depth", 0)))
 	DAT.set_data("forest_depth", 0)
 	LTS.gate_id = &"entrance-woods"
 	LTS.level_transition("res://scenes/rooms/scn_room_forest_entrance.tscn")

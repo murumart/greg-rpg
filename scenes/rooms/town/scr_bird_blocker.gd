@@ -1,17 +1,26 @@
 extends Node2D
 
 const LEVEL_LIMIT := 55
-const FOUGHT_KEY := "fought_woodsguy"
-const GREG := "greg"
+const FOUGHT_KEY := &"fought_woodsguy"
+const SEEN_CUTSCENE := &"seen_woodsguy_cutscene"
+const GREG := &"greg"
 
 @onready var inspect_area: InspectArea = $InspectArea
 @onready var bird_sprite: Sprite2D = $BirdSprite
 @onready var woods_guy: OverworldCharacter = $WoodsGuy
+@onready var after_battle_position: Marker2D = $AfterBattlePosition
+@onready var greg: PlayerOverworld = $"../../Greg"
 
 
 func _ready() -> void:
 	if DAT.get_data(FOUGHT_KEY, false):
-		queue_free()
+		if DAT.get_data(SEEN_CUTSCENE, false):
+			queue_free()
+		else:
+			bird_sprite.queue_free()
+			inspect_area.queue_free()
+			_cutscene_after()
+			DAT.set_data(SEEN_CUTSCENE, true)
 		return
 	inspect_area.inspected.connect(_inspected)
 
@@ -45,3 +54,19 @@ func _cutscene_before() -> void:
 	SOL.dialogue("woods_guy_approach")
 	await SOL.dialogue_closed
 	DAT.free_player("cutscene")
+
+
+func _cutscene_after() -> void:
+	DAT.capture_player("cutscene")
+	greg.global_position = after_battle_position.global_position
+	woods_guy.global_position = after_battle_position.global_position + Vector2.UP * 12
+	greg.animate("walk_up")
+	await Math.timer(1.0)
+	SOL.dialogue("woods_guy_after_battle")
+	await SOL.dialogue_closed
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(woods_guy, ^"global_position:y", woods_guy.global_position.y - 48, 0.8)
+	tw.tween_callback(func() -> void:
+		DAT.free_player("cutscene")
+		queue_free()
+	)

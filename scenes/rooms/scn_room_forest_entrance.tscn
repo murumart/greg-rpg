@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=4 uid="uid://bck2hkovnew0p"]
+[gd_scene load_steps=26 format=4 uid="uid://bck2hkovnew0p"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_c4iat"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_af6m7"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_dscab"]
 [ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_r31lb"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="5_dscab"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="5_gvca0"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="6_ksyns"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="7_cgtsx"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_cgtsx"]
@@ -13,6 +14,9 @@
 [ext_resource type="AudioStream" uid="uid://dbt5rotugiiay" path="res://music/mus_lion.ogg" id="10_mdhu1"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="11_xqqwx"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="12_yva5b"]
+[ext_resource type="Script" uid="uid://b0w8p8wlqj1sm" path="res://scenes/rooms/forest/entrance_other.gd" id="14_yrl0e"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="15_pcmf5"]
+[ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="16_yrl0e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xqqwx"]
 
@@ -32,7 +36,8 @@ size = Vector2(79, 6)
 blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_gvca0"]
-colors = PackedColorArray(0.841643, 1, 0.534128, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.00613497, 1)
+colors = PackedColorArray(0.841643, 1, 0.534128, 1, 0.844558, 1, 0.542702, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o4pxo"]
 gradient = SubResource("Gradient_gvca0")
@@ -40,7 +45,7 @@ width = 32
 height = 32
 fill = 1
 fill_from = Vector2(1, 0.5)
-fill_to = Vector2(0, 0.5)
+fill_to = Vector2(0, 0.498419)
 
 [node name="ForestEntranceasdasda" type="Node2D"]
 y_sort_enabled = true
@@ -55,10 +60,19 @@ script = ExtResource("2_af6m7")
 script = ExtResource("3_dscab")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
+[node name="Mobulate" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_dscab")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
 [node name="Sunsetter" type="Node" parent="."]
 script = ExtResource("4_r31lb")
 sunset_music = "sunset"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("5_gvca0")
+level_gain = 59
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="OverworldTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -94,7 +108,7 @@ position = Vector2(16, 223)
 shape = SubResource("WorldBoundaryShape2D_xqqwx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldCollision"]
-position = Vector2(14, -159)
+position = Vector2(14, -143)
 shape = SubResource("WorldBoundaryShape2D_yva5b")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="WorldCollision"]
@@ -157,8 +171,8 @@ bus = &"Music"
 [node name="Graident" type="Sprite2D" parent="Areas/RoomGate2"]
 z_index = 99
 material = SubResource("CanvasItemMaterial_mdhu1")
-position = Vector2(-59, -16.5)
-scale = Vector2(4, 11.5313)
+position = Vector2(-30.5, -16.5)
+scale = Vector2(2.21875, 11.5313)
 texture = SubResource("GradientTexture2D_o4pxo")
 
 [node name="Trees" type="Node2D" parent="."]
@@ -342,7 +356,19 @@ position = Vector2(2, -524)
 
 [node name="Other" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("14_yrl0e")
 
 [node name="TrashBin" parent="Other" instance=ExtResource("12_yva5b")]
 position = Vector2(294, -142)
-item = &"bread"
+item = &"rose_petals"
+
+[node name="Woodsman" parent="Other" instance=ExtResource("15_pcmf5")]
+position = Vector2(138, -44)
+default_lines = Array[StringName]([&"woods_guy_talk_1", &"woods_guy_help"])
+save_convo_progess = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/Woodsman"]
+position = Vector2(0, -8)
+texture = ExtResource("16_yrl0e")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)

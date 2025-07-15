@@ -821,8 +821,11 @@ func _grant_rewards() -> void:
 	if questing:
 		for reward in battle_rewards.rewards:
 			if reward.type == BRT.EXP:
-				reward.property = str(float(reward.property)
-						* (questing.get_perk_experience_multiplier() + 1.0))
+				var xp := float(reward.property)
+				xp *= 1.0 + DAT.get_data("forest_depth", 0) * 0.01
+				xp *= (questing.get_perk_experience_multiplier() + 1.0)
+				reward.property = str(xp)
+
 	await get_tree().process_frame
 	battle_rewards.grant()
 

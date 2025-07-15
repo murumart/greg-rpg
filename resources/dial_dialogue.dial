@@ -3110,9 +3110,64 @@ DIALOGUE woods_guy_after_battle
 	i will do my utmost to help... follow me.
 
 
-DIALOGUE woods_guy_tooearly
-CHOICES darn
-	it's not woods time for you yet.
+DIALOGUE woods_guy_talk_1
+	to the east of us is the woods.
+	the pathway to success...
+	i will remain here to help you.
+
+
+DIALOGUE woods_guy_help
+CHOICES bye,woods,you,me
+	do we have something to discuss?
+CHOICE_LINK woods
+SET_DATA flowerboy_talked_woods,true
+	to get you started...
+	the forest is a challenging environment.
+	the rewards match the challenge.
+	as one goes deeper, the air gets thicker...
+	the animals more abundant and ravenous.
+	riches and power more... more.
+CHOICE_LINK bye
+	walk mightily.
+CHOICE_LINK glass
+	ancient, beautiful shards of glass...
+	they are bound to the woods.
+	if one were to carry some out of the forest...
+	...all that will remain is a pile of wilting leaves.
+	some in the forest value it greatly.
+CHOICE_LINK air
+	the air in the woods is charged... the smell of the trees...
+	any battle you win will grant you so much more experience.
+CHOICE_LINK exit
+	it's impossible to get lost in the woods.
+	once you turn back, you appear right where you entered.
+	however deep you reached, once you go back in...
+	...you must walk again, and you won't reach the same place.
+CHOICE_LINK you
+SET_DATA flowerboy_talked_you,true
+	i am... a flower boy.
+	i lie the roses at your feet as you walk the victors' road.
+CHOICE_LINK me
+SET_DATA flowerboy_talked_me,true
+	what do i see in you...?
+	how many [color=FLOWERCOLOR]flowers[/color] do you have by now?
+	the path under your feet... it is like a garden.
+CHOICE_LINK flower
+	the [color=FLOWERCOLOR]flower[/color]?
+	my [color=FLOWERCOLOR]rose[/color]...
+	i believe it was an error to give me one.
+	the blossoms are fit for those who walk the main road.
+	my path... does not cross the main road.
+	i scattered the [color=FLOWERCOLOR]rose[/color] across the woods.
+	if you need it... i'm sure it will come to you.
+	bring me [color=FLOWERCOLOR]20 petals[/color]...
+	bring me [color=FLOWERCOLOR]20 thorns[/color]...
+	and i will reconstitute it for you, again.
+	that is your path.
+
+
+DIALOGUE woods_guy_has_materials
+	
 
 
 DIALOGUE lost_guy_1

@@ -137,9 +137,9 @@ func _unhandled_input(event: InputEvent) -> void:
 						party(current_tab).inventory.erase(using_item)
 						DAT.appenda("erased_items", using_item)
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
-						if using_item == &"cellphone":
-							party(current_tab).inventory.append("cellphone")
-							ResMan.get_item("cellphone").description = preload(
+						if using_item == &"cellphone" or ResMan.get_item(using_item) is FlowerItem:
+							party(current_tab).inventory.append(using_item)
+							ResMan.get_item(using_item).description = preload(
 									"res://code/res_cellphone_logic.gd").READD_DESC
 					else:
 						party(using_menu_choice).handle_item(using_item)

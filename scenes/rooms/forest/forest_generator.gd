@@ -200,7 +200,7 @@ func bin_loot(bin: TrashBin) -> void:
 	var values := BIN_LOOT.duplicate()
 	var add := forest.questing.get_perk_item_weight_addition_dictionary()
 	for k in add:
-		values[k] += add[k]
+		values[k] += roundi(add[k])
 	bin.item = Math.weighted_random(values.keys(), values.values())
 
 
