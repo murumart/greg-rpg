@@ -3033,27 +3033,26 @@ DIALOGUE woods_guy_try_shield
 
 
 DIALOGUE woods_guy_battle_1
-	in the woods there is a pathway to unnatural prowess.
+	in the woods, there is a pathway to unnatural prowess.
 	its a tale undertaken by those who are worthy.
 
 
 DIALOGUE woods_guy_battle_2
-	do you think scaring away a little bird is enough?
-	let me scare you for a change.
-
-
-DIALOGUE woods_guy_battle_3
-	trust me. it really isn't woods time until you learn...
-	...that getting hit by projectiles hurts.
-
-
-DIALOGUE woods_guy_battle_4
-	you are not worthy. see that little greg?
+	see that little greg?
 	that is your ass. watch me beat it.
 
 
+DIALOGUE woods_guy_battle_3
+	in the woods, getting cornered is simple.
+	here are four corners as an example.
+
+
+DIALOGUE woods_guy_battle_4
+	appearing, disappearing, appearing, disappearing...
+
+
 DIALOGUE woods_guy_battle_5
-	red roses. red roses on the path of victors.
+	red [color=FLOWERCOLOR]roses[/color]. red roses on the path of victors.
 
 
 DIALOGUE woods_guy_battle_6
@@ -3066,34 +3065,49 @@ DIALOGUE woods_guy_battle_7
 
 
 DIALOGUE woods_guy_battle_8
-	that is who i am. a flower boy on your path to victory.
+	a flower boy on your path to victory. that is who i am.
 
 
 DIALOGUE woods_guy_battle_9
+	my path only ever goes parallel to yours.
 	sorry about the tree...
 
 
 DIALOGUE woods_guy_battle_10
-	in the shape of the stones... four sides. six sides.
-	eight-sided blocks of mystery.
+	in the shape of the stones... four sides. seven sides.
+	eight-sided columns of mystery.
 
 
 DIALOGUE woods_guy_battle_11
-	the blox... what's under them?
+	what is under the columns?
 	what i found was what shaped this body.... unghhh.,,,,
 
 
 DIALOGUE woods_guy_battle_12
-	its composition...
+	what shaped my purpose...
+	leaving my [color=FLOWERCOLOR]flower[/color] brought me so much more.
 
 
 DIALOGUE woods_guy_battle_13
-	its integrity... can you withstand it?
+	i had to [color=FLOWERCOLOR]shard it to a million pieces.
+	then, i [color=FLOWERCOLOR]scattered it among the trees.
+	...you have to keep it together.
 
 
 DIALOGUE woods_guy_battle_14
-	you've made it to the circle that takes us back.
 	see you ahead, flower boy...
+
+
+DIALOGUE woods_guy_battle_final
+	...that's an old trick. you've seen it before.
+	i think it's possible that...
+	it could be...
+	woods time. woods time for you.
+
+
+DIALOGUE woods_guy_after_battle
+	so you are looking to grow.
+	i will do my utmost to help... follow me.
 
 
 DIALOGUE woods_guy_tooearly
@@ -3166,8 +3180,8 @@ DIALOGUE lost_guy_14
 
 
 DIALOGUE lost_guy_15
-	i wasn't joking about us being in a videogame, by the way.
-	lol bye
+	i'm getting really bored of all these...
+	video games....
 
 
 DIALOGUE effect_guru_noeffects

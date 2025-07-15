@@ -47,6 +47,8 @@
 		- [x] Things i did already
 	- [ ] Store cutscene w/ grandma
 		- [ ] Hide greg when she barges in
+	- [ ] Post- vampire cutscene
+		- [ ] replace car
 - [ ] Zerma dialogue rewrite
 	- [ ] just imagine jerma speaking in your head to write them
 - [ ] Forest changes

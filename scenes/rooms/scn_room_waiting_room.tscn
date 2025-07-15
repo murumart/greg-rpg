@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://b1s6bpbq6txjm"]
+[gd_scene load_steps=29 format=4 uid="uid://b1s6bpbq6txjm"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_gcwa5"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_2d71n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="10_mesc2"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="11_nd7hs"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="12_wepxp"]
+[ext_resource type="PackedScene" uid="uid://dgevysutt8p82" path="res://scenes/rooms/grandma_house/gdung_objects/flower_4.tscn" id="13_metlk"]
 
 [sub_resource type="Gradient" id="Gradient_metlk"]
 interpolation_mode = 1
@@ -241,3 +242,15 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/InspectArea"]
 shape = SubResource("RectangleShape2D_elsyf")
+
+[node name="Flower1" parent="." instance=ExtResource("13_metlk")]
+position = Vector2(115, 50)
+
+[node name="Sprite2D" parent="Flower1" index="0"]
+position = Vector2(6, 9)
+offset = Vector2(0, -9)
+
+[node name="CollisionShape2D" parent="Flower1/InspectArea" index="0"]
+position = Vector2(6, 8.5)
+
+[editable path="Flower1"]

@@ -45,6 +45,7 @@ func attack() -> void:
 		tp.volume_db -= 8
 		tp.play()
 		collision.disabled = true
+		done.emit()
 	)
 	await tw.finished
 	queue_free()

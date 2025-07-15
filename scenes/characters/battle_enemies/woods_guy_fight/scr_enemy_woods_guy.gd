@@ -26,6 +26,7 @@ var attacks: Array[Callable]
 var invtime := 0.0
 var max_invtime := DEFAULT_INVTIME
 var shield_tried := false
+var attacked := false
 
 
 func _ready() -> void:
@@ -39,38 +40,38 @@ func _ready() -> void:
 	)
 	hide_board()
 	attacks = [
-		func() -> void:
+		func() -> void: #1
 			await circle_attack(0.6, 1, 0, 32, 0, board.global_position)
 			,
-		func() -> void:
-			await random_attack(7, 0.4)
+		func() -> void: #2
+			await random_attack(7, 0.4, 0.9)
 			,
-		func() -> void:
+		func() -> void: #3
 			await circle_attack(1.4, 4, 0, 42, PI * 0.25, board.global_position)
-			await Math.timer(0.8)
 			await circle_attack(1.3, 4, 0, 36, PI, board.global_position)
 			,
-		func() -> void:
+		func() -> void: #4
 			await random_attack(12, 0.3)
-			await warning_attack(Rect2(0, 0, 4, 2)) # watch me beat it.
+			await warning_attack(Rect2(0, 0, 4, 2))
 			,
-		func() -> void:
-			flowerboy_attack(4, 1.2, 1, 60)
-			await Math.timer(4)
+		func() -> void: # 5
+			flowerboy_attack(8, 1.2, 1, 60)
+			await Math.timer(9)
 			,
-		func() -> void:
-			await circle_attack(0.9, 8, 1.1, 36)
+		func() -> void:# 6
+			await circle_attack(1.6, 8, 0.6, 36)
 			,
-		func() -> void:
+		func() -> void: # 7
 			for i in 4: # kill or be killed
-				await circle_attack(1.4, 4, 0, 48, TAU * (i / 8.0), board.global_position)
-				await Math.timer(0.8)
+				circle_attack(1.4, 4, 0, 48, TAU * (i / 8.0), board.global_position)
+				await Math.timer(1.1)
+			await Math.timer(0.4)
 			,
-		func() -> void:
-			flowerboy_attack(6, 0.8, 2, 60.0)
-			await Math.timer(5)
+		func() -> void: # 8
+			flowerboy_attack(7, 0.8, 2, 60.0)
+			await Math.timer(6)
 			,
-		func() -> void:
+		func() -> void: # 9
 			var t := TREE.instantiate()
 			board.add_child(t)
 			t.position = Vector2(7, 21)
@@ -80,29 +81,30 @@ func _ready() -> void:
 			await warning_attack(Rect2(1, 0, 3, 4))
 			t.queue_free() # sorry about the tree
 			,
-		func() -> void:
+		func() -> void: # 10
 			for i in 8:
-				await circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
-				await Math.timer(0.8)
+				circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
+				await Math.timer(0.9)
+			await Math.timer(0.8)
 			,
-		func() -> void:
+		func() -> void: # 11
 			flowerboy_attack(6, 0.6, 4, 15.0)
 			await Math.timer(7)
 			,
-		func() -> void:
+		func() -> void: # 12
 			await bird_attack(0.8, 7)
 			,
-		func() -> void:
-			random_attack(12, 0.3)
+		func() -> void: # 13
+			random_attack(12, 0.6, 0.7)
 			await warning_attack(Rect2(0, 0, 4, 2))
 			await warning_attack(Rect2(0, 2, 4, 2))
-			random_attack(24, 0.2)
+			random_attack(10, 0.4, 0.7)
 			await warning_attack(Rect2(2, 2, 2, 2))
 			await warning_attack(Rect2(0, 0, 2, 2))
 			await warning_attack(Rect2(2, 0, 2, 2))
 			await warning_attack(Rect2(0, 2, 2, 2))
 			,
-		func() -> void:
+		func() -> void: # 14
 			circle_attack(7.0, 10, 0.1, 42, 0, board.global_position)
 			circle_attack(7.0, 10, 0.1, 42, 0, board.global_position)
 			await bird_attack(0.5, 10)
@@ -120,8 +122,8 @@ func _ready() -> void:
 			,
 		func() -> void:
 			for i in 8:
-				await circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
-				await Math.timer(0.8)
+				circle_attack(1.4, 4, 0, 48, TAU * (i / 16.0), board.global_position)
+				await Math.timer(1.1)
 			,
 		func() -> void:
 			await bird_attack(0.8, 7)
@@ -146,7 +148,9 @@ func _process(delta: float) -> void:
 
 
 func act() -> void:
-	var greglvl := ResMan.get_character("greg").level
+	if attacked:
+		grandma_zoom()
+		return
 	ignore_my_finishes = true
 	sprite.texture = TX_WOODSMAN_LOOK
 	var dlgstr := "woods_guy_battle_" + str(turn + 1)
@@ -198,6 +202,7 @@ func pick_attack() -> void:
 	attack_ix += 1
 
 
+signal circle_attack_finished
 func circle_attack(
 	speed: float,
 	n: int,
@@ -206,6 +211,9 @@ func circle_attack(
 	initial_angle: float = 0.0,
 	target := MINUSO
 ) -> void:
+	var d := func(f: int) -> void:
+		if f == n - 1:
+			circle_attack_finished.emit()
 	for i in n:
 		var pos := Vector2.from_angle(initial_angle + TAU / n * i) * -distance + board.global_position
 		var target_pos := (pos + pos.direction_to(
@@ -215,17 +223,19 @@ func circle_attack(
 		board.add_child(zb)
 		zb.global_position = pos
 		zb.attack()
+		zb.done.connect(d.bind(i))
 		await Math.timer(delay)
+	await circle_attack_finished
 
 
-func random_attack(n: int, delay: float, gridlock := false) -> void:
+func random_attack(n: int, delay: float, speed := 1.0, gridlock := false) -> void:
 	for i in n:
 		var pos := Vector2(rng.randf_range(-2, 2), rng.randf_range(-1, 3))
 		if gridlock:
 			pos = pos.floor()
 		pos *= 16
 		pos += board.global_position
-		var b := AppearBullet.create()
+		var b := AppearBullet.create(false, speed)
 		b.global_position = pos
 		board.add_child(b)
 		await Math.timer(delay)
@@ -254,3 +264,35 @@ func bird_attack(delay: float, time: float) -> void:
 	await Math.timer(time)
 	b.queue_free()
 	max_invtime = DEFAULT_INVTIME
+
+
+func hurt(amt: float, gnd: int) -> void:
+	if character.health - _hurt_damage(amt, gnd) > 0:
+		super(amt, gnd)
+		return
+	attacked = true
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	sprite.scale = Vector2(1.2, 0.8)
+	SND.play_sound(preload("res://sounds/whoosh.ogg"))
+	#SND.play_sound(preload("res://sounds/flee.ogg"))
+	SOL.vfx(
+		"damage_number",
+		get_effect_center(self),
+		{text = "miss!", color = Color.WHITE})
+	tw.tween_property(sprite, ^"global_position:x", 300, 0.2)
+
+
+func grandma_zoom() -> void:
+	SND.play_song("")
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	remove_child(sprite)
+	SOL.add_ui_child(sprite)
+	tw.tween_property(sprite, ^"position", Vector2(79, 99), 0.2)
+	tw.parallel().tween_property(sprite, ^"scale", Vector2.ONE * 2, 0.1)
+	await Math.timer(1.0)
+	sprite.texture = TX_WOODSMAN_LOOK
+	SOL.dialogue("woods_guy_battle_final")
+	await SOL.dialogue_closed
+	fled.emit(self)
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(sprite, ^"position:x", 400, 1.0)
