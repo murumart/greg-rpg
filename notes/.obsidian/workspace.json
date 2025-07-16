@@ -49,7 +49,8 @@
               "title": "Bugs"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -197,11 +198,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cfbe9572ff8bd75",
+  "active": "75ba75063ceb51c4",
   "lastOpenFiles": [
-    "Update goals.md",
     "Bugs.md",
     "Notes.md",
+    "Update goals.md",
     "Pasted image 20250710193306.png",
     "New Text Document.txt",
     "Pasted image 20250710193306.png.import",

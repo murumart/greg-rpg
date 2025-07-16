@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=43 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -256,6 +256,13 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
 
+[sub_resource type="Curve2D" id="Curve2D_0834g"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -76, 164, 150.748, -194.999, -150.748, 194.999, -223, 415, 137.19, 6.61157, -137.19, -6.61157, -528, 572, 0, 0, 0, 0, -898, 571)
+}
+point_count = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 6)
 
@@ -266,6 +273,7 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
+force_gate_id = &"intro"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
@@ -683,6 +691,7 @@ shape = SubResource("RectangleShape2D_bu27y")
 position = Vector2(82, -722)
 greg = NodePath("../Greg")
 greg_camera = NodePath("../Greg/Camera")
+time = 8.75
 final_destination = NodePath("CarPath/Marker2D2")
 dialogue_line = "intro_convo_2"
 next_room = "uid://d0ypwtjm1o5tg"
@@ -696,6 +705,13 @@ position = Vector2(-11, 598)
 
 [node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
 position = Vector2(-961, 595)
+
+[node name="CameraPath" parent="RideAroundTown" index="2"]
+curve = SubResource("Curve2D_0834g")
+
+[node name="Follow" parent="RideAroundTown/CameraPath" index="0"]
+position = Vector2(-76, 164)
+rotation = 2.1006
 
 [node name="Other" type="Node2D" parent="."]
 

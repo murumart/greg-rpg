@@ -1,5 +1,6 @@
-- [ ] Interaction areas dont work
-	- [ ] bird in town
-	- [ ] house doors
+- [x] Interaction areas dont work
+	- [x] bird in town
+	- [x] house doors
 - [ ] displays float in battle status effect menu
-- [ ] bird attack target feet
+- [x] bird attack target feet
+- [ ] ushanka guy walks nowhere

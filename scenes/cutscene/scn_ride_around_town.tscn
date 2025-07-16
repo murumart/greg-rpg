@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxwgxx66m8k4a"]
+[gd_scene load_steps=4 format=3 uid="uid://dxwgxx66m8k4a"]
 
-[ext_resource type="Script" uid="uid://dg7p2scfkymhg" path="res://scenes/rooms/town/intro_east_ride_around_town.gd" id="1_agioo"]
+[ext_resource type="Script" uid="uid://dg7p2scfkymhg" path="res://scenes/rooms/town/scr_ride_around_town.gd" id="1_agioo"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="2_7nl3h"]
+
+[sub_resource type="Curve2D" id="Curve2D_agioo"]
+resource_local_to_scene = true
 
 [node name="RideAroundTown" type="Node2D"]
 script = ExtResource("1_agioo")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="ZermCar" parent="." node_paths=PackedStringArray("path_container") instance=ExtResource("2_7nl3h")]
 position = Vector2(0, -27)
@@ -14,3 +19,9 @@ disable_saving = true
 color = Color(0.270588, 0.337255, 0.486275, 1)
 
 [node name="CarPath" type="Node2D" parent="."]
+
+[node name="CameraPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_agioo")
+
+[node name="Follow" type="PathFollow2D" parent="CameraPath"]
+rotation = -0.876058

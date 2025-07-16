@@ -77,7 +77,7 @@ func level_transition(path: String, op := {}) -> void:
 		op.get("start_color", Color(0, 0, 0, 0)),
 		op.get("end_color", Color.BLACK),
 		fadetime,
-		{"free_rect": not op.get("ask_save_confirmation", false)}
+		{"kill_rects": not op.get("ask_save_confirmation", false) or op.get("kill_rects", false)}
 	)
 	await SOL.fade_finished
 	DAT.save_nodes_data()

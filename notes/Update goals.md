@@ -24,9 +24,9 @@
 		- [ ] win condition: get to the bottom
 		- [ ] lose condition: die (you die)
 - [ ] Intro changes
-	- [ ] Ride around town
-		- [ ] pan around town as the car moves, don't follow it
-		- [ ] wait on a black screen if dialogue isn't complete
+	- [x] Ride around town
+		- [x] pan around town as the car moves, don't follow it
+		- [x] wait if dialogue isn't complete
 	- [x] Better interior for house
 	- [x] Initial interaction cutscene
 		- [x] Make her static at first
