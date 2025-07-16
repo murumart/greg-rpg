@@ -62,13 +62,13 @@
 	- [x] Display HP in top bar
 	- [x] Display room interesting things in top bar
 	- [ ] Checkpoints
-	- [ ] 2 more stone columns
+	- [x] 2 more stone columns
 		- [x] yellow
 			- [x] sun's blessings (like biking game perks)
 			- [x] price (gold)
 		- [x] purple (exchanges)
-			- [ ] transmute bio materials
-			- [ ] transmute silver to gold
+			- [x] transmute bio materials
+			- [x] transmute silver to gold
 	- [x] Quest board UI
 		- [x] you can give quests descriptions now
 - [ ] Dungeon changes
