@@ -31,6 +31,7 @@ func has_input(inventory: Array) -> bool:
 
 func check_items(inventory: Array) -> bool:
 	for i in input:
+		assert(ResMan.item_exists(i) if i else true)
 		if not i in inventory:
 			return false
 	return true

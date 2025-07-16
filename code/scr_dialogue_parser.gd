@@ -145,6 +145,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 			loop_to_set = int(line.right(-NEW_LOOP.length()))
 		elif line.begins_with(NEW_ITEM):
 			item_to_give = str(line.right(-NEW_ITEM.length()))
+			assert(ResMan.item_exists(item_to_give))
 		elif line.begins_with(NEW_SPIRIT):
 			spirit_to_give = str(line.right(-NEW_SPIRIT.length()))
 		elif line.begins_with(NEW_SILVER):

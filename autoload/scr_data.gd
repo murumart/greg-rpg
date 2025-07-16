@@ -230,6 +230,7 @@ func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:
 	if dialogue:
 		SOL.dialogue_box.dial_concat("getitem", 0, [ResMan.get_item(item).name])
 		SOL.dialogue("getitem")
+	assert(ResMan.item_exists(item))
 	if (LTS.get_current_scene().name == "Battle"
 			and not LTS.get_current_scene().party.is_empty()):
 		var battle = LTS.get_current_scene()

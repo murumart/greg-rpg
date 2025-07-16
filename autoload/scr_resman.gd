@@ -34,11 +34,15 @@ static func get_character(key: StringName) -> Character:
 
 static func get_item(id: StringName) -> Item:
 	check_loaded()
-	assert(id in items, "item " + id + " doesn't exist")
+	assert(item_exists(id), "item " + id + " doesn't exist")
 	if not id in items:
 		printerr("item ", id, " not found")
 		return preload("res://resources/res_default_item.tres")
 	return items[id]
+
+
+static func item_exists(id: StringName) -> bool:
+	return id in items
 
 
 static func get_spirit(id: StringName) -> Spirit:

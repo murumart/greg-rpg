@@ -605,7 +605,7 @@ func open_list_screen() -> void:
 					{"custom_pass_function": crittable_display})
 			screen_list_select.show()
 		Doings.ITEM_MENU:
-			var items := current_guy.character.inventory.duplicate()
+			var items := current_guy.character.inventory.duplicate().filter(func(a: StringName) -> bool: return ResMan.get_item(a) is not FlowerItem)
 			items.sort()
 			Math.load_reference_buttons_groups(
 					items, item_list_container,
