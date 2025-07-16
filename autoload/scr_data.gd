@@ -46,14 +46,6 @@ func _ready() -> void:
 	DAT.set_data("dance_battle_tutorialed", true) # DEBUG
 
 
-# entry point for a new game
-# the architecture for this is iffy
-func start_game() -> void:
-	init_data()
-	set_data("nr", randf())
-	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
-
-
 # set a data key to a value
 func set_data(key: StringName, value) -> void:
 	if log_dat_chgs(): print("data key %s set to %s" % [key, value])

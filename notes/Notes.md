@@ -9,11 +9,11 @@
 	- [ ] grandma meaner when you ask for house
 	- [ ] friendlier zerma? offer to tutorial
 	- [ ] tarikas tells you to approach from frong
-	- [ ] fix intro skip
+	- [x] fix intro skip
 	- [ ] more diagetic immersion for intro room exit area dialogue
 	- [ ] dont turn off radio when its off
 	- [ ] more grnamda item interaction
-	- [ ] put boot in trash can
-	- [ ] rebind screenshit
+	- [x] put boot in trash can
+	- [x] rebind screenshit
 - [ ] change greandma green dialo
 - [ ] lore: last 2 police bounties from grandma

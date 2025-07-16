@@ -16,6 +16,7 @@ const CHANGEABLE := {
 	"ui_right": "ui right",
 	"quick_save": "save",
 	"quick_load": "load",
+	"screenshot": "screenshot",
 }
 const COLUMNS := 3
 

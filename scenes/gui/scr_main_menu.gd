@@ -68,7 +68,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_new_game_button_pressed() -> void:
-	DAT.start_game()
+	DAT.init_data()
+	DAT.set_data("nr", randf())
+	LTS.level_transition("res://scenes/cutscene/scn_intro.tscn", {"fade_time": 2.0})
 	# wow! chord
 	SND.play_sound(menusound, {"bus": "ECHO"})
 	SND.play_sound(menusound, {"bus": "ECHO", "pitch_scale": 1.33})

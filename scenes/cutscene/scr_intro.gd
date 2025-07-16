@@ -18,10 +18,6 @@ const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 func _ready() -> void:
 	ResMan.get_character("greg").inventory.erase(&"cellphone")
-	if (Input.is_action_pressed("cancel")
-			and Input.is_action_pressed("ui_accept")):
-		exit_intro()
-		return
 	car.turn(PI / 2)
 	car.moves = false
 	car.position.y = -80
@@ -86,10 +82,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("cancel") and Input.is_action_pressed("ui_accept") and skipping_enabled:
 		skipping_enabled = false
-		get_tree().get_processed_tweens().map(func(p: Tween) -> void: p.kill())
+		#get_tree().get_processed_tweens().map(func(p: Tween) -> void: p.kill())
 		LTS.gate_id = &"intro"
-		SND.room_music_blockers += 1
-		LTS.level_transition("res://scenes/rooms/scn_room_town_east.tscn", {fade_speed = 0.05})
+		LTS.level_transition("res://scenes/rooms/scn_room_greg_house.tscn", {fade_speed = 0.05})
 
 
 func spawn_tree() -> void:

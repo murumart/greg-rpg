@@ -1,7 +1,7 @@
 - [ ] Industry area
 	- [ ] Getting in here
 		- [ ] Police mention of other side of town
-		- [ ] Police bounty board UI
+		- [x] Police bounty board UI
 		- [ ] Get the sleepy flower bounty to enter the other side of town
 			- [x] (get sleepy flower from forest)
 			- [ ] dialogue

@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=116 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -63,7 +63,6 @@
 [ext_resource type="Resource" uid="uid://bewy7ovucykch" path="res://resources/battle_infos/grass_fight_2.tres" id="42_pcrep"]
 [ext_resource type="Script" uid="uid://rbsftcdpv7ce" path="res://scenes/rooms/town/scr_police_blocker.gd" id="43_b736o"]
 [ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
-[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="44_smf10"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="48_ke24d"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
@@ -1597,9 +1596,9 @@ silver = 16
 
 [node name="CampsiteTrash2" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
 position = Vector2(-26, -51)
-replenish_minutes = 10
-replenish_seconds = 600
-silver = 14
+replenish_minutes = -1
+replenish_seconds = -60
+item = &"rain_boot"
 
 [node name="CampsiteTrash3" parent="Other/CampfireSite" instance=ExtResource("12_rk0rd")]
 position = Vector2(-12, -49)
@@ -1706,11 +1705,6 @@ position = Vector2(35, -23)
 
 [node name="Node2D3" type="Node2D" parent="Other/CampfireSite/Path"]
 position = Vector2(34, -1)
-
-[node name="LoneBoot" parent="Other/CampfireSite" instance=ExtResource("44_smf10")]
-position = Vector2(-70, -42)
-item_type = &"rain_boot"
-save = true
 
 [node name="BackPark" type="Node2D" parent="Other"]
 y_sort_enabled = true
