@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=42 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dcfpaki7ir318" path="res://sprites/world/building/factory/shadow.png" id="21_stciw"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
 [ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="24_w54ah"]
+[ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="25_0834g"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
 normal = Vector2(0, 1)
@@ -254,6 +255,9 @@ blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
+size = Vector2(79, 6)
 
 [node name="TownEast" type="Node2D"]
 y_sort_enabled = true
@@ -692,5 +696,20 @@ position = Vector2(-11, 598)
 
 [node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
 position = Vector2(-961, 595)
+
+[node name="Other" type="Node2D" parent="."]
+
+[node name="LeaveEnding" type="Node2D" parent="Other"]
+position = Vector2(85, -642)
+script = ExtResource("25_0834g")
+
+[node name="ApproachArea" type="Area2D" parent="Other/LeaveEnding"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/LeaveEnding/ApproachArea"]
+position = Vector2(-0.5, 7)
+shape = SubResource("RectangleShape2D_c52i7")
 
 [editable path="RideAroundTown"]

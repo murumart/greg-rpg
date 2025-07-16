@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bh78ls33qdjmw"]
+[gd_scene load_steps=31 format=3 uid="uid://bh78ls33qdjmw"]
 
 [ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="1_6gg0v"]
 [ext_resource type="Script" uid="uid://bwlt2c4fqkvxf" path="res://scenes/rooms/forest/forest_objects/purple_column.gd" id="1_7wt7o"]
@@ -19,16 +19,34 @@ metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_cfek6"]
 script = ExtResource("2_cfek6")
-title = "petal|relive"
+title = "rose|relive"
 silver_required = 0
 input = Array[StringName]([&"meat"])
 silver_granted = 0
 output = Array[StringName]([&"rose_petals", &"rose_petals"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
+[sub_resource type="Resource" id="Resource_jd7a5"]
+script = ExtResource("2_cfek6")
+title = "rose|reuse"
+silver_required = 0
+input = Array[StringName]([&"sleepy_flower"])
+silver_granted = 0
+output = Array[StringName]([&"rose_petals", &"rose_thorns"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_eembn"]
+script = ExtResource("2_cfek6")
+title = "rose|plast"
+silver_required = 0
+input = Array[StringName]([&"plaster"])
+silver_granted = 0
+output = Array[StringName]([&"rose_petals"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
 [sub_resource type="Resource" id="Resource_arbjb"]
 script = ExtResource("2_cfek6")
-title = "thorn|unburn"
+title = "rose|unburn"
 silver_required = 0
 input = Array[StringName]([&"cigarette"])
 silver_granted = 0
@@ -37,11 +55,38 @@ metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_q0jd0"]
 script = ExtResource("2_cfek6")
-title = "thorn|wall"
+title = "rose|wall"
 silver_required = 0
 input = Array[StringName]([&"eggshell"])
 silver_granted = 0
 output = Array[StringName]([&"rose_thorns"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_bg2yb"]
+script = ExtResource("2_cfek6")
+title = "tasty"
+silver_required = 0
+input = Array[StringName]([&"brick"])
+silver_granted = 0
+output = Array[StringName]([&"berries", &"berries", &"berries"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_lyk1c"]
+script = ExtResource("2_cfek6")
+title = "glue"
+silver_required = 0
+input = Array[StringName]([&"egg", &"egg", &"pills"])
+silver_granted = 0
+output = Array[StringName]([&"glue"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_ei1fi"]
+script = ExtResource("2_cfek6")
+title = "cereal"
+silver_required = 0
+input = Array[StringName]([&"milk", &"mueslibar", &"mueslibar", &"mueslibar"])
+silver_granted = 0
+output = Array[StringName]([&"muesli"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmb5"]
@@ -83,58 +128,6 @@ radial_accel_max = 5.71
 tangential_accel_min = 22.98
 tangential_accel_max = 40.09
 color_ramp = SubResource("GradientTexture1D_cfek6")
-
-[sub_resource type="Animation" id="Animation_cfek6"]
-resource_name = "open"
-length = 1.4525
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Top:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.366667, 0.736667, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -21), Vector2(0, -34), Vector2(0, -33)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Flash:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.36),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.858824)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Bottom/GPUParticles2D:amount_ratio")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 1.34),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.2866, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_fbg1o"]
 length = 0.001
@@ -263,6 +256,58 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_cfek6"]
+resource_name = "open"
+length = 1.4525
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.366667, 0.736667, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, -34), Vector2(0, -33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.858824)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bottom/GPUParticles2D:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 1.34),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2866, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_lmvt5"]
 resource_name = "transmute"
 length = 1.4015
@@ -338,13 +383,16 @@ _data = {
 [node name="StoneColumn" type="StaticBody2D" node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
 collision_mask = 0
 script = ExtResource("1_7wt7o")
-exchanges = Array[ExtResource("2_cfek6")]([SubResource("Resource_fbg1o"), SubResource("Resource_cfek6"), SubResource("Resource_arbjb"), SubResource("Resource_q0jd0")])
+exchanges = Array[ExtResource("2_cfek6")]([SubResource("Resource_fbg1o"), SubResource("Resource_cfek6"), SubResource("Resource_jd7a5"), SubResource("Resource_eembn"), SubResource("Resource_arbjb"), SubResource("Resource_q0jd0"), SubResource("Resource_bg2yb"), SubResource("Resource_lyk1c"), SubResource("Resource_ei1fi")])
 interaction_area = NodePath("InspectArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ltmb5")
 
 [node name="InspectArea" type="Area2D" parent="."]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 5
+input_pickable = false
 script = ExtResource("2_lmvt5")
 metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 

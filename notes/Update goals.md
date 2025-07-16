@@ -52,11 +52,11 @@
 - [ ] Zerma dialogue rewrite
 	- [ ] just imagine jerma speaking in your head to write them
 - [ ] Forest changes
-	- [ ] Entrance changes
-		- [ ] Flowerboy bossfight
-			- [ ] Good dialogue
+	- [x] Entrance changes
+		- [x] Flowerboy bossfight
+			- [x] Good dialogue
 			- [x] Attacks
-		- [ ] Flowerboy at the entrance to give tutorial
+		- [x] Flowerboy at the entrance to give tutorial
 	- [ ] Damaging bullet spawners
 		- [x] bird bullets
 	- [x] Display HP in top bar
@@ -66,10 +66,9 @@
 		- [x] yellow
 			- [x] sun's blessings (like biking game perks)
 			- [x] price (gold)
-		- [ ] purple (exchanges)
+		- [x] purple (exchanges)
 			- [ ] transmute bio materials
 			- [ ] transmute silver to gold
-			- [ ] rose stem for rose flower (remember flowerboy holds the rose)
 	- [x] Quest board UI
 		- [x] you can give quests descriptions now
 - [ ] Dungeon changes

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bck2hkovnew0p"]
+[gd_scene load_steps=24 format=4 uid="uid://bck2hkovnew0p"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_c4iat"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_af6m7"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="6_ksyns"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="7_cgtsx"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_cgtsx"]
-[ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="8_f8vui"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_3vnjx"]
 [ext_resource type="AudioStream" uid="uid://dbt5rotugiiay" path="res://music/mus_lion.ogg" id="10_mdhu1"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="11_xqqwx"]
@@ -28,9 +27,6 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gvca0"]
 normal = Vector2(1, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vnjx"]
-size = Vector2(79, 6)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mdhu1"]
 blend_mode = 3
@@ -132,19 +128,6 @@ limit_right = 300
 limit_bottom = 224
 
 [node name="Areas" type="Node2D" parent="."]
-
-[node name="LeaveEnding" type="Node2D" parent="Areas"]
-position = Vector2(-8, -164)
-script = ExtResource("8_f8vui")
-
-[node name="ApproachArea" type="Area2D" parent="Areas/LeaveEnding"]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeaveEnding/ApproachArea"]
-position = Vector2(-0.5, 7)
-shape = SubResource("RectangleShape2D_3vnjx")
 
 [node name="RoomGate" parent="Areas" instance=ExtResource("9_3vnjx")]
 position = Vector2(-8, 221)

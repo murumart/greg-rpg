@@ -102,15 +102,27 @@ func state(what: Statements) -> void:
 func _criteria_statement(informations: Array) -> void:
 	if silver_required:
 		informations.append("- %s silver" % silver_required)
+	var inp_unique := []
 	for i in input:
-		informations.append("- %s" % ResMan.get_item(i).name)
+		if i not in inp_unique:
+			inp_unique.append(i)
+			inp_unique.append({name = i, count = input.count(i)})
+	for i in inp_unique:
+		if i is Dictionary:
+			informations.append("- %sx %s" % [i[&"count"], ResMan.get_item(i[&"name"]).name])
 
 
 func _returns_statement(informations: Array) -> void:
 	if silver_granted:
 		informations.append("- %s silver" % silver_granted)
+	var out_unique := []
 	for i in output:
-		informations.append("- %s" % ResMan.get_item(i).name)
+		if i not in out_unique:
+			out_unique.append(i)
+			out_unique.append({name = i, count = output.count(i)})
+	for i in out_unique:
+		if i is Dictionary:
+			informations.append("- %sx %s" % [i[&"count"], ResMan.get_item(i[&"name"]).name])
 
 
 func _to_string() -> String:
