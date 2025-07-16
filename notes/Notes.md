@@ -17,3 +17,17 @@
 	- [x] rebind screenshit
 - [ ] change greandma green dialo
 - [ ] lore: last 2 police bounties from grandma
+- [ ] playtest seession 2 june
+	- [ ] tone down thugs nexta police station
+	- [ ] hole in neighbor house fense behind tree
+	- [ ] give cars in town paths
+	- [ ] another greenhouse
+	- [ ] guru remind of press c in battle
+	- [ ] add another biek next to the park tree
+	- [ ] incidental mentions of lakeside, town east in npc dialogue
+	- [ ] fix greg turning purple
+	- [ ] reevaluate mail man hate you and your items
+	- [ ] benthon shield smaller..?
+- [ ] add small font in save menu
+- [ ] add small font to ummmmmmmm i frogt
+- [ ] 
