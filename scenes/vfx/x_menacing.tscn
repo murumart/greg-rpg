@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://derlrmf2kmbcd"]
+[gd_scene load_steps=10 format=3 uid="uid://derlrmf2kmbcd"]
 
 [ext_resource type="Shader" uid="uid://dpfuqkiyjn0e6" path="res://shaders/shd_canvas_group_outline.gdshader" id="1_1jg3a"]
 [ext_resource type="Texture2D" uid="uid://b1uyvhl2kkxuy" path="res://sprites/characters/overworld/spr_silhouette.png" id="1_1l71f"]
+[ext_resource type="Script" uid="uid://bvdjqlww8flfa" path="res://scenes/vfx/x_menacing.gd" id="1_kpvvp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kpvvp"]
 shader = ExtResource("1_1jg3a")
@@ -10,7 +11,7 @@ shader_parameter/line_thickness = 2
 
 [sub_resource type="Gradient" id="Gradient_1l71f"]
 offsets = PackedFloat32Array(0.0954774, 0.236181, 0.442211, 0.502513, 0.557789, 1)
-colors = PackedColorArray(0, 0, 0, 0.873, 0.06, 1.1, 0.129, 0.127, 0.047, 0, 0.101, 1, 0.071, 2, 0.152, 0.221, 0.071, 0, 0.152, 1, 0.071, 0, 0.152, 1)
+colors = PackedColorArray(0.0705882, 0, 0.152941, 0.87451, 0.06, 1.1, 0.129, 0.127, 0.0705882, 0, 0.152941, 1, 0.071, 2, 0.152, 0.221, 0.071, 0, 0.152, 1, 0.071, 0, 0.152, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1jg3a"]
 gradient = SubResource("Gradient_1l71f")
@@ -39,19 +40,21 @@ scale_curve = SubResource("CurveTexture_1jg3a")
 color_ramp = SubResource("GradientTexture1D_1jg3a")
 
 [node name="Menacing" type="Node2D"]
+script = ExtResource("1_kpvvp")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 material = SubResource("ShaderMaterial_kpvvp")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup"]
+[node name="Particles" type="GPUParticles2D" parent="CanvasGroup"]
 amount = 128
+amount_ratio = 0.0265
 texture = ExtResource("1_1l71f")
 fixed_fps = 60
 visibility_rect = Rect2(-200, -200, 400, 400)
 process_material = SubResource("ParticleProcessMaterial_kpvvp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0.0705882, 0, 0.152941, 1)
 texture = ExtResource("1_1l71f")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)

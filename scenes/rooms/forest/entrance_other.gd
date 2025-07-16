@@ -7,8 +7,13 @@ extends Node2D
 
 
 func _ready() -> void:
+	if DAT.get_data(&"got_flower_rose", false):
+		queue_free()
 	var inv := ResMan.get_character(&"greg").inventory
 	woodsman.inspected.connect(func() -> void:
+		if DAT.get_data(&"got_flower_rose", false):
+			SOL.dialogue_d(DialogueBuilder.new().add_line(DialogueLine.mk("...")).get_dial())
+			return
 		if inv.count(&"rose_petals") >= 20 and inv.count(&"rose_thorns") >= 20 and not DAT.get_data(&"got_flower_rose", false):
 			woodsman.default_lines = []
 			_rose_cutscene()
@@ -36,7 +41,7 @@ func _rose_cutscene() -> void:
 	tw.parallel().tween_property(greg, ^"global_position", woodsman.global_position + Vector2.DOWN * 12, 1.0)
 	tw.tween_callback(func() -> void:
 		greg.animate("walk_up")
-		SND.play_song("extremophile", 0.5, {pitch_scale = 0.89})
+		SND.play_song("extremophile", 0.89, {pitch_scale = 0.89, play_from_beginning = true})
 	)
 	tw.tween_interval(0.2)
 	await tw.finished
@@ -48,9 +53,9 @@ func _rose_cutscene() -> void:
 		inv.erase(&"rose_petals")
 		inv.erase(&"rose_thorns")
 	inv.append(&"flower_rose")
-	SND.play_song("")
-	await Math.timer(0.5)
+	await Math.timer(1.0)
 	SOL.dialogue("woods_guy_after_2")
 	await SOL.dialogue_closed
-	await Math.timer(1.0)
-	SOL.dialogue("woods_guy_after_3")
+	tw = create_tween()
+	DAT.free_player("cutscene")
+	tw.tween_property(mobulate, ^"color", Color.WHITE, 8.0)

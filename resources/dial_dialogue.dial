@@ -3185,9 +3185,8 @@ DIALOGUE woods_guy_has_materials
 DIALOGUE woods_guy_after_2
 	here is my [color=FLOWERCOLOR]rose[/color].
 	my work is done... i don't believe we will meet again.
-	all i ask... is that on lonely, dark nights...
-	...in the glow of your might... remember...
-	...remember...
+	it's been a good walk for both of us, hasn't it?
+	goodbye.
 
 
 DIALOGUE woods_guy_after_3
