@@ -9,44 +9,45 @@ const BountyBoard = preload("res://scenes/gui/scr_bounty_board.gd")
 const TRACKED_BOUNTIES := {
 	&"thugs": {
 		&"catches": 40,
-		&"description": """there are plenty of petty criminals running around town.
-catch them! lock em up! put them in jail!""",
+		&"description": """these criminals are pissing me off... loitering... smoking... smelling... order must be restored in our town! destroy 40 criminals!!""",
 	},
 	&"stray_animals": {
 		&"name": "strays",
 		&"catches": 40,
-		&"description": """some pet owners really need to keep their pets inside...
-as long as they don't, they're a safety issue for you to solve."""
+		&"description": """stupid dogs... someone needs to fulfill the job of the pet..pest control service!! annihilate 40 stray pets!!"""
 	},
 	&"broken_fishermen": {
 		&"name": "fishermen",
 		&"catches": 40,
-		&"description": """some people really can't handle losing their loved ones.
-others can't handle losing a fish off their hook."""
+		&"description": """annoying fishermen always complain and moan about the fish they lost!! just shut them up already!! eviscerate 40 broken fishermen!!"""
 	},
 	&"sun_spirit": {
-		&"description": """rumor has it that a rogue spirit from the sun is in the forest somewhere.
-it attacks on sight... but surely you can take care of it?""",
+		&"description": """around the lake, rogue spirit attack reports are coming in... it's best to stay away from the area for the time being.""",
 		&"hidden": true,
 	},
-	&"president": {
-		&"description": """a citizen claiming to be the president of some- where is shopping in town.
-this sounds like a security issue... please remove him."""
-	},
 	&"vampire": {
-		&"description": """there is talk of a vampire in this town... that's horrible!
-vampires are unlicensed spirit users, which is illegal."""
+		&"description": """there is talk of a vampire in this town... that's very dangerous!
+vampires are unlicensed spirit users, which is illegal. capture this vampire."""
+	},
+	&"president": {
+		&"description": """a citizen claiming to be the president of somewhere is shopping in town. this sounds like a security issue... please remove him."""
 	},
 }
 
 @onready var cells := Math.child_dict($Cells)
 @onready var rage := $SunSpiritRage as Node2D
 
+static var police_standing: int:
+	get:
+		return DAT.get_data("police_standing", 0)
+	set(to):
+		DAT.set_data("police_standing", to)
+
 
 func _ready() -> void:
 	super._ready()
 	#load_bounties()
-	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone() and false:
+	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone() and true:
 		fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
@@ -55,6 +56,7 @@ func _ready() -> void:
 
 
 func _on_popo_1_interact_on_interact() -> void:
+	var dlg := DialogueBuilder.new().set_char("popo_1")
 	var newbounts := false
 	for b in TRACKED_BOUNTIES:
 		if not is_bounty_fulfilled(b):
@@ -62,27 +64,71 @@ func _on_popo_1_interact_on_interact() -> void:
 		if DAT.get_data("is_it_known_that_greg_fulfilled_bounty_%s" % b, false):
 			continue
 		if not newbounts:
-			SOL.dialogue("bounty_complete_pre" if DAT.get_data(
-				"has_talked_with_police", false)
-					else "bounty_complete_pre_first_interaction")
+			if DAT.get_data("has_talked_with_police", false):
+				dlg.add_line(dlg.ml("boom! bountie(s) completed!"))
+			else:
+				dlg.add_line(dlg.ml("yo! new guy!"))
+				dlg.add_line(dlg.ml("we've been following you around for a while..."))
+				dlg.add_line(dlg.ml("and you've done a bunch of goodie duties!!"))
+				dlg.add_line(dlg.ml("and we have a bunch of rewards available for that."))
 			newbounts = true
+			SOL.dialogue_d(dlg.get_dial())
 		var complete_dial := "bounty_complete_%s" % b
 		var reward_path := "res://resources/rewards/bounty/res_%s.tres" % b
 		var reward: BattleRewards = null
 		if ResourceLoader.exists(reward_path):
 			reward = load(reward_path)
-		if complete_dial in SOL.dialogue_box.dialogues_dict:
+		if SOL.dialogue_exists(complete_dial):
 			SOL.dialogue(complete_dial)
 		if reward:
 			reward.grant()
 		DAT.set_data("is_it_known_that_greg_fulfilled_bounty_%s" % b, true)
-		DAT.incri("police_standing", 1)
-	SOL.dialogue(get_greeting())
-	SOL.dialogue("police_main")
-	if DAT.get_data("police_standing", 0) < 1:
-		DAT.set_data("police_standing", 1)
-		DAT.set_data("police_sitting", 0)
-	DAT.set_data("has_talked_with_police", true)
+		police_standing += 1
+	SOL.dialogue_d(get_greeting())
+	if not DAT.get_data("has_talked_with_police", false):
+		DAT.set_data("has_talked_with_police", true)
+		police_standing += 1
+	await SOL.dialogue_closed
+	while true:
+		var aval_choices := [&"you", &"me", &"bounty", &"bye"]
+		dlg.reset().set_char("popo_1")
+		dlg.add_line(dlg.ml("how can \"[font_size=6][font=res://fonts/gregtiny.ttf]the law[/font][/font_size]\" serve you today?")
+			.schoices(aval_choices))
+		var choice := await dlg.speak_choice()
+		if choice == &"bye":
+			dlg.reset().set_char("popo_1")
+			if police_standing < 3:
+				dlg.add_line(dlg.ml("buh bye, citizen!"))
+			else:
+				dlg.add_line(dlg.ml("buh bye, cutie pie!!"))
+			await dlg.speak_choice()
+			break
+		elif choice == &"you":
+			SOL.dialogue("police_about")
+			await SOL.dialogue_closed
+		elif choice == &"me":
+			dlg.reset().set_char("popo_1")
+			dlg.add_line(dlg.ml("about you?"))
+			if police_standing < 3:
+				dlg.add_line(dlg.ml("you're not in the police record..."))
+				dlg.add_line(dlg.ml("that must mean you're an awesome, law-abiding citizen..."))
+			elif police_standing < 10:
+				dlg.add_line(dlg.ml("you're my fabourite guy!!"))
+				dlg.add_line(dlg.ml("very good at solving my problems!!"))
+				if is_bounty_fulfilled(&"president") or is_bounty_fulfilled(&"vampire"):
+					dlg.add_line(dlg.ml("...and others' problems too, i guess?"))
+					dlg.add_line(dlg.ml("(those last two bounties on the board...)"))
+					dlg.add_line(dlg.ml("(...who put them there?)"))
+			await dlg.speak_choice()
+		if choice == &"bounty":
+			dlg.reset().set_char("popo_1")
+			dlg.add_line(dlg.ml("about the bounty system?"))
+			dlg.add_line(dlg.ml("our community is troubled by troublesome troubles."))
+			dlg.add_line(dlg.ml("the bounty system is a citizens' initiative!"))
+			dlg.add_line(dlg.ml("do a good deed, and get rewarded for it!"))
+			dlg.add_line(dlg.ml("the board on the wall over there has more 'inf."))
+			await dlg.speak_choice()
+	#SOL.dialogue("police_main")
 
 
 func _bounty_interacted() -> void:
@@ -115,13 +161,15 @@ func cd(w: Character, c: StringName) -> int:
 	return w.get_defeated_character(c)
 
 
-func get_greeting() -> String:
-	var standing := DAT.get_data("police_standing", 0) as int
-	if Math.inrange(standing, 0, 2):
-		return "police_greeting"
-	elif Math.inrange(standing, 3, 5):
-		return "police_greeting_happy"
-	return "police_greeting"
+func get_greeting() -> Dialogue:
+	var dlg := DialogueBuilder.new().set_char("popo_1")
+	if police_standing <= 3:
+		dlg.add_line(dlg.ml("greetings, citizen!"))
+	elif police_standing <= 10:
+		dlg.add_line(dlg.ml("welcome back, agent!"))
+	elif police_standing <= 10000:
+		dlg.add_line(dlg.ml("i love you."))
+	return dlg.get_dial()
 
 
 static func get_bounty_required(nomen: StringName) -> int:
@@ -186,7 +234,7 @@ func setup_cells() -> void:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
 			$Cells/Vampire/Sprite2D.hide()
 
-	if DAT.get_data("police_standing", 0) < 1:
+	if police_standing < 1:
 		popo2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 
 

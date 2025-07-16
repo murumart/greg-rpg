@@ -2718,18 +2718,14 @@ CHAR popo_1
 	it's great to see you, agent!
 
 
-DIALOGUE police_main
+DIALOGUE police_about
 CHAR popo_1
-CHOICES you,me,bounty,bye
-	how can the law serve you today?
-CHOICE_LINK you
-LOOP 0
-	about us? we are the police.
+	about us? we're the police.
 CHOICE_LINK me
 	about you?
 	you're not in the police record...
 LOOP 0
-	...so you must be a good, law-abiding citizen.
+	meaning, you haven't caused any trouble.
 CHOICE_LINK bounty
 	about the bounty system?
 	there are dangerous criminals about in this town.
@@ -2740,63 +2736,78 @@ LOOP 0
 	check the bounty board to see your current status.
 CHOICE_LINK bye
 	goodbye citizen! stay up to yes good!
-
-
-DIALOGUE bounty_complete_pre
-CHAR popo_1
-	hello! you have cleared some bounties!
-
-
-DIALOGUE bounty_complete_pre_first_interaction
-CHAR popo_1
-	hello, esteemed citizen!
-	you may not know this, but you are eligible for rewards!
-	...given your past actions helping quell criminals.
+CHOICE_LINK east
+	east? you can't go east at this time. not authorised.
 
 
 DIALOGUE bounty_complete_thugs
 CHAR popo_1
-	i can scarcely believe it... all of the thugs in town...
-	...locked up! no longer able to, uh, disturb the peace.
-	whatever. good work... here is your reward.
-	it's uuh... a jacket from one of the guys.
+	okay... this is epic...
+	finally, i can go stroll in the park and yell at people...
+	...without risk of retaliation! the thugs are gone!
+	do you think you'd look hot in this jacket??
+	we "confiscated" it, but you can have it...
 
 
 DIALOGUE bounty_complete_stray_animals
 CHAR popo_1
-	the stray animals causing issues... vanquished!
-	don't worry, we won't let pet owners come at you legally.
-	here's some meat... no, no, unrelated to the animals...
+	beautiful work, mr pets...
+	i think that's an apt name after doing all that pets control...
+	don't worry about the owners, by the way. i'm the law...
+	...and you, too, are the law, now!
+	do you want some meat?
+	... i can give you some meat. here.
+	take the meat... take it... here...
+	take my meat... you can have it...
+	yes... yes... there you go... take it...
+	put it... in your pockets...
 
 
 DIALOGUE bounty_complete_broken_fishermen
 CHAR popo_1
-	well done! you have put the sobbing sopping fishermen...
-	...in their place. in jail. you see, my dad was also...
-	...a fisherman. and he often asked me to go fishing...
-	...with him, when i was little. and, like, old man?...
-	...you're so annoying! gah! so i kind of hate him...
-	...forever now.
-	hm? your reward? oh, here... a spirit for you.
+	you really showed those fishermen where they belong.
+EMO mad
+	in hell.
+EMO 
+	you see, my father used to also be a fisherman...
+	and he would constantly beg me to go fish with him
+EMO mad
+	"ooogh, gabs! come to the lake with mee!"
+	"let's spend time together gaa~bs! im your dad!"
+	old man!!!! you're!!! so!! annoying!!!1
+EMO 
+	needless to say, i snuck 72 pills in his morning tea.
+	he survived, but our home life didn't.
+	oh, your rewards? sorry!! hehe, here they are...
+	a spare spirit we had... take it!
 
 
 DIALOGUE bounty_complete_sun_spirit
 CHAR popo_1
-	...well... isn't this remarkable...
-	you got rid of the rogue spirit in the forest.
-	...thank you. you will be rewarded well.
+	[color=SUNCOLOR]solar protuberance[/color].
+	what a strange thing to haunt us here...
+	but you can never really know what a spirit intends.
+	but i knew you would be able to take it out!!
+	do you want to hear a poem i made about you?
+	"your eyes shine like the starless night..."
+	"glistening orbs stuck in your skull..."
+	"they are as dark as your ebony hair..."
+	"like your eyes, it shines darkly..."
+	"peering into my soul..." ooh, like you're doing now!
+	that was my real reward for that bounty...
+	...but here's some extra stuff, too.
 
 
 DIALOGUE bounty_complete_vampire
 CHAR popo_1
-	the illegal vampire has been vanquished!
 	did you know they used to go out into the forests...
 	...and hunt vampires with sharp wooden sticks?
 	it was one of the ways to pass time for royalty.
 	they don't do that anymore, there's too few vampires.
 	so the few that exist are "well fed" and powerful.
-	anyway, thanks for that, king.
+	anyway, good work there, king.
 	here's some soda we looted off the corpse!
+	(i honestly had no idea we had a vampire issue??)
 
 
 DIALOGUE bounty_complete_president
@@ -2805,11 +2816,19 @@ CHAR popo_1
 	...of a tiny island a mile or so away from the coast...
 	...who has resisted capture for the last 20 years...
 	...by having a gigantic spirit power buddy...
-	...is finally beaten by... uh, you.
-	you are very interesting. anyway...
-	this guy had an actual bounty on his head...
-	...on the rest of the mainland, so i'll...
-	...be claiming that. here's your pocket change...
+	...is super defeated in our store?
+	okay..... now [color=RED]this[/color] is [color=RED]epic[/color]!!
+	did you know i have a poster of you on the wall?
+	i didn't have a good photo, so i stuck your face...
+	...on a cutout from the shirtless hunk calendar!
+	you should come see it sometime!!!
+	oh right... bounty...
+	this guy had an actual bounty on his head on the mainland.
+	i think i'll be claiming that!
+	have your pocket change for now! if you want the rest...
+	you know who to contact...
+CHAR 
+	[font_size=12](you decide not to)[/font_size]
 
 
 DIALOGUE inside_police_cell
