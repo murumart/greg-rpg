@@ -25,7 +25,10 @@ func _ready() -> void:
 		grandma.inspected.connect(initial_interaction)
 		$InteractionArea.interacted.connect(initial_interaction)
 	else:
-		grandma.inspected.connect(second_interaction)
+		if LTS.gate_id == &"greghouse_inside-outside":
+			SND.play_song.call_deferred("grand")
+			grandma.inspected.connect(second_interaction)
+		radio_music.stop()
 		grandma.global_position = room_center.global_position + Vector2(room_center.gizmo_extents, 0)
 
 
@@ -52,14 +55,24 @@ func cs_setup() -> void:
 	grandma.direct_walking_animation(Vector2.DOWN)
 	await grandma.tanim_shake(8, 4)
 	await Math.timer(0.2)
-	grandma.speed = 9000
+	grandma.speed = 12000
 	grandma.collision_mask = 0
-	grandma.move_to(radio.global_position + Vector2(0, 16))
-	await grandma.target_reached
-	radio_music.stop()
-	SND.play_sound(preload("res://sounds/misc_click.ogg"))
-	await Math.timer(0.2)
-	grandma.move_to(room_center.global_position + Vector2(room_center.gizmo_extents, 0))
+	if radio_music.playing:
+		grandma.move_to(radio.global_position + Vector2(0, 8))
+		await grandma.target_reached
+		grandma.direct_walking_animation.call_deferred(Vector2.UP)
+		radio_music.stop()
+		SND.play_sound(preload("res://sounds/misc_click.ogg"), {volume = 8})
+		await Math.timer(0.7)
+		grandma.sanimate("")
+		grandma.move_to(room_center.global_position + Vector2(room_center.gizmo_extents, 0))
+	else:
+		var t := create_tween().set_trans(Tween.TRANS_ELASTIC)
+		grandma.sanimate("zoom")
+		SND.play_sound(preload("res://sounds/whoosh.ogg"))
+		t.tween_property(grandma, ^"global_position", room_center.global_position + Vector2(room_center.gizmo_extents, 0), 0.1)
+		t.tween_callback(grandma.sanimate.bind("walk_left"))
+		t.tween_callback(grandma.sanimate.bind(""))
 	var tw := create_tween()
 	var mt := 0.5
 	tw.tween_property(
@@ -268,17 +281,17 @@ func cs_talk_2() -> void:
 			))
 			dlg.add_line(dlg.ml("no!!").schoices(["give me house"]))
 			dlg.add_line(dlg.ml("stop that!!").schoices(["mmm house"]))
-			dlg.add_line(dlg.ml("fine! if you're really that persistent...")
+			dlg.add_line(dlg.ml("hey, \"dear\".")
 				.scallback(func() -> void:
 					grandma.sanimate("")
 					grandma.direct_walking_animation(Vector2.DOWN)
 			))
-			dlg.add_line(dlg.ml("i'll test you.")
+			dlg.add_line(dlg.ml("get out of my house."))
+			dlg.add_line(dlg.ml("if you don't, i'll have to call someone...")
 				.scallback(func() -> void:
 					grandma.sanimate("smile")
 			))
-			dlg.add_line(dlg.ml("are you worthy of this place? or was leaving in the first place..."))
-			dlg.add_line(dlg.ml("...the weakness that still follows you?"))
+			dlg.add_line(dlg.ml("to mend all your sorry broken bones."))
 
 			await dlg.speak_choice()
 			LTS.enter_battle(preload("res://resources/battle_infos/grandma_intro.tres"))

@@ -48,7 +48,7 @@ func cs1() -> void:
 		grandma.sanimate("walk_down", 0.1)
 		dlg.reset().set_char("grandma_talk")
 		dlg.add_line(dlg.ml("greg.").stext_speed(0.3))
-		dlg.add_line(dlg.ml("greg, you little... man.").stext_speed(0.3))
+		dlg.add_line(dlg.ml("you little... man.").stext_speed(0.3))
 		dlg.speak(dialogue_box)
 	)
 	tw.tween_property(color_container, ^"color", Color(0.314, 0.571, 0.406), 2.0)
@@ -61,18 +61,10 @@ func cs1() -> void:
 		.scallback(func() -> void:
 			zoom_gradient.show()
 			var t := create_tween()
-			t.tween_property(zoom_gradient, ^"modulate:a", 0.5, 4.0).from(0.0)
+			t.tween_property(zoom_gradient, ^"modulate:a", 1.0, 8.0).from(0.0)
 			t.parallel().tween_method(func(f: float) -> void:
 				grandma.particles(f, 1.0, f * 8.0)
-			, 0.0, 0.5, 4.0)
-	))
-	dlg.add_line(dlg.ml("you are not fit for this house.").stext_speed(0.5)
-		.scallback(func() -> void:
-			var t := create_tween()
-			t.tween_property(zoom_gradient, ^"modulate:a", 1.0, 4.0)
-			t.parallel().tween_method(func(f: float) -> void:
-				grandma.particles(f, 1.0, f * 8.0)
-			, 0.5, 1.0, 4.0)
+			, 0.0, 1.0, 12.0)
 	))
 	await dlg.speak_choice(dialogue_box)
 	dialogue_box.set_process_unhandled_input(false)
@@ -93,13 +85,13 @@ func cs1() -> void:
 	await dlg.speak_choice()
 	dialogue_box.close()
 
-	dlg2.reset().set_char("silent").add_line(dlg.ml("show me you are capable").stext_speed(0.5))
+	dlg2.reset().set_char("silent").add_line(dlg.ml("show me you can match").stext_speed(0.5))
 	dlg.reset().set_char("grandma_talk").add_line(dlg.ml("it's nice to gift flowers."))
 	dlg2.speak(dialogue_box)
 	await dlg.speak_choice()
 	dialogue_box.close()
 
-	dlg2.reset().set_char("silent").add_line(dlg.ml("of taking them on").stext_speed(0.5))
+	dlg2.reset().set_char("silent").add_line(dlg.ml("those who came before").stext_speed(0.5))
 	dlg.reset().set_char("grandma_talk").add_line(dlg.ml("maybe, if you find [color=%s]eight flowers..." % FLOWERCOLOR))
 	dlg2.speak(dialogue_box)
 	await dlg.speak_choice()

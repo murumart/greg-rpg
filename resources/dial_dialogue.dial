@@ -102,6 +102,11 @@ CHAR grandma
 	get outta my hoooooooouuuuuuuuussssssse
 
 
+DIALOGUE grandma_fight_stall
+CHAR grandma
+	you're stalling.
+
+
 DIALOGUE grandma_diploma_use
 CHAR grandma
 	a "diploma?"
@@ -126,7 +131,9 @@ CHAR zerma
 	hahaha! wow!!
 	that old lady just kicked your ass! dude!
 	that's not even funny. you're a complete wimp.
-	looks like lil' old me will have to train you...
+	greg, as your friend... i can't let you go off...
+	...into the world in this state.
+	lil' old me will have to train you...
 CHOICES yes,no
 	teach you how to fight...
 CHOICE_LINK yes

@@ -22,6 +22,8 @@ func _ready() -> void:
 
 func act() -> void:
 	if not attacked:
+		if turn == 14:
+			SOL.dialogue("grandma_fight_stall")
 		turn_finished()
 		return
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)

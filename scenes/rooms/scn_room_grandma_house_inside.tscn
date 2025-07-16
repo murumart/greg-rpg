@@ -2245,7 +2245,7 @@ region_rect = Rect2(1, 0, 14, 16)
 [node name="RadioMusic" type="AudioStreamPlayer2D" parent="Radio"]
 position = Vector2(0, -9)
 stream = ExtResource("8_cxs6r")
-volume_db = -1.0
+volume_db = 4.0
 pitch_scale = 1.04
 autoplay = true
 max_distance = 300.0

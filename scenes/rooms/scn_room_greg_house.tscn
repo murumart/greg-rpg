@@ -349,6 +349,9 @@ position = Vector2(-47, 3)
 [node name="Flower1" parent="ActualHouse" instance=ExtResource("13_3t2i8")]
 position = Vector2(-64, -8)
 
+[node name="TrashBin2" parent="ActualHouse" instance=ExtResource("10_5xp3u")]
+position = Vector2(8, 17)
+
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -526,8 +529,5 @@ position = Vector2(-24, 106)
 [node name="EscapingBusiness" parent="." instance=ExtResource("21_bcrgk")]
 position = Vector2(298, -173)
 escape_offset = Vector2(100, 0)
-
-[node name="TrashBin" parent="." instance=ExtResource("10_5xp3u")]
-position = Vector2(9, 65)
 
 [editable path="Cutscenes/ZermCar"]
