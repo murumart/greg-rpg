@@ -1848,7 +1848,7 @@ position = Vector2(-80, -640)
 [node name="Men" type="Node2D" parent="Other"]
 
 [node name="EscapingBusiness2" parent="Other/Men" instance=ExtResource("32_lci3r")]
-position = Vector2(936, -287)
+position = Vector2(950, -283)
 escape_offset = Vector2(0, -60)
 
 [node name="EscapingBusiness3" parent="Other/Men" instance=ExtResource("32_lci3r")]
