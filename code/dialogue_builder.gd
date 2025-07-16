@@ -12,6 +12,7 @@ func _init() -> void:
 
 
 func set_char(ch: StringName) -> DialogueBuilder:
+	assert(ch in ResMan.characters)
 	_cur_char = ch
 	return self
 

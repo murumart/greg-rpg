@@ -37,3 +37,16 @@ func _to_string() -> String:
 		string += "\n\t" + "l:" + str(i) + " " + str(line)
 		i += 1
 	return string + "\n"
+
+
+static func len_no_bbcode(s: String) -> int:
+	var i := 0
+	var in_tag := false
+	for c in s:
+		if c == "[":
+			in_tag = true
+		if not in_tag:
+			i += 1
+		if c == "]":
+			in_tag = false
+	return i

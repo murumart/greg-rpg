@@ -215,6 +215,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		text = text.replace(DialogueParser.NEW_KEY_ACTION, "")
 		var dict := KeybindsSettings.capital_action_action_string_dict()
 		text = text.format(dict)
+	var leng := Dialogue.len_no_bbcode(text)
 	while true:
 		if randf() > 0.001 or text.contains("[") or text.contains("{"): # avoids bbcode hopefully
 			break
@@ -223,7 +224,7 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	started_speaking.emit(current_dialogue)
 	# speaking takes as much time as many there are letters to speak
 	textbox.speak_text({"speed": OPT.get_opt("text_speak_time")
-			/ text_speed * text.length() * 0.05})
+			/ text_speed * leng * 0.05})
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
 	else:
