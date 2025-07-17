@@ -3335,9 +3335,7 @@ SPEED 0.65
 
 DIALOGUE dance_battle_tutorial
 	oh no! this animal has grown bored and has challenged you...
-SPEED 1.2
-	...to a [color="88ff99"]dance battle!!!
-SPEED 1.0
+	...to a [color=88ff99]dance battle!!!
 	let's take it slower this time, because it's the first time for you.
 	follow your instructed moves quickly by using movement keys.
 	be nimble about it, because losing to an animal is humiliating.
@@ -3413,7 +3411,7 @@ DATA_LINK lake_visited,false
 	have you been to the lakeside yet?
 	it's refreshing taking a walk in the green nature.
 	the [color=YUKUCOLOR]yuku[/color] brand department store gets fresh fish from there.
-	just walk down the road to the southeast from here.
+	just walk down the road to the southwest from here.
 DATA_LINK lake_visited,true
 	i always do my shopping at the [color=YUKUCOLOR]yuku[/color] brand department stores.
 	that's because they are the only store chain in this region.
@@ -3441,29 +3439,22 @@ DIALOGUE lake_hint_stroll_2
 
 DIALOGUE guy_walk_home_1
 DATA_LINK witnessed_ushanka_guy_cutscene,false
-	i'm walkin' here!
-	i just bought myself a treat and i'm walking home to enjoy it...
-	...and there's nothing you can do about it!
+	i'm walkin here!
+	i just bought myself a treat and i'm walkin home to enjoy it...
+	...and there's nothin ya can do about it!
 DATA_LINK witnessed_ushanka_guy_cutscene,true
-	oh, hey! i'm walking home to enjoy my treat i just bought.
-	no, you can't come with.
-	i know you didn't ask verbally, but you just look like you would've.
-	the only one sleeping on my couch is me!
-DATA_LINK vampire_defeated,true
-	by the way... good job with the vampire girl!
-	i really didn't think a girl could be that mean.
-	i only wanted to help...
-DATA_LINK mail_man_dead,true
-	...
-	i still can't believe the mail man is dead...
-	he was such a good person... driving our town forward...
-	that dastardly girl... how could she...
+	oh, hey! i'm walkin home to enjoy my treat i just bought.
+	nah, ya can't come with.
+	i know ya didn't ask out loud, but ya just look like ya would've.
+	the only one sleepin on my couch is me!
+# TODO bampire
+#DATA_LINK mail_man_dead,true
+# TODO mailman dead
 
 
 DIALOGUE guy_walk_home_2
-	it's nice that the store is so close.
-	i don't have to expend too much energy on stuff like "going outside"...
-	...and "exercising".
+	what hot weather today...
+	i wish i had boots to go to the lakeside...
 
 
 DIALOGUE guy_walk_home_door

@@ -1,6 +1,7 @@
 extends Node2D
 
 const CAR_SCARED_DIED := &"car_scared_overrun"
+const FENCE_DESTROYED := &"fence_destroyed"
 
 const NEIGHBOUR_WIFE_CYCLE := 470
 const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
@@ -11,29 +12,27 @@ const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 @onready var greg := $"../../Greg" as PlayerOverworld
 @onready var car_inspect: InspectArea = $Car/InspectArea
 
+@onready var fence_destroy_area: Area2D = $OverworldTiles/Fence2/FenceDestroyArea
+@onready var fence_2: TileMapLayer = $OverworldTiles/Fence2
+@onready var fence_inspect: InspectArea = $OverworldTiles/FenceInspect
+
 
 func _ready() -> void:
 	neighbour_wife_position()
-	neighbour_wife.inspected.connect(func():
-		var time_diff := DAT.seconds - DAT.get_data(
-				greenhouse.get_save_key("vegs_eaten_second"), -123812391) as int
-		if time_diff <= 15:
-			neighbour_wife.convo_progress = 0
-			neighbour_wife.default_lines.clear()
-			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse")
-			neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse_2")
-			neighbour_wife.inspected.disconnect(
-					neighbour_wife.inspected.get_connections()[0]["callable"])
-	)
+	neighbour_wife.inspected.connect(nwife_talk)
 	car_scared.inspected.connect(car_scared_inspected)
 	if DAT.seconds > 3600:
 		car_scared.default_lines.clear()
 		car_scared.default_lines.append("car_scared_long")
 
+	if DAT.get_data(FENCE_DESTROYED, false):
+		fence_inspect.key = "fence_carful"
+		fence_2.queue_free()
 	if DAT.get_data(CAR_SCARED_DIED, false):
 		car_scared.queue_free()
 	if randf() < 0.2 and DAT.seconds > 600:
 		car_inspect.keys = ["neighbour_car_3"]
+	fence_destroy_area.body_entered.connect(_destroy_fence.unbind(1))
 
 
 func _physics_process(_delta: float) -> void:
@@ -41,6 +40,18 @@ func _physics_process(_delta: float) -> void:
 		return
 	if car_scared.global_position.x > -125 and car_scared.is_physics_processing():
 		_car_scared_run_over()
+
+
+func nwife_talk() -> void:
+	var time_diff := DAT.seconds - DAT.get_data(
+		greenhouse.get_save_key("vegs_eaten_second"), -123812391) as int
+	if time_diff <= 15:
+		neighbour_wife.convo_progress = 0
+		neighbour_wife.default_lines.clear()
+		neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse")
+		neighbour_wife.default_lines.append("neighbour_wife_ate_greenhouse_2")
+		neighbour_wife.inspected.disconnect(
+			neighbour_wife.inspected.get_connections()[0]["callable"])
 
 
 func neighbour_wife_position() -> void:
@@ -74,10 +85,21 @@ func car_scared_inspected() -> void:
 	, CONNECT_ONE_SHOT)
 
 
-func _car_scared_run_over() -> void:
-	SOL.vfx("overrun_down", car_scared.global_position, {"parent": self})
-	SOL.vfx("explosion", car_scared.global_position,
+func _car_run_over(pos: Vector2) -> void:
+	SOL.vfx("overrun_down", pos, {"parent": self})
+	SOL.vfx("explosion", pos,
 			{"parent": self, "scale": Math.v2(0.5)})
+
+
+func _destroy_fence() -> void:
+	_car_run_over(fence_2.global_position)
+	DAT.set_data(FENCE_DESTROYED, true)
+	fence_2.queue_free()
+	fence_inspect.key = "fence_carful"
+
+
+func _car_scared_run_over() -> void:
+	_car_run_over(car_scared.global_position)
 	car_scared.set_physics_process(false)
 	var tw := create_tween()
 	tw.tween_property(car_scared.get_node("Sprite2D"), "position", Vector2(10, 300), 1.0)

@@ -55,6 +55,15 @@ DIALOGUE insp_mailstack
 	stacks of envelopes.
 
 
+DIALOGUE insp_fence_carless
+	something about this fence seems carless.
+	hope it remains that way.
+
+
+DIALOGUE insp_fence_carful
+	the fence was too carful.
+
+
 DIALOGUE insp_neighbour_car_1
 	...hello...
 	...yes, i'm in the car.

@@ -69,9 +69,9 @@ func _on_lake_hint_received(force_cutscene: bool = false) -> void:
 
 func _guy_setup() -> void:
 	if (store_door.destination == ""
-			or LTS.gate_id == &"store_inside-outside"
+			or LTS.gate_id == &"store_inside-outside" or LTS.gate_id == LTS.GATE_LOADING
 			or Math.inrange(ResMan.get_character("greg").level, 40, 50)
-			or randf() > 0.444):
+			or not Math.inrange(DAT.playtime % 190, 90, 160)):
 		guy.queue_free()
 		return
 
@@ -80,14 +80,12 @@ func _guy_setup() -> void:
 
 func _guy_target_reached() -> void:
 	var which := guy.at_which_path_point()
-	if which == $UguyPath/Node2D10:
+	if which == $UguyPath/Node2D11:
 		guy.default_lines.clear()
 		guy.default_lines.append("guy_walk_home_door")
 		guy.path_container = null
-		guy.direct_walking_animation(Vector2.DOWN)
 		await Math.timer(2.0)
 		guy.default_lines.clear()
 		var tw := create_tween()
 		tw.tween_property(guy, "modulate:a", 0.0, 1.0)
-		SND.play_sound_2d(preload("res://sounds/door/open.ogg"), guy.global_position)
 		tw.finished.connect(guy.queue_free)
