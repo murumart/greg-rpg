@@ -2,12 +2,11 @@ extends Node2D
 
 # fishing minigame
 
+const Blocks = preload("res://scenes/fishing/blocks.gd")
+const Spawner = preload("res://scenes/fishing/spawner.gd")
+
 enum States {STOP, MOVE}
 var state: States = States.STOP
-
-const FISH_LOAD := preload("res://scenes/fishing/scn_fish.tscn")
-const MINE_LOAD := preload("res://scenes/fishing/scn_sea_mine.tscn")
-const CAR_LOAD := preload("res://scenes/fishing/scn_fish_car.tscn")
 
 const SND_CATCH := preload("res://sounds/fishing/catch.ogg")
 const SND_CRASH := preload("res://sounds/fishing/crash.ogg")
@@ -17,12 +16,9 @@ const SND_CAR := preload("res://sounds/car_overrun.ogg")
 
 const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
 
-@onready var tmap_layers := $Blocks
-@onready var tmap_background: TileMapLayer = $Blocks/background
-@onready var tmap_foreground: TileMapLayer = $Blocks/foreground
+@onready var blocks: Blocks = $Blocks
+@onready var spawner: Spawner = $Spawner
 
-var processed_ypos := 1
-@onready var noise: FastNoiseLite = $NoiseSprite.texture.noise
 @onready var hook := $Hook
 @onready var hook_sprite_main: Sprite2D = $Hook/Look
 @onready var hook_sprite_sub: Sprite2D = $Hook/Look/Look2
@@ -42,7 +38,6 @@ var depth := 0.0
 var points := 0
 var fish_caught := 0
 var items_caught: Array[StringName] = []
-var items_spawned: Array[StringName] = []
 var recent_fish_caught := 0.0
 var time_left := 80.0
 var battle_info: BattleInfo
@@ -69,18 +64,21 @@ var shopping_cart_enabled := false
 var cow_ant_enabled := false
 @onready var cow_ant := $FishParent/CowAnt
 
-@onready var fish_car_timer: Timer = $FishCarTimer
-
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 
 func _ready() -> void:
+	spawner.hook_data = hook_data
+	spawner.fish_car_timer.timeout.connect(_fish_car_timer)
+	blocks.fish_spawn_request.connect(spawner._random_spawn)
+	blocks.speed = speed
+
 	_set_fancy_grapics_to(bool(not OPT.get_opt("less_fancy_graphics")))
-	$Hook/HookCollision/CollisionShape2D.shape.size = Vector2(2, 3
-			) * hook_data.world_hitbox_size_multiplier
-	fish_car_timer.timeout.connect(_fish_car_timer)
+	$Hook/HookCollision/CollisionShape2D.shape.size = Vector2(2, 3) * hook_data.world_hitbox_size_multiplier
+
 	state = States.MOVE
-	noise.seed = randi()
+	blocks.state = States.MOVE
+
 	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
 	$Hook/HookCollision.area_entered.connect(_on_hook_collision)
 	line_drawer.draw.connect(_on_line_draw)
@@ -107,8 +105,6 @@ func _physics_process(delta: float) -> void:
 	match state:
 		States.MOVE:
 			hook_movement(delta)
-			# world moves to give illusion of going deeper
-			tmap_layers.position.y -= speed * delta
 			# decorations
 			if kiosk_enabled:
 				mail_kiosk.position.y -= speed * delta
@@ -118,9 +114,27 @@ func _physics_process(delta: float) -> void:
 				shopping_cart.position.y -= speed * delta
 			if cow_ant_enabled:
 				cow_ant.position.y -= speed * delta
-			noise.offset.y += (speed * delta) / 16.0
 			depth += delta * speed
-			process_tilemap()
+			spawner.depth = depth
+			update_points_display()
+			spawner.background_fish(Vector2(randf_range(-60, 60), 75))
+			if randf() < 0.00001  * delta:
+				spawner.fish_car_timer.start(0.5)
+			if spawner.fish_car_timer.time_left and Engine.get_physics_frames() % 16 == 0:
+				SOL.vfx_damage_number(
+						fish_car_label.position - SOL.HALF_SCREEN_SIZE
+								+ fish_car_label.size * 0.5,
+						"fish car!!!",
+						Color(1.0, 1.0, 1.0, delta * 16.0)
+				)
+			if randf() <= 0.002 * delta:
+				kiosk_enabled = true
+			if randf() <= 0.0002 * delta:
+				fisherman_enabled = true
+			if randf() <= 0.001 * delta:
+				shopping_cart_enabled = true
+			if randf() <= 0.000001 * delta:
+				cow_ant_enabled = true
 			# darker as it gets deeper
 			set_water_color(Color("#0054b549").lerp(Color("000e1c49"),
 					remap(depth, 0, 3000, 0.0, 1.0)))
@@ -130,13 +144,6 @@ func _physics_process(delta: float) -> void:
 			if time_left <= 0.0:
 				SND.play_sound(SND_TMOUT)
 				stop_game()
-	if fish_car_timer.time_left and Engine.get_physics_frames() % 16 == 0:
-		SOL.vfx_damage_number(
-				fish_car_label.position - SOL.HALF_SCREEN_SIZE
-						+ fish_car_label.size * 0.5,
-				"fish car!!!",
-				Color(1.0, 1.0, 1.0, delta * 16.0)
-		)
 
 
 func hook_movement(delta: float) -> void:
@@ -237,6 +244,7 @@ func stop_game() -> void:
 	get_tree().set_group("fishing_fish", "ymoving", false)
 	after_crash_timer.start(2)
 	state = States.STOP
+	blocks.state = States.STOP
 	SND.play_song("", 1100.0)
 
 
@@ -249,139 +257,6 @@ func _on_line_draw() -> void:
 			Color.BLACK,
 			1.0
 		)
-
-
-func process_tilemap() -> void:
-	# the tilemap actually continuously
-	var ypos := roundi(tmap_layers.position.y * 0.0625)
-	if ypos == processed_ypos:
-		return
-	update_points_display()
-	var path_noise_value := roundi((remap(
-			noise.get_noise_1d(tmap_layers.position.y * 0.000125), -1, 1, -6, 6)
-			+ remap(noise.get_noise_1d((tmap_layers.position.y + 1) * 0.000125),
-			-1, 1, -6, 6)) * 0.5)
-
-	# this might optimise things. i hope
-	delete_offscreen_tiles(ypos)
-
-	var rock_array := []
-	# tilemap width is 12
-	for x in 12:
-		var cell := Vector2i(x - 6, -ypos + 5)
-		var noise_value := noise.get_noise_2d(x, 10)
-		# random caves
-		if (
-				not (noise_value > -0.2 and noise_value < 0.2) and
-				not (absi(cell.x - path_noise_value) <= 2) and
-				randf() <= 0.95
-		) or (
-				cell.x <= -5 or cell.x >= 4
-		):
-			rock_array.append(cell)
-		else: #spawn fish
-			if randf() < depth_fish_increase_curve.sample(depth * 5e-05) * 0.5:
-				spawn_fish(tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
-			if depth >= 7500:
-				if (randf() < depth_fish_increase_curve.sample(depth * 5e-05)
-						* 0.0625):
-					spawn_mine(
-							tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
-			if (randf() < depth_item_increase_curve.sample(depth * 5e-05)
-					* 0.00285714):
-				spawn_item(
-						random_items.get_random_id(),
-						tmap_foreground.to_global(tmap_foreground.map_to_local(cell)))
-		# background fish
-		if randf() < depth_fish_increase_curve.sample(depth * 5e-05):
-			spawn_fish(tmap_foreground.to_global(
-					tmap_foreground.map_to_local(cell)), true)
-	# background
-	var bg_rock_array := []
-	for x in 12:
-		var cell := Vector2i(x - 6, -ypos + 5)
-		var noise_value := noise.get_noise_2d(x + 384, 10)
-		if (noise_value > 0 and randf() <= 0.95) or (cell.x <= -5 or cell.x >= 4):
-			bg_rock_array.append(cell)
-
-	_set_cells(rock_array, bg_rock_array)
-
-	# decorations random
-	if randf() <= 0.002:
-		kiosk_enabled = true
-	if randf() <= 0.0002:
-		fisherman_enabled = true
-	if randf() <= 0.001:
-		shopping_cart_enabled = true
-	if randf() <= 0.00001:
-		cow_ant_enabled = true
-
-	processed_ypos = ypos
-	if randf() < 0.00001:
-		fish_car_timer.start(0.5)
-
-
-# the most process intensive part of process_tilemap
-func _set_cells(rock_array: Array, bg_rock_array: Array) -> void:
-	if world_environment.environment:
-		tmap_foreground.set_cells_terrain_connect(rock_array, 0, 0)
-		tmap_background.set_cells_terrain_connect(bg_rock_array, 0, 1)
-		return
-	# lower graphics
-	for pos in rock_array:
-		tmap_foreground.set_cell(pos, 0, Vector2i(13, 16))
-	for pos in bg_rock_array:
-		tmap_background.set_cell(pos, 1, Vector2i(13, 16))
-
-
-func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> void:
-	node.global_position = coords
-	node.depth = roundi(depth / 100.0)
-	# background node for decoration
-	if background:
-		node.z_index = -8
-		node.decor = true
-		var fishsc := randf_range(0.2, 0.8)
-		node.scale = Vector2(fishsc, fishsc)
-		node.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
-		node.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
-	fish_parent.add_child(node)
-	node.hook_area_collision.scale *= hook_data.fish_hitbox_size_multiplier
-	if background:
-		node.wallrun_area.queue_free()
-		node.hook_area.queue_free()
-
-
-func spawn_fish(coords: Vector2, background := false) -> void:
-	var fish := FISH_LOAD.instantiate()
-	spawn_swimmer(fish, coords, background)
-
-
-# sea mines that you can run into to lose
-func spawn_mine(coords: Vector2, background := false) -> void:
-	var mine := MINE_LOAD.instantiate()
-	spawn_swimmer(mine, coords, background)
-
-
-func spawn_item(item_id: StringName, coords: Vector2) -> void:
-	var rew_s := str(Reward.new(
-			{"property": item_id, "type": BattleRewards.Types.ITEM}))
-	if not rew_s in DAT.get_data("unique_rewards", []) and not (
-		(item_id in UNIQUE_REWARDS) and (item_id in items_spawned)
-	):
-		var item := FISH_LOAD.instantiate()
-		if not item_id in items_spawned:
-			items_spawned.append(item_id)
-		item.item = item_id
-		item.is_fish = false
-		spawn_swimmer(item, coords, false)
-
-
-func delete_offscreen_tiles(ypos: int) -> void:
-	for x in 12:
-		var cell := Vector2i(x - 6, -ypos - 6)
-		tmap_foreground.erase_cell(cell)
-		tmap_background.erase_cell(cell)
 
 
 # game ends here
@@ -443,8 +318,7 @@ func _on_after_crash_timer_timeout() -> void:
 
 func end() -> void:
 	LTS.gate_id = LTS.GATE_EXIT_FISHING
-	LTS.level_transition(LTS.ROOM_SCENE_PATH
-			% DAT.get_data("current_room", "test_room"))
+	LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 
 
 func set_water_color(to: Color) -> void:
@@ -469,28 +343,11 @@ func _set_fancy_grapics_to(fancy: bool) -> void:
 
 var cars := 0
 func _fish_car_timer() -> void:
-	_spawn_fish_car()
+	spawner.spawn_fish_car()
 	cars += 1
 	if cars > 30 or state == States.STOP:
-		fish_car_timer.stop()
+		spawner.fish_car_timer.stop()
 		cars = 0
 		if state != States.STOP:
 			points += 666
-	fish_car_label.visible = fish_car_timer.time_left > 0
-
-
-func _spawn_fish_car() -> void:
-	var player := $FishCarTimer/AudioStreamPlayer2D
-	var dir_left := true if randf() < 0.5 else false
-	var spawn_pos := Vector2(
-			87 if dir_left else -87,
-			randf_range(-30, 80)
-	)
-	var instance := CAR_LOAD.instantiate()
-	instance.direction = int(not dir_left)
-	spawn_swimmer(instance, spawn_pos, false)
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tw.tween_property(instance, "speed", 90.0, 0.6).from(10.0)
-	player.global_position = spawn_pos
-	player.stop()
-	player.play()
+	fish_car_label.visible = spawner.fish_car_timer.time_left > 0
