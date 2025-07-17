@@ -53,6 +53,7 @@
 		- [ ] get flower
 	- [ ] Tarikas better and more dialogue
 		- [ ] gives you flower after you have the others or when defeate solapp prisutbec
+		- [ ] info about the flower bosses you beat and have yet to beat
 - [ ] Zerma dialogue rewrite
 	- [ ] just imagine jerma speaking in your head to write them
 - [ ] Forest changes

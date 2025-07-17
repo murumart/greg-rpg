@@ -2480,65 +2480,11 @@ DIALOGUE after_pennistong_finish
 	let's play again sometime.
 
 
-DIALOGUE fisherwoman_hello_lake
-CHAR fisherwoman
-	hey, check out this huge fish i caught.
-	the besties are gonna love it.
-CHAR 
-	(it is indeed quite big.)
-
-	
-DIALOGUE fisherwoman_talk_lake
-CHAR fisherwoman
-CHOICES you,me,fishing,hiscore,lures,tech
-	you want to, like, see the fish again?
-
-CHOICE_LINK hiscore
-DATA_LINK fishings_finished,false
-	like, you have to actually fish...
-	...to have a high score of any kind.
-DATA_LINK fishings_finished,true
-	your high score is [color=YELLOW]%s[/color]!
-	you've managed to go [color=YELLOW]%s meters deep[/color]!
-	in total, you've caught [color=YELLOW]%s[/color] fish!
-	aren't those some numbers, huh!
-DATA_LINK 
-
-CHOICE_LINK you
-	who am i? hahaha! like, who knows?
-	i fish, pal. it's like what i do.
-	i discovered fishing one day...
-	...and life has been good ever since.
-CHOICE_LINK me
-	you? i don't know you.
-	why don't you, like, introduce yourself?
-	...
-	nothing? okay. i know that feel.
-CHOICE_LINK fishing
-	you, like, wish to fish?
-	hnngg, same bestie.
-	you can use the fishing pole over there.
-	the lake goes quite deep in around here...
-	and there's so much fishhhh....
-CHOICE_LINK lures
-	that's right, bestie: there's different lures for you to use!
-	you can buy one from the kid next to the road...
-	...or you can totally just beat up other fishermen...
-	...until they drop their lures instead.
-	just use the lure item on yourself before going fishing!
-	it'll last for one go at fishing.
-CHOICE_LINK tech
-	that fishing pole uses new spirit-powered tech.
-	it'll be super illegal once legislation catches up!
-	but you can catch many, many fish with one cast.
-	try it out if you haven't already!
-CHOICE_LINK flower
-EMO brood
-	...
-
-
 DIALOGUE fisherwoman_pole_tutorial
 CHAR fisherwoman
+DATA_LINK fisherwoman_fought,true
+	have fun.
+DATA_LINK fisherwoman_fought,false
 CHOICES yes,nvm
 	oh, you're, like, going fishing?
 CHOICE_LINK yes
