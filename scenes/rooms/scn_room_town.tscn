@@ -88,7 +88,7 @@ normal = Vector2(-1, 0)
 size = Vector2(38, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omkxg"]
-size = Vector2(54, 82)
+size = Vector2(47, 88)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv1pm"]
 size = Vector2(21, 21.5)
@@ -652,7 +652,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(-307, 284)
+position = Vector2(-79, 33)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -749,7 +749,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/OverworldTiles/Fence2/FenceDestroyArea"]
-position = Vector2(0, -18)
+position = Vector2(3.5, -46)
 shape = SubResource("RectangleShape2D_omkxg")
 
 [node name="NeighboursGreenhouse" parent="Houses/NeighbourHouse" instance=ExtResource("6_peamb")]
@@ -1363,6 +1363,8 @@ shape = SubResource("RectangleShape2D_h0kbj")
 
 [node name="UhhHouseTrash" parent="Houses/UhhHouse" instance=ExtResource("12_rk0rd")]
 position = Vector2(8, 19)
+replenish_minutes = 2
+replenish_seconds = 120
 silver = 4
 
 [node name="MailInfo" parent="Houses/UhhHouse" instance=ExtResource("10_dem56")]
@@ -2253,6 +2255,39 @@ autostart = true
 script = ExtResource("18_0km5u")
 greg = NodePath("../../../Greg")
 
+[node name="RideAroundTown" parent="Other" node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("71_omkxg")]
+position = Vector2(1007, -123)
+greg = NodePath("../../Greg")
+greg_camera = NodePath("../../Greg/Camera")
+time = 12.5
+final_destination = NodePath("CarPath/Marker2D4")
+dialogue_line = "intro_convo_3"
+next_room = "uid://k2hdljqvd8b"
+next_music = "birds"
+
+[node name="ZermCar" parent="Other/RideAroundTown" index="0"]
+position = Vector2(-39, -2)
+speed = 150.0
+
+[node name="Marker2D" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="0"]
+position = Vector2(-28, 5)
+
+[node name="Marker2D2" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="1"]
+position = Vector2(-1157, 1)
+
+[node name="Marker2D3" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="2"]
+position = Vector2(-1157, 423)
+
+[node name="Marker2D4" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="3"]
+position = Vector2(-1620, 423)
+
+[node name="CameraPath" parent="Other/RideAroundTown" index="2"]
+curve = SubResource("Curve2D_omkxg")
+
+[node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0"]
+position = Vector2(-135, -26)
+rotation = 2.32816
+
 [node name="Poles" type="Node2D" parent="."]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
@@ -2574,19 +2609,20 @@ player = NodePath("../../Greg")
 polygon = PackedVector2Array(-23, 136, 11, 128, 11, -169, -29, -179)
 
 [node name="ThugSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
-position = Vector2(864, -14)
+position = Vector2(28, -45)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
-active_range = Vector2i(2, 99)
+active_range = Vector2i(6, 99)
 wait_time = 3.0
+spawn_radius = 64.0
 
 [node name="ThugSpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(461, 27)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
-active_range = Vector2i(2, 99)
+active_range = Vector2i(20, 99)
 wait_time = 7.0
 
 [node name="ThugSpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
@@ -2594,14 +2630,15 @@ position = Vector2(226, -471)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 5
 player = NodePath("../../Greg")
-active_range = Vector2i(20, 99)
+active_range = Vector2i(12, 99)
 wait_time = 2.0
 
 [node name="ThugSpawner4" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(886, -220)
 spawn_enemy = ExtResource("14_cftpx")
-max_enemies = 10
+max_enemies = 2
 player = NodePath("../../Greg")
+active_range = Vector2i(8, 99)
 wait_time = 2.0
 
 [node name="AnimalSpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
@@ -2621,7 +2658,7 @@ active_range = Vector2i(7, 99)
 wait_time = 2.0
 
 [node name="AnimalSpawner3" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
-position = Vector2(-402, -405)
+position = Vector2(728, -503)
 spawn_enemy = ExtResource("31_itqdw")
 max_enemies = 4
 player = NodePath("../../Greg")
@@ -2649,39 +2686,6 @@ gate_id = &"town-east"
 extents = Vector2i(8, 34)
 spawnpoint = Vector2i(-14, 0)
 
-[node name="RideAroundTown" parent="." node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("71_omkxg")]
-position = Vector2(1007, -123)
-greg = NodePath("../Greg")
-greg_camera = NodePath("../Greg/Camera")
-time = 12.5
-final_destination = NodePath("CarPath/Marker2D4")
-dialogue_line = "intro_convo_3"
-next_room = "uid://k2hdljqvd8b"
-next_music = "birds"
-
-[node name="ZermCar" parent="RideAroundTown" index="0"]
-position = Vector2(-39, -2)
-speed = 150.0
-
-[node name="Marker2D" type="Marker2D" parent="RideAroundTown/CarPath" index="0"]
-position = Vector2(-28, 5)
-
-[node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
-position = Vector2(-1157, 1)
-
-[node name="Marker2D3" type="Marker2D" parent="RideAroundTown/CarPath" index="2"]
-position = Vector2(-1157, 423)
-
-[node name="Marker2D4" type="Marker2D" parent="RideAroundTown/CarPath" index="3"]
-position = Vector2(-1620, 423)
-
-[node name="CameraPath" parent="RideAroundTown" index="2"]
-curve = SubResource("Curve2D_omkxg")
-
-[node name="Follow" parent="RideAroundTown/CameraPath" index="0"]
-position = Vector2(-135, -26)
-rotation = 2.32816
-
 [connection signal="inspected" from="Houses/BlockNeighbours/Trashguy/TrashGuyInspect" to="." method="_on_trash_guy_inspected"]
 
-[editable path="RideAroundTown"]
+[editable path="Other/RideAroundTown"]

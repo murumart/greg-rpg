@@ -1078,7 +1078,7 @@ shape = SubResource("RectangleShape2D_i3be8")
 
 [node name="HookAnimator" type="AnimationPlayer" parent="Hook"]
 libraries = {
-"": SubResource("AnimationLibrary_qnjc6")
+&"": SubResource("AnimationLibrary_qnjc6")
 }
 
 [node name="Ui" type="Control" parent="."]
@@ -1125,6 +1125,7 @@ offset_bottom = 80.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 bbcode_enabled = true
+vertical_alignment = 1
 
 [node name="Timebar" type="ProgressBar" parent="Ui"]
 custom_minimum_size = Vector2(24, 3)

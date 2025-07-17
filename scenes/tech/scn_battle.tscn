@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=23 format=4 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
-[ext_resource type="Resource" uid="uid://dqy0jr0d6pchp" path="res://resources/battle_infos/grandma_intro.tres" id="2_2esdu"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_putf3"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="3_o8qi1"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -13,6 +14,23 @@
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 [ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
+
+[sub_resource type="Resource" id="Resource_aqb7u"]
+script = ExtResource("3_o8qi1")
+enemies = Array[StringName]([&"fisherwoman"])
+background = "lakeside"
+music = "fishing_game"
+party = Array[StringName]([])
+death_reason = "lakeside"
+start_text = ""
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("2_putf3")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -63,7 +81,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_2esdu")
+load_options = SubResource("Resource_aqb7u")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 ignore_rotation = false

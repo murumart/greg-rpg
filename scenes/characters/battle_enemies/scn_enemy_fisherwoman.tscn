@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ev31rx6xrvmf"]
+
+[ext_resource type="Script" uid="uid://cl54nprs20rp3" path="res://scenes/characters/battle_enemies/scr_enemy_fisherwoman.gd" id="1_8og3a"]
+[ext_resource type="Texture2D" uid="uid://4bvop4dixk7j" path="res://sprites/characters/battle/spr_enemy_battle.png" id="2_8og3a"]
+
+[node name="ScnEnemyFisherwoman" type="Node2D"]
+script = ExtResource("1_8og3a")
+effect_center = Vector2i(0, -30)
+metadata/_custom_type_script = "uid://dfbbahimpb2ie"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8og3a")

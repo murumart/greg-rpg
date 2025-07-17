@@ -1,14 +1,12 @@
 - [ ] Industry area
-	- [ ] Getting in here
-		- [ ] Police mention of other side of town
+	- [x] Getting in here
+		- [x] Police mention of other side of town
 		- [x] Police bounty board UI
-		- [ ] Get the sleepy flower bounty to enter the other side of town
-			- [x] (get sleepy flower from forest)
-			- [ ] dialogue
+		- [x] at right level and police standing
 	- [ ] Map
 	- [ ] Mayor
 		- [ ] Sprites
-		- [ ] Voice sound
+		- [x] Voice sound
 		- [x] music
 	- [ ] Mayor intro
 	- [ ] Mayor key quest
@@ -18,11 +16,14 @@
 		- [ ] Explosive from mining minigame - with key open factory door
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
+	- [ ]  Mafia house interior
+	- [ ] Mafia talking
 	- [ ] Mining minigame
-		- [ ] Mafia house interior
-		- [ ] Mafia talking
-		- [ ] win condition: get to the bottom
 		- [ ] lose condition: die (you die)
+		- [ ] win condition: get to the bottom
+		- [ ] dig up silver
+		- [ ] use explosives
+		- [ ] reward for each go (silver, xp)
 - [ ] Intro changes
 	- [x] Ride around town
 		- [x] pan around town as the car moves, don't follow it
@@ -49,6 +50,9 @@
 		- [ ] Hide greg when she barges in
 	- [ ] Post- vampire cutscene
 		- [ ] replace car
+		- [ ] get flower
+	- [ ] Tarikas better and more dialogue
+		- [ ] gives you flower after you have the others or when defeate solapp prisutbec
 - [ ] Zerma dialogue rewrite
 	- [ ] just imagine jerma speaking in your head to write them
 - [ ] Forest changes
@@ -71,6 +75,8 @@
 			- [x] transmute silver to gold
 	- [x] Quest board UI
 		- [x] you can give quests descriptions now
+- [ ] Lakeside changes
+	- [ ] fisherwoman flowrer
 - [ ] Dungeon changes
 	- [ ] Remove prodecural floors (for now)
 	- [ ] NPCS

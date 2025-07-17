@@ -19,9 +19,9 @@
 - [ ] lore: last 2 police bounties from grandma
 - [ ] playtest seession 2 june
 	- [ ] tone down thugs nexta police station
-	- [ ] hole in neighbor house fense behind tree
+	- [x] hole in neighbor house fense behind tree
 	- [ ] give cars in town paths
-	- [ ] another greenhouse
+	- [x] another greenhouse
 	- [ ] guru remind of press c in battle
 	- [ ] add another biek next to the park tree
 	- [ ] incidental mentions of lakeside, town east in npc dialogue
