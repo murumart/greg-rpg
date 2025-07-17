@@ -58,6 +58,8 @@ func add_line(line: DialogueLine) -> DialogueBuilder:
 
 
 func reset() -> DialogueBuilder:
+	clear_emo()
+	clear_char()
 	_dial = Dialogue.new()
 	return self
 
@@ -82,6 +84,10 @@ func speak_choice(box: DialogueBox = null) -> StringName:
 	var c: StringName = SOL.dialogue_choice
 	SOL.dialogue_choice = &""
 	return c
+
+
+func is_empty() -> bool:
+	return _dial.size() <= 0
 
 
 static func ml(text: String) -> DialogueLine:

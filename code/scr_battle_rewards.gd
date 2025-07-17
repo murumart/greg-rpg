@@ -86,7 +86,7 @@ func process_property(prp: String) -> Variant:
 		return roundf(randf_range(range_0, range_1))
 	elif prp in ResMan.items.keys() or prp in ResMan.spirits.keys():
 		return prp
-	push_error("invalid reward property")
+	push_error("invalid reward property `" + prp + "`")
 	return 0
 
 

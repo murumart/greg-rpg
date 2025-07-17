@@ -2508,7 +2508,7 @@ CHOICE_LINK you
 	who am i? hahaha! like, who knows?
 	i fish, pal. it's like what i do.
 	i discovered fishing one day...
-	...and life hasn't been the same since.
+	...and life has been good ever since.
 CHOICE_LINK me
 	you? i don't know you.
 	why don't you, like, introduce yourself?
@@ -2526,12 +2526,15 @@ CHOICE_LINK lures
 	...or you can totally just beat up other fishermen...
 	...until they drop their lures instead.
 	just use the lure item on yourself before going fishing!
-	it'll last for that time you fish.
+	it'll last for one go at fishing.
 CHOICE_LINK tech
 	that fishing pole uses new spirit-powered tech.
 	it'll be super illegal once legislation catches up!
 	but you can catch many, many fish with one cast.
 	try it out if you haven't already!
+CHOICE_LINK flower
+EMO brood
+	...
 
 
 DIALOGUE fisherwoman_pole_tutorial

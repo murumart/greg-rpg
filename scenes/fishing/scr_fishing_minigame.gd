@@ -4,6 +4,7 @@ extends Node2D
 
 const Blocks = preload("res://scenes/fishing/blocks.gd")
 const Spawner = preload("res://scenes/fishing/spawner.gd")
+const Hook = preload("res://scenes/fishing/hook.gd")
 
 enum States {STOP, MOVE}
 var state: States = States.STOP
@@ -19,13 +20,7 @@ const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
 @onready var blocks: Blocks = $Blocks
 @onready var spawner: Spawner = $Spawner
 
-@onready var hook := $Hook
-@onready var hook_sprite_main: Sprite2D = $Hook/Look
-@onready var hook_sprite_sub: Sprite2D = $Hook/Look/Look2
-@onready var hook_animator := $Hook/HookAnimator
-@onready var line_drawer := $LineDrawer
-var hook_positions := [Vector2(0,-60)]
-var hook_speed := 80
+@onready var hook: Hook = $Hook
 
 @onready var fish_parent := $FishParent
 @onready var ui := $Ui
@@ -74,22 +69,21 @@ func _ready() -> void:
 	blocks.speed = speed
 
 	_set_fancy_grapics_to(bool(not OPT.get_opt("less_fancy_graphics")))
-	$Hook/HookCollision/CollisionShape2D.shape.size = Vector2(2, 3) * hook_data.world_hitbox_size_multiplier
 
-	state = States.MOVE
-	blocks.state = States.MOVE
-
-	$Hook/HookCollision.body_entered.connect(_on_hook_collision)
-	$Hook/HookCollision.area_entered.connect(_on_hook_collision)
-	line_drawer.draw.connect(_on_line_draw)
 	remove_child(ui)
 	SOL.add_ui_child(ui)
 	SND.play_song("fishing_game", 1.0, {start_volume = 0, play_from_beginning = true})
 	if DAT.get_data("fishing_hook_data", ""):
 		hook_data = ResMan.get_item(DAT.get_data("fishing_hook_data")).payload
-		hook_sprite_main.texture = ResMan.get_item(hook_data.item_id).texture
-		hook_sprite_sub.texture = ResMan.get_item(hook_data.item_id).texture
+	hook.set_data(hook_data)
+	hook.hit.connect(stop_game)
+	hook.speed = speed
+	hook.fish_caught.connect(_fish_caught)
 	DAT.set_data("fishing_hook_data", "")
+
+	state = States.MOVE
+	blocks.state = States.MOVE
+	hook.state = States.MOVE
 
 
 func _physics_process(delta: float) -> void:
@@ -101,10 +95,8 @@ func _physics_process(delta: float) -> void:
 	# depth and time display
 	depth_label.text = str("depth: %s m" % roundi(depth * 0.01))
 	time_bar.value = time_left
-	line_movement(delta)
 	match state:
 		States.MOVE:
-			hook_movement(delta)
 			# decorations
 			if kiosk_enabled:
 				mail_kiosk.position.y -= speed * delta
@@ -146,98 +138,43 @@ func _physics_process(delta: float) -> void:
 				stop_game()
 
 
-func hook_movement(delta: float) -> void:
-	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	var movement := input * hook_speed * delta
-	movement.x *= hook_data.horizontal_movement_speed_multiplier
-	movement.y *= hook_data.vertical_movement_speed_multiplier
-	hook.global_position += movement
-	hook.global_position.y = clampf(hook.global_position.y, -60, 50)
-	# swaying left-right
-	$Hook/Look.rotation_degrees = move_toward($Hook/Look.rotation_degrees, input.x * 30, hook_speed * delta * (2 * int(not bool(input.x) or signf($Hook/Look.rotation_degrees) != signf(input.x))) + 1)
-	if Engine.get_physics_frames() % 4 == 0:
-		hook_positions.append(hook.global_position)
-
-
-func line_movement(delta: float) -> void:
-	# slowly sway as the water moves
-	for pos in hook_positions:
-		var i := hook_positions.find(pos)
-		pos.y -= (speed * delta * randf_range(0.8, 1.2)) if state == States.MOVE else 0.0
-		pos.x = move_toward(pos.x, hook.global_position.x, delta * randf_range(2, 4))
-		if pos.y < -66:
-			hook_positions.remove_at(i)
-		else:
-			hook_positions[i] = pos
-	line_drawer.queue_redraw()
-
-
-func _on_hook_collision(node: Node2D) -> void:
-	var wiggle := func():
-		hook_animator.advance(0)
-		hook_animator.play("hit")
-		SOL.shake(0.2)
-	if state == States.STOP:
-		return
-	# hitting an obstacle
-	if node is TileMapLayer or node.get_parent().get("hazardous"):
-		#get_tree().reload_current_scene()
-		if node.get_parent().has_method("caught"):
-			node.get_parent().call("caught")
-			hook.hide()
-		SND.play_sound(SND_CRASH)
-		SOL.shake(0.4)
-		wiggle.call()
-		stop_game()
-	# hitting a nice fish
-	elif node is Area2D and node.get_parent() is FishingFish:
-		node = node.get_parent() as FishingFish
-		if node.moving and not node.decor:
-			if not node.item:
-				var combo := roundi(recent_fish_caught)
-				var pts := roundi((node.value + combo) * hook_data.point_multiplier)
-				points += pts
-				time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
-				update_points_display()
-				SOL.vfx(
-					"damage_number",
-					node.global_position,
-					{
-						"text": str("+", pts),
-						"color": Color(1, 1, 1, 0.5) if not combo else
-						Color(1.0, 0.8, 0.6, 0.8),
-						"speed": 3
-					}
-				)
-				if combo:
-					SOL.vfx(
-						"damage_number",
-						combo_bar.global_position +
-							(Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2,
-						{
-							"text": "combo! +" + str(combo),
-							"color": Color(1.0, 0.8, 0.6, 0.8),
-							"speed": 2
-						}
-					)
-				recent_fish_caught += 1.3
-				fish_caught += 1
-			else:
-				items_caught.append(node.item)
-				SOL.vfx(
-					"damage_number",
-					node.global_position,
-					{
-						"text": ResMan.get_item(node.item).name,
-						"color": Color(0.3, 1, 0.4, 0.5),
-						"speed": 0.75
-					}
-				)
-			node.caught()
-			SND.play_sound(SND_CATCH, {"pitch_scale": remap(node.value, 1, 11, 1.0, 0.66)})
-			SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
-					{pitch_scale = randf_range(0.9, 1.4)})
-			wiggle.call()
+func _fish_caught(node: FishingFish) -> void:
+	if not node.item:
+		var combo := roundi(recent_fish_caught)
+		var pts := roundi((node.value + combo) * hook_data.point_multiplier)
+		points += pts
+		time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
+		update_points_display()
+		SOL.vfx("damage_number", node.global_position, {
+				"text": str("+", pts),
+				"color": Color(1, 1, 1, 0.5) if not combo else
+				Color(1.0, 0.8, 0.6, 0.8),
+				"speed": 3
+			}
+		)
+		if combo:
+			SOL.vfx("damage_number", combo_bar.global_position +
+					(Vector2(combo_bar.size.x, 0.0) / 2.0) - SOL.SCREEN_SIZE / 2, {
+					"text": "combo! +" + str(combo),
+					"color": Color(1.0, 0.8, 0.6, 0.8),
+					"speed": 2
+				}
+			)
+		recent_fish_caught += 1.3
+		fish_caught += 1
+	else:
+		items_caught.append(node.item)
+		SOL.vfx("damage_number", node.global_position,
+			{
+				"text": ResMan.get_item(node.item).name,
+				"color": Color(0.3, 1, 0.4, 0.5),
+				"speed": 0.75
+			}
+		)
+	node.caught()
+	SND.play_sound(SND_CATCH, {"pitch_scale": remap(node.value, 1, 11, 1.0, 0.66)})
+	SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),
+			{pitch_scale = randf_range(0.9, 1.4)})
 
 
 func stop_game() -> void:
@@ -245,18 +182,8 @@ func stop_game() -> void:
 	after_crash_timer.start(2)
 	state = States.STOP
 	blocks.state = States.STOP
+	hook.state = States.STOP
 	SND.play_song("", 1100.0)
-
-
-func _on_line_draw() -> void:
-	for i in hook_positions.size():
-		var pos: Vector2 = hook_positions[i]
-		line_drawer.draw_line(
-			Vector2(0, -99) if i <= 0 else hook_positions[i - 1],
-			pos if i < hook_positions.size() - 1 else hook.global_position,
-			Color.BLACK,
-			1.0
-		)
 
 
 # game ends here

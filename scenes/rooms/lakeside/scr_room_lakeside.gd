@@ -1,7 +1,10 @@
 extends Room
 
+const FLOWERCOLOR = "#99ff61"
+
 @onready var canvas_modulate: ColorContainer = $CanvasModulateGroup/FishWarning
 @onready var spawners := get_tree().get_nodes_in_group("thug_spawners")
+@onready var fisherwoman: OverworldCharacter = $Buildings/Pier/Fisherwoman
 
 
 func _ready() -> void:
@@ -9,6 +12,7 @@ func _ready() -> void:
 	DAT.set_data("lake_visited", true)
 	_fish_victim_setup()
 	_car_scared_setup()
+	_fisherwoman_setup()
 
 	if DAT.get_data("fulfilled_bounty_broken_fishermen", false):
 		spawners.map(func(a): a.queue_free())
@@ -62,9 +66,151 @@ func _car_scared_setup() -> void:
 		$Fishermen/Fisherman33.queue_free()
 
 
+func _fisherwoman_setup() -> void:
+	if DAT.get_data("fisherwoman_violently", false):
+		fisherwoman.queue_free()
+		return
+	if DAT.get_data("fisherwoman_fought", false) and Math.inrange(ResMan.get_character("greg").level, 0, 70):
+		fisherwoman.queue_free()
+		return
+
+
+var _flower_prog := 0
 func _on_fisherwoman_inspected() -> void:
 	var dbox := SOL.dialogue_box as DialogueBox
-	dbox.dial_concat("fisherwoman_talk_lake", 3, [DAT.get_data("fishing_high_score")])
-	dbox.dial_concat("fisherwoman_talk_lake", 4, [roundi(
-			DAT.get_data("fishing_max_depth", 0.0) * 0.01)])
-	dbox.dial_concat("fisherwoman_talk_lake", 5, [DAT.get_data("fish_caught")])
+	fisherwoman.enter_a_state_of_conversation()
+	var dlg := DialogueBuilder.new().set_char("fisherwoman")
+	if DAT.get_data("fisherwoman_fought", false):
+		if not DAT.get_data("fisherwoman_opened", false):
+			dlg.add_line(dlg.ml("oh... it's you."))
+			dlg.add_line(dlg.ml("..."))
+			dlg.add_line(dlg.ml("you're not them."))
+			dlg.add_line(dlg.ml("i think we might be more similar than i first thought."))
+			dlg.add_line(dlg.ml("..."))
+			dlg.add_line(dlg.ml("...do you remember..."))
+			dlg.add_line(dlg.ml("...who you were before?"))
+			dlg.add_line(dlg.ml("..."))
+			dlg.add_line(dlg.ml("...").semotion("brood"))
+			dlg.add_line(dlg.ml("nevermind. pretend i didn't say anything."))
+			DAT.set_data("fisherwoman_opened", true)
+		else:
+			dlg.add_line(dlg.ml("the fishing pole is over there."))
+		await dlg.speak_choice()
+		return
+	var greeting := "hola, amigo. sup?"
+	if not DAT.get_data("fisherwoman_introduced", false):
+		DAT.set_data("fisherwoman_introduced", true)
+		dlg.add_line(dlg.ml("hey, check out this huge fish i caught."))
+		dlg.add_line(dlg.ml("the besties are gonna love it."))
+		dlg.clear_char().add_line(dlg.ml("(she shows you the huge fish she caught.)"))
+		greeting = "so, what brings you here, buddy?"
+		await dlg.speak_choice()
+	while true:
+		var aval_choices := [&"you", &"me", &"fishing", &"flower", &"bye"]
+		if is_instance_valid(SND.current_song_player):
+			SND.current_song_player.volume_db = 0
+		if _flower_prog > 0:
+			aval_choices.erase(&"you")
+			aval_choices.erase(&"me")
+		if _flower_prog > 1:
+			aval_choices.erase(&"fishing")
+			greeting = "..."
+			if is_instance_valid(SND.current_song_player):
+				SND.current_song_player.volume_db = -10
+		if _flower_prog > 2:
+			aval_choices.erase(&"bye")
+			if is_instance_valid(SND.current_song_player):
+				SND.current_song_player.volume_db = -20
+		if _flower_prog > 3:
+			if is_instance_valid(SND.current_song_player):
+				SND.current_song_player.volume_db = -80
+		if DAT.get_data("fishings_finished", 0) > 0:
+			aval_choices.append(&"lures")
+		dlg.reset().set_char("fisherwoman")
+		dlg.add_line(dlg.ml(greeting).schoices(aval_choices))
+		var choice := await dlg.speak_choice()
+		if choice == &"bye":
+			dlg.reset().set_char("fisherwoman")
+			break
+		elif choice == &"you":
+			dlg.reset().set_char("fisherwoman")
+			dlg.add_line(dlg.ml("like, who i am?"))
+			dlg.add_line(dlg.ml("hahaha! who knows!"))
+			dlg.add_line(dlg.ml("i discovered fishing one day..."))
+			dlg.add_line(dlg.ml("and life has been good ever since."))
+			await dlg.speak_choice()
+		elif choice == &"me":
+			dlg.reset().set_char("fisherwoman")
+			dlg.add_line(dlg.ml("about you?"))
+			dlg.add_line(dlg.ml("i don't know you, dude... why not introduce yourself?"))
+			dlg.add_line(dlg.ml("...nothing? okay, i know that feel, bro..."))
+			await dlg.speak_choice()
+		elif choice == &"fishing":
+			dlg.reset().set_char("fisherwoman")
+			if DAT.get_data("fishings_finished", 0) <= 0:
+				dlg.add_line(dlg.ml("you wish to fish? hnnng, same, bestie."))
+				dlg.add_line(dlg.ml("that fishing pole over there is free to use!"))
+				dlg.add_line(dlg.ml("knock yourself out, dude."))
+				dlg.add_line(dlg.ml("check out the new spirit-powered tech it has..."))
+				dlg.add_line(dlg.ml("will be super illegal once legislation catches up!"))
+				dlg.add_line(dlg.ml("but you can, like, catch so many fish with one cast."))
+			else:
+				dlg.add_line(dlg.ml("here come your fishing scores, dude:"))
+				dlg.add_line(dlg.ml("most points you've gotten: [color=YELLOW]%s[/color]!" % DAT.get_data("fishing_high_score")))
+				dlg.add_line(dlg.ml("the deepest you've reached is [color=YELLOW]%s meters[/color]!" % roundi(DAT.get_data("fishing_max_depth", 0.0) * 0.01)))
+				dlg.add_line(dlg.ml("and you've caught [color=YELLOW]%s[/color] fish all-in-all!" % DAT.get_data("fish_caught")))
+			await dlg.speak_choice()
+		elif choice == &"lures":
+			dlg.reset().set_char("fisherwoman")
+			dlg.add_line(dlg.ml("that's right, bestie: there's different lures for you to use!"))
+			dlg.add_line(dlg.ml("each works differently, so you gotta, like, learn them..."))
+			dlg.add_line(dlg.ml("you can buy one from the kid next to the road..."))
+			dlg.add_line(dlg.ml("...or you can totally just beat up other fishermen..."))
+			dlg.add_line(dlg.ml("...until they drop their lures instead."))
+			dlg.add_line(dlg.ml("use the lure item on yourself before going fishing!"))
+			dlg.add_line(dlg.ml("it'll last for one go at fishing."))
+			await dlg.speak_choice()
+		elif choice == &"flower":
+			dlg.reset().set_char("fisherwoman").set_emo("brood")
+			if _flower_prog == 0:
+				if is_instance_valid(SND.current_song_player):
+					SND.current_song_player.volume_db -= 6
+				dlg.add_line(dlg.ml("..."))
+				dlg.add_line(dlg.ml("i deal in fish, not [color=%s]flowers[/color]." % FLOWERCOLOR))
+				dlg.add_line(dlg.ml("do you understand?"))
+				_flower_prog += 1
+			elif _flower_prog == 1:
+				if is_instance_valid(SND.current_song_player):
+					SND.current_song_player.volume_db -= 6
+				dlg.add_line(dlg.ml("..."))
+				dlg.add_line(dlg.ml("that \"life\" is behind me."))
+				dlg.add_line(dlg.ml("what did they expect?"))
+				_flower_prog += 1
+			elif _flower_prog == 2:
+				if is_instance_valid(SND.current_song_player):
+					SND.current_song_player.volume_db -= 12
+				dlg.add_line(dlg.ml("..."))
+				dlg.add_line(dlg.ml("...i'm warning you."))
+				dlg.add_line(dlg.ml("we can talk about fish all day, dude."))
+				dlg.add_line(dlg.ml("you don't have to bring this up."))
+				dlg.add_line(dlg.ml("forget about it, okay?"))
+				_flower_prog += 1
+				await dlg.speak_choice()
+				break
+			elif _flower_prog == 3:
+				if is_instance_valid(SND.current_song_player):
+					SND.current_song_player.volume_db -= 24
+				dlg.add_line(dlg.ml("why..."))
+				dlg.add_line(dlg.ml("why do you care about the [color=%s]flower[/color] so much?" % FLOWERCOLOR))
+				_flower_prog += 1
+			elif _flower_prog == 4:
+				if is_instance_valid(SND.current_song_player):
+					SND.current_song_player.volume_db = -80
+				dlg.add_line(dlg.ml("..."))
+				dlg.add_line(dlg.ml("......").stext_speed(0.5))
+				await dlg.speak_choice()
+				DAT.set_data("fisherwoman_fought", true)
+				LTS.enter_battle(preload("res://resources/battle_infos/fisherwoman_fight.tres"))
+				break
+
+			await dlg.speak_choice()

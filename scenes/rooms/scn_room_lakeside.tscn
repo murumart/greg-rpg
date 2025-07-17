@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=80 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_obfq8"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_so2nw"]
 [ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_u5pcv"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="4_wb2do"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="4_xwmth"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_gxb62"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
@@ -341,6 +342,12 @@ script = ExtResource("3_xexyo")
 [node name="Sun" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_xexyo")
 
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("4_wb2do")
+level_gain = 25
+replace_armour = &"rubber_boots"
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
+
 [node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate", "room")]
 script = ExtResource("4_u5pcv")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
@@ -349,7 +356,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-480, -229)
+position = Vector2(-220, -113)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -646,8 +653,7 @@ animated_sprite = NodePath("AnimatedSprite2D")
 speed = 2800
 random_movement_distance = 32
 path_container = NodePath("../FisherwomanPath")
-default_lines = Array[StringName]([&"fisherwoman_hello_lake", &"fisherwoman_talk_lake"])
-save_convo_progess = true
+save_position = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Buildings/Pier/Fisherwoman"]
 position = Vector2(0, -8)
@@ -1508,6 +1514,8 @@ sprite_frames = ExtResource("32_61gk4")
 animation = &"walk_down"
 
 [node name="Path" type="Node2D" parent="StrollingGrandma"]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Marker2D" type="Marker2D" parent="StrollingGrandma/Path"]
 

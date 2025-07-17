@@ -1,7 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://ev31rx6xrvmf"]
+[gd_scene load_steps=19 format=3 uid="uid://ev31rx6xrvmf"]
 
 [ext_resource type="Script" uid="uid://cl54nprs20rp3" path="res://scenes/characters/battle_enemies/scr_enemy_fisherwoman.gd" id="1_8og3a"]
-[ext_resource type="Texture2D" uid="uid://4bvop4dixk7j" path="res://sprites/characters/battle/spr_enemy_battle.png" id="2_8og3a"]
+[ext_resource type="Texture2D" uid="uid://cmw7wweli7g6x" path="res://sprites/characters/battle/lakeside/spr_fisherwoman.png" id="2_u0ivd"]
+[ext_resource type="PackedScene" uid="uid://d2rbwb8pdr8d4" path="res://scenes/fishing/blocks.tscn" id="3_xo0px"]
+[ext_resource type="PackedScene" uid="uid://c8go4y8lln00d" path="res://scenes/fishing/hook.tscn" id="4_1d7nm"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="4_u0ivd"]
+[ext_resource type="AudioStream" uid="uid://dsecnyf8owaqj" path="res://sounds/choir.ogg" id="6_u0ivd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u0ivd"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_xuu4h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0384615, 0.446023), 0.0, 0.0, 0, 0, Vector2(0.667832, 0.658381), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_o0hl6"]
+width = 32
+curve = SubResource("Curve_xuu4h")
+
+[sub_resource type="Curve" id="Curve_ev8bu"]
+_data = [Vector2(0.346154, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), -0.310662, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qjh4s"]
+width = 32
+curve = SubResource("Curve_ev8bu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w1lab"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.63
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_qjh4s")
+alpha_curve = SubResource("CurveTexture_o0hl6")
+
+[sub_resource type="Gradient" id="Gradient_xuu4h"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.75)
+colors = PackedColorArray(0, 0.313377, 0.487319, 1, 0, 0.478809, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o0hl6"]
+gradient = SubResource("Gradient_xuu4h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev8bu"]
+shader = ExtResource("4_u0ivd")
+shader_parameter/Gradient = SubResource("GradientTexture2D_o0hl6")
+
+[sub_resource type="Gradient" id="Gradient_xo0px"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.404295, 0.719731)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1d7nm"]
+seed = 3
+frequency = 0.123
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u0ivd"]
+width = 12
+height = 10
+color_ramp = SubResource("Gradient_xo0px")
+noise = SubResource("FastNoiseLite_1d7nm")
 
 [node name="ScnEnemyFisherwoman" type="Node2D"]
 script = ExtResource("1_8og3a")
@@ -9,4 +68,44 @@ effect_center = Vector2i(0, -30)
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8og3a")
+texture = ExtResource("2_u0ivd")
+
+[node name="Particles" type="GPUParticles2D" parent="Sprite2D"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_u0ivd")
+texture = ExtResource("2_u0ivd")
+process_material = SubResource("ParticleProcessMaterial_w1lab")
+
+[node name="FishingMinigame" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+
+[node name="Blocks" parent="FishingMinigame" node_paths=PackedStringArray("noise_sprite") instance=ExtResource("3_xo0px")]
+noise_sprite = NodePath("NoiseSprite")
+
+[node name="background" parent="FishingMinigame/Blocks" index="0"]
+self_modulate = Color(0.156863, 0, 0.223529, 0.313726)
+
+[node name="foreground" parent="FishingMinigame/Blocks" index="1"]
+material = SubResource("ShaderMaterial_ev8bu")
+use_parent_material = false
+
+[node name="NoiseSprite" type="Sprite2D" parent="FishingMinigame/Blocks"]
+visible = false
+modulate = Color(1, 1, 1, 0.0666667)
+position = Vector2(-96, -80)
+scale = Vector2(16, 16)
+texture = SubResource("NoiseTexture2D_u0ivd")
+centered = false
+
+[node name="Hook" parent="FishingMinigame" node_paths=PackedStringArray("line_drawer") instance=ExtResource("4_1d7nm")]
+position = Vector2(0, -94)
+line_drawer = NodePath("..")
+
+[node name="Choir" type="AudioStreamPlayer" parent="FishingMinigame"]
+stream = ExtResource("6_u0ivd")
+volume_db = -7.0
+pitch_scale = 0.1
+bus = &"ECHO"
+
+[editable path="FishingMinigame/Blocks"]

@@ -1,23 +1,25 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://mc71yiy85s6n"]
+[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://mc71yiy85s6n"]
 
-[ext_resource type="AudioStream" uid="uid://b2ttujqa7d53s" path="res://sounds/talking/mayor.ogg" id="2_qqbr4"]
+[ext_resource type="Texture2D" uid="uid://b6ccqnopkfrjf" path="res://sprites/characters/portraits/spr_portrait_grandma.png" id="1_s0lex"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_s7t6k"]
+[ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/grandma.ogg" id="3_788tm"]
 
 [resource]
 script = ExtResource("2_s7t6k")
 name_in_file = &""
 name = "thick sauces"
-info = "he's thick sauces, the mayor."
-voice_sound = ExtResource("2_qqbr4")
+info = "he's t"
+voice_sound = ExtResource("3_788tm")
+portrait = ExtResource("1_s0lex")
 max_health = 200.0
 health = 200.0
 max_magic = 200.0
 magic = 200.0
-level = 75
+level = 90
 experience = 0
-attack = 75.0
-defense = 75.0
-speed = 75.0
+attack = 85.0
+defense = 85.0
+speed = 85.0
 defeated_characters = {}
 inventory = Array[String]([])
 spirits = Array[String]([])

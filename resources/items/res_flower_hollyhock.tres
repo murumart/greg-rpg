@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="FlowerItem" load_steps=6 format=3 uid="uid://b6reb12tiq1cw"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_ocf6w"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_q8t0r"]
+[ext_resource type="Script" uid="uid://3brbegtcslaf" path="res://code/scr_item_flower.gd" id="3_1xu8s"]
+[ext_resource type="Texture2D" uid="uid://j755sl6lpjmw" path="res://sprites/items/flower_hollyhock.png" id="4_ocf6w"]
+
+[sub_resource type="Resource" id="Resource_ou3cw"]
+script = ExtResource("2_q8t0r")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_ocf6w")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("3_1xu8s")
+name_in_file = &""
+name = &"hollyhock"
+description = "what bold and ambitious colours..."
+texture = ExtResource("4_ocf6w")
+attack_animation = ""
+price = 0
+use = -1
+consume_on_use = false
+payload = SubResource("Resource_ou3cw")
+metadata/_custom_type_script = "uid://3brbegtcslaf"

@@ -7,11 +7,13 @@ signal fish_spawn_request(pos: Vector2)
 @onready var background: TileMapLayer = $background
 @onready var foreground: TileMapLayer = $foreground
 
+@export_range(0, 1) var foreground_source := 0
+@export_range(0, 1) var background_source := 1
 @export var noise_sprite: Sprite2D
 @onready var noise: FastNoiseLite = (noise_sprite.texture as NoiseTexture2D).noise
 
 var state: FG.States = FG.States.STOP
-var speed: float
+var speed := 60.0
 var processed_ypos := 1
 
 
@@ -70,14 +72,14 @@ func process_tilemap() -> void:
 # the most process intensive part of process_tilemap
 func _set_cells(rock_array: Array, bg_rock_array: Array) -> void:
 	if not bool(OPT.get_opt("less_fancy_graphics")):
-		foreground.set_cells_terrain_connect(rock_array, 0, 0)
-		background.set_cells_terrain_connect(bg_rock_array, 0, 1)
+		foreground.set_cells_terrain_connect(rock_array, 0, foreground_source)
+		background.set_cells_terrain_connect(bg_rock_array, 0, background_source)
 		return
 	# lower graphics
 	for pos in rock_array:
-		foreground.set_cell(pos, 0, Vector2i(13, 16))
+		foreground.set_cell(pos, foreground_source, Vector2i(13, 16))
 	for pos in bg_rock_array:
-		background.set_cell(pos, 1, Vector2i(13, 16))
+		background.set_cell(pos, background_source, Vector2i(13, 16))
 
 
 func delete_offscreen_tiles(ypos: int) -> void:

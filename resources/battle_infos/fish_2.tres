@@ -100,3 +100,4 @@ crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("1_gp5g6")]({
 &"rubber_boots": SubResource("Resource_gvojf")
 })
+increment_data_with_enemies = &""

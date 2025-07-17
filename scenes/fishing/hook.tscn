@@ -1,0 +1,128 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8go4y8lln00d"]
+
+[ext_resource type="Script" uid="uid://cast3agxwnf7" path="res://scenes/fishing/hook.gd" id="1_srxkc"]
+[ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="2_clxtv"]
+[ext_resource type="AudioStream" uid="uid://cljv5cywqb3fj" path="res://sounds/fishing/crash.ogg" id="3_clxtv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3be8"]
+size = Vector2(2, 3)
+
+[sub_resource type="Animation" id="Animation_tdrb4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Look:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Look:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Look:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5qvrl"]
+resource_name = "hit"
+length = 0.3595
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Look:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.065, 0.115, 0.175, 0.245, 0.345),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0, 0), Vector2(-2, -1), Vector2(0, 1.43051e-06), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Look:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.065, 0.175, 0.345),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261567, 0.353937, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Look:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.065, 0.175, 0.345),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.52943, 0.74251), Vector2(0.540885, 1.09161), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qnjc6"]
+_data = {
+&"RESET": SubResource("Animation_tdrb4"),
+&"hit": SubResource("Animation_5qvrl")
+}
+
+[node name="Hook" type="Node2D"]
+script = ExtResource("1_srxkc")
+
+[node name="Look" type="Sprite2D" parent="."]
+texture = ExtResource("2_clxtv")
+centered = false
+offset = Vector2(-7.96791, 0)
+
+[node name="Look2" type="Sprite2D" parent="Look"]
+self_modulate = Color(8.49, 10.38, 9.12, 1)
+position = Vector2(4, 8)
+texture = ExtResource("2_clxtv")
+centered = false
+offset = Vector2(-7.96791, 0)
+region_enabled = true
+region_rect = Rect2(4, 8, 8, 8)
+
+[node name="HookCollision" type="Area2D" parent="."]
+position = Vector2(0, 11)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookCollision"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_i3be8")
+
+[node name="HookAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qnjc6")
+}
+
+[node name="CrashSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_clxtv")

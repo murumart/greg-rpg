@@ -10,7 +10,7 @@ blend_mode = 1
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0384615, 0.446023), 0.0, 0.0, 0, 0, Vector2(0.667832, 0.658381), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_n0luj"]
+[sub_resource type="CurveTexture" id="CurveTexture_o0ip5"]
 width = 32
 curve = SubResource("Curve_pgxvf")
 
@@ -18,7 +18,7 @@ curve = SubResource("Curve_pgxvf")
 _data = [Vector2(0.346154, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), -0.310662, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_2w5ih"]
+[sub_resource type="CurveTexture" id="CurveTexture_fcnjg"]
 width = 32
 curve = SubResource("Curve_smg0m")
 
@@ -27,8 +27,8 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 2.63
 gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_2w5ih")
-alpha_curve = SubResource("CurveTexture_n0luj")
+scale_curve = SubResource("CurveTexture_fcnjg")
+alpha_curve = SubResource("CurveTexture_o0ip5")
 
 [node name="BrackedFisherman" type="Node2D"]
 script = ExtResource("1_sttyi")
@@ -44,5 +44,5 @@ texture = ExtResource("2_7am5s")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_3rltk")
-process_material = SubResource("ParticleProcessMaterial_h87ii")
 texture = ExtResource("2_7am5s")
+process_material = SubResource("ParticleProcessMaterial_h87ii")
