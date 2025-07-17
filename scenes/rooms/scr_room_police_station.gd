@@ -90,7 +90,7 @@ func _on_popo_1_interact_on_interact() -> void:
 		police_standing += 1
 	await SOL.dialogue_closed
 	while true:
-		var aval_choices := [&"you", &"me", &"bounty", &"bye"]
+		var aval_choices := [&"you", &"me", &"bounty", &"east", &"bye"]
 		dlg.reset().set_char("popo_1")
 		dlg.add_line(dlg.ml("how can \"[font_size=6][font=res://fonts/gregtiny.ttf]the law[/font][/font_size]\" serve you today?")
 			.schoices(aval_choices))
@@ -120,13 +120,36 @@ func _on_popo_1_interact_on_interact() -> void:
 					dlg.add_line(dlg.ml("(those last two bounties on the board...)"))
 					dlg.add_line(dlg.ml("(...who put them there?)"))
 			await dlg.speak_choice()
-		if choice == &"bounty":
+		elif choice == &"bounty":
 			dlg.reset().set_char("popo_1")
 			dlg.add_line(dlg.ml("about the bounty system?"))
 			dlg.add_line(dlg.ml("our community is troubled by troublesome troubles."))
 			dlg.add_line(dlg.ml("the bounty system is a citizens' initiative!"))
 			dlg.add_line(dlg.ml("do a good deed, and get rewarded for it!"))
 			dlg.add_line(dlg.ml("the board on the wall over there has more 'inf."))
+			await dlg.speak_choice()
+		elif choice == &"east":
+			dlg.reset().set_char("popo_1")
+			dlg.add_line(dlg.ml("the road to the east of town is blocked?"))
+			if police_standing < 3:
+				dlg.add_line(dlg.ml("there has been a bit of a crime there recently..."))
+				dlg.add_line(dlg.ml("a bunch of people were ran over. it was really sad."))
+				dlg.add_line(dlg.ml("so you can't go there at the moment..."))
+				dlg.add_line(dlg.ml("but if you keep collaborating with us..."))
+				dlg.add_line(dlg.ml("we could grant you some access privileges."))
+			else:
+				if ResMan.get_character("greg").level < 70:
+					dlg.add_line(dlg.ml("ahhh... my love for you is strong..., my love..."))
+					dlg.add_line(dlg.ml("but not as strong as the enemies in that part of town."))
+					dlg.add_line(dlg.ml("please, level up to at least 70..."))
+					dlg.add_line(dlg.ml("you don't deserve to be super annihilated."))
+				else:
+					dlg.add_line(dlg.ml("well, you're not supposed to go there, yet..."))
+					dlg.add_line(dlg.ml("but you're just so... awesome!! i'm letting you in."))
+					DAT.set_data("popo_blockade_lifted", true)
+					dlg.add_line(dlg.ml("the blockade should be lifted now."))
+
+
 			await dlg.speak_choice()
 	#SOL.dialogue("police_main")
 

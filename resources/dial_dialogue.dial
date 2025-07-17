@@ -35,8 +35,8 @@ DIALOGUE intro_spection_2
 
 DIALOGUE intro_convo_1
 CHAR zerma
-	i'm taking you to your childhood town, greg!
-	it's been a while, right?
+	i'm taking you to your childhood hometown, greg!
+	it's been a while, hasn't it?
 	aren't you excited?
 	hey, look, we're almost there...!
 
@@ -50,9 +50,13 @@ CHAR zerma
 
 DIALOGUE intro_convo_3
 CHAR zerma
-	and, damn! all this nature!
+	ahahahaha! did you see that, greg??
+	i just ran right over all those guys!
+	that's gotta be a crime or something!
+	anyway, look!
+	all this nature! damn!
 	i love this stuff!
-	you must've had so much fun as a kid!
+	you must've had so much fun here as a kid!
 
 
 DIALOGUE intro_convo_4
@@ -2721,23 +2725,6 @@ CHAR popo_1
 DIALOGUE police_about
 CHAR popo_1
 	about us? we're the police.
-CHOICE_LINK me
-	about you?
-	you're not in the police record...
-LOOP 0
-	meaning, you haven't caused any trouble.
-CHOICE_LINK bounty
-	about the bounty system?
-	there are dangerous criminals about in this town.
-	you can help make the town safer by, well...
-	...taking care of them.
-	and you'll be rewarded for it! sounds good, right?
-LOOP 0
-	check the bounty board to see your current status.
-CHOICE_LINK bye
-	goodbye citizen! stay up to yes good!
-CHOICE_LINK east
-	east? you can't go east at this time. not authorised.
 
 
 DIALOGUE bounty_complete_thugs
@@ -2786,7 +2773,7 @@ DIALOGUE bounty_complete_sun_spirit
 CHAR popo_1
 	[color=SUNCOLOR]solar protuberance[/color].
 	what a strange thing to haunt us here...
-	but you can never really know what a spirit intends.
+	you can never really know what a spirit intends.
 	but i knew you would be able to take it out!!
 	do you want to hear a poem i made about you?
 	"your eyes shine like the starless night..."

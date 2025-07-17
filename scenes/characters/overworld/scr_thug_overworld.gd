@@ -28,6 +28,6 @@ func _car_collision_response(car: CarOverworld) -> void:
 	var tw := create_tween()
 	set_collision_mask_value(2, false)
 	set_physics_process(false)
-	var moveto := (car.global_position - car.target).normalized() * car.speed
+	var moveto := car.global_position.direction_to(car.target) * car.speed * 2.9
 	tw.tween_property(self, "global_position", moveto, 1.0)
 	tw.tween_callback(queue_free)

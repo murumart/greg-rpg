@@ -2216,6 +2216,8 @@ greg = NodePath("../../../Greg")
 
 [node name="Poles" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="UtilityPole" parent="Poles" node_paths=PackedStringArray("draw_target") instance=ExtResource("62_omkxg")]
 position = Vector2(-132, -166)
@@ -2479,14 +2481,14 @@ type = 2
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="RoomGate" parent="Areas" instance=ExtResource("9_0hylv")]
+[node name="DownHouseGate" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(-573, 313)
 destination = &"greg_house"
 gate_id = &"house-town"
 extents = Vector2i(8, 32)
 spawnpoint = Vector2i(18, 0)
 
-[node name="RoomGate2" parent="Areas" instance=ExtResource("9_0hylv")]
+[node name="UpHouseGate" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(-579, -102)
 destination = &"greg_house"
 gate_id = &"house-town_up"
@@ -2594,12 +2596,19 @@ gate_id = &"town-lake"
 extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-31, -15)
 
-[node name="RoomGate3" parent="Areas" instance=ExtResource("9_0hylv")]
+[node name="ForestEntroGate" parent="Areas" instance=ExtResource("9_0hylv")]
 position = Vector2(-184, -519)
 destination = &"forest_entrance"
 gate_id = &"town-woods"
 extents = Vector2i(61, 8)
 spawnpoint = Vector2i(40, 13)
+
+[node name="RoomGate" parent="Areas" instance=ExtResource("9_0hylv")]
+position = Vector2(956, -108)
+destination = &"town_east"
+gate_id = &"town-east"
+extents = Vector2i(8, 34)
+spawnpoint = Vector2i(-14, 0)
 
 [node name="RideAroundTown" parent="." node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("71_omkxg")]
 position = Vector2(1007, -123)

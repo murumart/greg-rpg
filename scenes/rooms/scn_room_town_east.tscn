@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=46 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
 [ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="24_w54ah"]
 [ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="25_0834g"]
+[ext_resource type="PackedScene" uid="uid://cfs50oh5gonj4" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="27_kc1q2"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="28_x4kca"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
 normal = Vector2(0, 1)
@@ -257,6 +259,9 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
+size = Vector2(79, 6)
+
 [sub_resource type="Curve2D" id="Curve2D_0834g"]
 resource_local_to_scene = true
 _data = {
@@ -264,12 +269,10 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
-size = Vector2(79, 6)
-
 [node name="TownEast" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u5kw4")
+music = "dry_summer"
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
 [node name="CheatNode" type="Node" parent="."]
@@ -287,6 +290,7 @@ metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 script = ExtResource("4_s1sou")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
 room = NodePath("..")
+sunset_music = "sunset"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
@@ -698,33 +702,8 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 position = Vector2(4, 17)
 shape = SubResource("RectangleShape2D_bu27y")
 
-[node name="RideAroundTown" parent="." node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("24_w54ah")]
-position = Vector2(82, -722)
-greg = NodePath("../Greg")
-greg_camera = NodePath("../Greg/Camera")
-time = 8.75
-final_destination = NodePath("CarPath/Marker2D2")
-dialogue_line = "intro_convo_2"
-next_room = "uid://d0ypwtjm1o5tg"
-next_music = "arent_you_excited"
-
-[node name="ZermCar" parent="RideAroundTown" index="0"]
-position = Vector2(0, 71)
-
-[node name="Marker2D" type="Marker2D" parent="RideAroundTown/CarPath" index="0"]
-position = Vector2(-11, 598)
-
-[node name="Marker2D2" type="Marker2D" parent="RideAroundTown/CarPath" index="1"]
-position = Vector2(-961, 595)
-
-[node name="CameraPath" parent="RideAroundTown" index="2"]
-curve = SubResource("Curve2D_0834g")
-
-[node name="Follow" parent="RideAroundTown/CameraPath" index="0"]
-position = Vector2(-76, 164)
-rotation = 2.1006
-
 [node name="Other" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="LeaveEnding" type="Node2D" parent="Other"]
 position = Vector2(85, -642)
@@ -739,4 +718,64 @@ monitorable = false
 position = Vector2(-0.5, 7)
 shape = SubResource("RectangleShape2D_c52i7")
 
-[editable path="RideAroundTown"]
+[node name="RideAroundTown" parent="Other" node_paths=PackedStringArray("greg", "greg_camera", "final_destination") instance=ExtResource("24_w54ah")]
+position = Vector2(82, -722)
+greg = NodePath("../../Greg")
+greg_camera = NodePath("../../Greg/Camera")
+time = 8.75
+final_destination = NodePath("CarPath/Marker2D2")
+dialogue_line = "intro_convo_2"
+next_room = "uid://d0ypwtjm1o5tg"
+next_music = "arent_you_excited"
+
+[node name="ZermCar" parent="Other/RideAroundTown" index="0"]
+position = Vector2(0, 71)
+
+[node name="Marker2D" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="0"]
+position = Vector2(-11, 598)
+
+[node name="Marker2D2" type="Marker2D" parent="Other/RideAroundTown/CarPath" index="1"]
+position = Vector2(-961, 595)
+
+[node name="CameraPath" parent="Other/RideAroundTown" index="2"]
+curve = SubResource("Curve2D_0834g")
+
+[node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0"]
+position = Vector2(-76, 164)
+rotation = 2.1006
+
+[node name="ThugOverworld" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
+position = Vector2(-498, 597)
+speed = 0
+random_movement = false
+
+[node name="ThugOverworld2" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
+position = Vector2(-516, 600)
+speed = 0
+random_movement = false
+
+[node name="ThugOverworld3" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
+position = Vector2(-537, 596)
+speed = 0
+random_movement = false
+
+[node name="ThugOverworld4" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
+position = Vector2(-472, 597)
+speed = 0
+random_movement = false
+
+[node name="ThugOverworld5" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
+position = Vector2(-448, 599)
+speed = 0
+random_movement = false
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="RoomGate" parent="Areas" instance=ExtResource("28_x4kca")]
+position = Vector2(-848, -108)
+destination = &"town"
+gate_id = &"town-east"
+extents = Vector2i(8, 58)
+spawnpoint = Vector2i(16, 0)
+
+[editable path="Other/RideAroundTown"]
