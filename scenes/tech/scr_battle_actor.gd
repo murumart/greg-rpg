@@ -444,7 +444,8 @@ func handle_payload(pld: BattlePayload) -> void:
 			health_change *= 0.25
 		_handle_hurt(pld, health_change)
 
-	character.magic += pld.get_magic_change(character.health, character.max_health)
+	var mchange := pld.get_magic_change(character.magic, character.max_magic)
+	character.magic += mchange
 
 	for en in pld.effects:
 		if en.name.length() and en.duration:

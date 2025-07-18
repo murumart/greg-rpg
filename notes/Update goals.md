@@ -4,8 +4,8 @@
 		- [x] Police bounty board UI
 		- [x] at right level and police standing
 	- [ ] Map
-	- [ ] Mayor
-		- [ ] Sprites
+	- [x] Mayor
+		- [x] Sprites
 		- [x] Voice sound
 		- [x] music
 	- [ ] Mayor intro
@@ -14,6 +14,13 @@
 		- [ ] Up into mayor's room
 		- [ ] Find the key (like how you find him)
 		- [ ] Explosive from mining minigame - with key open factory door
+	- [ ] Enemy encounters
+		- [ ] super turf (low hp but really high attack)
+		- [ ] motorised granny (charges up sp until final overrun-ish attack)
+		- [ ] tourist spirit (peanuts user)
+		- [ ] wild lizard again..?
+		- [ ] blips (swarm of littel spirits) (strong fire effect)
+		- [ ] business casual chimney
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
 	- [ ]  Mafia house interior
@@ -48,9 +55,11 @@
 		- [x] Things i did already
 	- [ ] Store cutscene w/ grandma
 		- [ ] Hide greg when she barges in
-	- [ ] Post- vampire cutscene
-		- [ ] replace car
-		- [ ] get flower
+	- [ ] Vampire changes
+		- [ ] in town
+		- [ ] post-cutscene
+			- [ ] replace car
+			- [ ] get flower
 	- [ ] Tarikas better and more dialogue
 		- [ ] gives you flower after you have the others or when defeate solapp prisutbec
 		- [ ] info about the flower bosses you beat and have yet to beat

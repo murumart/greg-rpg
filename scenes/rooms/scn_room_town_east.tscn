@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=53 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -23,11 +23,15 @@
 [ext_resource type="Script" uid="uid://bot6miaxo87sk" path="res://code/scr_move_axis_add_area.gd" id="20_1fst2"]
 [ext_resource type="Texture2D" uid="uid://6kw7miy8f3tw" path="res://sprites/world/building/factory/overlay.png" id="20_fhxp8"]
 [ext_resource type="Texture2D" uid="uid://dcfpaki7ir318" path="res://sprites/world/building/factory/shadow.png" id="21_stciw"]
+[ext_resource type="Script" uid="uid://cy4y0kuvm57rq" path="res://scenes/rooms/town/east_factory.gd" id="22_1fst2"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
 [ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="24_w54ah"]
 [ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="25_0834g"]
 [ext_resource type="PackedScene" uid="uid://cfs50oh5gonj4" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="27_kc1q2"]
+[ext_resource type="PackedScene" uid="uid://cto3bejs3ds7x" path="res://scenes/characters/overworld/scn_mayor_overworld.tscn" id="28_5y8yq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="28_x4kca"]
+[ext_resource type="Script" uid="uid://bs857kreb3l0b" path="res://scenes/rooms/town/east_intro_cutscene.gd" id="29_pcttj"]
+[ext_resource type="Texture2D" uid="uid://c2tgucaak60a3" path="res://sprites/world/object/spr_crimescene.png" id="30_phep0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
 normal = Vector2(0, 1)
@@ -259,6 +263,9 @@ blend_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu27y"]
 size = Vector2(28, 2)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxacx"]
+size = Vector2(21, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 6)
 
@@ -269,6 +276,19 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="GDScript" id="GDScript_phep0"]
+resource_name = "crimescene"
+script/source = "extends Node2D
+
+
+func _ready() -> void:
+	if LTS.gate_id == &\"intro\":
+		hide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phep0"]
+size = Vector2(105, 20)
+
 [node name="TownEast" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u5kw4")
@@ -277,7 +297,7 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
-force_gate_id = &"intro"
+level_gain = 70
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
@@ -349,7 +369,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-818, -127)
+position = Vector2(-267, -217)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]
@@ -627,6 +647,7 @@ silver = 20
 [node name="Factory" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(-256, -317)
+script = ExtResource("22_1fst2")
 
 [node name="Walls" type="TileMapLayer" parent="Houses/Factory"]
 tile_map_data = PackedByteArray("AAALAAAAAQADAAYAAAALAP//AQADAAUAAAALAP7/AQADAAUAAAALAP3/AQADAAQAAAAKAAAAAQACAAYAAAAKAP//AQACAAUAAAAKAP7/AQACAAUAAAAKAP3/AQACAAQAAAAJAAAAAQACAAYAAAAJAP//AQACAAUAAAAJAP7/AQACAAUAAAAJAP3/AQACAAQAAAAIAAAAAQACAAYAAAAIAP//AQACAAUAAAAIAP7/AQACAAUAAAAIAP3/AQACAAQAAAAHAAAAAQACAAYAAAAHAP//AQACAAUAAAAHAP7/AQACAAUAAAAHAP3/AQACAAQAAAAGAAAAAQACAAYAAAAGAP//AQAMAAAAAAAGAP7/AQACAAUAAAAGAP3/AQACAAQAAAAFAAAAAQACAAYAAAAFAP//AQACAAUAAAAFAP7/AQACAAUAAAAFAP3/AQACAAQAAAAEAAAAAQACAAYAAAAEAP//AQAMAAAAAAAEAP7/AQACAAUAAAAEAP3/AQACAAQAAAADAAAAAQACAAYAAAADAP//AQACAAUAAAADAP7/AQACAAUAAAADAP3/AQACAAQAAAACAAAAAQACAAYAAAACAP//AQACAAUAAAACAP7/AQACAAUAAAACAP3/AQACAAQAAAABAAAAAQACAAYAAAABAP//AQACAAUAAAABAP7/AQACAAUAAAABAP3/AQACAAQAAAAAAAAAAQAKAAAAAAAAAP//AQACAAUAAAAAAP7/AQACAAUAAAAAAP3/AQACAAQAAAD//wAAAQACAAYAAAD/////AQACAAUAAAD///7/AQACAAUAAAD///3/AQACAAQAAAD+/wAAAQACAAYAAAD+////AQACAAUAAAD+//7/AQACAAUAAAD+//3/AQACAAQAAAD9/wAAAQACAAYAAAD9////AQACAAUAAAD9//7/AQACAAUAAAD9//3/AQACAAQAAAD8/wAAAQACAAYAAAD8////AQAMAAAAAAD8//7/AQACAAUAAAD8//3/AQACAAQAAAD7/wAAAQACAAYAAAD7////AQACAAUAAAD7//7/AQACAAUAAAD7//3/AQACAAQAAAD6/wAAAQACAAYAAAD6////AQAMAAAAAAD6//7/AQACAAUAAAD6//3/AQACAAQAAAD5/wAAAQACAAYAAAD5////AQACAAUAAAD5//7/AQACAAUAAAD5//3/AQACAAQAAAD4/wAAAQACAAYAAAD4////AQACAAUAAAD4//7/AQACAAUAAAD4//3/AQACAAQAAAD3/wAAAQACAAYAAAD3////AQACAAUAAAD3//7/AQACAAUAAAD3//3/AQACAAQAAAD2//3/AQACAAQAAAD2//7/AQACAAUAAAD2////AQACAAUAAAD2/wAAAQACAAYAAAD1/wAAAQABAAYAAAD1////AQABAAUAAAD1//7/AQABAAUAAAD1//3/AQABAAQAAAACAPb/AQABAAYAAAACAPX/AQABAAUAAAACAPT/AQABAAQAAAADAPT/AQACAAQAAAAEAPT/AQACAAQAAAAFAPT/AQACAAQAAAAGAPT/AQACAAQAAAAHAPT/AQACAAQAAAAIAPT/AQACAAQAAAAJAPT/AQACAAQAAAAKAPT/AQADAAQAAAAKAPX/AQADAAUAAAAKAPb/AQADAAYAAAAJAPb/AQALAAIAAAAIAPb/AQACAAYAAAAHAPb/AQALAAIAAAAGAPb/AQACAAYAAAAFAPb/AQALAAIAAAAEAPb/AQACAAYAAAADAPb/AQALAAIAAAADAPX/AQACAAUAAAAEAPX/AQACAAUAAAAFAPX/AQACAAUAAAAGAPX/AQACAAUAAAAHAPX/AQACAAUAAAAIAPX/AQACAAUAAAAJAPX/AQACAAUAAAA=")
@@ -634,7 +655,7 @@ tile_set = ExtResource("5_5ym11")
 
 [node name="Walls5" type="TileMapLayer" parent="Houses/Factory"]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AADw//L/AQABAAEAAADw//P/AQABAAEAAADw//T/AQABAAIAAADx//L/AQALAAAAAADy//L/AQACAAEAAADz//L/AQALAAAAAAD0//L/AQACAAEAAAD1//L/AQACAAEAAAD2//L/AQACAAEAAAD3//L/AQACAAEAAAD4//L/AQACAAEAAAD5//L/AQACAAEAAAD5//P/AQACAAEAAAD4//P/AQACAAEAAAD4//T/AQACAAIAAAD3//T/AQACAAIAAAD2//T/AQACAAIAAAD1//T/AQACAAIAAAD0//T/AQACAAIAAADz//T/AQACAAIAAADy//T/AQACAAIAAADx//T/AQACAAIAAADx//P/AQALAAAAAADy//P/AQACAAEAAADz//P/AQALAAAAAAD0//P/AQACAAEAAAD1//P/AQACAAEAAAD2//P/AQACAAEAAAD3//P/AQACAAEAAAD5//T/AQACAAIAAADw//H/AQABAAAAAADx//H/AQACAAAAAADy//H/AQACAAAAAADz//H/AQACAAAAAAD0//H/AQACAAAAAAD1//H/AQACAAAAAAD2//H/AQACAAAAAAD3//H/AQACAAAAAAD4//H/AQACAAAAAAD5//H/AQACAAAAAAD6//H/AQACAAAAAAD7//H/AQADAAAAAAD7//L/AQADAAEAAAD7//P/AQADAAEAAAD7//T/AQADAAIAAAD6//T/AQACAAIAAAD6//P/AQACAAEAAAD6//L/AQACAAEAAAA=")
+tile_map_data = PackedByteArray("AADw//L/AQABAAEAAADw//P/AQABAAEAAADw//T/AQABAAIAAADx//L/AQALAAAAAADy//L/AQACAAEAAADz//L/AQALAAAAAAD0//L/AQACAAEAAAD1//L/AQACAAEAAAD2//L/AQACAAEAAAD3//L/AQACAAEAAAD4//L/AQACAAEAAAD5//L/AQACAAEAAAD5//P/AQACAAEAAAD4//P/AQACAAEAAAD4//T/AQACAAIAAAD3//T/AQACAAIAAAD2//T/AQACAAIAAAD1//T/AQACAAEAAAD0//T/AQACAAIAAADz//T/AQACAAIAAADy//T/AQACAAIAAADx//T/AQACAAIAAADx//P/AQALAAAAAADy//P/AQACAAEAAADz//P/AQALAAAAAAD0//P/AQACAAEAAAD1//P/AQACAAEAAAD2//P/AQACAAEAAAD3//P/AQACAAEAAAD5//T/AQACAAIAAADw//H/AQABAAEAAADx//H/AQACAAAAAADy//H/AQACAAAAAADz//H/AQACAAAAAAD0//H/AQACAAAAAAD1//H/AQACAAAAAAD2//H/AQACAAAAAAD3//H/AQACAAAAAAD4//H/AQACAAAAAAD5//H/AQACAAAAAAD6//H/AQACAAAAAAD7//H/AQADAAAAAAD7//L/AQADAAEAAAD7//P/AQADAAEAAAD7//T/AQADAAIAAAD6//T/AQACAAIAAAD6//P/AQACAAEAAAD6//L/AQACAAEAAAD1//z/AQAAAAIAAAD1//v/AQAAAAEAAAD1//r/AQAAAAEAAAD1//n/AQAAAAEAAAD1//j/AQAAAAEAAAD1//f/AQAAAAEAAAD1//b/AQAAAAEAAAD1//X/AQAAAAEAAADw//D/AQAAAAEAAADw/+//AQAAAAAAAAA=")
 tile_set = ExtResource("5_5ym11")
 
 [node name="Walls2" type="TileMapLayer" parent="Houses/Factory"]
@@ -646,7 +667,7 @@ y_sort_enabled = true
 position = Vector2(0, 10)
 tile_map_data = PackedByteArray("AAD0/wEAAQAPAAQAAAD1/wEAAQAPAAQAAAD2/wEAAQAPAAQAAAD3/wEAAQAPAAQAAAD4/wEAAQAPAAQAAAD5/wEAAQAPAAQAAAD6/wEAAQAPAAQAAAD7/wEAAQAPAAQAAAD8/wEAAQAPAAQAAAD9/wEAAQAQAAQAAAACAAEAAQAOAAQAAAADAAEAAQAPAAQAAAAEAAEAAQAPAAQAAAAFAAEAAQAPAAQAAAAGAAEAAQAPAAQAAAAHAAEAAQAPAAQAAAAIAAEAAQAPAAQAAAAJAAEAAQAPAAQAAAAKAAEAAQAPAAQAAAALAAEAAQAPAAQAAAAMAAEAAQAPAAQAAAANAAEAAQAPAAQAAAAOAAEAAQAQAAIAAAD9/+//AQAOAAQAAAD+/+//AQAPAAQAAAD//+//AQAPAAQAAAAAAO//AQAPAAQAAAABAO//AQAPAAQAAAACAO//AQAPAAQAAAADAO//AQAPAAQAAAAEAO//AQAPAAQAAAAFAO//AQAPAAQAAAAGAO//AQAPAAQAAAAHAO//AQAPAAQAAAAIAO//AQAPAAQAAAAJAO//AQAPAAQAAAAKAO//AQAPAAQAAAALAO//AQAPAAQAAAAMAO//AQAPAAQAAAANAO//AQAPAAQAAAAOAO//AQAQAAAAAADz/wEAAQAPAAQAAADx/wEAAQAOAAIAAADx/wAAAQANAAEAAADx////AQANAAEAAADx//7/AQANAAEAAADx//3/AQANAAEAAADx//z/AQANAAEAAADx//v/AQANAAEAAADx//r/AQANAAAAAADy/wEAAQAPAAQAAAAOAAAAAQANAAEAAAAOAP//AQANAAEAAAAOAP7/AQANAAEAAAAOAP3/AQANAAEAAAAOAPz/AQANAAEAAAAOAPv/AQANAAEAAAAOAPr/AQANAAEAAAAOAPn/AQANAAEAAAAOAPj/AQANAAEAAAAOAPf/AQANAAEAAAAOAPb/AQANAAEAAAAOAPX/AQANAAEAAAAOAPT/AQANAAEAAAAOAPP/AQANAAEAAAAOAPL/AQANAAEAAAAOAPH/AQANAAEAAAAOAPD/AQANAAEAAAA=")
 tile_set = ExtResource("5_5ym11")
-y_sort_origin = -4
+y_sort_origin = -10
 
 [node name="Walls4" type="TileMapLayer" parent="Houses/Factory"]
 y_sort_enabled = true
@@ -693,15 +714,24 @@ texture = ExtResource("21_stciw")
 centered = false
 offset = Vector2(2, -321)
 
-[node name="InspectArea" type="Area2D" parent="Houses/Factory"]
+[node name="VineInspect" type="Area2D" parent="Houses/Factory"]
 position = Vector2(46, 0)
 script = ExtResource("22_stciw")
 key = "factory_vines"
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/VineInspect"]
 position = Vector2(4, 17)
 shape = SubResource("RectangleShape2D_bu27y")
+
+[node name="DoorInspect" type="Area2D" parent="Houses/Factory"]
+position = Vector2(6, 7)
+script = ExtResource("22_stciw")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/DoorInspect"]
+position = Vector2(0.5, 9)
+shape = SubResource("RectangleShape2D_yxacx")
 
 [node name="Other" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -771,6 +801,54 @@ position = Vector2(-448, 599)
 speed = 0
 random_movement = false
 
+[node name="Mayor" parent="Other" instance=ExtResource("28_5y8yq")]
+position = Vector2(-582, -152)
+
+[node name="IntroCutscene" type="Node2D" parent="Other"]
+position = Vector2(-798, -153)
+script = ExtResource("29_pcttj")
+
+[node name="Path" type="Node2D" parent="Other/IntroCutscene"]
+
+[node name="Marker2D" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(166, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(349, 2)
+
+[node name="Marker2D3" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(534, 1)
+
+[node name="Marker2D4" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(534, 179)
+
+[node name="Marker2D5" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(566, 179)
+
+[node name="Marker2D6" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(566, 2)
+
+[node name="Marker2D7" type="Marker2D" parent="Other/IntroCutscene/Path"]
+position = Vector2(549, -130)
+
+[node name="CrimeScene" type="Node2D" parent="Other"]
+position = Vector2(-465, -211)
+script = SubResource("GDScript_phep0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/CrimeScene"]
+position = Vector2(12, 79)
+texture = ExtResource("30_phep0")
+
+[node name="InspectArea" type="Area2D" parent="Other/CrimeScene"]
+position = Vector2(11, 80)
+script = ExtResource("22_stciw")
+key = "crime_scene"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CrimeScene/InspectArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_phep0")
+
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="RoomGate" parent="Areas" instance=ExtResource("28_x4kca")]
@@ -778,6 +856,6 @@ position = Vector2(-848, -108)
 destination = &"town"
 gate_id = &"town-east"
 extents = Vector2i(8, 58)
-spawnpoint = Vector2i(16, 0)
+spawnpoint = Vector2i(16, -40)
 
 [editable path="Other/RideAroundTown"]

@@ -42,9 +42,23 @@ func animate(
 	argspeed: float = -1.0,
 	mov_size := V2M1,
 	aspeed: float = -1.0,
+	flip := false
 ) -> void:
-	assert(bpart > 0 and bpart < MAX)
+	assert(bpart >= 0 and bpart < MAX)
 	var b := bodyparts[bpart]
 	b.play(anim, aspeed if aspeed != -1.0 else 1.0)
+	b.flip_h = flip
 	speeds[bpart] = argspeed if argspeed != -1.0 else speeds[bpart]
 	mov_sizes[bpart] = mov_size if mov_size != V2M1 else mov_sizes[bpart]
+
+
+func a_leg(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, flip := false) -> void:
+	animate(LEGS, anim, arspd, mov_size, anspd, flip)
+
+
+func a_rarm(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, flip := false) -> void:
+	animate(RIGHT_ARM, anim, arspd, mov_size, anspd, flip)
+
+
+func a_larm(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, flip := false) -> void:
+	animate(LEFT_ARM, anim, arspd, mov_size, anspd, flip)

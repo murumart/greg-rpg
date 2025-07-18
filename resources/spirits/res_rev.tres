@@ -6,18 +6,18 @@
 
 [sub_resource type="Resource" id="Resource_jbb8t"]
 script = ExtResource("1_lmqi2")
-health = null
+health = 0.0
 health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
 steal_health = 0.0
-magic = null
-magic_percent = null
+magic = 0.0
+magic_percent = 0.0
 max_magic_percent = 100.0
 steal_magic = 0.0
-attack_increase = null
-defense_increase = null
-speed_increase = null
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
 gender = 0
 effects = Array[ExtResource("1_h3a7a")]([])
 delay = 0.0

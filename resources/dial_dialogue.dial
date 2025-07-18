@@ -8,6 +8,7 @@ MACRO PRESCOLOR #ff9999
 MACRO YELLOW #ffff00
 MACRO SUNCOLOR #ffbb99
 MACRO FLOWERCOLOR #99ff61
+MACRO SAUCECOLOR #ff4422
 
 
 DIALOGUE intro_convo_0
@@ -3387,6 +3388,7 @@ DIALOGUE lake_hint_stroll_2
 
 
 DIALOGUE guy_walk_home_1
+CHAR uguy
 DATA_LINK witnessed_ushanka_guy_cutscene,false
 	i'm walkin here!
 	i just bought myself a treat and i'm walkin home to enjoy it...
@@ -3461,6 +3463,7 @@ CHAR
 	good.
 
 
+# TODO replace these
 DIALOGUE uguy_1
 	have you heard this girl? she says she's a vampire.
 	how cute... how funny...
@@ -4013,6 +4016,20 @@ DIALOGUE troupe_kid
 CHAR kid
 	i'm not actually a circus member.
 	i just follow them around to sell stuff!
+
+
+DIALOGUE mayor_intro
+CHAR mayor
+	i'm [color=SAUCECOLOR]thick sauces[/color].
+	i'm the [color=SAUCECOLOR]mayor[/color].
+
+
+DIALOGUE mayor_scooter_intro
+CHAR mayor
+	i'm [color=SAUCECOLOR]thick sauces[/color].
+	i'm the [color=SAUCECOLOR]mayor[/color].
+	i'm also one of your enemy encounters in this area.
+	i'm gonna whoop your [color=SAUCECOLOR]butt[/color], son.
 
 
 DIALOGUE grandma_final_meeting_1

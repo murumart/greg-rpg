@@ -64,6 +64,10 @@ DIALOGUE insp_fence_carful
 	the fence was too carful.
 
 
+DIALOGUE insp_crime_scene
+	looks like a little bit of a crime has been committed here...
+
+
 DIALOGUE insp_neighbour_car_1
 	...hello...
 	...yes, i'm in the car.

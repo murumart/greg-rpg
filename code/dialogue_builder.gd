@@ -58,9 +58,14 @@ func add_line(line: DialogueLine) -> DialogueBuilder:
 
 
 func reset() -> DialogueBuilder:
+	_dial = Dialogue.new()
+	return self
+
+
+func clear() -> DialogueBuilder:
 	clear_emo()
 	clear_char()
-	_dial = Dialogue.new()
+	reset()
 	return self
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cto3bejs3ds7x"]
+[gd_scene load_steps=28 format=3 uid="uid://cto3bejs3ds7x"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_oh1vv"]
 [ext_resource type="Script" uid="uid://cbs6ebt0hs7ea" path="res://scenes/characters/overworld/scr_mayor_overworld.gd" id="2_iwm4i"]
@@ -59,6 +59,14 @@ region = Rect2(48, 32, 16, 16)
 atlas = ExtResource("3_ifqff")
 region = Rect2(16, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5jml"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqjko"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(32, 32, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_1pk26"]
 animations = [{
 "frames": [{
@@ -92,56 +100,22 @@ animations = [{
 "loop": true,
 "name": &"up",
 "speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pg76y"]
-atlas = ExtResource("3_ifqff")
-region = Rect2(24, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ifbrs"]
-atlas = ExtResource("3_ifqff")
-region = Rect2(16, 8, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1txfq"]
-atlas = ExtResource("3_ifqff")
-region = Rect2(16, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ttvm1"]
-atlas = ExtResource("3_ifqff")
-region = Rect2(24, 8, 8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pg76y"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pg76y")
-}],
-"loop": true,
-"name": &"finger",
-"speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ifbrs")
-}],
-"loop": true,
-"name": &"hip",
-"speed": 5.0
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_sem33")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1txfq")
-}],
-"loop": true,
-"name": &"straight",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_u5jml")
 }, {
-"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_sem33")
+}, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ttvm1")
+"texture": SubResource("AtlasTexture_fqjko")
 }],
 "loop": true,
-"name": &"up",
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -184,6 +158,82 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg76y"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifbrs"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnm1v"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt8nj"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1txfq"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttvm1"]
+atlas = ExtResource("3_ifqff")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pg76y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg76y")
+}],
+"loop": true,
+"name": &"finger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifbrs")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hnm1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt8nj")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hnm1v")
+}],
+"loop": true,
+"name": &"flail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifbrs")
+}],
+"loop": true,
+"name": &"hip",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1txfq")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttvm1")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
 [node name="Mayor" instance=ExtResource("1_oh1vv")]
 script = ExtResource("2_iwm4i")
 speeds = PackedFloat32Array(0, 0, 0, 0, 0)
@@ -204,35 +254,39 @@ shape = SubResource("CircleShape2D_7o2vj")
 [node name="Body" type="Node2D" parent="." index="3"]
 
 [node name="Body" type="Node2D" parent="Body" index="0"]
-position = Vector2(0, -9)
+position = Vector2(0, -7)
 
 [node name="Body" type="AnimatedSprite2D" parent="Body/Body" index="0"]
 sprite_frames = SubResource("SpriteFrames_ifbrs")
 animation = &"forward"
 
 [node name="Legs" type="Node2D" parent="Body" index="1"]
-position = Vector2(1, -10)
+position = Vector2(1, -8)
 
 [node name="Legs" type="AnimatedSprite2D" parent="Body/Legs" index="0"]
 sprite_frames = SubResource("SpriteFrames_1pk26")
+frame_progress = 0.602113
 
-[node name="RightArm" type="Node2D" parent="Body" index="2"]
-position = Vector2(-6, -8)
+[node name="Head" type="Node2D" parent="Body" index="2"]
+position = Vector2(0, -14)
 
-[node name="RightArm" type="AnimatedSprite2D" parent="Body/RightArm" index="0"]
-sprite_frames = SubResource("SpriteFrames_pg76y")
-animation = &"hip"
+[node name="Head" type="AnimatedSprite2D" parent="Body/Head" index="0"]
+sprite_frames = SubResource("SpriteFrames_sem33")
 
 [node name="LeftArm" type="Node2D" parent="Body" index="3"]
-position = Vector2(7, -8)
+position = Vector2(7, -6)
+rotation = 3.14159
+scale = Vector2(1, -1)
 
 [node name="LeftArm" type="AnimatedSprite2D" parent="Body/LeftArm" index="0"]
 sprite_frames = SubResource("SpriteFrames_pg76y")
 animation = &"hip"
-flip_h = true
+frame_progress = 0.183066
 
-[node name="Head" type="Node2D" parent="Body" index="4"]
-position = Vector2(0, -16)
+[node name="RightArm" type="Node2D" parent="Body" index="4"]
+position = Vector2(-6, -6)
 
-[node name="Head" type="AnimatedSprite2D" parent="Body/Head" index="0"]
-sprite_frames = SubResource("SpriteFrames_sem33")
+[node name="RightArm" type="AnimatedSprite2D" parent="Body/RightArm" index="0"]
+sprite_frames = SubResource("SpriteFrames_pg76y")
+animation = &"hip"
+frame_progress = 0.0753903

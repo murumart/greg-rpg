@@ -165,6 +165,14 @@ var songs := {
 		"title": "mail mission",
 		"stream": preload("res://music/mus_mail_mission.ogg")
 	},
+	"mayor": {
+		"title": "thick sauces",
+		"stream": preload("res://music/mus_mayor.ogg")
+	},
+	"mayor_boss": {
+		"title": "12 hour countertoup roux",
+		"stream": preload("res://music/mus_mayor_boss.ogg")
+	},
 	"mean_cashier_fight": {
 		"title": "vermin grinder",
 		"stream": preload("res://music/mus_mean_cashier_fight.ogg")

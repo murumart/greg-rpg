@@ -126,11 +126,10 @@ func _on_fisherwoman_inspected() -> void:
 				SND.current_song_player.volume_db = -80
 		if DAT.get_data("fishings_finished", 0) > 0:
 			aval_choices.append(&"lures")
-		dlg.reset().set_char("fisherwoman")
+		dlg.clear().set_char("fisherwoman")
 		dlg.add_line(dlg.ml(greeting).schoices(aval_choices))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
-			dlg.reset().set_char("fisherwoman")
 			break
 		elif choice == &"you":
 			dlg.reset().set_char("fisherwoman")
