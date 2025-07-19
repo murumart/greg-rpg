@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=83 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -126,6 +126,18 @@ size = Vector2(66, 42.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3da"]
 size = Vector2(56, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb2do"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fccl3"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8xf6"]
+resource_local_to_scene = true
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu707"]
 size = Vector2(12, 20)
@@ -356,7 +368,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-220, -113)
+position = Vector2(279, -172)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -605,6 +617,22 @@ destination_name = &"fishhut"
 position = Vector2(37, 396)
 item_type = &"egg"
 save = true
+
+[node name="FastGuy" parent="Areas" node_paths=PackedStringArray("chase_target") instance=ExtResource("11_wk6gi")]
+position = Vector2(585, -106)
+speed = 13000
+random_movement = false
+chase_target = NodePath("../../Greg")
+chase_distance = 200
+
+[node name="CollisionShape" parent="Areas/FastGuy" index="0"]
+shape = SubResource("RectangleShape2D_wb2do")
+
+[node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_fccl3")
+
+[node name="DetectionShape" parent="Areas/FastGuy/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_p8xf6")
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1622,3 +1650,5 @@ position = Vector2(-57, 7)
 [connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]
 [connection signal="inspected" from="Buildings/Pier/Fisherwoman" to="." method="_on_fisherwoman_inspected"]
 [connection signal="interacted" from="Buildings/Pier/Pole/PoleInteraction" to="." method="_on_pole_interacted"]
+
+[editable path="Areas/FastGuy"]

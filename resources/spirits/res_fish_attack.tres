@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_waiv2"]
 script = ExtResource("1_2fejq")
 health = 0.0
-health_percent = -20.0
+health_percent = -17.0
 max_health_percent = 0.0
 pierce_defense = 0.0
 steal_health = 0.0

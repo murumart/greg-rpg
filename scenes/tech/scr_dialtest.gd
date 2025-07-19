@@ -63,6 +63,7 @@ func _on_text_edit_text_submitted(new_text: String) -> void:
 func button_funny(things: Dictionary) -> void:
 	var butt: Button = things.button
 	butt.add_theme_font_size_override("font_size", 6)
+	butt.add_theme_font_override("font", preload("res://fonts/gregtiny.ttf"))
 	butt.reference = {"ref": butt, "erence": butt.reference}
 
 

@@ -38,7 +38,12 @@ DIALOGUE intro_convo_1
 CHAR zerma
 	i'm taking you to your childhood hometown, greg!
 	it's been a while, hasn't it?
+CHOICES yes,no
 	aren't you excited?
+CHAR greg
+INSTASKIP
+	i'm really  
+CHAR zerma
 	hey, look, we're almost there...!
 
 
@@ -88,7 +93,7 @@ CHAR zerma
 	well? how'd it go, dude?
 CHAR greg
 INSTASKIP
-	i think
+	i think  
 CHAR zerma
 	you should talk to whoever you saw inside!
 	you gotta have a lot of catching up to do!
@@ -145,10 +150,13 @@ CHOICE_LINK yes
 	let's go!
 CHOICE_LINK no
 	...no? you don't want my tutorial?
-	i had all this dialogue prepared...
-	...for all of the wacky things you could do.
+	i had all this dialogue prepared for you...
+	...each thing you could do to annoy me...
 	whatever, man! suit yourself!
-	i gotta get going, anyway.
+SPIRIT hotel
+	here's a spirit. [color=SAUCECOLOR]hotel[/color].
+	equip it in your menu which you open with {ACTION_MENU}.
+	well, i gotta get going, anyway.
 
 
 DIALOGUE zerma_fight_1
@@ -218,9 +226,7 @@ CHAR zerma
 	you're a natural! ahaha!
 	here comes the next lesson.
 	see that big [color=SPIRITCOLOR]spirit[/color] button?
-SPEED 1.5
 	press it and [color=#ff00ff]select me[/color].
-SPEED 1
 	and prepare to chant the name of a spirit!
 	that's how you summon and use them.
 	do you understand?
@@ -272,7 +278,7 @@ CHAR zerma
 	well done! so, what did the spirit say? i'm curious.
 CHAR greg
 INSTASKIP
-	...it sa
+	...it said  
 CHAR zerma
 	you saw how your magic [color=SPIRITCOLOR]spirit points[/color] decreased, right?
 	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
@@ -2510,9 +2516,16 @@ CHOICE_LINK no
 	good luck!
 
 
+DIALOGUE fish_victim_hint_1
+	hmm... i'm thinking about going to the lakeside...
+	the weather seems good for it.
+	oh, where it is? it's just down to the south from here.
+	are you new or something?
+
+
 DIALOGUE fish_victim_1
 	hey... do not walk too close to the lake!
-	i was just taking a stroll... fresh air and all that...
+	i was just having a stroll... fresh air and all that...
 	worst mistake i've made today... the fish jumped out of the water...
 	...and started beating my ass! i barely made it out alive...
 	...you're laughing at me... i see... i see...
@@ -2557,6 +2570,34 @@ DIALOGUE fish_victim_bootless_again
 
 DIALOGUE fish_victim_defeat
 	i don't care about your boots anymore... i'm so tired...
+
+
+DIALOGUE science_guy_1
+	this is ridiculous... the path to the east of town...
+	...it's being blocked because of some stupid crime!
+	i can't get to my weird science lab at home!
+
+
+DIALOGUE science_guy_2
+	i'm the weird science guy!
+	i've been doing weird science ever since i was a little boy!
+	and look at me now!
+	surrounded by petty criminals!
+
+
+DIALOGUE science_guy_3
+	if i'm being condemned, make it hit hard, damn it!
+	don't just inconvenience me!
+
+
+DIALOGUE science_guy_free_1
+	well, wouldja look at that.
+	the blockade is lifted.
+
+
+DIALOGUE science_guy_free_2
+	honestly, hated to see them go. i'd gotten used to standing here.
+	but i loved watching them leave.
 
 
 DIALOGUE restroom_default
@@ -2955,6 +2996,8 @@ DIALOGUE mail_game_info
 SET_DATA heard_mail_info,true
 	have you been to the post office yet?
 	the mail man offers a part time job of mail delivery.
+	his post office is just to the southeast from here.
+	red brick house... can't miss it.
 	i enjoyed working there until he fired me for being too bald.
 
 
@@ -3250,6 +3293,10 @@ DIALOGUE effect_guru_hi
 DIALOGUE effect_guru
 CHOICES bye
 	ask me about a status effect you've seen...
+CHOICE_LINK battles?
+	in battles, you can view your active status effects...
+	...by pressing...
+	[color=#ffcccc]{ACTION_MENU}[/color]......
 CHOICE_LINK bye
 	goodbye. i will remain here.
 

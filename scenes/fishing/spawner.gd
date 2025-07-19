@@ -27,7 +27,7 @@ func _random_spawn(pos: Vector2) -> void:
 	if sspawn:
 		spawn_fish(pos)
 	elif depth >= 7500:
-		if (randf() < df_sample * 0.0625 * 1000):
+		if (randf() < df_sample * 0.0625):
 			spawn_mine(pos)
 	if (randf() < depth_item_increase_curve.sample(depth * DEPMUL) * 0.00285714):
 		spawn_item(random_items.get_random_id(), pos)

@@ -665,6 +665,8 @@ func set_crittable() -> void:
 		return
 	crittable = reference_to_actor_array.filter(func(a) -> bool:
 		var actor := a as BattleActor
+		if actor == self:
+			return false
 		if not is_instance_valid(actor):
 			return false
 		if actor.state == States.DEAD:

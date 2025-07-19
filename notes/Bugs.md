@@ -3,5 +3,5 @@
 	- [x] house doors
 - [ ] displays float in battle status effect menu
 - [x] bird attack target feet
-- [ ] ushanka guy walks nowhere
+- [x] ushanka guy walks nowhere
 - [ ] dialogue load in biking game? in kiok menu??

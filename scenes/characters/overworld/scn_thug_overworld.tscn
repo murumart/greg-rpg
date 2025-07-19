@@ -184,7 +184,7 @@ key = &"shopping_cart"
 curve = SubResource("Curve_deob2")
 
 [sub_resource type="Curve" id="Curve_v43yn"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0762183, 0), 0.0, 0.0, 0, 0, Vector2(0.112862, 0.432865), 0.0, 0.0, 0, 0, Vector2(1, 0.663078), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0762183, 0), 0.0, 0.0, 0, 0, Vector2(0.192972, 0.454956), 0.0, 0.0, 0, 0, Vector2(1, 0.782151), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_yt7r7"]
@@ -193,7 +193,7 @@ key = &"stabbing_fella"
 curve = SubResource("Curve_v43yn")
 
 [sub_resource type="Curve" id="Curve_lwlro"]
-_data = [Vector2(0.154086, 0), 0.0, 0.0, 0, 0, Vector2(0.172407, 0.687348), 0.0, 0.0, 0, 0, Vector2(0.483877, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.18943, 0), 0.0, 0.0, 0, 0, Vector2(0.221309, 0.623831), 0.0, 0.0, 0, 0, Vector2(0.483877, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_a3o1a"]
@@ -254,7 +254,7 @@ increment_data_with_enemies = &"thugs_fought"
 [node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")
 animated_sprite = NodePath("ThugSprite")
-speed = 4500
+speed = 2700
 random_movement = true
 random_movement_distance = 32
 action_right_after_dialogue = true

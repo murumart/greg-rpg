@@ -1,6 +1,6 @@
 - [ ] playtest session june
-	- [ ] pan around town in the intro (instead of following the car only)
-	- [ ] intro car slower
+	- [x] pan around town in the intro (instead of following the car only)
+	- [x] intro car slower
 	- [ ] secretn plant dialogue(bnech?)
 	- [x] gramdma face the radio and and wait at the radio
 	- [ ] gaster secret room grandma (SCARY)
@@ -16,37 +16,37 @@
 	- [x] put boot in trash can
 	- [x] rebind screenshit
 - [ ] change greandma green dialo
-- [ ] lore: last 2 police bounties from grandma
+- [x] lore: last 2 police bounties from grandma
 - [ ] playtest seession 2 june
-	- [ ] tone down thugs nexta police station
+	- [x] tone down thugs nexta police station
 	- [x] hole in neighbor house fense behind tree
 	- [ ] give cars in town paths
 	- [x] another greenhouse
 	- [ ] guru remind of press c in battle
 	- [ ] add another biek next to the park tree
-	- [ ] incidental mentions of lakeside, town east in npc dialogue
-	- [ ] fix greg turning purple
+	- [x] incidental mentions of lakeside, town east in npc dialogue
+	- [x] fix greg turning purple
 	- [ ] reevaluate mail man hate you and your items
-	- [ ] benthon shield smaller..?
-- [ ] add small font in save menu
-- [ ] add small font to ummmmmmmm i frogt
-- [ ] choices option in intro dialogue
-- [ ] grant hotel even if skips tutorial [IMPORTANT]
-- [ ] grass areas attack faster plox
-- [ ] more turf polygons
-- [ ] decrease health of enemies
-- [ ] kor sten later level...pls
+	- [x] benthon shield smaller..?
+- [x] add small font in save menu
+- [x] add small font to ummmmmmmm i frogt
+- [x] choices option in intro dialogue
+- [x] grant hotel even if skips tutorial [IMPORTANT]
+- [x] grass areas attack faster plox
+- [x] more turf polygons
+- [x] decrease health of enemies
+- [x] kor sten later level...pls
 - [ ] determine battle difficulty by too mcuh enemies for current level and give more xp for it (at level 17 3 kor stens annoying fight i shoulg get a lot of xp but i get IDK i died)
-- [ ] more "incidental" npcs.. talk about gamer house, mailman house, lakeside, police station (Signs to Point you in Directions)
-- [ ] you can lock yourself out of tooth quest if you do animal bounty before (add tooth to forest animal)
-- [ ] fish scared replace "taking a stroll" dialouge
-- [ ] TOO MANY FREAKING MINES IN FISHING GAME
-- [ ] lures line too long to fit
-- [ ] broken fisherman too many health..
-- [ ] remove lures from fisherwoman dialogue options if flower is supposed to be only
-- [ ] SPIRIT THING DOESNT HAVE FOCUS SOETIMS????
-- [ ] õbroken fisherma  walking animation is broken.....
-- [ ] stop enemies when youre changing scenes?
-- [ ] medkid could be cheaper methink's..
+- [x] more "incidental" npcs.. talk about gamer house, mailman house, lakeside, police station (Signs to Point you in Directions)
+- [x] you can lock yourself out of tooth quest if you do animal bounty before (add tooth to forest animal)
+- [x] fish scared replace "taking a stroll" dialouge
+- [x] TOO MANY FREAKING MINES IN FISHING GAME
+- [x] lures line too long to fit
+- [x] broken fisherman too many health..
+- [x] remove lures from fisherwoman dialogue options if flower is supposed to be only
+- [x] SPIRIT THING DOESNT HAVE FOCUS SOETIMS????
+- [x] õbroken fisherma  walking animation is broken.....
+- [x] stop enemies when youre changing scenes?
+- [x] medkid could be cheaper methink's..
 - [x] remove fisherwoman from fishing pole dialogue wjen shes gone.d
-- [ ] crits shoudl break shield
+- [x] crits shoudl break shield

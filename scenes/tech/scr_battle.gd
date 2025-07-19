@@ -678,7 +678,8 @@ func open_spirit_name_screen() -> void:
 	for i in current_guy.character.spirits:
 		var spirit: Spirit = ResMan.get_spirit(i)
 		loaded_spirits[spirit.name] = i
-	spirit_name.grab_focus()
+	while not spirit_name.has_focus():
+		spirit_name.grab_focus()
 
 
 # you didn't type the spirit name fast enough

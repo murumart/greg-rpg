@@ -121,6 +121,10 @@ func _physics_process(delta: float) -> void:
 				set_state(States.IDLE)
 		States.CHASE:
 			velocity = global_position.direction_to(target) * delta * speed * (int(not flee) * 2 - 1)
+			if chase_target is PlayerOverworld:
+				if "level_transition" in DAT.player_capturers:
+					cannot_reach_target.emit()
+					set_state(States.IDLE)
 			# move as long as distance > 6 and hasn't moved for too long
 			if (global_position.distance_squared_to(target) > chase_closeness
 					and time_moved < time_moved_limit):

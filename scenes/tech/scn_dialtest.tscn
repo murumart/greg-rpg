@@ -45,6 +45,7 @@ offset_left = 2.0
 offset_top = 23.0
 offset_right = 159.0
 offset_bottom = 118.0
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FirstScreen/ScrollContainer"]

@@ -140,7 +140,7 @@ func set_current_button(to: int) -> void:
 		var text := "[center]save file info[/center]\n[color=#eeefef]"
 		text += "\n"
 		if not DIR.standalone():
-			text += "file: [font_size=6]%s[/font_size]\n" % data.get("save_file", "?")
+			text += "file: [font=uid://dnlimkhpfp2qe][font_size=6]%s[/font_size][/font]\n" % data.get("save_file", "?")
 		text += "date: %s\n" % data.get("date", "?")
 		text += "time: %s\n" % data.get("time", "?")
 		text += "playtime: %s\n" % get_playtime(data)

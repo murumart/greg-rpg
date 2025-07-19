@@ -11,6 +11,7 @@ func interacted() -> void:
 		SOL.dialogue("effect_guru_noeffects")
 		return
 	var newchoices := PackedStringArray()
+	newchoices.append("battles?")
 	newchoices.append("bye")
 	for eff in DAT.get_data("known_status_effects", []):
 		var eff_name := ResMan.get_effect(eff).name
@@ -22,7 +23,7 @@ func interacted() -> void:
 	SOL.dialogue_closed.connect(func():
 		list.size = Vector2(40, 35)
 		list.position = Vector2(98, -35)
-		if SOL.dialogue_choice == "bye":
+		if SOL.dialogue_choice == "bye" or SOL.dialogue_choice == &"battles?":
 			return
 		var id := SOL.dialogue_choice.replace(" ", "_")
 		var dial_id = "stefde_" + id

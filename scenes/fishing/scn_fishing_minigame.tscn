@@ -55,22 +55,22 @@ weight = 1
 [sub_resource type="Resource" id="Resource_ps4ll"]
 script = ExtResource("2_8qmcw")
 id = &"combo_lure"
-weight = 4
+weight = 1
 
 [sub_resource type="Resource" id="Resource_swvdc"]
 script = ExtResource("2_8qmcw")
 id = &"drill_lure"
-weight = 4
+weight = 1
 
 [sub_resource type="Resource" id="Resource_tbueb"]
 script = ExtResource("2_8qmcw")
 id = &"green_lure"
-weight = 3
+weight = 2
 
 [sub_resource type="Resource" id="Resource_qvlaj"]
 script = ExtResource("2_8qmcw")
 id = &"umbrella_lure"
-weight = 5
+weight = 1
 
 [sub_resource type="Resource" id="Resource_inxmd"]
 script = ExtResource("2_clupb")

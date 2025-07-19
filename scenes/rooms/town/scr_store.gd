@@ -35,7 +35,7 @@ func lake_hint_npc_setup() -> void:
 	var npc := $LakeHintNpc as OverworldCharacter
 	var time := DAT.seconds % DAT.LAKE_HINT_CYCLE as int
 	var cyc := DAT.LAKE_HINT_CYCLE as int
-	if not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
+	if "lakeside" not in DAT.get_data("visited_rooms", []) and not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
 		npc.queue_free()
 		DAT.set_data("lake_hint_received", false)
 		return

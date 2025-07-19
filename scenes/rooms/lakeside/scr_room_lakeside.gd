@@ -5,6 +5,7 @@ const FLOWERCOLOR = "#99ff61"
 @onready var canvas_modulate: ColorContainer = $CanvasModulateGroup/FishWarning
 @onready var spawners := get_tree().get_nodes_in_group("thug_spawners")
 @onready var fisherwoman: OverworldCharacter = $Buildings/Pier/Fisherwoman
+@onready var fast_guy: OverworldCharacter = $Areas/FastGuy
 
 
 func _ready() -> void:
@@ -13,6 +14,10 @@ func _ready() -> void:
 	_fish_victim_setup()
 	_car_scared_setup()
 	_fisherwoman_setup()
+
+	fast_guy.inspected.connect(DAT.set_data.bind("fast_guy_fought", true))
+	if DAT.get_data("fast_guy_fought", false):
+		fast_guy.queue_free()
 
 	if DAT.get_data("fulfilled_bounty_broken_fishermen", false):
 		spawners.map(func(a): a.queue_free())
@@ -106,14 +111,19 @@ func _on_fisherwoman_inspected() -> void:
 		greeting = "so, what brings you here, buddy?"
 		await dlg.speak_choice()
 	while true:
-		var aval_choices := [&"you", &"me", &"fishing", &"flower", &"bye"]
+		var aval_choices := [&"you", &"me", &"fishing", &"bye"]
 		if is_instance_valid(SND.current_song_player):
 			SND.current_song_player.volume_db = 0
+		if DAT.get_data("fishings_finished", 0) > 0:
+			aval_choices.insert(2, &"lures")
+		if DAT.get_data("fishings_finished", 0) > 1:
+			aval_choices.insert(3, &"flower")
 		if _flower_prog > 0:
 			aval_choices.erase(&"you")
 			aval_choices.erase(&"me")
 		if _flower_prog > 1:
 			aval_choices.erase(&"fishing")
+			aval_choices.erase(&"lures")
 			greeting = "..."
 			if is_instance_valid(SND.current_song_player):
 				SND.current_song_player.volume_db = -10
@@ -124,8 +134,6 @@ func _on_fisherwoman_inspected() -> void:
 		if _flower_prog > 3:
 			if is_instance_valid(SND.current_song_player):
 				SND.current_song_player.volume_db = -80
-		if DAT.get_data("fishings_finished", 0) > 0:
-			aval_choices.append(&"lures")
 		dlg.clear().set_char("fisherwoman")
 		dlg.add_line(dlg.ml(greeting).schoices(aval_choices))
 		var choice := await dlg.speak_choice()
@@ -162,7 +170,7 @@ func _on_fisherwoman_inspected() -> void:
 		elif choice == &"lures":
 			dlg.reset().set_char("fisherwoman")
 			dlg.add_line(dlg.ml("that's right, bestie: there's different lures for you to use!"))
-			dlg.add_line(dlg.ml("each works differently, so you gotta, like, learn them..."))
+			dlg.add_line(dlg.ml("each works differently, so you gotta, like, learn..."))
 			dlg.add_line(dlg.ml("you can buy one from the kid next to the road..."))
 			dlg.add_line(dlg.ml("...or you can totally just beat up other fishermen..."))
 			dlg.add_line(dlg.ml("...until they drop their lures instead."))

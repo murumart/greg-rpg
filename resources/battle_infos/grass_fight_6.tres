@@ -23,7 +23,7 @@ unique = false
 script = ExtResource("1_84jqd")
 type = 1
 property = "water_balloon"
-chance = 0.125
+chance = 0.095
 unique = false
 
 [sub_resource type="Resource" id="Resource_mqcxo"]

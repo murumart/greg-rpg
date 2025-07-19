@@ -5,7 +5,7 @@ extends Area2D
 var detection := 0.0
 @export var battle: BattleInfo
 @export_range(0, 1) var required_for_detection: float = 0.5
-@export_range(0.1, 10) var check_time: float
+@export_range(0.01, 10) var check_time: float = 0.1
 @export_range(0.01, 1) var increase: float = 0.1
 @export var max_battles: int
 var battles_initiated: int
@@ -26,6 +26,10 @@ func _ready() -> void:
 	timer.start(check_time)
 	timer.timeout.connect(_on_timer_timeout)
 	battles_initiated = DAT.get_data(save_key("encounter_count"), 0)
+	if debug:
+		SOL.make_display_label(self, func() -> String:
+			return name + " det: " + str(detection)
+		)
 
 
 func _on_area_player_entered(_body) -> void:
@@ -38,26 +42,26 @@ func _on_area_player_exited(_body) -> void:
 
 func _on_timer_timeout() -> void:
 	if not is_instance_valid(player): return
-	if SOL.dialogue_open: return
+	if not DAT.player_capturers.is_empty(): return
 	if not player_in_area:
 		detection = maxf(detection - increase, 0.0)
-		if debug: print(detection)
+		if debug: prints(name, "detection", detection)
 		return
 
 	# increase detection when moving, decrease when not moving
-	if debug: print(player.velocity.length_squared())
+	if debug: prints(name, "velocity", player.velocity.length_squared())
 	if player.velocity.length_squared() > 0.1:
 		detection = minf(detection + increase, required_for_detection)
 	else:
 		detection = maxf(detection - increase, 0.0)
-	if debug: print(detection)
+	if debug: prints(name, "detection", detection)
 
 	# if detection over threshold (which is also random :dace:), enter battle
 	if detection >= required_for_detection and randf() >= detection:
 		battles_initiated += 1
 		detection = 0
 		if not battles_initiated >= max_battles or max_battles == 0:
-			if debug: print("BOO! %s battles initiated" % battles_initiated)
+			if debug: prints(name, "BOO! %s battles initiated" % battles_initiated)
 			else:
 				LTS.enter_battle(battle, {"sbcheck": true})
 
