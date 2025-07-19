@@ -158,10 +158,9 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 			if level == 99:
 				set(k, roundf(UPGRADE_MAX[k]))
 		# spirits
-		if level % 11 == 0:
-			var sp: String = DAT.get_levelup_spirit(level)
-			if sp.length():
-				spirits_to_add.append(sp)
+		var sp: String = DAT.get_levelup_spirit(level)
+		if not sp.is_empty():
+			spirits_to_add.append(sp)
 
 	if talk:
 		SOL.dialogue_box.dial_concat("levelup", 1, [name, level])

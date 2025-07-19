@@ -30,4 +30,23 @@
 	- [ ] benthon shield smaller..?
 - [ ] add small font in save menu
 - [ ] add small font to ummmmmmmm i frogt
-- [ ] 
+- [ ] choices option in intro dialogue
+- [ ] grant hotel even if skips tutorial [IMPORTANT]
+- [ ] grass areas attack faster plox
+- [ ] more turf polygons
+- [ ] decrease health of enemies
+- [ ] kor sten later level...pls
+- [ ] determine battle difficulty by too mcuh enemies for current level and give more xp for it (at level 17 3 kor stens annoying fight i shoulg get a lot of xp but i get IDK i died)
+- [ ] more "incidental" npcs.. talk about gamer house, mailman house, lakeside, police station (Signs to Point you in Directions)
+- [ ] you can lock yourself out of tooth quest if you do animal bounty before (add tooth to forest animal)
+- [ ] fish scared replace "taking a stroll" dialouge
+- [ ] TOO MANY FREAKING MINES IN FISHING GAME
+- [ ] lures line too long to fit
+- [ ] broken fisherman too many health..
+- [ ] remove lures from fisherwoman dialogue options if flower is supposed to be only
+- [ ] SPIRIT THING DOESNT HAVE FOCUS SOETIMS????
+- [ ] õbroken fisherma  walking animation is broken.....
+- [ ] stop enemies when youre changing scenes?
+- [ ] medkid could be cheaper methink's..
+- [x] remove fisherwoman from fishing pole dialogue wjen shes gone.d
+- [ ] crits shoudl break shield

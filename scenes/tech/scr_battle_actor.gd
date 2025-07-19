@@ -301,6 +301,7 @@ func get_attack_payload(target: BattleActor) -> BattlePayload:
 	var pld := create_payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	if crit:
 		pld.health *= 2.5
+		pld.critical = true
 	var weapon: Item
 	if character.weapon:
 		# manually copy over stuff from the item's payload
@@ -432,8 +433,11 @@ func handle_payload(pld: BattlePayload) -> void:
 				health_change, pld.pierce_defense)
 		# shield effect
 		if has_status_effect(&"shield"):
-			health_change *= 0.33 - (get_status_effect(&"shield").strength * 0.01)
+			health_change *= 0.66 - (get_status_effect(&"shield").strength * 0.01)
 			SOL.vfx("ribbed_shield", get_effect_center(self), {parent = self})
+			if pld.critical:
+				remove_status_effect(&"shield")
+				emit_message("shield broke!")
 		# frankling badge
 		if (pld.gender == Genders.ELECTRIC
 				and character.armour == &"frankling_badge"):
@@ -442,7 +446,7 @@ func handle_payload(pld: BattlePayload) -> void:
 				pld.sender.handle_payload(pld)
 				pld.bounces += 1
 			health_change *= 0.25
-		_handle_hurt(pld, health_change)
+		await _handle_hurt(pld, health_change)
 
 	var mchange := pld.get_magic_change(character.magic, character.max_magic)
 	character.magic += mchange

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleRewards" load_steps=5 format=3 uid="uid://dym2y8rnqeset"]
+[gd_resource type="Resource" script_class="BattleRewards" load_steps=6 format=3 uid="uid://dym2y8rnqeset"]
 
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="1_fnffx"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_natb2"]
@@ -17,6 +17,14 @@ property = "128"
 chance = 1.0
 unique = false
 
+[sub_resource type="Resource" id="Resource_d47ce"]
+script = ExtResource("1_natb2")
+type = 2
+property = "peanuts"
+chance = 1.0
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
 [resource]
 script = ExtResource("1_fnffx")
-rewards = Array[ExtResource("1_natb2")]([SubResource("Resource_645hg"), SubResource("Resource_7gjkx")])
+rewards = Array[ExtResource("1_natb2")]([SubResource("Resource_645hg"), SubResource("Resource_7gjkx"), SubResource("Resource_d47ce")])

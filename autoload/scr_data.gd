@@ -316,13 +316,13 @@ func _on_game_timer_timeout() -> void:
 # storing the level up spirit names here
 func get_levelup_spirit(level: int) -> String:
 	var dict := {
-		11: "hotel",
-		22: "peptide",
-		33: "jglove",
-		44: "peanuts",
-		55: "littleman",
-		66: "personally",
-		77: "roundup",
+		#11: "hotel",
+		#22: "peptide",
+		#33: "jglove",
+		#44: "peanuts",
+		#55: "littleman",
+		#66: "personally",
+		#77: "roundup",
 		88: "mooncity" # <-------- (whistling noise)
 	}
 	return dict.get(level, "")

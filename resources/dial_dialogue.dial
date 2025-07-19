@@ -373,7 +373,13 @@ CHAR zerma
 	as you get more experience, you get stronger.
 	and one day... you might even be able to take on...
 	that dastardly old woman.
-	but now i must get going!
+	here, greg, my final parting gift...
+SPIRIT hotel
+	a spirit: [color=SPIRITCOLOR]hotel[/color]!
+	this is a healing spirit to use in fights.
+	press {ACTION_MENU} to open your menu...
+	...and equip it in the spirits tab there!
+	with all that said... i must get going.
 	my people need me. toodles.
 
 
@@ -2484,7 +2490,8 @@ DIALOGUE after_pennistong_finish
 DIALOGUE fisherwoman_pole_tutorial
 CHAR fisherwoman
 DATA_LINK fisherwoman_fought,true
-	have fun.
+CHOICES yes,nvm
+	are you going fishing?
 DATA_LINK fisherwoman_fought,false
 CHOICES yes,nvm
 	oh, you're, like, going fishing?
@@ -3404,11 +3411,13 @@ DATA_LINK witnessed_ushanka_guy_cutscene,true
 
 
 DIALOGUE guy_walk_home_2
+CHAR uguy
 	what hot weather today...
 	i wish i had boots to go to the lakeside...
 
 
 DIALOGUE guy_walk_home_door
+CHAR uguy
 	bye bye.
 
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=12 format=3 uid="uid://dgwwditacpta7"]
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=13 format=3 uid="uid://dgwwditacpta7"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ukocj"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="2_dt32i"]
@@ -61,9 +61,17 @@ chance = 1.0
 unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
+[sub_resource type="Resource" id="Resource_dt32i"]
+script = ExtResource("2_l8tpc")
+type = 2
+property = "peptide"
+chance = 1.0
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
 [sub_resource type="Resource" id="Resource_l7rs0"]
 script = ExtResource("3_dt32i")
-rewards = Array[ExtResource("2_l8tpc")]([SubResource("Resource_uplrs"), SubResource("Resource_y4nr7"), SubResource("Resource_lt3yy")])
+rewards = Array[ExtResource("2_l8tpc")]([SubResource("Resource_uplrs"), SubResource("Resource_y4nr7"), SubResource("Resource_lt3yy"), SubResource("Resource_dt32i")])
 metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 
 [resource]
