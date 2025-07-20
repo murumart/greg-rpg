@@ -1066,14 +1066,14 @@ EMO exasperated
 CHAR uguy
 	i know right?! i love when my daughter sends me jokes!
 	she is doin well in the city, by the by.
-	found a job worthy of her degree!
+	found a job worthy of 'er degree!
 CHAR mail_man
 	...great.
 CHAR uguy
 	though i also worry for her...
 	who knows what those city slickers have planned!
 	s'hard enough for people from here to make it there...
-	i'm sure city people won't be makin her life any easier.
+	i'm sure city people won't be makin 'er life any easier.
 CHAR mail_man
 	...for sure.
 CHAR uguy
@@ -1084,7 +1084,7 @@ CHAR mail_man
 CHAR uguy
 	man, i wish i could help ya! i asked everyone...
 	...if they knew anythin about it, but nada.
-	and the police, still, not helpin either?
+	and the police, still, ain't helpin either?
 CHAR mail_man
 	...no.
 DATA_LINK mail_heard_name,false
@@ -1131,7 +1131,7 @@ CHAR mail_man
 EMO serious
 	...okay.
 CHAR uguy
-	hey, haven'cha heard talk of the vampire in town?
+	hey, ain'tcha heard talk of the vampire in town?
 	supposedly, one recently arrived.
 	pretty scary! i've been carryin some salt with me.
 CHAR mail_man
@@ -3446,7 +3446,7 @@ CHAR uguy
 DATA_LINK witnessed_ushanka_guy_cutscene,false
 	i'm walkin here!
 	i just bought myself a treat and i'm walkin home to enjoy it...
-	...and there's nothin ya can do about it!
+	...and there ain't anythin ya can do about it!
 DATA_LINK witnessed_ushanka_guy_cutscene,true
 	oh, hey! i'm walkin home to enjoy my treat i just bought.
 	nah, ya can't come with.
@@ -3460,7 +3460,7 @@ DATA_LINK witnessed_ushanka_guy_cutscene,true
 DIALOGUE guy_walk_home_2
 CHAR uguy
 	what hot weather today...
-	i wish i had boots to go to the lakeside...
+	wish i had boots to go to the lakeside...
 
 
 DIALOGUE guy_walk_home_door
@@ -3468,33 +3468,21 @@ CHAR uguy
 	bye bye.
 
 
-# TODO replace these
-DIALOGUE uguy_1
-	have you heard this girl? she says she's a vampire.
-	how cute... how funny...
-	i hope she stays in our town.
+DIALOGUE gamer_girl_gamer
+	this girl... could she be a real gamer?
 
 
-DIALOGUE uguy_2
-	this girl says she's a vampire.
-	i think that's a really funny joke.
+DIALOGUE gamer_girl_girl
+CHAR vampire_talk
+	so this is how a "gamer" lives...
+	repulsive!
 
 
-DIALOGUE uguy_3
-	she calls herself a vampire!
-	just so you know, girls can't be vampires.
-	that'd be not cool of them at all.
-
-
-DIALOGUE uguy_4
-	a girl who is also a vampire? i like her imagination!
-	i wish she remained in this town.
-	our population's declining...
-
-
-DIALOGUE uguy_confused
-	huh... i think i just passed out for a second...
-	oh right... girls can't be vampires. everyone knows that.
+DIALOGUE gamer_girl_guy
+CHAR uguy
+	it's so stuffy in here...
+	this luggage ain't helpin!
+	don'tcha worry, i'm keepin an eye on 'er.
 
 
 DIALOGUE uguy_lost

@@ -1,6 +1,9 @@
 extends Node2D
 
+enum Locations {TOWN_PARK, GAMER, STORE, POST}
+
 const INTERACTIONS := &"girl_interactions"
+const VISITS := &"girl_visits"
 const GUY_FOLLOW := &"uguy_following"
 const VAMP_FOUGHT := &"vampire_fought"
 
@@ -9,6 +12,9 @@ var bad_condition := false
 var girl_inters: int:
 	get: return DAT.get_data(INTERACTIONS, 0)
 	set(to): DAT.set_data(INTERACTIONS, to)
+var girl_visits: PackedByteArray:
+	get: return DAT.get_data(VISITS, [])
+	set(to): DAT.set_data(VISITS, to)
 
 var player_dir_timer: Timer
 
@@ -16,9 +22,9 @@ var player_dir_timer: Timer
 @onready var uguy := $Guy as OverworldCharacter
 @export var greg: PlayerOverworld
 @export var camera: Camera2D
-@onready var thug_spawners := $"../../Areas".find_children("ThugSpawner*")
-@onready var animal_spawners := $"../../Areas".find_children("AnimalSpawner*")
-@onready var campsite_area: Area2D = $CampsiteArea
+@export var location: Locations
+@onready var thug_spawners := LTS.get_current_scene().find_children("ThugSpawner*")
+@onready var animal_spawners := LTS.get_current_scene().find_children("AnimalSpawner*")
 @onready var cutscene_enter_rea: Area2D = $TransformKiller_____/CutsceneEnterRea
 
 
@@ -26,11 +32,23 @@ func _ready() -> void:
 	if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
 		queue_free()
 		return
-	position = Vector2(9999, 9999)
-	cutscene_enter_rea.body_entered.connect(func(_a) -> void:
+	if location == Locations.TOWN_PARK:
+		position = Vector2(9999, 9999)
+		cutscene_enter_rea.body_entered.connect(func(_a) -> void:
+			girl_visits.append(location)
+			if girl_inters <= 0:
+				park_cutscene()
+		)
+	elif location == Locations.GAMER:
 		if girl_inters <= 0:
-			park_cutscene()
-	)
+			queue_free()
+			return
+		SND.play_song.call_deferred("sweet_girls", 1.0, {play_from_beginning = true})
+		var gamer: OverworldCharacter = $"../Guy"
+		gamer.default_lines = ["gamer_girl_gamer"]
+		if not location in girl_visits:
+			girl_inters += 1
+			girl_visits.append(location)
 
 
 func park_cutscene() -> void:
@@ -131,12 +149,12 @@ func uguy_follow() -> void:
 	uguy.chase_target = greg
 	uguy._on_detection_area_body_entered(greg) # this is dirty
 	uguy.global_position = DAT.get_data(uguy.get_save_key("position"), uguy.global_position)
-	campsite_area.body_entered.connect(func(body: Node2D):
-		if body != greg or not DAT.get_data(GUY_FOLLOW, false):
-			return
-		LTS.gate_id = &"vampire_cutscene"
-		LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
-	)
+	#campsite_area.body_entered.connect(func(body: Node2D):
+		#if body != greg or not DAT.get_data(GUY_FOLLOW, false):
+			#return
+		#LTS.gate_id = &"vampire_cutscene"
+		#LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
+	#)
 
 
 func _on_uguy_cannot_reach_target() -> void:

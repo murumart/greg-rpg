@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://vefult5kme02"]
+[gd_scene load_steps=25 format=4 uid="uid://vefult5kme02"]
 
 [ext_resource type="Script" uid="uid://xtodq8wjiqb4" path="res://scenes/rooms/scr_room_super_gaming_house.gd" id="1_6764e"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_bygc4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="9_d51s5"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="10_430xx"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_m0abn"]
+[ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="12_k78ao"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("2_bygc4")
@@ -2387,3 +2388,20 @@ key = "guy_house_bed"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bed/InspectArea"]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_3faao")
+
+[node name="VampireGirl" parent="." node_paths=PackedStringArray("greg", "camera") instance=ExtResource("12_k78ao")]
+position = Vector2(-34, -26)
+greg = NodePath("../Greg")
+camera = NodePath("../Greg/Camera")
+location = 1
+
+[node name="Girl" parent="VampireGirl" index="0"]
+position = Vector2(13, 33)
+movement_wait = 1.2
+random_movement = true
+default_lines = Array[StringName]([&"gamer_girl_girl"])
+
+[node name="CutsceneEnterRea" parent="VampireGirl/TransformKiller_____" index="0"]
+position = Vector2(-311, -143)
+
+[editable path="VampireGirl"]

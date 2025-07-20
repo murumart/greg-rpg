@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://d32ap8ww8t2bk"]
+
+[ext_resource type="Script" uid="uid://sntqywsquyrf" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="1_bmtv2"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="2_uy5ef"]
+[ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="3_cr61l"]
+[ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="4_tbc4r"]
+[ext_resource type="Texture2D" uid="uid://bimpu3rl1xwr7" path="res://sprites/world/object/spr_vamp_luggage.png" id="5_uy5ef"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejp7m"]
+radius = 98.5
+height = 223.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfy3"]
+size = Vector2(136, 60)
+
+[node name="VampireGirl" type="Node2D" groups=["save_me"]]
+y_sort_enabled = true
+script = ExtResource("1_bmtv2")
+
+[node name="Girl" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
+position = Vector2(7, 0)
+animated_sprite = NodePath("GirlSprite")
+save = false
+
+[node name="GirlSprite" type="AnimatedSprite2D" parent="Girl"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("3_cr61l")
+animation = &"gleeful"
+frame_progress = 0.405063
+
+[node name="Guy" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
+position = Vector2(-7, 0)
+animated_sprite = NodePath("GuySprite")
+movement_wait = 3.0
+chase_distance = 300
+chase_closeness = 324
+save = false
+
+[node name="GuySprite" type="AnimatedSprite2D" parent="Guy"]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("4_tbc4r")
+animation = &"walk_down"
+
+[node name="Sprite2D" type="Sprite2D" parent="Guy/GuySprite"]
+texture = ExtResource("5_uy5ef")
+
+[node name="CampsiteArea" type="Area2D" parent="."]
+visible = false
+position = Vector2(1369, -438)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CampsiteArea"]
+position = Vector2(13.5, -5.5)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_ejp7m")
+
+[node name="TransformKiller_____" type="Node" parent="."]
+
+[node name="CutsceneEnterRea" type="Area2D" parent="TransformKiller_____"]
+position = Vector2(37, 5)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformKiller_____/CutsceneEnterRea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dlfy3")

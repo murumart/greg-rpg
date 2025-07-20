@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=130 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -56,7 +56,6 @@
 [ext_resource type="Texture2D" uid="uid://bbsu0n0yi30cw" path="res://sprites/characters/overworld/spr_vampire_girl_overworld.png" id="36_ou4sv"]
 [ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
-[ext_resource type="Script" uid="uid://sntqywsquyrf" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="39_6m0tj"]
 [ext_resource type="SpriteFrames" uid="uid://bcmvh4gcqo0uy" path="res://resources/characters/sfr_vampire_girl.tres" id="40_cl7gv"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
@@ -70,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="50_qhmci"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
+[ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="57_qhmci"]
 [ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
 [ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="62_omkxg"]
@@ -501,13 +501,6 @@ radius = 4.47214
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sms2x"]
 size = Vector2(150, 102)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejp7m"]
-radius = 98.5
-height = 223.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfy3"]
-size = Vector2(136, 60)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
 size = Vector2(123, 15)
 
@@ -628,7 +621,9 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("5_ev43v")
 level_gain = 48
-silver_gain = null
+data_overrides = Dictionary[StringName, Variant]({
+&"turf_mission_fulfilled": true
+})
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
@@ -687,7 +682,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(143, 15)
+position = Vector2(-56, -102)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2104,60 +2099,10 @@ texture = ExtResource("54_83ce0")
 offset = Vector2(0, -14)
 flip_h = true
 
-[node name="VampireGirl" type="Node2D" parent="Other" node_paths=PackedStringArray("greg", "camera") groups=["save_me"]]
-y_sort_enabled = true
+[node name="VampireGirl" parent="Other" node_paths=PackedStringArray("greg", "camera") instance=ExtResource("57_qhmci")]
 position = Vector2(37, 5)
-script = ExtResource("39_6m0tj")
 greg = NodePath("../../Greg")
 camera = NodePath("../../Greg/Camera")
-
-[node name="Girl" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
-position = Vector2(7, 0)
-animated_sprite = NodePath("GirlSprite")
-save = false
-
-[node name="GirlSprite" type="AnimatedSprite2D" parent="Other/VampireGirl/Girl"]
-position = Vector2(0, -8)
-sprite_frames = ExtResource("40_cl7gv")
-animation = &"gleeful"
-frame_progress = 0.563886
-
-[node name="Guy" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
-position = Vector2(-7, 0)
-animated_sprite = NodePath("GuySprite")
-movement_wait = 3.0
-chase_distance = 300
-chase_closeness = 324
-save = false
-
-[node name="GuySprite" type="AnimatedSprite2D" parent="Other/VampireGirl/Guy"]
-position = Vector2(0, -8)
-sprite_frames = ExtResource("43_n6mbw")
-animation = &"walk_down"
-
-[node name="CampsiteArea" type="Area2D" parent="Other/VampireGirl"]
-visible = false
-position = Vector2(1369, -438)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/CampsiteArea"]
-position = Vector2(13.5, -5.5)
-rotation = -1.57079
-shape = SubResource("CapsuleShape2D_ejp7m")
-
-[node name="TransformKiller_____" type="Node" parent="Other/VampireGirl"]
-
-[node name="CutsceneEnterRea" type="Area2D" parent="Other/VampireGirl/TransformKiller_____"]
-position = Vector2(37, 5)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/TransformKiller_____/CutsceneEnterRea"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_dlfy3")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 y_sort_enabled = true
