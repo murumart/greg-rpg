@@ -25,7 +25,6 @@ var player_dir_timer: Timer
 @onready var gg_pos: Node2D = $GGPos
 @onready var girl := $GGPos/Girl as OverworldCharacter
 @onready var uguy := $GGPos/Guy as OverworldCharacter
-@onready var position_markers: Node2D = $PositionMarkers
 @onready var greg := $"../../Greg" as PlayerOverworld
 @onready var thug_spawners := $"../../Areas".find_children("ThugSpawner*")
 @onready var animal_spawners := $"../../Areas".find_children("AnimalSpawner*")
@@ -48,7 +47,6 @@ func _ready() -> void:
 
 	if girl_inters > 2:
 		girl.queue_free()
-		gg_pos.global_position = get_closest_pos()
 		uguy.inspected.connect(_on_uguy_interacted)
 		uguy.default_lines.append("uguy_lost")
 		#print("v: find girl")
@@ -69,7 +67,6 @@ func _ready() -> void:
 			girl.default_lines.append("girl_follow")
 	uguy.default_lines.append("uguy_" + str(randi_range(1, 4)))
 	if not girl_is_intered and (LTS.gate_id != LTS.GATE_LOADING):
-		gg_pos.global_position = get_rand_pos()
 		DAT.set_data(POSITION, gg_pos.global_position)
 	else:
 		gg_pos.global_position = DAT.get_data(POSITION, gg_pos.global_position)
@@ -137,21 +134,6 @@ func _on_uguy_cannot_reach_target() -> void:
 	var tw := create_tween()
 	SND.play_sound(preload("res://sounds/teleport.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})
 	tw.tween_property(uguy, "global_position", greg.global_position, 0.1)
-
-
-func get_rand_pos() -> Vector2:
-	var rng := RandomNumberGenerator.new()
-	rng.set_seed(hash(DAT.seconds))
-	return Math.determ_pick_random(position_markers.get_children(), rng).global_position
-
-
-func get_closest_pos() -> Vector2:
-	var poses := position_markers.get_children().map(func(node: Node2D):
-			return node.global_position)
-	poses.sort_custom(func(a: Vector2, b: Vector2):
-		return (a.distance_squared_to(greg.global_position)
-				< b.distance_squared_to(greg.global_position)))
-	return poses[0]
 
 
 func _girl_angry_cutscene() -> void:

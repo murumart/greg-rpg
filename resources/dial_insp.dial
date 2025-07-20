@@ -90,6 +90,11 @@ DIALOGUE insp_neighbour_car_3
 	...to draw attention and to damage the car.
 
 
+DIALOGUE insp_park_board
+	a board with announcements and quests on it.
+	no time to do these.
+
+
 DIALOGUE insp_trash_road
 	the road conditions look terrible up ahead.
 

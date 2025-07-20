@@ -65,11 +65,6 @@ SPEED 1
 	%s leveled up to %s.
 
 
-DIALOGUE levelup_confirmation
-CHOICES yes,no
-	are you sure you want to level up? you might miss some things if you do.
-
-
 DIALOGUE getitem
 	%s was found.
 

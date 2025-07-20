@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=131 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -67,6 +67,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dvpvdplibsths" path="res://resources/characters/sfr_ushanka_guy.tres" id="43_n6mbw"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="48_ke24d"]
+[ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="50_qhmci"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 [ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
@@ -478,6 +479,12 @@ size = Vector2(71, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pevje"]
+size = Vector2(28, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v6ai"]
+size = Vector2(28, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evlwv"]
 size = Vector2(125, 7)
 
@@ -617,7 +624,7 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("5_ev43v")
-level_gain = 42
+level_gain = 48
 silver_gain = null
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
@@ -1868,6 +1875,28 @@ animation = &"walk_down"
 [node name="StatusEffectGuru" parent="Other/BackPark" instance=ExtResource("38_a0o03")]
 position = Vector2(-87, 23)
 
+[node name="QuestBoard" type="StaticBody2D" parent="Other/BackPark" groups=["forest_quest_boards"]]
+position = Vector2(-48, -31)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Other/BackPark/QuestBoard"]
+position = Vector2(-16, -23)
+texture = ExtResource("50_qhmci")
+centered = false
+region_rect = Rect2(17, 4, 30, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BackPark/QuestBoard"]
+shape = SubResource("RectangleShape2D_pevje")
+
+[node name="InspectArea" type="Area2D" parent="Other/BackPark/QuestBoard"]
+script = ExtResource("10_fbdk7")
+key = "park_board"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/BackPark/QuestBoard/InspectArea"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6v6ai")
+
 [node name="NatureGuyLeft" type="Node2D" parent="Other"]
 y_sort_enabled = true
 position = Vector2(-475, -440)
@@ -2072,79 +2101,8 @@ flip_h = true
 
 [node name="VampireGirl" type="Node2D" parent="Other" groups=["save_me"]]
 y_sort_enabled = true
-position = Vector2(-1040, 0)
+position = Vector2(58, 6)
 script = ExtResource("39_6m0tj")
-
-[node name="PositionMarkers" type="Node2D" parent="Other/VampireGirl"]
-visible = false
-
-[node name="Marker2D" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1624, -153)
-
-[node name="Marker2D2" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1352, -168)
-
-[node name="Marker2D3" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(904, -392)
-
-[node name="Marker2D4" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1816, 280)
-
-[node name="Marker2D5" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1236, -249)
-
-[node name="Marker2D6" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1511, -21)
-
-[node name="Marker2D7" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1952, 269)
-
-[node name="Marker2D8" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(2010, -155)
-
-[node name="Marker2D9" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1128, 276)
-
-[node name="Marker2D10" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1181, -157)
-
-[node name="Marker2D11" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1088, 279)
-
-[node name="Marker2D12" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1521, 264)
-
-[node name="Marker2D13" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1677, -41)
-
-[node name="Marker2D14" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1488, -205)
-
-[node name="Marker2D15" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1417, -165)
-
-[node name="Marker2D16" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1271, -165)
-
-[node name="Marker2D17" type="Marker2D" parent="Other/VampireGirl/PositionMarkers"]
-modulate = Color(62.893, 44.025, 11.635, 1)
-position = Vector2(1503, -248)
 
 [node name="GGPos" type="Node2D" parent="Other/VampireGirl"]
 y_sort_enabled = true

@@ -57,6 +57,8 @@
 		- [ ] Hide greg when she barges in
 	- [ ] Vampire changes
 		- [ ] in town
+			- [ ] introductory cutscene in park (uguy follows her)
+			- [ ] appearances in other town locations (store, gamer, post office)
 		- [ ] post-cutscene
 			- [ ] replace car
 			- [ ] get flower

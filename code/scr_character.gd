@@ -113,21 +113,32 @@ func add_experience(amount: int, speak := false) -> void:
 			break
 		experience += 1
 		if experience >= xp2lvl(level + 1):
-			if speak and (
-					level + 1 == 50 and not DAT.get_data("vampire_fought", false)
-					or level + 1 == 60 and not DAT.get_data("president_fought", false)
-			):
-				SOL.dialogue("levelup_confirmation")
-				await SOL.dialogue_closed
-				if SOL.dialogue_choice == "no":
+			if name_in_file == &"greg":
+				if await limit_levelup():
 					return
 			experience = 0
 			level_up()
 	leveled_up.emit()
 
 
+func limit_levelup() -> bool:
+	var required: Dictionary[int, StringName] = {
+		50: &"flower_yellow_balsam",
+		60: &"flower_nasturtium",
+		70: &"flower_rose",
+	}
+
+	if (level + 1 in required and required[level + 1] not in inventory):
+		var dlg := DialogueBuilder.new()
+		dlg.add_line(dlg.ml("[center]level... not up.[/center]"))
+		dlg.add_line(dlg.ml("the %s is still missing. find it." % ResMan.get_item(required[level + 1]).name))
+		await dlg.speak_choice()
+		return true
+	return false
+
+
 func level_up(by := 1, overflow := false, talk := true) -> void:
-	if by < 1:
+	if by < 0:
 		level -= by
 		printerr("reduced level of " + name_in_file)
 		return
