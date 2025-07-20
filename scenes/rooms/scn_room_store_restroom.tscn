@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=4 uid="uid://cc13veoqxe5gd"]
+[gd_scene load_steps=50 format=4 uid="uid://cc13veoqxe5gd"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_flcgy"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_01ui4"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_555gl"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_dfshh"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_mgdvh"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_hdt53"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="7_n8fep"]
 [ext_resource type="Texture2D" uid="uid://dmrheciqdly6b" path="res://sprites/gui/spr_daily_item_poster.png" id="8_wl6bd"]
 [ext_resource type="Texture2D" uid="uid://crxj362hugdvo" path="res://sprites/world/object/spr_daily_poster.png" id="9_83jlk"]
+[ext_resource type="AudioStream" uid="uid://cd2w7robs7dgc" path="res://sounds/skateboard_equip.ogg" id="9_ywvc6"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="10_x1fn2"]
 [ext_resource type="AudioStream" uid="uid://drgf3g33njdra" path="res://sounds/coin.ogg" id="11_0k1ew"]
 [ext_resource type="Script" uid="uid://cq4vl2mihdeeo" path="res://scenes/rooms/store/restroom/scr_stalls.gd" id="13_371wy"]
@@ -21,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="17_vx1by"]
 [ext_resource type="Texture2D" uid="uid://x4cs3ynswavu" path="res://sprites/world/object/spr_restroom_sinks.png" id="20_qcn5b"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="21_0qtim"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="21_tva8e"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="22_utpdi"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gkmwl"]
 blend_mode = 3
@@ -56,6 +60,187 @@ func _ready() -> void:
 	AudioServer.set_bus_effect_enabled(1, 0, true)
 	tree_exiting.connect(AudioServer.set_bus_effect_enabled.bind(1, 0, false))
 "
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_27t7h"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ywvc6"]
+colors = PackedColorArray(1, 0, 0.72817, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tva8e"]
+gradient = SubResource("Gradient_ywvc6")
+width = 8
+height = 32
+fill_from = Vector2(1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ywvc6"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tva8e"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -50, 0)
+
+[sub_resource type="Animation" id="Animation_utpdi"]
+resource_name = "opentrash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1), Vector2(0.94, 1), Vector2(1.063, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -22), Vector2(0, -22), Vector2(0, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D2/GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2/AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_555gl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -22)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D2/GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D2/AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtoxy"]
+_data = {
+&"RESET": SubResource("Animation_555gl"),
+&"opentrash": SubResource("Animation_utpdi")
+}
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ntbh"]
 blend_mode = 1
@@ -99,6 +284,15 @@ size = Vector2(64, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bo5q"]
 size = Vector2(8, 8)
 
+[sub_resource type="LabelSettings" id="LabelSettings_utpdi"]
+font = ExtResource("21_tva8e")
+font_size = 6
+font_color = Color(1, 1, 1, 0.156863)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_555gl"]
+atlas = ExtResource("22_utpdi")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hce0a"]
 size = Vector2(46, 6)
 
@@ -109,6 +303,12 @@ size = Vector2(44, 2)
 y_sort_enabled = true
 script = ExtResource("1_flcgy")
 music = "air_conditioning"
+metadata/_custom_type_script = "uid://bpfj25n4ytmas"
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("2_555gl")
+silver_gain = 75
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2(0, -130)
@@ -167,14 +367,41 @@ replenish_minutes = -1
 replenish_seconds = -60
 save = false
 
+[node name="Sprite2D2" type="Sprite2D" parent="DailyTrash/TrashBin"]
+visible = false
+material = SubResource("CanvasItemMaterial_27t7h")
+position = Vector2(0, -22)
+scale = Vector2(1e-05, 1)
+texture = SubResource("GradientTexture2D_tva8e")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="DailyTrash/TrashBin/Sprite2D2"]
+material = SubResource("CanvasItemMaterial_ywvc6")
+position = Vector2(0, 16)
+emitting = false
+amount = 16
+texture = ExtResource("15_hvmee")
+process_material = SubResource("ParticleProcessMaterial_tva8e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DailyTrash/TrashBin/Sprite2D2"]
+stream = ExtResource("9_ywvc6")
+volume_db = -5.0
+pitch_scale = 1.2
+bus = &"ECHO"
+
+[node name="OpenAnimation" type="AnimationPlayer" parent="DailyTrash/TrashBin"]
+libraries = {
+&"": SubResource("AnimationLibrary_xtoxy")
+}
+autoplay = "RESET"
+
 [node name="Sparkles" type="GPUParticles2D" parent="DailyTrash"]
 material = SubResource("CanvasItemMaterial_3ntbh")
 amount = 2
-process_material = SubResource("ParticleProcessMaterial_hvhl4")
 texture = ExtResource("7_k1mj7")
 fixed_fps = 12
 visibility_rect = Rect2(-16, -16, 32, 32)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_hvhl4")
 
 [node name="Ui" type="Control" parent="DailyTrash"]
 visible = false
@@ -286,6 +513,8 @@ offset_right = 22.0
 offset_bottom = 141.0
 rotation = -0.683666
 texture = SubResource("NoiseTexture2D_6jute")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Collision" type="StaticBody2D" parent="Stalls"]
 collision_mask = 0
@@ -345,7 +574,6 @@ script = ExtResource("10_x1fn2")
 shape = SubResource("RectangleShape2D_0bo5q")
 
 [node name="GamblingUI" type="Control" parent="Stalls"]
-visible = false
 custom_minimum_size = Vector2(160, 120)
 layout_mode = 3
 anchors_preset = 0
@@ -371,15 +599,21 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Stalls/GamblingUI/CenterContainer"]
-custom_minimum_size = Vector2(64, 16)
+custom_minimum_size = Vector2(84, 16)
 layout_mode = 2
 
 [node name="Texture" type="TextureRect" parent="Stalls/GamblingUI/CenterContainer/Panel"]
 self_modulate = Color(1, 1, 1, 0.415686)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.062
+anchor_right = 0.984
+anchor_bottom = 0.937
+offset_left = -0.024
+offset_top = 0.00799996
+offset_right = 0.0239983
+offset_bottom = 0.00799942
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_vx1by")
@@ -403,6 +637,34 @@ layout_mode = 2
 [node name="TrashDisplay3" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
+[node name="TrashDisplay4" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+layout_mode = 2
+
+[node name="TrashDisplay5" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Stalls/GamblingUI"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 103.0
+offset_right = 102.0
+offset_bottom = 118.0
+text = "movement keys to select
+accept to open"
+label_settings = SubResource("LabelSettings_utpdi")
+
+[node name="Hand" type="TextureRect" parent="Stalls/GamblingUI"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 49.0
+offset_top = 70.0
+offset_right = 65.0
+offset_bottom = 86.0
+pivot_offset = Vector2(8, 8)
+texture = SubResource("AtlasTexture_555gl")
+flip_h = true
+flip_v = true
+
 [node name="Sinks" type="StaticBody2D" parent="."]
 position = Vector2(34, 24)
 
@@ -413,6 +675,7 @@ shape = SubResource("RectangleShape2D_hce0a")
 [node name="Sprite2D" type="Sprite2D" parent="Sinks"]
 clip_children = 2
 texture = ExtResource("20_qcn5b")
+metadata/_edit_lock_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="Sinks/Sprite2D"]
 material = SubResource("CanvasItemMaterial_gkmwl")
@@ -422,6 +685,8 @@ offset_right = 27.0
 offset_bottom = 142.0
 rotation = -0.887806
 texture = SubResource("NoiseTexture2D_6jute")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="Sinks"]
 clip_children = 2

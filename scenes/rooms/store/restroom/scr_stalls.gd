@@ -60,33 +60,39 @@ func _stall_interacted(which: int) -> void:
 	await sound.finished
 	DAT.free_player("door_knock")
 	if occ.type == StallOccupier.Type.TOWNSPERSON:
-		var dial_id := (&"restroom_" + str(occ.tp_region_position.x)
-				+ "_" + str(occ.tp_region_position.y)) as StringName
+		var dial_id := (&"restroom_" + str(int(occ.tp_region_position.x))
+				+ "_" + str(int(occ.tp_region_position.y))) as StringName
 		if not SOL.dialogue_exists(dial_id):
 			dial_id = &"restroom_default"
 		SOL.dialogue(dial_id)
 	elif occ.type == StallOccupier.Type.CLOWN:
-		return
-		# TODO do more gambling
-		#gambling_ui.reset()
-		#var buy_cost := 65
-		#SOL.dialogue_box.dial_concat("restroom_clown", 7, [buy_cost])
-		#SOL.dialogue("restroom_clown")
-		#await SOL.dialogue_closed
-		#if SOL.dialogue_choice == &"yes":
-			#if buy_cost > DAT.get_data("silver", 0):
-				#SOL.dialogue("restroom_clown_littlemoney")
-				#return
-			#SOL.dialogue("restroom_clown_gamble")
-			#await SOL.dialogue_closed
-			#DAT.incri("silver", -buy_cost)
-			#DAT.capture_player("gambling")
-			#gambling_ui.display()
-			#gambling_ui.finished.connect(func():
-				#gambling_ui.hide()
-				#gambling_ui.reset()
-				#DAT.free_player("gambling")
-			#)
+		var last_gample: int = DAT.get_data("last_gample_second", -9999)
+		var diff := DAT.seconds - last_gample
+		if diff < 3600:
+			SOL.dialogue_box.dial_concat("restroom_clown", 2, [snapped(60.0 - diff / 60.0, 0.1)])
+			DAT.set_data("restroom_clown_thing", 2)
+		else:
+			DAT.set_data("restroom_clown_thing", 1 if DAT.get_data("restroom_clown_thing", 0) else 0)
+		gambling_ui.reset()
+		var buy_cost := 65
+		SOL.dialogue_box.dial_concat("restroom_clown", 7, [buy_cost])
+		SOL.dialogue("restroom_clown")
+		await SOL.dialogue_closed
+		if SOL.dialogue_choice == &"yes":
+			if buy_cost > DAT.get_data("silver", 0):
+				SOL.dialogue("restroom_clown_littlemoney")
+				return
+			SOL.dialogue("restroom_clown_gamble")
+			await SOL.dialogue_closed
+			DAT.incri("silver", -buy_cost)
+			DAT.capture_player("gambling")
+			gambling_ui.display()
+			gambling_ui.finished.connect(func():
+				gambling_ui.hide()
+				gambling_ui.reset()
+				DAT.free_player("gambling")
+				DAT.set_data("last_gample_second", DAT.seconds)
+			)
 
 
 func _create_occupier() -> StallOccupier:
@@ -98,8 +104,8 @@ func _create_occupier() -> StallOccupier:
 		so.type = StallOccupier.Type.TOWNSPERSON
 		so.tp_region_position = _get_random_tp_position()
 	# TODO add clown
-	#elif not have_occupier_of_type(StallOccupier.Type.CLOWN):
-		#so.type = StallOccupier.Type.CLOWN
+	elif not have_occupier_of_type(StallOccupier.Type.CLOWN):
+		so.type = StallOccupier.Type.CLOWN
 
 	return so
 

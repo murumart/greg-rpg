@@ -18,6 +18,7 @@ const KEY_DAILY_ITEM_COLLECTED := &"daily_item_collected"
 @onready var refill_sound: AudioStreamPlayer = $RefillSound
 @onready var refill_timer: Timer = $RefillTimer
 @onready var sparkles: GPUParticles2D = $Sparkles
+@onready var open_animation: AnimationPlayer = $TrashBin/OpenAnimation
 
 
 func _ready() -> void:
@@ -45,6 +46,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _collect_trash() -> void:
+	open_animation.play(&"opentrash")
 	var time := int(Time.get_unix_time_from_system())
 	DAT.set_data(KEY_DAILY_ITEM_COLLECTED, time)
 

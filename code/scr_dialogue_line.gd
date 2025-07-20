@@ -9,7 +9,7 @@ const MAX_TEXT_LENGTH := 66
 @export var emotion := ""
 @export var text_speed := 1.0
 
-@export var data_link: PackedStringArray = []
+@export var data_link := []
 @export var choice_link := &""
 @export var choices: PackedStringArray = []
 

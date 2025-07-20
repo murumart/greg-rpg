@@ -357,6 +357,7 @@ script = ExtResource("3_xexyo")
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("4_wb2do")
 level_gain = 25
+silver_gain = null
 replace_armour = &"rubber_boots"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
@@ -627,6 +628,9 @@ chase_distance = 200
 
 [node name="CollisionShape" parent="Areas/FastGuy" index="0"]
 shape = SubResource("RectangleShape2D_wb2do")
+
+[node name="CollisionDetectionArea" parent="Areas/FastGuy" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_fccl3")

@@ -3,6 +3,7 @@ class_name CheatNode extends Node
 
 @export var target_characters: Array[StringName] = [&"greg"]
 @export var level_gain: int = 0
+@export var silver_gain: int = 0
 @export var new_spirits: Array[StringName] = []
 @export var new_items: Array[StringName] = []
 @export var replace_spirits: Array[StringName] = []
@@ -22,17 +23,20 @@ class_name CheatNode extends Node
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	if DIR.standalone():
+		printerr("CheatNode should be removed!")
+		queue_free()
+		return
 	if force_gate_id:
 		LTS.gate_id = force_gate_id
 	if remove_when_gate_id and (LTS.gate_id != force_gate_id):
 		queue_free()
 		return
-	if DIR.standalone():
-		printerr("CheatNode should be removed!")
-		return
 	for k in data_overrides:
 		DAT.set_data(k, data_overrides[k])
 	DAT.seconds += add_seconds
+	if silver_gain:
+		DAT.grant_silver(silver_gain, false)
 	for i in target_characters:
 		var charac := ResMan.get_character(i) as Character
 		if charac.level != 1 and require_clean_char:

@@ -618,6 +618,7 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("5_ev43v")
 level_gain = 42
+silver_gain = null
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
