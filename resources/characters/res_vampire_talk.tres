@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bd870f4p7eim"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_gataw"]
+[ext_resource type="AudioStream" uid="uid://bnwxo3u4o20bt" path="res://sounds/talking/girl.ogg" id="3_1l6rd"]
+
+[resource]
+script = ExtResource("2_gataw")
+name_in_file = &""
+name = "vampire"
+info = "thinks blood is disgusting. enjoys soda, though."
+voice_sound = ExtResource("3_1l6rd")
+max_health = 260.0
+health = 260.0
+max_magic = 900.0
+magic = 900.0
+level = 45
+experience = 0
+attack = 50.0
+defense = 50.0
+speed = 50.0
+defeated_characters = {}
+inventory = Array[String](["soda", "soda", "soda", "soda"])
+spirits = Array[String](["vampoison"])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""

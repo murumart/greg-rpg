@@ -201,6 +201,10 @@ var songs := {
 		"title": "sunset",
 		"stream": preload("res://music/mus_sunset.ogg")
 	},
+	"sweet_girls": {
+		"title": "sweet girls",
+		"stream": preload("res://music/mus_sweet_girls.ogg")
+	},
 	"mail_man": {
 		"title": "the friendly postman",
 		"stream": preload("res://music/mus_mail_man.ogg")

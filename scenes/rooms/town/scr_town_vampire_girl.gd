@@ -1,101 +1,112 @@
 extends Node2D
 
-const CYCLE := 180
-const INTERACTED := &"vampire_girl_interaction"
 const INTERACTIONS := &"girl_interactions"
-const POSITION := &"vampire_girl_position_index"
 const GUY_FOLLOW := &"uguy_following"
 const VAMP_FOUGHT := &"vampire_fought"
 
 var imminence: int = 0
 var bad_condition := false
 var girl_inters: int:
-	get:
-		return DAT.get_data(INTERACTIONS, 0)
-	set(to):
-		DAT.set_data(INTERACTIONS, to)
-var girl_is_intered: bool:
-	get:
-		return DAT.get_data(INTERACTED, false)
-	set(to):
-		DAT.set_data(INTERACTED, to)
+	get: return DAT.get_data(INTERACTIONS, 0)
+	set(to): DAT.set_data(INTERACTIONS, to)
 
 var player_dir_timer: Timer
 
-@onready var gg_pos: Node2D = $GGPos
-@onready var girl := $GGPos/Girl as OverworldCharacter
-@onready var uguy := $GGPos/Guy as OverworldCharacter
-@onready var greg := $"../../Greg" as PlayerOverworld
+@onready var girl := $Girl as OverworldCharacter
+@onready var uguy := $Guy as OverworldCharacter
+@export var greg: PlayerOverworld
+@export var camera: Camera2D
 @onready var thug_spawners := $"../../Areas".find_children("ThugSpawner*")
 @onready var animal_spawners := $"../../Areas".find_children("AnimalSpawner*")
 @onready var campsite_area: Area2D = $CampsiteArea
+@onready var cutscene_enter_rea: Area2D = $TransformKiller_____/CutsceneEnterRea
 
 
 func _ready() -> void:
-	var level := ResMan.get_character("greg").level
-	if level < 40 or level >= 50 or DAT.get_data(VAMP_FOUGHT, false):
-		bad_condition = true
-		DAT.set_data(GUY_FOLLOW, false)
+	if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
 		queue_free()
-		#print("v: girl not spawned, bad level/fought")
 		return
-
-	if DAT.get_data(GUY_FOLLOW, false) and LTS.gate_id != &"vampire_cutscene":
-		#print("v: uguy follows")
-		uguy_follow()
-		return
-
-	if girl_inters > 2:
-		girl.queue_free()
-		uguy.inspected.connect(_on_uguy_interacted)
-		uguy.default_lines.append("uguy_lost")
-		#print("v: find girl")
-		return
-
-	imminence = level - 40
-	if DAT.seconds % CYCLE > maxi((imminence + 1) * 30, CYCLE):
-		bad_condition = true
-		queue_free()
-		girl_is_intered = false
-		#print("v: girl not spawned (bad time)")
-		return
-	girl.inspected.connect(_on_girl_interaction)
-	match girl_inters:
-		0:
-			girl.default_lines.append("girl_" + str(randi_range(1, 5)))
-		1:
-			girl.default_lines.append("girl_follow")
-	uguy.default_lines.append("uguy_" + str(randi_range(1, 4)))
-	if not girl_is_intered and (LTS.gate_id != LTS.GATE_LOADING):
-		DAT.set_data(POSITION, gg_pos.global_position)
-	else:
-		gg_pos.global_position = DAT.get_data(POSITION, gg_pos.global_position)
-	#print("v: girl spawned at ", gg_pos.global_position)
+	position = Vector2(9999, 9999)
+	cutscene_enter_rea.body_entered.connect(func(_a) -> void:
+		if girl_inters <= 0:
+			park_cutscene()
+	)
 
 
-# note that interacted signal is called before the npc's dialogue logic is ran.
-func _on_girl_interaction() -> void:
-	uguy.direct_walking_animation(girl.global_position - uguy.global_position)
-	if not DAT.get_data(INTERACTED, false):
-		girl_inters += 1
-	girl_is_intered = true
-	if girl_inters == 3:
-		_girl_angry_cutscene()
-		girl_inters += 1
-		return
-	if girl.default_lines.is_empty():
-		return
-	SOL.dialogue_closed.connect(func():
-		girl.default_lines.clear()
-	, CONNECT_ONE_SHOT)
-
-
-func _on_uguy_interacted() -> void:
-	SOL.dialogue_closed.connect(func():
-		DAT.set_data(GUY_FOLLOW, true)
-		uguy_follow()
-	, CONNECT_ONE_SHOT)
-	uguy.inspected.disconnect(_on_uguy_interacted)
+func park_cutscene() -> void:
+	girl_inters += 1
+	position = Vector2(37, 5)
+	DAT.capture_player("cutscene")
+	SND.play_song("sweet_girls")
+	var gpos := global_position - Vector2(16, 0)
+	girl.speed = 9000
+	uguy.speed = 8000
+	uguy.global_position.x = greg.global_position.x + 90
+	girl.global_position.x = greg.global_position.x + 90
+	girl.move_to(gpos)
+	uguy.move_to(gpos + Vector2(20, 0))
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, ^"global_position", global_position + Vector2(0, -16), 1.5)
+	await tw.finished
+	girl.enter_a_state_of_conversation()
+	greg.raycast.target_position = greg.global_position.direction_to(global_position)
+	greg.direct_animation()
+	var dlg := DialogueBuilder.new().set_char("vampire_talk")
+	dlg.add_line(dlg.ml("what a lovely town, innit...?"))
+	dlg.add_line(dlg.ml("so little's changed since i was here last...").scallback(func() -> void:
+		girl.set_physics_process(false)
+		girl.animated_sprite.speed_scale = 1.0
+		girl.animated_sprite.play("gleeful")
+	))
+	dlg.add_line(dlg.ml("hey! i'm just walkin this girl around.").scharacter("uguy").scallback(func() -> void:
+		girl.set_physics_process(true)
+		girl.direct_walking_animation(Vector2.UP)
+		uguy.direct_walking_animation(uguy.global_position.direction_to(greg.global_position))
+	))
+	dlg.add_line(dlg.ml("carryin 'er luggage."))
+	dlg.add_line(dlg.ml("'s excitin when new people show up!"))
+	dlg.add_line(dlg.ml("ah! so much to see!").scharacter("vampire_talk").scallback(func() -> void:
+		girl.direct_walking_animation(Vector2.DOWN)
+		uguy.direct_walking_animation(uguy.global_position.direction_to(girl.global_position))
+	))
+	dlg.add_line(dlg.ml("i simply must visit all the interesting places in town!"))
+	dlg.add_line(dlg.ml("i'm off this way! i heard there's a gamer there!").scallback(func() -> void:
+		girl.direct_walking_animation(Vector2.UP)
+	))
+	await dlg.speak_choice()
+	girl.move_to(gpos - Vector2(68, 15))
+	girl.target_reached.connect(girl.move_to.call_deferred.bind(girl.global_position - Vector2(0, 90)), CONNECT_ONE_SHOT)
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, ^"global_position", greg.global_position.lerp(uguy.global_position, 0.5).floor(), 2.0)
+	await tw.finished
+	SND.play_song("", 0.8)
+	dlg.reset().set_char("uguy")
+	dlg.add_line(dlg.ml("to be quite frank with ya...").scallback(func() -> void:
+		uguy.direct_walking_animation(uguy.global_position.direction_to(greg.global_position))
+	))
+	dlg.add_line(dlg.ml("i don't fully trust 'er, that girl."))
+	dlg.add_line(dlg.ml("quite suspicious of 'er to just show up now, isn't it...?"))
+	dlg.add_line(dlg.ml("with the talk of a vampire in town..."))
+	dlg.add_line(dlg.ml("i hope she's not in trouble with him!").scallback(func() -> void:
+		uguy.direct_walking_animation(uguy.global_position.direction_to(greg.global_position))
+	))
+	dlg.add_line(dlg.ml("oi luggage bloke! you coming?").scharacter("vampire_talk").scallback(func() -> void:
+		uguy.direct_walking_animation(Vector2.UP)
+		SND.play_song("sweet_girls")
+	))
+	dlg.add_line(dlg.ml("right! gotta go! see ya!").scharacter("uguy").scallback(func() -> void:
+		uguy.direct_walking_animation(uguy.global_position.direction_to(greg.global_position))
+	))
+	await dlg.speak_choice()
+	SND.play_song("dry_summer")
+	uguy.move_to(gpos - Vector2(68, 15))
+	uguy.target_reached.connect(uguy.move_to.call_deferred.bind(uguy.global_position - Vector2(0, 90)), CONNECT_ONE_SHOT)
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, ^"position", Vector2(0, -9), 2.0)
+	await tw.finished
+	uguy.queue_free()
+	girl.queue_free()
+	DAT.free_player("cutscene")
 
 
 func uguy_follow() -> void:
@@ -134,30 +145,3 @@ func _on_uguy_cannot_reach_target() -> void:
 	var tw := create_tween()
 	SND.play_sound(preload("res://sounds/teleport.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})
 	tw.tween_property(uguy, "global_position", greg.global_position, 0.1)
-
-
-func _girl_angry_cutscene() -> void:
-	var cam: Camera2D = $"../../Greg/Camera"
-	var vamp_color: ColorContainer = $"../../CanvasModulateGroup/VampColor"
-	DAT.capture_player("cutscene")
-	var tw := create_tween()
-	tw.tween_property(SND.current_song_player, "pitch_scale", 0.55, 1.0)
-	tw.parallel().tween_property(cam, "zoom", Vector2(2, 2), 1.0)
-	tw.parallel().tween_property(vamp_color, "color", Color.FIREBRICK, 1.0)
-	tw.finished.connect(func():
-		SOL.dialogue("girl_angry")
-		await SOL.dialogue_closed
-		tw = create_tween()
-		tw.tween_property(SND.current_song_player, "pitch_scale", 1.0, 1.0)
-		tw.parallel().tween_property(cam, "zoom", Vector2.ONE, 1.0)
-		tw.parallel().tween_property(vamp_color, "color", Color.WHITE, 1.0)
-		uguy.default_lines.clear()
-		uguy.default_lines.append("uguy_confused")
-		await tw.finished
-		DAT.free_player("cutscene")
-	)
-
-
-func _save_me() -> void:
-	if LTS.gate_id != LTS.GATE_LOADING:
-		girl_is_intered = false

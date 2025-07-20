@@ -122,7 +122,7 @@ func add_experience(amount: int, speak := false) -> void:
 
 
 func limit_levelup() -> bool:
-	var required: Dictionary[int, StringName] = {
+	const required: Dictionary[int, StringName] = {
 		50: &"flower_yellow_balsam",
 		60: &"flower_nasturtium",
 		70: &"flower_rose",

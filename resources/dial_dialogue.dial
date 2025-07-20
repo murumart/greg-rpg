@@ -3468,57 +3468,6 @@ CHAR uguy
 	bye bye.
 
 
-DIALOGUE girl_1
-	i love this little town!
-	i have been to many places, but this one...
-	...is already a favourite of mine.
-	the people here are strong...
-
-
-DIALOGUE girl_2
-	i love going to little towns such as this one!
-	the hustle and bustle of large towns is good...
-	...but something about the intimacy in places...
-	...like this attracts me towards them.
-
-
-DIALOGUE girl_3
-	traveling is one of my passions!
-	i have met many people on my trips.
-	you might be one of the ugliest of them. sorry...
-
-
-DIALOGUE girl_4
-	you know of any places to bury the body of a postman?
-	asking for a friend.
-
-
-DIALOGUE girl_5
-	'ello! are you a local?
-	do you know when the cashiers in the store switch?
-	asking for a friend.
-
-
-DIALOGUE girl_follow
-	'ello!
-	...you're not following me, are you?
-	be very careful of what you're going to do next.
-
-
-DIALOGUE girl_angry
-	it's you again...
-	you are definitely following me, you dodgy bugger.
-	this is your final warning.
-	if you keep doing this, i'll just have to put you to sleep...
-	...before you reach level 50.
-	understood?
-CHAR greg
-INSTASKIP
-	i think
-CHAR 
-	good.
-
-
 # TODO replace these
 DIALOGUE uguy_1
 	have you heard this girl? she says she's a vampire.

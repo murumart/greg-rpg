@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=132 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -505,6 +505,9 @@ size = Vector2(150, 102)
 radius = 98.5
 height = 223.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfy3"]
+size = Vector2(136, 60)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
 size = Vector2(123, 15)
 
@@ -684,7 +687,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(827, -58)
+position = Vector2(143, 15)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -1536,14 +1539,16 @@ enabled = false
 tile_set = ExtResource("15_1u67x")
 
 [node name="Gridle" type="Sprite2D" parent="Houses/Police"]
-position = Vector2(48, -40)
+position = Vector2(47, -31)
 texture = ExtResource("9_8v8jp")
+offset = Vector2(1, -9)
 region_enabled = true
 region_rect = Rect2(83, 80, 26, 16)
 
 [node name="Sign" type="Sprite2D" parent="Houses/Police"]
-position = Vector2(48, -40)
+position = Vector2(48, -30)
 texture = ExtResource("9_8v8jp")
+offset = Vector2(0, -10)
 region_enabled = true
 region_rect = Rect2(80, 112, 48, 16)
 
@@ -2099,25 +2104,25 @@ texture = ExtResource("54_83ce0")
 offset = Vector2(0, -14)
 flip_h = true
 
-[node name="VampireGirl" type="Node2D" parent="Other" groups=["save_me"]]
+[node name="VampireGirl" type="Node2D" parent="Other" node_paths=PackedStringArray("greg", "camera") groups=["save_me"]]
 y_sort_enabled = true
-position = Vector2(58, 6)
+position = Vector2(37, 5)
 script = ExtResource("39_6m0tj")
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
 
-[node name="GGPos" type="Node2D" parent="Other/VampireGirl"]
-y_sort_enabled = true
-
-[node name="Girl" parent="Other/VampireGirl/GGPos" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+[node name="Girl" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
 position = Vector2(7, 0)
 animated_sprite = NodePath("GirlSprite")
 save = false
 
-[node name="GirlSprite" type="AnimatedSprite2D" parent="Other/VampireGirl/GGPos/Girl"]
+[node name="GirlSprite" type="AnimatedSprite2D" parent="Other/VampireGirl/Girl"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("40_cl7gv")
-animation = &"walk_down"
+animation = &"gleeful"
+frame_progress = 0.563886
 
-[node name="Guy" parent="Other/VampireGirl/GGPos" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
+[node name="Guy" parent="Other/VampireGirl" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
 position = Vector2(-7, 0)
 animated_sprite = NodePath("GuySprite")
 movement_wait = 3.0
@@ -2125,7 +2130,7 @@ chase_distance = 300
 chase_closeness = 324
 save = false
 
-[node name="GuySprite" type="AnimatedSprite2D" parent="Other/VampireGirl/GGPos/Guy"]
+[node name="GuySprite" type="AnimatedSprite2D" parent="Other/VampireGirl/Guy"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("43_n6mbw")
 animation = &"walk_down"
@@ -2141,6 +2146,18 @@ monitorable = false
 position = Vector2(13.5, -5.5)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ejp7m")
+
+[node name="TransformKiller_____" type="Node" parent="Other/VampireGirl"]
+
+[node name="CutsceneEnterRea" type="Area2D" parent="Other/VampireGirl/TransformKiller_____"]
+position = Vector2(37, 5)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/TransformKiller_____/CutsceneEnterRea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dlfy3")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 y_sort_enabled = true
