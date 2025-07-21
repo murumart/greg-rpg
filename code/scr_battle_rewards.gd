@@ -54,13 +54,13 @@ func grant(speak := true) -> void:
 				if randf() <= reward.chance:
 					glass_pool += prop
 	# then go through the pools and give stuff. to the player
+	for i in item_pool: # give flowe r first so we can level up 👍👍👍👍
+		DAT.grant_item(i, 0, speak)
 	if silver_pool:
 		DAT.grant_silver(silver_pool, speak)
 	if exp_pool:
 		for c in DAT.get_data("party", ["greg"]):
 			ResMan.get_character(c).add_experience(exp_pool, speak)
-	for i in item_pool:
-		DAT.grant_item(i, 0, speak)
 	for i in spirit_pool:
 		if not ResMan.get_character("greg").has_spirit(i):
 			DAT.grant_spirit(i, 0, speak)

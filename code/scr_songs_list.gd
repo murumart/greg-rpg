@@ -48,6 +48,10 @@ var songs := {
 		"title": "blood elevator",
 		"stream": preload("res://music/mus_bymsps.ogg")
 	},
+	"bymssc": {
+		"title": "watched",
+		"stream": preload("res://music/mus_bmssc.ogg")
+	},
 	"catfight": {
 		"title": "catfight",
 		"stream": preload("res://music/mus_catfight.ogg")

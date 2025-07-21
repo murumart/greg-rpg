@@ -3582,51 +3582,35 @@ CHAR uguy
 	up north. around the campsite. go there!
 
 
-DIALOGUE uguy_mail_house_no_vampire
-	...okay.
-	the bloody mail man is gone.
-	good grief... the mail man.
-	he's gone...
-	can't have anything in this bloody town.
-
-
-DIALOGUE uguy_mail_house_no_vampire_2
-DATA_LINK mail_heard_name,true
-	he's gone, greg.
-DATA_LINK mail_heard_name,false
-	he's gone, newspaper boy. he's gone...
-
-
-DIALOGUE vampire_note
-	(there is a note left on his table.)
-	"dear people of stupidtown or whatever it's called,
-	with utmost respect, i have easily murdered your mailman.
-	and i also took his spirit power for myself.
-	you will not hear from me ever again! tata!
-	- the vampire"
-
-
 DIALOGUE vampire_cutscene_1
-	hey, girl vampire! don't go running off like that...
+CHAR uguy
+	hey, girl!
 INSTASKIP
-	you know how there's thugs in
+	you ran off and left all your luggage 
 
 
 DIALOGUE vampire_cutscene_2
 CHAR vampire
-	quit pissing me off, you geezer...
-	i've had enough of your babbling about this stupid town.
-	and you... dodgy bugger in that ugly sweatshirt...
-	you're definitely the biggest threat to me right now.
-	getting stronger just standing and staring at me there...
-	i'll have to take care of you now.
-	and afterwards... i heard there's quite the snack in town!
-	that being your postman. you prepare to die now, though!
+	shut your mouth!
+	i don't give a lizard's arse about the luggage!
+	you!! dodgy bugger in that ugly sweatshirt!
+	you're following me...
+	you've been following me since i came here...
+	so... it's about the [color=FLOWERCOLOR]flower[/color]...
+	the one i was given along with my [color=VAMPCOLOR]vampiric ability[/color]...
+	you've ambushed me here to steal my power!
+	no! no!! no!!! not happening!
+	but i've heard of your escapades.
+	getting stronger... at this rate...
+	you might become and actual threat.
+	the solution is easy, though!
+	i will smear you into the dirt first!!
 
 
 DIALOGUE vampire_cutscene_3
 CHAR vampire
-	huh? who's there! i can sense your blood, you know?
+	huh? who's there!? eavesdropper?
+	i can sense your blood, you know?
 CHAR cashier_nice
 	i... uh... i must take my leave... you two have fun...
 CHAR vampire
@@ -3638,19 +3622,20 @@ CHAR cashier_nice
 	wough... ouhh...
 CHAR vampire
 	where do you think you're going, cashier lady?
-	off to the store to tattle to your magical bestie?
-	the other cashier who wields a very powerful spirit...
-	nuh-uh! i'll just get rid of you too.
+	off to the store to tattle to your bestie?
+	her spirit power... i sensed it to be strong.
+	it might be troublesome for me...
+	not happening! i'll just get rid of you too!
 CHAR cashier_nice
 	oh. damn.
 
 
 DIALOGUE vampire_battle_start
 CHAR vampire
-	i can't have you two meddling in my dastardly plans...
-	all your spirits will belong to me. i am the vampire.
-	smelly man, i regret to say this - 
-	- but you are quite the snack. time to die. goodbye.
+	smelly man, here to steal the [color=FLOWERCOLOR]flowers[/color]...
+	i will take great joy in absorbing your spirits...
+	...after i kill your arse.
+	well, ta ta, then!
 CHAR cashier_nice
 	i wasn't expecting to die this way, that's for sure.
 	i'm not good at fighting... but i have some stuff in...
@@ -3659,13 +3644,13 @@ CHAR cashier_nice
 
 DIALOGUE vampire_battle_70p
 CHAR vampire
-	i was counting on this ending faster...
-	i'll just have to stamp you into the mud harder.
+	i need to get over with this faster!
+	smelly man's cohort - face my power!
 
 
 DIALOGUE vampire_battle_70p2
 CHAR vampire
-	this is my spirit - [color=VAMPCOLOR]ymxvb2q[/color].
+	this is my [color=VAMPCOLOR]strain[/color] - [color=VAMPCOLOR]ymxvb2q[/color].
 	i will use a mere fraction of its power to end you.
 
 
@@ -3678,7 +3663,7 @@ CHAR cashier_nice
 	...whatever it is that's keeping us that way.
 CHAR vampire
 	instead, consider keeling over and dying -
-	- it'll be less painful.
+	- it'll be less painful!!
 
 
 DIALOGUE vampire_battle_30p
@@ -3701,7 +3686,7 @@ DIALOGUE vampire_battle_salt
 CHAR vampire
 	salt working against vampires is a common myth!
 	if you want to use salt, find a...
-	...[color=#ff0000]snail!!!!!!!!!!!!!!!!![/color]
+	...[color=RED]snail!!!!!!!!!!!!!!!!![/color]
 
 
 DIALOGUE vampire_no_spirits_to_steal
@@ -3735,6 +3720,7 @@ CHAR vampire
 DIALOGUE vampire_steal_sideeye
 CHAR vampire
 	i can tell you're a loser without needing this spirit!!
+	whatever...
 
 
 DIALOGUE vampire_steal_skystorm
@@ -3776,6 +3762,10 @@ CHAR vampire
 	blood explosion
 
 
+DIALOGUE vampire_after_battle_15
+	[color=GREEN]TODO finish this.
+
+
 DIALOGUE vampire_after_battle_2
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
@@ -3806,7 +3796,7 @@ EMO human
 DATA_LINK 
 	if you'd mind, i'd like a moment for myself now.
 INSTASKIP
-	i need to reflect on
+	i need to reflect on  
 
 
 DIALOGUE vampire_after_battle_3

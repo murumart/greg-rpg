@@ -1,22 +1,25 @@
 extends Node2D
 
+const M = preload("res://scenes/vfx/x_menacing.gd")
+
 @onready var cam_pos: Marker2D = $CamPos
 @onready var end_pos: Marker2D = $EndPos
 @onready var greg_pos: Marker2D = $GregPos
+@onready var vamp_pos: Marker2D = $VampPos
+@onready var guy_pos: Marker2D = $GuyPos
 @onready var camera: Camera2D = $"../../../Greg/Camera"
-@onready var uguy := $UGuy as OverworldCharacter
+@onready var uguy: OverworldCharacter = $"../../VampireGirl/Guy"
 @onready var greg := $"../../../Greg" as PlayerOverworld
-@onready var vampire_girl := $VampireGirl as OverworldCharacter
-@onready var vampire_sprite: AnimatedSprite2D = $VampireGirl/VampireSprite
-@onready var girl_old: Sprite2D = $VampireGirl/Old
+@onready var vampire_girl: OverworldCharacter = $"../../VampireGirl/Girl"
+@onready var vampire_sprite: AnimatedSprite2D = $"../../VampireGirl/Girl/GirlSprite"
 @onready var cashier := $Cashier as OverworldCharacter
 @onready var cashier_sprite: AnimatedSprite2D = $Cashier/CashierSprite
 @onready var cashier_hurt_sprite: Sprite2D = $Cashier/HurtSprite
 @onready var thug_spawners := $"../../../Areas".find_children("ThugSpawner*")
 @onready var animal_spawners := $"../../../Areas".find_children("AnimalSpawner*")
 
-
 func _ready() -> void:
+	await get_tree().process_frame # cutscene greebles are below in the tree
 	if LTS.gate_id == &"vampire_cutscene":
 		DAT.set_data("uguy_following", false)
 		start()
@@ -31,6 +34,8 @@ func _ready() -> void:
 func start() -> void:
 	end_nuisances()
 	show()
+	vampire_girl.global_position = vamp_pos.global_position
+	uguy.global_position = guy_pos.global_position
 	DAT.capture_player("cutscene")
 	SOL.dialogue_low_position()
 	SND.call_deferred("play_song", "")
@@ -55,9 +60,9 @@ func start() -> void:
 	create_tween().tween_property(camera, "global_position", vampire_girl.global_position, 1)
 	await get_tree().create_timer(1.6).timeout
 	var cam_change_during_dial_2_func := func(line: int):
-		if line == 3:
+		if line == 2:
 			create_tween().tween_property(camera, "global_position", greg.global_position, 1)
-		elif line == 6:
+		elif line == 5:
 			create_tween().tween_property(camera, "global_position", vampire_girl.global_position, 1)
 	SOL.dialogue_box.started_speaking.connect(cam_change_during_dial_2_func)
 	SOL.dialogue("vampire_cutscene_2")
@@ -98,6 +103,9 @@ func start() -> void:
 
 func end() -> void:
 	show()
+	var menacing: M = $Menacing
+	var vamp_color: ColorContainer = $"../../../CanvasModulateGroup/VampColor"
+	vampire_girl.global_position = vamp_pos.global_position
 	var cashier_ouch: bool = DAT.get_data("is_cashier_dead_during_vampire_battle", false)
 	end_nuisances()
 	SND.play_song("")
@@ -126,42 +134,41 @@ func end() -> void:
 	tw.tween_interval(2)
 	tw.tween_callback(func():
 		cashier.direct_walking_animation(Vector2.RIGHT)
-		girl_old.show()
-		vampire_sprite.hide()
+		vampire_girl.set_physics_process(false)
+		vampire_girl.animated_sprite.play("old")
 		SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"))
 	)
 	tw.tween_interval(2)
-	tw.tween_callback(func():
-		SOL.dialogue("vampire_after_battle_2")
-		SOL.dialogue_closed.connect(func():
-			SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
-			SOL.vfx("explosion", camera.to_local(vampire_girl.global_position), {"scale": Vector2(0.3, 0.3)})
-			var tw2 := create_tween().set_trans(Tween.TRANS_CUBIC)
-			tw2.tween_property(vampire_girl, "global_position", Vector2(500, -650), 0.3)
-			tw2.tween_interval(4)
-			tw2.tween_callback(func():
-				SOL.dialogue("vampire_after_battle_3")
-				SOL.dialogue_closed.connect(func():
-					tw = create_tween().set_trans(Tween.TRANS_CUBIC)
-					tw.tween_property(camera, "global_position", greg.global_position, 3.0
-							+ int(cashier_ouch) * 10.0)
-					if cashier_ouch:
-						cashier_hurt_sprite.hide()
-						cashier_sprite.show()
-						cashier.speed = 900
-					cashier.move_to(Vector2(347, -465))
-					cashier.target_reached.connect(func():
-						cashier.move_to(cashier.global_position + Vector2(300, 0))
-					, CONNECT_DEFERRED)
-					tw.finished.connect(func():
-						DAT.free_player("cutscene")
-						LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
-						LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
-					)
-				, CONNECT_ONE_SHOT)
-			)
-		, CONNECT_ONE_SHOT)
-	)
+	await tw.finished
+	SOL.dialogue("vampire_after_battle_2")
+	await SOL.dialogue_closed
+	SND.play_song("bymssc")
+	#SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
+	#SOL.vfx("explosion", camera.to_local(vampire_girl.global_position), {"scale": Vector2(0.3, 0.3)})
+	var tw2 := create_tween().set_trans(Tween.TRANS_CUBIC)
+	#tw2.tween_property(vampire_girl, "global_position", Vector2(500, -650), 0.3)
+	tw2.tween_property(vamp_color, ^"color", Color(0.074, 0.441, 0.169), 0.2)
+	await tw2.finished
+	var scary: AnimationPlayer = $Scary
+	scary.play(&"descend")
+	await scary.animation_finished
+	SOL.dialogue("vampire_after_battle_15")
+	SOL.dialogue("vampire_after_battle_3")
+	await SOL.dialogue_closed
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, "global_position", greg.global_position, 3.0 + int(cashier_ouch) * 10.0)
+	if cashier_ouch:
+		cashier_hurt_sprite.hide()
+		cashier_sprite.show()
+		cashier.speed = 900
+	cashier.move_to(Vector2(347, -465))
+	cashier.target_reached.connect(func():
+		cashier.move_to(cashier.global_position + Vector2(300, 0))
+	, CONNECT_DEFERRED)
+	await tw.finished
+	DAT.free_player("cutscene")
+	LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
+	LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
 
 
 func end_nuisances() -> void:
