@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://di36xvotwk4lq" path="res://scenes/rooms/postoffice/scr_uguycutscene.gd" id="8_y60po"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="10_j37ws"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="11_ojfnp"]
-[ext_resource type="Script" path="res://scenes/rooms/postoffice/src_mail_man_talker.gd" id="15_vcbr6"]
+[ext_resource type="Script" uid="uid://5pa50fxm7acc" path="res://scenes/rooms/postoffice/src_mail_man_talker.gd" id="15_vcbr6"]
 [ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="16_fqsnu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]

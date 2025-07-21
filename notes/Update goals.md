@@ -16,7 +16,7 @@
 		- [ ] Explosive from mining minigame - with key open factory door
 	- [ ] Enemy encounters
 		- [ ] super turf (low hp but really high attack)
-		- [ ] motorised granny (charges up sp until final overrun-ish attack)
+		- [x] motorised granny (charges up sp until final overrun-ish attack)
 		- [ ] tourist spirit (peanuts user)
 		- [ ] wild lizard again..?
 		- [ ] blips (swarm of littel spirits) (strong fire effect)

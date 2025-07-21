@@ -307,7 +307,7 @@ func returntalk(results: Dictionary) -> void:
 	mailxp *= pow(hells_survived + 1, 2.3)
 	payment.add(Reward.new().stype(BattleRewards.Types.EXP).sproperty(str(roundi(mailxp))))
 
-	if relationship > 0:
+	if relationship > -2:
 		for i in inventory:
 			payment.add(Reward.new().stype(BattleRewards.Types.ITEM).sproperty(str(i)))
 
