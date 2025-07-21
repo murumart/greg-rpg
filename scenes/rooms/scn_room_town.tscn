@@ -686,12 +686,11 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(139, 10)
+position = Vector2(803, -201)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
 position = Vector2(0, -9)
-enabled = false
 limit_left = -576
 limit_top = -528
 limit_right = 956
@@ -723,8 +722,6 @@ position = Vector2(770, -379)
 path_container = NodePath("../Car4Path")
 speed = 120.0
 custom_texture = ExtResource("6_ygtrw")
-
-[node name="Camera2D" type="Camera2D" parent="Cars/Popo"]
 
 [node name="Car1Path" type="Node2D" parent="Cars"]
 visible = false
@@ -2071,6 +2068,13 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_6v6ai")
 
+[node name="Fence" type="TileMapLayer" parent="Other/BackPark"]
+modulate = Color(0.666667, 0.498039, 0.164706, 1)
+y_sort_enabled = true
+position = Vector2(0, -5)
+tile_map_data = PackedByteArray("AAD5//3/AQAGAAcAAAD6//3/AQAGAAcAAAD7//3/AQAGAAcAAAD8//3/AQAGAAcAAAD9//3/AQAGAAcAAAD+//3/AQAGAAcAAAD///3/AQAGAAcAAAAAAP3/AQAGAAcAAAABAP3/AQAGAAcAAAACAP3/AQAGAAcAAAADAP3/AQAHAAQAAAADAP7/AQAEAAYAAAD1//3/AQAFAAcAAAD1/wAAAQAEAAQAAAD1/wEAAQAEAAUAAAD1/wIAAQAEAAUAAAD1/wMAAQAEAAUAAAD1/wQAAQAEAAYAAAADAAMAAQAEAAUAAAADAAQAAQAEAAYAAAADAAIAAQAEAAUAAAADAAEAAQAEAAQAAAD4//3/AQAFAAcAAAD2//3/AQAHAAcAAAA=")
+tile_set = ExtResource("15_1u67x")
+
 [node name="NatureGuyLeft" type="Node2D" parent="Other"]
 y_sort_enabled = true
 position = Vector2(-475, -440)
@@ -2273,23 +2277,23 @@ texture = ExtResource("54_83ce0")
 offset = Vector2(0, -14)
 flip_h = true
 
-[node name="VampireGirl" parent="Other" node_paths=PackedStringArray("greg", "camera", "campsite_area") instance=ExtResource("57_qhmci")]
-position = Vector2(37, 5)
-greg = NodePath("../../Greg")
-camera = NodePath("../../Greg/Camera")
-campsite_area = NodePath("CampsiteArea")
-
-[node name="CampsiteArea" type="Area2D" parent="Other/VampireGirl"]
+[node name="CampsiteArea" type="Area2D" parent="Other"]
 visible = false
-position = Vector2(305, -443)
+position = Vector2(342, -438)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/CampsiteArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/CampsiteArea"]
 position = Vector2(13.5, -5.5)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_qhmci")
+
+[node name="VampireGirl" parent="Other" node_paths=PackedStringArray("greg", "camera", "campsite_area") instance=ExtResource("57_qhmci")]
+position = Vector2(37, 5)
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
+campsite_area = NodePath("../CampsiteArea")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 y_sort_enabled = true

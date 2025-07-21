@@ -34,6 +34,9 @@ func _ready() -> void:
 	if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
 		queue_free()
 		return
+	if DAT.get_data(GUY_FOLLOW, false):
+		uguy_follow()
+		return
 	if location == Locations.TOWN_PARK:
 		position = Vector2(9999, 9999)
 		cutscene_enter_rea.body_entered.connect(func(_a) -> void:
@@ -41,6 +44,9 @@ func _ready() -> void:
 				girl_visits.append(location)
 				park_cutscene()
 		)
+		if girl_inters == 5 and LTS.gate_id == &"town-police":
+			_after_police_cutscene()
+
 	elif location == Locations.GAMER:
 		if not _pre_setup_basic(2): return
 		var gamer: OverworldCharacter = $"../Guy"
@@ -59,6 +65,10 @@ func _ready() -> void:
 		var the_waiter: OverworldCharacter = $"../TheWaiter"
 		await get_tree().process_frame
 		the_waiter.default_lines = [&"girl_popo_waiter"]
+		cutscene_enter_rea.body_entered.connect(func(_a) -> void:
+			if girl_inters == 4 and not DAT.get_data(GUY_FOLLOW, false):
+				_police_cutscene()
+		)
 
 
 func _pre_setup_basic(inters: int) -> bool:
@@ -151,6 +161,87 @@ func park_cutscene() -> void:
 	DAT.free_player("cutscene")
 
 
+func _after_police_cutscene() -> void:
+	$"../../Houses/Police/DoorArea".set_collision_layer_value(3, false)
+	await create_tween().tween_interval(1.0).finished
+	DAT.capture_player("cutscene")
+	greg.animate("walk_up")
+	await Math.timer(0.3)
+	uguy.global_position = $"../../Houses/Police/DoorArea/Node2D".global_position
+	SND.play_sound(preload("res://sounds/door/close.ogg"))
+	SOL.dialogue("uguy_lost")
+	await SOL.dialogue_closed
+	DAT.free_player("cutscene")
+	DAT.set_data(GUY_FOLLOW, true)
+	uguy_follow()
+	$"../../Houses/Police/DoorArea".set_collision_layer_value(3, true)
+
+
+func _police_cutscene() -> void:
+	girl_inters += 1
+	DAT.capture_player("cutscene")
+	greg.animate("walk_right")
+	var popo: OverworldCharacter = $"../Popo1"
+	var station: PoliceStation = $"../.."
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, ^"global_position", popo.global_position.lerp(girl.global_position, .5).floor(), 1.0)
+	await tw.finished
+	var dlg := DialogueBuilder.new()
+	dlg.set_char("vampire_talk")
+	girl.direct_walking_animation(girl.global_position.direction_to(greg.global_position))
+	popo.enter_a_state_of_conversation()
+	popo.direct_walking_animation(Vector2.LEFT)
+	dlg.add_line(dlg.ml("see? he even followed me here, the dodgy bugger!"))
+	dlg.add_line(dlg.ml("wow... he really did...").scharacter("popo_1"))
+	dlg.add_line(dlg.ml("you must feel really special..."))
+	dlg.add_line(dlg.ml("i do! ...unrelated to him!!!!").scharacter("vampire_talk"))
+	dlg.add_line(dlg.ml("are you gonna do something??"))
+	dlg.add_line(dlg.ml("if you insist...").scharacter("popo_1"))
+	await dlg.speak_choice()
+	popo.move_to(Vector2(popo.global_position.x, greg.global_position.y))
+	await popo.target_reached
+	await get_tree().process_frame
+	popo.direct_walking_animation(Vector2.LEFT)
+	dlg.reset()
+	dlg.add_line(dlg.ml("hey! you got some dirt on this girl?"))
+	dlg.add_line(dlg.ml("you must be suspicious of something!"))
+	dlg.add_line(dlg.ml("i'm literally right here.").scharacter("vampire_talk").scallback(func() -> void: girl.direct_walking_animation(girl.global_position.direction_to(popo.global_position))))
+	dlg.add_line(dlg.ml("sure! it's an interrogation!").scharacter("popo_1").scallback(func() -> void: popo.direct_walking_animation(popo.global_position.direction_to(girl.global_position))))
+	dlg.add_line(dlg.ml("spit it out! what have you done?"))
+	dlg.add_line(dlg.ml("i have been followed by a creep!!!").scharacter("vampire_talk"))
+	dlg.add_line(dlg.ml("i demand to have my complaints heard!"))
+	dlg.add_line(dlg.ml("we have some relaxing \"[font_size=9]jale cells[/font_size]\" over there...").scharacter("popo_1").sportrait_scale(Vector2(1, 1.1)))
+	dlg.add_line(dlg.ml("you can wait inside while we sort it out here..."))
+	dlg.add_line(dlg.ml("you're ridiculous!").scharacter("vampire_talk"))
+	dlg.add_line(dlg.ml("this entire establishment is!!"))
+	dlg.add_line(dlg.ml("i'll be leaving! goodbye!"))
+	await dlg.speak_choice()
+
+	girl.move_to(Vector2(-55, -9))
+	await girl.target_reached
+	await get_tree().process_frame
+	girl.move_to(Vector2(-53, 40))
+	await girl.target_reached
+	await get_tree().process_frame
+	girl.move_to(Vector2(-24, 46))
+	await girl.target_reached
+	await get_tree().process_frame
+	girl.hide()
+	SND.play_sound(preload("res://sounds/door/close.ogg"))
+	SND.play_song("", 99)
+	girl.global_position = Vector2(999, 999)
+	await Math.timer(1.0)
+	dlg.reset().set_char("popo_1")
+	dlg.add_line(dlg.ml("man... what was that girl's problem?"))
+	dlg.add_line(dlg.ml("if you followed me around town all day, i'd be ecstatic."))
+	dlg.add_line(dlg.ml("i think you should keep following her!"))
+	await dlg.speak_choice()
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(camera, ^"position", Vector2(0, -9), 2.0)
+	await tw.finished
+	DAT.free_player("cutscene")
+
+
 func uguy_follow() -> void:
 	player_dir_timer = Timer.new()
 	add_child(player_dir_timer)
@@ -173,15 +264,16 @@ func uguy_follow() -> void:
 	uguy.chase_target = greg
 	uguy._on_detection_area_body_entered(greg) # this is dirty
 	uguy.global_position = DAT.get_data(uguy.get_save_key("position"), uguy.global_position)
-	#campsite_area.body_entered.connect(func(body: Node2D):
-		#if body != greg or not DAT.get_data(GUY_FOLLOW, false):
-			#return
-		#LTS.gate_id = &"vampire_cutscene"
-		#LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
-	#)
+	campsite_area.body_entered.connect(func(body: Node2D):
+		if body != greg or not DAT.get_data(GUY_FOLLOW, false):
+			return
+		LTS.gate_id = &"vampire_cutscene"
+		LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
+	)
 
 
 func _on_uguy_cannot_reach_target() -> void:
+	print("a")
 	if not DAT.get_data(GUY_FOLLOW, false):
 		return
 	var tw := create_tween()

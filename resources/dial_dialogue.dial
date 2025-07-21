@@ -3568,21 +3568,18 @@ DIALOGUE girl_popo_guy
 
 
 DIALOGUE uguy_lost
-	hey... have you seen this "vampire girl" anywhere?
-	she ran away after mumbling about "winter clothing" and "geezers".
-	i think she ran towards the campsite up north in town...
-	let's go there! i'll follow you.
+CHAR uguy
+	oh... ya're over here...
+	i must've dozed off for a bit... she left...
+	umm... i have all this luggage, still...
+	i think we should go find 'er. she mentioned going to the campsite...
+	that's up north in town. i'll follow ya!
 
 
 DIALOGUE uguy_reminder
-	hey... remember where she went?
+CHAR uguy
+	hey... ya remember where she went?
 	up north. around the campsite. go there!
-
-
-DIALOGUE uguy_no_vampire
-	huh... i thought she would be here...
-	where did that "vampire girl" go?
-	i have a bad feeling about this...
 
 
 DIALOGUE uguy_mail_house_no_vampire

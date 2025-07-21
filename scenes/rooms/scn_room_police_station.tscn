@@ -2334,7 +2334,6 @@ position = Vector2(-106, 41)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
-visible = false
 limit_left = -280
 limit_top = -64
 limit_right = 96
@@ -2556,13 +2555,15 @@ position = Vector2(57, -8)
 [node name="Node2D8" type="Node2D" parent="Npcs/P2Path"]
 position = Vector2(-1, -8)
 
-[node name="VampireGirl" parent="Npcs" node_paths=PackedStringArray("greg") instance=ExtResource("23_21mnf")]
+[node name="VampireGirl" parent="Npcs" node_paths=PackedStringArray("greg", "camera") instance=ExtResource("23_21mnf")]
 position = Vector2(-32, -10)
 greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
 location = 4
 
 [node name="Girl" parent="Npcs/VampireGirl" index="0"]
 position = Vector2(10, -2)
+speed = 5000
 movement_wait = 3.0
 
 [node name="Guy" parent="Npcs/VampireGirl" index="1"]
@@ -2577,7 +2578,7 @@ rotation = 1.57079
 position = Vector2(19, -25)
 
 [node name="CollisionShape2D" parent="Npcs/VampireGirl/TransformKiller_____/CutsceneEnterRea" index="0"]
-position = Vector2(1, -6)
+position = Vector2(5, -6)
 
 [node name="TheWaiter" parent="Npcs" instance=ExtResource("7_wtpef")]
 position = Vector2(-1, 35)

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bimpu3rl1xwr7" path="res://sprites/world/object/spr_vamp_luggage.png" id="5_uy5ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfy3"]
-size = Vector2(136, 60)
+size = Vector2(128, 60)
 
 [node name="VampireGirl" type="Node2D" groups=["save_me"]]
 y_sort_enabled = true
@@ -30,7 +30,6 @@ animated_sprite = NodePath("GuySprite")
 movement_wait = 3.0
 chase_distance = 300
 chase_closeness = 324
-save = false
 
 [node name="GuySprite" type="AnimatedSprite2D" parent="Guy"]
 position = Vector2(0, -8)

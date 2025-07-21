@@ -20,13 +20,13 @@
 - [ ] playtest seession 2 june
 	- [x] tone down thugs nexta police station
 	- [x] hole in neighbor house fense behind tree
-	- [ ] give cars in town paths
+	- [x] give cars in town paths
 	- [x] another greenhouse
-	- [ ] guru remind of press c in battle
+	- [x] guru remind of press c in battle
 	- [ ] add another biek next to the park tree
 	- [x] incidental mentions of lakeside, town east in npc dialogue
 	- [x] fix greg turning purple
-	- [ ] reevaluate mail man hate you and your items
+	- [x] reevaluate mail man hate you and your items
 	- [x] benthon shield smaller..?
 - [x] add small font in save menu
 - [x] add small font to ummmmmmmm i frogt
