@@ -3770,6 +3770,7 @@ CHAR cashier_nice
 EMO human
 CHAR vampire
 	that is so mean...
+	how would you feel if someone destroyed your way of life??
 
 DATA_LINK is_cashier_dead_during_vampire_battle,true
 CHAR cashier_nice
@@ -3779,15 +3780,17 @@ CHAR vampire
 EMO human
 	can you quit whining? i just aged, like, 5 years.
 	i have to readjust my whole life now... again!
-	just when i thought that i could control my own life.
-	but no...
-	so what if i killed people? this guy does that too! right?
+	i was meant for [color=FLOWERCOLOR]big things[/color]...
+	but now...
+	
 CHAR cashier_nice
 EMO ouch
 	.......medic.......
 CHAR vampire
 EMO human
-	hush!
+	shut up already!
+	the human body is... flimsy! you know that!
+	and you have brought me back down to your level.
 
 DATA_LINK 
 	if you'd mind, i'd like a moment for myself now.
@@ -3863,15 +3866,15 @@ DIALOGUE president_start
 	i am the ruler of the mighty country of [color=PRESCOLOR]beacon archipelago[/color].
 	i am endeared to my citizens for i am a just and brilliant ruler.
 	it is i who establishes justice there...
-	...and you, young man, have brought upon me great injustice.
-	my trip to get groceries has been totally ruined.
-	thus, i demand reparations.
-	you'll find my demands (you die) convincing and fair.
+	...and you, young man, have brought upon us great injustice.
+	that milk was intended to feed our people.
+	thus, i demand reparations...
+	...i will beat your ass until you donate your money.
 	
 
 DIALOGUE president_50
 CHAR president
-	i see now... you're trying to overthrow me!
+	i see now...! you're trying to overthrow me!
 	i won't have it!
 
 
@@ -3879,11 +3882,12 @@ DIALOGUE president_33
 CHAR president
 	one second.
 	...
-	owing to the wonders of modern technology...
+	what brilliant trinkets we have today...
 	i have just sent a long-distance transmission...
 	...or, "called", the "pizz" delivery man.
 	[instrumental solo]
 	they will be here soon, and you will fail.
+EMO power
 	but to buy myself time to escape...
 	come forth!! [color=PRESCOLOR]dish[/color]!!
 
@@ -3891,17 +3895,16 @@ CHAR president
 DIALOGUE theres_dish
 CHAR president
 EMO power
-	my [color=SPIRITCOLOR]spirit power[/color], [color=PRESCOLOR]dish[/color]...
-	it is my greatest presidential tool and ally.
+	my [color=SPIRITCOLOR]spirit ally[/color], [color=PRESCOLOR]dish[/color]...
+	it is my greatest presidential tool and friend.
 	it rose from the sea and chose me.
 	at the hardest moment of both of our lives...
-	we joined together and overcame their doubts.
-	but you, young man... do you doubt me?
-	do you doubt my ability to rule or my grace?
-	are you at all unsure about my rightful power?
+	we joined as one and overcame their doubts.
+	but you, young man... i feel you doubt me.
+	doubt my rightful rule over [color=PRESCOLOR]beacon archipelago[/color].
 	do you deny my people their love towards me?
-	well... well. i'll just have to counter your doubts...
-	...with proof as sure as the sea itself.
+	your doubts, young man, they shall be extinguished...
+	...by the sea itself, bubbling up from their love.
 
 
 DIALOGUE president_monologue_1
@@ -3921,8 +3924,8 @@ EMO power
 DIALOGUE president_monologue_6
 CHAR president
 EMO power
-	i have lived a long life and seen many years.
-	but no era has been as wondrous as the current time.
+	throughout my many years of power, no time has been like now.
+	convenience at one's fingertips...
 
 
 DIALOGUE president_monologue_7
@@ -4016,7 +4019,7 @@ CHAR president
 
 DIALOGUE president_after_pizz
 	pizz delivery!
-	...oh... i see why he needed the gun now.
+	...oh... i see why he wanted that i bring a gun now.
 	...
 	...what? 1000 souls?
 	...damn... he really did that?
