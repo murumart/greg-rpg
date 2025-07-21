@@ -68,8 +68,9 @@ func _stall_interacted(which: int) -> void:
 	elif occ.type == StallOccupier.Type.CLOWN:
 		var last_gample: int = DAT.get_data("last_gample_second", -9999)
 		var diff := DAT.seconds - last_gample
-		if diff < 3600:
-			SOL.dialogue_box.dial_concat("restroom_clown", 2, [snapped(60.0 - diff / 60.0, 0.1)])
+		var wait := 10.0
+		if diff < wait * 60:
+			SOL.dialogue_box.dial_concat("restroom_clown", 2, [snapped(wait - diff / 60.0, 0.1)])
 			DAT.set_data("restroom_clown_thing", 2)
 		else:
 			DAT.set_data("restroom_clown_thing", 1 if DAT.get_data("restroom_clown_thing", 0) else 0)

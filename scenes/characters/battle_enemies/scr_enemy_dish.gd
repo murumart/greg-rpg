@@ -77,8 +77,11 @@ func _spirit_dish_buff_used_on() -> void:
 
 func _increase_electric(amount: float) -> void:
 	var electric := get_status_effect("electric")
-	electric_power = electric.strength if electric else electric_power
-	add_status_effect_s("electric", electric_power + amount, 10)
+	if electric == null:
+		electric = add_status_effect_s("electric", electric_power + amount, 10)
+	electric.strength += amount
+	electric.duration = 10
+	electric_power = electric.strength
 
 
 func _pizz_arrival_animation() -> void:

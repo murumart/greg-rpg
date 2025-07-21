@@ -12,6 +12,7 @@ var mentioned_electric_resistance := false
 
 func _ready() -> void:
 	super()
+	await get_tree().process_frame
 	if LTS.get_current_scene().name == "Battle":
 		background = LTS.get_current_scene().background_container.get_child(0)
 		background.enemy_requested.connect(LTS.get_current_scene().request_new_enemy)
