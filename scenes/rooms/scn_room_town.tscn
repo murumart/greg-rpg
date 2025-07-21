@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=130 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -475,67 +475,6 @@ output = Array[StringName]([])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ab04q"]
 size = Vector2(71, 20)
 
-[sub_resource type="Animation" id="Animation_6b3qf"]
-resource_name = "descend"
-length = 2.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Menacing:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.24, 0.49, 0.666667, 0.866667, 1.03333, 1.29, 1.46667, 1.56667, 1.71, 1.83, 1.9, 1.96667, 2.1, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-97, -127), Vector2(-86, -100), Vector2(-68, -92), Vector2(-47, -76), Vector2(-30, -70), Vector2(-19, -58), Vector2(-8, -57), Vector2(4.99999, -51), Vector2(12, -49), Vector2(20, -48), Vector2(16, -46), Vector2(15, -49), Vector2(9, -50), Vector2(10, -50), Vector2(15, -49)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Menacing:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_qhmci"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Menacing:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-84, -144)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Menacing:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_smefo"]
-_data = {
-&"RESET": SubResource("Animation_qhmci"),
-&"descend": SubResource("Animation_6b3qf")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlrfe"]
 size = Vector2(30, 4)
 
@@ -685,7 +624,7 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("5_ev43v")
 level_gain = 48
-force_gate_id = &"exit_battle"
+force_gate_id = &"vampire_cutscene"
 data_overrides = Dictionary[StringName, Variant]({
 &"turf_mission_fulfilled": true,
 &"vampire_end_cutscene": true
@@ -1996,12 +1935,7 @@ region_rect = Rect2(0, 64, 16, 16)
 
 [node name="Menacing" parent="Other/CampfireSite/VampireCutscene" instance=ExtResource("44_6b3qf")]
 z_index = 1
-position = Vector2(-84, -144)
-
-[node name="Scary" type="AnimationPlayer" parent="Other/CampfireSite/VampireCutscene"]
-libraries = {
-&"": SubResource("AnimationLibrary_smefo")
-}
+position = Vector2(-159, -7)
 
 [node name="Naturalist" parent="Other/CampfireSite" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
 position = Vector2(-36, 40)

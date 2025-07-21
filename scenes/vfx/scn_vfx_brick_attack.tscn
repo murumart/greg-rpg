@@ -56,7 +56,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "clips": [{
-"end_offset": 0.0,
+"end_offset": 0.049229,
 "start_offset": 0.0,
 "stream": ExtResource("2_0k383")
 }],
@@ -70,10 +70,10 @@ tracks/1/path = NodePath("Brick:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.35, 0.45, 0.5, 0.65, 0.7, 0.8, 0.9, 1, 1.1, 1.15, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.45, 0.5, 0.65, 0.7, 0.8, 0.9, 1, 1.15, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(35, 48), Vector2(1.90735e-06, -2), Vector2(-34, -23), Vector2(-50, -10), Vector2(-55, -1), Vector2(-78, -5), Vector2(-81, -1), Vector2(-99, -5), Vector2(-106, -1), Vector2(-109, -4), Vector2(-113, -2), Vector2(-115, -3), Vector2(-118, -1)]
+"values": [Vector2(35, 48), Vector2(1.90735e-06, -2), Vector2(-34, -23), Vector2(-50, -10), Vector2(-55, -1), Vector2(-78, -5), Vector2(-81, -1), Vector2(-99, -5), Vector2(-106, -1), Vector2(-109, -4), Vector2(-115, -3), Vector2(-118, -1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -128,10 +128,10 @@ texture = ExtResource("1_m62yb")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
-"": SubResource("AnimationLibrary_tlwvv")
+&"": SubResource("AnimationLibrary_tlwvv")
 }
+autoplay = "default"
 
 [node name="BangSpark" parent="." instance=ExtResource("3_sb5lk")]
 

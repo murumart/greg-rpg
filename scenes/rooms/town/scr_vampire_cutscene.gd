@@ -142,21 +142,39 @@ func end() -> void:
 	await tw.finished
 	SOL.dialogue("vampire_after_battle_2")
 	await SOL.dialogue_closed
-	SND.play_song("bymssc")
-	#SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
-	#SOL.vfx("explosion", camera.to_local(vampire_girl.global_position), {"scale": Vector2(0.3, 0.3)})
 	var tw2 := create_tween().set_trans(Tween.TRANS_CUBIC)
-	#tw2.tween_property(vampire_girl, "global_position", Vector2(500, -650), 0.3)
-	tw2.tween_property(vamp_color, ^"color", Color(0.074, 0.441, 0.169), 0.2)
+	SND.play_sound(preload("res://sounds/men-03.ogg"), {volume = -4})
+	tw2.tween_property(vamp_color, ^"color", Color(0.074, 0.441, 0.169), 1.2)
+	SND.play_song("bymssc", 10)
+	#SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
+	var snd := SND.play_sound(preload("res://sounds/men-01.ogg"))
+	tw2.set_ease(Tween.EASE_OUT).tween_property(menacing, ^"global_position", vampire_girl.global_position, 0.5)
+	tw2.tween_callback(func() -> void:
+		cashier.direct_walking_animation(Vector2.RIGHT)
+		SND.play_song("", 999)
+		snd.stop()
+		menacing.particles(1.0)
+	)
+	tw2.tween_interval(0.2)
+	tw2.tween_callback(func() -> void:
+		cashier.direct_walking_animation(Vector2.RIGHT)
+		SND.play_song("bymssc", 10)
+		SND.play_sound(preload("res://sounds/men-02.ogg"))
+		tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tw.tween_property(cashier, ^"global_position:x", cashier.global_position.x - 12, 0.2)
+	)
+	#SOL.vfx("explosion", camera.to_local(vampire_girl.global_position), {"scale": Vector2(0.3, 0.3)})
+	tw2.tween_property(vampire_girl, "global_position", Vector2(500, vampire_girl.global_position.y - 60), 0.3)
+	tw2.parallel().tween_property(menacing, "global_position", Vector2(500, vampire_girl.global_position.y - 60), 0.3)
+	tw2.parallel().tween_callback(SND.play_song.bind("", 0.1))
+	tw2.tween_property(vamp_color, ^"color", Color(0.811, 1.0, 0.884), 4.0)
 	await tw2.finished
-	var scary: AnimationPlayer = $Scary
-	scary.play(&"descend")
-	await scary.animation_finished
-	SOL.dialogue("vampire_after_battle_15")
 	SOL.dialogue("vampire_after_battle_3")
+	SND.play_song("bymssc", 0.5, {volume = -8})
 	await SOL.dialogue_closed
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, "global_position", greg.global_position, 3.0 + int(cashier_ouch) * 10.0)
+	tw.parallel().tween_property(vamp_color, ^"color", Color.WHITE, 3.0)
 	if cashier_ouch:
 		cashier_hurt_sprite.hide()
 		cashier_sprite.show()

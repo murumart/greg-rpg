@@ -3762,10 +3762,6 @@ CHAR vampire
 	blood explosion
 
 
-DIALOGUE vampire_after_battle_15
-	[color=GREEN]TODO finish this.
-
-
 DIALOGUE vampire_after_battle_2
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
@@ -3795,23 +3791,39 @@ EMO human
 
 DATA_LINK 
 	if you'd mind, i'd like a moment for myself now.
-INSTASKIP
-	i need to reflect on  
+DATA_LINK is_cashier_dead_during_vampire_battle,false
+CHAR cashier_nice
+	whatever, i guess. you're not a threat to anyone now.
 
 
 DIALOGUE vampire_after_battle_3
 CHAR cashier_nice
+EMO what
+	...what... the hell was that...??
+	i didn't pay attention to what she was saying, but...
+	some sort of [color=FLOWERCOLOR]flower[/color]...
+	is that what you wanted of her...?
+	the only one who deals with flowers is that [color=FLOWERCOLOR]florist[/color]...
+	...but that [color=GREEN]green demon[/color]... is that her doing?
+	whatever you have gotten yourself into...
+	...it's not going to end well.
+CHAR 
+	...
 DATA_LINK is_cashier_dead_during_vampire_battle,false
-	...well then.
+CHAR cashier_nice
+EMO 
+	whatever.
 	you better clean up here. i'm late for work.
 	goodbye.
 DATA_LINK is_cashier_dead_during_vampire_battle,true
 EMO ouch
+	owww.... my head...
 	this is really bad... i'm all out of sick days...
 	...at least a concussion... oh hell...
 	...
 	...i don't think my skull's supposed to be soft there...
-	i need to limp home and put an ice pack on that... bye...
+	i need to limp home and put an ice pack on that...
+	you deal with your [color=GREEN]green demon[/color] as you please.
 
 
 DIALOGUE leave_ending_check

@@ -145,8 +145,6 @@ func play_sound(sound: AudioStream, options := {}) -> AudioStreamPlayer:
 		playing_sounds.append(player)
 	add_child(player)
 	player.play()
-	if not options.get("return", false):
-		return null
 	return player
 
 
