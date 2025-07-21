@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=61 format=4 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" uid="uid://dnq030bmpvqqd" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
 [ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bnusfluirkrpi" path="res://sprites/characters/overworld/spr_president_overworld.png" id="19_dpo5f"]
 [ext_resource type="Texture2D" uid="uid://cmqrw5vtp48wc" path="res://sprites/cutscene/spr_sun_spirit_rage.png" id="20_8g7l1"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="22_g7l2g"]
+[ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="23_21mnf"]
 [ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="24_ngus0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
@@ -2555,6 +2556,29 @@ position = Vector2(57, -8)
 [node name="Node2D8" type="Node2D" parent="Npcs/P2Path"]
 position = Vector2(-1, -8)
 
+[node name="VampireGirl" parent="Npcs" node_paths=PackedStringArray("greg") instance=ExtResource("23_21mnf")]
+position = Vector2(-32, -10)
+greg = NodePath("../../Greg")
+location = 4
+
+[node name="Girl" parent="Npcs/VampireGirl" index="0"]
+position = Vector2(10, -2)
+movement_wait = 3.0
+
+[node name="Guy" parent="Npcs/VampireGirl" index="1"]
+position = Vector2(12, 45)
+default_lines = Array[StringName]([&"girl_popo_guy"])
+
+[node name="GuySprite" parent="Npcs/VampireGirl/Guy" index="3"]
+position = Vector2(4, -7)
+rotation = 1.57079
+
+[node name="CutsceneEnterRea" parent="Npcs/VampireGirl/TransformKiller_____" index="0"]
+position = Vector2(19, -25)
+
+[node name="CollisionShape2D" parent="Npcs/VampireGirl/TransformKiller_____/CutsceneEnterRea" index="0"]
+position = Vector2(1, -6)
+
 [node name="TheWaiter" parent="Npcs" instance=ExtResource("7_wtpef")]
 position = Vector2(-1, 35)
 
@@ -2765,3 +2789,5 @@ texture = ExtResource("20_8g7l1")
 
 [connection signal="interacted" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
 [connection signal="interacted" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]
+
+[editable path="Npcs/VampireGirl"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=131 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -501,6 +501,10 @@ radius = 4.47214
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sms2x"]
 size = Vector2(150, 102)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhmci"]
+radius = 98.5
+height = 223.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_067aq"]
 size = Vector2(123, 15)
 
@@ -682,7 +686,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(-56, -102)
+position = Vector2(85, 10)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]
@@ -2099,10 +2103,23 @@ texture = ExtResource("54_83ce0")
 offset = Vector2(0, -14)
 flip_h = true
 
-[node name="VampireGirl" parent="Other" node_paths=PackedStringArray("greg", "camera") instance=ExtResource("57_qhmci")]
+[node name="VampireGirl" parent="Other" node_paths=PackedStringArray("greg", "camera", "campsite_area") instance=ExtResource("57_qhmci")]
 position = Vector2(37, 5)
 greg = NodePath("../../Greg")
 camera = NodePath("../../Greg/Camera")
+campsite_area = NodePath("CampsiteArea")
+
+[node name="CampsiteArea" type="Area2D" parent="Other/VampireGirl"]
+visible = false
+position = Vector2(305, -443)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/VampireGirl/CampsiteArea"]
+position = Vector2(13.5, -5.5)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_qhmci")
 
 [node name="BirdBlocker" type="Node2D" parent="Other"]
 y_sort_enabled = true

@@ -1,6 +1,6 @@
 extends Node2D
 
-enum Locations {TOWN_PARK, GAMER, STORE, POST}
+enum Locations {TOWN_PARK, GAMER, STORE, POST, POLICE}
 
 const INTERACTIONS := &"girl_interactions"
 const VISITS := &"girl_visits"
@@ -23,32 +23,56 @@ var player_dir_timer: Timer
 @export var greg: PlayerOverworld
 @export var camera: Camera2D
 @export var location: Locations
+@export var campsite_area: Area2D
 @onready var thug_spawners := LTS.get_current_scene().find_children("ThugSpawner*")
 @onready var animal_spawners := LTS.get_current_scene().find_children("AnimalSpawner*")
 @onready var cutscene_enter_rea: Area2D = $TransformKiller_____/CutsceneEnterRea
 
 
 func _ready() -> void:
+	DAT.set_data(VISITS, girl_visits)
 	if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
 		queue_free()
 		return
 	if location == Locations.TOWN_PARK:
 		position = Vector2(9999, 9999)
 		cutscene_enter_rea.body_entered.connect(func(_a) -> void:
-			girl_visits.append(location)
 			if girl_inters <= 0:
+				girl_visits.append(location)
 				park_cutscene()
 		)
 	elif location == Locations.GAMER:
-		if girl_inters <= 0:
-			queue_free()
-			return
-		SND.play_song.call_deferred("sweet_girls", 1.0, {play_from_beginning = true})
+		if not _pre_setup_basic(2): return
 		var gamer: OverworldCharacter = $"../Guy"
 		gamer.default_lines = ["gamer_girl_gamer"]
-		if not location in girl_visits:
-			girl_inters += 1
-			girl_visits.append(location)
+	elif location == Locations.POST:
+		if not _pre_setup_basic(3): return
+		if DAT.get_data("biking_games_finished", 0) < 1:
+			uguy.default_lines = []
+	elif location == Locations.STORE:
+		var store := $".."
+		await get_tree().process_frame # store cashier gets overridden in stores _ready
+		DAT.set_data("v_cs_cashier", store.store_cashier.cashier)
+		if not _pre_setup_basic(4): return
+	elif location == Locations.POLICE:
+		if not _pre_setup_basic(5): return
+		var the_waiter: OverworldCharacter = $"../TheWaiter"
+		await get_tree().process_frame
+		the_waiter.default_lines = [&"girl_popo_waiter"]
+
+
+func _pre_setup_basic(inters: int) -> bool:
+	if girl_inters <= 0 or (location in girl_visits and girl_inters == inters):
+		queue_free()
+		return false
+	if not location in girl_visits:
+		girl_visits.append(location)
+	SND.play_song.call_deferred("sweet_girls", 1.0, {play_from_beginning = true})
+
+	girl.inspected.connect(func() -> void:
+		girl_inters += 1
+	, CONNECT_ONE_SHOT)
+	return true
 
 
 func park_cutscene() -> void:

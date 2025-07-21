@@ -132,7 +132,7 @@ func _can_save_value() -> bool:
 	var value: Variant = str_to_var(text_value.text)
 	if typeof(current_value) != typeof(value):
 		return false
-	if not value and not typeof(current_value) in [TYPE_BOOL, TYPE_FLOAT, TYPE_NIL, TYPE_ARRAY, TYPE_FLOAT]:
+	if not value and not typeof(current_value) in [TYPE_BOOL, TYPE_FLOAT, TYPE_NIL, TYPE_ARRAY, TYPE_FLOAT, TYPE_INT]:
 		return false
 	if not current_key or not key_edit.text:
 		return false

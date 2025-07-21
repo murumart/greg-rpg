@@ -155,8 +155,10 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		next_dialogue_requested()
 		return
 	if not data_link.is_empty():
+		#print("DATA LINK " , data_link)
 		var data_value: Variant = DAT.get_data(data_link[0], false)
 		var expected_value: Variant = data_link[1]
+		#prints("val vs expected", data_value, expected_value)
 		# type conversions for e.g. if we expect true from data that is an int
 		if expected_value is bool:
 			data_value = bool(data_value)

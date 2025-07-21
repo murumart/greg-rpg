@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://bgj726r0ubr21"]
+[gd_scene load_steps=71 format=4 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" uid="uid://dsuq4ss3rx5" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_ud36p"]
@@ -36,6 +36,7 @@
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="29_tkyvl"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="30_3immg"]
 [ext_resource type="AudioStream" uid="uid://7bdt4ovexyd5" path="res://sounds/drain.ogg" id="31_bq8wf"]
+[ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="37_ppggd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3ktr"]
 atlas = ExtResource("10_dra8p")
@@ -81,18 +82,6 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v231s"]
 size = Vector2(34, 40)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_scfas"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lvxqb"]
-normal = Vector2(0, 1)
-distance = 1.5
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w00jd"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p35a2"]
-normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_has6e"]
 
@@ -763,22 +752,6 @@ shape = SubResource("RectangleShape2D_v231s")
 [node name="Collision" type="StaticBody2D" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2(0, 80)
-shape = SubResource("WorldBoundaryShape2D_scfas")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collision"]
-position = Vector2(0, -82)
-shape = SubResource("WorldBoundaryShape2D_lvxqb")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collision"]
-position = Vector2(-112, 1)
-shape = SubResource("WorldBoundaryShape2D_w00jd")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collision"]
-position = Vector2(112, 7)
-shape = SubResource("WorldBoundaryShape2D_p35a2")
-
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Collision"]
 position = Vector2(-104, 79)
 shape = SubResource("RectangleShape2D_has6e")
@@ -1166,8 +1139,24 @@ position = Vector2(-24, -3)
 [node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2"]
 position = Vector2(-25, -108)
 
+[node name="VampireGirl" parent="." node_paths=PackedStringArray("greg") instance=ExtResource("37_ppggd")]
+position = Vector2(-19, 15)
+greg = NodePath("../Greg")
+location = 2
+
+[node name="Girl" parent="VampireGirl" index="0"]
+random_movement = true
+default_lines = Array[StringName]([&"girl_shop", &"girl_shop_2"])
+
+[node name="Guy" parent="VampireGirl" index="1"]
+default_lines = Array[StringName]([&"girl_shop_guy"])
+
+[node name="CutsceneEnterRea" parent="VampireGirl/TransformKiller_____" index="0"]
+position = Vector2(278, 60)
+
 [connection signal="interacted" from="Kassa/KassaSpeak" to="." method="_on_kassa_speak_on_interact"]
 [connection signal="entered" from="RoomGate" to="." method="_on_room_gate_entered"]
 [connection signal="body_entered" from="StealingArea" to="." method="_on_stealing_area_entered"]
 
 [editable path="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline"]
+[editable path="VampireGirl"]

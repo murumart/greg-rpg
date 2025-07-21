@@ -3478,11 +3478,93 @@ CHAR vampire_talk
 	repulsive!
 
 
+DIALOGUE gamer_girl_girl_2
+CHAR vampire_talk
+	oi, luggage bloke!
+	let's go see the post office next!
+CHAR uguy
+	the post office, she says...... ahh... (blushes)
+
+
 DIALOGUE gamer_girl_guy
 CHAR uguy
 	it's so stuffy in here...
 	this luggage ain't helpin!
 	don'tcha worry, i'm keepin an eye on 'er.
+
+
+DIALOGUE girl_postoffice
+CHAR vampire_talk
+	wow... the post office...
+	lots of mail comes through here, doesn't it?
+CHAR mail_man
+EMO serious
+	...not really.
+	are you here to send or receive anything or...?
+CHAR vampire_talk
+	haha! i'll sure "receive" something soon enough...
+	thank you for the tour! we'll be moving onto the shops!
+CHAR mail_man
+EMO serious
+	...
+
+
+DIALOGUE girl_postoffice_2
+CHAR vampire_talk
+	you again? what a coincidence, innit?
+	luggage bloke! to the shops!
+CHAR uguy
+	right away, missus!
+
+
+DIALOGUE girl_postoffice_guy
+CHAR uguy
+	maybe he can put 'er to work as well? like he did with ya?
+	'd be great!
+
+
+DIALOGUE girl_shop
+CHAR vampire_talk
+	ah!!!! i love shopping!!!!
+	do you guys have any soda here?
+DATA_LINK v_cs_cashier,nice
+CHAR cashier_nice
+	we don't sell that here.
+	too much sugar. mayor's orders.
+DATA_LINK v_cs_cashier,mean
+CHAR cashier_mean
+	i'm very sorry!! but we don't sell that here!!
+	would you like to buy something else?
+DATA_LINK 
+CHAR vampire_talk
+	that stinks... what kind of shop doesn't sell soda?
+	we're outta here!
+
+
+DIALOGUE girl_shop_2
+CHAR vampire_talk
+	...are you following us or something?
+	luggage bloke, we're going to the police station!
+	i have to file a complaint!
+CHAR uguy
+	uh, right away, missus!
+	('s 'er problem? ya don't even smell that bad.)
+
+
+DIALOGUE girl_shop_guy
+CHAR uguy
+	the air conditionin relents on my tired body.
+	after carryin all this luggage in this weather...
+	what kinda tour is so fast?
+
+
+DIALOGUE girl_popo_waiter
+	what the... this guy... he just skipped me in the line...
+	i'll file a complaint about him for sure.
+
+
+DIALOGUE girl_popo_guy
+	(tired)
 
 
 DIALOGUE uguy_lost

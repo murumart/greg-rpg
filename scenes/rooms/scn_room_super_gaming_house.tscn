@@ -2399,7 +2399,10 @@ location = 1
 position = Vector2(13, 33)
 movement_wait = 1.2
 random_movement = true
-default_lines = Array[StringName]([&"gamer_girl_girl"])
+default_lines = Array[StringName]([&"gamer_girl_girl", &"gamer_girl_girl_2"])
+
+[node name="Guy" parent="VampireGirl" index="1"]
+default_lines = Array[StringName]([&"gamer_girl_guy"])
 
 [node name="CutsceneEnterRea" parent="VampireGirl/TransformKiller_____" index="0"]
 position = Vector2(-311, -143)
