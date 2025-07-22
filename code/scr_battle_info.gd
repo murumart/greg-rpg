@@ -1,15 +1,17 @@
 extends Resource
 class_name BattleInfo
 
-const DS = preload("res://scenes/gui/scr_death_screen.gd")
-
 # resource to store info about battles
+
+const dat = preload("res://autoload/scr_data.gd")
+
+const DeathReasons = dat.DeathReasons
 
 @export var enemies: Array[StringName] = []
 @export var background := "town"
 @export var music := ""
 @export var party: Array[StringName] = []
-@export var death_reason := DAT.DeathReasons.DEFAULT
+@export var death_reason: DeathReasons = DeathReasons.DEFAULT
 @export var start_text := ""
 @export var rewards: BattleRewards = null
 #@export var victory_music := true

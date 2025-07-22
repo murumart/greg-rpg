@@ -112,7 +112,7 @@ func save_autosave() -> void:
 func force_data(key: String, value: Variant, filename := "") -> void:
 	if not filename.length():
 		filename = get_data("save_file", "save.grs")
-	var stuff := DIR.get_dict_from_file(filename)
+	var stuff: Dictionary = DIR.get_dict_from_file(filename)
 
 	stuff[key] = value
 	DIR.write_dict_to_file(stuff, filename)
@@ -174,7 +174,7 @@ func load_data_from_dict(dict: Dictionary, overwrite: bool) -> void:
 
 
 func load_data(filename := "save.grs", overwrite := true) -> void:
-	var loaded := DIR.get_dict_from_file(filename)
+	var loaded: Dictionary = DIR.get_dict_from_file(filename)
 	load_data_from_dict(loaded, overwrite)
 	if get_data("save_file", "") == filename:
 		playtime = maxi(playtime, get_data("playtime", 0))
@@ -306,7 +306,7 @@ func _on_game_timer_timeout() -> void:
 			save_autosave()
 
 	if playtime % SCREENSHOT_TEST_INTERVAL_SEC == 0:
-		var screenies := DIR.get_screenshots()
+		var screenies: PackedStringArray = DIR.get_screenshots()
 		if screenies.is_empty():
 			DIR.screenshot(true)
 			return

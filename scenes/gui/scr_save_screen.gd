@@ -256,7 +256,7 @@ func _on_files_dropped(files: PackedStringArray) -> void:
 	if files.size() > 1:
 		vfx_msg("more than one file!")
 		return
-	var data := DIR.get_dict_from_global_file(files[0])
+	var data: Dictionary = DIR.get_dict_from_global_file(files[0])
 	if not data:
 		vfx_msg("invalid file!")
 		return

@@ -199,7 +199,7 @@ func screenshot(small: bool) -> void:
 	)
 
 
-func get_screenshots() -> Array[String]:
+func get_screenshots() -> PackedStringArray:
 	const WHERE := "user://greg_rpg/screenshots/"
 	var screenshot_folder := Array(
 			DirAccess.get_files_at(WHERE)).map(func(screenie: String):
@@ -210,6 +210,6 @@ func get_screenshots() -> Array[String]:
 	screenshot_folder.sort_custom(func(a: String, b: String):
 		return FileAccess.get_modified_time(a) > FileAccess.get_modified_time(b)
 	)
-	var new: Array[String] = []
+	var new := PackedStringArray()
 	new.append_array(screenshot_folder)
 	return new
