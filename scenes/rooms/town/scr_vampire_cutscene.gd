@@ -21,7 +21,6 @@ const M = preload("res://scenes/vfx/x_menacing.gd")
 func _ready() -> void:
 	await get_tree().process_frame # cutscene greebles are below in the tree
 	if LTS.gate_id == &"vampire_cutscene":
-		DAT.set_data("uguy_following", false)
 		start()
 		return
 	if LTS.gate_id == LTS.GATE_EXIT_BATTLE and DAT.get_data("vampire_end_cutscene", false):
@@ -191,6 +190,8 @@ func end() -> void:
 
 func end_nuisances() -> void:
 	for i in thug_spawners:
-		i.queue_free()
+		if is_instance_valid(i):
+			i.queue_free()
 	for j in animal_spawners:
-		j.queue_free()
+		if is_instance_valid(j):
+			j.queue_free()

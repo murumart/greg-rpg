@@ -81,7 +81,7 @@ func _ready() -> void:
 	ui.display_health(bike.health)
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	SND.play_song("mail_mission", 1.0, {"play_from_beginning": true})
-	DAT.death_reason = ""
+	DAT.death_reason = DAT.DeathReasons.DEFAULT
 	update_ui()
 
 
@@ -140,8 +140,8 @@ func set_speed(to: int) -> void:
 
 func _on_died() -> void:
 	# setting the death reason only if it hasn't been set already
-	if not DAT.death_reason.length():
-		DAT.death_reason = "bikecry" if randf() <= 0.95 else "mail_disappointment"
+	if DAT.death_reason == 0:
+		DAT.death_reason = DAT.DeathReasons.BIKECRY if randf() <= 0.95 else DAT.DeathReasons.MAIL_DISAPP
 	set_speed(0)
 	if currently_hell:
 		# funny

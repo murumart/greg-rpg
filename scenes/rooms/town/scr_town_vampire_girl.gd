@@ -31,9 +31,10 @@ var player_dir_timer: Timer
 
 func _ready() -> void:
 	DAT.set_data(VISITS, girl_visits)
-	if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
-		queue_free()
-		return
+	if not (LTS.gate_id == LTS.GATE_EXIT_BATTLE and DAT.get_data("vampire_end_cutscene", false)):
+		if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
+			queue_free()
+			return
 	if DAT.get_data(GUY_FOLLOW, false):
 		uguy_follow()
 		return
@@ -73,7 +74,8 @@ func _ready() -> void:
 
 
 func _pre_setup_basic(inters: int) -> bool:
-	if girl_inters <= 0 or (location in girl_visits and girl_inters == inters):
+	var shouldnt_be_here := girl_inters <= 0 or girl_inters != inters - 1
+	if shouldnt_be_here:
 		queue_free()
 		return false
 	if not location in girl_visits:
@@ -253,9 +255,11 @@ func uguy_follow() -> void:
 	)
 	for i in animal_spawners:
 		if is_instance_valid(i):
+			i.erase_thugs_from_mem()
 			i.queue_free()
 	for i in thug_spawners:
 		if is_instance_valid(i):
+			i.erase_thugs_from_mem()
 			i.queue_free()
 	uguy.default_lines.clear()
 	uguy.default_lines.append("uguy_reminder")
@@ -269,6 +273,7 @@ func uguy_follow() -> void:
 		if body != greg or not DAT.get_data(GUY_FOLLOW, false):
 			return
 		LTS.gate_id = &"vampire_cutscene"
+		DAT.set_data(GUY_FOLLOW, false)
 		LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
 	)
 

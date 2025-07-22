@@ -623,7 +623,7 @@ metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("5_ev43v")
-level_gain = 50
+level_gain = 2
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
@@ -682,7 +682,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("3_sx16h")]
-position = Vector2(336, 275)
+position = Vector2(-24, 23)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_fy0lb")]

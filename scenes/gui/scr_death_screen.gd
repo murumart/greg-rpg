@@ -1,72 +1,73 @@
 extends Control
 
 const DEATH_PICTURE_PATH := "res://sprites/death/spr_%s.png"
-const DEATH_REASONS := {
-	"default": {
+const DEATH_REASONS := [
+	{
 		"picture": "default",
 		"sound": "res://music/mus_defeat.ogg",
 		"text": "[center]your resolve was overcome.[/center]"
 	},
-	"car": {
+	{
 		"picture": "car",
 		"text": "[center]ride, ride, ride, until you find yourself again.[/center]"
 	},
-	"bikecry": {
+	{
 		"picture": "bikecry",
 		"text": "[center]invest in roads, politicians!"
 	},
-	"mail_disappointment": {
+	{
 		"picture": "mail_disappointment",
 		"text": "[center]..."
 	},
-	"snail_beam": {
+	{
 		"picture": "snail_beam",
 		"text": "[center]you are in for a world of 4000k!"
 	},
-	"lakeside": {
+	{
 		"picture": "drinking",
 		"text": "[center]drowning in sadness!"
 	},
-	"moron": {
+	{
 		"picture": "moron",
 		"text": ""
 	},
-	"cats": {
+	{
 		"picture": "cats",
 		"text": "[center]meow all you want, there is no one to save you."
 	},
-	"solar": {
+	{
 		"picture": "solar",
 		"text": "[center]don't fly too close."
 	},
-	"nova": {
+	{
 		"picture": "nova",
 		"text": "[center]almost worth dying for a sight like this.",
 		"sound": ""
 	},
-	"sus": {
+	{
 		"picture": "zerma",
 		"text": "[center]why did it have to end this way... so young...",
 	},
-	"vampire": {
+	{
 		"picture": "vampire",
 		"text": "[center]looooooooseeeeeeeer!",
 	},
-	"president_gun": {
+	{
 		"picture": "president_gun",
 		"text": "[center]gun",
 		"sound": "res://sounds/spirit/dishpunch.ogg"
 	},
-	"dish": {
+	{
 		"picture": "dish",
 		"text": "[center]sleep with the dishes / for a 1000 years",
 	},
-	"gdung": {
+	{
 		"picture": "gdung",
 		"text": "[center]it goes deep.",
 	}
-}
-@export var test_death := ""
+]
+
+@export var test_death := 0
 
 @onready var text_box := $TextBox
 @onready var picture := $Pictures
@@ -78,17 +79,17 @@ var leaving := false
 
 func _ready() -> void:
 	DAT.free_player("all")
-	if test_death.length() > 0 and DAT.seconds < 2:
+	if DAT.seconds < 2:
 		DAT.death_reason = test_death
-	var death_reason: Dictionary = DEATH_REASONS.get(DAT.death_reason, {})
+	var death_reason: Dictionary = DEATH_REASONS[DAT.death_reason]
+	DAT.appenda("deaths", DAT.death_reason)
+	DAT.force_data("deaths", DAT.get_data("deaths", []))
 	if death_reason.get("sound", "blblb"):
 		SND.play_sound(load(death_reason.get("sound", "res://music/mus_defeat.ogg")), {"bus": "Music"})
 	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))
 	text_box.text = death_reason.get("text", "[center]your resolve was overcome.[/center]")
 	text_box.speak_text({"speed": 2})
-	{true:func():{0:func():DIR.sej(125,1)}.get(DIR.gej(2,0),func(
-	):pass).call(),false:func():pass}[DAT.death_reason=="sus"].call()
-	DAT.death_reason = "default"
+	DAT.death_reason = DAT.DeathReasons.DEFAULT
 	retry_button.call_deferred("grab_focus")
 	DIR.incj(2, 1)
 	if Math.inrange(DAT.get_data("nr"), 0.85, 0.86):

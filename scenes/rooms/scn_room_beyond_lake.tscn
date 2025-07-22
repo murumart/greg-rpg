@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://cfel2n6ew6vih"]
+[gd_scene load_steps=52 format=4 uid="uid://cfel2n6ew6vih"]
 
 [ext_resource type="Script" uid="uid://bnqmhrhi6tdkj" path="res://scenes/rooms/scr_room_beyond_lake.gd" id="1_yunbf"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_dujwg"]
@@ -14,12 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_e61yp"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="6_y1l2p"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="7_bwj2u"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_siyrm"]
-[ext_resource type="Resource" uid="uid://b240renyhydbd" path="res://resources/rewards/res_sun_spirit_reward.tres" id="7_uirxy"]
 [ext_resource type="Texture2D" uid="uid://by70qjanvd8g3" path="res://sprites/characters/overworld/spr_sun_spirit.png" id="7_y64ye"]
 [ext_resource type="Texture2D" uid="uid://lmr8vwbvio5w" path="res://sprites/world/object/spr_statue_stand.png" id="8_r1rm3"]
 [ext_resource type="AudioStream" uid="uid://buocq4hk330xs" path="res://sounds/spirit/solar/ambient_loop.ogg" id="9_4afe5"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="10_ijxpm"]
+[ext_resource type="Resource" uid="uid://cx4qk7n0gc5dd" path="res://resources/battle_infos/sun_spirit_fight.tres" id="12_ojo5n"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="17_7tg3y"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_mglh5"]
@@ -77,21 +76,6 @@ normal = Vector2(1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hcipo"]
 normal = Vector2(-1, 0)
-
-[sub_resource type="Resource" id="Resource_e7d5m"]
-script = ExtResource("7_siyrm")
-enemies = Array[StringName]([&"sun_spirit"])
-background = "sun"
-music = "preturberance"
-party = Array[StringName]([])
-death_reason = "solar"
-start_text = "les pommes sont mures."
-rewards = ExtResource("7_uirxy")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgjl2"]
 atlas = ExtResource("7_y64ye")
@@ -431,7 +415,7 @@ chase_target = NodePath("../../Greg")
 chase_distance = 256
 action_right_after_dialogue = true
 interact_on_touch = true
-battle_info = SubResource("Resource_e7d5m")
+battle_info = ExtResource("12_ojo5n")
 
 [node name="SunLook" type="AnimatedSprite2D" parent="Areas/SunSpirit"]
 position = Vector2(0, -8)

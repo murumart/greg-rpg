@@ -33,6 +33,12 @@ func _load_thugs() -> void:
 		_place_thug(thug, pos)
 
 
+func erase_thugs_from_mem() -> void:
+	var savekey := get_save_key("thugs")
+	DAT.set_data(savekey, [])
+	enemies.map(func(a: Node) -> void: if is_instance_valid(a): a.queue_free())
+
+
 func _on_timer_timeout() -> void:
 	timer.start(wait_time)
 	if not Math.inrange(level, active_range.x, active_range.y):

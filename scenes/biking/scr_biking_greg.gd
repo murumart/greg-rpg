@@ -130,7 +130,7 @@ func hurt(amount: int) -> void:
 	if health <= 0:
 		die()
 		if amount >= 41:
-			DAT.death_reason = "snail_beam"
+			DAT.death_reason = DAT.DeathReasons.SNAIL_BEAM
 		SND.play_sound(CRASH_SOUND)
 	else:
 		SND.play_sound(HURT_SOUND)

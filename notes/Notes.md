@@ -50,3 +50,15 @@
 - [x] medkid could be cheaper methink's..
 - [x] remove fisherwoman from fishing pole dialogue wjen shes gone.d
 - [x] crits shoudl break shield
+
+## 22.07.25
+- [ ] change music to save position after fadeout
+- [x] fisherwoman dialogue portrait..
+- [ ] fishing game spawn bg fish higher
+- [ ] and make them less visible
+- [ ] change police cell parm dialogue (opulent??)
+- [ ] saucy mail wet sound effects
+- [x] VMPIRE SHOWS UP IN POLICE WHEN SHOULD BE IN SHOPS.
+- [x] CUTSCENE SHIT DOESNT WORK.
+- [x] REDUCE thug and animal amount in campsite
+	- [x] eveb better: clear thugs and animals from save file during vampire cutscene

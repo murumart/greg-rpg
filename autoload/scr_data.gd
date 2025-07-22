@@ -6,6 +6,11 @@ extends Node
 const VERSION := Vector3(1, 0, 2)
 const GDUNG_LEVEL := 72
 
+enum DeathReasons {
+	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
+	CATS, SOLAR, NOVA, ZERMA, VAMPIRE, PRES_GUN, DISH, GDUNG,
+}
+
 signal player_captured(capture: bool)
 
 # DATA
@@ -29,8 +34,7 @@ const ATGIRL_CYCLE := 1200
 const LAKE_HINT_CYCLE := 800
 
 # on death
-var death_reason := "default"
-var last_save_file := 0
+var death_reason := 0
 
 var cat_names := []
 

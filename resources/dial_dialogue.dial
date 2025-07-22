@@ -2494,12 +2494,12 @@ DIALOGUE after_pennistong_finish
 
 
 DIALOGUE fisherwoman_pole_tutorial
-CHAR fisherwoman
 DATA_LINK fisherwoman_fought,true
 CHOICES yes,nvm
 	are you going fishing?
 DATA_LINK fisherwoman_fought,false
 CHOICES yes,nvm
+CHAR fisherwoman
 	oh, you're, like, going fishing?
 CHOICE_LINK yes
 CHOICES no,yes
@@ -3602,7 +3602,7 @@ CHAR vampire
 	no! no!! no!!! not happening!
 	but i've heard of your escapades.
 	getting stronger... at this rate...
-	you might become and actual threat.
+	you might become an actual threat.
 	the solution is easy, though!
 	i will smear you into the dirt first!!
 
@@ -3807,7 +3807,7 @@ EMO what
 	some sort of [color=FLOWERCOLOR]flower[/color]...
 	is that what you wanted of her...?
 	the only one who deals with flowers is that [color=FLOWERCOLOR]florist[/color]...
-	...but that [color=GREEN]green demon[/color]... is that her doing?
+	...but that [color=GREEN]green demon[/color]...
 	whatever you have gotten yourself into...
 	...it's not going to end well.
 CHAR 

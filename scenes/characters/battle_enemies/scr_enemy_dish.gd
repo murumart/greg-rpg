@@ -35,7 +35,7 @@ func ai_action() -> void:
 	if SOL.dialogue_open:
 		await SOL.dialogue_closed
 	if turn >= END_TURN: # pizz arrival
-		DAT.death_reason = "president_gun"
+		DAT.death_reason = DAT.DeathReasons.PRES_GUN
 		_pizz_arrival_animation()
 		return
 	super()
