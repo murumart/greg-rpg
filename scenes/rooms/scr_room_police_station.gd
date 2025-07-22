@@ -241,6 +241,24 @@ func setup_cells() -> void:
 			"enabled" if DAT.get_data("hunks_enabled", false) else "disabled")))
 	if is_bounty_fulfilled("sun_spirit"):
 		$Cells/SunSpirit/SunSpiritInspect.inspected.connect(art_sun_spirit_rage)
+	if is_bounty_fulfilled("president"):
+		var insp: InspectArea= $Cells/President/PresidentInspect
+		insp.inspected.connect(func() -> void:
+			var p: ColorContainer = $CanvasModulateGroup/Presdent
+			var a := func(i: int) -> void:
+				if i == 3:
+					var t := create_tween()
+					t.tween_property(p, ^"color", Color(0.411, 0.683, 0.44), 2.0)
+			if insp.progress == 1:
+				SND.play_song("", 0.5)
+				SOL.dialogue_box.started_speaking.connect(a)
+				SOL.dialogue_closed.connect(func() -> void:
+					var t := create_tween()
+					t.tween_property(p, ^"color", Color.WHITE, 2.0)
+					SND.play_song("police", 0.5)
+					SOL.dialogue_box.started_speaking.disconnect(a)
+				, CONNECT_ONE_SHOT)
+		)
 	if is_bounty_fulfilled("vampire"):
 		if not DAT.get_data("got_ash_bucket", false):
 			$Cells/Vampire/VampireInspect.inspected.connect(func():
@@ -257,7 +275,7 @@ func setup_cells() -> void:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
 			$Cells/Vampire/Sprite2D.hide()
 
-	if police_standing < 1:
+	if not TRACKED_BOUNTIES.keys().any(func(a: StringName) -> bool: return is_bounty_fulfilled(a)):
 		popo2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
 
 

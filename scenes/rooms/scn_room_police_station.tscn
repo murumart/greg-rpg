@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=4 uid="uid://d4bhpxcyqdld8"]
+[gd_scene load_steps=68 format=4 uid="uid://d4bhpxcyqdld8"]
 
 [ext_resource type="Script" uid="uid://dnq030bmpvqqd" path="res://scenes/rooms/scr_room_police_station.gd" id="1_43mws"]
-[ext_resource type="Environment" uid="uid://camxx02xltno4" path="res://resources/env_default_environment.tres" id="2_1r0ek"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_5ei6i"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="3_7lec2"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_ax68p"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_uu3hw"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_prdld"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_gqxff"]
@@ -2158,9 +2159,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1eno2"]
 size = Vector2(20, 4)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5ei6i"]
+blend_mode = 1
+
 [sub_resource type="Gradient" id="Gradient_usbtl"]
 offsets = PackedFloat32Array(0, 0.627663)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(1, 0.815686, 0.160784, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cgx7m"]
 gradient = SubResource("Gradient_usbtl")
@@ -2297,14 +2301,50 @@ size = Vector2(14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa1vx"]
 size = Vector2(42, 12)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ax68p"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_hcwde"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pwp5u"]
+gradient = SubResource("Gradient_hcwde")
+width = 14
+height = 28
+fill = 1
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_5ei6i"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ax68p"]
+gradient = SubResource("Gradient_5ei6i")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.744186, 0.326326)
+fill_to = Vector2(0.5, 1)
+
 [node name="PoliceStation" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_43mws")
 music = "police"
 music_play_from_beginning = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_1r0ek")
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+color = Color(0.724414, 0.806619, 0.857532, 1)
+script = ExtResource("2_5ei6i")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="Popo" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_ax68p")
+color = Color(0.724414, 0.806619, 0.857532, 1)
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Presdent" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_ax68p")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2330,7 +2370,7 @@ tile_map_data = PackedByteArray("AAD///7/AQAMAAkAAAD/////AQAMAAsAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 
 [node name="Greg" parent="." instance=ExtResource("3_uu3hw")]
-position = Vector2(-106, 41)
+position = Vector2(-113, 41)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("4_prdld")]
@@ -2365,7 +2405,7 @@ script = ExtResource("7_qmjry")
 radius = 170.0
 
 [node name="TrashGuy" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(-74, 0)
+position = Vector2(-73, 0)
 
 [node name="TrashGuy" parent="Cells/TrashGuy" instance=ExtResource("7_wtpef")]
 position = Vector2(0, 3)
@@ -2385,7 +2425,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_apysc")
 
 [node name="Thugs" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(-53, 0)
+position = Vector2(-49, 0)
 
 [node name="Thug" parent="Cells/Thugs" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("7_wtpef")]
 position = Vector2(0, 3)
@@ -2405,7 +2445,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_apysc")
 
 [node name="StrayAnimals" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(-32, 0)
+position = Vector2(-24, 0)
 
 [node name="OverworldCharacter" parent="Cells/StrayAnimals" instance=ExtResource("14_3gwec")]
 position = Vector2(0, 2)
@@ -2420,7 +2460,6 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_ff6mw")
 
 [node name="BrokenFishermen" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(-11, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cells/BrokenFishermen"]
 position = Vector2(0, -4)
@@ -2435,9 +2474,10 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_1eno2")
 
 [node name="SunSpirit" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(11, 0)
+position = Vector2(24, 0)
 
 [node name="Spirit" type="Sprite2D" parent="Cells/SunSpirit"]
+material = SubResource("CanvasItemMaterial_5ei6i")
 position = Vector2(0, -7)
 texture = SubResource("GradientTexture2D_cgx7m")
 offset = Vector2(0, -8)
@@ -2456,7 +2496,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_378vf")
 
 [node name="Vampire" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(32, 0)
+position = Vector2(49, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Cells/Vampire"]
 position = Vector2(0, -4)
@@ -2471,7 +2511,7 @@ position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_378vf")
 
 [node name="President" parent="Cells" instance=ExtResource("6_y0r06")]
-position = Vector2(53, 0)
+position = Vector2(73, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Cells/President"]
 position = Vector2(8, 0)
@@ -2483,7 +2523,7 @@ region_rect = Rect2(0, 48, 16, 16)
 
 [node name="PresidentInspect" type="Area2D" parent="Cells/President"]
 script = ExtResource("14_3kw1r")
-key = "president_cell"
+keys = Array[String](["president_cell", "president_cell_2", "president_cell"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cells/President/PresidentInspect"]
 position = Vector2(0, 8)
@@ -2556,6 +2596,7 @@ position = Vector2(57, -8)
 position = Vector2(-1, -8)
 
 [node name="VampireGirl" parent="Npcs" node_paths=PackedStringArray("greg", "camera") instance=ExtResource("23_21mnf")]
+visible = false
 position = Vector2(-32, -10)
 greg = NodePath("../../Greg")
 camera = NodePath("../../Greg/Camera")
@@ -2575,6 +2616,7 @@ position = Vector2(4, -7)
 rotation = 1.57079
 
 [node name="CutsceneEnterRea" parent="Npcs/VampireGirl/TransformKiller_____" index="0"]
+visible = false
 position = Vector2(19, -25)
 
 [node name="CollisionShape2D" parent="Npcs/VampireGirl/TransformKiller_____/CutsceneEnterRea" index="0"]
@@ -2772,6 +2814,34 @@ shape = SubResource("RectangleShape2D_fa1vx")
 
 [node name="Chair" parent="Decor/Chair" instance=ExtResource("24_ngus0")]
 position = Vector2(-28, -1)
+
+[node name="Lights" type="Node2D" parent="Decor"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_ax68p")
+
+[node name="WindowLight" type="Sprite2D" parent="Decor/Lights"]
+modulate = Color(0.414979, 0.414283, 0.375282, 1)
+use_parent_material = true
+position = Vector2(-152, 34)
+texture = SubResource("GradientTexture2D_pwp5u")
+
+[node name="HighLight" type="Sprite2D" parent="Decor/Lights"]
+modulate = Color(0.30434, 0.283809, 0.211769, 1)
+use_parent_material = true
+position = Vector2(72, -31)
+texture = SubResource("GradientTexture2D_ax68p")
+
+[node name="WindowLight2" type="Sprite2D" parent="Decor/Lights"]
+modulate = Color(0.414979, 0.414283, 0.375282, 1)
+use_parent_material = true
+position = Vector2(-104, 34)
+texture = SubResource("GradientTexture2D_pwp5u")
+
+[node name="WindowLight3" type="Sprite2D" parent="Decor/Lights"]
+modulate = Color(0.414979, 0.414283, 0.375282, 1)
+use_parent_material = true
+position = Vector2(-56, 34)
+texture = SubResource("GradientTexture2D_pwp5u")
 
 [node name="SunSpiritRage" type="Node2D" parent="."]
 visible = false

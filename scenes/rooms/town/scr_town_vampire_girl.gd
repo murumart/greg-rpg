@@ -37,6 +37,7 @@ func _ready() -> void:
 	if DAT.get_data(GUY_FOLLOW, false):
 		uguy_follow()
 		return
+	show()
 	if location == Locations.TOWN_PARK:
 		position = Vector2(9999, 9999)
 		cutscene_enter_rea.body_entered.connect(func(_a) -> void:

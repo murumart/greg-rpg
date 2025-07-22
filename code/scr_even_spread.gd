@@ -2,10 +2,10 @@
 extends Node2D
 
 @export var radius := 120.0
-@export var arrange_us: bool: set = arrange
+@export_tool_button("arrange us") var arrange_us: Callable = arrange
 
 
-func arrange(_to := false) -> void:
+func arrange() -> void:
 	var amt := get_child_count()
 	for i in amt:
 		var child := get_child(i)

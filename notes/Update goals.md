@@ -50,18 +50,18 @@
 - [ ] Town changes
 	- [ ] Update map
 	- [x] Sunset time
-	- [ ] Utility poles
-	- [ ] Move to industry
+	- [x] Utility poles
+	- [x] Move to industry
 		- [x] Things i did already
 	- [ ] Store cutscene w/ grandma
 		- [ ] Hide greg when she barges in
-	- [ ] Vampire changes
-		- [ ] in town
-			- [ ] introductory cutscene in park (uguy follows her)
-			- [ ] appearances in other town locations (store, gamer, post office)
-		- [ ] post-cutscene
-			- [ ] replace car
-			- [ ] get flower
+	- [x] Vampire changes
+		- [x] in town
+			- [x] introductory cutscene in park (uguy follows her)
+			- [x] appearances in other town locations (store, gamer, post office)
+		- [x] post-cutscene
+			- [x] replace car
+			- [x] get flower
 	- [ ] Tarikas better and more dialogue
 		- [ ] gives you flower after you have the others or when defeate solapp prisutbec
 		- [ ] info about the flower bosses you beat and have yet to beat
@@ -87,8 +87,8 @@
 			- [x] transmute silver to gold
 	- [x] Quest board UI
 		- [x] you can give quests descriptions now
-- [ ] Lakeside changes
-	- [ ] fisherwoman flowrer
+- [x] Lakeside changes
+	- [x] fisherwoman flowrer
 - [ ] Dungeon changes
 	- [ ] Remove prodecural floors (for now)
 	- [ ] NPCS

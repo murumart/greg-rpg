@@ -257,6 +257,19 @@ CHAR popo_2
 	...limit his intake, otherwise we might go bankrupt.
 
 
+DIALOGUE insp_president_cell_2
+CHAR president
+	...i have been thinking.
+	didn't my fall from grace start so long ago...?
+	that fateful day when...
+	...i received the attention of the [color=GREEN]green demon[/color].
+	i don't think it ever understood me.
+	all i want... is a happy life for my people.
+	all [color=GREEN]it[/color] wants...
+	...is to stir the water.
+	...are you not doing that right now?
+
+
 DIALOGUE insp_guy_house_bed
 	his bed. the only furniture in this room.
 	damn... he lives like this?
