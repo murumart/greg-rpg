@@ -62,3 +62,8 @@
 - [x] CUTSCENE SHIT DOESNT WORK.
 - [x] REDUCE thug and animal amount in campsite
 	- [x] eveb better: clear thugs and animals from save file during vampire cutscene
+
+## sarah playteyst
+- [ ] something if you kill yourself in grandma intro fight
+- [ ] zerma doesnt give you more candy
+- [ ] GOING INTO BATHROOM SHOPLIFINGP!!?!=!=

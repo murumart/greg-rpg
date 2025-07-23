@@ -514,10 +514,10 @@ size = Vector2(123, 15)
 size = Vector2(20, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2o7eh"]
-size = Vector2(22, 55)
+size = Vector2(22, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmry3"]
-size = Vector2(11, 56)
+size = Vector2(26, 82)
 
 [sub_resource type="Animation" id="Animation_e08tp"]
 length = 0.001
@@ -2354,14 +2354,14 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PoliceBlocker/DetectionArea"]
-position = Vector2(1, -14.5)
+position = Vector2(1, -16)
 shape = SubResource("RectangleShape2D_2o7eh")
 debug_color = Color(0.54902, 1, 1, 0.25098)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Other/PoliceBlocker"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Other/PoliceBlocker/StaticBody2D"]
-position = Vector2(4.5, -14)
+position = Vector2(12, -14)
 shape = SubResource("RectangleShape2D_dmry3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Other/PoliceBlocker"]

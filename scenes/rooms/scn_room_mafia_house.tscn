@@ -1,14 +1,20 @@
-[gd_scene load_steps=14 format=4 uid="uid://dyjcd2w81thvw"]
+[gd_scene load_steps=22 format=4 uid="uid://dyjcd2w81thvw"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_xrpuv"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_332tv"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_drelu"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_k4axw"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_o4tln"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="4_3esa6"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_0srwq"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_ce38q"]
 [ext_resource type="SpriteFrames" uid="uid://cxls2ofavlaoe" path="res://resources/characters/sfr_mafia_1.tres" id="6_xapwm"]
 [ext_resource type="SpriteFrames" uid="uid://baycgm88q1d50" path="res://resources/characters/sfr_mafia_2.tres" id="7_fxb1w"]
+[ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="8_raprc"]
+[ext_resource type="AudioStream" uid="uid://b8p5vxpp60k4o" path="res://music/mus_police.ogg" id="9_3kxlg"]
 [ext_resource type="Script" uid="uid://cfelp6jino56j" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
+[ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="12_4q62v"]
+[ext_resource type="AudioStream" uid="uid://dutf5v5qygecx" path="res://sounds/misc_click.ogg" id="14_wqmof"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("2_332tv")
@@ -1994,6 +2000,17 @@ terrain_set_2/terrain_1/name = "table_darkwood"
 terrain_set_2/terrain_1/color = Color(0.415686, 0.12549, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 
+[sub_resource type="Gradient" id="Gradient_raprc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3kxlg"]
+gradient = SubResource("Gradient_raprc")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57vqo"]
 size = Vector2(8, 5)
 
@@ -2003,6 +2020,24 @@ size = Vector2(111, 83)
 [node name="MafiaHouse" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xrpuv")
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_drelu")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_o4tln")
+color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -507.0
+offset_top = -351.0
+offset_right = 547.0
+offset_bottom = 391.0
+color = Color(0, 0, 0, 1)
 
 [node name="InteriorTiles" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2016,11 +2051,11 @@ tile_set = SubResource("TileSet_tjy6q")
 [node name="Layer1" type="TileMapLayer" parent="InteriorTiles"]
 y_sort_enabled = true
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD9/wEAAQANAAkAAAD+/wEAAQAOAAkAAAD//wEAAQAOAAkAAAAAAAEAAQAOAAkAAAABAAEAAQAPAAkAAAAAAAIAAQAOAAsAAAD//wIAAQAOAAsAAAD+/wIAAQAOAAsAAAD9/wIAAQANAAsAAAABAAIAAQAPAAsAAAA=")
+tile_map_data = PackedByteArray("AAD9/wEAAQANAAkAAAD+/wEAAQAOAAkAAAD//wEAAQAOAAkAAAAAAAEAAQAOAAkAAAABAAEAAQAPAAkAAAAAAAIAAQAOAAsAAAD//wIAAQAOAAsAAAD+/wIAAQAOAAsAAAD9/wIAAQANAAsAAAABAAIAAQAPAAsAAAAFAPz/AQAMAAgAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 
 [node name="Greg" parent="." instance=ExtResource("3_k4axw")]
-position = Vector2(104, 7)
+position = Vector2(99, 9)
 
 [node name="Camera2D" type="Camera2D" parent="Greg"]
 limit_left = -80
@@ -2028,8 +2063,21 @@ limit_top = -96
 limit_right = 144
 limit_bottom = 80
 
+[node name="PointLight2D" type="PointLight2D" parent="Greg/Camera2D" groups=["lights"]]
+position = Vector2(0, -10)
+scale = Vector2(0.640625, 0.40625)
+color = Color(0.362695, 0.409522, 0.410723, 1)
+texture = SubResource("GradientTexture2D_3kxlg")
+
 [node name="Decorations" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="BigLight" type="PointLight2D" parent="Decorations" groups=["lights"]]
+visible = false
+position = Vector2(88, -61)
+scale = Vector2(0.953125, 0.71875)
+color = Color(0.314451, 0.499589, 0.50434, 1)
+texture = SubResource("GradientTexture2D_3kxlg")
 
 [node name="Chair" type="StaticBody2D" parent="Decorations"]
 position = Vector2(16, 14)
@@ -2057,25 +2105,48 @@ region_rect = Rect2(19, 68, 10, 12)
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_57vqo")
 
-[node name="Mafia" parent="Decorations" instance=ExtResource("5_0srwq")]
+[node name="MafiaBlue" parent="Decorations" instance=ExtResource("5_0srwq")]
+unique_name_in_owner = true
 position = Vector2(-17, 13)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/Mafia"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaBlue"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("6_xapwm")
 animation = &"walk_down"
 
-[node name="Mafia2" parent="Decorations" instance=ExtResource("5_0srwq")]
+[node name="MafiaYellow" parent="Decorations" instance=ExtResource("5_0srwq")]
+unique_name_in_owner = true
 position = Vector2(1, 13)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/Mafia2"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaYellow"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("7_fxb1w")
 animation = &"walk_down"
 
+[node name="Radio" parent="Decorations" instance=ExtResource("8_raprc")]
+position = Vector2(88, -53)
+default_song = ExtResource("9_3kxlg")
+
+[node name="PointLight2D" type="PointLight2D" parent="Decorations/Radio" groups=["lights"]]
+position = Vector2(1.90735e-06, 11)
+scale = Vector2(0.1875, 0.71875)
+color = Color(0.125617, 0.121411, 0.106652, 1)
+texture = SubResource("GradientTexture2D_3kxlg")
+
+[node name="GregPos" type="Marker2D" parent="Decorations/Radio"]
+unique_name_in_owner = true
+position = Vector2(13, 5)
+
+[node name="MafiaPos" type="Marker2D" parent="Decorations/Radio"]
+unique_name_in_owner = true
+position = Vector2(-18, 5)
+
+[node name="Chair3" parent="Decorations" instance=ExtResource("12_4q62v")]
+position = Vector2(101, -54)
+
 [node name="RoomGate" parent="." instance=ExtResource("5_ce38q")]
 position = Vector2(104, 22)
-destination = &"town"
+destination = &"town_east"
 gate_id = &"mafiahouse-town"
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -15)
@@ -2092,5 +2163,17 @@ script = ExtResource("9_fieed")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DiscoveryArea"]
 position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_girn8")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Areas/DiscoveryArea" groups=["lights"]]
+position = Vector2(8, -20)
+scale = Vector2(1.14063, 0.84375)
+color = Color(0.0490213, 0.048629, 0.0472524, 1)
+texture = SubResource("GradientTexture2D_3kxlg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Areas/DiscoveryArea"]
+stream = ExtResource("14_wqmof")
+volume_db = 8.0
+pitch_scale = 0.53
+bus = &"ECHO"
 
 [connection signal="body_entered" from="Areas/DiscoveryArea" to="Areas/DiscoveryArea" method="_area_entered" unbinds=1]

@@ -1,8 +1,6 @@
 extends Room
 
 @onready var musicplayer := $Radio/RadioMusic
-var music_last_position := 0.0
-var music_last_song: String
 @export_range(-1, 10) var prank_call_force := -1
 @onready var door_area: Area2D = $Door/DoorArea
 
@@ -25,18 +23,6 @@ func _ready() -> void:
 		$Grandma/AnimatedSprite2D.scale.y = 4.875
 		$Grandma.default_lines.clear()
 		$Grandma.default_lines.append(&"grandma_fight_1")
-
-
-func _on_radio_interaction_on_interact() -> void:
-	SND.play_sound(preload("res://sounds/misc_click.ogg"))
-	if musicplayer.playing:
-		music_last_position = musicplayer.get_playback_position()
-		musicplayer.stop()
-		SND.play_song("favourable_silence", 3.0, {"play_from_beginning": true})
-	else:
-		musicplayer.stream = radio_song
-		musicplayer.play(music_last_position)
-		SND.play_song("", 1727)
 
 
 func _on_phone_interacted() -> void:

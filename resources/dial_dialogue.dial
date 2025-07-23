@@ -3355,9 +3355,69 @@ CHAR mafia_yellow
 DIALOGUE mafia_interrupt
 CHAR mafia_blue
 	hey! intruder!
-	trespassing will be punished severely.
-CHAR mafia_yellow
 	you don't mess with the mafia, got that?
+CHAR mafia_yellow
+	prepare for a world of pain!
+
+
+DIALOGUE mafia_tutorial_1
+CHAR mafia_blue
+	alright jackass, here's what's gonna happen.
+	see that stupid dial with your face on it?
+	you're gonna move it real carefully... with your movement keys.
+	you're gonna look for a good signal.
+	and then you're gonna stay on that signal so we can record it.
+	ok? good.
+CHAR mafia_yellow
+	it's hard to mess this up, pal!
+
+
+DIALOGUE mafia_tutorial_2
+CHAR mafia_blue
+	you got the signal!! amazing!!
+	now, this is very, very important.
+	listen carefully. very carefully.
+	the signal is gonna give you a bunch of numbers...
+	...and you have to remember them.
+	if you don't get the right numbers, then...
+	...we won't be able to hack the code.
+CHAR mafia_yellow
+	but we will be able to hack you!
+	to pieces, that is!!
+CHAR mafia_blue
+	hush! listen for the numbers!
+
+
+DIALOGUE mafia_after_first
+CHAR mafia_blue
+DATA_LINK mfia_first_corrects,0
+	wow. you were ass at remembering the numbers.
+DATA_LINK mfia_first_corrects,1
+	wow. you sucked at remembering the numbers.
+DATA_LINK mfia_first_corrects,2
+	you got two out of three number series right...
+	not too bad, pal.
+DATA_LINK mfia_first_corrects,3
+	would you look at that...
+	you actually wrote all the numbers down correctly.
+DATA_LINK 
+	in any case, it's really boring work...
+CHAR mafia_yellow
+	i would rather die than write another number!
+CHAR mafia_blue
+	no you wouldn't!
+	but it wouldn't hurt to have you back here...
+	we know you've been dealing with the po-po...
+CHAR mafia_yellow
+	the [font_size=10]poo-poo!!![/font_size]
+CHAR mafia_blue
+	the... whatever.
+	their codes must be second nature to you by now.
+	if you help us enough, we might do you a little favour...
+CHAR mafia_yellow
+	our love turns out to be... a little bit explosive!!
+CHAR mafia_blue
+	try not to scare off the new guy too much, maybe?
 
 
 DIALOGUE lake_hint_1

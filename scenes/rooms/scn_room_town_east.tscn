@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dcfpaki7ir318" path="res://sprites/world/building/factory/shadow.png" id="21_stciw"]
 [ext_resource type="Script" uid="uid://cy4y0kuvm57rq" path="res://scenes/rooms/town/east_factory.gd" id="22_1fst2"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
+[ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="22_u5wr6"]
 [ext_resource type="PackedScene" uid="uid://dxwgxx66m8k4a" path="res://scenes/cutscene/scn_ride_around_town.tscn" id="24_w54ah"]
 [ext_resource type="Script" uid="uid://wr31atjplb4u" path="res://scenes/rooms/town/scr_leave_ending.gd" id="25_0834g"]
 [ext_resource type="PackedScene" uid="uid://cfs50oh5gonj4" path="res://scenes/characters/overworld/scn_thug_overworld.tscn" id="27_kc1q2"]
@@ -84,9 +85,6 @@ func _on_atgirl_inspected() -> void:
 			girl.default_lines.clear()
 			DAT.set_data(\"atgirl_progress\", progress)
 "
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0ru"]
-size = Vector2(257, 210)
 
 [sub_resource type="Animation" id="Animation_t87sn"]
 length = 0.001
@@ -298,6 +296,7 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
 level_gain = 70
+force_gate_id = &"town-east"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
@@ -469,17 +468,6 @@ y_sort_enabled = true
 position = Vector2(-412, 53)
 script = ExtResource("14_c52i7")
 
-[node name="PhoneAreaSkatepark" type="Area2D" parent="Houses/Skatepark"]
-visible = false
-position = Vector2(-87, 51)
-collision_layer = 64
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Skatepark/PhoneAreaSkatepark"]
-position = Vector2(88.5, -57)
-shape = SubResource("RectangleShape2D_nu0ru")
-
 [node name="TileMap" type="Node2D" parent="Houses/Skatepark"]
 y_sort_enabled = true
 
@@ -495,7 +483,6 @@ y_sort_enabled = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAGAPn/AQAQAAkAAAAFAPn/AQAPAAkAAAAEAPn/AQAPAAkAAAADAPn/AQAPAAkAAAACAPn/AQAOAAkAAAD7//j/AQAPAAkAAAD8//j/AQAQAAkAAAD+//j/AQAOAAkAAAD///j/AQAPAAkAAAD3//v/AQANAAYAAAD3//z/AQANAAcAAAD3//3/AQANAAcAAAD3/wQAAQAOAAgAAAD4/wQAAQAPAAkAAAD5/wQAAQAPAAkAAAD6/wQAAQAPAAkAAAD7/wQAAQAPAAkAAAD8/wQAAQAPAAkAAAD9/wQAAQAPAAkAAAD+/wQAAQAPAAkAAAD//wQAAQAPAAkAAAAAAAQAAQAPAAkAAAABAAQAAQAPAAkAAAACAAQAAQAPAAkAAAADAAQAAQAPAAkAAAAEAAQAAQAPAAkAAAAFAAQAAQAPAAkAAAAGAAQAAQAPAAkAAAAHAAQAAQAPAAgAAAD3//7/AQANAAcAAAD3////AQANAAcAAAD3/wAAAQANAAcAAAD3/wEAAQANAAcAAAD3/wIAAQANAAcAAAD3/wMAAQANAAcAAAAHAAMAAQANAAcAAAAHAAIAAQANAAcAAAAHAAEAAQANAAYAAAAIAPj/AQAPAAcAAAAIAPn/AQANAAcAAAAIAPr/AQANAAcAAAAIAPv/AQANAAcAAAAIAPz/AQANAAgAAAA=")
 tile_set = ExtResource("5_5ym11")
-y_sort_origin = 8
 
 [node name="SkateWorry" parent="Houses/Skatepark" instance=ExtResource("11_bu27y")]
 position = Vector2(-104, 99)
@@ -597,6 +584,14 @@ polygon = PackedVector2Array(168, 65, 168, 130, 200, 161, 200, 97)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Houses/Skatepark/SlopeRight"]
 polygon = PackedVector2Array(136, 1, 144, 9, 144, 58, 136, 58)
+
+[node name="ThugSpawner4" parent="Houses/Skatepark" node_paths=PackedStringArray("player") instance=ExtResource("22_u5wr6")]
+position = Vector2(3, -34)
+spawn_enemy = ExtResource("27_kc1q2")
+max_enemies = 24
+player = NodePath("../../../Greg")
+active_range = Vector2i(8, 99)
+wait_time = 2.0
 
 [node name="MafiaHouse" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -804,32 +799,32 @@ random_movement = false
 [node name="Mayor" parent="Other" instance=ExtResource("28_5y8yq")]
 position = Vector2(-582, -152)
 
-[node name="IntroCutscene" type="Node2D" parent="Other"]
+[node name="MayorInfo" type="Node2D" parent="Other"]
 position = Vector2(-798, -153)
 script = ExtResource("29_pcttj")
 
-[node name="Path" type="Node2D" parent="Other/IntroCutscene"]
+[node name="Path" type="Node2D" parent="Other/MayorInfo"]
 
-[node name="Marker2D" type="Marker2D" parent="Other/IntroCutscene/Path"]
+[node name="Marker2D" type="Marker2D" parent="Other/MayorInfo/Path"]
 position = Vector2(166, 0)
 
-[node name="Marker2D2" type="Marker2D" parent="Other/IntroCutscene/Path"]
+[node name="Marker2D2" type="Marker2D" parent="Other/MayorInfo/Path"]
 position = Vector2(349, 2)
 
-[node name="Marker2D3" type="Marker2D" parent="Other/IntroCutscene/Path"]
-position = Vector2(534, 1)
+[node name="Marker2D3" type="Marker2D" parent="Other/MayorInfo/Path"]
+position = Vector2(551, 1)
 
-[node name="Marker2D4" type="Marker2D" parent="Other/IntroCutscene/Path"]
-position = Vector2(534, 179)
+[node name="Marker2D4" type="Marker2D" parent="Other/MayorInfo/Path"]
+position = Vector2(550, 179)
 
-[node name="Marker2D5" type="Marker2D" parent="Other/IntroCutscene/Path"]
+[node name="Marker2D5" type="Marker2D" parent="Other/MayorInfo/Path"]
 position = Vector2(566, 179)
 
-[node name="Marker2D6" type="Marker2D" parent="Other/IntroCutscene/Path"]
+[node name="Marker2D6" type="Marker2D" parent="Other/MayorInfo/Path"]
 position = Vector2(566, 2)
 
-[node name="Marker2D7" type="Marker2D" parent="Other/IntroCutscene/Path"]
-position = Vector2(549, -130)
+[node name="Marker2D7" type="Marker2D" parent="Other/MayorInfo/Path"]
+position = Vector2(549, -75)
 
 [node name="CrimeScene" type="Node2D" parent="Other"]
 position = Vector2(-465, -211)

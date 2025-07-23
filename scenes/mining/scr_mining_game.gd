@@ -77,6 +77,8 @@ func mapgen() -> void:
 				elif gas_noise.get_noise_2d(x, y) >= 0.35 and y >= (map_height + start_height) * 0.65:
 					set_cell(pos, TileDefinitions.GAS, 1)
 	camera.limit_bottom = map_height * TSIZE + 20 * TSIZE
+	for x in map_width:
+		set_cell(Vector2i(map_height + start_height, x), TileDefinitions.)
 
 	for x in 400:
 		update_map()

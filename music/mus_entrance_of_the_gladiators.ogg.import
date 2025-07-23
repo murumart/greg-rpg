@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/mus_entrance_of_the_gladiators.ogg-fac1afac42
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

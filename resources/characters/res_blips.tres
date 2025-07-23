@@ -7,7 +7,7 @@
 script = ExtResource("1_r6ybu")
 name_in_file = &""
 name = "blips"
-info = "a swarm of fiery hot spirits."
+info = "a swarm of fiery hot spirit bodies."
 portrait = ExtResource("1_ikf85")
 max_health = 72.0
 health = 72.0

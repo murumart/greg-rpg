@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv3guaurer2pv"]
+
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_3tpmo"]
+[ext_resource type="Script" uid="uid://285qntj1uou2" path="res://scenes/decor/radio.gd" id="1_y2vtl"]
+[ext_resource type="AudioStream" uid="uid://hy3n726fcxds" path="res://music/mus_grandma_radio.ogg" id="2_y2vtl"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="3_vcwau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euhv1"]
+resource_local_to_scene = true
+size = Vector2(14, 17.5)
+
+[node name="Radio" type="Node2D"]
+script = ExtResource("1_y2vtl")
+default_song = ExtResource("2_y2vtl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_3tpmo")
+region_enabled = true
+region_rect = Rect2(1, 0, 14, 16)
+
+[node name="RadioMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -9)
+volume_db = 4.0
+pitch_scale = 1.04
+max_distance = 300.0
+attenuation = 1.36604
+panning_strength = 0.45
+bus = &"Radio Music"
+
+[node name="RadioInteraction" type="Area2D" parent="."]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 4
+collision_mask = 0
+input_pickable = false
+monitoring = false
+script = ExtResource("3_vcwau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RadioInteraction"]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_euhv1")

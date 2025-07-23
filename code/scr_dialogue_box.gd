@@ -274,6 +274,8 @@ func skip() -> void:
 
 
 func close() -> void:
+	if not loaded_dialogue:
+		return
 	SOL.speaking = false
 	textbox.skip_to_end()
 	dialogue_sound.stop()

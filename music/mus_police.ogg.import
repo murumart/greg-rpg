@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/mus_police.ogg-e8d8ba77678b22c0bd31ac80e8f630
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

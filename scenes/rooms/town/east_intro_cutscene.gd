@@ -9,11 +9,11 @@ const Mayor = preload("res://scenes/characters/overworld/scr_mayor_overworld.gd"
 
 func _ready() -> void:
 	if LTS.gate_id == &"town-east" and not DAT.get_data("saw_mayor_intro", false):
-		_play_cutscene()
+		_play_intro_cutscene()
 		DAT.set_data("saw_mayor_intro", true)
 
 
-func _play_cutscene() -> void:
+func _play_intro_cutscene() -> void:
 	var dlg := DialogueBuilder.new().set_char("mayor")
 	SND.play_song.call_deferred("")
 	DAT.capture_player(&"cutscene")
@@ -86,7 +86,7 @@ func _walkdial() -> void:
 			dlg.add_line(dlg.ml("however, son."))
 			dlg.add_line(dlg.ml("not quite enough, is it?").scallback(mayor.animate.bind(mayor.HEAD, "default", 8.0, Vector2(2, 0))))
 			dlg.add_line(dlg.ml("you didn't even bring any children here.").scallback(SND.play_song.bind("")))
-			dlg.add_line(dlg.ml("don't worry. i have a [color=ff4422]plan[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(2, 0))))
+			dlg.add_line(dlg.ml("don't worry. i have a [color=ff4422]plan[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(0, 0))))
 			dlg.add_line(dlg.ml("i'm going to open an [color=ff4422]evil portal[/color] to the [color=ff4422]spirit world[/color].").scallback(mayor.animate.bind(mayor.HEAD, "dark")))
 			dlg.add_line(dlg.ml("spirits would love to [color=ff4422]settle[/color] in my [color=ff4422]town[/color].").scallback(mayor.a_rarm.bind("finger")))
 			dlg.add_line(dlg.ml("i will do it. don't try to [color=ff4422]stop me[/color].").scallback(mayor.a_rarm.bind("hip")))
