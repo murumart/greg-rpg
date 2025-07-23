@@ -59,5 +59,10 @@ func _on_tarikas_inspected() -> void:
 			elif greg.level < 40:
 				unlocked_topics.append("flower")
 				dlg.add_line(dlg.ml("if you're really after the [color=%s]flower[/color]" % FLOWERCOLOR))
+				dlg.add_line(dlg.ml("fuck my lyfe").scallback(func() -> void: queue_free()))
+				await dlg.speak_choice()
+				break
 
 			await dlg.speak_choice()
+		else:
+			break
