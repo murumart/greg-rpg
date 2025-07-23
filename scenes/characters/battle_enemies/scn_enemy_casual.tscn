@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bilwq4w5i78w2"]
+
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_504wx"]
+[ext_resource type="Texture2D" uid="uid://m5l4uksf8b6b" path="res://sprites/characters/battle/east/spr_businesschimney.png" id="2_504wx"]
+
+[node name="Casual" type="Node2D"]
+script = ExtResource("1_504wx")
+effect_center = Vector2i(0, -20)
+toughness = 0.525
+altruism = 0.427
+vaimulembesus = 0.506
+can_flee = true
+xp_multiplier = 1.4
+effect_immunities = Array[StringName]([&"coughing"])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_504wx")

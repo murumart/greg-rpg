@@ -132,7 +132,7 @@ _data = {
 texture = ExtResource("1_pa108")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "spark"
 libraries = {
-"": SubResource("AnimationLibrary_ghptk")
+&"": SubResource("AnimationLibrary_ghptk")
 }
+autoplay = "spark"

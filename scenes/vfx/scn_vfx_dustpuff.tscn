@@ -65,11 +65,11 @@ _data = {
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 amount = 16
+texture = ExtResource("1_8nwun")
 one_shot = true
 explosiveness = 1.0
 randomness = 0.34
 local_coords = true
-texture = ExtResource("1_8nwun")
 direction = Vector2(0, -1)
 spread = 114.94
 gravity = Vector2(0, 69)
@@ -82,7 +82,7 @@ scale_amount_curve = SubResource("Curve_pukkq")
 color_ramp = SubResource("Gradient_l2y3r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
 libraries = {
-"": SubResource("AnimationLibrary_qv1kd")
+&"": SubResource("AnimationLibrary_qv1kd")
 }
+autoplay = "default"

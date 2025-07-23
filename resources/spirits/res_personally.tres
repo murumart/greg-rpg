@@ -6,15 +6,15 @@
 
 [sub_resource type="Resource" id="Resource_2etd8"]
 script = ExtResource("1_obkfa")
-health = -55.0
-health_percent = -11.0
+health = 0.0
+health_percent = 0.0
 max_health_percent = 0.0
 pierce_defense = 0.0
 steal_health = 0.0
 magic = 0.0
 magic_percent = 0.0
 max_magic_percent = 0.0
-steal_magic = 0.35
+steal_magic = 0.0
 attack_increase = 0.0
 defense_increase = 0.0
 speed_increase = 0.0
@@ -31,12 +31,13 @@ meta = {}
 script = ExtResource("2_b15bn")
 name_in_file = &"personally"
 name = &"personally"
-description = "don't take it personally"
+description = "don't take it personally.
+removes debuffs."
 animation = &"personally_screen"
 use_animation = &""
 receive_animation = &""
-cost = 60
-use = 1
+cost = 51
+use = 0
 reach = 0
 payload_reception_count = 1
 payload_reception_wait = 0.0

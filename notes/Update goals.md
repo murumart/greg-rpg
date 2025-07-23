@@ -15,12 +15,12 @@
 		- [ ] Find the key (like how you find him)
 		- [ ] Explosive from mining minigame - with key open factory door
 	- [ ] Enemy encounters
-		- [ ] super turf (low hp but really high attack)
+		- [x] super turf (low hp but really high attack)
 		- [x] motorised granny (charges up sp until final overrun-ish attack)
-		- [ ] tourist spirit (peanuts user)
+		- [x] tourist spirit (peanuts user)
 		- [ ] wild lizard again..?
-		- [ ] blips (swarm of littel spirits) (strong fire effect)
-		- [ ] business casual chimney
+		- [x] blips (swarm of littel spirits) (strong fire effect)
+		- [x] business casual chimney
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
 	- [ ]  Mafia house interior

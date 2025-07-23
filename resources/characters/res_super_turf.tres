@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://41jfujrns5e4"]
+
+[ext_resource type="Texture2D" uid="uid://dnm8toligytnx" path="res://sprites/characters/battle/east/spr_superturf.png" id="1_fhbk8"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_j45pw"]
+[ext_resource type="AudioStream" uid="uid://ds5dey2mofcrt" path="res://sounds/eek.ogg" id="3_j45pw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j45pw"]
+atlas = ExtResource("1_fhbk8")
+region = Rect2(16, 37, 22, 22)
+
+[resource]
+script = ExtResource("2_j45pw")
+name_in_file = &""
+name = "turf 2"
+info = "listen to that screech!"
+voice_sound = ExtResource("3_j45pw")
+portrait = SubResource("AtlasTexture_j45pw")
+max_health = 17.0
+health = 51.0
+max_magic = 120.0
+magic = 120.0
+level = 70
+experience = 0
+attack = 80.0
+defense = 40.0
+speed = 75.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String](["littleman"])
+unused_spirits = Array[String](["grassy_vengeance"])
+armour = ""
+weapon = ""

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://dey8c8pjhau50"]
+
+[ext_resource type="Texture2D" uid="uid://bia4mxdrlrrdx" path="res://sprites/spirit/spr_blip.png" id="1_ikf85"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_r6ybu"]
+
+[resource]
+script = ExtResource("1_r6ybu")
+name_in_file = &""
+name = "blips"
+info = "a swarm of fiery hot spirits."
+portrait = ExtResource("1_ikf85")
+max_health = 72.0
+health = 72.0
+max_magic = 1.0
+magic = 555.0
+level = 77
+experience = 0
+attack = 77.0
+defense = 77.0
+speed = 77.0
+defeated_characters = {}
+inventory = Array[String](["fire_cracker", "fire_cracker", "fire_cracker"])
+spirits = Array[String](["flare", "roundup"])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""
+metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

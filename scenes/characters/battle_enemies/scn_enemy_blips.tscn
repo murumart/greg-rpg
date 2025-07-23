@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://ds7na5427u6m"]
+
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_axpkp"]
+[ext_resource type="Texture2D" uid="uid://bia4mxdrlrrdx" path="res://sprites/spirit/spr_blip.png" id="2_c8sc2"]
+
+[sub_resource type="Curve" id="Curve_ihrlh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0948848, 1), 0.0, 0.0, 0, 0, Vector2(0.830275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_pwj1k"]
+width = 32
+curve = SubResource("Curve_ihrlh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0bqg"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 40, 1)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 12.0
+angular_velocity_min = -24.0
+angular_velocity_max = 24.0
+orbit_velocity_min = 0.0010001
+orbit_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_pwj1k")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ypmk"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_73nnj"]
+offsets = PackedFloat32Array(0, 0.490798, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.727149, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3jj2f"]
+gradient = SubResource("Gradient_73nnj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.1)
+
+[sub_resource type="Curve" id="Curve_x657p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.511389, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pe6oi"]
+width = 32
+curve = SubResource("Curve_x657p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ybqsd"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(12, 32, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_pe6oi")
+
+[node name="Blips" type="Node2D"]
+script = ExtResource("1_axpkp")
+toughness = 1.0
+altruism = 0.0
+innovation = 0.1
+vaimulembesus = 0.26
+default_intent = 3
+xp_multiplier = 1.6
+gender = 3
+effect_immunities = Array[StringName]([&"fire"])
+metadata/_custom_type_script = "uid://dfbbahimpb2ie"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 24
+texture = ExtResource("2_c8sc2")
+process_material = SubResource("ParticleProcessMaterial_p0bqg")
+
+[node name="Sprite2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_3ypmk")
+texture = SubResource("GradientTexture2D_3jj2f")
+process_material = SubResource("ParticleProcessMaterial_ybqsd")

@@ -1,0 +1,231 @@
+[gd_scene load_steps=6 format=3 uid="uid://q48xeihjysj1"]
+
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_6m5gt"]
+[ext_resource type="Texture2D" uid="uid://bjnhxkmp5480m" path="res://sprites/characters/battle/east/spr_tourist.png" id="2_u5bhm"]
+
+[sub_resource type="Animation" id="Animation_cx58k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Rarm:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Larm:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Puppet/LTLeg:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 11)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Puppet/RTLeg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 11)]
+}
+
+[sub_resource type="Animation" id="Animation_u5bhm"]
+resource_name = "idle"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.0, -0.523599, 0.0, 0.523598]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Rarm:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.00744, 0.882884)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Larm:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.29),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.00744, 0.882884)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Puppet/LTLeg:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.96),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 11), Vector2(3, 11)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Puppet/RTLeg:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.58),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11, 11), Vector2(-13, 11)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cx58k"]
+_data = {
+&"RESET": SubResource("Animation_cx58k"),
+&"idle": SubResource("Animation_u5bhm")
+}
+
+[node name="EnemyTourist" type="Node2D" node_paths=PackedStringArray("animator")]
+script = ExtResource("1_6m5gt")
+effect_center = Vector2i(0, -12)
+animator = NodePath("AnimationPlayer")
+toughness = 1.0
+altruism = 0.0
+gender = 4
+wait = 2.0
+metadata/_custom_type_script = "uid://dfbbahimpb2ie"
+
+[node name="Puppet" type="Node2D" parent="."]
+position = Vector2(0, -19)
+
+[node name="Rarm" type="Sprite2D" parent="Puppet"]
+position = Vector2(-21, -15)
+texture = ExtResource("2_u5bhm")
+centered = false
+region_enabled = true
+region_rect = Rect2(35, 28, 19, 22)
+
+[node name="RTLeg" type="Sprite2D" parent="Puppet"]
+position = Vector2(-11, 11)
+texture = ExtResource("2_u5bhm")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(5, 35, 10, 29)
+
+[node name="RBLeg" type="Sprite2D" parent="Puppet/RTLeg"]
+show_behind_parent = true
+position = Vector2(-6, 8)
+texture = ExtResource("2_u5bhm")
+centered = false
+region_enabled = true
+region_rect = Rect2(15, 57, 22, 38)
+
+[node name="LTLeg" type="Sprite2D" parent="Puppet"]
+position = Vector2(1, 11)
+texture = ExtResource("2_u5bhm")
+centered = false
+region_enabled = true
+region_rect = Rect2(5, 35, 10, 29)
+
+[node name="LBLeg" type="Sprite2D" parent="Puppet/LTLeg"]
+show_behind_parent = true
+position = Vector2(-6, 8)
+texture = ExtResource("2_u5bhm")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(15, 57, 22, 38)
+
+[node name="Larm" type="Sprite2D" parent="Puppet"]
+position = Vector2(2, -15)
+texture = ExtResource("2_u5bhm")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(35, 28, 19, 22)
+
+[node name="Body" type="Sprite2D" parent="Puppet"]
+texture = ExtResource("2_u5bhm")
+region_enabled = true
+region_rect = Rect2(1, 1, 25, 30)
+
+[node name="RShoyulder" type="Sprite2D" parent="Puppet"]
+position = Vector2(-23, -17)
+texture = ExtResource("2_u5bhm")
+centered = false
+flip_h = true
+region_enabled = true
+region_rect = Rect2(39, 53, 15, 9)
+
+[node name="LShoulder" type="Sprite2D" parent="Puppet"]
+position = Vector2(8, -17)
+texture = ExtResource("2_u5bhm")
+centered = false
+region_enabled = true
+region_rect = Rect2(39, 53, 15, 9)
+
+[node name="Head" type="Sprite2D" parent="Puppet"]
+position = Vector2(0, -15)
+texture = ExtResource("2_u5bhm")
+centered = false
+offset = Vector2(-9, -17)
+region_enabled = true
+region_rect = Rect2(31, 3, 18, 18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cx58k")
+}

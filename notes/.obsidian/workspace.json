@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -212,7 +212,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d8d2cdedb9c994a0",
+  "active": "75ba75063ceb51c4",
   "lastOpenFiles": [
     "Tarikas.md",
     "Notes.md",

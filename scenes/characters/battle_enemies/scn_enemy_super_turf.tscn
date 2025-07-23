@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8ijytsuf20nx"]
+
+[ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_uh27h"]
+[ext_resource type="Texture2D" uid="uid://dnm8toligytnx" path="res://sprites/characters/battle/east/spr_superturf.png" id="2_uh27h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_117qe"]
+atlas = ExtResource("2_uh27h")
+region = Rect2(0, 0, 58, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd5wi"]
+atlas = ExtResource("2_uh27h")
+region = Rect2(58, 0, 58, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm66y"]
+atlas = ExtResource("2_uh27h")
+region = Rect2(0, 96, 58, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saco0"]
+atlas = ExtResource("2_uh27h")
+region = Rect2(58, 96, 58, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xs0cv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_117qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd5wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm66y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saco0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SuperTruf" type="Node2D"]
+script = ExtResource("1_uh27h")
+innovation = 0.17
+gender = 6
+wait = 0.1
+metadata/_custom_type_script = "uid://dfbbahimpb2ie"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_xs0cv")
+autoplay = "default"
+frame_progress = 0.0896571
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+self_modulate = Color(0, 7.93, 0, 0.209)
+show_behind_parent = true
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_xs0cv")
+autoplay = "default"
+frame_progress = 0.139727
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+self_modulate = Color(0, 7.93, 0, 0.209)
+show_behind_parent = true
+position = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_xs0cv")
+autoplay = "default"
+frame_progress = 0.139727

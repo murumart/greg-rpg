@@ -713,5 +713,14 @@ func _item_funny_fungus_used_on() -> void:
 	add_status_effect(random_effect)
 
 
+func _spirit_personally_used_on() -> void:
+	for s: StringName in status_effects.keys():
+		var eff := status_effects[s]
+		var rem := (eff.type.use in Spirit.USES_NEGATIVE) or (eff.type.use in Spirit.USES_POSITIVE and eff.strength < 0)
+		if rem:
+			emit_message("@%s %s removed" % [actor_name, eff.type.name])
+			remove_status_effect(s)
+
+
 func get_xp() -> int:
 	return character.level

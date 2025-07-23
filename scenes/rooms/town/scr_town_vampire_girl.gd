@@ -90,7 +90,7 @@ func _pre_setup_basic(inters: int) -> bool:
 
 func park_cutscene() -> void:
 	girl_inters += 1
-	position = Vector2(37, 5)
+	position = Vector2(25, -34)
 	DAT.capture_player("cutscene")
 	SND.play_song("sweet_girls")
 	var gpos := global_position - Vector2(16, 0)

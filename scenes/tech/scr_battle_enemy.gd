@@ -121,7 +121,8 @@ func ai_action() -> void:
 							use_spirit(s, target)
 							return
 				for s in character.inventory:
-					if ResMan.get_item(s).use == Item.Uses.BUFFING:
+					var t := ResMan.get_item(s)
+					if t.use == Item.Uses.BUFFING or t.use in Item.USES_EQUIPABLE:
 						use_item(s, target)
 						return
 			Intents.DEBUFF:
