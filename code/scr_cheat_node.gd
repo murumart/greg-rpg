@@ -27,6 +27,8 @@ func _ready() -> void:
 		printerr("CheatNode should be removed!")
 		queue_free()
 		return
+	if DAT.seconds != 0:
+		return
 	if force_gate_id:
 		LTS.gate_id = force_gate_id
 	if remove_when_gate_id and (LTS.gate_id != force_gate_id):
