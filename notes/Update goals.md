@@ -25,12 +25,11 @@
 	- [ ] Mayor bossfight
 	- [ ]  Mafia house interior
 	- [ ] Mafia talking
-	- [ ] Mining minigame
-		- [ ] lose condition: die (you die)
-		- [ ] win condition: get to the bottom
-		- [ ] dig up silver
-		- [ ] use explosives
-		- [ ] reward for each go (silver, xp)
+	- [ ] Mafia minigame
+	- [ ] Mafia house enterable and exitable
+	- [ ] Minigame replayable
+	- [ ] Minigame rewards from specific songs
+	- [ ] Minigame rewards for the mafia likes yiu
 - [ ] Intro changes
 	- [x] Ride around town
 		- [x] pan around town as the car moves, don't follow it
