@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=76 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -17,8 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="12_w54ah"]
 [ext_resource type="Script" uid="uid://dthwjus2ctg7m" path="res://scenes/rooms/town/scr_skatepark.gd" id="14_c52i7"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="15_kc1q2"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="16_bb7j1"]
+[ext_resource type="Texture2D" uid="uid://cbr62uxrfha2h" path="res://sprites/items/spr_ladder.png" id="16_jf6sy"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="16_x4kca"]
 [ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="17_5y8yq"]
+[ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="18_lmkrq"]
 [ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="18_pcttj"]
 [ext_resource type="Script" uid="uid://duxvpsyqmlgud" path="res://scenes/rooms/town/scr_fake_cat.gd" id="19_phep0"]
 [ext_resource type="Script" uid="uid://bot6miaxo87sk" path="res://code/scr_move_axis_add_area.gd" id="20_1fst2"]
@@ -94,6 +97,13 @@ func _on_atgirl_inspected() -> void:
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mkd6"]
 size = Vector2(268, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkrq"]
+size = Vector2(19, 4.38356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5j2b"]
+resource_local_to_scene = true
+size = Vector2(110, 104)
 
 [sub_resource type="Animation" id="Animation_t87sn"]
 length = 0.001
@@ -534,11 +544,12 @@ position = Vector2(137, -150)
 [node name="Houses" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="HousingBlock" type="Node2D" parent="Houses" node_paths=PackedStringArray("cam")]
+[node name="HousingBlock" type="Node2D" parent="Houses" node_paths=PackedStringArray("cam", "greg")]
 y_sort_enabled = true
 position = Vector2(-672, -248)
 script = ExtResource("10_2mkd6")
 cam = NodePath("../../Greg/Camera")
+greg = NodePath("../../Greg")
 
 [node name="OverworldTiles" type="Node2D" parent="Houses/HousingBlock"]
 y_sort_enabled = true
@@ -615,6 +626,34 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/CameraArea"]
 shape = SubResource("RectangleShape2D_2mkd6")
+
+[node name="LadderPlace" type="Area2D" parent="Houses/HousingBlock"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+position = Vector2(-43, 83)
+scale = Vector2(1, 2.28125)
+collision_layer = 5
+input_pickable = false
+script = ExtResource("16_bb7j1")
+metadata/_custom_type_script = "uid://b4lqogy5daqbf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/LadderPlace"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_lmkrq")
+
+[node name="Ladder" type="Sprite2D" parent="Houses/HousingBlock"]
+position = Vector2(-42, 78)
+scale = Vector2(1, 2.28125)
+texture = ExtResource("16_jf6sy")
+offset = Vector2(1, -13.8082)
+
+[node name="ClimbingPlace" parent="Houses/HousingBlock" node_paths=PackedStringArray("greg") instance=ExtResource("18_lmkrq")]
+position = Vector2(-44, 53)
+ground_level_y = -168
+greg = NodePath("../../../Greg")
+
+[node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0"]
+position = Vector2(4, -24)
+shape = SubResource("RectangleShape2D_i5j2b")
 
 [node name="Skatepark" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1204,4 +1243,5 @@ spawn_enemy = ExtResource("38_6wcl6")
 max_enemies = 3
 player = NodePath("../../Greg")
 
+[editable path="Houses/HousingBlock/ClimbingPlace"]
 [editable path="Other/RideAroundTown"]

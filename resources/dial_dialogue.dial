@@ -2987,6 +2987,10 @@ DIALOGUE skaters
 	sk8 4 lyfe !!!
 
 
+DIALOGUE ladder_added
+	the ladder was applied to the wall.
+
+
 DIALOGUE skating_minigame_kid
 	hey. what's uuup.
 	do you wanna skate? really cool people skate, you know.

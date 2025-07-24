@@ -224,6 +224,7 @@ small_screenshot={
 2d_physics/layer_5="player_hurter"
 2d_physics/layer_6="biking_mail"
 2d_physics/layer_7="phone_area"
+2d_physics/layer_8="climp_area"
 2d_physics/layer_9="gdung enemy physics"
 
 [physics]
