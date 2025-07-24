@@ -52,18 +52,18 @@
 - [x] crits shoudl break shield
 
 ## 22.07.25
-- [ ] change music to save position after fadeout
+- [ ] change music to save position after fadeout (UNFIXABLE)
 - [x] fisherwoman dialogue portrait..
-- [ ] fishing game spawn bg fish higher
-- [ ] and make them less visible
-- [ ] change police cell parm dialogue (opulent??)
-- [ ] saucy mail wet sound effects
+- [x] fishing game spawn bg fish higher
+- [x] and make them less visible
+- [x] change police cell parm dialogue (opulent??)
+- [x] saucy mail wet sound effects
 - [x] VMPIRE SHOWS UP IN POLICE WHEN SHOULD BE IN SHOPS.
 - [x] CUTSCENE SHIT DOESNT WORK.
 - [x] REDUCE thug and animal amount in campsite
 	- [x] eveb better: clear thugs and animals from save file during vampire cutscene
 
 ## sarah playteyst
-- [ ] something if you kill yourself in grandma intro fight
-- [ ] zerma doesnt give you more candy
-- [ ] GOING INTO BATHROOM SHOPLIFINGP!!?!=!=
+- [x] something if you kill yourself in grandma intro fight
+- [x] zerma doesnt give you more candy
+- [x] GOING INTO BATHROOM SHOPLIFINGP!!?!=!=

@@ -168,6 +168,10 @@ CHOICE_LINK yes
 	see you soon.
 
 
+DIALOGUE door_restroom_items
+	cosmic law forbids going to the restroom with your shopping basket.
+
+
 DIALOGUE battle_inspect
 	here's the dirt, boss:
 	name: %s

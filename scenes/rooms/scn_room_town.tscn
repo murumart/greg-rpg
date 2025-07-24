@@ -591,7 +591,7 @@ size = Vector2(88, 31)
 size = Vector2(20, 375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev43v"]
-size = Vector2(33, 324)
+size = Vector2(33, 311)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhmci"]
 size = Vector2(99, 41.5)
@@ -2698,10 +2698,10 @@ extents = Vector2i(8, 32)
 spawnpoint = Vector2i(18, 0)
 
 [node name="UpHouseGate" parent="Areas" instance=ExtResource("9_0hylv")]
-position = Vector2(-579, -102)
+position = Vector2(-579, -121)
 destination = &"greg_house"
 gate_id = &"house-town_up"
-extents = Vector2i(8, 32)
+extents = Vector2i(8, 23)
 spawnpoint = Vector2i(18, 0)
 
 [node name="6Grass" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("10_orhm2")]
@@ -2756,7 +2756,7 @@ required_for_detection = 0.6
 player = NodePath("../../Greg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/2Grass"]
-position = Vector2(-6.5, -13)
+position = Vector2(-6.5, -53.5)
 shape = SubResource("RectangleShape2D_ev43v")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/2Grass"]

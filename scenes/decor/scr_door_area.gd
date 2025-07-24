@@ -1,5 +1,7 @@
 extends Area2D
 
+signal knocked
+
 # overworld doors area
 # can be entered or knocked on
 
@@ -16,6 +18,7 @@ func _enter_tree() -> void:
 
 
 func on_interaction() -> void:
+	knocked.emit() # can disable destination at thsi step
 	# if a destination exists, go there
 	if DIR.room_exists(destination):
 		LTS.gate_id = gate_id

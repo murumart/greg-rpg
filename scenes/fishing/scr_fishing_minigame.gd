@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 			depth += delta * speed
 			spawner.depth = depth
 			update_points_display()
-			spawner.background_fish(Vector2(randf_range(-60, 60), 75))
+			spawner.background_fish(Vector2(randf_range(-60, 60), 65))
 			if randf() < 0.00001  * delta:
 				spawner.fish_car_timer.start(0.5)
 			if spawner.fish_car_timer.time_left and Engine.get_physics_frames() % 16 == 0:
@@ -251,7 +251,7 @@ func end() -> void:
 func set_water_color(to: Color) -> void:
 	for x in water_layers:
 		var layer := x as ColorRect
-		layer.color = to
+		layer.color = Color(to, layer.color.a)
 
 
 func update_points_display() -> void:

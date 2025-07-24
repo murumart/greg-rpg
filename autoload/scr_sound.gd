@@ -100,10 +100,10 @@ func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 
 	var tween := create_tween().set_ease(fade_out_ease_type).set_trans(trans_type)
 	tween.tween_property(player, "volume_db", -80.0, DEFAULT_WAIT_SPEED/float(fade_speed))
-	tween.step_finished.connect(_on_fadeout_tween_step_finished.bind(player, options), CONNECT_ONE_SHOT)
+	tween.finished.connect(_on_fadeout_tween_step_finished.bind(player, options), CONNECT_ONE_SHOT)
 
 
-func _on_fadeout_tween_step_finished(_int_stupid: int, player, options := {}):
+func _on_fadeout_tween_step_finished(player, options := {}):
 	# _int_stupid is provided by the tween.step_finished signal, I don't need it for anything
 	var do_save_audio_position = options.get("save_audio_position", true)
 

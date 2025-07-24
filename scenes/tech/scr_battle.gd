@@ -171,7 +171,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			tex.flip_v = e.strength < 0
 			var lab := Label.new()
 			lab.text = "%s lvl %s for %s turns" % [
-					e.type.name, e.strength, e.duration]
+					e.type.name, roundi(e.strength), e.duration]
 			cont.add_child(tex)
 			cont.add_child(lab)
 			status_effects_list.add_child(cont)

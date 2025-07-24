@@ -117,6 +117,13 @@ CHAR grandma
 	you're stalling.
 
 
+DIALOGUE grandma_fight_stupid
+CHAR grandma
+	dear... you're having some issues, aren't you?
+	can't find the damn "attack the enemy" button??
+	we don't have time for this nonsense!!!
+
+
 DIALOGUE grandma_diploma_use
 CHAR grandma
 	a "diploma?"

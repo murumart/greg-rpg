@@ -63,8 +63,7 @@
               "title": "Tarikas"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -212,12 +211,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "75ba75063ceb51c4",
+  "active": "0cfbe9572ff8bd75",
   "lastOpenFiles": [
+    "Bugs.md",
     "Notes.md",
     "Update goals.md",
     "Tarikas.md",
-    "Bugs.md",
     "Police.md",
     "Pasted image 20250710193306.png",
     "New Text Document.txt",

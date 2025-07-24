@@ -21,6 +21,11 @@ func _ready() -> void:
 
 
 func act() -> void:
+	if reference_to_opposing_array[0].character.health_perc() < 0.5:
+		SOL.dialogue("grandma_fight_sütupid")
+		SND.play_song("")
+		await SOL.dialogue_closed
+		attacked = true
 	if not attacked:
 		if turn == 14:
 			SOL.dialogue("grandma_fight_stall")
@@ -31,7 +36,8 @@ func act() -> void:
 	SOL.add_ui_child(sprite)
 	tw.tween_property(sprite, ^"position", Vector2(79, 99), 0.2)
 	tw.parallel().tween_property(sprite, ^"scale", Vector2.ONE * 2, 0.1)
-	tw.tween_property(SND.current_song_player, ^"pitch_scale", 0.92, 0.6)
+	if is_instance_valid(SND.current_song_player):
+		tw.tween_property(SND.current_song_player, ^"pitch_scale", 0.92, 0.6)
 	tw.tween_callback(SND.play_sound.bind(preload("res://sounds/scary_zoomin.ogg")))
 	tw.tween_callback(SND.play_song.bind(""))
 	tw.tween_property(sprite, ^"scale", Vector2.ONE * 4, 0.75).set_ease(Tween.EASE_IN)

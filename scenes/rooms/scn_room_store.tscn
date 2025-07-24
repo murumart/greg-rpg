@@ -993,6 +993,7 @@ position = Vector2(0, 10)
 destination = &"store_restroom"
 gate_id = &"store-restroom"
 spawn_point = NodePath("../Node2D")
+fail_dialogue = "door_restroom_items"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Door/DoorArea"]
 shape = SubResource("RectangleShape2D_reu4o")

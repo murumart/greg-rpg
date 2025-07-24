@@ -1,7 +1,7 @@
 - [x] Interaction areas dont work
 	- [x] bird in town
 	- [x] house doors
-- [ ] displays float in battle status effect menu
+- [x] displays float in battle status effect menu
 - [x] bird attack target feet
 - [x] ushanka guy walks nowhere
 - [ ] dialogue load in biking game? in kiok menu??

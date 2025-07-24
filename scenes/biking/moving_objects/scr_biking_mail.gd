@@ -56,18 +56,23 @@ func _on_body_entered(_body: Node) -> void:
 	if freeze:
 		return
 	bounces += 1
-	SND.play_sound(paper_sounds.pick_random(), {"volume": -16, "pitch_scale": randf_range(0.9, 1.3)})
+	var sndpitch := randf_range(0.9, 1.3)
+	if saucy:
+		sndpitch -= 0.3
+	SND.play_sound(paper_sounds.pick_random(), {"volume": -16, "pitch_scale": sndpitch})
 	if bounces >= bounce_limit:
 		$CollisionShape2D.set_deferred("disabled", true)
 	if saucy:
-		$SaucyParticles.amount_ratio = 1
-		create_tween().tween_property($SaucyParticles, "amount_ratio", 0.169, 0.1)
+		SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"), {pitch_scale = 0.8, volume = 2})
+		create_tween().tween_property($SaucyParticles, "amount_ratio", 0.169, 0.1).from(1)
 
 
 func set_saucy() -> void:
+	SND.play_sound(preload("res://sounds/spirit/splash_attack.ogg"), {pitch_scale = 1.4})
 	physics_material_override.bounce = 1.0
 	physics_material_override.friction = 0.05
 	mass = 0.2
+	saucy = true
 	$SaucyParticles.emitting = true
 	$Sprite2D.modulate = Color.INDIAN_RED
 	bounce_limit = 3

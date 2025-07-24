@@ -148,7 +148,7 @@ offset_left = -83.0
 offset_top = -63.0
 offset_right = 83.0
 offset_bottom = 64.0
-color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
+color = Color(0.012, 0.314, 0.498, 0.614)
 
 [node name="Bg" type="ColorRect" parent="Layers"]
 material = SubResource("ShaderMaterial_6q45r")
@@ -157,7 +157,7 @@ offset_left = -83.0
 offset_top = -63.0
 offset_right = 83.0
 offset_bottom = 64.0
-color = Color(0.0117647, 0.313726, 0.498039, 0.286275)
+color = Color(0.012, 0.314, 0.498, 0.652)
 
 [node name="Fg" type="ColorRect" parent="Layers"]
 z_index = 1

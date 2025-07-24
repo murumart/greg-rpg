@@ -34,7 +34,7 @@ enemies = Array[StringName]([&"turf", &"turf"])
 background = "grass"
 music = "touch_me"
 party = Array[StringName]([])
-death_reason = "default"
+death_reason = 0
 start_text = ""
 victory_music = &"victory"
 stop_music_before_end = true
@@ -42,6 +42,7 @@ kill_music = true
 play_fanfare = true
 crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("10_ai4se")]({})
+increment_data_with_enemies = &""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k2qia"]
 size = Vector2(84, 20)
@@ -175,6 +176,8 @@ func _choose_lines() -> Array[StringName]:
 [node name="LakeCorridor" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_k2qia")
+music = "birds"
+music_fade_time = 0.5
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 script = ExtResource("2_k2qia")

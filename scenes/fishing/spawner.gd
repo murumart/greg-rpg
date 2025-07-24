@@ -48,8 +48,9 @@ func spawn_swimmer(node: FishingFish, coords: Vector2, background := false) -> v
 		node.decor = true
 		var fishsc := randf_range(0.2, 0.8)
 		node.scale = Vector2(fishsc, fishsc)
-		node.yspeed = roundi(randf_range(40 * fishsc, 60 * fishsc))
 		node.modulate = Color(0.8, 0.9, 1.0, 0.8 * fishsc)
+		node.yspeed *= fishsc
+		node.speed *= fishsc
 	fish_parent.add_child(node)
 	node.hook_area_collision.scale *= hook_data.fish_hitbox_size_multiplier
 	if background:

@@ -24,6 +24,9 @@ var item_storage := []
 var store_data := {}
 
 var store_cashier := StoreCashier.new()
+var unpaid_items: Array:
+	get: return DAT.get_data("unpaid_items", [])
+	set(to): DAT.set_data("unpaid_items", to)
 
 var wet_slop := false
 
@@ -35,12 +38,16 @@ var wet_slop := false
 @onready var decor := $Decor
 @onready var mail_man_check_timer: Timer = $Decor/MailMan/MailManCheckTimer
 @onready var mail_man: OverworldCharacter = $Decor/MailMan
+@onready var restroom_door_area := $Decor/Door/DoorArea
 
 
 func _ready():
 	super._ready()
+	if not unpaid_items:
+		unpaid_items = []
 	store_cashier.finished.connect(_on_kassa_finished)
 	store_cashier.dothething.connect(dothethingthething)
+	restroom_door_area.knocked.connect(_restroom_door_knocked)
 	remove_child(ui)
 	SOL.add_ui_child(ui, -1)
 	set_store_wall_colours()
@@ -82,7 +89,7 @@ func set_store_wall_colours():
 
 func _on_item_taken(ittype: String):
 	if ittype in ResMan.items:
-		DAT.appenda("unpaid_items", ittype)
+		unpaid_items.append(ittype)
 	update_shopping_list()
 
 
@@ -172,7 +179,7 @@ func check_cashier_switch() -> void:
 
 
 func _on_kassa_speak_on_interact() -> void:
-	if _is_store_empty() and DAT.get_data("unpaid_items", []).is_empty():
+	if _is_store_empty() and unpaid_items.is_empty():
 		SOL.dialogue("cashier_%s_store_empty" % store_cashier.cashier)
 		return
 	if wet_slop:
@@ -192,7 +199,6 @@ func _on_kassa_finished() -> void:
 
 # display shopping cart items in the top right of the screen
 func update_shopping_list() -> void:
-	var unpaid_items: Array = DAT.get_data("unpaid_items", [])
 	var temp_dict := {}
 	var total := 0
 	for i in unpaid_items:
@@ -228,7 +234,7 @@ func _on_stealing_area_entered(body: Node2D) -> void:
 
 func _on_room_gate_entered() -> void:
 	var stolen_profit := 0
-	for i in DAT.get_data("unpaid_items", []):
+	for i in unpaid_items:
 		stolen_profit += ResMan.get_item(i).price
 	DAT.incri("%s_profit_stolen" % store_cashier.cashier, stolen_profit)
 	if wet_slop:
@@ -241,9 +247,6 @@ func dothethingthething() -> void:
 
 
 func is_mail_man_here() -> bool:
-	if ResMan.get_character("greg").level >= 50 and not DAT.get_data(
-			"vampire_fought", false):
-		return false
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
 		return false
 	if DAT.get_data("biking_games_finished", 0) < 1:
@@ -266,3 +269,10 @@ func _is_store_empty() -> bool:
 		if int(shelf.type) != 0:
 			return false
 	return true
+
+
+func _restroom_door_knocked() -> void:
+	if not unpaid_items.is_empty():
+		restroom_door_area.destination = &""
+	else:
+		restroom_door_area.destination = &"store_restroom"

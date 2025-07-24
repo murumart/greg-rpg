@@ -85,8 +85,8 @@ func _on_player_act_finished() -> void:
 	if dialogue_key in DISABLE_SELF_HARM_LINES:
 		battle_reference.attack_button.disabled = true
 	if progress == 3:
-		if battle_reference.party[0].character.inventory.is_empty():
-			battle_reference.party[0].character.inventory.append("pocket_candy")
+		if battle_reference.party[0].character.inventory.count(&"pocket_candy") <= 0:
+			battle_reference.party[0].character.inventory.append(&"pocket_candy")
 	# ending the battle
 	if progress > 6:
 		await SOL.dialogue_closed
