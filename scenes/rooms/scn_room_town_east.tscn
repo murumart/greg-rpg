@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=71 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="8_k0yp4"]
 [ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="9_c52i7"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="9_fhxp8"]
+[ext_resource type="Script" uid="uid://bhmcqufm3yow0" path="res://scenes/rooms/town/east_housing_block.gd" id="10_2mkd6"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="10_stciw"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="11_bu27y"]
 [ext_resource type="Texture2D" uid="uid://cm5o07u8hcwbh" path="res://sprites/characters/overworld/spr_atgirl_overworld.png" id="12_w54ah"]
@@ -90,6 +91,9 @@ func _on_atgirl_inspected() -> void:
 			girl.default_lines.clear()
 			DAT.set_data(\"atgirl_progress\", progress)
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mkd6"]
+size = Vector2(268, 20)
 
 [sub_resource type="Animation" id="Animation_t87sn"]
 length = 0.001
@@ -252,7 +256,7 @@ _data = {
 [sub_resource type="Resource" id="Resource_nubog"]
 script = ExtResource("17_5y8yq")
 title = "skateboard"
-silver_required = 550
+silver_required = 779
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"skateboard"])
@@ -506,7 +510,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-293, -4)
+position = Vector2(-779, -150)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]
@@ -530,9 +534,11 @@ position = Vector2(137, -150)
 [node name="Houses" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="HousingBlock" type="Node2D" parent="Houses"]
+[node name="HousingBlock" type="Node2D" parent="Houses" node_paths=PackedStringArray("cam")]
 y_sort_enabled = true
 position = Vector2(-672, -248)
+script = ExtResource("10_2mkd6")
+cam = NodePath("../../Greg/Camera")
 
 [node name="OverworldTiles" type="Node2D" parent="Houses/HousingBlock"]
 y_sort_enabled = true
@@ -600,6 +606,15 @@ position = Vector2(0, -8)
 texture = ExtResource("12_w54ah")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CameraArea" type="Area2D" parent="Houses/HousingBlock"]
+position = Vector2(40, 81)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/CameraArea"]
+shape = SubResource("RectangleShape2D_2mkd6")
 
 [node name="Skatepark" type="Node2D" parent="Houses"]
 y_sort_enabled = true

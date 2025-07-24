@@ -25,13 +25,7 @@ func _option_init(opt: Dictionary) -> void:
 func _ready() -> void:
 	super._ready()
 	talker.job_request.connect(enter_job)
-	if (not DAT.get_data("vampire_fought", false)
-			and ResMan.get_character("greg").level > 49
-			and LTS.gate_id != LTS.GATE_EXIT_BIKING):
-		hes_dead = true
-		notes.show()
-		ushanka_guy_cutscene.consequences()
-	elif can_ushanka_guy_cutscene():
+	if can_ushanka_guy_cutscene():
 		ushanka_guy_cutscene.start()
 	else:
 		ushanka_guy_cutscene.cleanup()

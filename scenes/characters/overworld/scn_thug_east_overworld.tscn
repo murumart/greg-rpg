@@ -125,7 +125,7 @@ shape = SubResource("CircleShape2D_3rax2")
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_nn7k1")
 animation = &"walk_down"
-frame_progress = 0.651242
+frame_progress = 0.110381
 
 [node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_2ypi4")

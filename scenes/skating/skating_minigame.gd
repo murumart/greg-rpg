@@ -70,6 +70,7 @@ func end() -> void:
 	await create_tween().tween_interval(1).finished
 	_highscore("skating_points_hiscore", ui.points)
 	_highscore("skating_combo_hiscore", roundi(ui.combo_hiscore))
+	DAT.incri("skating_games_finished", 1)
 	var rews := BattleRewards.new()
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP

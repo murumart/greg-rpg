@@ -33,7 +33,7 @@ hand by radio
 	https://teethinvitro.neocities.org/
 
 fake cat by webcatz
-	https://webcatz.neocities.org/
+	https://juneish.neocities.org/
 
 old gun from pixabay
 	https://pixabay.com/photos/guns-old-vintage-history-5487430/
@@ -55,6 +55,6 @@ voice acting by alan, julian, kin, webcatz
 
 pizz animation by webcatz
 
-thank you to play testers alan, drakonic, kin, radio, webcatz
+thank you to play testers alan, cresentri., drakonic, kin, radio, webcatz
 
 thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, webcatz
