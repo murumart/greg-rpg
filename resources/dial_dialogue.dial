@@ -2962,7 +2962,8 @@ DIALOGUE skate_worry_3
 
 DIALOGUE skate_worry_good
 	all the thugs seem to have disappeared...
-	we can skate again! how cool is that!
+	the skatepark used to be full of thugs...
+	but now we can skate again! how cool is that!
 	unfortunately, i remembered that i can't skate.
 	or partake in social situations. aw man...
 
@@ -3401,13 +3402,13 @@ DATA_LINK mfia_first_corrects,3
 	would you look at that...
 	you actually wrote all the numbers down correctly.
 DATA_LINK 
-	in any case, it's really boring work...
+	what boring work, though!
 CHAR mafia_yellow
 	i would rather die than write another number!
 CHAR mafia_blue
-	no you wouldn't!
-	but it wouldn't hurt to have you back here...
-	we know you've been dealing with the po-po...
+	you would not.
+	but it wouldn't hurt to have you back here, pal...
+	we know you've been dealing with the po-po.
 CHAR mafia_yellow
 	the [font_size=10]poo-poo!!![/font_size]
 CHAR mafia_blue
@@ -3415,9 +3416,19 @@ CHAR mafia_blue
 	their codes must be second nature to you by now.
 	if you help us enough, we might do you a little favour...
 CHAR mafia_yellow
-	our love turns out to be... a little bit explosive!!
+	mafia never forgets!
 CHAR mafia_blue
 	try not to scare off the new guy too much, maybe?
+
+
+DIALOGUE mafia_yellow_usual
+CHAR mafia_yellow
+	talk to the other guy! he's the brains!
+	i'm the prawn in this operation.
+CHAR mafia_blue
+	the "brawn", brother. we've been over this.
+CHAR mafia_yellow
+	i shrimply see it differently.
 
 
 DIALOGUE lake_hint_1

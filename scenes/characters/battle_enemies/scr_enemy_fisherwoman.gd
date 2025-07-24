@@ -5,8 +5,6 @@ const Blocks = preload("res://scenes/fishing/blocks.gd")
 const Hook = preload("res://scenes/fishing/hook.gd")
 const Spawner = preload("res://scenes/fishing/spawner.gd")
 
-const FLOWERCOLOR = "#99ff61"
-
 @onready var blocks: Blocks = $FishingMinigame/Blocks
 @onready var hook: Hook = $FishingMinigame/Hook
 @onready var fishing_minigame: Node2D = $FishingMinigame
@@ -58,7 +56,7 @@ func dialogue() -> void:
 		0: dlg.add_line(dlg.ml("go away."))
 		1: dlg.add_line(dlg.ml("i knew you'd come back to toy with me."))
 		2: dlg.add_line(dlg.ml("you made a mistake by bringing me here."))
-		3: dlg.add_line(dlg.ml("giving me the [color=%s]flower[/color] was a mistake, too." % FLOWERCOLOR))
+		3: dlg.add_line(dlg.ml("giving me the [color=%s]flower[/color] was a mistake, too." % Math.FLOWERCOLOR))
 		4: dlg.add_line(dlg.ml("so, you're finally correcting your mistake."))
 		6: dlg.add_line(dlg.ml("...i don't remember you smelling this bad, though."))
 		8: dlg.add_line(dlg.ml("..."))
@@ -67,7 +65,7 @@ func dialogue() -> void:
 			dlg.add_line(dlg.ml("you know what? whatever!!"))
 			dlg.add_line(dlg.ml("this is why i'm here..."))
 			dlg.add_line(dlg.ml("but, i'll tell you officially, now."))
-			dlg.add_line(dlg.ml("i reject my [color=%s]flower[/color]!" % FLOWERCOLOR).stext_speed(0.8))
+			dlg.add_line(dlg.ml("i reject my [color=%s]flower[/color]!" % Math.FLOWERCOLOR).stext_speed(0.8))
 			dlg.add_line(dlg.ml("if you want it back so bad..."))
 			dlg.add_line(dlg.ml("well, go fish for it!"))
 	d_progress += 1

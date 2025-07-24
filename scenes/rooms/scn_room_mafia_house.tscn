@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dyjcd2w81thvw"]
+[gd_scene load_steps=34 format=4 uid="uid://dyjcd2w81thvw"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_xrpuv"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_332tv"]
@@ -13,8 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="8_raprc"]
 [ext_resource type="AudioStream" uid="uid://b8p5vxpp60k4o" path="res://music/mus_police.ogg" id="9_3kxlg"]
 [ext_resource type="Script" uid="uid://cfelp6jino56j" path="res://scenes/rooms/scr_mafia_discovery.gd" id="9_fieed"]
+[ext_resource type="AudioStream" uid="uid://byqw0xlh82vyb" path="res://sounds/crickets.ogg" id="11_nrscc"]
 [ext_resource type="PackedScene" uid="uid://b0feagr6euqrj" path="res://scenes/decor/chair.tscn" id="12_4q62v"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="13_x8o8o"]
 [ext_resource type="AudioStream" uid="uid://dutf5v5qygecx" path="res://sounds/misc_click.ogg" id="14_wqmof"]
+[ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="14_xmqwb"]
+[ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="15_nrscc"]
+[ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="16_xmqwb"]
+[ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="18_2x3tf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmdfs"]
 texture = ExtResource("2_332tv")
@@ -2011,8 +2017,79 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_57vqo"]
-size = Vector2(8, 5)
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2x3tf"]
+clip_count = 2
+clip_0/name = &"Mus Police"
+clip_0/stream = ExtResource("9_3kxlg")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Crickets"
+clip_1/stream = ExtResource("11_nrscc")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 2,
+"to_time": 0
+}
+}
+
+[sub_resource type="Resource" id="Resource_2x3tf"]
+script = ExtResource("14_xmqwb")
+text = "newspaper clipping. something on \"mana radio interference\"."
+character = ""
+emotion = ""
+text_speed = 1.0
+data_link = []
+choice_link = &""
+choices = []
+instaskip = false
+loop = -1
+item_to_give = &""
+spirit_to_give = &""
+silver_to_give = 0
+portrait_scale = Vector2(1, 1)
+set_data = []
+callback = Callable()
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_an4ff"]
+script = ExtResource("15_nrscc")
+name = &""
+lines = Array[ExtResource("14_xmqwb")]([SubResource("Resource_2x3tf")])
+alias = ""
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4661"]
+size = Vector2(12, 20)
+
+[sub_resource type="Resource" id="Resource_e4661"]
+script = ExtResource("18_2x3tf")
+title = "soap"
+silver_required = 800
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"explosive_soap"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_5klj5"]
+script = ExtResource("18_2x3tf")
+title = "firecr"
+silver_required = 180
+input = Array[StringName]([])
+silver_granted = 0
+output = Array[StringName]([&"fire_cracker"])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
+
+[sub_resource type="Resource" id="Resource_gqpp7"]
+script = ExtResource("18_2x3tf")
+title = "sell"
+silver_required = 0
+input = Array[StringName]([&"fire_cracker"])
+silver_granted = 150
+output = Array[StringName]([])
+metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_girn8"]
 size = Vector2(111, 83)
@@ -2055,7 +2132,7 @@ tile_map_data = PackedByteArray("AAD9/wEAAQANAAkAAAD+/wEAAQAOAAkAAAD//wEAAQAOAAk
 tile_set = SubResource("TileSet_tjy6q")
 
 [node name="Greg" parent="." instance=ExtResource("3_k4axw")]
-position = Vector2(99, 9)
+position = Vector2(83, -10)
 
 [node name="Camera2D" type="Camera2D" parent="Greg"]
 limit_left = -80
@@ -2068,6 +2145,7 @@ position = Vector2(0, -10)
 scale = Vector2(0.640625, 0.40625)
 color = Color(0.362695, 0.409522, 0.410723, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
+metadata/_edit_lock_ = true
 
 [node name="Decorations" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2079,44 +2157,21 @@ scale = Vector2(0.953125, 0.71875)
 color = Color(0.314451, 0.499589, 0.50434, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 
-[node name="Chair" type="StaticBody2D" parent="Decorations"]
-position = Vector2(16, 14)
-
-[node name="Sprite2D" type="Sprite2D" parent="Decorations/Chair"]
-position = Vector2(0, -5)
-texture = ExtResource("4_3esa6")
-region_enabled = true
-region_rect = Rect2(19, 68, 10, 12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Chair"]
-position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_57vqo")
-
-[node name="Chair2" type="StaticBody2D" parent="Decorations"]
-position = Vector2(-31, 14)
-
-[node name="Sprite2D" type="Sprite2D" parent="Decorations/Chair2"]
-position = Vector2(0, -5)
-texture = ExtResource("4_3esa6")
-region_enabled = true
-region_rect = Rect2(19, 68, 10, 12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Chair2"]
-position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_57vqo")
-
-[node name="MafiaBlue" parent="Decorations" instance=ExtResource("5_0srwq")]
+[node name="MafiaBlue" parent="Decorations" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
 unique_name_in_owner = true
 position = Vector2(-17, 13)
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaBlue"]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("6_xapwm")
 animation = &"walk_down"
 
-[node name="MafiaYellow" parent="Decorations" instance=ExtResource("5_0srwq")]
+[node name="MafiaYellow" parent="Decorations" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
 unique_name_in_owner = true
 position = Vector2(1, 13)
+animated_sprite = NodePath("AnimatedSprite2D")
+default_lines = Array[StringName]([&"mafia_yellow_usual"])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaYellow"]
 position = Vector2(0, -8)
@@ -2125,13 +2180,14 @@ animation = &"walk_down"
 
 [node name="Radio" parent="Decorations" instance=ExtResource("8_raprc")]
 position = Vector2(88, -53)
-default_song = ExtResource("9_3kxlg")
+default_song = SubResource("AudioStreamInteractive_2x3tf")
 
 [node name="PointLight2D" type="PointLight2D" parent="Decorations/Radio" groups=["lights"]]
 position = Vector2(1.90735e-06, 11)
 scale = Vector2(0.1875, 0.71875)
 color = Color(0.125617, 0.121411, 0.106652, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
+metadata/_edit_lock_ = true
 
 [node name="GregPos" type="Marker2D" parent="Decorations/Radio"]
 unique_name_in_owner = true
@@ -2143,6 +2199,120 @@ position = Vector2(-18, 5)
 
 [node name="Chair3" parent="Decorations" instance=ExtResource("12_4q62v")]
 position = Vector2(101, -54)
+
+[node name="Chair4" parent="Decorations" instance=ExtResource("12_4q62v")]
+position = Vector2(-31, 13)
+
+[node name="Chair5" parent="Decorations" instance=ExtResource("12_4q62v")]
+position = Vector2(13, 15)
+
+[node name="Papers" type="Node2D" parent="Decorations"]
+y_sort_enabled = true
+position = Vector2(-19, 29)
+
+[node name="Sprite2D" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-11, -12)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-11, -14)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-11, -16)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(0, -13)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(0, -15)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(0, -17)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-4, -7)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-4, -9)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(-4, -11)
+region_enabled = true
+region_rect = Rect2(70, 32, 10, 8)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(52, -10)
+region_enabled = true
+region_rect = Rect2(80, 32, 10, 8)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(-10, 4)
+texture = ExtResource("4_3esa6")
+offset = Vector2(43, -6)
+region_enabled = true
+region_rect = Rect2(80, 32, 10, 8)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Decorations/Papers"]
+position = Vector2(25, -121)
+texture = ExtResource("4_3esa6")
+offset = Vector2(19, 46)
+region_enabled = true
+region_rect = Rect2(80, 32, 10, 8)
+
+[node name="InspectArea" type="Area2D" parent="Decorations/Papers/Sprite2D12"]
+position = Vector2(19, 46)
+script = ExtResource("13_x8o8o")
+dialogue = SubResource("Resource_an4ff")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Papers/Sprite2D12/InspectArea"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_e4661")
+
+[node name="KidOverworld" parent="Decorations" instance=ExtResource("16_xmqwb")]
+position = Vector2(13, -31)
+trades = Array[ExtResource("18_2x3tf")]([SubResource("Resource_e4661"), SubResource("Resource_5klj5"), SubResource("Resource_gqpp7")])
+
+[node name="PointLight2D2" type="PointLight2D" parent="Decorations/KidOverworld" groups=["lights"]]
+position = Vector2(0, -8)
+scale = Vector2(0.578125, 0.46875)
+color = Color(0.362695, 0.410723, 0.369006, 1)
+texture = SubResource("GradientTexture2D_3kxlg")
 
 [node name="RoomGate" parent="." instance=ExtResource("5_ce38q")]
 position = Vector2(104, 22)
@@ -2169,6 +2339,7 @@ position = Vector2(8, -20)
 scale = Vector2(1.14063, 0.84375)
 color = Color(0.0490213, 0.048629, 0.0472524, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
+metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Areas/DiscoveryArea"]
 stream = ExtResource("14_wqmof")

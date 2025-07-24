@@ -5,6 +5,7 @@ class_name Math
 # most of these are only used in like 1 place forever lol
 
 const INT_MAX := 9223372036854775807
+const FLOWERCOLOR = "#99ff61"
 
 const LEVEL_UP_CURVE := preload("res://resources/res_levelup_curve.tres")
 

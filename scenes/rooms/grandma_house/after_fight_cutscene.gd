@@ -2,8 +2,6 @@ extends Node2D
 
 const G := preload("res://scenes/characters/overworld/scr_grandma_overworld.gd")
 
-const FLOWERCOLOR := "#99ff61"
-
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var grandma: G = $"../Grandma"
 @onready var camera: Camera2D = $"../Greg/Camera"
@@ -92,7 +90,7 @@ func cs1() -> void:
 	dialogue_box.close()
 
 	dlg2.reset().set_char("silent").add_line(dlg.ml("those who came before").stext_speed(0.5))
-	dlg.reset().set_char("grandma_talk").add_line(dlg.ml("maybe, if you find [color=%s]eight flowers..." % FLOWERCOLOR))
+	dlg.reset().set_char("grandma_talk").add_line(dlg.ml("maybe, if you find [color=%s]eight flowers..." % Math.FLOWERCOLOR))
 	dlg2.speak(dialogue_box)
 	await dlg.speak_choice()
 	dialogue_box.close()

@@ -37,6 +37,12 @@ func clear_choice_link() -> DialogueBuilder:
 	return self
 
 
+func al(txt: String) -> DialogueLine:
+	var line := ml(txt)
+	add_line(line)
+	return line
+
+
 func add_line(line: DialogueLine) -> DialogueBuilder:
 	_dial.add_line(line)
 
