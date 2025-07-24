@@ -325,6 +325,10 @@ DIALOGUE insp_stone_column
 	what is the purpose of this lone stone column?
 
 
+DIALOGUE insp_yellow_column
+	it is heavy with gold.
+
+
 DIALOGUE insp_yellow_column_active
 	you feel pretty booned right now.
 

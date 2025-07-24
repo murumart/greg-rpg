@@ -402,7 +402,7 @@ offset_left = 9.0
 offset_top = 103.0
 offset_right = 49.0
 offset_bottom = 111.0
-text = "press x to give up"
+text = "press [cancel] to give up"
 
 [node name="RockSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8v4t4")

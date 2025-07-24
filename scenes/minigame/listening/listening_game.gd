@@ -223,6 +223,7 @@ func _physics_process(delta: float) -> void:
 			pp.modulate = Color.GRAY
 			if old_score < signal_scores[i]:
 				pp.modulate = signal_colors[i].darkened(0.25)
+				pp.modulate = signal_colors[i].darkened(0.25)
 
 			if signal_scores[i] >= 1.0:
 				finisheds += 1
