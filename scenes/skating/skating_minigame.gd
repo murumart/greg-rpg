@@ -60,13 +60,20 @@ func jumpscare() -> void:
 	jumpscare_timer.start(randf_range(30, 60))
 
 
+func _highscore(key: StringName, val: int) -> void:
+	if DAT.get_data(key, 0) < val:
+		DAT.set_data(key, val)
+
+
 func end() -> void:
 	SND.play_song("")
 	await create_tween().tween_interval(1).finished
+	_highscore("skating_points_hiscore", ui.points)
+	_highscore("skating_combo_hiscore", roundi(ui.combo_hiscore))
 	var rews := BattleRewards.new()
 	var reward := Reward.new()
 	reward.type = BattleRewards.Types.EXP
-	reward.property = str(floori(ui.points * 0.000166667))
+	reward.property = str(floori(ui.points * 0.00066667))
 	rews.add(reward)
 	rews.grant()
 	SOL.dialogue_closed.connect(func():
@@ -74,5 +81,3 @@ func end() -> void:
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "town"))
 	, CONNECT_ONE_SHOT)
 	DAT.incri("skatings_played", 1)
-
-

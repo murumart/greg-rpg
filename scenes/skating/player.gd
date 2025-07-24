@@ -147,7 +147,7 @@ func mod_balance(delta: float) -> void:
 
 func flip() -> void:
 	sprite_look(true)
-	velocity.y -= 150.0
+	velocity.y -= 160.0
 	trick()
 	did_trick.emit(100)
 	boredom = 0.0

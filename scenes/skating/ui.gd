@@ -16,6 +16,7 @@ const COMBO_MESSAGES:Array[String] = [
 var points := 0
 var displayed_points := 0
 var combo := 0.0
+var combo_hiscore := 0.0
 var two_x_mode := false
 
 @onready var balance_pointer: Sprite2D = $Panel/Balance/Pointer
@@ -38,6 +39,8 @@ func _physics_process(delta: float) -> void:
 			points_tallied_sound.play()
 			points_tallied_sound.set_meta("played", true)
 	combo = maxf(combo - delta * sqrt(ceilf(combo) * 0.5), 0.0)
+	if combo > combo_hiscore:
+		combo_hiscore = combo
 	combo_label.text = "combo " + str(maxi(ceili(combo), 1)) + "x"
 	if two_x_mode:
 		SOL.vfx_damage_number(Vector2(60, 10), "2x mode!!!", Color.RED, 1.5, {"parent": self, "speed": 4})
@@ -77,4 +80,3 @@ func add_points(amt: int) -> void:
 			tw.tween_callback(jack_particles.set_emitting.bind(true))
 			tw.tween_interval(5)
 			tw.tween_callback(jack_particles.set_emitting.bind(false))
-

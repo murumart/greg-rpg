@@ -1,10 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://qfdqyhu4un1"]
+[gd_scene load_steps=46 format=3 uid="uid://qfdqyhu4un1"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_fjpor"]
 [ext_resource type="Script" uid="uid://di2ov3idlu4ln" path="res://scenes/biking/scr_biking_game.gd" id="1_h455q"]
 [ext_resource type="Texture2D" uid="uid://d2hgl4bddaykp" path="res://sprites/biking/background/spr_background_sky.png" id="2_4w4l6"]
+[ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_h1naa"]
 [ext_resource type="Texture2D" uid="uid://nfu7bpddugd1" path="res://sprites/biking/background/spr_background_trees.png" id="3_0esb8"]
 [ext_resource type="Script" uid="uid://wv31dvn686yw" path="res://scenes/biking/scr_biking_greg.gd" id="3_eueen"]
+[ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_gng6e"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_4d1jd"]
 [ext_resource type="Texture2D" uid="uid://dsj2gsumih5y8" path="res://sprites/biking/spr_greg.png" id="4_n6l6t"]
 [ext_resource type="Texture2D" uid="uid://dirs0ik1uh6lm" path="res://sprites/biking/background/spr_town.png" id="5_0mqsj"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_qc4rn"]
@@ -783,6 +786,19 @@ region = Rect2(22, 3, 6, 7)
 [node name="BikingGame" type="Node2D" groups=["speedsters"]]
 y_sort_enabled = true
 script = ExtResource("1_h455q")
+
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+script = ExtResource("2_h1naa")
+metadata/_custom_type_script = "uid://c200sjcxbtqxr"
+
+[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_gng6e")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate")]
+script = ExtResource("4_4d1jd")
+sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Camera" parent="." instance=ExtResource("5_qc4rn")]
 position = Vector2(80, 60)

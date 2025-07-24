@@ -21,10 +21,30 @@ func skatepark_setup() -> void:
 		skate_worry.default_lines.append_array(["skate_worry_bad", "skate_worry_3"])
 	else:
 		skate_worry.default_lines.append_array(["skate_worry_good", "skate_worry_3"])
-	jack_2.inspected.connect(func():
-		SOL.dialogue_closed.connect(func():
-			if SOL.dialogue_choice == "yes":
-				LTS.level_transition("res://scenes/skating/skating_minigame.tscn")
-				SOL.dialogue_choice = ""
-		, CONNECT_ONE_SHOT)
-	)
+	jack_2.inspected.connect(sk8r_kid_talk)
+
+
+func sk8r_kid_talk() -> void:
+	var dlg := DialogueBuilder.new()
+	var aval_choices := [&"bye", &"key", &"skate"]
+	dlg.al("yo.").schoices(aval_choices)
+	var choice := await dlg.speak_choice()
+	dlg.reset()
+	if choice == &"bye":
+		dlg.al("oy. it's reverse yo.")
+		await dlg.speak_choice()
+	elif choice == &"key":
+		dlg.al("the key to the [color=ff4422]mayor's apartment[/color]...")
+		dlg.al("that item is reserved for [color=ff4422]cool skaters[/color] only.")
+		dlg.al("please ask again when you're a [color=ff4422]cool skater[/color].")
+		await dlg.speak_choice()
+	elif choice == &"skate":
+		dlg.al("so you want to be a [color=ff4422]cool skaters[/color]...").schoices(["yes", "no"])
+		var c := await dlg.speak_choice()
+		dlg.reset()
+		if c == &"yes":
+			dlg.al("very well. here's my skateboard.")
+			dlg.al("move with movement keys, jump with %s and tilt with %s in the air."
+				% [KeybindsSettings.action_string(&"cancel"), KeybindsSettings.action_string(&"menu")])
+			await dlg.speak_choice()
+			LTS.level_transition("res://scenes/skating/skating_minigame.tscn")

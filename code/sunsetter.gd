@@ -15,7 +15,7 @@ func _ready() -> void:
 	var t := _sunset_triggered()
 	if t or lvl >= SUNSET_LEVEL and _correct_gate():
 		sky_modulate.color = SUNSET_COLOR
-		if sunset_music:
+		if sunset_music and room:
 			room.music = sunset_music
 		if not t:
 			DAT.set_data(TRIGGER_KEY, true)

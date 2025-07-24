@@ -5,12 +5,16 @@ const Mayor = preload("res://scenes/characters/overworld/scr_mayor_overworld.gd"
 @onready var mayor: Mayor = $"../Mayor"
 @onready var greg: PlayerOverworld = $"../../Greg"
 @onready var path: Node2D = $Path
+@onready var factory_in_front_of: Marker2D = $Path/Marker2D7
 
 
 func _ready() -> void:
 	if LTS.gate_id == &"town-east" and not DAT.get_data("saw_mayor_intro", false):
 		_play_intro_cutscene()
 		DAT.set_data("saw_mayor_intro", true)
+	if DAT.get_data("saw_mayor_intro", false):
+		mayor.global_position = factory_in_front_of.global_position
+		mayor.inspected.connect(_mayor_post_intro)
 
 
 func _play_intro_cutscene() -> void:
@@ -33,6 +37,14 @@ func _play_intro_cutscene() -> void:
 	dlg.add_line(dlg.ml("let's go for a stroll together."))
 	await dlg.speak_choice()
 	_walk()
+
+
+func _mayor_post_intro() -> void:
+	var dlg := DialogueBuilder.new().set_char("mayor")
+	dlg.al("well, son, didja find the key?")
+	dlg.al("the key to my [color=ff4422]apartment[/color]...")
+	dlg.al("the key to the [color=ff4422]factory[/color] is in there.")
+	await dlg.speak_choice()
 
 
 var target_index: int = 0
@@ -79,19 +91,20 @@ func _walkdial() -> void:
 		4: dlg.add_line(dlg.ml("what a good stroll we're having.").scallback(mayor.animate.bind(mayor.HEAD, "default", 8.0, Vector2(0, 2))))
 		5:
 			dlg.add_line(dlg.ml("do you want a subsidy for settling here?").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(0, 0))))
-			dlg.add_line(dlg.ml("take my money. (100 silver were received)").ssilver_to_give(100))
+			dlg.add_line(dlg.ml("buy yourself something nice, son. (100 silver were received)").ssilver_to_give(100))
 			dlg.add_line(dlg.ml("i hope you enjoyed this tour of my town."))
 			dlg.add_line(dlg.ml("thank you again for deciding to live here."))
 		6:
-			dlg.add_line(dlg.ml("however, son."))
-			dlg.add_line(dlg.ml("not quite enough, is it?").scallback(mayor.animate.bind(mayor.HEAD, "default", 8.0, Vector2(2, 0))))
+			dlg.add_line(dlg.ml("however."))
+			dlg.add_line(dlg.ml("not quite enough, is it, son?").scallback(mayor.animate.bind(mayor.HEAD, "default", 8.0, Vector2(2, 0))))
 			dlg.add_line(dlg.ml("you didn't even bring any children here.").scallback(SND.play_song.bind("")))
-			dlg.add_line(dlg.ml("don't worry. i have a [color=ff4422]plan[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(0, 0))))
+			dlg.add_line(dlg.ml("don'tcha worry. i have a [color=ff4422]plan[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(0, 0))))
 			dlg.add_line(dlg.ml("i'm going to open an [color=ff4422]evil portal[/color] to the [color=ff4422]spirit world[/color].").scallback(mayor.animate.bind(mayor.HEAD, "dark")))
 			dlg.add_line(dlg.ml("spirits would love to [color=ff4422]settle[/color] in my [color=ff4422]town[/color].").scallback(mayor.a_rarm.bind("finger")))
 			dlg.add_line(dlg.ml("i will do it. don't try to [color=ff4422]stop me[/color].").scallback(mayor.a_rarm.bind("hip")))
 			dlg.add_line(dlg.ml("i'm the [color=ff4422]mayor[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default")))
 			dlg.add_line(dlg.ml("if you did want to stop me, you'd need to get in the [color=ff4422]factory[/color].").scallback(mayor.a_larm.bind("finger")))
+			dlg.add_line(dlg.ml("the [color=ff4422]factory[/color] that is right above us here.").scallback(mayor.a_larm.bind("finger")))
 			dlg.add_line(dlg.ml("but it's [color=ff4422]locked[/color].").scallback(mayor.a_larm.bind("up")))
 			dlg.add_line(dlg.ml("and the key is in my apartment. [color=ff4422]red text[/color].").scallback(mayor.a_larm.bind("hip")))
 			dlg.add_line(dlg.ml("to enter my apartment, you need the [color=ff4422]key to my apartment[/color]."))
