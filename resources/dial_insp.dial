@@ -317,6 +317,10 @@ DIALOGUE insp_wet_floor
 	the floor is wet here. watch out!
 
 
+DIALOGUE insp_cardboard_box
+	a cardboard box.
+
+
 DIALOGUE insp_ph_doghouse
 	a pet-sized house.
 

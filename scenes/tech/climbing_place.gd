@@ -1,8 +1,13 @@
 extends Area2D
 
+signal started_climbing
+signal started_falling
+signal stopped_climbing
+
 enum States {
 	NOTHING,
 	CLIMBING,
+	HALTED,
 	FALLING,
 }
 
@@ -15,6 +20,8 @@ enum States {
 @export var ground_level_y: int
 @export var greg: PlayerOverworld
 @export var grace_time := 0.04
+@export var greg_speed := 60.0
+@export_range(0, 24) var initial_height: int = 8
 
 var state: States:
 	set(to): print("state is " + States.find_key(to)); state = to
@@ -23,7 +30,7 @@ var _grace := 0.0
 
 
 func _physics_process(delta: float) -> void:
-	if state == States.CLIMBING:
+	if state == States.CLIMBING and not LTS.transitioning:
 
 		if _w <= 0:
 			climp_sound.play()
@@ -32,9 +39,9 @@ func _physics_process(delta: float) -> void:
 		var climp_mov := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
 		if climp_mov:
 			_w -= delta
-		greg_climp.position += climp_mov * 60.0 * delta
+		greg_climp.position += climp_mov * greg_speed * delta
 
-		print(contact.get_overlapping_areas())
+		#print(contact.get_overlapping_areas())
 		if not contact.has_overlapping_areas():
 			if _grace < 0:
 				SND.play_sound(preload("res://sounds/skating/s9.ogg"))
@@ -48,8 +55,8 @@ func _physics_process(delta: float) -> void:
 				cease_climping()
 
 
-
 func _tumble() -> void:
+	started_falling.emit()
 	state = States.FALLING
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	var dist := ground_level_y - greg_climp.global_position.y
@@ -63,17 +70,19 @@ func _tumble() -> void:
 
 
 func begin_climping() -> void:
+	started_climbing.emit()
 	DAT.capture_player("climp")
 	greg.hide()
 	greg_climp.show()
 	greg_climp.rotation = 0
 	SND.play_sound(preload("res://sounds/skating/s2.ogg"))
-	greg_climp.global_position = greg.global_position + Vector2(0, -16)
+	greg_climp.global_position = greg.global_position + Vector2(0, -initial_height)
 	state = States.CLIMBING
 	contact.force_update_transform()
 
 
 func cease_climping() -> void:
+	stopped_climbing.emit()
 	greg.show()
 	DAT.free_player("climp")
 	greg_climp.hide()

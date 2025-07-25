@@ -2304,22 +2304,22 @@ size = Vector2(42, 12)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ax68p"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_hcwde"]
+[sub_resource type="Gradient" id="Gradient_5ei6i"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pwp5u"]
-gradient = SubResource("Gradient_hcwde")
+gradient = SubResource("Gradient_5ei6i")
 width = 14
 height = 28
 fill = 1
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="Gradient" id="Gradient_5ei6i"]
+[sub_resource type="Gradient" id="Gradient_ax68p"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ax68p"]
-gradient = SubResource("Gradient_5ei6i")
+gradient = SubResource("Gradient_ax68p")
 width = 48
 height = 48
 fill = 1

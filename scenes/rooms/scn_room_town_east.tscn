@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=81 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -18,11 +18,12 @@
 [ext_resource type="Script" uid="uid://dthwjus2ctg7m" path="res://scenes/rooms/town/scr_skatepark.gd" id="14_c52i7"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="15_kc1q2"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="16_bb7j1"]
-[ext_resource type="Texture2D" uid="uid://cbr62uxrfha2h" path="res://sprites/items/spr_ladder.png" id="16_jf6sy"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="16_x4kca"]
 [ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="17_5y8yq"]
+[ext_resource type="Texture2D" uid="uid://d0nvty0kh60pq" path="res://sprites/world/object/spr_ladder.png" id="17_lmkrq"]
 [ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="18_lmkrq"]
 [ext_resource type="Texture2D" uid="uid://bqvjjbaneagun" path="res://sprites/world/nature/spr_fake_cat.png" id="18_pcttj"]
+[ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="19_i5j2b"]
 [ext_resource type="Script" uid="uid://duxvpsyqmlgud" path="res://scenes/rooms/town/scr_fake_cat.gd" id="19_phep0"]
 [ext_resource type="Script" uid="uid://bot6miaxo87sk" path="res://code/scr_move_axis_add_area.gd" id="20_1fst2"]
 [ext_resource type="Texture2D" uid="uid://6kw7miy8f3tw" path="res://sprites/world/building/factory/overlay.png" id="20_fhxp8"]
@@ -101,9 +102,22 @@ size = Vector2(268, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkrq"]
 size = Vector2(19, 4.38356)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ani0e"]
+size = Vector2(10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5j2b"]
+atlas = ExtResource("17_lmkrq")
+region = Rect2(0, -42, 16, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqwmu"]
+size = Vector2(1, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
+size = Vector2(1, 65)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5j2b"]
 resource_local_to_scene = true
-size = Vector2(110, 104)
+size = Vector2(21, 16)
 
 [sub_resource type="Animation" id="Animation_t87sn"]
 length = 0.001
@@ -445,7 +459,9 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
 level_gain = 71
+new_items = Array[StringName]([&"ladder"])
 data_overrides = Dictionary[StringName, Variant]({
+&"mayor_ladder_actieve": true,
 &"saw_mayor_intro": true,
 &"thugs_fought": 40
 })
@@ -520,7 +536,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-779, -150)
+position = Vector2(-743, -150)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]
@@ -640,20 +656,52 @@ metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 position = Vector2(1.5, 0)
 shape = SubResource("RectangleShape2D_lmkrq")
 
+[node name="ClimbTarget" type="Area2D" parent="Houses/HousingBlock"]
+z_index = 1
+position = Vector2(-41, 9)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Houses/HousingBlock/ClimbTarget"]
+shape = SubResource("RectangleShape2D_ani0e")
+debug_color = Color(0.548942, 1, 0.453277, 0.419608)
+
 [node name="Ladder" type="Sprite2D" parent="Houses/HousingBlock"]
-position = Vector2(-42, 78)
-scale = Vector2(1, 2.28125)
-texture = ExtResource("16_jf6sy")
-offset = Vector2(1, -13.8082)
+texture_repeat = 2
+position = Vector2(-41, 79)
+texture = SubResource("AtlasTexture_i5j2b")
+offset = Vector2(0, -33.8082)
+
+[node name="LadderClimpable" type="Area2D" parent="Houses/HousingBlock/Ladder"]
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/HousingBlock/Ladder/LadderClimpable"]
+position = Vector2(-4.5, -39)
+shape = SubResource("RectangleShape2D_tqwmu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/HousingBlock/Ladder/LadderClimpable"]
+position = Vector2(5.5, -39)
+shape = SubResource("RectangleShape2D_ivof4")
 
 [node name="ClimbingPlace" parent="Houses/HousingBlock" node_paths=PackedStringArray("greg") instance=ExtResource("18_lmkrq")]
 position = Vector2(-44, 53)
 ground_level_y = -168
 greg = NodePath("../../../Greg")
+greg_speed = 20.0
 
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0"]
-position = Vector2(4, -24)
+z_index = 1
+position = Vector2(2.5, 20)
 shape = SubResource("RectangleShape2D_i5j2b")
+
+[node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock"]
+position = Vector2(-40, 16)
+texture = ExtResource("19_i5j2b")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(192, 32, 16, 32)
 
 [node name="Skatepark" type="Node2D" parent="Houses"]
 y_sort_enabled = true

@@ -9,7 +9,7 @@ resource_local_to_scene = true
 size = Vector2(52, 52)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4niga"]
-radius = 2.0
+radius = 1.0
 
 [node name="ClimbingPlace" type="Area2D"]
 collision_layer = 128
@@ -36,9 +36,8 @@ volume_db = 6.0
 [node name="Contact" type="Area2D" parent="GregClimp"]
 z_index = 1
 position = Vector2(0, -1)
-collision_layer = 0
+collision_layer = 2
 collision_mask = 128
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GregClimp/Contact"]
 position = Vector2(-6, 2)

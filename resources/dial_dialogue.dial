@@ -2317,6 +2317,10 @@ DIALOGUE sunset_sun_hint_2
 	also, the spirit that usually attacks passersby goes to sleep or something.
 
 
+DIALOGUE atgirl_what
+	what the hell are you doing...
+
+
 DIALOGUE atgirl_1
 	what a dull day.
 
