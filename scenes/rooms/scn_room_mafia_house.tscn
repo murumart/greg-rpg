@@ -2067,7 +2067,7 @@ size = Vector2(12, 20)
 [sub_resource type="Resource" id="Resource_e4661"]
 script = ExtResource("18_2x3tf")
 title = "soap"
-silver_required = 800
+silver_required = 1400
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"explosive_soap"])
@@ -2076,7 +2076,7 @@ metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 [sub_resource type="Resource" id="Resource_5klj5"]
 script = ExtResource("18_2x3tf")
 title = "firecr"
-silver_required = 180
+silver_required = 230
 input = Array[StringName]([])
 silver_granted = 0
 output = Array[StringName]([&"fire_cracker"])

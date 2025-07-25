@@ -62,3 +62,10 @@ func a_rarm(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, fli
 
 func a_larm(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, flip := false) -> void:
 	animate(LEFT_ARM, anim, arspd, mov_size, anspd, flip)
+
+
+func a_default() -> void:
+	a_larm("hip")
+	a_rarm("hip")
+	a_leg("default")
+	animate(HEAD, "default")

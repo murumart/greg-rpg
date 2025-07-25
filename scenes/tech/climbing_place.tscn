@@ -22,6 +22,7 @@ shape = SubResource("RectangleShape2D_0i02j")
 debug_color = Color(0.703641, 0.716196, 0.125455, 0.419608)
 
 [node name="GregClimp" type="Node2D" parent="."]
+visible = false
 
 [node name="GregClimpSprite" type="Sprite2D" parent="GregClimp"]
 z_index = 1

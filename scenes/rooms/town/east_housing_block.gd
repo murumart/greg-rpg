@@ -1,5 +1,7 @@
 extends Node2D
 
+const LPOS := -41
+
 @onready var camera_area: Area2D = $CameraArea
 @onready var ladder: Sprite2D = $Ladder
 @onready var ladder_place: InteractionArea = $LadderPlace
@@ -25,10 +27,13 @@ var room_entered := false
 
 func _ready() -> void:
 	room_entered = &"mayor_apartment" in DAT.get_data("visited_rooms", [])
+	if room_entered:
+		climbing_place.greg_speed = 60.0
 	camera_area.body_entered.connect(_cam_in.unbind(1))
 	camera_area.body_exited.connect(_cam_out.unbind(1))
 	ladder_place.interacted.connect(_ladder_interacted)
-	climbing_place.started_falling.connect(func() -> void: climping = false; ladder.position.x = -41)
+	climbing_place.started_falling.connect(func() -> void: climping = false; ladder.position.x = LPOS)
+	climbing_place.stopped_climbing.connect(func() -> void: climping = false; ladder.position.x = LPOS)
 	climb_target.area_entered.connect(_target_reached.unbind(1))
 	_ladder_display()
 	if LTS.gate_id == &"town-mayor":
@@ -43,8 +48,8 @@ func _physics_process(delta: float) -> void:
 	t += delta
 	if not climping or room_entered:
 		return
-	var add := sin(t * 1.1) * 0.18
-	ladder.position.x += add
+	var add := sin(t * 1.76) * 14.0
+	ladder.position.x = LPOS + add
 
 
 func _ladder_display() -> void:
@@ -70,6 +75,8 @@ func _ladder_interacted() -> void:
 
 
 func _target_reached() -> void:
+	if climbing_place.state != climbing_place.States.CLIMBING:
+		return
 	if not window_broken:
 		window_broken = true
 		room_entered = true # cancel ladder moving

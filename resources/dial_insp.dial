@@ -333,6 +333,10 @@ DIALOGUE insp_yellow_column
 	it is heavy with gold.
 
 
+DIALOGUE insp_mayor_window
+	the sunlight diffuses as it passes through the grimy window.
+
+
 DIALOGUE insp_yellow_column_active
 	you feel pretty booned right now.
 

@@ -42,3 +42,4 @@ price = 9999
 use = -1
 consume_on_use = false
 payload = SubResource("Resource_lytjt")
+key = false

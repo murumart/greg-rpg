@@ -14,7 +14,6 @@ func _ready() -> void:
 		DAT.set_data("saw_mayor_intro", true)
 	if DAT.get_data("saw_mayor_intro", false):
 		mayor.global_position = factory_in_front_of.global_position
-		mayor.inspected.connect(_mayor_post_intro)
 
 
 func _play_intro_cutscene() -> void:
@@ -37,14 +36,6 @@ func _play_intro_cutscene() -> void:
 	dlg.add_line(dlg.ml("let's go for a stroll together."))
 	await dlg.speak_choice()
 	_walk()
-
-
-func _mayor_post_intro() -> void:
-	var dlg := DialogueBuilder.new().set_char("mayor")
-	dlg.al("well, son, didja find the key?")
-	dlg.al("the key to my [color=ff4422]apartment[/color]...")
-	dlg.al("the key to the [color=ff4422]factory[/color] is in there.")
-	await dlg.speak_choice()
 
 
 var target_index: int = 0

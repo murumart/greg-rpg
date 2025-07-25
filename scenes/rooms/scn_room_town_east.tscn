@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=88 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -38,10 +38,12 @@
 [ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="28_6uj5s"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="28_x4kca"]
 [ext_resource type="Script" uid="uid://bs857kreb3l0b" path="res://scenes/rooms/town/east_intro_cutscene.gd" id="29_pcttj"]
+[ext_resource type="Script" uid="uid://c3p7ushge5k17" path="res://scenes/rooms/town/east_mafia_house.gd" id="29_tqwmu"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="29_yxacx"]
 [ext_resource type="AudioStream" uid="uid://dqj2bpifpcegb" path="res://sounds/gui/column_activate.ogg" id="30_6wcl6"]
 [ext_resource type="Texture2D" uid="uid://c2tgucaak60a3" path="res://sprites/world/object/spr_crimescene.png" id="30_phep0"]
 [ext_resource type="Script" uid="uid://d3ou8r8xmeefi" path="res://scenes/rooms/town/scr_uhh_house.gd" id="31_yxacx"]
+[ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="34_ivof4"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="38_6wcl6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
@@ -297,6 +299,30 @@ size = Vector2(28, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxacx"]
 size = Vector2(21, 2)
 
+[sub_resource type="Gradient" id="Gradient_ani0e"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qk2vw"]
+gradient = SubResource("Gradient_ani0e")
+width = 21
+height = 26
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ani0e"]
+shader = ExtResource("34_ivof4")
+shader_parameter/modulate_a = 0.0
+
+[sub_resource type="Gradient" id="Gradient_ivof4"]
+offsets = PackedFloat32Array(0, 0.411043, 0.472393, 0.628834, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.132121, 0.402597, 0, 1, 1, 0, 0, 1, 0, 1, 0.999489, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ani0e"]
+gradient = SubResource("Gradient_ivof4")
+width = 21
+height = 26
+fill = 1
+fill_from = Vector2(0.506755, 0.558884)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
 
@@ -459,7 +485,8 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
 level_gain = 71
-new_items = Array[StringName]([&"ladder"])
+new_items = Array[StringName]([&"ladder", &"explosive_soap"])
+replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
 data_overrides = Dictionary[StringName, Variant]({
 &"mayor_ladder_actieve": true,
 &"saw_mayor_intro": true,
@@ -471,6 +498,10 @@ metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 script = ExtResource("2_qcw6l")
 
 [node name="Sun" type="Node" parent="CanvasModulateGroup"]
+script = ExtResource("3_3jvnm")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="SpiritsAsshole" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("3_3jvnm")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
@@ -536,7 +567,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-743, -150)
+position = Vector2(-249, -237)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]
@@ -835,6 +866,7 @@ wait_time = 2.0
 [node name="MafiaHouse" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(-110, -8)
+script = ExtResource("29_tqwmu")
 
 [node name="Wall" type="Node2D" parent="Houses/MafiaHouse"]
 y_sort_enabled = true
@@ -856,8 +888,10 @@ tile_set = ExtResource("5_5ym11")
 
 [node name="DoorArea" parent="Houses/MafiaHouse" node_paths=PackedStringArray("spawn_point") instance=ExtResource("9_fhxp8")]
 position = Vector2(88, 16)
+destination = &"mafia_house"
 gate_id = &"mafiahouse-town"
 spawn_point = NodePath("Marker2D")
+fail_dialogue = "door_locked"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/MafiaHouse/DoorArea"]
 position = Vector2(0, -7.5)
@@ -878,10 +912,12 @@ replenish_minutes = 24
 replenish_seconds = 1440
 silver = 20
 
-[node name="Factory" type="Node2D" parent="Houses"]
+[node name="Factory" type="Node2D" parent="Houses" node_paths=PackedStringArray("greg", "modul")]
 y_sort_enabled = true
 position = Vector2(-256, -256)
 script = ExtResource("22_1fst2")
+greg = NodePath("../../Greg")
+modul = NodePath("../../CanvasModulateGroup/SpiritsAsshole")
 
 [node name="Walls" type="TileMapLayer" parent="Houses/Factory"]
 tile_map_data = PackedByteArray("AAALAAAAAQADAAYAAAALAP//AQADAAUAAAALAP7/AQADAAUAAAALAP3/AQADAAQAAAAKAAAAAQACAAYAAAAKAP//AQACAAUAAAAKAP7/AQACAAUAAAAKAP3/AQACAAQAAAAJAAAAAQACAAYAAAAJAP//AQACAAUAAAAJAP7/AQACAAUAAAAJAP3/AQACAAQAAAAIAAAAAQACAAYAAAAIAP//AQACAAUAAAAIAP7/AQACAAUAAAAIAP3/AQACAAQAAAAHAAAAAQACAAYAAAAHAP//AQACAAUAAAAHAP7/AQACAAUAAAAHAP3/AQACAAQAAAAGAAAAAQACAAYAAAAGAP//AQAMAAAAAAAGAP7/AQACAAUAAAAGAP3/AQACAAQAAAAFAAAAAQACAAYAAAAFAP//AQACAAUAAAAFAP7/AQACAAUAAAAFAP3/AQACAAQAAAAEAAAAAQACAAYAAAAEAP//AQAMAAAAAAAEAP7/AQACAAUAAAAEAP3/AQACAAQAAAADAAAAAQACAAYAAAADAP//AQACAAUAAAADAP7/AQACAAUAAAADAP3/AQACAAQAAAACAAAAAQACAAYAAAACAP//AQACAAUAAAACAP7/AQACAAUAAAACAP3/AQACAAQAAAABAAAAAQACAAYAAAABAP//AQACAAUAAAABAP7/AQACAAUAAAABAP3/AQACAAQAAAAAAAAAAQAKAAAAAAAAAP//AQACAAUAAAAAAP7/AQACAAUAAAAAAP3/AQACAAQAAAD//wAAAQACAAYAAAD/////AQACAAUAAAD///7/AQACAAUAAAD///3/AQACAAQAAAD+/wAAAQACAAYAAAD+////AQACAAUAAAD+//7/AQACAAUAAAD+//3/AQACAAQAAAD9/wAAAQACAAYAAAD9////AQACAAUAAAD9//7/AQACAAUAAAD9//3/AQACAAQAAAD8/wAAAQACAAYAAAD8////AQAMAAAAAAD8//7/AQACAAUAAAD8//3/AQACAAQAAAD7/wAAAQACAAYAAAD7////AQACAAUAAAD7//7/AQACAAUAAAD7//3/AQACAAQAAAD6/wAAAQACAAYAAAD6////AQAMAAAAAAD6//7/AQACAAUAAAD6//3/AQACAAQAAAD5/wAAAQACAAYAAAD5////AQACAAUAAAD5//7/AQACAAUAAAD5//3/AQACAAQAAAD4/wAAAQACAAYAAAD4////AQACAAUAAAD4//7/AQACAAUAAAD4//3/AQACAAQAAAD3/wAAAQACAAYAAAD3////AQACAAUAAAD3//7/AQACAAUAAAD3//3/AQACAAQAAAD2//3/AQACAAQAAAD2//7/AQACAAUAAAD2////AQACAAUAAAD2/wAAAQACAAYAAAD1/wAAAQABAAYAAAD1////AQABAAUAAAD1//7/AQABAAUAAAD1//3/AQABAAQAAAACAPb/AQABAAYAAAACAPX/AQABAAUAAAACAPT/AQABAAQAAAADAPT/AQACAAQAAAAEAPT/AQACAAQAAAAFAPT/AQACAAQAAAAGAPT/AQACAAQAAAAHAPT/AQACAAQAAAAIAPT/AQACAAQAAAAJAPT/AQACAAQAAAAKAPT/AQADAAQAAAAKAPX/AQADAAUAAAAKAPb/AQADAAYAAAAJAPb/AQALAAIAAAAIAPb/AQACAAYAAAAHAPb/AQALAAIAAAAGAPb/AQACAAYAAAAFAPb/AQALAAIAAAAEAPb/AQACAAYAAAADAPb/AQALAAIAAAADAPX/AQACAAUAAAAEAPX/AQACAAUAAAAFAPX/AQACAAUAAAAGAPX/AQACAAUAAAAHAPX/AQACAAUAAAAIAPX/AQACAAUAAAAJAPX/AQACAAUAAAA=")
@@ -966,6 +1002,22 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/DoorInspect"]
 position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_yxacx")
+
+[node name="DarkHole" type="Sprite2D" parent="Houses/Factory"]
+visible = false
+position = Vector2(7, 15)
+texture = SubResource("GradientTexture2D_qk2vw")
+centered = false
+offset = Vector2(-11, -25)
+
+[node name="Skary" type="Sprite2D" parent="Houses/Factory"]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_ani0e")
+position = Vector2(6, 16)
+texture = SubResource("GradientTexture2D_ani0e")
+centered = false
+offset = Vector2(-10, -26)
 
 [node name="Chapel" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1276,11 +1328,12 @@ spawnpoint = Vector2i(16, -40)
 [node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("22_u5wr6")]
 position = Vector2(-48, -72)
 spawn_enemy = ExtResource("38_6wcl6")
-max_enemies = 3
+max_enemies = 4
 player = NodePath("../../Greg")
+spawn_radius = 64.0
 
 [node name="EnemySpawner2" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("22_u5wr6")]
-position = Vector2(-474, -296)
+position = Vector2(-652, -334)
 spawn_enemy = ExtResource("38_6wcl6")
 max_enemies = 3
 player = NodePath("../../Greg")

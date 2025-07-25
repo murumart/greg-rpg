@@ -1,7 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://oby8hwvjmaw1"]
+[gd_scene load_steps=27 format=3 uid="uid://oby8hwvjmaw1"]
 
 [ext_resource type="Script" uid="uid://bcfpxm4mdpi52" path="res://scenes/vfx/scr_vfx_explosion.gd" id="1_fr4dm"]
 [ext_resource type="Texture2D" uid="uid://plui5dnb4250" path="res://sprites/vfx/coolexplosion.png" id="1_ucts6"]
+[ext_resource type="AudioStream" uid="uid://c5urnki1rsbk3" path="res://sounds/explosion/explosion_1.ogg" id="3_7nm11"]
+[ext_resource type="AudioStream" uid="uid://dwueonl3nngl" path="res://sounds/explosion/explosion_2.ogg" id="4_nsri1"]
+[ext_resource type="AudioStream" uid="uid://t1ovlr4n6ug0" path="res://sounds/explosion/explosion_3.ogg" id="5_t2anl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht2ks"]
 atlas = ExtResource("1_ucts6")
@@ -174,6 +177,15 @@ _data = {
 &"explode": SubResource("Animation_olxhx")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7g4wx"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("3_7nm11")
+stream_1/stream = ExtResource("4_nsri1")
+stream_1/weight = 0.25
+stream_2/stream = ExtResource("5_t2anl")
+stream_2/weight = 0.5
+
 [node name="VfxExplosion" type="Node2D"]
 script = ExtResource("1_fr4dm")
 
@@ -189,3 +201,4 @@ libraries = {
 autoplay = "explode"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_7g4wx")

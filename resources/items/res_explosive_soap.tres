@@ -40,3 +40,4 @@ price = 240
 use = -1
 consume_on_use = false
 payload = SubResource("Resource_w8t57")
+key = false

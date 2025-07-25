@@ -21,6 +21,7 @@ const USES_NEGATIVE := [Uses.HURTING, Uses.DEBUFFING]
 @export var use := Uses.NONE
 @export var consume_on_use := true
 @export var payload: BattlePayload: get = get_payload
+@export var key := false
 
 
 func get_effect_description() -> String:

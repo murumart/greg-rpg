@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=7 format=3 uid="uid://ogl3l5vhytym"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_k6tq2"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_mayji"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_hub2r"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_i8bt7"]
+
+[sub_resource type="Resource" id="Resource_k6tq2"]
+script = ExtResource("2_mayji")
+type = 0
+property = "range 12,112"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_nn7k1"]
+script = ExtResource("3_hub2r")
+rewards = Array[ExtResource("2_mayji")]([SubResource("Resource_k6tq2")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[resource]
+script = ExtResource("4_i8bt7")
+enemies = Array[StringName]([])
+background = "town"
+music = "daylightthief"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "are you not the thug now?"
+rewards = SubResource("Resource_nn7k1")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_k6tq2")]({})
+increment_data_with_enemies = &""

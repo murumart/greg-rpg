@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=3 format=3 uid="uid://cyi7iu1g0nm33"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_da7v4"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_x2qbm"]
+
+[resource]
+script = ExtResource("2_x2qbm")
+enemies = Array[StringName]([&"spirit_portal"])
+background = ""
+music = "spboss"
+party = Array[StringName]([])
+death_reason = 0
+start_text = ""
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_da7v4")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

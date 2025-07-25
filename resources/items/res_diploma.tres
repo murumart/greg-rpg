@@ -41,3 +41,4 @@ price = 1
 use = -1
 consume_on_use = true
 payload = SubResource("Resource_a5igc")
+key = false

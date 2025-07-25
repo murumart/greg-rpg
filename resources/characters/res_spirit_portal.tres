@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://cxyqhd8so5ebf"]
+
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_sulc0"]
+
+[resource]
+script = ExtResource("2_sulc0")
+name_in_file = &""
+name = "door to mana"
+info = "the forms within burst with excitement"
+max_health = 1000.0
+health = 1000.0
+max_magic = 1e+11
+magic = 1e+13
+level = 99
+experience = 0
+attack = 99.0
+defense = 99.0
+speed = 99.0
+defeated_characters = {}
+inventory = Array[String]([])
+spirits = Array[String]([])
+unused_spirits = Array[String]([])
+armour = ""
+weapon = ""

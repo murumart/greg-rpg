@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://ccuabj8kimeqm"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_03nfo"]
+[ext_resource type="Resource" uid="uid://do3hvtj7osq1x" path="res://resources/rewards/res_thug_reward.tres" id="2_tmugj"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="3_b6r02"]
+
+[resource]
+script = ExtResource("3_b6r02")
+enemies = Array[StringName]([])
+background = "town"
+music = "daylightthief"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "various thug(s) accost you."
+rewards = ExtResource("2_tmugj")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_03nfo")]({})
+increment_data_with_enemies = &"thugs_fought"

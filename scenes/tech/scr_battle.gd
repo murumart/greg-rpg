@@ -105,6 +105,11 @@ var _used_spirit := false
 var _used_item := false
 
 
+# load info from battle info
+func _option_init(options := {}) -> void:
+	load_options = options.get("battle_info")
+
+
 func _ready() -> void:
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start(0.08)
@@ -315,7 +320,11 @@ func arrange_enemies():
 	enemies_node.arrange()
 
 
+# empty background string -> empty background
+# wrong background string -> town background
 func set_background(id: String) -> void:
+	if not id:
+		return
 	var path := DIR.battle_background_scene_path(id)
 	var scn: Node
 	if DIR.battle_background_scene_exists(id):
@@ -992,11 +1001,6 @@ func hide_screens() -> void:
 	screen_main_actions.hide()
 	screen_party_info.hide()
 	screen_spirit_name.hide()
-
-
-# load info from battle info
-func _option_init(options := {}) -> void:
-	load_options = options.get("battle_info")
 
 
 # woh

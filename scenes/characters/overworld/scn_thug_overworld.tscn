@@ -1,13 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://cfs50oh5gonj4"]
+[gd_scene load_steps=44 format=3 uid="uid://cfs50oh5gonj4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_mpkwk"]
 [ext_resource type="Script" uid="uid://ui7g1lg4kusx" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_mt173"]
 [ext_resource type="Texture2D" uid="uid://ccux1unnbr2jb" path="res://sprites/characters/overworld/spr_thug_overworld.png" id="3_26wux"]
 [ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="4_mqdei"]
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_7t3nr"]
-[ext_resource type="Resource" uid="uid://do3hvtj7osq1x" path="res://resources/rewards/res_thug_reward.tres" id="6_1dlt0"]
-[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_yuyaw"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_tiohb"]
+[ext_resource type="Resource" uid="uid://ccuabj8kimeqm" path="res://resources/battle_infos/thug_base.tres" id="6_ovapk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mv4y4"]
 resource_local_to_scene = true
@@ -234,23 +232,6 @@ _limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0, 1.02696), 0.0, 0.0, 0, 0, Vector2(0.0883163, 1.87295), 0.0, 0.0, 0, 0, Vector2(0.174428, 3.04121), 0.0, 0.0, 0, 0, Vector2(0.298429, 4), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[sub_resource type="Resource" id="Resource_ufuyi"]
-script = ExtResource("7_tiohb")
-enemies = Array[StringName]([])
-background = "town"
-music = "daylightthief"
-party = Array[StringName]([])
-death_reason = "default"
-start_text = "various thug(s) accost you."
-rewards = ExtResource("6_1dlt0")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("6_yuyaw")]({})
-increment_data_with_enemies = &"thugs_fought"
-
 [node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_mpkwk")]
 script = ExtResource("2_mt173")
 animated_sprite = NodePath("ThugSprite")
@@ -282,5 +263,5 @@ animation = &"walk_up"
 script = ExtResource("4_mqdei")
 values = Array[ExtResource("5_7t3nr")]([SubResource("Resource_1mbru"), SubResource("Resource_1t6p2"), SubResource("Resource_j4nm3"), SubResource("Resource_yt7r7"), SubResource("Resource_a3o1a"), SubResource("Resource_8pvwv"), SubResource("Resource_qsnbv"), SubResource("Resource_cshnt")])
 enemy_amount_by_level = SubResource("Curve_mh4wh")
-default_battle = SubResource("Resource_ufuyi")
+default_battle = ExtResource("6_ovapk")
 inject_target = NodePath("..")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dqowsgtqp3crg"]
+[gd_scene load_steps=31 format=4 uid="uid://dqowsgtqp3crg"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_mgdg4"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_6ow1j"]
@@ -7,10 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_1a1qb"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_5xs33"]
 [ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="7_5xs33"]
+[ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="7_q16w6"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="8_ilppi"]
 [ext_resource type="PackedScene" uid="uid://5hmmxhi84tth" path="res://scenes/decor/cardboard_box.tscn" id="8_x57em"]
 [ext_resource type="Script" uid="uid://g566rdjldgow" path="res://scenes/rooms/town/east_apartment.gd" id="10_mf7ga"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="10_s1xb4"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="13_gs358"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="14_a7e7c"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="14_p7p2l"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="15_l7m8h"]
+[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="17_l7m8h"]
+[ext_resource type="PackedScene" uid="uid://deii706cg03d" path="res://scenes/vfx/scn_vfx_wow_sparkles.tscn" id="18_mxm45"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1a1qb"]
 blend_mode = 1
@@ -25,6 +32,73 @@ height = 28
 fill = 1
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb6yd"]
+size = Vector2(12, 1)
+
+[sub_resource type="Resource" id="Resource_k6tq2"]
+script = ExtResource("14_a7e7c")
+type = 0
+property = "range 12,112"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_mxm45"]
+script = ExtResource("15_l7m8h")
+rewards = Array[ExtResource("14_a7e7c")]([SubResource("Resource_k6tq2")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[sub_resource type="Resource" id="Resource_pn2uj"]
+script = ExtResource("14_p7p2l")
+enemies = Array[StringName]([])
+background = "house_inside"
+music = "daylightthief"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "are you not the thug now?"
+rewards = SubResource("Resource_mxm45")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("13_gs358")]({})
+increment_data_with_enemies = &""
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7e7c"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7m8h"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxm45"]
+resource_local_to_scene = true
+radius = 32.0
+
+[sub_resource type="Resource" id="Resource_xvh1i"]
+script = ExtResource("15_l7m8h")
+rewards = Array[ExtResource("14_a7e7c")]([SubResource("Resource_k6tq2")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[sub_resource type="Resource" id="Resource_jr1v0"]
+script = ExtResource("14_p7p2l")
+enemies = Array[StringName]([&"casual"])
+background = "house_inside"
+music = "daylightthief"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "are you not the thug now?"
+rewards = SubResource("Resource_xvh1i")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("13_gs358")]({})
+increment_data_with_enemies = &""
 
 [node name="MayorApartment" type="Node2D"]
 y_sort_enabled = true
@@ -80,6 +154,13 @@ use_parent_material = true
 position = Vector2(-32, 50)
 texture = SubResource("GradientTexture2D_5xs33")
 
+[node name="InspectArea" parent="Decor/Lights/WindowLight2" instance=ExtResource("7_q16w6")]
+key = "mayor_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Lights/WindowLight2/InspectArea"]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_jb6yd")
+
 [node name="WindowLight3" type="Sprite2D" parent="Decor/Lights"]
 modulate = Color(0.414979, 0.414283, 0.375282, 1)
 use_parent_material = true
@@ -126,5 +207,26 @@ script = ExtResource("10_mf7ga")
 [node name="ThugOverworld" parent="Category2" node_paths=PackedStringArray("chase_target") instance=ExtResource("10_s1xb4")]
 position = Vector2(36, 12)
 chase_target = NodePath("../../Greg")
+battle_info = SubResource("Resource_pn2uj")
+
+[node name="CollisionShape" parent="Category2/ThugOverworld" index="0"]
+shape = SubResource("RectangleShape2D_a7e7c")
+
+[node name="CollisionShape2D" parent="Category2/ThugOverworld/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_l7m8h")
+
+[node name="DetectionShape" parent="Category2/ThugOverworld/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_mxm45")
+
+[node name="RandomBattleComponent" parent="Category2/ThugOverworld" index="4"]
+default_battle = SubResource("Resource_jr1v0")
+
+[node name="KeyItem" parent="Category2" instance=ExtResource("17_l7m8h")]
+position = Vector2(54, -9)
+item_type = &"key_youthcentre"
+save = true
+
+[node name="GPUParticles2D" parent="Category2/KeyItem" instance=ExtResource("18_mxm45")]
 
 [editable path="Decor/Box4"]
+[editable path="Category2/ThugOverworld"]

@@ -142,6 +142,7 @@ func _ready() -> void:
 	tw.tween_property(self, ^"modulate:a", 1.0, 2.0)
 	if tutorialate:
 		$GiveUpLabel.hide()
+		SOL.dialogue_low_position()
 		SOL.dialogue("mafia_tutorial_1")
 		await SOL.dialogue_closed
 	play()

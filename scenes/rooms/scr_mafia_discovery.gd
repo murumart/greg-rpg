@@ -101,6 +101,9 @@ func _to_game() -> ListeningGame:
 		await Math.timer(5.0)
 	else:
 		await Math.timer(1.0)
+	greg.global_position = %GregPos.global_position
+	mafia_blue.global_position = %MafiaPos.global_position
+	mafia_yellow.global_position = %MafiaPos.global_position + Vector2(0, -10)
 	SOL.add_ui_child(lg)
 	return lg
 
@@ -111,9 +114,7 @@ func _after_game() -> void:
 	for l in lights:
 		l.show()
 	$AudioStreamPlayer.play()
-	greg.global_position = %GregPos.global_position
-	mafia_blue.global_position = %MafiaPos.global_position
-	mafia_yellow.global_position = %MafiaPos.global_position + Vector2(0, -10)
+
 	mafia_blue.set_physics_process(true)
 	mafia_yellow.set_physics_process(true)
 	mafia_blue.direct_walking_animation(Vector2.RIGHT)

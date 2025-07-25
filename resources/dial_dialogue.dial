@@ -3364,6 +3364,8 @@ DIALOGUE dance_battle_tutorial
 
 
 DIALOGUE mafia_mumbles_1
+	(it's dark.)
+	(you overhear a quiet conversation.)
 CHAR mafia_blue
 	so... yes... the water...
 CHAR mafia_yellow

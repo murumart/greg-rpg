@@ -115,7 +115,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			using_menu_choice = wrapi(using_menu_choice
 					+ roundi(Input.get_axis("ui_left", "ui_right")),
 					0, party_size() + 1)
-			update_using_portraits()
+			update_using_portraits(item)
 			if using_menu_choice != party_size():
 				var party_current: Character = party(using_menu_choice)
 				using_health_bar.max_value = party_current.max_health
@@ -137,7 +137,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						party(current_tab).inventory.erase(using_item)
 						DAT.appenda("erased_items", using_item)
 						SND.play_sound(preload("res://sounds/trashbin.ogg"))
-						if using_item == &"cellphone" or ResMan.get_item(using_item) is FlowerItem:
+						if using_item == &"cellphone" or item is FlowerItem or item.key:
 							party(current_tab).inventory.append(using_item)
 							ResMan.get_item(using_item).description = preload(
 									"res://code/res_cellphone_logic.gd").READD_DESC
@@ -343,10 +343,11 @@ func load_using_menu() -> void:
 
 
 # highlighting the portraits in the using item menu level
-func update_using_portraits() -> void:
+func update_using_portraits(_item: Item) -> void:
 	var c := 0
 	for i in using_portraits.get_child_count():
 		using_portraits.get_child(i).modulate = Color(1, 1, 1, 1)
+		# mayeb hide unusable items and option to delete key items.. in greg 2
 		if not using_portraits.get_child(i).visible:
 			continue
 		if using_menu_choice == c:
