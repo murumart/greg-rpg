@@ -37,10 +37,12 @@ var action_history := []
 
 var loading_battle := true
 
+var own_scene := true
+
 # many nodes
 
 @onready var camera: Camera2D = $Camera
-@onready var ui := $UI
+@onready var ui: Control = $UI
 
 @onready var panel: Panel = $UI/Panel
 @onready var reference_button := preload("res://scenes/tech/scn_reference_button.tscn")
@@ -809,8 +811,9 @@ func open_end_screen(victory: bool) -> void:
 		DAT.death_reason = death_reason
 	await get_tree().create_timer(1.0).timeout
 	ending.emit()
-	SOL.clear_vfx()
-	LTS.to_game_over_screen()
+	if own_scene:
+		SOL.clear_vfx()
+		LTS.to_game_over_screen()
 
 
 func _grant_rewards() -> void:

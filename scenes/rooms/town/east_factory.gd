@@ -5,6 +5,7 @@ const BATTLE_LOAD = preload("res://scenes/tech/scn_battle.tscn")
 @onready var mayor := $"../../Other/Mayor"
 @onready var dark_hole: Sprite2D = $DarkHole
 @onready var skary: Sprite2D = $Skary
+@onready var spawners := get_tree().get_nodes_in_group(&"thug_spawners")
 
 @export var greg: PlayerOverworld
 @export var modul: ColorContainer
@@ -116,25 +117,41 @@ func _open_door_cutscene() -> void:
 	SND.play_song("", 99)
 	await Math.timer(0.1)
 	x.queue_free()
-	await Math.timer(1.0)
-	SND.play_song("spboss", 0.7)
+	await Math.timer(1.5)
+	dlg.reset().set_char("mayor")
+	dlg.al("by the way, son.")
+	dlg.al("you took so long, i didn't even think you'd make it back here.")
+	dlg.al("i guess i got a little impatient...")
+	await dlg.speak_choice()
 	var tw := create_tween()
 	tw.tween_property(modul, ^"color", Color(0.321, 0.844, 1.0), 2.0)
 	tw.parallel().tween_property(skary.material, "shader_parameter/modulate_a", 1.0, 3.0)
 	tw.parallel().tween_property(get_viewport().get_camera_2d(), ^"global_position", dark_hole.global_position, 2.5)
 	await tw.finished
-	tw = create_tween()
+	dlg.reset().set_char("mayor")
+	dlg.al("i opened the portal to the [color=ff4422]spirit world[/color] just a little bit.")
+	dlg.al("let's welcome the new populace of my [color=ff4422]town[/color] together, why not?")
+	await dlg.speak_choice()
+	SND.play_song("spboss", 0.7)
+	SND.play_sound(preload("res://sounds/skating/s6.ogg"))
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(greg, ^"global_position", greg.global_position - Vector2(20, 0), 0.3)
-	tw.tween_property(mayor, ^"global_position", mayor.global_position + Vector2(20, 0), 0.3)
+	tw.parallel().tween_property(mayor, ^"global_position", mayor.global_position + Vector2(20, 0), 0.3)
 	_start_battle()
 
 
 func _start_battle() -> void:
+	for f in spawners:
+		f.queue_free()
 	DAT.capture_player("cutscene")
 	var battle := BATTLE_LOAD.instantiate()
+	battle.own_scene = false
 	battle._option_init({battle_info = preload("res://resources/battle_infos/mayor_fight.tres")})
 	battle.z_index = 99
 	add_child(battle)
+	battle.ui.modulate.a = 0.0
+	var tw := create_tween()
+	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0)
 	battle.global_position = dark_hole.global_position
 	var en := BattleEnemy.new()
 	en.add_child(Sprite2D.new())

@@ -80,6 +80,7 @@ import/fbx/enabled=false
 
 forest_hazards=""
 forest_curiosities=""
+thug_spawners=""
 
 [gui]
 
