@@ -10,10 +10,10 @@
 		- [x] music
 	- [ ] Mayor intro
 	- [ ] Mayor key quest
-		- [ ] Ladder from skatepark from good enough score
-		- [ ] Up into mayor's room
-		- [ ] Find the key (like how you find him)
-		- [ ] Explosive from mining minigame - with key open factory door
+		- [x] Ladder from skatepark from good enough score
+		- [x] Up into mayor's room
+		- [x] Find the key to sfsfsdfsdf 
+		- [x] Explosive from mafia kid
 	- [ ] Enemy encounters
 		- [x] super turf (low hp but really high attack)
 		- [x] motorised granny (charges up sp until final overrun-ish attack)
@@ -23,6 +23,13 @@
 		- [x] business casual chimney
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
+		- [ ] door is attackable
+		- [ ] mayor fights greg at first
+		- [ ] door summons enemies that attack the mayor also
+			- [ ] overworld style, weird animated wispy rhints
+		- [ ] the mayor joins the party
+		- [ ] portal summons another batch of enemies
+		- [ ] after killing them, x shows up and mills mayrp
 	- [x]  Mafia house interior
 	- [x] Mafia talking
 	- [x] Mafia minigame

@@ -8,6 +8,7 @@ class_name Battle
 
 signal player_finished_acting
 signal ending
+signal battle_loaded
 
 # this is the default for testing
 @export var load_options: BattleInfo = null
@@ -140,6 +141,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	load_battle(load_options)
 	set_actor_states(BattleActor.States.COOLDOWN, true)
+	battle_loaded.emit()
 	open_party_info_screen()
 	check_end()
 	DAT.death_reason = death_reason
@@ -254,10 +256,6 @@ func set_actor_states(to: BattleActor.States, only_party := false) -> void:
 
 
 func add_actor(node: BattleActor, team: Teams) -> void:
-	if team == Teams.PARTY:
-		if party.size() > MAX_PARTY_MEMBERS:
-			push_error("too many party members")
-			return
 	node.reference_to_actor_array = actors
 	node.message.connect(message)
 	node.act_requested.connect(_on_act_requested)
@@ -272,6 +270,7 @@ func add_actor(node: BattleActor, team: Teams) -> void:
 	match team:
 		Teams.PARTY:
 			party.append(node)
+			assert(party.size() <= MAX_PARTY_MEMBERS, "too many party members")
 			ever_has_been_party.append(node)
 			node.player_controlled = true
 			node.player_input_requested.connect(_on_player_input_requested)

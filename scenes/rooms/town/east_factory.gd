@@ -18,7 +18,7 @@ func _ready() -> void:
 	# if youre wondering the mayor is positioned in res://scenes/rooms/town/east_intro_cutscene.gd
 	mayor.inspected.connect(_mayor_post_intro)
 	#DEBUG
-	#_start_battle()
+	_open_door_cutscene(true)
 
 
 func _door() -> void:
@@ -108,31 +108,33 @@ func _mayor_post_intro() -> void:
 	mayor.a_default()
 
 
-func _open_door_cutscene() -> void:
-	DAT.capture_player("cutscene")
-	await Math.timer(0.2)
-	var x := SOL.vfx("explosion", dark_hole.global_position, {parent = dark_hole})
-	dark_hole.show()
-	skary.show()
-	SND.play_song("", 99)
-	await Math.timer(0.1)
-	x.queue_free()
-	await Math.timer(1.5)
-	dlg.reset().set_char("mayor")
-	dlg.al("by the way, son.")
-	dlg.al("you took so long, i didn't even think you'd make it back here.")
-	dlg.al("i guess i got a little impatient...")
-	await dlg.speak_choice()
+func _open_door_cutscene(skip := false) -> void:
+	if not skip:
+		DAT.capture_player("cutscene")
+		await Math.timer(0.2)
+		var x := SOL.vfx("explosion", dark_hole.global_position, {parent = dark_hole})
+		dark_hole.show()
+		skary.show()
+		SND.play_song("", 99)
+		await Math.timer(0.1)
+		x.queue_free()
+		await Math.timer(1.5)
+		dlg.reset().set_char("mayor")
+		dlg.al("by the way, son.")
+		dlg.al("you took so long, i didn't even think you'd make it back here.")
+		dlg.al("i guess i got a little impatient...")
+		await dlg.speak_choice()
 	var tw := create_tween()
 	tw.tween_property(modul, ^"color", Color(0.321, 0.844, 1.0), 2.0)
 	tw.parallel().tween_property(skary.material, "shader_parameter/modulate_a", 1.0, 3.0)
 	tw.parallel().tween_property(get_viewport().get_camera_2d(), ^"global_position", dark_hole.global_position, 2.5)
-	await tw.finished
-	dlg.reset().set_char("mayor")
-	dlg.al("i opened the portal to the [color=ff4422]spirit world[/color] just a little bit.")
-	dlg.al("let's welcome the new populace of my [color=ff4422]town[/color] together, why not?")
-	await dlg.speak_choice()
 	SND.play_song("spboss", 0.7)
+	await tw.finished
+	if not skip:
+		dlg.reset().set_char("mayor")
+		dlg.al("i opened the portal to the [color=ff4422]spirit world[/color] just a little bit.")
+		dlg.al("let's welcome the new populace of my [color=ff4422]town[/color] together, why not?")
+		await dlg.speak_choice()
 	SND.play_sound(preload("res://sounds/skating/s6.ogg"))
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(greg, ^"global_position", greg.global_position - Vector2(20, 0), 0.3)
@@ -140,20 +142,28 @@ func _open_door_cutscene() -> void:
 	_start_battle()
 
 
+var battle_spiritportal: BattleEnemy
 func _start_battle() -> void:
 	for f in spawners:
-		f.queue_free()
+		if is_instance_valid(f): f.queue_free()
 	DAT.capture_player("cutscene")
 	var battle := BATTLE_LOAD.instantiate()
 	battle.own_scene = false
 	battle._option_init({battle_info = preload("res://resources/battle_infos/mayor_fight.tres")})
 	battle.z_index = 99
 	add_child(battle)
+	await battle.battle_loaded
+	battle_spiritportal = battle.enemies[0]
 	battle.ui.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0)
 	battle.global_position = dark_hole.global_position
 	var en := BattleEnemy.new()
-	en.add_child(Sprite2D.new())
+	var sp := Sprite2D.new()
+	sp.texture = preload("res://sprites/spr_white_pixel.png")
+	en.add_child(sp)
 	en.load_character(&"mayor")
 	battle.add_actor(en, Battle.Teams.ENEMIES)
+	await Math.timer(0.01)
+	battle_spiritportal.global_position = dark_hole.global_position + Vector2(0, -8)
+	en.global_position = mayor.global_position

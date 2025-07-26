@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7jgbv134hqq0"]
+[gd_scene load_steps=3 format=3 uid="uid://b7jgbv134hqq0"]
 
 [ext_resource type="Script" uid="uid://yctxwjcw2aft" path="res://scenes/characters/battle_enemies/scr_enemy_spirit_portal.gd" id="1_q6pf4"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_qcnnx"]
 
 [node name="SpiritPortal" type="Node2D"]
 script = ExtResource("1_q6pf4")
@@ -9,3 +10,5 @@ gender = 6
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
 [node name="BegoneError" type="Sprite2D" parent="."]
+modulate = Color(30.87, 1, 1, 1)
+texture = ExtResource("2_qcnnx")

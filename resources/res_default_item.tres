@@ -39,3 +39,4 @@ price = 129830192318
 use = 2
 consume_on_use = true
 payload = SubResource("Resource_57h5b")
+key = false
