@@ -19,6 +19,10 @@ var songs := {
 		"title": "ball sounds",
 		"stream": preload("res://music/mus_ball_sounds.ogg")
 	},
+	"bells": {
+		"title": "bells?",
+		"stream": preload("res://music/mus_bells.ogg")
+	},
 	"best": {
 		"title": "soundtrack highlight",
 		"stream": preload("res://music/mus_best.ogg")
@@ -192,6 +196,10 @@ var songs := {
 	"preturberance": {
 		"title": "perturberance",
 		"stream": preload("res://music/mus_perturberance.ogg")
+	},
+	"secret_garden": {
+		"title": "secret garden",
+		"stream": preload("res://music/mus_secret_garden.ogg")
 	},
 	"shitty_entrance_of_the_gladiators": {
 		"title": "julius fucik - entrance of the gladiators",

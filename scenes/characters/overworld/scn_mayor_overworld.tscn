@@ -281,7 +281,6 @@ scale = Vector2(1, -1)
 [node name="LeftArm" type="AnimatedSprite2D" parent="Body/LeftArm" index="0"]
 sprite_frames = SubResource("SpriteFrames_pg76y")
 animation = &"hip"
-frame_progress = 0.183066
 
 [node name="RightArm" type="Node2D" parent="Body" index="4"]
 position = Vector2(-6, -6)

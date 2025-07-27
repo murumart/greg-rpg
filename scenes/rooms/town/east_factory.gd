@@ -25,15 +25,9 @@ func _door() -> void:
 	dlg.clear()
 	var inv := ResMan.get_character("greg").inventory
 	var end := false
-	if &"key_youthcentre" in inv:
-		dlg.al("you try the purple key.")
-		dlg.al("the keyhole is way too spacious for it.")
-		dlg.al("you jangle the key around the hole.").scallback(func() -> void:
-			SND.play_sound(preload("res://sounds/biking_bell.ogg"), {pitch_scale = 0.5})
-		)
-	elif &"explosive_soap" in inv:
+	if &"explosive_soap" in inv:
 		greg.animate("walk_up")
-		dlg.al("you apply the explosive soap to the keyhole.")
+		dlg.al("you jam the explosive soap into the keyhole.")
 		inv.erase(&"explosive_soap")
 		dlg.set_char("mayor").al("there we go, son! you found something we can use!").scallback(func() -> void:
 			mayor.animate(mayor.HEAD, "backward")
@@ -49,6 +43,12 @@ func _door() -> void:
 			mayor.animate(mayor.HEAD, "dark")
 		)
 		end = true
+	elif &"key_youthcentre" in inv:
+		dlg.al("you try the purple key.")
+		dlg.al("the keyhole is way too spacious for it.")
+		dlg.al("you jangle the key around the hole.").scallback(func() -> void:
+			SND.play_sound(preload("res://sounds/biking_bell.ogg"), {pitch_scale = 0.5})
+		)
 	else:
 		dlg.al("it's truly locked...")
 		dlg.al("it'd do good to have a key here.")
@@ -135,35 +135,45 @@ func _open_door_cutscene(skip := false) -> void:
 		dlg.al("i opened the portal to the [color=ff4422]spirit world[/color] just a little bit.")
 		dlg.al("let's welcome the new populace of my [color=ff4422]town[/color] together, why not?")
 		await dlg.speak_choice()
+	mayor.animate(mayor.HEAD, "dark", 4.0, Vector2(1, 1))
+	mayor.animate(mayor.BODY, "forward", 2.0, Vector2(1, 1))
+	mayor.a_leg("walk", 2.0, Vector2(1, 0), 2.0)
+	mayor.a_larm("flail", 1.0, Vector2(0, 1), 4.0)
+	mayor.a_rarm("hip", 4.0, Vector2(0, 1), 2.0)
 	SND.play_sound(preload("res://sounds/skating/s6.ogg"))
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(greg, ^"global_position", greg.global_position - Vector2(20, 0), 0.3)
 	tw.parallel().tween_property(mayor, ^"global_position", mayor.global_position + Vector2(20, 0), 0.3)
 	_start_battle()
+	await tw.finished
+	battle_mayor.global_position = mayor.global_position
 
 
-var battle_spiritportal: BattleEnemy
+const SPType = preload("res://scenes/characters/battle_enemies/scr_enemy_spirit_portal.gd")
+var battle_spiritportal: SPType
+var battle_mayor: BattleEnemy
 func _start_battle() -> void:
 	for f in spawners:
 		if is_instance_valid(f): f.queue_free()
 	DAT.capture_player("cutscene")
 	var battle := BATTLE_LOAD.instantiate()
 	battle.own_scene = false
+	battle.keep_arranging = false
 	battle._option_init({battle_info = preload("res://resources/battle_infos/mayor_fight.tres")})
 	battle.z_index = 99
 	add_child(battle)
 	await battle.battle_loaded
 	battle_spiritportal = battle.enemies[0]
+	battle_spiritportal.battle = battle # spaghet
 	battle.ui.modulate.a = 0.0
 	var tw := create_tween()
-	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0)
+	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0).from(0.0)
 	battle.global_position = dark_hole.global_position
-	var en := BattleEnemy.new()
+	battle_mayor = BattleEnemy.new()
+	battle_spiritportal.extra_targets.append(battle_mayor)
 	var sp := Sprite2D.new()
 	sp.texture = preload("res://sprites/spr_white_pixel.png")
-	en.add_child(sp)
-	en.load_character(&"mayor")
-	battle.add_actor(en, Battle.Teams.ENEMIES)
-	await Math.timer(0.01)
+	battle_mayor.add_child(sp)
+	battle_mayor.load_character(&"mayor")
+	battle.add_actor(battle_mayor, Battle.Teams.ENEMIES)
 	battle_spiritportal.global_position = dark_hole.global_position + Vector2(0, -8)
-	en.global_position = mayor.global_position

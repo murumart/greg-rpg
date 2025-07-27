@@ -330,19 +330,23 @@ DIALOGUE insp_stone_column
 
 
 DIALOGUE insp_yellow_column
-	it is heavy with gold.
-
-
-DIALOGUE insp_mayor_window
-	the sunlight diffuses as it passes through the grimy window.
+	it looks heavy with gold.
 
 
 DIALOGUE insp_yellow_column_active
 	you feel pretty booned right now.
 
 
+DIALOGUE insp_mayor_window
+	the sunlight diffuses as it passes through the grimy window.
+
+
 DIALOGUE insp_forest_bench
 	this is no time for resting.
+
+
+DIALOGUE insp_bookshelf
+	densely packed with three layers of books.
 
 
 DIALOGUE insp_gdung_bookshelf

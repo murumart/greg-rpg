@@ -170,7 +170,6 @@ func _cmd_beffect(args: PackedStringArray) -> void:
 	effect = args[2]
 	strength = float(args[3])
 	duration = int(args[4])
-	var value := args[3]
 	var sex := target.add_status_effect_s(effect, strength, duration)
 	output("added effect %s to %s" % [sex, target])
 

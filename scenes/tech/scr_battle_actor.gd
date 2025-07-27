@@ -614,10 +614,11 @@ func create_payload() -> BattlePayload:
 
 # for positioning visual effects
 func get_effect_center(subject: BattleActor = self) -> Vector2:
-	return (Vector2(subject.effect_center) + Vector2(subject.global_position)
-			if has_effcenter(subject)
-			else subject.get_global_transform_with_canvas().origin)
-	#return subject.get_global_transform_with_canvas().origin
+	if has_effcenter(subject):
+		#prints(self, "effcentre")
+		return Vector2(subject.effect_center) + Vector2(subject.global_position)
+	#prints(self, "canvas")
+	return subject.get_global_transform_with_canvas().origin
 
 
 func has_effcenter(subject: BattleActor = self) -> bool:
@@ -627,7 +628,9 @@ func has_effcenter(subject: BattleActor = self) -> bool:
 # for properly positioning visual effects when not parenting to the actor
 func parentless_effcenter(subject: BattleActor = self) -> Vector2:
 	if has_effcenter(subject):
+		#prints(self, "just")
 		return get_effect_center(subject)
+	#prints(self, "half")
 	return get_effect_center(subject) - (SOL.HALF_SCREEN_SIZE)
 
 

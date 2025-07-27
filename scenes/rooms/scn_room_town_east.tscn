@@ -484,7 +484,7 @@ metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("2_0834g")
-level_gain = 71
+level_gain = 76
 new_items = Array[StringName]([&"ladder", &"explosive_soap"])
 replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
 data_overrides = Dictionary[StringName, Variant]({
@@ -567,7 +567,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
-position = Vector2(-249, -237)
+position = Vector2(-262, -237)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("7_5ym11")]

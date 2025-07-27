@@ -4199,6 +4199,10 @@ CHAR mayor
 	i'm gonna whoop your [color=SAUCECOLOR]butt[/color], son.
 
 
+DIALOGUE sg_welcome
+	Welcome to the [color=FLOWERCOLOR]SECRET GARDEN[/color], Greg.
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

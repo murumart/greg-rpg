@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dqowsgtqp3crg"]
+[gd_scene load_steps=32 format=4 uid="uid://dqowsgtqp3crg"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_mgdg4"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_6ow1j"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="8_ilppi"]
 [ext_resource type="PackedScene" uid="uid://5hmmxhi84tth" path="res://scenes/decor/cardboard_box.tscn" id="8_x57em"]
 [ext_resource type="Script" uid="uid://g566rdjldgow" path="res://scenes/rooms/town/east_apartment.gd" id="10_mf7ga"]
+[ext_resource type="PackedScene" uid="uid://wym533u3oyu6" path="res://scenes/decor/bookshelf.tscn" id="10_pn2uj"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="10_s1xb4"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="13_gs358"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="14_a7e7c"]
@@ -127,12 +128,19 @@ tile_set = ExtResource("2_6ow1j")
 [node name="TileMapLayer2" type="TileMapLayer" parent="Tiles"]
 modulate = Color(0.683064, 0.683064, 0.683064, 1)
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD8////AQAAAAEAAAD8/wAAAQABAAIAAAD8/wEAAQABAAEAAAD8/wIAAQAAAAIAAAD8/wMAAQABAAIAAAD9/wMAAQABAAIAAAD9/wIAAQAAAAIAAAD+/wIAAQABAAIAAAD+/wEAAQABAAIAAAD+/wAAAQABAAEAAAD9/wAAAQABAAIAAAD+////AQABAAIAAAD9/wEAAQABAAIAAAD9////AQABAAEAAAD/////AQAAAAIAAAAAAP//AQABAAEAAAABAP//AQABAAEAAAACAP//AQAAAAEAAAADAP//AQAAAAIAAAAEAP//AQABAAIAAAAEAAAAAQABAAIAAAAEAAEAAQAAAAEAAAADAAEAAQAAAAIAAAACAAEAAQABAAEAAAABAAEAAQABAAIAAAAAAAEAAQAAAAIAAAD//wEAAQABAAIAAAD//wIAAQAAAAIAAAAAAAIAAQABAAIAAAABAAIAAQABAAEAAAACAAIAAQAAAAEAAAADAAIAAQABAAIAAAADAAMAAQABAAEAAAACAAMAAQAAAAIAAAABAAMAAQABAAEAAAAAAAMAAQAAAAIAAAD//wMAAQABAAIAAAD+/wMAAQAAAAEAAAAEAAMAAQABAAIAAAAEAAIAAQABAAIAAAD//wAAAQAAAAIAAAAAAAAAAQABAAEAAAABAAAAAQAAAAIAAAACAAAAAQABAAEAAAADAAAAAQAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAD8////AQAAAAEAAAD8/wAAAQABAAIAAAD8/wEAAQABAAEAAAD8/wIAAQAAAAIAAAD8/wMAAQABAAIAAAD9/wMAAQABAAIAAAD9/wIAAQAAAAIAAAD+/wIAAQADAAIAAAD+/wEAAQADAAEAAAD+/wAAAQADAAAAAAD9/wAAAQABAAIAAAD+////AQABAAIAAAD9/wEAAQABAAIAAAD9////AQABAAEAAAD/////AQAAAAIAAAAAAP//AQABAAEAAAABAP//AQABAAEAAAACAP//AQAAAAEAAAADAP//AQAAAAIAAAAEAP//AQABAAIAAAAEAAAAAQABAAIAAAAEAAEAAQAAAAEAAAADAAEAAQAAAAIAAAACAAEAAQABAAEAAAABAAEAAQABAAIAAAAAAAEAAQAAAAIAAAD//wEAAQAFAAEAAAD//wIAAQAFAAIAAAAAAAIAAQABAAIAAAABAAIAAQABAAEAAAACAAIAAQAAAAEAAAADAAIAAQABAAIAAAADAAMAAQABAAEAAAACAAMAAQAAAAIAAAABAAMAAQABAAEAAAAAAAMAAQAAAAIAAAD//wMAAQABAAIAAAD+/wMAAQAAAAEAAAAEAAMAAQABAAIAAAAEAAIAAQABAAIAAAD//wAAAQAFAAAAAAAAAAAAAQABAAEAAAABAAAAAQAAAAIAAAACAAAAAQABAAEAAAADAAAAAQAAAAIAAAA=")
+tile_set = ExtResource("2_6ow1j")
+y_sort_origin = -125
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Tiles"]
+modulate = Color(0.683064, 0.683064, 0.683064, 1)
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD9/wIAAQAMAAUAAAD9/wMAAQAMAAcAAAA=")
 tile_set = ExtResource("2_6ow1j")
 y_sort_origin = -125
 
 [node name="Greg" parent="." instance=ExtResource("5_1a1qb")]
-position = Vector2(41, 56)
+position = Vector2(50, 58)
 
 [node name="Camera" parent="Greg" instance=ExtResource("6_5xs33")]
 position = Vector2(0, -9)
@@ -177,6 +185,36 @@ region_rect = Rect2(129, 12, 14, 20)
 [node name="Box" parent="Decor" instance=ExtResource("8_x57em")]
 position = Vector2(43, 40)
 
+[node name="Box6" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(-64, -16)
+
+[node name="Box7" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(-62, -11)
+
+[node name="Box8" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(-23, -12)
+
+[node name="Box9" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(-42, -16)
+
+[node name="Box10" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(-47, -11)
+
+[node name="Box11" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(63, -13)
+
+[node name="Box12" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(63, -8)
+
+[node name="Box13" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(63, -3)
+
+[node name="Box14" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(63, 12)
+
+[node name="Box15" parent="Decor" instance=ExtResource("8_x57em")]
+position = Vector2(54, 7)
+
 [node name="Box2" parent="Decor" instance=ExtResource("8_x57em")]
 position = Vector2(56, 49)
 
@@ -192,6 +230,21 @@ position = Vector2(38, 37)
 [node name="Sprite2D" parent="Decor/Box4" index="0"]
 position = Vector2(8, 12)
 offset = Vector2(0, -16)
+
+[node name="Bookshelf" parent="Decor" instance=ExtResource("10_pn2uj")]
+position = Vector2(-14, -14)
+
+[node name="Bookshelf2" parent="Decor" instance=ExtResource("10_pn2uj")]
+position = Vector2(1, -14)
+
+[node name="Bookshelf3" parent="Decor" instance=ExtResource("10_pn2uj")]
+position = Vector2(16, -14)
+
+[node name="Bookshelf4" parent="Decor" instance=ExtResource("10_pn2uj")]
+position = Vector2(31, -14)
+
+[node name="Bookshelf5" parent="Decor" instance=ExtResource("10_pn2uj")]
+position = Vector2(46, -14)
 
 [node name="RoomGate" parent="." instance=ExtResource("8_ilppi")]
 position = Vector2(40, 67)

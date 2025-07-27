@@ -34,7 +34,7 @@ func _grant_parts(inventory: Array) -> void:
 			p.time_left = perk_time
 			questing.append_perk(p)
 		else:
-			var p := questing.add_perk(add_to_perk.key, add_to_perk.value)
+			var _p := questing.add_perk(add_to_perk.key, add_to_perk.value)
 
 
 func _remove_payment(inventory: Array) -> void:

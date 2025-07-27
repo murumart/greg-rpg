@@ -39,6 +39,7 @@ var action_history := []
 var loading_battle := true
 
 var own_scene := true
+var keep_arranging := true # use enemies_node.arrange if still needed
 
 # many nodes
 
@@ -316,6 +317,8 @@ func add_party_member(id: String) -> void:
 
 
 func arrange_enemies():
+	if not keep_arranging:
+		return
 	if enemies.is_empty():
 		return
 	enemies_node.arrange()
@@ -922,8 +925,8 @@ func _dance_battle_ended(data: Dictionary) -> void:
 	var pscore := data.get("player_score") as float
 	var enscore := data.get("enemy_score") as float
 	var pwin := pscore > enscore
-	var wscore := pscore if pwin else enscore
-	var lscore := enscore if pwin else pscore
+	#var wscore := pscore if pwin else enscore
+	#var lscore := enscore if pwin else pscore
 	var winner := (player if pwin else actor) as BattleActor
 	var loser := (actor if pwin else player) as BattleActor
 	if is_instance_valid(SND.current_song_player):
@@ -976,12 +979,13 @@ func set_description(text: String) -> void:
 func highlight_selected_enemy(enemy: BattleActor = null) -> void:
 	for e in enemies:
 		e.modulate = Color(1, 1, 1, 1)
-		e.position.y = 0
+		if keep_arranging: e.position.y = 0
 	if not (enemy and enemy is BattleEnemy):
 		return
 	enemy.modulate = Color(1.2, 1.2, 1.2, 1.3)
-	var tw := create_tween()
-	tw.tween_property(enemy, "position:y", -2, 0.1)
+	if keep_arranging:
+		var tw := create_tween()
+		tw.tween_property(enemy, "position:y", -2, 0.1)
 
 
 func resize_panel(new_y: int, wait := 0.2) -> void:

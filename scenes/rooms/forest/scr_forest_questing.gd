@@ -68,7 +68,7 @@ func add_perk(key: StringName, value: float) -> Perk:
 	else:
 		kp[0].amount += value
 		return kp[0]
-	return null
+#	return null
 
 
 func append_perk(perk: Perk) -> void:

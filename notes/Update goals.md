@@ -23,8 +23,8 @@
 		- [x] business casual chimney
 	- [ ] Factory interior
 	- [ ] Mayor bossfight
-		- [ ] door is attackable
-		- [ ] mayor fights greg at first
+		- [x] door is attackable
+		- [x] mayor fights greg at first
 		- [ ] door summons enemies that attack the mayor also
 			- [ ] overworld style, weird animated wispy rhints
 		- [ ] the mayor joins the party
