@@ -4201,6 +4201,14 @@ CHAR mayor
 
 DIALOGUE sg_welcome
 	Welcome to the [color=FLOWERCOLOR]SECRET GARDEN[/color], Greg.
+	Your journey is nearing its end.
+
+
+DIALOGUE sg_welcome_2
+	Where are we?
+	The SECRET GARDEN's whereabouts are... secret.
+	But, you're the third individual to find it.
+	Well, secrecy could be... overrated, anyway.
 
 
 DIALOGUE grandma_final_meeting_1

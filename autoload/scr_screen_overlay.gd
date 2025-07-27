@@ -260,9 +260,10 @@ func set_dialogue_mode(mode: int) -> void:
 	match mode:
 		0:
 			dialogue_box.textbox.remove_theme_font_override("normal_font")
+			dialogue_box.textbox.remove_theme_font_size_override("normal_font_size")
 		1:
 			dialogue_box.textbox.add_theme_font_override("normal_font", preload("res://fonts/gregorious_smaller.tres"))
-			dialogue_box.textbox.add_theme_font_size_override("normal_font", 16)
+			dialogue_box.textbox.add_theme_font_size_override("normal_font_size", 16)
 
 
 var _ldisplay_label_y := 0.0

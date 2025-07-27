@@ -94,8 +94,12 @@ texture = ExtResource("1_w7x74")
 0:5/0 = 0
 0:6/0 = 0
 0:4/0 = 0
+15:15/0 = 0
+15:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "floor1"
 terrain_set_0/terrain_0/color = Color(1, 0, 0.932425, 1)
