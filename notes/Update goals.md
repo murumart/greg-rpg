@@ -170,4 +170,6 @@
 		- [ ] challenges
 			- [ ] dark mode
 			- [ ] no clothes allowed
+			- [ ] thugs always on
+			- [ ] thugs always hunks (impossible..?)
 		- [ ] 

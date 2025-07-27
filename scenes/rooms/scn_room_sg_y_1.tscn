@@ -456,6 +456,8 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_61il4")
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.028, 0)
+scroll_offset = Vector2(93, 58.255)
 
 [node name="BattleBackground" parent="Parallax2D3" instance=ExtResource("8_i0mfy")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)

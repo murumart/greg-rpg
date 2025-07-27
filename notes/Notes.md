@@ -67,3 +67,22 @@
 - [x] something if you kill yourself in grandma intro fight
 - [x] zerma doesnt give you more candy
 - [x] GOING INTO BATHROOM SHOPLIFINGP!!?!=!=
+
+## ardenna playtets
+- [ ] add slower spirit timer option
+- [ ] death sprite from zerma battle in store..??
+- [ ] mail game price labels out of sync with actual price
+- [ ] greg house scene make road *thinner*
+- [ ] "semotion" typo 
+- [ ] street signs
+- [ ] thugs remain in town after bountyh complete??
+- [ ] not enough sp (sp == cost)
+- [ ] fish area too harsh..?
+- [ ] pond lady ysort
+- [ ] idea.. break the regular fishermen with"wrong dialogue choice"
+- [ ] wrogn death screen fisherman fight
+- [ ] penalty for equipping wrong armor in lakeside battle.?
+- [ ] increase cracked fisherman spawn elvel..?
+- [ ] reset xp after missing item message
+- [ ] police station vampire context if you dont talk to her... unify the dialoguye
+- [ ] use suin spirit to light campfire...

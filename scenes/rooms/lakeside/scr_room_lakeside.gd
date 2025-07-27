@@ -17,7 +17,7 @@ func _ready() -> void:
 	if DAT.get_data("fast_guy_fought", false):
 		fast_guy.queue_free()
 
-	if DAT.get_data("fulfilled_bounty_broken_fishermen", false):
+	if PoliceStation.is_bounty_fulfilled("broken_fishermen"):
 		spawners.map(func(a): a.queue_free())
 
 

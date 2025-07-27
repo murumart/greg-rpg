@@ -19,13 +19,17 @@ func _ready() -> void:
 	if DAT.get_data("trash_guy_inspected", false):
 		$Houses/BlockNeighbours/Trashguy.queue_free()
 	# disable thugs if bounty fulfilled
-	if (DAT.get_data("fulfilled_bounty_thugs", false) and
+	if (PoliceStation.is_bounty_fulfilled("thugs") and
 			not DAT.get_data("hunks_enabled", false)):
 		for i in thug_spawners:
-			i.queue_free()
-	if DAT.get_data("fulfilled_bounty_stray_animals", false):
+			if is_instance_valid(i):
+				i.erase_thugs_from_mem()
+				i.queue_free()
+	if PoliceStation.is_bounty_fulfilled("stray_animals") and not DAT.get_data("nat_toothquest_on"):
 		for i in animal_spawners:
-			i.queue_free()
+			if is_instance_valid(i):
+				i.erase_thugs_from_mem()
+				i.queue_free()
 
 
 func naturalist_setup() -> void:
