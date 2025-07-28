@@ -1,18 +1,21 @@
 extends BattleEnemy
 
+signal pls_x
+
 var battle: Battle
 var mayor: BattleActor
+var children: Array[BattleActor]
 
 
 func act() -> void:
 	print(turn)
-	if turn == 7:
+	if turn == 6:
 		SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"), {pitch_scale = 2.0})
-		for i in 3:
+		for i in 4:
 			spawn_wisp()
 			SND.play_sound(preload("res://sounds/spirit/spirit_equip.ogg"), {pitch_scale = 1.0 + i * 0.1})
 			await Math.timer(0.2)
-	elif turn == 14:
+	elif turn > 7 and not has_wisps():
 		SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"), {pitch_scale = 4.0})
 		for i in 6:
 			spawn_wisp()
@@ -23,7 +26,20 @@ func act() -> void:
 			dlg.al("there's too many of them!! we're being overwhelmed!!")
 			dlg.al("there is nothing we can do............")
 			await dlg.speak_choice()
+			pls_x.emit()
+			return
 	turn_finished()
+
+
+func hurt(amt: float, _gnd: int) -> void:
+	super(amt, _gnd)
+	if character.health_perc() <= 0.5:
+		for w in children:
+			w.hurt(2**8, Genders.VAST)
+
+
+func has_wisps() -> bool:
+	return not children.filter(func(a: BattleActor) -> bool: return is_instance_valid(a) and a.state != States.DEAD).is_empty()
 
 
 func spawn_wisp() -> BattleEnemy:
@@ -36,4 +52,13 @@ func spawn_wisp() -> BattleEnemy:
 	tw.tween_property(actor, ^"position", Vector2.from_angle(randf() * TAU) * randf_range(16, 28), 1.0)
 	if is_instance_valid(mayor):
 		actor.extra_targets.append(mayor)
+	children.append(actor)
 	return actor
+
+
+func _spirit_scooter_overrun_used_on() -> void:
+	if is_instance_valid(mayor) and mayor.character.health > 0:
+		var dlg := DialogueBuilder.new().set_char("scooterer")
+		dlg.al("nice going, son!!")
+		dlg.al("with enough of that attack, we can shut this thing down!!")
+		await dlg.speak_choice()

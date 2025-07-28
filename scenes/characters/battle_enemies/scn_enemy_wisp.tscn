@@ -86,8 +86,8 @@ animations = [{
 blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_oacy0"]
-_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0223068, 0.449577), 0.0, 0.0, 0, 0, Vector2(0.363825, 0.176353), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.52809), 0.0, 0.0, 0, 0, Vector2(0.553648, 0.202247), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_bnjhy"]
 width = 64
@@ -98,23 +98,11 @@ particle_flag_disable_z = true
 emission_shape_scale = Vector3(2, 1, 1)
 emission_shape = 1
 emission_sphere_radius = 1.0
+spread = 4.0
+initial_velocity_min = 16.0
+initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_bnjhy")
-
-[sub_resource type="Animation" id="Animation_oacy0"]
-resource_name = "hurt"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0466667, 0.09, 0.143333, 0.17, 0.183333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-3, -4), Vector2(4, -4), Vector2(-2, -4), Vector2(2, -4), Vector2(-1, -4), Vector2(1, -4), Vector2(0, -4)]
-}
 
 [sub_resource type="Animation" id="Animation_bnjhy"]
 length = 0.001
@@ -129,6 +117,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_oacy0"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0466667, 0.09, 0.143333, 0.17, 0.183333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -4), Vector2(4, -4), Vector2(-2, -4), Vector2(2, -4), Vector2(-1, -4), Vector2(1, -4), Vector2(0, -4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnjhy"]
@@ -156,8 +159,9 @@ to = NodePath("../Particles")
 [node name="Particles" type="GPUParticles2D" parent="AnimatedSprite2D"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_bnjhy")
-amount = 16
+amount = 32
 texture = SubResource("AtlasTexture_oacy0")
+lifetime = 1.4
 process_material = SubResource("ParticleProcessMaterial_s6stk")
 
 [node name="Animator" type="AnimationPlayer" parent="."]

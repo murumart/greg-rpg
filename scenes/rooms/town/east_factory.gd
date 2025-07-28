@@ -124,6 +124,9 @@ func _open_door_cutscene(skip := false) -> void:
 		dlg.al("you took so long, i didn't even think you'd make it back here.")
 		dlg.al("i guess i got a little impatient...")
 		await dlg.speak_choice()
+	else:
+		dark_hole.show()
+		skary.show()
 	var tw := create_tween()
 	tw.tween_property(modul, ^"color", Color(0.321, 0.844, 1.0), 2.0)
 	tw.parallel().tween_property(skary.material, "shader_parameter/modulate_a", 1.0, 3.0)
@@ -166,6 +169,7 @@ func _start_battle() -> void:
 	await battle.battle_loaded
 	battle_spiritportal = battle.enemies[0]
 	battle_spiritportal.battle = battle # spaghet
+	battle_spiritportal.pls_x.connect(_battle_ending)
 	battle.ui.modulate.a = 0.0
 	var tw := create_tween()
 	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0).from(0.0)
@@ -215,8 +219,8 @@ func _mayor_pld_after(pld: BattlePayload) -> void:
 		dlg.reset().set_char("scooterer")
 		dlg.al("i'm on my scooter now!")
 		dlg.al("help me charge up my [color=%s]sp[/color]!" % dlg.SPIRITCOLOR)
-		dlg.al("my power [color=%s]scootrev[/color] gives me a good boost!"	 % dlg.SPIRITCOLOR)
-		dlg.al("and after, we can use [color=%s]overscoot[/color] to deal a ton of damage!"  % dlg.SPIRITCOLOR)
+		dlg.al("my power [color=%s]scootrev[/color] gives me a good boost!" % dlg.SPIRITCOLOR)
+		dlg.al("and after, we can use [color=%s]overscoot[/color] to deal a ton of damage!" % dlg.SPIRITCOLOR)
 		dlg.al("you've battled me before, right!? you know how it works, son!")
 		await dlg.speak_choice()
 	if battle_mayor.character.health <= 0:
@@ -251,3 +255,11 @@ func _mayor_team_pld_after(pld: BattlePayload) -> void:
 		mayor.a_default()
 		DAT.death_reason = DAT.DeathReasons.MAYOR_DIE
 		LTS.to_game_over_screen()
+
+
+func _battle_ending() -> void:
+	SOL.vfx("xattack", dark_hole.global_position, {parent = dark_hole})
+	await Math.timer(1.1)
+	battle_spiritportal.hurt(20882088, Genders.VAST)
+	skary.hide()
+	await Math.timer(3.0)
