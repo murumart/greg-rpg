@@ -111,7 +111,7 @@ func cs_talk_1() -> void:
 		room_center.global_position + Vector2(room_center.gizmo_extents, 0), 0.1)
 	dlg.reset().set_char("grandma_talk")
 	dlg.add_line(dlg.ml("a customer!!!"))
-	dlg.add_line(dlg.ml("a customer in my [color=%s]flower shop![/color]" % Math.FLOWERCOLOR))
+	dlg.add_line(dlg.ml("a customer in my [color=%s]flower shop![/color]" % DialogueBuilder.FLOWERCOLOR))
 	SND.play_song("grand", 99.0, {play_from_beginning = true})
 	grandma.tanim_shake(10, 4.0)
 	grandma.sanimate("happy")

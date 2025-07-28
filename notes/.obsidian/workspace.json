@@ -77,7 +77,8 @@
               "title": "Tarikas"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -225,11 +226,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cfbe9572ff8bd75",
+  "active": "75ba75063ceb51c4",
   "lastOpenFiles": [
+    "SG gimmicks.md",
     "Update goals.md",
     "Notes.md",
-    "SG gimmicks.md",
     "Bugs.md",
     "Tarikas.md",
     "Police.md",

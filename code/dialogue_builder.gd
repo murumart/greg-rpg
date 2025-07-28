@@ -1,5 +1,8 @@
 class_name DialogueBuilder
 
+const FLOWERCOLOR = "#99ff61"
+const SPIRITCOLOR = "#7799ff"
+
 var _dial: Dialogue
 
 var _cur_char: StringName

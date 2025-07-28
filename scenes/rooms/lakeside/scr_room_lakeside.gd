@@ -181,7 +181,7 @@ func _on_fisherwoman_inspected() -> void:
 				if is_instance_valid(SND.current_song_player):
 					SND.current_song_player.volume_db -= 6
 				dlg.add_line(dlg.ml("..."))
-				dlg.add_line(dlg.ml("i deal in fish, not [color=%s]flowers[/color]." % Math.FLOWERCOLOR))
+				dlg.add_line(dlg.ml("i deal in fish, not [color=%s]flowers[/color]." % DialogueBuilder.FLOWERCOLOR))
 				dlg.add_line(dlg.ml("do you understand?"))
 				_flower_prog += 1
 			elif _flower_prog == 1:
@@ -206,7 +206,7 @@ func _on_fisherwoman_inspected() -> void:
 				if is_instance_valid(SND.current_song_player):
 					SND.current_song_player.volume_db -= 24
 				dlg.add_line(dlg.ml("why..."))
-				dlg.add_line(dlg.ml("why do you care about the [color=%s]flower[/color] so much?" % Math.FLOWERCOLOR))
+				dlg.add_line(dlg.ml("why do you care about the [color=%s]flower[/color] so much?" % DialogueBuilder.FLOWERCOLOR))
 				_flower_prog += 1
 			elif _flower_prog == 4:
 				if is_instance_valid(SND.current_song_player):

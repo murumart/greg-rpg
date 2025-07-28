@@ -57,7 +57,7 @@ static var CHANNELS := [
 		dlg.al("some walk the same path, hand in hand...")
 		dlg.al("some walk the same path, stepping on each other's heels...")
 		dlg.al("but their paths are so perfectly parallel to mine...")
-		dlg.al("this is why i'm not fit for the [color=%s]flower.[/color]" % Math.FLOWERCOLOR)
+		dlg.al("this is why i'm not fit for the [color=%s]flower.[/color]" % DialogueBuilder.FLOWERCOLOR)
 		dlg.al("this is why she wants it back.")
 		dlg.al("...")
 		dlg.al("...but she can't face us herself.")

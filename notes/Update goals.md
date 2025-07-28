@@ -25,11 +25,12 @@
 	- [ ] Mayor bossfight
 		- [x] door is attackable
 		- [x] mayor fights greg at first
-		- [ ] door summons enemies that attack the mayor also
-			- [ ] overworld style, weird animated wispy rhints
-		- [ ] the mayor joins the party
-		- [ ] portal summons another batch of enemies
-		- [ ] after killing them, x shows up and mills mayrp
+		- [x] door summons enemies that attack the mayor also
+			- [x] overworld style, weird animated wispy rhints
+		- [x] the mayor joins the party
+		- [x] portal summons another batch of enemies
+		- [ ] mayor dialogue like "ohhnooo were overwelmed"
+		- [ ] x shows up and murder he'm
 	- [x]  Mafia house interior
 	- [x] Mafia talking
 	- [x] Mafia minigame

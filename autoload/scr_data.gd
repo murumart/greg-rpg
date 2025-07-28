@@ -9,6 +9,7 @@ const GDUNG_LEVEL := 72
 enum DeathReasons {
 	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
 	CATS, SOLAR, NOVA, ZERMA, VAMPIRE, PRES_GUN, DISH, GDUNG,
+	MAYOR_DIE,
 }
 
 signal player_captured(capture: bool)

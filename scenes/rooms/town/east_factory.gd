@@ -151,12 +151,13 @@ func _open_door_cutscene(skip := false) -> void:
 
 const SPType = preload("res://scenes/characters/battle_enemies/scr_enemy_spirit_portal.gd")
 var battle_spiritportal: SPType
-var battle_mayor: BattleEnemy
+var battle_mayor: BattleActor
+var battle: Battle
 func _start_battle() -> void:
 	for f in spawners:
 		if is_instance_valid(f): f.queue_free()
 	DAT.capture_player("cutscene")
-	var battle := BATTLE_LOAD.instantiate()
+	battle = BATTLE_LOAD.instantiate()
 	battle.own_scene = false
 	battle.keep_arranging = false
 	battle._option_init({battle_info = preload("res://resources/battle_infos/mayor_fight.tres")})
@@ -170,10 +171,83 @@ func _start_battle() -> void:
 	tw.tween_property(battle.ui, "modulate:a", 1.0, 2.0).from(0.0)
 	battle.global_position = dark_hole.global_position
 	battle_mayor = BattleEnemy.new()
-	battle_spiritportal.extra_targets.append(battle_mayor)
+	battle_spiritportal.mayor = battle_mayor
 	var sp := Sprite2D.new()
 	sp.texture = preload("res://sprites/spr_white_pixel.png")
 	battle_mayor.add_child(sp)
 	battle_mayor.load_character(&"mayor")
+	battle_mayor.payload_post.connect(_mayor_pld_after)
 	battle.add_actor(battle_mayor, Battle.Teams.ENEMIES)
 	battle_spiritportal.global_position = dark_hole.global_position + Vector2(0, -8)
+
+
+func _mayor_pld_after(pld: BattlePayload) -> void:
+	if is_instance_valid(pld.sender) and pld.sender.actor_name == "tourist" and battle_mayor.character.health > 0:
+		dlg.reset().set_char("mayor")
+		dlg.al("what the...!!")
+		dlg.al("these spirits from the spirit world...")
+		dlg.al("one of them just attacked me!")
+		dlg.al("they're no better than our ordinary thugs!!!")
+		dlg.al("curses for a thousand years!").scallback(func() -> void:
+			mayor.animate(mayor.HEAD, "dark", 8.0, Vector2(1, 0))
+		)
+		dlg.al("well, i just did curse us for a while, i think.").scallback(func() -> void:
+			mayor.a_default()
+		)
+		dlg.al("change of plan, son! we have to close this portal!!")
+		await dlg.speak_choice()
+		battle.message("mayor joins your party!")
+		var hp := battle_mayor.character.health
+		battle_mayor.fled.emit(battle_mayor)
+		battle_mayor.state = battle_mayor.States.DEAD
+		battle_mayor = BattleActor.new()
+		battle_mayor.load_character("scooterer")
+		battle_mayor.character.health = hp
+		battle.add_actor(battle_mayor, Battle.Teams.PARTY)
+		battle_mayor.wait = 0
+		battle_mayor.payload_post.connect(_mayor_team_pld_after)
+		var tw := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mayor, "global_position", greg.global_position + Vector2(0, 9), 0.4)
+		tw.tween_property(battle.camera, ^"global_position", greg.global_position.lerp(dark_hole.global_position, 0.5).floor(), 0.4)
+		SND.play_sound(preload("res://sounds/whoosh.ogg"))
+		await tw.finished
+		await Math.timer(0.1)
+		dlg.reset().set_char("scooterer")
+		dlg.al("i'm on my scooter now!")
+		dlg.al("help me charge up my [color=%s]sp[/color]!" % dlg.SPIRITCOLOR)
+		dlg.al("my power [color=%s]scootrev[/color] gives me a good boost!"	 % dlg.SPIRITCOLOR)
+		dlg.al("and after, we can use [color=%s]overscoot[/color] to deal a ton of damage!"  % dlg.SPIRITCOLOR)
+		dlg.al("you've battled me before, right!? you know how it works, son!")
+		await dlg.speak_choice()
+	if battle_mayor.character.health <= 0:
+		mayor.rotate(PI / 2)
+		mayor.a_default()
+		DAT.death_reason = DAT.DeathReasons.MAYOR_DIE
+		LTS.to_game_over_screen()
+
+
+var attakcs := 0
+func _mayor_team_pld_after(pld: BattlePayload) -> void:
+	if pld.type == pld.Types.ATTACK and pld.sender.actor_name == "greg":
+		if attakcs == 0:
+			attakcs += 1
+			dlg.reset().set_char("scooterer")
+			dlg.al("what the...!!")
+			dlg.al("i'm on your team, son!! we have to work together!!")
+			dlg.al("we have to close the door!!")
+			await dlg.speak_choice()
+		elif attakcs == 1:
+			attakcs += 1
+			dlg.reset().set_char("scooterer")
+			dlg.al("son... don't make this harder than it needs be...")
+			dlg.al("this battle system doesn't have three teams! i have to choose!")
+			await dlg.speak_choice()
+		else:
+			attakcs += 1
+			dlg.reset().set_char("scooterer")
+			dlg.al("...")
+	if battle_mayor.character.health <= 0:
+		mayor.rotate(PI / 2)
+		mayor.a_default()
+		DAT.death_reason = DAT.DeathReasons.MAYOR_DIE
+		LTS.to_game_over_screen()

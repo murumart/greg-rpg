@@ -14,10 +14,12 @@ static var crits_enabled := true
 static var battle_hash := 0
 
 signal message(msg: String, options: Dictionary)
+signal payload_pre(pld: BattlePayload)
+signal payload_post(pld: BattlePayload)
 signal act_requested(by_whom: BattleActor)
 signal act_finished(by_whom: BattleActor)
 signal player_input_requested(by_whom: BattleActor)
-signal hurted(who: BattleActor)
+signal hurted(who: BattleActor, amt: float, gndr: int)
 signal died(who: BattleActor)
 signal fled(who: BattleActor)
 signal teammate_requested(who: BattleActor, whom: String)
@@ -138,7 +140,7 @@ func hurt(amt: float, gendr: int) -> void:
 		return
 	var amount := _hurt_damage(amt, gendr)
 	character.health = maxf(character.health - amount, 0.0)
-	hurted.emit(self)
+	hurted.emit(self, amt, gendr)
 	if character.health <= 0.0:
 		die()
 	else:
@@ -413,6 +415,7 @@ func use_item(id: String, subject: BattleActor) -> void:
 func handle_payload(pld: BattlePayload) -> void:
 	if _logsalot:
 		print(actor_name, " handling payload! (%s)" % BattlePayload.Types.find_key(pld.type))
+	payload_pre.emit(pld)
 	# this somehow fixes a battle end doubling bug. cool.
 	await get_tree().process_frame
 	if character.health <= 0:
@@ -483,6 +486,8 @@ func handle_payload(pld: BattlePayload) -> void:
 	if pld is BattlePayloadFishing and character.name_in_file in DAT.get_data(
 			"party", ["greg"]):
 		pld.set_fishing_data()
+
+	payload_post.emit(pld)
 
 
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:

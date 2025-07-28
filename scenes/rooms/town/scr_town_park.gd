@@ -57,7 +57,7 @@ func _on_tarikas_inspected() -> void:
 				dlg.add_line(dlg.ml("...if you tussled a bit with them."))
 			elif greg.level < 40:
 				unlocked_topics.append("flower")
-				dlg.add_line(dlg.ml("if you're really after the [color=%s]flower[/color]" % Math.FLOWERCOLOR))
+				dlg.add_line(dlg.ml("if you're really after the [color=%s]flower[/color]" % DialogueBuilder.FLOWERCOLOR))
 				dlg.add_line(dlg.ml("fuck my lyfe").scallback(func() -> void: queue_free()))
 				await dlg.speak_choice()
 				break

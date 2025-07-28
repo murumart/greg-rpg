@@ -626,6 +626,8 @@ func open_list_screen() -> void:
 					_on_button_reference_received,
 					{"item": true, "custom_pass_function": item_names})
 			screen_item_select.show()
+			if items.is_empty():
+				item_info_label.text = "no items here!"
 		Doings.ITEM:
 			var array := []
 			var item := ResMan.get_item(held_item_id) as Item
@@ -887,6 +889,10 @@ func _on_spirit_pressed() -> void:
 
 func _on_item_pressed() -> void:
 	if is_ui_locked():
+		return
+	if current_guy.character.inventory.is_empty():
+		SND.menusound(0.3)
+		set_description("empty pockets.")
 		return
 	doing = Doings.ITEM_MENU
 	open_list_screen()

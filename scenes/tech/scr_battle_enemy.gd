@@ -216,12 +216,12 @@ func pick_target(who: int = 0) -> BattleActor:
 		return self
 	if reference_to_opposing_array.size() > 0:
 		var target: BattleActor
-		if extra_targets.is_empty() or rng.randf() <= 0.6667:
+		var living_extra := extra_targets.filter(func(a: BattleActor) -> bool: return a.state != States.DEAD)
+		if living_extra.is_empty():
 			target = Math.determ_pick_random(reference_to_opposing_array, rng)
 			if is_instance_valid(target):
 				return target
-		target = Math.determ_pick_random(extra_targets
-				.filter(func(a: BattleActor): return a.state != States.DEAD), rng)
+		target = Math.determ_pick_random(living_extra, rng)
 		if is_instance_valid(target):
 			return target
 	return null

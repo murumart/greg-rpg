@@ -64,10 +64,14 @@ const DEATH_REASONS := [
 	{
 		"picture": "gdung",
 		"text": "[center]it goes deep.",
+	},
+	{
+		"picture": "mayordiea",
+		"text": "[font=res://fonts/gregtiny.ttf][font_size=6][center]assignment terminated\nsubject: greg\nreason: failure to preserve mission-critical personnel",
 	}
 ]
 
-@export var test_death := 0
+@export var test_death := DAT.DeathReasons.DEFAULT
 
 @onready var text_box := $TextBox
 @onready var picture := $Pictures
