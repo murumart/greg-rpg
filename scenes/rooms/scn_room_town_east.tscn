@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=95 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -44,6 +44,8 @@
 [ext_resource type="Texture2D" uid="uid://c2tgucaak60a3" path="res://sprites/world/object/spr_crimescene.png" id="30_phep0"]
 [ext_resource type="Script" uid="uid://d3ou8r8xmeefi" path="res://scenes/rooms/town/scr_uhh_house.gd" id="31_yxacx"]
 [ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="34_ivof4"]
+[ext_resource type="PackedScene" uid="uid://c0pgn5rbbtnvj" path="res://scenes/vfx/scn_vfx_door_shards.tscn" id="35_ani0e"]
+[ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="36_qk2vw"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="38_6wcl6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
@@ -310,7 +312,7 @@ height = 26
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ani0e"]
 shader = ExtResource("34_ivof4")
-shader_parameter/modulate_a = 0.0
+shader_parameter/modulate_a = 1.0
 
 [sub_resource type="Gradient" id="Gradient_ivof4"]
 offsets = PackedFloat32Array(0, 0.411043, 0.472393, 0.628834, 1)
@@ -322,6 +324,64 @@ width = 21
 height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ani0e"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_gcnui"]
+resource_name = "descend"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menacing:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.84, 2.39, 2.73, 2.89, 2.96, 3.08, 3.12, 3.16, 3.24, 3.27, 3.31, 3.38, 3.46, 3.47, 3.52, 3.56, 3.62, 3.68, 3.72119, 3.74946, 3.77, 3.80601, 3.86, 3.89486, 3.94, 3.99, 4.06, 4.1, 4.16, 4.19, 4.27, 4.31, 4.37, 4.46, 4.49, 4.58, 4.65, 4.68, 4.76, 4.79, 4.85, 4.93, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, -102), Vector2(4, -83), Vector2(-1.23978e-05, -67), Vector2(-5.00001, -58), Vector2(-5, -50), Vector2(-4.00001, -50), Vector2(-4.99999, -50), Vector2(-4, -47), Vector2(-4.99999, -45), Vector2(-4.00001, -43), Vector2(-3.00001, -40), Vector2(-2.00001, -38), Vector2(-0.999988, -37), Vector2(-3, -37), Vector2(-2.99999, -37), Vector2(-1.99999, -36), Vector2(-0.999988, -34), Vector2(-2.99999, -37), Vector2(-3, -35), Vector2(-1, -33), Vector2(3.8147e-06, -32), Vector2(-1, -31), Vector2(-3.8147e-06, -31), Vector2(1, -30), Vector2(-1, -30), Vector2(-2.99999, -30), Vector2(-2, -28), Vector2(-2, -27), Vector2(-5, -24), Vector2(-7, -25), Vector2(-5, -26), Vector2(-4, -25), Vector2(-4, -26), Vector2(-3, -26), Vector2(-2, -27), Vector2(-3.99999, -27), Vector2(-3, -26), Vector2(-3.00001, -27), Vector2(-4.00001, -26), Vector2(-2, -25), Vector2(-2, -25), Vector2(-0.999989, -25), Vector2(-3, -25), Vector2(-4, -25), Vector2(-4, -27)]
+}
+
+[sub_resource type="Animation" id="Animation_f1gdv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menacing:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -123)]
+}
+
+[sub_resource type="Animation" id="Animation_xx7yy"]
+resource_name = "hover"
+length = 0.89
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menacing:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0305025, 0.0701558, 0.11591, 0.134211, 0.152513, 0.183015, 0.222668, 0.280623, 0.308076, 0.35688, 0.399583, 0.494141, 0.622252, 0.695458, 0.783915, 0.84797),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -27), Vector2(-5, -28), Vector2(-5.00001, -30), Vector2(-3, -29), Vector2(-2, -27), Vector2(-3.99998, -28), Vector2(-2.00001, -25), Vector2(-2, -27), Vector2(-4, -28), Vector2(-2.99999, -27), Vector2(-1.99999, -28), Vector2(-4.99999, -28), Vector2(-3.99999, -27), Vector2(-3, -27), Vector2(-4.00001, -27), Vector2(-3.99999, -28), Vector2(-2.00001, -28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egsis"]
+_data = {
+&"RESET": SubResource("Animation_f1gdv"),
+&"descend": SubResource("Animation_gcnui"),
+&"hover": SubResource("Animation_xx7yy")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
@@ -1019,6 +1079,21 @@ texture = SubResource("GradientTexture2D_ani0e")
 centered = false
 offset = Vector2(-10, -26)
 
+[node name="ShardsTexture" parent="Houses/Factory" instance=ExtResource("35_ani0e")]
+position = Vector2(6, 31)
+texture = SubResource("ViewportTexture_ani0e")
+
+[node name="Menace" type="Node2D" parent="Houses/Factory"]
+
+[node name="Menacing" parent="Houses/Factory/Menace" instance=ExtResource("36_qk2vw")]
+z_index = 12
+position = Vector2(8, -123)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Houses/Factory/Menace"]
+libraries = {
+&"": SubResource("AnimationLibrary_egsis")
+}
+
 [node name="Chapel" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(-720, -528)
@@ -1345,4 +1420,5 @@ max_enemies = 3
 player = NodePath("../../Greg")
 
 [editable path="Houses/HousingBlock/ClimbingPlace"]
+[editable path="Houses/Factory/ShardsTexture"]
 [editable path="Other/RideAroundTown"]

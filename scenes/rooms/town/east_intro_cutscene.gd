@@ -90,7 +90,7 @@ func _walkdial() -> void:
 			dlg.add_line(dlg.ml("not quite enough, is it, son?").scallback(mayor.animate.bind(mayor.HEAD, "default", 8.0, Vector2(2, 0))))
 			dlg.add_line(dlg.ml("you didn't even bring any children here.").scallback(SND.play_song.bind("")))
 			dlg.add_line(dlg.ml("don'tcha worry. i have a [color=ff4422]plan[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default", 0.0, Vector2(0, 0))))
-			dlg.add_line(dlg.ml("i'm going to open an [color=ff4422]evil portal[/color] to the [color=ff4422]spirit world[/color].").scallback(mayor.animate.bind(mayor.HEAD, "dark")))
+			dlg.add_line(dlg.ml("i'm going to open an [color=ff4422]evil window[/color] to the [color=ff4422]spirit world[/color].").scallback(mayor.animate.bind(mayor.HEAD, "dark")))
 			dlg.add_line(dlg.ml("spirits would love to [color=ff4422]settle[/color] in my [color=ff4422]town[/color].").scallback(mayor.a_rarm.bind("finger")))
 			dlg.add_line(dlg.ml("i will do it. don't try to [color=ff4422]stop me[/color].").scallback(mayor.a_rarm.bind("hip")))
 			dlg.add_line(dlg.ml("i'm the [color=ff4422]mayor[/color].").scallback(mayor.animate.bind(mayor.HEAD, "default")))

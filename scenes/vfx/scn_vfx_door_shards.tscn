@@ -1,0 +1,191 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0pgn5rbbtnvj"]
+
+[ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="1_5q25p"]
+[ext_resource type="Texture2D" uid="uid://dhlgp6ndlapp1" path="res://sprites/vfx/shards.png" id="2_ausv5"]
+[ext_resource type="AudioStream" uid="uid://dtd30kis65iiy" path="res://sounds/spirit/sever.ogg" id="3_ausv5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ani0e"]
+shader = ExtResource("1_5q25p")
+shader_parameter/modulate_a = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ani0e"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ani0e"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qk2vw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 12.0
+initial_velocity_max = 32.0
+gravity = Vector3(0, 49, 0)
+anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_5q25p"]
+resource_name = "defa"
+length = 6.071
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.071),
+"transitions": PackedFloat32Array(0.297302, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.071),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ausv5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a21ag"]
+_data = {
+&"RESET": SubResource("Animation_ausv5"),
+&"defa": SubResource("Animation_5q25p")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ausv5"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_a21ag"]
+offsets = PackedFloat32Array(0, 0.423313, 0.558282, 0.671779, 0.981595)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4sxs1"]
+gradient = SubResource("Gradient_a21ag")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="ShardsTexture" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_ani0e")
+texture = SubResource("ViewportTexture_ani0e")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(64, 128)
+render_target_update_mode = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewport"]
+z_index = 1
+material = SubResource("CanvasItemMaterial_ani0e")
+position = Vector2(32, 32)
+emitting = false
+amount = 56
+texture = ExtResource("2_ausv5")
+lifetime = 3.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qk2vw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a21ag")
+}
+autoplay = "RESET"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ausv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_ausv5")
+position = Vector2(0, -40)
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_4sxs1")

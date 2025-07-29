@@ -8,6 +8,7 @@ var children: Array[BattleActor]
 
 
 func act() -> void:
+	if done: return
 	print(turn)
 	if turn == 6:
 		SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"), {pitch_scale = 2.0})
@@ -26,13 +27,18 @@ func act() -> void:
 			dlg.al("there's too many of them!! we're being overwhelmed!!")
 			dlg.al("there is nothing we can do............")
 			await dlg.speak_choice()
+			done = true
 			pls_x.emit()
 			return
 	turn_finished()
 
 
+var done := false
 func hurt(amt: float, _gnd: int) -> void:
 	super(amt, _gnd)
+	if character.health <= 0.0 and not done:
+		pls_x.emit.call_deferred()
+		done = true
 	if character.health_perc() <= 0.5:
 		for w in children:
 			w.hurt(2**8, Genders.VAST)

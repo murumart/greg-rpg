@@ -135,7 +135,7 @@ func _open_door_cutscene(skip := false) -> void:
 	await tw.finished
 	if not skip:
 		dlg.reset().set_char("mayor")
-		dlg.al("i opened the portal to the [color=ff4422]spirit world[/color] just a little bit.")
+		dlg.al("i opened the window to the [color=ff4422]spirit world[/color] just a little bit.")
 		dlg.al("let's welcome the new populace of my [color=ff4422]town[/color] together, why not?")
 		await dlg.speak_choice()
 	mayor.animate(mayor.HEAD, "dark", 4.0, Vector2(1, 1))
@@ -168,6 +168,7 @@ func _start_battle() -> void:
 	add_child(battle)
 	await battle.battle_loaded
 	battle_spiritportal = battle.enemies[0]
+	battle_spiritportal.died.disconnect(battle._on_actor_died)
 	battle_spiritportal.battle = battle # spaghet
 	battle_spiritportal.pls_x.connect(_battle_ending)
 	battle.ui.modulate.a = 0.0
@@ -198,7 +199,7 @@ func _mayor_pld_after(pld: BattlePayload) -> void:
 		dlg.al("well, i just did curse us for a while, i think.").scallback(func() -> void:
 			mayor.a_default()
 		)
-		dlg.al("change of plan, son! we have to close this portal!!")
+		dlg.al("change of plan, son! we have to close this window!!")
 		await dlg.speak_choice()
 		battle.message("mayor joins your party!")
 		var hp := battle_mayor.character.health
@@ -222,6 +223,7 @@ func _mayor_pld_after(pld: BattlePayload) -> void:
 		dlg.al("my power [color=%s]scootrev[/color] gives me a good boost!" % dlg.SPIRITCOLOR)
 		dlg.al("and after, we can use [color=%s]overscoot[/color] to deal a ton of damage!" % dlg.SPIRITCOLOR)
 		dlg.al("you've battled me before, right!? you know how it works, son!")
+		dlg.al("if we damage the window enough, it will collapse!!")
 		await dlg.speak_choice()
 	if battle_mayor.character.health <= 0:
 		mayor.rotate(PI / 2)
@@ -238,7 +240,7 @@ func _mayor_team_pld_after(pld: BattlePayload) -> void:
 			dlg.reset().set_char("scooterer")
 			dlg.al("what the...!!")
 			dlg.al("i'm on your team, son!! we have to work together!!")
-			dlg.al("we have to close the door!!")
+			dlg.al("we have to close the window!!")
 			await dlg.speak_choice()
 		elif attakcs == 1:
 			attakcs += 1
@@ -258,8 +260,25 @@ func _mayor_team_pld_after(pld: BattlePayload) -> void:
 
 
 func _battle_ending() -> void:
-	SOL.vfx("xattack", dark_hole.global_position, {parent = dark_hole})
+	battle.doing = battle.Doings.DONE
+	var tw := create_tween()
+	tw.tween_property(battle.ui, ^"modulate:a", 0.0, 0.2)
+	SND.play_song("")
+	await Math.timer(2.5)
+	SOL.vfx("xattack", dark_hole.global_position - Vector2(0, 9), {parent = dark_hole})
 	await Math.timer(1.1)
 	battle_spiritportal.hurt(20882088, Genders.VAST)
+	await Math.timer(0.5)
 	skary.hide()
-	await Math.timer(3.0)
+	$ShardsTexture/AnimationPlayer.play(&"defa")
+	await Math.timer(4.0)
+	SND.play_song("bymssc", 0.5)
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(modul, ^"color", Color(0.124, 1.0, 0.0), 4.0)
+	$Menace.show()
+	var menacing := $Menace/Menacing
+	var menanim: AnimationPlayer = $Menace/AnimationPlayer
+	menanim.play(&"descend")
+	menanim.queue(&"hover")
+	dlg.reset().set_char("mayor")
+	dlg.al("TODO who waeadawdad")

@@ -5,10 +5,10 @@
 [resource]
 script = ExtResource("2_sulc0")
 name_in_file = &""
-name = "door to mana"
-info = "the forms within burst with excitement"
+name = "window to mana"
+info = "the forms on the other side burst with excitement"
 max_health = 1000.0
-health = 1000.0
+health = 1.0
 max_magic = 1e+11
 magic = 1e+13
 level = 99
