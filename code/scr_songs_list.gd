@@ -61,7 +61,7 @@ var songs := {
 		"stream": preload("res://music/mus_catfight.ogg")
 	},
 	"chapel": {
-		"title": "chapel",
+		"title": "religion",
 		"stream": preload("res://music/mus_chapel.ogg")
 	},
 	"daylightthief": {
