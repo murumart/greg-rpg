@@ -10,6 +10,8 @@ signal player_finished_acting
 signal ending
 signal battle_loaded
 
+static var current_battle: Battle
+
 # this is the default for testing
 @export var load_options: BattleInfo = null
 
@@ -115,6 +117,7 @@ func _option_init(options := {}) -> void:
 
 
 func _ready() -> void:
+	current_battle = self
 	update_timer.timeout.connect(_on_update_timer_timeout)
 	update_timer.start(0.08)
 	for e in enemies_node.get_children():

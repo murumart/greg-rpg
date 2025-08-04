@@ -1253,7 +1253,6 @@ texture = SubResource("GradientTexture2D_f1gdv")
 [node name="Sprite2D3" type="Sprite2D" parent="Houses/Factory/Menace/Menacing/Sprite2D2"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_qk2vw")
-scale = Vector2(1, 1)
 texture = SubResource("GradientTexture2D_f1gdv")
 
 [node name="Circle" type="Sprite2D" parent="Houses/Factory/Menace/Menacing"]

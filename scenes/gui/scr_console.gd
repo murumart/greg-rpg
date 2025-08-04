@@ -175,8 +175,7 @@ func _cmd_beffect(args: PackedStringArray) -> void:
 
 
 func _cmd_bset(args: PackedStringArray) -> void:
-	var cs: Node = LTS.get_current_scene()
-	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+	if not is_instance_valid(Battle.current_battle):
 		output("needs to be used in battle", true)
 		return
 	if args.size() < 1:
@@ -191,7 +190,7 @@ func _cmd_bset(args: PackedStringArray) -> void:
 	else:
 		output("argument 1 should be 0 or 1", true)
 		return
-	var get_team: Array = cs.enemies if team == 1 else cs.party
+	var get_team: Array = Battle.current_battle.enemies if team == 1 else Battle.current_battle.party
 	var nr := 0
 	if args[1].is_valid_int() and int(args[1]) in range(0, get_team.size()):
 		nr = int(args[1])
@@ -205,11 +204,10 @@ func _cmd_bset(args: PackedStringArray) -> void:
 
 
 func _cmd_bend(_args: PackedStringArray) -> void:
-	var cs: Node = LTS.get_current_scene()
-	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+	if not is_instance_valid(Battle.current_battle):
 		output("needs to be used in battle", true)
 		return
-	(cs).check_end(true)
+	Battle.current_battle.check_end(true)
 
 
 func _cmd_setdata(args: PackedStringArray) -> void:
@@ -371,8 +369,8 @@ func _cmd_gspirit(args: PackedStringArray) -> void:
 
 func _cmd_instakill(_args: PackedStringArray) -> void:
 	ResMan.get_character("greg").attack = 2138123812 # because
-	if LTS.get_current_scene().name == "Battle":
-		LTS.get_current_scene().party[0].character.attack = 2138123812
+	if is_instance_valid(Battle.current_battle):
+		Battle.current_battle.party[0].character.attack = 2138123812
 
 
 func _cmd_addperk(args: PackedStringArray) -> void:
