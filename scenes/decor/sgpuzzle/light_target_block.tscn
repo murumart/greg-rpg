@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2j5cwgvjb6f2"]
+
+[ext_resource type="Script" uid="uid://dwr48fe1mvxkv" path="res://scenes/decor/sgpuzzle/light_target_block.gd" id="1_hn4yu"]
+[ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="2_hn4yu"]
+[ext_resource type="AudioStream" uid="uid://b7caxcjotbdo0" path="res://sounds/sg/target.ogg" id="3_vdj5a"]
+[ext_resource type="AudioStream" uid="uid://t4hfan6mb572" path="res://sounds/sg/unlight.ogg" id="4_l4cdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhvo7"]
+size = Vector2(16, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hn4yu"]
+
+[node name="LightTargetBlock" type="StaticBody2D"]
+collision_layer = 517
+collision_mask = 0
+script = ExtResource("1_hn4yu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nhvo7")
+
+[node name="Base" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_hn4yu")
+region_enabled = true
+region_rect = Rect2(0, 96, 16, 16)
+
+[node name="Activation" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.792157)
+texture = ExtResource("2_hn4yu")
+region_enabled = true
+region_rect = Rect2(48, 96, 16, 16)
+
+[node name="Light" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_hn4yu")
+texture = ExtResource("2_hn4yu")
+region_enabled = true
+region_rect = Rect2(32, 96, 16, 16)
+
+[node name="TargetSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vdj5a")
+
+[node name="Unlight" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l4cdn")
+pitch_scale = 0.75

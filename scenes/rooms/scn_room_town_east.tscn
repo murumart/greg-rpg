@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=104 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -659,6 +659,9 @@ _data = {
 &"activate": SubResource("Animation_vjta2"),
 &"active": SubResource("Animation_ihfqe")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcnui"]
+size = Vector2(12, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcl6"]
 size = Vector2(14, 18)
@@ -1381,6 +1384,16 @@ stream = ExtResource("30_6wcl6")
 libraries = {
 &"": SubResource("AnimationLibrary_uocl1")
 }
+
+[node name="DoorArea" parent="Houses/Chapel" node_paths=PackedStringArray("spawn_point") instance=ExtResource("9_fhxp8")]
+position = Vector2(-7, 51)
+destination = &"chapel"
+gate_id = &"east-chapel"
+spawn_point = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Chapel/DoorArea"]
+position = Vector2(-1, -7)
+shape = SubResource("RectangleShape2D_gcnui")
 
 [node name="UhhHouse" type="Node2D" parent="Houses"]
 y_sort_enabled = true

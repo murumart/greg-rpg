@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://bb68kmsibhghu"]
+
+[ext_resource type="AudioStream" uid="uid://bwrg2j66qd5bf" path="res://sounds/gui/rockslide-01.ogg" id="1_an6fu"]
+[ext_resource type="AudioStream" uid="uid://c2r3buyh6mdb1" path="res://sounds/gui/rockslide-02.ogg" id="2_1pdc3"]
+[ext_resource type="AudioStream" uid="uid://c1jmnwrinq7ik" path="res://sounds/gui/rockslide-03.ogg" id="3_3fmu6"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("1_an6fu")
+stream_1/stream = ExtResource("2_1pdc3")
+stream_2/stream = ExtResource("3_3fmu6")

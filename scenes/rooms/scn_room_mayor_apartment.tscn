@@ -169,6 +169,7 @@ position = Vector2(0, 8)
 offset = Vector2(0, -19)
 
 [node name="RadioInteraction" parent="Decor/Radio" index="2"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" parent="Decor/Radio/RadioInteraction" index="0"]

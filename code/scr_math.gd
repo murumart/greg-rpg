@@ -13,6 +13,8 @@ const ANGLE_RIGHT := 0.0
 const ANGLE_DOWN := 1.5708
 const ANGLE_UP := -1.5708
 
+const VECS_FROM_DIR: PackedVector2Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+
 
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():
@@ -23,8 +25,13 @@ static func num_string_type(input: String) -> int:
 
 
 # get either -1, 0, 1, 2 to represent the 4 cardinal directions
+# UP = -1, RIGHT = 0, DOWN = 1, LEFT = 2
 static func dir_from_rot(rotation_radians: float) -> int:
 	return wrapi(int(roundi(rotation_radians / PI * 2)), -1, 3)
+
+
+static func vec_from_dir(dir: int) -> Vector2:
+	return VECS_FROM_DIR[dir]
 
 
 static func sign_symbol(x) -> String:

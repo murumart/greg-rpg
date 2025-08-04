@@ -1,13 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://b86f65y4e0huw"]
+[gd_scene load_steps=28 format=3 uid="uid://b86f65y4e0huw"]
 
 [ext_resource type="Script" uid="uid://dvkemvv7le4bq" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="2_8mtsu"]
 [ext_resource type="Texture2D" uid="uid://b313rnbxkx7d7" path="res://sprites/items/spr_pizz.png" id="2_nbvpt"]
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_rjc4u"]
-[ext_resource type="AudioStream" uid="uid://bwrg2j66qd5bf" path="res://sounds/gui/rockslide-01.ogg" id="3_q65jg"]
 [ext_resource type="Material" uid="uid://bjmchbs1h5tdo" path="res://scenes/rooms/forest/sliding_puzzle/rock_pizzle_piece_material.tres" id="4_j12ag"]
-[ext_resource type="AudioStream" uid="uid://c2r3buyh6mdb1" path="res://sounds/gui/rockslide-02.ogg" id="4_ryct8"]
-[ext_resource type="AudioStream" uid="uid://c1jmnwrinq7ik" path="res://sounds/gui/rockslide-03.ogg" id="5_t37dl"]
+[ext_resource type="AudioStream" uid="uid://bb68kmsibhghu" path="res://sounds/gui/rock_slide.tres" id="6_3rd5m"]
 [ext_resource type="AudioStream" uid="uid://dchtql6dfhy7p" path="res://sounds/gui/move_slide_selection.ogg" id="7_diur1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyuj7"]
@@ -105,13 +103,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 1, 1, 1)
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8v4t4"]
-random_pitch = 1.4
-streams_count = 3
-stream_0/stream = ExtResource("3_q65jg")
-stream_1/stream = ExtResource("4_ryct8")
-stream_2/stream = ExtResource("5_t37dl")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u8vir"]
 random_pitch = 1.9
@@ -405,7 +396,7 @@ offset_bottom = 111.0
 text = "press [cancel] to give up"
 
 [node name="RockSound" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_8v4t4")
+stream = ExtResource("6_3rd5m")
 volume_db = 2.0
 pitch_scale = 1.05
 max_polyphony = 5
