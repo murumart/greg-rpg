@@ -60,6 +60,10 @@ var songs := {
 		"title": "catfight",
 		"stream": preload("res://music/mus_catfight.ogg")
 	},
+	"chapel": {
+		"title": "chapel",
+		"stream": preload("res://music/mus_chapel.ogg")
+	},
 	"daylightthief": {
 		"title": "daylightthief",
 		"stream": preload("res://music/mus_daylightthief.ogg")
