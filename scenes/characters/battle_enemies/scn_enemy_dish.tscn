@@ -122,13 +122,13 @@ fill_from = Vector2(1, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aihdk"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_far7r"]
+[sub_resource type="Gradient" id="Gradient_8bp5q"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.218528, 0.517229, 0.742338, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0.952941, 0.788235, 0.952941, 0.682353, 1, 1, 1, 1, 1, 1, 0.784314, 0.658824, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xovsu"]
-gradient = SubResource("Gradient_far7r")
+gradient = SubResource("Gradient_8bp5q")
 height = 256
 
 [sub_resource type="Animation" id="Animation_kfc1w"]

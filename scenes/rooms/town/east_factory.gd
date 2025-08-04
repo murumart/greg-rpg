@@ -1,14 +1,16 @@
 extends Node2D
 
 const BATTLE_LOAD = preload("res://scenes/tech/scn_battle.tscn")
+const CameraType = preload("res://scenes/tech/scr_camera.gd")
 
-@onready var mayor := $"../../Other/Mayor"
+@onready var mayor := $%Mayor
 @onready var dark_hole: Sprite2D = $DarkHole
 @onready var skary: Sprite2D = $Skary
 @onready var spawners := get_tree().get_nodes_in_group(&"thug_spawners")
 
 @export var greg: PlayerOverworld
 @export var modul: ColorContainer
+@export var camera: CameraType
 
 var dlg := DialogueBuilder.new()
 
@@ -17,15 +19,28 @@ func _ready() -> void:
 	$DoorInspect.inspected.connect(_door)
 	# if youre wondering the mayor is positioned in res://scenes/rooms/town/east_intro_cutscene.gd
 	mayor.inspected.connect(_mayor_post_intro)
+	if DAT.get_data(&"mayor_fought", false):
+		dark_hole.show()
+		skary.hide()
+		mayor.hide()
+		for s in spawners:
+			if is_instance_valid(s):
+				s.erase_thugs_from_mem()
+				s.queue_free()
+		mayor.set_global_position.call_deferred(Vector2(9999, 9999))
 	#DEBUG
-	_open_door_cutscene(true)
+	#else: _open_door_cutscene(true)
 
 
 func _door() -> void:
 	dlg.clear()
 	var inv := ResMan.get_character("greg").inventory
 	var end := false
-	if &"explosive_soap" in inv:
+	if DAT.get_data(&"mayor_fought", false):
+		LTS.gate_id = &"east-factory"
+		LTS.level_transition(LTS.ROOM_SCENE_PATH % "factory_inside")
+		return
+	elif &"explosive_soap" in inv:
 		greg.animate("walk_up")
 		dlg.al("you jam the explosive soap into the keyhole.")
 		inv.erase(&"explosive_soap")
@@ -114,6 +129,7 @@ func _open_door_cutscene(skip := false) -> void:
 		await Math.timer(0.2)
 		var x := SOL.vfx("explosion", dark_hole.global_position, {parent = dark_hole})
 		dark_hole.show()
+		skary.material["shader_parameter/modulate_a"] = 0.0
 		skary.show()
 		SND.play_song("", 99)
 		await Math.timer(0.1)
@@ -126,6 +142,7 @@ func _open_door_cutscene(skip := false) -> void:
 		await dlg.speak_choice()
 	else:
 		dark_hole.show()
+		skary.material["shader_parameter/modulate_a"] = 0.0
 		skary.show()
 	var tw := create_tween()
 	tw.tween_property(modul, ^"color", Color(0.321, 0.844, 1.0), 2.0)
@@ -177,8 +194,8 @@ func _start_battle() -> void:
 	battle.global_position = dark_hole.global_position
 	battle_mayor = BattleEnemy.new()
 	battle_spiritportal.mayor = battle_mayor
-	var sp := Sprite2D.new()
-	sp.texture = preload("res://sprites/spr_white_pixel.png")
+	# for animation errorsd
+	var sp := Node2D.new()
 	battle_mayor.add_child(sp)
 	battle_mayor.load_character(&"mayor")
 	battle_mayor.payload_post.connect(_mayor_pld_after)
@@ -259,8 +276,10 @@ func _mayor_team_pld_after(pld: BattlePayload) -> void:
 		LTS.to_game_over_screen()
 
 
+const MenType = preload("res://scenes/vfx/x_menacing.gd")
 func _battle_ending() -> void:
 	battle.doing = battle.Doings.DONE
+	mayor.global_position = greg.global_position + Vector2(0, 9)
 	var tw := create_tween()
 	tw.tween_property(battle.ui, ^"modulate:a", 0.0, 0.2)
 	SND.play_song("")
@@ -271,14 +290,76 @@ func _battle_ending() -> void:
 	await Math.timer(0.5)
 	skary.hide()
 	$ShardsTexture/AnimationPlayer.play(&"defa")
+	create_tween().tween_property(modul, ^"color", Color(0.849, 0.879, 0.821), 1.0)
+	mayor.a_default()
 	await Math.timer(4.0)
-	SND.play_song("bymssc", 0.5)
+	dlg.reset().set_char("mayor")
+	dlg.al("th... the window was shattered!!")
+	dlg.al("could it really have been...")
+	dlg.al("well, i have a good feeling about this, son!").scallback(func() -> void:
+		var t := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		t.tween_property(mayor, "global_position", %FinalMayorPos.global_position, 0.5)
+	)
+	await dlg.speak_choice()
+	SND.play_song("bymssc", 0.8)
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(modul, ^"color", Color(0.124, 1.0, 0.0), 4.0)
+	tw.tween_property(modul, ^"color", Color(0.124, 1.0, 0.0), 2.0)
+	tw.parallel().tween_property(battle.camera, ^"global_position", battle.camera.global_position - Vector2(0, 20), 2.0)
 	$Menace.show()
-	var menacing := $Menace/Menacing
+	var menacing: MenType = $Menace/Menacing
 	var menanim: AnimationPlayer = $Menace/AnimationPlayer
 	menanim.play(&"descend")
 	menanim.queue(&"hover")
+	await menanim.animation_changed
 	dlg.reset().set_char("mayor")
-	dlg.al("TODO who waeadawdad")
+	dlg.al("there you are, [color=0f0]girl[/color]! i knew that was you!")
+	dlg.al("thanks a lot! that window just opened out of nowhere...")
+	dlg.al("spirits started pouring out... oh, it was terrible!")
+	dlg.al("even with my [color=%s]flower[/color], we had trouble..." % dlg.FLOWERCOLOR)
+	dlg.al("well... all's well that ends well.")
+	dlg.al("just... what is with that ominous, shadowy look, [color=0f0]girl[/color]?")
+	await dlg.speak_choice()
+	await Math.timer(1.0)
+	dlg.reset().set_char("mayor")
+	dlg.al("this is no way to talk to your [color=f42]mayor[/color], [color=0f0]girl[/color].").stext_speed(0.9)
+	(dlg.al("i'm going to have to talk to your [color=f42]parents[/color], i'm afraid")
+		.stext_speed(0.75)
+		.scallback(func() -> void:
+			menacing.particles(1.0)
+			menanim.stop(true)
+			var t := create_tween().set_trans(Tween.TRANS_CUBIC)
+			t.tween_interval(0.9)
+			t.tween_callback(SND.play_sound.bind(preload("res://sounds/men-01.ogg")))
+			t.tween_property(menacing, ^"global_position:x", mayor.global_position.x, 0.25).set_ease(Tween.EASE_OUT)
+			t.tween_callback(func() -> void:
+				menanim.play("peam")
+				modul.color = Color.WHITE
+			)
+			t.tween_interval(0.35)
+			SND.play_song("", 999)
+			t.tween_callback(func() -> void:
+				camera.global_position = battle.camera.global_position
+				camera.make_current()
+				camera.add_trauma(1.0)
+				camera.shake_trauma_power = 3.0
+				SOL.dialogue_box.close()
+			)
+			t.tween_interval(0.8)
+			t.tween_callback(func() -> void:
+				SOL.fade_screen(Color(Color.GREEN, 0), Color.GREEN, 0.8, {free_rect = false})
+			)
+	))
+	dlg.speak()
+	DAT.set_data("mayor_fought", true)
+	await SOL.fade_finished
+	await Math.timer(3.0)
+	battle.queue_free()
+	mayor.global_position = Vector2(999, 999)
+	menacing.global_position = Vector2(999, 999)
+	menacing.hide()
+	mayor.hide()
+	SND.play_song("extremophile", 0.5, {pitch_scale = 0.88})
+	SOL.fade_screen(Color.GREEN, Color(Color.GREEN, 0.0), 4.0, {kill_rects = true})
+	camera.position = Vector2(0, -9)
+	await SOL.fade_finished
+	DAT.free_player("cutscene")

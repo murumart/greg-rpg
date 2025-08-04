@@ -123,9 +123,11 @@ func add_experience(amount: int, speak := false) -> void:
 
 func limit_levelup() -> bool:
 	const required: Dictionary[int, StringName] = {
+		40: &"flower_hollyhock",
 		50: &"flower_yellow_balsam",
 		60: &"flower_nasturtium",
 		70: &"flower_rose",
+		80: &"flower_meadowsweet",
 	}
 
 	if (level + 1 in required and required[level + 1] not in inventory):

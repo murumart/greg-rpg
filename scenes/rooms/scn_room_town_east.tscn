@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=103 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -46,6 +46,7 @@
 [ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="34_ivof4"]
 [ext_resource type="PackedScene" uid="uid://c0pgn5rbbtnvj" path="res://scenes/vfx/scn_vfx_door_shards.tscn" id="35_ani0e"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="36_qk2vw"]
+[ext_resource type="AudioStream" uid="uid://ciuhytfn1ye8b" path="res://sounds/snail_quasar.ogg" id="37_gcnui"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="38_6wcl6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y5qk4"]
@@ -328,21 +329,27 @@ fill_from = Vector2(0.506755, 0.558884)
 [sub_resource type="ViewportTexture" id="ViewportTexture_ani0e"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="Animation" id="Animation_gcnui"]
-resource_name = "descend"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Menacing:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.84, 2.39, 2.73, 2.89, 2.96, 3.08, 3.12, 3.16, 3.24, 3.27, 3.31, 3.38, 3.46, 3.47, 3.52, 3.56, 3.62, 3.68, 3.72119, 3.74946, 3.77, 3.80601, 3.86, 3.89486, 3.94, 3.99, 4.06, 4.1, 4.16, 4.19, 4.27, 4.31, 4.37, 4.46, 4.49, 4.58, 4.65, 4.68, 4.76, 4.79, 4.85, 4.93, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(10, -102), Vector2(4, -83), Vector2(-1.23978e-05, -67), Vector2(-5.00001, -58), Vector2(-5, -50), Vector2(-4.00001, -50), Vector2(-4.99999, -50), Vector2(-4, -47), Vector2(-4.99999, -45), Vector2(-4.00001, -43), Vector2(-3.00001, -40), Vector2(-2.00001, -38), Vector2(-0.999988, -37), Vector2(-3, -37), Vector2(-2.99999, -37), Vector2(-1.99999, -36), Vector2(-0.999988, -34), Vector2(-2.99999, -37), Vector2(-3, -35), Vector2(-1, -33), Vector2(3.8147e-06, -32), Vector2(-1, -31), Vector2(-3.8147e-06, -31), Vector2(1, -30), Vector2(-1, -30), Vector2(-2.99999, -30), Vector2(-2, -28), Vector2(-2, -27), Vector2(-5, -24), Vector2(-7, -25), Vector2(-5, -26), Vector2(-4, -25), Vector2(-4, -26), Vector2(-3, -26), Vector2(-2, -27), Vector2(-3.99999, -27), Vector2(-3, -26), Vector2(-3.00001, -27), Vector2(-4.00001, -26), Vector2(-2, -25), Vector2(-2, -25), Vector2(-0.999989, -25), Vector2(-3, -25), Vector2(-4, -25), Vector2(-4, -27)]
-}
+[sub_resource type="Gradient" id="Gradient_gcnui"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.134969, 0.51227, 0.684049, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0.0548084, 0.682353, 5.576, 10.282, 7.93, 1, 0, 9.106, 0.029, 1, 1, 100, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f1gdv"]
+gradient = SubResource("Gradient_gcnui")
+width = 32
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qk2vw"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_f1gdv"]
+offsets = PackedFloat32Array(0.288344, 0.352761, 0.460123, 0.506135, 0.628834, 0.711656, 0.800614)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xx7yy"]
+gradient = SubResource("Gradient_f1gdv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Animation" id="Animation_f1gdv"]
 length = 0.001
@@ -357,6 +364,82 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(8, -123)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menacing/Sprite2D2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 9.53125)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menacing/Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menacing/Circle:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Menacing/Circle:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_gcnui"]
+resource_name = "descend"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menacing:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.84, 2.39, 2.73, 2.89, 2.96, 3.08, 3.12, 3.16, 3.24, 3.27, 3.31, 3.38, 3.46, 3.47, 3.52, 3.56, 3.62, 3.68, 3.72119, 3.74946, 3.77, 3.80601, 3.86, 3.89486, 3.94, 3.99, 4.06, 4.1, 4.16, 4.19, 4.27, 4.31, 4.37, 4.46, 4.49, 4.58, 4.65, 4.68, 4.76, 4.79, 4.85, 4.93, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, -102), Vector2(4, -83), Vector2(-1.23978e-05, -67), Vector2(-5.00001, -58), Vector2(-5, -50), Vector2(-4.00001, -50), Vector2(-4.99999, -50), Vector2(-4, -47), Vector2(-4.99999, -45), Vector2(-4.00001, -43), Vector2(-3.00001, -40), Vector2(-2.00001, -38), Vector2(-0.999988, -37), Vector2(-3, -37), Vector2(-2.99999, -37), Vector2(-1.99999, -36), Vector2(-0.999988, -34), Vector2(-2.99999, -37), Vector2(-3, -35), Vector2(-1, -33), Vector2(3.8147e-06, -32), Vector2(-1, -31), Vector2(-3.8147e-06, -31), Vector2(1, -30), Vector2(-1, -30), Vector2(-2.99999, -30), Vector2(-2, -28), Vector2(-2, -27), Vector2(-5, -24), Vector2(-7, -25), Vector2(-5, -26), Vector2(-4, -25), Vector2(-4, -26), Vector2(-3, -26), Vector2(-2, -27), Vector2(-3.99999, -27), Vector2(-3, -26), Vector2(-3.00001, -27), Vector2(-4.00001, -26), Vector2(-2, -25), Vector2(-2, -25), Vector2(-0.999989, -25), Vector2(-3, -25), Vector2(-4, -25), Vector2(-4, -27)]
 }
 
 [sub_resource type="Animation" id="Animation_xx7yy"]
@@ -376,12 +459,79 @@ tracks/0/keys = {
 "values": [Vector2(-3, -27), Vector2(-5, -28), Vector2(-5.00001, -30), Vector2(-3, -29), Vector2(-2, -27), Vector2(-3.99998, -28), Vector2(-2.00001, -25), Vector2(-2, -27), Vector2(-4, -28), Vector2(-2.99999, -27), Vector2(-1.99999, -28), Vector2(-4.99999, -28), Vector2(-3.99999, -27), Vector2(-3, -27), Vector2(-4.00001, -27), Vector2(-3.99999, -28), Vector2(-2.00001, -28)]
 }
 
+[sub_resource type="Animation" id="Animation_qk2vw"]
+resource_name = "peam"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Menacing/Sprite2D2:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.34, 1.03333, 4.11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 9.53125), Vector2(1e-05, 9.53125), Vector2(1, 9.531), Vector2(3.9375, 9.531), Vector2(-0.000199959, 9.531)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Menacing/Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.29),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Menacing/Circle:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(3.812, 7.341, 2.635, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Menacing/Circle:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2.2974, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_egsis"]
 _data = {
 &"RESET": SubResource("Animation_f1gdv"),
 &"descend": SubResource("Animation_gcnui"),
-&"hover": SubResource("Animation_xx7yy")
+&"hover": SubResource("Animation_xx7yy"),
+&"peam": SubResource("Animation_qk2vw")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcnui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
@@ -558,6 +708,7 @@ metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 script = ExtResource("2_qcw6l")
 
 [node name="Sun" type="Node" parent="CanvasModulateGroup"]
+unique_name_in_owner = true
 script = ExtResource("3_3jvnm")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
@@ -972,12 +1123,13 @@ replenish_minutes = 24
 replenish_seconds = 1440
 silver = 20
 
-[node name="Factory" type="Node2D" parent="Houses" node_paths=PackedStringArray("greg", "modul")]
+[node name="Factory" type="Node2D" parent="Houses" node_paths=PackedStringArray("greg", "modul", "camera")]
 y_sort_enabled = true
 position = Vector2(-256, -256)
 script = ExtResource("22_1fst2")
 greg = NodePath("../../Greg")
 modul = NodePath("../../CanvasModulateGroup/SpiritsAsshole")
+camera = NodePath("../../Greg/Camera")
 
 [node name="Walls" type="TileMapLayer" parent="Houses/Factory"]
 tile_map_data = PackedByteArray("AAALAAAAAQADAAYAAAALAP//AQADAAUAAAALAP7/AQADAAUAAAALAP3/AQADAAQAAAAKAAAAAQACAAYAAAAKAP//AQACAAUAAAAKAP7/AQACAAUAAAAKAP3/AQACAAQAAAAJAAAAAQACAAYAAAAJAP//AQACAAUAAAAJAP7/AQACAAUAAAAJAP3/AQACAAQAAAAIAAAAAQACAAYAAAAIAP//AQACAAUAAAAIAP7/AQACAAUAAAAIAP3/AQACAAQAAAAHAAAAAQACAAYAAAAHAP//AQACAAUAAAAHAP7/AQACAAUAAAAHAP3/AQACAAQAAAAGAAAAAQACAAYAAAAGAP//AQAMAAAAAAAGAP7/AQACAAUAAAAGAP3/AQACAAQAAAAFAAAAAQACAAYAAAAFAP//AQACAAUAAAAFAP7/AQACAAUAAAAFAP3/AQACAAQAAAAEAAAAAQACAAYAAAAEAP//AQAMAAAAAAAEAP7/AQACAAUAAAAEAP3/AQACAAQAAAADAAAAAQACAAYAAAADAP//AQACAAUAAAADAP7/AQACAAUAAAADAP3/AQACAAQAAAACAAAAAQACAAYAAAACAP//AQACAAUAAAACAP7/AQACAAUAAAACAP3/AQACAAQAAAABAAAAAQACAAYAAAABAP//AQACAAUAAAABAP7/AQACAAUAAAABAP3/AQACAAQAAAAAAAAAAQAKAAAAAAAAAP//AQACAAUAAAAAAP7/AQACAAUAAAAAAP3/AQACAAQAAAD//wAAAQACAAYAAAD/////AQACAAUAAAD///7/AQACAAUAAAD///3/AQACAAQAAAD+/wAAAQACAAYAAAD+////AQACAAUAAAD+//7/AQACAAUAAAD+//3/AQACAAQAAAD9/wAAAQACAAYAAAD9////AQACAAUAAAD9//7/AQACAAUAAAD9//3/AQACAAQAAAD8/wAAAQACAAYAAAD8////AQAMAAAAAAD8//7/AQACAAUAAAD8//3/AQACAAQAAAD7/wAAAQACAAYAAAD7////AQACAAUAAAD7//7/AQACAAUAAAD7//3/AQACAAQAAAD6/wAAAQACAAYAAAD6////AQAMAAAAAAD6//7/AQACAAUAAAD6//3/AQACAAQAAAD5/wAAAQACAAYAAAD5////AQACAAUAAAD5//7/AQACAAUAAAD5//3/AQACAAQAAAD4/wAAAQACAAYAAAD4////AQACAAUAAAD4//7/AQACAAUAAAD4//3/AQACAAQAAAD3/wAAAQACAAYAAAD3////AQACAAUAAAD3//7/AQACAAUAAAD3//3/AQACAAQAAAD2//3/AQACAAQAAAD2//7/AQACAAUAAAD2////AQACAAUAAAD2/wAAAQACAAYAAAD1/wAAAQABAAYAAAD1////AQABAAUAAAD1//7/AQABAAUAAAD1//3/AQABAAQAAAACAPb/AQABAAYAAAACAPX/AQABAAUAAAACAPT/AQABAAQAAAADAPT/AQACAAQAAAAEAPT/AQACAAQAAAAFAPT/AQACAAQAAAAGAPT/AQACAAQAAAAHAPT/AQACAAQAAAAIAPT/AQACAAQAAAAJAPT/AQACAAQAAAAKAPT/AQADAAQAAAAKAPX/AQADAAUAAAAKAPb/AQADAAYAAAAJAPb/AQALAAIAAAAIAPb/AQACAAYAAAAHAPb/AQALAAIAAAAGAPb/AQACAAYAAAAFAPb/AQALAAIAAAAEAPb/AQACAAYAAAADAPb/AQALAAIAAAADAPX/AQACAAUAAAAEAPX/AQACAAUAAAAFAPX/AQACAAUAAAAGAPX/AQACAAUAAAAHAPX/AQACAAUAAAAIAPX/AQACAAUAAAAJAPX/AQACAAUAAAA=")
@@ -1084,15 +1236,52 @@ position = Vector2(6, 31)
 texture = SubResource("ViewportTexture_ani0e")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory"]
+visible = false
 
 [node name="Menacing" parent="Houses/Factory/Menace" instance=ExtResource("36_qk2vw")]
 z_index = 12
 position = Vector2(8, -123)
 
+[node name="Sprite2D2" type="Sprite2D" parent="Houses/Factory/Menace/Menacing"]
+visible = false
+show_behind_parent = true
+z_index = 12
+rotation = 3.14159
+scale = Vector2(1e-05, 9.53125)
+texture = SubResource("GradientTexture2D_f1gdv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Houses/Factory/Menace/Menacing/Sprite2D2"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_qk2vw")
+scale = Vector2(1, 1)
+texture = SubResource("GradientTexture2D_f1gdv")
+
+[node name="Circle" type="Sprite2D" parent="Houses/Factory/Menace/Menacing"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_qk2vw")
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_xx7yy")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Houses/Factory/Menace"]
 libraries = {
 &"": SubResource("AnimationLibrary_egsis")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Houses/Factory/Menace/AnimationPlayer"]
+stream = ExtResource("37_gcnui")
+volume_db = 2.0
+
+[node name="ImpossibelDoor" parent="Houses/Factory" node_paths=PackedStringArray("spawn_point") instance=ExtResource("9_fhxp8")]
+position = Vector2(8, -19)
+destination = &"factory_inside"
+gate_id = &"east-factory"
+spawn_point = NodePath("Node2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/ImpossibelDoor"]
+shape = SubResource("CircleShape2D_gcnui")
+
+[node name="Node2D" type="Node2D" parent="Houses/Factory/ImpossibelDoor"]
+position = Vector2(-1, 39)
 
 [node name="Chapel" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -1343,6 +1532,7 @@ speed = 0
 random_movement = false
 
 [node name="Mayor" parent="Other" instance=ExtResource("28_5y8yq")]
+unique_name_in_owner = true
 position = Vector2(-582, -152)
 
 [node name="MayorInfo" type="Node2D" parent="Other"]
@@ -1369,7 +1559,8 @@ position = Vector2(566, 179)
 [node name="Marker2D6" type="Marker2D" parent="Other/MayorInfo/Path"]
 position = Vector2(566, 2)
 
-[node name="Marker2D7" type="Marker2D" parent="Other/MayorInfo/Path"]
+[node name="FinalMayorPos" type="Marker2D" parent="Other/MayorInfo/Path"]
+unique_name_in_owner = true
 position = Vector2(549, -75)
 
 [node name="CrimeScene" type="Node2D" parent="Other"]
@@ -1421,4 +1612,5 @@ player = NodePath("../../Greg")
 
 [editable path="Houses/HousingBlock/ClimbingPlace"]
 [editable path="Houses/Factory/ShardsTexture"]
+[editable path="Houses/Factory/Menace/Menacing"]
 [editable path="Other/RideAroundTown"]

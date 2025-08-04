@@ -65,7 +65,7 @@ func a_larm(anim: StringName, anspd := 1.0, mov_size := V2M1, arspd := -1.0, fli
 
 
 func a_default() -> void:
-	a_larm("hip")
-	a_rarm("hip")
-	a_leg("default")
-	animate(HEAD, "default")
+	a_larm("hip", 1.0, Vector2.ZERO, 0.0)
+	a_rarm("hip", 1.0, Vector2.ZERO, 0.0)
+	a_leg("default", 1.0, Vector2.ZERO, 0.0)
+	animate(HEAD, "default", 0.0, Vector2.ZERO, 1.0)

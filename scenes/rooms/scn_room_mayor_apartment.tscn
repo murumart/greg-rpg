@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dqowsgtqp3crg"]
+[gd_scene load_steps=36 format=4 uid="uid://dqowsgtqp3crg"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_mgdg4"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_6ow1j"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_1a1qb"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_5xs33"]
 [ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="7_5xs33"]
+[ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="7_i37mn"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="7_q16w6"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="8_ilppi"]
+[ext_resource type="AudioStream" uid="uid://cj8fgj7l3f3g1" path="res://music/mus_mayor.ogg" id="8_kgmay"]
 [ext_resource type="PackedScene" uid="uid://5hmmxhi84tth" path="res://scenes/decor/cardboard_box.tscn" id="8_x57em"]
 [ext_resource type="Script" uid="uid://g566rdjldgow" path="res://scenes/rooms/town/east_apartment.gd" id="10_mf7ga"]
 [ext_resource type="PackedScene" uid="uid://wym533u3oyu6" path="res://scenes/decor/bookshelf.tscn" id="10_pn2uj"]
@@ -19,15 +21,20 @@
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="15_l7m8h"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="17_l7m8h"]
 [ext_resource type="PackedScene" uid="uid://deii706cg03d" path="res://scenes/vfx/scn_vfx_wow_sparkles.tscn" id="18_mxm45"]
+[ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_xvh1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i37mn"]
+resource_local_to_scene = true
+size = Vector2(14, 17.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1a1qb"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_hcwde"]
+[sub_resource type="Gradient" id="Gradient_i37mn"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5xs33"]
-gradient = SubResource("Gradient_hcwde")
+gradient = SubResource("Gradient_i37mn")
 width = 14
 height = 28
 fill = 1
@@ -137,7 +144,6 @@ modulate = Color(0.683064, 0.683064, 0.683064, 1)
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD9/wIAAQAMAAUAAAD9/wMAAQAMAAcAAAA=")
 tile_set = ExtResource("2_6ow1j")
-y_sort_origin = -125
 
 [node name="Greg" parent="." instance=ExtResource("5_1a1qb")]
 position = Vector2(50, 58)
@@ -151,6 +157,22 @@ limit_bottom = 80
 
 [node name="Decor" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Radio" parent="Decor" instance=ExtResource("7_i37mn")]
+y_sort_enabled = true
+position = Vector2(-47, -10)
+default_song = ExtResource("8_kgmay")
+default_pitch = 0.8
+
+[node name="Sprite2D" parent="Decor/Radio" index="0"]
+position = Vector2(0, 8)
+offset = Vector2(0, -19)
+
+[node name="RadioInteraction" parent="Decor/Radio" index="2"]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" parent="Decor/Radio/RadioInteraction" index="0"]
+shape = SubResource("RectangleShape2D_i37mn")
 
 [node name="Lights" type="Node2D" parent="Decor"]
 z_index = 1
@@ -284,5 +306,12 @@ save = true
 
 [node name="GPUParticles2D" parent="Category2/KeyItem" instance=ExtResource("18_mxm45")]
 
+[node name="TrashBin" parent="." instance=ExtResource("20_xvh1i")]
+position = Vector2(-54, 41)
+replenish_minutes = -1
+replenish_seconds = -60
+silver = 889
+
+[editable path="Decor/Radio"]
 [editable path="Decor/Box4"]
 [editable path="Category2/ThugOverworld"]

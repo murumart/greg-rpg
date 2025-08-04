@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0tclfmp77fkd" path="res://sprites/items/spr_sleepy_flower.png" id="2_1vmns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wuhv"]
+resource_local_to_scene = true
 size = Vector2(10, 10)
 
 [node name="SleepyFlower" type="Area2D"]

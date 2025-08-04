@@ -3,6 +3,7 @@ extends Node2D
 @export var default_song: AudioStream
 @export var radio_song: AudioStream
 @export var silence_song: StringName
+@export var default_pitch: float = 1.04
 
 @onready var musicplayer: AudioStreamPlayer2D = $RadioMusic
 
@@ -11,6 +12,7 @@ var music_last_position: float
 
 func _ready() -> void:
 	$RadioInteraction.interacted.connect(_interacted)
+	musicplayer.pitch_scale = default_pitch
 	musicplayer.stream = default_song
 	musicplayer.play()
 

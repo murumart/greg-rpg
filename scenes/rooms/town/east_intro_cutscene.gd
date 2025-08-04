@@ -5,7 +5,7 @@ const Mayor = preload("res://scenes/characters/overworld/scr_mayor_overworld.gd"
 @onready var mayor: Mayor = $"../Mayor"
 @onready var greg: PlayerOverworld = $"../../Greg"
 @onready var path: Node2D = $Path
-@onready var factory_in_front_of: Marker2D = $Path/Marker2D7
+@onready var factory_in_front_of: Marker2D = %FinalMayorPos
 
 
 func _ready() -> void:
