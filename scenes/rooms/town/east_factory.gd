@@ -46,6 +46,7 @@ func _door() -> void:
 		inv.erase(&"explosive_soap")
 		dlg.set_char("mayor").al("there we go, son! you found something we can use!").scallback(func() -> void:
 			mayor.animate(mayor.HEAD, "backward")
+			SND.play_song("mayor", 1.0, {play_from_beginning = true})
 		)
 		dlg.al("thanks for letting us in. i was really starting to think i'd be stranded here.").scallback(func() -> void:
 			var tw := create_tween()
@@ -222,6 +223,7 @@ func _mayor_pld_after(pld: BattlePayload) -> void:
 		var hp := battle_mayor.character.health
 		battle_mayor.fled.emit(battle_mayor)
 		battle_mayor.state = battle_mayor.States.DEAD
+		battle_mayor.global_position = Vector2(999, 999) # no particals...
 		battle_mayor = BattleActor.new()
 		battle_mayor.load_character("scooterer")
 		battle_mayor.character.health = hp
