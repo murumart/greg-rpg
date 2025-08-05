@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=127 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -55,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://khsdxjhxfbjs" path="res://sprites/world/car/spr_car_popo.png" id="51_odpk7"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="51_wwlrb"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="52_0k707"]
+[ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="52_dss3x"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="53_udk7p"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="54_1ne0i"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="55_odpk7"]
@@ -70,6 +71,8 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6lqv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odpk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5wr6"]
 size = Vector2(276, 52)
@@ -830,6 +833,13 @@ tile_set = ExtResource("5_5ym11")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
+[node name="Paranoia" type="StaticBody2D" parent="OverworldTiles/Fences"]
+position = Vector2(4, -174)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldTiles/Fences/Paranoia"]
+shape = SubResource("RectangleShape2D_odpk7")
+
 [node name="Greg" parent="." instance=ExtResource("6_s1sou")]
 position = Vector2(-783, -151)
 metadata/_edit_group_ = true
@@ -851,6 +861,17 @@ draw_target = NodePath("../UtilityPole2")
 
 [node name="UtilityPole2" parent="Poles" instance=ExtResource("9_c52i7")]
 position = Vector2(137, -150)
+
+[node name="UtilityPole3" parent="Poles" node_paths=PackedStringArray("draw_target") instance=ExtResource("9_c52i7")]
+position = Vector2(472, -148)
+draw_target = NodePath("../UtilityPole4")
+
+[node name="UtilityPole4" parent="Poles" node_paths=PackedStringArray("draw_target") instance=ExtResource("9_c52i7")]
+position = Vector2(655, -147)
+draw_target = NodePath("../UtilityPole5")
+
+[node name="UtilityPole5" parent="Poles" instance=ExtResource("9_c52i7")]
+position = Vector2(909, -146)
 
 [node name="Houses" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1770,6 +1791,42 @@ position = Vector2(37, 602)
 
 [node name="Marker2D11" type="Marker2D" parent="Other/Cars/Path2"]
 position = Vector2(37, -636)
+
+[node name="Birds" type="Node2D" parent="Other"]
+y_sort_enabled = true
+
+[node name="Bird" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-43, -467)
+
+[node name="Bird2" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-57, -455)
+
+[node name="Bird3" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-37, -447)
+
+[node name="Bird4" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-775, -389)
+
+[node name="Bird5" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-756, -404)
+
+[node name="Bird6" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-736, -381)
+
+[node name="Bird7" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(272, 63)
+
+[node name="Bird8" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(264, 51)
+
+[node name="Bird9" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-118, 134)
+
+[node name="Bird10" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-97, 125)
+
+[node name="Bird11" parent="Other/Birds" instance=ExtResource("52_dss3x")]
+position = Vector2(-79, 146)
 
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true
