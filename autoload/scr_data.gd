@@ -209,7 +209,7 @@ func capture_player(type := &"", overlap := false, dial_closed := true) -> void:
 	player_capturers.append(type)
 	if not type in noncap and dial_closed:
 		SOL.dialogue_box.close()
-	emit_signal("player_captured", true)
+	player_captured.emit(true)
 
 
 # allowing the player to move again
@@ -220,7 +220,7 @@ func free_player(type := &"") -> void:
 	# the player can only move if the capturers array is empty
 	if player_capturers.size() > 0:
 		return
-	emit_signal("player_captured", false)
+	player_captured.emit(false)
 
 
 func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:

@@ -39,7 +39,7 @@
 	- [ ] Minigame rewards
 	- [ ] Cutscenes
 		- [x] forestguy
-		- [ ] fisherwoman
+		- [x] fisherwoman
 		- [ ] solar protuberace
 		- [ ] 
 - [ ] Intro changes

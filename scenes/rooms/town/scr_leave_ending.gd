@@ -4,8 +4,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	# TODO make this an actual thing
-	if ResMan.get_character("greg").level >= 7 or DAT.get_data("leave_ending_offered", false):
+	if DAT.get_data("leave_ending_offered", false):
 		queue_free()
 		return
 	approach_area.body_entered.connect(func(_a):
@@ -14,7 +13,6 @@ func _ready() -> void:
 		DAT.set_data("leave_ending_offered", true)
 		SOL.dialogue_closed.connect(func():
 			if SOL.dialogue_choice == &"yes":
-				# TODO put something normal here
 				$"../../Greg".queue_free()
 				await Math.timer(3.0)
 				SND.play_song("")

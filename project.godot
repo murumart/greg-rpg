@@ -251,5 +251,5 @@ environment/defaults/default_clear_color=Color(0.0627451, 0.0941176, 0.196078, 1
 
 wind_strength={
 "type": "float",
-"value": 0.008
+"value": 0.01
 }

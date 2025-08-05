@@ -2181,7 +2181,7 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD///3/AQAOAAwAAAAAAP3/AQAOAAwAAAABAP3/AQAOAAwAAAD+//3/AQANAAsAAAACAP3/AQAPAAsAAAACAPz/AQAMAAkAAAD+//z/AQAMAAkAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 
-[node name="Decoration" type="CanvasGroup" parent="."]
+[node name="Decoration" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="OfficeChair" type="Node2D" parent="Decoration"]
@@ -2459,7 +2459,7 @@ speed = 2500
 movement_wait = 8.0
 random_movement = true
 random_movement_distance = 32
-default_lines = Array[StringName]([&"atgirl_at_postoffice_1", &"atgirl_at_postoffice_2"])
+default_lines = Array[StringName]([&"atgirl_at_postoffice_1", &"atgirl_at_postoffice_2", &"atgirl_at_postoffice_3"])
 
 [node name="Animator" type="AnimatedSprite2D" parent="Decoration/Atgirl"]
 position = Vector2(0, -8)

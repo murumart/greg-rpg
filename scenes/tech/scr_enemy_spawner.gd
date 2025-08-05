@@ -4,7 +4,7 @@ class_name EnemySpawner extends Node2D
 
 @export var spawn_enemy: PackedScene
 @export var max_enemies := 8
-var enemies := []
+var enemies: Array[OverworldCharacter]
 
 @export var player: PlayerOverworld
 @export var active_range := Vector2i(1, 99)
@@ -12,7 +12,7 @@ var enemies := []
 
 @export var spawn_radius := 32.0
 
-@onready var timer := $Timer
+@onready var timer: Timer = $Timer
 @onready var raycast: RayCast2D = $RayCast2D
 
 var level: int
@@ -21,6 +21,20 @@ var level: int
 func _ready() -> void:
 	$Sprite2D.hide()
 	await get_tree().process_frame
+	DAT.player_captured.connect(func(a: bool) -> void:
+		if a:
+			if &"cutscene" in DAT.player_capturers:
+				timer.paused = true
+				for e in enemies:
+					if not is_instance_valid(e): continue
+					e.chase_target = null
+		else:
+			if &"cutscene" not in DAT.player_capturers:
+				timer.paused = false
+				for e in enemies:
+					if not is_instance_valid(e): continue
+					e.chase_target = player
+	)
 	level = ResMan.get_character("greg").level
 	_load_thugs()
 
@@ -69,7 +83,7 @@ func _get_position() -> Vector2:
 
 func _place_thug(thug: OverworldCharacter, pos: Vector2) -> void:
 	thug.save = false
-	if player:
+	if player and not &"cutscene" in DAT.player_capturers:
 		thug.chase_target = player
 	add_child(thug)
 	enemies.append(thug)

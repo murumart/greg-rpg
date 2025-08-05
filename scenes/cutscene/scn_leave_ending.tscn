@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dy1g1vyw8gd8s"]
+[gd_scene load_steps=17 format=3 uid="uid://dy1g1vyw8gd8s"]
 
 [ext_resource type="Script" uid="uid://b6k17cgh5v427" path="res://scenes/cutscene/scr_leave_ending.gd" id="1_efdju"]
 [ext_resource type="SpriteFrames" uid="uid://cgg6yedlort55" path="res://resources/characters/sfr_greg.tres" id="2_dkmg4"]
 [ext_resource type="AudioStream" uid="uid://bdvkphr5htspv" path="res://sounds/walking/bye.ogg" id="3_f2ajq"]
 [ext_resource type="Texture2D" uid="uid://bc3m7lx7gwli6" path="res://sprites/photos/spr_forest3.png" id="3_ubqcj"]
+[ext_resource type="Script" uid="uid://boo8mif8ch6i8" path="res://code/sunsetter.gd" id="4_dg85e"]
 [ext_resource type="Texture2D" uid="uid://o0ja61tpwc4a" path="res://sprites/world/building/spr_road.png" id="4_iu7qt"]
 [ext_resource type="Texture2D" uid="uid://c14wth7evew7v" path="res://sprites/world/nature/spr_nature.png" id="4_rn2di"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="7_4hf52"]
@@ -57,6 +58,11 @@ script = ExtResource("7_4hf52")
 [node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
 script = ExtResource("8_850yq")
 
+[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate")]
+script = ExtResource("4_dg85e")
+sky_modulate = NodePath("../CanvasModulateGroup/ColorContainer")
+metadata/_custom_type_script = "uid://boo8mif8ch6i8"
+
 [node name="sky" type="ColorRect" parent="."]
 offset_right = 162.0
 offset_bottom = 124.0
@@ -64,6 +70,7 @@ color = Color(0.0745098, 0.2, 0.415686, 1)
 
 [node name="song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_f2ajq")
+volume_db = 8.0
 autoplay = true
 bus = &"Music"
 
@@ -112,8 +119,8 @@ frame_progress = 0.0917944
 
 [node name="bgus" type="GPUParticles2D" parent="."]
 position = Vector2(83, 73)
-process_material = SubResource("ParticleProcessMaterial_dwsdq")
 lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_dwsdq")
 
 [node name="crickets" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_mq61k")

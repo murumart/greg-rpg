@@ -20,7 +20,7 @@ DIALOGUE end_1
 func _ready() -> void:
 	SOL.dialogue_box.load_dialogue_string(DIAL)
 	bgus.emitting = false
-	color_container.color = Color.WHITE
+	#color_container.color = Color.WHITE
 	var loops := 18
 	var time := 6.0
 	var tw := create_tween()
@@ -39,8 +39,8 @@ func _ready() -> void:
 	song.stop()
 	tw = create_tween()
 	crickets.play()
-	tw.tween_property(color_container, "color", Color("#13336a"), 4.0)
-	tw.parallel().tween_property(crickets, "volume_db", -16, 4.0)
+	tw.tween_property(color_container, "color", Color(0.075, 0.2, 0.416), 4.0)
+	tw.parallel().tween_property(crickets, "volume_db", -8, 4.0)
 	tw.parallel().tween_property(forest.material, "shader_parameter/amount", 1.0, 4.0)
 	tw.tween_callback(bgus.set_emitting.bind(true))
 	await tw.finished

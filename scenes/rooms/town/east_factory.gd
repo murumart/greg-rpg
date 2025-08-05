@@ -7,6 +7,7 @@ const CameraType = preload("res://scenes/tech/scr_camera.gd")
 @onready var dark_hole: Sprite2D = $DarkHole
 @onready var skary: Sprite2D = $Skary
 @onready var spawners := get_tree().get_nodes_in_group(&"thug_spawners")
+@onready var burn_mark: Sprite2D = $BurnMark
 
 @export var greg: PlayerOverworld
 @export var modul: ColorContainer
@@ -28,6 +29,8 @@ func _ready() -> void:
 				s.erase_thugs_from_mem()
 				s.queue_free()
 		mayor.set_global_position.call_deferred(Vector2(9999, 9999))
+	else:
+		burn_mark.hide()
 	#DEBUG
 	#else: _open_door_cutscene(true)
 
@@ -354,6 +357,7 @@ func _battle_ending() -> void:
 	dlg.speak()
 	DAT.set_data("mayor_fought", true)
 	await SOL.fade_finished
+	burn_mark.show()
 	await Math.timer(3.0)
 	battle.queue_free()
 	mayor.global_position = Vector2(999, 999)

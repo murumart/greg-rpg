@@ -9,7 +9,6 @@ const MimTalker = preload("res://scenes/rooms/postoffice/src_mail_man_talker.gd"
 
 @export var force_atgirl := false
 
-var hes_dead := false
 var interacted := false
 
 
@@ -34,14 +33,11 @@ func _ready() -> void:
 
 
 func _on_interaction_area_on_interact() -> void:
-	if not hes_dead:
-		talker.interact()
-		if LTS.gate_id == "town-postoffice" and not interacted:
-			DAT.incri("post_office_enters", 1)
-		interacted = true
-	else:
-		# he's dead
-		SOL.dialogue("vampire_note")
+	talker.interact()
+	if LTS.gate_id == "town-postoffice" and not interacted:
+		DAT.incri("post_office_enters", 1)
+	interacted = true
+
 
 
 func speak(key: StringName) -> void:
@@ -60,10 +56,7 @@ func pink_haired_girl_setup(force := false) -> void:
 	if not Math.inrange(time, time * 0.25, 0.5) and not force:
 		atgirl.queue_free()
 		return
-	if hes_dead:
-		atgirl.queue_free()
-		return
-	if DAT.get_data("atgirl_progress", 0) > 3:
+	if talker.relationship >= 12:
 		atgirl.default_lines.clear()
 		atgirl.default_lines.append("atgirl_postoffice_explain")
 

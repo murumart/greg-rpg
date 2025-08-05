@@ -2326,75 +2326,43 @@ DIALOGUE atgirl_1
 
 
 DIALOGUE atgirl_2
-	still dull, thanks for asking.
+CHOICES you,me,town,bye
+	what...
+CHOICE_LINK you
+	about... me...?
+	no way, buddy.
+CHOICE_LINK me
+	...why are you asking me about yourself...?
+	i don't think that's normal.
+CHOICE_LINK town
+	town. town... what about the town...
+	...why did you come here, anyway?
+	or how...? it's a total dump here.
+CHOICE_LINK bye
+	bye??
 
 
 DIALOGUE atgirl_3
-	...
-
-
-DIALOGUE atgirl_4
-	as dull as ever.
-
-
-DIALOGUE atgirl_5
-	...?
-
-
-DIALOGUE atgirl_6
-	what do you want?
-	...
-
-
-DIALOGUE atgirl_7
-	i can't believe the only person checking up on me anymore...
-	...is a complete stranger that i've never seen before.
-	though calling this "checking up" is a huge joke.
-
-
-DIALOGUE atgirl_8
-	what do you want????
-
-
-DIALOGUE atgirl_9
-	where did you come from?
-	stop staring at me like that. i'm asking you seriously.
-	how did you enter the town?
-	no one comes here permanently.
-	no one ever leaves. except for the ones you wish remained, of course.
-	can you just leave if you want to? who brought you here? why??
-CHOICES tell,dont
-	who are you???
-CHOICE_LINK tell
-	...
-	..................
-	...what the hell...
-	you're not a real person... you can't be...
-	...or maybe you're just realllly drunk. man.
-CHOICE_LINK dont
-	i hate youuuuuuu.
-
-
-DIALOGUE atgirl_10
-	leave me alone.
+	i've had enough social interaction today.
 
 
 DIALOGUE atgirl_at_postoffice_1
 	i'm waiting for a letter from my sister.
-	she said she'd send one once she safely makes it to the mainland.
-	i hope she's fine.
 
 
 DIALOGUE atgirl_at_postoffice_2
-	no, you don't look like a person that would receive any letters.
+	she's hopefully made it to the mainland safely.
+
+
+DIALOGUE atgirl_at_postoffice_3
+	why are you pestering me...
 
 
 DIALOGUE atgirl_postoffice_explain
 	it's been a month...
-	...
-	has she forgotten about me?
-	or did something happen?
-	why won't she write back?...
+	my sister, she promised to write back...
+	was her letter withheld? did something happen?
+	i don't know... i don't know...
 
 
 DIALOGUE ph_guy_hello
