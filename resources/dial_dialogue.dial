@@ -2330,7 +2330,7 @@ CHOICES you,me,town,bye
 	what...
 CHOICE_LINK you
 	about... me...?
-	no way, buddy.
+	buddy... i'm... not interested.
 CHOICE_LINK me
 	...why are you asking me about yourself...?
 	i don't think that's normal.
