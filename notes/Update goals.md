@@ -111,9 +111,9 @@
 		- [ ] Direction one
 			- [ ] Sunlight theme
 			Growth inside and outside
-			- [ ] Light reflection puzzles
-				- [ ] Light beam, block that rotates it 90 degrees
-				- [ ] Get beam in correct place
+			- [x] Light reflection puzzles
+				- [x] Light beam, block that rotates it 90 degrees
+				- [x] Get beam in correct place
 			- [ ] Dodge sun action sequence
 			- [ ] Dodge rotating beams (SHIT IM MKING DELTATUNRE)
 			- [ ] Zerma call

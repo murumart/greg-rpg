@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d32kl8lvcw253"]
+
+[ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="1_4ip0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_011l0"]
+size = Vector2(16, 12)
+
+[node name="Pedestal" type="StaticBody2D"]
+collision_mask = 0
+
+[node name="Pedestal" type="Sprite2D" parent="."]
+texture = ExtResource("1_4ip0o")
+region_enabled = true
+region_rect = Rect2(208, 64, 16, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_011l0")

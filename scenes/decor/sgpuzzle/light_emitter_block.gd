@@ -32,6 +32,7 @@ func _ready() -> void:
 	base.region_rect.position.y = 80 - int(movable) * 16
 	base.region_rect.position.x = [0, 1, 2, 3][direction] * 16
 	top.region_rect.position.x = 64 + role * 16
+	color = my_color
 	#emitting = emitting
 
 
