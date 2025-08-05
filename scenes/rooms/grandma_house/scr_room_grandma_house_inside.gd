@@ -11,7 +11,7 @@ extends Room
 func _ready() -> void:
 	super._ready()
 
-	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
+	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
 		get_tree().get_nodes_in_group("empty_delete").map(func(a): a.queue_free())
 		if DAT.get_data("gdung_floor", 0) >= 3:
 			door_area.destination = &"after_gdung"

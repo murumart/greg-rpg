@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=67 format=4 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" uid="uid://d3yw0nn7j0dck" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -27,10 +27,8 @@
 [ext_resource type="PackedScene" uid="uid://c466046gdv3gq" path="res://scenes/rooms/grandma_house/gdung_objects/bent_tree.tscn" id="16_rqgg7"]
 [ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="16_u5i7e"]
 [ext_resource type="PackedScene" uid="uid://560xc7yjtkcs" path="res://scenes/rooms/grandma_house/gdung_objects/flower_33.tscn" id="17_8mjs0"]
-[ext_resource type="Script" uid="uid://bc26s2xpt1w0q" path="res://scenes/rooms/grandma_house/mental_cutscene.gd" id="17_ey6yv"]
 [ext_resource type="Texture2D" uid="uid://2v3qstvc8x5q" path="res://sprites/world/nature/plants2.png" id="17_f1any"]
 [ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="18_7ay6p"]
-[ext_resource type="AudioStream" uid="uid://68nplxc1py05" path="res://sounds/talking/grandma.ogg" id="18_ufa5d"]
 [ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="19_76b83"]
 [ext_resource type="PackedScene" uid="uid://c24750kmvrhtk" path="res://scenes/rooms/grandma_house/gdung_objects/flower_sprawl.tscn" id="19_jtaha"]
 [ext_resource type="PackedScene" uid="uid://bqf4273xxdhf1" path="res://scenes/rooms/grandma_house/gdung_objects/flower_1.tscn" id="19_yh75l"]
@@ -2128,11 +2126,6 @@ shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcnh"]
 size = Vector2(18, 16)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jn2ko"]
-blend_mode = 2
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1xbmq"]
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mdvsf"]
 
 [sub_resource type="Gradient" id="Gradient_3hvci"]
@@ -2278,7 +2271,7 @@ position = Vector2(4, 14)
 y_sort_enabled = true
 position = Vector2(144, -33)
 
-[node name="Sprite2D17" type="Sprite2D" parent="Decor"]
+[node name="Sprite2D17" type="Sprite2D" parent="Decor" groups=["empty_delete"]]
 position = Vector2(66, 36)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, 4)
@@ -2286,7 +2279,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 33, 16, 15)
 
-[node name="Sprite2D7" type="Sprite2D" parent="Decor"]
+[node name="Sprite2D7" type="Sprite2D" parent="Decor" groups=["empty_delete"]]
 position = Vector2(-47, 9)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, 13)
@@ -2308,7 +2301,7 @@ key = "carnations"
 position = Vector2(1, 0.75)
 shape = SubResource("RectangleShape2D_mnnht")
 
-[node name="Lamp" type="Sprite2D" parent="Decor"]
+[node name="Lamp" type="Sprite2D" parent="Decor" groups=["empty_delete"]]
 z_index = 2
 material = SubResource("CanvasItemMaterial_gp8vc")
 position = Vector2(-1.90735e-06, -24)
@@ -2316,7 +2309,7 @@ scale = Vector2(0.91954, 1.03731)
 texture = SubResource("GradientTexture2D_duwhq")
 metadata/_edit_lock_ = true
 
-[node name="Lamp2" type="Sprite2D" parent="Decor"]
+[node name="Lamp2" type="Sprite2D" parent="Decor" groups=["empty_delete"]]
 z_index = 2
 material = SubResource("CanvasItemMaterial_gp8vc")
 position = Vector2(-1.90735e-06, 33)
@@ -2329,7 +2322,7 @@ y_sort_enabled = true
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Sprite2D18" type="Sprite2D" parent="Decor/Backwall"]
+[node name="Sprite2D18" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-35, -47)
 texture = ExtResource("7_fqnfh")
 centered = false
@@ -2387,7 +2380,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="Sprite2D19" type="Sprite2D" parent="Decor/Backwall"]
+[node name="Sprite2D19" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(36, -46)
 texture = ExtResource("7_fqnfh")
 centered = false
@@ -2396,7 +2389,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(97, 17, 15, 24)
 
-[node name="Sprite2D15" type="Sprite2D" parent="Decor/Backwall"]
+[node name="Sprite2D15" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-60, -56.5)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -8)
@@ -2424,7 +2417,7 @@ offset = Vector2(0, 4)
 region_enabled = true
 region_rect = Rect2(0, 71, 16, 9)
 
-[node name="Sprite2D20" type="Sprite2D" parent="Decor/Backwall/Sprite2D12"]
+[node name="Sprite2D20" type="Sprite2D" parent="Decor/Backwall/Sprite2D12" groups=["empty_delete"]]
 position = Vector2(0, 6.5)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -8)
@@ -2438,7 +2431,7 @@ offset = Vector2(0, 4)
 region_enabled = true
 region_rect = Rect2(0, 71, 16, 9)
 
-[node name="Sprite2D20" type="Sprite2D" parent="Decor/Backwall/Sprite2D14"]
+[node name="Sprite2D20" type="Sprite2D" parent="Decor/Backwall/Sprite2D14" groups=["empty_delete"]]
 position = Vector2(0, 6.5)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -8)
@@ -2496,29 +2489,29 @@ shape = SubResource("RectangleShape2D_3k71g")
 position = Vector2(-11, 67)
 shape = SubResource("RectangleShape2D_3k71g")
 
-[node name="Plant" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-110, 60)
 
-[node name="Plant2" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant2" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-110, 36)
 
-[node name="Plant3" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant3" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-110, 12)
 
-[node name="Plant4" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant4" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-161, 59)
 scale = Vector2(-1, 1)
 
-[node name="Plant5" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant5" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-158, 32)
 rotation = 0.100607
 scale = Vector2(-1, 1)
 
-[node name="Plant6" parent="Decor" instance=ExtResource("16_rqgg7")]
+[node name="Plant6" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
 position = Vector2(-161, 11)
 scale = Vector2(-1, 1)
 
-[node name="Flower1" parent="Decor" instance=ExtResource("17_8mjs0")]
+[node name="Flower1" parent="Decor" groups=["empty_delete"] instance=ExtResource("17_8mjs0")]
 position = Vector2(30, 1)
 
 [node name="Sprite2D" parent="Decor/Flower1" index="0"]
@@ -2528,25 +2521,25 @@ offset = Vector2(0, -12)
 [node name="InspectArea" parent="Decor/Flower1" index="1"]
 position = Vector2(-1, -6)
 
-[node name="Flower2" parent="Decor" instance=ExtResource("19_jtaha")]
+[node name="Flower2" parent="Decor" groups=["empty_delete"] instance=ExtResource("19_jtaha")]
 position = Vector2(-61, -53)
 
-[node name="Plant7" parent="Decor" instance=ExtResource("21_la406")]
+[node name="Plant7" parent="Decor" groups=["empty_delete"] instance=ExtResource("21_la406")]
 position = Vector2(-81, 36)
 
-[node name="Plant8" parent="Decor" instance=ExtResource("21_la406")]
+[node name="Plant8" parent="Decor" groups=["empty_delete"] instance=ExtResource("21_la406")]
 position = Vector2(-75, 44)
 
-[node name="Plant10" parent="Decor" instance=ExtResource("21_la406")]
+[node name="Plant10" parent="Decor" groups=["empty_delete"] instance=ExtResource("21_la406")]
 position = Vector2(-78, 27)
 
-[node name="Plant9" parent="Decor" instance=ExtResource("21_la406")]
+[node name="Plant9" parent="Decor" groups=["empty_delete"] instance=ExtResource("21_la406")]
 position = Vector2(-174, -13)
 
 [node name="Chair" parent="Decor" instance=ExtResource("22_mpjws")]
 position = Vector2(-10, -29)
 
-[node name="Flower3" parent="Decor" instance=ExtResource("19_yh75l")]
+[node name="Flower3" parent="Decor" groups=["empty_delete"] instance=ExtResource("19_yh75l")]
 position = Vector2(-65, 1)
 
 [node name="Sprite2D" parent="Decor/Flower3" index="0"]
@@ -2571,7 +2564,7 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(49, 16, 15, 15)
 
-[node name="Flower6" parent="Decor" instance=ExtResource("19_yh75l")]
+[node name="Flower6" parent="Decor" groups=["empty_delete"] instance=ExtResource("19_yh75l")]
 position = Vector2(-33, -46)
 
 [node name="Sprite2D" parent="Decor/Flower6" index="0"]
@@ -2597,7 +2590,7 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(49, 16, 15, 15)
 
-[node name="Flower4" parent="Decor" instance=ExtResource("16_exfuk")]
+[node name="Flower4" parent="Decor" groups=["empty_delete"] instance=ExtResource("16_exfuk")]
 position = Vector2(-131, -18)
 
 [node name="Sprite2D" parent="Decor/Flower4" index="0"]
@@ -2629,7 +2622,7 @@ offset = Vector2(0, -12)
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="Flower5" parent="Decor" instance=ExtResource("15_v43um")]
+[node name="Flower5" parent="Decor" groups=["empty_delete"] instance=ExtResource("15_v43um")]
 position = Vector2(32, 6)
 
 [node name="Sprite2D" parent="Decor/Flower5" index="0"]
@@ -2701,86 +2694,6 @@ friendly = true
 position = Vector2(167, 1)
 friendly = true
 speed = 400
-
-[node name="MentalCutscene" type="Node2D" parent="."]
-script = ExtResource("17_ey6yv")
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="GregPos" type="Marker2D" parent="MentalCutscene"]
-position = Vector2(8, 32)
-
-[node name="GrandmaStartPos" type="Marker2D" parent="MentalCutscene"]
-position = Vector2(8, -32)
-
-[node name="CameraFinalPos" type="Marker2D" parent="MentalCutscene"]
-position = Vector2(-323, 136)
-
-[node name="GrandmaVoice" type="AudioStreamPlayer" parent="MentalCutscene"]
-stream = ExtResource("18_ufa5d")
-pitch_scale = 0.74
-bus = &"ECHO"
-
-[node name="TextBoxes" type="Node2D" parent="MentalCutscene"]
-z_index = 1
-position = Vector2(-21, -11)
-
-[node name="Label1" type="Label" parent="MentalCutscene/TextBoxes"]
-offset_left = -9.0
-offset_top = -2.0
-offset_right = 86.0
-offset_bottom = 28.0
-theme_override_colors/font_color = Color(20.44, 15.094, 22.327, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 0
-text = "you're weak."
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MentalCutscene/TextBoxes"]
-material = SubResource("CanvasItemMaterial_jn2ko")
-offset_left = 26.0
-offset_top = 180.0
-offset_right = 256.0
-offset_bottom = 299.0
-rotation = -0.604772
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = "you want my house?"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="MentalCutscene/TextBoxes"]
-material = SubResource("CanvasItemMaterial_1xbmq")
-offset_left = -336.0
-offset_top = 205.0
-offset_right = 250.0
-offset_bottom = 591.0
-rotation = 0.535604
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "come take it."
-
-[node name="Label89" type="RichTextLabel" parent="MentalCutscene/TextBoxes"]
-material = SubResource("CanvasItemMaterial_1xbmq")
-offset_left = -1025.0
-offset_top = -380.0
-offset_right = 93.0001
-offset_bottom = 692.0
-rotation = -0.0377323
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(29.875, 26.1, 26.1, 1)
-theme_override_colors/font_shadow_color = Color(0, 1, 0, 1)
-theme_override_constants/outline_size = 89
-theme_override_constants/shadow_offset_x = 65
-theme_override_font_sizes/normal_font_size = 163
-bbcode_enabled = true
-text = "[center][shake level=40]level %s.[/shake][/center]
-come back when you are at level %s."
-visible_characters = 0
-visible_characters_behavior = 1
-visible_ratio = 0.0
-metadata/_edit_lock_ = true
 
 [node name="ZoomGradient" type="TextureRect" parent="."]
 visible = false

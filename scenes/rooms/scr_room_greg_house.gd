@@ -39,8 +39,23 @@ func _ready() -> void:
 	else:
 		DAT.set_data("intro_cutscene_over", true)
 		$Cutscenes.queue_free()
-	if ResMan.get_character("greg").level >= DAT.GDUNG_LEVEL:
-		house_door.destination = "grandma_house_inside"
+	house_door.knocked.connect(func() -> void:
+		if intro_progress < 2:
+			house_door.destination = "grandma_house_inside"
+		elif intro_progress >= 4:
+			var inv := ResMan.get_character("greg").inventory
+			var have := DAT.flower_progress(inv)
+			if have == 8:
+				house_door.destination = "grandma_house_inside"
+			else:
+				var dlg := DialogueBuilder.new()
+				dlg.al("[color=%s]your bouquet is incomplete." % dlg.FLOWERCOLOR)
+				if &"sleepy_flower" in inv:
+					dlg.al("[color=%s](and the \"sleepy flower\" you have won't be part of it.)" % dlg.FLOWERCOLOR)
+				dlg.al("[color=%s]you have %s out of eight." % [dlg.FLOWERCOLOR, ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine..???"][have]])
+				await SOL.dialogue_closed # door default dialogue
+				SOL.dialogue_d(dlg.get_dial())
+	)
 
 
 func start() -> void:

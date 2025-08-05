@@ -5,6 +5,16 @@ extends Node
 
 const VERSION := Vector3(1, 0, 2)
 const GDUNG_LEVEL := 72
+const FLOWERS = [
+	&"flower_begonia",
+	&"flower_hollyhock",
+	&"flower_liatris",
+	&"flower_meadowsweet",
+	&"flower_nasturtium",
+	&"flower_rose",
+	&"flower_strawberry",
+	&"flower_yellow_balsam",
+]
 
 enum DeathReasons {
 	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
@@ -331,6 +341,13 @@ func get_levelup_spirit(level: int) -> String:
 		88: "mooncity" # <-------- (whistling noise)
 	}
 	return dict.get(level, "")
+
+
+func flower_progress(inv: Array) -> int:
+	var have := 0
+	for r in FLOWERS:
+		if r in inv: have += 1
+	return have
 
 
 # if we should be logging data changes

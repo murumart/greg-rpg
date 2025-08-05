@@ -2,7 +2,7 @@ extends OverworldCharacter
 
 @onready var sprite := $CatSprite
 @export var friendly := false
-@onready var meow: AudioStreamPlayer = $Meow
+@onready var meow: AudioStreamPlayer = get_node_or_null(^"Meow")
 
 
 func _ready() -> void:

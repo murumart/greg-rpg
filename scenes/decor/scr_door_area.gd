@@ -26,7 +26,7 @@ func on_interaction() -> void:
 		SND.play_sound(preload("res://sounds/door/open.ogg"))
 	# otherwise just uselessly knock on the door
 	else:
-		DAT.capture_player("knocking_on_door")
+		DAT.capture_player("knocking_on_door", false, false)
 		var knock_sound: AudioStreamPlayer = SND.play_sound(
 			preload("res://sounds/door_knock.ogg"),
 			{"autofree": false, "return": true})
