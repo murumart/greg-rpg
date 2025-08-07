@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbc46l0kg4hg1"]
+
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_owq78"]
+
+[node name="SgY2" type="Node2D"]
+script = ExtResource("1_owq78")
+metadata/_custom_type_script = "uid://bpfj25n4ytmas"

@@ -4,9 +4,9 @@ extends Node
 
 
 func _ready() -> void:
-	SOL.set_dialogue_mode(1)
+	# window resolution change is in camera node.
 	collision_hide.hide()
 
 
 func _exit_tree() -> void:
-	SOL.set_dialogue_mode(0)
+	pass

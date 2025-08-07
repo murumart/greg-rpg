@@ -3,13 +3,13 @@
 		- [x] Police mention of other side of town
 		- [x] Police bounty board UI
 		- [x] at right level and police standing
-	- [ ] Map
+	- [x] Map
 	- [x] Mayor
 		- [x] Sprites
 		- [x] Voice sound
 		- [x] music
-	- [ ] Mayor intro
-	- [ ] Mayor key quest
+	- [x] Mayor intro
+	- [x] Mayor key quest
 		- [x] Ladder from skatepark from good enough score
 		- [x] Up into mayor's room
 		- [x] Find the key to sfsfsdfsdf 
@@ -21,16 +21,16 @@
 		- [ ] wild lizard again..?
 		- [x] blips (swarm of littel spirits) (strong fire effect)
 		- [x] business casual chimney
-	- [ ] Factory interior
-	- [ ] Mayor bossfight
+	- [x] Factory interior
+	- [x] Mayor bossfight
 		- [x] door is attackable
 		- [x] mayor fights greg at first
 		- [x] door summons enemies that attack the mayor also
 			- [x] overworld style, weird animated wispy rhints
 		- [x] the mayor joins the party
 		- [x] portal summons another batch of enemies
-		- [ ] mayor dialogue like "ohhnooo were overwelmed"
-		- [ ] x shows up and murder he'm
+		- [x] mayor dialogue like "ohhnooo were overwelmed"
+		- [x] x shows up and murder he'm
 	- [x]  Mafia house interior
 	- [x] Mafia talking
 	- [x] Mafia minigame
@@ -42,7 +42,7 @@
 		- [x] fisherwoman
 		- [ ] solar protuberace
 		- [ ] 
-- [ ] Intro changes
+- [x] Intro changes
 	- [x] Ride around town
 		- [x] pan around town as the car moves, don't follow it
 		- [x] wait if dialogue isn't complete

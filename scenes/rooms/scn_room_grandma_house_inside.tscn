@@ -40,20 +40,6 @@
 [ext_resource type="Script" uid="uid://ey2th5yjtw1k" path="res://scenes/rooms/grandma_house/after_fight_cutscene.gd" id="39_3hvci"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="41_u5i7e"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
-playback_mode = 1
-streams_count = 6
-stream_0/stream = ExtResource("8_cxs6r")
-stream_0/weight = 8.0
-stream_1/stream = ExtResource("3_2fxrg")
-stream_1/weight = 2.0
-stream_2/stream = ExtResource("4_cpg8x")
-stream_3/stream = ExtResource("5_mdvsf")
-stream_4/stream = ExtResource("6_3hvci")
-stream_4/weight = 3.0
-stream_5/stream = ExtResource("7_cpg8x")
-stream_5/weight = 0.5
-
 [sub_resource type="Gradient" id="Gradient_8myy1"]
 colors = PackedColorArray(0.0130485, 0.0130484, 0.0130484, 1, 0.00423512, 0.00423512, 0.00423512, 1)
 
@@ -2054,6 +2040,20 @@ terrain_set_2/terrain_1/name = "table_darkwood"
 terrain_set_2/terrain_1/color = Color(0.415686, 0.12549, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
+playback_mode = 1
+streams_count = 6
+stream_0/stream = ExtResource("8_cxs6r")
+stream_0/weight = 8.0
+stream_1/stream = ExtResource("3_2fxrg")
+stream_1/weight = 2.0
+stream_2/stream = ExtResource("4_cpg8x")
+stream_3/stream = ExtResource("5_mdvsf")
+stream_4/stream = ExtResource("6_3hvci")
+stream_4/weight = 3.0
+stream_5/stream = ExtResource("7_cpg8x")
+stream_5/weight = 0.5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrqee"]
 size = Vector2(17, 17)
 
@@ -2145,7 +2145,6 @@ size = Vector2(14, 17)
 [node name="GrandmaHouseInside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
-radio_song = SubResource("AudioStreamRandomizer_qw5xy")
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 color = Color(0.799382, 0.691576, 0.549892, 1)
@@ -2189,7 +2188,7 @@ limit_top = -112
 limit_right = 240
 limit_bottom = 80
 
-[node name="Grandma" parent="." instance=ExtResource("32_76b83")]
+[node name="Grandma" parent="." groups=["empty_delete"] instance=ExtResource("32_76b83")]
 position = Vector2(144, -60)
 
 [node name="InteriorTiles" type="Node2D" parent="."]
@@ -2256,7 +2255,7 @@ region_rect = Rect2(1, 48, 14, 20)
 
 [node name="DoorArea" parent="Door" node_paths=PackedStringArray("spawn_point") instance=ExtResource("10_frp4p")]
 position = Vector2(0, 4)
-gate_id = &"gdung-house"
+gate_id = &"sg-house"
 spawn_point = NodePath("Spawnpoint")
 fail_dialogue = "door_locked"
 
@@ -2677,7 +2676,7 @@ gate_id = &"greghouse_inside-outside"
 extents = Vector2i(7, 8)
 spawnpoint = Vector2i(0, -13)
 
-[node name="Cats" type="Node2D" parent="."]
+[node name="Cats" type="Node2D" parent="." groups=["empty_delete"]]
 y_sort_enabled = true
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -2728,7 +2727,7 @@ min_value = -92.3
 max_value = 20.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="TalkCutscene" type="Node2D" parent="."]
+[node name="TalkCutscene" type="Node2D" parent="." groups=["empty_delete"]]
 position = Vector2(239, -40)
 script = ExtResource("33_k563r")
 
@@ -2747,7 +2746,7 @@ metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 position = Vector2(-3, -1.5)
 shape = SubResource("RectangleShape2D_k563r")
 
-[node name="AfterFightCutscene" type="Node2D" parent="."]
+[node name="AfterFightCutscene" type="Node2D" parent="." groups=["empty_delete"]]
 position = Vector2(10, 3)
 script = ExtResource("39_3hvci")
 

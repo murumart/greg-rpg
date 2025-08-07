@@ -2,6 +2,7 @@ class_name DialogueBuilder
 
 const FLOWERCOLOR = "#99ff61"
 const SPIRITCOLOR = "#7799ff"
+const SGD = "[font=res://fonts/gregorious_smaller.tres][font_size=16]"
 
 var _dial: Dialogue
 

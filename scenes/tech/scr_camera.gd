@@ -13,6 +13,7 @@ var shake_trauma_power := 2
 var free_cam := false
 @export var window_mode: Window.ContentScaleMode = (
 		Window.ContentScaleMode.CONTENT_SCALE_MODE_VIEWPORT)
+@export var resolution_scale_factor := 1.0
 
 
 func _ready() -> void:
@@ -20,6 +21,9 @@ func _ready() -> void:
 	if enabled:
 		make_current()
 		get_window().content_scale_mode = window_mode
+	get_window().content_scale_factor = resolution_scale_factor
+	SOL.transform.x.x = 1.0 / resolution_scale_factor
+	SOL.transform.y.y = 1.0 / resolution_scale_factor
 
 
 func add_trauma(amount: float) -> void:

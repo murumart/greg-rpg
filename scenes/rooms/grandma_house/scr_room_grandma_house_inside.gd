@@ -3,19 +3,20 @@ extends Room
 @onready var musicplayer := $Radio/RadioMusic
 @export_range(-1, 10) var prank_call_force := -1
 @onready var door_area: Area2D = $Door/DoorArea
-
-@export var radio_song: AudioStreamRandomizer
-@export var radio_other_song: AudioStreamRandomizer
+@onready var radio := $Radio
 
 
 func _ready() -> void:
 	super._ready()
 
 	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
-		get_tree().get_nodes_in_group("empty_delete").map(func(a): a.queue_free())
+		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
 		if DAT.get_data("gdung_floor", 0) >= 3:
 			door_area.destination = &"after_gdung"
-		door_area.destination = &"dungeon"
+		door_area.destination = &"secret_garden_entrance"
+		musicplayer.stop()
+		radio.default_song = preload("res://music/mus_bells.ogg")
+		radio.radio_song = null
 		return
 	# long grandma lol
 	if Math.inrange(DAT.get_data("nr", 0), 0.665, 0.67) and not DAT.get_data("sscyr", false):
