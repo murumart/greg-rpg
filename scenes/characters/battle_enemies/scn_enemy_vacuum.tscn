@@ -50,7 +50,7 @@ func apply_impulse(impulse: Vector2) -> void:
 			segment.apply_central_impulse(impulse)
 
 
-func _on_vacuum_hurted(who: BattleActor) -> void:
+func _on_vacuum_hurted(who: BattleActor, _amt: float, _g: int) -> void:
 	apply_impulse(Vector2(-rang_f, -rang_f))
 	if who.character.health_perc() <= 0.0:
 		sound.stop()
@@ -164,6 +164,7 @@ texture = ExtResource("3_8su2d")
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="Sprite2D/Pipe/Bodies/PipePart"]
 stream = ExtResource("4_o588p")
+volume_db = -10.0
 attenuation = 0.594604
 panning_strength = 1.85
 

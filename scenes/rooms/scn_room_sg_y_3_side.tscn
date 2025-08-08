@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=4 uid="uid://7nsyoq7ujyo4"]
+
+[ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_othvf"]
+[ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="2_t2a6i"]
+[ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="3_8y8sd"]
+
+[node name="SgY3Side" instance=ExtResource("1_othvf")]
+
+[node name="COLLISION" parent="COLLISION" index="0"]
+tile_map_data = PackedByteArray("AAD2//T/AAAPAA8AAAD2//X/AAAPAA8AAAD2//b/AAAPAA8AAAD2//f/AAAPAA8AAAD1//f/AAAPAA8AAAD1//n/AAAPAA8AAAD2//n/AAAPAA8AAAD2//r/AAAPAA8AAAD3//r/AAAPAA8AAAD4//r/AAAPAA8AAAD4//v/AAAPAA8AAAD4//z/AAAPAA8AAAD4//3/AAAPAA8AAAD4//7/AAAPAA8AAAD5//7/AAAPAA8AAAD6//7/AAAPAA8AAAD7//7/AAAPAA8AAAD7//3/AAAPAA8AAAD7//z/AAAPAA8AAAD7//v/AAAPAA8AAAD7//r/AAAPAA8AAAD8//r/AAAPAA8AAAD9//r/AAAPAA8AAAD+//n/AAAPAA8AAAD+//j/AAAPAA8AAAD9//j/AAAPAA8AAAD9//f/AAAPAA8AAAD9//b/AAAPAA8AAAD9//X/AAAPAA8AAAD9//T/AAAPAA8AAAD9//P/AAAPAA8AAAD8//P/AAAPAA8AAAD7//P/AAAPAA8AAAD6//P/AAAPAA8AAAD5//P/AAAPAA8AAAD4//P/AAAPAA8AAAD3//P/AAAPAA8AAAD2//P/AAAPAA8AAAD0//f/AAAPAA8AAAD0//j/AAAPAA8AAAD0//n/AAAPAA8AAAA=")
+
+[node name="Floor" parent="." index="3"]
+tile_map_data = PackedByteArray("AAD6//3/AAADAAEAAAD6//z/AAADAAEAAAD6//v/AAADAAEAAAD5//v/AAABAAEAAAD5//z/AAABAAEAAAD5//3/AAABAAEAAAD5//7/AAABAAIAAAD6//7/AAADAAIAAAD5//r/AAABAAEAAAD6//r/AAADAAEAAAD4//n/AAACAAIAAAD5//n/AAACAAEAAAD6//n/AAACAAEAAAD7//n/AAACAAIAAAD8//n/AAACAAIAAAD9//n/AAADAAMAAAD8//j/AAADAAEAAAD7//j/AAACAAEAAAD6//j/AAACAAEAAAD5//j/AAACAAEAAAD4//j/AAAEAAAAAAD3//j/AAAEAAAAAAD2//j/AAABAAMAAAD3//n/AAABAAIAAAD3//f/AAABAAEAAAD3//b/AAABAAEAAAD3//X/AAABAAEAAAD3//T/AAABAAAAAAD4//T/AAACAAAAAAD5//T/AAACAAAAAAD5//X/AAACAAEAAAD6//X/AAAEAAAAAAD7//X/AAACAAEAAAD8//X/AAADAAEAAAD8//b/AAADAAEAAAD8//f/AAADAAEAAAD7//f/AAACAAEAAAD6//f/AAAEAAAAAAD5//f/AAACAAEAAAD4//f/AAACAAEAAAD4//b/AAAEAAAAAAD4//X/AAACAAEAAAD5//b/AAAEAAAAAAD6//b/AAAEAAAAAAD7//b/AAAEAAAAAAD6//T/AAACAAAAAAD7//T/AAACAAAAAAD8//T/AAADAAAAAAA=")
+
+[node name="Greg" parent="." index="4"]
+position = Vector2(-96, -53)
+
+[node name="RoomGate" parent="Areas" index="0"]
+position = Vector2(-96, -28)
+destination = &"sg_y_3"
+gate_id = &"sg-y-3-side"
+extents = Vector2i(8, 8)
+spawnpoint = Vector2i(0, -15)
+
+[node name="RoomGate2" parent="Areas" index="1"]
+destination = &"non"
+gate_id = &"non"
+
+[node name="Puzzle" type="Node2D" parent="Areas" index="2"]
+y_sort_enabled = true
+position = Vector2(-96, -152)
+
+[node name="LightTargetBlock" parent="Areas/Puzzle" index="0" instance=ExtResource("2_t2a6i")]
+position = Vector2(-72, 32)
+
+[node name="LightEmitterBlock" parent="Areas/Puzzle" index="1" instance=ExtResource("3_8y8sd")]
+position = Vector2(8, 32)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = 2
+role = 1
+movable = true
+available_directions = 5
+
+[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="2" instance=ExtResource("3_8y8sd")]
+position = Vector2(-24, 16)
+my_color = Color(1, 0, 0, 1)
+direction = -1
+movable = true
+available_directions = 10
+
+[node name="LightEmitterBlock3" parent="Areas/Puzzle" index="3" instance=ExtResource("3_8y8sd")]
+position = Vector2(24, -32)
+my_color = Color(0, 1, 0, 1)
+direction = 2
+movable = true
+
+[node name="LightEmitterBlock4" parent="Areas/Puzzle" index="4" instance=ExtResource("3_8y8sd")]
+position = Vector2(-24, -16)
+my_color = Color(0, 0, 1, 1)
+direction = 1

@@ -19,6 +19,7 @@ enum States {
 @export var ground_levels: Array[Area2D]
 @export var ground_level_y: int
 @export var greg: PlayerOverworld
+@export var camera: Camera2D
 @export var grace_time := 0.04
 @export var greg_speed := 60.0
 @export_range(0, 24) var initial_height: int = 8
@@ -41,8 +42,11 @@ func _physics_process(delta: float) -> void:
 			_w -= delta
 		greg_climp.position += climp_mov * greg_speed * delta
 
-		#print(contact.get_overlapping_areas())
-		if not contact.has_overlapping_areas():
+		var ars := contact.get_overlapping_areas()
+		for g in ground_levels:
+			if g in ars:
+				cease_climping(g.global_position)
+		if not ars and not contact.has_overlapping_bodies():
 			if _grace < 0:
 				SND.play_sound(preload("res://sounds/skating/s9.ogg"))
 				_tumble()
@@ -56,6 +60,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _tumble() -> void:
+	#if camera:
+		#var gps := camera.global_position
+		#greg_climp.remove_child(camera)
+		#add_child(camera)
+		#camera.global_position = gps
 	started_falling.emit()
 	state = States.FALLING
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
@@ -65,7 +74,7 @@ func _tumble() -> void:
 	tw.tween_callback(func() -> void:
 		SOL.shake(.5)
 		cease_climping()
-		SND.play_sound(preload("res://sounds/bump.ogg"))
+		SND.play_sound(preload("res://sounds/bump.ogg"), {volume = -4})
 	)
 
 
@@ -73,6 +82,10 @@ func begin_climping() -> void:
 	started_climbing.emit()
 	DAT.capture_player("climp")
 	greg.hide()
+	if camera:
+		greg.remove_child(camera)
+		greg_climp.add_child(camera)
+		camera.position = Vector2(0, 0)
 	greg_climp.show()
 	greg_climp.rotation = 0
 	SND.play_sound(preload("res://sounds/skating/s2.ogg"))
@@ -81,10 +94,14 @@ func begin_climping() -> void:
 	contact.force_update_transform()
 
 
-func cease_climping() -> void:
+func cease_climping(stop_pos := greg_climp.global_position) -> void:
 	stopped_climbing.emit()
 	greg.show()
+	if camera:
+		camera.get_parent().remove_child(camera)
+		greg.add_child(camera)
+		camera.position = Vector2(0, -9)
 	DAT.free_player("climp")
 	greg_climp.hide()
 	state = States.NOTHING
-	greg.global_position = greg_climp.global_position + Vector2(0, 8)
+	greg.global_position = stop_pos + Vector2(0, 8)

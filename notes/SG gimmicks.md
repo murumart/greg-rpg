@@ -5,8 +5,14 @@ Extant gimmicks:
 ## Area Y
 Rooms:
 1. introduction to area (some dialogue, "vista")
-2. simple climbing, fight, small puzzle
-3. bigger puzzle (2 colors)
+2. simple climbing
+3. maze with fights
+4. bigger puzzle (2 colors)
+5. encounters in a maze (secret side area w puzzle)
+6. climbing harder
+7. npcs talking
+8. puzzle with golden vacuum encounter
+9. back to intro area
 
 To do:
 - [ ] light puzzle (lasers)

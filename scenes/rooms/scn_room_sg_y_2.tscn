@@ -1,7 +1,156 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbc46l0kg4hg1"]
+[gd_scene load_steps=14 format=4 uid="uid://cbc46l0kg4hg1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_owq78"]
+[ext_resource type="Script" uid="uid://dqfootmfjeyuy" path="res://scenes/rooms/sg/sg_room.gd" id="2_d10ls"]
+[ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="3_5ykuy"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="4_1qk27"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="4_pmeqf"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_g65iy"]
+[ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="6_g65iy"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="7_kmjjk"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_7awtx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7awtx"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmjjk"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmeqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm2wf"]
+resource_local_to_scene = true
+size = Vector2(14, 22)
 
 [node name="SgY2" type="Node2D"]
 script = ExtResource("1_owq78")
+music = "secret_garden"
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"
+
+[node name="SGRoom" type="Node" parent="." node_paths=PackedStringArray("collision_hide")]
+script = ExtResource("2_d10ls")
+collision_hide = NodePath("../COLLISION")
+
+[node name="COLLISION" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="COLLISION" type="TileMapLayer" parent="COLLISION"]
+z_index = 4
+tile_set = ExtResource("3_5ykuy")
+y_sort_origin = -1270
+
+[node name="Floor" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD6//3/AAABAAAAAAD6//7/AAABAAEAAAD6////AAABAAIAAAADAP//AAACAAIAAAADAP7/AAACAAEAAAADAP3/AAACAAAAAAACAP//AAACAAIAAAACAP7/AAAEAAAAAAACAP3/AAACAAAAAAABAP//AAACAAIAAAABAP7/AAACAAEAAAABAP3/AAACAAAAAAAAAP//AAACAAIAAAAAAP7/AAACAAEAAAAAAP3/AAACAAAAAAD/////AAACAAEAAAD///7/AAAEAAAAAAD///3/AAACAAAAAAD+////AAACAAIAAAD+//7/AAACAAEAAAD+//3/AAACAAAAAAD9////AAACAAIAAAD9//7/AAAEAAAAAAD9//3/AAACAAAAAAD8////AAACAAIAAAD8//7/AAACAAEAAAD8//3/AAACAAAAAAD7////AAACAAIAAAD7//7/AAACAAEAAAD7//3/AAACAAAAAAAFAP//AAADAAIAAAAFAP7/AAADAAEAAAAFAP3/AAADAAAAAAAEAP//AAACAAIAAAAEAP7/AAAEAAAAAAAEAP3/AAACAAAAAAD//wAAAAAAAAEAAAD//wEAAAAAAAEAAAD//wIAAAAAAAEAAAD//wMAAAABAAIAAAAAAAMAAAACAAMAAAABAAMAAAACAAMAAAACAAMAAAACAAMAAAADAAMAAAACAAMAAAAEAAMAAAACAAMAAAAFAAMAAAACAAMAAAAGAAMAAAACAAMAAAAHAAMAAAACAAMAAAAIAAMAAAACAAMAAAAJAAMAAAACAAMAAAAKAAMAAAACAAMAAAALAAMAAAACAAMAAAAMAAMAAAACAAMAAAANAAMAAAACAAMAAAAOAAMAAAACAAMAAAAPAAMAAAACAAMAAAAQAAMAAAACAAMAAAARAAMAAAACAAMAAAASAAMAAAACAAMAAAATAAMAAAACAAMAAAAUAAMAAAACAAMAAAAVAAMAAAACAAMAAAAWAAMAAAACAAMAAAAXAAMAAAADAAMAAAAeAP//AAAEAAAAAAAeAP7/AAAEAAAAAAAdAP//AAACAAIAAAAdAP7/AAACAAEAAAAcAP//AAACAAIAAAAcAP7/AAACAAEAAAAbAP//AAACAAIAAAAbAP7/AAAEAAAAAAAaAP//AAACAAIAAAAaAP7/AAACAAEAAAAZAP//AAACAAIAAAAZAP7/AAACAAEAAAAYAP//AAACAAIAAAAYAP7/AAACAAEAAAAYAP3/AAACAAAAAAAZAP3/AAACAAAAAAAaAP3/AAACAAAAAAAbAP3/AAACAAAAAAAcAP3/AAACAAAAAAAdAP3/AAACAAAAAAAeAP3/AAACAAAAAAAfAP3/AAADAAAAAAAfAP7/AAADAAEAAAAfAP//AAADAAIAAAAUAP3/AAABAAAAAAAVAP3/AAACAAAAAAAWAP3/AAACAAAAAAAXAP3/AAACAAAAAAAXAP7/AAACAAEAAAAXAP//AAACAAIAAAAWAP//AAACAAIAAAAVAP//AAACAAIAAAAVAP7/AAACAAEAAAAUAP7/AAABAAEAAAAWAP7/AAAEAAAAAAAUAP//AAABAAIAAAAeAAAAAAAAAAEAAAAeAAEAAAABAAIAAAAoAP3/AAAEAAAAAAAoAP7/AAAEAAAAAAApAP7/AAAEAAAAAAApAP//AAACAAIAAAAqAP//AAACAAIAAAArAP//AAACAAIAAAArAP7/AAACAAEAAAAsAP7/AAAEAAAAAAAtAP7/AAADAAEAAAAtAP3/AAADAAAAAAAsAP3/AAACAAAAAAArAP3/AAACAAAAAAAqAP3/AAACAAAAAAApAP3/AAACAAAAAAAoAP//AAACAAIAAAAsAP//AAACAAIAAAAqAP7/AAACAAEAAAAtAP//AAADAAIAAAAnAP3/AAABAAAAAAAnAP7/AAABAAEAAAAnAP//AAABAAIAAAAoAPz/AAAAAAEAAAAoAPv/AAAAAAEAAAAoAPr/AAAAAAAAAAAfAAEAAAACAAMAAAAgAAEAAAACAAMAAAAhAAEAAAACAAMAAAAiAAEAAAACAAMAAAAjAAEAAAACAAMAAAAkAAEAAAACAAMAAAAlAAEAAAACAAMAAAAmAAEAAAACAAMAAAAnAAEAAAACAAMAAAAoAAEAAAADAAMAAAA=")
+tile_set = ExtResource("3_5ykuy")
+y_sort_origin = -1270
+
+[node name="Climp" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAEAPz/AAAFAAIAAAAEAPv/AAAFAAEAAAAEAPr/AAAGAAEAAAAEAPn/AAAFAAEAAAAEAPj/AAAFAAAAAAAFAPr/AAAHAAMAAAAGAPr/AAAHAAMAAAAHAPr/AAAHAAMAAAAIAPr/AAAHAAMAAAAJAPr/AAAIAAAAAAAJAPv/AAAFAAEAAAAJAPz/AAAGAAIAAAAKAPz/AAAHAAMAAAALAPz/AAAHAAMAAAAMAPz/AAAHAAMAAAANAPz/AAAHAAMAAAAOAPz/AAAIAAIAAAATAPr/AAAHAAMAAAAUAPr/AAAHAAMAAAAVAPr/AAAIAAAAAAAOAPv/AAAGAAAAAAAPAPv/AAAHAAMAAAAQAPr/AAAGAAAAAAAQAPv/AAAIAAIAAAARAPr/AAAHAAMAAAASAPr/AAAHAAMAAAAVAPv/AAAGAAIAAAAWAPv/AAAIAAAAAAAWAPz/AAAFAAIAAAA=")
+tile_set = ExtResource("3_5ykuy")
+y_sort_origin = -1270
+
+[node name="Climp2" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+position = Vector2(480, -86.8498)
+tile_map_data = PackedByteArray("AAAAAP//AAAFAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAGAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAIAAIAAAAGAP3/AAAGAAIAAAAHAP3/AAAHAAMAAAAIAP3/AAAHAAMAAAAJAP3/AAAHAAMAAAAKAP3/AAAIAAAAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAAEAPz/AAAGAAAAAAAFAPz/AAAHAAMAAAAGAPz/AAAIAAAAAAA=")
+tile_set = ExtResource("3_5ykuy")
+y_sort_origin = -1270
+
+[node name="SinAnimator" type="Node" parent="Climp2" node_paths=PackedStringArray("target")]
+script = ExtResource("4_pmeqf")
+property_name = &"position:y"
+target = NodePath("..")
+min_value = -78.515
+max_value = 16.74
+metadata/_custom_type_script = "uid://durusiw115m3o"
+
+[node name="SoptClimping2" type="Area2D" parent="Climp2"]
+position = Vector2(168, -10.7282)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Climp2/SoptClimping2"]
+light_mask = 0
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_7awtx")
+
+[node name="Greg" parent="." instance=ExtResource("4_1qk27")]
+position = Vector2(-70, -16)
+
+[node name="Camera" parent="Greg" instance=ExtResource("5_g65iy")]
+position = Vector2(0, -9)
+zoom = Vector2(2, 2)
+resolution_scale_factor = 0.5
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="SoptClimping" type="Area2D" parent="Areas"]
+position = Vector2(360, -56)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/SoptClimping"]
+light_mask = 0
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_7awtx")
+
+[node name="ClimbingPlace" parent="Areas" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
+position = Vector2(70, -71)
+ground_levels = [NodePath("../SoptClimping")]
+ground_level_y = 48
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
+
+[node name="CollisionShape2D" parent="Areas/ClimbingPlace" index="0"]
+position = Vector2(2, 16)
+shape = SubResource("RectangleShape2D_kmjjk")
+
+[node name="InspectArea" type="Area2D" parent="Areas"]
+position = Vector2(72, -55)
+script = ExtResource("7_kmjjk")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea"]
+shape = SubResource("RectangleShape2D_pmeqf")
+
+[node name="InspectArea2" type="Area2D" parent="Areas"]
+position = Vector2(488, -55)
+script = ExtResource("7_kmjjk")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea2"]
+shape = SubResource("RectangleShape2D_pmeqf")
+
+[node name="ClimbingPlace2" parent="Areas" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
+position = Vector2(494, -27)
+ground_levels = [NodePath("../../Climp2/SoptClimping2")]
+ground_level_y = 20
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
+
+[node name="CollisionShape2D" parent="Areas/ClimbingPlace2" index="0"]
+position = Vector2(-6, -31)
+shape = SubResource("RectangleShape2D_lm2wf")
+
+[node name="RoomGate" parent="Areas" instance=ExtResource("9_7awtx")]
+position = Vector2(-96, -24)
+destination = &"sg_y_1"
+gate_id = &"sgy1-2"
+extents = Vector2i(8, 24)
+spawnpoint = Vector2i(14, 0)
+
+[node name="RoomGate2" parent="Areas" instance=ExtResource("9_7awtx")]
+position = Vector2(736, -24)
+destination = &"sg_y_3"
+gate_id = &"sgy2-3"
+extents = Vector2i(8, 24)
+spawnpoint = Vector2i(-14, 0)
+
+[connection signal="inspected" from="Areas/InspectArea" to="Areas/ClimbingPlace" method="begin_climping"]
+[connection signal="inspected" from="Areas/InspectArea2" to="Areas/ClimbingPlace2" method="begin_climping"]
+
+[editable path="Areas/ClimbingPlace"]
+[editable path="Areas/ClimbingPlace2"]

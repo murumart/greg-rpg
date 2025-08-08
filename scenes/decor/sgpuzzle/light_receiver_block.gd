@@ -3,8 +3,12 @@ extends StaticBody2D
 const Emitter = preload("res://scenes/decor/sgpuzzle/light_emitter_block.gd")
 const Receiver = preload("res://scenes/decor/sgpuzzle/light_receiver_block.gd")
 
+# UP = -1, RIGHT = 0, DOWN = 1, LEFT = 2
+const DirectionFlags = [1, 2, 4, 8]
+
 @export_color_no_alpha var color: Color = Color.WHITE
 @export var movable: bool
+@export_flags("RIGHT", "DOWN", "LEFT", "UP") var available_directions: int = 0b1111
 
 var light_sources: Array[Emitter]
 var reset_position: Vector2
@@ -51,6 +55,8 @@ func on_interaction() -> void:
 	if not movable:
 		return
 	var move_dir := Math.dir_from_rot(get_tree().get_first_node_in_group("players").global_position.angle_to_point(global_position))
+	if not available_directions & DirectionFlags[move_dir]:
+		return
 	_q_params.transform = Transform2D(0, global_position + Math.vec_from_dir(move_dir) * 16)
 	#prints("i wanna go to", PlayerOverworld.Rots.find_key(move_dir), _q_params.transform.origin)
 	var resulds := get_viewport().world_2d.direct_space_state.intersect_shape(_q_params)

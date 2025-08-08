@@ -1,11 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://nhjuvuyqoydd"]
+[gd_scene load_steps=11 format=3 uid="uid://nhjuvuyqoydd"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_c6a5i"]
 [ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="2_6sx7j"]
 [ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_n14ej"]
-[ext_resource type="Script" uid="uid://cukylyn43pt4m" path="res://code/scr_random_battle_component.gd" id="3_23not"]
-[ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="4_hjfs6"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="5_8ihca"]
 [ext_resource type="Script" uid="uid://b7d2ugw0rwbop" path="res://scenes/characters/overworld/cats/gdung_housecat_detector.gd" id="7_52pu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33s1w"]
@@ -19,70 +16,6 @@ size = Vector2(8, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_igif0"]
 resource_local_to_scene = true
 radius = 32.0
-
-[sub_resource type="Curve" id="Curve_jqxs0"]
-_data = [Vector2(0, 0.251091), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_l03v2"]
-script = ExtResource("4_hjfs6")
-key = &"cat"
-curve = SubResource("Curve_jqxs0")
-
-[sub_resource type="Curve" id="Curve_60gd2"]
-_data = [Vector2(0, 0.493456), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_a2kc8"]
-script = ExtResource("4_hjfs6")
-key = &"vacuum"
-curve = SubResource("Curve_60gd2")
-
-[sub_resource type="Curve" id="Curve_8boic"]
-_data = [Vector2(0, 0.74794), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_eoisg"]
-script = ExtResource("4_hjfs6")
-key = &"bulb"
-curve = SubResource("Curve_8boic")
-
-[sub_resource type="Curve" id="Curve_jamfo"]
-_data = [Vector2(0, 0.432865), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_kcycx"]
-script = ExtResource("4_hjfs6")
-key = &"couch"
-curve = SubResource("Curve_jamfo")
-
-[sub_resource type="Curve" id="Curve_a2v2g"]
-_data = [Vector2(0, 0.420746), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_b43a3"]
-script = ExtResource("4_hjfs6")
-key = &"washing_machine"
-curve = SubResource("Curve_a2v2g")
-
-[sub_resource type="Curve" id="Curve_0fswf"]
-_limits = [0.0, 4.0, 0.0, 1.0]
-_data = [Vector2(0.505098, 1.10753), 0.0, 0.0, 0, 0, Vector2(0.718655, 1.30896), 0.0, 0.0, 0, 0, Vector2(0.735878, 2.50716), 0.0, 0.0, 0, 0, Vector2(0.811666, 4), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Resource" id="Resource_erlxv"]
-script = ExtResource("5_8ihca")
-enemies = Array[StringName]([])
-background = "house_inside"
-music = "catfight"
-party = Array[StringName]([])
-death_reason = "gdung"
-start_text = ""
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jw1ic"]
 blend_mode = 1
@@ -121,15 +54,7 @@ position = Vector2(0, -8)
 sprite_frames = ExtResource("2_6sx7j")
 animation = &"idle"
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
-script = ExtResource("3_23not")
-values = Array[ExtResource("4_hjfs6")]([SubResource("Resource_l03v2"), SubResource("Resource_a2kc8"), SubResource("Resource_eoisg"), SubResource("Resource_kcycx"), SubResource("Resource_b43a3")])
-enemy_amount_by_level = SubResource("Curve_0fswf")
-default_battle = SubResource("Resource_erlxv")
-inject_target = NodePath("..")
-start_texts = Array[String](["these things happen.", "meow?"])
-
-[node name="Detector" type="Node2D" parent="." index="5" node_paths=PackedStringArray("cat", "beam", "raycasts")]
+[node name="Detector" type="Node2D" parent="." index="4" node_paths=PackedStringArray("cat", "beam", "raycasts")]
 script = ExtResource("7_52pu2")
 cat = NodePath("..")
 beam = NodePath("Beam")

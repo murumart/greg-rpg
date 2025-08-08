@@ -47,29 +47,51 @@ static var CHANNELS := [
 	},
 	{
 		K.STREAM: preload("res://music/mus_forestguy.ogg"),
-		K.WEIGHT: 6,
-		K.CUTSCENE: func() -> void:
-		SND.play_song("forestguy", 0.46, {pitch_scale = 0.67, bus = "Radio Music"})
-		var dlg := DialogueBuilder.new()
-		await Math.timer(1.0)
-		dlg.al("our path...")
-		dlg.al("it can diverge and converge.")
-		dlg.al("some walk the same path, hand in hand...")
-		dlg.al("some walk the same path, stepping on each other's heels...")
-		dlg.al("but their paths are so perfectly parallel to mine...")
-		dlg.al("this is why i'm not fit for the [color=%s]flower.[/color]" % DialogueBuilder.FLOWERCOLOR)
-		dlg.al("this is why she wants it back.")
-		dlg.al("...")
-		dlg.al("...but she can't face us herself.")
-		dlg.al("we are futility.").stext_speed(0.4)
-		dlg.al("walking the void path with her.").stext_speed(0.4)
-		await dlg.speak_choice()
-		SND.play_song("")
-		,
+		K.WEIGHT: 5,
+		K.CUTSCENE: (func() -> void:
+			SND.play_song("forestguy", 0.46, {pitch_scale = 0.67, bus = "Radio Music"})
+			var dlg := DialogueBuilder.new()
+			await Math.timer(1.0)
+			dlg.al("our path...")
+			dlg.al("it can diverge and converge.")
+			dlg.al("some walk the same path, hand in hand...")
+			dlg.al("some walk the same path, stepping on each other's heels...")
+			dlg.al("but their paths are so perfectly parallel to mine...")
+			dlg.al("this is why i'm not fit for the [color=%s]flower.[/color]" % DialogueBuilder.FLOWERCOLOR)
+			dlg.al("this is why she wants it back.")
+			dlg.al("...")
+			dlg.al("...but she can't face us herself.")
+			dlg.al("we are futility.").stext_speed(0.4)
+			dlg.al("walking the void path with her.").stext_speed(0.4)
+			await dlg.speak_choice()
+			SND.play_song("")
+			),
 	},
 	{
 		K.STREAM: preload("res://music/mus_dishout.ogg"),
 		K.WEIGHT: 7,
+	},
+	{
+		K.STREAM: preload("res://music/mus_president_fight.ogg"),
+		K.WEIGHT: 5,
+		K.CUTSCENE: (func() -> void:
+			SND.play_song("president_fight", 0.46, {pitch_scale = 0.67, bus = "Radio Music", volume = -5})
+			var r := SND.play_sound(preload("res://sounds/water_river.ogg"), {bus = "Radio Music", pitch = 0.67})
+			await Math.timer(1.0)
+			var dlg := DialogueBuilder.new()
+			dlg.al("...my people...")
+			dlg.al("...an announcement... ...glory...")
+			dlg.al("...[color=f99]beacon archipelago[/color]... ...is so...")
+			dlg.al("...empty.")
+			dlg.al("empty are those who stand against us.")
+			dlg.al("empty are those who forgot our history.")
+			dlg.al("that is why... ...[color=79f]dish[/color]...")
+			dlg.al("...control... ...our power...")
+			dlg.al("... ...hungry... ...must order...")
+			await dlg.speak_choice()
+			SND.play_song("")
+			r.queue_free()
+			),
 	},
 	{
 		K.STREAM: preload("res://music/mus_lion.ogg"),

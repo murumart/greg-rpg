@@ -26,6 +26,8 @@ func _ready() -> void:
 		kid.global_position.y = -999
 	mafia_blue.inspected.connect(_mafia_blue_interact)
 	lights.assign(get_tree().get_nodes_in_group(&"lights"))
+	# DEBUG
+	if DAT.seconds <= 0: introed = true
 	if introed:
 		big_light.show()
 	else:
@@ -45,7 +47,9 @@ func _mafia_blue_interact() -> void:
 			break
 		elif choice == &"work":
 			dlg.reset()
-			dlg.al("the numbers... the numbers...").schoices(["yes", "no"])
+			var chses := [&"yes", &"no"]
+			if correct_numbers > 10: chses.append(&"boring")
+			dlg.al("the numbers... the numbers...").schoices(chses)
 			var c := await dlg.speak_choice()
 			if c == &"yes":
 				DAT.capture_player("game")
@@ -57,6 +61,13 @@ func _mafia_blue_interact() -> void:
 					lg.queue_free()
 					await _after_game()
 				)
+				break
+			elif c == &"boring":
+				dlg.reset().set_char("mafia_blue")
+				dlg.al("what? doing the same thing over and over again is boring??")
+				dlg.al("then take a damn break!")
+				dlg.set_char("mafia_yellow").al("from breathing!")
+				await dlg.speak_choice()
 				break
 		elif choice == &"reward":
 			dlg.reset()

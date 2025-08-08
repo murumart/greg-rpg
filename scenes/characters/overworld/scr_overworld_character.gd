@@ -62,6 +62,7 @@ var player_collision_timer := Timer.new()
 @export var save := true
 @export var save_position: bool = false
 @export var save_convo_progess: bool = false
+@export var save_battled := false
 
 var target: Vector2: set = set_target
 
@@ -70,6 +71,10 @@ func _ready() -> void:
 	# load stuff
 	if LTS.gate_id == LTS.GATE_LOADING:
 		pass
+	if save_battled:
+		if DAT.get_data(get_save_key("battled"), false):
+			queue_free()
+			return
 	if save_position:
 		set_global_position(DAT.get_data(get_save_key("position"), global_position))
 	if save_convo_progess:
@@ -234,6 +239,8 @@ func finish_talking() -> void:
 
 
 func _enter_battle() -> bool:
+	if save_battled:
+		DAT.set_data(get_save_key("battled"), true)
 	if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 		LTS.enter_battle(battle_info, {"sbcheck": true})
 		freeze_and_thaw()

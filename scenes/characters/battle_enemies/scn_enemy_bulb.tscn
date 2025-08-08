@@ -31,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 		power_cord.set_point_position(i, power_cord.to_local(segments[i].global_position))
 
 
-func _on_bulb_hurted(bulb: BattleActor) -> void:
+func _on_bulb_hurted(bulb: BattleActor, _f: float, _g: int) -> void:
 	if bulb.character.health_perc() < 0.5 and not pistik.visible:
 		pistik.show()
 		$Socket/Joint5.queue_free()
@@ -153,7 +153,7 @@ gradient = SubResource("Gradient_fosrd")
 lifetime = 0.0
 
 [node name="Line2D" parent="Puppet/VfxPowerline" index="0"]
-points = PackedVector2Array(0, 0, 1.85186, -5.28359, -0.356543, -13.3288, -2.1115, -17.9155, 1.44237, -22.0034, 1.36369, -28.8959, -2.32995, -32.8894, 0.732494, -40.9778, -2.04971, -43.7047, -1, -51)
+points = PackedVector2Array(0, 0, -0.985232, -7.46553, 1.70348, -10.7933, 0.868356, -15.4013, -1.33567, -20.8762, 1.05624, -27.1492, -0.257256, -35.9576, 1.02429, -38.7992, 0.410755, -43.8132, -1, -51)
 texture = SubResource("GradientTexture2D_4hinj")
 
 [node name="Start" parent="Puppet/VfxPowerline" index="1"]
@@ -279,7 +279,7 @@ region_rect = Rect2(3, 50, 7, 10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ftael")
+&"": SubResource("AnimationLibrary_ftael")
 }
 autoplay = "idle"
 

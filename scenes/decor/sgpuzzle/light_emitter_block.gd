@@ -41,6 +41,10 @@ func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	var tget := cast.get_collider()
+	if tget != null:
+		light.scale.y = (global_position.distance_to(cast.get_collision_point()) + 8) * 0.0625
+	else:
+		light.scale.y = 100
 	if not is_instance_valid(tget) or not emitting:
 		if is_instance_valid(_last_hit):
 			_last_hit.remove_source(self)
@@ -55,7 +59,7 @@ func _physics_process(_delta: float) -> void:
 	if tget is Receiver:
 		tget.add_source(self)
 		_last_hit = tget
-	light.scale.y = (global_position.distance_to(cast.get_collision_point()) + 8) * 0.0625
+
 
 
 func add_source(src: Emitter) -> void:

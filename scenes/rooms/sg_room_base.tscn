@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1fjmpmle64kr"]
+
+[ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_siqy1"]
+[ext_resource type="Script" uid="uid://dqfootmfjeyuy" path="res://scenes/rooms/sg/sg_room.gd" id="2_230ob"]
+[ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="3_7uulv"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="5_vifc0"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="6_4okuf"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="7_jcffv"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_ltipi"]
+
+[node name="SGROOM" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_siqy1")
+music = "secret_garden"
+metadata/_custom_type_script = "uid://bpfj25n4ytmas"
+
+[node name="SGRoom" type="Node" parent="." node_paths=PackedStringArray("collision_hide")]
+script = ExtResource("2_230ob")
+collision_hide = NodePath("../COLLISION")
+
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("7_jcffv")
+level_gain = 89
+new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter"])
+replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
+
+[node name="COLLISION" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="COLLISION" type="TileMapLayer" parent="COLLISION"]
+z_index = 4
+tile_set = ExtResource("3_7uulv")
+y_sort_origin = -1270
+
+[node name="Floor" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("3_7uulv")
+y_sort_origin = -1270
+
+[node name="Greg" parent="." instance=ExtResource("5_vifc0")]
+position = Vector2(-70, -16)
+
+[node name="Camera" parent="Greg" instance=ExtResource("6_4okuf")]
+position = Vector2(0, -9)
+zoom = Vector2(2, 2)
+resolution_scale_factor = 0.5
+
+[node name="Areas" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="RoomGate" parent="Areas" instance=ExtResource("9_ltipi")]
+position = Vector2(-96, -24)
+extents = Vector2i(8, 24)
+spawnpoint = Vector2i(14, 0)
+
+[node name="RoomGate2" parent="Areas" instance=ExtResource("9_ltipi")]
+position = Vector2(736, -24)
+extents = Vector2i(8, 24)
+spawnpoint = Vector2i(-14, 0)
