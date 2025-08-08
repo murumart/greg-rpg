@@ -6,13 +6,14 @@ Extant gimmicks:
 Rooms:
 1. introduction to area (some dialogue, "vista")
 2. simple climbing
-3. maze with fights
-4. bigger puzzle (2 colors)
-5. encounters in a maze (secret side area w puzzle)
+3. maze with fights (secret side area w puzzle)
+4. puzzle
+5. encounters in a maze
 6. climbing harder
-7. npcs talking
-8. puzzle with golden vacuum encounter
-9. back to intro area
+7. more puzzle
+8. npcs talking
+9. puzzle with golden vacuum encounter
+10. back to intro area
 
 To do:
 - [ ] light puzzle (lasers)

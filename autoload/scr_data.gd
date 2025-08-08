@@ -309,7 +309,7 @@ func _on_game_timer_timeout() -> void:
 
 	if seconds % AUTOSAVE_TEST_INTERVAL_SEC == 0:
 		var greg := get_tree().get_first_node_in_group("players")
-		if not greg:
+		if not greg or &"cutscene" in player_capturers or &"level_transition" in player_capturers:
 			return
 		var interval := OPT.get_opt("autosave_interval") * 60 as float
 		if (seconds - last_save_second >= interval
