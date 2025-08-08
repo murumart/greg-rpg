@@ -121,7 +121,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "d64cebf859fc370a",
@@ -213,13 +214,13 @@
   },
   "active": "2292fc5d39da9a55",
   "lastOpenFiles": [
-    "Update goals.md",
+    "Pasted image 20250710193306.png",
     "SG gimmicks.md",
+    "Update goals.md",
     "Notes.md",
     "Bugs.md",
     "Tarikas.md",
     "Police.md",
-    "Pasted image 20250710193306.png",
     "New Text Document.txt",
     "Pasted image 20250710193306.png.import",
     "Pasted image 20250710193301.png",

@@ -38,7 +38,7 @@ var random_movement_timer: Timer
 const RANDOM_MOVEMENT_TRIES := 16
 var chase_timer: Timer
 var time_moved := 0.0
-var time_moved_limit := 2.5
+@export var time_moved_limit := 2.5
 @export var chase_target: Node2D
 @export var chase_distance := 32
 @export var chase_closeness := 6

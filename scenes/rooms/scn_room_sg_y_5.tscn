@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=4 uid="uid://7r7j8jryy0ws"]
+
+[ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_axufd"]
+[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="2_2knk6"]
+
+[node name="SgY5" instance=ExtResource("1_axufd")]
+
+[node name="Floor" parent="." index="3"]
+tile_map_data = PackedByteArray("AAD6//7/AAABAAIAAAD7//7/AAACAAIAAAD7//3/AAACAAAAAAD6//3/AAABAAAAAAD8//3/AAACAAAAAAD8//7/AAACAAIAAAD9//3/AAACAAAAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAEAAAADAP7/AAADAAEAAAADAP3/AAADAAEAAAACAP3/AAACAAEAAAABAP3/AAACAAAAAAAAAP3/AAACAAAAAAD///3/AAACAAAAAAD+//3/AAACAAAAAAACAP//AAABAAEAAAACAAAAAAABAAEAAAACAAEAAAABAAIAAAACAAMAAAAAAAMAAAADAP//AAADAAEAAAADAAAAAAAEAAAAAAADAAEAAAACAAIAAAACAPz/AAABAAEAAAACAPv/AAABAAAAAAADAPv/AAACAAAAAAADAPz/AAACAAEAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAEAAAACAAIAAAAEAAEAAAACAAIAAAAGAAEAAAACAAIAAAAHAAEAAAACAAIAAAAIAAEAAAADAAIAAAAIAAAAAAADAAEAAAAHAAAAAAAEAAAAAAAEAPz/AAACAAIAAAAFAPz/AAACAAIAAAAGAPz/AAACAAIAAAAHAPz/AAACAAEAAAAIAPz/AAAEAAAAAAAIAPv/AAACAAAAAAAHAPv/AAACAAAAAAAGAPv/AAACAAAAAAAFAPv/AAACAAAAAAAEAPv/AAACAAAAAAAHAP3/AAABAAEAAAAHAP7/AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAADAAEAAAAIAP7/AAADAAEAAAAIAP3/AAADAAEAAAAJAPv/AAACAAAAAAAKAPv/AAACAAAAAAALAPv/AAACAAAAAAAMAPv/AAACAAAAAAANAPv/AAADAAAAAAANAPz/AAADAAIAAAAJAPz/AAACAAIAAAAKAPz/AAACAAIAAAALAPz/AAACAAIAAAAMAPz/AAACAAIAAAA=")
+
+[node name="Greg" parent="." index="4"]
+position = Vector2(8, -30)
+
+[node name="Camera" parent="Greg" index="7"]
+zoom = Vector2(1, 1)
+
+[node name="RoomGate" parent="Areas" index="0"]
+position = Vector2(-97, -32)
+destination = &"sg_y_4"
+gate_id = &"sg-y-45"
+extents = Vector2i(8, 14)
+
+[node name="RoomGate2" parent="Areas" index="1"]
+destination = &"non"
+gate_id = &"onon"
+
+[node name="Cats" type="Node2D" parent="Areas" index="2"]
+y_sort_enabled = true
+
+[node name="Cat" parent="Areas/Cats" index="0" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(48, 15)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat6" parent="Areas/Cats" index="1" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(88, 15)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat2" parent="Areas/Cats" index="2" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(88, -64)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat8" parent="Areas/Cats" index="3" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(48, -64)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat3" parent="Areas/Cats" index="4" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(128, 15)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat4" parent="Areas/Cats" index="5" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(48, -24)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat9" parent="Areas/Cats" index="6" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(128, -24)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Cat10" parent="Areas/Cats" index="7" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+position = Vector2(128, -64)
+speed = 6000
+movement_wait = 0.1
+random_movement = false
+time_moved_limit = 4.0
+path_container = NodePath("../Path")
+
+[node name="Path" type="Node2D" parent="Areas/Cats" index="8"]
+position = Vector2(114, -39)
+
+[node name="Marker2D2" type="Marker2D" parent="Areas/Cats/Path" index="0"]
+position = Vector2(-66, 54)
+
+[node name="Marker2D6" type="Marker2D" parent="Areas/Cats/Path" index="1"]
+position = Vector2(-26, 54)
+
+[node name="Marker2D3" type="Marker2D" parent="Areas/Cats/Path" index="2"]
+position = Vector2(14, 54)
+
+[node name="Marker2D7" type="Marker2D" parent="Areas/Cats/Path" index="3"]
+position = Vector2(14, 15)
+
+[node name="Marker2D8" type="Marker2D" parent="Areas/Cats/Path" index="4"]
+position = Vector2(14, -25)
+
+[node name="Marker2D4" type="Marker2D" parent="Areas/Cats/Path" index="5"]
+position = Vector2(-26, -25)
+
+[node name="Marker2D9" type="Marker2D" parent="Areas/Cats/Path" index="6"]
+position = Vector2(-66, -25)
+
+[node name="Marker2D5" type="Marker2D" parent="Areas/Cats/Path" index="7"]
+position = Vector2(-66, 15)

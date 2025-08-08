@@ -16,7 +16,7 @@ Rooms:
 10. back to intro area
 
 To do:
-- [ ] light puzzle (lasers)
+- [x] light puzzle (lasers)
 	- [x] light emitter element (with color)
 	- [x] light receiver element (with color)
 	- [x] light redirector element - direction of light when it touches it, is movable tile-by tile; two lasers onto the same block will output a mixed color
