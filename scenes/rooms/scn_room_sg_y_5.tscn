@@ -1,18 +1,77 @@
-[gd_scene load_steps=3 format=4 uid="uid://7r7j8jryy0ws"]
+[gd_scene load_steps=16 format=4 uid="uid://7r7j8jryy0ws"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_axufd"]
-[ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="2_2knk6"]
+[ext_resource type="Script" uid="uid://c6nera85q5le0" path="res://code/sg_rotating_obstacle.gd" id="2_uma5x"]
+[ext_resource type="PackedScene" uid="uid://dtucue1l5udas" path="res://scenes/characters/overworld/scn_cat_sg.tscn" id="3_ydydb"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="4_uma5x"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="5_bwrhi"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="6_beskq"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_m3ter"]
+
+[sub_resource type="Curve2D" id="Curve2D_2knk6"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 48, -64, 0, 0, 0, 0, 48, 17, 0, 0, 0, 0, 128, 16, 0, 0, 0, 0, 128, -64, 0, 0, 0, 0, 48, -64)
+}
+point_count = 5
+
+[sub_resource type="Resource" id="Resource_e5kl3"]
+script = ExtResource("5_bwrhi")
+type = 1
+property = "gummy_fish"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_6p67k"]
+script = ExtResource("6_beskq")
+rewards = Array[ExtResource("5_bwrhi")]([SubResource("Resource_e5kl3")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[sub_resource type="Resource" id="Resource_1yrv5"]
+script = ExtResource("7_m3ter")
+enemies = Array[StringName]([&"cat", &"cat", &"cat"])
+background = "sun"
+music = "catfight"
+party = Array[StringName]([])
+death_reason = 7
+start_text = "meowmeowmeow"
+rewards = SubResource("Resource_6p67k")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("4_uma5x")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
+
+[sub_resource type="Curve2D" id="Curve2D_uma5x"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 56, -39, 0, 0, 0, 0, 56, 25, 0, 0, 0, 0, 120, 25, 0, 0, 0, 0, 120, -39, 0, 0, 0, 0, 56, -39)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uma5x"]
+resource_local_to_scene = true
+size = Vector2(6, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwrhi"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_beskq"]
+resource_local_to_scene = true
+radius = 32.0
 
 [node name="SgY5" instance=ExtResource("1_axufd")]
 
 [node name="Floor" parent="." index="3"]
-tile_map_data = PackedByteArray("AAD6//7/AAABAAIAAAD7//7/AAACAAIAAAD7//3/AAACAAAAAAD6//3/AAABAAAAAAD8//3/AAACAAAAAAD8//7/AAACAAIAAAD9//3/AAACAAAAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAEAAAADAP7/AAADAAEAAAADAP3/AAADAAEAAAACAP3/AAACAAEAAAABAP3/AAACAAAAAAAAAP3/AAACAAAAAAD///3/AAACAAAAAAD+//3/AAACAAAAAAACAP//AAABAAEAAAACAAAAAAABAAEAAAACAAEAAAABAAIAAAACAAMAAAAAAAMAAAADAP//AAADAAEAAAADAAAAAAAEAAAAAAADAAEAAAACAAIAAAACAPz/AAABAAEAAAACAPv/AAABAAAAAAADAPv/AAACAAAAAAADAPz/AAACAAEAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAEAAAACAAIAAAAEAAEAAAACAAIAAAAGAAEAAAACAAIAAAAHAAEAAAACAAIAAAAIAAEAAAADAAIAAAAIAAAAAAADAAEAAAAHAAAAAAAEAAAAAAAEAPz/AAACAAIAAAAFAPz/AAACAAIAAAAGAPz/AAACAAIAAAAHAPz/AAACAAEAAAAIAPz/AAAEAAAAAAAIAPv/AAACAAAAAAAHAPv/AAACAAAAAAAGAPv/AAACAAAAAAAFAPv/AAACAAAAAAAEAPv/AAACAAAAAAAHAP3/AAABAAEAAAAHAP7/AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAADAAEAAAAIAP7/AAADAAEAAAAIAP3/AAADAAEAAAAJAPv/AAACAAAAAAAKAPv/AAACAAAAAAALAPv/AAACAAAAAAAMAPv/AAACAAAAAAANAPv/AAADAAAAAAANAPz/AAADAAIAAAAJAPz/AAACAAIAAAAKAPz/AAACAAIAAAALAPz/AAACAAIAAAAMAPz/AAACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD6//7/AAABAAIAAAD7//7/AAACAAIAAAD7//3/AAACAAAAAAD6//3/AAABAAAAAAD8//3/AAACAAAAAAD8//7/AAACAAIAAAD9//3/AAACAAAAAAD9//7/AAACAAIAAAD+//7/AAACAAIAAAD///7/AAACAAIAAAAAAP7/AAACAAIAAAABAP7/AAACAAIAAAACAP7/AAACAAEAAAADAP7/AAADAAEAAAADAP3/AAADAAEAAAACAP3/AAACAAEAAAABAP3/AAACAAAAAAAAAP3/AAACAAAAAAD///3/AAACAAAAAAD+//3/AAACAAAAAAACAP//AAABAAEAAAACAAAAAAABAAEAAAACAAEAAAABAAIAAAACAAMAAAAAAAMAAAADAP//AAADAAEAAAADAAAAAAAEAAAAAAADAAEAAAACAAIAAAACAPz/AAABAAEAAAACAPv/AAABAAAAAAADAPv/AAACAAAAAAADAPz/AAACAAEAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAFAAEAAAACAAIAAAAEAAEAAAACAAIAAAAGAAEAAAACAAIAAAAHAAEAAAACAAIAAAAIAAEAAAADAAIAAAAIAAAAAAADAAEAAAAHAAAAAAAEAAAAAAAEAPz/AAACAAIAAAAFAPz/AAACAAIAAAAGAPz/AAACAAIAAAAHAPz/AAACAAEAAAAIAPz/AAAEAAAAAAAIAPv/AAACAAAAAAAHAPv/AAACAAAAAAAGAPv/AAACAAAAAAAFAPv/AAACAAAAAAAEAPv/AAACAAAAAAAHAP3/AAABAAEAAAAHAP7/AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAADAAEAAAAIAP7/AAADAAEAAAAIAP3/AAADAAEAAAAJAPv/AAACAAAAAAAKAPv/AAACAAAAAAALAPv/AAACAAAAAAAMAPv/AAACAAAAAAANAPv/AAACAAAAAAANAPz/AAACAAIAAAAJAPz/AAACAAIAAAAKAPz/AAACAAIAAAALAPz/AAACAAIAAAAMAPz/AAACAAIAAAAOAPv/AAACAAAAAAAOAPz/AAACAAIAAAAPAPv/AAACAAAAAAAPAPz/AAACAAIAAAAQAPz/AAACAAIAAAAQAPv/AAADAAEAAAAQAPj/AAABAAAAAAAUAPn/AAAAAAEAAAAUAPj/AAADAAAAAAAUAPr/AAAAAAEAAAAUAPv/AAAAAAEAAAAUAPz/AAADAAEAAAATAPz/AAACAAMAAAASAPz/AAACAAMAAAARAPz/AAACAAMAAAAUAP3/AAAAAAEAAAAUAP7/AAAAAAEAAAAUAP//AAAAAAEAAAAUAAAAAAAAAAEAAAAQAPn/AAAAAAEAAAARAPj/AAACAAMAAAASAPj/AAACAAMAAAATAPj/AAACAAMAAAAQAPr/AAAAAAEAAAAUAAEAAAABAAEAAAAUAAIAAAABAAIAAAAVAAIAAAACAAIAAAAWAAIAAAACAAIAAAAXAAIAAAACAAIAAAAVAAEAAAACAAAAAAAWAAEAAAACAAAAAAAXAAEAAAACAAAAAAAYAAEAAAACAAAAAAAZAAIAAAACAAIAAAAaAAIAAAACAAEAAAAYAAIAAAACAAIAAAAbAAIAAAADAAEAAAAbAAEAAAADAAEAAAAaAAEAAAACAAEAAAAZAAEAAAACAAAAAAAaAAMAAAABAAEAAAAaAAQAAAABAAEAAAAaAAUAAAABAAEAAAAaAAYAAAABAAIAAAAbAAMAAAADAAEAAAAbAAQAAAADAAEAAAAbAAUAAAACAAEAAAAbAAYAAAACAAIAAAAcAAUAAAACAAAAAAAdAAUAAAACAAAAAAAeAAUAAAACAAAAAAAfAAUAAAACAAAAAAAgAAUAAAACAAAAAAAhAAUAAAACAAAAAAAcAAYAAAACAAIAAAAdAAYAAAACAAIAAAAeAAYAAAACAAIAAAAfAAYAAAACAAIAAAAgAAYAAAACAAIAAAAhAAYAAAACAAIAAAAaAAAAAAABAAEAAAAaAP//AAABAAEAAAAaAP7/AAABAAEAAAAaAP3/AAABAAAAAAAbAAAAAAADAAEAAAAbAP//AAADAAEAAAAbAP7/AAACAAEAAAAbAP3/AAACAAAAAAAcAP3/AAACAAAAAAAdAP3/AAACAAAAAAAeAP3/AAACAAAAAAAfAP3/AAACAAAAAAAgAP3/AAACAAAAAAAhAP3/AAACAAAAAAAdAP7/AAACAAIAAAAeAP7/AAACAAIAAAAfAP7/AAACAAIAAAAgAP7/AAACAAIAAAAhAP7/AAACAAIAAAAiAP7/AAACAAIAAAAcAP7/AAACAAIAAAAiAP3/AAACAAAAAAAjAP3/AAACAAAAAAAjAP7/AAACAAEAAAAkAP7/AAADAAIAAAAkAP3/AAADAAAAAAAiAAUAAAACAAAAAAAjAAUAAAACAAAAAAAkAAUAAAACAAAAAAAjAAYAAAACAAEAAAAkAAYAAAACAAIAAAAiAAYAAAACAAEAAAAjAP//AAAAAAEAAAAjAAAAAAABAAIAAAAkAAAAAAACAAMAAAAlAAAAAAACAAMAAAAmAAAAAAACAAMAAAAnAAAAAAACAAMAAAAoAAAAAAACAAMAAAApAAAAAAACAAMAAAAqAAAAAAADAAMAAAAiAAcAAAABAAEAAAAjAAcAAAADAAEAAAAiAAgAAAABAAEAAAAjAAgAAAAEAAAAAAAiAAkAAAABAAIAAAAjAAkAAAACAAIAAAAkAAkAAAACAAIAAAAlAAkAAAACAAIAAAAmAAkAAAACAAIAAAAnAAkAAAACAAIAAAAoAAkAAAADAAIAAAAkAAgAAAACAAAAAAAlAAgAAAACAAAAAAAmAAgAAAACAAAAAAAnAAgAAAACAAAAAAAoAAgAAAACAAAAAAApAAgAAAACAAMAAAAqAAgAAAACAAMAAAArAAgAAAADAAMAAAAlAAYAAAACAAIAAAAmAAYAAAACAAIAAAAnAAYAAAACAAIAAAAoAAYAAAACAAIAAAApAAYAAAADAAIAAAAlAAUAAAACAAAAAAAmAAUAAAACAAAAAAAnAAUAAAACAAAAAAAoAAUAAAACAAAAAAApAAUAAAADAAAAAAA=")
 
 [node name="Greg" parent="." index="4"]
-position = Vector2(8, -30)
-
-[node name="Camera" parent="Greg" index="7"]
-zoom = Vector2(1, 1)
+position = Vector2(229, -62)
 
 [node name="RoomGate" parent="Areas" index="0"]
 position = Vector2(-97, -32)
@@ -27,93 +86,219 @@ gate_id = &"onon"
 [node name="Cats" type="Node2D" parent="Areas" index="2"]
 y_sort_enabled = true
 
-[node name="Cat" parent="Areas/Cats" index="0" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(48, 15)
-speed = 6000
-movement_wait = 0.1
-random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+[node name="Path2D" type="Path2D" parent="Areas/Cats" index="0" node_paths=PackedStringArray("followers")]
+curve = SubResource("Curve2D_2knk6")
+script = ExtResource("2_uma5x")
+followers = [NodePath("PathFollow2D"), NodePath("PathFollow2D2"), NodePath("PathFollow2D3"), NodePath("PathFollow2D8"), NodePath("PathFollow2D4"), NodePath("PathFollow2D5"), NodePath("PathFollow2D6"), NodePath("PathFollow2D7")]
+speed = 0.2
 
-[node name="Cat6" parent="Areas/Cats" index="1" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(88, 15)
-speed = 6000
-movement_wait = 0.1
-random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
-
-[node name="Cat2" parent="Areas/Cats" index="2" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(88, -64)
-speed = 6000
-movement_wait = 0.1
-random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
-
-[node name="Cat8" parent="Areas/Cats" index="3" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
+[node name="PathFollow2D" type="PathFollow2D" parent="Areas/Cats/Path2D" index="0"]
 position = Vector2(48, -64)
-speed = 6000
-movement_wait = 0.1
+rotates = false
+
+[node name="Cat" parent="Areas/Cats/Path2D/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Cat3" parent="Areas/Cats" index="4" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(128, 15)
-speed = 6000
-movement_wait = 0.1
+[node name="PathFollow2D2" type="PathFollow2D" parent="Areas/Cats/Path2D" index="1"]
+position = Vector2(48, -9.3964)
+progress = 54.6032
+rotates = false
+
+[node name="Cat2" parent="Areas/Cats/Path2D/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Cat4" parent="Areas/Cats" index="5" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(48, -24)
-speed = 6000
-movement_wait = 0.1
+[node name="PathFollow2D3" type="PathFollow2D" parent="Areas/Cats/Path2D" index="2"]
+position = Vector2(71.2279, 16.7097)
+progress = 104.231
+rotates = false
+
+[node name="Cat3" parent="Areas/Cats/Path2D/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Cat9" parent="Areas/Cats" index="6" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(128, -24)
-speed = 6000
-movement_wait = 0.1
+[node name="PathFollow2D8" type="PathFollow2D" parent="Areas/Cats/Path2D" index="3"]
+position = Vector2(87.7085, -64)
+progress = 281.298
+rotates = false
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Areas/Cats/Path2D" index="4"]
+position = Vector2(101.016, 16.3373)
+progress = 134.02
+rotates = false
+
+[node name="Cat4" parent="Areas/Cats/Path2D/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Cat10" parent="Areas/Cats" index="7" node_paths=PackedStringArray("path_container") instance=ExtResource("2_2knk6")]
-position = Vector2(128, -64)
-speed = 6000
-movement_wait = 0.1
+[node name="PathFollow2D5" type="PathFollow2D" parent="Areas/Cats/Path2D" index="5"]
+position = Vector2(128, -6.67331)
+progress = 183.68
+rotates = false
+
+[node name="Cat5" parent="Areas/Cats/Path2D/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-time_moved_limit = 4.0
-path_container = NodePath("../Path")
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Path" type="Node2D" parent="Areas/Cats" index="8"]
-position = Vector2(114, -39)
+[node name="PathFollow2D6" type="PathFollow2D" parent="Areas/Cats/Path2D" index="6"]
+position = Vector2(128, -46.3828)
+progress = 223.388
+rotates = false
 
-[node name="Marker2D2" type="Marker2D" parent="Areas/Cats/Path" index="0"]
-position = Vector2(-66, 54)
+[node name="Cat6" parent="Areas/Cats/Path2D/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Marker2D6" type="Marker2D" parent="Areas/Cats/Path" index="1"]
-position = Vector2(-26, 54)
+[node name="PathFollow2D7" type="PathFollow2D" parent="Areas/Cats/Path2D" index="7"]
+position = Vector2(87.7085, -64)
+progress = 281.298
+rotates = false
 
-[node name="Marker2D3" type="Marker2D" parent="Areas/Cats/Path" index="2"]
-position = Vector2(14, 54)
+[node name="Path2D2" type="Path2D" parent="Areas/Cats" index="1" node_paths=PackedStringArray("followers")]
+position = Vector2(208, -81)
+curve = SubResource("Curve2D_uma5x")
+script = ExtResource("2_uma5x")
+followers = [NodePath("PathFollow2D"), NodePath("PathFollow2D2"), NodePath("PathFollow2D3"), NodePath("PathFollow2D8"), NodePath("PathFollow2D4"), NodePath("PathFollow2D5"), NodePath("PathFollow2D6"), NodePath("PathFollow2D7")]
+speed = -0.21
 
-[node name="Marker2D7" type="Marker2D" parent="Areas/Cats/Path" index="3"]
-position = Vector2(14, 15)
+[node name="PathFollow2D" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="0"]
+position = Vector2(56, -39)
+rotates = false
 
-[node name="Marker2D8" type="Marker2D" parent="Areas/Cats/Path" index="4"]
-position = Vector2(14, -25)
+[node name="Cat" parent="Areas/Cats/Path2D2/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
 
-[node name="Marker2D4" type="Marker2D" parent="Areas/Cats/Path" index="5"]
-position = Vector2(-26, -25)
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D/Cat" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="Marker2D9" type="Marker2D" parent="Areas/Cats/Path" index="6"]
-position = Vector2(-66, -25)
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D/Cat" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
 
-[node name="Marker2D5" type="Marker2D" parent="Areas/Cats/Path" index="7"]
-position = Vector2(-66, 15)
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D/Cat/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D/Cat/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="1"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="Cat2" parent="Areas/Cats/Path2D2/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
+
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
+
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="2"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="Cat3" parent="Areas/Cats/Path2D2/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
+
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
+
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="3"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="4"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="Cat4" parent="Areas/Cats/Path2D2/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
+
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
+
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="5"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="Cat5" parent="Areas/Cats/Path2D2/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
+
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
+
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="6"]
+position = Vector2(56, -39)
+rotates = false
+
+[node name="Cat6" parent="Areas/Cats/Path2D2/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
+random_movement = false
+battle_info = SubResource("Resource_1yrv5")
+
+[node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_uma5x")
+
+[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6" index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6/CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_bwrhi")
+
+[node name="DetectionShape" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6/DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_beskq")
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Areas/Cats/Path2D2" index="7"]
+position = Vector2(56, -39)
+rotates = false
+
+[editable path="Areas/Cats/Path2D2/PathFollow2D/Cat"]
+[editable path="Areas/Cats/Path2D2/PathFollow2D2/Cat2"]
+[editable path="Areas/Cats/Path2D2/PathFollow2D3/Cat3"]
+[editable path="Areas/Cats/Path2D2/PathFollow2D4/Cat4"]
+[editable path="Areas/Cats/Path2D2/PathFollow2D5/Cat5"]
+[editable path="Areas/Cats/Path2D2/PathFollow2D6/Cat6"]

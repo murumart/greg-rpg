@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtucue1l5udas"]
+
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_46o7r"]
+[ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_s0mku"]
+[ext_resource type="SpriteFrames" uid="uid://byhohpjacualf" path="res://resources/characters/sfr_cat_overworld.tres" id="3_sw41o"]
+[ext_resource type="AudioStream" uid="uid://6pdofcrhmf61" path="res://sounds/meow/meow.tres" id="8_v2go7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7uk"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5p2c"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0h7is"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="Cat" instance=ExtResource("1_46o7r")]
+y_sort_enabled = true
+script = ExtResource("2_s0mku")
+friendly = false
+speed = 4000
+movement_wait = 3.5
+random_movement = true
+chase_distance = 80
+interact_on_touch = true
+save = false
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_jg7uk")
+
+[node name="CollisionDetectionArea" parent="." index="1"]
+modulate = Color(0.905882, 0.639216, 1, 1)
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_a5p2c")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_0h7is")
+
+[node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = ExtResource("3_sw41o")
+animation = &"idle"
+frame_progress = 0.397401
+offset = Vector2(0, -8)
+
+[node name="Meow" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("8_v2go7")
+bus = &"Speech"
