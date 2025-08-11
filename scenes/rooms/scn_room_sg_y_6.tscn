@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://flve44tb4856"]
+
+[ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_1y04c"]
+
+[node name="SgY6" instance=ExtResource("1_1y04c")]
+
+[node name="RoomGate" parent="Areas" index="0"]
+destination = &"sg_y_5"
+gate_id = &"sg-y-56"
+
+[node name="RoomGate2" parent="Areas" index="1"]
+destination = &"sg_y_7"
+gate_id = &"sg-y-67"
