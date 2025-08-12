@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://flve44tb4856"]
+[gd_scene load_steps=2 format=4 uid="uid://flve44tb4856"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_1y04c"]
 
 [node name="SgY6" instance=ExtResource("1_1y04c")]
 
+[node name="Floor" parent="." index="3"]
+tile_map_data = PackedByteArray("AAD5////AAABAAIAAAD6////AAACAAIAAAD7////AAACAAIAAAD8////AAACAAIAAAD9////AAADAAIAAAD6//7/AAACAAAAAAD7//7/AAACAAAAAAD8//7/AAACAAAAAAD9//7/AAADAAAAAAD5//7/AAABAAAAAAA=")
+
 [node name="RoomGate" parent="Areas" index="0"]
+position = Vector2(-110, -16)
 destination = &"sg_y_5"
 gate_id = &"sg-y-56"
 
