@@ -15,6 +15,7 @@ func _ready() -> void:
 	second_sun_spirit_encounter.body_entered.connect(_second_sunspirit_test)
 	third_sun_spirit_encounter.body_entered.connect(_third_sunspirit_test)
 	if not DAT.get_data("sunset_triggered", false):
+		$Areas/FishScaredSunHint.queue_free()
 		if DAT.get_data("sun_spirit_engaged", false):
 			_remove_spirit()
 			$Greg.saving_disabled = false

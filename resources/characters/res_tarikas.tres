@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://cwfgs0wl5ht1"]
+[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://cwfgs0wl5ht1"]
 
-[ext_resource type="Texture2D" uid="uid://b111mvbxgvtha" path="res://sprites/characters/portraits/spr_portrait_tarikas.png" id="1_terh0"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_uolfc"]
 [ext_resource type="AudioStream" uid="uid://8ceubqvxggdx" path="res://sounds/talking/tarikas.ogg" id="3_h3kry"]
 
@@ -10,7 +9,6 @@ name_in_file = &"tarikas"
 name = "tarikas"
 info = ""
 voice_sound = ExtResource("3_h3kry")
-portrait = ExtResource("1_terh0")
 max_health = 132.0
 health = 132.0
 max_magic = 30.0

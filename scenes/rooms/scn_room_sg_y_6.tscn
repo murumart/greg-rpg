@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://flve44tb4856"]
+[gd_scene load_steps=3 format=4 uid="uid://flve44tb4856"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_1y04c"]
+[ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="2_4um4c"]
 
 [node name="SgY6" instance=ExtResource("1_1y04c")]
 
@@ -15,3 +16,6 @@ gate_id = &"sg-y-56"
 [node name="RoomGate2" parent="Areas" index="1"]
 destination = &"sg_y_7"
 gate_id = &"sg-y-67"
+
+[node name="ClimbingPlace" parent="Areas" index="2" instance=ExtResource("2_4um4c")]
+position = Vector2(-45, -62)
