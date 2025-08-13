@@ -90,6 +90,18 @@ func appenda(key: StringName, thing: Variant) -> void:
 	set_data(key, Math.reaap(get_data(key, []), thing))
 
 
+func appenda_uq(key: StringName, thing: Variant) -> void:
+	if log_dat_chgs(): print("adding element %s to key %s if not there already" % [thing, key])
+	var th: Array = get_data("key", [])
+	if not th:
+		th = []
+		th.append(thing)
+		set_data(key, th)
+	else:
+		if not thing in th:
+			th.append(th)
+
+
 func save_to_data() -> void:
 	save_nodes_data()
 	save_chars_to_data()

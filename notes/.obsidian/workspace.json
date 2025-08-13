@@ -64,7 +64,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -212,10 +212,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2292fc5d39da9a55",
+  "active": "d8d2cdedb9c994a0",
   "lastOpenFiles": [
-    "Update goals.md",
     "SG gimmicks.md",
+    "Update goals.md",
     "Pasted image 20250710193306.png",
     "Notes.md",
     "Bugs.md",

@@ -9,6 +9,9 @@ var tarikas_talked: bool:
 var unlocked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_topics", to)
 	get: return DAT.get_data("tarikas_topics", [])
+var fear: int:
+	get: return DAT.get_data("tks_fear", 0)
+	set(to): DAT.set_data("tks_fear", to)
 
 
 func _ready() -> void:
@@ -29,27 +32,31 @@ func _on_tarikas_inspected() -> void:
 		dlg.add_line(dlg.ml("mh. you're blocking the sunlight."))
 		dlg.add_line(dlg.ml("...haven't seen you around here before."))
 		dlg.add_line(dlg.ml("boy... keep it down."))
-		dlg.add_line(dlg.ml("don't do anything interesting. that's my advice."))
+		dlg.add_line(dlg.ml("don't do anything interesting. we've had enough of that already."))
 		await dlg.speak_choice()
 
 	while true:
-		var aval_choices := [&"bye", &"advice"]
+		var aval_choices := [&"bye", &"now"]
 		for t in unlocked_topics:
 			aval_choices.append(t)
-		dlg.reset().add_line(dlg.ml("what brings you here?").schoices(aval_choices))
+		dlg.reset().add_line(dlg.ml("what brings you here?" if fear < 2 else "...").schoices(aval_choices))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
-			dlg.reset().add_line(dlg.ml("mh. step out the way of the sun..."))
-			dlg.add_line(dlg.ml("and come back later."))
-			await dlg.speak_choice()
+			if fear < 2:
+				dlg.reset().add_line(dlg.ml("mh. step out the way of the sun..."))
+				dlg.add_line(dlg.ml("and come back later."))
+				await dlg.speak_choice()
 			break
-		elif choice == &"advice":
-			dlg.reset().add_line(dlg.ml("advice? mh."))
+		elif choice == &"now":
+			dlg.reset()
+			if fear < 2:
+				dlg.add_line(dlg.ml("advice on what to do now? mh."))
 			if greg.level < 5:
 				dlg.add_line(dlg.ml("the tall grass..."))
-				dlg.add_line(dlg.ml("if you walk there, something might jump out and attack you."))
-				dlg.add_line(dlg.ml("something weak, but plentiful."))
-				dlg.add_line(dlg.ml("something to practice on."))
+				dlg.add_line(dlg.ml("if you really want to do something good..."))
+				dlg.add_line(dlg.ml("walk in tall grass, and something might jump out to attack you."))
+				dlg.add_line(dlg.ml("it'd be good if you took those threats on."))
+				dlg.add_line(dlg.ml("fighting grass matches your skill level perfectly, boy."))
 			elif greg.level < 15:
 				dlg.add_line(dlg.ml("this town has a crime problem."))
 				dlg.add_line(dlg.ml("and an animal problem..."))
@@ -63,5 +70,9 @@ func _on_tarikas_inspected() -> void:
 				break
 
 			await dlg.speak_choice()
+		elif choice == &"fisher":
+			DAT.set_data("tarikas_talked_fisherwoman", true)
+			dlg.reset().al("the lady at the lake, fishing...")
+			dlg.reset().al("")
 		else:
 			break

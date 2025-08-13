@@ -2,6 +2,8 @@
 - Miks Gregile juhiseid anda? Alguses ei karda? Greg petab teda? Ei räägi kõike?
 Peale LOITE võitlust vanamees kaob linnast, sest Greg näitas oma jõudu? Muidu annab lille ainult siis, kui kõik teised lillebossid on võidetud.
 
+Vanamees, kes kardab, et ajalugu kordub, aga ei astu hirmust samme selle vältimiseks? Samas siiski annab nõu, mida edasi teha.
+
 Nõuanded.
 lvl < 15:
 	vaata kõrges rohus ette, seal võidakse sind rünnata.

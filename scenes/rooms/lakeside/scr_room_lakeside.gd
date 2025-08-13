@@ -80,6 +80,7 @@ func _fisherwoman_setup() -> void:
 
 var _flower_prog := 0
 func _on_fisherwoman_inspected() -> void:
+	DAT.appenda_uq("tarikas_topics", "fisher")
 	var dbox := SOL.dialogue_box as DialogueBox
 	fisherwoman.enter_a_state_of_conversation()
 	var dlg := DialogueBuilder.new().set_char("fisherwoman")
@@ -114,7 +115,7 @@ func _on_fisherwoman_inspected() -> void:
 			SND.current_song_player.volume_db = 0
 		if DAT.get_data("fishings_finished", 0) > 0:
 			aval_choices.insert(2, &"lures")
-		if DAT.get_data("fishings_finished", 0) > 1:
+		if DAT.get_data("fishings_finished", 0) > 4 or DAT.get_data("tarikas_talked_fisherwoman", false):
 			aval_choices.insert(3, &"flower")
 		if _flower_prog > 0:
 			aval_choices.erase(&"you")
