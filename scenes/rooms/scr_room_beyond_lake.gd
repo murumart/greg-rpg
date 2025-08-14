@@ -16,6 +16,9 @@ func _ready() -> void:
 	third_sun_spirit_encounter.body_entered.connect(_third_sunspirit_test)
 	if not DAT.get_data("sunset_triggered", false):
 		$Areas/FishScaredSunHint.queue_free()
+		if LTS.gate_id == &"exit_warstory":
+			SOL.dialogue("tarikas_beyond_lake_3")
+			DAT.set_data("tarikas_solar_done", true)
 		if DAT.get_data("sun_spirit_engaged", false):
 			_remove_spirit()
 			$Greg.saving_disabled = false
@@ -41,23 +44,13 @@ func _on_sun_spirit_inspected() -> void:
 
 func _on_tarikas_inspected() -> void:
 	DAT.set_data("met_tarikas_beyond_lake", true)
-	if tarikas.convo_progress >= 3:
+	if tarikas.convo_progress >= 2:
 		tarikas.default_lines.clear()
-		if DAT.get_data("dont_care_about_tarikas_story", false):
-			SOL.dialogue("tarikas_beyond_lake_bother")
-		elif DAT.get_data("heard_tarikas_story", false):
-			SOL.dialogue("tarikas_beyond_lake_again")
-		elif DAT.get_data("you_know_of_anu", false):
-			SOL.dialogue("tarikas_beyond_lake_offerstory")
-		elif not DAT.get_data("heard_tarikas_story", false):
-			SOL.dialogue("tarikas_beyond_lake_4")
-		else:
-			SOL.dialogue("tarikas_beyond_lake_again")
 
 
 func _on_dialogue_closed() -> void:
-	if SOL.dialogue_choice == "yes!!":
-		SOL.dialogue_choice = ""
+	if DAT.get_data("show_anu_cutscene", false):
+		DAT.set_data("show_anu_cutscene", false)
 		DAT.set_data("heard_tarikas_story", true)
 		LTS.level_transition("res://scenes/cutscene/scn_warstory.tscn")
 	elif SOL.dialogue_choice in ["power", "souls", "desire", "human", "inhuman"]:

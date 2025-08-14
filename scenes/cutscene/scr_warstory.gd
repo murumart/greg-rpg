@@ -30,7 +30,9 @@ var texs := {
 
 func _ready() -> void:
 	DAT.set_data("heard_warstory", true)
-	SND.play_song("warstory", 1.0, {"start_volume": 1.0, "play_from_beginning": true})
+	var speed := remap(OPT.get_opt("text_speak_time"), 0.25, 1.0, 1.0, 0.86)
+	$BarCounter.bpm *= speed
+	SND.play_song("warstory", 1.0, {start_volume = 1.0, play_from_beginning = true, pitch_scale = speed})
 	next_bar(0)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = ceili(Math.süsarv() * 1000)
@@ -175,7 +177,7 @@ func next_bar(bar: int) -> void:
 		30:
 			fadeout(imgs[0])
 		31:
-			LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
+			LTS.gate_id = &"exit_warstory"
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 
 
@@ -191,10 +193,10 @@ func talk_about_metal() -> void:
 		randf_range(0, 160),
 		randf_range(32, 80)),
 	{"text": metal.pick_random(),
+	"gravity": 1,
 	"color": Color(0.5, 0.35, 0.1),
 	"parent": $Images,
 	"z_index": 0})
-	text.gravity = 30
 
 
 func fadein(what: Node2D, dur := 1.0) -> void:

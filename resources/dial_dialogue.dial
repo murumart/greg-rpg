@@ -2016,82 +2016,24 @@ CHAR tarikas
 
 DIALOGUE tarikas_beyond_lake_1
 CHAR tarikas
-	mh? you got past that rogue spirit?
-	that's scary to think about.
+	...dreadful. dreadful.
+	[color=SUNCOLOR]solar protuberance[/color] has been... plaguing... the woods for a long time.
+	...until now.
 
 
 DIALOGUE tarikas_beyond_lake_2
 CHAR tarikas
-	we don't get many foreigners here.
-	so initially we thought you were a government man.
-	sent here to inspect us, you see.
-	to check if we're behaving.
+	i should be glad, of course.
+	but... something that can overpower [color=SUNCOLOR]solar protuberance[/color]...
+	such power is not fit for a single man.
+SET_DATA show_anu_cutscene,true
+	a tale from history... that should be heeded as warning...
 
 
 DIALOGUE tarikas_beyond_lake_3
 CHAR tarikas
-	...but you look genuinely clueless.
-	though your raw power is on par...
-	...with the townspeople.
-
-
-DIALOGUE tarikas_beyond_lake_4
-CHAR tarikas
-CHOICES no,yes
-	do you know why this statue base is empty?
-CHOICE_LINK yes
-SET_DATA you_know_of_anu,true
-	mh. of course, the statue was made of metal.
-CHOICE_LINK no
-CHOICES no!,yes!
-	any guesses?
-CHOICE_LINK yes!
-SET_DATA you_know_of_anu,true
-	you can thank anu for making it step down from there.
-CHOICE_LINK no!
-	...mh.
-	you really are clueless. very interesting.
-	would you like me to tell you how it came to be?
-CHOICES yes!!,no!!
-	i'm an old man, i love telling stories.
-CHOICE_LINK yes!!
-	oh joy. mh, so...
-CHOICE_LINK no!!
-SET_DATA dont_care_about_tarikas_story,true
-	...mh, well, leave me be then.
-
-
-DIALOGUE tarikas_beyond_lake_again
-CHAR tarikas
-CHOICES no!!,yes!!
-	would you like me to tell the story again?
-CHOICE_LINK no!!
-	mh. a shame. i liked telling it.
-CHOICE_LINK yes!!
-	oh joy. mh, so...
-	
-
-DIALOGUE tarikas_beyond_lake_bother
-CHAR tarikas
-	you didn't want to hear the story.
-CHOICES no!!,yes!!
-	unless you changed your mind?
-CHOICE_LINK no!!
-	mh. then begone.
-CHOICE_LINK yes!!
-	oh joy. mh, so...
-
-
-DIALOGUE tarikas_beyond_lake_offerstory
-CHAR tarikas
-	mh. i'm an old man, i love telling stories.
-	would you like me to tell you one?
-CHOICES yes!!,no!!
-	you already know it. it's about anu and the war.
-CHOICE_LINK no!!
-	mh. it was worth a try.
-CHOICE_LINK yes!!
-	oh joy. mh, so...
+	...but something like you...
+	...threatens this peace.
 
 
 DIALOGUE bike_ghost_fishing_1
