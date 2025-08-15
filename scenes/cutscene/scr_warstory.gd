@@ -57,20 +57,20 @@ func next_bar(bar: int) -> void:
 			imgs[0].texture = texs["anu"]
 			fadein(imgs[0])
 		2:
-			talk("[color=#aaaaaa]anu armu[/color] could make metal conform to his will.", 14)
+			talk("metal bent under the will of [color=#aaaaaa]anu armu[/color].", 14)
 			talking_about_metal = true
 			imgs[0].texture = texs["spoon"]
 			imgs[1].texture = texs["spoob"]
 		3:
-			talk("he decided to make this power serve his ambition.")
+			talk("his great power was paired with violent ambition, however.")
 			fadeout(imgs[0])
 			fadein(imgs[1])
 		4:
-			talk("first, he rose through the ranks politically.")
+			talk("first, he rose through the ranks politically...")
 			talking_about_metal = false
 			fadeout(imgs[1])
 		5:
-			talk("(by assassinating his opponents with their kitchen tools.)", 12)
+			talk("...by assassinating his opponents with their own kitchen tools.", 12)
 			imgs[0].texture = texs["political"]
 			fadein(imgs[0])
 		6:
@@ -81,9 +81,9 @@ func next_bar(bar: int) -> void:
 			fadein(imgs[1])
 			move(imgs[1], Vector2(80, 40), 8.0)
 		7:
-			talk("anu's ambition, however, extended beyond his homeland.", 11)
+			talk("anu's ambition was not sated, extending beyond his homeland.", 11)
 		8:
-			talk("so one day, statues, buildings, all of metal")
+			talk("gradually, statues, buildings, all that's of metal")
 			imgs[0].position.y = 36
 			imgs[0].texture = texs["statue"]
 			fadeout(imgs[1])
@@ -138,23 +138,23 @@ func next_bar(bar: int) -> void:
 			imgs[1].texture = texs["grab"]
 			imgs[0].texture = texs["2remain"]
 		19:
-			talk("carrying no metal, two of them made it")
+			talk("carrying no metal, few of them made it to his hideout")
 			fadeout(imgs[1], 0.0001)
+			imgs[1].texture = texs["sitting"]
 			spirit_masters.hide()
 		20:
-			talk("to his lair, unguarded by humans")
-			imgs[1].texture = texs["sitting"]
-		21:
-			talk("and found him vulnerable.")
 			fadein(imgs[1])
+			talk("finding him no longer congnisant, merely a flesh body", 11)
+		21:
+			talk("relegated to pumping blood into the mill of violence", 11)
 		22:
-			talk("his own power allowed him to die there", 11)
+			talk("the curse upon iron perpetuating itself")
 			imgs[0].texture = texs["spirits"]
 		23:
-			talk("for the motives of spirits are beyond us all.", 11)
+			talk("for his power had found no more use for his will.", 11)
 			fadeout(imgs[1])
 		24:
-			talk("with his death, all metal was unbound from the curse", 11)
+			talk("with his final death, all metal was unbound from the curse", 11)
 			fadeout(imgs[0])
 			imgs[1].texture = texs["liberation"]
 		25:
@@ -166,12 +166,12 @@ func next_bar(bar: int) -> void:
 			fadeout(imgs[0], 0.0001)
 			imgs[0].texture = texs["nostatue"]
 		27:
-			talk("it has been 20 years since the horror ended")
+			talk("it has been twenty years since the horrors ended")
 			imgs[0].position.y = 36
 			move(imgs[0], Vector2(80, 72), 4.0)
 			fadein(imgs[0])
 		28:
-			talk("and people are starting to forget, already.")
+			talk("...and we are slowly forgetting what happened already.")
 		29:
 			talk("")
 		30:

@@ -18,6 +18,8 @@ func _ready() -> void:
 	if not unlocked_topics:
 		unlocked_topics = []
 	tarikas.inspected.connect(_on_tarikas_inspected)
+	if DAT.get_data("tarikas_solar_done", false):
+		tarikas.queue_free()
 	if DAT.get_data("known_status_effects", []).is_empty():
 		pass
 		guru.queue_free()

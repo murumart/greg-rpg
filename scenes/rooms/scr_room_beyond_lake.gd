@@ -14,21 +14,25 @@ func _ready() -> void:
 	SOL.dialogue_closed.connect(_on_dialogue_closed)
 	second_sun_spirit_encounter.body_entered.connect(_second_sunspirit_test)
 	third_sun_spirit_encounter.body_entered.connect(_third_sunspirit_test)
+
 	if not DAT.get_data("sunset_triggered", false):
 		$Areas/FishScaredSunHint.queue_free()
+		if not DAT.get_data("sun_spirit_engaged", false):
+			tarikas.queue_free()
+		else:
+			$Greg.saving_disabled = false
+			_remove_spirit()
+			if DAT.get_data("tarikas_solar_done", false):
+				tarikas.queue_free()
 		if LTS.gate_id == &"exit_warstory":
 			SOL.dialogue("tarikas_beyond_lake_3")
 			DAT.set_data("tarikas_solar_done", true)
-		if DAT.get_data("sun_spirit_engaged", false):
-			_remove_spirit()
-			$Greg.saving_disabled = false
-		else:
-			tarikas.queue_free()
 	else:
 		_remove_spirit()
 		tarikas.queue_free()
 		$BronzeRifle.queue_free()
-	if not DAT.get_data("nr", 0.0) < 0.1:
+
+	if not Math.inrange(DAT.get_data("nr", 0.0), 0.090, 0.120):
 		fisher_ghost.queue_free()
 	if DAT.get_data("sun_spirit_engagement_position", false):
 		$OverworldTiles/BurnMark.global_position = (

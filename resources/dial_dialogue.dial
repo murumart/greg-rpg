@@ -2032,14 +2032,26 @@ SET_DATA show_anu_cutscene,true
 
 DIALOGUE tarikas_beyond_lake_3
 CHAR tarikas
-	...but something like you...
-	...threatens this peace.
+	...
+	...that is something we should... all be afraid of.
+SPEED 0.7
+	[color=SPIRITCOLOR]spirit power.[/color]
+SPEED 1.00
+	no one needs these amounts of it.
+	boy...
+	whatever you're seeking to grow your power for...
+	once you meet your goal, what then?
+	...
+	...but stopping you is not... something i can do.
+ITEM flower_begonia
+	please take this [color=FLOWERCOLOR]flower[/color]...
+	...and take care.
 
 
 DIALOGUE bike_ghost_fishing_1
 CHAR bike_ghost
-	oh... it's you... my nemesis!
-	it's a good day for fishing, my nemesis!
+	oh... it's you...!
+	it's a good day for fishing, my good nemesis!
 	i have caught so much old trash.
 CHOICES yes,no
 	you want some?
