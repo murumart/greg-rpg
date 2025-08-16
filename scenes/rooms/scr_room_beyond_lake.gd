@@ -24,7 +24,7 @@ func _ready() -> void:
 			_remove_spirit()
 			if DAT.get_data("tarikas_solar_done", false):
 				tarikas.queue_free()
-		if LTS.gate_id == &"exit_warstory":
+		if LTS.gate_id == LTS.GATE_EXIT_CUTSCENE and not DAT.get_data("tarikas_solar_done"):
 			SOL.dialogue("tarikas_beyond_lake_3")
 			DAT.set_data("tarikas_solar_done", true)
 	else:

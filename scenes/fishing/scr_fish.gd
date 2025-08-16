@@ -19,7 +19,7 @@ const FISH_TEXTURES := [
 	preload("res://sprites/fishing/spr_fish_14.png"),
 ]
 
-var yspeed := 60
+var yspeed := 60.0
 var speed := randf_range(30, 90)
 var moving := true
 var ymoving := true

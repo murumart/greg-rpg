@@ -177,7 +177,7 @@ func next_bar(bar: int) -> void:
 		30:
 			fadeout(imgs[0])
 		31:
-			LTS.gate_id = &"exit_warstory"
+			LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 
 

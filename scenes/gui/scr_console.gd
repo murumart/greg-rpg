@@ -174,7 +174,7 @@ func _cmd_beffect(args: PackedStringArray) -> void:
 	output("added effect %s to %s" % [sex, target])
 
 
-func _cmd_gflowers(args: PackedStringArray) -> void:
+func _cmd_gflowers(_args: PackedStringArray) -> void:
 	for f in DAT.FLOWERS:
 		DAT.grant_item(f)
 

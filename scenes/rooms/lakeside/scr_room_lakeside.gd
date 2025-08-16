@@ -81,7 +81,7 @@ func _fisherwoman_setup() -> void:
 var _flower_prog := 0
 func _on_fisherwoman_inspected() -> void:
 	DAT.appenda_uq("tarikas_topics", "fisher")
-	var dbox := SOL.dialogue_box as DialogueBox
+	#var dbox := SOL.dialogue_box as DialogueBox
 	fisherwoman.enter_a_state_of_conversation()
 	var dlg := DialogueBuilder.new().set_char("fisherwoman")
 	if DAT.get_data("fisherwoman_fought", false):

@@ -357,7 +357,6 @@ script = ExtResource("3_xexyo")
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("4_wb2do")
 level_gain = 25
-silver_gain = null
 replace_armour = &"rubber_boots"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
@@ -468,7 +467,6 @@ spawnpoint = Vector2i(0, 14)
 
 [node name="EnemyEncounterArea" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
 battle = ExtResource("12_2ir7c")
-increase = 0.2
 player = NodePath("../../Greg")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
