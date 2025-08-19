@@ -1,7 +1,6 @@
 extends BattleEnemy
 
 var said_healing_line := false
-var enemy_powerful := false
 var powerful_progress := 1
 var dead := false
 var at_gdung := false
@@ -32,13 +31,9 @@ func act() -> void:
 func _act_normal() -> void:
 	if turn == 0:
 		if character.health_perc() <= 0.75:
-			enemy_powerful = true
-			add_status_effect_s(&"speed", 16, 16)
-		SOL.dialogue("bike_ghost_welcome" if not enemy_powerful else "bike_ghost_powerfulenemy_1")
-	if enemy_powerful:
-		await hnnng_____the_power()
-		super.act()
-		return
+			add_status_effect_s(&"speed", 32, 16)
+		SOL.dialogue("bike_ghost_welcome")
+
 
 	if turn == 2:
 		SOL.dialogue("bike_ghost_convo_1")
@@ -59,22 +54,6 @@ func _act_gdung() -> void:
 	super.act()
 
 
-func hnnng_____the_power() -> void:
-	if character.health_perc() <= 0.5 and powerful_progress <= 1:
-		SOL.dialogue("bike_ghost_powerfulenemy_2")
-		add_status_effect_s(&"speed", 48, 16)
-		powerful_progress += 1
-	if character.health_perc() <= 0.4 and powerful_progress <= 2:
-		SOL.dialogue("bike_ghost_powerfulenemy_3")
-		hurting_spirits.append("radiation_attack")
-		add_status_effect_s(&"speed", 72, 16)
-		powerful_progress += 1
-		if character.magic < 99:
-			SOL.dialogue("bike_ghost_powerfulenemy_outofmagic")
-	if SOL.dialogue_open:
-		await SOL.dialogue_closed
-
-
 func hurt(amount: float, gnd: int) -> void:
 	if at_gdung:
 		if character.health - _hurt_damage(amount, gnd) <= 0:
@@ -85,8 +64,6 @@ func hurt(amount: float, gnd: int) -> void:
 			return
 		super (amount, gnd)
 		return
-	if enemy_powerful:
-		hnnng_____the_power()
 	if dead:
 		return
 	super.hurt(amount, gnd)

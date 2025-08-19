@@ -1691,227 +1691,92 @@ CHOICE_LINK bye
 
 
 DIALOGUE bike_ghost_interact_1
-	hmm?
+	...what? you horrible insect?
 	you look like you want to steal my bike.
 	how about i steal your earlobes instead?
 
 
 DIALOGUE bike_ghost_interact_2
 CHAR bike_ghost
-	indeed, the bike you are trying to steal is haunted...
-	...by me!
-	all your fears - i will bring them to be.
+	you utter imbecile... your petty theft will be thwarted...
+	...by the [color=SPIRITCOLOR]ghost[/color] that haunts...
+	...your object of desire.
 
 
 DIALOGUE bike_ghost_welcome
 CHAR bike_ghost
-	hello. i am the [color=#aaffff]bike ghost[/color].
-	it is my job to supervise this bicycle and...
-	make sure that it is not used for indecent activities.
-	activities such as fast travel.
-	which bikes can do, if you were not aware.
-	but not any more.
-	because i am here.
-	hello.
+	despair upon the sight of my metal body -
+	the most nightmarish punishment conceived -
+	fit for your defiled ilk!!
+	i am the [color=SPIRITCOLOR]bike ghost[/color]...
+	...and you are dead!!
 
 
 DIALOGUE bike_ghost_convo_1
 CHAR bike_ghost
-	interesting.
-	i was given specific instructions to watch out for you.
-	instructions to obstruct your fast travel in particular.
-	i wonder why... but it does not matter.
-	as long as i am paid.
+	as i survey your face - what a tragic visage!
+	immense disappointment at the loss of [color=SPIRITCOLOR]fast travel[/color]...
+	indeed, i am a restriction upon this valuable tool!
+	in fact, bicycles everywhere in town are locked.
+	none may gain haste from them, as dictates...
 
 
 DIALOGUE bike_ghost_convo_2
 CHAR bike_ghost
-	one final thing.
-	you look reaaaal ugly.
-	i am doing the world a service here.
-	i understand my task perfectly now.
-	that is all. goodbye.
+	the blood! the blood!
+	the pay for ridding the planet from your presence...
+	let this be the final nail in your ugly coffin!
+	my determination!
+	but enough talk! have at you!
 
 
 DIALOGUE bike_ghost_halfhealth
 CHAR bike_ghost
 	huff... puff...
-	i must admit that you are quite tough.
-	you have made me wheeze in effort.
-	i don't even have lungs.
-	but this is a great time to introduce you to...
-	...my trump card. behold.
-	healing items.
+	i must admit that you are... quite tough.
+	i struggle to catch my breath...
+	...despite my pointed lack of a respiratory system.
+	but you have only dug your grave deeper, worm!
+	behold, my true power...
+	...healing items!!
 
 
 DIALOGUE bike_ghost_defeat
 CHAR bike_ghost
 	no! no no no no no!
-	i was not supposed to lose!
-	the fate of the world...
-	my payment (80 liters of blood)...
-	you fool. you asshole!
-	you will live in guilt forever.
-	but i can help... by reducing your lifespan!
-	with the last of my power... radiation attack!
-
-
-DIALOGUE bike_ghost_powerfulenemy_1
-CHAR bike_ghost
-	hello! hello! hi! uh, you hit quite hard!
-	but i am the [color=#aaffff]bike ghost[/color].
-	i will prevail.
-
-
-DIALOGUE bike_ghost_powerfulenemy_2
-CHAR bike_ghost
-	ow! ow!!
-	i can see why the old crone warned me about you!
-	you really are quite something!
-	but i fear her more than i fear you.
-
-
-DIALOGUE bike_ghost_powerfulenemy_3
-CHAR bike_ghost
-	i didn't want to do this...
-	but holding back is useless!
-	that's why i'm not holding back anymore!
-	this is your cue to escape! ha ha ha!
-
-
-DIALOGUE bike_ghost_powerfulenemy_outofmagic
-CHAR bike_ghost
-	...i'm out of [color=SPIRITCOLOR]sp[/color].
-	[expletive redacted]
-
-
-DIALOGUE bike_ghost_gdung_1
-CHAR bike_ghost
-	surprise, asshole.
-CHAR bike_ghost_beta
-	greetings, irradiated one.
-CHAR bike_ghost
-	we were rehired with our payment in blood doubled!
-CHAR bike_ghost_beta
-	and if we are to fail, we will be expunged from this realm.
-CHAR bike_ghost
-	...that too... but that's just motivation for us!
-	you won't survive our true [color=SPIRITCOLOR]double radiation friendship attack!!!
-CHAR bike_ghost_beta
-SET_DATA gdung_bike_ghosts_fought,true
-	i wish not to be associated with this individual.
-CHAR bike_ghost
-	you fool! the crone's power outmatches our rivalry!
-	we must work together to remain in corpore!
-SOUND error
-	i am ? blithering idiot.
-SOUND error
-SPEED 2
-	??? don't use my ???? ????????? ???
-SOUND error
-SPEED 3
-	???? ???? my ?????????? bumbling
-SPEED 1
-CHAR bike_ghost_beta
-	i am jamming its communication frequency.
-	i'll try to make it quick, greg. goodbye.
-
-
-DIALOGUE bike_ghost_gdung_solo
-CHAR bike_ghost
-	surprise, asshole.
-	i was rehired with my payment in blood doubled!
-	the stakes are higher than ever, my nemesis!
-	you will surely perish at my hand thiiiis time.
-	let's kill!
-
-
-DIALOGUE bike_ghost_gdung_defeat
-CHAR bike_ghost
-SOUND error
-SPEED 2
-	???? ???? noooooooooooooooooo ?????????? ???????
-SPEED 1
-CHAR bike_ghost_beta
-	i see now that attempting to fight you...
-	...was really the only mistake.
-	forgive me. 
-
-
-DIALOGUE bike_ghost_gdung_enough
-CHAR bike_ghost_beta
-	...this is going nowhere. halt the battle.
-CHAR bike_ghost
-	what?! have you lost the last dredges of your sapience??
-SOUND error
-	you really have reverted ????? ???????? to ??? ?
-SOUND error
-	i ???? ou so much.
-CHAR bike_ghost_beta
-	shush! take a look in front of you.
-	can't you recognise that this man...
-	...is something that can overpower the crone?
-CHAR bike_ghost
-	you're not of sound mind if you think that!
-CHAR bike_ghost_beta
-	...
-CHAR bike_ghost
-	...i get it now.
-	yes, the crone will surely find a suitable match from you.
-CHAR bike_ghost_beta
-	i'm leaving now.
-CHAR bike_ghost
-	huh?? do you know a place to hide from her?
-	wait for me!
-
-
-DIALOGUE bike_ghost_gdung_enough_no_bikeghost
-CHAR bike_ghost_beta
-	...this is going nowhere. halt the battle.
-	greg... i'm sure of it now.
-	with the ease you have been fighting us...
-	the old crone herself will meet her match once you get to her.
-	no spirit really wishes to serve her.
-	all she is is an ugly reminder. an intruder.
-	i'll get out of your way now.
-SPEED 0.8
-	ha ha... you... remind her whose world she's in right now. 
+	this cannot be!!
+	you have thrown the universe into chaos...
+	...as your victory here is utterly unimaginable!
+	moreso my failure and subsequent witholding...
+	...of payment (80 litres of blood).
+	but i take pity on you!
+	with the last of my power, i shorten...
+	...your miserable existence in this world!
+	[color=SPIRITCOLOR]radiation attack!!![/color]
 
 
 DIALOGUE bike_ghost_afterdefeat
 CHAR bike_ghost
-
-DATA_LINK gdung_bike_ghosts_fought,false
-	what now? want to rub your victory in my face?
+	lo, the worm has returned.
+	are you here to boast your unfair victory??
 CHOICES travel,bye
-	go away!
+	leave be my physical form!!
 
-DATA_LINK gdung_bike_ghosts_fought,true
-	...
-CHOICES travel,bye
-	we continue to exist.
-
-DATA_LINK gdung_bike_ghosts_fought,false
 CHOICE_LINK bye
-	yeahhh, show pity to me! how gracious!
+	how gracious!!
 CHOICE_LINK travel
 DATA_LINK fast_travel_tutorialed,false
-	huh? fast travel?
-	it's a lot to ask for after beating me up!
+	fast travel?? 
+	what an inquiry in this post-asskicking world!
 SET_DATA fast_travel_tutorialed,true
-	b-but i'll do it... sure...
+	...okay i'll do it just stop making that face.
 
-DATA_LINK gdung_bike_ghosts_fought,true
-CHOICE_LINK bye
-	farewell.
-CHOICE_LINK travel
-	let's travel.
 
 
 DIALOGUE bike_ghost_travel_nodests
 CHAR bike_ghost
 	travel? travel where?
-	you haven't freed any other bikes to travel to.
+	no other bikes have been liberated by your grace!!
 
 
 DIALOGUE bike_ghost_travel_options
@@ -1919,18 +1784,13 @@ CHAR bike_ghost
 CHOICES nvm
 	travel where?
 CHOICE_LINK nvm
-DATA_LINK gdung_bike_ghosts_fought,false
-	good riddance.
-DATA_LINK gdung_bike_ghosts_fought,true
-	alright.
+	may our encounters be few and brief.
 
 
 DIALOGUE bike_ghost_travel
 CHAR bike_ghost
-DATA_LINK gdung_bike_ghosts_fought,false
-	hope i don't see you again soon.
-DATA_LINK gdung_bike_ghosts_fought,true
-	be it so.
+	observe the scenery adjust in your world.
+
 
 DIALOGUE bike_beta_interact_1
 	...fast travel...
@@ -1945,7 +1805,7 @@ CHAR bike_ghost_beta
 
 DIALOGUE bike_beta_battle_1
 CHAR bike_ghost_beta
-	greetings. i am the [color=#aaffff]bike ghost[/color].
+	greetings. i am the [color=SPIRITCOLOR]bike ghost[/color].
 	i have been tasked to guard this fast travel spot.
 	my employer requires that no fast travel goes on at this time.
 	my employer also requires that you die.
@@ -1961,16 +1821,13 @@ CHAR bike_ghost_beta
 DIALOGUE bike_beta_battle_3
 CHAR bike_ghost_beta
 	you're really gonna feel that attack in a few months.
-	you have bested me for now.
+	but for now... bravo! an excellent assault on my ass.
 
 
 DIALOGUE bike_beta_afterdefeat
 CHAR bike_ghost_beta
 CHOICES travel,bye
 	why are you back? you know i can't kill you.
-DATA_LINK gdung_bike_ghosts_fought,true
-	but i know of one that you could kill... i wish to assist.
-DATA_LINK 
 CHOICE_LINK bye
 	i suppose this is goodbye.
 CHOICE_LINK travel
@@ -2050,69 +1907,64 @@ ITEM flower_begonia
 
 DIALOGUE bike_ghost_fishing_1
 CHAR bike_ghost
-	oh... it's you...!
-	it's a good day for fishing, my good nemesis!
-	i have caught so much old trash.
+	it is a day today that is good for fishing.
+	as a worm yourself, you must be familiar...
+	rubbish from the lake is what catches me today.
 CHOICES yes,no
-	you want some?
+	are you in need of any such...?
 CHOICE_LINK yes
 ITEM gummy_fish
-	here you go. 
+	and here it is for you.
 CHAR 
 	(you got something.)
 CHAR bike_ghost
-	you owe me now!
+	i believe you are now indebted to me.
 CHOICE_LINK no
-	too bad, i guess...
+	then wealth will not be transferred.
 
 
 DIALOGUE bike_ghost_fishing_2
 CHAR bike_ghost
 CHOICES you,me,victory,spirits
-	you're still bothering me? what about?
+	what about might be your continued bothersome?
 CHOICE_LINK you
-	about me? i am a mystery.
-	...i'm called [color=SPIRITCOLOR]klack[/color].
-	i "worked" as a transport spirit. until... you know.
-	thinking about becoming a fishing ghost instead.
-	it's serene here.
+	worm mind may not comprehend the workings of a [color=SPIRITCOLOR]spirit[/color].
+	without my metal body you would have stood no chance...
+	...but a good ass is worth a kicking every now and then.
 CHOICE_LINK me
-	about you? ha ha, you're terrifying.
-	i think knowing any more would ruin it for you.
-	for you... or for greg? hmm...
+	about you... you...
+	how many pairs of hopeful eyes do you have?
+	how many souls inhabit you?
+	how many controllers play you?
+	huh? how many??
+	press left arrow to wriggle...
+	press z to get eaten by a mole.
+	worm gameplay.
 CHOICE_LINK victory
-	you want to rub your victory in my face?
-	go away! we both know it doesn't mean anything!
+	you won... won what exactly?
+	"silver?" "experience?"
+	excuse my tethered being for not understanding...
+	...what exactly you, in reality, gained...
 CHOICE_LINK spirits
-	what are spirits? quaint question.
-	power given mind?
-	desire given form?
-	souls in purgatory?
-	the human essence?
-	all but humanity?
+	what are spirits? exhilarating!!
+	what wonderful display of curiosity from something...
+	...with an admittedly primitive nervous system.
+	what are spirits...
+	...power given mind?
+	...desire given form?
+	...souls in purgatory?
+	...the human essence?
 	pick one, or pick many. whichever you like.
-CHOICES power,desire,souls,human,inhuman
+CHOICES power,desire,souls,human
 	contradictions are fun.
 CHOICE_LINK power
 	don't get too comfortable.
-	...didn't ask you to answer there... but have fun!
-	this is a funny game after all.
 CHOICE_LINK desire
 	your wants can make up a new truth here.
-	...didn't ask you to answer there... but have fun!
-	this is a funny game after all.
 CHOICE_LINK souls
 	i'm already in hell so why bother?
-	...didn't ask you to answer there... but have fun!
-	this is a funny game after all.
 CHOICE_LINK human
 	it's like looking into a mirror.
-	...didn't ask you to answer there... but have fun!
-	this is a funny game after all.
-CHOICE_LINK inhuman
-	we will never be one and the same.
-	...didn't ask you to answer there... but have fun!
-	this is a funny game after all.
 
 
 DIALOGUE fisherman_1
