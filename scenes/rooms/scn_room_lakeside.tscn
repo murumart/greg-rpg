@@ -411,6 +411,7 @@ script = ExtResource("3_xexyo")
 [node name="CheatNode" type="Node" parent="."]
 script = ExtResource("4_wb2do")
 level_gain = 25
+new_items = Array[StringName]([&"bike_helmet"])
 replace_armour = &"rubber_boots"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
@@ -422,7 +423,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(-393, -62)
+position = Vector2(139, -8)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -519,92 +520,94 @@ gate_id = &"corridor-lake"
 extents = Vector2i(26, 8)
 spawnpoint = Vector2i(0, 14)
 
-[node name="EnemyEncounterArea" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
+[node name="FishEncounter" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("6_p0mbs")]
 battle = ExtResource("12_2ir7c")
+required_for_detection = 0.738
+increase = 0.092
 player = NodePath("../../Greg")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="MajorShape" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="MajorShape" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(66, 108.5)
 shape = SubResource("RectangleShape2D_2ir7c")
 debug_color = Color(1, 1, 1, 0)
 script = SubResource("GDScript_2ir7c")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(25, 222)
 shape = SubResource("RectangleShape2D_qsg2b")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(156, 238)
 shape = SubResource("RectangleShape2D_qsg2b")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(325, 238)
 shape = SubResource("RectangleShape2D_qsg2b")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-128.5, -104)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-48, -62)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D13" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(49, -25)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D14" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(237, 18)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D16" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(361, 5)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D17" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(473, 23)
 shape = SubResource("RectangleShape2D_w6bny")
 
-[node name="CollisionShape2D18" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(428, 131)
 shape = SubResource("RectangleShape2D_hgx62")
 
-[node name="CollisionShape2D15" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(143, 16)
 shape = SubResource("RectangleShape2D_vbbnr")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-128, 206)
 shape = SubResource("RectangleShape2D_2ajjd")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-206, 190)
 shape = SubResource("RectangleShape2D_of4l0")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-257, 174)
 shape = SubResource("RectangleShape2D_of4l0")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-292, 141)
 shape = SubResource("RectangleShape2D_of4l0")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-370, -40)
 shape = SubResource("RectangleShape2D_of4l0")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-327, 58)
 shape = SubResource("RectangleShape2D_fm3da")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(-358, -40)
 shape = SubResource("RectangleShape2D_fm3da")
 
-[node name="CollisionShape2D19" type="CollisionShape2D" parent="Areas/EnemyEncounterArea"]
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="Areas/FishEncounter"]
 position = Vector2(509, 106)
 shape = SubResource("RectangleShape2D_fm3da")
 
@@ -1530,6 +1533,7 @@ type = 1
 line_length = 1
 
 [node name="Fisherman33" parent="Fishermen" instance=ExtResource("8_j6fv8")]
+y_sort_enabled = true
 position = Vector2(171, -3)
 type = 1
 line_length = 43
@@ -1668,8 +1672,8 @@ position = Vector2(-99, 28)
 [node name="Marker2D33" type="Marker2D" parent="StrollingGrandma/Path"]
 position = Vector2(-57, 7)
 
-[connection signal="body_entered" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_entered"]
-[connection signal="body_exited" from="Areas/EnemyEncounterArea" to="." method="_on_enemy_encounter_area_body_exited"]
+[connection signal="body_entered" from="Areas/FishEncounter" to="." method="_on_enemy_encounter_area_body_entered"]
+[connection signal="body_exited" from="Areas/FishEncounter" to="." method="_on_enemy_encounter_area_body_exited"]
 [connection signal="inspected" from="Buildings/Pier/Fisherwoman" to="." method="_on_fisherwoman_inspected"]
 [connection signal="interacted" from="Buildings/Pier/Pole/PoleInteraction" to="." method="_on_pole_interacted"]
 

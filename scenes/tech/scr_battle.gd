@@ -228,12 +228,7 @@ func load_battle(_info: BattleInfo) -> void:
 	loading_battle = false
 	BattleActor.crits_enabled = info.crits_enabled
 	BattleActor.battle_hash = _info.get_hash()
-	for armor in _info.player_missing_armour_effects:
-		var pload := _info.player_missing_armour_effects[armor]
-		for p in party:
-			if p.character.armour == armor:
-				continue
-			p.handle_payload(pload)
+	check_armor()
 	#print("hash: ", BattleActor.battle_hash)
 	var questing := DAT.get_data("forest_questing", null) as ForestQuesting
 	if questing:
@@ -407,6 +402,7 @@ func _reference_button_pressed(reference) -> void:
 					{"target": reference, "item": held_item_id})
 			_used_item = true
 			open_party_info_screen()
+			check_armor()
 
 
 # descriptions for items and such
@@ -1104,6 +1100,15 @@ func crittable_display(opt: Dictionary) -> void:
 	elif opt.reference in current_guy.crittable:
 		opt.button.modulate = (opt.button.modulate as Color)\
 				.blend(Color.GREEN)
+
+
+func check_armor() -> void:
+	for armor in load_options.player_missing_armour_effects:
+		var pload := load_options.player_missing_armour_effects[armor]
+		for p in party:
+			if p.character.armour == armor:
+				continue
+			p.handle_payload(pload)
 
 
 func _exit_tree() -> void:

@@ -193,7 +193,7 @@ key = &"not_fish"
 curve = SubResource("Curve_wtvfl")
 
 [sub_resource type="Curve" id="Curve_1t12c"]
-_data = [Vector2(0.240741, 0), 0.0, 0.37978, 0, 0, Vector2(0.401955, 0.0749872), 0.0772819, 0.0772819, 0, 0, Vector2(0.44446, 0.296636), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.240741, 0), 0.0, 0.37978, 0, 0, Vector2(0.494049, 0.0538778), 0.0772819, 0.0772819, 0, 0, Vector2(0.561349, 0.264972), 0.0, 0.0, 0, 0, Vector2(1, 0.570161), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_3epx7"]
@@ -202,7 +202,7 @@ key = &"cracked_fisherman"
 curve = SubResource("Curve_1t12c")
 
 [sub_resource type="Curve" id="Curve_tqyql"]
-_data = [Vector2(0.347222, 0), 0.0, 0.0, 0, 0, Vector2(0.540096, 0.338854), 0.0, 0.0, 0, 0, Vector2(0.768293, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.46217, 0), 0.0, 0.0, 0, 0, Vector2(0.674695, 0.317745), 0.0, 0.0, 0, 0, Vector2(0.768293, 0.417582), 0.0, 0.0, 0, 0, Vector2(1, 0.516483), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Resource" id="Resource_d08lo"]

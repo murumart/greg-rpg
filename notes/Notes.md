@@ -73,14 +73,14 @@
 - [x] greg house scene make road *thinner*
 - [x] "semotion" typo 
 - [ ] street signs
-- [ ] thugs remain in town after bountyh complete??
+- [x] thugs remain in town after bountyh complete??
 - [ ] not enough sp (sp == cost)
-- [ ] fish area too harsh..?
-- [ ] pond lady ysort
-- [ ] idea.. break the regular fishermen with"wrong dialogue choice"
-- [ ] wrogn death screen fisherman fight
-- [ ] penalty for equipping wrong armor in lakeside battle.?
-- [ ] increase cracked fisherman spawn elvel..?
+- [x] fish area too harsh..?
+- [x] pond lady ysort
+- [x] idea.. break the regular fishermen with"wrong dialogue choice"
+- [x] wrogn death screen fisherman fight
+- [x] penalty for equipping wrong armor in lakeside battle.?
+- [x] increase cracked fisherman spawn elvel..?
 - [ ] reset xp after missing item message
 - [ ] police station vampire context if you dont talk to her... unify the dialoguye
 - [ ] use suin spirit to light campfire...
