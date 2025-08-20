@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://4qpg0d3p336g"]
+[gd_scene load_steps=90 format=4 uid="uid://4qpg0d3p336g"]
 
 [ext_resource type="Script" uid="uid://dqbl4x5t5qdrj" path="res://scenes/rooms/lakeside/scr_room_lakeside.gd" id="1_rym7f"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="2_aroxh"]
@@ -31,7 +31,11 @@
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_wb2do"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="32_5o1ix"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="32_61gk4"]
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="33_hnbx1"]
+[ext_resource type="Resource" uid="uid://dj6asjxe3g3g6" path="res://resources/rewards/res_lakeside_reward.tres" id="34_nwr42"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="35_kvxqu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsvj2"]
 shader = ExtResource("2_aroxh")
@@ -335,6 +339,56 @@ size = Vector2(25, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncnug"]
 size = Vector2(112, 20)
 
+[sub_resource type="Resource" id="Resource_8nto2"]
+script = ExtResource("33_hnbx1")
+name = &"drenchfoot"
+strength = 1.0
+duration = 9999
+metadata/_custom_type_script = "uid://dr10ikau5bgrg"
+
+[sub_resource type="Resource" id="Resource_gvojf"]
+script = ExtResource("32_5o1ix")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("33_hnbx1")]([SubResource("Resource_8nto2")])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[sub_resource type="Resource" id="Resource_6io26"]
+script = ExtResource("35_kvxqu")
+enemies = Array[StringName]([&"broken_fisherman"])
+background = "lakeside"
+music = "lake_battle"
+party = Array[StringName]([])
+death_reason = 5
+start_text = ""
+rewards = ExtResource("34_nwr42")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("32_5o1ix")]({
+&"rubber_boots": SubResource("Resource_gvojf")
+})
+increment_data_with_enemies = &"broken_fishermen_fought"
+
 [node name="Lakeside" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_rym7f")
@@ -368,7 +422,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." instance=ExtResource("4_obfq8")]
-position = Vector2(279, -172)
+position = Vector2(-393, -62)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" instance=ExtResource("5_gxb62")]
@@ -626,9 +680,6 @@ chase_distance = 200
 
 [node name="CollisionShape" parent="Areas/FastGuy" index="0"]
 shape = SubResource("RectangleShape2D_wb2do")
-
-[node name="CollisionDetectionArea" parent="Areas/FastGuy" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_fccl3")
@@ -1303,217 +1354,186 @@ metadata/_edit_group_ = true
 position = Vector2(27, -39)
 type = 1
 line_length = 58
-custom_lines = PackedStringArray()
 
 [node name="Fisherman2" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-1, -54)
 type = 3
 line_length = 78
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman3" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-89, -103)
 line_length = 64
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman4" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-138, -102)
 type = 3
 line_length = 86
-custom_lines = PackedStringArray()
 
 [node name="Fisherman5" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-56, 214)
 type = 1
 line_length = 11
-custom_lines = PackedStringArray()
 
 [node name="Fisherman30" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-72, 214)
 type = 2
 line_length = 11
-custom_lines = PackedStringArray()
 
 [node name="Fisherman31" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-88, 214)
 type = 2
 line_length = 11
-custom_lines = PackedStringArray()
 
 [node name="Fisherman32" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-103, 214)
 type = 1
 line_length = 11
-custom_lines = PackedStringArray()
 
 [node name="Fisherman6" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(36, 228)
 type = 3
 line_length = 18
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman7" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(199, 118)
 type = 1
 line_length = 34
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman8" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-358, -75)
 type = 1
 line_length = 25
-custom_lines = PackedStringArray()
+custom_lines = PackedStringArray("fisherman_breakable")
+breakable_choice = &"yes"
+break_battle = SubResource("Resource_6io26")
 
 [node name="Fisherman9" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-345, -121)
 type = 2
 line_length = 34
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman10" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-273, -132)
 line_length = 71
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman11" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-278, 148)
 type = 3
 line_length = 34
-custom_lines = PackedStringArray()
 
 [node name="Fisherman12" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-308, 97)
 type = 2
 line_length = 34
-custom_lines = PackedStringArray()
 
 [node name="Fisherman13" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-388, -30)
 type = 2
 line_length = 38
-custom_lines = PackedStringArray()
 
 [node name="Fisherman14" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-229, 180)
 line_length = 22
-custom_lines = PackedStringArray()
 
 [node name="Fisherman15" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(171, 43)
 type = 1
 line_length = 37
-custom_lines = PackedStringArray()
 
 [node name="Fisherman21" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-341, 17)
 type = 2
 line_length = 43
-custom_lines = PackedStringArray()
 
 [node name="Fisherman23" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(-56, -70)
 type = 1
 line_length = 55
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman24" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(134, 44)
 type = 2
 line_length = 55
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman25" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(390, 217)
 type = 3
 line_length = 32
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman28" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(355, 227)
 type = 3
 line_length = 20
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman29" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(536, 161)
 type = 2
 line_length = 31
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman26" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(228, 230)
 line_length = 32
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman27" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(137, 230)
 type = 2
 line_length = 32
-custom_lines = PackedStringArray()
 
 [node name="Fisherman16" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(307, 29)
 type = 1
 line_length = 37
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman17" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(487, 53)
 type = 3
 line_length = 37
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman18" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(637, 45)
 type = 3
 line_length = 57
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="Fisherman19" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(601, 59)
 type = 1
 line_length = 36
-custom_lines = PackedStringArray()
 
 [node name="Fisherman20" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(377, 12)
 type = 1
 line_length = 36
-custom_lines = PackedStringArray()
 
 [node name="Fisherman22" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(334, 54)
 type = 1
 line_length = 21
-custom_lines = PackedStringArray()
 
 [node name="Fisherman21" parent="Fishermen/Fisherman22" instance=ExtResource("8_j6fv8")]
 position = Vector2(16, 4)
 type = 1
 line_length = 1
-custom_lines = PackedStringArray()
 
 [node name="Fisherman33" parent="Fishermen" instance=ExtResource("8_j6fv8")]
 position = Vector2(171, -3)
 type = 1
 line_length = 43
 flip = true
-custom_lines = PackedStringArray()
 
 [node name="OverworldCharacter" parent="Fishermen/Fisherman33" instance=ExtResource("12_tsmfn")]
 position = Vector2(-16, 13)

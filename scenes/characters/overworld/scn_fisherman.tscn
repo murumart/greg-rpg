@@ -21,6 +21,8 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_sad0f")
 
 [node name="InteractionArea" parent="." instance=ExtResource("2_n6n77")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_ecy3r")

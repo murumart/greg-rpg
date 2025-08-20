@@ -1985,6 +1985,15 @@ DIALOGUE fisherman_5
 	it was a defining moment of my life.
 
 
+DIALOGUE fisherman_breakable
+CHOICES yes,no
+	do you think there is something more to this world than fishing?
+CHOICE_LINK yes
+	oh the misery!
+CHOICE_LINK no
+	i like your thinking.
+
+
 DIALOGUE fisherman_attack
 	oh the misery!
 

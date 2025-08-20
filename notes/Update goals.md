@@ -34,9 +34,9 @@
 	- [x]  Mafia house interior
 	- [x] Mafia talking
 	- [x] Mafia minigame
-	- [ ] Mafia house enterable and exitable
+	- [x] Mafia house enterable and exitable
 	- [x] Minigame replayable
-	- [ ] Minigame rewards
+	- [x] Minigame rewards
 	- [ ] Cutscenes
 		- [x] forestguy
 		- [x] fisherwoman
@@ -59,7 +59,7 @@
 		- [x] Make it more low-key
 		- [x] Ask to collect flowers
 - [ ] Town changes
-	- [ ] Update map
+	- [x] Update map
 	- [x] Sunset time
 	- [x] Utility poles
 	- [x] Move to industry
@@ -74,10 +74,10 @@
 			- [x] replace car
 			- [x] get flower
 	- [ ] Tarikas better and more dialogue
-		- [ ] gives you flower after you have the others or when defeate solapp prisutbec
-		- [ ] info about the flower bosses you beat and have yet to beat
+		- [x] gives you flower after you have the others or when defeate solapp prisutbec
+		- [x] info about the flower bosses you beat and have yet to beat
 - [ ] Zerma dialogue rewrite
-	- [ ] just imagine jerma speaking in your head to write them
+	- [x] just imagine jerma speaking in your head to write them
 - [ ] Forest changes
 	- [x] Entrance changes
 		- [x] Flowerboy bossfight

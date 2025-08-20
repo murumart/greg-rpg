@@ -6,22 +6,31 @@ extends Node2D
 @export_enum("green", "blue", "yellow", "red", "bikeghost") var type: int = 0: set = _set_type
 @export var line_length := 30: set = _set_line_lenght
 @export var flip := false: set = _set_flip
-@export var custom_lines: PackedStringArray = []
+@export var custom_lines: PackedStringArray
+@export var breakable_choice: StringName
+@export var break_battle: BattleInfo
 var cusdialpro := 0
 @export var randomise_men := false: set = _randomise_men
+
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+	if DAT.get_data(save_key("fought"), false):
+		queue_free()
 
 
 func _set_line_lenght(to: int) -> void:
 	line_length = to
 	var line: Line2D = get_node_or_null("Pole/Line2D")
 	if not is_instance_valid(line): return
-	
+
 	line.points[1].y = line_length
 
 
 func _set_type(to: int) -> void:
 	type = to
-	
+
 	var sprite: Sprite2D = get_node_or_null("Face")
 	if not is_instance_valid(sprite): return
 	# all fishermen looks are in this one file.
@@ -41,7 +50,7 @@ func _set_type(to: int) -> void:
 
 func _set_flip(to: bool) -> void:
 	flip = to
-	
+
 	var sprite: Sprite2D = get_node_or_null("Face")
 	if is_instance_valid(sprite):
 		sprite.flip_h = to
@@ -55,6 +64,12 @@ func _on_interact() -> void:
 	# the dialogue progress just loops around forever
 	if not custom_lines.is_empty():
 		SOL.dialogue(custom_lines[mini(cusdialpro, custom_lines.size() - 1)])
+		if breakable_choice:
+			SOL.dialogue_closed.connect(func() -> void:
+				if SOL.dialogue_choice == breakable_choice:
+					DAT.set_data(save_key("fought"), true)
+					LTS.enter_battle(break_battle)
+			, CONNECT_ONE_SHOT)
 		cusdialpro += 1
 		return
 	var dialpr: int = DAT.get_data("fisher_progress", 0)
@@ -69,3 +84,6 @@ func _randomise_men(_to: bool) -> void:
 	for man in men:
 		man.type = randi() % 4
 
+
+func save_key(thing: String) -> String:
+	return "fisherman" + name + LTS.get_current_scene().name + thing

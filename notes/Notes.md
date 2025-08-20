@@ -5,10 +5,8 @@
 	- [x] gramdma face the radio and and wait at the radio
 	- [ ] gaster secret room grandma (SCARY)
 	- [x] grandma MEANER
-	- [ ] remove greg
 	- [x] grandma meaner when you ask for house
 	- [x] friendlier zerma? offer to tutorial
-	- [ ] tarikas tells you to approach from frong
 	- [x] fix intro skip
 	- [ ] more diagetic immersion for intro room exit area dialogue
 	- [x] dont turn off radio when its off
@@ -72,8 +70,8 @@
 - [ ] add slower spirit timer option
 - [ ] death sprite from zerma battle in store..??
 - [ ] mail game price labels out of sync with actual price
-- [ ] greg house scene make road *thinner*
-- [ ] "semotion" typo 
+- [x] greg house scene make road *thinner*
+- [x] "semotion" typo 
 - [ ] street signs
 - [ ] thugs remain in town after bountyh complete??
 - [ ] not enough sp (sp == cost)
