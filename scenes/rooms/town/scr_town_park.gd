@@ -9,28 +9,48 @@ var tarikas_talked: bool:
 var unlocked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_topics", to)
 	get: return DAT.get_data("tarikas_topics", [])
-var fear: int:
-	get: return DAT.get_data("tks_fear", 0)
-	set(to): DAT.set_data("tks_fear", to)
 
 
 func _ready() -> void:
 	if not unlocked_topics:
 		unlocked_topics = []
 	tarikas.inspected.connect(_on_tarikas_inspected)
-	if DAT.get_data("tarikas_solar_done", false):
+	if DAT.get_data("tarikas_solar_done", false) or DAT.get_data("tarikas_done", false):
 		tarikas.queue_free()
 	if DAT.get_data("known_status_effects", []).is_empty():
 		pass
 		guru.queue_free()
 
 
+var cokay := false
+var cfinal := false
 func _on_tarikas_inspected() -> void:
 	var dlg := DialogueBuilder.new().set_char("tarikas")
 	var greg := ResMan.get_character("greg")
 	var flowers_c := DAT.flower_progress(greg.inventory)
 
-	fear = maxi(fear, flowers_c - 1)
+	if cfinal:
+		dlg.al("...")
+		await dlg.speak_choice()
+		return
+
+	if flowers_c == 7:
+		SND.play_song("extremophile", 0.1, {pitch_scale = 0.2})
+		DAT.set_data("tarikas_done", true)
+		dlg.al("...seven [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+		dlg.al("you are missing an eighth.")
+		dlg.al("despite my... warnings.")
+		dlg.al("despite my stalling...")
+		dlg.al("...seven [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+		dlg.al("i hold the eighth...")
+		dlg.al("...")
+		dlg.al("there's nothing else for me to do than to give... it to you.")
+		dlg.al("...").sitem_to_give(&"flower_begonia")
+		dlg.al("...and to bid you farewell.")
+
+		cfinal = true
+		await dlg.speak_choice()
+		return
 
 	if not tarikas_talked:
 		tarikas_talked = true
@@ -46,18 +66,18 @@ func _on_tarikas_inspected() -> void:
 			aval_choices.append(&"flowers")
 		for t in unlocked_topics:
 			aval_choices.append(t)
-		dlg.reset().add_line(dlg.ml("what brings you here?" if fear < 2 else "...").schoices(aval_choices))
+		dlg.reset().add_line(dlg.ml("what brings you here?" if flowers_c < 2 else "...").schoices(aval_choices))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
-			if fear < 2:
+			if flowers_c < 2:
 				dlg.reset().add_line(dlg.ml("mh. step out the way of the sun..."))
 				dlg.add_line(dlg.ml("and come back... later."))
 				await dlg.speak_choice()
 			break
 		elif choice == &"now":
 			dlg.reset()
-			if fear < 2:
-				dlg.add_line(dlg.ml("advice on what to do now? mh."))
+			if flowers_c < 2:
+				dlg.al("advice on what to do now? mh.")
 			if greg.level < 5:
 				dlg.al("you look weak... and frail.")
 				dlg.al("back as little kids, we used to go into the tall grass...")
@@ -69,9 +89,9 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("the new generation has been growing up into...")
 				dlg.al("...a bunch of thugs.")
 				dlg.al("you contend for the same niche...")
-			elif greg.level < 30:
+			elif greg.level < 40:
 				if not DAT.get_data("fisherwoman_fought", false):
-					if fear == 0:
+					if flowers_c == 1:
 						dlg.al("it's... good weather for a stroll by the lake today.")
 						dlg.al("i wouldn't go. the fish are too... aggressive.")
 						dlg.al("i know someone who fell in the lake... once.")
@@ -84,25 +104,112 @@ func _on_tarikas_inspected() -> void:
 						dlg.al("don't bother her with your... trife... troubles...")
 				else:
 					dlg.al("...")
-			await dlg.speak_choice()
-		elif choice == &"fisher":
-			fear = maxi(1, fear)
-			DAT.set_data("tarikas_talked_fisherwoman", true)
-			dlg.reset()
-			dlg.al("the lady at the lake, fishing...")
-			dlg.al("...the way you appeared here, it reminds me of her.")
-			dlg.al("mh, but she stays out of trouble... dilligently...")
-			dlg.al("something weighs her down.")
-			dlg.al("but you... might feel encouraged by the very same thing.")
+					dlg.al("now there is nothing to do but to... loiter.")
+					dlg.al("for a while.")
+			elif greg.level < 50:
+				if not DAT.get_data("vampire_fought", false):
+					dlg.al("another newcomer in town...")
+					dlg.al("i figured one wouldn't be... the end of it...")
+					dlg.al("someone ought to keep an eye on her...")
+				else:
+					dlg.al("(whistle)")
+					dlg.al("i should go to the store... soon...")
+					dlg.al("(whistle...)")
+			elif greg.level < 60:
+				if not DAT.get_data("president_fought", false):
+					dlg.al("i decided against going shopping.")
+					dlg.al("there is someone there...")
+				else:
+					dlg.al("hm? he's... gone? i can go shopping?")
+					dlg.al("i'll... i'll...")
+					dlg.al("maybe not... today.")
+			elif greg.level < 70:
+				if not cokay:
+					dlg.al("maybe it'd help to go on a...")
+					dlg.al("calming... walk in the woods?")
+					dlg.al("there's a path to there around the north of town.")
+					if "forest" in DAT.get_data("visited_rooms", []):
+						dlg.al("...you've been there...?")
+						cokay = true
+						dlg.al("...you survived... okay... okay...")
+				else:
+					dlg.al("...that's... nice...")
+			elif greg.level < 80:
+				if not "town_east" in DAT.get_data("visited_rooms"):
+					dlg.al("i was thinking about walking to... east of town.")
+					dlg.al("but the police were blocking the road, last i checked...")
+					dlg.al("i wonder if they still are...?")
+				else:
+					dlg.al("i don't think i'm going to east of town like this...")
 
 			await dlg.speak_choice()
-		elif choice == &"flowers":
-			fear = maxi(2, fear)
+		elif choice == &"fisher":
+			DAT.set_data("tarikas_talked_fisherwoman", true)
 			dlg.reset()
-			if fear < 3:
+			if not DAT.get_data("fisherwoman_fought", false):
+				dlg.al("the lady at the lake, fishing...")
+				dlg.al("...the way you appeared here, it reminds me of her.")
+				dlg.al("mh, but she stays out of trouble... dilligently...")
+				dlg.al("something weighs her down.")
+				dlg.al("but you... might feel encouraged by the very same thing.")
+			else:
+				dlg.al("she's gone...?")
+				dlg.al("...")
+			await dlg.speak_choice()
+		elif choice == &"vampire":
+			dlg.al("i... she was a vampire... i see.")
+			dlg.al("there isn't much cursed blood left... in the world.")
+			dlg.al("...thankfully.")
+			dlg.al("but every now and then, someone finds some...")
+			dlg.al("and... ingests some.")
+			dlg.al("the power that follows can be immense...")
+			dlg.al("...depending on the [color=%s]strain[/color]." % dlg.VAMPCOLOR)
+
+			await dlg.speak_choice()
+		elif choice == &"president":
+			dlg.reset()
+			dlg.al("he is a... broken man.")
+			dlg.al("i don't think \"beacon archipelago\" is much more than a single rock...")
+			dlg.al("...but no one dares sail near... there.")
+			dlg.al("none should have this... magnitude... of power over nature.")
+			await dlg.speak_choice()
+		elif choice == &"flowerboy":
+			dlg.reset()
+			dlg.al("i don't know much... about him.")
+			dlg.al("he doesn't talk to us at all.")
+			dlg.al("unless... he finds someone.")
+			dlg.al("someone he thinks... has potential.")
+			dlg.al("...")
+			dlg.al("it'd be best if you stayed... away.")
+			await dlg.speak_choice()
+		elif choice == &"mayor":
+			dlg.reset()
+			dlg.al("so you met the... mayor.")
+			dlg.al("he hasn't actually been in power for a long... time...")
+			dlg.al("...but his antics have been fun to watch...")
+			dlg.al(".... .... window to the spirit world?")
+			dlg.al("...did he...")
+			dlg.al("...you did see [color=0f0]it[/color], didn't you...")
+			dlg.al("i think... he was caught at an... opportune moment.")
+			await dlg.speak_choice()
+		elif choice == &"flowers":
+			dlg.reset()
+			if flowers_c < 2:
 				dlg.al("the... [color=%s]flowers[/color]?" % dlg.FLOWERCOLOR)
 				dlg.al("...")
 				dlg.al("very... symbolic. what... flowers do you mean...?")
+			elif flowers_c < 4:
+				dlg.al("the... [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+				dlg.al("i understand that you're... collecting them...")
+				dlg.al("maybe it will turn out for the best.")
+				dlg.al("...that is a foolish hope.")
+				dlg.al("considering... whose... whose... ...")
+				dlg.al("...")
+			elif flowers_c < 7:
+				dlg.al("the [color=0f0]green demon[/color].")
+				dlg.al("you've seen what happens to people with [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+				dlg.al("what makes you think it'll end any differently for you?")
+
 			else:
 				dlg.al("...")
 			await dlg.speak_choice()

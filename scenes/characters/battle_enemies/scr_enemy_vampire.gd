@@ -95,6 +95,7 @@ func die() -> void:
 	progress = 4
 	animate("death")
 	DAT.set_data("vampire_fought", true)
+	DAT.appenda_uq("tarikas_topics", "vampire")
 	SND.play_song("", 20)
 	SND.play_sound(preload("res://sounds/spirit/vampdeath.ogg"))
 	SOL.dialogue_open = true

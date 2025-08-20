@@ -32,7 +32,7 @@ func _ready() -> void:
 		tarikas.queue_free()
 		$BronzeRifle.queue_free()
 
-	if not Math.inrange(DAT.get_data("nr", 0.0), 0.090, 0.120):
+	if not Math.inrange(DAT.get_data("nr", 0.33), 0.33, 0.97):
 		fisher_ghost.queue_free()
 	if DAT.get_data("sun_spirit_engagement_position", false):
 		$OverworldTiles/BurnMark.global_position = (

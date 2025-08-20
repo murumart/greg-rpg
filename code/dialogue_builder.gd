@@ -2,6 +2,7 @@ class_name DialogueBuilder
 
 const FLOWERCOLOR = "#99ff61"
 const SPIRITCOLOR = "#7799ff"
+const VAMPCOLOR = "#ff2089"
 const SGD = "[font=res://fonts/gregorious_smaller.tres][font_size=16]"
 
 var _dial: Dialogue
@@ -84,8 +85,9 @@ func get_dial() -> Dialogue:
 
 
 func speak(box: DialogueBox = null) -> void:
+	assert(_dial.size() > 0, "dialogue needs lines to be spoken.... dumpass")
 	if not box:
-		SOL.dialogue_d(get_dial())
+		SOL.dialogue_d(_dial)
 		return
 	box.prepare_dialogue_d(_dial)
 

@@ -105,13 +105,13 @@ SOUND spirit/bikeghost/radio_omega
 
 DIALOGUE prank_call_9
 CHAR zerma
-	oh, greg?
+	oh, greg? nice to hear from you, dude!
 	how's it going inside the house?
 CHAR greg
 INSTASKIP
-	i think 
+	i think  
 CHAR zerma
-	that's nice to hear! keep it up!
+	that's nice to hear! keep it up, man!
 	talk to her if you haven't already!
 	see you soon! toodles!
 
@@ -139,39 +139,39 @@ SOUND phone/call_end
 DIALOGUE phone_greg_house_under4
 CHAR zerma
 DATA_LINK called_zerma_before_leaving_for_town,true
-	hello? i said i'm driving! this better be urgent...
+	hello? i said i'm be driving! this better be urgent...
 	...and not just you checking if there's extra dialogue.
-	toodles!
+	have a wonderful rest of your day!!
 DATA_LINK called_zerma_before_leaving_for_town,false
-	hey hey! the phone works!
+	hey! the phone works!
 	i'm driving at the moment, so i'll have to make this quick.
-	if you wish to leave and go to see the town...
+	if you wanna leave and go to see the town...
 	...follow the road exit down to the south-east.
 SET_DATA called_zerma_before_leaving_for_town,true
-	good luck! toodles!
+	good luck! have a wonderful rest of your day!!
 
 
-DIALOGUE phone_greg_house_under60
+DIALOGUE phone_greg_house_under90
 CHAR zerma
-	hey hey! oh dear! are you at your house?
+	hey! are you at your house?
 	i think it's too dange- rous for you to be there at the moment!
 	you should go back to town to level up!
-	toodles!
+	have a wonderful rest of your day!
 
 
 DIALOGUE phone_in_battle
 CHAR zerma
-	hey hey! oh dear, are you in a fight right now?
+	hey! oh damn, are you in a fight right now?
 	you should focus on the battle!!
 DATA_LINK got_battle_tutorial,true
 	try and remember what i taught you...
 DATA_LINK got_battle_tutorial,false
 	i wish i could have taught you what to do...
-	sadly, you're on your own.
-	uhm, try hitting the enemy? that might work...
+	but, you know... you had other plans!
+	uhm, try hitting the enemy? that might work...?
 	good luck!
 DATA_LINK 
-	toodles!
+	have a wonderful rest of your day!
 
 
 DIALOGUE phone_in_battle_other_character
@@ -204,47 +204,46 @@ CHAR grandma
 	hello?
 CHAR zerma
 	uh, hello? miss?
-	i advise that you reconsider the whole house thing with greg...
-	i'm sure you could come to a reasonable compromise.
+	maybe you could reconsider the whole house thing with greg...
+	i'm sure you two could come to a reasonable compromise!
 CHAR grandma
 	hahahaha!
 CHAR zerma
 	hehehehehe!
 CHAR grandma
-	thank you, are you a comedian somewhere?
-	this is pretty funny.
+	pretty funny, pretty funny!
+	are you a comedian somewhere?
 CHAR zerma
-	hehe, you could say that!
+	you could say that!
 CHAR grandma
 	good work, young man. goodbye.
 CHAR zerma
-	toodles!
+	have a wonderful rest of your day!
 
 
 DIALOGUE phone_town_under6
 CHAR zerma
-	hey! you're at the town?
+	hey dude! you're at the town? wondering what to do?
 	there's job opportunities here!
 	check out the post office and listen around town...
 	be wary of the thugs! i've heard crime is high.
 	you should probably level up before...
 	...you start taking them on!
 	for easy encounters, scan any tall grass you find.
-	remember... you need to gather the strength for level 72.
-	good luck! toodles!
+	good luck! have a wonderful rest of your day!!
 
 
 DIALOGUE phone_town_under10
 CHAR zerma
-	hey! you're at the town?
+	hey dude! you're at the town?
 	do you think you're strong enough to engage some of those...
 	...thugs?
-	be sure to have healing items at hand...
-	...rummage through trash or go shopping to find some!
+	definitely gather some healing items before!
+	rummage through trash or go shopping to find some!
 	i've also heard the man in the post office...
 	...sells healing items at a discount price.
 	scanning tall grass is still useful experience!
-	good luck! toodles!
+	good luck! have a wonderful rest of your day!!
 
 
 DIALOGUE phone_bike_ghost_call
@@ -260,65 +259,45 @@ SOUND phone/call_end
 
 DIALOGUE phone_town_under20
 CHAR zerma
-	hey hey! you're at the town?
-	keep fighting those thugs!
+	hey dude! you're at the town?
+	keep on fighting those thugs!
 DATA_LINK biking_games_finished,true
-	keep delivering that mail!
+	keep on delivering that mail!
 DATA_LINK biking_games_finished,false
 	try out the mail delivery job!
 DATA_LINK 
 	you can buy healing items from the store...
 	...or find alternative meals. i mean ways...
 	...to heal.
-	good luck! toodles!
+	good luck! have a wonderful rest of your day!!
 
 
 DIALOGUE phone_lakeside_under20
 CHAR zerma
-	hey hey! oh dear, you're at the lakeside?
-	be very careful! i suggest you turn back!
-	the enemies there are ravenous.
+	hey dude! oh damn, you're at the lakeside?
+	uhh, turn back!
+	at your level, enemies grind you!
 	even the fish can jump out of the water and beat...
 	...your ass!
-	careful! toodles!
+	careful! have a wonderful rest of your day!!
 
 
 DIALOGUE phone_town_under30
 CHAR zerma
-	hey hey! you're at the town?
+	hey dude! you're at the town?
 DATA_LINK lake_visited,false
-	say, have you gone any farther...
-	i heard there's a lake around there... have you been?
-	it's probably to the south-east somewhere...
-	be wary! it might be jam-packed with angry enemies.
+	hey, wasn't there a lake by the town?
+	you could totally go there!
+	it was probably to the south of town!
+	but make sure you don't get wet!
 DATA_LINK lake_visited,true
 	how did it go at the lake?
-	the difficult enemies make it treacherous...
-	...but also rewarding to train there.
-	fishing sounds fun too, doesn't it?
+	those enemies, man... they hit hard!
+	but at the same time, all that fightin' experience...
+	just saying!
+	fishing sounds fun too!
 DATA_LINK 
-	good luck for now! toodles!
-
-
-DIALOGUE phone_town_skatepark
-CHAR zerma
-DATA_LINK fulfilled_bounty_thugs,false
-	hey hey! you're at the skatepark?
-	this place looks deserted. maybe by getting rid of...
-	...enough thugs, it could be lively once again?
-DATA_LINK police_standing,false
-	i've heard there's a police station that's generous...
-	...in distributing bounties in town.
-DATA_LINK police_standing,true
-	i'm sure the police have rewards up!
-DATA_LINK 
-	have you ever tried skating?
-	toodles for now! good luck.
-DATA_LINK fulfilled_bounty_thugs,true
-	hey hey! you're at the skatepark?
-	and you got rid of the thugs? wonderful!
-	have you ever tried skating?
-	toodles for now!
+	good luck for now! have a great day!
 
 
 DIALOGUE hpone_zerma
@@ -326,7 +305,7 @@ SOUND phone/phone_call
 	it's a call from a strange number.
 CHAR zerma
 PORTRAIT_SCALE -1,1
-	toodls.. tooodel...s tooooodeleees.....
+	haaav.. woooodnn....s dayyyyyyy.....
 PORTRAIT_SCALE -1,1
 	helloo..... greeeeeeeeeg........
 PORTRAIT_SCALE -1,1
@@ -334,132 +313,120 @@ PORTRAIT_SCALE -1,1
 PORTRAIT_SCALE -1,1
 	hh heheeeehheh eeh hehheh eheeee..........
 PORTRAIT_SCALE -1,1
-	tooooo o  o ood leeeeee eee e ss   ss  s
+	hah aaaha v eeea a   woodnerf   rdayyyyy....
 CHAR 
 SOUND phone/call_end
-	(it hung up.)
+	(...it hung up.)
 	
-
 
 DIALOGUE phone_town_under40
 CHAR zerma
-	heyyyy! you're at the town? bored?
+	heyyyy! greg! man! you're at the town? bored?
 DATA_LINK lake_visited,false
 	you should totally check out the lakeside!
 DATA_LINK lake_visited,true
-	i'd recommend hanging out at the lake!
-	it's great for grinding experience. and fishing!
-	there's even a bicycle there...
+	hang out at the lake! it's sweltering today!
+	grind those fish... fishermen... fishing... you know!
 DATA_LINK 
-	i'm sure someone interesting will show up in town soon...
-	ah, i can't speak for any longer!
+	and i'm pretty sure someone... interesting...
+	...will show up at the town soon enough! yeah!
+	damn, i can't speak for any longer!
 	i'm about to walk into an electric fence!
 INSTASKIP
-	toodlessauwfu8euiejiofsioafoisjajsioajsajfissf
-
-
-DIALOGUE phone_town_under46
-CHAR zerma
-DATA_LINK vampire_defeated,false
-	hey hey! you're in town? great...
-	i just heard some alarming news.
-	apparently there is a vampire at your town!
-	be careful! if you don't take care of them...
-	...who knows what they will do to some random person.
-	fingers crossed! toodles!
-DATA_LINK vampire_defeated,true
-	hey hey! i heard you got rid of the vampire?
-	good work. they can be really dangerous...
-	toodles for now!
+	have a wonderfuiejiofsioafoisjajsioajsajfissf
 
 
 DIALOGUE phone_town_under50
 CHAR zerma
 DATA_LINK vampire_defeated,false
-	hey hey! have you dealt with the vampire yet?
-	i'm sure they'll do something nefarious...
-	...if you don't stop them. be careful!
-	i'm sure they'll only stay around for a bit longer.
-	maybe until you reach level 50...
-	toodles!
+	hey dude! listen...
+	i just heard some scary news.
+	apparently there is a vampire at your town!
+	be very careful! what if they steal a bunch of spirits?
+	fingers crossed it's gonna go okay! have a good day!
 DATA_LINK vampire_defeated,true
-	hey hey! i heard you got rid of the vampire?
-	good work. they can be really dangerous...
-	i'm sure you saved someone's life with that.
-	toodles for now!
+	hey dude! i heard you got rid of the vampire?
+	soo cool! awesome!    wow!
+	have a wonderful rest of your day!
 
 
 DIALOGUE phone_town_under60
 CHAR zerma
-	hey hey! i heard there's a famous president in town.
-	supposedly he's shopping at the store.
+	hey dude! i heard there's a famous president in town.
 DATA_LINK president_defeated,false
-	try go meet him before you reach level 60!
-	i'm sure he's left by then.
+	where could he be, though?
+	i think... shopping? presidents love shopping.
 DATA_LINK president_defeated,true
 	oh, you met him? how did it go?
 	...oh...
 	well, at least.. uh.. you know...
 	you got experience... which you'll need to reach level 60!
-	which is when the next cool thing happens!
+	which is when the next cool thing happens probably!
 DATA_LINK 
-	toodles!
+	have a good day!
 
 
-DIALOGUE phone_town_under72
+DIALOGUE phone_town_under70
 CHAR zerma
-	hey! you're at the town!
+	hey dude! you're at the town!
 	i know of a good place to grind for levels...
 	seek the man in the white shirt. he can help you...
 	...get to the woods. once there, you can fight...
 	...animals and such.
 	i got as strong as i am right now doing that...
 	...hours on end, grinding down animals, as a child.
-	those were instant kills! even if an eyeball remained!
-	uh, where was i...
-	the woods! to the woods with you, greg.
-	good luck! toodles!
+	instant kills! even if an eyeball remained!
+	uh, anyway...
+	the woods! it's woods time!
+	good luck! have a wonderful rest of your day!!
 
 
-DIALOGUE phone_town_under100
+DIALOGUE phone_town_under80
 CHAR zerma
-	greg... it's time.
-	you're strong enough to return to your house...
-	...and to fight for it.
-	i'm certain you're able to claim it back for yourself.
-	good luck.
+	hey dude! in that damn town, still!
+	have you been to east of town, yet?
+DATA_LINK popo_blockade_lifted,false
+	huh? police blocking the road?
+	well, maybe you should talk to them about it!
+	...the police person is scary?
+	why?...
+	well, good luck with it! have a great day!
+DATA_LINK popo_blockade_lifted,true
+	that's probably the last place for you to progress in!
+	have a wonderful rest of your day there!
 
 
 DIALOGUE phone_town_greenhouse
 CHAR zerma
-	hey hey!
-	you snuck into someone's greenhouse? wow.
-	i hope you relax and enjoy!
-	toodles!
+	hey dude!
+	you snuck into someone's greenhouse? wow!
+	relax and enjoy, man, relax and enjoy!
+	have a wonderful rest of your day!!
 
 
 DIALOGUE phone_store
 CHAR zerma
-	hey hey! you're at the store?
-	you can spend your well-earned silver here!
-	buy lots of healing items and sweets!
-	remember, sweets help replenish your [color=SPIRITCOLOR]sp[/color]!
-	toodles!
+	hey greg! you're at the store?
+	did you know silver can be exchanged for goods and services??
+	it's mindblowing!!
+	remember, greg, sweets help replenish your [color=SPIRITCOLOR]sp[/color]!
+	have a wonderful rest of your day!!
 
 
 DIALOGUE phone_store_under60
 CHAR zerma
 DATA_LINK president_defeated,false
-	hey hey! do you see the president anywhere?
-	i'm sure it'd be a fun meeting!
+	hey dude! do you see the president anywhere?
+	maybe you can get an autograph or something?
+	or a badge?? presidents love giving out badges!
 DATA_LINK president_defeated,true
 	hey hey! how did the meeting with the president go?
 	...oh...
 	well, at least.. uh.. you know...
-	you got some experience toward level 60!
-	which is a good level to be at, i reckon.
+	you got some experience toward! level 60!
+	which is a good level to be at, i think!
 DATA_LINK 
-	toodles!
+	have a wonderful rest of your day!!
 
 
 DIALOGUE phone_store_under50
@@ -468,58 +435,50 @@ ACTUALLY phone_store
 
 DIALOGUE phone_lakeside_under40
 CHAR zerma
-	hey! you're at the lakeside?
-	this place is dangerous! but also lucrative...
-	...if you put enough time in to grind those levels.
+	hey dude! you're at the lakeside?
+	grinding those levels, i see... or fishing!
 	check your surroundings for any attackers!
 	you can also fish up some good items. have you...
 	...tried fishing yet?
-	be careful! toodles!
+	there's also a sales booth and a hut if you look around!
+	be careful! have a safe day!
 
 
 DIALOGUE phone_lakeside_under50
-CHAR zerma
-DATA_LINK vampire_defeated,false
-	hey hey! you're grinding levels at the lake?
-	have you dealt with the vampire yet?
-	i'm sure they'll do something nefarious...
-	...if you don't stop them. before you reach level 50.
-	be careful! you can find the vampire in town.
-	toodles...
-DATA_LINK vampire_defeated,true
-	hey hey! i heard you got rid of the vampire?
-	good work. they can be really dangerous...
-	enjoy the lake air and nature!
-	toodles for now!
+ACTUALLY phone_town_under50
 
 
 DIALOGUE phone_lakeside_under60
 CHAR zerma
 	hey! you're at the lakeside?
-	have you heard that there's a famous president...
-	...visiting the town? i think he might be shopping.
+	dude... have you heard that there's a famous president...
+	...visiting the town? i think he might be shopping!
 	you should check him out before you reach level 60!
-	goodbye for now! toodles!
+	goodbye for now! have a nice day!
 
 
-DIALOGUE phone_lakeside_under72
+DIALOGUE phone_lakeside_under70
 CHAR zerma
 	hey! you're at the lakeside?
-	grinding levels i bet... i heard there's...
-	...a better place to do that, believe me or not.
-	around town, there's a guy that offers to take you...
-	...to the woods. there's a lot of wildlife there...
-	...to practice your skills on.
-	good luck! toodles!
+	grinding levels i bet...
+	did you know... the woods...
+	to the north of town, there is an entrance to the woods...
+	...where you can grind animals to your heart's content!
+	that's what i recommend you do, you slime!
+	good luck! i hope your whole family has a nice christmas!!!
 
 
 DIALOGUE phone_lakeside_under100
-ACTUALLY phone_town_under100
-
-
-DIALOGUE phone_forest_under72
 CHAR zerma
-	hey hey! you're in the woods? great!
+	hey greg!
+	at the lakeside?
+	i don't think there's anything else here!
+	good luck! have a wonderful evening!
+
+
+DIALOGUE phone_forest_under80
+CHAR zerma
+	hey greg! you're in the woods? great!
 	i spent most of my childhood here, grinding... lizards...
 	some people put up quests on billboards here.
 	you can take on quests for glass rewards!
@@ -534,19 +493,14 @@ CHAR zerma
 	last thing... you passively earn more experience here...
 	...and you can increase the amount by buying extra!
 	well, good luck! hope your stay goes well!
-	toodles!
 
 
 DIALOGUE phone_forest
 CHAR zerma
 	hey hey! you're in the woods?
-	greg... it's time.
-	you're at level 72... or higher!
-	i can't really see your level through the phone.
-	anyway, that's strong enough to go back... and take what's yours.
-	anytime you're ready...
-	remember that you can leave the woods by going backwards!
-	toodles!
+	maybe... new opportunities have opened up in town?
+	like, going to the east side of town! that's a good idea.
+	have a nice rest of your evening!
 
 
 DIALOGUE phone_police_station
@@ -554,11 +508,10 @@ CHAR zerma
 DATA_LINK agreed_to_zerma_crime,true
 	you're a criminal, greg.
 DATA_LINK agreed_to_zerma_crime,false
-	hey hey! you're at the police station?
-	hopefully you didn't get caught...
-	...doing some sort of crime!
+	hey dude! you're at the police station?
+	did you get caught?! ...no? thank goodness.
 	if you're still free, though, do you mind...
-	...committing a crime for me?
+	...committing a little bit of a crime for me?
 CHOICES no,yes
 	what do you think? no details provided.
 CHOICE_LINK no
@@ -570,45 +523,35 @@ SET_DATA agreed_to_zerma_crime,true
 
 DIALOGUE phone_beyond_lake
 CHAR zerma
-	hey hey! you're where now?
-	beyond the lake... i see.
+	hey dude! you're where now?
+	beyond the lake? cool!!
 DATA_LINK solar_protuberance_defeated,false
-	i'd watch my back if i were you... 
-	something might jump out at any moment.
+	don't get obliterated by the unmatched power of the sun!
 DATA_LINK solar_protuberance_defeated,true
-	a spirit "from the sun"? that sounds crazy...
-	i'm glad you're okay, greg!
+	a spirit "from the sun"? that sounds crazy... lol...
+	good thing you survived...
 DATA_LINK heard_warstory,false
 	is there something else back here?
-	look around, i'm interested...
-	toodles!
+	look around a bit!
+	good luck!
 DATA_LINK heard_warstory,true
 	...huh? you heard of a... a what?
 	a war? [color=#aaaaaa]anu armu[/color]?
-	that's interesting. uh, yes, such a thing happened...
-	i'm pretty sure that each person in your town...
-	...has some sort of memory of that time.
-	i'm doubt they'd want to talk about it, though.
-	it's history! toodles!
+	wooah dude! lore get!!
+	haha, people must hate remembering that time!
+	have a nice rest of your day!
 
 
 DIALOGUE phone_fisher_hut
 CHAR zerma
 	remember, greg...
 	one tells only truth. the other tells only lies.
-	toodles!
+	have a wonderful rest of your day!!
 
 
 DIALOGUE phone_grandma_house_inside
 CHAR zerma
 	you've got this, greg. go forward...
-
-
-DIALOGUE phone_after_gdung
-CHAR zerma
-	you're so very close.
-	finish the job.
-	this is why we're here.
 
 
 DIALOGUE phone_post_office
@@ -622,46 +565,15 @@ CHAR zerma
 
 DIALOGUE phone_super_gaming_house
 CHAR zerma
-	hey hey! you're just visiting some guy?
-	i'm glad you're making friends!
-	and "video games" sure sound interesting.
-	toodles!
-
-
-DIALOGUE phone_dungeon
-CHAR zerma
-DATA_LINK gdung_floor,0
-	hey hey... you seem to be on the first floor...
-	...of some sort of dungeon under your house.
-	or, well... i'm not sure about "under".
-	but, uuh... keep going!
-	i'm sure there's some sort of path marked...
-	and there's more floors to come.
-	if you need to leave, there might be doors around.
-	good luck. toodles.
-DATA_LINK gdung_floor,1
-	hey hey... floor two.
-	i'm sure there's no surprises here.
-	...
-	hm? boxes? that's strange...
-	if you need to leave, there might be doors around.
-	good luck...
-DATA_LINK gdung_floor,2
-	hey! floor three! you're almost there!
-	what's with all the boxes everywhere?
-	maybe she was planning on moving out...
-	why? what could that mean...
-	a mystery not unlike the [color=#891382]fish[/color].
-	if you need to leave, there might be doors around.
-	toodles.
-DATA_LINK gdung_floor,3
-	hey! you're at... the... what?
-	i don't think you're supposed to be there.
+	hey dude! you're just visiting some guy?
+	bro's visiting some guy!
+	hmmm.... "video games"... i must look into this!
+	have a wonderful rest of your day!
 
 
 DIALOGUE phone_call_over
 SOUND phone/call_end
-	they hung up.
+	(they hung up.)
 
 
 DIALOGUE phone_call_not_found

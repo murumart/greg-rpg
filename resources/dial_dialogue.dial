@@ -394,13 +394,13 @@ SPIRIT hotel
 	press {ACTION_MENU} to open your menu...
 	...and equip it in the spirits tab there!
 	with all that said... i must get going.
-	my people need me. toodles.
+	my people need me.
 
 
 DIALOGUE zerma_goodbye
 CHAR zerma
 	no, greg, i can't take you with me.
-	you need to grow as a person, or something like that.
+	you need to grow as a person... or something like that.
 	i'm getting the hell outta here!
 	hmmm... but you look so sad... i have an idea!
 	if you need help... try calling me!
@@ -410,7 +410,7 @@ ITEM cellphone
 CHAR 
 	cellphone was received.
 CHAR zerma
-	toodles!
+	have a wonderful rest of your day!
 # he leaves
 
 
@@ -1286,10 +1286,8 @@ DIALOGUE neighbour_wife_ate_greenhouse_2
 
 
 DIALOGUE neighbour_wife_talk_store_1
-	yes, i'm visiting the store in my bathrobe.
-	you're the weird one for pointing it out.
-	because no one else does.
-	it's easy to tell you're not a local.
+	yes, i'm visiting the store in my bathrobe..?
+	what of it? no one cares.
 
 
 DIALOGUE neighbour_wife_talk_after_franking
@@ -1299,7 +1297,7 @@ DIALOGUE neighbour_wife_talk_after_franking
 
 
 DIALOGUE neighbour_wife_talk_after_franking_2
-	you're very interesting... i'll have to report this.
+	i really don't know what else to say.
 
 
 DIALOGUE car_scared_1
@@ -3463,7 +3461,7 @@ CHAR vampire
 DIALOGUE vampire_steal_peanuts
 CHAR vampire
 	i already had this one... won't hurt to use, though!
-	say "toodles" to your strength. again.
+	say "have a wonderful rest of your day!" to your strength. again.
 
 
 DIALOGUE vampire_steal_sideeye
