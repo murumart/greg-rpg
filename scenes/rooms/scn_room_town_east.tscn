@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=128 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -56,6 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="51_wwlrb"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="52_0k707"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="52_dss3x"]
+[ext_resource type="PackedScene" uid="uid://cjcwr56dowlk1" path="res://scenes/decor/street_sign.tscn" id="53_fix1m"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="53_udk7p"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="54_1ne0i"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="55_odpk7"]
@@ -1827,6 +1828,10 @@ position = Vector2(-97, 125)
 
 [node name="Bird11" parent="Other/Birds" instance=ExtResource("52_dss3x")]
 position = Vector2(-79, 146)
+
+[node name="StreetSign" parent="Other" instance=ExtResource("53_fix1m")]
+position = Vector2(-247, -59)
+dialogue_key = &"town_east_sign"
 
 [node name="Areas" type="Node2D" parent="."]
 y_sort_enabled = true

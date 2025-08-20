@@ -68,11 +68,11 @@
 
 ## ardenna playtets
 - [ ] add slower spirit timer option
-- [ ] death sprite from zerma battle in store..??
-- [ ] mail game price labels out of sync with actual price
+- [x] death sprite from zerma battle in store..??
+- [x] mail game price labels out of sync with actual price
 - [x] greg house scene make road *thinner*
 - [x] "semotion" typo 
-- [ ] street signs
+- [x] street signs
 - [x] thugs remain in town after bountyh complete??
 - [ ] not enough sp (sp == cost)
 - [x] fish area too harsh..?
@@ -81,6 +81,6 @@
 - [x] wrogn death screen fisherman fight
 - [x] penalty for equipping wrong armor in lakeside battle.?
 - [x] increase cracked fisherman spawn elvel..?
-- [ ] reset xp after missing item message
+- [x] reset xp after missing item message
 - [ ] police station vampire context if you dont talk to her... unify the dialoguye
 - [ ] use suin spirit to light campfire...

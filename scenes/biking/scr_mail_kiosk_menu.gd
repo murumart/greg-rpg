@@ -6,6 +6,7 @@ extends Control
 const MimTalker = preload("res://scenes/rooms/postoffice/src_mail_man_talker.gd")
 
 const MAX_INV_SIZE := 3
+const PRICE_MULT := 0.33
 
 signal closed
 
@@ -237,7 +238,7 @@ func _reference_button_pressed(reference) -> void:
 
 func item_reference_pressed(reference) -> void:
 	var item := ResMan.get_item(reference)
-	var price = roundi(item.price / 3.0)
+	var price = roundi(item.price * PRICE_MULT)
 	var inventory: Array = game_get("inventory", [])
 	var silver: int = game_get("silver_collected", 0)
 	dlbox.dial_concat("biking_do_you_wish_to_buy", 0, [item.name])
@@ -307,7 +308,7 @@ func _on_button_reference_received(reference) -> void:
 func item_reference_received(reference) -> void:
 	item_info_label.text = "%s
 ===
-%s silver" % [ResMan.get_item(reference).name, roundi(ResMan.get_item(reference).price / 4.0)]
+%s silver" % [ResMan.get_item(reference).name, roundi(ResMan.get_item(reference).price * PRICE_MULT)]
 	item_picture.get_parent().show()
 	item_picture.texture = ResMan.get_item(reference).texture
 

@@ -301,6 +301,20 @@ DIALOGUE insp_blocking_bird_2
 	you have no such thing. the road is blocked here.
 
 
+DIALOGUE insp_town_sign
+	east: storeLBsouth: lakesideLBnortheast: post office
+
+
+DIALOGUE insp_town_sign_2
+	east: factoryLBnorth: police stationLBwest: post office
+	southwest: store
+
+
+DIALOGUE town_east_sign
+	east: youth centreLBwest: skateparkLBnorth: factory
+	easter: chapel
+
+
 DIALOGUE insp_police_block
 	the police are blocking this road. unfortunate!
 

@@ -113,10 +113,10 @@ func add_experience(amount: int, speak := false) -> void:
 			break
 		experience += 1
 		if experience >= xp2lvl(level + 1):
+			experience = 0
 			if name_in_file == &"greg":
 				if await limit_levelup():
 					return
-			experience = 0
 			level_up()
 	leveled_up.emit()
 

@@ -348,9 +348,9 @@ func get_levelup_spirit(level: int) -> String:
 		#33: "jglove",
 		#44: "peanuts",
 		#55: "littleman",
-		#66: "personally",
-		#77: "roundup",
-		88: "mooncity" # <-------- (whistling noise)
+		60: "personally",
+		77: "roundup",
+		89: "mooncity",
 	}
 	return dict.get(level, "")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=4 uid="uid://d0ypwtjm1o5tg"]
+[gd_scene load_steps=132 format=4 uid="uid://d0ypwtjm1o5tg"]
 
 [ext_resource type="Script" uid="uid://bx140jnu53s87" path="res://scenes/rooms/town/scr_room_town.gd" id="1_mdes8"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_4wino"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://d1bw3nluoktrc" path="res://scenes/decor/scn_campfire.tscn" id="24_375rx"]
 [ext_resource type="PackedScene" uid="uid://e5p36iavtsuc" path="res://scenes/characters/overworld/scn_bird.tscn" id="25_ao4c1"]
 [ext_resource type="PackedScene" uid="uid://dtvsshfr18lnh" path="res://scenes/characters/overworld/scn_kid_overworld.tscn" id="25_ffcbh"]
+[ext_resource type="PackedScene" uid="uid://cjcwr56dowlk1" path="res://scenes/decor/street_sign.tscn" id="25_qhmci"]
 [ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="25_smefo"]
 [ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="26_ac4pt"]
 [ext_resource type="Script" uid="uid://d3ou8r8xmeefi" path="res://scenes/rooms/town/scr_uhh_house.gd" id="26_w7wx6"]
@@ -1044,6 +1045,10 @@ save = false
 [node name="TutorialGUy" parent="Houses/NeighbourHouse" instance=ExtResource("16_2feir")]
 position = Vector2(-98, 105)
 
+[node name="StreetSign" parent="Houses/NeighbourHouse" instance=ExtResource("25_qhmci")]
+position = Vector2(142, 112)
+dialogue_key = &"town_sign"
+
 [node name="BlockNeighbours" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(80, 96)
@@ -1653,6 +1658,10 @@ position = Vector2(0, -8)
 texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(48, 48, 16, 16)
+
+[node name="StreetSign" parent="Houses/UhhHouse2" instance=ExtResource("25_qhmci")]
+position = Vector2(111, -103)
+dialogue_key = &"town_sign_2"
 
 [node name="Police" type="Node2D" parent="Houses"]
 y_sort_enabled = true
