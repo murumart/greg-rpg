@@ -166,6 +166,8 @@ func _load_credits() -> void:
 	text += "\n\n"
 	text += FileAccess.open("res://LICENSE.txt", FileAccess.READ).get_as_text()
 	text += "\n\n"
+	text += FileAccess.open("res://shaders/CREDITS.txt", FileAccess.READ).get_as_text()
+	text += "\n\n"
 	text += Engine.get_license_text()
 	text += "\n"
 	text += "Portions of this software are copyright © <year> The FreeType Project (www.freetype.org). All rights reserved.\n"

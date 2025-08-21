@@ -1,3 +1,5 @@
+-- shader credits --
+
 These visual shader files are ported and fixed from the Godot 3.5 ShaderV addon.
 
 https://github.com/arkology/ShaderV/
