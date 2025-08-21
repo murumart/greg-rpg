@@ -91,7 +91,7 @@ var songs := {
 		"stream": preload("res://music/mus_forestguy.ogg")
 	},
 	"evil_end": {
-		"title": "",
+		"title": "lost at sea",
 		"stream": preload("res://music/mus_evilending.ogg"),
 		"loop": false,
 	},
@@ -236,6 +236,10 @@ var songs := {
 	"touch_me": {
 		"title": "touch me",
 		"stream": preload("res://music/mus_touch_me.ogg")
+	},
+	"uuu": {
+		"title": "a boy",
+		"stream": preload("res://music/mus_uuu.ogg")
 	},
 	"vampire_fight": {
 		"title": "girl unboxing",

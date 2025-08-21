@@ -225,16 +225,33 @@ DIALOGUE insp_sun_spirit_rage_1
 	[color=SUNCOLOR]congratulations! your victory over me is ab-so-lute!
 	[color=SUNCOLOR]i am drained wholly of the energy needed to exit this world.
 	[color=SUNCOLOR]you, hero! you will receive a fitting reward, no?
-	[color=SUNCOLOR]here it is - i will share with you a secret...
+	[color=SUNCOLOR]here it is - i will share with you a story...
 
 
 DIALOGUE insp_sun_spirit_rage_2
-	[color=SUNCOLOR]whenever you feel that you have achieved anything...
-	[color=SUNCOLOR]whenever you seem sure that what you're doing is just...
 	[color=SUNCOLOR]in this world, dream and reality are not quite separate...
-	[color=SUNCOLOR]..and their edges blur.
-	[color=SUNCOLOR]so... what exactly are you fighting for? and fighting whom?
-	[color=SUNCOLOR]you have my [color=RED]curse.[/color]
+	[color=SUNCOLOR]...and their edges blur.
+	[color=SUNCOLOR]once, there were lofty dreamers.
+	[color=SUNCOLOR]they dreamt they could catalog, categorise, conserve...
+	[color=SUNCOLOR]some dreamt bigger, believing they could correct, condition...
+	[color=SUNCOLOR]a shard of the sun was born from those dreams.
+	[color=SUNCOLOR]a boy.
+	[color=SUNCOLOR]a boy whose dream was to save everyone...
+	[color=SUNCOLOR]of course, a meaningless wish... but admirable?
+	[color=SUNCOLOR]naturally...
+
+
+DIALOGUE insp_sun_spirit_rage_3
+	[color=SUNCOLOR]...that boy was killed.
+	[color=SUNCOLOR]his dream grew much too big... too lofty for the world to carry.
+	[color=SUNCOLOR]so he was killed by an offspring of...
+	[color=SUNCOLOR]...
+	[color=SUNCOLOR]boy... i want to ask... what is [u]your[/u] dream?
+	[color=SUNCOLOR]and who... do you think...
+
+
+DIALOGUE insp_sun_spirit_rage_4
+	[color=SUNCOLOR]...will murder you?
 
 
 DIALOGUE insp_sun_spirit

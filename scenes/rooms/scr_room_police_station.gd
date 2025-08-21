@@ -280,16 +280,33 @@ func setup_cells() -> void:
 
 
 # this is source code poetry
-func art_sun_spirit_rage()->void:{false:func():rage.show();var twe:=\
-create_tween();rage.get_child(1).modulate.a=0.0;twe.tween_property(rage.\
-get_child(1),"modulate:a",1.0,0.4);SND.play_song("");SND.play_sound(preload\
-("res://sounds/spirit/solar/flare.ogg"),{"pitch_scale":0.5,"volume":-10});SOL.\
-dialogue("insp_sun_spirit_rage_1");DAT.set_data("suspirit_inspected",true);SOL.\
-dialogue_closed.connect(func():SOL.dialogue("insp_sun_spirit_rage_2");rage.\
-get_child(1).queue_free();SOL.dialogue_closed.connect(func():var tw:=\
-create_tween();tw.tween_property(rage,"modulate:a",0.0,2.0);SND.play_song(
-"police"),CONNECT_ONE_SHOT),CONNECT_ONE_SHOT)}.get(DAT.get_data(
-"suspirit_inspected",false),func():SOL.dialogue("insp_sun_spirit")).call()
+func art_sun_spirit_rage()->void:
+	if DAT.get_data("suspirit_inspected", false):
+		SOL.dialogue("insp_sun_spirit")
+		return
+	rage.show()
+	rage.get_child(1).hide()
+	var twe := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	twe.tween_property(rage.get_child(2), "modulate:a", 1.0, 1.0).from(0.0)
+	SND.play_song("")
+	SND.play_sound(preload("res://sounds/spirit/solar/flare.ogg"), {"pitch_scale": 0.5, "volume": -10})
+	SOL.dialogue("insp_sun_spirit_rage_1")
+	DAT.set_data("suspirit_inspected",true)
+	await SOL.dialogue_closed
+	SOL.dialogue("insp_sun_spirit_rage_2")
+	SND.play_song("uuu", 0.25, {start_volume = -20, volume = -6})
+	rage.get_child(2).hide()
+	rage.get_child(1).show()
+	await SOL.dialogue_closed
+	SOL.dialogue("insp_sun_spirit_rage_3")
+	SND.play_song("bells", 10, {pitch_scale = 0.77, volume = -10})
+	rage.get_child(1).hide()
+	await SOL.dialogue_closed
+	SND.play_song("", 10)
+	SOL.dialogue("insp_sun_spirit_rage_4")
+	await SOL.dialogue_closed
+	var tw := create_tween(); tw.tween_property(rage,"modulate:a",0.0,2.0)
+	SND.play_song("police")
 
 
 func _waiter_setup() -> void:

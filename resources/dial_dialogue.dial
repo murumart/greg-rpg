@@ -517,9 +517,9 @@ CHOICE_LINK you
 	half of these were lies, just so you know.
 CHOICE_LINK me
 	about you?
-DATA_LINK vampire_defeated,false
+DATA_LINK vampire_fought,false
 	i have no idea who you are.
-DATA_LINK vampire_defeated,true
+DATA_LINK vampire_fought,true
 	i still have no idea who you are.
 DATA_LINK cashier_mean_defeated,false
 	but you seemed committed to talk to me.
@@ -542,12 +542,12 @@ DATA_LINK cashier_mean_defeated,true
 	maybe they made it worse.
 	i can't tell.
 CHOICE_LINK vampire
-DATA_LINK vampire_defeated,true
+DATA_LINK vampire_fought,true
 	the vampire... usually, threats like that don't make it here.
 	but these are strange times, aren't they?
 	i don't feel compelled to thank you for anything.
 	let's talk about something else.
-DATA_LINK vampire_defeated,false
+DATA_LINK vampire_fought,false
 	...vampire? what vampire...
 DATA_LINK 
 CHOICE_LINK bye
@@ -741,11 +741,11 @@ CHAR cashier_mean
 
 DIALOGUE cashier_nice_after_president_fight
 CHAR cashier_nice
-DATA_LINK vampire_defeated,false
+DATA_LINK vampire_fought,false
 	cleanup on aisle... all of them.
 	i was ambivalent earlier, but now i'm sure.
 	i hate you.
-DATA_LINK vampire_defeated,true
+DATA_LINK vampire_fought,true
 	that's... uh...
 	i'm pretty sure i'm going to get fired over this.
 DATA_LINK 

@@ -2854,9 +2854,21 @@ offset_right = 80.0
 offset_bottom = 64.0
 color = Color(0, 0, 0, 1)
 
+[node name="Spirit" type="Sprite2D" parent="SunSpiritRage"]
+material = SubResource("CanvasItemMaterial_5ei6i")
+position = Vector2(0, -7)
+texture = SubResource("GradientTexture2D_cgx7m")
+offset = Vector2(0, -8)
+
 [node name="Sprite2D" type="Sprite2D" parent="SunSpiritRage"]
 position = Vector2(0, -17)
 texture = ExtResource("20_8g7l1")
+
+[node name="SunSpiritAnimator" type="AnimationPlayer" parent="SunSpiritRage"]
+libraries = {
+&"": SubResource("AnimationLibrary_0cpah")
+}
+autoplay = "default"
 
 [connection signal="interacted" from="Areas/Popo1Interact" to="." method="_on_popo_1_interact_on_interact"]
 [connection signal="interacted" from="Decor/BountyBoard/BountyInteract" to="." method="_bounty_interacted"]
