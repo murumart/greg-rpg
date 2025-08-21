@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://62rrfr2yajow"]
+[gd_scene load_steps=20 format=3 uid="uid://62rrfr2yajow"]
 
 [ext_resource type="PackedScene" uid="uid://dim7nxbc1pklu" path="res://scenes/scn_overworld_tiles.tscn" id="1_4wi4g"]
 [ext_resource type="Script" uid="uid://djecg32vk7oid" path="res://scenes/rooms/forest/forest_objects/scr_waterhole.gd" id="2_5ey5h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="4_8vm30"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="5_061cc"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="6_eg5q7"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_yi1s2"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_fcvjd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ekv"]
@@ -81,7 +82,7 @@ enemies = Array[StringName]([&"strider"])
 background = "bg_forest"
 music = "lion"
 party = Array[StringName]([])
-death_reason = "default"
+death_reason = 0
 start_text = "i am the strider."
 rewards = SubResource("Resource_yhm1s")
 victory_music = &""
@@ -89,6 +90,8 @@ stop_music_before_end = false
 kill_music = false
 play_fanfare = false
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("6_yi1s2")]({})
+increment_data_with_enemies = &""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54qvo"]
 size = Vector2(90, 88)
@@ -99,7 +102,7 @@ layer_0/tile_data = PackedInt32Array(-1, 589824, 12, -65536, 983040, 13, 0, 6553
 layer_3/tile_data = PackedInt32Array(-65538, 0, 22, -65535, 65536, 22)
 script = ExtResource("2_5ey5h")
 
-[node name="Water" type="ColorRect" parent="." index="0"]
+[node name="Water" type="ColorRect" parent="." index="5"]
 show_behind_parent = true
 z_index = -7
 material = SubResource("ShaderMaterial_q7ekv")
@@ -113,13 +116,13 @@ z_index = 2
 z_as_relative = false
 position = Vector2(34, 35)
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_2pq6h")
 texture = ExtResource("3_u0tpm")
 lifetime = 16.0
 preprocess = 8.0
 visibility_rect = Rect2(-800, -600, 1600, 1200)
+process_material = SubResource("ParticleProcessMaterial_2pq6h")
 
-[node name="EnemyEncounterArea" parent="." index="1" instance=ExtResource("4_8vm30")]
+[node name="EnemyEncounterArea" parent="." index="6" instance=ExtResource("4_8vm30")]
 battle = SubResource("Resource_dsehx")
 required_for_detection = 0.228
 

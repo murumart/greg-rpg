@@ -49,6 +49,8 @@ var enemy_hits := 0
 var enemy_streak := 0
 var enemy_score := 0.0
 
+var _invul := 0.0
+
 
 func _ready() -> void:
 	mbc.new_beat.connect(_new_beat)
@@ -60,6 +62,7 @@ func _physics_process(delta: float) -> void:
 	if active:
 		score = maxf(0.0, score - delta * 0.5)
 		enemy_score = maxf(0.0, enemy_score - delta * 0.5)
+		_invul = maxf(_invul - delta, 0)
 
 	# DEBUG
 	#if Input.is_key_pressed(KEY_9):
@@ -166,7 +169,9 @@ func _fail_miss() -> void:
 	set_score_text()
 	greg_ancestors.amount_ratio = 0.0
 	bad_sound.play()
-	target_reference.handle_payload(enemy_reference.get_attack_payload(target_reference))
+	if _invul <= 0:
+		target_reference.handle_payload(enemy_reference.get_attack_payload(target_reference))
+		_invul = 0.6
 	check_end()
 
 

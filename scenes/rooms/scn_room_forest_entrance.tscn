@@ -56,7 +56,7 @@ func _ready() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcmf5"]
 size = Vector2(122, 20)
 
-[node name="ForestEntranceasdasda" type="Node2D"]
+[node name="ForestEntrance" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_c4iat")
 music = "birds"
@@ -147,7 +147,7 @@ position = Vector2(-8, 221)
 destination = &"town"
 gate_id = &"town-woods"
 extents = Vector2i(63, 8)
-spawnpoint = Vector2i(0, -15)
+spawnpoint = Vector2i(38, -15)
 
 [node name="RoomGate2" parent="Areas" instance=ExtResource("9_3vnjx")]
 position = Vector2(301, 24)

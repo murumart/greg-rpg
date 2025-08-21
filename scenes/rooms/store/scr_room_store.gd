@@ -38,7 +38,7 @@ var wet_slop := false
 @onready var decor := $Decor
 @onready var mail_man_check_timer: Timer = $Decor/MailMan/MailManCheckTimer
 @onready var mail_man: OverworldCharacter = $Decor/MailMan
-@onready var restroom_door_area := $Decor/Door/DoorArea
+@onready var restroom_door_area := %RestroomDoor/DoorArea
 
 
 func _ready():
@@ -72,6 +72,7 @@ func _ready():
 		DAT.free_player("cashier_revenge")
 		decor.exit_cashier_fight()
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
+		restroom_door_area.set_collision_layer_value(3, false)
 		DAT.set_data("you_gotta_see_the_water_drain", false)
 		if is_instance_valid(decor.funny_area):
 			decor.funny_area.queue_free()

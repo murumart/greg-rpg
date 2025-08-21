@@ -1,6 +1,6 @@
 extends Node2D
 
-const LEVEL_LIMIT := 55
+const LEVEL_LIMIT := 59
 const FOUGHT_KEY := &"fought_woodsguy"
 const SEEN_CUTSCENE := &"seen_woodsguy_cutscene"
 const GREG := &"greg"

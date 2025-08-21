@@ -24,6 +24,8 @@ func _ready() -> void:
 func _car_collision_response(car: CarOverworld) -> void:
 	SOL.vfx("dustpuff", global_position, {"parent": get_parent()})
 	SOL.vfx("bangspark", global_position, {"parent": get_parent()})
+	battle_info = null
+	interact_on_touch = false
 	SND.play_sound_2d(preload("res://sounds/attack_blunt.ogg"), global_position)
 	var tw := create_tween()
 	set_collision_mask_value(2, false)

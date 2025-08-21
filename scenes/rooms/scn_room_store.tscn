@@ -984,21 +984,22 @@ shape = SubResource("RectangleShape2D_n5lum")
 position = Vector2(-6, -1)
 shape = SubResource("RectangleShape2D_jo5nt")
 
-[node name="Door" type="Sprite2D" parent="Decor"]
+[node name="RestroomDoor" type="Sprite2D" parent="Decor"]
+unique_name_in_owner = true
 position = Vector2(-96, -90)
 texture = ExtResource("23_hrk15")
 
-[node name="DoorArea" parent="Decor/Door" node_paths=PackedStringArray("spawn_point") instance=ExtResource("23_6roqa")]
+[node name="DoorArea" parent="Decor/RestroomDoor" node_paths=PackedStringArray("spawn_point") instance=ExtResource("23_6roqa")]
 position = Vector2(0, 10)
 destination = &"store_restroom"
 gate_id = &"store-restroom"
 spawn_point = NodePath("../Node2D")
 fail_dialogue = "door_restroom_items"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Door/DoorArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/RestroomDoor/DoorArea"]
 shape = SubResource("RectangleShape2D_reu4o")
 
-[node name="Node2D" type="Node2D" parent="Decor/Door"]
+[node name="Node2D" type="Node2D" parent="Decor/RestroomDoor"]
 position = Vector2(0, 16)
 
 [node name="PresidentEncounter" type="Node2D" parent="."]

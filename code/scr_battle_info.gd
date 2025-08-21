@@ -44,7 +44,7 @@ func set_party(x: Array[StringName]) -> BattleInfo:
 	return self
 
 
-func set_death_reason(x: int) -> BattleInfo:
+func set_death_reason(x: DeathReasons) -> BattleInfo:
 	death_reason = x
 	return self
 

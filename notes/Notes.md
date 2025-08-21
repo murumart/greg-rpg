@@ -84,3 +84,7 @@
 - [x] reset xp after missing item message
 - [ ] police station vampire context if you dont talk to her... unify the dialoguye
 - [x] use suin spirit to light campfire...
+
+## 21.08.25
+- [x] Disable bathroom door if shop is soaked afterr frnaking
+- [ ] 

@@ -215,6 +215,8 @@ func _on_button_pressed(which_button: int) -> void:
 			if file_container.get_child(which_button).disabled:
 				return
 			var data := _get_data(which_button)
+			prints(DAT.seconds, data.get("seconds", -1))
+			prints(DAT.get_data("nr", 0), data.get("nr", -1))
 			var discrepancy: bool = (
 					DAT.seconds < data.get("seconds", -1)
 					or DAT.get_data("nr", 0) != data.get("nr", -1)

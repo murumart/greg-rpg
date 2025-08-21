@@ -93,7 +93,7 @@ func leave() -> void:
 
 
 func _hit(_hurter: Area2D) -> void:
-	if &"level_transition" in DAT.player_capturers or &"entering_battle" in DAT.player_capturers:
+	if not DAT.player_capturers.is_empty():
 		return
 	greg_actor.hurt(20, Genders.NONE)
 	hud.update_exp_display()

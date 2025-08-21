@@ -1,5 +1,7 @@
 extends Node2D
 
+const FLOWER_PIECE_COUNT := 10
+
 @onready var woodsman: OverworldCharacter = $Woodsman
 @onready var mobulate: ColorContainer = $"../CanvasModulateGroup/Mobulate"
 @onready var forest_music: AudioStreamPlayer2D = $"../Areas/RoomGate2/AudioStreamPlayer2D"
@@ -14,7 +16,7 @@ func _ready() -> void:
 		if DAT.get_data(&"got_flower_rose", false):
 			SOL.dialogue_d(DialogueBuilder.new().add_line(DialogueLine.mk("...")).get_dial())
 			return
-		if inv.count(&"rose_petals") >= 20 and inv.count(&"rose_thorns") >= 20 and not DAT.get_data(&"got_flower_rose", false):
+		if inv.count(&"rose_petals") >= FLOWER_PIECE_COUNT and inv.count(&"rose_thorns") >= FLOWER_PIECE_COUNT and not DAT.get_data(&"got_flower_rose", false):
 			woodsman.default_lines = []
 			_rose_cutscene()
 			return
@@ -50,7 +52,7 @@ func _rose_cutscene() -> void:
 	await SOL.dialogue_closed
 	DAT.set_data(&"got_flower_rose", true)
 	var inv := ResMan.get_character(&"greg").inventory
-	for i in 20:
+	for i in FLOWER_PIECE_COUNT:
 		inv.erase(&"rose_petals")
 		inv.erase(&"rose_thorns")
 	inv.append(&"flower_rose")

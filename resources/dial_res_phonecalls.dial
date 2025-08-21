@@ -338,13 +338,13 @@ INSTASKIP
 
 DIALOGUE phone_town_under50
 CHAR zerma
-DATA_LINK vampire_defeated,false
+DATA_LINK vampire_fought,false
 	hey dude! listen...
 	i just heard some scary news.
 	apparently there is a vampire at your town!
 	be very careful! what if they steal a bunch of spirits?
 	fingers crossed it's gonna go okay! have a good day!
-DATA_LINK vampire_defeated,true
+DATA_LINK vampire_fought,true
 	hey dude! i heard you got rid of the vampire?
 	soo cool! awesome!    wow!
 	have a wonderful rest of your day!
@@ -353,10 +353,10 @@ DATA_LINK vampire_defeated,true
 DIALOGUE phone_town_under60
 CHAR zerma
 	hey dude! i heard there's a famous president in town.
-DATA_LINK president_defeated,false
+DATA_LINK president_fought,false
 	where could he be, though?
 	i think... shopping? presidents love shopping.
-DATA_LINK president_defeated,true
+DATA_LINK president_fought,true
 	oh, you met him? how did it go?
 	...oh...
 	well, at least.. uh.. you know...
@@ -415,11 +415,11 @@ CHAR zerma
 
 DIALOGUE phone_store_under60
 CHAR zerma
-DATA_LINK president_defeated,false
+DATA_LINK president_fought,false
 	hey dude! do you see the president anywhere?
 	maybe you can get an autograph or something?
 	or a badge?? presidents love giving out badges!
-DATA_LINK president_defeated,true
+DATA_LINK president_fought,true
 	hey hey! how did the meeting with the president go?
 	...oh...
 	well, at least.. uh.. you know...
@@ -476,6 +476,15 @@ CHAR zerma
 	good luck! have a wonderful evening!
 
 
+DIALOGUE phone_forest_entrance
+CHAR zerma
+	hey dude!
+	about to enter the woods, huh? good!
+	if you need more instructions, ask the guy!
+	or call me in the woods! the service's pretty good.
+	have a wonderful rest of your day!
+
+
 DIALOGUE phone_forest_under80
 CHAR zerma
 	hey greg! you're in the woods? great!
@@ -525,9 +534,9 @@ DIALOGUE phone_beyond_lake
 CHAR zerma
 	hey dude! you're where now?
 	beyond the lake? cool!!
-DATA_LINK solar_protuberance_defeated,false
+DATA_LINK sun_spirit_fought,false
 	don't get obliterated by the unmatched power of the sun!
-DATA_LINK solar_protuberance_defeated,true
+DATA_LINK sun_spirit_fought,true
 	a spirit "from the sun"? that sounds crazy... lol...
 	good thing you survived...
 DATA_LINK heard_warstory,false
