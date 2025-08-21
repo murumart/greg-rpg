@@ -11,20 +11,33 @@ var explode := preload("res://scenes/vfx/scn_vfx_explosion.tscn")
 func _ready() -> void:
 	timer.start(1.0)
 	timer.timeout.connect(process)
-	exchanges["cookmeat"] = Exchange.new().set_input(["meat"]
-	).set_output(["meat_cooked"])
-	exchanges["cookegg"] = Exchange.new().set_input(["egg"]
-	).set_output(["eggshell", "egg_cooked"])
+	exchanges["warmmeat"] = Exchange.new().set_input(["frozen_meat"]).set_output(["meat"])
+	exchanges["cookmeat"] = Exchange.new().set_input(["meat"]).set_output(["meat_cooked"])
+	exchanges["cookegg"] = Exchange.new().set_input(["egg"]).set_output(["eggshell", "egg_cooked"])
 	lit = DAT.get_data(save_key("lit"), false)
 
 
 func _on_inspected() -> void:
 	if not lit:
 		SOL.dialogue("insp_campfire_site")
-		if ResMan.get_character("greg").inventory.has("lighter"):
+		var greg := ResMan.get_character(&"greg")
+		if &"lighter" in greg.inventory:
 			SOL.dialogue("insp_campfire_has_lighter")
 			SOL.dialogue_closed.connect(
-				func(): if SOL.dialogue_choice == "yes": light(), CONNECT_ONE_SHOT)
+				func(): if SOL.dialogue_choice == &"yes": light(), CONNECT_ONE_SHOT)
+		elif &"skystorm" in greg.unused_spirits or &"skystorm" in greg.spirits:
+			SOL.dialogue("insp_campfire_has_spirit")
+			SOL.dialogue_closed.connect(func():
+				if SOL.dialogue_choice == &"yes":
+					var sprt := ResMan.get_spirit(&"skystorm")
+					if greg.magic < sprt.cost:
+						SOL.dialogue("insp_campfire_spirit_no_sp")
+						return
+					greg.magic -= sprt.cost
+					SOL.vfx(sprt.animation)
+					light()
+
+			, CONNECT_ONE_SHOT)
 		return
 	SOL.dialogue("insp_lit_campfire")
 	SOL.dialogue_closed.connect(func():
@@ -68,4 +81,3 @@ func _save_me() -> void:
 
 func save_key(key: String) -> String:
 	return "campfire_%s_in_%s_%s" % [name.to_snake_case(), DAT.get_data("current_room"), key]
-

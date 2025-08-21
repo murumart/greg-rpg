@@ -436,7 +436,6 @@ type = 4
 line_length = 51
 flip = true
 custom_lines = PackedStringArray("bike_ghost_fishing_1", "bike_ghost_fishing_2")
-breakable_choice = null
 
 [node name="SecondSunSpiritEncounter" type="Area2D" parent="Areas"]
 position = Vector2(639, -76)

@@ -31,6 +31,15 @@ CHOICES yes,no
 	you have a lighter. would you like to light this?
 
 
+DIALOGUE insp_campfire_has_spirit
+CHOICES yes,no
+	you have a fire in your soul. would you like to light this?
+
+
+DIALOGUE insp_campfire_spirit_no_sp
+	but there was not enough spirit power.
+
+
 DIALOGUE insp_lit_campfire
 	this campfire is alight.
 CHOICES yes,no
