@@ -57,10 +57,12 @@ func grant(speak := true) -> void:
 	for i in item_pool: # give flowe r first so we can level up 👍👍👍👍
 		DAT.grant_item(i, 0, speak)
 	if silver_pool:
-		DAT.grant_silver(silver_pool, speak)
+		var mult: float = DAT.get_data("ng_silver_multiplier", 1)
+		DAT.grant_silver(roundi(mult * silver_pool), speak)
 	if exp_pool:
+		var mult: float = DAT.get_data("ng_xp_multiplier", 1)
 		for c in DAT.get_data("party", ["greg"]):
-			ResMan.get_character(c).add_experience(exp_pool, speak)
+			ResMan.get_character(c).add_experience(roundi(mult * exp_pool), speak)
 	for i in spirit_pool:
 		if not ResMan.get_character("greg").has_spirit(i):
 			DAT.grant_spirit(i, 0, speak)

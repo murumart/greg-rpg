@@ -8,7 +8,9 @@ signal armour_changed(to: StringName)
 # resource for storing character data
 # this will be interpreted by the battle system and dialogue system
 
-const MAX_SPIRITS := 3
+static var MAX_SPIRITS: int:
+	get: return DAT.get_data("max_spirits", 3)
+	set(to): assert(false, "Cannot reassign \"constant\"")
 
 const UPGRADE_MIN := {
 	"attack": 1, "defense": 1, "speed": 1, "max_health": 100, "max_magic": 30
