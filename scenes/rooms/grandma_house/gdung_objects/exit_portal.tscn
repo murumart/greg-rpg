@@ -1,37 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://x12vt5wvj4qb"]
+[gd_scene load_steps=17 format=3 uid="uid://x12vt5wvj4qb"]
 
 [ext_resource type="Script" uid="uid://bl4dof5ylfonl" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
 [ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_1je23"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_qq1bq"]
+[ext_resource type="Resource" uid="uid://ddw8vvdx6wis8" path="res://resources/battle_infos/gold_vacuum_fight.tres" id="3_fpwig"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_ijuw0"]
 [ext_resource type="Resource" uid="uid://h3rttp116gqn" path="res://resources/battle_infos/bike_ghost_gdung_boss.tres" id="5_fu8ys"]
-
-[sub_resource type="Resource" id="Resource_4cc3d"]
-script = ExtResource("2_1je23")
-type = 0
-property = "500"
-chance = 1.0
-unique = false
-
-[sub_resource type="Resource" id="Resource_fqadj"]
-script = ExtResource("3_ijuw0")
-rewards = Array[ExtResource("2_1je23")]([SubResource("Resource_4cc3d")])
-
-[sub_resource type="Resource" id="Resource_v3jjj"]
-script = ExtResource("2_qq1bq")
-enemies = Array[StringName]([&"vacuum_gold"])
-background = "house_inside"
-music = "gdung_beast"
-party = Array[StringName]([])
-death_reason = "gdung"
-start_text = "boss!"
-rewards = SubResource("Resource_fqadj")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = false
-play_fanfare = false
-crits_enabled = true
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="5_hbwvc"]
 
 [sub_resource type="Resource" id="Resource_hw6pg"]
 script = ExtResource("2_1je23")
@@ -50,7 +26,7 @@ enemies = Array[StringName]([&"multipanther"])
 background = "house_inside"
 music = "gdung_beast"
 party = Array[StringName]([])
-death_reason = "gdung"
+death_reason = 0
 start_text = "boss!"
 rewards = SubResource("Resource_hkonc")
 victory_music = &"extremophile"
@@ -58,6 +34,8 @@ stop_music_before_end = true
 kill_music = false
 play_fanfare = false
 crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("5_hbwvc")]({})
+increment_data_with_enemies = &""
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52bo6"]
 shader = ExtResource("1_oiab4")
@@ -85,7 +63,7 @@ height = 40.0
 
 [node name="ExitPortal" type="Node2D"]
 script = ExtResource("1_n24w5")
-battle_infos = Array[ExtResource("2_qq1bq")]([SubResource("Resource_v3jjj"), ExtResource("5_fu8ys"), SubResource("Resource_74nmw")])
+battle_infos = Array[ExtResource("2_qq1bq")]([ExtResource("3_fpwig"), ExtResource("5_fu8ys"), SubResource("Resource_74nmw")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_52bo6")

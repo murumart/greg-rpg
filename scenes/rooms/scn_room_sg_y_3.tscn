@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dclju8db80o67"]
+[gd_scene load_steps=17 format=4 uid="uid://dclju8db80o67"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_6m64o"]
 [ext_resource type="PackedScene" uid="uid://nhjuvuyqoydd" path="res://scenes/characters/overworld/scn_grandma_housecat_overworld.tscn" id="2_oktlr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="5_gnktg"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="7_fanvs"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="7_gnktg"]
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="8_8vjba"]
 [ext_resource type="PackedScene" uid="uid://dbcdsllk3863s" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.tscn" id="9_edgde"]
 
 [sub_resource type="Resource" id="Resource_fanvs"]
@@ -26,6 +27,42 @@ metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 [sub_resource type="Resource" id="Resource_pq05u"]
 script = ExtResource("4_g5g53")
 enemies = Array[StringName]([&"cat", &"bulb", &"cat"])
+background = "sun"
+music = "catfight"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "meow?"
+rewards = SubResource("Resource_edgde")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
+
+[sub_resource type="Resource" id="Resource_8vjba"]
+script = ExtResource("4_g5g53")
+enemies = Array[StringName]([&"cat", &"bulb", &"washing_machine"])
+background = "sun"
+music = "catfight"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "meow?"
+rewards = SubResource("Resource_edgde")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
+
+[sub_resource type="Resource" id="Resource_b4ga2"]
+script = ExtResource("4_g5g53")
+enemies = Array[StringName]([&"vacuum", &"cat", &"couch"])
 background = "sun"
 music = "catfight"
 party = Array[StringName]([])
@@ -92,7 +129,21 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="GrandmaHousecat3" parent="Areas" index="4" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat4" parent="Areas" index="4" instance=ExtResource("2_oktlr")]
+position = Vector2(343, 93)
+battle_info = SubResource("Resource_8vjba")
+save = true
+save_position = true
+save_battled = true
+
+[node name="GrandmaHousecat5" parent="Areas" index="5" instance=ExtResource("2_oktlr")]
+position = Vector2(576, -145)
+battle_info = SubResource("Resource_b4ga2")
+save = true
+save_position = true
+save_battled = true
+
+[node name="GrandmaHousecat3" parent="Areas" index="6" instance=ExtResource("2_oktlr")]
 position = Vector2(88, -171)
 random_movement = false
 battle_info = SubResource("Resource_gnktg")
@@ -100,11 +151,27 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="RoomGate3" parent="Areas" index="5" instance=ExtResource("7_fanvs")]
+[node name="RoomGate3" parent="Areas" index="7" instance=ExtResource("7_fanvs")]
 position = Vector2(264, -229)
 destination = &"sg_y_3_side"
 gate_id = &"sg-y-3-side"
 spawnpoint = Vector2i(0, 17)
+
+[node name="SgCatOwl" parent="Areas" index="8" instance=ExtResource("8_8vjba")]
+position = Vector2(44, -44)
+default_lines = Array[StringName]([&"sg_appliances", &"sg_appliances_2"])
+
+[node name="SgCatOwl2" parent="Areas" index="9" instance=ExtResource("8_8vjba")]
+position = Vector2(576, 165)
+default_lines = Array[StringName]([&"sg_deadend"])
+
+[node name="SgCatOwl3" parent="Areas" index="10" instance=ExtResource("8_8vjba")]
+position = Vector2(250, -354)
+default_lines = Array[StringName]([&"sg_healer", &"sg_healer_2"])
+
+[node name="SgCatOwl4" parent="Areas" index="11" instance=ExtResource("8_8vjba")]
+position = Vector2(278, -370)
+default_lines = Array[StringName]([&"sg_healer_comment"])
 
 [node name="Node2D" type="Node2D" parent="." index="6"]
 y_sort_enabled = true

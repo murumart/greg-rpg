@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=7 format=3 uid="uid://ddw8vvdx6wis8"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ngbaw"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_0s78x"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_pu10o"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_k01rl"]
+
+[sub_resource type="Resource" id="Resource_4cc3d"]
+script = ExtResource("2_0s78x")
+type = 0
+property = "1000"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_fqadj"]
+script = ExtResource("3_pu10o")
+rewards = Array[ExtResource("2_0s78x")]([SubResource("Resource_4cc3d")])
+
+[resource]
+script = ExtResource("4_k01rl")
+enemies = Array[StringName]([&"vacuum_gold"])
+background = "sun"
+music = "gdung_beast"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "boss!"
+rewards = SubResource("Resource_fqadj")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_ngbaw")]({})
+increment_data_with_enemies = &""

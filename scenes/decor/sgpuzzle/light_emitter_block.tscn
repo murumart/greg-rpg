@@ -6,9 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://cxp576nfc8bmp" path="res://sounds/sg/alight.ogg" id="4_a3pw0"]
 [ext_resource type="AudioStream" uid="uid://t4hfan6mb572" path="res://sounds/sg/unlight.ogg" id="5_fht21"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhvo7"]
-size = Vector2(10, 9)
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nhvo7"]
 blend_mode = 1
 
@@ -22,14 +19,13 @@ gradient = SubResource("Gradient_nhvo7")
 width = 16
 height = 16
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhvo7"]
+size = Vector2(8, 7)
+
 [node name="LightEmitterBlock" type="StaticBody2D"]
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_8xlom")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_nhvo7")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_nhvo7")
@@ -71,3 +67,7 @@ volume_db = 3.0
 [node name="Unlight" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_fht21")
 volume_db = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_nhvo7")

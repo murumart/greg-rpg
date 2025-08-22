@@ -3877,6 +3877,123 @@ DIALOGUE sg_welcome_2
 	%SGWell, secrecy could be... overrated, anyway.
 
 
+DIALOGUE sg_climb_1
+	%SGWe installed ropes on our liege's orders.
+	%SGShe said the moving ropes would be "awesome".
+	%SGI have to agree.
+
+
+DIALOGUE sg_climb_2
+	%SGIf you're having trouble, remember...
+	%SGYou climb with your arms and legs.
+	%SGNot with your face. Not at all.
+
+
+DIALOGUE sg_deadend
+	%SGI wanted to see if there was anything interesting here.
+	%SGNo such luck...
+
+
+DIALOGUE sg_healer
+	%SGThis planterbox has been passed down for generations.
+	%SGIt's a very sacred family heirloom.
+
+
+DIALOGUE sg_healer_2
+	%SGThe flowers? I have no idea why those are there.
+	%SGSomeone should get rid of them.
+	%SGAbsolutely garish. Just because it's a box...
+	%SG...doesn't mean you should put flowers in it.
+
+
+DIALOGUE sg_healer_comment
+	%SGIgnore them talking about their "family heirloom"...
+	%SGIt's complete nonsense... We are abstract!
+	%SGJust because we can talk doesn't mean...
+	%SG...that we should fall under materialistic organismic constraints.
+
+
+DIALOGUE sg_appliances
+	%SGIn the [color=FLOWERCOLOR]SECRET GARDEN[/color], the enemies used to be horrifying.
+	%SGMonsters beyond your comprehension.
+	%SGUnfortunately, when she showed up, we had to rearrange everything.
+	%SGSo all the fights are against household appliances or cats now.
+
+
+DIALOGUE sg_appliances_2
+	%SGGrumble grumble...
+
+
+DIALOGUE sg_bridge
+	%SGHelp! I'm trapped!
+	%SGSomehow, the hole in the road wherein I live got covered...
+	%SGMy family, they are in the darkness... Someone, help...
+
+
+DIALOGUE sg_bridge_puzzle_hint
+	%SGAltars must bask in light equally.
+
+
+DIALOGUE sg_trashbin
+SET_DATA heard_trashbin_importance,true
+	%SGAh... the bin of trash.
+	%SGWhat a magnificent structure.
+	%SGI have come here on a long pilgrimage to see it.
+	%SGWhat exquisite, untarnished form...
+
+
+DIALOGUE sg_trashbin_opened
+DATA_LINK heard_trashbin_importance,true
+	%SGYou have decimated a once-in-a-generation piece of art...
+	%SGLet me decimated you in exchange!
+#it fights you
+DATA_LINK heard_trashbin_importance,false
+	%SGFinally someone took out the trash...
+
+
+DIALOGUE sg_6_climb
+	%SGThis is a long climb...
+	%SGRemember that you still can't hold on to the rope with your face.
+
+
+DIALOGUE sg_6_climb_long
+	%SGIt's been a thousand years since I last saw a living soul.
+	%SGYou broke my good streak.
+
+
+DIALOGUE sg_6_climb_secret
+	%SGIt was really hard to get here...
+	%SGHuh? Climbing? No, I swam.
+
+
+DIALOGUE sg_7_warning
+	%SGI've been hearing some weird noises from behind this door...
+	%SGSounded kind of like... Sucking...?
+	%SGIt was a very rich sound.
+
+
+DIALOGUE sg_7_attack
+	%SGI LOVE TO SUCK ON ITEMS!!
+
+
+DIALOGUE sg_7_after
+	%SGOkay, that just happened! etc..
+
+
+DIALOGUE sg_7_puzzle_hint
+	%SGThe final light must consist of all sources.
+
+
+DIALOGUE sg_7_puzzle_hint_2
+	%SGThe final light must consist of all sources.
+	%SGAvoid the impure prisms...
+
+
+DIALOGUE sg_y_return
+	%SGThe exit is to the south.
+	%SGIt's where you entered from.
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

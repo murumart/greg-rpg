@@ -1,13 +1,37 @@
-[gd_scene load_steps=18 format=4 uid="uid://7r7j8jryy0ws"]
+[gd_scene load_steps=15 format=4 uid="uid://7r7j8jryy0ws"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_axufd"]
+[ext_resource type="Resource" uid="uid://dhr8uo64sib8s" path="res://resources/battle_infos/sg_3_cats.tres" id="2_bwrhi"]
 [ext_resource type="Script" uid="uid://c6nera85q5le0" path="res://code/sg_rotating_obstacle.gd" id="2_uma5x"]
 [ext_resource type="PackedScene" uid="uid://dtucue1l5udas" path="res://scenes/characters/overworld/scn_cat_sg.tscn" id="3_ydydb"]
-[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="4_uma5x"]
-[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="5_bwrhi"]
-[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="6_beskq"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="7_m3ter"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="8_bwrhi"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_m3ter"]
+[ext_resource type="Texture2D" uid="uid://beidgtxgk3ykd" path="res://sprites/world/sg/chars.png" id="10_e5kl3"]
+
+[sub_resource type="GDScript" id="GDScript_m3ter"]
+script/source = "extends Node2D
+
+@onready var cat_2: OverworldCharacter = $Cat2
+@onready var trash_bin: TrashBin = $TrashBin
+
+@export var cat_battle: BattleInfo
+
+
+func _ready() -> void:
+	if not is_instance_valid(cat_2):
+		return
+	if not trash_bin.full:
+		cat_2.convo_progress = 0
+		cat_2.default_lines = [\"sg_trashbin_opened\"]
+	trash_bin.opened.connect(func() -> void:
+		cat_2.convo_progress = 0
+		cat_2.default_lines = [\"sg_trashbin_opened\"]
+	)
+	cat_2.inspected.connect(func() -> void:
+		if DAT.get_data(\"heard_trashbin_importance\", false) and not trash_bin.full:
+			cat_2.battle_info = cat_battle
+	)
+"
 
 [sub_resource type="Curve2D" id="Curve2D_2knk6"]
 bake_interval = 1.0
@@ -15,37 +39,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 48, -64, 0, 0, 0, 0, 48, 17, 0, 0, 0, 0, 128, 16, 0, 0, 0, 0, 128, -64, 0, 0, 0, 0, 48, -64)
 }
 point_count = 5
-
-[sub_resource type="Resource" id="Resource_e5kl3"]
-script = ExtResource("5_bwrhi")
-type = 1
-property = "gummy_fish"
-chance = 1.0
-unique = false
-metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
-
-[sub_resource type="Resource" id="Resource_6p67k"]
-script = ExtResource("6_beskq")
-rewards = Array[ExtResource("5_bwrhi")]([SubResource("Resource_e5kl3")])
-metadata/_custom_type_script = "uid://c6s82fw7twwpy"
-
-[sub_resource type="Resource" id="Resource_1yrv5"]
-script = ExtResource("7_m3ter")
-enemies = Array[StringName]([&"cat", &"cat", &"cat"])
-background = "sun"
-music = "catfight"
-party = Array[StringName]([])
-death_reason = 7
-start_text = "meowmeowmeow"
-rewards = SubResource("Resource_6p67k")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("4_uma5x")]({})
-increment_data_with_enemies = &""
-metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="Curve2D" id="Curve2D_uma5x"]
 bake_interval = 1.0
@@ -80,6 +73,10 @@ tile_map_data = PackedByteArray("AAD6//7/AAABAAIAAAD7//7/AAACAAIAAAD7//3/AAACAAA
 [node name="Greg" parent="." index="4"]
 position = Vector2(229, -62)
 
+[node name="Areas" parent="." index="5"]
+script = SubResource("GDScript_m3ter")
+cat_battle = ExtResource("2_bwrhi")
+
 [node name="RoomGate" parent="Areas" index="0"]
 position = Vector2(-97, -32)
 destination = &"sg_y_4"
@@ -106,7 +103,7 @@ rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Areas/Cats/Path2D" index="1"]
 position = Vector2(48, -9.39638)
@@ -115,7 +112,7 @@ rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Areas/Cats/Path2D" index="2"]
 position = Vector2(71.2282, 16.7096)
@@ -124,7 +121,7 @@ rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D8" type="PathFollow2D" parent="Areas/Cats/Path2D" index="3"]
 position = Vector2(87.7083, -64)
@@ -138,7 +135,7 @@ rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D5" type="PathFollow2D" parent="Areas/Cats/Path2D" index="5"]
 position = Vector2(128, -6.67351)
@@ -147,7 +144,7 @@ rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D6" type="PathFollow2D" parent="Areas/Cats/Path2D" index="6"]
 position = Vector2(128, -46.3825)
@@ -156,7 +153,7 @@ rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="PathFollow2D7" type="PathFollow2D" parent="Areas/Cats/Path2D" index="7"]
 position = Vector2(87.7083, -64)
@@ -176,7 +173,7 @@ rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D2/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D/Cat" index="0"]
 position = Vector2(0, -0.5)
@@ -194,7 +191,7 @@ rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D2/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2" index="0"]
 position = Vector2(0, -0.5)
@@ -212,7 +209,7 @@ rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D2/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3" index="0"]
 position = Vector2(0, -0.5)
@@ -234,7 +231,7 @@ rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D2/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4" index="0"]
 position = Vector2(0, -0.5)
@@ -252,7 +249,7 @@ rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D2/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5" index="0"]
 position = Vector2(0, -0.5)
@@ -270,7 +267,7 @@ rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D2/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6" index="0"]
 position = Vector2(0, -0.5)
@@ -299,7 +296,7 @@ rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D3/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D/Cat" index="0"]
 position = Vector2(0, -0.5)
@@ -317,7 +314,7 @@ rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D3/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D2/Cat2" index="0"]
 position = Vector2(0, -0.5)
@@ -335,7 +332,7 @@ rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D3/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D3/Cat3" index="0"]
 position = Vector2(0, -0.5)
@@ -357,7 +354,7 @@ rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D3/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D4/Cat4" index="0"]
 position = Vector2(0, -0.5)
@@ -375,7 +372,7 @@ rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D3/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D5/Cat5" index="0"]
 position = Vector2(0, -0.5)
@@ -393,7 +390,7 @@ rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D3/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
 random_movement = false
-battle_info = SubResource("Resource_1yrv5")
+battle_info = ExtResource("2_bwrhi")
 
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D6/Cat6" index="0"]
 position = Vector2(0, -0.5)
@@ -434,6 +431,19 @@ position = Vector2(689, 97)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"tape"
+
+[node name="Cat2" parent="Areas" index="4" instance=ExtResource("9_m3ter")]
+position = Vector2(677, 83)
+action_right_after_dialogue = true
+default_lines = Array[StringName]([&"sg_trashbin"])
+save_battled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Areas/Cat2" index="3"]
+position = Vector2(0, -1)
+texture = ExtResource("10_e5kl3")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [editable path="Areas/Cats/Path2D2/PathFollow2D/Cat"]
 [editable path="Areas/Cats/Path2D2/PathFollow2D2/Cat2"]

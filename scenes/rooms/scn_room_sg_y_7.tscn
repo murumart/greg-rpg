@@ -1,0 +1,242 @@
+[gd_scene load_steps=12 format=4 uid="uid://dhdnwsgvrmrer"]
+
+[ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_trvx2"]
+[ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="2_85fhe"]
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="2_oak1r"]
+[ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="3_32ji7"]
+[ext_resource type="Texture2D" uid="uid://db7wnv5ki5iac" path="res://sprites/spr_icon.png" id="4_32ji7"]
+[ext_resource type="Resource" uid="uid://ddw8vvdx6wis8" path="res://resources/battle_infos/gold_vacuum_fight.tres" id="4_w1ig4"]
+[ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_xujwb"]
+[ext_resource type="Script" uid="uid://c6gv482owpujf" path="res://code/save_positions.gd" id="5_m3gr1"]
+[ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="5_vqt7x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xujwb"]
+size = Vector2(26, 20)
+
+[sub_resource type="GDScript" id="GDScript_32ji7"]
+script/source = "extends Node2D
+
+@onready var light_target_block := $LightTargetBlock
+@onready var camera: Camera2D = $\"../Greg/Camera\"
+@onready var greg: PlayerOverworld = $\"../Greg\"
+@onready var door_cam_pos: Marker2D = $DoorCamPos
+@onready var door_area := $\"../Areas/DoorArea\"
+
+@onready var door_sprite: Sprite2D = $DoorHole/Door
+@onready var boss: OverworldCharacter = $DoorHole/Boss
+@onready var cat_2: OverworldCharacter = $\"../Areas/Cat2\"
+
+@export var battle_info: BattleInfo
+
+var done: bool:
+	set(to): DAT.set_data(\"sg_y_7_boss_done\", to)
+	get: return DAT.get_data(\"sg_y_7_boss_done\", false)
+
+
+func _ready() -> void:
+	if done:
+		door_sprite.hide()
+		boss.queue_free()
+		cat_2.default_lines = [\"sg_7_after\"]
+		door_area.destination = \"sg_y_1\"
+		return
+	light_target_block.activated.connect(_puzzle_solved)
+
+
+func _puzzle_solved() -> void:
+	if done:
+		return
+	DAT.capture_player(\"cutscene\")
+	var tw := create_tween()
+	greg.animate(\"walk_down\")
+	tw.tween_interval(0.4)
+	tw.tween_property(camera, ^\"global_position\", door_cam_pos.global_position, 2.0)
+	tw.tween_interval(0.4)
+	tw.tween_callback(func() -> void:
+		SND.play_song(\"\")
+		door_sprite.hide()
+		SOL.vfx(\"explosion\", door_sprite.global_position, {parent = door_sprite.get_parent()})
+	)
+	tw.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(cat_2, ^\"rotation\", TAU * 8, 1.0)
+	tw.parallel().tween_property(cat_2, ^\"global_position\", Vector2(-400, -400), 1.0)
+	tw.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_interval(0.6)
+	await tw.finished
+	SOL.dialogue(\"sg_7_attack\")
+	boss.z_index = 1
+	await SOL.dialogue_closed
+	SND.play_sound(preload(\"res://sounds/skating/s6.ogg\"), {pitch_scale = 0.75})
+	tw = create_tween()
+	tw.tween_property(camera, ^\"position\", Vector2(0, -9), 0.8)
+	tw.parallel().tween_property(boss, ^\"global_position\", greg.global_position, 1.0)
+	done = true
+	await tw.finished
+	LTS.enter_battle(battle_info)
+	DAT.free_player(\"cutscene\")
+"
+
+[node name="SgY7" instance=ExtResource("1_trvx2")]
+
+[node name="Floor" parent="." index="3"]
+tile_map_data = PackedByteArray("AAD6//7/AAABAAAAAAD6////AAABAAIAAAD7////AAACAAIAAAD8////AAACAAIAAAD9////AAACAAIAAAD+////AAACAAIAAAD/////AAACAAIAAAAAAP//AAACAAIAAAABAP//AAACAAIAAAD7//7/AAACAAAAAAD8//7/AAACAAAAAAD9//7/AAACAAAAAAD+//7/AAACAAAAAAD///7/AAACAAAAAAAAAP7/AAACAAAAAAABAP7/AAACAAAAAAACAP//AAACAAIAAAACAP7/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAACAAIAAAAEAP//AAACAAIAAAAEAP7/AAACAAAAAAAFAP7/AAACAAAAAAAFAP//AAACAAIAAAAGAP7/AAACAAAAAAAGAP//AAACAAIAAAAHAP//AAACAAIAAAAHAP7/AAACAAAAAAAIAP7/AAACAAAAAAAJAP7/AAACAAAAAAAKAP7/AAACAAAAAAALAP7/AAACAAAAAAAMAP7/AAADAAAAAAAMAP//AAADAAEAAAALAP//AAACAAEAAAAKAP//AAACAAIAAAAJAP//AAACAAIAAAAIAP//AAACAAIAAAALAAAAAAABAAEAAAALAAEAAAABAAEAAAALAAIAAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAAMAAQAAAADAAEAAAAMAAUAAAADAAEAAAAMAAYAAAADAAEAAAAMAAAAAAADAAEAAAAMAAEAAAADAAEAAAAMAAIAAAADAAEAAAAMAAMAAAADAAEAAAALAAYAAAABAAEAAAALAAcAAAABAAEAAAALAAUAAAABAAEAAAAMAAcAAAADAAEAAAAKAAgAAAACAAAAAAAJAAgAAAACAAAAAAAIAAgAAAACAAAAAAAHAAgAAAACAAAAAAAGAAgAAAACAAAAAAAFAAgAAAABAAAAAAANAAgAAAACAAAAAAAOAAgAAAACAAAAAAAPAAgAAAACAAAAAAAQAAgAAAACAAAAAAARAAgAAAACAAAAAAASABAAAAADAAIAAAASAA8AAAADAAEAAAASAA4AAAADAAEAAAASAA0AAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAASAAoAAAADAAEAAAASAAkAAAADAAEAAAASAAgAAAADAAAAAAARABAAAAACAAIAAAARAA8AAAAEAAAAAAARAA4AAAAEAAAAAAARAA0AAAAEAAAAAAARAAwAAAACAAEAAAARAAsAAAAEAAAAAAARAAoAAAACAAEAAAARAAkAAAACAAEAAAAQABAAAAACAAIAAAAQAA8AAAACAAEAAAAQAA4AAAACAAEAAAAQAA0AAAAEAAAAAAAQAAwAAAACAAEAAAAQAAsAAAAEAAAAAAAQAAoAAAAEAAAAAAAQAAkAAAAEAAAAAAAPABAAAAACAAIAAAAPAA8AAAACAAEAAAAPAA4AAAACAAEAAAAPAA0AAAACAAEAAAAPAAwAAAAEAAAAAAAPAAsAAAAEAAAAAAAPAAoAAAACAAEAAAAPAAkAAAAEAAAAAAAOABAAAAACAAIAAAAOAA8AAAACAAEAAAAOAA4AAAACAAEAAAAOAA0AAAACAAEAAAAOAAwAAAAEAAAAAAAOAAsAAAAEAAAAAAAOAAoAAAACAAEAAAAOAAkAAAACAAEAAAANABAAAAACAAIAAAANAA8AAAACAAEAAAANAA4AAAAEAAAAAAANAA0AAAACAAEAAAANAAwAAAAEAAAAAAANAAsAAAACAAEAAAANAAoAAAACAAEAAAANAAkAAAACAAEAAAAMABAAAAACAAIAAAAMAA8AAAACAAEAAAAMAA4AAAACAAEAAAAMAA0AAAAEAAAAAAAMAAwAAAAEAAAAAAAMAAsAAAAEAAAAAAAMAAoAAAAEAAAAAAAMAAkAAAACAAEAAAAMAAgAAAAEAAAAAAALABAAAAACAAIAAAALAA8AAAAEAAAAAAALAA4AAAACAAEAAAALAA0AAAACAAEAAAALAAwAAAACAAEAAAALAAsAAAAEAAAAAAALAAoAAAACAAEAAAALAAkAAAACAAEAAAALAAgAAAACAAEAAAAKABAAAAACAAIAAAAKAA8AAAACAAEAAAAKAA4AAAACAAEAAAAKAA0AAAAEAAAAAAAKAAwAAAAEAAAAAAAKAAsAAAACAAEAAAAKAAoAAAAEAAAAAAAKAAkAAAACAAEAAAAJABAAAAACAAIAAAAJAA8AAAAEAAAAAAAJAA4AAAAEAAAAAAAJAA0AAAACAAEAAAAJAAwAAAACAAEAAAAJAAsAAAACAAEAAAAJAAoAAAACAAEAAAAJAAkAAAAEAAAAAAAIABAAAAACAAIAAAAIAA8AAAAEAAAAAAAIAA4AAAACAAEAAAAIAA0AAAAEAAAAAAAIAAwAAAACAAEAAAAIAAsAAAACAAEAAAAIAAoAAAAEAAAAAAAIAAkAAAACAAEAAAAHABAAAAACAAIAAAAHAA8AAAAEAAAAAAAHAA4AAAACAAEAAAAHAA0AAAAEAAAAAAAHAAwAAAACAAEAAAAHAAsAAAACAAEAAAAHAAoAAAACAAEAAAAHAAkAAAAEAAAAAAAGABAAAAACAAIAAAAGAA8AAAACAAEAAAAGAA4AAAACAAEAAAAGAA0AAAAEAAAAAAAGAAwAAAAEAAAAAAAGAAsAAAACAAEAAAAGAAoAAAACAAEAAAAGAAkAAAACAAEAAAAFABAAAAABAAIAAAAFAA8AAAABAAEAAAAFAA4AAAABAAEAAAAFAA0AAAABAAEAAAAFAAwAAAABAAEAAAAFAAsAAAABAAEAAAAFAAoAAAABAAEAAAAFAAkAAAABAAEAAAA=")
+
+[node name="Greg" parent="." index="4"]
+position = Vector2(176, 151)
+
+[node name="RoomGate" parent="Areas" index="0"]
+position = Vector2(-98, -24)
+destination = &"sg_y_6"
+gate_id = &"sg-y-67"
+
+[node name="RoomGate2" parent="Areas" index="1"]
+destination = &"sg_y_1"
+gate_id = &"sg-y-asdasdasd"
+
+[node name="Cat2" parent="Areas" index="2" instance=ExtResource("2_oak1r")]
+position = Vector2(168, -30)
+default_lines = Array[StringName]([&"sg_7_warning"])
+
+[node name="Cat3" parent="Areas" index="3" instance=ExtResource("2_oak1r")]
+position = Vector2(108, 168)
+default_lines = Array[StringName]([&"sg_7_puzzle_hint", &"sg_7_puzzle_hint_2"])
+
+[node name="DoorArea" parent="Areas" index="4" node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xujwb")]
+position = Vector2(192, -27)
+gate_id = &"sg-y-71"
+spawn_point = NodePath(".")
+fail_dialogue = "door_locked"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DoorArea" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_xujwb")
+
+[node name="Puzzle1" type="Node2D" parent="." index="6"]
+y_sort_enabled = true
+position = Vector2(192, 160)
+script = SubResource("GDScript_32ji7")
+battle_info = ExtResource("4_w1ig4")
+
+[node name="SaveNodePositions" type="Node" parent="Puzzle1" index="0" node_paths=PackedStringArray("save_these")]
+script = ExtResource("5_m3gr1")
+save_these = [NodePath("../LightRedirector"), NodePath("../LightRedirector2"), NodePath("../LightRedirector5"), NodePath("../LightRedirector6"), NodePath("../LightRedirector3"), NodePath("../LightRedirector4")]
+metadata/_custom_type_script = "uid://c6gv482owpujf"
+
+[node name="Obstacle" parent="Puzzle1" index="1" instance=ExtResource("2_85fhe")]
+position = Vector2(0, 73)
+my_color = Color(1, 0.415686, 0.419608, 1)
+emitting = false
+direction = 2
+role = 1
+
+[node name="Obstacle2" parent="Puzzle1" index="2" instance=ExtResource("2_85fhe")]
+position = Vector2(-16, 10)
+my_color = Color(0.392157, 0.415686, 0.419608, 1)
+emitting = false
+direction = 1
+role = 1
+
+[node name="Obstacle3" parent="Puzzle1" index="3" instance=ExtResource("2_85fhe")]
+position = Vector2(32, 42)
+my_color = Color(0, 0, 0.501961, 1)
+emitting = false
+direction = 1
+role = 1
+
+[node name="LightEmitterBlock2" parent="Puzzle1" index="4" instance=ExtResource("2_85fhe")]
+position = Vector2(-103, 58)
+my_color = Color(0, 0.533333, 0, 1)
+
+[node name="LightEmitterBlock3" parent="Puzzle1" index="5" instance=ExtResource("2_85fhe")]
+position = Vector2(-88, 26)
+my_color = Color(0, 0.533333, 0, 1)
+
+[node name="LightEmitterBlock4" parent="Puzzle1" index="6" instance=ExtResource("2_85fhe")]
+position = Vector2(-96, 42)
+my_color = Color(0.533333, 0, 0, 1)
+
+[node name="LightEmitterBlock5" parent="Puzzle1" index="7" instance=ExtResource("2_85fhe")]
+position = Vector2(-80, 10)
+my_color = Color(0.533333, 0, 0, 1)
+
+[node name="LightRedirector" parent="Puzzle1" index="8" instance=ExtResource("2_85fhe")]
+position = Vector2(32, 74)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = 1
+role = 1
+movable = true
+
+[node name="LightRedirector2" parent="Puzzle1" index="9" instance=ExtResource("2_85fhe")]
+position = Vector2(64, 74)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+role = 1
+movable = true
+
+[node name="LightRedirector5" parent="Puzzle1" index="10" instance=ExtResource("2_85fhe")]
+position = Vector2(48, -6)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = 1
+role = 1
+movable = true
+
+[node name="LightRedirector6" parent="Puzzle1" index="11" instance=ExtResource("2_85fhe")]
+position = Vector2(32, -6)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = 1
+role = 1
+movable = true
+
+[node name="LightRedirector3" parent="Puzzle1" index="12" instance=ExtResource("2_85fhe")]
+position = Vector2(64, 42)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = -1
+role = 1
+movable = true
+
+[node name="LightRedirector4" parent="Puzzle1" index="13" instance=ExtResource("2_85fhe")]
+position = Vector2(-32, 74)
+my_color = Color(0, 0, 0, 1)
+emitting = false
+direction = 2
+role = 1
+movable = true
+
+[node name="LightTargetBlock" parent="Puzzle1" index="14" instance=ExtResource("3_32ji7")]
+position = Vector2(0, 92)
+color = Color(1, 1, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Puzzle1" index="15"]
+position = Vector2(16, 39)
+scale = Vector2(0.21875, 0.25)
+texture = ExtResource("4_32ji7")
+
+[node name="DoorCamPos" type="Marker2D" parent="Puzzle1" index="16"]
+position = Vector2(0, -176)
+
+[node name="DoorHole" type="ColorRect" parent="Puzzle1" index="17"]
+offset_left = -14.0
+offset_top = -211.0
+offset_right = 13.0
+offset_bottom = -191.0
+color = Color(0, 0, 0, 1)
+
+[node name="Boss" parent="Puzzle1/DoorHole" index="0" instance=ExtResource("2_oak1r")]
+position = Vector2(14, 17)
+
+[node name="Door" type="Sprite2D" parent="Puzzle1/DoorHole" index="1"]
+position = Vector2(7, 10)
+texture = ExtResource("5_vqt7x")
+region_enabled = true
+region_rect = Rect2(129, 12, 14, 20)
+
+[node name="Door2" type="Sprite2D" parent="Puzzle1/DoorHole/Door" index="0"]
+position = Vector2(13, 0)
+texture = ExtResource("5_vqt7x")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(129, 12, 14, 20)

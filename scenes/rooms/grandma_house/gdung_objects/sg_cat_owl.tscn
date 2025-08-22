@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx3xpngxhydy0"]
+
+[ext_resource type="Script" uid="uid://8ycmg7qfn2b1" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="1_x8rt0"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_oawvn"]
+[ext_resource type="Texture2D" uid="uid://beidgtxgk3ykd" path="res://sprites/world/sg/chars.png" id="3_7ebay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ga0m"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3fxt"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqveb"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="SgCatOwl" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
+collision_layer = 12
+motion_mode = 1
+script = ExtResource("1_x8rt0")
+collision_shape = NodePath("CollisionShape")
+collision_detection_area = NodePath("CollisionDetectionArea")
+detection_area = NodePath("DetectionArea")
+detection_raycast = NodePath("DetectionArea/DetectionRaycast")
+chase_distance = 64
+save = false
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7ga0m")
+debug_color = Color(0.152941, 1, 1, 0.419608)
+
+[node name="CollisionDetectionArea" parent="." instance=ExtResource("2_oawvn")]
+modulate = Color(0.905882, 0.639216, 1, 1)
+collision_layer = 12
+collision_priority = 3.0
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea"]
+shape = SubResource("RectangleShape2D_a3fxt")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 11
+monitorable = false
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_fqveb")
+debug_color = Color(1, 1, 0.317647, 0.054902)
+
+[node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea"]
+self_modulate = Color(1, 1, 0.435294, 0.207843)
+target_position = Vector2(0, 32)
+collision_mask = 11
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("3_7ebay")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

@@ -9,6 +9,7 @@ signal deactivated
 @onready var target_sound: AudioStreamPlayer2D = $TargetSound
 @onready var unlight: AudioStreamPlayer2D = $Unlight
 
+var _wait: float
 var active := false
 
 
@@ -20,16 +21,27 @@ func _ready() -> void:
 	base.region_rect.position.x = int(movable) * 16
 
 
+func _process(delta: float) -> void:
+	_wait -= delta
+	if _wait <= 0.0:
+		check()
+		_wait = Math.INT_MAX
+
+
 func add_source(src: Emitter) -> void:
 	super(src)
-	if src_colors() == color:
-		_activate()
-	else:
-		_deactivate()
+	#prints(src, "added")
+	_wait = .5
 
 
 func remove_source(src: Emitter) -> void:
 	super(src)
+	#prints(src, "removed")
+	_wait = .1
+
+
+func check() -> void:
+	print("checking...")
 	if src_colors() == color:
 		_activate()
 	else:
@@ -46,8 +58,9 @@ func _activate() -> void:
 
 
 func _deactivate() -> void:
-	active = false
-	deactivated.emit()
-	activation.hide()
-	light.modulate = color
-	unlight.play()
+	if active:
+		active = false
+		deactivated.emit()
+		activation.hide()
+		light.modulate = color
+		unlight.play()

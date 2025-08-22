@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cbc46l0kg4hg1"]
+[gd_scene load_steps=15 format=4 uid="uid://cbc46l0kg4hg1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_owq78"]
 [ext_resource type="Script" uid="uid://dqfootmfjeyuy" path="res://scenes/rooms/sg/sg_room.gd" id="2_d10ls"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="6_g65iy"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="7_kmjjk"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_7awtx"]
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="10_lm2wf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7awtx"]
 size = Vector2(12, 8)
@@ -21,7 +22,7 @@ size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm2wf"]
 resource_local_to_scene = true
-size = Vector2(14, 22)
+size = Vector2(14, 27)
 
 [node name="SgY2" type="Node2D"]
 script = ExtResource("1_owq78")
@@ -54,7 +55,7 @@ y_sort_origin = -1270
 
 [node name="Climp2" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-position = Vector2(480, -79.288)
+position = Vector2(480, -83.8957)
 tile_map_data = PackedByteArray("AAAAAP//AAAFAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAGAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAIAAIAAAAGAP3/AAAGAAIAAAAHAP3/AAAHAAMAAAAIAP3/AAAHAAMAAAAJAP3/AAAHAAMAAAAKAP3/AAAIAAAAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAAEAPz/AAAGAAAAAAAFAPz/AAAHAAMAAAAGAPz/AAAIAAAAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = -1270
@@ -86,6 +87,7 @@ zoom = Vector2(2, 2)
 resolution_scale_factor = 0.5
 
 [node name="Areas" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="SoptClimping" type="Area2D" parent="Areas"]
 position = Vector2(360, -56)
@@ -116,12 +118,20 @@ metadata/_custom_type_script = "uid://c68b383voql6x"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea"]
 shape = SubResource("RectangleShape2D_pmeqf")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InspectArea"]
+position = Vector2(288, -1)
+shape = SubResource("RectangleShape2D_pmeqf")
+
 [node name="InspectArea2" type="Area2D" parent="Areas"]
 position = Vector2(488, -55)
 script = ExtResource("7_kmjjk")
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea2"]
+shape = SubResource("RectangleShape2D_pmeqf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InspectArea2"]
+position = Vector2(160, -36)
 shape = SubResource("RectangleShape2D_pmeqf")
 
 [node name="ClimbingPlace2" parent="Areas" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
@@ -132,7 +142,7 @@ greg = NodePath("../../Greg")
 camera = NodePath("../../Greg/Camera")
 
 [node name="CollisionShape2D" parent="Areas/ClimbingPlace2" index="0"]
-position = Vector2(-6, -31)
+position = Vector2(-6, -28.5)
 shape = SubResource("RectangleShape2D_lm2wf")
 
 [node name="RoomGate" parent="Areas" instance=ExtResource("9_7awtx")]
@@ -148,6 +158,14 @@ destination = &"sg_y_3"
 gate_id = &"sgy2-3"
 extents = Vector2i(8, 24)
 spawnpoint = Vector2i(-14, 0)
+
+[node name="SgCatOwl" parent="Areas" instance=ExtResource("10_lm2wf")]
+position = Vector2(20, -46)
+default_lines = Array[StringName]([&"sg_climb_1", &"sg_climb_2"])
+
+[node name="SgCatOwl2" parent="Areas" instance=ExtResource("10_lm2wf")]
+position = Vector2(463, -44)
+default_lines = Array[StringName]([&"sg_climb_2"])
 
 [connection signal="inspected" from="Areas/InspectArea" to="Areas/ClimbingPlace" method="begin_climping"]
 [connection signal="inspected" from="Areas/InspectArea2" to="Areas/ClimbingPlace2" method="begin_climping"]

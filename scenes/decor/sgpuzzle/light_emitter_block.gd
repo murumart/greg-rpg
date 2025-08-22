@@ -37,6 +37,7 @@ func _ready() -> void:
 
 
 var _last_hit: StaticBody2D
+var _last_color: Color
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -51,14 +52,16 @@ func _physics_process(_delta: float) -> void:
 			_last_hit = null
 		return
 	if not emitting:
+		_last_color = Color.BLACK
 		return
 	if tget != _last_hit:
 		if is_instance_valid(_last_hit):
 			_last_hit.remove_source(self)
 			_last_hit = null
-	if tget is Receiver:
+	if tget is Receiver and (color != _last_color or self not in tget.light_sources):
 		tget.add_source(self)
 		_last_hit = tget
+	_last_color = color
 
 
 

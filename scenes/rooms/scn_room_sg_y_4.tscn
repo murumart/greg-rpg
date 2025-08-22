@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cwetkgvwlby0i"]
+[gd_scene load_steps=8 format=4 uid="uid://cwetkgvwlby0i"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_tgjow"]
 [ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="2_hq4by"]
 [ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="3_18dv3"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="4_18dv3"]
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="5_o2ieo"]
 
 [sub_resource type="GDScript" id="GDScript_hq4by"]
 script/source = "extends Node2D
@@ -122,3 +123,11 @@ y_sort_origin = -440
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle" index="10"]
 position = Vector2(26, -50)
 shape = SubResource("RectangleShape2D_18dv3")
+
+[node name="SgCatOwl" parent="Areas" index="3" instance=ExtResource("5_o2ieo")]
+position = Vector2(147, -100)
+default_lines = Array[StringName]([&"sg_bridge_puzzle_hint"])
+
+[node name="SgCatOwl2" parent="Areas" index="4" instance=ExtResource("5_o2ieo")]
+position = Vector2(145, -206)
+default_lines = Array[StringName]([&"sg_bridge"])

@@ -127,20 +127,23 @@ func _cmd_exit(args: PackedStringArray) -> void:
 
 func _cmd_enemanim(args: PackedStringArray) -> void:
 	var cs: Node = LTS.get_current_scene()
-	if not cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
-		output("needs to be used in battle", true)
-		return
-	if args.size() != 2:
-		output("usage: enemanim nr animation")
-		return
-	var enemies: Array[BattleActor] = cs.enemies
-	var nr: int
-	if args[0].is_valid_int() and int(args[0]) in range(0, enemies.size()):
-		nr = int(args[0])
-	else:
-		output("argument 2 should be actor index of team", true)
-		return
-	(enemies[nr] as BattleEnemy).animate(args[1])
+	if cs.scene_file_path == "res://scenes/tech/scn_battle.tscn":
+		if args.size() != 2:
+			output("usage: enemanim nr animation")
+			return
+		var enemies: Array[BattleActor] = cs.enemies
+		var nr: int
+		if args[0].is_valid_int() and int(args[0]) in range(0, enemies.size()):
+			nr = int(args[0])
+		else:
+			output("argument 2 should be actor index of team", true)
+			return
+		(enemies[nr] as BattleEnemy).animate(args[1])
+	elif cs.scene_file_path.contains("scn_enemy_"):
+		if args.size() != 1:
+			output("usage: enemanim animation")
+			return
+		(cs as BattleEnemy).animate(args[0])
 
 
 func _cmd_beffect(args: PackedStringArray) -> void:
