@@ -182,9 +182,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D/Cat" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D/Cat/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -203,9 +200,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D2/Cat2/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -223,9 +217,6 @@ battle_info = SubResource("Resource_1yrv5")
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
-
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D3/Cat3/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
@@ -249,9 +240,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D4/Cat4/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -270,9 +258,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D5/Cat5/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -290,9 +275,6 @@ battle_info = SubResource("Resource_1yrv5")
 [node name="CollisionShape" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
-
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D2/PathFollow2D6/Cat6/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
@@ -323,9 +305,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D/Cat" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D/Cat/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -344,9 +323,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D2/Cat2" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D2/Cat2/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -364,9 +340,6 @@ battle_info = SubResource("Resource_1yrv5")
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D3/Cat3" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
-
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D3/Cat3" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D3/Cat3/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
@@ -390,9 +363,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D4/Cat4" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D4/Cat4/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -411,9 +381,6 @@ battle_info = SubResource("Resource_1yrv5")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
 
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D5/Cat5" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D5/Cat5/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")
 
@@ -431,9 +398,6 @@ battle_info = SubResource("Resource_1yrv5")
 [node name="CollisionShape" parent="Areas/Cats/Path2D3/PathFollow2D6/Cat6" index="0"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uma5x")
-
-[node name="CollisionDetectionArea" parent="Areas/Cats/Path2D3/PathFollow2D6/Cat6" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Areas/Cats/Path2D3/PathFollow2D6/Cat6/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bwrhi")

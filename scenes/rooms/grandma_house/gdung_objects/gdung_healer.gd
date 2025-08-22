@@ -30,4 +30,4 @@ func _on_interaction() -> void:
 
 
 func get_save_key() -> StringName:
-	return "gdung_healer_" + str(DAT.get_data("gdung_floor", 0)) + "_eaten"
+	return "gdung_healer_" + str(LTS.get_current_scene().name) + "_eaten"

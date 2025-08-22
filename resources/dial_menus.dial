@@ -136,13 +136,13 @@ DIALOGUE gdung_healer
 CHOICES yes,no
 	do you want to eat the vegetables?
 CHOICE_LINK yes
-	these will be tasty. they won't grow back in this darkness, though.
+	these will be tasty.
 CHOICE_LINK no
 	maybe later.
 
 
 DIALOGUE gdung_healer_eaten
-	those were tasty. they won't grow back in this darkness, though.
+	those were tasty. doesn't look like they'll grow back any time soon.
 
 
 DIALOGUE cwarning

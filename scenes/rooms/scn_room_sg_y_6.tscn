@@ -1,21 +1,351 @@
-[gd_scene load_steps=3 format=4 uid="uid://flve44tb4856"]
+[gd_scene load_steps=20 format=4 uid="uid://flve44tb4856"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_1y04c"]
 [ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="2_4um4c"]
+[ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="3_5kvm4"]
+[ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="3_tk8mv"]
+[ext_resource type="Script" uid="uid://c6nera85q5le0" path="res://code/sg_rotating_obstacle.gd" id="3_u0bw3"]
+[ext_resource type="PackedScene" uid="uid://cg7yn847yevyq" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_climbing_obstacle.tscn" id="4_u0bw3"]
+[ext_resource type="Script" uid="uid://dw4cp3sxaiy4" path="res://scenes/tech/scr_rotator.gd" id="5_fhx0y"]
+[ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="8_37pfp"]
+
+[sub_resource type="Curve2D" id="Curve2D_tk8mv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -143, -216, 0, 0, 0, 0, 90, -216)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_u0bw3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -170.413, -88.3882, 0, 0, 0, 0, -16.2635, -85.5599, 0, 0, 0, 0, 91.924, 22.6273, 0, 0, 0, 0, 137.179, -22.6275, 0, 0, 0, 0, -41.7195, -200.111)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_fhx0y"]
+bake_interval = 10.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -80, -32, 0, 0, 0, 0, 210, -32, 0, 0, 0, 0, 210, -65, 0, 0, 0, 0, -80, -65)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_37pfp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -129, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1, -183, 0, 0, 0, 0, 65, -183, 0, 0, 0, 0, 65, -217, 0, 0, 0, 0, -108, -217)
+}
+point_count = 6
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4um4c"]
+resource_local_to_scene = true
+size = Vector2(24, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk8mv"]
+size = Vector2(20, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0bw3"]
+size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhx0y"]
+resource_local_to_scene = true
+size = Vector2(24, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xdd6"]
+size = Vector2(14, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37pfp"]
+size = Vector2(17, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22jmq"]
+size = Vector2(26, 14)
 
 [node name="SgY6" instance=ExtResource("1_1y04c")]
 
 [node name="Floor" parent="." index="3"]
-tile_map_data = PackedByteArray("AAD5////AAABAAIAAAD6////AAACAAIAAAD7////AAACAAIAAAD8////AAACAAIAAAD9////AAADAAIAAAD6//7/AAACAAAAAAD7//7/AAACAAAAAAD8//7/AAACAAAAAAD9//7/AAADAAAAAAD5//7/AAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD5////AAABAAIAAAD6////AAACAAIAAAD7////AAACAAIAAAD8////AAACAAIAAAD9////AAACAAIAAAD6//7/AAACAAAAAAD7//7/AAACAAAAAAD8//7/AAACAAAAAAD9//7/AAACAAAAAAD5//7/AAABAAAAAAD+//7/AAACAAAAAAD+////AAACAAIAAAD/////AAACAAIAAAAAAP//AAACAAIAAAD///7/AAACAAAAAAAAAP7/AAACAAAAAAABAP7/AAADAAAAAAABAP//AAADAAIAAAD9/9j/AAABAAIAAAD+/9j/AAACAAIAAAD//9j/AAACAAIAAAAAANj/AAACAAIAAAABANj/AAACAAIAAAACANj/AAACAAIAAAADANj/AAACAAIAAAAEANj/AAACAAIAAAAFANj/AAACAAIAAAAFANf/AAACAAAAAAAEANf/AAACAAAAAAADANf/AAACAAAAAAACANf/AAACAAAAAAABANf/AAACAAAAAAAAANf/AAACAAAAAAD//9f/AAACAAAAAAD+/9f/AAACAAAAAAD9/9f/AAABAAAAAAAGANf/AAACAAAAAAAGANj/AAACAAIAAAAHANj/AAACAAIAAAAHANf/AAACAAAAAAAIANf/AAACAAAAAAAIANj/AAACAAIAAAANAMT/AAABAAAAAAAOAMT/AAACAAAAAAAPAMT/AAACAAAAAAAQAMT/AAACAAAAAAARAMT/AAACAAAAAAASAMT/AAACAAAAAAATAMT/AAACAAAAAAAUAMT/AAACAAAAAAAVAMT/AAADAAAAAAAVAMX/AAADAAIAAAAUAMX/AAACAAIAAAATAMX/AAACAAIAAAASAMX/AAACAAIAAAARAMX/AAACAAIAAAAQAMX/AAACAAIAAAANAMX/AAABAAIAAAAOAMX/AAACAAIAAAAPAMX/AAACAAIAAAASAM3/AAABAAAAAAASAM7/AAABAAIAAAATAM7/AAACAAIAAAAUAM7/AAACAAIAAAAVAM7/AAACAAIAAAAWAM7/AAACAAIAAAAXAM7/AAACAAIAAAAYAM7/AAACAAIAAAAZAM7/AAADAAIAAAAZAM3/AAADAAAAAAAYAM3/AAACAAAAAAAXAM3/AAACAAAAAAAWAM3/AAACAAAAAAAVAM3/AAACAAAAAAAUAM3/AAACAAAAAAATAM3/AAACAAAAAAAJANf/AAACAAAAAAAKANf/AAACAAAAAAALANf/AAACAAAAAAAMANf/AAACAAAAAAANANf/AAACAAAAAAAOANf/AAACAAAAAAAPANf/AAACAAAAAAAQANf/AAACAAAAAAARANf/AAACAAAAAAASANf/AAACAAAAAAATANf/AAACAAAAAAAUANf/AAACAAAAAAAVANf/AAACAAAAAAAWANf/AAACAAAAAAAXANf/AAACAAAAAAAYANf/AAACAAAAAAAZANf/AAACAAAAAAAaANf/AAADAAAAAAAaANj/AAADAAIAAAAZANj/AAACAAIAAAAYANj/AAACAAIAAAAWANj/AAACAAIAAAAXANj/AAACAAIAAAAVANj/AAACAAIAAAAUANj/AAACAAIAAAATANj/AAACAAIAAAASANj/AAACAAIAAAARANj/AAACAAIAAAAQANj/AAACAAIAAAAPANj/AAACAAIAAAAOANj/AAACAAIAAAANANj/AAACAAIAAAAMANj/AAACAAIAAAALANj/AAACAAIAAAAKANj/AAACAAIAAAAJANj/AAACAAIAAAA=")
+
+[node name="Greg" parent="." index="4"]
+position = Vector2(-73, -21)
+
+[node name="Rope" type="TileMapLayer" parent="." index="5"]
+tile_map_data = PackedByteArray("AAD9//3/AAAFAAIAAAD9//z/AAAFAAEAAAD9//v/AAAFAAEAAAD9//r/AAAFAAEAAAD9//n/AAAFAAEAAAD9//j/AAAFAAEAAAD9//f/AAAFAAEAAAD9//b/AAAFAAEAAAD9//X/AAAFAAEAAAD9//T/AAAFAAEAAAD9//P/AAAFAAEAAAD9//L/AAAFAAEAAAD9//H/AAAGAAAAAAD+//H/AAAHAAMAAAD///H/AAAIAAIAAAD///D/AAAFAAEAAAD//+//AAAFAAEAAAD//+7/AAAFAAEAAAD//+3/AAAFAAEAAAD//+z/AAAIAAAAAAD+/+z/AAAHAAMAAAD9/+z/AAAGAAIAAAD9/+v/AAAFAAEAAAD9/+r/AAAFAAEAAAD9/+n/AAAFAAEAAAD9/+j/AAAIAAAAAAD8/+j/AAAHAAMAAAD7/+j/AAAGAAAAAAD7/+n/AAAFAAEAAAD7/+r/AAAIAAIAAAD6/+r/AAAHAAMAAAD5/+n/AAAFAAEAAAD5/+r/AAAGAAIAAAD5/+j/AAAFAAEAAAD5/+f/AAAFAAEAAAD5/+b/AAAGAAAAAAD6/+b/AAAHAAMAAAD7/+b/AAAHAAMAAAD8/+b/AAAHAAMAAAD9/+b/AAAHAAMAAAD+/+b/AAAHAAMAAAD//+b/AAAIAAAAAAD//+f/AAAFAAEAAAD//+j/AAAFAAEAAAD//+n/AAAGAAIAAAAAAOn/AAAHAAMAAAABAOn/AAAIAAIAAAABAOj/AAAFAAEAAAABAOf/AAAFAAEAAAABAOb/AAAFAAEAAAABAOX/AAAFAAEAAAABAOT/AAAIAAAAAAAAAOT/AAAHAAMAAAD//+T/AAAHAAMAAAD+/+T/AAAHAAMAAAD9/+T/AAAGAAIAAAD9/+P/AAAFAAEAAAD9/+L/AAAGAAAAAAD+/+L/AAAHAAMAAAD//+L/AAAHAAMAAAAAAOL/AAAHAAMAAAABAOL/AAAHAAMAAAACAOL/AAAIAAIAAAACAOH/AAAFAAEAAAACAOD/AAAIAAEAAAACAN//AAAFAAEAAAABAOD/AAAHAAMAAAAAAOD/AAAHAAMAAAD//+D/AAAHAAMAAAD+/+D/AAAGAAIAAAD+/9//AAAFAAEAAAD+/97/AAAFAAEAAAD+/93/AAAFAAEAAAACAN7/AAAFAAEAAAACAN3/AAAFAAEAAAACANz/AAAGAAAAAAADANz/AAAIAAMAAAD+/9z/AAAFAAEAAAD+/9v/AAAFAAEAAAD+/9r/AAAFAAEAAAD+/9n/AAAFAAEAAAD+/9j/AAAFAAAAAAA=")
+tile_set = ExtResource("3_5kvm4")
+
+[node name="Obstacles" type="Path2D" parent="Rope" index="0" node_paths=PackedStringArray("path")]
+position = Vector2(1, 17)
+curve = SubResource("Curve2D_tk8mv")
+script = ExtResource("3_u0bw3")
+path = NodePath(".")
+speed = 0.2
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles" index="0"]
+position = Vector2(-143, -216)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles" index="1"]
+position = Vector2(-143, -216)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles" index="2"]
+position = Vector2(-143, -216)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles" index="3"]
+position = Vector2(-143, -216)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles" index="4"]
+position = Vector2(-143, -216)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="Obstacles2" type="Path2D" parent="Rope" index="1" node_paths=PackedStringArray("path")]
+position = Vector2(-73, -344)
+rotation = -0.785397
+curve = SubResource("Curve2D_u0bw3")
+script = ExtResource("3_u0bw3")
+path = NodePath(".")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles2" index="0"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles2" index="1"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles2" index="2"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles2" index="3"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles2" index="4"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles2" index="5"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles2" index="6"]
+position = Vector2(-170.413, -88.3882)
+rotation = 0.0183456
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="Obstacles3" type="Path2D" parent="Rope" index="2" node_paths=PackedStringArray("path")]
+position = Vector2(-121, -231)
+curve = SubResource("Curve2D_fhx0y")
+script = ExtResource("3_u0bw3")
+path = NodePath(".")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles3" index="0"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles3" index="1"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles3" index="2"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles3" index="3"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles3" index="4"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles3" index="5"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles3" index="6"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles3" index="7"]
+position = Vector2(-80, -32)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D8" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="Obstacles4" type="Path2D" parent="Rope" index="3" node_paths=PackedStringArray("path")]
+position = Vector2(-56, -335)
+curve = SubResource("Curve2D_37pfp")
+script = ExtResource("3_u0bw3")
+path = NodePath(".")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles4" index="0"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles4" index="1"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles4" index="2"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles4" index="3"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles4" index="4"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles4" index="5"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles4" index="6"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles4" index="7"]
+position = Vector2(-129, 8)
+
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D8" index="0" instance=ExtResource("4_u0bw3")]
+
+[node name="Rope2" type="TileMapLayer" parent="." index="6"]
+position = Vector2(16, -640)
+tile_map_data = PackedByteArray("AAAAAP//AAAFAAIAAAAAAP7/AAAFAAEAAAAAAP3/AAAFAAEAAAAAAPz/AAAFAAEAAAAAAPv/AAAFAAEAAAAAAPr/AAAFAAAAAAAAAPL/AAAFAAIAAAAAAPH/AAAFAAEAAAAAAPD/AAAFAAEAAAAAAO//AAAFAAEAAAAIAPX/AAAGAAAAAAAJAPX/AAAHAAMAAAAKAPX/AAAHAAMAAAALAPX/AAAIAAAAAAALAPb/AAAGAAIAAAAMAPb/AAAHAAMAAAANAPb/AAAIAAAAAAANAPf/AAAGAAIAAAAOAPf/AAAHAAMAAAAPAPb/AAAFAAEAAAAPAPf/AAAIAAIAAAAPAPX/AAAFAAEAAAAPAPT/AAAIAAAAAAAOAPT/AAAHAAMAAAANAPT/AAAGAAIAAAANAPP/AAAFAAEAAAANAPL/AAAGAAAAAAAOAPL/AAAHAAMAAAAPAPL/AAAHAAMAAAAAAO7/AAAFAAEAAAAAAO3/AAAFAAEAAAAAAOz/AAAFAAEAAAAAAOv/AAAGAAEAAAABAOv/AAAHAAIAAAABAOr/AAAHAAEAAAACAOr/AAAHAAEAAAACAOv/AAAHAAIAAAADAOv/AAAHAAIAAAABAOn/AAAHAAAAAAACAOn/AAAHAAAAAAADAOn/AAAHAAAAAAADAOr/AAAHAAEAAAAEAOr/AAAHAAEAAAAFAOr/AAAHAAEAAAAEAOn/AAAHAAAAAAAEAOv/AAAHAAIAAAAFAOv/AAAHAAIAAAAGAOv/AAAHAAIAAAAGAOr/AAAHAAEAAAAFAOn/AAAHAAAAAAAHAOr/AAAHAAEAAAAIAOr/AAAHAAEAAAAGAOn/AAAHAAAAAAAAAOr/AAAGAAEAAAAAAOn/AAAGAAAAAAAHAOn/AAAHAAAAAAAJAOr/AAAHAAEAAAAIAOv/AAAHAAIAAAAHAOv/AAAHAAIAAAAIAOn/AAAHAAAAAAAJAOn/AAAHAAAAAAAKAOn/AAAHAAAAAAAKAOr/AAAHAAEAAAAKAOv/AAAHAAIAAAAJAOv/AAAHAAIAAAALAOr/AAAHAAEAAAALAOn/AAAHAAAAAAAMAOr/AAAHAAEAAAAMAOv/AAAHAAEAAAALAOv/AAAHAAIAAAAMAOn/AAAHAAAAAAANAOr/AAAIAAEAAAANAOv/AAAIAAEAAAANAOn/AAAIAAAAAAAQAPL/AAAHAAMAAAARAPL/AAAIAAAAAAARAPP/AAAFAAEAAAARAPT/AAAFAAEAAAARAPX/AAAFAAIAAAAEAPb/AAAGAAMAAAAFAPb/AAAHAAMAAAAGAPb/AAAHAAMAAAAHAPb/AAAHAAMAAAAIAPb/AAAIAAIAAAAMAOz/AAAGAAIAAAANAOz/AAAIAAIAAAA=")
+tile_set = ExtResource("3_5kvm4")
+
+[node name="Rotator" type="Node2D" parent="." index="7"]
+position = Vector2(24, -794)
+rotation = 5.94327
+scale = Vector2(1, 1)
+script = ExtResource("5_fhx0y")
+enabled_in_editor = true
+speed = 24.0
+child_mode = true
+metadata/_custom_type_script = "uid://dw4cp3sxaiy4"
+
+[node name="Rope3" type="TileMapLayer" parent="Rotator" index="0"]
+position = Vector2(-8, 9)
+tile_map_data = PackedByteArray("AAAAAP//AAAHAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAFAAEAAAAAAPz/AAAFAAEAAAAAAPv/AAAFAAAAAAD/////AAAHAAMAAAD+////AAAHAAMAAAD9////AAAHAAMAAAABAP//AAAHAAMAAAACAP//AAAHAAMAAAADAP//AAAHAAMAAAAEAP//AAAIAAMAAAD8////AAAGAAMAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAEAAAAAAAIAAAAFAAEAAAAAAAMAAAAFAAIAAAA=")
+tile_set = ExtResource("3_5kvm4")
 
 [node name="RoomGate" parent="Areas" index="0"]
-position = Vector2(-110, -16)
+position = Vector2(-116, -16)
 destination = &"sg_y_5"
 gate_id = &"sg-y-56"
 
 [node name="RoomGate2" parent="Areas" index="1"]
+position = Vector2(355, -944)
 destination = &"sg_y_7"
 gate_id = &"sg-y-67"
+extents = Vector2i(8, 16)
 
-[node name="ClimbingPlace" parent="Areas" index="2" instance=ExtResource("2_4um4c")]
-position = Vector2(-45, -62)
+[node name="ClimbingPlace" parent="Areas" index="2" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
+position = Vector2(-41, -62)
+ground_levels = [NodePath("../Floor1")]
+ground_level_y = -26
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
+greg_speed = 50.0
+
+[node name="CollisionShape2D" parent="Areas/ClimbingPlace" index="0"]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_4um4c")
+
+[node name="StartClimping" type="Area2D" parent="Areas" index="3"]
+position = Vector2(-40, -33)
+script = ExtResource("3_tk8mv")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/StartClimping" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_tk8mv")
+
+[node name="Floor1" type="Area2D" parent="Areas" index="4"]
+position = Vector2(-25, -637)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Floor1" index="0"]
+position = Vector2(2, 6.5)
+shape = SubResource("RectangleShape2D_u0bw3")
+
+[node name="Climbing2" parent="Areas" index="5" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
+position = Vector2(24, -679)
+ground_levels = [NodePath("End"), NodePath("End2")]
+ground_level_y = -648
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
+greg_speed = 45.0
+
+[node name="CollisionShape2D" parent="Areas/Climbing2" index="0"]
+position = Vector2(-1, 21.5)
+shape = SubResource("RectangleShape2D_fhx0y")
+
+[node name="Start" parent="Areas/Climbing2" index="2" instance=ExtResource("8_37pfp")]
+position = Vector2(71, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="0"]
+position = Vector2(-71, 24)
+shape = SubResource("RectangleShape2D_7xdd6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="1"]
+position = Vector2(201, -138.5)
+shape = SubResource("RectangleShape2D_7xdd6")
+
+[node name="End" type="Area2D" parent="Areas/Climbing2" index="3"]
+position = Vector2(272, -130)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_37pfp")
+
+[node name="End2" type="Area2D" parent="Areas/Climbing2" index="4"]
+position = Vector2(199, -273)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End2" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_22jmq")
+
+[connection signal="inspected" from="Areas/StartClimping" to="Areas/ClimbingPlace" method="begin_climping"]
+[connection signal="interacted" from="Areas/Climbing2/Start" to="Areas/Climbing2" method="begin_climping"]
+
+[editable path="Areas/ClimbingPlace"]
+[editable path="Areas/Climbing2"]

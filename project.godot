@@ -81,6 +81,7 @@ import/fbx/enabled=false
 forest_hazards=""
 forest_curiosities=""
 thug_spawners=""
+sg_climbing_obstacle=""
 
 [gui]
 

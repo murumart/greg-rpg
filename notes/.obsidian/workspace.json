@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -218,7 +218,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -227,14 +226,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c63e76cbeb3624cd",
+  "active": "2292fc5d39da9a55",
   "lastOpenFiles": [
     "Bugs.md",
-    "Update goals.md",
     "Tarikas.md",
+    "Notes.md",
+    "Update goals.md",
     "SG gimmicks.md",
     "Pasted image 20250710193306.png",
-    "Notes.md",
     "Police.md",
     "New Text Document.txt",
     "Pasted image 20250710193306.png.import",

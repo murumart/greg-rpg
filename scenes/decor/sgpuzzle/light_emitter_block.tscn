@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://t4hfan6mb572" path="res://sounds/sg/unlight.ogg" id="5_fht21"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhvo7"]
-size = Vector2(14, 11)
+size = Vector2(10, 9)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nhvo7"]
 blend_mode = 1

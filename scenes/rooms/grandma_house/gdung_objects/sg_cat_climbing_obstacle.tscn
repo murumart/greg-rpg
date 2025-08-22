@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg7yn847yevyq"]
+
+[ext_resource type="Texture2D" uid="uid://yhxwtfjggtnm" path="res://sprites/characters/overworld/spr_cats_overworld.png" id="1_aebsr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aebsr"]
+radius = 4.03113
+
+[node name="ClimbingObstacle" type="Area2D" groups=["sg_climbing_obstacle"]]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_aebsr")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("CircleShape2D_aebsr")
