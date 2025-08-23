@@ -336,7 +336,7 @@ DIALOGUE insp_town_sign_2
 	southwest: store
 
 
-DIALOGUE town_east_sign
+DIALOGUE insp_town_east_sign
 	east: youth centreLBwest: skateparkLBnorth: factory
 	easter: chapel
 

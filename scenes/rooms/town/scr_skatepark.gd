@@ -49,7 +49,7 @@ func sk8r_kid_talk() -> void:
 				if highscore < 200000 and not can_get:
 					dlg.al("to become [color=ff4422]cool skater's[/color], one must reach a high-score of 200000.")
 					var l := dlg.al("[color=ff4422]you[/color] have %s, right now." % highscore)
-					if games_finished > 5 and highscore >= 50000:
+					if (games_finished > 5 and highscore >= 10000) or games_finished > 15:
 						l.schoices(["please"])
 					if await dlg.speak_choice() == &"please":
 						dlg.reset()

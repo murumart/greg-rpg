@@ -608,6 +608,19 @@ y_sort_enabled = true
 script = ExtResource("1_mdes8")
 music = "dry_summer"
 
+[node name="CheatNode" type="Node" parent="."]
+script = ExtResource("5_ev43v")
+level_gain = 71
+new_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts", &"personally"])
+new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter"])
+replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler", &"pocket_candy", &"pocket_candy", &"pocket_candy"])
+replace_armour = &"cool_jacket"
+replace_weapon = &"fish"
+data_overrides = Dictionary[StringName, Variant]({
+&"bike_ghosts_fought": [1, 0],
+&"gdung_floor": -1
+})
+
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 script = ExtResource("2_4wino")
 
@@ -624,10 +637,6 @@ sky_modulate = NodePath("../CanvasModulateGroup/Sun")
 room = NodePath("..")
 sunset_music = "sunset"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
-
-[node name="CheatNode" type="Node" parent="."]
-script = ExtResource("5_ev43v")
-metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="."]
 collision_mask = 0
