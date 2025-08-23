@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfr350mfo0asg"]
+
+[ext_resource type="Script" uid="uid://cc2hg3npaxjrq" path="res://scenes/rooms/sg/starmap_puzzle.gd" id="1_b18bf"]
+[ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_5ukcj"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="3_d6vlw"]
+[ext_resource type="AudioStream" uid="uid://dutf5v5qygecx" path="res://sounds/misc_click.ogg" id="4_4hxux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6vlw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hxux"]
+font = ExtResource("3_d6vlw")
+font_size = 6
+font_color = Color(1, 1, 1, 0.486275)
+
+[node name="Starmap" type="Node2D"]
+script = ExtResource("1_b18bf")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource("2_5ukcj")
+metadata/_custom_type_script = "uid://b4lqogy5daqbf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_d6vlw")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 120.0
+
+[node name="Label" type="Label" parent="Ui"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 24.0
+text = "press [cancel] to return
+press [accept] to swap current disk
+press [left] and [right] to rotate disk"
+label_settings = SubResource("LabelSettings_4hxux")
+
+[node name="Label2" type="Label" parent="Ui"]
+layout_mode = 0
+offset_top = 112.0
+offset_right = 162.0
+offset_bottom = 119.0
+text = "disk nr "
+label_settings = SubResource("LabelSettings_4hxux")
+
+[node name="Clicking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4hxux")
+volume_db = -6.0
+pitch_scale = 8.0
