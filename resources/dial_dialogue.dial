@@ -3945,7 +3945,7 @@ SET_DATA heard_trashbin_importance,true
 DIALOGUE sg_trashbin_opened
 DATA_LINK heard_trashbin_importance,true
 	%SGYou have decimated a once-in-a-generation piece of art...
-	%SGLet me decimated you in exchange!
+	%SGLet me decimate you in exchange!
 #it fights you
 DATA_LINK heard_trashbin_importance,false
 	%SGFinally someone took out the trash...

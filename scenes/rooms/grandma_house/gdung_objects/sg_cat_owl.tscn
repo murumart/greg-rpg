@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx3xpngxhydy0"]
+[gd_scene load_steps=14 format=3 uid="uid://cx3xpngxhydy0"]
 
-[ext_resource type="Script" uid="uid://8ycmg7qfn2b1" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="1_x8rt0"]
+[ext_resource type="Script" uid="uid://c4t0nod70cpfb" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.gd" id="1_x8rt0"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_oawvn"]
-[ext_resource type="Texture2D" uid="uid://beidgtxgk3ykd" path="res://sprites/world/sg/chars.png" id="3_7ebay"]
+[ext_resource type="Texture2D" uid="uid://ceypji53w12rb" path="res://sprites/world/sg/owl.png" id="3_x8rt0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ga0m"]
 resource_local_to_scene = true
@@ -15,6 +15,56 @@ size = Vector2(8, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fqveb"]
 resource_local_to_scene = true
 radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oawvn"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ebay"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ga0m"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3fxt"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqveb"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7nyq"]
+atlas = ExtResource("3_x8rt0")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0aor"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_oawvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ebay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ga0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3fxt")
+}, {
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_fqveb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7nyq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="SgCatOwl" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
 collision_layer = 12
@@ -54,9 +104,6 @@ self_modulate = Color(1, 1, 0.435294, 0.207843)
 target_position = Vector2(0, 32)
 collision_mask = 11
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-texture = ExtResource("3_7ebay")
-offset = Vector2(0, -7)
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i0aor")
+offset = Vector2(0, -8)

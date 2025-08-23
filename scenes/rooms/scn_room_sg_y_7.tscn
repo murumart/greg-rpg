@@ -23,7 +23,7 @@ script/source = "extends Node2D
 @onready var door_area := $\"../Areas/DoorArea\"
 
 @onready var door_sprite: Sprite2D = $DoorHole/Door
-@onready var boss: OverworldCharacter = $DoorHole/Boss
+@onready var boss := $DoorHole/Boss
 @onready var cat_2: OverworldCharacter = $\"../Areas/Cat2\"
 
 @export var battle_info: BattleInfo
@@ -58,14 +58,15 @@ func _puzzle_solved() -> void:
 		SOL.vfx(\"explosion\", door_sprite.global_position, {parent = door_sprite.get_parent()})
 	)
 	tw.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	tw.tween_property(cat_2, ^\"rotation\", TAU * 8, 1.0)
-	tw.parallel().tween_property(cat_2, ^\"global_position\", Vector2(-400, -400), 1.0)
+	tw.tween_property(cat_2, ^\"rotation\", TAU * 8, 3.0)
+	tw.parallel().tween_property(cat_2, ^\"global_position\", Vector2(-400, -400), 3.0)
 	tw.set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	tw.tween_interval(0.6)
 	await tw.finished
 	SOL.dialogue(\"sg_7_attack\")
 	boss.z_index = 1
 	await SOL.dialogue_closed
+	await boss.scary()
 	SND.play_sound(preload(\"res://sounds/skating/s6.ogg\"), {pitch_scale = 0.75})
 	tw = create_tween()
 	tw.tween_property(camera, ^\"position\", Vector2(0, -9), 0.8)

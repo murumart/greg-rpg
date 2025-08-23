@@ -1,17 +1,16 @@
-[gd_scene load_steps=15 format=4 uid="uid://7r7j8jryy0ws"]
+[gd_scene load_steps=14 format=4 uid="uid://7r7j8jryy0ws"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_axufd"]
 [ext_resource type="Resource" uid="uid://dhr8uo64sib8s" path="res://resources/battle_infos/sg_3_cats.tres" id="2_bwrhi"]
 [ext_resource type="Script" uid="uid://c6nera85q5le0" path="res://code/sg_rotating_obstacle.gd" id="2_uma5x"]
 [ext_resource type="PackedScene" uid="uid://dtucue1l5udas" path="res://scenes/characters/overworld/scn_cat_sg.tscn" id="3_ydydb"]
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="5_do0af"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="8_bwrhi"]
-[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_m3ter"]
-[ext_resource type="Texture2D" uid="uid://beidgtxgk3ykd" path="res://sprites/world/sg/chars.png" id="10_e5kl3"]
 
 [sub_resource type="GDScript" id="GDScript_m3ter"]
 script/source = "extends Node2D
 
-@onready var cat_2: OverworldCharacter = $Cat2
+@onready var cat_2 := $Cats/SgCatOwl
 @onready var trash_bin: TrashBin = $TrashBin
 
 @export var cat_battle: BattleInfo
@@ -22,14 +21,18 @@ func _ready() -> void:
 		return
 	if not trash_bin.full:
 		cat_2.convo_progress = 0
-		cat_2.default_lines = [\"sg_trashbin_opened\"]
+		cat_2.default_lines.assign([\"sg_trashbin_opened\"])
 	trash_bin.opened.connect(func() -> void:
 		cat_2.convo_progress = 0
-		cat_2.default_lines = [\"sg_trashbin_opened\"]
+		cat_2.default_lines.assign([\"sg_trashbin_opened\"])
 	)
 	cat_2.inspected.connect(func() -> void:
 		if DAT.get_data(\"heard_trashbin_importance\", false) and not trash_bin.full:
-			cat_2.battle_info = cat_battle
+			await SOL.dialogue_closed
+			DAT.capture_player(\"cutscene\")
+			await cat_2.scary()
+			DAT.free_player(\"cutscene\")
+			LTS.enter_battle(cat_battle)
 	)
 "
 
@@ -426,24 +429,17 @@ rotates = false
 position = Vector2(0, -65)
 rotates = false
 
+[node name="SgCatOwl" parent="Areas/Cats" index="3" instance=ExtResource("5_do0af")]
+position = Vector2(672, 88)
+default_lines = Array[StringName]([&"sg_trashbin"])
+save = true
+save_battled = true
+
 [node name="TrashBin" parent="Areas" index="3" instance=ExtResource("8_bwrhi")]
 position = Vector2(689, 97)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"tape"
-
-[node name="Cat2" parent="Areas" index="4" instance=ExtResource("9_m3ter")]
-position = Vector2(677, 83)
-action_right_after_dialogue = true
-default_lines = Array[StringName]([&"sg_trashbin"])
-save_battled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Areas/Cat2" index="3"]
-position = Vector2(0, -1)
-texture = ExtResource("10_e5kl3")
-offset = Vector2(0, -7)
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
 
 [editable path="Areas/Cats/Path2D2/PathFollow2D/Cat"]
 [editable path="Areas/Cats/Path2D2/PathFollow2D2/Cat2"]
