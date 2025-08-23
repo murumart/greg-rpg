@@ -1096,6 +1096,7 @@ region_rect = Rect2(0, 16, 16, 16)
 
 [node name="KidOverworld" parent="Houses/Skatepark/Goodness" instance=ExtResource("16_x4kca")]
 position = Vector2(-10, -109)
+collision_mask = 1
 trades = Array[ExtResource("17_5y8yq")]([SubResource("Resource_nubog")])
 
 [node name="Cat" type="Sprite2D" parent="Houses/Skatepark/Goodness"]
@@ -1637,32 +1638,38 @@ rotation = 2.1006
 
 [node name="ThugOverworld" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-498, 597)
+collision_mask = 1
 speed = 0
 random_movement = false
 
 [node name="ThugOverworld2" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-516, 600)
+collision_mask = 1
 speed = 0
 random_movement = false
 
 [node name="ThugOverworld3" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-537, 596)
+collision_mask = 1
 speed = 0
 random_movement = false
 
 [node name="ThugOverworld4" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-472, 597)
+collision_mask = 1
 speed = 0
 random_movement = false
 
 [node name="ThugOverworld5" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-448, 599)
+collision_mask = 1
 speed = 0
 random_movement = false
 
 [node name="Mayor" parent="Other" instance=ExtResource("28_5y8yq")]
 unique_name_in_owner = true
 position = Vector2(-582, -152)
+collision_mask = 1
 
 [node name="MayorInfo" type="Node2D" parent="Other"]
 position = Vector2(-798, -153)

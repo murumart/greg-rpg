@@ -115,6 +115,7 @@ gate_id = &"sg-y-34"
 
 [node name="GrandmaHousecat" parent="Areas" index="2" instance=ExtResource("2_oktlr")]
 position = Vector2(185, -23)
+collision_mask = 1
 random_movement = false
 battle_info = SubResource("Resource_pq05u")
 save = true
@@ -123,6 +124,7 @@ save_battled = true
 
 [node name="GrandmaHousecat2" parent="Areas" index="3" instance=ExtResource("2_oktlr")]
 position = Vector2(312, -147)
+collision_mask = 1
 random_movement = false
 battle_info = SubResource("Resource_pq05u")
 save = true
@@ -131,6 +133,7 @@ save_battled = true
 
 [node name="GrandmaHousecat4" parent="Areas" index="4" instance=ExtResource("2_oktlr")]
 position = Vector2(343, 93)
+collision_mask = 1
 battle_info = SubResource("Resource_8vjba")
 save = true
 save_position = true
@@ -138,6 +141,7 @@ save_battled = true
 
 [node name="GrandmaHousecat5" parent="Areas" index="5" instance=ExtResource("2_oktlr")]
 position = Vector2(576, -145)
+collision_mask = 1
 battle_info = SubResource("Resource_b4ga2")
 save = true
 save_position = true
@@ -145,6 +149,7 @@ save_battled = true
 
 [node name="GrandmaHousecat3" parent="Areas" index="6" instance=ExtResource("2_oktlr")]
 position = Vector2(88, -171)
+collision_mask = 1
 random_movement = false
 battle_info = SubResource("Resource_gnktg")
 save = true

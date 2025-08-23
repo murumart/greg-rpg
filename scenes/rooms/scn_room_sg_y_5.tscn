@@ -105,6 +105,7 @@ position = Vector2(48, -64)
 rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -114,6 +115,7 @@ progress = 54.6032
 rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -123,6 +125,7 @@ progress = 104.231
 rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -137,6 +140,7 @@ progress = 134.02
 rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -146,6 +150,7 @@ progress = 183.68
 rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -155,6 +160,7 @@ progress = 223.388
 rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -175,6 +181,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D2/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -193,6 +200,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D2/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -211,6 +219,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D2/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -233,6 +242,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D2/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -251,6 +261,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D2/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -269,6 +280,7 @@ position = Vector2(56, -39)
 rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D2/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -298,6 +310,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat" parent="Areas/Cats/Path2D3/PathFollow2D" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -316,6 +329,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat2" parent="Areas/Cats/Path2D3/PathFollow2D2" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -334,6 +348,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat3" parent="Areas/Cats/Path2D3/PathFollow2D3" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -356,6 +371,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat4" parent="Areas/Cats/Path2D3/PathFollow2D4" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -374,6 +390,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat5" parent="Areas/Cats/Path2D3/PathFollow2D5" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 
@@ -392,6 +409,7 @@ position = Vector2(0, -65)
 rotates = false
 
 [node name="Cat6" parent="Areas/Cats/Path2D3/PathFollow2D6" index="0" instance=ExtResource("3_ydydb")]
+collision_mask = 1
 random_movement = false
 battle_info = ExtResource("2_bwrhi")
 

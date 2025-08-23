@@ -229,6 +229,7 @@ small_screenshot={
 2d_physics/layer_8="climp_area"
 2d_physics/layer_9="gdung enemy physics"
 2d_physics/layer_10="light puzzle catcher"
+2d_physics/layer_11="world but doesnt block inspect"
 
 [physics]
 

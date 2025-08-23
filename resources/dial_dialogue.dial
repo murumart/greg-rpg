@@ -3889,6 +3889,19 @@ DIALOGUE sg_climb_2
 	%SGNot with your face. Not at all.
 
 
+DIALOGUE sg_climb_bg
+	%SGBeautiful words.
+
+
+DIALOGUE sg_climb_cream
+DATA_LINK pickable_item_icecream_in_SgY2_picked,false
+	%SGI have stashed a sweet treat in this room.
+	%SGWhere? Wouldn't you like to know...
+	%SGWhere the way parts for the sun...
+DATA_LINK pickable_item_icecream_in_SgY2_picked,true
+	%SGI knew I should have hid it better...
+
+
 DIALOGUE sg_deadend
 	%SGI wanted to see if there was anything interesting here.
 	%SGNo such luck...

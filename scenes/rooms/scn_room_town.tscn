@@ -1038,12 +1038,14 @@ region_rect = Rect2(48, 32, 16, 16)
 
 [node name="KidEncounter" parent="Houses/NeighbourHouse" instance=ExtResource("25_ffcbh")]
 position = Vector2(96, 96)
+collision_mask = 1
 script = ExtResource("14_gpjks")
 default_lines = Array[StringName]([&"kid_firstencounter"])
 save = false
 
 [node name="TutorialGUy" parent="Houses/NeighbourHouse" instance=ExtResource("16_2feir")]
 position = Vector2(-98, 105)
+collision_mask = 1
 
 [node name="StreetSign" parent="Houses/NeighbourHouse" instance=ExtResource("25_qhmci")]
 position = Vector2(142, 112)
@@ -1125,6 +1127,7 @@ shape = SubResource("RectangleShape2D_ynb2e")
 
 [node name="EquipBrick" parent="Houses/BlockNeighbours" instance=ExtResource("16_2feir")]
 position = Vector2(-38, 53)
+collision_mask = 1
 tutorial_type = 1
 
 [node name="FishScared" parent="Houses/BlockNeighbours" instance=ExtResource("10_dem56")]
@@ -1411,6 +1414,7 @@ replenish_seconds = 3600
 
 [node name="Greenhouse" parent="Houses/Store" instance=ExtResource("16_2feir")]
 position = Vector2(-35, 57)
+collision_mask = 1
 tutorial_type = 2
 
 [node name="LakeHintNpc" parent="Houses/Store" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("10_dem56")]
@@ -1815,6 +1819,7 @@ position = Vector2(-9, 17)
 [node name="CampsiteKid" parent="Other/CampfireSite" instance=ExtResource("25_ffcbh")]
 visible = false
 position = Vector2(29, -6)
+collision_mask = 1
 trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_xq6fg")])
 
 [node name="Roadblock" type="Node2D" parent="Other/CampfireSite"]
@@ -2032,6 +2037,7 @@ animation = &"walk_down"
 
 [node name="StatusEffectGuru" parent="Other/BackPark" instance=ExtResource("38_a0o03")]
 position = Vector2(-87, 23)
+collision_mask = 1
 
 [node name="QuestBoard" type="StaticBody2D" parent="Other/BackPark" groups=["forest_quest_boards"]]
 position = Vector2(-48, -31)
@@ -2136,10 +2142,12 @@ position = Vector2(-80, -640)
 
 [node name="EscapingBusiness2" parent="Other/Men" instance=ExtResource("32_lci3r")]
 position = Vector2(950, -283)
+collision_mask = 1
 escape_offset = Vector2(0, -60)
 
 [node name="EscapingBusiness3" parent="Other/Men" instance=ExtResource("32_lci3r")]
 position = Vector2(-456, -431)
+collision_mask = 1
 escape_offset = Vector2(0, -60)
 
 [node name="IsFootballVisible" type="VisibleOnScreenNotifier2D" parent="Other"]

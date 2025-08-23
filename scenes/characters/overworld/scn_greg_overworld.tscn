@@ -150,7 +150,7 @@ size = Vector2(4, 4)
 
 [node name="Greg" type="CharacterBody2D" groups=["players", "save_me"]]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 1033
 motion_mode = 1
 safe_margin = 0.5
 script = ExtResource("1_gx1l0")
