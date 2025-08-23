@@ -1851,9 +1851,9 @@ extents = Vector2i(8, 58)
 spawnpoint = Vector2i(16, -40)
 
 [node name="EnemySpawner" parent="Areas" node_paths=PackedStringArray("player") instance=ExtResource("22_u5wr6")]
-position = Vector2(-163, -74)
+position = Vector2(-13, -74)
 spawn_enemy = ExtResource("38_6wcl6")
-max_enemies = 4
+max_enemies = 1
 player = NodePath("../../Greg")
 spawn_radius = 64.0
 

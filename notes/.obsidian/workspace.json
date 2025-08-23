@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -227,13 +227,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2292fc5d39da9a55",
+  "active": "c63e76cbeb3624cd",
   "lastOpenFiles": [
+    "Update goals.md",
+    "SG gimmicks.md",
     "Bugs.md",
     "Tarikas.md",
     "Notes.md",
-    "Update goals.md",
-    "SG gimmicks.md",
     "Pasted image 20250710193306.png",
     "Police.md",
     "New Text Document.txt",

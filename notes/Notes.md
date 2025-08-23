@@ -87,4 +87,16 @@
 
 ## 21.08.25
 - [x] Disable bathroom door if shop is soaked afterr frnaking
-- [ ] 
+
+## June playetes
+- [ ] Nerf casual
+- [ ] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
+- [ ] move spirit mana portal damage battle camera downward
+- [ ] text you received begonia
+- [ ] make grandma room darker after flowers
+- [ ] telegraph movement direction restrictions of pizzle pieces.
+- [ ] enter battle private in overworld character
+- [ ] more mentions of mayor before east
+- [ ] nerf casual
+- [ ] fix camera tiny ui in main menu when exiting from secret garden
+- [ ] red text line too far. too meta as they say

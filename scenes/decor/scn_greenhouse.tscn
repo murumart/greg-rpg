@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo30s0jr7gxse"]
+[gd_scene load_steps=10 format=3 uid="uid://bo30s0jr7gxse"]
 
 [ext_resource type="Script" uid="uid://k4ba4tmr8of2" path="res://scenes/decor/scr_greenhouse.gd" id="1_xl1wo"]
 [ext_resource type="Texture2D" uid="uid://jliineedmxw6" path="res://sprites/world/building/greenhouse/spr_spr_back_layer.png" id="2_tbboa"]
@@ -12,6 +12,9 @@ size = Vector2(28, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6nbg"]
 size = Vector2(28, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ay3b"]
+size = Vector2(28, 18)
 
 [node name="Greenhouse" type="Node2D"]
 y_sort_enabled = true
@@ -68,5 +71,13 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneAreaGreenhouse"]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_g6nbg")
+
+[node name="NpcBlocker" type="StaticBody2D" parent="."]
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NpcBlocker"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_1ay3b")
 
 [connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]
