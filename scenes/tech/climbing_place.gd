@@ -51,7 +51,6 @@ func _physics_process(delta: float) -> void:
 					cease_climping(g.global_position)
 		if not ars and not contact.has_overlapping_bodies():
 			if _grace < 0:
-				SND.play_sound(preload("res://sounds/skating/s9.ogg"))
 				_tumble()
 				_grace = grace_time
 			else:
@@ -74,6 +73,7 @@ func _tumble() -> void:
 	state = States.FALLING
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	var dist := ground_level_y - greg_climp.global_position.y
+	SND.play_sound(preload("res://sounds/skating/s9.ogg"))
 	tw.tween_property(greg_climp, ^"global_position:y", ground_level_y, dist / 70.0)
 	tw.parallel().set_ease(Tween.EASE_OUT).tween_property(greg_climp, ^"rotation", TAU * remap(dist, 0, 32, 0, 2), dist / 70.0)
 	tw.tween_callback(func() -> void:

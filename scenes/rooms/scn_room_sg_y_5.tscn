@@ -32,7 +32,8 @@ func _ready() -> void:
 			DAT.capture_player(\"cutscene\")
 			await cat_2.scary()
 			DAT.free_player(\"cutscene\")
-			LTS.enter_battle(cat_battle)
+			cat_2.battle_info = cat_battle
+			cat_2.enter_battle()
 	)
 "
 

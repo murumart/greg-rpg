@@ -70,10 +70,9 @@ func output(s: String, error := false) -> void:
 
 
 func _cmd_reload(args: PackedStringArray) -> void:
-	DAT.save_to_data()
 	LTS.gate_id = LTS.GATE_LOADING
 	if args.is_empty():
-		DAT.load_data_from_dict(DAT.A, true)
+		DAT.reload()
 	else:
 		LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 

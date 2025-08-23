@@ -26,6 +26,7 @@ replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="COLLISION" type="StaticBody2D" parent="."]
+collision_layer = 1024
 collision_mask = 0
 
 [node name="COLLISION" type="TileMapLayer" parent="COLLISION"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://7lb1nl2xno21"]
+
+[ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="1_u0pak"]
+[ext_resource type="Script" uid="uid://ef8cw7x5o52a" path="res://scenes/rooms/grandma_house/gdung_objects/sg_reset_cat.gd" id="2_ae5ma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae5ma"]
+resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k643w"]
+resource_local_to_scene = true
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pc6dm"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="SgResetCat" instance=ExtResource("1_u0pak")]
+script = ExtResource("2_ae5ma")
+default_lines = Array[StringName]([&"sg_puzzle_reset"])
+
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("RectangleShape2D_ae5ma")
+
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_k643w")
+
+[node name="DetectionShape" parent="DetectionArea" index="0"]
+shape = SubResource("CircleShape2D_pc6dm")

@@ -216,6 +216,11 @@ func set_copied_data() -> void:
 		DAT.A = newd
 
 
+func reload() -> void:
+	DAT.save_to_data()
+	DAT.load_data_from_dict(DAT.A, true)
+
+
 # this is for the overworld greg
 ## If greg is captured, he cannot be moved around by the player.
 ## If [param overlap] is true (default false), multiple capturers of the same name

@@ -3902,6 +3902,12 @@ DATA_LINK pickable_item_icecream_in_SgY2_picked,true
 	%SGI knew I should have hid it better...
 
 
+DIALOGUE sg_puzzle_reset
+	%SGDid you bungle the puzzle?
+CHOICES yes,no
+	%SGDo you want me to reset it?
+
+
 DIALOGUE sg_deadend
 	%SGI wanted to see if there was anything interesting here.
 	%SGNo such luck...

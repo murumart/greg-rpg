@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://cwetkgvwlby0i"]
+[gd_scene load_steps=10 format=4 uid="uid://cwetkgvwlby0i"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_tgjow"]
+[ext_resource type="Script" uid="uid://c6gv482owpujf" path="res://code/save_positions.gd" id="2_e74x2"]
 [ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="2_hq4by"]
 [ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="3_18dv3"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="4_18dv3"]
 [ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="5_o2ieo"]
+[ext_resource type="PackedScene" uid="uid://7lb1nl2xno21" path="res://scenes/rooms/grandma_house/gdung_objects/sg_reset_cat.tscn" id="7_ypwwi"]
 
 [sub_resource type="GDScript" id="GDScript_hq4by"]
 script/source = "extends Node2D
@@ -61,20 +63,25 @@ position = Vector2(80, -143)
 collision_mask = 0
 script = SubResource("GDScript_hq4by")
 
-[node name="LightTargetBlock" parent="Areas/Puzzle" index="0" instance=ExtResource("2_hq4by")]
+[node name="SaveNodePositions" type="Node" parent="Areas/Puzzle" index="0" node_paths=PackedStringArray("save_these")]
+script = ExtResource("2_e74x2")
+save_these = [NodePath("../Redirector"), NodePath("../Redirector2"), NodePath("../Redirector3"), NodePath("../Redirector4"), NodePath("../Redirector5")]
+metadata/_custom_type_script = "uid://c6gv482owpujf"
 
-[node name="LightTargetBlock2" parent="Areas/Puzzle" index="1" instance=ExtResource("2_hq4by")]
+[node name="LightTargetBlock" parent="Areas/Puzzle" index="1" instance=ExtResource("2_hq4by")]
+
+[node name="LightTargetBlock2" parent="Areas/Puzzle" index="2" instance=ExtResource("2_hq4by")]
 position = Vector2(32, 0)
 
-[node name="LightEmitterBlock" parent="Areas/Puzzle" index="2" instance=ExtResource("3_18dv3")]
+[node name="LightEmitterBlock" parent="Areas/Puzzle" index="3" instance=ExtResource("3_18dv3")]
 position = Vector2(32, 48)
 direction = 1
 
-[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="3" instance=ExtResource("3_18dv3")]
+[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="4" instance=ExtResource("3_18dv3")]
 position = Vector2(64, 48)
 direction = 1
 
-[node name="Redirector" parent="Areas/Puzzle" index="4" instance=ExtResource("3_18dv3")]
+[node name="Redirector" parent="Areas/Puzzle" index="5" instance=ExtResource("3_18dv3")]
 position = Vector2(48, 64)
 emitting = false
 direction = 2
@@ -82,7 +89,7 @@ role = 1
 movable = true
 available_directions = 5
 
-[node name="Redirector2" parent="Areas/Puzzle" index="5" instance=ExtResource("3_18dv3")]
+[node name="Redirector2" parent="Areas/Puzzle" index="6" instance=ExtResource("3_18dv3")]
 position = Vector2(-16, 80)
 emitting = false
 direction = 2
@@ -90,7 +97,7 @@ role = 1
 movable = true
 available_directions = 5
 
-[node name="Redirector3" parent="Areas/Puzzle" index="6" instance=ExtResource("3_18dv3")]
+[node name="Redirector3" parent="Areas/Puzzle" index="7" instance=ExtResource("3_18dv3")]
 position = Vector2(0, 80)
 emitting = false
 direction = -1
@@ -98,7 +105,7 @@ role = 1
 movable = true
 available_directions = 10
 
-[node name="Redirector4" parent="Areas/Puzzle" index="7" instance=ExtResource("3_18dv3")]
+[node name="Redirector4" parent="Areas/Puzzle" index="8" instance=ExtResource("3_18dv3")]
 position = Vector2(16, 48)
 emitting = false
 direction = -1
@@ -106,21 +113,21 @@ role = 1
 movable = true
 available_directions = 10
 
-[node name="Redirector5" parent="Areas/Puzzle" index="8" instance=ExtResource("3_18dv3")]
+[node name="Redirector5" parent="Areas/Puzzle" index="9" instance=ExtResource("3_18dv3")]
 position = Vector2(16, 32)
 emitting = false
 role = 1
 movable = true
 available_directions = 10
 
-[node name="Floor" type="TileMapLayer" parent="Areas/Puzzle" index="9"]
+[node name="Floor" type="TileMapLayer" parent="Areas/Puzzle" index="10"]
 y_sort_enabled = true
 position = Vector2(-6, 12)
 tile_map_data = PackedByteArray("AAAAAPz/AAABAAIAAAABAPz/AAACAAIAAAACAPz/AAACAAIAAAADAPz/AAADAAIAAAAAAPv/AAABAAAAAAABAPv/AAACAAAAAAACAPv/AAACAAAAAAADAPv/AAADAAAAAAA=")
 tile_set = ExtResource("4_18dv3")
 y_sort_origin = -440
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle" index="10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle" index="11"]
 position = Vector2(26, -50)
 shape = SubResource("RectangleShape2D_18dv3")
 
@@ -131,3 +138,7 @@ default_lines = Array[StringName]([&"sg_bridge_puzzle_hint"])
 [node name="SgCatOwl2" parent="Areas" index="4" instance=ExtResource("5_o2ieo")]
 position = Vector2(145, -206)
 default_lines = Array[StringName]([&"sg_bridge"])
+
+[node name="SgResetCat" parent="Areas" index="5" node_paths=PackedStringArray("reset_saves") instance=ExtResource("7_ypwwi")]
+position = Vector2(38, -125)
+reset_saves = [NodePath("../Puzzle/SaveNodePositions")]

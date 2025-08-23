@@ -16,6 +16,10 @@ func _ready() -> void:
 			save_these[i].global_position = list[i]
 
 
+func erase_saved() -> void:
+	DAT.set_data(key, [])
+
+
 func _save_me() -> void:
 	var list: PackedVector2Array
 	for node in save_these:
