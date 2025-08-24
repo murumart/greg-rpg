@@ -90,7 +90,7 @@
 
 ## June playetes
 - [ ] Nerf casual
-- [ ] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
+- [x] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
 - [ ] move spirit mana portal damage battle camera downward
 - [ ] text you received begonia
 - [ ] make grandma room darker after flowers
@@ -99,4 +99,4 @@
 - [ ] more mentions of mayor before east
 - [ ] nerf casual
 - [ ] fix camera tiny ui in main menu when exiting from secret garden
-- [ ] red text line too far. too meta as they say
+- [x] red text line too far. too meta as they say

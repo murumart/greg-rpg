@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=129 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -515,6 +515,10 @@ _data = {
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_egsis"]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fix1m"]
+a = Vector2(-42, 0)
+b = Vector2(43, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
 
@@ -743,6 +747,7 @@ script = ExtResource("2_0834g")
 level_gain = 76
 new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter"])
 replace_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts"])
+force_gate_id = &"town-east"
 data_overrides = Dictionary[StringName, Variant]({
 &"mayor_ladder_actieve": false,
 &"saw_mayor_intro": false,
@@ -1378,6 +1383,14 @@ position = Vector2(234, -266)
 replenish_minutes = 120
 replenish_seconds = 7200
 item = &"magnet"
+
+[node name="NPCForbidden" type="StaticBody2D" parent="Houses/Factory"]
+position = Vector2(8, 53)
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/NPCForbidden"]
+shape = SubResource("SegmentShape2D_fix1m")
 
 [node name="Chapel" type="Node2D" parent="Houses"]
 y_sort_enabled = true

@@ -197,7 +197,7 @@ func interacted() -> void:
 			convo_progress = mini(convo_progress + 1, default_lines.size())
 			return
 	if battle_info:
-		if _enter_battle():
+		if enter_battle():
 			return
 	if transport_to_scene:
 		LTS.level_transition(transport_to_scene)
@@ -232,13 +232,13 @@ func finish_talking() -> void:
 		SOL.dialogue_closed.disconnect(finish_talking)
 	if action_right_after_dialogue:
 		if battle_info:
-			_enter_battle()
+			enter_battle()
 		if transport_to_scene:
 			LTS.level_transition(transport_to_scene)
 	_on_idle_timer_timeout()
 
 
-func _enter_battle() -> bool:
+func enter_battle() -> bool:
 	if save_battled:
 		DAT.set_data(get_save_key("battled"), true)
 	if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
@@ -251,7 +251,6 @@ func _enter_battle() -> bool:
 		var params := PhysicsShapeQueryParameters2D.new()
 		params.shape = CircleShape2D.new()
 		params.shape.radius = 48.0
-		params.collision_mask = 0b1000
 		params.transform = global_transform
 		var results := shashsasha.intersect_shape(params)
 		for result in results:

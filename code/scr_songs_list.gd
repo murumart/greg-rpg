@@ -161,6 +161,10 @@ var songs := {
 		"title": "drum and perch",
 		"stream": preload("res://music/mus_lake_battle.ogg")
 	},
+	"lightningthief": {
+		"title": "webcatz - lightningthief",
+		"stream": preload("res://music/mus_lightningthief.ogg")
+	},
 	"lily_lesson": {
 		"title": "lily lesson",
 		"stream": preload("res://music/mus_lily_lesson.ogg")

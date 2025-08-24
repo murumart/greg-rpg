@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 script = ExtResource("14_p7p2l")
 enemies = Array[StringName]([&"casual"])
 background = "house_inside"
-music = "daylightthief"
+music = "lightningthief"
 party = Array[StringName]([])
 death_reason = 0
 start_text = "are you not the thug now?"
@@ -169,7 +169,6 @@ position = Vector2(0, 8)
 offset = Vector2(0, -19)
 
 [node name="RadioInteraction" parent="Decor/Radio" index="2"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" parent="Decor/Radio/RadioInteraction" index="0"]
@@ -287,9 +286,6 @@ battle_info = SubResource("Resource_pn2uj")
 
 [node name="CollisionShape" parent="Category2/ThugOverworld" index="0"]
 shape = SubResource("RectangleShape2D_a7e7c")
-
-[node name="CollisionDetectionArea" parent="Category2/ThugOverworld" index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="Category2/ThugOverworld/CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_l7m8h")

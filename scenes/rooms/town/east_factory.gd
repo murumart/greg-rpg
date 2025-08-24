@@ -78,10 +78,13 @@ func _door() -> void:
 
 
 var yct := false
+var yc_mentioned: bool:
+	set(to): DAT.set_data("youth_centre_mentioned_by_mayayoir", to)
+	get: return DAT.get_data("youth_centre_mentioned_by_mayayoir", false)
 func _mayor_post_intro() -> void:
 	var inv := ResMan.get_character("greg").inventory
 	dlg.reset().set_char("mayor")
-	if &"mafia_house" in DAT.get_data(&"visited_rooms", []):
+	if DAT.get_data(&"mafia_correct_nums", 0) > 0 and yc_mentioned:
 		dlg.al("son, i've been thinking.")
 		dlg.al("we should [color=ff4422]blow up[/color] the door.")
 		dlg.al("we're gonna need something [color=ff4422]good[/color]. something [color=ff4422]better[/color].")
@@ -89,6 +92,7 @@ func _mayor_post_intro() -> void:
 		dlg.al("i'm sure you can supply a good [color=ff4422]egshploshive[/color] from somewhere.")
 		dlg.al("i'm censoring the word to not get [color=ff4422]demonised[/color].")
 	elif &"key_youthcentre" in inv:
+		yc_mentioned = true
 		if not yct:
 			dlg.al("son... that doesn't look like the right key.")
 			dlg.al("i'm incredibly disappointed in you. do [color=ff4422]better[/color].").scallback(func() -> void:
