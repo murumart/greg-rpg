@@ -2,6 +2,7 @@ extends Node
 
 # options menu
 signal battle_text_opacity_changed
+signal graphics_fanciness_updated(to: bool)
 
 # all options are stored inside this dict
 var IONS := {
@@ -310,6 +311,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 					"_fancy_graphics_option_owners",
 					"_set_fancy_grapics_to",
 					not bool(end_value))
+			graphics_fanciness_updated.emit(not bool(end_value))
 		"keybinds":
 			if end_value:
 				keybinds.display()

@@ -95,8 +95,8 @@
 - [ ] text you received begonia
 - [ ] make grandma room darker after flowers
 - [ ] telegraph movement direction restrictions of pizzle pieces.
-- [ ] enter battle private in overworld character
+- [x] enter battle private in overworld character
 - [ ] more mentions of mayor before east
-- [ ] nerf casual
+- [x] nerf casual
 - [ ] fix camera tiny ui in main menu when exiting from secret garden
 - [x] red text line too far. too meta as they say

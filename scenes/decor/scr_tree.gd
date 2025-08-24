@@ -6,6 +6,8 @@ class_name TreeDecor extends Node2D
 @export_enum("kuusk", "mänd", "tooming", "kadak", "toone", "paju") var type: int = 0: set = set_type
 const TYPES_SIZE := 4
 
+const WAVE_MATERIAL = preload("res://resources/tree_material.tres")
+
 @onready var sprite := $Sprite
 @onready var face: Sprite2D = $Sprite/Face
 @onready var behind_area: Area2D = $BehindArea
@@ -23,6 +25,8 @@ func _ready() -> void:
 		screen(false)
 		visibility_notif.screen_entered.connect(screen.bind(true))
 		visibility_notif.screen_exited.connect(screen.bind(false))
+		OPT.graphics_fanciness_updated.connect(_fancy)
+		_fancy(not bool(OPT.get_opt("less_fancy_graphics")))
 
 
 func screen(on: bool) -> void:
@@ -44,3 +48,10 @@ func activate_randomise_trees(_to: bool) -> void:
 	for i in get_tree().get_nodes_in_group("trees"):
 		i.set_type(randi() % TYPES_SIZE)
 		i.scale.x = signf(randf_range(-1, 1)) * 1
+
+
+func _fancy(yesno: bool) -> void:
+	if yesno:
+		$Sprite.material = WAVE_MATERIAL
+	else:
+		$Sprite.material = null

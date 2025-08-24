@@ -302,6 +302,7 @@ item_type = &"key_youthcentre"
 save = true
 
 [node name="GPUParticles2D" parent="Category2/KeyItem" instance=ExtResource("18_mxm45")]
+position = Vector2(0, -7)
 
 [node name="TrashBin" parent="." instance=ExtResource("20_xvh1i")]
 position = Vector2(-54, 41)

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cv7n8s4k2sqs5"]
+
+[ext_resource type="Shader" uid="uid://bsvqgtta6kr4l" path="res://shaders/scr_tree_sway.gdshader" id="1_r667l"]
+
+[resource]
+shader = ExtResource("1_r667l")

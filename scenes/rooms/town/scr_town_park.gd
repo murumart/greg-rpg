@@ -45,8 +45,8 @@ func _on_tarikas_inspected() -> void:
 		dlg.al("i hold the eighth...")
 		dlg.al("...")
 		dlg.al("there's nothing else for me to do than to give... it to you.")
-		dlg.al("...").sitem_to_give(&"flower_begonia")
-		dlg.al("...and to bid you farewell.")
+		dlg.clear_char().al("(you received the begonia.)").sitem_to_give(&"flower_begonia")
+		dlg.set_char("tarikas").al("...and to bid you farewell.")
 
 		cfinal = true
 		await dlg.speak_choice()
