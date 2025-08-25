@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdwtuk8ha1gvu"]
+
+[ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_0r628"]
+
+[node name="SgB1" instance=ExtResource("1_0r628")]
+
+[node name="RoomGate" parent="Areas" index="0"]
+destination = &"secret_garden_entrance"
+gate_id = &"sg-entrance-b"
+
+[node name="RoomGate2" parent="Areas" index="1"]
+destination = &"sg_b_2"
+gate_id = &"sg-b-12"
