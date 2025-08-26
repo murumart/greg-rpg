@@ -1,13 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://cf1yig2q6wh25"]
+[gd_scene load_steps=21 format=4 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="Resource" uid="uid://6itneer8usqe" path="res://resources/battle_infos/woods_guy_fight.tres" id="2_2esdu"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_o8qi1"]
-[ext_resource type="Resource" uid="uid://do3hvtj7osq1x" path="res://resources/rewards/res_thug_reward.tres" id="3_aqb7u"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
-[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_s7pj0"]
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="4_vhvdj"]
 [ext_resource type="Texture2D" uid="uid://cvy1i8jmiqbbb" path="res://sprites/characters/portraits/spr_portrait_greg.png" id="5_kl5pr"]
 [ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="7_is2uq"]
@@ -15,23 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 [ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
-
-[sub_resource type="Resource" id="Resource_ekjgu"]
-script = ExtResource("4_s7pj0")
-enemies = Array[StringName]([&"wild_lizard", &"wild_lizard"])
-background = "town"
-music = "daylightthief"
-party = Array[StringName]([])
-death_reason = 0
-start_text = "various thug(s) accost you."
-rewards = ExtResource("3_aqb7u")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("2_o8qi1")]({})
-increment_data_with_enemies = &"thugs_fought"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -82,7 +63,7 @@ loop = true
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_5j3jy")
-load_options = SubResource("Resource_ekjgu")
+load_options = ExtResource("2_2esdu")
 
 [node name="Camera" parent="." instance=ExtResource("2_hinxn")]
 ignore_rotation = false

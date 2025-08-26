@@ -138,6 +138,7 @@
 		- [ ] Final attack -> transition to boss
 - [ ] Final boss![[Pasted image 20250710193306.png]]
 	- [ ] Monster
+		- [ ] first part of song look normal, after a few turns into the next part of song and transform into scary mode
 		- [ ] many parts puppet
 		- [ ] jiggly bones?
 		- [ ] flies around

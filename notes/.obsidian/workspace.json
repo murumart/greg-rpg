@@ -77,7 +77,8 @@
               "title": "Notes"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -226,13 +227,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cfbe9572ff8bd75",
+  "active": "2292fc5d39da9a55",
   "lastOpenFiles": [
-    "Notes.md",
     "Update goals.md",
+    "Tarikas.md",
+    "Notes.md",
     "SG gimmicks.md",
     "Bugs.md",
-    "Tarikas.md",
     "Pasted image 20250710193306.png",
     "Police.md",
     "New Text Document.txt",

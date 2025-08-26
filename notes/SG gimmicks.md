@@ -15,12 +15,19 @@ Rooms:
 9. puzzle with golden vacuum encounter
 10. back to intro area
 
+## Area B
+Rooms:
+1. introduction vista stuff
+2. star puzzles to unlock trash bins and healing zone
+3. room with fights
+4. room with grandma cutscene (a la tenna deltarune)
+
 To do:
 - [x] light puzzle (lasers)
 	- [x] light emitter element (with color)
 	- [x] light receiver element (with color)
 	- [x] light redirector element - direction of light when it touches it, is movable tile-by tile; two lasers onto the same block will output a mixed color
-- [ ] star matching puzzle
+- [x] star matching puzzle
 	- [ ] a disk with 4 or 8 rotations, background disk. add star spots to the backgrouind disk, randomly? rotate foreground disk before puzzle starts. puzzle complete when rotations match.
-	- [ ] could parent smaller disks to bigger disks -  star node object, rotatable disk object, use godot's transform parenting for everything
+	- [x] could parent smaller disks to bigger disks -  star node object, rotatable disk object, use godot's transform parenting for everything
 - [ ] ..plant watering puzzle..?

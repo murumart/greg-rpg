@@ -4013,6 +4013,40 @@ DIALOGUE sg_y_return
 	%SGIt's where you entered from.
 
 
+DIALOGUE sg_b_1
+	%SGWelcome to the SECRET GARDEN, Greg.
+	%SGYour journey... wait, you've heard this before.
+	%SGYou've been in the jovial [color=SUNCOLOR]SOLAR[/color] area already.
+	%SGWell, alright.
+
+
+DIALOGUE sg_b_2
+	%SGYou seem awfully concerned with what others think.
+
+
+DIALOGUE sg_b_3
+	%SGLet's not waste your time here.
+	%SGKeep going forward.
+
+
+DIALOGUE sg_b_lore_1
+	%SGI had a dream this one time...
+	%SGI returned home after a long and eventful life.
+	%SGMy brothers and our mother were waiting for me...
+	%SGBut, when I got there...
+	%SGIt turned out that mother had placed my brother in the sky.
+	%SGTo light the work of our people, to shine on our crops and animals.
+	%SGIt turned out that my brother had placed mother in the dark.
+	%SGAnd our people were wrought with fear and pity for themselves,
+	%SGand our crops and animals withered and died,
+	%SGand blossomed into fields and forests of flowers.
+
+
+DIALOGUE sg_b_lore_2
+	%SGOf course, dreams never mean anything...
+	%SG...until you make time for them to become real.
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...
