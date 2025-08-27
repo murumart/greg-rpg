@@ -37,7 +37,7 @@ var playtime := 0
 var last_save_second := 0
 const AUTOSAVE_TEST_INTERVAL_SEC := 10
 var load_second := 0
-const SCREENSHOT_DELAY := 1800
+const SCREENSHOT_DELAY := 3600
 const SCREENSHOT_TEST_INTERVAL_SEC := 650
 
 # periods of time during which stuff changes in the world
@@ -345,19 +345,19 @@ func _on_game_timer_timeout() -> void:
 
 
 
-# storing the level up spirit names here
-func get_levelup_spirit(level: int) -> String:
+# storing the level up spirit names here. i love keeping data and code separate.
+func get_levelup_spirit(level: int) -> StringName:
 	var dict := {
 		#11: "hotel",
 		#22: "peptide",
 		#33: "jglove",
 		#44: "peanuts",
 		#55: "littleman",
-		60: "personally",
-		77: "roundup",
-		89: "mooncity",
+		60: &"personally",
+		77: &"roundup",
+		89: &"mooncity",
 	}
-	return dict.get(level, "")
+	return dict.get(level, &"")
 
 
 func flower_progress(inv: Array) -> int:

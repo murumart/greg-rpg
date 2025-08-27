@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://7nsyoq7ujyo4"]
+[gd_scene load_steps=6 format=4 uid="uid://7nsyoq7ujyo4"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_othvf"]
 [ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="2_t2a6i"]
 [ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="3_8y8sd"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="4_8y8sd"]
+[ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_578q8"]
 
 [node name="SgY3Side" instance=ExtResource("1_othvf")]
 
@@ -77,3 +78,18 @@ movable = true
 position = Vector2(-24, -16)
 my_color = Color(0, 0, 1, 1)
 direction = 1
+
+[node name="RoomGate3" parent="Areas" index="3" instance=ExtResource("5_578q8")]
+position = Vector2(-96, -339)
+destination = &"sg_b_2"
+gate_id = &"sg-b-2side"
+extents = Vector2i(32, 3)
+spawnpoint = Vector2i(0, 8)
+
+[node name="ColorRect" type="ColorRect" parent="." index="7"]
+z_index = -2
+offset_left = -137.0
+offset_top = -371.0
+offset_right = -52.0
+offset_bottom = -316.0
+color = Color(0, 0, 0, 1)
