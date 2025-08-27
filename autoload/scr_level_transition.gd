@@ -51,7 +51,10 @@ func change_scene_to(path: String, options := {}) -> void:
 		new_scene._option_init(options)
 
 	if options.get("free_player", true):
-		DAT.free_player("level_transition")
+		if options.get("free_delayed", true):
+			get_tree().create_timer(0.5).timeout.connect(DAT.free_player.bind("level_transition"))
+		else:
+			DAT.free_player("level_transition")
 
 	scene_changed.emit()
 
@@ -71,7 +74,10 @@ func level_transition(path: String, op := {}) -> void:
 		return
 	transitioning = true
 	DAT.capture_player("level_transition")
-	get_tree().call_group("free_on_level_transition", "queue_free")
+	for x in get_tree().get_nodes_in_group("free_on_level_transition"):
+		prints("i am", x, "and i am going to die now")
+		x.queue_free()
+	#get_tree().call_group("free_on_level_transition", "queue_free")
 	var fadetime: float = op.get("fade_time", 0.4)
 	SOL.fade_screen(
 		op.get("start_color", Color(0, 0, 0, 0)),
