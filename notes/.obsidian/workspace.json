@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SG gimmicks.md",
+                "file": "SG areas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SG gimmicks"
+              "title": "SG areas"
             }
           },
           {
@@ -232,7 +232,7 @@
     "Update goals.md",
     "Tarikas.md",
     "Notes.md",
-    "SG gimmicks.md",
+    "SG areas.md",
     "Bugs.md",
     "Pasted image 20250710193306.png",
     "Police.md",

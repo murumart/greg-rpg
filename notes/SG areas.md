@@ -1,6 +1,3 @@
-Extant gimmicks:
-	climbing
-	monster fights
 
 ## Area Y
 Rooms:

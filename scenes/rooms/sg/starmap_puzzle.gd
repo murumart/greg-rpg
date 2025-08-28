@@ -43,6 +43,7 @@ func _ready() -> void:
 		stars_left -= 1
 	for d in disks:
 		d.rotation_degrees = _rng.randf_range(25, 270)
+		_unrotate_children(d)
 	for x in disks.size():
 		_correct_num |= 1 << x
 	_highlight_disks()
@@ -85,6 +86,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_highlight_disks()
 	_rotate_disk(Input.get_axis(&"move_left", &"move_right"))
 	if _correct_disks == _correct_num:
+		print("starmapo done")
 		finished.emit()
 	get_window().set_input_as_handled()
 
@@ -107,8 +109,7 @@ func _rotate_disk(amt: float) -> void:
 	else:
 		_correct_disks &= ~(1 << _selected_disk)
 	_highlight_disks()
-	for c: Node2D in disk.get_children():
-		c.global_rotation = 0.0
+	_unrotate_children(disk)
 	clicking.play()
 
 
@@ -124,3 +125,9 @@ func _highlight_disks() -> void:
 		elif current:
 			color = Color.WHITE
 		disk.modulate = color
+
+
+func _unrotate_children(n: Node2D) -> void:
+	for c in n.get_children():
+		if c is Node2D:
+			c.global_rotation = 0.0

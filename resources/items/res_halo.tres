@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://bwerlf7ddt8fe"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_0sy26"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_hx036"]
+[ext_resource type="AudioStream" uid="uid://dil3xg2uy0bkx" path="res://sounds/spirit/spirit_equip.ogg" id="3_hx036"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="3_x26e7"]
+[ext_resource type="Texture2D" uid="uid://bt425ij7ysg6y" path="res://sprites/items/spr_halo.png" id="5_x26e7"]
+
+[sub_resource type="Resource" id="Resource_8ickq"]
+script = ExtResource("2_hx036")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 0.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 0.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 8.0
+speed_increase = 0.0
+gender = 0
+effects = Array[ExtResource("1_0sy26")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+
+[resource]
+script = ExtResource("3_x26e7")
+name_in_file = &""
+name = &"halo of the recluse"
+description = "provides great protection, despite being so light it's imperceptible."
+texture = ExtResource("5_x26e7")
+attack_animation = ""
+play_sound = ExtResource("3_hx036")
+price = -1
+use = 5
+consume_on_use = true
+payload = SubResource("Resource_8ickq")
+key = false

@@ -4047,6 +4047,17 @@ DIALOGUE sg_b_lore_2
 	%SG...until you make time for them to become real.
 
 
+DIALOGUE sg_b_armor_hint
+	%SGGood job weaving yourself between all those visibility cones...
+	%SG...huh...? You came from the other direction?
+	%SGWell... 
+	%SGMaybe I shouldn't spoil your surprise of the SECRET ARMOUR, then...
+
+
+DIALOGUE sg_b_armor_hint_2
+	%SG...what secret armor? I'm just a cat. Meow.
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

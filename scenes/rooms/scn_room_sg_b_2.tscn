@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b1s4gnstvpifu"]
+[gd_scene load_steps=10 format=4 uid="uid://b1s4gnstvpifu"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_pp2qq"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="2_jtdha"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfr350mfo0asg" path="res://scenes/rooms/sg/starmap_puzzle.tscn" id="4_skqc1"]
 [ext_resource type="PackedScene" uid="uid://560xc7yjtkcs" path="res://scenes/rooms/grandma_house/gdung_objects/flower_33.tscn" id="4_wekcw"]
 [ext_resource type="Script" uid="uid://d32pjvcbynmf5" path="res://scenes/rooms/sg/b2_obstacles.gd" id="5_ayxt5"]
+[ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="5_yb6qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skqc1"]
 size = Vector2(16, 64)
@@ -44,24 +45,65 @@ gate_id = &"sg-b-2side"
 extents = Vector2i(31, 2)
 spawnpoint = Vector2i(0, 6)
 
-[node name="Starmap" parent="Areas" index="3" node_paths=PackedStringArray("disks", "camera") instance=ExtResource("4_skqc1")]
+[node name="Starmap1" parent="Areas" index="3" node_paths=PackedStringArray("disks", "camera") instance=ExtResource("4_skqc1")]
+unique_name_in_owner = true
 position = Vector2(32, -208)
 star_count = 20
 radius = 48
 disks = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3")]
 camera = NodePath("../../Greg/Camera")
 
-[node name="InteractionArea" parent="Areas/Starmap" index="0"]
+[node name="InteractionArea" parent="Areas/Starmap1" index="0"]
 position = Vector2(0, 24)
 
-[node name="CollisionShape2D" parent="Areas/Starmap/InteractionArea" index="0"]
+[node name="CollisionShape2D" parent="Areas/Starmap1/InteractionArea" index="0"]
 position = Vector2(0, 33)
 
-[node name="Node2D" type="Node2D" parent="Areas/Starmap" index="3"]
+[node name="Node2D" type="Node2D" parent="Areas/Starmap1" index="3"]
 
-[node name="Node2D2" type="Node2D" parent="Areas/Starmap" index="4"]
+[node name="Node2D2" type="Node2D" parent="Areas/Starmap1" index="4"]
 
-[node name="Node2D3" type="Node2D" parent="Areas/Starmap" index="5"]
+[node name="Node2D3" type="Node2D" parent="Areas/Starmap1" index="5"]
+
+[node name="Starmap2" parent="Areas" index="4" node_paths=PackedStringArray("disks", "camera") instance=ExtResource("4_skqc1")]
+unique_name_in_owner = true
+position = Vector2(176, -143)
+star_count = 20
+radius = 32
+disks = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3"), NodePath("Node2D4")]
+camera = NodePath("../../Greg/Camera")
+
+[node name="InteractionArea" parent="Areas/Starmap2" index="0"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" parent="Areas/Starmap2/InteractionArea" index="0"]
+position = Vector2(0, 33)
+
+[node name="Node2D" type="Node2D" parent="Areas/Starmap2" index="3"]
+
+[node name="Node2D2" type="Node2D" parent="Areas/Starmap2" index="4"]
+
+[node name="Node2D3" type="Node2D" parent="Areas/Starmap2" index="5"]
+
+[node name="Node2D4" type="Node2D" parent="Areas/Starmap2" index="6"]
+
+[node name="TrashBin" parent="Areas" index="5" instance=ExtResource("5_yb6qr")]
+position = Vector2(216, 113)
+replenish_minutes = -1
+replenish_seconds = -60
+item = &"mueslibar"
+
+[node name="TrashBin2" parent="Areas" index="6" instance=ExtResource("5_yb6qr")]
+position = Vector2(232, -30)
+replenish_minutes = -1
+replenish_seconds = -60
+item = &"fire_cracker"
+
+[node name="TrashBin3" parent="Areas" index="7" instance=ExtResource("5_yb6qr")]
+position = Vector2(360, 125)
+replenish_minutes = -1
+replenish_seconds = -60
+item = &"porridge"
 
 [node name="ColorRect" type="ColorRect" parent="." index="7"]
 z_index = -2
@@ -125,4 +167,5 @@ position = Vector2(209, 61)
 [node name="Flower1" parent="Decor/More" index="1" instance=ExtResource("3_lpjjg")]
 position = Vector2(176, 63)
 
-[editable path="Areas/Starmap"]
+[editable path="Areas/Starmap1"]
+[editable path="Areas/Starmap2"]
