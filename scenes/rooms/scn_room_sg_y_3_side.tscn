@@ -1,14 +1,20 @@
-[gd_scene load_steps=10 format=4 uid="uid://7nsyoq7ujyo4"]
+[gd_scene load_steps=14 format=4 uid="uid://7nsyoq7ujyo4"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_othvf"]
 [ext_resource type="PackedScene" uid="uid://b2j5cwgvjb6f2" path="res://scenes/decor/sgpuzzle/light_target_block.tscn" id="2_t2a6i"]
 [ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="3_8y8sd"]
+[ext_resource type="Script" uid="uid://binfiuu1rtbwm" path="res://scenes/rooms/sg/y3_side_puzzle.gd" id="3_37uxk"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="4_8y8sd"]
+[ext_resource type="Script" uid="uid://c6gv482owpujf" path="res://code/save_positions.gd" id="4_p60yb"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="5_578q8"]
 [ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="6_o6nyk"]
 [ext_resource type="PackedScene" uid="uid://dntjjltefm2ch" path="res://scenes/rooms/forest/forest_objects/puzzle_column.tscn" id="7_314bg"]
 [ext_resource type="Script" uid="uid://bv1y20wxxcs4m" path="res://scenes/rooms/sg/b2_puzzle_2.gd" id="7_hygh1"]
 [ext_resource type="Resource" uid="uid://cn6bwhpq8b1rl" path="res://resources/items/res_soda.tres" id="8_yaxyd"]
+[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="10_rx4ni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rx4ni"]
+size = Vector2(20, 19)
 
 [node name="SgY3Side" instance=ExtResource("1_othvf")]
 
@@ -16,7 +22,7 @@
 song_pitch = 0.945
 
 [node name="COLLISION" parent="COLLISION" index="0"]
-tile_map_data = PackedByteArray("AAD2//T/AAAPAA8AAAD2//X/AAAPAA8AAAD2//b/AAAPAA8AAAD2//f/AAAPAA8AAAD1//f/AAAPAA8AAAD1//n/AAAPAA8AAAD2//n/AAAPAA8AAAD2//r/AAAPAA8AAAD3//r/AAAPAA8AAAD4//r/AAAPAA8AAAD4//v/AAAPAA8AAAD4//z/AAAPAA8AAAD4//3/AAAPAA8AAAD4//7/AAAPAA8AAAD7//7/AAAPAA8AAAD7//3/AAAPAA8AAAD7//z/AAAPAA8AAAD7//v/AAAPAA8AAAD7//r/AAAPAA8AAAD8//r/AAAPAA8AAAD9//r/AAAPAA8AAAD+//n/AAAPAA8AAAD+//j/AAAPAA8AAAD9//j/AAAPAA8AAAD9//f/AAAPAA8AAAD9//b/AAAPAA8AAAD9//X/AAAPAA8AAAD9//T/AAAPAA8AAAD9//P/AAAPAA8AAAD8//P/AAAPAA8AAAD7//P/AAAPAA8AAAD6//P/AAAPAA8AAAD5//P/AAAPAA8AAAD4//P/AAAPAA8AAAD3//P/AAAPAA8AAAD2//P/AAAPAA8AAAD0//f/AAAPAA8AAAD0//j/AAAPAA8AAAD0//n/AAAPAA8AAAD4////AAAPAA8AAAD4/wAAAAAPAA8AAAD5/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD7////AAAPAA8AAAD4/+v/AAAPAA8AAAD4/+r/AAAPAA8AAAD5/+r/AAAPAA8AAAD6/+r/AAAPAA8AAAD7/+r/AAAPAA8AAAD7/+v/AAAPAA8AAAD3/+z/AAAPAA8AAAD2/+z/AAAPAA8AAAD1/+3/AAAPAA8AAAD0/+3/AAAPAA8AAAD1/+z/AAAPAA8AAAD8/+z/AAAPAA8AAAD9/+z/AAAPAA8AAAD+/+z/AAAPAA8AAAD+/+3/AAAPAA8AAAD8/+v/AAAPAA8AAAD3/+v/AAAPAA8AAAD//+3/AAAPAA8AAAAAAO3/AAAPAA8AAAABAO3/AAAPAA8AAAACAO3/AAAPAA8AAAADAO3/AAAPAA8AAAAEAO3/AAAPAA8AAAD+//D/AAAPAA8AAAD///D/AAAPAA8AAAAAAPD/AAAPAA8AAAABAPD/AAAPAA8AAAACAPD/AAAPAA8AAAADAPD/AAAPAA8AAAAEAPD/AAAPAA8AAAD+//H/AAAPAA8AAAD9//H/AAAPAA8AAAD8//H/AAAPAA8AAAD7//H/AAAPAA8AAAD6//H/AAAPAA8AAAD5//H/AAAPAA8AAAD4//H/AAAPAA8AAAD3//H/AAAPAA8AAAD2//H/AAAPAA8AAAD1//D/AAAPAA8AAAD1//H/AAAPAA8AAAD1//L/AAAPAA8AAAD1//P/AAAPAA8AAAD1//T/AAAPAA8AAAD1//X/AAAPAA8AAAD1//b/AAAPAA8AAAD0//b/AAAPAA8AAADz//b/AAAPAA8AAADy//b/AAAPAA8AAADx//b/AAAPAA8AAADw//T/AAAPAA8AAADx//T/AAAPAA8AAADy//T/AAAPAA8AAADz//T/AAAPAA8AAADz//P/AAAPAA8AAADz//L/AAAPAA8AAADz//H/AAAPAA8AAADz//D/AAAPAA8AAADz/+//AAAPAA8AAADz/+7/AAAPAA8AAADz/+3/AAAPAA8AAADw//X/AAAPAA8AAADw//b/AAAPAA8AAAA=")
+tile_map_data = PackedByteArray("AAD2//T/AAAPAA8AAAD2//X/AAAPAA8AAAD2//b/AAAPAA8AAAD2//f/AAAPAA8AAAD1//f/AAAPAA8AAAD1//n/AAAPAA8AAAD2//n/AAAPAA8AAAD2//r/AAAPAA8AAAD3//r/AAAPAA8AAAD4//r/AAAPAA8AAAD4//v/AAAPAA8AAAD4//z/AAAPAA8AAAD4//3/AAAPAA8AAAD4//7/AAAPAA8AAAD7//7/AAAPAA8AAAD7//3/AAAPAA8AAAD7//z/AAAPAA8AAAD7//v/AAAPAA8AAAD7//r/AAAPAA8AAAD8//r/AAAPAA8AAAD9//r/AAAPAA8AAAD+//n/AAAPAA8AAAD+//j/AAAPAA8AAAD9//j/AAAPAA8AAAD9//f/AAAPAA8AAAD9//b/AAAPAA8AAAD9//X/AAAPAA8AAAD9//T/AAAPAA8AAAD9//P/AAAPAA8AAAD8//P/AAAPAA8AAAD7//P/AAAPAA8AAAD6//P/AAAPAA8AAAD5//P/AAAPAA8AAAD4//P/AAAPAA8AAAD3//P/AAAPAA8AAAD2//P/AAAPAA8AAAD0//f/AAAPAA8AAAD0//j/AAAPAA8AAAD0//n/AAAPAA8AAAD4////AAAPAA8AAAD4/wAAAAAPAA8AAAD5/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD7////AAAPAA8AAAD4/+v/AAAPAA8AAAD4/+r/AAAPAA8AAAD5/+r/AAAPAA8AAAD6/+r/AAAPAA8AAAD7/+r/AAAPAA8AAAD7/+v/AAAPAA8AAAD3/+z/AAAPAA8AAAD2/+z/AAAPAA8AAAD1/+3/AAAPAA8AAAD0/+3/AAAPAA8AAAD1/+z/AAAPAA8AAAD8/+z/AAAPAA8AAAD9/+z/AAAPAA8AAAD+/+z/AAAPAA8AAAD+/+3/AAAPAA8AAAD8/+v/AAAPAA8AAAD3/+v/AAAPAA8AAAD//+3/AAAPAA8AAAAAAO3/AAAPAA8AAAABAO3/AAAPAA8AAAADAO3/AAAPAA8AAAAEAO3/AAAPAA8AAAD+//D/AAAPAA8AAAD///D/AAAPAA8AAAAAAPD/AAAPAA8AAAABAPD/AAAPAA8AAAACAPD/AAAPAA8AAAADAPD/AAAPAA8AAAAEAPD/AAAPAA8AAAD+//H/AAAPAA8AAAD9//H/AAAPAA8AAAD8//H/AAAPAA8AAAD7//H/AAAPAA8AAAD6//H/AAAPAA8AAAD5//H/AAAPAA8AAAD4//H/AAAPAA8AAAD3//H/AAAPAA8AAAD2//H/AAAPAA8AAAD1//D/AAAPAA8AAAD1//H/AAAPAA8AAAD1//L/AAAPAA8AAAD1//P/AAAPAA8AAAD1//T/AAAPAA8AAAD1//X/AAAPAA8AAAD1//b/AAAPAA8AAAD0//b/AAAPAA8AAADz//b/AAAPAA8AAADy//b/AAAPAA8AAADx//b/AAAPAA8AAADw//T/AAAPAA8AAADx//T/AAAPAA8AAADy//T/AAAPAA8AAADz//T/AAAPAA8AAADz//P/AAAPAA8AAADz//L/AAAPAA8AAADz//H/AAAPAA8AAADz//D/AAAPAA8AAADz/+//AAAPAA8AAADz/+7/AAAPAA8AAADz/+3/AAAPAA8AAADw//X/AAAPAA8AAADw//b/AAAPAA8AAAAFAO3/AAAPAA8AAAAFAO7/AAAPAA8AAAAFAO//AAAPAA8AAAAFAPD/AAAPAA8AAAD+//r/AAAPAA8AAAABAOz/AAAPAA8AAAABAOv/AAAPAA8AAAACAOv/AAAPAA8AAAADAOv/AAAPAA8AAAADAOz/AAAPAA8AAAA=")
 
 [node name="Floor" parent="." index="3"]
 tile_map_data = PackedByteArray("AAD6//3/AAADAAEAAAD6//z/AAADAAEAAAD6//v/AAADAAEAAAD5//v/AAABAAEAAAD5//z/AAABAAEAAAD5//3/AAABAAEAAAD5//7/AAABAAEAAAD6//7/AAADAAEAAAD5//r/AAABAAEAAAD6//r/AAADAAEAAAD4//n/AAACAAIAAAD5//n/AAACAAEAAAD6//n/AAACAAEAAAD7//n/AAACAAIAAAD8//n/AAACAAIAAAD9//n/AAADAAMAAAD8//j/AAADAAEAAAD7//j/AAACAAEAAAD6//j/AAACAAEAAAD5//j/AAACAAEAAAD4//j/AAAEAAAAAAD3//j/AAAEAAAAAAD2//j/AAABAAMAAAD3//n/AAABAAIAAAD3//f/AAABAAEAAAD3//b/AAABAAEAAAD3//X/AAABAAEAAAD3//T/AAABAAAAAAD4//T/AAACAAAAAAD5//T/AAACAAAAAAD5//X/AAACAAEAAAD6//X/AAAEAAAAAAD7//X/AAACAAEAAAD8//X/AAADAAEAAAD8//b/AAADAAEAAAD8//f/AAADAAEAAAD7//f/AAACAAEAAAD6//f/AAAEAAAAAAD5//f/AAACAAEAAAD4//f/AAACAAEAAAD4//b/AAAEAAAAAAD4//X/AAACAAEAAAD5//b/AAAEAAAAAAD6//b/AAAEAAAAAAD7//b/AAAEAAAAAAD6//T/AAACAAAAAAD7//T/AAACAAAAAAD8//T/AAADAAAAAAD5////AAABAAEAAAD6////AAADAAEAAAD6/wAAAAADAAEAAAD6/wEAAAADAAEAAAD6/wIAAAADAAEAAAD6/wMAAAADAAEAAAD6/wQAAAADAAEAAAD5/wAAAAABAAEAAAD5/wEAAAABAAEAAAD5/wIAAAABAAEAAAD5/wMAAAABAAEAAAD5/wQAAAABAAEAAAD6/wUAAAADAAIAAAD5/wUAAAABAAIAAAD5/+v/AAABAAAAAAD5/+z/AAABAAEAAAD5/+3/AAACAAEAAAD6/+v/AAADAAAAAAD6/+z/AAADAAEAAAD6/+3/AAACAAEAAAD4/+3/AAABAAAAAAD4/+7/AAAEAAAAAAD3/+7/AAACAAAAAAD3/+//AAACAAIAAAD4/+//AAACAAIAAAD5/+//AAACAAIAAAD5/+7/AAAEAAAAAAD6/+7/AAACAAEAAAD6/+//AAACAAIAAAD7/+//AAACAAIAAAD7/+7/AAAEAAAAAAD7/+3/AAADAAAAAAD8/+//AAACAAIAAAD8/+7/AAACAAAAAAD9/+//AAADAAIAAAD9/+7/AAADAAAAAAD2/+7/AAACAAAAAAD1/+7/AAACAAAAAAD2/+//AAACAAIAAAD0/+7/AAABAAAAAAD0/+//AAABAAEAAAD0//D/AAAAAAEAAAD0//H/AAAAAAEAAAD0//L/AAAAAAEAAAD0//P/AAAAAAEAAAD0//T/AAAAAAEAAAD1/+//AAACAAIAAAD0//X/AAADAAIAAADz//X/AAACAAMAAADy//X/AAACAAMAAADx//X/AAABAAMAAAA=")
@@ -43,11 +49,17 @@ gate_id = &"non"
 [node name="Puzzle" type="Node2D" parent="Areas" index="2"]
 y_sort_enabled = true
 position = Vector2(-96, -152)
+script = ExtResource("3_37uxk")
 
-[node name="LightTargetBlock" parent="Areas/Puzzle" index="0" instance=ExtResource("2_t2a6i")]
+[node name="SaveNodePositions" type="Node" parent="Areas/Puzzle" index="0" node_paths=PackedStringArray("save_these")]
+script = ExtResource("4_p60yb")
+save_these = [NodePath("../LightEmitterBlock3"), NodePath("../LightEmitterBlock2"), NodePath("../LightEmitterBlock")]
+metadata/_custom_type_script = "uid://c6gv482owpujf"
+
+[node name="LightTargetBlock" parent="Areas/Puzzle" index="1" instance=ExtResource("2_t2a6i")]
 position = Vector2(-72, 32)
 
-[node name="LightEmitterBlock" parent="Areas/Puzzle" index="1" instance=ExtResource("3_8y8sd")]
+[node name="LightEmitterBlock" parent="Areas/Puzzle" index="2" instance=ExtResource("3_8y8sd")]
 position = Vector2(8, 32)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -56,23 +68,31 @@ role = 1
 movable = true
 available_directions = 5
 
-[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="2" instance=ExtResource("3_8y8sd")]
+[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="3" instance=ExtResource("3_8y8sd")]
 position = Vector2(-24, 16)
 my_color = Color(1, 0, 0, 1)
 direction = -1
 movable = true
 available_directions = 10
 
-[node name="LightEmitterBlock3" parent="Areas/Puzzle" index="3" instance=ExtResource("3_8y8sd")]
+[node name="LightEmitterBlock3" parent="Areas/Puzzle" index="4" instance=ExtResource("3_8y8sd")]
 position = Vector2(24, -32)
 my_color = Color(0, 1, 0, 1)
 direction = 2
 movable = true
 
-[node name="LightEmitterBlock4" parent="Areas/Puzzle" index="4" instance=ExtResource("3_8y8sd")]
+[node name="LightEmitterBlock4" parent="Areas/Puzzle" index="5" instance=ExtResource("3_8y8sd")]
 position = Vector2(-24, -16)
 my_color = Color(0, 0, 1, 1)
 direction = 1
+
+[node name="Itemblocker" type="StaticBody2D" parent="Areas/Puzzle" index="6"]
+position = Vector2(136, -145)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle/Itemblocker" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_rx4ni")
 
 [node name="RoomGate3" parent="Areas" index="3" instance=ExtResource("5_578q8")]
 position = Vector2(-96, -339)
@@ -93,6 +113,13 @@ script = ExtResource("7_hygh1")
 position = Vector2(80, 0)
 custom_puzzle_size = 3
 custom_puzzle_reward = ExtResource("8_yaxyd")
+
+[node name="HaloItem" parent="Areas" index="6" instance=ExtResource("10_rx4ni")]
+visible = false
+modulate = Color(1, 1, 1, 0.447059)
+position = Vector2(40, -310)
+item_type = &"halo"
+save = true
 
 [node name="ColorRect" type="ColorRect" parent="." index="7"]
 z_index = -2

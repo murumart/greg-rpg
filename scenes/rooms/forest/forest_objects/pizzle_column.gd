@@ -53,7 +53,7 @@ func _play_game() -> void:
 	puzzle.finished.connect(func(won: bool):
 		if is_instance_valid(SND.current_song_player):
 			var tw := create_tween()
-			tw.tween_property(SND.current_song_player, "pitch_scale", 1.0, 2.0)
+			tw.tween_property(SND.current_song_player, "pitch_scale", SND.current_song_player.pitch_scale * 1.136363636, 2.0)
 		SOL.remove_ui_child(puzzle)
 		DAT.free_player("sliding_puzzle")
 		if won:

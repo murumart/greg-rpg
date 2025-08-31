@@ -28,7 +28,7 @@ func _ready() -> void:
 	pointer.size = Math.v2(get_piece_size())
 	if is_instance_valid(SND.current_song_player):
 		var tw := create_tween()
-		tw.tween_property(SND.current_song_player, "pitch_scale", 0.88, 0.6)
+		tw.tween_property(SND.current_song_player, "pitch_scale", SND.current_song_player.pitch_scale * 0.88, 0.6)
 	clear()
 	_generate_puzzleboard()
 	_shuffle()
