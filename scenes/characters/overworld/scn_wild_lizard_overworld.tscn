@@ -207,14 +207,12 @@ script = ExtResource("2_4xx1x")
 animated_sprite = NodePath("AnimatedSprite2D")
 movement_wait = 0.5
 random_movement = true
+chase_distance = 40
 interact_on_touch = true
 save = false
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_viuke")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_bmsf5")

@@ -365,7 +365,10 @@ func _connect_pizzle_finish(a: PizzleColumn) -> void:
 	if not a.active:
 		a.add_to_group("forest_curiosities")
 	a.finished.connect(forest.hud.update_exp_display)
-	a.finished.connect(a.remove_from_group.bind("forest_curiosities"))
+	a.finished.connect(func() -> void:
+		if a.active:
+			a.remove_from_group("forest_curiosities")
+	)
 
 
 const Pole = preload("res://scenes/decor/scr_utilitypole.gd")

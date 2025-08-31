@@ -163,7 +163,7 @@ size = Vector2(14, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
 
-[node name="Puzzles" type="StaticBody2D" node_paths=PackedStringArray("interaction_area")]
+[node name="PizzleColumn" type="StaticBody2D" node_paths=PackedStringArray("interaction_area")]
 collision_mask = 0
 script = ExtResource("1_ruw20")
 puzzle_size_curve = SubResource("Curve_ioxsh")

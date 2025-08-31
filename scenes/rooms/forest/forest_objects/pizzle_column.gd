@@ -2,10 +2,37 @@ extends "res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd"
 
 const SlidingPuzzleLoad := preload("res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.tscn")
 
+@export_group("Forest")
 @export var puzzle_size_curve: Curve
 @export var puzzle_items: Array[KeyCurve] = []
 
+@export_group("Custom", "custom_")
+@export_range(-1, 5) var custom_puzzle_size := -1
+@export var custom_puzzle_reward: Resource
+@export var custom_puzzle_image: Texture
+@export var custom_finished: bool:
+	set(to): DAT.set_data(_key_custom() + "finished", to)
+	get: return DAT.get_data(_key_custom() + "finished", false)
+
 var rewards := BattleRewards.new()
+var puzzle: Node
+
+
+func _ready() -> void:
+	super()
+	assert(custom_puzzle_reward == null or custom_puzzle_reward is Item or custom_puzzle_reward is Spirit)
+	if custom_finished:
+		active = true
+		return
+	puzzle = SlidingPuzzleLoad.instantiate()
+	var level: float = (DAT.get_data("forest_depth", 0)) * 0.01
+	puzzle.puzzle_size = roundi(puzzle_size_curve.sample_baked(level)) if custom_puzzle_size == -1 else custom_puzzle_size
+	_pick_item(puzzle, level)
+
+
+func _exit_tree() -> void:
+	if is_instance_valid(puzzle):
+		puzzle.queue_free()
 
 
 func _interacted() -> void:
@@ -19,30 +46,44 @@ func _interacted() -> void:
 
 
 func _play_game() -> void:
-	active = true
 	$AudioStreamPlayer.play()
-	var puzzle := SlidingPuzzleLoad.instantiate()
-	var level := (DAT.get_data("forest_depth", 0) as int) * 0.01
-	puzzle.puzzle_size = roundi(puzzle_size_curve.sample_baked(level))
-	_pick_item(puzzle)
 	DAT.capture_player("sliding_puzzle")
 	SOL.add_ui_child(puzzle)
+	puzzle.request_ready()
 	puzzle.finished.connect(func(won: bool):
 		if is_instance_valid(SND.current_song_player):
 			var tw := create_tween()
 			tw.tween_property(SND.current_song_player, "pitch_scale", 1.0, 2.0)
-		puzzle.queue_free()
+		SOL.remove_ui_child(puzzle)
 		DAT.free_player("sliding_puzzle")
 		if won:
 			rewards.grant(true)
-		self.finished.emit()
-	)
+			if custom_puzzle_size != -1:
+				custom_finished = true
+			active = true
+			self.finished.emit()
+	, CONNECT_ONE_SHOT)
 
 
-func _pick_item(puzzle: SlidingPuzzle) -> void:
+func _pick_item(puzzle: SlidingPuzzle, level: float) -> void:
 	rewards.clear()
+	if custom_puzzle_reward:
+
+		if custom_puzzle_reward is Item:
+			rewards.add(Reward.new()
+				.stype(BattleRewards.Types.ITEM)
+				.sproperty(custom_puzzle_reward.name_in_file))
+
+			puzzle.image_texture = custom_puzzle_reward.texture
+		elif custom_puzzle_reward is Spirit:
+			rewards.add(Reward.new()
+				.stype(BattleRewards.Types.SPIRIT)
+				.sproperty(custom_puzzle_reward.name_in_file))
+
+		if custom_puzzle_image:
+			puzzle.image_texture = custom_puzzle_image
+		return
 	const ITEM_CHANCES := ForestGenerator.BIN_LOOT
-	var level := (DAT.get_data("forest_depth", 0) as int) * 0.01
 	var chosen_thing: StringName
 	puzzle_items.shuffle()
 	for kkp: KeyCurve in puzzle_items:
@@ -75,3 +116,7 @@ func _pick_item(puzzle: SlidingPuzzle) -> void:
 
 static func _kn() -> String:
 	return "pizzle_column"
+
+
+func _key_custom() -> StringName:
+	return _kn() + "_in_" + LTS.get_current_scene().name + "_"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b86f65y4e0huw"]
+[gd_scene load_steps=29 format=3 uid="uid://b86f65y4e0huw"]
 
 [ext_resource type="Script" uid="uid://dvkemvv7le4bq" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="2_8mtsu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_rjc4u"]
 [ext_resource type="Material" uid="uid://bjmchbs1h5tdo" path="res://scenes/rooms/forest/sliding_puzzle/rock_pizzle_piece_material.tres" id="4_j12ag"]
 [ext_resource type="AudioStream" uid="uid://bb68kmsibhghu" path="res://sounds/gui/rock_slide.tres" id="6_3rd5m"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="6_ecxor"]
 [ext_resource type="AudioStream" uid="uid://dchtql6dfhy7p" path="res://sounds/gui/move_slide_selection.ogg" id="7_diur1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyuj7"]
@@ -389,11 +390,14 @@ offset_bottom = 12.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mbj7c")
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
 offset_left = 9.0
 offset_top = 103.0
 offset_right = 49.0
 offset_bottom = 111.0
-text = "press [cancel] to give up"
+theme_override_fonts/font = ExtResource("6_ecxor")
+theme_override_font_sizes/font_size = 6
+text = "press [cancel] to exit"
 
 [node name="RockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_3rd5m")

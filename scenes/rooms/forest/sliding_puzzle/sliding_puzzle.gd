@@ -44,7 +44,7 @@ func _unhandled_key_input(_event: InputEvent) -> void:
 	if not state == States.PLAYING:
 		return
 	if Input.is_action_just_pressed("cancel") and time > 1.0:
-		_lose()
+		_exit()
 		return
 	_select_tiles()
 	_move_tiles()
@@ -87,12 +87,12 @@ func _win() -> void:
 	finished.emit(true)
 
 
-func _lose() -> void:
+func _exit() -> void:
 	state = States.SOMETHING_ELSE
 	await get_tree().process_frame
-	SND.play_sound(preload("res://sounds/pennistong/pennistong_lose.ogg"))
-	SOL.dialogue("sliding_puzzle_lose")
-	await SOL.dialogue_closed
+	#SND.play_sound(preload("res://sounds/pennistong/pennistong_lose.ogg"))
+	#SOL.dialogue("sliding_puzzle_lose")
+	#await SOL.dialogue_closed
 	finished.emit(false)
 
 

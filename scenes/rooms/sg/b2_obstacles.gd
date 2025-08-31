@@ -6,7 +6,7 @@ extends Node2D
 	$Obs3,
 ]
 
-var obstacles_cleared: int:
+static var obstacles_cleared: int:
 	get: return DAT.get_data("sg_b_2_obstacles_cleared", 0)
 	set(to): DAT.set_data("sg_b_2_obstacles_cleared", to)
 

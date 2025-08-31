@@ -95,6 +95,13 @@ func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := tru
 	node2d.add_child(node)
 
 
+func remove_ui_child(node: Node) -> void:
+	var prnt := node.get_parent()
+	assert(is_ancestor_of(prnt))
+	prnt.remove_child(node)
+	prnt.queue_free()
+
+
 func move_ui_child(child: Node, position: int) -> void:
 	move_child(child.get_parent(), position)
 

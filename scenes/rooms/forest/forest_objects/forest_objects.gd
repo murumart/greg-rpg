@@ -79,14 +79,14 @@ const DB = {
 		WEIGHT: 56,
 		LIMIT: 1,
 		FUNCTION: &"_connect_pizzle_finish",
-		MIN_ROOM: 5,
+		MIN_ROOM: 4,
 	},
 	&"yellow_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/yellow_column.tscn"),
 		SIZE: Vector2i(2, 2),
 		WEIGHT: 55,
 		LIMIT: 1,
-		MIN_ROOM: 5,
+		MIN_ROOM: 4,
 	},
 	&"purple_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/purple_column.tscn"),
@@ -98,9 +98,9 @@ const DB = {
 	&"saleskid": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/saleskid.tscn"),
 		SIZE: Vector2i(3, 3),
-		WEIGHT: 800,
+		WEIGHT: 120,
 		LIMIT: 1,
-		MIN_ROOM: 5,
+		MIN_ROOM: 3,
 	},
 	&"lime_head": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/lime_head.tscn"),
@@ -119,7 +119,7 @@ const DB = {
 		SIZE: Vector2i(1, 1),
 		WEIGHT: 120,
 		LIMIT: 1,
-		MIN_ROOM: 3,
+		MIN_ROOM: 5,
 	},
 }
 
