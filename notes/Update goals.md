@@ -106,6 +106,7 @@
 		- [ ] flower freaks
 		- [ ] cat freaks
 	- [ ] Central room, Three away-ways (Secret Garden? OS hideout)
+		- [ ] Zerma call explains no reach in these rooms
 		- [ ] Three keys to grandma's room
 		- [ ] Lots of filler in the directions to make them feel longer
 		- [ ] Direction one
@@ -116,14 +117,12 @@
 				- [x] Get beam in correct place
 			- [ ] Dodge sun action sequence
 			- [ ] Dodge rotating beams (SHIT IM MKING DELTATUNRE)
-			- [ ] Zerma call
 		- [ ] Direcvtion 2
 			- [ ] Starlight theme
 			Growth inside only
 			- [ ] Rotate circle to match up dots puzzle
 			- [ ] Dodge floating stars
 				- [ ] Advances: parallax, rotating
-			- [ ] Zerma call
 		- [ ] Direction three
 			- [ ] Life/love theme
 			Growth outside only
@@ -131,7 +130,6 @@
 				- [ ] MAKE IT CLEAR DECREASED QUALITY IS INTENTIONAL
 			- [ ] Color matching puzzle..?
 				- [ ] Bring correct color water to correct plant to proceed (timed)
-			- [ ] Zerma call
 	- [ ] Grandma bossfight changes
 		- [ ] Make it shorter
 		- [ ] Make it a bit too easy
@@ -145,8 +143,8 @@
 		- [ ] bouncy speech bubble
 		- [ ] scary sounds
 	- [ ] Enemy
-		- [ ] First phase is normal fight but you do like no damage
-		- [ ] Spirit resistance that you wear down
+		- [ ] 
+		- [ ] Spirit resistance that you wear down thru minigames![[bossui.png]]
 			- [ ] minigames
 				- [ ] they should get more difficult as you repeat them
 				- [ ] Fishing minigame

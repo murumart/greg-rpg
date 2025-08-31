@@ -77,8 +77,7 @@
               "title": "Notes"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -135,8 +134,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "d64cebf859fc370a",
@@ -227,12 +225,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2292fc5d39da9a55",
+  "active": "0cfbe9572ff8bd75",
   "lastOpenFiles": [
+    "bossui.png",
+    "SG areas.md",
     "Update goals.md",
     "Tarikas.md",
     "Notes.md",
-    "SG areas.md",
     "Bugs.md",
     "Pasted image 20250710193306.png",
     "Police.md",
