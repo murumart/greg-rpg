@@ -353,7 +353,7 @@ alpha_curve = SubResource("CurveTexture_gmn5d")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.381231, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_0f2ra"]
+[sub_resource type="CurveTexture" id="CurveTexture_mcyet"]
 width = 64
 curve = SubResource("Curve_h70vx")
 
@@ -364,7 +364,7 @@ emission_box_extents = Vector3(400, 160, 1)
 spread = 180.0
 initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_0f2ra")
+alpha_curve = SubResource("CurveTexture_mcyet")
 
 [node name="SgY3" instance=ExtResource("1_6m64o")]
 

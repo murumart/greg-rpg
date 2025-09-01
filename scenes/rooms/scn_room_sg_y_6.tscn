@@ -64,64 +64,64 @@ size = Vector2(17, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22jmq"]
 size = Vector2(26, 14)
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_37x7o"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mdtew"]
 input_name = "color"
 
-[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_37x7o"]
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_i1uaj"]
 operator = 7
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_q51rc"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_7v8nn"]
 parameter_name = "time_speed"
 default_value_enabled = true
 default_value = 1.0
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_37x7o"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_g6sgi"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7dhdc"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_frwj1"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(4, 4, 4, 0)]
 op_type = 2
 operator = 5
 
-[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_jxygn"]
+[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_4oxev"]
 constant = Quaternion(2, 2, 32, 1)
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o5xte"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_57mjj"]
 source = 2
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0f2ra"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0qmvf"]
 input_name = "uv"
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_q51rc"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_s1mdk"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 operator = 2
 
-[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_uubkb"]
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_23nj7"]
 size = Vector2(460, 360)
 expression = "yuuvee = vec2(
 	sin(time),
 	cos(time)
 );"
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_37x7o"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_fcesj"]
 default_input_values = [1, Vector2(-1, -1), 2, Vector2(1, 1), 3, Vector2(0.9, 0.9), 4, Vector2(1.1, 1.1), 0, Vector2(0, 0)]
 op_type = 1
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qix36"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_afq6q"]
 input_name = "time"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tqfuu"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_br2pi"]
 source = 2
 
-[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_gaxul"]
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_y274g"]
 default_input_values = [1, 0.2, 2, 0.0, 3, 0.05, 4, 0.02, 5, 1.0, 6, 0.0]
 initialized = true
 script = ExtResource("12_lrnl8")
 
-[sub_resource type="VisualShader" id="VisualShader_p8wkl"]
+[sub_resource type="VisualShader" id="VisualShader_e6a2e"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -254,31 +254,31 @@ graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
-nodes/fragment/7/node = SubResource("VisualShaderNodeInput_qix36")
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_afq6q")
 nodes/fragment/7/position = Vector2(-1500, 660)
-nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_tqfuu")
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_br2pi")
 nodes/fragment/8/position = Vector2(-80, 360)
-nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_gaxul")
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_y274g")
 nodes/fragment/9/position = Vector2(-340, 280)
-nodes/fragment/10/node = SubResource("VisualShaderNodeInput_37x7o")
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_mdtew")
 nodes/fragment/10/position = Vector2(-240, 120)
-nodes/fragment/11/node = SubResource("VisualShaderNodeColorOp_37x7o")
+nodes/fragment/11/node = SubResource("VisualShaderNodeColorOp_i1uaj")
 nodes/fragment/11/position = Vector2(760, 300)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_q51rc")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_7v8nn")
 nodes/fragment/12/position = Vector2(-780, 440)
-nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_37x7o")
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_g6sgi")
 nodes/fragment/14/position = Vector2(320, 280)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_7dhdc")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_frwj1")
 nodes/fragment/15/position = Vector2(300, 560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeVec4Constant_jxygn")
+nodes/fragment/16/node = SubResource("VisualShaderNodeVec4Constant_4oxev")
 nodes/fragment/16/position = Vector2(-280, 820)
-nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_o5xte")
+nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_57mjj")
 nodes/fragment/17/position = Vector2(-100, 580)
-nodes/fragment/18/node = SubResource("VisualShaderNodeInput_0f2ra")
+nodes/fragment/18/node = SubResource("VisualShaderNodeInput_0qmvf")
 nodes/fragment/18/position = Vector2(-980, 720)
-nodes/fragment/19/node = SubResource("VisualShaderNodeVectorOp_q51rc")
+nodes/fragment/19/node = SubResource("VisualShaderNodeVectorOp_s1mdk")
 nodes/fragment/19/position = Vector2(-340, 600)
-nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_uubkb")
+nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_23nj7")
 nodes/fragment/23/position = Vector2(-1280, 840)
 nodes/fragment/23/size = Vector2(460, 360)
 nodes/fragment/23/input_ports = "0,0,time;"
@@ -287,19 +287,19 @@ nodes/fragment/23/expression = "yuuvee = vec2(
 	sin(time),
 	cos(time)
 );"
-nodes/fragment/24/node = SubResource("VisualShaderNodeRemap_37x7o")
+nodes/fragment/24/node = SubResource("VisualShaderNodeRemap_fcesj")
 nodes/fragment/24/position = Vector2(-620, 820)
 nodes/fragment/connections = PackedInt32Array(9, 0, 8, 0, 10, 0, 14, 0, 8, 0, 14, 1, 12, 0, 9, 5, 7, 0, 9, 6, 16, 0, 15, 1, 14, 0, 11, 0, 15, 0, 11, 1, 11, 0, 0, 0, 17, 0, 15, 0, 18, 0, 19, 0, 19, 0, 17, 0, 7, 0, 23, 0, 23, 0, 24, 0, 24, 0, 19, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mv3gs"]
-shader = SubResource("VisualShader_p8wkl")
+shader = SubResource("VisualShader_e6a2e")
 shader_parameter/time_speed = 0.2
 
 [sub_resource type="Curve" id="Curve_mv3gs"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.381231, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_4qijx"]
+[sub_resource type="CurveTexture" id="CurveTexture_mdtew"]
 width = 64
 curve = SubResource("Curve_mv3gs")
 
@@ -310,7 +310,7 @@ emission_box_extents = Vector3(400, 160, 1)
 spread = 180.0
 initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_4qijx")
+alpha_curve = SubResource("CurveTexture_mdtew")
 
 [node name="SgY6" instance=ExtResource("1_1y04c")]
 
@@ -511,7 +511,7 @@ tile_set = ExtResource("3_5kvm4")
 
 [node name="Rotator" type="Node2D" parent="." index="7"]
 position = Vector2(24, -794)
-rotation = 0.300196
+rotation = 4.85199
 script = ExtResource("5_fhx0y")
 enabled_in_editor = true
 speed = 24.0
