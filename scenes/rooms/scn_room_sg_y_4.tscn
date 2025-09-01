@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cwetkgvwlby0i"]
+[gd_scene load_steps=34 format=4 uid="uid://cwetkgvwlby0i"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_tgjow"]
 [ext_resource type="Script" uid="uid://c6gv482owpujf" path="res://code/save_positions.gd" id="2_e74x2"]
@@ -7,6 +7,11 @@
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="4_18dv3"]
 [ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="5_o2ieo"]
 [ext_resource type="PackedScene" uid="uid://7lb1nl2xno21" path="res://scenes/rooms/grandma_house/gdung_objects/sg_reset_cat.tscn" id="7_ypwwi"]
+[ext_resource type="PackedScene" uid="uid://c24750kmvrhtk" path="res://scenes/rooms/grandma_house/gdung_objects/flower_sprawl.tscn" id="8_3oiow"]
+[ext_resource type="PackedScene" uid="uid://ca0jq7ubkca0l" path="res://scenes/battle_backgrounds/scn_sun.tscn" id="8_blp8m"]
+[ext_resource type="Script" uid="uid://dw4cp3sxaiy4" path="res://scenes/tech/scr_rotator.gd" id="8_tgily"]
+[ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="9_tgily"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="9_wofyv"]
 
 [sub_resource type="GDScript" id="GDScript_hq4by"]
 script/source = "extends Node2D
@@ -39,6 +44,254 @@ func _check() -> void:
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18dv3"]
 size = Vector2(62, 32)
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_37x7o"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_37x7o"]
+operator = 7
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_q51rc"]
+parameter_name = "time_speed"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_37x7o"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7dhdc"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(4, 4, 4, 0)]
+op_type = 2
+operator = 5
+
+[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_jxygn"]
+constant = Quaternion(2, 2, 32, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o5xte"]
+source = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0f2ra"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_q51rc"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_uubkb"]
+size = Vector2(460, 360)
+expression = "yuuvee = vec2(
+	sin(time),
+	cos(time)
+);"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_37x7o"]
+default_input_values = [1, Vector2(-1, -1), 2, Vector2(1, 1), 3, Vector2(0.9, 0.9), 4, Vector2(1.1, 1.1), 0, Vector2(0, 0)]
+op_type = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qix36"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tqfuu"]
+source = 2
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_gaxul"]
+default_input_values = [1, 0.2, 2, 0.0, 3, 0.05, 4, 0.02, 5, 1.0, 6, 0.0]
+initialized = true
+script = ExtResource("9_tgily")
+
+[sub_resource type="VisualShader" id="VisualShader_p8wkl"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float time_speed = 1.0;
+
+
+// DistortionUVAnimated
+vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
+	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
+	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
+	return _uv_dist;
+}
+
+void fragment() {
+// Input:10
+	vec4 n_out10p0 = COLOR;
+
+
+// FloatParameter:12
+	float n_out12p0 = time_speed;
+
+
+// Input:7
+	float n_out7p0 = TIME;
+
+
+	vec2 n_out9p0;
+// DistortionUVAnimated:9
+	float n_in9p1 = 0.20000;
+	float n_in9p2 = 0.00000;
+	float n_in9p3 = 0.05000;
+	float n_in9p4 = 0.02000;
+	{
+		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
+	}
+
+
+	vec4 n_out8p0;
+// Texture2D:8
+	n_out8p0 = texture(TEXTURE, n_out9p0);
+
+
+// VectorOp:14
+	vec4 n_out14p0 = n_out10p0 * n_out8p0;
+
+
+// Input:18
+	vec2 n_out18p0 = UV;
+
+
+	vec2 n_out23p0;
+// Expression:23
+	n_out23p0 = vec2(0.0, 0.0);
+	{
+		n_out23p0 = vec2(
+			sin(n_out7p0),
+			cos(n_out7p0)
+		);
+	}
+
+
+	vec2 n_out24p0;
+// Remap:24
+	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
+	vec2 n_in24p2 = vec2(1.00000, 1.00000);
+	vec2 n_in24p3 = vec2(0.90000, 0.90000);
+	vec2 n_in24p4 = vec2(1.10000, 1.10000);
+	{
+		vec2 __input_range = n_in24p2 - n_in24p1;
+		vec2 __output_range = n_in24p4 - n_in24p3;
+		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
+	}
+
+
+// VectorOp:19
+	vec2 n_out19p0 = n_out18p0 * n_out24p0;
+
+
+	vec4 n_out17p0;
+// Texture2D:17
+	n_out17p0 = texture(TEXTURE, n_out19p0);
+
+
+// Vector4Constant:16
+	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
+
+
+// VectorOp:15
+	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
+
+
+	vec3 n_out11p0;
+// ColorOp:11
+	{
+		float base = vec3(n_out14p0.xyz).x;
+		float blend = vec3(n_out15p0.xyz).x;
+		if (base < 0.5) {
+			n_out11p0.x = (base * (blend + 0.5));
+		} else {
+			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = vec3(n_out14p0.xyz).y;
+		float blend = vec3(n_out15p0.xyz).y;
+		if (base < 0.5) {
+			n_out11p0.y = (base * (blend + 0.5));
+		} else {
+			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+	{
+		float base = vec3(n_out14p0.xyz).z;
+		float blend = vec3(n_out15p0.xyz).z;
+		if (base < 0.5) {
+			n_out11p0.z = (base * (blend + 0.5));
+		} else {
+			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
+		}
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out11p0;
+
+
+}
+"
+graph_offset = Vector2(-1124.56, 420.634)
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1040, 320)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_qix36")
+nodes/fragment/7/position = Vector2(-1500, 660)
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_tqfuu")
+nodes/fragment/8/position = Vector2(-80, 360)
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_gaxul")
+nodes/fragment/9/position = Vector2(-340, 280)
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_37x7o")
+nodes/fragment/10/position = Vector2(-240, 120)
+nodes/fragment/11/node = SubResource("VisualShaderNodeColorOp_37x7o")
+nodes/fragment/11/position = Vector2(760, 300)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_q51rc")
+nodes/fragment/12/position = Vector2(-780, 440)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_37x7o")
+nodes/fragment/14/position = Vector2(320, 280)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_7dhdc")
+nodes/fragment/15/position = Vector2(300, 560)
+nodes/fragment/16/node = SubResource("VisualShaderNodeVec4Constant_jxygn")
+nodes/fragment/16/position = Vector2(-280, 820)
+nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_o5xte")
+nodes/fragment/17/position = Vector2(-100, 580)
+nodes/fragment/18/node = SubResource("VisualShaderNodeInput_0f2ra")
+nodes/fragment/18/position = Vector2(-980, 720)
+nodes/fragment/19/node = SubResource("VisualShaderNodeVectorOp_q51rc")
+nodes/fragment/19/position = Vector2(-340, 600)
+nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_uubkb")
+nodes/fragment/23/position = Vector2(-1280, 840)
+nodes/fragment/23/size = Vector2(460, 360)
+nodes/fragment/23/input_ports = "0,0,time;"
+nodes/fragment/23/output_ports = "0,3,yuuvee;"
+nodes/fragment/23/expression = "yuuvee = vec2(
+	sin(time),
+	cos(time)
+);"
+nodes/fragment/24/node = SubResource("VisualShaderNodeRemap_37x7o")
+nodes/fragment/24/position = Vector2(-620, 820)
+nodes/fragment/connections = PackedInt32Array(9, 0, 8, 0, 10, 0, 14, 0, 8, 0, 14, 1, 12, 0, 9, 5, 7, 0, 9, 6, 16, 0, 15, 1, 14, 0, 11, 0, 15, 0, 11, 1, 11, 0, 0, 0, 17, 0, 15, 0, 18, 0, 19, 0, 19, 0, 17, 0, 7, 0, 23, 0, 23, 0, 24, 0, 24, 0, 19, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y01vh"]
+shader = SubResource("VisualShader_p8wkl")
+shader_parameter/time_speed = 0.2
+
+[sub_resource type="Curve" id="Curve_blp8m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.381231, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4qijx"]
+width = 64
+curve = SubResource("Curve_blp8m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tgily"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(400, 160, 1)
+spread = 180.0
+initial_velocity_max = 49.28
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_4qijx")
 
 [node name="SgY4" instance=ExtResource("1_tgjow")]
 
@@ -142,3 +395,139 @@ default_lines = Array[StringName]([&"sg_bridge"])
 [node name="SgResetCat" parent="Areas" index="5" node_paths=PackedStringArray("reset_saves") instance=ExtResource("7_ypwwi")]
 position = Vector2(38, -125)
 reset_saves = [NodePath("../Puzzle/SaveNodePositions")]
+
+[node name="Parallax2D2" type="Parallax2D" parent="." index="6"]
+scroll_scale = Vector2(0.5, 0.645)
+scroll_offset = Vector2(0, 83)
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
+modulate = Color(0.639205, 0.668347, 0.316329, 1)
+z_index = -1
+position = Vector2(-2047, -9)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAD8APv/AAADAAMAAAD7APv/AAACAAAAAAD6APv/AAACAAMAAAD5APv/AAACAAMAAAD4APv/AAACAAMAAAD3APv/AAACAAMAAAD2APv/AAACAAAAAAD1APv/AAACAAMAAAD0APv/AAACAAMAAADzAPv/AAACAAMAAADyAPv/AAACAAMAAADxAPv/AAACAAIAAADxAOn/AAAAAAAAAADxAOr/AAAAAAEAAADxAOv/AAAAAAEAAADxAOz/AAAAAAEAAADxAO3/AAAAAAEAAADxAO7/AAAAAAEAAADxAO//AAABAAEAAADxAPD/AAAAAAEAAADxAPH/AAAAAAEAAADxAPL/AAAAAAEAAADxAPP/AAAAAAEAAADxAPT/AAAAAAEAAADxAPX/AAAAAAEAAADxAPb/AAAAAAEAAADxAPf/AAAAAAEAAADxAPj/AAAAAAEAAADxAPn/AAAAAAEAAADxAPr/AAAAAAEAAAAIAe//AAADAAMAAAAHAe//AAACAAMAAAAGAe//AAACAAAAAAAFAe//AAACAAMAAAAEAe//AAACAAMAAAADAe//AAACAAMAAAACAe//AAACAAMAAAABAe//AAACAAMAAAAAAe//AAACAAMAAAD/AO//AAACAAMAAAD+AO//AAACAAMAAAD9AO//AAACAAMAAAD8AO//AAACAAMAAAD7AO//AAACAAIAAAD6AO//AAACAAMAAAD5AO//AAACAAMAAAD4AO//AAACAAMAAAD3AO//AAACAAMAAAD2AO//AAACAAMAAAD1AO//AAACAAMAAAD0AO//AAACAAMAAADzAO//AAACAAMAAADyAO//AAACAAMAAAD7AOX/AAAAAAAAAAD7AOb/AAAAAAEAAAD7AOf/AAAAAAEAAAD7AOj/AAAAAAEAAAD7AOn/AAAAAAEAAAD7AOr/AAAAAAEAAAD7AOv/AAAAAAEAAAD7AOz/AAABAAEAAAD7AO3/AAAAAAEAAAD7AO7/AAAAAAEAAAAGAez/AAADAAMAAAAFAez/AAACAAMAAAAEAez/AAACAAMAAAADAez/AAACAAMAAAACAez/AAACAAMAAAABAez/AAACAAMAAAAAAez/AAACAAMAAAD/AOz/AAACAAMAAAD+AOz/AAACAAMAAAD9AOz/AAACAAMAAAD8AOz/AAACAAMAAAAGAfb/AAAAAAIAAAAGAfX/AAAAAAEAAAAGAfT/AAAAAAEAAAAGAfP/AAABAAEAAAAGAfL/AAAAAAEAAAAGAfH/AAAAAAEAAAAGAfD/AAAAAAEAAAAWAfP/AAADAAMAAAAVAfP/AAACAAMAAAAUAfP/AAACAAMAAAATAfP/AAACAAMAAAASAfP/AAACAAMAAAARAfP/AAACAAMAAAAQAfP/AAACAAMAAAAPAfP/AAACAAMAAAAOAfP/AAACAAMAAAANAfP/AAACAAMAAAAMAfP/AAACAAMAAAALAfP/AAACAAMAAAAKAfP/AAACAAMAAAAJAfP/AAACAAMAAAAIAfP/AAACAAMAAAAHAfP/AAACAAMAAAD7AP7/AAAAAAIAAAD7AP3/AAAAAAEAAAD7APz/AAAAAAEAAAD2AAUAAAAAAAIAAAD2AAQAAAAAAAEAAAD2AAMAAAABAAEAAAD2AAIAAAAAAAEAAAD2AAEAAAAAAAEAAAD2AAAAAAAAAAEAAAD2AP//AAAAAAEAAAD2AP7/AAAAAAEAAAD2AP3/AAAAAAEAAAD2APz/AAAAAAEAAAAEAQMAAAADAAMAAAADAQMAAAACAAIAAAACAQMAAAACAAMAAAABAQMAAAACAAMAAAAAAQMAAAACAAMAAAD/AAMAAAACAAMAAAD+AAMAAAACAAAAAAD9AAMAAAACAAMAAAD8AAMAAAACAAMAAAD7AAMAAAACAAMAAAD6AAMAAAACAAMAAAD5AAMAAAACAAMAAAD4AAMAAAACAAMAAAD3AAMAAAACAAMAAAD+AAcAAAAAAAIAAAD+AAYAAAAAAAEAAAD+AAUAAAABAAEAAAD+AAQAAAAAAAEAAAAQAQUAAAADAAMAAAAPAQUAAAACAAMAAAAOAQUAAAACAAMAAAANAQUAAAACAAMAAAAMAQUAAAACAAMAAAALAQUAAAACAAMAAAAKAQUAAAACAAIAAAAJAQUAAAACAAMAAAAIAQUAAAACAAMAAAAHAQUAAAACAAMAAAAGAQUAAAACAAMAAAAFAQUAAAACAAMAAAAEAQUAAAACAAMAAAADAQUAAAACAAMAAAACAQUAAAACAAMAAAABAQUAAAACAAMAAAAAAQUAAAACAAMAAAD/AAUAAAACAAMAAAADAf//AAAAAAAAAAADAQAAAAABAAEAAAADAQEAAAAAAAEAAAADAQIAAAAAAAEAAAAPAQAAAAADAAMAAAAOAQAAAAACAAMAAAANAQAAAAACAAMAAAAMAQAAAAACAAIAAAALAQAAAAACAAMAAAAKAQAAAAACAAMAAAAJAQAAAAACAAMAAAAIAQAAAAACAAMAAAAHAQAAAAACAAMAAAAGAQAAAAACAAMAAAAFAQAAAAACAAMAAAAEAQAAAAACAAMAAAAKAQMAAAABAAAAAAAKAQQAAAAAAAEAAAAaAQMAAAADAAMAAAAZAQMAAAACAAMAAAAYAQMAAAACAAMAAAAXAQMAAAACAAMAAAAWAQMAAAACAAMAAAAVAQMAAAACAAMAAAAUAQMAAAACAAMAAAATAQMAAAACAAMAAAASAQMAAAACAAMAAAARAQMAAAACAAMAAAAQAQMAAAACAAMAAAAPAQMAAAACAAMAAAAOAQMAAAACAAMAAAANAQMAAAACAAMAAAAMAQMAAAACAAMAAAALAQMAAAACAAMAAAAMAfj/AAAAAAAAAAAMAfn/AAAAAAEAAAAMAfr/AAAAAAEAAAAMAfv/AAABAAEAAAAMAfz/AAAAAAEAAAAMAf3/AAAAAAEAAAAMAf7/AAAAAAEAAAAMAf//AAAAAAEAAAAcAfv/AAADAAMAAAAbAfv/AAACAAMAAAAaAfv/AAACAAMAAAAZAfv/AAACAAMAAAAYAfv/AAACAAMAAAAXAfv/AAACAAMAAAAWAfv/AAACAAMAAAAVAfv/AAACAAMAAAAUAfv/AAACAAMAAAATAfv/AAACAAMAAAASAfv/AAACAAMAAAARAfv/AAACAAMAAAAQAfv/AAACAAMAAAAPAfv/AAACAAMAAAAOAfv/AAACAAMAAAANAfv/AAACAAMAAAA=")
+tile_set = ExtResource("4_18dv3")
+y_sort_origin = -110
+
+[node name="Rotator" type="Node2D" parent="Parallax2D2" index="1"]
+position = Vector2(90, -116)
+scale = Vector2(2, 2)
+script = ExtResource("8_tgily")
+speed = -4.0
+child_mode = true
+metadata/_custom_type_script = "uid://dw4cp3sxaiy4"
+
+[node name="Node2D" type="CanvasGroup" parent="Parallax2D2/Rotator" index="0"]
+modulate = Color(0.854902, 0.360784, 0.231373, 0.639216)
+z_index = -2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="0"]
+position = Vector2(8, 0)
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="1"]
+position = Vector2(7, 4)
+rotation = 0.523598
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="2"]
+position = Vector2(3, 6)
+rotation = 1.0472
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="3"]
+position = Vector2(0, 7)
+rotation = 1.57079
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer5" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="4"]
+position = Vector2(2, -7.5)
+rotation = -1.309
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer6" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="5"]
+position = Vector2(5.5, -5.5)
+rotation = -0.785397
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer7" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="6"]
+position = Vector2(6, -2)
+rotation = -0.261799
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer8" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="7"]
+position = Vector2(-8, -2)
+rotation = -2.87979
+scale = Vector2(1, 1)
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer9" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="8"]
+position = Vector2(-6, -5)
+rotation = -2.35619
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer10" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="9"]
+position = Vector2(-2, -7.5)
+rotation = -1.83259
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer11" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="10"]
+position = Vector2(-3.5, 6.5)
+rotation = 2.0944
+scale = Vector2(1, 1)
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer12" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="11"]
+position = Vector2(-7, 4.5)
+rotation = 2.618
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="TileMapLayer13" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="12"]
+position = Vector2(-8, 0.5)
+rotation = -3.14159
+tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="Parallax2D3" type="Parallax2D" parent="." index="7"]
+scroll_scale = Vector2(0.05, 0)
+scroll_offset = Vector2(99.64, 60.115)
+
+[node name="BattleBackground" parent="Parallax2D3" index="0" instance=ExtResource("8_blp8m")]
+modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
+
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+material = SubResource("ShaderMaterial_y01vh")
+
+[node name="Decor" type="Node2D" parent="." index="8"]
+y_sort_enabled = true
+
+[node name="Flower1" parent="Decor" index="0" instance=ExtResource("8_3oiow")]
+position = Vector2(79, -245)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1"]
+z_index = -1
+position = Vector2(-272, 63)
+tile_map_data = PackedByteArray("AAAWAO3/AAAAAAQAAAAWAO7/AAAAAAUAAAAWAO//AAAAAAUAAAAWAPD/AAAAAAUAAAAWAPH/AAAAAAUAAAAWAPL/AAAAAAUAAAAYAO7/AAAAAAUAAAAYAO//AAAAAAUAAAAYAPD/AAAAAAUAAAAYAPH/AAAAAAUAAAAYAPL/AAAAAAUAAAAYAO3/AAAAAAQAAAA=")
+tile_set = ExtResource("4_18dv3")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="2"]
+position = Vector2(103, -113)
+amount = 24
+texture = ExtResource("9_wofyv")
+visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_tgily")
+
+[editable path="Parallax2D3/BattleBackground"]
