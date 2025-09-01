@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var interior_tiles: TileMap = $"../InteriorTiles"
+@onready var interior_tiles: Node2D = $"../InteriorTiles"
 @onready var grandma := $"../InteriorTiles/Grandma"
 @onready var greg_pos: Node2D = $GregPos
 @onready var greg: PlayerOverworld = $"../Greg"
@@ -21,7 +21,8 @@ func play() -> void:
 	SOL.add_ui_child(darkness)
 	darkness.modulate.a = 0.0
 	DAT.capture_player("cutscene")
-	interior_tiles.set_layer_enabled(1, false)
+	#interior_tiles.set_layer_enabled(1, false)
+	$"../InteriorTiles/Layer1".enabled = false
 	grandma.queue_free()
 	greg.global_position = greg_pos.global_position
 	greg.animate("walk_up")

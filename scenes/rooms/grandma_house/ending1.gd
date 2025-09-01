@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var grandma: OverworldCharacter = $"../InteriorTiles/Grandma/Grandma"
 @onready var greg: PlayerOverworld = $"../Greg"
-@onready var tilemap: TileMap = $"../InteriorTiles"
+@onready var tilemap: Node2D = $"../InteriorTiles"
 @onready var gregpos: Vector2 = $Gregpos.global_position
 @onready var gregpos2: Vector2 = $Gregpos2.global_position
 @onready var grandmapos: Vector2 = $Grandmapos.global_position
@@ -24,7 +24,7 @@ func play() -> void:
 	show()
 	SOL.dialogue_box.load_dialogue_string(DIALOGUE)
 	DAT.capture_player("cutscene")
-	tilemap.set_layer_enabled(1, false)
+	$"../InteriorTiles/Layer1".enabled = false
 	greg.global_position = gregpos
 	grandma.global_position = grandmapos
 	greg.animate("walk_up", false)
