@@ -35,64 +35,64 @@ size = Vector2(16, 16)
 resource_local_to_scene = true
 size = Vector2(14, 27)
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_37x7o"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mpxyo"]
 input_name = "color"
 
-[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_37x7o"]
+[sub_resource type="VisualShaderNodeColorOp" id="VisualShaderNodeColorOp_rixhj"]
 operator = 7
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_q51rc"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_wofwu"]
 parameter_name = "time_speed"
 default_value_enabled = true
 default_value = 1.0
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_37x7o"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_f270g"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7dhdc"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_wssx6"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(4, 4, 4, 0)]
 op_type = 2
 operator = 5
 
-[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_jxygn"]
+[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_cnqhu"]
 constant = Quaternion(2, 2, 32, 1)
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o5xte"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tqvy0"]
 source = 2
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0f2ra"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_64n2k"]
 input_name = "uv"
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_q51rc"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gk8tc"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 operator = 2
 
-[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_uubkb"]
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_8kpn3"]
 size = Vector2(460, 360)
 expression = "yuuvee = vec2(
 	sin(time),
 	cos(time)
 );"
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_37x7o"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_f8anr"]
 default_input_values = [1, Vector2(-1, -1), 2, Vector2(1, 1), 3, Vector2(0.9, 0.9), 4, Vector2(1.1, 1.1), 0, Vector2(0, 0)]
 op_type = 1
 
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qix36"]
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_fcxvr"]
 input_name = "time"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_tqfuu"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ms5l6"]
 source = 2
 
-[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_gaxul"]
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_23314"]
 default_input_values = [1, 0.2, 2, 0.0, 3, 0.05, 4, 0.02, 5, 1.0, 6, 0.0]
 initialized = true
 script = ExtResource("12_7wvqf")
 
-[sub_resource type="VisualShader" id="VisualShader_p8wkl"]
+[sub_resource type="VisualShader" id="VisualShader_vygom"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -225,31 +225,31 @@ graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
-nodes/fragment/7/node = SubResource("VisualShaderNodeInput_qix36")
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_fcxvr")
 nodes/fragment/7/position = Vector2(-1500, 660)
-nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_tqfuu")
+nodes/fragment/8/node = SubResource("VisualShaderNodeTexture_ms5l6")
 nodes/fragment/8/position = Vector2(-80, 360)
-nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_gaxul")
+nodes/fragment/9/node = SubResource("VisualShaderNodeCustom_23314")
 nodes/fragment/9/position = Vector2(-340, 280)
-nodes/fragment/10/node = SubResource("VisualShaderNodeInput_37x7o")
+nodes/fragment/10/node = SubResource("VisualShaderNodeInput_mpxyo")
 nodes/fragment/10/position = Vector2(-240, 120)
-nodes/fragment/11/node = SubResource("VisualShaderNodeColorOp_37x7o")
+nodes/fragment/11/node = SubResource("VisualShaderNodeColorOp_rixhj")
 nodes/fragment/11/position = Vector2(760, 300)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_q51rc")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_wofwu")
 nodes/fragment/12/position = Vector2(-780, 440)
-nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_37x7o")
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_f270g")
 nodes/fragment/14/position = Vector2(320, 280)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_7dhdc")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_wssx6")
 nodes/fragment/15/position = Vector2(300, 560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeVec4Constant_jxygn")
+nodes/fragment/16/node = SubResource("VisualShaderNodeVec4Constant_cnqhu")
 nodes/fragment/16/position = Vector2(-280, 820)
-nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_o5xte")
+nodes/fragment/17/node = SubResource("VisualShaderNodeTexture_tqvy0")
 nodes/fragment/17/position = Vector2(-100, 580)
-nodes/fragment/18/node = SubResource("VisualShaderNodeInput_0f2ra")
+nodes/fragment/18/node = SubResource("VisualShaderNodeInput_64n2k")
 nodes/fragment/18/position = Vector2(-980, 720)
-nodes/fragment/19/node = SubResource("VisualShaderNodeVectorOp_q51rc")
+nodes/fragment/19/node = SubResource("VisualShaderNodeVectorOp_gk8tc")
 nodes/fragment/19/position = Vector2(-340, 600)
-nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_uubkb")
+nodes/fragment/23/node = SubResource("VisualShaderNodeExpression_8kpn3")
 nodes/fragment/23/position = Vector2(-1280, 840)
 nodes/fragment/23/size = Vector2(460, 360)
 nodes/fragment/23/input_ports = "0,0,time;"
@@ -258,19 +258,19 @@ nodes/fragment/23/expression = "yuuvee = vec2(
 	sin(time),
 	cos(time)
 );"
-nodes/fragment/24/node = SubResource("VisualShaderNodeRemap_37x7o")
+nodes/fragment/24/node = SubResource("VisualShaderNodeRemap_f8anr")
 nodes/fragment/24/position = Vector2(-620, 820)
 nodes/fragment/connections = PackedInt32Array(9, 0, 8, 0, 10, 0, 14, 0, 8, 0, 14, 1, 12, 0, 9, 5, 7, 0, 9, 6, 16, 0, 15, 1, 14, 0, 11, 0, 15, 0, 11, 1, 11, 0, 0, 0, 17, 0, 15, 0, 18, 0, 19, 0, 19, 0, 17, 0, 7, 0, 23, 0, 23, 0, 24, 0, 24, 0, 19, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cq6vl"]
-shader = SubResource("VisualShader_p8wkl")
+shader = SubResource("VisualShader_vygom")
 shader_parameter/time_speed = 0.2
 
 [sub_resource type="Curve" id="Curve_3fohb"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.381231, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_4qijx"]
+[sub_resource type="CurveTexture" id="CurveTexture_5akwr"]
 width = 64
 curve = SubResource("Curve_3fohb")
 
@@ -281,7 +281,7 @@ emission_box_extents = Vector3(400, 160, 1)
 spread = 180.0
 initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_4qijx")
+alpha_curve = SubResource("CurveTexture_5akwr")
 
 [sub_resource type="Curve2D" id="Curve2D_wofwu"]
 _data = {
@@ -339,7 +339,7 @@ y_sort_origin = -1270
 
 [node name="Climp2" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-position = Vector2(480, -72.7277)
+position = Vector2(480, -78.9535)
 tile_map_data = PackedByteArray("AAAAAP//AAAFAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAGAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAIAAIAAAAGAP3/AAAGAAIAAAAHAP3/AAAHAAMAAAAIAP3/AAAHAAMAAAAJAP3/AAAHAAMAAAAKAP3/AAAIAAAAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAAEAPz/AAAGAAAAAAAFAPz/AAAHAAMAAAAGAPz/AAAIAAAAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = 15455

@@ -33,7 +33,7 @@ tile_map_data = PackedByteArray("AAD2//P/AAAKAAAAAAD2//T/AAAKAAEAAAD2//X/AAAKAAE
 tile_set = ExtResource("4_8y8sd")
 
 [node name="Greg" parent="." index="5"]
-position = Vector2(-80, -265)
+position = Vector2(-93, -58)
 
 [node name="RoomGate" parent="Areas" index="0"]
 position = Vector2(-96, 1)
