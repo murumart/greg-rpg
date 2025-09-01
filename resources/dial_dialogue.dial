@@ -3994,6 +3994,13 @@ DIALOGUE sg_6_climb_secret
 	%SGHuh? Climbing? No, I swam.
 
 
+DIALOGUE sg_6_climb_future
+	%SGThe [color=FLOWERCOLOR]SECRET GARDEN[/color] is a grand location.
+	%SGWhere you've been to thus far is only one branch of it.
+	%SGYou'll see the others soon.
+	%SGPlease forgive their inhospitality.
+
+
 DIALOGUE sg_7_warning
 	%SGI've been hearing some weird noises from behind this door...
 	%SGSounded kind of like... Sucking...?
