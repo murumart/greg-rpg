@@ -400,11 +400,11 @@ DIALOGUE insp_gdung_trashbag
 
 
 DIALOGUE insp_gdung_catface
-	of course there's cats on the wall down here.
+	that's scary.
 
 
 DIALOGUE insp_gdung_huge_catface
-	of course there's huge cats on the wall down here.
+	that's really scary.
 
 
 DIALOGUE insp_gdung_litterbox
@@ -454,7 +454,6 @@ DIALOGUE insp_gdung_planet
 
 DIALOGUE insp_gdung_box
 	what could be the purpose of this cardboard box?
-	there's some amount of objects to be moved in here.
 
 
 DIALOGUE insp_gdung_boxes

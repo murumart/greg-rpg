@@ -3970,6 +3970,15 @@ DATA_LINK heard_trashbin_importance,false
 	%SGFinally someone took out the trash...
 
 
+DIALOGUE sg_5_healing
+	%SGWelcome to the Heeh Hooh Zone.
+	%SGThat statue is one of our new liege.
+	%SGIsn't it beautiful?
+	%SGI'm asking because I think it looks like...
+INSTASKIP
+	%SGit looks like absolute
+
+
 DIALOGUE sg_6_climb
 	%SGThis is a long climb...
 	%SGRemember that you still can't hold on to the rope with your face.

@@ -30,4 +30,5 @@ func _on_interaction() -> void:
 
 
 func get_save_key() -> StringName:
+	# doesn't work in gdung anymore. thats ok
 	return "gdung_healer_" + str(LTS.get_current_scene().name) + "_eaten"
