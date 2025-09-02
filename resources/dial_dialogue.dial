@@ -3940,7 +3940,9 @@ DIALOGUE sg_appliances
 
 
 DIALOGUE sg_appliances_2
-	%SGGrumble grumble...
+	%SGGrumble grumble... oh, why household appliances?
+	%SGShe was very adamant on it.
+	%SGSomething about... cymbals? Symbols? I wasn't paying attention.
 
 
 DIALOGUE sg_bridge
