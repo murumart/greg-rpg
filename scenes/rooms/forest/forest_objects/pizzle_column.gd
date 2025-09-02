@@ -22,7 +22,6 @@ func _ready() -> void:
 	super()
 	assert(custom_puzzle_reward == null or custom_puzzle_reward is Item or custom_puzzle_reward is Spirit)
 	if custom_finished:
-		active = true
 		return
 	puzzle = SlidingPuzzleLoad.instantiate()
 	var level: float = (DAT.get_data("forest_depth", 0)) * 0.01
@@ -36,7 +35,7 @@ func _exit_tree() -> void:
 
 
 func _interacted() -> void:
-	if active:
+	if active or custom_finished:
 		return
 	SOL.dialogue("sliding_pizzle_what")
 	$AudioStreamPlayer.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b1s4gnstvpifu"]
+[gd_scene load_steps=12 format=4 uid="uid://b1s4gnstvpifu"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_pp2qq"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="2_jtdha"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://560xc7yjtkcs" path="res://scenes/rooms/grandma_house/gdung_objects/flower_33.tscn" id="4_wekcw"]
 [ext_resource type="Script" uid="uid://d32pjvcbynmf5" path="res://scenes/rooms/sg/b2_obstacles.gd" id="5_ayxt5"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="5_yb6qr"]
+[ext_resource type="PackedScene" uid="uid://cvlakcwvqo8hk" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_snake.tscn" id="6_jmjqd"]
 [ext_resource type="PackedScene" uid="uid://dyqyneiimprxf" path="res://scenes/battle_backgrounds/scn_bg_stars.tscn" id="9_hlpxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_skqc1"]
@@ -110,6 +111,10 @@ replenish_minutes = -1
 replenish_seconds = -60
 item = &"porridge"
 
+[node name="SgCatSnake" parent="Areas" index="8" instance=ExtResource("6_jmjqd")]
+position = Vector2(364, 175)
+default_lines = Array[StringName]([&"sg_b2_1", &"sg_b2_2"])
+
 [node name="ColorRect" type="ColorRect" parent="." index="7"]
 z_index = -2
 offset_left = 232.0
@@ -175,7 +180,7 @@ position = Vector2(176, 63)
 [node name="Parallax2D" type="Parallax2D" parent="." index="10"]
 z_index = -5
 scroll_scale = Vector2(0.05, 0.05)
-scroll_offset = Vector2(-0.06, -7.825)
+scroll_offset = Vector2(-0.995, -7.825)
 
 [node name="Node2D" parent="Parallax2D" index="0" instance=ExtResource("9_hlpxl")]
 position = Vector2(106, 69)

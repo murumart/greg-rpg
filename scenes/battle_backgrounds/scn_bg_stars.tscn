@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyqyneiimprxf"]
+[gd_scene load_steps=22 format=3 uid="uid://dyqyneiimprxf"]
 
 [ext_resource type="Script" uid="uid://baf0m66n60bwa" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_cnegl"]
 [ext_resource type="Texture2D" uid="uid://cplmtkwpp1aue" path="res://sprites/world/sg/stars.png" id="2_hrlvi"]
@@ -23,6 +23,14 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 3
 particles_anim_loop = false
 
+[sub_resource type="Curve" id="Curve_hrlvi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0520231, 1), 0.0, 0.0, 0, 0, Vector2(0.803468, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2meqt"]
+width = 32
+curve = SubResource("Curve_hrlvi")
+
 [sub_resource type="Gradient" id="Gradient_hrlvi"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_2meqt"]
@@ -31,13 +39,14 @@ gradient = SubResource("Gradient_hrlvi")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rty82"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(0.2, 60, 1)
+emission_box_extents = Vector3(40, 60, 1)
 direction = Vector3(-1, 0, 0)
 spread = 2.0
 initial_velocity_min = 20.0
 initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 color_initial_ramp = SubResource("GradientTexture1D_2meqt")
+alpha_curve = SubResource("CurveTexture_2meqt")
 anim_offset_max = 1.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hrlvi"]
@@ -50,6 +59,69 @@ colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0.0331753, 1, 0, 0, 0.962085, 1, 1, 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rty82"]
 gradient = SubResource("Gradient_2meqt")
 fill_from = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_2meqt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(0, 0.243506, 0.396104, 0.665584, 0.785714, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:texture:gradient:colors")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 1, 0.176471, 0.0235294, 0.219608, 1, 0.0447059, 0.00596078, 0.055634, 1, 0.0470588, 0.121569, 0.152941, 1, 0.0215686, 0.0369748, 0.126331, 1, 0.027451, 0.0470588, 0.160784, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.67188, 2.67187)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(85.5, 105)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Gra/Sprite2D2:texture:noise:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_hrlvi"]
 resource_name = "defo"
@@ -116,69 +188,6 @@ tracks/4/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 20, -30), Vector3(-40, 20, -80.13)]
 }
 
-[sub_resource type="Animation" id="Animation_2meqt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture:gradient:offsets")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedFloat32Array(0, 0.243506, 0.396104, 0.665584, 0.785714, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:texture:gradient:colors")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedColorArray(0, 0, 0, 1, 0.176471, 0.0235294, 0.219608, 1, 0.0447059, 0.00596078, 0.055634, 1, 0.0470588, 0.121569, 0.152941, 1, 0.0215686, 0.0369748, 0.126331, 1, 0.027451, 0.0470588, 0.160784, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.67188, 2.67187)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(85.5, 105)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Gra/Sprite2D2:texture:noise:offset")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rty82"]
 _data = {
 &"RESET": SubResource("Animation_2meqt"),
@@ -222,15 +231,16 @@ texture = SubResource("GradientTexture2D_hrlvi")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_2meqt")
-position = Vector2(171, 62)
+position = Vector2(166, 62)
 scale = Vector2(0.5, 0.5)
-amount = 24
+amount = 37
 texture = ExtResource("2_hrlvi")
 lifetime = 10.0
-preprocess = 40.0
+preprocess = 10.0
 speed_scale = 0.05
-fixed_fps = 12
+fixed_fps = 2
 visibility_rect = Rect2(-1100, -400, 1200, 800)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -245,23 +255,24 @@ position = Vector2(164, 63)
 amount = 24
 texture = ExtResource("2_hrlvi")
 lifetime = 10.0
-preprocess = 24.0
+preprocess = 8.0
 speed_scale = 0.1
-fixed_fps = 12
+fixed_fps = 4
 visibility_rect = Rect2(-500, -200, 500, 400)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_2meqt")
 position = Vector2(171, 62)
 scale = Vector2(2, 2)
-amount = 24
 texture = ExtResource("2_hrlvi")
 lifetime = 10.0
 preprocess = 6.0
 speed_scale = 0.4
-fixed_fps = 12
+fixed_fps = 8
 visibility_rect = Rect2(-215.106, -71.7787, 228.633, 139.823)
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

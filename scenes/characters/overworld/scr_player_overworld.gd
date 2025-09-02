@@ -117,7 +117,7 @@ func direct_animation() -> void:
 		armour.speed_scale = 0.0
 
 	if move_mode != MoveModes.SKATE:
-		var leng := velocity.length() * 0.04
+		var leng := velocity.length() * 0.03
 		sprite.speed_scale = leng
 		if updating_armour:
 			armour.speed_scale = leng

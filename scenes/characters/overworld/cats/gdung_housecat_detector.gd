@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	beam.hide()
 	match cat.state:
 		cat.States.IDLE:
-			if randf() * speed * delta < 0.0001:
+			if randf() * speed * delta < 0.001:
 				desired_angle = randf_range(-TAU, TAU)
 			if draw_beam:
 				_beam_visual(delta)

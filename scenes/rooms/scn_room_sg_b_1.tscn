@@ -31,6 +31,10 @@ tile_map_data = PackedByteArray("AAABAAAAAAAKAAEAAAACAAAAAAANAAAAAAAKAAEAAAALAAI
 [node name="Greg" parent="." index="4"]
 position = Vector2(119, 442)
 
+[node name="Camera" parent="Greg" index="7"]
+limit_right = 911
+limit_bottom = 479
+
 [node name="RoomGate" parent="Areas" index="0"]
 position = Vector2(121, 483)
 destination = &"secret_garden_entrance"
@@ -105,7 +109,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="7"]
 z_index = -5
-scroll_scale = Vector2(0.05, 0.05)
+scroll_scale = Vector2(0.05, 0.022)
 
 [node name="Node2D" parent="Parallax2D" index="0" instance=ExtResource("6_6p3hy")]
 position = Vector2(106, 69)

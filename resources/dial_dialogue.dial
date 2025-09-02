@@ -4042,7 +4042,7 @@ DIALOGUE sg_b_2
 
 DIALOGUE sg_b_3
 	%SGLet's not waste your time here.
-	%SGKeep going forward.
+	%SGKeep going forward... don't you have a scheduled meeting with her?
 
 
 DIALOGUE sg_b_lore_1
@@ -4074,9 +4074,40 @@ DIALOGUE sg_b_armor_hint_2
 	%SG...what secret armor? I'm just a cat. Meow.
 
 
+DIALOGUE sg_b2_1
+	%SGHave you met her before?
+	%SGMany people have, but have no memory of it.
+	%SGYou're on the path to something unforgettable.
+	%SGIt might leave you petrified, the sight...
+
+
+DIALOGUE sg_b2_2
+	%SGOr not... What do I know, I'm just a snake.
+	%SGMeow.
+
+
 DIALOGUE sg_b3_1
-	%SGShe's been looking for you. This room is on high alert.
+	%SGShe's been looking for you. The forward area is on high alert.
 	%SGAll this ruckus... Why didn't you just not come here...?
+
+
+DIALOGUE sg_b3_2
+	%SGThe stars haven't been this bold in a long time...
+	%SGIt's really what keeps me going.
+	%SGThe memory of the IRON CITY...
+	%SGPeople (like you and she) come and go, but it remains.
+
+
+DIALOGUE sg_b3_3
+	%SGPlaces to go, places to not go.
+	%SGBut how to tell the difference...?
+
+
+DIALOGUE sg_b3_4
+	%SGThere's not really any way for you to defeat her...
+	%SGI'm assuming that's your end goal. It usually tends to be.
+	%SGWell, if you're lucky... the spirits do hate her.
+	%SGYou get along with them... well enough, you best hope.
 
 
 DIALOGUE grandma_final_meeting_1
