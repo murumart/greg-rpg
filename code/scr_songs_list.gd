@@ -43,6 +43,10 @@ var songs := {
 		"title": "birdsong",
 		"stream": preload("res://music/mus_birds.ogg")
 	},
+	"blue": {
+		"title": "bluestar",
+		"stream": preload("res://music/mus_blue.ogg")
+	},
 	"byddd": {
 		"title": "tenxion",
 		"stream": preload("res://music/mus_byddd.ogg"),

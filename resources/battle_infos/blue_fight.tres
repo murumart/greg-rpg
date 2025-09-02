@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=7 format=3 uid="uid://cqtc6vmmvxtd8"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ewlqg"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_0mqwp"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_0u0po"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_aafd4"]
+
+[sub_resource type="Resource" id="Resource_brh26"]
+script = ExtResource("2_0mqwp")
+type = 0
+property = "30"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_2kmb6"]
+script = ExtResource("3_aafd4")
+rewards = Array[ExtResource("2_0mqwp")]([SubResource("Resource_brh26")])
+metadata/_custom_type_script = "uid://c6s82fw7twwpy"
+
+[resource]
+script = ExtResource("2_0u0po")
+enemies = Array[StringName]([])
+background = "bg_stars"
+music = "blue"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "the stars are bold tonight."
+rewards = SubResource("Resource_2kmb6")
+victory_music = &"victory"
+stop_music_before_end = true
+kill_music = true
+play_fanfare = true
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_ewlqg")]({})
+increment_data_with_enemies = &""
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

@@ -3,6 +3,7 @@ extends Node2D
 @export var cat: OverworldCharacter
 @export var beam: Node2D
 @export var raycasts: Array[RayCast2D]
+@export_range(0.1, 4.0, 0.01) var beam_length_mult: float = 1.0
 
 var speed := 0.0
 var desired_angle := 0.0
@@ -14,6 +15,7 @@ func _ready() -> void:
 	speed = (sin(hash(global_position) - cos(hash(global_position))) * 0.5 + 1.0) * 4.0
 	var dist := 0.0
 	for rc in raycasts:
+		rc.target_position *= beam_length_mult
 		dist += rc.target_position.length()
 	default_length = dist / raycasts.size()
 
@@ -42,7 +44,7 @@ func _beam_visual(delta: float) -> void:
 			desired_angle += speed * delta
 		dist += dp
 	dist /= raycasts.size()
-	beam.scale.y = move_toward(beam.scale.y, dist / default_length, delta * 20.0)
+	beam.scale.y = move_toward(beam.scale.y, (dist / default_length) * beam_length_mult, delta * 20.0)
 	beam.show()
 
 

@@ -30,7 +30,7 @@ script/source = "extends GPUParticles2D
 
 @export var curve: Curve
 
-func _on_washing_machine_hurted(who: BattleActor) -> void:
+func _on_washing_machine_hurted(who: BattleActor, __: Variant, ___: Variant) -> void:
 	amount_ratio = curve.sample_baked(who.character.health_perc())
 "
 
@@ -51,16 +51,16 @@ gender = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Puppet"]
 position = Vector2(0, -7)
-scale = Vector2(0.83169, 1.06875)
+scale = Vector2(0.830386, 1.06804)
 texture = ExtResource("2_t8jyc")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Sprite2D"]
 position = Vector2(0, -7.44207)
 amount = 500
 amount_ratio = 0.0235
-process_material = SubResource("ParticleProcessMaterial_f0mdn")
 texture = ExtResource("3_jeyoy")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_f0mdn")
 script = SubResource("GDScript_xwdo7")
 curve = SubResource("Curve_qfaqi")
 
