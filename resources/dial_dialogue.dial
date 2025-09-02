@@ -4074,6 +4074,11 @@ DIALOGUE sg_b_armor_hint_2
 	%SG...what secret armor? I'm just a cat. Meow.
 
 
+DIALOGUE sg_b3_1
+	%SGShe's been looking for you. This room is on high alert.
+	%SGAll this ruckus... Why didn't you just not come here...?
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

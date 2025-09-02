@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://s52l2a45awhu"]
+[gd_scene load_steps=28 format=4 uid="uid://s52l2a45awhu"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_kqcdv"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="2_2ejdi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="7_dew3n"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="8_8bss2"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="9_8gmxf"]
+[ext_resource type="PackedScene" uid="uid://cvlakcwvqo8hk" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_snake.tscn" id="10_8gmxf"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="10_dew3n"]
 [ext_resource type="PackedScene" uid="uid://dbcdsllk3863s" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.tscn" id="11_8bss2"]
 
@@ -332,6 +333,10 @@ shape = SubResource("CircleShape2D_qtobk")
 
 [node name="Detector" parent="Areas/Cats/GrandmaHousecat4" index="4"]
 beam_length_mult = 0.75
+
+[node name="SgCatSnake" parent="Areas/Cats" index="5" instance=ExtResource("10_8gmxf")]
+position = Vector2(-92, -113)
+default_lines = Array[StringName]([&"sg_b3_1"])
 
 [node name="TrashBin" parent="Areas" index="6" instance=ExtResource("10_dew3n")]
 position = Vector2(89, 163)
