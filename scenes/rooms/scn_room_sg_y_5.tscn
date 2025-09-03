@@ -756,10 +756,16 @@ default_lines = Array[StringName]([&"sg_5_healing"])
 [node name="GrandmaHousecat" parent="Areas/Cats" index="5" instance=ExtResource("6_bwrhi")]
 position = Vector2(456, 221)
 battle_info = ExtResource("2_bwrhi")
+save = true
+save_position = true
+save_battled = true
 
 [node name="GrandmaHousecat2" parent="Areas/Cats" index="6" instance=ExtResource("6_bwrhi")]
 position = Vector2(675, -104)
 battle_info = ExtResource("2_bwrhi")
+save = true
+save_position = true
+save_battled = true
 
 [node name="TrashBin" parent="Areas" index="3" instance=ExtResource("8_bwrhi")]
 position = Vector2(689, 97)

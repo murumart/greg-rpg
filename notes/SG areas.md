@@ -19,6 +19,15 @@ Rooms:
 3. room with fights
 4. room with grandma cutscene (a la tenna deltarune)
 
+### Area P
+Rooms:
+1. Fights
+2. Fights
+3. Fights that turns into chase
+4. chase
+5. chase
+6. chase back to start
+
 To do:
 - [x] light puzzle (lasers)
 	- [x] light emitter element (with color)

@@ -4112,6 +4112,10 @@ DIALOGUE sg_b3_4
 	%SGYou get along with them... well enough, you best hope.
 
 
+DIALOGUE sg_b4_1
+	%SGI heard some sort of disturbance up ahead.
+
+
 DIALOGUE sg_b_pre_multip
 	%SGS-stand back! The beast is lurking here...
 	%SGHer vile creatures came together and... oh, it's so horrible, I...!
