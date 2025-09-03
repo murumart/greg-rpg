@@ -4112,6 +4112,12 @@ DIALOGUE sg_b3_4
 	%SGYou get along with them... well enough, you best hope.
 
 
+DIALOGUE sg_b_pre_multip
+	%SGS-stand back! The beast is lurking here...
+	%SGHer vile creatures came together and... oh, it's so horrible, I...!
+	%SG...oh no.
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://j0hlaeya17sp"]
+[gd_scene load_steps=14 format=3 uid="uid://j0hlaeya17sp"]
 
 [ext_resource type="Script" uid="uid://bkrmc838v7cgw" path="res://scenes/characters/battle_enemies/scr_enemy_multipanther.gd" id="1_7nxnl"]
 [ext_resource type="Texture2D" uid="uid://0h7fiv6qxdyd" path="res://sprites/characters/battle/cats/spr_multipanther.png" id="2_b4rfq"]
@@ -18,13 +18,22 @@ fill_from = Vector2(1, 1)
 atlas = ExtResource("5_mgowv")
 region = Rect2(4, 8, 12, 4)
 
+[sub_resource type="Curve" id="Curve_80mbe"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0382979, 1), 0.0, 0.0, 0, 0, Vector2(0.885106, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7foqo"]
+width = 32
+curve = SubResource("Curve_80mbe")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of1m1"]
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(120, 32, 1)
 gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_7foqo")
 
-[sub_resource type="Shader" id="Shader_1mr4d"]
+[sub_resource type="Shader" id="Shader_80mbe"]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -44,7 +53,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ke1u"]
-shader = SubResource("Shader_1mr4d")
+shader = SubResource("Shader_80mbe")
 
 [node name="Multipanther" type="Node2D"]
 script = ExtResource("1_7nxnl")
@@ -111,9 +120,10 @@ scale = Vector2(5.57813, 2.98438)
 texture = SubResource("GradientTexture2D_p0ibm")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0, 68)
+position = Vector2(0, 25)
 texture = SubResource("AtlasTexture_l1thi")
 lifetime = 6.0
+visibility_rect = Rect2(-120.556, -43.0312, 241.584, 82.9823)
 process_material = SubResource("ParticleProcessMaterial_of1m1")
 
 [node name="OutlineMe" type="CanvasGroup" parent="."]
@@ -220,11 +230,13 @@ active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
 [node name="Tail8" type="Line2D" parent="OutlineMe"]
-position = Vector2(-6, 15)
+position = Vector2(-6.01731, 14.7075)
 rotation = -0.0590966
-points = PackedVector2Array(3.64445, -10.8036, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
-width = 3.0
+scale = Vector2(1, 1.0027)
+points = PackedVector2Array(8.23389, -37.1859, 3.75677, 4.22927, 3.16034, 31.2412, 14.1353, 48.9203, -18.9842, 49.966, 23.8168, 71.5315, -31.9083, 65.2293, 24.1005, 100.599)
+width = 12.0
 default_color = Color(0, 0, 0, 1)
+joint_mode = 2
 script = ExtResource("3_urbci")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
@@ -243,15 +255,15 @@ wiggle_range = Vector2(12, 1)
 texture = ExtResource("2_b4rfq")
 
 [node name="Head" type="Sprite2D" parent="OutlineMe"]
-position = Vector2(-5.31499, -10.5498)
-rotation = 5.28056
+position = Vector2(-6.05307, -7.93165)
+rotation = 5.33117
 texture = ExtResource("5_mgowv")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 16)
 
 [node name="Head" type="Sprite2D" parent="OutlineMe/Head"]
-position = Vector2(12.1199, 8.11832)
-rotation = 8.11832
+position = Vector2(15.7321, 8.40188)
+rotation = 8.40188
 texture = ExtResource("5_mgowv")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 16)

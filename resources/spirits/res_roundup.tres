@@ -8,7 +8,7 @@
 script = ExtResource("1_0bjtd")
 health = -67.0
 health_percent = 0.0
-max_health_percent = -11.0
+max_health_percent = -7.0
 pierce_defense = 0.0
 steal_health = 0.4
 magic = 0.0

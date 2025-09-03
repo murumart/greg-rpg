@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="BattleInfo" load_steps=9 format=3 uid="uid://ce8npt1r7x2fj"]
+
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_cd75k"]
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="2_fryrj"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_sadgl"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_yhr5o"]
+
+[sub_resource type="Resource" id="Resource_hw6pg"]
+script = ExtResource("2_fryrj")
+type = 0
+property = "121"
+chance = 1.0
+unique = false
+
+[sub_resource type="Resource" id="Resource_cd75k"]
+script = ExtResource("2_fryrj")
+type = 3
+property = "77"
+chance = 1.0
+unique = false
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_fryrj"]
+script = ExtResource("2_fryrj")
+type = 2
+property = "mooncity"
+chance = 1.0
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[sub_resource type="Resource" id="Resource_hkonc"]
+script = ExtResource("3_sadgl")
+rewards = Array[ExtResource("2_fryrj")]([SubResource("Resource_hw6pg"), SubResource("Resource_cd75k"), SubResource("Resource_fryrj")])
+
+[resource]
+script = ExtResource("4_yhr5o")
+enemies = Array[StringName]([&"multipanther"])
+background = "bg_stars"
+music = "gdung_beast"
+party = Array[StringName]([])
+death_reason = 0
+start_text = "boss!"
+rewards = SubResource("Resource_hkonc")
+victory_music = &"extremophile"
+stop_music_before_end = true
+kill_music = false
+play_fanfare = false
+crits_enabled = true
+player_missing_armour_effects = Dictionary[StringName, ExtResource("1_cd75k")]({})
+increment_data_with_enemies = &""
