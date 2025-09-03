@@ -4122,6 +4122,20 @@ DIALOGUE sg_b_pre_multip
 	%SG...oh no.
 
 
+DIALOGUE sg_p_welcome
+	%SGWelcome to the secret garden.
+	%SGLike any good garden, this teems with life.
+	%SGEverything is dead here.
+	%SGYou will not find one place without tremendous joviality...
+	%SGBut there's nothing living to greet you.
+	%SGThe joy of living awaits you.
+	%SG...
+
+
+DIALOGUE sg_p_ellipsis
+	%SG...
+
+
 DIALOGUE grandma_final_meeting_1
 SOUND sleepy
 	zzzzz... zzzzz...

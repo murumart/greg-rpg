@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -227,11 +227,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2292fc5d39da9a55",
+  "active": "c63e76cbeb3624cd",
   "lastOpenFiles": [
+    "SG areas.md",
     "Update goals.md",
     "bossui.png",
-    "SG areas.md",
     "Tarikas.md",
     "Notes.md",
     "Bugs.md",

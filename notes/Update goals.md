@@ -107,7 +107,6 @@
 		- [ ] cat freaks
 	- [ ] Central room, Three away-ways (Secret Garden? OS hideout)
 		- [ ] Zerma call explains no reach in these rooms
-		- [ ] Three keys to grandma's room
 		- [ ] Lots of filler in the directions to make them feel longer
 		- [ ] Direction one
 			- [ ] Sunlight theme
@@ -118,7 +117,7 @@
 			- [ ] Dodge sun action sequence
 			- [ ] Dodge rotating beams (SHIT IM MKING DELTATUNRE)
 		- [ ] Direcvtion 2
-			- [ ] Starlight theme
+			- [x] Starlight theme
 			Growth inside only
 			- [ ] Rotate circle to match up dots puzzle
 			- [ ] Dodge floating stars
