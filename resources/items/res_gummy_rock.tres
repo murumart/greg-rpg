@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://oifk2l776t6m"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_rcecr"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_2uv8g"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="3_vfg02"]
+[ext_resource type="Texture2D" uid="uid://cna0lofptkwke" path="res://sprites/items/spr_gummy_rock.png" id="4_rcecr"]
+
+[sub_resource type="Resource" id="Resource_dr2tg"]
+script = ExtResource("2_2uv8g")
+health = 0.0
+health_percent = 0.0
+max_health_percent = 15.0
+pierce_defense = 0.0
+steal_health = 0.0
+magic = 0.0
+magic_percent = 0.0
+max_magic_percent = 34.0
+steal_magic = 0.0
+attack_increase = 0.0
+defense_increase = 0.0
+speed_increase = 0.0
+gender = 2
+effects = Array[ExtResource("1_rcecr")]([])
+delay = 0.0
+summon_enemy = ""
+max_enemies = 6
+animation_on_receive = ""
+message_user = &""
+meta = {}
+
+[resource]
+script = ExtResource("3_vfg02")
+name_in_file = &""
+name = &"gummy rock"
+description = "unclear if made of rock or gummy."
+texture = ExtResource("4_rcecr")
+attack_animation = ""
+price = 120
+use = 0
+consume_on_use = true
+payload = SubResource("Resource_dr2tg")
+key = false

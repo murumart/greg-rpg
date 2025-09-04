@@ -1,7 +1,13 @@
 extends "res://scenes/rooms/forest/forest_objects/scr_puzzle_column.gd"
 
 @export var exchanges: Array[Exchange]
+@export_multiline var override_lines: PackedStringArray
+
 @onready var animator: AnimationPlayer = $Animator
+
+var _override_lines_seen: bool:
+	get: return DAT.get_data("pcolumn_%s_in_%s_lines_seen" % [name, LTS.get_current_scene().name], false)
+	set(to): DAT.set_data("pcolumn_%s_in_%s_lines_seen" % [name, LTS.get_current_scene().name], to)
 
 
 func _interacted() -> void:
@@ -10,7 +16,12 @@ func _interacted() -> void:
 	await animator.animation_finished
 	var inv := ResMan.get_character("greg").inventory
 	var dlg := DialogueBuilder.new().set_char("column_talk")
-	dlg.add_line(dlg.ml("to love is to change something."))
+	if not override_lines or _override_lines_seen:
+		dlg.add_line(dlg.ml("to love is to change something."))
+	else:
+		for line in override_lines:
+			dlg.al(line)
+		_override_lines_seen = true
 	await dlg.speak_choice()
 	while true:
 		var aval_choices: Array[StringName]
@@ -46,7 +57,8 @@ func _interacted() -> void:
 					animator.play(&"transmute")
 					await animator.animation_finished
 					exchange.exchange(inv)
-					break
+					#animator.play(&"open")
+					#break
 				else:
 					dlg.add_line(dlg.ml("you're stalling."))
 					await dlg.speak_choice()
