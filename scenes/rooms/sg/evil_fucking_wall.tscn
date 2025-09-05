@@ -1,0 +1,249 @@
+[gd_scene load_steps=20 format=3 uid="uid://ebraxs5v32f"]
+
+[ext_resource type="Script" uid="uid://cc5nt3sg80x6n" path="res://scenes/rooms/sg/evil_fucking_wall.gd" id="1_i70l5"]
+[ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="1_qttxl"]
+[ext_resource type="Material" uid="uid://dt6n3jr7jfjpg" path="res://scenes/vfx/x_menacing_particles.tres" id="2_wgd0b"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="3_yanto"]
+[ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_kexxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_581ln"]
+size = Vector2(50, 470)
+
+[sub_resource type="Gradient" id="Gradient_1l71f"]
+offsets = PackedFloat32Array(0.0954774, 0.236181, 0.442211, 0.502513, 0.557789, 1)
+colors = PackedColorArray(0.0705882, 0, 0.152941, 0.87451, 0.06, 1.1, 0.129, 0.127, 0.0705882, 0, 0.152941, 1, 0.071, 2, 0.152, 0.221, 0.071, 0, 0.152, 1, 0.071, 0, 0.152, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1jg3a"]
+gradient = SubResource("Gradient_1l71f")
+
+[sub_resource type="Curve" id="Curve_1l71f"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.758427), 0.0, 0.0, 0, 0, Vector2(0.493333, 1.26405), 0.0, 0.0, 0, 0, Vector2(0.751111, 0.674157), 0.0, 0.0, 0, 0, Vector2(1, 0.202247), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1jg3a"]
+width = 64
+curve = SubResource("Curve_1l71f")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i70l5"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, -0.195, 0)
+spread = 23.654
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 40, 0)
+scale_curve = SubResource("CurveTexture_1jg3a")
+color_ramp = SubResource("GradientTexture1D_1jg3a")
+
+[sub_resource type="Gradient" id="Gradient_yanto"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.729469)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i70l5"]
+frequency = 0.0494
+offset = Vector3(33578.8, -2536.13, 0)
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kexxf"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_yanto")
+noise = SubResource("FastNoiseLite_i70l5")
+
+[sub_resource type="Gradient" id="Gradient_kexxf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.507246)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_amth0"]
+gradient = SubResource("Gradient_kexxf")
+fill = 1
+fill_from = Vector2(0.153488, 0.498419)
+
+[sub_resource type="Animation" id="Animation_i70l5"]
+resource_name = "form"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Mask:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.21914, 1),
+"update": 0,
+"values": [Vector2(-0.012207, 7.15625), Vector2(0.78125, 7.15625)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/Mask/GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/Mask/GPUParticles2D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/Mask/GPUParticles2D3:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_kexxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Mask:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.78125, 7.15625)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/Mask/GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/Mask/GPUParticles2D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/Mask/GPUParticles2D3:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kexxf"]
+_data = {
+&"RESET": SubResource("Animation_kexxf"),
+&"form": SubResource("Animation_i70l5")
+}
+
+[node name="EvilFuckingWall" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_i70l5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_581ln")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = ExtResource("1_qttxl")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="CanvasGroup"]
+texture_filter = 1
+position = Vector2(6, -31)
+scale = Vector2(0.87387, 10.713)
+amount = 13
+lifetime = 5.0
+visibility_rect = Rect2(-1.59353, -16.2355, 97.2364, 45.1593)
+trail_lifetime = 1.07
+process_material = SubResource("ParticleProcessMaterial_i70l5")
+
+[node name="Mask" type="Sprite2D" parent="CanvasGroup"]
+scale = Vector2(0.78125, 7.15625)
+texture = SubResource("NoiseTexture2D_kexxf")
+
+[node name="SinAnimator" type="Node" parent="CanvasGroup/Mask" node_paths=PackedStringArray("target")]
+script = ExtResource("3_yanto")
+property_name = &"texture:noise:offset:x"
+target = NodePath("..")
+speed = 0.003
+min_value = -62.925
+max_value = 67999.0
+metadata/_custom_type_script = "uid://durusiw115m3o"
+
+[node name="SinAnimator2" type="Node" parent="CanvasGroup/Mask" node_paths=PackedStringArray("target")]
+script = ExtResource("3_yanto")
+property_name = &"texture:noise:offset:y"
+target = NodePath("..")
+speed = 0.003
+min_value = -62.925
+max_value = -4999.0
+metadata/_custom_type_script = "uid://durusiw115m3o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+texture_filter = 1
+position = Vector2(15.36, 0.40678)
+scale = Vector2(0.580403, 2.93842)
+amount = 24
+texture = SubResource("GradientTexture2D_amth0")
+process_material = ExtResource("2_wgd0b")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+position = Vector2(21.76, -20.7458)
+scale = Vector2(0.580403, 2.93842)
+amount = 24
+texture = SubResource("GradientTexture2D_amth0")
+process_material = ExtResource("2_wgd0b")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+position = Vector2(15.36, 19.661)
+scale = Vector2(0.580403, 2.93842)
+amount = 24
+texture = SubResource("GradientTexture2D_amth0")
+process_material = ExtResource("2_wgd0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Mask"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-175.36, -7.7486e-07)
+scale = Vector2(316.16, 64)
+texture = ExtResource("5_kexxf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kexxf")
+}
