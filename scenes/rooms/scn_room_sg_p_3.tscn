@@ -45,6 +45,7 @@ progress = 74.07
 loop = false
 
 [node name="EvilFuckingWall" parent="Areas/WallPath/PathFollow2D" index="0" node_paths=PackedStringArray("greg", "path_follower_parent") instance=ExtResource("2_ncu2q")]
+visible = false
 rotation = -0.00236966
 greg = NodePath("../../../../Greg")
 path_follower_parent = NodePath("..")

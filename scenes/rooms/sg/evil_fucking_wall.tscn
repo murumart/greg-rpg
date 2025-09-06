@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://ebraxs5v32f"]
+[gd_scene load_steps=24 format=3 uid="uid://ebraxs5v32f"]
 
 [ext_resource type="Script" uid="uid://cc5nt3sg80x6n" path="res://scenes/rooms/sg/evil_fucking_wall.gd" id="1_i70l5"]
 [ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="1_qttxl"]
-[ext_resource type="Material" uid="uid://dt6n3jr7jfjpg" path="res://scenes/vfx/x_menacing_particles.tres" id="2_wgd0b"]
 [ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="3_yanto"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_kexxf"]
 
@@ -44,7 +43,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i70l5"]
 frequency = 0.0494
-offset = Vector3(21794.4, -1669.79, 0)
+offset = Vector3(12418.8, -980.529, 0)
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kexxf"]
@@ -62,6 +61,38 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_kexxf")
 fill = 1
 fill_from = Vector2(0.153488, 0.498419)
+
+[sub_resource type="Gradient" id="Gradient_i70l5"]
+offsets = PackedFloat32Array(0.0954774, 0.236181, 0.442211, 0.502513, 0.557789, 1)
+colors = PackedColorArray(0.0705882, 0, 0.152941, 0.87451, 0.06, 1.1, 0.129, 0.127, 0.0705882, 0, 0.152941, 1, 0.071, 2, 0.152, 0.221, 0.071, 0, 0.152, 1, 0.071, 0, 0.152, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kexxf"]
+gradient = SubResource("Gradient_i70l5")
+
+[sub_resource type="Curve" id="Curve_amth0"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.758427), 0.0, 0.0, 0, 0, Vector2(0.493333, 1.26405), 0.0, 0.0, 0, 0, Vector2(0.751111, 0.674157), 0.0, 0.0, 0, 0, Vector2(1, 0.202247), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_j3dg3"]
+width = 64
+curve = SubResource("Curve_amth0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bpes3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+spread = 5.0
+initial_velocity_min = 40.0
+initial_velocity_max = 160.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+damping_max = 10.0
+scale_curve = SubResource("CurveTexture_j3dg3")
+color_ramp = SubResource("GradientTexture1D_kexxf")
 
 [sub_resource type="Animation" id="Animation_kexxf"]
 length = 0.001
@@ -221,21 +252,21 @@ position = Vector2(15.36, 0.40678)
 scale = Vector2(0.580403, 2.93842)
 amount = 24
 texture = SubResource("GradientTexture2D_amth0")
-process_material = ExtResource("2_wgd0b")
+process_material = SubResource("ParticleProcessMaterial_bpes3")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="CanvasGroup/Mask"]
 position = Vector2(21.76, -20.7458)
 scale = Vector2(0.580403, 2.93842)
 amount = 24
 texture = SubResource("GradientTexture2D_amth0")
-process_material = ExtResource("2_wgd0b")
+process_material = SubResource("ParticleProcessMaterial_bpes3")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="CanvasGroup/Mask"]
 position = Vector2(15.36, 19.661)
 scale = Vector2(0.580403, 2.93842)
 amount = 24
 texture = SubResource("GradientTexture2D_amth0")
-process_material = ExtResource("2_wgd0b")
+process_material = SubResource("ParticleProcessMaterial_bpes3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Mask"]
 modulate = Color(0, 0, 0, 1)
