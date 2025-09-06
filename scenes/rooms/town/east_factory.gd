@@ -21,6 +21,7 @@ func _ready() -> void:
 	# if youre wondering the mayor is positioned in res://scenes/rooms/town/east_intro_cutscene.gd
 	mayor.inspected.connect(_mayor_post_intro)
 	if DAT.get_data(&"mayor_fought", false):
+		$RoomGate.disabled = false
 		dark_hole.show()
 		skary.hide()
 		mayor.hide()
@@ -40,8 +41,8 @@ func _door() -> void:
 	var inv := ResMan.get_character("greg").inventory
 	var end := false
 	if DAT.get_data(&"mayor_fought", false):
-		LTS.gate_id = &"east-factory"
-		LTS.level_transition(LTS.ROOM_SCENE_PATH % "factory_inside")
+		#LTS.gate_id = &"east-factory"
+		#LTS.level_transition(LTS.ROOM_SCENE_PATH % "factory_inside")
 		return
 	elif &"explosive_soap" in inv:
 		greg.animate("walk_up")
@@ -373,4 +374,5 @@ func _battle_ending() -> void:
 	SOL.fade_screen(Color.GREEN, Color(Color.GREEN, 0.0), 4.0, {kill_rects = true})
 	camera.position = Vector2(0, -9)
 	await SOL.fade_finished
+	$RoomGate.disabled = false
 	DAT.free_player("cutscene")

@@ -511,13 +511,15 @@ _data = {
 &"peam": SubResource("Animation_qk2vw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gcnui"]
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_egsis"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_fix1m"]
 a = Vector2(-42, 0)
 b = Vector2(43, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fix1m"]
+resource_local_to_scene = true
+size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
@@ -1353,23 +1355,12 @@ libraries = {
 stream = ExtResource("37_gcnui")
 volume_db = 2.0
 
-[node name="ImpossibelDoor" parent="Houses/Factory" node_paths=PackedStringArray("spawn_point") instance=ExtResource("9_fhxp8")]
-position = Vector2(8, -19)
-destination = &"factory_inside"
-gate_id = &"east-factory"
-spawn_point = NodePath("Node2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/ImpossibelDoor"]
-shape = SubResource("CircleShape2D_gcnui")
-
-[node name="Node2D" type="Node2D" parent="Houses/Factory/ImpossibelDoor"]
-position = Vector2(-1, 39)
-
 [node name="BurnMark" type="Sprite2D" parent="Houses/Factory"]
 material = SubResource("CanvasItemMaterial_egsis")
 position = Vector2(7, 15)
 texture = ExtResource("38_xx7yy")
 offset = Vector2(0, 16)
+metadata/_edit_lock_ = true
 
 [node name="FactBin" parent="Houses/Factory" instance=ExtResource("10_stciw")]
 position = Vector2(-294, -254)
@@ -1390,6 +1381,25 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Factory/NPCForbidden"]
 shape = SubResource("SegmentShape2D_fix1m")
+
+[node name="RoomGate" parent="Houses/Factory" instance=ExtResource("28_x4kca")]
+position = Vector2(7, 13)
+disabled = true
+destination = &"factory_inside"
+gate_id = &"east-factory"
+extents = Vector2i(8, 4)
+spawnpoint = Vector2i(0, 9)
+
+[node name="Area2D" parent="Houses/Factory/RoomGate" index="0"]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_fix1m")
+
+[node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1"]
+position = Vector2(0, 9)
 
 [node name="Chapel" type="Node2D" parent="Houses"]
 y_sort_enabled = true
@@ -2045,4 +2055,5 @@ type = 3
 [editable path="Houses/HousingBlock/ClimbingPlace"]
 [editable path="Houses/Factory/ShardsTexture"]
 [editable path="Houses/Factory/Menace/Menacing"]
+[editable path="Houses/Factory/RoomGate"]
 [editable path="Other/RideAroundTown"]
