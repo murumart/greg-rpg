@@ -133,6 +133,7 @@ func end() -> void:
 	tw.tween_interval(2)
 	tw.tween_callback(func():
 		cashier.direct_walking_animation(Vector2.RIGHT)
+		cashier.set_physics_process(false)
 		vampire_girl.set_physics_process(false)
 		vampire_girl.animated_sprite.play("old")
 		SND.play_sound(preload("res://sounds/biking_snail_crush.ogg"))
@@ -147,7 +148,11 @@ func end() -> void:
 	SND.play_song("bymssc", 10)
 	#SOL.vfx("overrun", camera.to_local(vampire_girl.global_position) + Vector2(0, -10))
 	var snd := SND.play_sound(preload("res://sounds/men-01.ogg"))
+	tw2.tween_callback(func() -> void: cashier.direct_walking_animation(Vector2.LEFT))
 	tw2.set_ease(Tween.EASE_OUT).tween_property(menacing, ^"global_position", vampire_girl.global_position, 0.5)
+	if not cashier_ouch:
+		tw2.parallel().tween_callback(func() -> void: cashier.direct_walking_animation(Vector2.DOWN))
+		tw2.parallel().tween_property(cashier, ^"global_position:y", cashier.global_position.y - 6, 0.4)
 	tw2.tween_callback(func() -> void:
 		cashier.direct_walking_animation(Vector2.RIGHT)
 		SND.play_song("", 999)
@@ -156,8 +161,9 @@ func end() -> void:
 	)
 	tw2.tween_interval(0.2)
 	tw2.tween_callback(func() -> void:
+		cashier_hurt_sprite.hide()
+		cashier_sprite.show()
 		cashier.direct_walking_animation(Vector2.RIGHT)
-		SND.play_song("bymssc", 10)
 		SND.play_sound(preload("res://sounds/men-02.ogg"))
 		tw = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 		tw.tween_property(cashier, ^"global_position:x", cashier.global_position.x - 12, 0.2)
@@ -168,12 +174,19 @@ func end() -> void:
 	tw2.parallel().tween_callback(SND.play_song.bind("", 0.1))
 	tw2.tween_property(vamp_color, ^"color", Color(0.811, 1.0, 0.884), 4.0)
 	await tw2.finished
+	cashier.direct_walking_animation(Vector2.DOWN)
 	SOL.dialogue("vampire_after_battle_3")
-	SND.play_song("bymssc", 0.5, {volume = -8})
+	SND.play_song("bymssc", 0.5, {pitch_scale = 0.18})
 	await SOL.dialogue_closed
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	tw.tween_property(vamp_color, ^"color", Color.WHITE, 3.0)
+	await tw.finished
+	SND.play_song("")
+	SOL.dialogue("vampire_after_battle_4")
+	await SOL.dialogue_closed
+	cashier.set_physics_process(true)
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, "global_position", greg.global_position, 3.0 + int(cashier_ouch) * 10.0)
-	tw.parallel().tween_property(vamp_color, ^"color", Color.WHITE, 3.0)
 	if cashier_ouch:
 		cashier_hurt_sprite.hide()
 		cashier_sprite.show()
