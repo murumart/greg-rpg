@@ -5,6 +5,7 @@ const MenBullet = preload("res://scenes/tech/men_bullet.gd")
 enum Phase {
 	NONE,
 	BOMBARDMENT,
+	AIR_STRIKE,
 	SPEW_RINGS,
 }
 
@@ -14,17 +15,15 @@ enum MoveMode {
 }
 
 @onready var partic: GPUParticles2D = $CanvasGroup/Particles
+@onready var plosive_particles: GPUParticles2D = $PlosiveParticles
 @onready var bullet_home: CanvasGroup = $BulletHome
 
 @export var phase := Phase.NONE
 @export var move_mode := MoveMode.STOP
 @export var move_target: Node2D
+@export var bullet_target: CharacterBody2D
 
-
-
-
-func particles(amount: float = 0.0265) -> void:
-	partic.amount_ratio = amount
+var _phase_cycles := 0
 
 
 func _physics_process(delta: float) -> void:
@@ -66,8 +65,9 @@ func _shooting(delta: float) -> void:
 			var r := MenBullet.ring(8, 32.0)
 			bullet_home.add_child(r)
 			r.global_position = global_position
-			r.rotation = (_phase_progress / 12.0) * PI * 0.26
+			r.rotation = (_phase_progress / 12.0) * PI
 			if _phase_progress == 12:
+				splode()
 				_phase_progress = 0
 	elif phase == Phase.BOMBARDMENT:
 		_delay -= delta
@@ -80,6 +80,12 @@ func _shooting(delta: float) -> void:
 				_phase_progress = 0
 				_delay = 0.6
 			_bombard_bullet()
+	elif phase == Phase.AIR_STRIKE:
+		_delay -= delta
+		if _delay <= 0.0:
+			_phase_progress += 1
+			_delay = 2.0
+			_airstrike()
 
 
 func _bombard_bullet() -> void:
@@ -88,3 +94,21 @@ func _bombard_bullet() -> void:
 	b.global_position = global_position
 	b.global_position.y += randf_range(-10, 10)
 	b.global_position.x += randf_range(-160, 160)
+
+
+func _airstrike() -> void:
+	var pos := bullet_target.global_position
+	pos += _jitter() * randfn(2, 1)
+	pos += bullet_target.velocity * 1.16
+	var p := preload("res://scenes/vfx/vfx_x_attack_physical.tscn").instantiate()
+	add_sibling(p)
+	p.global_position = pos
+	p.rotation = randf() * TAU
+
+
+func particles(amount: float = 0.0265) -> void:
+	partic.amount_ratio = amount
+
+
+func splode() -> void:
+	plosive_particles.restart()

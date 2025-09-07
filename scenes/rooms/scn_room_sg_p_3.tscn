@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://c8myef5ghcfnx"]
+[gd_scene load_steps=8 format=4 uid="uid://c8myef5ghcfnx"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_4yirp"]
 [ext_resource type="TileSet" uid="uid://4w8pbohfcua6" path="res://resources/res_sg_tiles_small.tres" id="2_581ln"]
 [ext_resource type="PackedScene" uid="uid://ebraxs5v32f" path="res://scenes/rooms/sg/evil_fucking_wall.tscn" id="2_ncu2q"]
 [ext_resource type="PackedScene" uid="uid://bsfbdos2ow8xt" path="res://scenes/tech/player_hit_area.tscn" id="2_s4gxt"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="4_232gn"]
+[ext_resource type="Script" uid="uid://b7t20uy4ycdb6" path="res://scenes/rooms/sg/damage.gd" id="5_87g01"]
 
 [sub_resource type="Curve2D" id="Curve2D_ncu2q"]
 _data = {
@@ -32,7 +33,7 @@ limit_left = -92
 [node name="HitArea" parent="Greg" index="8" instance=ExtResource("2_s4gxt")]
 
 [node name="FollowMe" type="Marker2D" parent="Greg" index="9"]
-position = Vector2(0, -89)
+position = Vector2(0, -50)
 
 [node name="RoomGate" parent="Areas" index="0"]
 destination = &"sg_p_2"
@@ -57,11 +58,17 @@ rotation = -0.00236966
 greg = NodePath("../../../../Greg")
 path_follower_parent = NodePath("..")
 
-[node name="Menacing" parent="Areas" index="3" node_paths=PackedStringArray("move_target") instance=ExtResource("4_232gn")]
+[node name="Menacing" parent="Areas" index="3" node_paths=PackedStringArray("move_target", "bullet_target") instance=ExtResource("4_232gn")]
 position = Vector2(247, -79)
-phase = 1
+phase = 2
 move_mode = 1
 move_target = NodePath("../../Greg/FollowMe")
+bullet_target = NodePath("../../Greg")
+
+[node name="Damage" type="Node" parent="Areas" index="4" node_paths=PackedStringArray("greg_overworld", "hurt_area")]
+script = ExtResource("5_87g01")
+greg_overworld = NodePath("../../Greg")
+hurt_area = NodePath("../../Greg/HitArea")
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="6"]
 z_index = -2

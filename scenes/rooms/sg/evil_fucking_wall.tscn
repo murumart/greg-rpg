@@ -43,7 +43,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i70l5"]
 frequency = 0.0494
-offset = Vector3(12418.8, -980.529, 0)
+offset = Vector3(-12943.3, 883.983, 0)
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kexxf"]

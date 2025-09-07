@@ -1,9 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://derlrmf2kmbcd"]
+[gd_scene load_steps=13 format=3 uid="uid://derlrmf2kmbcd"]
 
 [ext_resource type="Texture2D" uid="uid://b1uyvhl2kkxuy" path="res://sprites/characters/overworld/spr_silhouette.png" id="1_1l71f"]
 [ext_resource type="Script" uid="uid://bvdjqlww8flfa" path="res://scenes/vfx/x_menacing.gd" id="1_kpvvp"]
 [ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="2_kpvvp"]
 [ext_resource type="Material" uid="uid://dt6n3jr7jfjpg" path="res://scenes/vfx/x_menacing_particles.tres" id="4_kpvvp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kpvvp"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2eucv"]
+offsets = PackedFloat32Array(0, 0.390438, 0.573705, 0.868526, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0, 0, 0, 0, 0.0431373, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_srg0a"]
+gradient = SubResource("Gradient_2eucv")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_0ue58"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.184549, 1), 0.0, 0.0, 0, 0, Vector2(0.360515, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3hvx2"]
+width = 64
+curve = SubResource("Curve_0ue58")
+
+[sub_resource type="Curve" id="Curve_475o0"]
+_data = [Vector2(0, 1), 0.0, -0.805531, 0, 0, Vector2(0.497854, 0.842697), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yg6r4"]
+width = 32
+curve = SubResource("Curve_475o0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sc7yi"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 64.0
+initial_velocity_max = 128.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yg6r4")
+alpha_curve = SubResource("CurveTexture_3hvx2")
 
 [node name="Menacing" type="Node2D"]
 script = ExtResource("1_kpvvp")
@@ -28,3 +70,17 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="BulletHome" type="CanvasGroup" parent="."]
 top_level = true
 material = ExtResource("2_kpvvp")
+
+[node name="PlosiveParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_kpvvp")
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_srg0a")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.38
+trail_sections = 4
+trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_sc7yi")
