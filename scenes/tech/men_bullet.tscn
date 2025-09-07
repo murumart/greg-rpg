@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://wwu8pc12twc8"]
+
+[ext_resource type="Script" uid="uid://splgdmereykt" path="res://scenes/tech/men_bullet.gd" id="1_dqv17"]
+
+[sub_resource type="Gradient" id="Gradient_4dbl1"]
+interpolation_mode = 1
+colors = PackedColorArray(0.0705882, 0, 0.152941, 1, 0.0705882, 0, 0.152941, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqv17"]
+gradient = SubResource("Gradient_4dbl1")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dbl1"]
+radius = 2.0
+
+[node name="MenBullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_dqv17")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_dqv17")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4dbl1")
