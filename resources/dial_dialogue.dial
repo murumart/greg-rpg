@@ -4153,22 +4153,6 @@ DIALOGUE sg_p_ellipsis
 	%SG...
 
 
-DIALOGUE grandma_final_meeting_1
-SOUND sleepy
-	zzzzz... zzzzz...
-	zzz... hrk... mimimimimimi...
-	zzzzzzzz......
-CHAR grandma
-	zzz- hurk!
-	ah, you arrived at last! i was getting tired waiting.
-	i see you have trudged through the "extensions"...
-	...that i made to the house.
-	you're strong enough by now, aren't you?
-	this is your final test, greg...
-	do you give up... or do you truly desire this house?
-# she fights you
-
-
 DIALOGUE grandma_final_fight_1
 CHAR grandma
 	items

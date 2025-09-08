@@ -11,8 +11,6 @@ func _ready() -> void:
 
 	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
 		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
-		if DAT.get_data("gdung_floor", 0) >= 3:
-			door_area.destination = &"after_gdung"
 		door_area.destination = &"secret_garden_entrance"
 		musicplayer.stop()
 		radio.default_song = preload("res://music/mus_bells.ogg")
