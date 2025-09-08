@@ -45,3 +45,4 @@ price = 300
 use = 2
 consume_on_use = true
 payload = SubResource("Resource_ap6gj")
+key = false

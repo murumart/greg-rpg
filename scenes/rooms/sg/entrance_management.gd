@@ -18,3 +18,6 @@ func _ready() -> void:
 	if DAT.get_data("sg_b4_multipanther_fought", false):
 		%PEntrance.disabled = false
 		%PEntrance.show()
+	if DAT.get_data("x_chase_done", false):
+		%FinalEntrance.disabled = false
+		%FinalEntrance.show()

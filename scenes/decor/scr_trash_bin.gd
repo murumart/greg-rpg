@@ -24,7 +24,7 @@ func _ready() -> void:
 		return
 	if save:
 		check_full_time_passed()
-	assert(ResMan.item_exists(item) if item else true)
+	assert(ResMan.item_exists(item) if item else true, "item %s no exist" % item)
 
 
 func _on_interaction_area_on_interact() -> void:

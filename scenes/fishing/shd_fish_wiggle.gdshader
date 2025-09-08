@@ -9,5 +9,5 @@ void vertex() {
 void fragment() {
 	vec2 uv = UV;
 	uv.y += sin(uv.x * 3.0 + TIME * speed) * 0.05;
-	COLOR = texture(TEXTURE, uv);
+	COLOR = COLOR * texture(TEXTURE, uv);
 }

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://cm8fxpdmulk3q"]
+[gd_scene load_steps=10 format=4 uid="uid://cm8fxpdmulk3q"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_pv5lo"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="2_58vv6"]
 [ext_resource type="TileSet" uid="uid://4w8pbohfcua6" path="res://resources/res_sg_tiles_small.tres" id="2_dimar"]
 [ext_resource type="PackedScene" uid="uid://bh78ls33qdjmw" path="res://scenes/rooms/forest/forest_objects/purple_column.tscn" id="3_j0b4c"]
 [ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="4_3t125"]
+[ext_resource type="Environment" uid="uid://bjnrd6slwu5nn" path="res://resources/sg_p_env.tres" id="6_3t125"]
 
 [sub_resource type="Resource" id="Resource_j0b4c"]
 script = ExtResource("4_3t125")
@@ -83,3 +84,6 @@ tile_set = ExtResource("2_dimar")
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD//wAAAAAfAA0AAAD+/wAAAAAcAA0AAAD+////AAAeAA0AAAABAAAAAAAeAA0AAAACAAEAAAAeAA0AAAD//wIAAAAdAA0AAAA=")
 tile_set = ExtResource("2_dimar")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
+environment = ExtResource("6_3t125")

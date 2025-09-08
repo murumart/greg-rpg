@@ -294,7 +294,7 @@ resource_local_to_scene = true
 size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpxyo"]
-size = Vector2(12, 14)
+size = Vector2(14, 20)
 
 [node name="SgY2" type="Node2D"]
 y_sort_enabled = true
@@ -339,7 +339,7 @@ y_sort_origin = -1270
 
 [node name="Climp2" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-position = Vector2(480, -82.6245)
+position = Vector2(480, -86.4733)
 tile_map_data = PackedByteArray("AAAAAP//AAAFAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAGAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAIAAIAAAAGAP3/AAAGAAIAAAAHAP3/AAAHAAMAAAAIAP3/AAAHAAMAAAAJAP3/AAAHAAMAAAAKAP3/AAAIAAAAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAAEAPz/AAAGAAAAAAAFAPz/AAAHAAMAAAAGAPz/AAAIAAAAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = 15455

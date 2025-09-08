@@ -48,6 +48,7 @@
 - [x] medkid could be cheaper methink's..
 - [x] remove fisherwoman from fishing pole dialogue wjen shes gone.d
 - [x] crits shoudl break shield
+- [ ] dialogue about shortness of sg blue
 
 ## 22.07.25
 - [ ] change music to save position after fadeout (UNFIXABLE)

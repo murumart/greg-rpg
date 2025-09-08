@@ -578,6 +578,11 @@ volume_db = -9.639
 pitch_scale = 10.0
 bus = &"ECHO"
 
+[node name="SgCatSnake" parent="Reemerge" index="4" instance=ExtResource("2_mq2c1")]
+position = Vector2(45, -10)
+snakes_up = false
+default_lines = Array[StringName]([&"sg_b_short", &"sg_b_short_2"])
+
 [connection signal="interacted" from="Areas/InteractionArea" to="Areas/ClimbingPlace" method="begin_climping"]
 
 [editable path="Areas/ClimbingPlace"]

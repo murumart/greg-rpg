@@ -4121,6 +4121,18 @@ DIALOGUE sg_b4_1
 	%SGI heard some sort of disturbance up ahead.
 
 
+DIALOGUE sg_b_short
+	%SGYou're already back... disappointed?
+	%SGThis section of the SECRET GARDEN is vast.
+	%SGBlue cliffs stretch on for miles.
+	%SGBut, visitors can only walk the path.
+	%SGYou're no different.
+
+
+DIALOGUE sg_b_short_2
+	%SGNo depths are open for visitors.
+
+
 DIALOGUE sg_b_pre_multip
 	%SGS-stand back! The beast is lurking here...
 	%SGHer vile creatures came together and... oh, it's so horrible, I...!

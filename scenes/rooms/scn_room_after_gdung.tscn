@@ -1,26 +1,14 @@
-[gd_scene load_steps=64 format=4 uid="uid://dagcbtyo58x4e"]
+[gd_scene load_steps=45 format=4 uid="uid://dagcbtyo58x4e"]
 
 [ext_resource type="Script" uid="uid://3o34x5ubth85" path="res://scenes/rooms/scr_room_after_gdung.gd" id="1_bimlp"]
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="2_xp1f1"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="3_hx4r5"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="3_vr61x"]
-[ext_resource type="PackedScene" uid="uid://cl6k0grvwaxor" path="res://scenes/rooms/grandma_house/gdung_objects/desk_drawer.tscn" id="5_fayv6"]
-[ext_resource type="PackedScene" uid="uid://kqx43gmkaehn" path="res://scenes/rooms/grandma_house/gdung_objects/catface_big.tscn" id="6_320fy"]
 [ext_resource type="Texture2D" uid="uid://w8w2h3ql2nu6" path="res://sprites/world/object/spr_stairs.png" id="6_vvee7"]
-[ext_resource type="PackedScene" uid="uid://dypyknji64gje" path="res://scenes/rooms/grandma_house/gdung_objects/shelf_hanging_flower.tscn" id="7_37dg4"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="7_ltdhb"]
-[ext_resource type="PackedScene" uid="uid://cj517qpsnj0x0" path="res://scenes/rooms/grandma_house/gdung_objects/shelf.tscn" id="8_df8j1"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="8_wwl53"]
-[ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="9_8hvh6"]
-[ext_resource type="Texture2D" uid="uid://bc7kvo2qymx6l" path="res://sprites/world/object/spr_kid_stand.png" id="10_i14fl"]
-[ext_resource type="PackedScene" uid="uid://d3r88xccx3cog" path="res://scenes/rooms/grandma_house/gdung_objects/bookshelf.tscn" id="13_4f40q"]
-[ext_resource type="PackedScene" uid="uid://cwunqxest0uvr" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_5.tscn" id="14_gfadn"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="14_hgnfg"]
-[ext_resource type="PackedScene" uid="uid://ujw3hja42fv4" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_4.tscn" id="15_1u8hk"]
 [ext_resource type="SpriteFrames" uid="uid://dqqpj387k5o24" path="res://resources/characters/sfr_grandma.tres" id="15_jsbas"]
-[ext_resource type="PackedScene" uid="uid://bo8y8ijengvn8" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_3.tscn" id="16_1ri04"]
-[ext_resource type="PackedScene" uid="uid://bba783hhp0cep" path="res://scenes/rooms/grandma_house/gdung_objects/cardboard_box_1.tscn" id="17_1hl5q"]
-[ext_resource type="PackedScene" uid="uid://s18egu6smh4w" path="res://scenes/rooms/forest/forest_objects/grassy_2.tscn" id="18_2xltg"]
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="18_3nh0l"]
 [ext_resource type="Script" uid="uid://bfbmsp6ns680n" path="res://scenes/rooms/grandma_house/after_gdung_cutscene.gd" id="18_xmmsv"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="20_q8mic"]
@@ -41,41 +29,6 @@
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nlgg"]
 polygon = PackedVector2Array(-32, 25, -32, 64, -16, 64, -16, -88, -32, -88)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bivqi"]
-size = Vector2(20, 12)
-
-[sub_resource type="Shader" id="Shader_udwru"]
-code = "shader_type canvas_item;
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
-void fragment() {
-	vec2 uv = UV;
-	uv.x += sin(UV.y + cos(TIME - UV.x) - UV.x) * 0.3;
-	uv.y += cos(UV.x * sin(TIME * UV.x - UV.y * cos(UV.x * TIME + TIME - tan(TIME))) - TIME) * 0.2;
-	COLOR = texture(TEXTURE, uv);
-}
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyh5r"]
-shader = SubResource("Shader_udwru")
-
-[sub_resource type="GDScript" id="GDScript_ynxwh"]
-script/source = "extends Sprite2D
-
-
-func _ready() -> void:
-	if randf() >= 0.01:
-		material = null
-"
 
 [sub_resource type="GDScript" id="GDScript_kcpxu"]
 resource_name = "fridge"
@@ -2109,18 +2062,6 @@ terrain_set_2/terrain_1/name = "table_darkwood"
 terrain_set_2/terrain_1/color = Color(0.415686, 0.12549, 0, 1)
 sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 
-[sub_resource type="Gradient" id="Gradient_4k3gf"]
-offsets = PackedFloat32Array(0, 0.252776, 0.583574)
-colors = PackedColorArray(1, 1, 1, 1, 0.905656, 0.905656, 0.905656, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2giux"]
-gradient = SubResource("Gradient_4k3gf")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_koeod"]
-polygon = PackedVector2Array(-15, -1, -15, -31, 0, -46, 0, -65, 15, -50, 15, -1)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_juacr"]
 polygon = PackedVector2Array(-3, 0, -3, -8, -4, -8, -4, -14, 4, -14, 4, -8, 3, -8, 3, 0)
 
@@ -2239,107 +2180,8 @@ occluder = SubResource("OccluderPolygon2D_0nlgg")
 [node name="Decor" type="Node2D" parent="InteriorTiles"]
 y_sort_enabled = true
 
-[node name="DeskDrawer" parent="InteriorTiles/Decor" instance=ExtResource("5_fayv6")]
-position = Vector2(79, 158)
-
-[node name="Catface" parent="InteriorTiles/Decor" instance=ExtResource("6_320fy")]
-position = Vector2(48, 160)
-
-[node name="Shelf" parent="InteriorTiles/Decor" instance=ExtResource("7_37dg4")]
-position = Vector2(-96, 224)
-
-[node name="Shelf2" parent="InteriorTiles/Decor" instance=ExtResource("8_df8j1")]
-position = Vector2(-78, 224)
-
-[node name="Shelf3" parent="InteriorTiles/Decor" instance=ExtResource("8_df8j1")]
-position = Vector2(-60, 224)
-
-[node name="TrashBin" parent="InteriorTiles/Decor" instance=ExtResource("9_8hvh6")]
-position = Vector2(105, 178)
-replenish_minutes = -1
-replenish_seconds = -60
-item = &"mueslibar"
-
-[node name="TrashBin2" parent="InteriorTiles/Decor" instance=ExtResource("9_8hvh6")]
-position = Vector2(105, 189)
-replenish_minutes = -1
-replenish_seconds = -60
-item = &"milkshake"
-
-[node name="TrashBin3" parent="InteriorTiles/Decor" instance=ExtResource("9_8hvh6")]
-position = Vector2(105, 200)
-replenish_minutes = -1
-replenish_seconds = -60
-item = &"gummy_fish"
-
-[node name="KidStand" type="Node2D" parent="InteriorTiles/Decor"]
-y_sort_enabled = true
-position = Vector2(81, 86)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="InteriorTiles/Decor/KidStand"]
-position = Vector2(0, 7)
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteriorTiles/Decor/KidStand/StaticBody2D"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_bivqi")
-
-[node name="Stand" type="Sprite2D" parent="InteriorTiles/Decor/KidStand"]
-material = SubResource("ShaderMaterial_yyh5r")
-position = Vector2(0, 6)
-texture = ExtResource("10_i14fl")
-offset = Vector2(0, -18)
-script = SubResource("GDScript_ynxwh")
-
-[node name="Bookshelf" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(-61, -144)
-
-[node name="Bookshelf2" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(61, -144)
-
-[node name="Bookshelf3" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(43, -144)
-
-[node name="Bookshelf4" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(-43, -144)
-
-[node name="Bookshelf5" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(-25, -144)
-
-[node name="Bookshelf6" parent="InteriorTiles/Decor" instance=ExtResource("13_4f40q")]
-position = Vector2(25, -144)
-
-[node name="Box" parent="InteriorTiles/Decor" instance=ExtResource("14_gfadn")]
-position = Vector2(-93, 261)
-
-[node name="Box8" parent="InteriorTiles/Decor" instance=ExtResource("14_gfadn")]
-position = Vector2(-112, 77)
-
-[node name="Box2" parent="InteriorTiles/Decor" instance=ExtResource("15_1u8hk")]
-position = Vector2(-59, 256)
-
-[node name="Box9" parent="InteriorTiles/Decor" instance=ExtResource("15_1u8hk")]
-position = Vector2(-43, 53)
-
-[node name="Box3" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
-position = Vector2(-84, 230)
-
-[node name="Box4" parent="InteriorTiles/Decor" instance=ExtResource("17_1hl5q")]
-position = Vector2(48, 198)
-
-[node name="Box5" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
-position = Vector2(56, 194)
-
-[node name="Box6" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
-position = Vector2(80, 103)
-
-[node name="Box7" parent="InteriorTiles/Decor" instance=ExtResource("16_1ri04")]
-position = Vector2(-109, 86)
-
-[node name="OverworldTiles" parent="InteriorTiles/Decor/Box7" instance=ExtResource("18_2xltg")]
-
 [node name="Fridge" type="StaticBody2D" parent="InteriorTiles/Decor"]
-position = Vector2(-49, 49)
+position = Vector2(-526, 153)
 script = SubResource("GDScript_kcpxu")
 
 [node name="Sprite" type="Sprite2D" parent="InteriorTiles/Decor/Fridge"]
@@ -2408,18 +2250,7 @@ tile_map_data = PackedByteArray("AAD///j/AQANAAcAAAAAAPj/AQAOAAcAAAABAPj/AQAPAAc
 tile_set = SubResource("TileSet_tjy6q")
 
 [node name="Greenhouse" parent="." instance=ExtResource("3_hx4r5")]
-position = Vector2(-72, 73)
-
-[node name="Lamp" type="PointLight2D" parent="Greenhouse"]
-position = Vector2(-38, -96)
-rotation = 0.676217
-scale = Vector2(5.05732, 3.69437)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_2giux")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Greenhouse"]
-modulate = Color(1, 1, 1, 0)
-occluder = SubResource("OccluderPolygon2D_koeod")
+position = Vector2(-445, 185)
 
 [node name="Greg" parent="." instance=ExtResource("7_ltdhb")]
 position = Vector2(8, 457)

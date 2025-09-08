@@ -56,7 +56,7 @@ func _position_dialogue_box() -> void:
 	if is_instance_valid(player) and DAT.player_capturers.is_empty():
 		# position the dialogue box up or down so the player is visible
 		var pos := player.get_global_transform_with_canvas().origin
-		if pos.y < 75:
+		if pos.y < 75 * transform.get_scale().x:
 			dialogue_low_position()
 		else:
 			dialogue_high_position()

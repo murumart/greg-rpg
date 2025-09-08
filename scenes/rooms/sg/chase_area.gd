@@ -37,6 +37,8 @@ func _ready() -> void:
 		body.animate("walk_up")
 		var tw := create_tween()
 		tw.tween_property(menacing, ^"modulate:a", 1.0, 1.0).from(0.0)
+		tw.parallel().tween_property($"../../PBackground", "modulate", Color.DARK_GREEN, 1.0)
+		tw.parallel().tween_property($"../../PBackground2", "modulate", Color.DARK_GREEN, 1.0)
 		tw.tween_interval(0.3)
 		await tw.finished
 		DAT.free_player("cutscene")

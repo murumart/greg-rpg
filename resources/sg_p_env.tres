@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bjnrd6slwu5nn"]
+
+[sub_resource type="Gradient" id="Gradient_cjqd2"]
+offsets = PackedFloat32Array(0.0212766, 0.117021, 0.553191, 0.638298, 0.696809, 0.797872, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.163915, 0.0240781, 0.147325, 1, 0.438452, 0.593448, 0.410093, 1, 0.219746, 0.805074, 0.853277, 1, 0.528848, 0.780924, 0.496614, 1, 0.59246, 0.912851, 0.5575, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_28vgn"]
+gradient = SubResource("Gradient_cjqd2")
+
+[resource]
+background_mode = 3
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_28vgn")

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_axufd"]
 [ext_resource type="Resource" uid="uid://dhr8uo64sib8s" path="res://resources/battle_infos/sg_3_cats.tres" id="2_bwrhi"]
 [ext_resource type="Script" uid="uid://c6nera85q5le0" path="res://code/sg_rotating_obstacle.gd" id="2_uma5x"]
+[ext_resource type="Script" uid="uid://coco01ycrsp5h" path="res://scenes/rooms/sg/y5_areas.tres.gd" id="2_xno3b"]
 [ext_resource type="Script" uid="uid://clm46bfotr4pi" path="res://scenes/rooms/sg/y5_funny.gd" id="3_uees3"]
 [ext_resource type="PackedScene" uid="uid://dtucue1l5udas" path="res://scenes/characters/overworld/scn_cat_sg.tscn" id="3_ydydb"]
 [ext_resource type="PackedScene" uid="uid://cx3xpngxhydy0" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.tscn" id="5_do0af"]
@@ -20,36 +21,6 @@
 [ext_resource type="Script" uid="uid://cqxdtnode7xdx" path="res://shaders/scr_distortion_uv.gd" id="16_eow6t"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="17_xno3b"]
 [ext_resource type="Shader" uid="uid://c2tngyipocnap" path="res://shaders/shd_stolen_water.gdshader" id="19_w6txg"]
-
-[sub_resource type="GDScript" id="GDScript_m3ter"]
-script/source = "extends Node2D
-
-@onready var cat_2 := $Cats/SgCatOwl
-@onready var trash_bin: TrashBin = $TrashBin
-
-@export var cat_battle: BattleInfo
-
-
-func _ready() -> void:
-	if not is_instance_valid(cat_2):
-		return
-	if not trash_bin.full:
-		cat_2.convo_progress = 0
-		cat_2.default_lines.assign([\"sg_trashbin_opened\"])
-	trash_bin.opened.connect(func() -> void:
-		cat_2.convo_progress = 0
-		cat_2.default_lines.assign([\"sg_trashbin_opened\"])
-	)
-	cat_2.inspected.connect(func() -> void:
-		if DAT.get_data(\"heard_trashbin_importance\", false) and not trash_bin.full:
-			await SOL.dialogue_closed
-			DAT.capture_player(\"cutscene\")
-			await cat_2.scary()
-			DAT.free_player(\"cutscene\")
-			cat_2.battle_info = cat_battle
-			cat_2.enter_battle()
-	)
-"
 
 [sub_resource type="Curve2D" id="Curve2D_2knk6"]
 bake_interval = 1.0
@@ -372,7 +343,7 @@ limit_left = -90
 limit_right = 814
 
 [node name="Areas" parent="." index="5"]
-script = SubResource("GDScript_m3ter")
+script = ExtResource("2_xno3b")
 cat_battle = ExtResource("2_bwrhi")
 
 [node name="RoomGate" parent="Areas" index="0"]

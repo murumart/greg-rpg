@@ -17,6 +17,7 @@ var panther_fought: bool:
 func _ready() -> void:
 	if not (piuzzle_progress & 0b11):
 		hide()
+		$SgCatSnake.queue_free()
 		return
 	warner.inspected.connect(func() -> void:
 		if is_instance_valid(SND.current_song_player):

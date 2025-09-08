@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx40je2gy61b0"]
+
+[ext_resource type="Script" uid="uid://baf0m66n60bwa" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_mpql5"]
+[ext_resource type="Shader" uid="uid://tkxwqkbtxfo8" path="res://scenes/fishing/shd_fish_wiggle.gdshader" id="2_g138n"]
+[ext_resource type="Texture2D" uid="uid://c2bqmfq3w674" path="res://sprites/photos/rot_background.png" id="2_ht4yq"]
+[ext_resource type="Texture2D" uid="uid://cscco0fi8dl7q" path="res://sprites/photos/rot_foreground.png" id="3_g138n"]
+[ext_resource type="Material" uid="uid://ca7vnbb3kqhd7" path="res://resources/add_material.tres" id="4_wmcag"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8agoo"]
+shader = ExtResource("2_g138n")
+shader_parameter/speed = 0.3
+
+[node name="PBackground" type="Node2D"]
+script = ExtResource("1_mpql5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.151149, 0.151149, 0.151149, 1)
+texture_repeat = 3
+material = SubResource("ShaderMaterial_8agoo")
+position = Vector2(111, 82)
+texture = ExtResource("2_ht4yq")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.05, 0.05)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(0.151149, 0.151149, 0.151149, 1)
+texture_repeat = 3
+material = SubResource("ShaderMaterial_8agoo")
+position = Vector2(84, 66)
+texture = ExtResource("2_ht4yq")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.07, 0.07)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D2"]
+modulate = Color(0.478809, 0.478809, 0.478809, 1)
+material = ExtResource("4_wmcag")
+position = Vector2(84, 66)
+texture = ExtResource("3_g138n")
