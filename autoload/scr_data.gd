@@ -19,7 +19,7 @@ const FLOWERS = [
 enum DeathReasons {
 	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
 	CATS, SOLAR, NOVA, ZERMA, VAMPIRE, PRES_GUN, DISH, GDUNG,
-	MAYOR_DIE,
+	MAYOR_DIE, SGY, SGB, SGP, X,
 }
 
 signal player_captured(capture: bool)

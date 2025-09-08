@@ -68,7 +68,23 @@ const DEATH_REASONS := [
 	{
 		"picture": "mayordiea",
 		"text": "[font=res://fonts/gregtiny.ttf][font_size=6][center]assignment terminated\nsubject: greg\nreason: failure to preserve mission-critical personnel",
-	}
+	},
+	{
+		"picture": "sgy",
+		"text": "[font=res://fonts/gregorious_smaller.tres][font_size=16]Can you keep a secret?",
+	},
+	{
+		"picture": "sgb",
+		"text": "[font=res://fonts/gregorious_smaller.tres][font_size=16]Please keep your secrets away.",
+	},
+	{
+		"picture": "sgp",
+		"text": "[font=res://fonts/gregorious_smaller.tres][font_size=17]TIME OF DEATH: ",
+	},
+	{
+		"picture": "x",
+		"text": "",
+	},
 ]
 
 @export var test_death := DAT.DeathReasons.DEFAULT

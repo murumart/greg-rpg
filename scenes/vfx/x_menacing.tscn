@@ -1,9 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://derlrmf2kmbcd"]
+[gd_scene load_steps=19 format=3 uid="uid://derlrmf2kmbcd"]
 
 [ext_resource type="Texture2D" uid="uid://b1uyvhl2kkxuy" path="res://sprites/characters/overworld/spr_silhouette.png" id="1_1l71f"]
 [ext_resource type="Script" uid="uid://bvdjqlww8flfa" path="res://scenes/vfx/x_menacing.gd" id="1_kpvvp"]
 [ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="2_kpvvp"]
 [ext_resource type="Material" uid="uid://dt6n3jr7jfjpg" path="res://scenes/vfx/x_menacing_particles.tres" id="4_kpvvp"]
+[ext_resource type="AudioStream" uid="uid://dfqg02ryqxphq" path="res://sounds/men-01.ogg" id="5_475o0"]
+[ext_resource type="AudioStream" uid="uid://ckmlw4vj4wj1g" path="res://sounds/men-02.ogg" id="6_sc7yi"]
+[ext_resource type="AudioStream" uid="uid://buib1ge4kwxnl" path="res://sounds/men-03.ogg" id="7_rocms"]
+[ext_resource type="AudioStream" uid="uid://7l2tvhh72nko" path="res://sounds/chemistry/bounce.ogg" id="8_sc7yi"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kpvvp"]
 blend_mode = 1
@@ -47,6 +51,14 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_yg6r4")
 alpha_curve = SubResource("CurveTexture_3hvx2")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpvvp"]
+radius = 6.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sc7yi"]
+random_pitch = 1.69
+streams_count = 1
+stream_0/stream = ExtResource("8_sc7yi")
+
 [node name="Menacing" type="Node2D"]
 script = ExtResource("1_kpvvp")
 
@@ -84,3 +96,28 @@ trail_lifetime = 0.38
 trail_sections = 4
 trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_sc7yi")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="AttackShape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kpvvp")
+disabled = true
+
+[node name="SwoopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_475o0")
+
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sc7yi")
+volume_db = -9.244
+
+[node name="BlareSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_rocms")
+
+[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_sc7yi")
+volume_db = 8.0
+max_polyphony = 3
+bus = &"ECHO"

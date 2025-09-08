@@ -43,7 +43,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i70l5"]
 frequency = 0.0494
-offset = Vector3(-12943.3, 883.983, 0)
+offset = Vector3(-369.166, -40.4114, 0)
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kexxf"]
@@ -84,7 +84,7 @@ emission_shape = 1
 emission_sphere_radius = 4.0
 spread = 5.0
 initial_velocity_min = 40.0
-initial_velocity_max = 160.0
+initial_velocity_max = 60.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = -2.23517e-06

@@ -262,7 +262,11 @@ var songs := {
 		"title": "stood down and greeted us",
 		"stream": preload("res://music/mus_warstory.ogg"),
 		"loop": false
-	}
+	},
+	"xchase": {
+		"title": "trepid",
+		"stream": preload("res://music/mus_xchase.ogg"),
+	},
 }
 
 

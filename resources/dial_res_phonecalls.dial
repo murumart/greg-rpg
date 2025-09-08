@@ -580,6 +580,34 @@ CHAR zerma
 	have a wonderful rest of your day!
 
 
+DIALOGUE phone_before_xchase_nodeaths
+SOUND phone/phone_call
+	(ring... ring...)
+CHAR zerma
+	oh hey dude! how's it going?
+	i remembered something important so i had to get a call in.
+	it was about... uh, what was it again?
+	oh, right!
+	[color=#f00]run.
+
+
+DIALOGUE phone_before_xchase_yesdeaths
+SOUND phone/phone_call
+	(ring... ring...)
+CHAR zerma
+	oh hey dude!
+	i saw that you freaking died last time.
+	hot tip: [color=#f00]run[/color]. with your [color=#f00]legs[/color].
+
+
+DIALOGUE phone_before_xchase_moredeaths
+SOUND phone/phone_call
+	(ring... ring...)
+CHAR zerma
+	dude........
+	the evil monster... run? [color=#f00]maybe?[/color]
+
+
 DIALOGUE phone_call_over
 SOUND phone/call_end
 	(they hung up.)
