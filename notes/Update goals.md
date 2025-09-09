@@ -101,12 +101,12 @@
 - [x] Lakeside changes
 	- [x] fisherwoman flowrer
 - [ ] Dungeon changes
-	- [ ] Remove prodecural floors (for now)
-	- [ ] NPCS
+	- [x] Remove prodecural floors (for now)
+	- [x] NPCS
 		- [ ] flower freaks
 		- [ ] cat freaks
-	- [ ] Central room, Three away-ways (Secret Garden? OS hideout)
-		- [ ] Zerma call explains no reach in these rooms
+	- [x] Central room, Three away-ways (Secret Garden? OS hideout)
+		- [x] Zerma call explains no reach in these rooms
 		- [ ] Lots of filler in the directions to make them feel longer
 		- [ ] Direction one
 			- [ ] Sunlight theme
@@ -119,13 +119,13 @@
 		- [ ] Direcvtion 2
 			- [x] Starlight theme
 			Growth inside only
-			- [ ] Rotate circle to match up dots puzzle
+			- [x] Rotate circle to match up dots puzzle
 			- [ ] Dodge floating stars
 				- [ ] Advances: parallax, rotating
 		- [ ] Direction three
 			- [ ] Life/love theme
 			Growth outside only
-			- [ ] Make this one short and underwhelming if possible
+			- [x] Make this one short and underwhelming if possible
 				- [ ] MAKE IT CLEAR DECREASED QUALITY IS INTENTIONAL
 			- [ ] Color matching puzzle..?
 				- [ ] Bring correct color water to correct plant to proceed (timed)

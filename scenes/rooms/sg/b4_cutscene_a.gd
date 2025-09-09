@@ -41,34 +41,31 @@ func _cutscene() -> void:
 		grandma.tanim_shake(5, 1.0)
 	)
 	dlg.clear_char().al(dlg.SGD + "We... uh, meowed... at him?")
-	dlg.al(dlg.SGD + "We also threw a bunch of household appliances at him, as you requested.").scallback(func() -> void:
+	dlg.al(dlg.SGD + "We also threw a bunch of household appliances at him.").scallback(func() -> void:
 		grandma.sanimate("walk_down", 0.0)
 	)
 	dlg.set_char("grandma_talk").al("household appliances?").scallback(func() -> void:
 		grandma.sanimate("smile")
 		grandma.tanim_shake(5, 1.0)
 	)
-	dlg.al("you cat-faced idiots!! those were supposed to be symbolic!!").scallback(func() -> void:
+	dlg.al("you cat-faced idiots!!").scallback(func() -> void:
 		grandma.sanimate("halgful_right")
 		grandma.tanim_shake(15, 2.0)
 	)
-	dlg.al("getting work done!! finishing up chores!! profiting from lost couch-coins!!").scallback(func() -> void:
+	dlg.al("the appliances could've been useful!!").scallback(func() -> void:
 		grandma.sanimate("halgful", 1.1)
 	)
-	dlg.al("the machines were supposed to remind you to do your job!!")
-	dlg.al("but he already did what you were supposed to, and better.").scallback(func() -> void:
-		grandma.sanimate("smile")
-		grandma.tanim_bounce(2.0)
-	)
-	dlg.al("all i really needed now was that you stall him until i'm ready!")
-	dlg.al("graahh!! i've had it with you!!").scallback(func() -> void:
+	dlg.al("like for doing years worth of laundry!")
+	dlg.al("or lighting this gloomy-ass place up!")
+	dlg.al("or furnishing 100 expensive new flats to drive up real-estate prices with!!").scallback(func() -> void:
 		grandma.sanimate("halgful", 1.7)
 		grandma.tanim_shake(20, 4.0)
 	)
-	dlg.al("i'll destroy you all after i'm done with him...").scallback(func() -> void:
+	dlg.al("you were ass at stalling him. which was all that i wanted!").scallback(func() -> void:
 		grandma.sanimate("smile")
 		grandma.tanim_bounce(2.0)
 	)
+	dlg.al("i'll destroy you all after i'm done with him...")
 	dlg.al("...and grow a field of nettles on your ashes!!")
 	dlg.al("bye, losers!")
 	await dlg.speak_choice()
