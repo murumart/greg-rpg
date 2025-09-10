@@ -18,6 +18,9 @@ var rang_f := 90.0
 
 
 func _ready() -> void:
+	$\"../..\".fled.connect(func() -> void:
+		sound.stop()
+	)
 	line.clear_points()
 	for x in segments.size():
 		line.add_point(Vector2.ZERO)
