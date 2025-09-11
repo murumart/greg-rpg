@@ -580,6 +580,14 @@ CHAR zerma
 	have a wonderful rest of your day!
 
 
+DIALOGUE phone_secret_garden_entrance
+CHAR zerma
+	hey hey! you're where now?
+	hmm! i suppose you won't be able to call me much here!
+	the signal would be busted by all the magic stuff!
+	well, have a wonderful time in here, dude!
+
+
 DIALOGUE phone_before_xchase_nodeaths
 SOUND phone/phone_call
 	(ring... ring...)
