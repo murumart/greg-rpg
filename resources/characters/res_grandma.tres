@@ -7,8 +7,8 @@
 [resource]
 script = ExtResource("1_gvou3")
 name_in_file = &"grandma"
-name = "grandma"
-info = ""
+name = "florist"
+info = "a lonely old little florist..."
 voice_sound = ExtResource("3_kbt7d")
 portrait = ExtResource("1_wob4v")
 max_health = 200.0

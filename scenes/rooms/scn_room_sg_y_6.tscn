@@ -511,7 +511,7 @@ tile_set = ExtResource("3_5kvm4")
 
 [node name="Rotator" type="Node2D" parent="." index="7"]
 position = Vector2(24, -794)
-rotation = 4.85199
+rotation = 1.18683
 script = ExtResource("5_fhx0y")
 enabled_in_editor = true
 speed = 24.0
@@ -619,7 +619,7 @@ default_lines = Array[StringName]([&"sg_6_climb"])
 
 [node name="SgCatOwl4" parent="Areas" index="9" instance=ExtResource("9_7xdd6")]
 position = Vector2(345, -958)
-default_lines = Array[StringName]([&"sg_6_climb_future"])
+default_lines = Array[StringName]([&"sg_6_climb_future", &"sg_6_climb_future_2"])
 
 [node name="TrashBin" parent="Areas" index="10" instance=ExtResource("10_22jmq")]
 position = Vector2(351, -800)

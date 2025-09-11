@@ -3938,16 +3938,17 @@ DIALOGUE sg_healer_comment
 
 
 DIALOGUE sg_appliances
-	%SGIn the [color=FLOWERCOLOR]SECRET GARDEN[/color], the enemies used to be horrifying.
+	%SGIn the [color=FLOWERCOLOR]SECRET GARDEN[/color], the enemies used to be enigmatic.
 	%SGMonsters beyond your comprehension.
 	%SGUnfortunately, when she showed up, we had to rearrange everything.
 	%SGSo all the fights are against household appliances or cats now.
 
 
 DIALOGUE sg_appliances_2
-	%SGGrumble grumble... oh, why household appliances?
-	%SGShe was very adamant on it.
-	%SGSomething about... cymbals? Symbols? I wasn't paying attention.
+	%SGWhy household appliances?
+	%SGThere were so many, and we were quite in a rush to get rid of...
+	%SG...the things we had here before...
+	%SGWell, trust me, you'd prefer the appliances.
 
 
 DIALOGUE sg_bridge
@@ -3989,6 +3990,8 @@ INSTASKIP
 DIALOGUE sg_6_climb
 	%SGThis is a long climb...
 	%SGRemember that you still can't hold on to the rope with your face.
+	%SGAnd any obstacles also won't bother your face...
+	%SG...since you're not grasping the rope with it.
 
 
 DIALOGUE sg_6_climb_long
@@ -4006,6 +4009,11 @@ DIALOGUE sg_6_climb_future
 	%SGWhere you've been to thus far is only one branch of it.
 	%SGYou'll see the others soon.
 	%SGPlease forgive their inhospitality.
+
+
+DIALOGUE sg_6_climb_future_2
+	%SGPlease forgive their inhispitality.
+	%SG...and their unwillingness to play with you.
 
 
 DIALOGUE sg_7_warning
@@ -4037,10 +4045,9 @@ DIALOGUE sg_y_return
 
 
 DIALOGUE sg_b_1
-	%SGWelcome to the SECRET GARDEN, Greg.
+	%SGWelcome to the "SECRET GARDEN", Greg.
 	%SGYour journey... wait, you've heard this before.
-	%SGYou've been in the jovial [color=SUNCOLOR]SOLAR[/color] area already.
-	%SGWell, alright.
+	%SGOkay then. Nothing new here.
 
 
 DIALOGUE sg_b_2
@@ -4048,8 +4055,9 @@ DIALOGUE sg_b_2
 
 
 DIALOGUE sg_b_3
-	%SGLet's not waste your time here.
+	%SGWe don't intend to waste your time in this area.
 	%SGKeep going forward... don't you have a scheduled meeting with her?
+	%SGThe path will take you there shortly.
 
 
 DIALOGUE sg_b_lore_1
@@ -4072,6 +4080,7 @@ DIALOGUE sg_b_lore_2
 
 DIALOGUE sg_b_armor_hint
 	%SGGood job weaving yourself between all those visibility cones...
+	%SG...and with finding the entrance to this room at all.
 	%SG...huh...? You came from the other direction?
 	%SGWell... 
 	%SGMaybe I shouldn't spoil your surprise of the SECRET ARMOUR, then...
@@ -4096,13 +4105,13 @@ DIALOGUE sg_b2_2
 DIALOGUE sg_b3_1
 	%SGShe's been looking for you. The forward area is on high alert.
 	%SGAll this ruckus... Why didn't you just not come here...?
+	%SGMaking this place into a "SECRET GARDEN"... what nonsense...
 
 
 DIALOGUE sg_b3_2
-	%SGThe stars haven't been this bold in a long time...
-	%SGIt's really what keeps me going.
-	%SGThe memory of the IRON CITY...
-	%SGPeople (like you and she) come and go, but it remains.
+	%SGI love looking at the stars.
+	%SGThe world from where you come... are there stars in that sky?
+	%SGIf not, maybe... you don't deserve them.
 
 
 DIALOGUE sg_b3_3
@@ -4111,10 +4120,10 @@ DIALOGUE sg_b3_3
 
 
 DIALOGUE sg_b3_4
-	%SGThere's not really any way for you to defeat her...
-	%SGI'm assuming that's your end goal. It usually tends to be.
-	%SGWell, if you're lucky... the spirits do hate her.
-	%SGYou get along with them... well enough, you best hope.
+	%SGTo defeat her, you don't have a way to yourself.
+	%SGI'm assuming that's your end goal. Such they tend to be.
+	%SGHowever, the spirits of this world hate her.
+	%SGIf you can make them your allies, then, maybe...
 
 
 DIALOGUE sg_b4_1
@@ -4123,14 +4132,14 @@ DIALOGUE sg_b4_1
 
 DIALOGUE sg_b_short
 	%SGYou're already back... disappointed?
-	%SGThis section of the SECRET GARDEN is vast.
+	%SGOur world is vast.
 	%SGBlue cliffs stretch on for miles.
-	%SGBut, visitors can only walk the path.
-	%SGYou're no different.
+	%SGBut, visitors (like that of a garden) can only walk the path.
 
 
 DIALOGUE sg_b_short_2
-	%SGNo depths are open for visitors.
+	%SGWhere you're going, the path was grafted onto...
+	%SGNothing good awaits you.
 
 
 DIALOGUE sg_b_pre_multip

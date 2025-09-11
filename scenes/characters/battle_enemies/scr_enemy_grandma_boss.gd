@@ -40,7 +40,18 @@ func _ready() -> void:
 	)
 
 
+func turn_actions() -> bool:
+	await speak_line()
+	if turn >= 10:
+		if turn == 10:
+			remove_allies()
+		return true
+	return false
+
+
 func ai_action() -> void:
+	if await turn_actions():
+		return
 	if has_status_effect(&"confusion"):
 		super()
 		return
@@ -173,6 +184,81 @@ func _item_free_hugs_coupon_used_on() -> void:
 	character.attack = 9999999999999
 	await SOL.dialogue_closed
 	attack(pick_target())
+
+
+func _lines_by_turn() -> PackedStringArray:
+	match turn:
+		0: return [
+			"greg, you little... man!",
+			"it's never that easy!",
+			"well, maybe it could be!",
+			"maybe i could just send you back to your doorstep!",
+			"but."
+		]
+		1: return [
+			"i'm a bit more interested in you now.",
+			"your flower-collection escapades were a huge boon!",
+			"all those... ants!! ants who thought they were mighty!!",
+			"the natural order of things returns, as it must...",
+		]
+		3: return [
+			"dear, this fight right now...",
+			"consider this your final challenge, greg.",
+			"a final boss to surmount!",
+			"after all, you are experienced enough...",
+		]
+		4:
+			if pick_target().character.inventory.size() > 10:
+				return [
+					"by the way... all those items you've gathered...",
+					"i've been doing some gathering of my own!",
+					"so, it's a very fair battle!",
+					"fairest than any other thus far, actually.",
+				]
+			return [
+				"by the way... while you were slacking off...",
+				"i was being vigilant and collecting items to use in battle!",
+				"and i won't hold back... if i need to heal, i will!",
+			]
+		6: return [
+			"when you arrived at my house, greg...",
+			"how glad i am i seized the opportunity!",
+			"you were not just another toy to throw aside...",
+			"...once focus waned... you came back!!",
+		]
+		7: return [
+			"no one has returned before, you know.",
+			"i stopped believing they could!",
+			"and when you did, i was momentarily terrified...",
+			"if my projects were to become common knowledge...",
+			"all those... rules... bindings!! i despise them!!",
+			"this is my world!!",
+		]
+		8: return [
+			"but you, greg... you found me again and lent your hand.",
+			"the greatest cover-up in all of time and space...!",
+			"we're almost done here...",
+		]
+		10: return [
+			"this is it, greg! you've passed my final test!",
+		]
+	return []
+
+
+func speak_line() -> void:
+	var dlg := DialogueBuilder.new().set_char("grandma")
+	for l in _lines_by_turn():
+		dlg.al(l)
+	if not dlg.is_empty():
+		await dlg.speak_choice()
+
+
+func remove_allies() -> void:
+	for c: BattleActor in reference_to_team_array:
+		if c != self:
+			c.ignore_my_finishes = true
+			c.flee()
+	SND.play_song("byddd", 0.9)
 
 
 static func is_debuffed(whom: BattleActor) -> bool:
