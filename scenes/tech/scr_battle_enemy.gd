@@ -265,6 +265,7 @@ func animate(what: StringName, queue_idle := true) -> void:
 			var tw := create_tween().set_trans(Tween.TRANS_EXPO).set_parallel(true)
 			tw.tween_property(animatable, "modulate", Color(1.0, 0.8, 0.8, 0.6), 1.0)
 			tw.tween_property(self, "global_position:y", 200, 3.0)
+			tw.set_parallel(false).tween_callback(hide)
 		&"flee":
 			var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 			tw.tween_property(animatable, "scale", Vector2(-1.2, 0.8), 0.2)
@@ -272,6 +273,7 @@ func animate(what: StringName, queue_idle := true) -> void:
 			tw.tween_callback(SND.play_sound.bind(preload("res://sounds/whoosh.ogg"), {volume = -4}))
 			tw.tween_property(animatable, "global_position:x", -300, 0.4).set_ease(Tween.EASE_OUT)
 			tw.parallel().tween_property(animatable, "scale", Vector2(-1.4, 0.6), 0.2)
+			tw.tween_callback(hide)
 
 
 func emit_message(msg: String, options := {}) -> void:

@@ -25,9 +25,14 @@ const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png"
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var particles: GPUParticles2D = $Sprite/GPUParticles2D
+@onready var final_animation: AnimationPlayer = $AnimationSprite/FinalAnimation
+@onready var animation_sprite: AnimatedSprite2D = $AnimationSprite
 
 
 func _ready() -> void:
+	remove_child(animation_sprite)
+	SOL.add_ui_child(animation_sprite)
+	animation_sprite.hide()
 	super()
 	magic_replenishing_items.sort_custom(func(a, b):
 		return (ResMan.get_item(a).payload.get_magic_change(character.magic, character.max_magic)
@@ -42,9 +47,23 @@ func _ready() -> void:
 
 func turn_actions() -> bool:
 	await speak_line()
-	if turn >= 10:
+	if turn >= 10 or true:
 		if turn == 10:
+			accessible = false
 			remove_allies()
+			await Math.timer(1.0)
+			turn_finished()
+		elif turn == 11:
+			await Math.timer(1.0)
+			turn_finished()
+		elif turn == 12 or true:
+			await Math.timer(0.1)
+			SND.play_song("")
+			sprite.hide()
+			animation_sprite.show()
+			final_animation.play(&"strike")
+			await final_animation.animation_finished
+			#turn_finished()
 		return true
 	return false
 
@@ -240,7 +259,19 @@ func _lines_by_turn() -> PackedStringArray:
 			"we're almost done here...",
 		]
 		10: return [
-			"this is it, greg! you've passed my final test!",
+			"well, alright! stop the carnage!",
+		]
+		11: return [
+			"greg, dear... you've proven yourself more than enough.",
+			"and, i've had time to prepare my final move for now...",
+			"the fabled...",
+			"[color=#ff0]magical electric petrification beam!!!",
+			"just one more turn for me, and then...",
+			"i'll keep you safe, okay?",
+		]
+		12: return [
+			"greg!! take this!!",
+			"[color=#ff0]petrify!!!",
 		]
 	return []
 
