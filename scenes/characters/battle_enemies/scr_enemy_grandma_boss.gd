@@ -6,6 +6,8 @@ const USE_ITEM := preload("res://sprites/characters/battle/grandma/spr_use_item.
 const USE_SPIRIT := preload("res://sprites/characters/battle/grandma/spr_use_spirit.png")
 const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png")
 
+const FINAL_TURNS := 16
+
 @export var enemy_health_toughness_curve: Curve
 
 @onready var healing_items := self.character.inventory.filter(func(a):
@@ -28,6 +30,8 @@ const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png"
 @onready var final_animation: AnimationPlayer = $AnimationSprite/FinalAnimation
 @onready var animation_sprite: AnimatedSprite2D = $AnimationSprite
 
+var progress := 0
+
 
 func _ready() -> void:
 	remove_child(animation_sprite)
@@ -47,24 +51,27 @@ func _ready() -> void:
 
 func turn_actions() -> bool:
 	await speak_line()
-	if turn >= 10 or true:
-		if turn == 10:
+	if progress >= FINAL_TURNS:
+		if progress == FINAL_TURNS:
 			accessible = false
 			remove_allies()
 			await Math.timer(1.0)
 			turn_finished()
-		elif turn == 11:
+		elif progress == FINAL_TURNS + 1:
 			await Math.timer(1.0)
 			turn_finished()
-		elif turn == 12 or true:
+		elif progress == FINAL_TURNS + 2:
 			await Math.timer(0.1)
 			SND.play_song("")
 			sprite.hide()
 			animation_sprite.show()
 			final_animation.play(&"strike")
 			await final_animation.animation_finished
+			_end()
 			#turn_finished()
+		progress += 1
 		return true
+	progress += 1
 	return false
 
 
@@ -206,7 +213,7 @@ func _item_free_hugs_coupon_used_on() -> void:
 
 
 func _lines_by_turn() -> PackedStringArray:
-	match turn:
+	match progress:
 		0: return [
 			"greg, you little... man!",
 			"it's never that easy!",
@@ -256,12 +263,36 @@ func _lines_by_turn() -> PackedStringArray:
 		8: return [
 			"but you, greg... you found me again and lent your hand.",
 			"the greatest cover-up in all of time and space...!",
-			"we're almost done here...",
+			"and we're almost done here...",
 		]
 		10: return [
-			"well, alright! stop the carnage!",
+			"...almost done... because you are the last step.",
+			"of course, i can't let you just go on your merry way...",
+			"...after all the effort you went through...",
+			"silencing you forever like them is not interesting.",
 		]
 		11: return [
+			"why? dear, you are... very well attuned to this world!",
+			"your spirit power rivals anyone elses!",
+			"and that's why i can't let you go to waste.",
+		]
+		13: return [
+			"someone like you should have much more to say...",
+			"in what this world will end up like.",
+			"but for now...",
+			"you should hide. you should be hidden.",
+		]
+		14: return [
+			"that is why, greg...",
+			"that is why i will put you to sleep.",
+			"and whenever you must intervene again...",
+			"you'll always have been ready for it!",
+			"you'll always be ready in stone!!",
+		]
+		FINAL_TURNS: return [
+			"well, alright! stop the carnage!!",
+		]
+		FINAL_TURNS + 1: return [
 			"greg, dear... you've proven yourself more than enough.",
 			"and, i've had time to prepare my final move for now...",
 			"the fabled...",
@@ -269,7 +300,7 @@ func _lines_by_turn() -> PackedStringArray:
 			"just one more turn for me, and then...",
 			"i'll keep you safe, okay?",
 		]
-		12: return [
+		FINAL_TURNS + 2: return [
 			"greg!! take this!!",
 			"[color=#ff0]petrify!!!",
 		]
@@ -290,6 +321,10 @@ func remove_allies() -> void:
 			c.ignore_my_finishes = true
 			c.flee()
 	SND.play_song("byddd", 0.9)
+
+
+func _end() -> void:
+	pass
 
 
 static func is_debuffed(whom: BattleActor) -> bool:

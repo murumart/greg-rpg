@@ -5,3 +5,4 @@
 - [x] bird attack target feet
 - [x] ushanka guy walks nowhere
 - [ ] dialogue load in biking game? in kiok menu??
+- [ ] while sopping deals more damage to vacuum?
