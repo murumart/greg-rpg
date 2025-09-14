@@ -77,8 +77,7 @@
               "title": "Notes"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -227,14 +226,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "071cf5586867746e",
+  "active": "0cfbe9572ff8bd75",
   "lastOpenFiles": [
+    "Bugs.md",
     "Update goals.md",
     "Notes.md",
     "SG areas.md",
     "bossui.png",
     "Tarikas.md",
-    "Bugs.md",
     "Pasted image 20250710193306.png",
     "Police.md",
     "New Text Document.txt",

@@ -132,7 +132,28 @@
 	- [ ] Grandma bossfight changes
 		- [ ] Make it shorter
 		- [ ] Make it a bit too easy
-		- [ ] Final attack -> transition to boss
+		- [ ] Final attack
+			- [ ] final attack animation
+				- [ ] background change
+				- [ ] background pan up to show camera perspective change
+			- [ ] branch based on armor equipped
+				- [ ] off branch: turn to stone..
+					- [ ] show stoned greg sprite, zoom out slowly into the dark
+					- [ ] slow music
+					- [ ] credits
+				- [ ] on branch: reflect
+					- [ ] animation
+						- [ ] lightning bounces back
+						- [ ] black florist silhouette on white shakes
+						- [ ] show stone sprite
+					- [ ] into overworld
+					- [ ] weird background
+					- [ ] npcs that lore dump
+					- [ ] final boss appears
+						- [ ] giggle sound effect
+						- [ ] cool sprite. 32x32?
+						- [ ] dialogue (bubble, lowercase green..)
+					- [ ] transition to final battle
 - [ ] Final boss![[Pasted image 20250710193306.png]]
 	- [ ] Monster
 		- [ ] first part of song look normal, after a few turns into the next part of song and transform into scary mode
