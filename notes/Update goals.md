@@ -130,8 +130,7 @@
 			- [ ] Color matching puzzle..?
 				- [ ] Bring correct color water to correct plant to proceed (timed)
 	- [ ] Grandma bossfight changes
-		- [ ] Make it shorter
-		- [ ] Make it a bit too easy
+		- [x] Make it shorter
 		- [ ] Final attack
 			- [ ] final attack animation
 				- [ ] background change

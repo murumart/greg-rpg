@@ -1,10 +1,11 @@
-[gd_scene load_steps=64 format=3 uid="uid://cmd8863gajglq"]
+[gd_scene load_steps=65 format=3 uid="uid://cmd8863gajglq"]
 
 [ext_resource type="Script" uid="uid://dyaag4q2epm6y" path="res://scenes/characters/battle_enemies/scr_enemy_grandma_boss.gd" id="1_45sk8"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_ywnvn"]
 [ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="3_twl0x"]
 [ext_resource type="AudioStream" uid="uid://c3fx1y8ao4ihv" path="res://sounds/whoosh.ogg" id="4_0xdnv"]
 [ext_resource type="AudioStream" uid="uid://byrqxr5cnlrb2" path="res://sounds/scary_zoomin.ogg" id="5_3mgd0"]
+[ext_resource type="Texture2D" uid="uid://v3l85ny2ehjt" path="res://sprites/photos/spr_woods2.png" id="5_eaeq7"]
 [ext_resource type="AudioStream" uid="uid://3uevuxceqi3x" path="res://sounds/skating/s6.ogg" id="6_eaeq7"]
 [ext_resource type="AudioStream" uid="uid://s36snqcay7dr" path="res://sounds/pennistong/bounce.ogg" id="7_e7832"]
 [ext_resource type="AudioStream" uid="uid://cxp576nfc8bmp" path="res://sounds/sg/alight.ogg" id="8_23nbp"]
@@ -415,6 +416,30 @@ tracks/4/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationSprite/Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(62, -171)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationSprite/Sprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_s3ql5"]
 resource_name = "strike"
@@ -510,6 +535,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [1.0, 1.0, 1.0, 0.6, 0.51, 0.78, 0.6, 1.2]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimationSprite/Sprite2D:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.34, 1.37, 1.85, 2.12, 2.23333, 6.29, 6.33, 7.11, 9.19),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(62, -171), Vector2(62, -171), Vector2(62, -171), Vector2(62, 27), Vector2(62, 38), Vector2(62, 38), Vector2(62, 38), Vector2(62, 38), Vector2(62, -63), Vector2(62, -178)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationSprite/Sprite2D:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e0ebt"]
 _data = {
@@ -545,9 +594,15 @@ copy_params = Dictionary[int, float]({
 })
 
 [node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
-visible = false
 sprite_frames = SubResource("SpriteFrames_p7ri3")
 centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationSprite"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.0313416, 0.262481, 0, 1)
+z_index = -1
+position = Vector2(62, -171)
+texture = ExtResource("5_eaeq7")
 
 [node name="FinalAnimation" type="AnimationPlayer" parent="AnimationSprite"]
 root_node = NodePath("../..")

@@ -11,24 +11,25 @@ const FINAL_TURNS := 16
 @export var enemy_health_toughness_curve: Curve
 
 @onready var healing_items := self.character.inventory.filter(func(a):
-		return ResMan.get_item(a).use == Item.Uses.HEALING)
+		return ResMan.get_item(a).use == Item.Uses.HEALING) if character else []
 @onready var hurting_items := self.character.inventory.filter(func(a):
-		return ResMan.get_item(a).use == Item.Uses.HURTING)
+		return ResMan.get_item(a).use == Item.Uses.HURTING) if character else []
 @onready var buffing_items := self.character.inventory.filter(func(a):
-		return ResMan.get_item(a).use == Item.Uses.BUFFING)
+		return ResMan.get_item(a).use == Item.Uses.BUFFING) if character else []
 @onready var debuffing_items := self.character.inventory.filter(func(a):
-		return ResMan.get_item(a).use == Item.Uses.DEBUFFING)
+		return ResMan.get_item(a).use == Item.Uses.DEBUFFING) if character else []
 @onready var magic_replenishing_items := self.character.inventory.filter(func(a):
 		var item := ResMan.get_item(a)
 		return (item.payload.get_magic_change(
 				character.magic, character.max_magic) > 0
 				or item.payload.effects.any(func(b):
-					return (b as StatusEffect).name == &"inspiration")))
+					return (b as StatusEffect).name == &"inspiration"))) if character else []
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var particles: GPUParticles2D = $Sprite/GPUParticles2D
 @onready var final_animation: AnimationPlayer = $AnimationSprite/FinalAnimation
 @onready var animation_sprite: AnimatedSprite2D = $AnimationSprite
+@onready var background_transform: RemoteTransform2D = $AnimationSprite/BackgroundTransform
 
 var progress := 0
 
@@ -50,8 +51,9 @@ func _ready() -> void:
 
 
 func turn_actions() -> bool:
+	var dbg_skip := true
 	await speak_line()
-	if progress >= FINAL_TURNS:
+	if progress >= FINAL_TURNS or dbg_skip:
 		if progress == FINAL_TURNS:
 			accessible = false
 			remove_allies()
@@ -60,11 +62,14 @@ func turn_actions() -> bool:
 		elif progress == FINAL_TURNS + 1:
 			await Math.timer(1.0)
 			turn_finished()
-		elif progress == FINAL_TURNS + 2:
+		elif progress == FINAL_TURNS + 2 or dbg_skip:
 			await Math.timer(0.1)
 			SND.play_song("")
 			sprite.hide()
 			animation_sprite.show()
+			var bg := get_tree().get_first_node_in_group("battle_background")
+			if bg:
+				create_tween().tween_property(bg, "modulate", Color.BLACK, 1.0)
 			final_animation.play(&"strike")
 			await final_animation.animation_finished
 			_end()
