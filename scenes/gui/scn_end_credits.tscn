@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8gsbeagl2a3i"]
+[gd_scene load_steps=6 format=3 uid="uid://c8gsbeagl2a3i"]
 
 [ext_resource type="Script" uid="uid://pvb04ion08yu" path="res://scenes/gui/scr_end_credits.gd" id="1_yal4k"]
+[ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="2_b6f8n"]
 
 [sub_resource type="Gradient" id="Gradient_lt8ie"]
-offsets = PackedFloat32Array(0, 0.213472, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.724763, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.102041, 1)
+colors = PackedColorArray(0, 0, 0.0941176, 0, 0, 0, 0.137255, 0.72549, 0, 0, 0.0901961, 0.796078)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_abrxy"]
 gradient = SubResource("Gradient_lt8ie")
@@ -67,6 +68,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(88, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_b6f8n")
 theme_override_font_sizes/font_size = 6
 text = "rsdsdg<sdh<sdh<rhrhdss<faf<a"
 autowrap_mode = 3
@@ -74,8 +76,9 @@ autowrap_mode = 3
 [node name="ReturnLabel" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 2.0
-offset_top = 110.0
-offset_right = 42.0
+offset_top = 99.0
+offset_right = 158.0
 offset_bottom = 118.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ajo6")
-text = "(press x to return to main menu)"
+text = "(press [cancel] to return to main menu)"
+autowrap_mode = 2

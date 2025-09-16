@@ -9,10 +9,11 @@ extends Node2D
 @onready var image_scroll := image_scroll_container.get_v_scroll_bar()
 @onready var return_label: Label = $ReturnLabel
 
-var scroll_speed := 0.0
+var duration := 0.0
 
 
 func _ready() -> void:
+	modulate.a = 0.0
 	credits_label.text = "\n".repeat(8)
 	credits_label.text += FileAccess.open("res://credits.txt",
 			FileAccess.READ).get_as_text(true)
@@ -20,13 +21,16 @@ func _ready() -> void:
 	credits_label.text = "\n\n\n\n\n" + credits_label.text
 	_load_pictures()
 	#SND.play_song("credits")
-	var duration := 40.0
+	duration = 40.0
 	if is_instance_valid(SND.current_song_player):
 		duration = SND.current_song_player.stream.get_length()
 		if not (SND.current_song_player.stream is AudioStreamOggVorbis
 				and SND.current_song_player.stream.loop):
 			duration -= SND.current_song_player.get_playback_position()
-	await get_tree().process_frame
+
+
+## Plase call this after a wait so the stupid ui elements update their values
+func play() -> void:
 	var tw := create_tween()
 	tw.tween_property(self, "modulate:a", 1.0, 6.0).from(0.0)
 	tw.tween_interval(8.0)
@@ -36,7 +40,7 @@ func _ready() -> void:
 			- image_scroll.size.y, duration)
 	tw.finished.connect(func():
 		tw = create_tween()
-		tw.tween_property(return_label, "self_modulate:a", 1.0, 2.0).set_delay(2.0)
+		tw.tween_property(return_label, "self_modulate:a", 1.0, 2.0).set_delay(4.0)
 	)
 
 

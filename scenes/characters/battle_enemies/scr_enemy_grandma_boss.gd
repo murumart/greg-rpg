@@ -51,7 +51,7 @@ func _ready() -> void:
 
 
 func turn_actions() -> bool:
-	var dbg_skip := true
+	var dbg_skip := false
 	await speak_line()
 	if progress >= FINAL_TURNS or dbg_skip:
 		if progress == FINAL_TURNS:
@@ -329,7 +329,11 @@ func remove_allies() -> void:
 
 
 func _end() -> void:
-	pass
+	var armour := pick_target().character.armour
+	if armour == &"frankling_badge":
+		return
+	else:
+		LTS.change_scene_to("res://scenes/cutscene/stone_ending.tscn")
 
 
 static func is_debuffed(whom: BattleActor) -> bool:

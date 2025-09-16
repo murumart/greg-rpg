@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://ditbdv4yc1gmr"]
+
+[ext_resource type="Script" uid="uid://b72ufplsgy6bt" path="res://scenes/cutscene/stone_ending.gd" id="1_fwelb"]
+[ext_resource type="Texture2D" uid="uid://bk677lpplmuuy" path="res://sprites/cutscene/end/lonestone.png" id="2_pnvrp"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_wlofk"]
+[ext_resource type="PackedScene" uid="uid://c8gsbeagl2a3i" path="res://scenes/gui/scn_end_credits.tscn" id="4_pnvrp"]
+[ext_resource type="AudioStream" uid="uid://bgpi8xbpgxsdn" path="res://sounds/bump.ogg" id="5_ekwwd"]
+
+[node name="StoneEnding" type="Node2D"]
+script = ExtResource("1_fwelb")
+
+[node name="Black" type="ColorRect" parent="."]
+offset_left = -5035.0
+offset_top = -4535.0
+offset_right = 4964.0
+offset_bottom = 5455.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 9)
+texture = ExtResource("2_pnvrp")
+
+[node name="White" type="ColorRect" parent="."]
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="Camera" parent="." instance=ExtResource("2_wlofk")]
+position = Vector2(0, -9)
+zoom = Vector2(2, 2)
+resolution_scale_factor = 0.5
+
+[node name="StonePeople" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="EndCredits" parent="." instance=ExtResource("4_pnvrp")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ekwwd")
+pitch_scale = 0.2
+autoplay = true
+max_polyphony = 3
+bus = &"ECHO"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="play"]

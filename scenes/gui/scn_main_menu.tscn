@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bi0862uluur74"]
+[gd_scene load_steps=53 format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" uid="uid://ct0h5y2kta1vs" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cuur7s4nx4en2" path="res://sprites/gui/logo/frame29.png" id="33_5ed08"]
 [ext_resource type="Texture2D" uid="uid://dlfy6bruhgf81" path="res://sprites/gui/logo/frame30.png" id="34_8h6ir"]
 [ext_resource type="FontVariation" uid="uid://dk7fefa23usxm" path="res://fonts/gregorious_smaller.tres" id="36_8tder"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="39_y0uhw"]
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -554,6 +555,9 @@ text = "loading."
 
 [node name="EditorHelperTool" type="Node" parent="."]
 script = ExtResource("8_ipbln")
+
+[node name="Camera" parent="." instance=ExtResource("39_y0uhw")]
+position = Vector2(80, 60)
 
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
