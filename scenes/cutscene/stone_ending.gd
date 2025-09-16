@@ -28,7 +28,7 @@ func _cutscene() -> void:
 	DIR.sej(3, e)
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	var tw2 := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw2.tween_interval(12.0)
+	tw2.tween_interval(27.0)
 	tw2.tween_callback(func() -> void:
 		SOL.add_ui_child(end_credits)
 		await get_tree().process_frame
