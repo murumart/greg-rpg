@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1llrbtuvl11h"]
+
+[ext_resource type="Script" uid="uid://bpeototnubspc" path="res://scenes/cutscene/flower_display.gd" id="1_bc6ai"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="1_ctpc8"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_1l4g6"]
+[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower_strawberry.png" id="3_rvgc3"]
+[ext_resource type="Texture2D" uid="uid://j755sl6lpjmw" path="res://sprites/items/flower_hollyhock.png" id="4_bc6ai"]
+[ext_resource type="Texture2D" uid="uid://dl6wj0ew3qxrt" path="res://sprites/items/flower_yellow_balsam.png" id="5_635x7"]
+[ext_resource type="Texture2D" uid="uid://dybt1difdp48s" path="res://sprites/items/flower_nasturtium.png" id="6_t1dqm"]
+[ext_resource type="Texture2D" uid="uid://behxvxjfa7gwd" path="res://sprites/items/flower_rose.png" id="7_pgrbf"]
+[ext_resource type="Texture2D" uid="uid://d2k7gs1cmalbb" path="res://sprites/items/flower_liatris.png" id="8_wrsv8"]
+[ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower_meadowsweet.png" id="9_301l5"]
+[ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower_begonia.png" id="10_ug8dw"]
+
+[sub_resource type="Gradient" id="Gradient_rbnfn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.00869565, 0.113043, 0.243478, 0.426087, 0.556522, 0.66087, 0.808696, 0.956522)
+colors = PackedColorArray(0.241156, 0.241156, 0.241156, 1, 0.122252, 0.122252, 0.122252, 1, 0.184066, 0.00141723, 0.401222, 1, 0.266667, 0, 0.4, 1, 0.360784, 0.345098, 0.4, 1, 0.717647, 0.345098, 0.847059, 1, 0.114897, 0.114897, 0.114897, 1, 0, 0.145675, 0.145856, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8k46y"]
+gradient = SubResource("Gradient_rbnfn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_roywe"]
+shader = ExtResource("2_1l4g6")
+shader_parameter/Gradient = SubResource("GradientTexture1D_8k46y")
+
+[node name="FlowerDisplay" type="Node2D"]
+script = ExtResource("1_bc6ai")
+
+[node name="Camera" parent="." instance=ExtResource("1_ctpc8")]
+zoom = Vector2(2, 2)
+resolution_scale_factor = 0.5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_roywe")
+offset_left = -96.0
+offset_top = -73.0
+offset_right = 92.0
+offset_bottom = 80.0
+
+[node name="FlowerCircle" type="Node2D" parent="."]
+
+[node name="Sprite2D8" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(-18, -16)
+texture = ExtResource("10_ug8dw")
+
+[node name="Sprite2D5" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(-18, 16)
+texture = ExtResource("4_bc6ai")
+
+[node name="Sprite2D7" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(18, -16)
+texture = ExtResource("8_wrsv8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(0, -24)
+texture = ExtResource("9_301l5")
+
+[node name="Sprite2D6" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(18, 18)
+texture = ExtResource("6_t1dqm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(24, 0)
+texture = ExtResource("7_pgrbf")
+
+[node name="Sprite2D" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(-24, 0)
+texture = ExtResource("3_rvgc3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FlowerCircle"]
+position = Vector2(0, 24)
+texture = ExtResource("5_635x7")

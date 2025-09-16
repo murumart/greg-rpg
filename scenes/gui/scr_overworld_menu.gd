@@ -143,6 +143,10 @@ func _unhandled_input(event: InputEvent) -> void:
 									"res://code/res_cellphone_logic.gd").READD_DESC
 					else:
 						party(using_menu_choice).handle_item(using_item)
+						if ResMan.get_item(using_item) is FlowerItem:
+							close_requested.emit()
+							LTS.level_transition("res://scenes/cutscene/flower_display.tscn")
+							return
 
 						if item.consume_on_use:
 							party(current_tab).inventory.erase(using_item)

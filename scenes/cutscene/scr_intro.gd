@@ -18,6 +18,7 @@ const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 func _ready() -> void:
 	ResMan.get_character("greg").inventory.erase(&"cellphone")
+	ResMan.get_character("greg").inventory.erase(&"flower_strawberry")
 	car.turn(PI / 2)
 	car.moves = false
 	car.position.y = -80
