@@ -4,6 +4,8 @@ extends Node2D
 @onready var camera: Camera2D = $"../../Greg/Camera"
 @onready var grandma := $Grandma
 @onready var flower_circle: Node2D = $FlowerCircle
+@onready var walk_up_position: Marker2D = $WalkUpPosition
+@onready var walking: AudioStreamPlayer = $Walking
 
 @export var greg: PlayerOverworld
 @export var color_container: ColorContainer
@@ -17,13 +19,24 @@ func _ready() -> void:
 func _close_cutscene() -> void:
 	var dlg := DialogueBuilder.new().set_char("grandma_talk")
 	var gchar := ResMan.get_character("greg")
+	var t2 := create_tween().set_loops()
+	t2.pause()
+	t2.tween_callback(walking.play)
+	t2.tween_interval(0.66667)
 	SND.play_song("")
 	DAT.capture_player("cutscene")
 	greg.animate("walk_up")
 	var tw := create_tween()
 	tw.tween_interval(1.0)
-	tw.tween_property(camera, "global_position",
-			((greg.global_position + grandma.global_position) * 0.5).ceil() - Vector2(0, 14), 2.3)
+	tw.parallel().tween_property(greg, "global_position:x", walk_up_position.global_position.x, 0.5)
+	tw.tween_callback(greg.animate.bind("walk_up", 0.6))
+	tw.tween_callback(t2.play)
+	tw.tween_property(greg, ^"global_position",
+			walk_up_position.global_position, 4.0)
+	tw.parallel().tween_property(camera, ^"global_position",
+			walk_up_position.global_position - Vector2(0, 20), 4.0)
+	tw.tween_callback(t2.stop)
+	tw.tween_callback(greg.animate.bind("walk_up"))
 	tw.tween_interval(1.0)
 	tw.tween_callback(func():
 		dlg.al("you're here.")
