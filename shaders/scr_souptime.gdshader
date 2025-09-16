@@ -141,19 +141,19 @@ void fragment() {
 	vec3 twirl_zoom_mix = mix(twirled_uv, zoomblur, halfsintime + 0.50000);
 
 // ColorOp:22
-	vec3 colour_into_gradient = vec3(1.0) - (vec3(1.0) - (operated_colour_18) / (vec3(1.0) - twirl_zoom_mix)) * (vec3(1.0) - (operated_colour_18) / (vec3(1.0) - twirl_zoom_mix));
+	vec3 colour_into_gradient = vec3(1.0) - (vec3(1.0) - (operated_colour_18) / (vec3(1.0) - twirl_zoom_mix)) * (vec3(1.0) - (operated_colour_18) / (vec3(1.1) - twirl_zoom_mix));
 
 
 // GradientMapping:36
 	vec3 final_output;
 	{
 		float inp = max(colour_into_gradient.r, 0.25);
-		vec2 imp_pos = vec2(inp, 0);
+		vec2 imp_pos = vec2(inp, 0.0);
 		final_output = texture(Gradient, imp_pos).rbg;
 	}
 
 // Output:0
-	COLOR.rgb = final_output.rgb;
+	COLOR.rgb = final_output.rgb * COLOR.rgb;
 
 }
 

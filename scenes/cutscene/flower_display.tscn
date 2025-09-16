@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1llrbtuvl11h"]
+[gd_scene load_steps=20 format=3 uid="uid://d1llrbtuvl11h"]
 
 [ext_resource type="Script" uid="uid://bpeototnubspc" path="res://scenes/cutscene/flower_display.gd" id="1_bc6ai"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="1_ctpc8"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://d2k7gs1cmalbb" path="res://sprites/items/flower_liatris.png" id="8_wrsv8"]
 [ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower_meadowsweet.png" id="9_301l5"]
 [ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower_begonia.png" id="10_ug8dw"]
+[ext_resource type="AudioStream" uid="uid://pwvtqr5aib3e" path="res://music/flower/flower1.ogg" id="12_wrsv8"]
+[ext_resource type="AudioStream" uid="uid://dppx1vispw8a5" path="res://music/flower/flower2.ogg" id="13_301l5"]
+[ext_resource type="AudioStream" uid="uid://b0ngnm4lkmp1f" path="res://music/flower/flower3.ogg" id="14_ug8dw"]
+[ext_resource type="AudioStream" uid="uid://kv870s2yo7bi" path="res://music/flower/flower4.ogg" id="15_0vwmh"]
 
 [sub_resource type="Gradient" id="Gradient_rbnfn"]
 interpolation_mode = 1
@@ -23,6 +27,17 @@ gradient = SubResource("Gradient_rbnfn")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_roywe"]
 shader = ExtResource("2_1l4g6")
 shader_parameter/Gradient = SubResource("GradientTexture1D_8k46y")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tmuvp"]
+stream_count = 4
+stream_0/stream = ExtResource("12_wrsv8")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("13_301l5")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("14_ug8dw")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("15_0vwmh")
+stream_3/volume = 0.0
 
 [node name="FlowerDisplay" type="Node2D"]
 script = ExtResource("1_bc6ai")
@@ -72,3 +87,7 @@ texture = ExtResource("3_rvgc3")
 [node name="Sprite2D2" type="Sprite2D" parent="FlowerCircle"]
 position = Vector2(0, 24)
 texture = ExtResource("5_635x7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_tmuvp")
+autoplay = true
