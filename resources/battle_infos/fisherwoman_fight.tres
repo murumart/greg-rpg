@@ -9,63 +9,36 @@
 [sub_resource type="Resource" id="Resource_320pj"]
 script = ExtResource("2_dt32i")
 name = &"drenchfoot"
-strength = 1.0
 duration = 9999
 metadata/_custom_type_script = "uid://dr10ikau5bgrg"
 
 [sub_resource type="Resource" id="Resource_n1uuy"]
 script = ExtResource("1_ukocj")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
 effects = Array[ExtResource("2_dt32i")]([SubResource("Resource_320pj")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [sub_resource type="Resource" id="Resource_uplrs"]
 script = ExtResource("2_l8tpc")
 type = 1
 property = "flower_hollyhock"
-chance = 1.0
 unique = true
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_y4nr7"]
 script = ExtResource("2_l8tpc")
-type = 0
 property = "78"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_lt3yy"]
 script = ExtResource("2_l8tpc")
 type = 3
 property = "118"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_dt32i"]
 script = ExtResource("2_l8tpc")
 type = 2
 property = "peptide"
-chance = 1.0
 unique = true
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
@@ -79,17 +52,11 @@ script = ExtResource("2_n4tqn")
 enemies = Array[StringName]([&"fisherwoman"])
 background = "fisherwoman_boss"
 music = "fishing_game"
-party = Array[StringName]([])
 death_reason = 5
-start_text = ""
 rewards = SubResource("Resource_l7rs0")
 victory_music = &"extremophile"
 stop_music_before_end = false
-kill_music = true
-play_fanfare = true
-crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("1_ukocj")]({
 &"rubber_boots": SubResource("Resource_n1uuy")
 })
-increment_data_with_enemies = &""
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

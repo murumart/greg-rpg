@@ -2581,12 +2581,6 @@ position = Vector2(232, -1176)
 [node name="DeskDrawer" parent="InteriorTiles/Decor" instance=ExtResource("11_e4myc")]
 position = Vector2(217, -1262)
 
-[node name="Bookshelf3" parent="InteriorTiles/Decor" instance=ExtResource("9_mv6aa")]
-position = Vector2(123, -1310)
-
-[node name="Bookshelf4" parent="InteriorTiles/Decor" instance=ExtResource("9_mv6aa")]
-position = Vector2(260, -1310)
-
 [node name="Radio" parent="InteriorTiles/Decor" instance=ExtResource("26_60vux")]
 position = Vector2(241, -1261)
 default_song = ExtResource("27_oghcq")

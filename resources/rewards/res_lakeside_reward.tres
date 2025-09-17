@@ -5,80 +5,66 @@
 
 [sub_resource type="Resource" id="Resource_mkvpt"]
 script = ExtResource("1_pd5p8")
-type = 0
 property = "12"
-chance = 1.0
-unique = false
 
 [sub_resource type="Resource" id="Resource_f2hp2"]
 script = ExtResource("1_pd5p8")
-type = 0
 property = "range 0,12"
 chance = 0.721
-unique = false
 
 [sub_resource type="Resource" id="Resource_0v8c3"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "bread"
 chance = 0.167
-unique = false
 
 [sub_resource type="Resource" id="Resource_ccxbs"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "bread"
 chance = 0.095
-unique = false
 
 [sub_resource type="Resource" id="Resource_35lja"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "gummy_fish"
 chance = 0.502
-unique = false
 
 [sub_resource type="Resource" id="Resource_wd1w2"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "water_balloon"
 chance = 0.405
-unique = false
 
 [sub_resource type="Resource" id="Resource_q2hy0"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "coin_lure"
 chance = 0.01
-unique = false
 
 [sub_resource type="Resource" id="Resource_emp5e"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "combo_lure"
 chance = 0.02
-unique = false
 
 [sub_resource type="Resource" id="Resource_74upe"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "drill_lure"
 chance = 0.08
-unique = false
 
 [sub_resource type="Resource" id="Resource_o8i7d"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "green_lure"
 chance = 0.03
-unique = false
 
 [sub_resource type="Resource" id="Resource_vrmrw"]
 script = ExtResource("1_pd5p8")
 type = 1
 property = "umbrella_lure"
 chance = 0.05
-unique = false
 
 [resource]
 script = ExtResource("1_temya")

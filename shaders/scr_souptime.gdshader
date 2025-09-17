@@ -141,7 +141,7 @@ void fragment() {
 	vec3 twirl_zoom_mix = mix(twirled_uv, zoomblur, halfsintime + 0.50000);
 
 // ColorOp:22
-	vec3 colour_into_gradient = vec3(1.0) - (vec3(1.0) - (operated_colour_18) / (vec3(1.0) - twirl_zoom_mix)) * (vec3(1.0) - (operated_colour_18) / (vec3(1.1) - twirl_zoom_mix));
+	vec3 colour_into_gradient = vec3(1.0) - (vec3(1.0) - (operated_colour_18) / (vec3(1.0) - twirl_zoom_mix)) * (vec3(1.0) - (operated_colour_18) / (vec3(1.01) - twirl_zoom_mix));
 
 
 // GradientMapping:36

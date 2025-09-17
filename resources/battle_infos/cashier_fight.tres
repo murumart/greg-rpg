@@ -7,10 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_vnyro"]
 script = ExtResource("1_ntm8h")
-type = 0
 property = "1"
-chance = 1.0
-unique = false
 
 [sub_resource type="Resource" id="Resource_gjsyr"]
 script = ExtResource("2_nsljy")
@@ -21,14 +18,5 @@ script = ExtResource("1_0a05d")
 enemies = Array[StringName]([&"cashier_mean"])
 background = "store"
 music = "mean_cashier_fight"
-party = Array[StringName]([])
-death_reason = 0
 start_text = "this will be painful!"
 rewards = SubResource("Resource_gjsyr")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_ccu16")]({})
-increment_data_with_enemies = &""

@@ -5,17 +5,12 @@
 
 [sub_resource type="Resource" id="Resource_ui4ok"]
 script = ExtResource("1_hw8h0")
-type = 0
 property = "77"
-chance = 1.0
-unique = false
 
 [sub_resource type="Resource" id="Resource_wdtt7"]
 script = ExtResource("1_hw8h0")
 type = 1
 property = "bike_bell"
-chance = 1.0
-unique = false
 
 [resource]
 script = ExtResource("1_vq2dp")

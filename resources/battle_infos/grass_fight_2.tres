@@ -10,7 +10,6 @@ script = ExtResource("1_piuhu")
 type = 1
 property = "gummy_worm"
 chance = 0.405
-unique = false
 
 [sub_resource type="Resource" id="Resource_2vy6v"]
 script = ExtResource("2_swv77")
@@ -21,14 +20,4 @@ script = ExtResource("1_7no3v")
 enemies = Array[StringName]([&"turf", &"turf"])
 background = "grass"
 music = "touch_me"
-party = Array[StringName]([])
-death_reason = 0
-start_text = ""
 rewards = SubResource("Resource_2vy6v")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_270ai")]({})
-increment_data_with_enemies = &""

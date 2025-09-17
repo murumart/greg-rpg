@@ -7,39 +7,16 @@
 
 [sub_resource type="Resource" id="Resource_lytjt"]
 script = ExtResource("1_t3mrb")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_68txs")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
 message_user = &"cellphone_called"
-meta = {}
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_6h5xe"]
 
 [resource]
 script = ExtResource("1_r8sk6")
-name_in_file = &""
 name = &"cellphone"
 description = "new tech you can use to bother your friends with questions."
 texture = ExtResource("2_syrgf")
-attack_animation = ""
 play_sound = SubResource("AudioStreamWAV_6h5xe")
 price = 9999
-use = -1
 consume_on_use = false
 payload = SubResource("Resource_lytjt")
-key = false

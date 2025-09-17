@@ -91,3 +91,4 @@ texture = ExtResource("5_635x7")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_tmuvp")
 autoplay = true
+bus = &"Music"

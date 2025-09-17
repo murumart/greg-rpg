@@ -7,26 +7,9 @@
 
 [sub_resource type="Resource" id="Resource_57h5b"]
 script = ExtResource("1_te6x1")
-health = 0.0
 health_percent = -0.99
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
 magic = -0.99
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = 89.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_okxbu")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("2_l8xyr")
@@ -34,9 +17,6 @@ name_in_file = &"gleebungus"
 name = &"gleebungus"
 description = "gleebui bung unbrn bung gun bungug oumboiung more like tingenniernnitangel"
 texture = ExtResource("3_rrsmy")
-attack_animation = ""
 price = 129830192318
 use = 2
-consume_on_use = true
 payload = SubResource("Resource_57h5b")
-key = false
