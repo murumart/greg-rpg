@@ -53,6 +53,8 @@ func _ready() -> void:
 func turn_actions() -> bool:
 	var dbg_skip := false
 	await speak_line()
+	if should_die:
+		progress = FINAL_TURNS + 2
 	if progress >= FINAL_TURNS or dbg_skip:
 		if progress == FINAL_TURNS:
 			accessible = false
@@ -64,15 +66,7 @@ func turn_actions() -> bool:
 			turn_finished()
 		elif progress == FINAL_TURNS + 2 or dbg_skip:
 			await Math.timer(0.1)
-			SND.play_song("")
-			sprite.hide()
-			animation_sprite.show()
-			var bg := get_tree().get_first_node_in_group("battle_background")
-			if bg:
-				create_tween().tween_property(bg, "modulate", Color.BLACK, 1.0)
-			final_animation.play(&"strike")
-			await final_animation.animation_finished
-			_end()
+			_final_attack()
 			#turn_finished()
 		progress += 1
 		return true
@@ -125,7 +119,20 @@ func ai_action() -> void:
 	attack(target)
 
 
+var should_die := false
 func hurt(amount: float, h_gender: int) -> void:
+	var actual_damage := _hurt_damage(amount, h_gender)
+	if character.health - actual_damage <= 0.0:
+		should_die = true
+		SND.play_sound(preload("res://sounds/fishing/timeout.ogg"))
+		SND.play_song("", 56)
+		super(character.health - 1, Genders.NONE)
+		var tw := create_tween()
+		for x in 20:
+			tw.tween_property(sprite, "position:x", 20 - x, 0.005 * x)
+			tw.tween_property(sprite, "position:x", -20 + x, 0.005 * x)
+		tw.tween_property(sprite, "position:x", 0.0, 0.1)
+		return
 	super(amount, h_gender)
 	if randf() < 0.001:
 		heheh_hahah(get_tree().root)
@@ -218,6 +225,17 @@ func _item_free_hugs_coupon_used_on() -> void:
 
 
 func _lines_by_turn() -> PackedStringArray:
+	if should_die:
+		return [
+			"oh... oh dear...",
+			"greg... greg... greg...",
+			"you've grown strong, haven't you?",
+			"very strong. you almost made me...",
+			"well, no matter! it's what i asked you to do.",
+			"you have served your purpose very well.",
+			"now, it's time to rest for a thousand years.",
+			"greg... [color=#ff0]become stone.",
+		]
 	match progress:
 		0: return [
 			"greg, you little... man!",
@@ -328,10 +346,35 @@ func remove_allies() -> void:
 	SND.play_song("byddd", 0.9)
 
 
+func _final_attack() -> void:
+	SND.play_song("")
+	sprite.hide()
+	animation_sprite.show()
+	var bg := get_tree().get_first_node_in_group("battle_background")
+	if bg:
+		create_tween().tween_property(bg, "modulate", Color.BLACK, 1.0)
+	final_animation.play(&"strike")
+	await final_animation.animation_finished
+	_end()
+
+
 func _end() -> void:
 	var armour := pick_target().character.armour
 	if armour == &"frankling_badge":
-		return
+		var dlg := DialogueBuilder.new().set_char("grandma")
+		dlg.al("huh? what's this now??")
+		await dlg.speak_choice()
+		final_animation.play("resist")
+		await Math.timer(1.5)
+		SOL.dialogue_high_position()
+		dlg.reset()
+		dlg.al("that... that old fool!!")
+		dlg.al("you kept his badge??")
+		dlg.al("the [color=%s]frankling badge??" % dlg.PRESCOLOR)
+		dlg.al("but then, my electric attack...!")
+		await dlg.speak_choice()
+		final_animation.play("reflect")
+		await final_animation.animation_finished
 	else:
 		LTS.change_scene_to("res://scenes/cutscene/stone_ending.tscn")
 
@@ -374,7 +417,7 @@ static func get_debuff_severity(whom: BattleActor) -> float:
 
 
 static func suitable_for_buffing(spirit: String, enemy: BattleActor) -> bool:
-	if enemy.character.armour == "frankling_badge" and spirit == "grandma_electric":
+	if enemy.character.armour == &"frankling_badge" and spirit == &"grandma_electric":
 		return false
 	return not spirit in UNSUITABLE_FOR_BUFFING
 

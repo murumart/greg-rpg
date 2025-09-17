@@ -21,21 +21,6 @@ bg_color = Color(0, 0, 0, 1)
 atlas = ExtResource("8_teagk")
 region = Rect2(0, 6, 6, 6)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o50qe"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8778k"]
-bg_color = Color(0.235294, 0.686275, 0.592157, 0.203922)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6aa0q"]
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 2
@@ -52,6 +37,21 @@ shadow_size = 4
 shadow_offset = Vector2(1, 1)
 anti_aliasing_size = 2.603
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8778k"]
+bg_color = Color(0.235294, 0.686275, 0.592157, 0.203922)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o50qe"]
+
 [sub_resource type="OggPacketSequence" id="OggPacketSequence_ric7p"]
 packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAACRKwAAAAAAAAAcQIAAAAAALgB")], [PackedByteArray("A3ZvcmJpcysAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDEyMDIwMyAoT21uaXByZXNlbnQpAQAAACcAAABDb29sPVRoaXMgc29uZyBoYXMgYmVlbiBtYWRlIHVzaW5nIExNTVMB"), PackedByteArray("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")], [PackedByteArray("LArDO+h3liosCuMLqFdWAgdRcrT6SZgMTiEQSIyc4tQUS3+TAw4Np/LTEvmc30uQkTy7t2GVk1MO"), PackedByteArray("mmiNaPP0mwFTCRKtEf1NvxmwFcEPAC3qRpFQliKIV1ATpQAZ4aeTjko1VVUlRACQIAEAAEBpaHvLzUIxWUFQLKgYC2XFWqOixgo4LI/LcMUkw4lJ6BlhYyoAKmohVq2pWFgAoAgDFi2t6BC0AgCgU2eCrYjoNDaKKgAgOjRG2A4ZwMLAKtKF8IoRnQZLgJYQsALCwDJiEWwCXYDE6pLRKkASKEBmQGC5EYAJSXUQtVSsMQfJOMUAwNlYC54CQAMweEGTA2AAo40HAP61zwvbDc9fweWlAxwUWwDwgFcYYBDwAAALgE8gCwcQ"), PackedByteArray("/qm9s/f5POKXqDMlJNOpvbP3+bziN1FnSljKDwCAElKhDGq/AQACZl0wybUDJHk2pKAgACUVAAAAAABQa7RmCIxYhWaaBY6DkACFXdIDiBdfl2hDQQBIDTM1C4BdZOAzBMTORgEAIC3tH2k0XVyj5RNWsd4wlAKgjE+UC5LYmgGAVgBQFIQkc7YwhQFHAQAqIKQBEAW1qcQxi6JSQoUGcLDMAgFIEBUDAgR4Fh0274A2MJTWAxCGBAAAE4MHAAgA8NgJ4AHAwgUAYwAQ4ADAewAW"), PackedByteArray("vpndoi9dP4oPEVMZNrNb8HW+v/gQBdNpkvINABCINd8AAAvSG0CdBCS4NwDQJw2sfDkIl4KCSkhVEAAAAAAA0GhmawlMq+mo4CYkGHamWRyECiCURADT9Gg6WcyAAorgqlEAwNAMAKBxzmaUFQC3zh4FAFCxxBkmoaAZACA6NgMAAAdjLx/hjKyaFqVgqG7WgVwAsIIqKzoAi24BZmAIBDJTVbVO9ixAx14AbQqc7DxwGpqxDNnFLFv8Jg1mLdMAAIAtgCFMAFgBAADLgwYCWAkAC3AABgAMAIAZwAL4AQ4WAFw4gAcAAAAP"), PackedByteArray("/ojd1Y/ivtUlsY+MDI/YXf3IfdSlcI5Wgq8AAG+UdYsEyiITdpyhHXzUAiAAIGpgdOlNVVBVwQBAAgAAAGRDs0GiQZ8lALlbifYogAaCnad0AKBV2U0DIEcAgOrBRAEBKO/TEQGAEoCSUnu6d0KJhKFt1Ra5gIx9mlhLxQabof0kE6A2GECqVZgEQIIESIguDAwkeBYAgEChRcJgsJ52U0UjqmyORaMngY6HAQCYoVeiAEnF7R340F0C9CoAAHofoC8Z48MxOIgBcOAAeAC4AwAcAHDAAOcAoP4B1AMAwAJGAQoA"), PackedByteArray("vmidrO/yvtU6i7yPY+tIrE7WV7k/6hpF3dsFisw3AEAGmfKN2lYFUI1sAS7o4Y6EBbPkwllioaqqqgQgxAwGAABAlS0Ei02fKZSYY6Kdivbic5DQXF+AqnprbwIgmVxLtHF6ABCpbwgmgL0pFQBFstPGAADwechf168AUFAqQ5hj5uGj0guXAJLRrYAaBQAsFRlpAFA1KACBs1ZPueJ4DUCRBRIABVDVVZc0AGgsZw22BwAQhwIAoFXc5gSASlMRHIWPD6DRAgCQkAAAQEQ9MAAYxSADADzLAQAALDyMxYAFNGziAa5YFN8Bw3n/BfbyAN5xLsF/YoYbHHicGABgbDt4BADAYB0KGAwIAAEJAA=="), PackedByteArray("nihtyp/cj1pHU+Z2UTpVSYxO6q/y3sW6izS346h8AwAMgvgGAOiBdUEbj0kAQHEdCCdZYmpaNQslWSmWAAAARBElhRtXmUBCgmEXF1k7RygAcBoCGAiIRQMeACSaygZAXp9pLBAA1BDIBeBrXvYvAKWgxNLsDoGXPjyDoDCRPYIr0RYDAGosfAEDTWYWAlQDwiuVA4ICAPTBT2ZXA4DoBQBANMukAUDFogUAmFGypMEIQIK1SMAAipGFaAGgHltY9x6Q9BTVaGgW7K6F9wxne/znjzN4Pdf/0zxTQ2c2DX3vCDhfy95PbVztfzAZkqKuAqgCqASA+gzz31v79q34JYN/Zri/NFw/2yMAmq5JUlJeHlOf4wQZz1RjgM0U2Un6mXRMAhjuALMHDiC5yai7hQQni0Bi6KQxLKQFx+8pOQA/+FMo1VomBgaAnCg="), PackedByteArray("fvic4J9i3m41dYF1OqXQOcLf5bnFqgljm5KZHwBAqELWUBHKD4qjMoCiHfVBgl2kCxYHcIpEtAprazYi1JimVIMZAAAqZU1ZMoqCCSGnbGMoRZv9AFXn26TqkZiBvNxcAIA6bZtjgAwAqOPmJxkAhUwQyBxbMkS5Pi9h0EiQzj4I4NgFXTY//V0aAMcYbdEAVtwWAKiMAACwPHRQbYH8AAD32g4AAOstNACOGx4DAJQMYLClACAkcU5tAASFaeQLaGOx8Fawi8oiszIre/IuDlxdu4zuOkx3iQScraU7C/VTOcvldybIj9lUQJFka8zybi//tranQRwR0U28W8vPi2CInf0fDRPl1BxG5dyT1TAbnuFwD3bYX+NZ9GrWjSgnkFObn1OXBGyzv7l7hqm3brB5GFMGMb9fOgNsAIAbE4ZI0GoFgBEAuiGhwSIICQwQQCctKZW2kAbpQSRGerd6mhWWeUgkI0GmhpmTJAEIHAAC"), PackedByteArray("nmjcic/tntBjNLVtS/nbdLg8iK+1T3M1FOSWbwCATGK1b5MYAzjDYDchMmGqba2qRqBUmGQCAAAoKfoYNFcNBdc0cUrMsapS8+nlRQBCGtS2QQigdVLwlZEqoQBgrn22J4AHAEBHUPZkfpCHK8AHEI0KWFkan+NcDlMAIKm9FQCgXMbHzsZEAXrSBvAIYARZrBxPRx5YByDaBAAAUMCBu7VaMzj+bIOMTkYZKtBUHLDG+AzWjjWXfaagyE4oGQ7Rzy9GPc4qqjML+JND10NfNjko59xTk/0mKq2VfUcDc3Kne8MuQw0fHXp3n6T6XNTnZlr/jatr609kY5g9VE1O1YH9c6br3YzX6Ev1qKCo7uXwPvjv7yMQrgQu/73fr3ncAQcAL5/j1tEIgAUADxSEAFXoytNB+SohkZ70NzUDhXEmgOWLHkWTMACFCmRXhT+b24D4l74RpH+JAuHSyCpCM0AC"), PackedByteArray("Xki8sie15uexm7KHRPE//xUP8MLP91lbwZiSmN5AFnXrlBM3TpQFsHHoAU7Qw25dW23bNlRKyjQkkwAAoFknGZvi4K2KgNbXbA2LWT9sA8FRpZZSCBJygeAL+L4mSQUw5umP3pM0XZqPilWWAF4GLAFa/TQnBQBCzGwFAcjHGCVaAGUgAIo1kxY0HS9rGyAZsoACmjCqLKpA1G6t1OwSDsyhTroKKK37NMPMMFGpm1NelnUpmCyKMQD5M10cIE1EQvU+c+r5kd97bzizfvtUf/3VjOk5VerGxKn65G7QnVTTOcz0vM2GAlpX5iDRMmPbRPEe9+eMNCTPbzVbbbr31OX7mVbtaWbfM5C/d398Dqj7/VQuBRmvc4oF2rh7vvkhP5pWlNOjB66BQcMA9+RawJlvQ3de7/IWx3n3CW9de8nlAwL1PBIAiCwGAGAE+rQ43X5f6ukE1VhRbR5MDZLb0C+keO+gVgAaAGwa/IWuCUhBACCBEHLq8GJAAgA="), PackedByteArray("vnW8671onTx2p5gSqWQlb3opfA8vkURmDBe2p9fb19HWmzXaViUhWo1SCQAAsorFWe3v1+x957StiaVtMmTOxqw6ZO/dc+vOMP7u7//65X2W2cNsjMqeVme0FNckTVQa0VxFCzAyZMxgKCEG6JEZrc++izmeygAgRVWsSgArXNwjC8jK+3OYn2mmpycrQZWcz3c/lWc400xbtU9a77nuhKzr1vrsb1rOfp+3Aaz7+u6s695n6Pdnru+vM/v3r58hjtETx9cj0yM5pibu96trAKgEGHqe4WMqihTO/r3z/nyTswvo6X32yfuip6GuSipres7+7pNADw0A+2e2MWU/Sgqj+CrybJieHgCma1dWnrcrDQxAZdEvPT0D0O/zNuy2Rusyz9swPV05DXD+y/rMdO3nfQagh36f6SwAmZ5a6YBffrkeAD4+bgAAirQAALhOA2ABvAKI6EKgazTsRWSMIs9jDACSP3V5A+xBmZGUGefmQwBKMgYACZoA"), PackedByteArray("3mX89yxfmgAO0GX87yxfSgAHAAAAAAAAAAAAAAAA")]])
 granule_positions = PackedInt64Array(0, 0, 10413)
@@ -59,6 +59,9 @@ sampling_rate = 44100.0
 
 [sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_m7oim"]
 packet_sequence = SubResource("OggPacketSequence_ric7p")
+tags = {
+"cool": "This song has been made using LMMS"
+}
 loop = true
 
 [node name="Battle" type="Node2D"]
@@ -88,6 +91,7 @@ theme = ExtResource("3_v2dlj")
 
 [node name="MessageContainer" parent="UI" instance=ExtResource("4_vhvdj")]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 8.0
 offset_top = -7.0
 offset_right = 153.0
@@ -166,7 +170,7 @@ scroll_active = false
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="UI/Panel/ScreenMainActions"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 43.0
@@ -309,33 +313,29 @@ offset_right = 225.0
 offset_bottom = 59.0
 
 [node name="Portrait" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="0"]
-layout_mode = 3
 offset_left = -28.0
 offset_top = 28.0
 offset_right = -6.0
 offset_bottom = 50.0
 
 [node name="Name" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="1"]
-layout_mode = 3
 offset_left = 2.0
 offset_right = 75.0
 
 [node name="HealthBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="3"]
-layout_mode = 3
 offset_left = -163.0
 offset_top = 51.0
 offset_right = -5.0
 offset_bottom = 53.0
 
 [node name="MagicBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="4"]
-layout_mode = 3
 offset_left = -163.0
 offset_top = 54.0
 offset_right = -5.0
 offset_bottom = 56.0
 
 [node name="WaitBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="5"]
-layout_mode = 3
+layout_mode = 0
 offset_left = -163.0
 offset_top = 53.0
 offset_right = -5.0
@@ -430,12 +430,12 @@ offset_left = 3.0
 offset_top = 10.0
 offset_right = 157.0
 offset_bottom = 32.0
-theme_override_colors/font_uneditable_color = Color(1, 0, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(1, 0, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o50qe")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_8778k")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6aa0q")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_8778k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o50qe")
 placeholder_text = "speak a name"
 alignment = 1
 max_length = 28
@@ -482,6 +482,7 @@ visible_characters_behavior = 1
 
 [node name="ScreenDanceBattle" parent="UI/Panel" instance=ExtResource("9_sbskt")]
 visible = false
+layout_mode = 0
 offset_top = 0.0
 offset_bottom = 44.0
 
@@ -503,7 +504,7 @@ wait_time = 0.07
 script = ExtResource("10_7y584")
 level_gain = 85
 new_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts", &"personally", &"roundup", &"mooncity"])
-new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter"])
+new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter", &"frankling_badge"])
 replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler", &"pocket_candy", &"pocket_candy", &"pocket_candy"])
 replace_armour = &"cool_jacket"
 replace_weapon = &"shovel"
