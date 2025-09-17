@@ -375,6 +375,13 @@ func _end() -> void:
 		await dlg.speak_choice()
 		final_animation.play("reflect")
 		await final_animation.animation_finished
+		var t := create_tween()
+		SND.play_song("bymsps")
+		t.tween_property(SND.current_song_player, ^"pitch_scale", 8.0, 4.0)
+		SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 4.0, {free_rect = false})
+		await SOL.fade_finished
+		SND.play_song("", 999)
+		LTS.change_scene_to("res://scenes/rooms/sg/scn_xprefb.tscn")
 	else:
 		LTS.change_scene_to("res://scenes/cutscene/stone_ending.tscn")
 

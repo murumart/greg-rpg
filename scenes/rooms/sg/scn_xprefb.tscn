@@ -1,0 +1,265 @@
+[gd_scene load_steps=21 format=4 uid="uid://ke721s7wxwdc"]
+
+[ext_resource type="Script" uid="uid://cwvpjm0onn5gc" path="res://scenes/rooms/sg/scn_xprefb.gd" id="1_0v02i"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="1_qpwdf"]
+[ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="2_mnmvu"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_bgwyw"]
+[ext_resource type="Material" uid="uid://ca7vnbb3kqhd7" path="res://resources/add_material.tres" id="3_hf1n7"]
+[ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="4_0gnln"]
+[ext_resource type="Material" uid="uid://djsum41brb3wt" path="res://resources/ppm_power.tres" id="5_1guws"]
+[ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="7_3bfs0"]
+[ext_resource type="AudioStream" uid="uid://pwvtqr5aib3e" path="res://music/flower/flower1.ogg" id="8_0i110"]
+[ext_resource type="AudioStream" uid="uid://dppx1vispw8a5" path="res://music/flower/flower2.ogg" id="9_1dtc0"]
+[ext_resource type="AudioStream" uid="uid://b0ngnm4lkmp1f" path="res://music/flower/flower3.ogg" id="10_8uhvm"]
+[ext_resource type="AudioStream" uid="uid://kv870s2yo7bi" path="res://music/flower/flower4.ogg" id="11_kh2gp"]
+[ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="12_1dtc0"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="13_kh2gp"]
+[ext_resource type="Texture2D" uid="uid://bfioyjnm3kog5" path="res://sprites/characters/overworld/spr_stonepeople.png" id="14_0v02i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
+atlas = ExtResource("4_0gnln")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Gradient" id="Gradient_qkpte"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.00869565, 0.11208791, 0.1912088, 0.51648355, 0.7868132, 0.85494506)
+colors = PackedColorArray(0, 0, 0, 1, 0.241156, 0.241156, 0.241156, 1, 0, 0, 0, 1, 0.184066, 0.00141723, 0.401222, 1, 0.266667, 0, 0.4, 1, 0.360784, 0.345098, 0.4, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hf1n7"]
+gradient = SubResource("Gradient_qkpte")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gnln"]
+shader = ExtResource("1_qpwdf")
+shader_parameter/Gradient = SubResource("GradientTexture1D_hf1n7")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0v02i"]
+stream_count = 4
+stream_0/stream = ExtResource("8_0i110")
+stream_0/volume = -2.57
+stream_1/stream = ExtResource("9_1dtc0")
+stream_1/volume = -18.0
+stream_2/stream = ExtResource("10_8uhvm")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("11_kh2gp")
+stream_3/volume = -12.86
+
+[node name="XPreFB" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_0v02i")
+
+[node name="Greg" parent="." instance=ExtResource("2_mnmvu")]
+position = Vector2(60, 0)
+saving_disabled = true
+menu_disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Greg"]
+modulate = Color(9.3854965e-07, 0.2800881, 0.28201368, 1)
+z_index = -1
+material = ExtResource("3_hf1n7")
+position = Vector2(0, -7)
+amount = 24
+texture = SubResource("AtlasTexture_vo3ai")
+process_material = ExtResource("5_1guws")
+
+[node name="Camera" parent="Greg" instance=ExtResource("3_bgwyw")]
+zoom = Vector2(4, 4)
+resolution_scale_factor = 0.25
+
+[node name="ColorRect" type="ColorRect" parent="Greg/Camera"]
+z_index = -3
+material = SubResource("ShaderMaterial_0gnln")
+offset_left = -83.0
+offset_top = -66.0
+offset_right = 87.0
+offset_bottom = 64.0
+color = Color(0.080783345, 0.080783345, 0.0807833, 1)
+
+[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="Greg" node_paths=PackedStringArray("from", "to")]
+script = ExtResource("7_3bfs0")
+from = NodePath("../CanvasGroup/Sprite")
+to = NodePath("../GPUParticles2D")
+metadata/_custom_type_script = "uid://b4no27m8ikd0y"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_0v02i")
+pitch_scale = 0.79
+autoplay = true
+bus = &"ECHO"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray("AAD///3/AAAPAA8AAAD+//3/AAAPAA8AAAD9//3/AAAPAA8AAAD9//7/AAAPAA8AAAD9////AAAPAA8AAAD9/wAAAAAPAA8AAAD9/wEAAAAPAA8AAAD9/wIAAAAPAA8AAAD+/wIAAAAPAA8AAAD//wIAAAAPAA8AAAAAAAIAAAAPAA8AAAABAAIAAAAPAA8AAAACAAIAAAAPAA8AAAADAAIAAAAPAA8AAAAEAAIAAAAPAA8AAAAFAAIAAAAPAA8AAAAGAAIAAAAPAA8AAAAHAAIAAAAPAA8AAAAIAAIAAAAPAA8AAAAJAAIAAAAPAA8AAAAKAAIAAAAPAA8AAAALAAIAAAAPAA8AAAAMAAIAAAAPAA8AAAANAAIAAAAPAA8AAAAOAAIAAAAPAA8AAAAPAAIAAAAPAA8AAAAQAAIAAAAPAA8AAAARAAIAAAAPAA8AAAASAAIAAAAPAA8AAAATAAIAAAAPAA8AAAAUAAIAAAAPAA8AAAAVAAIAAAAPAA8AAAAAAP3/AAAPAA8AAAABAP3/AAAPAA8AAAACAP3/AAAPAA8AAAADAP3/AAAPAA8AAAAEAP3/AAAPAA8AAAAFAP3/AAAPAA8AAAAGAP3/AAAPAA8AAAAHAP3/AAAPAA8AAAAIAP3/AAAPAA8AAAAJAP3/AAAPAA8AAAAKAP3/AAAPAA8AAAALAP3/AAAPAA8AAAAMAP3/AAAPAA8AAAANAP3/AAAPAA8AAAAOAP3/AAAPAA8AAAAPAP3/AAAPAA8AAAAQAP3/AAAPAA8AAAARAP3/AAAPAA8AAAASAP3/AAAPAA8AAAATAP3/AAAPAA8AAAAUAP3/AAAPAA8AAAAVAP3/AAAPAA8AAAAWAPr/AAAPAA8AAAAWAPv/AAAPAA8AAAAWAPz/AAAPAA8AAAAWAP3/AAAPAA8AAAAWAAIAAAAPAA8AAAAWAAMAAAAPAA8AAAAWAAQAAAAPAA8AAAAWAAUAAAAPAA8AAAAXAPr/AAAPAA8AAAAYAPr/AAAPAA8AAAAZAPr/AAAPAA8AAAAaAPr/AAAPAA8AAAAbAPr/AAAPAA8AAAAcAPr/AAAPAA8AAAAdAPr/AAAPAA8AAAAeAPr/AAAPAA8AAAAfAPr/AAAPAA8AAAAgAPr/AAAPAA8AAAAhAPr/AAAPAA8AAAAiAPr/AAAPAA8AAAAjAPr/AAAPAA8AAAAkAPr/AAAPAA8AAAAlAPr/AAAPAA8AAAAmAPr/AAAPAA8AAAAnAPr/AAAPAA8AAAAoAPr/AAAPAA8AAAApAPr/AAAPAA8AAAAqAPr/AAAPAA8AAAArAPr/AAAPAA8AAAAsAPr/AAAPAA8AAAAtAPr/AAAPAA8AAAAuAPr/AAAPAA8AAAAvAPr/AAAPAA8AAAAwAPr/AAAPAA8AAAAxAPr/AAAPAA8AAAAyAPr/AAAPAA8AAAAzAPr/AAAPAA8AAAAXAAUAAAAPAA8AAAAYAAUAAAAPAA8AAAAZAAUAAAAPAA8AAAAaAAUAAAAPAA8AAAAbAAUAAAAPAA8AAAAcAAUAAAAPAA8AAAAdAAUAAAAPAA8AAAAeAAUAAAAPAA8AAAAfAAUAAAAPAA8AAAAgAAUAAAAPAA8AAAAhAAUAAAAPAA8AAAAiAAUAAAAPAA8AAAAjAAUAAAAPAA8AAAAkAAUAAAAPAA8AAAAlAAUAAAAPAA8AAAAmAAUAAAAPAA8AAAAnAAUAAAAPAA8AAAAoAAUAAAAPAA8AAAApAAUAAAAPAA8AAAAqAAUAAAAPAA8AAAArAAUAAAAPAA8AAAAsAAUAAAAPAA8AAAAtAAUAAAAPAA8AAAAuAAUAAAAPAA8AAAAvAAUAAAAPAA8AAAAwAAUAAAAPAA8AAAAxAAUAAAAPAA8AAAAyAAUAAAAPAA8AAAAzAAUAAAAPAA8AAAA0AAUAAAAPAA8AAAA1AAUAAAAPAA8AAAA2AAUAAAAPAA8AAAA3AAUAAAAPAA8AAAA4AAUAAAAPAA8AAAA0APr/AAAPAA8AAAA1APr/AAAPAA8AAAA2APr/AAAPAA8AAAA3APr/AAAPAA8AAAA4APr/AAAPAA8AAAA5APr/AAAPAA8AAAA6APr/AAAPAA8AAAA7APr/AAAPAA8AAAA8APr/AAAPAA8AAAA9APr/AAAPAA8AAAA+APr/AAAPAA8AAAA/APr/AAAPAA8AAABAAPr/AAAPAA8AAABBAPr/AAAPAA8AAABCAPr/AAAPAA8AAABDAPr/AAAPAA8AAAA5AAUAAAAPAA8AAAA6AAUAAAAPAA8AAAA7AAUAAAAPAA8AAAA8AAUAAAAPAA8AAAA9AAUAAAAPAA8AAAA+AAUAAAAPAA8AAAA/AAUAAAAPAA8AAABAAAUAAAAPAA8AAABBAAUAAAAPAA8AAABCAAUAAAAPAA8AAABDAAUAAAAPAA8AAABEAAUAAAAPAA8AAABFAAUAAAAPAA8AAABEAPr/AAAPAA8AAABFAPr/AAAPAA8AAABFAPv/AAAPAA8AAABFAPz/AAAPAA8AAABFAP3/AAAPAA8AAABFAP7/AAAPAA8AAABFAP//AAAPAA8AAABFAAAAAAAPAA8AAABFAAEAAAAPAA8AAABFAAIAAAAPAA8AAABFAAMAAAAPAA8AAABFAAQAAAAPAA8AAAA=")
+tile_set = ExtResource("12_1dtc0")
+
+[node name="Decor" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="StonePerson" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(255, 28)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson2" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(373, -29)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson2" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson2" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson3" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(460, 75)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson3" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson3" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson4" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(546, -63)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson4" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson4" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson5" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(604, 49)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson5" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson5" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson6" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(757, -51)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson6" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson6" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson7" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(839, 46)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson7" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson7" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StonePerson8" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+position = Vector2(884, -28)
+save = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson8" groups=["stonepeople_sprites"]]
+position = Vector2(0, -8)
+texture = ExtResource("14_0v02i")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson8" groups=["stonepeople_sprites"]]
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
+position = Vector2(5.625, -6.575)
+skew = 0.71733034
+texture = ExtResource("14_0v02i")
+offset = Vector2(0, 16)
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[editable path="Greg"]

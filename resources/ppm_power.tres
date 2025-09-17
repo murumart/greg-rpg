@@ -1,0 +1,20 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://djsum41brb3wt"]
+
+[sub_resource type="Curve" id="Curve_75th2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.632757, 0.960373), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fvspq"]
+width = 64
+texture_mode = 1
+curve = SubResource("Curve_75th2")
+
+[resource]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 2.58
+linear_accel_max = 11.62
+alpha_curve = SubResource("CurveTexture_fvspq")
