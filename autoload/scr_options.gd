@@ -277,6 +277,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 	AudioServer.set_bus_volume_db(0, get_opt("main_volume"))
 	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
 	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
+	AudioServer.set_bus_volume_db(5, get_opt("music_volume"))
 	Engine.max_fps = int(get_opt("max_fps"))
 	if prev_opt == get_opt(type):
 		return

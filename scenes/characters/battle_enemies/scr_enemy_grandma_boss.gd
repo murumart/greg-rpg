@@ -29,7 +29,6 @@ const FINAL_TURNS := 16
 @onready var particles: GPUParticles2D = $Sprite/GPUParticles2D
 @onready var final_animation: AnimationPlayer = $AnimationSprite/FinalAnimation
 @onready var animation_sprite: AnimatedSprite2D = $AnimationSprite
-@onready var background_transform: RemoteTransform2D = $AnimationSprite/BackgroundTransform
 
 var progress := 0
 

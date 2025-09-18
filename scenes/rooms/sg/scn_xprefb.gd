@@ -1,7 +1,16 @@
 extends Node2D
 
+@onready var mus_bar_counter: MusBarCounter = $MusBarCounter
+@onready var pulse_d: Sprite2D = $Greg/Camera/PulseD
+
 
 func _ready() -> void:
+	#SOL.dialogue_box.modulate = Color(0.851, 0.702, 0.478, 1.0)
+	mus_bar_counter.new_beat.connect(func() -> void:
+		var tw := create_tween().set_trans(Tween.TRANS_BOUNCE)
+		tw.set_ease(Tween.EASE_OUT).tween_property(pulse_d, ^"scale", Vector2.ONE, 0.4)
+		tw.set_ease(Tween.EASE_IN).tween_property(pulse_d, ^"scale", Vector2.ONE * 0.98, 0.02)
+	)
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 2.0, {kill_rects = true})
 	for n: Sprite2D in get_tree().get_nodes_in_group("stonepeople_sprites"):
 		n.region_rect.position.x = randi_range(0, 3) * 16

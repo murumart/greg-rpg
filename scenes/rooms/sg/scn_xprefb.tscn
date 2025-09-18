@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ke721s7wxwdc"]
+[gd_scene load_steps=27 format=4 uid="uid://ke721s7wxwdc"]
 
 [ext_resource type="Script" uid="uid://cwvpjm0onn5gc" path="res://scenes/rooms/sg/scn_xprefb.gd" id="1_0v02i"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="1_qpwdf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://djsum41brb3wt" path="res://resources/ppm_power.tres" id="5_1guws"]
 [ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="7_3bfs0"]
 [ext_resource type="AudioStream" uid="uid://pwvtqr5aib3e" path="res://music/flower/flower1.ogg" id="8_0i110"]
+[ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="8_pu3y8"]
 [ext_resource type="AudioStream" uid="uid://dppx1vispw8a5" path="res://music/flower/flower2.ogg" id="9_1dtc0"]
 [ext_resource type="AudioStream" uid="uid://b0ngnm4lkmp1f" path="res://music/flower/flower3.ogg" id="10_8uhvm"]
 [ext_resource type="AudioStream" uid="uid://kv870s2yo7bi" path="res://music/flower/flower4.ogg" id="11_kh2gp"]
@@ -32,6 +33,17 @@ gradient = SubResource("Gradient_qkpte")
 shader = ExtResource("1_qpwdf")
 shader_parameter/Gradient = SubResource("GradientTexture1D_hf1n7")
 
+[sub_resource type="Gradient" id="Gradient_pu3y8"]
+offsets = PackedFloat32Array(0.3699422, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.13333334)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p6eob"]
+gradient = SubResource("Gradient_pu3y8")
+width = 166
+height = 126
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0v02i"]
 stream_count = 4
 stream_0/stream = ExtResource("8_0i110")
@@ -43,9 +55,26 @@ stream_2/volume = 0.0
 stream_3/stream = ExtResource("11_kh2gp")
 stream_3/volume = -12.86
 
+[sub_resource type="Gradient" id="Gradient_0v02i"]
+offsets = PackedFloat32Array(0, 0.20261438, 0.8888889, 1)
+colors = PackedColorArray(0, 0.078431375, 0, 1, 0.6666667, 0.4509804, 0.40392157, 1, 0.6039216, 0.94509804, 0.9411765, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pu3y8"]
+gradient = SubResource("Gradient_0v02i")
+
+[sub_resource type="Environment" id="Environment_p6eob"]
+background_mode = 3
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_pu3y8")
+
 [node name="XPreFB" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0v02i")
+
+[node name="MusBarCounter" type="Node" parent="."]
+script = ExtResource("8_pu3y8")
+bpm = 81.37
+metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." instance=ExtResource("2_mnmvu")]
 position = Vector2(60, 0)
@@ -74,6 +103,10 @@ offset_right = 87.0
 offset_bottom = 64.0
 color = Color(0.080783345, 0.080783345, 0.0807833, 1)
 
+[node name="PulseD" type="Sprite2D" parent="Greg/Camera"]
+z_index = 6
+texture = SubResource("GradientTexture2D_p6eob")
+
 [node name="SpriteFrameToParticleTextureCopier" type="Node" parent="Greg" node_paths=PackedStringArray("from", "to")]
 script = ExtResource("7_3bfs0")
 from = NodePath("../CanvasGroup/Sprite")
@@ -84,7 +117,7 @@ metadata/_custom_type_script = "uid://b4no27m8ikd0y"
 stream = SubResource("AudioStreamSynchronized_0v02i")
 pitch_scale = 0.79
 autoplay = true
-bus = &"ECHO"
+bus = &"ECHO MUSIC"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
@@ -261,5 +294,8 @@ flip_h = true
 flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p6eob")
 
 [editable path="Greg"]

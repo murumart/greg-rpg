@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://dt3lfhxd4k6k4"]
+[gd_resource type="AudioBusLayout" load_steps=12 format=3 uid="uid://dt3lfhxd4k6k4"]
 
 [sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_mks6k"]
 resource_name = "Compressor"
@@ -51,6 +51,24 @@ damping = 0.94
 hipass = 0.14
 wet = 0.24
 
+[sub_resource type="AudioEffectDelay" id="AudioEffectDelay_j3pel"]
+resource_name = "Delay"
+tap1_pan = 0.54
+tap2_level_db = -9.63
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
+resource_name = "PitchShift"
+pitch_scale = 1.78
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+room_size = 0.4
+damping = 0.77
+spread = 0.56
+hipass = 0.39
+dry = 0.9
+wet = 0.23
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectCompressor_mks6k")
 bus/0/effect/0/enabled = true
@@ -92,3 +110,15 @@ bus/4/effect/2/effect = SubResource("AudioEffectDistortion_4n4s2")
 bus/4/effect/2/enabled = true
 bus/4/effect/3/effect = SubResource("AudioEffectReverb_hsndk")
 bus/4/effect/3/enabled = true
+bus/5/name = &"ECHO MUSIC"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Master"
+bus/5/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
+bus/5/effect/0/enabled = true
+bus/5/effect/1/effect = SubResource("AudioEffectPitchShift_j3pel")
+bus/5/effect/1/enabled = true
+bus/5/effect/2/effect = SubResource("AudioEffectReverb_j3pel")
+bus/5/effect/2/enabled = true
