@@ -7,10 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_k6tq2"]
 script = ExtResource("2_mayji")
-type = 0
 property = "range 12,112"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_nn7k1"]
@@ -20,17 +17,6 @@ metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 
 [resource]
 script = ExtResource("4_i8bt7")
-enemies = Array[StringName]([])
-background = "town"
 music = "lightningthief"
-party = Array[StringName]([])
-death_reason = 0
 start_text = "are you not the thug now?"
 rewards = SubResource("Resource_nn7k1")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_k6tq2")]({})
-increment_data_with_enemies = &""

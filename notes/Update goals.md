@@ -161,9 +161,11 @@
 		- [ ] flies around
 		- [ ] bouncy speech bubble
 		- [ ] scary sounds
-	- [ ] Enemy
-		- [ ] 
-		- [ ] Spirit resistance that you wear down thru minigames![[bossui.png]]
+	- [ ] fight
+		- [ ] ui![[bossui.png]]
+		- [ ] feels crushing and intense but dont make it that hard..
+		- [ ] awareness level you increase through the fight
+			- [ ] if its full the fight ends (bullshit ending it gets wiped from the earth by Big Beam)
 			- [ ] minigames
 				- [ ] they should get more difficult as you repeat them
 				- [ ] Fishing minigame
@@ -182,14 +184,13 @@
 					- [ ] Ball gets faster
 					- [ ] screen shake, sound effects (intense)
 					- [ ] Bounce the SUN
-			- [ ] Once it's depleted: ending animation
-				- [ ] Credits
+			- [ ] ending animation
 	- [ ] Background
-	- [ ] Newe game pluys
-		- [ ] challenges
-			- [ ] dark mode
-			- [ ] no clothes allowed
-			- [ ] thugs always on
-			- [ ] thugs always hunks (impossible..?)
-			- [ ] half xp gain
-		- [ ] 
+- [ ] Newe game pluys
+	- [ ] challenges
+		- [ ] dark mode
+		- [ ] no clothes allowed
+		- [ ] thugs always on
+		- [ ] thugs always hunks (impossible..?)
+		- [ ] half xp gain
+	- [ ] 

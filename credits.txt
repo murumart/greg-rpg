@@ -42,6 +42,9 @@ old gun from pixabay
 door sound from pixabay
 	https://pixabay.com/sound-effects/open-and-closed-door-156814/
 
+high-res font jupiteroid regular
+	https://github.com/ggbotnet/fonts-cc0
+
 
 -- special thanks --
 

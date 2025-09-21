@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlp16sgqwkg03"
-path="res://.godot/imported/spr_grandma_epic.png-4e177605156639710b91c94f2180d557.ctex"
+uid="uid://bt3lne874fpsm"
+path="res://.godot/imported/x32.png-7b31340fa63557f5ab3efbd7bdf57c89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/overworld/spr_grandma_epic.png"
-dest_files=["res://.godot/imported/spr_grandma_epic.png-4e177605156639710b91c94f2180d557.ctex"]
+source_file="res://sprites/cutscene/end/x32.png"
+dest_files=["res://.godot/imported/x32.png-7b31340fa63557f5ab3efbd7bdf57c89.ctex"]
 
 [params]
 

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://ck2rx4jm7lv2l"]
+
+[ext_resource type="Script" uid="uid://ck3ncktecbdfc" path="res://scenes/gui/x_speech_buble.gd" id="1_jaw03"]
+[ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="1_kcrei"]
+[ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="1_rl2w6"]
+[ext_resource type="FontFile" uid="uid://dter0kyeu6smq" path="res://fonts/Jupiteroid-Regular.ttf" id="1_wmj1a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly0h0"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing_size = 0.3
+
+[sub_resource type="Curve" id="Curve_kcrei"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jaw03"]
+size = Vector2(4, 4)
+
+[node name="SpeechBuble" type="CanvasGroup"]
+material = ExtResource("1_kcrei")
+script = ExtResource("1_jaw03")
+
+[node name="Container" type="PanelContainer" parent="."]
+offset_right = 94.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ly0h0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_wmj1a")
+theme_override_font_sizes/normal_font_size = 8
+text = "asdasdasfasfa"
+scroll_active = false
+script = ExtResource("1_rl2w6")
+
+[node name="PointerLine" type="Line2D" parent="."]
+points = PackedVector2Array(66, 68, 0, 54)
+width_curve = SubResource("Curve_kcrei")
+default_color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_jaw03")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = SubResource("PlaceholderTexture2D_jaw03")
