@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="1_rl2w6"]
 [ext_resource type="FontFile" uid="uid://dter0kyeu6smq" path="res://fonts/Jupiteroid-Regular.ttf" id="1_wmj1a"]
 
+[sub_resource type="Curve" id="Curve_kcrei"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly0h0"]
 bg_color = Color(0, 0, 0, 1)
 border_color = Color(0, 1, 0, 1)
@@ -14,10 +18,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing_size = 0.3
 
-[sub_resource type="Curve" id="Curve_kcrei"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jaw03"]
 size = Vector2(4, 4)
 
@@ -25,9 +25,14 @@ size = Vector2(4, 4)
 material = ExtResource("1_kcrei")
 script = ExtResource("1_jaw03")
 
+[node name="PointerLine" type="Line2D" parent="."]
+points = PackedVector2Array(5, 7, 5, 34)
+width_curve = SubResource("Curve_kcrei")
+default_color = Color(0, 0, 0, 1)
+
 [node name="Container" type="PanelContainer" parent="."]
-offset_right = 94.0
-offset_bottom = 39.0
+offset_right = 55.0
+offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ly0h0")
 
 [node name="MarginContainer" type="MarginContainer" parent="Container"]
@@ -37,19 +42,16 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Container/MarginContainer"]
+[node name="Textbox" type="RichTextLabel" parent="Container/MarginContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 1, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_wmj1a")
-theme_override_font_sizes/normal_font_size = 8
-text = "asdasdasfasfa"
+theme_override_font_sizes/normal_font_size = 7
+bbcode_enabled = true
 scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
 script = ExtResource("1_rl2w6")
-
-[node name="PointerLine" type="Line2D" parent="."]
-points = PackedVector2Array(66, 68, 0, 54)
-width_curve = SubResource("Curve_kcrei")
-default_color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_jaw03")

@@ -81,7 +81,7 @@ bpm = 81.37
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." instance=ExtResource("2_mnmvu")]
-position = Vector2(60, 0)
+position = Vector2(1130, 0)
 saving_disabled = true
 menu_disabled = true
 
@@ -329,4 +329,3 @@ position = Vector2(97, 9)
 environment = SubResource("Environment_p6eob")
 
 [editable path="Greg"]
-[editable path="SpeechBuble"]

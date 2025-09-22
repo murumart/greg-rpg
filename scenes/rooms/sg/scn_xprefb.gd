@@ -1,14 +1,18 @@
 extends Node2D
 
+const SpeechBuble = preload("res://scenes/gui/x_speech_buble.gd")
+
 @onready var mus_bar_counter: MusBarCounter = $MusBarCounter
 @onready var pulse_d: Sprite2D = $Greg/Camera/PulseD
 @onready var greg: PlayerOverworld = $Greg
 @onready var music: AudioStreamPlayer = $AudioStreamPlayer
 @onready var grand: OverworldCharacter = $Decor/Grand
+@onready var speech: SpeechBuble = $SpeechBuble
 
 
 func _ready() -> void:
 	#SOL.dialogue_box.modulate = Color(0.851, 0.702, 0.478, 1.0)
+	print(speech)
 	mus_bar_counter.new_beat.connect(func() -> void:
 		var tw := create_tween().set_trans(Tween.TRANS_BOUNCE)
 		tw.set_ease(Tween.EASE_OUT).tween_property(pulse_d, ^"scale", Vector2.ONE, 0.4)
@@ -40,6 +44,12 @@ func _ready() -> void:
 
 func _g_statue_interact() -> void:
 	var dlg := DialogueBuilder.new()
+	dlg.al("those who forget history")
+	dlg.al("they are not us.")
+	dlg.al("we do not change.")
+	speech.exhibit()
+	speech.repos(Vector2(80, 0))
+	speech.speak(dlg.get_dial())
 
 
 
