@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://ke721s7wxwdc"]
+[gd_scene load_steps=33 format=4 uid="uid://ke721s7wxwdc"]
 
 [ext_resource type="Script" uid="uid://cwvpjm0onn5gc" path="res://scenes/rooms/sg/scn_xprefb.gd" id="1_0v02i"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="1_qpwdf"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bfioyjnm3kog5" path="res://sprites/characters/overworld/spr_stonepeople.png" id="14_0v02i"]
 [ext_resource type="Texture2D" uid="uid://dlp16sgqwkg03" path="res://sprites/characters/overworld/spr_grandma_epic.png" id="17_p6eob"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="18_rm4p2"]
+[ext_resource type="AudioStream" uid="uid://s2d6x2mt7wmh" path="res://sounds/men-04.ogg" id="19_ahkm6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
 atlas = ExtResource("4_0gnln")
@@ -71,6 +72,234 @@ background_mode = 3
 adjustment_enabled = true
 adjustment_color_correction = SubResource("GradientTexture1D_pu3y8")
 
+[sub_resource type="Animation" id="Animation_rm4p2"]
+resource_name = "def"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Greg/CanvasGroup/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decor/Grand/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:offsets")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedFloat32Array(0, 0.20261438, 0.8888889, 1), PackedFloat32Array(0, 0.06823529)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0, 0.078431375, 0, 1, 0.6666667, 0.4509804, 0.40392157, 1, 0.6039216, 0.94509804, 0.9411765, 1, 1, 1, 1, 1), PackedColorArray(0, 0.078431375, 0, 1, 1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:interpolation_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Greg/Camera/PulseD:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Greg/Camera/ColorRect:material:shader_parameter/Gradient:gradient:offsets")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedFloat32Array(0.00869565, 0.11208791, 0.1912088, 0.51648355, 0.7868132, 0.85494506), PackedFloat32Array(0, 0.4915254)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Greg/Camera/ColorRect:material:shader_parameter/Gradient:gradient:colors")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 1, 0.241156, 0.241156, 0.241156, 1, 0, 0, 0, 1, 0.184066, 0.00141723, 0.401222, 1, 0.266667, 0, 0.4, 1, 0.360784, 0.345098, 0.4, 1), PackedColorArray(0.16924527, 0.1692453, 0.16924527, 1, 1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Intensiivne/AudioStreamPlayer:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ahkm6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Greg/CanvasGroup/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decor/Grand/Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:offsets")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(0, 0.20261438, 0.8888889, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0, 0.078431375, 0, 1, 0.6666667, 0.4509804, 0.40392157, 1, 0.6039216, 0.94509804, 0.9411765, 1, 1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:adjustment_color_correction:gradient:interpolation_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Greg/Camera/PulseD:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Greg/Camera/ColorRect:material:shader_parameter/Gradient:gradient:offsets")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(0.00869565, 0.11208791, 0.1912088, 0.51648355, 0.7868132, 0.85494506)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Greg/Camera/ColorRect:material:shader_parameter/Gradient:gradient:colors")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 1, 0.241156, 0.241156, 0.241156, 1, 0, 0, 0, 1, 0.184066, 0.00141723, 0.401222, 1, 0.266667, 0, 0.4, 1, 0.360784, 0.345098, 0.4, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Intensiivne/AudioStreamPlayer:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahkm6"]
+_data = {
+&"RESET": SubResource("Animation_ahkm6"),
+&"def": SubResource("Animation_rm4p2")
+}
+
 [node name="XPreFB" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0v02i")
@@ -81,7 +310,7 @@ bpm = 81.37
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." instance=ExtResource("2_mnmvu")]
-position = Vector2(1130, 0)
+position = Vector2(1218, 0)
 saving_disabled = true
 menu_disabled = true
 
@@ -327,5 +556,13 @@ position = Vector2(97, 9)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p6eob")
+
+[node name="Intensiivne" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ahkm6")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Intensiivne"]
+stream = ExtResource("19_ahkm6")
 
 [editable path="Greg"]

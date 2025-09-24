@@ -11,12 +11,11 @@ point_count = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ly0h0"]
 bg_color = Color(0, 0, 0, 1)
-border_color = Color(0, 1, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-anti_aliasing_size = 0.3
+anti_aliasing = false
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jaw03"]
 size = Vector2(4, 4)

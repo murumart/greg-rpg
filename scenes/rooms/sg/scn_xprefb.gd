@@ -8,6 +8,7 @@ const SpeechBuble = preload("res://scenes/gui/x_speech_buble.gd")
 @onready var music: AudioStreamPlayer = $AudioStreamPlayer
 @onready var grand: OverworldCharacter = $Decor/Grand
 @onready var speech: SpeechBuble = $SpeechBuble
+@onready var intensiivne: AnimationPlayer = $Intensiivne
 
 
 func _ready() -> void:
@@ -43,14 +44,27 @@ func _ready() -> void:
 
 
 func _g_statue_interact() -> void:
-	var dlg := DialogueBuilder.new()
-	dlg.al("those who forget history")
-	dlg.al("they are not us.")
-	dlg.al("we do not change.")
-	speech.exhibit()
-	speech.repos(Vector2(80, 0))
-	speech.speak(dlg.get_dial())
-
+	greg.animate(greg.sprite.animation)
+	var dlg := DialogueBuilder.new().set_char("silent")
+	dlg.al(dlg.SGD + "There once was a little gardener.")
+	dlg.al(dlg.SGD + "Though she loved gardening, she never could stay still.")
+	dlg.al(dlg.SGD + "Anywhere a task required patience, she had not enough.")
+	dlg.al(dlg.SGD + "One day, she was asked to take care of a large garden.")
+	dlg.al(dlg.SGD + "She was told to just keep it as it is.")
+	dlg.al(dlg.SGD + "The garden didn't look too nice, she thought...")
+	dlg.al(dlg.SGD + "Overgrown in places, burned in others,")
+	dlg.al(dlg.SGD + "and harboring a disease that would, every now and then")
+	dlg.al(dlg.SGD + "wipe the garden clean.")
+	dlg.al(dlg.SGD + "Who wouldn't try to improve things?")
+	dlg.al(dlg.SGD + "What could one do there, then...")
+	dlg.al(dlg.SGD + "medicine... culling the rot... introducing new species...")
+	dlg.al(dlg.SGD + "All good ideas the little gardener implements...")
+	dlg.al(dlg.SGD + "...forgetting to see them through.")
+	await dlg.speak_choice()
+	DAT.capture_player("cutscene")
+	SOL.vfx("xtarget", grand.global_position, {parent = grand})
+	await Math.timer(2.0)
+	intensiivne.play(&"def")
 
 
 func _process(delta: float) -> void:

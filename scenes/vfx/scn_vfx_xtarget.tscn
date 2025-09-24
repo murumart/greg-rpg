@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=3 uid="uid://hbwg7n8rn6ph"]
+
+[ext_resource type="AudioStream" uid="uid://buib1ge4kwxnl" path="res://sounds/men-03.ogg" id="2_6vswd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iahi7"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_jyugo"]
+offsets = PackedFloat32Array(0, 0.390438, 0.573705, 0.868526, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0, 0, 0, 0, 0.0431373, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n27to"]
+gradient = SubResource("Gradient_jyugo")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_iahi7"]
+_data = [Vector2(0, 1), 0.0, 14.3989, 0, 0, Vector2(0.283262, 1), 0.0, 0.0, 0, 0, Vector2(0.909871, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jyugo"]
+width = 32
+curve = SubResource("Curve_iahi7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hvx2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 32.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_jyugo")
+
+[sub_resource type="Animation" id="Animation_jyugo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pre:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pre:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_iahi7"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pre:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.6, 0.799598),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pre:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.6, 0.78339),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2.5, 3.0, 3.5, 4.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.788793),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8u0lk"]
+resource_local_to_scene = true
+_data = {
+&"RESET": SubResource("Animation_jyugo"),
+&"default": SubResource("Animation_iahi7")
+}
+
+[node name="VfxXAttack" type="Node2D"]
+
+[node name="Pre" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6vswd")
+pitch_scale = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_iahi7")
+amount = 2
+texture = SubResource("GradientTexture2D_n27to")
+lifetime = 0.43
+process_material = SubResource("ParticleProcessMaterial_3hvx2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8u0lk")
+}
+autoplay = "default"

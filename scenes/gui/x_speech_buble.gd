@@ -20,7 +20,7 @@ signal _cancel
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # DEBUG
 	await get_tree().process_frame
 	global_position = Vector2.ZERO
 	get_parent().remove_child(self)
@@ -36,6 +36,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
+	# DEBUG
 	if Input.is_action_pressed(&"mouse_left"):
 		var adj := to_local(get_global_mouse_position())
 		print(self.name + " ADJ MOUSE: ", adj)
@@ -45,7 +46,8 @@ func _process(_delta: float) -> void:
 
 
 func shun() -> void:
-	const up := Vector2(SOL.SCREEN_CENTER.x, 0)
+	textbox.visible_ratio = 0.0
+	const up := Vector2(SOL.SCREEN_CENTER.x, -15)
 	_tw_arrow(up, up, 0.1)
 	await _tw_box(Vector2.ZERO, up, 0.2)
 	hide()
@@ -148,7 +150,6 @@ func speak(dlg: Dialogue) -> void:
 	await shun()
 	DAT.free_player.call_deferred("dialogue")
 	SOL.set_deferred("dialogue_open", false)
-
 
 
 func bang(guipos: Vector2) -> void:
