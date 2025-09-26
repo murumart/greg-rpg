@@ -9,6 +9,9 @@ signal _cancel
 @onready var container: PanelContainer = $Container
 @onready var textbox: TextBox = $Container/MarginContainer/Textbox
 
+var typing_currently := false
+var box_readable := false
+
 
 @warning_ignore("unused_private_class_variable") var _pp: Vector2:
 	set(to): pointer_line.points[1] = to
@@ -20,7 +23,7 @@ signal _cancel
 
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # DEBUG
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE # DEBUG
 	await get_tree().process_frame
 	global_position = Vector2.ZERO
 	get_parent().remove_child(self)
@@ -37,18 +40,20 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _process(_delta: float) -> void:
 	# DEBUG
-	if Input.is_action_pressed(&"mouse_left"):
-		var adj := to_local(get_global_mouse_position())
-		print(self.name + " ADJ MOUSE: ", adj)
-		#bang(adj - SOL.SCREEN_CENTER)
-		repos(adj, false, false)
-		print(self.name + " YEAH.....\n")
+	pass
+	#if Input.is_action_pressed(&"mouse_left"):
+		#var adj := to_local(get_global_mouse_position())
+		#print(self.name + " ADJ MOUSE: ", adj)
+		#print(self.name + " GLOB MOUSE: ", get_global_mouse_position())
+		##bang(adj - SOL.SCREEN_CENTER)
+		#repos(adj, false, false)
+		#print(self.name + " YEAH.....\n")
 
 
 func shun() -> void:
 	textbox.visible_ratio = 0.0
 	const up := Vector2(SOL.SCREEN_CENTER.x, -15)
-	_tw_arrow(up, up, 0.1)
+	_tw_arrow(up, up, 0.2)
 	await _tw_box(Vector2.ZERO, up, 0.2)
 	hide()
 
@@ -126,30 +131,39 @@ func _tw_box(cs: Vector2, cp: Vector2, delay: float) -> void:
 	await tw.finished
 
 
+func _skipf() -> void:
+	textbox.skip_to_end()
+	textbox.speak_finished.emit()
+
+
 func speak(dlg: Dialogue) -> void:
 	show()
 	DAT.capture_player("dialogue")
 	SOL.dialogue_open = true
+	box_readable = true
 
 	for line in dlg.lines:
+		typing_currently = true
 		textbox.text = line.text
 		textbox.speak_text()
-		var skipf := func() -> void:
-			textbox.skip_to_end()
-			textbox.speak_finished.emit()
+		if line.callback.is_valid():
+			line.callback.call()
 			#print("le sip")
-		if OPT.get_opt("z_skips_dialogue") > 0: _continue.connect(skipf, CONNECT_ONE_SHOT)
-		_cancel.connect(skipf, CONNECT_ONE_SHOT)
+		if OPT.get_opt("z_skips_dialogue") > 0: _continue.connect(_skipf, CONNECT_ONE_SHOT)
+		_cancel.connect(_skipf, CONNECT_ONE_SHOT)
 		#print("awaitn finsh speak")
 		await textbox.speak_finished
-		if _continue.is_connected(skipf): _continue.disconnect(skipf)
-		if _cancel.is_connected(skipf): _cancel.disconnect(skipf)
+		if _continue.is_connected(_skipf): _continue.disconnect(_skipf)
+		if _cancel.is_connected(_skipf): _cancel.disconnect(_skipf)
 		#print("awaitng continue")
+		typing_currently = false
 		await _continue
 
+	box_readable = false
 	await shun()
 	DAT.free_player.call_deferred("dialogue")
 	SOL.set_deferred("dialogue_open", false)
+	await get_tree().process_frame
 
 
 func bang(guipos: Vector2) -> void:

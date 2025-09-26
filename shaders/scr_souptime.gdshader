@@ -1,5 +1,6 @@
 shader_type canvas_item;
 uniform sampler2D Gradient: source_color;
+uniform vec2 offset;
 
 
 // TransformUV
@@ -16,7 +17,7 @@ vec2 transformUVFunc(vec2 _uv_transform, vec2 _scale_uv_, vec2 _pivot_scale_uv_,
 // TilingAndOffsetUVAnimated
 
 vec2 tilingNoffsetAnimatedFunc(vec2 _uv_tN0A, float _t1me_tN0A, vec2 _offset_tN0A){
-	return vec2(mod((_uv_tN0A.x + _offset_tN0A.x * _t1me_tN0A), 1.0), mod((_uv_tN0A.y + _offset_tN0A.y * _t1me_tN0A), 1.0));
+	return vec2(mod((_uv_tN0A.x + _offset_tN0A.x * _t1me_tN0A) + offset.x, 1.0), mod((_uv_tN0A.y + _offset_tN0A.y * _t1me_tN0A) + offset.y, 1.0));
 }
 
 // TileUV

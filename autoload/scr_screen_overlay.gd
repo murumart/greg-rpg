@@ -83,6 +83,10 @@ func _on_speaking_stopped(_line := 0) -> void:
 	speaking = false
 
 
+func global_to_screen_pos(glob: Vector2) -> Vector2:
+	return get_viewport().get_visible_rect().position - glob
+
+
 # when a node needs to be at the top of the world
 func add_ui_child(node: Node, custom_z_index := 0, delete_on_scene_change := true) -> void:
 	var node2d := Node2D.new()
