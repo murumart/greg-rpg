@@ -46,10 +46,7 @@ size = Vector2(12, 1)
 
 [sub_resource type="Resource" id="Resource_k6tq2"]
 script = ExtResource("14_a7e7c")
-type = 0
 property = "range 12,112"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_mxm45"]
@@ -59,20 +56,10 @@ metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 
 [sub_resource type="Resource" id="Resource_pn2uj"]
 script = ExtResource("14_p7p2l")
-enemies = Array[StringName]([])
 background = "house_inside"
 music = "daylightthief"
-party = Array[StringName]([])
-death_reason = 0
 start_text = "are you not the thug now?"
 rewards = SubResource("Resource_mxm45")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("13_gs358")]({})
-increment_data_with_enemies = &""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7e7c"]
 resource_local_to_scene = true
@@ -96,17 +83,8 @@ script = ExtResource("14_p7p2l")
 enemies = Array[StringName]([&"casual"])
 background = "house_inside"
 music = "lightningthief"
-party = Array[StringName]([])
-death_reason = 0
 start_text = "are you not the thug now?"
 rewards = SubResource("Resource_xvh1i")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("13_gs358")]({})
-increment_data_with_enemies = &""
 
 [node name="MayorApartment" type="Node2D"]
 y_sort_enabled = true
@@ -255,18 +233,23 @@ offset = Vector2(0, -16)
 
 [node name="Bookshelf" parent="Decor" instance=ExtResource("10_pn2uj")]
 position = Vector2(-14, -14)
+lines = PackedStringArray("these are the fabled secret tomes...")
 
 [node name="Bookshelf2" parent="Decor" instance=ExtResource("10_pn2uj")]
 position = Vector2(1, -14)
+lines = PackedStringArray("books about diplomacy...?", "actually, they\'re all hollowed out and full of newspaper crosswords.", "the crosswords are filled with random letters.")
 
 [node name="Bookshelf3" parent="Decor" instance=ExtResource("10_pn2uj")]
 position = Vector2(16, -14)
+lines = PackedStringArray("diagrams of town logistics, various documents...", "...interspersed with black, heptagram-covered books.")
 
 [node name="Bookshelf4" parent="Decor" instance=ExtResource("10_pn2uj")]
 position = Vector2(31, -14)
+lines = PackedStringArray("this is a fake bookshelf.", "the real ones have no discernible difference.")
 
 [node name="Bookshelf5" parent="Decor" instance=ExtResource("10_pn2uj")]
 position = Vector2(46, -14)
+lines = PackedStringArray("out of place books. a note slips out from in between...", "it\'s regarding an idea for a library planned to be built in town.", "it never seemed to have gained traction. there was no time.")
 
 [node name="RoomGate" parent="." instance=ExtResource("8_ilppi")]
 position = Vector2(40, 67)
@@ -308,7 +291,7 @@ position = Vector2(0, -7)
 position = Vector2(-54, 41)
 replenish_minutes = -1
 replenish_seconds = -60
-silver = 889
+silver = 667
 
 [editable path="Decor/Radio"]
 [editable path="Decor/Box4"]

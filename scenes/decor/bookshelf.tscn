@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://wym533u3oyu6"]
+[gd_scene load_steps=6 format=3 uid="uid://wym533u3oyu6"]
 
+[ext_resource type="Script" uid="uid://g4ctdia5atyp" path="res://scenes/decor/bookshelf.gd" id="1_o4oik"]
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_v72bn"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_o4oik"]
 
@@ -12,6 +13,7 @@ size = Vector2(14, 5)
 [node name="Bookshelf" type="StaticBody2D"]
 y_sort_enabled = true
 collision_mask = 0
+script = ExtResource("1_o4oik")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
