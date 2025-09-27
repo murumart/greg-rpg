@@ -71,7 +71,7 @@ func _g_statue_interact() -> void:
 	music.stop()
 	SOL.vfx("xtarget", grand.global_position, {parent = grand})
 	await Math.timer(2.0)
-	intensiivne.play(&"def", -1, 100)
+	intensiivne.play(&"def", -1, 1)
 	SND.play_song("bymssc", 0.1)
 	mus_bar_counter.reset_floats()
 	mus_bar_counter.bpm = 89
@@ -122,12 +122,11 @@ func _cs_3() -> void:
 	var ints := $Intensiivne/AudioStreamPlayer
 	ints.play()
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.set_ease(Tween.EASE_IN).tween_property(shader_bg.material, "shader_parameter/offset:x", 15.0, 3.0)
-	tw.parallel().tween_property(ints, "volume_db", 0.0, 3.0)
+	tw.set_ease(Tween.EASE_IN).tween_property(shader_bg.material, "shader_parameter/offset:x", -15.0, 3.0)
+	tw.parallel().tween_property(ints, "volume_db", 0.0, 3.0).from(-20.0)
 	tw.parallel().tween_property(ints, "pitch_scale", 0.66, 3.0)
 	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 3.0, {free_rect = false})
 	tw.tween_callback(ints.stop)
-
 
 
 func _process(delta: float) -> void:

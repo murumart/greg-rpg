@@ -53,8 +53,10 @@ horizontal_alignment = 1
 script = ExtResource("1_rl2w6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("PlaceholderTexture2D_jaw03")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(160, 120)
 texture = SubResource("PlaceholderTexture2D_jaw03")
