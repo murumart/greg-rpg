@@ -117,7 +117,7 @@ func _cs_3() -> void:
 	tw.parallel().tween_property(menacing, "modulate:a", 1.0, 1.3)
 	await tw.finished
 	var dlg := DialogueBuilder.new()
-	dlg.al("let's see something.").scallback(_pos_at_men)
+	dlg.al("let me tell you what you've done").scallback(_pos_at_men)
 	await speech.speak(dlg.get_dial())
 	var ints := $Intensiivne/AudioStreamPlayer
 	ints.play()
@@ -125,7 +125,8 @@ func _cs_3() -> void:
 	tw.set_ease(Tween.EASE_IN).tween_property(shader_bg.material, "shader_parameter/offset:x", -15.0, 3.0)
 	tw.parallel().tween_property(ints, "volume_db", 0.0, 3.0).from(-20.0)
 	tw.parallel().tween_property(ints, "pitch_scale", 0.66, 3.0)
-	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 3.0, {free_rect = false})
+	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.TRANSPARENT, Color.WHITE, 1.5, {free_rect = false})).set_delay(1.5)
+
 	tw.tween_callback(ints.stop)
 
 
