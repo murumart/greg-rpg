@@ -77,7 +77,8 @@
               "title": "Notes"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -226,10 +227,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cfbe9572ff8bd75",
+  "active": "c63e76cbeb3624cd",
   "lastOpenFiles": [
-    "Notes.md",
     "Update goals.md",
+    "Notes.md",
     "Bugs.md",
     "SG areas.md",
     "bossui.png",
