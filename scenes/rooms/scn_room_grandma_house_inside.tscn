@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://c8qnxpkmehthj"]
+[gd_scene load_steps=74 format=4 uid="uid://c8qnxpkmehthj"]
 
 [ext_resource type="Script" uid="uid://d3yw0nn7j0dck" path="res://scenes/rooms/grandma_house/scr_room_grandma_house_inside.gd" id="1_eampk"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_0lukr"]
@@ -40,6 +40,21 @@
 [ext_resource type="Script" uid="uid://ey2th5yjtw1k" path="res://scenes/rooms/grandma_house/after_fight_cutscene.gd" id="39_3hvci"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="41_u5i7e"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3hvci"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_qw5xy"]
+offsets = PackedFloat32Array(0, 0.13145539, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0.7227015, 1, 0.56757206, 1, 0, 0, 0.52406985, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u5i7e"]
+gradient = SubResource("Gradient_qw5xy")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.66239315, 0.22649573)
+fill_to = Vector2(0.34615386, 0.7393162)
+
 [sub_resource type="Gradient" id="Gradient_8myy1"]
 colors = PackedColorArray(0.0130485, 0.0130484, 0.0130484, 1, 0.00423512, 0.00423512, 0.00423512, 1)
 
@@ -49,6 +64,7 @@ gradient = SubResource("Gradient_8myy1")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kae55"]
 shader = ExtResource("2_0lukr")
 shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u00gj"]
 size = Vector2(32, 18)
@@ -2081,27 +2097,11 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="Resource" id="Resource_k563r"]
 script = ExtResource("18_7ay6p")
 text = "a shelf full of potted plants."
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = []
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-portrait_scale = Vector2(1, 1)
-set_data = []
-callback = Callable()
 metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
 
 [sub_resource type="Resource" id="Resource_ixip8"]
 script = ExtResource("19_76b83")
-name = &""
 lines = Array[ExtResource("18_7ay6p")]([SubResource("Resource_k563r")])
-alias = ""
 metadata/_custom_type_script = "uid://crxdditnh0akt"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k71g"]
@@ -2119,9 +2119,30 @@ size = Vector2(48, 15)
 resource_local_to_scene = true
 size = Vector2(18, 15)
 
+[sub_resource type="Resource" id="Resource_3hvci"]
+script = ExtResource("18_7ay6p")
+text = "hey, dear! i'm out tending to my garden."
+character = "grandma_talk"
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_qw5xy"]
+script = ExtResource("18_7ay6p")
+text = "if you need anything, just wait a while! i'll be back soon."
+character = "grandma_talk"
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_u5i7e"]
+script = ExtResource("19_76b83")
+lines = Array[ExtResource("18_7ay6p")]([SubResource("Resource_3hvci"), SubResource("Resource_qw5xy")])
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hvci"]
+radius = 6.3245554
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1s35"]
 shader = ExtResource("2_0lukr")
 shader_parameter/Gradient = SubResource("GradientTexture1D_2ra4h")
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bcnh"]
 size = Vector2(18, 16)
@@ -2146,6 +2167,14 @@ size = Vector2(14, 17)
 y_sort_enabled = true
 script = ExtResource("1_eampk")
 
+[node name="FlowerDarkness" type="Sprite2D" parent="."]
+z_index = 5
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_3hvci")
+position = Vector2(80, -19)
+scale = Vector2(21.25, 16.625)
+texture = SubResource("GradientTexture2D_u5i7e")
+
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
 color = Color(0.799382, 0.691576, 0.549892, 1)
 script = ExtResource("2_5eric")
@@ -2160,7 +2189,7 @@ script = ExtResource("3_r36ay")
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 material = SubResource("ShaderMaterial_kae55")
-position = Vector2(72, -1986)
+position = Vector2(62, -1955)
 scale = Vector2(24.0902, 34.0308)
 texture = ExtResource("3_kixp1")
 offset = Vector2(-0.419559, 62.6302)
@@ -2186,7 +2215,7 @@ ignore_rotation = false
 limit_left = -72
 limit_top = -112
 limit_right = 240
-limit_bottom = 80
+limit_bottom = 63
 
 [node name="Grandma" parent="." groups=["empty_delete"] instance=ExtResource("32_76b83")]
 position = Vector2(144, -60)
@@ -2330,7 +2359,7 @@ offset = Vector2(-8, -21)
 region_enabled = true
 region_rect = Rect2(97, 17, 15, 24)
 
-[node name="SmallShelf" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(20, -46)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2338,7 +2367,7 @@ offset = Vector2(-9, -16)
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="SmallShelf2" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf2" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(7, -46)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2346,7 +2375,7 @@ offset = Vector2(-9, -16)
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="SmallShelf3" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf3" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(33, -46)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2355,7 +2384,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="SmallShelf4" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf4" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-130, -14)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2363,7 +2392,7 @@ offset = Vector2(-9, -16)
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="SmallShelf5" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf5" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-143, -14)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2371,7 +2400,7 @@ offset = Vector2(-9, -16)
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="SmallShelf6" type="Sprite2D" parent="Decor/Backwall"]
+[node name="SmallShelf6" type="Sprite2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-117, -14)
 texture = ExtResource("17_f1any")
 centered = false
@@ -2475,7 +2504,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 33, 16, 15)
 
-[node name="ShelfInspect" type="Area2D" parent="Decor/Backwall"]
+[node name="ShelfInspect" type="Area2D" parent="Decor/Backwall" groups=["empty_delete"]]
 position = Vector2(-119, -82)
 script = ExtResource("13_kx26r")
 dialogue = SubResource("Resource_ixip8")
@@ -2649,6 +2678,22 @@ offset = Vector2(-29.963, 0.338303)
 region_enabled = true
 region_rect = Rect2(16, 48, 32, 54)
 
+[node name="Note" type="Sprite2D" parent="Decor"]
+modulate = Color(2.432, 2.432, 2.432, 1)
+position = Vector2(-12, -19)
+texture = ExtResource("7_fqnfh")
+offset = Vector2(0, -5)
+region_enabled = true
+region_rect = Rect2(72, 32, 8, 8)
+
+[node name="InspectArea" type="Area2D" parent="Decor/Note"]
+script = ExtResource("13_kx26r")
+dialogue = SubResource("Resource_u5i7e")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Note/InspectArea"]
+shape = SubResource("CircleShape2D_3hvci")
+
 [node name="FogOfWar" type="CanvasGroup" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="FogOfWar"]
@@ -2705,10 +2750,10 @@ material = SubResource("CanvasItemMaterial_mdvsf")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -105.305
-offset_top = -95.8573
-offset_right = 94.6944
-offset_bottom = 104.143
+offset_left = -98.44597
+offset_top = -90.32241
+offset_right = 101.55342
+offset_bottom = 109.677895
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_qw5xy")
@@ -2765,12 +2810,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ppjx1")
 theme_override_colors/default_color = Color(0.780691, 1, 0.759367, 1)
 theme_override_colors/font_outline_color = Color(0, 0.176471, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 18.784, 0, 0.133)
-theme_override_constants/outline_size = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_outline_size = 6
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FinishedMarker" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="4"]
+visible = false
+region_rect = Rect2(80, 56, 8, 8)
 
 [connection signal="interacted" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
 

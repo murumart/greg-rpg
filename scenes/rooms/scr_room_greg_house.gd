@@ -197,12 +197,12 @@ func delete_nuisances() -> void:
 
 
 func delete_escape_routes() -> void:
-	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = true)
+	[$Areas/RoomGate, $Areas/RoomGate2].map(func(a): a.disabled = true)
 	$Areas/ExitExplainer.monitoring = true
 
 
 func enable_gates() -> void:
-	[$Areas/RoomGate, $Areas/RoomGate2, $Areas/RoomGate3].map(func(a): a.disabled = false)
+	[$Areas/RoomGate, $Areas/RoomGate2].map(func(a): a.disabled = false)
 	$Areas/ExitExplainer.monitoring = false
 
 

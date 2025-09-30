@@ -4,18 +4,25 @@ extends Room
 @export_range(-1, 10) var prank_call_force := -1
 @onready var door_area: Area2D = $Door/DoorArea
 @onready var radio := $Radio
+@onready var flower_darkness: Sprite2D = $FlowerDarkness
+@onready var note: Sprite2D = $Decor/Note
 
 
 func _ready() -> void:
 	super._ready()
 
 	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
+		flower_darkness.show()
 		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
 		door_area.destination = &"secret_garden_entrance"
 		musicplayer.stop()
-		radio.default_song = preload("res://music/mus_bells.ogg")
+		radio.default_song = preload("res://music/mus_bmssc.ogg")
 		radio.radio_song = null
+		radio.default_pitch = 0.2
+		radio.setup()
 		return
+	note.queue_free()
+	flower_darkness.hide()
 	# long grandma lol
 	if Math.inrange(DAT.get_data("nr", 0), 0.665, 0.67) and not DAT.get_data("sscyr", false):
 		DAT.set_data("sscyr", true)

@@ -12,6 +12,10 @@ var music_last_position: float
 
 func _ready() -> void:
 	$RadioInteraction.interacted.connect(_interacted)
+	setup()
+
+
+func setup() -> void:
 	musicplayer.pitch_scale = default_pitch
 	musicplayer.stream = default_song
 	musicplayer.play()

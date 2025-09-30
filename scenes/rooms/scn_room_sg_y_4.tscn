@@ -231,7 +231,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -344,7 +343,6 @@ emitting = false
 direction = 2
 role = 1
 movable = true
-available_directions = 5
 
 [node name="Redirector2" parent="Areas/Puzzle" index="6" instance=ExtResource("3_18dv3")]
 position = Vector2(-16, 80)
@@ -352,7 +350,6 @@ emitting = false
 direction = 2
 role = 1
 movable = true
-available_directions = 5
 
 [node name="Redirector3" parent="Areas/Puzzle" index="7" instance=ExtResource("3_18dv3")]
 position = Vector2(0, 80)
@@ -360,7 +357,6 @@ emitting = false
 direction = -1
 role = 1
 movable = true
-available_directions = 10
 
 [node name="Redirector4" parent="Areas/Puzzle" index="8" instance=ExtResource("3_18dv3")]
 position = Vector2(16, 48)
@@ -368,14 +364,12 @@ emitting = false
 direction = -1
 role = 1
 movable = true
-available_directions = 10
 
 [node name="Redirector5" parent="Areas/Puzzle" index="9" instance=ExtResource("3_18dv3")]
 position = Vector2(16, 32)
 emitting = false
 role = 1
 movable = true
-available_directions = 10
 
 [node name="Floor" type="TileMapLayer" parent="Areas/Puzzle" index="10"]
 y_sort_enabled = true
@@ -403,6 +397,8 @@ reset_saves = [NodePath("../Puzzle/SaveNodePositions")]
 [node name="Parallax2D2" type="Parallax2D" parent="." index="6"]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(0, 83)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
@@ -420,6 +416,8 @@ script = ExtResource("8_tgily")
 speed = -4.0
 child_mode = true
 metadata/_custom_type_script = "uid://dw4cp3sxaiy4"
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Node2D" type="CanvasGroup" parent="Parallax2D2/Rotator" index="0"]
 modulate = Color(0.854902, 0.360784, 0.231373, 0.639216)
@@ -469,7 +467,6 @@ tile_set = ExtResource("4_18dv3")
 [node name="TileMapLayer8" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="7"]
 position = Vector2(-8, -2)
 rotation = -2.87979
-scale = Vector2(1, 1)
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
@@ -488,7 +485,6 @@ tile_set = ExtResource("4_18dv3")
 [node name="TileMapLayer11" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="10"]
 position = Vector2(-3.5, 6.5)
 rotation = 2.0944
-scale = Vector2(1, 1)
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 

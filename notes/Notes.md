@@ -94,7 +94,7 @@
 - [x] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
 - [ ] move spirit mana portal damage battle camera downward
 - [x] text you received begonia
-- [ ] make grandma room darker after flowers
+- [x] make grandma room darker after flowers
 - [ ] telegraph movement direction restrictions of pizzle pieces.
 - [x] enter battle private in overworld character
 - [ ] more mentions of mayor before east
@@ -104,6 +104,6 @@
 
 ## asdjasjdas
 - [x] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
-- [ ] võta see valge kuju ära (paistab liiga silma intros)
+- [x] võta see valge kuju ära (paistab liiga silma intros)
 - [ ] uuenda kaarti (eset)
 - [ ] ma ei ütle kuidas seivida??
