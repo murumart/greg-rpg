@@ -1464,37 +1464,37 @@ animation = &"walk_down"
 [node name="UguyPath" type="Node2D" parent="Houses/Store"]
 position = Vector2(17, 53)
 
-[node name="Node2D" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(41, 28)
 
-[node name="Node2D2" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath2" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(140, 19)
 
-[node name="Node2D3" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath3" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(189, -14)
 
-[node name="Node2D4" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath4" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(193, -92)
 
-[node name="Node2D5" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath5" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(199, -165)
 
-[node name="Node2D6" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath6" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(264, -167)
 
-[node name="Node2D7" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath7" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(262, -256)
 
-[node name="Node2D8" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath8" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(291, -285)
 
-[node name="Node2D9" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath9" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(402, -283)
 
-[node name="Node2D10" type="Node2D" parent="Houses/Store/UguyPath"]
-position = Vector2(498, -285)
+[node name="UguyPath10" type="Node2D" parent="Houses/Store/UguyPath"]
+position = Vector2(502, -278)
 
-[node name="Node2D11" type="Node2D" parent="Houses/Store/UguyPath"]
+[node name="UguyPath11" type="Node2D" parent="Houses/Store/UguyPath"]
 position = Vector2(588, -285)
 
 [node name="PostOffice" type="Node2D" parent="Houses"]

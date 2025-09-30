@@ -103,7 +103,7 @@
 - [x] red text line too far. too meta as they say
 
 ## asdjasjdas
-- [ ] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
+- [x] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
 - [ ] võta see valge kuju ära (paistab liiga silma intros)
 - [ ] uuenda kaarti (eset)
 - [ ] ma ei ütle kuidas seivida??

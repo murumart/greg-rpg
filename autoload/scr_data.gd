@@ -250,11 +250,12 @@ func free_player(type := &"") -> void:
 	player_captured.emit(false)
 
 
-func grant_item(item: StringName, party_index := 0, dialogue := true) -> void:
+func grant_item(item: StringName, party_index := 0, dialogue := true, sound := true) -> void:
 	if dialogue:
 		SOL.dialogue_box.dial_concat("getitem", 0, [ResMan.get_item(item).name])
 		SOL.dialogue("getitem")
 	assert(ResMan.item_exists(item))
+	if sound: SND.play_sound(preload("res://sounds/get_item.ogg"))
 	if (LTS.get_current_scene().name == "Battle"
 			and not LTS.get_current_scene().party.is_empty()):
 		var battle = LTS.get_current_scene()
