@@ -46,7 +46,10 @@ func _on_tarikas_inspected() -> void:
 		dlg.al("...")
 		dlg.al("there's nothing else for me to do than to give... it to you.")
 		dlg.clear_char().al("(you received the begonia.)").sitem_to_give(&"flower_begonia")
-		dlg.set_char("tarikas").al("...and to bid you farewell.")
+		dlg.set_char("tarikas").al("you have enough... now.")
+		dlg.al("... she's waiting.")
+		dlg.al("fare well.")
+		dlg.al("i hope we don't meet... again.")
 
 		cfinal = true
 		await dlg.speak_choice()
@@ -164,6 +167,9 @@ func _on_tarikas_inspected() -> void:
 			dlg.al("and... ingests some.")
 			dlg.al("the power that follows can be immense...")
 			dlg.al("...depending on the [color=%s]strain[/color]." % dlg.VAMPCOLOR)
+			dlg.al("...")
+			dlg.al("the... the [color=#0f0]green demon[/color]?")
+			dlg.al("...is that so...")
 
 			await dlg.speak_choice()
 		elif choice == &"president":
@@ -205,10 +211,19 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("...that is a foolish hope.")
 				dlg.al("considering... whose... whose... ...")
 				dlg.al("...")
+			elif flowers_c < 6:
+				dlg.al("growth...")
+				dlg.al("that is what a [color=%s]flower[/color] means...")
+				dlg.al("what it beckons...")
+				dlg.al("you will... finish growing... eventually.")
+				dlg.al("what's a ripe fruit good for, think...?")
+				dlg.al("...")
 			elif flowers_c < 7:
-				dlg.al("the [color=0f0]green demon[/color].")
-				dlg.al("you've seen what happens to people with [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
-				dlg.al("what makes you think it'll end any differently for you?")
+				dlg.al("the [color=0f0]danger[/color] of the flowers.")
+				dlg.al("i can't tell you much... more, but...")
+				dlg.al("do you think you're better than them?")
+				dlg.al("do you think the same won't... happen to you?")
+				dlg.al("your power... might just be... enough...")
 
 			else:
 				dlg.al("...")

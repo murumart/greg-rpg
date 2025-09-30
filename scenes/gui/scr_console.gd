@@ -353,6 +353,22 @@ func _cmd_gitem(args: PackedStringArray) -> void:
 	output("gave item " + args[0])
 
 
+func _cmd_ritem(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: ritem itemname amount")
+		return
+	var itemname := args[0]
+	var amount := 1
+	if args.size() > 1:
+		amount = int(args[1])
+	if not itemname in ResMan.items:
+		output("item doesn't exist", true)
+		return
+	for i in amount:
+		ResMan.get_character("greg").inventory.erase(itemname)
+	output("removed item " + args[0])
+
+
 func _cmd_gsilver(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: gsilver amount")
