@@ -87,10 +87,15 @@ func get_dial() -> Dialogue:
 
 func speak(box: DialogueBox = null) -> void:
 	assert(_dial.size() > 0, "dialogue needs lines to be spoken.... dumpass")
+	var toosmall := _dial.size() <= 0
+	if toosmall: # hopefully harmless safeguard
+		al("...")
 	if not box:
 		SOL.dialogue_d(_dial)
+		if toosmall: _dial.lines.resize(_dial.lines.size() - 1)
 		return
 	box.prepare_dialogue_d(_dial)
+	if toosmall: _dial.lines.resize(_dial.lines.size() - 1)
 
 
 func speak_choice(box: DialogueBox = null) -> StringName:

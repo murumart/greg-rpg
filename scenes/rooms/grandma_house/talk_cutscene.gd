@@ -61,7 +61,7 @@ func cs_setup() -> void:
 		await grandma.target_reached
 		grandma.direct_walking_animation.call_deferred(Vector2.UP)
 		radio_music.stop()
-		SND.play_sound(preload("res://sounds/misc_click.ogg"), {volume = 8})
+		SND.play_sound(preload("res://sounds/misc_click.ogg"), {volume = 3})
 		await Math.timer(0.7)
 		grandma.sanimate("")
 		grandma.move_to(room_center.global_position + Vector2(room_center.gizmo_extents, 0))

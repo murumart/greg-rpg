@@ -1694,11 +1694,21 @@ DIALOGUE bike_ghost_interact_1
 	how about i steal your earlobes instead?
 
 
+DIALOGUE bike_ghost_interact_1_east_fake
+	uh hah ha... you dare approach my bycicle?
+
+
 DIALOGUE bike_ghost_interact_2
 CHAR bike_ghost
 	you utter imbecile... your petty theft will be thwarted...
 	...by the [color=SPIRITCOLOR]ghost[/color] that haunts...
-	...your object of desire.
+	...your object of desire.'
+
+
+DIALOGUE bike_ghost_interact_2_east_fake
+CHAR bike_ghost
+	you complete and utter imbecile...
+	have you not learned your lesson?
 
 
 DIALOGUE bike_ghost_welcome
@@ -1769,6 +1779,22 @@ DATA_LINK fast_travel_tutorialed,false
 SET_DATA fast_travel_tutorialed,true
 	...okay i'll do it just stop making that face.
 
+
+DIALOGUE bike_ghost_afterdefeat_east_fake
+CHAR bike_ghost
+	...well, i sure have.
+	you'd kick my sore, cold, aluminium ass again.
+CHOICES travel,bye
+	let's just get this over with.
+	
+CHOICE_LINK bye
+	how gracious!!
+CHOICE_LINK travel
+DATA_LINK fast_travel_tutorialed,false
+	fast travel?? 
+	what an inquiry in this post-asskicking world!
+SET_DATA fast_travel_tutorialed,true
+	eeby gleeby goo... poopy schmoopy...
 
 
 DIALOGUE bike_ghost_travel_nodests

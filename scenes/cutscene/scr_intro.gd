@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	var input := Input.get_axis("ui_left", "ui_right")
 	car.position.x = clampf(car.position.x + input, -38, -16)
 
-	if false and Input.is_action_pressed("cancel") and Input.is_action_pressed("ui_accept") and skipping_enabled:
+	if OS.has_feature("editor") and Input.is_action_pressed("cancel") and Input.is_action_pressed("ui_accept") and skipping_enabled:
 		skipping_enabled = false
 		#get_tree().get_processed_tweens().map(func(p: Tween) -> void: p.kill())
 		LTS.gate_id = &"intro"

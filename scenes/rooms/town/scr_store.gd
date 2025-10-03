@@ -80,7 +80,7 @@ func _guy_setup() -> void:
 
 func _guy_target_reached() -> void:
 	var which := guy.at_which_path_point()
-	if which == $UguyPath/Node2D11:
+	if which == $UguyPath/UguyPath11:
 		guy.default_lines.clear()
 		guy.default_lines.append("guy_walk_home_door")
 		guy.path_container = null

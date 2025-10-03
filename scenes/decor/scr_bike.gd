@@ -29,6 +29,14 @@ const DIAL_TRAVEL_NODESTS := "travel_nodests"
 
 @export var ghost: Ghosts = Ghosts.ALPHA
 @export var destination_name := &""
+@export var extra_dial_once_key := &""
+@export var scary_anim := false
+
+var _has_interacted: bool:
+	set(to):
+		DAT.set_data("bike" + name + "in" + LTS.get_current_scene().name + "interacted", to)
+	get:
+		return DAT.get_data("bike" + name + "in" + LTS.get_current_scene().name + "interacted", false)
 
 
 func _ready() -> void:
@@ -50,8 +58,15 @@ func _interacted() -> void:
 	# and they will all be "defeated" at once
 	# but their bike destinations can be different
 	_register()
-	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_AFTER_DEFEAT)
+	if scary_anim and not _has_interacted:
+		await _prefight_anim()
+		if LTS.get_current_scene() is Room:
+			(LTS.get_current_scene() as Room).play_room_music(99)
+		DAT.free_player("cutscene")
+	animator.play(&"RESET")
+	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_AFTER_DEFEAT + (extra_dial_once_key if not _has_interacted else &""))
 	await SOL.dialogue_closed
+	_has_interacted = true
 	if SOL.dialogue_choice == &"travel":
 		var options := get_travel_options()
 		if options.size() > 1: # "nvm" is always an option
@@ -67,23 +82,24 @@ func _interacted() -> void:
 
 
 func _prefight() -> void:
+	await _prefight_anim()
+	DAT.free_player("cutscene")
+	DAT.appenda("bike_ghosts_fought", ghost)
+	LTS.enter_battle(G_BATTLE_INFOS[ghost])
+
+
+func _prefight_anim() -> void:
 	SND.play_song("")
-	SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_1")
-	SOL.dialogue_closed.connect(func():
-		DAT.capture_player("cutscene")
-		animator.play("emerge")
-		SND.play_song("bike_spirit_appear",
-				10, {volume = -2,
-					start_volume = 0.0, play_from_beginning = true})
-		await get_tree().create_timer(2.0).timeout
-		SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_2")
-		SOL.dialogue_closed.connect(
-			func():
-				DAT.free_player("cutscene")
-				DAT.appenda("bike_ghosts_fought", ghost)
-				LTS.enter_battle(G_BATTLE_INFOS[ghost])
-		, CONNECT_ONE_SHOT)
-	, CONNECT_ONE_SHOT)
+	SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_1" + (extra_dial_once_key if not _has_interacted else &""))
+	await SOL.dialogue_closed
+	DAT.capture_player("cutscene")
+	animator.play("emerge")
+	SND.play_song("bike_spirit_appear",
+			10, {volume = -2,
+				start_volume = 0.0, play_from_beginning = true})
+	await get_tree().create_timer(2.0).timeout
+	SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_2" + (extra_dial_once_key if not _has_interacted else &""))
+	await SOL.dialogue_closed
 
 
 func _register() -> void:

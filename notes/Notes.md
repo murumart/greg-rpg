@@ -95,11 +95,11 @@
 - [ ] move spirit mana portal damage battle camera downward
 - [x] text you received begonia
 - [x] make grandma room darker after flowers
-- [ ] telegraph movement direction restrictions of pizzle pieces.
+- [ ] telegraph movement direction restrictions of pizzle pieces. (WONTFIX: dont use restrictions)
 - [x] enter battle private in overworld character
 - [ ] more mentions of mayor before east
 - [x] nerf casual
-- [ ] fix camera tiny ui in main menu when exiting from secret garden
+- [x] fix camera tiny ui in main menu when exiting from secret garden
 - [x] red text line too far. too meta as they say
 
 ## asdjasjdas

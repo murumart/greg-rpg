@@ -27,15 +27,18 @@ func _ready() -> void:
 	if SND.room_music_blockers > 0:
 		SND.room_music_blockers -= 1
 	else:
-		SND.play_song(music, music_fade_time,
-			{
-				"start_volume": music_start_volume,
-				"play_from_beginning": music_play_from_beginning,
-				"save_audio_position": music_save_progress
-			}
-		)
+		play_room_music(music_fade_time)
 	spawn_cigarettes()
 
+
+func play_room_music(fadetime: float) -> void:
+	SND.play_song(music, fadetime,
+		{
+			"start_volume": music_start_volume,
+			"play_from_beginning": music_play_from_beginning,
+			"save_audio_position": music_save_progress
+		}
+	)
 
 func _save_me() -> void:
 	DAT.set_data("current_room", name.to_snake_case())

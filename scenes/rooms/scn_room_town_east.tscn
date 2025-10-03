@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://dax7jr0n0mff1"]
+[gd_scene load_steps=130 format=4 uid="uid://dax7jr0n0mff1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_u5kw4"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_0834g"]
@@ -51,6 +51,7 @@
 [ext_resource type="Texture2D" uid="uid://dhq11jug8fwm8" path="res://sprites/vfx/burn_mark.png" id="38_xx7yy"]
 [ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="41_f1gdv"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="44_udk7p"]
+[ext_resource type="PackedScene" uid="uid://bkuu3x2gw38ch" path="res://scenes/decor/scn_bike.tscn" id="45_gh5h4"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="50_1ne0i"]
 [ext_resource type="Texture2D" uid="uid://khsdxjhxfbjs" path="res://sprites/world/car/spr_car_popo.png" id="51_odpk7"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="51_wwlrb"]
@@ -266,8 +267,6 @@ _data = {
 script = ExtResource("17_5y8yq")
 title = "skateboard"
 silver_required = 779
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"skateboard"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uj5s"]
@@ -682,10 +681,7 @@ size = Vector2(105, 20)
 
 [sub_resource type="Resource" id="Resource_dss3x"]
 script = ExtResource("53_udk7p")
-type = 0
 property = "range 10,30"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_fix1m"]
@@ -693,7 +689,6 @@ script = ExtResource("53_udk7p")
 type = 1
 property = "gummy_fish"
 chance = 0.236
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_wwlrb"]
@@ -701,7 +696,6 @@ script = ExtResource("53_udk7p")
 type = 1
 property = "tape"
 chance = 0.273
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_gh5h4"]
@@ -714,17 +708,7 @@ script = ExtResource("55_odpk7")
 enemies = Array[StringName]([&"super_turf", &"super_turf", &"super_turf"])
 background = "grass"
 music = "touch_me"
-party = Array[StringName]([])
-death_reason = 0
-start_text = ""
 rewards = SubResource("Resource_gh5h4")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("52_0k707")]({})
-increment_data_with_enemies = &""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2b71j"]
 size = Vector2(511, 21)
@@ -1565,6 +1549,12 @@ replenish_minutes = 51
 replenish_seconds = 3060
 item = &"drill_lure"
 
+[node name="Bike" parent="Houses/UhhHouse" instance=ExtResource("45_gh5h4")]
+position = Vector2(-62, 32)
+destination_name = &"east"
+extra_dial_once_key = &"_east_fake"
+scary_anim = true
+
 [node name="UhhHouse2" type="Node2D" parent="Houses"]
 y_sort_enabled = true
 position = Vector2(176, -296)
@@ -1656,7 +1646,7 @@ curve = SubResource("Curve2D_0834g")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0"]
 position = Vector2(-76, 164)
-rotation = 2.1006
+rotation = 1.5039686
 
 [node name="ThugOverworld" parent="Other/RideAroundTown" instance=ExtResource("27_kc1q2")]
 position = Vector2(-498, 597)
