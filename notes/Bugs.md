@@ -6,3 +6,11 @@
 - [x] ushanka guy walks nowhere
 - [ ] dialogue load in biking game? in kiok menu??
 - [ ] while sopping deals more damage to vacuum?
+- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
+- [ ] secret garden grandma cutscene room the block puzzle don't get saved
+- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
+- [ ] sg pink entrance cave is see-through
+- [ ] bad lines
+  - [ ] sg blue cat about spirits hating her
+  - [ ] sg pink entrance cat joviality & joy of living
+  - [ ] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
