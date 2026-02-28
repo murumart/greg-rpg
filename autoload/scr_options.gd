@@ -18,15 +18,17 @@ var IONS := {
 	},
 	"main_volume": {
 		"value": 0.0,
-		"range": [-60.0, 0.0],
+		"range": [0.0, 1.0],
 		"default_value": 0.0,
-		"step": 1.0,# by what increment the value can go up or down
+		"step": 0.05,# by what increment the value can go up or down
+		"display": KEY_PERCENT,
 	},
 	"music_volume": {
-		"value": -2.0,
-		"range": [-80.0, 0.0],
-		"default_value": -2.0,
-		"step": 1.0,
+		"value": 0.0,
+		"range": [0.0, 1.0],
+		"default_value": 0.75,
+		"step": 0.05,
+		"display": KEY_PERCENT,
 	},
 	"log_data_changes": {
 		"value": 0.0,
@@ -274,10 +276,12 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		prev_opt = get_opt(type)
 	update(container)
 	# here we go changing the actual things
-	AudioServer.set_bus_volume_db(0, get_opt("main_volume"))
-	AudioServer.set_bus_volume_db(1, get_opt("music_volume"))
-	AudioServer.set_bus_volume_db(4, get_opt("music_volume"))
-	AudioServer.set_bus_volume_db(5, get_opt("music_volume"))
+	var mainvol := clampf(get_opt("main_volume"), 0.0, 1.0)
+	var musvol := clampf(get_opt("music_volume"), 0.0, 1.0)
+	AudioServer.set_bus_volume_linear(0, mainvol)
+	AudioServer.set_bus_volume_linear(1, musvol)
+	AudioServer.set_bus_volume_linear(4, musvol)
+	AudioServer.set_bus_volume_linear(5, musvol)
 	Engine.max_fps = int(get_opt("max_fps"))
 	if prev_opt == get_opt(type):
 		return
@@ -339,6 +343,8 @@ func update(container: Container) -> void:
 		value_text = "yes" if bool(value) else "no"
 	elif display_type == TYPE_VECTOR2:
 		value_text = "-->"
+	elif display_type == KEY_PERCENT:
+		value_text = str(int(value * 100)) + "%"
 	container.get_child(1).text = value_text
 
 
