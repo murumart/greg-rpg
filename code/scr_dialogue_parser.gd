@@ -29,7 +29,7 @@ const NEW_KEY_ACTION := &"ACTION_"
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	print("dial " + file.get_path() + " ")
-	return parse_dialogue_from_string(file.get_as_text(true))
+	return parse_dialogue_from_string(file.get_as_text())
 
 
 static func parse_dialogue_from_string(string: String) -> Dictionary:

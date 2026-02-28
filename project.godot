@@ -11,6 +11,7 @@ config_version=5
 [animation]
 
 warnings/check_angle_interpolation_type_conflicting=false
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
@@ -19,10 +20,14 @@ config/version="1.0.99"
 run/main_scene="res://scenes/gui/scn_main_menu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Murumart"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/use_filter=false
 boot_splash/image="res://sprites/spr_boot_splash.png"
 config/icon="res://sprites/spr_icon.png"
+
+[audio]
+
+buses/default_bus_layout="uid://dt3lfhxd4k6k4"
 
 [autoload]
 
@@ -51,6 +56,10 @@ window/size/viewport_height=120
 window/size/window_width_override=959
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Greg RPG"
 
 [editor]
 

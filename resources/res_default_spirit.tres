@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://d4mtl2hxqpixv"]
+[gd_resource type="Resource" script_class="Spirit" format=3 uid="uid://d4mtl2hxqpixv"]
 
 [ext_resource type="Script" uid="uid://cmr7ybf3j71jj" path="res://code/scr_spirit.gd" id="1_5vpic"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_13f35"]

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://bavtmqfppokma"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bavtmqfppokma"]
 
 [ext_resource type="Texture2D" uid="uid://bxmr3c5bu8wss" path="res://sprites/characters/overworld/spr_kid_overworld.png" id="1_ooqsv"]
 

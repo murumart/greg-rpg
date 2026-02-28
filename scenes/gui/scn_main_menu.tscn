@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bi0862uluur74"]
+[gd_scene format=3 uid="uid://bi0862uluur74"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" uid="uid://ct0h5y2kta1vs" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
@@ -49,6 +49,7 @@ gradient = SubResource("Gradient_wbkcl")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0obdr"]
 shader = ExtResource("3_ku6te")
 shader_parameter/Gradient = SubResource("GradientTexture1D_qpb5b")
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hm0s2"]
 animations = [{
@@ -315,7 +316,7 @@ _data = {
 &"default": SubResource("Animation_y2q1y")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1545546014]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -326,14 +327,14 @@ theme = ExtResource("1_egx3d")
 script = ExtResource("2_wb8tk")
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=76503401]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1885737020]
 visible = false
 material = SubResource("ShaderMaterial_0obdr")
 layout_mode = 0
@@ -342,42 +343,40 @@ offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="LogoTexture" type="TextureRect" parent="."]
+[node name="LogoTexture" type="TextureRect" parent="." unique_id=823933649]
 layout_mode = 0
 offset_left = 16.0
 offset_right = 144.0
 offset_bottom = 64.0
 texture = ExtResource("3_fpmeo")
 
-[node name="LogoAnimated" type="AnimatedSprite2D" parent="."]
+[node name="LogoAnimated" type="AnimatedSprite2D" parent="." unique_id=2129340893]
 visible = false
 position = Vector2(80, 32.5)
 scale = Vector2(0.326389, 0.570312)
 sprite_frames = SubResource("SpriteFrames_hm0s2")
 autoplay = "default"
 
-[node name="Things" type="Node2D" parent="LogoAnimated"]
+[node name="Things" type="Node2D" parent="LogoAnimated" unique_id=1832034915]
 show_behind_parent = true
 
-[node name="Sprite2D" type="Sprite2D" parent="LogoAnimated/Things"]
+[node name="Sprite2D" type="Sprite2D" parent="LogoAnimated/Things" unique_id=281341614]
 material = SubResource("CanvasItemMaterial_xpk8j")
 position = Vector2(-3.06383, 6.13699)
 scale = Vector2(251.234, 7.30594)
 texture = SubResource("GradientTexture2D_qwou2")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="LogoAnimated/Things/Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LogoAnimated/Things/Sprite2D" unique_id=1163956023]
 lifetime = 4.0
 trail_enabled = true
 trail_lifetime = 0.34
 process_material = SubResource("ParticleProcessMaterial_3acqa")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LogoAnimated"]
-libraries = {
-&"": SubResource("AnimationLibrary_gof5g")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LogoAnimated" unique_id=1674698257]
+libraries/ = SubResource("AnimationLibrary_gof5g")
+autoplay = &"default"
 
-[node name="Label" type="RichTextLabel" parent="."]
+[node name="Label" type="RichTextLabel" parent="." unique_id=1867677603]
 layout_mode = 0
 offset_top = 60.0
 offset_right = 160.0
@@ -386,7 +385,7 @@ bbcode_enabled = true
 text = "[center]rpg"
 scroll_active = false
 
-[node name="Label2" type="RichTextLabel" parent="."]
+[node name="Label2" type="RichTextLabel" parent="." unique_id=1376581663]
 visible = false
 layout_mode = 0
 offset_top = 60.0
@@ -396,7 +395,7 @@ bbcode_enabled = true
 text = "[center]bike spirit"
 scroll_active = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1100016227]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 67.0
@@ -404,7 +403,7 @@ offset_right = 128.0
 offset_bottom = 112.0
 theme_override_constants/separation = -1
 
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=555737970]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
@@ -416,7 +415,7 @@ button_mask = 0
 text = " new game"
 alignment = 0
 
-[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+[node name="LoadGameButton" type="Button" parent="VBoxContainer" unique_id=10612080]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 focus_neighbor_top = NodePath("../NewGameButton")
@@ -428,7 +427,7 @@ button_mask = 0
 text = " load game"
 alignment = 0
 
-[node name="MailButton" type="Button" parent="VBoxContainer"]
+[node name="MailButton" type="Button" parent="VBoxContainer" unique_id=1189202417]
 visible = false
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
@@ -441,14 +440,14 @@ button_mask = 0
 text = " messages (1)"
 alignment = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/MailButton"]
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/MailButton" unique_id=2128424626]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(91, 1)
 scale = Vector2(4.5, 5)
 texture = ExtResource("5_rqmy0")
 centered = false
 
-[node name="MailPanel" type="Panel" parent="VBoxContainer/MailButton"]
+[node name="MailPanel" type="Panel" parent="VBoxContainer/MailButton" unique_id=548812666]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -457,7 +456,7 @@ offset_top = -81.0
 offset_right = 124.0
 offset_bottom = 23.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MailButton/MailPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MailButton/MailPanel" unique_id=1450011163]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -470,7 +469,7 @@ you are my repugnance abominable: my avoided animus. you are my repulsion beloat
 yours unforgivably,
 m.d.p."
 
-[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=525967592]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 focus_neighbor_top = NodePath("../LoadGameButton")
@@ -482,7 +481,7 @@ button_mask = 0
 text = " view credits"
 alignment = 0
 
-[node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton"]
+[node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton" unique_id=1192636677]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -491,7 +490,7 @@ offset_top = -81.0
 offset_right = 124.0
 offset_bottom = 23.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CreditsButton/TextPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CreditsButton/TextPanel" unique_id=355652541]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -501,12 +500,12 @@ theme_override_fonts/normal_font = ExtResource("36_8tder")
 theme_override_font_sizes/normal_font_size = 16
 text = "credots jere"
 
-[node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/TextPanel/RichTextLabel" node_paths=PackedStringArray("target")]
+[node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/TextPanel/RichTextLabel" unique_id=465762377 node_paths=PackedStringArray("target")]
 script = ExtResource("6_vbxvf")
 target = NodePath("..")
 speed = 0.9
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1068766655]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 focus_neighbor_top = NodePath("../LoadGameButton")
@@ -518,7 +517,7 @@ button_mask = 0
 text = " quit game"
 alignment = 0
 
-[node name="PressEsc" type="Label" parent="."]
+[node name="PressEsc" type="Label" parent="." unique_id=123312642]
 modulate = Color(0.356863, 0.356863, 0.356863, 1)
 layout_mode = 0
 offset_left = 1.0
@@ -527,7 +526,7 @@ offset_right = 150.0
 offset_bottom = 124.0
 text = "press esc for options any time"
 
-[node name="VersionText" type="Label" parent="."]
+[node name="VersionText" type="Label" parent="." unique_id=645192797]
 modulate = Color(0.356863, 0.356863, 0.356863, 1)
 layout_mode = 0
 offset_left = 1.0
@@ -538,14 +537,14 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
 text = "ver "
 
-[node name="LoadingScreen" type="ColorRect" parent="."]
+[node name="LoadingScreen" type="ColorRect" parent="." unique_id=485577993]
 visible = false
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="LoadingScreen"]
+[node name="Label" type="Label" parent="LoadingScreen" unique_id=1980753391]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -553,10 +552,10 @@ offset_right = 42.0
 offset_bottom = 13.0
 text = "loading."
 
-[node name="EditorHelperTool" type="Node" parent="."]
+[node name="EditorHelperTool" type="Node" parent="." unique_id=919657635]
 script = ExtResource("8_ipbln")
 
-[node name="Camera" parent="." instance=ExtResource("39_y0uhw")]
+[node name="Camera" parent="." unique_id=1569710283 instance=ExtResource("39_y0uhw")]
 position = Vector2(80, 60)
 
 [connection signal="meta_clicked" from="Label" to="." method="_on_label_meta_clicked"]
