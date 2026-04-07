@@ -3,7 +3,7 @@ extends CanvasLayer
 # screen layer over everything else. used for things like UI
 
 signal fade_finished
-signal dialogue_closed # this is used very often
+signal dialogue_closed
 
 const SCREEN_SIZE := Vector2(160, 120)
 const HALF_SCREEN_SIZE := Vector2(80, 60)
@@ -70,7 +70,7 @@ func dialogue_exists(key: String) -> bool:
 
 func _on_dialogue_closed() -> void:
 	dialogue_open = false
-	dialogue_closed.emit() # so much logic hinges on this single line
+	dialogue_closed.emit()
 
 
 # these are used in some places i guess

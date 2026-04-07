@@ -30,7 +30,7 @@ func act() -> void:
 
 func _act_normal() -> void:
 	if turn == 0:
-		if character.health_perc() <= 0.75:
+		if character.health_perc() <= 0.65:
 			add_status_effect_s(&"speed", 32, 16)
 		SOL.dialogue("bike_ghost_welcome")
 

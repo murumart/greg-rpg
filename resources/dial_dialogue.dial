@@ -1702,7 +1702,7 @@ DIALOGUE bike_ghost_interact_2
 CHAR bike_ghost
 	you utter imbecile... your petty theft will be thwarted...
 	...by the [color=SPIRITCOLOR]ghost[/color] that haunts...
-	...your object of desire.'
+	...your object of desire.
 
 
 DIALOGUE bike_ghost_interact_2_east_fake

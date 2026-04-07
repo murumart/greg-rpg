@@ -80,7 +80,7 @@ func _process(delta: float) -> void:
 	if not character:
 		return
 	if SOL.dialogue_open:
-		return # don't run logic if dialogue is open
+		return
 	effect_visuals()
 	_process_states(delta)
 
@@ -386,8 +386,8 @@ func use_item(id: String, subject: BattleActor) -> void:
 		return
 	var item: Item = ResMan.get_item(id)
 	if not (item.use == Item.Uses.WEAPON or item.use == Item.Uses.ARMOUR):
-		subject.handle_payload(item.payload.set_sender(self).\
-		set_type(BattlePayload.Types.ITEM)) # using the item
+		subject.handle_payload(item.payload.set_sender(self)
+			.set_type(BattlePayload.Types.ITEM)) # using the item
 		SOL.vfx(
 				"use_item", get_effect_center(subject),
 				{parent = subject, item_texture = item.texture,
