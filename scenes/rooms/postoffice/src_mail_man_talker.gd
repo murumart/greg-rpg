@@ -268,7 +268,7 @@ func returntalk(results: Dictionary) -> void:
 	if relationship > 0:
 		if bike_health_proportion < 0.75:
 			dlg.add_line(dl.mk("thank you for the funds to help repair my bike."))
-			dlg.semotion("serious").add_line(dl.mk("be more careful next time."))
+			dlg.set_emo("serious").add_line(dl.mk("be more careful next time."))
 			silver_collected = roundi(silver_collected * remap(bike_health_proportion, 0.75, 0.0, 0.75, 0.0))
 	else:
 		silver_collected /= 2

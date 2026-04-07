@@ -16,7 +16,7 @@ const HELL_COLOUR := Color(0.96074420213699, 0.62273794412613, 0.68452841043472)
 @onready var background_town := $Background/Town
 @onready var background_field := $Background/Field
 @onready var background_snail_hell := $Background/SnailHellBackground
-@onready var colour_changer: CanvasModulate = $Background/ColourChanger
+@export var colour_changer: ColorContainer
 
 @onready var debug := $UI/debug
 

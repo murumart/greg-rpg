@@ -783,15 +783,20 @@ region = Rect2(22, 10, 6, 5)
 atlas = ExtResource("8_t4p2q")
 region = Rect2(22, 3, 6, 7)
 
-[node name="BikingGame" type="Node2D" unique_id=580699031 groups=["speedsters"]]
+[node name="BikingGame" type="Node2D" unique_id=580699031 node_paths=PackedStringArray("colour_changer") groups=["speedsters"]]
 y_sort_enabled = true
 script = ExtResource("1_h455q")
+colour_changer = NodePath("CanvasModulateGroup/Red")
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=1293640064]
 script = ExtResource("2_h1naa")
 metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 
 [node name="Sun" type="Node" parent="CanvasModulateGroup" unique_id=927288475]
+script = ExtResource("3_gng6e")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Red" type="Node" parent="CanvasModulateGroup" unique_id=2022493582]
 script = ExtResource("3_gng6e")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
@@ -866,8 +871,6 @@ centered = false
 position = Vector2(-1, 0)
 texture = ExtResource("7_pxwvr")
 centered = false
-
-[node name="ColourChanger" type="CanvasModulate" parent="Background" unique_id=964078195]
 
 [node name="Road" parent="." unique_id=680043126 instance=ExtResource("1_fjpor")]
 position = Vector2(-4, 6)

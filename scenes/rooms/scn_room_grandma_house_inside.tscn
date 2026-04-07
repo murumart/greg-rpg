@@ -2547,11 +2547,11 @@ scale = Vector2(-1, 1)
 [node name="Flower1" parent="Decor" unique_id=839496580 groups=["empty_delete"] instance=ExtResource("17_8mjs0")]
 position = Vector2(30, 1)
 
-[node name="Sprite2D" parent="Decor/Flower1" index="0"]
+[node name="Sprite2D" parent="Decor/Flower1" index="0" unique_id=145629271]
 position = Vector2(8, 11)
 offset = Vector2(0, -12)
 
-[node name="InspectArea" parent="Decor/Flower1" index="1"]
+[node name="InspectArea" parent="Decor/Flower1" index="1" unique_id=950650866]
 position = Vector2(-1, -6)
 
 [node name="Flower2" parent="Decor" unique_id=657816404 groups=["empty_delete"] instance=ExtResource("19_jtaha")]
@@ -2575,11 +2575,11 @@ position = Vector2(-10, -29)
 [node name="Flower3" parent="Decor" unique_id=841369000 groups=["empty_delete"] instance=ExtResource("19_yh75l")]
 position = Vector2(-65, 1)
 
-[node name="Sprite2D" parent="Decor/Flower3" index="0"]
+[node name="Sprite2D" parent="Decor/Flower3" index="0" unique_id=1888474738]
 position = Vector2(8, 12)
 offset = Vector2(0, -8)
 
-[node name="CollisionShape2D" parent="Decor/Flower3/InspectArea" index="0"]
+[node name="CollisionShape2D" parent="Decor/Flower3/InspectArea" parent_id_path=PackedInt32Array(841369000, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
 shape = SubResource("RectangleShape2D_3hvci")
 
@@ -2600,12 +2600,12 @@ region_rect = Rect2(49, 16, 15, 15)
 [node name="Flower6" parent="Decor" unique_id=2109372868 groups=["empty_delete"] instance=ExtResource("19_yh75l")]
 position = Vector2(-33, -46)
 
-[node name="Sprite2D" parent="Decor/Flower6" index="0"]
+[node name="Sprite2D" parent="Decor/Flower6" index="0" unique_id=1888474738]
 position = Vector2(8, 11)
 offset = Vector2(0, -8)
 region_rect = Rect2(115, 16, 10, 16)
 
-[node name="CollisionShape2D" parent="Decor/Flower6/InspectArea" index="0"]
+[node name="CollisionShape2D" parent="Decor/Flower6/InspectArea" parent_id_path=PackedInt32Array(2109372868, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
 shape = SubResource("RectangleShape2D_qw5xy")
 
@@ -2626,11 +2626,11 @@ region_rect = Rect2(49, 16, 15, 15)
 [node name="Flower4" parent="Decor" unique_id=1385014011 groups=["empty_delete"] instance=ExtResource("16_exfuk")]
 position = Vector2(-131, -18)
 
-[node name="Sprite2D" parent="Decor/Flower4" index="0"]
+[node name="Sprite2D" parent="Decor/Flower4" index="0" unique_id=451127859]
 position = Vector2(8, 13)
 offset = Vector2(0, -8)
 
-[node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" index="0"]
+[node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" parent_id_path=PackedInt32Array(1385014011, 944040291) index="0" unique_id=1956733182]
 position = Vector2(-7, 13.5)
 shape = SubResource("RectangleShape2D_u5i7e")
 
@@ -2658,11 +2658,11 @@ region_rect = Rect2(16, 16, 16, 16)
 [node name="Flower5" parent="Decor" unique_id=1636502311 groups=["empty_delete"] instance=ExtResource("15_v43um")]
 position = Vector2(32, 6)
 
-[node name="Sprite2D" parent="Decor/Flower5" index="0"]
+[node name="Sprite2D" parent="Decor/Flower5" index="0" unique_id=1751349063]
 position = Vector2(9, 21)
 offset = Vector2(0, -15)
 
-[node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" index="0"]
+[node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" parent_id_path=PackedInt32Array(1636502311, 2120813262) index="0" unique_id=1702024312]
 position = Vector2(8, 13.5)
 shape = SubResource("RectangleShape2D_ppjx1")
 
