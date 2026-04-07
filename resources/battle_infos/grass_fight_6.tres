@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=9 format=3 uid="uid://veqt6fg81hog"]
+[gd_resource type="Resource" script_class="BattleInfo" format=3 uid="uid://veqt6fg81hog"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_4vwf6"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_84jqd"]

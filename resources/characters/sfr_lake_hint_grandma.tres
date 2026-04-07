@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://qmv14jiuvhmw"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://qmv14jiuvhmw"]
 
 [ext_resource type="Texture2D" uid="uid://docmfhgns6gfd" path="res://sprites/characters/overworld/spr_lake_hint_grandma.png" id="1_6vleh"]
 

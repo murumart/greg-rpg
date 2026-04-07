@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bm2svkssvjhig"]
+[gd_scene format=3 uid="uid://bm2svkssvjhig"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_kw7h8"]
 [ext_resource type="Script" uid="uid://cwyxluu6q3h2o" path="res://scenes/gui/scr_overworld_menu.gd" id="2_2efj7"]
@@ -14,6 +14,10 @@ border_width_top = 1
 border_width_right = 1
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ImageTexture" id="ImageTexture_eeqb5"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_r3trb"]
+
 [sub_resource type="ImageTexture" id="ImageTexture_beyi1"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_fiwsn"]
@@ -23,18 +27,6 @@ border_color = Color(1, 1, 1, 1)
 [sub_resource type="ImageTexture" id="ImageTexture_04ncw"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_qm1tc"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_eeqb5"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_r3trb"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dwt2"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_371id"]
 bg_color = Color(0, 0, 0, 1)
@@ -57,6 +49,14 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.486275, 0.486275, 0.486275, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dwt2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmo2u"]
 bg_color = Color(0, 0, 0, 1)
 expand_margin_top = 1.0
@@ -77,7 +77,7 @@ width = 8
 height = 8
 fill_from = Vector2(1, 1)
 
-[node name="OverworldMenu" type="Control"]
+[node name="OverworldMenu" type="Control" unique_id=548915623]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,14 +88,14 @@ theme = ExtResource("1_kw7h8")
 script = ExtResource("2_2efj7")
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=452799437]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0.0509804, 0.101961, 0.117647, 0.298039)
 metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=460186760]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 7.0
@@ -103,7 +103,7 @@ offset_right = 153.0
 offset_bottom = 113.0
 metadata/_edit_lock_ = true
 
-[node name="TabContainer" type="HBoxContainer" parent="Panel"]
+[node name="TabContainer" type="HBoxContainer" parent="Panel" unique_id=1635800143]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -7.0
@@ -111,12 +111,12 @@ offset_right = 146.0
 offset_bottom = 1.0
 theme_override_constants/separation = -1
 
-[node name="Tab1" type="Panel" parent="Panel/TabContainer"]
+[node name="Tab1" type="Panel" parent="Panel/TabContainer" unique_id=808667509]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fklov")
 
-[node name="Name" type="Label" parent="Panel/TabContainer/Tab1"]
+[node name="Name" type="Label" parent="Panel/TabContainer/Tab1" unique_id=473826749]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -125,13 +125,13 @@ offset_bottom = 13.0
 text = "name"
 clip_text = true
 
-[node name="Tab2" type="Panel" parent="Panel/TabContainer"]
+[node name="Tab2" type="Panel" parent="Panel/TabContainer" unique_id=1390161301]
 z_index = -1
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fklov")
 
-[node name="Name" type="Label" parent="Panel/TabContainer/Tab2"]
+[node name="Name" type="Label" parent="Panel/TabContainer/Tab2" unique_id=764522364]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -140,13 +140,13 @@ offset_bottom = 13.0
 text = "name"
 clip_text = true
 
-[node name="Tab3" type="Panel" parent="Panel/TabContainer"]
+[node name="Tab3" type="Panel" parent="Panel/TabContainer" unique_id=1891870037]
 z_index = -1
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fklov")
 
-[node name="Name" type="Label" parent="Panel/TabContainer/Tab3"]
+[node name="Name" type="Label" parent="Panel/TabContainer/Tab3" unique_id=1352272991]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -155,19 +155,19 @@ offset_bottom = 13.0
 text = "name"
 clip_text = true
 
-[node name="InfoPanel" type="Panel" parent="Panel"]
+[node name="InfoPanel" type="Panel" parent="Panel" unique_id=1748768724]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 70.0
 offset_bottom = 102.0
 
-[node name="MemberInfo" type="Control" parent="Panel/InfoPanel"]
+[node name="MemberInfo" type="Control" parent="Panel/InfoPanel" unique_id=955676243]
 anchors_preset = 0
 offset_right = 66.0
 offset_bottom = 98.0
 
-[node name="Portrait" type="TextureRect" parent="Panel/InfoPanel/MemberInfo"]
+[node name="Portrait" type="TextureRect" parent="Panel/InfoPanel/MemberInfo" unique_id=1893793881]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -177,7 +177,7 @@ texture = ExtResource("3_cuvke")
 expand_mode = 3
 stretch_mode = 2
 
-[node name="MainInfoText" type="RichTextLabel" parent="Panel/InfoPanel/MemberInfo"]
+[node name="MainInfoText" type="RichTextLabel" parent="Panel/InfoPanel/MemberInfo" unique_id=1877913516]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 25.0
@@ -194,38 +194,40 @@ text = "
 [color=#88ffff]sp: %s/%s[/color]"
 shortcut_keys_enabled = false
 
-[node name="MainInfoScroll" type="Node" parent="Panel/InfoPanel/MemberInfo/MainInfoText" node_paths=PackedStringArray("target")]
+[node name="MainInfoScroll" type="Node" parent="Panel/InfoPanel/MemberInfo/MainInfoText" unique_id=1453674879 node_paths=PackedStringArray("target")]
 unique_name_in_owner = true
 script = ExtResource("4_5yxy6")
 target = NodePath("..")
 speed = 1.5
 read_time = 1.0
 
-[node name="ItemSpiritTabs" type="TabContainer" parent="Panel"]
+[node name="ItemSpiritTabs" type="TabContainer" parent="Panel" unique_id=183619051]
 modulate = Color(0.533333, 0.533333, 0.533333, 1)
 layout_mode = 0
 offset_left = 71.0
 offset_top = 3.0
 offset_right = 144.0
 offset_bottom = 104.0
+theme_override_icons/menu = SubResource("ImageTexture_eeqb5")
+theme_override_icons/menu_highlight = SubResource("ImageTexture_r3trb")
 theme_override_icons/increment = SubResource("ImageTexture_beyi1")
 theme_override_icons/increment_highlight = SubResource("ImageTexture_fiwsn")
 theme_override_icons/decrement = SubResource("ImageTexture_mii8h")
 theme_override_icons/decrement_highlight = SubResource("ImageTexture_04ncw")
 theme_override_icons/drop_mark = SubResource("ImageTexture_qm1tc")
-theme_override_icons/menu = SubResource("ImageTexture_eeqb5")
-theme_override_icons/menu_highlight = SubResource("ImageTexture_r3trb")
-theme_override_styles/tab_selected = SubResource("StyleBoxFlat_2dwt2")
-theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_371id")
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_cwejt")
 theme_override_styles/panel = SubResource("StyleBoxFlat_371id")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_cwejt")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_371id")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_2dwt2")
 tab_alignment = 1
+current_tab = 0
 tab_focus_mode = 0
 
-[node name="items" type="Panel" parent="Panel/ItemSpiritTabs"]
+[node name="items" type="Panel" parent="Panel/ItemSpiritTabs" unique_id=1958085198]
 layout_mode = 2
+metadata/_tab_index = 0
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/items"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/items" unique_id=508412460]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -236,13 +238,13 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="ItemsContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/items/Scroll"]
+[node name="ItemsContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/items/Scroll" unique_id=1255535373]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 1
 
-[node name="SilverCounterLabel" type="Label" parent="Panel/ItemSpiritTabs/items"]
+[node name="SilverCounterLabel" type="Label" parent="Panel/ItemSpiritTabs/items" unique_id=1829301743]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 69.0
@@ -252,25 +254,26 @@ theme_override_constants/line_spacing = 0
 text = "party silver:
 35"
 
-[node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/items"]
+[node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/items" unique_id=1696981418]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 67.0
 offset_right = 70.0
 offset_bottom = 68.0
 
-[node name="spirits" type="Panel" parent="Panel/ItemSpiritTabs"]
+[node name="spirits" type="Panel" parent="Panel/ItemSpiritTabs" unique_id=1667728162]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="UsedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits"]
+[node name="UsedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits" unique_id=2126401559]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 69.0
 offset_bottom = 42.0
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel" unique_id=625794964]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -280,19 +283,37 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="UsedSpiritContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Scroll"]
+[node name="UsedSpiritContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Scroll" unique_id=1056658949]
 clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="UnusedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits"]
+[node name="Label" type="Label" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel" unique_id=1146036660]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 116.0
+offset_bottom = 8.0
+rotation = 1.5707941
+text = "equipped"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/spirits/UsedSpiritsPanel/Label" unique_id=83961502]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.512)
+
+[node name="UnusedSpiritsPanel" type="Panel" parent="Panel/ItemSpiritTabs/spirits" unique_id=1214843193]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 43.0
 offset_right = 69.0
 offset_bottom = 81.0
 
-[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel"]
+[node name="Scroll" type="ScrollContainer" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel" unique_id=663309230]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -302,12 +323,30 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="UnusedSpiritContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel/Scroll"]
+[node name="UnusedSpiritContainer" type="VBoxContainer" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel/Scroll" unique_id=1053296296]
 clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="ReferenceButton" type="Button" parent="."]
+[node name="Label2" type="Label" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel" unique_id=1085646433]
+layout_mode = 0
+offset_left = 76.0
+offset_right = 116.0
+offset_bottom = 8.0
+rotation = 1.5707941
+text = "stored"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/ItemSpiritTabs/spirits/UnusedSpiritsPanel/Label2" unique_id=1557824875]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.512)
+
+[node name="ReferenceButton" type="Button" parent="." unique_id=582091960]
 visible = false
 layout_mode = 0
 offset_right = 22.0
@@ -318,7 +357,7 @@ flat = true
 alignment = 0
 script = ExtResource("3_srch7")
 
-[node name="UsingMenu" type="ColorRect" parent="."]
+[node name="UsingMenu" type="ColorRect" parent="." unique_id=287302981]
 visible = false
 layout_mode = 0
 offset_right = 160.0
@@ -326,7 +365,7 @@ offset_bottom = 120.0
 color = Color(0, 0.270588, 0.270588, 0.105882)
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UsingMenu"]
+[node name="Label" type="Label" parent="UsingMenu" unique_id=1968969135]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 26.0
@@ -335,14 +374,14 @@ offset_bottom = 37.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_bmo2u")
 text = "using"
 
-[node name="Panel" type="Panel" parent="UsingMenu"]
+[node name="Panel" type="Panel" parent="UsingMenu" unique_id=1102327623]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 33.0
 offset_right = 144.0
 offset_bottom = 73.0
 
-[node name="Portraits" type="HBoxContainer" parent="UsingMenu/Panel"]
+[node name="Portraits" type="HBoxContainer" parent="UsingMenu/Panel" unique_id=1363320602]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 8.0
@@ -351,31 +390,31 @@ offset_bottom = 40.0
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Portrait" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+[node name="Portrait" type="TextureRect" parent="UsingMenu/Panel/Portraits" unique_id=1693209526]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 4
 
-[node name="Portrait2" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+[node name="Portrait2" type="TextureRect" parent="UsingMenu/Panel/Portraits" unique_id=1201164272]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 4
 
-[node name="Portrait3" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+[node name="Portrait3" type="TextureRect" parent="UsingMenu/Panel/Portraits" unique_id=47329137]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("3_cuvke")
 stretch_mode = 4
 
-[node name="Trash" type="TextureRect" parent="UsingMenu/Panel/Portraits"]
+[node name="Trash" type="TextureRect" parent="UsingMenu/Panel/Portraits" unique_id=1587531585]
 material = SubResource("CanvasItemMaterial_e3uhd")
 layout_mode = 2
 texture = ExtResource("5_buhag")
 stretch_mode = 4
 
-[node name="HealthBar" type="ProgressBar" parent="UsingMenu"]
+[node name="HealthBar" type="ProgressBar" parent="UsingMenu" unique_id=955115605]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 17.0
@@ -385,7 +424,7 @@ offset_bottom = 69.0
 value = 42.72
 show_percentage = false
 
-[node name="MagicBar" type="ProgressBar" parent="UsingMenu"]
+[node name="MagicBar" type="ProgressBar" parent="UsingMenu" unique_id=1251466061]
 self_modulate = Color(0, 1, 1, 1)
 layout_mode = 0
 offset_left = 17.0
@@ -395,7 +434,7 @@ offset_bottom = 72.0
 value = 28.82
 show_percentage = false
 
-[node name="SaveWarningLabel" type="Label" parent="."]
+[node name="SaveWarningLabel" type="Label" parent="." unique_id=2050833663]
 visible = false
 layout_mode = 0
 offset_top = 109.0
@@ -406,7 +445,7 @@ text = "press [%s] to save your game."
 horizontal_alignment = 1
 autowrap_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="SaveWarningLabel"]
+[node name="Sprite2D" type="Sprite2D" parent="SaveWarningLabel" unique_id=1441854345]
 position = Vector2(80, -16.5391)
 scale = Vector2(20, 4.11523)
 texture = SubResource("GradientTexture2D_3xmlp")

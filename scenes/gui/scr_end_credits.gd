@@ -16,7 +16,7 @@ func _ready() -> void:
 	modulate.a = 0.0
 	credits_label.text = "\n".repeat(8)
 	credits_label.text += FileAccess.open("res://credits.txt",
-			FileAccess.READ).get_as_text(true)
+			FileAccess.READ).get_as_text()
 	credits_label.text += "see credits in main menu for full attribution."
 	credits_label.text = "\n\n\n\n\n" + credits_label.text
 	_load_pictures()

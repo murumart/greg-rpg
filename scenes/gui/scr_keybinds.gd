@@ -58,16 +58,21 @@ func _load_table() -> void:
 				table.set_item_metadata(id, [code, column, null])
 				continue
 			var input := inps[column] as InputEvent
-			var key_name := (input.as_text()
-					.to_lower()
-					.trim_suffix(" (physical)")
-					.trim_prefix("joypad button ")
-					.left(11))
+			var key_name := get_keybind_good_name(input)
 			var id := table.add_item(key_name)
 			table.set_item_metadata(id, [code, column, input])
 
 
 var metadata: Array
+
+
+static func get_keybind_good_name(event: InputEvent) -> String:
+	return (event.as_text()
+		.to_lower()
+		.trim_suffix(" (physical)")
+		.trim_suffix(" - physical")
+		.trim_prefix("joypad button ")
+		.left(11))
 
 
 func _item_selected(idx: int) -> void:
@@ -128,7 +133,7 @@ static func action_string(action: StringName) -> String:
 	var input := InputMap.action_get_events(action).filter(func(a): return a is InputEventKey)
 	if input.is_empty():
 		return "unset"
-	return input[0].as_text().trim_suffix(" (Physical)").to_lower()
+	return get_keybind_good_name(input[0])
 
 
 static func capital_action_action_string_dict() -> Dictionary:

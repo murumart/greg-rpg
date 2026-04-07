@@ -87,18 +87,22 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed():
 		return
-	if event.is_action_pressed("menu"):
+	if event.is_action_pressed(&"menu") and OS.has_feature("debug"):
 		OS.shell_open(ProjectSettings.globalize_path(DIR.GREG_USER_FOLDER_PATH))
 		return
 	# exiting the save menu
 	# by popular demand: you can use multiple keys to do it
-	if (event.is_action_pressed("cancel")
-			or event.is_action_pressed("menu")
-			or event.is_action_pressed("escape")) and not SOL.dialogue_open:
-		DAT.free_player("save_screen")
-		queue_free()
+	if (event.is_action_pressed(&"cancel")
+			or event.is_action_pressed(&"menu")
+			or event.is_action_pressed(&"escape")
+			or event.is_action_pressed(&"quick_save")
+			or event.is_action_pressed(&"quick_load")) and not SOL.dialogue_open:
+		(func() -> void:
+			DAT.free_player(&"save_screen")
+			queue_free()
+		).call_deferred()
 	# i like this input scheme i've devised.
-	var move := Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
+	var move := Input.get_vector(&"ui_left", &"ui_right", &"ui_down", &"ui_up")
 	var old_mode := mode
 	var old_button := current_button
 	if not can_walk():
@@ -109,17 +113,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		SND.menusound()
 	if old_button != current_button:
 		SND.menusound(2.0)
-	if event.is_action_pressed("ui_text_delete"):
+	if event.is_action_pressed(&"ui_text_delete"):
 		# autosave is 0
 		var abs_filename := ABSOLUTE_SAVE_PATH % (current_button - 1)
 		if erasure_enabled and FileAccess.file_exists(abs_filename):
-			SOL.dialogue("save_deletion_confirmation")
+			SOL.dialogue(&"save_deletion_confirmation")
 			SOL.dialogue_closed.connect(func():
 				if SOL.dialogue_choice != &"no":
 					DirAccess.remove_absolute(abs_filename)
 					update_buttons()
 			, CONNECT_ONE_SHOT)
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed(&"ui_accept"):
 		if SOL.dialogue_open:
 			return
 		_on_button_pressed(current_button)

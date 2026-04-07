@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://c2u1yb6q4v8ld"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c2u1yb6q4v8ld"]
 
 [ext_resource type="Texture2D" uid="uid://d1i7lgv15c6oo" path="res://sprites/characters/overworld/spr_clown_overworld.png" id="1_ojxrg"]
 

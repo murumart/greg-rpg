@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c166s6wclejou"]
+[gd_scene format=3 uid="uid://c166s6wclejou"]
 
 [ext_resource type="Script" uid="uid://eddw4dtnitsd" path="res://scenes/tech/scr_dialtest.gd" id="1_6l3xu"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="2_hajom"]
@@ -12,23 +12,23 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3s8v"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Dialtest" type="Node2D"]
+[node name="Dialtest" type="Node2D" unique_id=2085080688]
 script = ExtResource("1_6l3xu")
 
-[node name="FirstScreen" type="Control" parent="."]
+[node name="FirstScreen" type="Control" parent="." unique_id=771425617]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="FirstScreen"]
+[node name="Label" type="Label" parent="FirstScreen" unique_id=1152553834]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 11.0
 text = "welcome to the dialogue test! eat my ass"
 clip_text = true
 
-[node name="SearchMenu" type="LineEdit" parent="FirstScreen"]
+[node name="SearchMenu" type="LineEdit" parent="FirstScreen" unique_id=693310880]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 8.0
@@ -36,10 +36,10 @@ offset_right = 144.0
 offset_bottom = 21.0
 placeholder_text = "search dialogue name"
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
+virtual_keyboard_enabled = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="FirstScreen"]
+[node name="ScrollContainer" type="ScrollContainer" parent="FirstScreen" unique_id=684877978]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 23.0
@@ -48,50 +48,50 @@ offset_bottom = 118.0
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FirstScreen/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="FirstScreen/ScrollContainer" unique_id=1346116677]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FirstScreen/ScrollContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="FirstScreen/ScrollContainer/HBoxContainer" unique_id=1130453428]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="FirstScreen/ScrollContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="FirstScreen/ScrollContainer/HBoxContainer" unique_id=770084085]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DialogueBox" parent="." instance=ExtResource("2_hajom")]
+[node name="DialogueBox" parent="." unique_id=853369391 instance=ExtResource("2_hajom")]
 visible = false
 
-[node name="ScreenSwitch" type="Button" parent="."]
+[node name="ScreenSwitch" type="Button" parent="." unique_id=722421974]
 offset_left = 142.0
 offset_top = 8.0
 offset_right = 158.0
 offset_bottom = 20.0
 text = ">"
 
-[node name="SecondScreen" type="Control" parent="."]
+[node name="SecondScreen" type="Control" parent="." unique_id=96538952]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DialogueBox2" type="Node2D" parent="SecondScreen"]
+[node name="DialogueBox2" type="Node2D" parent="SecondScreen" unique_id=302839896]
 z_index = 11
 position = Vector2(0, 62)
 
-[node name="DialogueBoxPanel" type="Panel" parent="SecondScreen/DialogueBox2"]
+[node name="DialogueBoxPanel" type="Panel" parent="SecondScreen/DialogueBox2" unique_id=858015930]
 offset_left = 10.0
 offset_right = 148.0
 offset_bottom = 28.0
 theme = ExtResource("3_ik2m6")
 
-[node name="TextEdit" type="TextEdit" parent="SecondScreen/DialogueBox2/DialogueBoxPanel"]
+[node name="TextEdit" type="TextEdit" parent="SecondScreen/DialogueBox2/DialogueBoxPanel" unique_id=1520368788]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 3.0
@@ -101,17 +101,17 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ofmxd")
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 wrap_mode = 1
+virtual_keyboard_enabled = false
 
-[node name="PortraitSprite" type="Sprite2D" parent="SecondScreen/DialogueBox2/DialogueBoxPanel"]
+[node name="PortraitSprite" type="Sprite2D" parent="SecondScreen/DialogueBox2/DialogueBoxPanel" unique_id=1872983350]
 visible = false
 position = Vector2(3, 3)
 texture = ExtResource("4_opqf6")
 centered = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SecondScreen/DialogueBox2/DialogueBoxPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SecondScreen/DialogueBox2/DialogueBoxPanel" unique_id=281326482]
 layout_mode = 0
 offset_left = 98.0
 offset_top = -35.0
@@ -120,13 +120,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i3s8v")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="ChoicesContainer" type="VBoxContainer" parent="SecondScreen/DialogueBox2/DialogueBoxPanel/ScrollContainer"]
+[node name="ChoicesContainer" type="VBoxContainer" parent="SecondScreen/DialogueBox2/DialogueBoxPanel/ScrollContainer" unique_id=508959840]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="ReferenceButton" type="Button" parent="SecondScreen/DialogueBox2/DialogueBoxPanel"]
+[node name="ReferenceButton" type="Button" parent="SecondScreen/DialogueBox2/DialogueBoxPanel" unique_id=1301428165]
 visible = false
 layout_mode = 0
 offset_right = 22.0
@@ -137,18 +137,18 @@ flat = true
 alignment = 0
 script = ExtResource("5_st468")
 
-[node name="FinishedMarker" type="Sprite2D" parent="SecondScreen/DialogueBox2/DialogueBoxPanel"]
+[node name="FinishedMarker" type="Sprite2D" parent="SecondScreen/DialogueBox2/DialogueBoxPanel" unique_id=212459605]
 position = Vector2(133, 23)
 texture = ExtResource("6_qwrfr")
 centered = false
 region_enabled = true
 region_rect = Rect2(16, 1, 3, 3)
 
-[node name="DialogueSound" type="AudioStreamPlayer" parent="SecondScreen/DialogueBox2"]
+[node name="DialogueSound" type="AudioStreamPlayer" parent="SecondScreen/DialogueBox2" unique_id=302785077]
 max_polyphony = 32
 bus = &"Speech"
 
-[node name="CharacterChoice" type="OptionButton" parent="SecondScreen"]
+[node name="CharacterChoice" type="OptionButton" parent="SecondScreen" unique_id=708348440]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 30.0
@@ -159,7 +159,7 @@ item_count = 1
 popup/item_0/text = "empty"
 popup/item_0/id = 0
 
-[node name="GoButton" type="Button" parent="SecondScreen"]
+[node name="GoButton" type="Button" parent="SecondScreen" unique_id=757111974]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 94.0

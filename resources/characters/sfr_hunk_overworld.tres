@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://xjp23hv811bx"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://xjp23hv811bx"]
 
 [ext_resource type="Texture2D" uid="uid://bdlg6saffgdpf" path="res://sprites/characters/overworld/spr_hunk_overworld.png" id="1_fc0j4"]
 

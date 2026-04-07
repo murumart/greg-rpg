@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b5w8xwy2ck6vp"]
+[gd_resource type="TileSet" format=3 uid="uid://b5w8xwy2ck6vp"]
 
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="1_lbv4g"]
 

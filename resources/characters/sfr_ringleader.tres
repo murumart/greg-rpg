@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://c6tvmkd37tsvc"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c6tvmkd37tsvc"]
 
 [ext_resource type="Texture2D" uid="uid://caip3jiw0ktu1" path="res://sprites/characters/overworld/spr_ringleader_overworld.png" id="1_ojxrg"]
 
