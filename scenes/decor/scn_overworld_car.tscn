@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dutagwpfyc38h"]
+[gd_scene format=3 uid="uid://dutagwpfyc38h"]
 
 [ext_resource type="Script" uid="uid://dh56rpisdardm" path="res://scenes/decor/scr_overworld_car.gd" id="1_vjj1t"]
 [ext_resource type="Texture2D" uid="uid://cvmug8ixfwbwm" path="res://sprites/world/car/spr_car_1.png" id="2_m88pi"]
@@ -8,28 +8,29 @@
 resource_local_to_scene = true
 size = Vector2(26, 10)
 
-[node name="Car" type="Node2D" groups=["save_me"]]
+[node name="Car" type="Node2D" unique_id=976208479 groups=["save_me"]]
 script = ExtResource("1_vjj1t")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1156825813]
 texture = ExtResource("2_m88pi")
 region_enabled = true
 region_rect = Rect2(0, 0, 28, 14)
 
-[node name="CollisionArea" type="Area2D" parent="."]
+[node name="CollisionArea" type="Area2D" parent="." unique_id=268094811]
 collision_layer = 12
 collision_mask = 10
 
-[node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea" unique_id=1804751238]
 shape = SubResource("RectangleShape2D_jn82m")
 debug_color = Color(1, 0.309804, 1, 0.419608)
 
-[node name="VroomVroom" type="AudioStreamPlayer2D" parent="."]
+[node name="VroomVroom" type="AudioStreamPlayer2D" parent="." unique_id=242380998]
 stream = ExtResource("3_e1sfs")
 autoplay = true
 max_distance = 200.0
 attenuation = 1.86607
+bus = &"SFX"
 
-[node name="CigaretteTimer" type="Timer" parent="."]
+[node name="CigaretteTimer" type="Timer" parent="." unique_id=1665330570]
 wait_time = 6.815
 autostart = true

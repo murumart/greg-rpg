@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://i5yi0ftyt5ae"]
+[gd_scene format=3 uid="uid://i5yi0ftyt5ae"]
 
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="1_in0ua"]
-[ext_resource type="Shader" uid="uid://fr6t6fx74m15" path="res://scenes/vfx/shd_vfx_battle_enter.tres" id="1_uldgb"]
+[ext_resource type="Material" uid="uid://wbmvlmfbjcer" path="res://scenes/vfx/mat_vfx_battle_enter.tres" id="2_itlvu"]
 
 [sub_resource type="GDScript" id="GDScript_pql6w"]
 resource_name = "scr_battle_enter"
@@ -13,11 +13,6 @@ script/source = "extends Node2D
 func init(options := {}) -> void:
 	animation_player.speed_scale = 3.0 / options.get(\"wait_time\", 3.0)
 "
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a16h0"]
-shader = ExtResource("1_uldgb")
-shader_parameter/zoom = 1.0
-shader_parameter/white = 0.01
 
 [sub_resource type="Animation" id="Animation_1q67w"]
 length = 0.001
@@ -45,6 +40,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.01]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:material:shader_parameter/gray")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:material:shader_parameter/flower")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_rnits"]
 resource_name = "enter_battle"
@@ -56,10 +75,10 @@ tracks/0/path = NodePath("ColorRect:material:shader_parameter/zoom")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.5, 3.2, 3.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.36666667, 0.46666667, 1.5, 3.2, 3.6),
+"transitions": PackedFloat32Array(1, 1, 2.0000002, 1, 3.6050024, 1),
 "update": 0,
-"values": [1.0, 1.0, 0.1, 0.1, 1.0]
+"values": [1.0, 1.0, 1.0, 0.1, 0.1, 1.0]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -82,10 +101,34 @@ tracks/2/path = NodePath("ColorRect:material:shader_parameter/white")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5, 3.2, 3.58),
-"transitions": PackedFloat32Array(6.06287, 1, 1, 0.210224),
+"times": PackedFloat32Array(0, 0.36666667, 1.9666667, 3.2, 3.58),
+"transitions": PackedFloat32Array(0.21763752, 6.06287, 1, 1, 0.210224),
 "update": 0,
-"values": [0.01, 1.0, 1.0, 0.01]
+"values": [0.750000035625, 0.01, 1.0, 1.0, 0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:material:shader_parameter/gray")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:material:shader_parameter/flower")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8666667, 1.5, 2.3666668, 2.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m64q3"]
@@ -94,25 +137,23 @@ _data = {
 &"enter_battle": SubResource("Animation_rnits")
 }
 
-[node name="BattleEnter" type="Node2D"]
+[node name="BattleEnter" type="Node2D" unique_id=1265451591]
 script = SubResource("GDScript_pql6w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=568758053]
 visible = false
 position = Vector2(12, 11)
 texture = ExtResource("1_in0ua")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_a16h0")
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1706528125]
+material = ExtResource("2_itlvu")
 offset_left = -80.0
 offset_top = -60.0
 offset_right = 80.0
 offset_bottom = 60.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_m64q3")
-}
-autoplay = "enter_battle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1159468505]
+libraries/ = SubResource("AnimationLibrary_m64q3")
+autoplay = &"enter_battle"

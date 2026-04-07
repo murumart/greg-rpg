@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://wbmvlmfbjcer"]
+
+[ext_resource type="Shader" uid="uid://cr23hcgo1crqe" path="res://scenes/vfx/mat_vfx_battle_enter.gdshader" id="1_mgyld"]
+
+[resource]
+shader = ExtResource("1_mgyld")
+shader_parameter/zoom = 1.0
+shader_parameter/white = 0.750000035625
+shader_parameter/gray = 1.0
+shader_parameter/flower = 0.0

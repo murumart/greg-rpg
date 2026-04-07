@@ -125,15 +125,19 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
+	for i in range(1, 6):
+		AudioServer.set_bus_volume_linear(i, 0.0)
 	if info.kill_music:
 		SND.play_song("", 100.0, {save_audio_position = true})
+	var zing := SND.play_sound(preload("res://sounds/enter_battle_zing.ogg"), {"bus": &"BattleEnter"});
 	if info.play_fanfare:
-		SND.play_sound(preload("res://sounds/enter_battle.ogg"))
+		zing.finished.connect(SND.play_sound.bind(options.get("sound", preload("res://sounds/enter_battle.ogg")), {"bus": &"BattleEnter"}))
 	SOL.vfx("battle_enter", Vector2(), {"wait_time": options.get("wait_time", 3.0)})
 	await create_tween().tween_interval(options.get("wait_time", 3.0)).finished
 	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
 	await scene_changed
+	OPT.correct_audio_bus_volumes()
 	entering_battle = false
 	DAT.free_player("entering_battle")
 

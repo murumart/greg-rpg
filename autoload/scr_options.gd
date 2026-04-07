@@ -259,6 +259,30 @@ func select(opti: int) -> void:
 		location = opt_contain[opti].get_global_transform_with_canvas().origin
 
 
+enum {
+	AB_MASTER,
+	AB_SFX,
+	AB_MUSIC,
+	AB_SPEECH,
+	AB_ECHO,
+	AB_RADIO_MUSIC,
+	AB_ECHO_MUSIC,
+	AB_BATTLE_ENTER,
+}
+
+func correct_audio_bus_volumes() -> void:
+	var mainvol := clampf(get_opt("main_volume"), 0.0, 1.0)
+	var musvol := clampf(get_opt("music_volume"), 0.0, 1.0)
+	AudioServer.set_bus_volume_linear(AB_MASTER, mainvol)
+	AudioServer.set_bus_volume_linear(AB_SFX, 1.0)
+	AudioServer.set_bus_volume_linear(AB_MUSIC, musvol)
+	AudioServer.set_bus_volume_linear(AB_SPEECH, 1.0)
+	AudioServer.set_bus_volume_linear(AB_ECHO, 1.0)
+	AudioServer.set_bus_volume_linear(AB_RADIO_MUSIC, musvol)
+	AudioServer.set_bus_volume_linear(AB_ECHO_MUSIC, musvol)
+	AudioServer.set_bus_volume_linear(AB_BATTLE_ENTER, 1.0)
+
+
 # changing the value of an option
 func modify(a: float, reset := false, ifset := false) -> void:
 	var amt := signf(a)
@@ -276,12 +300,7 @@ func modify(a: float, reset := false, ifset := false) -> void:
 		prev_opt = get_opt(type)
 	update(container)
 	# here we go changing the actual things
-	var mainvol := clampf(get_opt("main_volume"), 0.0, 1.0)
-	var musvol := clampf(get_opt("music_volume"), 0.0, 1.0)
-	AudioServer.set_bus_volume_linear(0, mainvol)
-	AudioServer.set_bus_volume_linear(1, musvol)
-	AudioServer.set_bus_volume_linear(4, musvol)
-	AudioServer.set_bus_volume_linear(5, musvol)
+	correct_audio_bus_volumes()
 	Engine.max_fps = int(get_opt("max_fps"))
 	if prev_opt == get_opt(type):
 		return

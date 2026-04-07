@@ -121,7 +121,5 @@ func _close_cutscene() -> void:
 		dlg.al("just saying...").scallback(grandma.sanimate.bind("walk_right", 0.0))
 		dlg.al("you would last forever in stone.").stext_speed(0.4).scallback(grandma.sanimate.bind("walk_down", 0.0))
 		await dlg.speak_choice()
-		SND.play_sound(preload("res://sounds/enter_battle_grandma.ogg"), {pitch_scale = 0.78})
-		await Math.timer(0.6)
-		LTS.enter_battle(preload("res://resources/battle_infos/grandma_bossfight.tres"))
+		LTS.enter_battle(preload("res://resources/battle_infos/grandma_bossfight.tres"), {"sound": preload("res://sounds/enter_battle_grandma.ogg")})
 	)
