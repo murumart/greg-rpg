@@ -248,6 +248,7 @@ editor_description = "among us
 "
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_qcg6s")
+debug_color = Color(1, 1, 1, 0)
 
 [node name="WallrunArea" type="Area2D" parent="." unique_id=453178975]
 collision_layer = 4
@@ -255,6 +256,7 @@ input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallrunArea" unique_id=290356423]
 shape = SubResource("CircleShape2D_8485c")
+debug_color = Color(1, 1, 1, 0.079)
 
 [node name="CatchAnimation" type="AnimationPlayer" parent="." unique_id=1129722147]
 libraries/ = SubResource("AnimationLibrary_l3i56")

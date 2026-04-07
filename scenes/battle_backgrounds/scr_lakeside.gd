@@ -15,7 +15,7 @@ var flbeat := 0.0
 func _spaghetti_setup(battle: Battle) -> void:
 	battle.ending.connect(func() -> void:
 		effect.hide()
-		AudioServer.set_bus_effect_enabled(1, 0, false)
+		AudioServer.set_bus_effect_enabled(OPT.AB_MUSIC, 0, false)
 	)
 	for p in battle.party:
 		p.effect_received.connect(func(e: BattleStatusEffect) -> void:
@@ -27,7 +27,7 @@ func _spaghetti_setup(battle: Battle) -> void:
 				remove_child(effect)
 				SOL.add_ui_child(effect, 99)
 				effect.show()
-				AudioServer.set_bus_effect_enabled(1, 0, true)
+				AudioServer.set_bus_effect_enabled(OPT.AB_MUSIC, 0, true)
 		)
 	effect.hide()
 

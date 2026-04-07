@@ -10,7 +10,9 @@
 - [ ] secret garden grandma cutscene room the block puzzle don't get saved
 - [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
 - [ ] sg pink entrance cave is see-through
+- [X] fish are too dark in fishing game
+- [X] no blue environment at lakeside? (I imagined it probably)
 - [ ] bad lines
   - [ ] sg blue cat about spirits hating her
   - [ ] sg pink entrance cat joviality & joy of living
-  - [ ] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
+- [ ] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
