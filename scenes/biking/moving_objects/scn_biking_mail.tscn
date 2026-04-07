@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdc15ghet4p6c"]
+[gd_scene format=3 uid="uid://cdc15ghet4p6c"]
 
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="1_47bik"]
 [ext_resource type="Script" uid="uid://drhmuev55jtdn" path="res://scenes/biking/moving_objects/scr_biking_mail.gd" id="1_dw0f7"]
@@ -22,31 +22,31 @@ initial_velocity_max = 32.26
 gravity = Vector3(0, 98, 0)
 color = Color(0.925807, 0.200336, 1.54018e-06, 1)
 
-[node name="BikingMail" type="RigidBody2D"]
+[node name="BikingMail" type="RigidBody2D" unique_id=983477208]
 z_index = 1
 collision_layer = 32
 mass = 0.08
 physics_material_override = SubResource("PhysicsMaterial_dvqhj")
 inertia = 289.54
-max_contacts_reported = 2
 contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_dw0f7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2059464784]
 texture = ExtResource("1_47bik")
 region_enabled = true
 region_rect = Rect2(25, 38, 12, 7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=556346421]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cd2yj")
 
-[node name="SaucyParticles" type="GPUParticles2D" parent="."]
+[node name="SaucyParticles" type="GPUParticles2D" parent="." unique_id=1809550019]
 emitting = false
 amount = 256
 amount_ratio = 0.169
-process_material = SubResource("ParticleProcessMaterial_2xoof")
 texture = ExtResource("3_r6md8")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_2xoof")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

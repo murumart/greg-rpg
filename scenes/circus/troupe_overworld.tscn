@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://tamu3s3ouhh3"]
+[gd_scene format=3 uid="uid://tamu3s3ouhh3"]
 
 [ext_resource type="Script" uid="uid://d38ignl46l54q" path="res://scenes/circus/scr_troupe_overworld.gd" id="1_7udv8"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_ydvrp"]
@@ -17,23 +17,19 @@ size = Vector2(14, 30)
 script = ExtResource("9_jjxv0")
 title = "milkshake"
 silver_required = 230
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"milkshake"])
 
 [sub_resource type="Resource" id="Resource_pmf3d"]
 script = ExtResource("9_jjxv0")
 title = "icecream"
 silver_required = 120
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"ice_cream"])
 
-[node name="Troupe" type="Node2D"]
+[node name="Troupe" type="Node2D" unique_id=1257539133]
 y_sort_enabled = true
 script = ExtResource("1_7udv8")
 
-[node name="Ringleader" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
+[node name="Ringleader" parent="." unique_id=234706005 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
 collision_mask = 9
 animated_sprite = NodePath("AnimatedSprite2D")
 movement_wait = 4.0
@@ -43,12 +39,12 @@ chase_closeness = 256
 default_lines = Array[StringName]([&"troupe_meet"])
 save_position = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ringleader"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ringleader" unique_id=1949689947]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_pwnpw")
 animation = &"walk_down"
 
-[node name="Clown" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
+[node name="Clown" parent="." unique_id=2069876942 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
 position = Vector2(12, 0)
 collision_mask = 9
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -61,12 +57,12 @@ chase_closeness = 256
 default_lines = Array[StringName]([&"troupe_clown"])
 save_position = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clown"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clown" unique_id=1307030198]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_2anys")
 animation = &"walk_down"
 
-[node name="Animal" parent="." node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
+[node name="Animal" parent="." unique_id=1140076899 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("1_ydvrp")]
 y_sort_enabled = true
 position = Vector2(-20, -10)
 collision_mask = 9
@@ -79,36 +75,36 @@ chase_distance = 256
 chase_closeness = 256
 save_position = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal" unique_id=1347412116]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("4_wpc6e")
 animation = &"walk_down"
 
-[node name="CagedAnimal" parent="Animal" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
+[node name="CagedAnimal" parent="Animal" unique_id=1731214772 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_ydvrp")]
 position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 0
 animated_sprite = NodePath("AnimatedSprite2D")
 save = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal/CagedAnimal"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animal/CagedAnimal" unique_id=638534282]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("5_g18p5")
 animation = &"walk_down"
 
-[node name="Cage" type="Sprite2D" parent="Animal"]
+[node name="Cage" type="Sprite2D" parent="Animal" unique_id=1933200202]
 position = Vector2(0, -6)
 texture = ExtResource("6_0bdbt")
 offset = Vector2(0, -9)
 region_enabled = true
 region_rect = Rect2(65, 16, 14, 16)
 
-[node name="SafeguardCollision" type="CollisionShape2D" parent="Animal"]
+[node name="SafeguardCollision" type="CollisionShape2D" parent="Animal" unique_id=1478233581]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_oj61p")
 disabled = true
 
-[node name="TroupeKid" parent="." node_paths=PackedStringArray("chase_target") instance=ExtResource("4_0h5t1")]
+[node name="TroupeKid" parent="." unique_id=1557293498 node_paths=PackedStringArray("chase_target") instance=ExtResource("4_0h5t1")]
 position = Vector2(-35, -16)
 collision_mask = 9
 trades = Array[ExtResource("9_jjxv0")]([SubResource("Resource_58ncv"), SubResource("Resource_pmf3d")])

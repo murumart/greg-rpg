@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ebraxs5v32f"]
+[gd_scene format=3 uid="uid://ebraxs5v32f"]
 
 [ext_resource type="Script" uid="uid://cc5nt3sg80x6n" path="res://scenes/rooms/sg/evil_fucking_wall.gd" id="1_i70l5"]
 [ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="1_qttxl"]
@@ -43,14 +43,14 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i70l5"]
 frequency = 0.0494
-offset = Vector3(-369.166, -40.4114, 0)
+offset = Vector3(8899.268, -721.78766, 0)
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kexxf"]
 width = 64
 height = 64
-color_ramp = SubResource("Gradient_yanto")
 noise = SubResource("FastNoiseLite_i70l5")
+color_ramp = SubResource("Gradient_yanto")
 
 [sub_resource type="Gradient" id="Gradient_kexxf"]
 interpolation_mode = 1
@@ -202,19 +202,19 @@ _data = {
 &"form": SubResource("Animation_i70l5")
 }
 
-[node name="EvilFuckingWall" type="Area2D"]
+[node name="EvilFuckingWall" type="Area2D" unique_id=1703738099]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_i70l5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=210309634]
 shape = SubResource("RectangleShape2D_581ln")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1428208173]
 material = ExtResource("1_qttxl")
 
-[node name="GPUParticles2D5" type="GPUParticles2D" parent="CanvasGroup"]
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="CanvasGroup" unique_id=465204196]
 texture_filter = 1
 position = Vector2(6, -31)
 scale = Vector2(0.87387, 10.713)
@@ -224,11 +224,11 @@ visibility_rect = Rect2(-1.59353, -16.2355, 97.2364, 45.1593)
 trail_lifetime = 1.07
 process_material = SubResource("ParticleProcessMaterial_i70l5")
 
-[node name="Mask" type="Sprite2D" parent="CanvasGroup"]
+[node name="Mask" type="Sprite2D" parent="CanvasGroup" unique_id=313161243]
 scale = Vector2(0.78125, 7.15625)
 texture = SubResource("NoiseTexture2D_kexxf")
 
-[node name="SinAnimator" type="Node" parent="CanvasGroup/Mask" node_paths=PackedStringArray("target")]
+[node name="SinAnimator" type="Node" parent="CanvasGroup/Mask" unique_id=938603231 node_paths=PackedStringArray("target")]
 script = ExtResource("3_yanto")
 property_name = &"texture:noise:offset:x"
 target = NodePath("..")
@@ -237,7 +237,7 @@ min_value = -62.925
 max_value = 67999.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="SinAnimator2" type="Node" parent="CanvasGroup/Mask" node_paths=PackedStringArray("target")]
+[node name="SinAnimator2" type="Node" parent="CanvasGroup/Mask" unique_id=1913578119 node_paths=PackedStringArray("target")]
 script = ExtResource("3_yanto")
 property_name = &"texture:noise:offset:y"
 target = NodePath("..")
@@ -246,7 +246,7 @@ min_value = -62.925
 max_value = -4999.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup/Mask" unique_id=68924873]
 texture_filter = 1
 position = Vector2(15.36, 0.40678)
 scale = Vector2(0.580403, 2.93842)
@@ -254,27 +254,25 @@ amount = 24
 texture = SubResource("GradientTexture2D_amth0")
 process_material = SubResource("ParticleProcessMaterial_bpes3")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="CanvasGroup/Mask" unique_id=1872937384]
 position = Vector2(21.76, -20.7458)
 scale = Vector2(0.580403, 2.93842)
 amount = 24
 texture = SubResource("GradientTexture2D_amth0")
 process_material = SubResource("ParticleProcessMaterial_bpes3")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="CanvasGroup/Mask"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="CanvasGroup/Mask" unique_id=1155558211]
 position = Vector2(15.36, 19.661)
 scale = Vector2(0.580403, 2.93842)
 amount = 24
 texture = SubResource("GradientTexture2D_amth0")
 process_material = SubResource("ParticleProcessMaterial_bpes3")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Mask"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Mask" unique_id=710880413]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-175.36, -7.7486e-07)
 scale = Vector2(316.16, 64)
 texture = ExtResource("5_kexxf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_kexxf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=68445991]
+libraries/ = SubResource("AnimationLibrary_kexxf")

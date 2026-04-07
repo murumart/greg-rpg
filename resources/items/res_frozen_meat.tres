@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bfd0toschsmxq"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bfd0toschsmxq"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ejsvt"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_vlcfa"]
@@ -8,34 +8,13 @@
 [sub_resource type="Resource" id="Resource_x228n"]
 script = ExtResource("1_ejsvt")
 health = -55.0
-health_percent = 0.0
-max_health_percent = 0.0
 pierce_defense = 1.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_vlcfa")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
 animation_on_receive = "brick_attack"
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_wlvkc")
-name_in_file = &""
 name = &"frozen meat"
 description = "inedible. could be used to bludgeon someone."
 texture = ExtResource("3_cophs")
-attack_animation = ""
 price = 260
-use = -1
-consume_on_use = true
 payload = SubResource("Resource_x228n")

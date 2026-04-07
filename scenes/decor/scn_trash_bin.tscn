@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://blgwy56e2lx33"]
+[gd_scene format=3 uid="uid://blgwy56e2lx33"]
 
 [ext_resource type="Script" uid="uid://di23rjdi26apn" path="res://scenes/decor/scr_trash_bin.gd" id="1_d5rer"]
 [ext_resource type="Texture2D" uid="uid://cnf7kdbq260pl" path="res://sprites/world/object/spr_trashbin.png" id="2_ddj4r"]
@@ -10,31 +10,31 @@ size = Vector2(12, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iev6o"]
 size = Vector2(10, 2)
 
-[node name="TrashBin" type="Node2D"]
+[node name="TrashBin" type="Node2D" unique_id=560953837]
 script = ExtResource("1_d5rer")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=189085458]
 position = Vector2(0, -6)
 texture = ExtResource("2_ddj4r")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="InteractionArea" parent="." instance=ExtResource("3_i22nc")]
+[node name="InteractionArea" parent="." unique_id=1403272046 instance=ExtResource("3_i22nc")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=490527920]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fn1sd")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1049064737]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=929818726]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_iev6o")
 debug_color = Color(0.52549, 1, 1, 0.160784)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1033338037]
 wait_time = 10.0
 autostart = true
 

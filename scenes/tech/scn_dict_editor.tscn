@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://el0lm8hhpeiu"]
+[gd_scene format=3 uid="uid://el0lm8hhpeiu"]
 
 [ext_resource type="Script" uid="uid://c3enp3x7pdk47" path="res://scenes/tech/scr_dict_editor.gd" id="1_d74wp"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="2_rwk82"]
@@ -24,20 +24,20 @@ font_size = 8
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="ScnDictEditor" type="Node2D"]
+[node name="ScnDictEditor" type="Node2D" unique_id=249767856]
 process_mode = 3
 script = ExtResource("1_d74wp")
 font = SubResource("SystemFont_ipupu")
 _allow_external = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1895615050]
 process_mode = 3
 offset_right = 160.0
 offset_bottom = 120.0
 theme = ExtResource("2_rwk82")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
-layout_mode = 2
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel" unique_id=389385575]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 158.0
@@ -46,17 +46,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HSplitContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HSplitContainer" unique_id=1106428307]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HSplitContainer/VBoxContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/HSplitContainer/VBoxContainer2" unique_id=26303322]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="KeyList" type="ItemList" parent="Panel/HSplitContainer/VBoxContainer2/ScrollContainer"]
+[node name="KeyList" type="ItemList" parent="Panel/HSplitContainer/VBoxContainer2/ScrollContainer" unique_id=1152839450]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -64,35 +64,35 @@ size_flags_vertical = 3
 theme_override_fonts/font = SubResource("SystemFont_ipupu")
 theme_override_font_sizes/font_size = 4
 
-[node name="ExitButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer2"]
+[node name="ExitButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer2" unique_id=340889566]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "exit"
 
-[node name="FileButtons" type="HBoxContainer" parent="Panel/HSplitContainer/VBoxContainer2"]
+[node name="FileButtons" type="HBoxContainer" parent="Panel/HSplitContainer/VBoxContainer2" unique_id=2006594971]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="SaveFile" type="Button" parent="Panel/HSplitContainer/VBoxContainer2/FileButtons"]
+[node name="SaveFile" type="Button" parent="Panel/HSplitContainer/VBoxContainer2/FileButtons" unique_id=1023687782]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "save"
 
-[node name="LoadFile" type="Button" parent="Panel/HSplitContainer/VBoxContainer2/FileButtons"]
+[node name="LoadFile" type="Button" parent="Panel/HSplitContainer/VBoxContainer2/FileButtons" unique_id=214021213]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "load"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer" unique_id=682846999]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 1
 
-[node name="KeyEdit" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer"]
+[node name="KeyEdit" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer" unique_id=1779131652]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -100,15 +100,15 @@ size_flags_stretch_ratio = 0.15
 theme_override_fonts/font = SubResource("SystemFont_ipupu")
 theme_override_font_sizes/font_size = 6
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
+virtual_keyboard_enabled = false
 
-[node name="ValueEdit" type="BoxContainer" parent="Panel/HSplitContainer/VBoxContainer"]
+[node name="ValueEdit" type="BoxContainer" parent="Panel/HSplitContainer/VBoxContainer" unique_id=594926489]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextValue" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer/ValueEdit"]
+[node name="TextValue" type="TextEdit" parent="Panel/HSplitContainer/VBoxContainer/ValueEdit" unique_id=1974930010]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -122,30 +122,30 @@ text = "tariiraraa smaaall text
 line 2
 lin3 e"
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 wrap_mode = 1
+virtual_keyboard_enabled = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HSplitContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HSplitContainer/VBoxContainer" unique_id=146219888]
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="EditClearButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="EditClearButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer" unique_id=1180024650]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "clear"
 text_overrun_behavior = 1
 
-[node name="EditConfirmButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="EditConfirmButton" type="Button" parent="Panel/HSplitContainer/VBoxContainer/HBoxContainer" unique_id=1385696157]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "confirm"
 text_overrun_behavior = 1
 
-[node name="TitleText" type="Label" parent="Panel"]
+[node name="TitleText" type="Label" parent="Panel" unique_id=1887676241]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0

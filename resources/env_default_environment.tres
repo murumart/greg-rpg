@@ -8,7 +8,6 @@ glow_levels/1 = 16.0
 glow_levels/2 = 16.0
 glow_levels/3 = 16.0
 glow_levels/4 = 16.0
-glow_levels/5 = 0.0
 glow_intensity = 1.35
 glow_blend_mode = 4
 glow_hdr_threshold = 0.95

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3o1k43p0b48o"]
+[gd_scene format=3 uid="uid://c3o1k43p0b48o"]
 
 [ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="1_3g07p"]
 [ext_resource type="Script" uid="uid://bfnfrapetn6ml" path="res://scenes/rooms/forest/forest_objects/forest_quest_board.gd" id="2_8k2ys"]
@@ -9,23 +9,23 @@ size = Vector2(28, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8osms"]
 size = Vector2(30, 4)
 
-[node name="QuestBoard" type="StaticBody2D" groups=["forest_quest_boards"]]
+[node name="QuestBoard" type="StaticBody2D" unique_id=1491792114 groups=["forest_quest_boards"]]
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1415765399]
 position = Vector2(-16, -23)
 texture = ExtResource("1_3g07p")
 centered = false
 region_rect = Rect2(17, 4, 30, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820347806]
 shape = SubResource("RectangleShape2D_pevje")
 
-[node name="QuestInteraction" type="Area2D" parent="."]
-modulate = Color(0.905882, 0.639216, 1, 1)
+[node name="QuestInteraction" type="Area2D" parent="." unique_id=168929109]
+modulate = Color(0.90588236, 0.6392157, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("2_8k2ys")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestInteraction"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestInteraction" unique_id=1402729346]
 shape = SubResource("RectangleShape2D_8osms")

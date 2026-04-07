@@ -1,44 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyrwyy0hn2q3u"]
+[gd_scene format=3 uid="uid://cyrwyy0hn2q3u"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_62a6f"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_8rkar"]
 [ext_resource type="Script" uid="uid://xputfcafco2m" path="res://scenes/characters/overworld/scr_tutorial_guy.gd" id="2_ujwv4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_baiym"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4h76"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6dcn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd040"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vimmi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcp5x"]
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="TutorialGUy" groups=["tutguy"] instance=ExtResource("1_62a6f")]
+[node name="TutorialGUy" unique_id=1618338561 groups=["tutguy"] instance=ExtResource("1_62a6f")]
 script = ExtResource("2_ujwv4")
 tutorial_type = 0
 save = false
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_baiym")
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
+shape = SubResource("RectangleShape2D_u4h76")
 
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_gd040")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_c6dcn")
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
+shape = SubResource("CircleShape2D_qcp5x")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_vimmi")
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1412903263]
 position = Vector2(0, -8)
 texture = ExtResource("2_8rkar")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=162624511]
 position = Vector2(-0.12, -5.5)
 scale = Vector2(0.5, 1.05)

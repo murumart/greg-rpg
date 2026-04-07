@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c8myef5ghcfnx"]
+[gd_scene format=4 uid="uid://c8myef5ghcfnx"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_4yirp"]
 [ext_resource type="TileSet" uid="uid://4w8pbohfcua6" path="res://resources/res_sg_tiles_small.tres" id="2_581ln"]
@@ -26,7 +26,7 @@ size = Vector2(56, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fhxq"]
 size = Vector2(28, 64)
 
-[node name="SgP3" instance=ExtResource("1_4yirp")]
+[node name="SgP3" unique_id=698110475 instance=ExtResource("1_4yirp")]
 
 [node name="SGRoom" parent="." index="0"]
 song_pitch = 0.17
@@ -44,43 +44,43 @@ position = Vector2(14, -22)
 limit_left = -92
 limit_right = 5388
 
-[node name="HitArea" parent="Greg" index="8" instance=ExtResource("2_s4gxt")]
+[node name="HitArea" parent="Greg" index="8" unique_id=6673506 instance=ExtResource("2_s4gxt")]
 
-[node name="FollowMe" type="Marker2D" parent="Greg" index="9"]
+[node name="FollowMe" type="Marker2D" parent="Greg" index="9" unique_id=1644559375]
 position = Vector2(0, -50)
 
-[node name="MemberInfo" parent="Greg" index="10" instance=ExtResource("3_4laxc")]
+[node name="MemberInfo" parent="Greg" index="10" unique_id=204094886 instance=ExtResource("3_4laxc")]
 custom_minimum_size = Vector2(56, 0)
 offset_right = 160.0
 offset_bottom = 10.0
 
-[node name="Portrait" parent="Greg/MemberInfo" index="0"]
+[node name="Portrait" parent="Greg/MemberInfo" index="0" unique_id=746040360]
 visible = false
 offset_left = -69.0
 offset_right = -47.0
 
-[node name="Name" parent="Greg/MemberInfo" index="1"]
+[node name="Name" parent="Greg/MemberInfo" index="1" unique_id=843195472]
 offset_left = 2.0
 offset_right = 32.0
 
-[node name="HealthBar" parent="Greg/MemberInfo" index="3"]
+[node name="HealthBar" parent="Greg/MemberInfo" index="3" unique_id=1742712135]
 offset_top = 2.0
 offset_right = 158.0
 offset_bottom = 4.0
 
-[node name="MagicBar" parent="Greg/MemberInfo" index="4"]
+[node name="MagicBar" parent="Greg/MemberInfo" index="4" unique_id=1790922365]
 offset_left = -50.0
 offset_right = -20.0
 
-[node name="WaitBar" parent="Greg/MemberInfo" index="5"]
+[node name="WaitBar" parent="Greg/MemberInfo" index="5" unique_id=1467458791]
 offset_left = -50.0
 offset_right = -20.0
 
-[node name="AnimalBar" parent="Greg/MemberInfo" index="6"]
+[node name="AnimalBar" parent="Greg/MemberInfo" index="6" unique_id=1566308253]
 offset_left = -53.0
 offset_right = -23.0
 
-[node name="EffectsContainer" parent="Greg/MemberInfo" index="8"]
+[node name="EffectsContainer" parent="Greg/MemberInfo" index="8" unique_id=1776973605]
 offset_left = -41.0
 offset_right = -19.0
 
@@ -94,33 +94,33 @@ destination = &"sg_p_1"
 gate_id = &"sg-p-31"
 extents = Vector2i(8, 32)
 
-[node name="WallPath" type="Path2D" parent="Areas" index="2"]
+[node name="WallPath" type="Path2D" parent="Areas" index="2" unique_id=588911225]
 curve = SubResource("Curve2D_ncu2q")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Areas/WallPath" index="0"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Areas/WallPath" index="0" unique_id=1766701776]
 position = Vector2(45, -24)
 rotation = 0.00236966
 rotates = false
 loop = false
 
-[node name="EvilFuckingWall" parent="Areas/WallPath/PathFollow2D" index="0" node_paths=PackedStringArray("greg", "path_follower_parent") instance=ExtResource("2_ncu2q")]
+[node name="EvilFuckingWall" parent="Areas/WallPath/PathFollow2D" index="0" unique_id=378438926 node_paths=PackedStringArray("greg", "path_follower_parent") instance=ExtResource("2_ncu2q")]
 visible = false
 rotation = -0.00236966
 greg = NodePath("../../../../Greg")
 path_follower_parent = NodePath("..")
 
-[node name="Menacing" parent="Areas" index="3" node_paths=PackedStringArray("move_target", "bullet_target") instance=ExtResource("4_232gn")]
+[node name="Menacing" parent="Areas" index="3" unique_id=839080417 node_paths=PackedStringArray("move_target", "bullet_target") instance=ExtResource("4_232gn")]
 position = Vector2(225, -247)
 move_target = NodePath("../../Greg/FollowMe")
 bullet_target = NodePath("../../Greg")
 
-[node name="Damage" type="Node" parent="Areas" index="4" node_paths=PackedStringArray("greg_overworld", "hurt_area", "info")]
+[node name="Damage" type="Node" parent="Areas" index="4" unique_id=2116668292 node_paths=PackedStringArray("greg_overworld", "hurt_area", "info")]
 script = ExtResource("5_87g01")
 greg_overworld = NodePath("../../Greg")
 hurt_area = NodePath("../../Greg/HitArea")
 info = NodePath("../../Greg/MemberInfo")
 
-[node name="ActivateArea" type="Area2D" parent="Areas" index="5" node_paths=PackedStringArray("menacing", "wall")]
+[node name="ActivateArea" type="Area2D" parent="Areas" index="5" unique_id=1217442895 node_paths=PackedStringArray("menacing", "wall")]
 position = Vector2(214, -25)
 collision_layer = 0
 collision_mask = 2
@@ -129,11 +129,11 @@ script = ExtResource("6_5jlda")
 menacing = NodePath("../Menacing")
 wall = NodePath("../WallPath/PathFollow2D/EvilFuckingWall")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/ActivateArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/ActivateArea" index="0" unique_id=177234104]
 position = Vector2(29, 0)
 shape = SubResource("RectangleShape2D_4laxc")
 
-[node name="EndingArea" type="Area2D" parent="Areas" index="6" node_paths=PackedStringArray("menacing")]
+[node name="EndingArea" type="Area2D" parent="Areas" index="6" unique_id=2112226397 node_paths=PackedStringArray("menacing")]
 position = Vector2(4728, -144)
 collision_layer = 0
 collision_mask = 2
@@ -141,67 +141,67 @@ monitorable = false
 script = ExtResource("8_3fhxq")
 menacing = NodePath("../Menacing")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EndingArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EndingArea" index="0" unique_id=112909392]
 shape = SubResource("RectangleShape2D_3fhxq")
 
-[node name="ToWhite" type="ColorRect" parent="Areas/EndingArea" index="1"]
+[node name="ToWhite" type="ColorRect" parent="Areas/EndingArea" index="1" unique_id=735842537]
 custom_minimum_size = Vector2(160, 120)
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(1, 1, 1, 0)
 
-[node name="GdungHealer" parent="Areas" index="7" instance=ExtResource("9_dr34j")]
+[node name="GdungHealer" parent="Areas" index="7" unique_id=1519324905 instance=ExtResource("9_dr34j")]
 position = Vector2(120, -42)
 
-[node name="TrashBin" parent="Areas" index="8" instance=ExtResource("10_e54h2")]
+[node name="TrashBin" parent="Areas" index="8" unique_id=1858904706 instance=ExtResource("10_e54h2")]
 position = Vector2(1160, 12)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"red_sauce"
 
-[node name="TrashBin2" parent="Areas" index="9" instance=ExtResource("10_e54h2")]
+[node name="TrashBin2" parent="Areas" index="9" unique_id=2053717163 instance=ExtResource("10_e54h2")]
 position = Vector2(1290, -319)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"meat"
 
-[node name="TrashBin3" parent="Areas" index="10" instance=ExtResource("10_e54h2")]
+[node name="TrashBin3" parent="Areas" index="10" unique_id=1190775706 instance=ExtResource("10_e54h2")]
 position = Vector2(3129, -21)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"egg_cooked"
 
-[node name="TrashBin4" parent="Areas" index="11" instance=ExtResource("10_e54h2")]
+[node name="TrashBin4" parent="Areas" index="11" unique_id=1149002588 instance=ExtResource("10_e54h2")]
 position = Vector2(3066, -127)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"fire_cracker"
 
-[node name="TrashBin5" parent="Areas" index="12" instance=ExtResource("10_e54h2")]
+[node name="TrashBin5" parent="Areas" index="12" unique_id=1034679515 instance=ExtResource("10_e54h2")]
 position = Vector2(4141, -398)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"antifreeze"
 
-[node name="Parallax2D" type="Parallax2D" parent="." index="6"]
+[node name="Parallax2D" type="Parallax2D" parent="." index="6" unique_id=857593028]
 z_index = -2
 scroll_scale = Vector2(0.5, 0.5)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D" index="0"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D" index="0" unique_id=69320960]
 modulate = Color(0.644766, 0.21269, 0.593505, 1)
 scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAD8/+3/AAAeAAAAAAD8/+7/AAAeAAEAAAD8/+//AAAfAAQAAAD8//D/AAAeAAEAAAD8//H/AAAdAAIAAAD8//L/AAAdAAUAAAD8//P/AAAdAAYAAAD8//T/AAAdAAYAAAD8//X/AAAdAAYAAAD8//b/AAAdAAYAAAD8//f/AAAdAAYAAAD8//j/AAAdAAYAAAD8//n/AAAdAAYAAAD8//r/AAAdAAYAAAD8//v/AAAdAAYAAAD8//z/AAAdAAYAAAD8//3/AAAdAAYAAAD8//7/AAAdAAYAAAD8////AAAdAAYAAAD8/wAAAAAdAAYAAAD8/wEAAAAdAAYAAAD8/wIAAAAdAAYAAAD8/wMAAAAdAAYAAAD8/wQAAAAdAAYAAAD8/wUAAAAdAAYAAAD8/wYAAAAdAAYAAAD8/wcAAAAcAAYAAAD8/wgAAAAcAAYAAAD9/+3/AAAeAAAAAAD9/+7/AAAfAAQAAAD9/+//AAAfAAQAAAD9//D/AAAfAAQAAAD9//H/AAAeAAIAAAD9//L/AAAeAAUAAAD9//P/AAAeAAYAAAD9//T/AAAeAAYAAAD9//X/AAAeAAYAAAD9//b/AAAeAAYAAAD9//f/AAAeAAYAAAD9//j/AAAeAAYAAAD9//n/AAAeAAYAAAD9//r/AAAeAAYAAAD9//v/AAAeAAYAAAD9//z/AAAeAAYAAAD9//3/AAAeAAYAAAD9//7/AAAeAAYAAAD9////AAAeAAYAAAD9/wAAAAAeAAYAAAD9/wEAAAAeAAYAAAD9/wIAAAAeAAYAAAD9/wMAAAAeAAYAAAD9/wQAAAAeAAYAAAD9/wUAAAAeAAYAAAD9/wYAAAAeAAYAAAD9/wcAAAAdAAYAAAD9/wgAAAAdAAYAAAD9/wkAAAAcAAYAAAD+/+3/AAAfAAAAAAD+/+7/AAAeAAEAAAD+/+//AAAeAAEAAAD+//D/AAAfAAQAAAD+//H/AAAeAAIAAAD+//L/AAAeAAUAAAD+//P/AAAeAAYAAAD+//T/AAAeAAYAAAD+//X/AAAeAAYAAAD+//b/AAAeAAYAAAD+//f/AAAeAAYAAAD+//j/AAAeAAYAAAD+//n/AAAeAAYAAAD+//r/AAAeAAYAAAD+//v/AAAeAAYAAAD+//z/AAAeAAYAAAD+//3/AAAeAAYAAAD+//7/AAAeAAYAAAD+////AAAeAAYAAAD+/wAAAAAeAAYAAAD+/wEAAAAeAAYAAAD+/wIAAAAeAAYAAAD+/wMAAAAeAAYAAAD+/wQAAAAeAAYAAAD+/wUAAAAeAAYAAAD+/wYAAAAeAAYAAAD+/wcAAAAeAAYAAAD+/wgAAAAeAAcAAAD+/wkAAAAcAAUAAAD+/woAAAAdAAcAAAD+/wsAAAAdAAUAAAD//+7/AAAeAAAAAAD//+//AAAeAAEAAAD///D/AAAeAAEAAAD///H/AAAeAAIAAAD///L/AAAeAAUAAAD///P/AAAeAAYAAAD///T/AAAeAAYAAAD///X/AAAeAAYAAAD///b/AAAeAAYAAAD///f/AAAeAAYAAAD///j/AAAeAAYAAAD///n/AAAeAAYAAAD///r/AAAeAAYAAAD///v/AAAeAAYAAAD///z/AAAeAAYAAAD///3/AAAeAAYAAAD///7/AAAeAAYAAAD/////AAAeAAYAAAD//wAAAAAeAAYAAAD//wEAAAAeAAYAAAD//wIAAAAeAAYAAAD//wMAAAAeAAYAAAD//wQAAAAeAAYAAAD//wUAAAAeAAYAAAD//wYAAAAeAAYAAAD//wcAAAAeAAYAAAD//wgAAAAfAAYAAAD//wkAAAAdAAYAAAD//woAAAAeAAYAAAD//wsAAAAeAAYAAAAAAO7/AAAfAAAAAAAAAO//AAAeAAQAAAAAAPD/AAAfAAEAAAAAAPH/AAAfAAIAAAAAAPL/AAAfAAUAAAAAAPP/AAAfAAYAAAAAAPT/AAAfAAYAAAAAAPX/AAAfAAYAAAAAAPb/AAAfAAYAAAAAAPf/AAAfAAYAAAAAAPj/AAAfAAYAAAAAAPn/AAAfAAYAAAAAAPr/AAAfAAYAAAAAAPv/AAAfAAYAAAAAAPz/AAAfAAYAAAAAAP3/AAAfAAYAAAAAAP7/AAAfAAYAAAAAAP//AAAfAAYAAAAAAAAAAAAfAAYAAAAAAAEAAAAfAAYAAAAAAAIAAAAfAAYAAAAAAAMAAAAfAAYAAAAAAAQAAAAfAAYAAAAAAAUAAAAfAAYAAAAAAAYAAAAfAAYAAAAAAAcAAAAfAAYAAAAAAAgAAAAcAAYAAAAAAAkAAAAfAAYAAAAAAAoAAAAfAAYAAAAAAAsAAAAfAAYAAAAAAAwAAAAcAAYAAAAAAA0AAAAcAAYAAAAAAA4AAAAcAAYAAAABAP3/AAAdAAAAAAABAP7/AAAdAAEAAAABAP//AAAdAAEAAAABAAAAAAAdAAIAAAABAAEAAAAcAAUAAAABAAIAAAAcAAYAAAABAAMAAAAcAAYAAAABAAQAAAAcAAYAAAABAAUAAAAcAAYAAAABAAYAAAAcAAYAAAABAAcAAAAcAAYAAAABAAgAAAAcAAYAAAABAAkAAAAcAAYAAAABAAoAAAAcAAYAAAABAAsAAAAcAAYAAAABAAwAAAAcAAYAAAABAA0AAAAcAAYAAAABAA4AAAAcAAYAAAABAA8AAAAcAAYAAAABABAAAAAcAAYAAAABABEAAAAcAAYAAAABABIAAAAcAAcAAAABABMAAAAcAAgAAAABABQAAAAcAAUAAAABABUAAAAcAAYAAAACAPz/AAAdAAAAAAACAP3/AAAeAAEAAAACAP7/AAAeAAEAAAACAP//AAAfAAQAAAACAAAAAAAeAAEAAAACAAEAAAAdAAIAAAACAAIAAAAdAAUAAAACAAMAAAAdAAYAAAACAAQAAAAdAAYAAAACAAUAAAAdAAYAAAACAAYAAAAdAAYAAAACAAcAAAAdAAYAAAACAAgAAAAdAAYAAAACAAkAAAAdAAYAAAACAAoAAAAdAAYAAAACAAsAAAAdAAYAAAACAAwAAAAdAAYAAAACAA0AAAAdAAYAAAACAA4AAAAdAAYAAAACAA8AAAAdAAYAAAACABAAAAAdAAYAAAACABEAAAAdAAYAAAACABIAAAAdAAYAAAACABMAAAAdAAYAAAACABQAAAAdAAYAAAACABUAAAAdAAYAAAACABYAAAAdAAYAAAACABcAAAAdAAYAAAACABgAAAAcAAYAAAACABkAAAAcAAYAAAACABoAAAAcAAYAAAACABsAAAAcAAYAAAACABwAAAAcAAYAAAADAPv/AAAdAAAAAAADAPz/AAAeAAEAAAADAP3/AAAfAAQAAAADAP7/AAAeAAEAAAADAP//AAAfAAQAAAADAAAAAAAeAAEAAAADAAEAAAAeAAIAAAADAAIAAAAeAAUAAAADAAMAAAAeAAYAAAADAAQAAAAeAAYAAAADAAUAAAAeAAYAAAADAAYAAAAeAAYAAAADAAcAAAAeAAYAAAADAAgAAAAeAAYAAAADAAkAAAAeAAYAAAADAAoAAAAeAAYAAAADAAsAAAAeAAYAAAADAAwAAAAeAAYAAAADAA0AAAAeAAYAAAADAA4AAAAeAAYAAAADAA8AAAAeAAYAAAADABAAAAAeAAYAAAADABEAAAAeAAYAAAADABIAAAAeAAYAAAADABMAAAAeAAYAAAADABQAAAAeAAYAAAADABUAAAAeAAYAAAADABYAAAAeAAYAAAADABcAAAAeAAYAAAADABgAAAAdAAcAAAADABkAAAAdAAUAAAADABoAAAAcAAYAAAADABsAAAAcAAYAAAADABwAAAAcAAYAAAAEAPv/AAAeAAAAAAAEAPz/AAAfAAQAAAAEAP3/AAAfAAQAAAAEAP7/AAAeAAEAAAAEAP//AAAfAAQAAAAEAAAAAAAfAAQAAAAEAAEAAAAeAAIAAAAEAAIAAAAeAAUAAAAEAAMAAAAeAAYAAAAEAAQAAAAeAAYAAAAEAAUAAAAeAAYAAAAEAAYAAAAeAAYAAAAEAAcAAAAeAAYAAAAEAAgAAAAeAAYAAAAEAAkAAAAeAAYAAAAEAAoAAAAeAAYAAAAEAAsAAAAeAAYAAAAEAAwAAAAeAAYAAAAEAA0AAAAeAAYAAAAEAA4AAAAeAAYAAAAEAA8AAAAeAAYAAAAEABAAAAAeAAYAAAAEABEAAAAeAAYAAAAEABIAAAAeAAYAAAAEABMAAAAeAAYAAAAEABQAAAAeAAYAAAAEABUAAAAeAAYAAAAEABYAAAAeAAYAAAAEABcAAAAeAAYAAAAEABgAAAAeAAYAAAAEABkAAAAeAAYAAAAFAPv/AAAeAAAAAAAFAPz/AAAfAAQAAAAFAP3/AAAfAAQAAAAFAP7/AAAeAAEAAAAFAP//AAAeAAEAAAAFAAAAAAAfAAQAAAAFAAEAAAAeAAIAAAAFAAIAAAAeAAUAAAAFAAMAAAAeAAYAAAAFAAQAAAAeAAYAAAAFAAUAAAAeAAYAAAAFAAYAAAAeAAYAAAAFAAcAAAAeAAYAAAAFAAgAAAAeAAYAAAAFAAkAAAAeAAYAAAAFAAoAAAAeAAYAAAAFAAsAAAAeAAYAAAAFAAwAAAAeAAYAAAAFAA0AAAAeAAYAAAAFAA4AAAAeAAYAAAAFAA8AAAAeAAYAAAAFABAAAAAeAAYAAAAFABEAAAAeAAYAAAAFABIAAAAeAAYAAAAFABMAAAAeAAYAAAAFABQAAAAfAAYAAAAFABUAAAAeAAYAAAAFABYAAAAeAAYAAAAFABcAAAAfAAYAAAAFABgAAAAfAAYAAAAFABkAAAAfAAYAAAAFABoAAAAcAAYAAAAGAPr/AAAdAAAAAAAGAPv/AAAfAAQAAAAGAPz/AAAfAAQAAAAGAP3/AAAfAAQAAAAGAP7/AAAfAAQAAAAGAP//AAAeAAEAAAAGAAAAAAAeAAEAAAAGAAEAAAAfAAIAAAAGAAIAAAAfAAUAAAAGAAMAAAAfAAYAAAAGAAQAAAAfAAYAAAAGAAUAAAAfAAYAAAAGAAYAAAAfAAYAAAAGAAcAAAAfAAYAAAAGAAgAAAAfAAYAAAAGAAkAAAAfAAYAAAAGAAoAAAAfAAYAAAAGAAsAAAAfAAYAAAAGAAwAAAAfAAYAAAAGAA0AAAAfAAYAAAAGAA4AAAAfAAYAAAAGAA8AAAAfAAYAAAAGABAAAAAfAAYAAAAGABEAAAAfAAYAAAAGABIAAAAfAAYAAAAGABMAAAAeAAYAAAAGABQAAAAdAAYAAAAGABUAAAAeAAYAAAAGABYAAAAeAAYAAAAGABcAAAAdAAYAAAAGABgAAAAdAAYAAAAHAPn/AAAdAAAAAAAHAPr/AAAeAAEAAAAHAPv/AAAeAAEAAAAHAPz/AAAeAAEAAAAHAP3/AAAeAAEAAAAHAP7/AAAfAAQAAAAHAP//AAAeAAEAAAAHAAAAAAAeAAIAAAAHAAEAAAAdAAUAAAAHAAIAAAAdAAYAAAAHAAMAAAAdAAYAAAAHAAQAAAAdAAYAAAAHAAUAAAAdAAYAAAAHAAYAAAAdAAYAAAAHAAcAAAAdAAYAAAAHAAgAAAAcAAYAAAAHAAkAAAAdAAYAAAAHAAoAAAAdAAYAAAAHAAsAAAAdAAYAAAAHAAwAAAAdAAYAAAAHAA0AAAAdAAYAAAAHAA4AAAAdAAYAAAAHAA8AAAAdAAYAAAAHABAAAAAdAAYAAAAHABEAAAAdAAYAAAAHABIAAAAdAAYAAAAHABMAAAAfAAYAAAAHABQAAAAeAAYAAAAHABUAAAAfAAYAAAAHABYAAAAfAAYAAAAHABcAAAAfAAYAAAAHABgAAAAfAAYAAAAIAPn/AAAfAAAAAAAIAPr/AAAeAAEAAAAIAPv/AAAfAAQAAAAIAPz/AAAeAAEAAAAIAP3/AAAeAAEAAAAIAP7/AAAeAAEAAAAIAP//AAAfAAQAAAAIAAAAAAAfAAIAAAAIAAEAAAAfAAUAAAAIAAIAAAAfAAYAAAAIAAMAAAAfAAYAAAAIAAQAAAAfAAYAAAAIAAUAAAAfAAYAAAAIAAYAAAAfAAYAAAAIAAcAAAAfAAYAAAAIAAgAAAAcAAYAAAAIAAkAAAAfAAYAAAAIAAoAAAAfAAYAAAAIAAsAAAAfAAYAAAAIAAwAAAAfAAYAAAAIAA0AAAAfAAYAAAAIAA4AAAAfAAYAAAAIAA8AAAAfAAYAAAAIABAAAAAfAAYAAAAIABEAAAAfAAYAAAAIABIAAAAfAAYAAAAIABMAAAAcAAYAAAAJAPr/AAAfAAAAAAAJAPv/AAAeAAEAAAAJAPz/AAAeAAEAAAAJAP3/AAAeAAQAAAAJAP7/AAAfAAEAAAAJAP//AAAfAAIAAAAJAAAAAAAcAAUAAAAJAAEAAAAcAAYAAAAJAAIAAAAcAAYAAAAJAAMAAAAcAAYAAAAJAAQAAAAcAAYAAAAJAAUAAAAcAAYAAAAJAAYAAAAcAAYAAAAJAAcAAAAcAAYAAAAJAAgAAAAcAAYAAAAJAAkAAAAcAAYAAAAJAAoAAAAcAAYAAAAJAAsAAAAcAAYAAAAJAAwAAAAcAAYAAAAJAA0AAAAcAAYAAAAJAA4AAAAcAAYAAAAKAPv/AAAfAAAAAAAKAPz/AAAfAAIAAAAKAP3/AAAcAAUAAAAKAP7/AAAcAAYAAAAKAP//AAAcAAYAAAAKAAAAAAAcAAYAAAAKAAEAAAAcAAYAAAAKAAIAAAAcAAYAAAAKAAMAAAAcAAYAAAAKAAQAAAAcAAYAAAAKAAUAAAAcAAYAAAAKAAYAAAAcAAYAAAAKAAcAAAAcAAYAAAAKAAgAAAAcAAYAAAAKAAkAAAAcAAYAAAAKAAoAAAAcAAYAAAAKAAsAAAAcAAYAAAD8/wkAAAAcAAcAAAD9/woAAAAcAAcAAAD+/wwAAAAcAAcAAAD//wwAAAAcAAcAAAAAAA8AAAAcAAcAAAABABYAAAAcAAcAAAACAB0AAAAcAAcAAAADAB0AAAAcAAcAAAAEABoAAAAcAAcAAAAFABsAAAAcAAcAAAAGABkAAAAcAAcAAAAHABkAAAAcAAcAAAAIABQAAAAfAAcAAAAJAA8AAAAcAAcAAAAKAAwAAAAcAAcAAAA=")
 tile_set = ExtResource("2_581ln")
 
-[node name="PBackground" parent="." index="7" instance=ExtResource("10_p5v4g")]
+[node name="PBackground" parent="." index="7" unique_id=27819659 instance=ExtResource("10_p5v4g")]
 z_index = -6
 position = Vector2(127, 60)
 
-[node name="PBackground2" parent="." index="8" instance=ExtResource("10_p5v4g")]
+[node name="PBackground2" parent="." index="8" unique_id=1827601415 instance=ExtResource("10_p5v4g")]
 z_index = -6
 position = Vector2(411, 60)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9" unique_id=1883518470]
 environment = ExtResource("12_4s5im")
 
 [editable path="Greg/MemberInfo"]

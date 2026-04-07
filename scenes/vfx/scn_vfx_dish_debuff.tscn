@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b1lu2vib51l6x"]
+[gd_scene format=3 uid="uid://b1lu2vib51l6x"]
 
 [ext_resource type="Texture2D" uid="uid://bgmy4ypo1yu6h" path="res://sprites/spirit/spr_dish_debuff.png" id="1_46vhy"]
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="1_i77x7"]
@@ -235,25 +235,23 @@ _data = {
 &"new_animation": SubResource("Animation_l3w0e")
 }
 
-[node name="ScnVfxDishDebuff" type="Node2D"]
+[node name="ScnVfxDishDebuff" type="Node2D" unique_id=1230495504]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215908412]
 visible = false
 sprite_frames = SubResource("SpriteFrames_wpscg")
 
-[node name="Mist2" type="GPUParticles2D" parent="."]
+[node name="Mist2" type="GPUParticles2D" parent="." unique_id=1954664355]
 z_as_relative = false
 position = Vector2(0, 2)
 emitting = false
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_qcp3j")
 texture = ExtResource("1_i77x7")
 lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_qcp3j")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_jmfxw")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1442159476]
+libraries/ = SubResource("AnimationLibrary_jmfxw")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=967837472]

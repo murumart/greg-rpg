@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://borrmgsrtilfh"]
+[gd_scene format=3 uid="uid://borrmgsrtilfh"]
 
 [ext_resource type="Texture2D" uid="uid://dqbsvi75l03aj" path="res://sprites/items/spr_bronze_rifle.png" id="1_x8bsq"]
 [ext_resource type="AudioStream" uid="uid://cjg05ialkh8i2" path="res://sounds/rifle_bludgeon.ogg" id="2_f86sk"]
@@ -207,33 +207,31 @@ _data = {
 &"new_animation": SubResource("Animation_0cii1")
 }
 
-[node name="VfxGunBludgeon" type="Node2D"]
+[node name="VfxGunBludgeon" type="Node2D" unique_id=2038582328]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1223779349]
 position = Vector2(15, 13)
 rotation = 1.309
 texture = ExtResource("1_x8bsq")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=1833443357]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ya7wm")
 amount = 12
-lifetime = 0.1
 texture = ExtResource("1_x8bsq")
+lifetime = 0.1
 gravity = Vector2(0, 9)
 angular_velocity_min = -720.0
 scale_amount_curve = SubResource("Curve_v7hec")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ns035")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1306809429]
+libraries/ = SubResource("AnimationLibrary_ns035")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1444618661]
 stream = ExtResource("2_f86sk")
 volume_db = 6.0
 
-[node name="DustPuff" parent="." instance=ExtResource("3_l867x")]
+[node name="DustPuff" parent="." unique_id=1163046998 instance=ExtResource("3_l867x")]
 
-[node name="BangSpark" parent="." instance=ExtResource("4_7naib")]
+[node name="BangSpark" parent="." unique_id=1759354034 instance=ExtResource("4_7naib")]

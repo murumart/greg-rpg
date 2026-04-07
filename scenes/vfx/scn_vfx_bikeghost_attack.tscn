@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://322ei408recb"]
+[gd_scene format=3 uid="uid://322ei408recb"]
 
 [ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/alpha.png" id="1_sihx0"]
 [ext_resource type="AudioStream" uid="uid://bk5b2q77em5d8" path="res://sounds/spirit/bikeghost/bike_ghost_punch.ogg" id="2_1iaa3"]
@@ -263,9 +263,9 @@ _data = {
 &"default": SubResource("Animation_c4ocd")
 }
 
-[node name="VfxBikeghostAttack" type="Node2D"]
+[node name="VfxBikeghostAttack" type="Node2D" unique_id=1995529536]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1378439959]
 position = Vector2(-16, 23)
 rotation = -3.14159
 texture = ExtResource("1_sihx0")
@@ -273,28 +273,26 @@ offset = Vector2(0, 6)
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 18)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1576298004]
 position = Vector2(-1, 16)
 texture = ExtResource("1_sihx0")
 offset = Vector2(0, 6)
 region_enabled = true
 region_rect = Rect2(33, 18, 6, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/Sprite2D2"]
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D/Sprite2D2" unique_id=1688741699]
 position = Vector2(-0.999866, 30)
 texture = ExtResource("1_sihx0")
 offset = Vector2(-1, 5)
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "default"
-libraries = {
-"": SubResource("AnimationLibrary_oy1ot")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1440891282]
+libraries/ = SubResource("AnimationLibrary_oy1ot")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367547633]
 
-[node name="DustPuff" parent="." instance=ExtResource("3_ec7xy")]
+[node name="DustPuff" parent="." unique_id=350159226 instance=ExtResource("3_ec7xy")]
 
-[node name="BangSpark" parent="." instance=ExtResource("4_0vs8w")]
+[node name="BangSpark" parent="." unique_id=696852525 instance=ExtResource("4_0vs8w")]

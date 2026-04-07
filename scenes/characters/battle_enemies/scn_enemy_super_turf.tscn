@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8ijytsuf20nx"]
+[gd_scene format=3 uid="uid://c8ijytsuf20nx"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_uh27h"]
 [ext_resource type="Texture2D" uid="uid://dnm8toligytnx" path="res://sprites/characters/battle/east/spr_superturf.png" id="2_uh27h"]
@@ -39,20 +39,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="SuperTruf" type="Node2D"]
+[node name="SuperTruf" type="Node2D" unique_id=1970103197]
 script = ExtResource("1_uh27h")
 innovation = 0.17
 gender = 6
 wait = 0.1
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1933775283]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_xs0cv")
 autoplay = "default"
 frame_progress = 0.0896571
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=485450321]
 self_modulate = Color(0, 7.93, 0, 0.209)
 show_behind_parent = true
 position = Vector2(1, 1)
@@ -60,7 +60,7 @@ sprite_frames = SubResource("SpriteFrames_xs0cv")
 autoplay = "default"
 frame_progress = 0.139727
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=639301662]
 self_modulate = Color(0, 7.93, 0, 0.209)
 show_behind_parent = true
 position = Vector2(-1, -1)

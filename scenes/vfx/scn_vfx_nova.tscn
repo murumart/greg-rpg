@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx5iav3rgaaje"]
+[gd_scene format=3 uid="uid://cx5iav3rgaaje"]
 
 [ext_resource type="AudioStream" uid="uid://blwp00qoyhs0q" path="res://sounds/spirit/solar/nova.ogg" id="1_uok0c"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_r5l10"]
@@ -206,6 +206,16 @@ fill_to = Vector2(0.499907, 0.537861)
 blend_mode = 1
 light_mode = 1
 
+[sub_resource type="Gradient" id="Gradient_embqk"]
+offsets = PackedFloat32Array(0, 0.774081, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.0823529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4tpvi"]
+gradient = SubResource("Gradient_embqk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.765023, 0.207628)
+
 [sub_resource type="Gradient" id="Gradient_mqvtb"]
 offsets = PackedFloat32Array(0, 0.696954, 1)
 colors = PackedColorArray(50.63, 50.63, 100, 1, 1, 1, 1, 0.846093, 1, 1, 1, 0)
@@ -231,16 +241,6 @@ gravity = Vector3(0, 0, 0)
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_swtro")
 color_ramp = SubResource("GradientTexture1D_7gmdc")
-
-[sub_resource type="Gradient" id="Gradient_embqk"]
-offsets = PackedFloat32Array(0, 0.774081, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.0823529, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4tpvi"]
-gradient = SubResource("Gradient_embqk")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.765023, 0.207628)
 
 [sub_resource type="Curve" id="Curve_8xhr7"]
 _limits = [-200.0, 200.0, 0.0, 1.0]
@@ -281,31 +281,29 @@ tangential_accel_max = 100.0
 tangential_accel_curve = SubResource("CurveTexture_7aivo")
 scale_curve = SubResource("CurveTexture_ulpjv")
 
-[node name="VfxNova" type="Node2D"]
+[node name="VfxNova" type="Node2D" unique_id=1867957756]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_rpheg")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2089285239]
+libraries/ = SubResource("AnimationLibrary_rpheg")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1546622172]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=58293356]
 visible = false
 texture = SubResource("GradientTexture2D_pg26e")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1007751155]
 material = SubResource("CanvasItemMaterial_tn8rf")
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_ngchx")
 texture = SubResource("GradientTexture2D_4tpvi")
+process_material = SubResource("ParticleProcessMaterial_ngchx")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1796917385]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_o8lb0")
 texture = ExtResource("2_r5l10")
 fixed_fps = 60
 interpolate = false
 trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_o8lb0")

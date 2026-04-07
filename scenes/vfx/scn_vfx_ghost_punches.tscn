@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1s3ka27gsgc"]
+[gd_scene format=3 uid="uid://c1s3ka27gsgc"]
 
 [ext_resource type="AudioStream" uid="uid://d1lbyytg3bgst" path="res://sounds/spirit/bikeghost/beatdown.ogg" id="1_s20dg"]
 [ext_resource type="Texture2D" uid="uid://b7quo0c4kecdb" path="res://sprites/spirit/spr_ghostfist.png" id="2_5c47j"]
@@ -184,26 +184,24 @@ scale_min = 0.2
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_m6ndy")
 
-[node name="VfxGhostPunches" type="Node2D"]
+[node name="VfxGhostPunches" type="Node2D" unique_id=1528099864]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1457284808]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dsiyh")
-}
-autoplay = "defauly"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1783142043]
+libraries/ = SubResource("AnimationLibrary_dsiyh")
+autoplay = &"defauly"
 
-[node name="Smoke" type="GPUParticles2D" parent="."]
+[node name="Smoke" type="GPUParticles2D" parent="." unique_id=1350704425]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_1qo88")
 texture = ExtResource("2_f05if")
 lifetime = 0.88
+process_material = SubResource("ParticleProcessMaterial_1qo88")
 
-[node name="FISTES" type="GPUParticles2D" parent="."]
+[node name="FISTES" type="GPUParticles2D" parent="." unique_id=1064183370]
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_w04gv")
 texture = ExtResource("2_5c47j")
 lifetime = 0.22
 fixed_fps = 60
 draw_order = 2
+process_material = SubResource("ParticleProcessMaterial_w04gv")

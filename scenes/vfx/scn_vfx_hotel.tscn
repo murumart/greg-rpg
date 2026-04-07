@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcd0op387effo"]
+[gd_scene format=3 uid="uid://bcd0op387effo"]
 
 [ext_resource type="Texture2D" uid="uid://bjx81xw78es1i" path="res://sprites/spirit/spr_hotel_screen.png" id="1_6k7ma"]
 [ext_resource type="AudioStream" uid="uid://bkmoevdpi74tl" path="res://sounds/spirit/hotel.ogg" id="2_ybfyr"]
@@ -164,16 +164,14 @@ _data = {
 &"default": SubResource("Animation_851le")
 }
 
-[node name="Hotel" type="Node2D"]
+[node name="Hotel" type="Node2D" unique_id=332803259]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=525855308]
 visible = false
 sprite_frames = SubResource("SpriteFrames_wtmb4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_hwkph")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=480871156]
+libraries/ = SubResource("AnimationLibrary_hwkph")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2027676062]

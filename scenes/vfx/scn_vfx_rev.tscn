@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbgrpf3kbo2jf"]
+[gd_scene format=3 uid="uid://cbgrpf3kbo2jf"]
 
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_md42c"]
 [ext_resource type="AudioStream" uid="uid://5dyndyudoi4t" path="res://sounds/carrev.ogg" id="2_6g07j"]
@@ -105,19 +105,17 @@ _data = {
 &"default": SubResource("Animation_3pvms")
 }
 
-[node name="Carrev" type="Node2D"]
+[node name="Carrev" type="Node2D" unique_id=1178788179]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=110951069]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_2bmf7")
 texture = ExtResource("1_md42c")
 visibility_rect = Rect2(-300, -300, 600, 600)
+process_material = SubResource("ParticleProcessMaterial_2bmf7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7p35r")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1380320303]
+libraries/ = SubResource("AnimationLibrary_7p35r")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1259593424]

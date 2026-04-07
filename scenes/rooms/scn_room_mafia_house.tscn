@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dyjcd2w81thvw"]
+[gd_scene format=4 uid="uid://dyjcd2w81thvw"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_xrpuv"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="2_332tv"]
@@ -2038,27 +2038,11 @@ Vector2i(0, 1): {
 [sub_resource type="Resource" id="Resource_2x3tf"]
 script = ExtResource("14_xmqwb")
 text = "newspaper clipping. something on \"mana radio interference\"."
-character = ""
-emotion = ""
-text_speed = 1.0
-data_link = []
-choice_link = &""
-choices = []
-instaskip = false
-loop = -1
-item_to_give = &""
-spirit_to_give = &""
-silver_to_give = 0
-portrait_scale = Vector2(1, 1)
-set_data = []
-callback = Callable()
 metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
 
 [sub_resource type="Resource" id="Resource_an4ff"]
 script = ExtResource("15_nrscc")
-name = &""
 lines = Array[ExtResource("14_xmqwb")]([SubResource("Resource_2x3tf")])
-alias = ""
 metadata/_custom_type_script = "uid://crxdditnh0akt"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4661"]
@@ -2068,8 +2052,6 @@ size = Vector2(12, 20)
 script = ExtResource("18_2x3tf")
 title = "soap"
 silver_required = 1400
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"explosive_soap"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
@@ -2077,38 +2059,34 @@ metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 script = ExtResource("18_2x3tf")
 title = "firecr"
 silver_required = 230
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"fire_cracker"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_gqpp7"]
 script = ExtResource("18_2x3tf")
 title = "sell"
-silver_required = 0
 input = Array[StringName]([&"fire_cracker"])
 silver_granted = 150
-output = Array[StringName]([])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_girn8"]
 size = Vector2(111, 83)
 
-[node name="MafiaHouse" type="Node2D"]
+[node name="MafiaHouse" type="Node2D" unique_id=361943282]
 y_sort_enabled = true
 script = ExtResource("1_xrpuv")
 
-[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=171971474]
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_drelu")
 metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 
-[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup" unique_id=1205825445]
 script = ExtResource("3_o4tln")
 color = Color(0, 0, 0, 1)
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1851445567]
 z_index = -2
 offset_left = -507.0
 offset_top = -351.0
@@ -2116,232 +2094,232 @@ offset_right = 547.0
 offset_bottom = 391.0
 color = Color(0, 0, 0, 1)
 
-[node name="InteriorTiles" type="Node2D" parent="."]
+[node name="InteriorTiles" type="Node2D" parent="." unique_id=783992426]
 y_sort_enabled = true
 
-[node name="Layer0" type="TileMapLayer" parent="InteriorTiles"]
+[node name="Layer0" type="TileMapLayer" parent="InteriorTiles" unique_id=1052441854]
 z_index = -1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD//wAAAQADAAQAAAD+/wAAAQACAAUAAAD9/wAAAQADAAUAAAD8/wEAAQACAAUAAAD8/wMAAQADAAQAAAD9/wMAAQADAAQAAAD+/wIAAQACAAUAAAD//wIAAQACAAQAAAAAAAEAAQADAAQAAAD+/wEAAQADAAUAAAD9/wIAAQADAAQAAAD+/wMAAQACAAUAAAAAAAIAAQACAAUAAAABAAEAAQACAAQAAAD//wEAAQACAAQAAAD9/wEAAQACAAQAAAD8/wIAAQADAAQAAAAEAAMAAQACAAUAAAAEAAIAAQADAAQAAAAEAAEAAQADAAQAAAAEAAAAAQACAAQAAAAEAP//AQADAAUAAAAEAP7/AQADAAQAAAADAAMAAQACAAQAAAADAAIAAQADAAUAAAADAAEAAQADAAUAAAADAAAAAQADAAQAAAADAP//AQACAAQAAAADAP7/AQADAAUAAAACAAMAAQACAAQAAAACAAIAAQADAAQAAAACAAEAAQACAAUAAAACAAAAAQADAAQAAAACAP//AQACAAQAAAACAP7/AQADAAUAAAABAAMAAQADAAQAAAABAAIAAQADAAQAAAABAAAAAQADAAUAAAABAP//AQACAAUAAAABAP7/AQACAAUAAAAAAAMAAQACAAUAAAAAAAAAAQADAAUAAAAAAP//AQADAAUAAAAAAP7/AQADAAQAAAD//wMAAQADAAUAAAD/////AQACAAQAAAD///7/AQADAAQAAAD+////AQACAAUAAAD+//7/AQADAAQAAAD9////AQADAAQAAAD9//7/AQACAAUAAAD8/wAAAQACAAQAAAD8////AQACAAQAAAD8//7/AQACAAQAAAACAP3/AQADAAUAAAAFAP//AQACAAQAAAAFAP7/AQADAAUAAAAGAP7/AQADAAQAAAAGAP3/AQADAAUAAAAFAP3/AQACAAUAAAAFAPz/AQACAAUAAAAEAPz/AQADAAUAAAADAPz/AQACAAUAAAADAP3/AQACAAQAAAACAPz/AQADAAQAAAAEAP3/AQACAAQAAAAGAPz/AQADAAUAAAAGAP//AQACAAQAAAAGAAAAAQADAAQAAAAFAAAAAQACAAQAAAABAPz/AQALAAkAAAAAAPz/AQAJAAkAAAD///z/AQAJAAkAAAD+//z/AQAJAAkAAAD9//z/AQAJAAkAAAD8//z/AQAJAAkAAAABAPv/AQALAAgAAAABAPr/AQAGAAgAAAABAPn/AQAJAAgAAAABAPj/AQAJAAgAAAABAPf/AQAJAAgAAAABAPb/AQAJAAgAAAABAPX/AQAJAAgAAAABAPT/AQAJAAgAAAABAPP/AQAKAAYAAAAAAPv/AQAJAAgAAAAAAPr/AQAJAAgAAAAAAPn/AQAJAAgAAAAAAPj/AQAJAAgAAAAAAPf/AQAJAAgAAAAAAPb/AQAJAAgAAAAAAPX/AQAJAAgAAAAAAPT/AQAJAAgAAAAAAPP/AQAKAAYAAAD///v/AQAJAAgAAAD///r/AQAJAAgAAAD///n/AQAJAAgAAAD///j/AQAJAAgAAAD///f/AQAJAAgAAAD///b/AQAJAAgAAAD///X/AQAJAAgAAAD///T/AQAJAAgAAAD///P/AQAKAAYAAAD+//v/AQAJAAgAAAD+//r/AQAJAAgAAAD+//n/AQAJAAgAAAD+//j/AQAJAAgAAAD+//f/AQAJAAgAAAD+//b/AQAJAAgAAAD+//X/AQAJAAgAAAD+//T/AQAJAAgAAAD+//P/AQAKAAYAAAD9//v/AQAJAAgAAAD9//r/AQAJAAgAAAD9//n/AQAJAAgAAAD9//j/AQAJAAgAAAD9//f/AQAJAAgAAAD9//b/AQAJAAgAAAD9//X/AQAJAAgAAAD9//T/AQAJAAgAAAD9//P/AQAKAAYAAAD8//v/AQAJAAgAAAD8//r/AQAJAAgAAAD8//n/AQAJAAgAAAD8//j/AQAJAAgAAAD8//f/AQAFAAcAAAD8//b/AQAIAAcAAAD8//X/AQAIAAcAAAD8//T/AQAIAAcAAAD8//P/AQAIAAYAAAAGAPn/AQAJAAgAAAAGAPj/AQAJAAgAAAAGAPf/AQAJAAgAAAAGAPb/AQAJAAgAAAAGAPX/AQAJAAgAAAAGAPT/AQAJAAgAAAAGAPP/AQAJAAgAAAAGAPL/AQAKAAYAAAAFAPn/AQAJAAgAAAAFAPj/AQAJAAgAAAAFAPf/AQAJAAgAAAAFAPb/AQAJAAgAAAAFAPX/AQAJAAgAAAAFAPT/AQAJAAgAAAAFAPP/AQAJAAgAAAAFAPL/AQAKAAYAAAAEAPn/AQAJAAgAAAAEAPj/AQAJAAgAAAAEAPf/AQAJAAgAAAAEAPb/AQAJAAgAAAAEAPX/AQAJAAgAAAAEAPT/AQAJAAgAAAAEAPP/AQAJAAgAAAAEAPL/AQAKAAYAAAADAPn/AQAJAAgAAAADAPj/AQAJAAgAAAADAPf/AQAJAAgAAAADAPb/AQAJAAgAAAADAPX/AQAJAAgAAAADAPT/AQAJAAgAAAADAPP/AQAJAAgAAAADAPL/AQAKAAYAAAACAPn/AQAJAAgAAAACAPj/AQAJAAgAAAACAPf/AQAJAAgAAAACAPb/AQAJAAgAAAACAPX/AQAJAAgAAAACAPT/AQAJAAgAAAACAPP/AQAFAAcAAAACAPL/AQAIAAYAAAAKAAcAAQAJAAkAAAAKAAYAAQAJAAgAAAAKAAUAAQAJAAgAAAAKAAQAAQAJAAgAAAAKAAMAAQAJAAgAAAAKAAIAAQAJAAgAAAAKAAEAAQAJAAgAAAAKAAAAAQAJAAgAAAAKAP//AQAJAAgAAAAKAP7/AQAJAAgAAAAKAP3/AQAJAAgAAAAKAPz/AQAJAAgAAAAKAPv/AQAJAAgAAAAKAPr/AQAJAAgAAAAKAPn/AQAJAAgAAAAKAPj/AQAJAAgAAAAJAAcAAQAJAAkAAAAJAAYAAQAJAAgAAAAJAAUAAQAJAAgAAAAJAAQAAQAJAAgAAAAJAAMAAQAJAAgAAAAJAAIAAQAJAAgAAAAJAAEAAQAJAAgAAAAJAAAAAQAJAAgAAAAJAP//AQAJAAgAAAAJAP7/AQAJAAgAAAAJAP3/AQAJAAgAAAAJAPz/AQAJAAgAAAAJAPv/AQAJAAgAAAAJAPr/AQAJAAgAAAAJAPn/AQAJAAgAAAAJAPj/AQAJAAgAAAAIAAcAAQAJAAkAAAAIAAYAAQAJAAgAAAAIAAUAAQAJAAgAAAAIAAQAAQAJAAgAAAAIAAMAAQAJAAgAAAAIAAIAAQAJAAgAAAAIAAEAAQAFAAcAAAAIAAAAAQAIAAcAAAAIAP//AQAIAAcAAAAIAP7/AQAIAAcAAAAIAP3/AQAIAAcAAAAIAPz/AQAIAAcAAAAIAPv/AQAIAAcAAAAIAPr/AQAFAAgAAAAIAPn/AQAJAAgAAAAIAPj/AQAJAAgAAAAHAAcAAQAGAAgAAAAHAAYAAQAJAAgAAAAHAAUAAQAJAAgAAAAHAAQAAQAJAAgAAAAHAAMAAQAJAAgAAAAHAAIAAQAJAAgAAAAHAAEAAQAKAAYAAAAHAPr/AQAJAAkAAAAHAPn/AQAJAAgAAAAHAPj/AQAJAAgAAAAHAAoAAQALAAkAAAAHAAkAAQALAAgAAAAHAAgAAQALAAgAAAAGAAoAAQAJAAkAAAAGAAkAAQAJAAgAAAAGAAgAAQAJAAgAAAAGAAcAAQAJAAgAAAAGAAYAAQAJAAgAAAAGAAUAAQAJAAgAAAAGAAQAAQAJAAgAAAAGAAMAAQAJAAgAAAAGAAIAAQAJAAgAAAAGAAEAAQAJAAYAAAAFAAoAAQAJAAkAAAAFAAkAAQAJAAgAAAAFAAgAAQAJAAgAAAAFAAcAAQAJAAgAAAAFAAYAAQAJAAgAAAAFAAUAAQAJAAgAAAAFAAQAAQAFAAcAAAAFAAMAAQAIAAcAAAAFAAIAAQAIAAcAAAAFAAEAAQAIAAYAAAAEAAsAAQALAAkAAAAEAAoAAQAGAAgAAAAEAAkAAQAJAAgAAAAEAAgAAQAJAAgAAAAEAAcAAQAJAAgAAAAEAAYAAQAJAAgAAAAEAAUAAQAJAAgAAAAEAAQAAQAKAAYAAAADAAsAAQAJAAkAAAADAAoAAQAJAAgAAAADAAkAAQAJAAgAAAADAAgAAQAJAAgAAAADAAcAAQAJAAgAAAADAAYAAQAJAAgAAAADAAUAAQAJAAgAAAADAAQAAQAKAAYAAAACAAsAAQAJAAkAAAACAAoAAQAJAAgAAAACAAkAAQAJAAgAAAACAAgAAQAJAAgAAAACAAcAAQAJAAgAAAACAAYAAQAJAAgAAAACAAUAAQAJAAgAAAACAAQAAQAKAAYAAAABAAsAAQAJAAkAAAABAAoAAQAJAAgAAAABAAkAAQAJAAgAAAABAAgAAQAJAAgAAAABAAcAAQAJAAgAAAABAAYAAQAJAAgAAAABAAUAAQAJAAgAAAABAAQAAQAKAAYAAAAAAAsAAQAJAAkAAAAAAAoAAQAJAAgAAAAAAAkAAQAJAAgAAAAAAAgAAQAJAAgAAAAAAAcAAQAJAAgAAAAAAAYAAQAJAAgAAAAAAAUAAQAJAAgAAAAAAAQAAQAKAAYAAAD//wsAAQAJAAkAAAD//woAAQAJAAgAAAD//wkAAQAJAAgAAAD//wgAAQAJAAgAAAD//wcAAQAJAAgAAAD//wYAAQAJAAgAAAD//wUAAQAJAAgAAAD//wQAAQAKAAYAAAD+/wsAAQAJAAkAAAD+/woAAQAJAAgAAAD+/wkAAQAJAAgAAAD+/wgAAQAJAAgAAAD+/wcAAQAJAAgAAAD+/wYAAQAJAAgAAAD+/wUAAQAJAAgAAAD+/wQAAQAKAAYAAAD9/wsAAQAJAAkAAAD9/woAAQAJAAgAAAD9/wkAAQAJAAgAAAD9/wgAAQAJAAgAAAD9/wcAAQAJAAgAAAD9/wYAAQAJAAgAAAD9/wUAAQAJAAgAAAD9/wQAAQAKAAYAAAD8/wsAAQAIAAkAAAD8/woAAQAIAAcAAAD8/wkAAQAFAAgAAAD8/wgAAQAJAAgAAAD8/wcAAQAJAAgAAAD8/wYAAQAJAAgAAAD8/wUAAQAJAAgAAAD8/wQAAQAKAAYAAAD7/wkAAQAJAAkAAAD7/wgAAQAJAAgAAAD7/wcAAQAJAAgAAAD7/wYAAQAJAAgAAAD7/wUAAQAJAAgAAAD7/wQAAQAGAAcAAAD7/wMAAQALAAgAAAD7/wIAAQALAAgAAAD7/wEAAQALAAgAAAD7/wAAAQALAAgAAAD7////AQALAAgAAAD7//7/AQALAAgAAAD7//3/AQALAAgAAAD7//z/AQAGAAgAAAD7//v/AQAJAAgAAAD7//r/AQAJAAgAAAD7//n/AQAJAAgAAAD7//j/AQAJAAgAAAD7//f/AQAKAAYAAAD6/wkAAQAJAAkAAAD6/wgAAQAJAAgAAAD6/wcAAQAJAAgAAAD6/wYAAQAJAAgAAAD6/wUAAQAJAAgAAAD6/wQAAQAJAAgAAAD6/wMAAQAJAAgAAAD6/wIAAQAJAAgAAAD6/wEAAQAJAAgAAAD6/wAAAQAJAAgAAAD6////AQAJAAgAAAD6//7/AQAJAAgAAAD6//3/AQAJAAgAAAD6//z/AQAJAAgAAAD6//v/AQAJAAgAAAD6//r/AQAJAAgAAAD6//n/AQAJAAgAAAD6//j/AQAJAAgAAAD6//f/AQAKAAYAAAD5/wkAAQAJAAkAAAD5/wgAAQAJAAgAAAD5/wcAAQAJAAgAAAD5/wYAAQAJAAgAAAD5/wUAAQAJAAgAAAD5/wQAAQAJAAgAAAD5/wMAAQAJAAgAAAD5/wIAAQAJAAgAAAD5/wEAAQAJAAgAAAD5/wAAAQAJAAgAAAD5////AQAJAAgAAAD5//7/AQAJAAgAAAD5//3/AQAJAAgAAAD5//z/AQAJAAgAAAD5//v/AQAJAAgAAAD5//r/AQAJAAgAAAD5//n/AQAJAAgAAAD5//j/AQAJAAgAAAD5//f/AQAKAAYAAAD4/wkAAQAJAAkAAAD4/wgAAQAJAAgAAAD4/wcAAQAJAAgAAAD4/wYAAQAJAAgAAAD4/wUAAQAJAAgAAAD4/wQAAQAJAAgAAAD4/wMAAQAJAAgAAAD4/wIAAQAJAAgAAAD4/wEAAQAJAAgAAAD4/wAAAQAJAAgAAAD4////AQAJAAgAAAD4//7/AQAJAAgAAAD4//3/AQAJAAgAAAD4//z/AQAJAAgAAAD4//v/AQAJAAgAAAD4//r/AQAJAAgAAAD4//n/AQAJAAgAAAD4//j/AQAJAAgAAAD4//f/AQAKAAYAAAD3/wkAAQAJAAkAAAD3/wgAAQAJAAgAAAD3/wcAAQAJAAgAAAD3/wYAAQAJAAgAAAD3/wUAAQAJAAgAAAD3/wQAAQAJAAgAAAD3/wMAAQAJAAgAAAD3/wIAAQAJAAgAAAD3/wEAAQAJAAgAAAD3/wAAAQAJAAgAAAD3////AQAJAAgAAAD3//7/AQAJAAgAAAD3//3/AQAJAAgAAAD3//z/AQAJAAgAAAD3//v/AQAJAAgAAAD3//r/AQAJAAgAAAD3//n/AQAJAAgAAAD3//j/AQAJAAgAAAD3//f/AQAKAAYAAAD2/wkAAQAJAAkAAAD2/wgAAQAJAAgAAAD2/wcAAQAJAAgAAAD2/wYAAQAJAAgAAAD2/wUAAQAJAAgAAAD2/wQAAQAJAAgAAAD2/wMAAQAJAAgAAAD2/wIAAQAJAAgAAAD2/wEAAQAJAAgAAAD2/wAAAQAJAAgAAAD2////AQAJAAgAAAD2//7/AQAJAAgAAAD2//3/AQAJAAgAAAD2//z/AQAJAAgAAAD2//v/AQAJAAgAAAD2//r/AQAJAAgAAAD2//n/AQAJAAgAAAD2//j/AQAJAAgAAAD2//f/AQAKAAYAAAD1/wkAAQAIAAkAAAD1/wgAAQAIAAcAAAD1/wcAAQAIAAcAAAD1/wYAAQAIAAcAAAD1/wUAAQAIAAcAAAD1/wQAAQAIAAcAAAD1/wMAAQAIAAcAAAD1/wIAAQAIAAcAAAD1/wEAAQAIAAcAAAD1/wAAAQAIAAcAAAD1////AQAIAAcAAAD1//7/AQAIAAcAAAD1//3/AQAIAAcAAAD1//z/AQAIAAcAAAD1//v/AQAIAAcAAAD1//r/AQAIAAcAAAD1//n/AQAIAAcAAAD1//j/AQAIAAcAAAD1//f/AQAIAAYAAAAPAAgAAQALAAkAAAAPAAcAAQALAAgAAAAPAAYAAQALAAgAAAAPAAUAAQALAAgAAAAPAAQAAQALAAgAAAAPAAMAAQALAAgAAAAPAAIAAQALAAgAAAAPAAEAAQALAAgAAAAPAAAAAQALAAgAAAAPAP//AQALAAgAAAAPAP7/AQALAAgAAAAPAP3/AQALAAgAAAAPAPz/AQALAAgAAAAPAPv/AQALAAgAAAAPAPr/AQALAAgAAAAPAPn/AQALAAgAAAAPAPj/AQALAAYAAAAOAAgAAQAJAAkAAAAOAAcAAQAJAAgAAAAOAAYAAQAJAAgAAAAOAAUAAQAJAAgAAAAOAAQAAQAJAAgAAAAOAAMAAQAJAAgAAAAOAAIAAQAJAAgAAAAOAAEAAQAJAAgAAAAOAAAAAQAJAAgAAAAOAP//AQAJAAgAAAAOAP7/AQAJAAgAAAAOAP3/AQAJAAgAAAAOAPz/AQAJAAgAAAAOAPv/AQAJAAgAAAAOAPr/AQAJAAgAAAAOAPn/AQAJAAgAAAAOAPj/AQAKAAYAAAANAAgAAQAJAAkAAAANAAcAAQAJAAgAAAANAAYAAQAJAAgAAAANAAUAAQAJAAgAAAANAAQAAQAJAAgAAAANAAMAAQAJAAgAAAANAAIAAQAJAAgAAAANAAEAAQAJAAgAAAANAAAAAQAJAAgAAAANAP//AQAJAAgAAAANAP7/AQAJAAgAAAANAP3/AQAJAAgAAAANAPz/AQAJAAgAAAANAPv/AQAJAAgAAAANAPr/AQAJAAgAAAANAPn/AQAJAAgAAAANAPj/AQAKAAYAAAAMAAgAAQAJAAkAAAAMAAcAAQAJAAgAAAAMAAYAAQAJAAgAAAAMAAUAAQAJAAgAAAAMAAQAAQAJAAgAAAAMAAMAAQAJAAgAAAAMAAIAAQAJAAgAAAAMAAEAAQAJAAgAAAAMAAAAAQAJAAgAAAAMAP//AQAJAAgAAAAMAP7/AQAJAAgAAAAMAP3/AQAJAAgAAAAMAPz/AQAJAAgAAAAMAPv/AQAJAAgAAAAMAPr/AQAJAAgAAAAMAPn/AQAJAAgAAAAMAPj/AQAGAAcAAAALAAgAAQAIAAkAAAALAAcAAQAFAAgAAAALAAYAAQAJAAgAAAALAAUAAQAJAAgAAAALAAQAAQAJAAgAAAALAAMAAQAJAAgAAAALAAIAAQAJAAgAAAALAAEAAQAJAAgAAAALAAAAAQAJAAgAAAALAP//AQAJAAgAAAALAP7/AQAJAAgAAAALAP3/AQAJAAgAAAALAPz/AQAJAAgAAAALAPv/AQAJAAgAAAALAPr/AQAJAAgAAAALAPn/AQAJAAgAAAALAPj/AQAJAAgAAAAMAPf/AQALAAgAAAAMAPb/AQALAAgAAAAMAPX/AQALAAgAAAAMAPT/AQALAAgAAAAMAPP/AQALAAgAAAAMAPL/AQALAAYAAAALAPf/AQAJAAgAAAALAPb/AQAJAAgAAAALAPX/AQAJAAgAAAALAPT/AQAJAAgAAAALAPP/AQAJAAgAAAALAPL/AQAKAAYAAAAKAPf/AQAJAAgAAAAKAPb/AQAJAAgAAAAKAPX/AQAJAAgAAAAKAPT/AQAJAAgAAAAKAPP/AQAJAAgAAAAKAPL/AQAKAAYAAAAJAPf/AQAJAAgAAAAJAPb/AQAJAAgAAAAJAPX/AQAJAAgAAAAJAPT/AQAJAAgAAAAJAPP/AQAJAAgAAAAJAPL/AQAKAAYAAAAIAPf/AQAJAAgAAAAIAPb/AQAJAAgAAAAIAPX/AQAJAAgAAAAIAPT/AQAJAAgAAAAIAPP/AQAJAAgAAAAIAPL/AQAKAAYAAAAHAPf/AQAJAAgAAAAHAPb/AQAJAAgAAAAHAPX/AQAJAAgAAAAHAPT/AQAJAAgAAAAHAPP/AQAJAAgAAAAHAPL/AQAKAAYAAAAFAPr/AQAJAAkAAAAGAPr/AQAJAAkAAAAEAPr/AQAJAAkAAAADAPr/AQAJAAkAAAACAPr/AQAJAAkAAAAHAAAAAQADAAUAAAAHAP//AQADAAUAAAAHAP7/AQACAAQAAAAHAP3/AQADAAUAAAAHAPz/AQACAAQAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 
-[node name="Layer1" type="TileMapLayer" parent="InteriorTiles"]
+[node name="Layer1" type="TileMapLayer" parent="InteriorTiles" unique_id=1023447570]
 y_sort_enabled = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD9/wEAAQANAAkAAAD+/wEAAQAOAAkAAAD//wEAAQAOAAkAAAAAAAEAAQAOAAkAAAABAAEAAQAPAAkAAAAAAAIAAQAOAAsAAAD//wIAAQAOAAsAAAD+/wIAAQAOAAsAAAD9/wIAAQANAAsAAAABAAIAAQAPAAsAAAAFAPz/AQAMAAgAAAA=")
 tile_set = SubResource("TileSet_tjy6q")
 
-[node name="Greg" parent="." instance=ExtResource("3_k4axw")]
+[node name="Greg" parent="." unique_id=1569431887 instance=ExtResource("3_k4axw")]
 position = Vector2(83, -10)
 
-[node name="Camera2D" type="Camera2D" parent="Greg"]
+[node name="Camera2D" type="Camera2D" parent="Greg" unique_id=816397588]
 limit_left = -80
 limit_top = -96
 limit_right = 144
 limit_bottom = 80
 
-[node name="PointLight2D" type="PointLight2D" parent="Greg/Camera2D" groups=["lights"]]
+[node name="PointLight2D" type="PointLight2D" parent="Greg/Camera2D" unique_id=1601038610 groups=["lights"]]
 position = Vector2(0, -10)
 scale = Vector2(0.640625, 0.40625)
 color = Color(0.362695, 0.409522, 0.410723, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 metadata/_edit_lock_ = true
 
-[node name="Decorations" type="Node2D" parent="."]
+[node name="Decorations" type="Node2D" parent="." unique_id=1259583911]
 y_sort_enabled = true
 
-[node name="BigLight" type="PointLight2D" parent="Decorations" groups=["lights"]]
+[node name="BigLight" type="PointLight2D" parent="Decorations" unique_id=1748965512 groups=["lights"]]
 visible = false
 position = Vector2(88, -61)
 scale = Vector2(0.953125, 0.71875)
 color = Color(0.314451, 0.499589, 0.50434, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 
-[node name="MafiaBlue" parent="Decorations" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
+[node name="MafiaBlue" parent="Decorations" unique_id=598183754 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
 unique_name_in_owner = true
 position = Vector2(-17, 13)
 animated_sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaBlue"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaBlue" unique_id=644634648]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("6_xapwm")
 animation = &"walk_down"
 
-[node name="MafiaYellow" parent="Decorations" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
+[node name="MafiaYellow" parent="Decorations" unique_id=1122387939 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_0srwq")]
 unique_name_in_owner = true
 position = Vector2(1, 13)
 animated_sprite = NodePath("AnimatedSprite2D")
 default_lines = Array[StringName]([&"mafia_yellow_usual"])
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaYellow"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Decorations/MafiaYellow" unique_id=1228909247]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("7_fxb1w")
 animation = &"walk_down"
 
-[node name="Radio" parent="Decorations" instance=ExtResource("8_raprc")]
+[node name="Radio" parent="Decorations" unique_id=1169082895 instance=ExtResource("8_raprc")]
 position = Vector2(88, -53)
 default_song = SubResource("AudioStreamInteractive_2x3tf")
 
-[node name="PointLight2D" type="PointLight2D" parent="Decorations/Radio" groups=["lights"]]
+[node name="PointLight2D" type="PointLight2D" parent="Decorations/Radio" unique_id=1710529538 groups=["lights"]]
 position = Vector2(1.90735e-06, 11)
 scale = Vector2(0.1875, 0.71875)
 color = Color(0.125617, 0.121411, 0.106652, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 metadata/_edit_lock_ = true
 
-[node name="GregPos" type="Marker2D" parent="Decorations/Radio"]
+[node name="GregPos" type="Marker2D" parent="Decorations/Radio" unique_id=640848223]
 unique_name_in_owner = true
 position = Vector2(13, 5)
 
-[node name="MafiaPos" type="Marker2D" parent="Decorations/Radio"]
+[node name="MafiaPos" type="Marker2D" parent="Decorations/Radio" unique_id=702400611]
 unique_name_in_owner = true
 position = Vector2(-18, 5)
 
-[node name="Chair3" parent="Decorations" instance=ExtResource("12_4q62v")]
+[node name="Chair3" parent="Decorations" unique_id=2122562884 instance=ExtResource("12_4q62v")]
 position = Vector2(101, -54)
 
-[node name="Chair4" parent="Decorations" instance=ExtResource("12_4q62v")]
+[node name="Chair4" parent="Decorations" unique_id=2117515965 instance=ExtResource("12_4q62v")]
 position = Vector2(-31, 13)
 
-[node name="Chair5" parent="Decorations" instance=ExtResource("12_4q62v")]
+[node name="Chair5" parent="Decorations" unique_id=519371244 instance=ExtResource("12_4q62v")]
 position = Vector2(13, 15)
 
-[node name="Papers" type="Node2D" parent="Decorations"]
+[node name="Papers" type="Node2D" parent="Decorations" unique_id=2056820215]
 y_sort_enabled = true
 position = Vector2(-19, 29)
 
-[node name="Sprite2D" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D" type="Sprite2D" parent="Decorations/Papers" unique_id=2063533910]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-11, -12)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D2" type="Sprite2D" parent="Decorations/Papers" unique_id=1135063097]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-11, -14)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D3" type="Sprite2D" parent="Decorations/Papers" unique_id=537270826]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-11, -16)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D7" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D7" type="Sprite2D" parent="Decorations/Papers" unique_id=795888570]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(0, -13)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D8" type="Sprite2D" parent="Decorations/Papers" unique_id=1504813590]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(0, -15)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D9" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D9" type="Sprite2D" parent="Decorations/Papers" unique_id=1282617475]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(0, -17)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D4" type="Sprite2D" parent="Decorations/Papers" unique_id=848522477]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-4, -7)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D5" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D5" type="Sprite2D" parent="Decorations/Papers" unique_id=308732490]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-4, -9)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D6" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D6" type="Sprite2D" parent="Decorations/Papers" unique_id=2072688109]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(-4, -11)
 region_enabled = true
 region_rect = Rect2(70, 32, 10, 8)
 
-[node name="Sprite2D10" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D10" type="Sprite2D" parent="Decorations/Papers" unique_id=1974248242]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(52, -10)
 region_enabled = true
 region_rect = Rect2(80, 32, 10, 8)
 
-[node name="Sprite2D11" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D11" type="Sprite2D" parent="Decorations/Papers" unique_id=1405906268]
 position = Vector2(-10, 4)
 texture = ExtResource("4_3esa6")
 offset = Vector2(43, -6)
 region_enabled = true
 region_rect = Rect2(80, 32, 10, 8)
 
-[node name="Sprite2D12" type="Sprite2D" parent="Decorations/Papers"]
+[node name="Sprite2D12" type="Sprite2D" parent="Decorations/Papers" unique_id=1834137009]
 position = Vector2(25, -121)
 texture = ExtResource("4_3esa6")
 offset = Vector2(19, 46)
 region_enabled = true
 region_rect = Rect2(80, 32, 10, 8)
 
-[node name="InspectArea" type="Area2D" parent="Decorations/Papers/Sprite2D12"]
+[node name="InspectArea" type="Area2D" parent="Decorations/Papers/Sprite2D12" unique_id=49191157]
 position = Vector2(19, 46)
 script = ExtResource("13_x8o8o")
 dialogue = SubResource("Resource_an4ff")
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Papers/Sprite2D12/InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decorations/Papers/Sprite2D12/InspectArea" unique_id=1420717573]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_e4661")
 
-[node name="KidOverworld" parent="Decorations" instance=ExtResource("16_xmqwb")]
+[node name="KidOverworld" parent="Decorations" unique_id=1343897211 instance=ExtResource("16_xmqwb")]
 position = Vector2(13, -31)
 trades = Array[ExtResource("18_2x3tf")]([SubResource("Resource_e4661"), SubResource("Resource_5klj5"), SubResource("Resource_gqpp7")])
 
-[node name="PointLight2D2" type="PointLight2D" parent="Decorations/KidOverworld" groups=["lights"]]
+[node name="PointLight2D2" type="PointLight2D" parent="Decorations/KidOverworld" unique_id=410711793 groups=["lights"]]
 position = Vector2(0, -8)
 scale = Vector2(0.578125, 0.46875)
 color = Color(0.362695, 0.410723, 0.369006, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 
-[node name="RoomGate" parent="." instance=ExtResource("5_ce38q")]
+[node name="RoomGate" parent="." unique_id=1449782571 instance=ExtResource("5_ce38q")]
 position = Vector2(104, 22)
 destination = &"town_east"
 gate_id = &"mafiahouse-town"
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -15)
 
-[node name="Areas" type="Node2D" parent="."]
+[node name="Areas" type="Node2D" parent="." unique_id=1568313790]
 
-[node name="DiscoveryArea" type="Area2D" parent="Areas"]
+[node name="DiscoveryArea" type="Area2D" parent="Areas" unique_id=482185420]
 position = Vector2(-8, 30)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("9_fieed")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DiscoveryArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DiscoveryArea" unique_id=949510751]
 position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_girn8")
 
-[node name="PointLight2D2" type="PointLight2D" parent="Areas/DiscoveryArea" groups=["lights"]]
+[node name="PointLight2D2" type="PointLight2D" parent="Areas/DiscoveryArea" unique_id=1932279044 groups=["lights"]]
 position = Vector2(8, -20)
 scale = Vector2(1.14063, 0.84375)
 color = Color(0.0490213, 0.048629, 0.0472524, 1)
 texture = SubResource("GradientTexture2D_3kxlg")
 metadata/_edit_lock_ = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Areas/DiscoveryArea"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Areas/DiscoveryArea" unique_id=481791559]
 stream = ExtResource("14_wqmof")
 volume_db = 8.0
 pitch_scale = 0.53

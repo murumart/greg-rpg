@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://c00xiii4rkusv"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://c00xiii4rkusv"]
 
 [ext_resource type="Texture2D" uid="uid://m5l4uksf8b6b" path="res://sprites/characters/battle/east/spr_businesschimney.png" id="1_fpl8a"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_rnyux"]
@@ -9,7 +9,6 @@ region = Rect2(12, 0, 22, 22)
 
 [resource]
 script = ExtResource("2_rnyux")
-name_in_file = &""
 name = "casual"
 info = "they're taking a break."
 portrait = SubResource("AtlasTexture_rnyux")
@@ -18,13 +17,8 @@ health = 91.0
 max_magic = 120.0
 magic = 120.0
 level = 72
-experience = 0
 attack = 74.0
 defense = 76.0
 speed = 63.0
-defeated_characters = {}
 inventory = Array[String](["cigarette", "cool_jacket", "egg_cooked", "hairdryer", "sleepy_flower"])
 spirits = Array[String](["personally", "jglove"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

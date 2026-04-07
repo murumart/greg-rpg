@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://bkm11chhd6lgw"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bkm11chhd6lgw"]
 
 [ext_resource type="Texture2D" uid="uid://dtx7rwsmgevy1" path="res://sprites/characters/overworld/armours/spr_mail_hat.png" id="1_c1cxb"]
 

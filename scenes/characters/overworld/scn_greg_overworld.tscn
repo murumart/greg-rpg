@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dx3mkrjbqpref"]
+[gd_scene format=3 uid="uid://dx3mkrjbqpref"]
 
 [ext_resource type="Script" uid="uid://bnlu8lmcm3tre" path="res://scenes/characters/overworld/scr_player_overworld.gd" id="1_gx1l0"]
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="2_y11nw"]
@@ -148,16 +148,16 @@ size = Vector2(6, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5a0v"]
 size = Vector2(4, 4)
 
-[node name="Greg" type="CharacterBody2D" groups=["players", "save_me"]]
+[node name="Greg" type="CharacterBody2D" unique_id=673837462 groups=["players", "save_me"]]
 collision_layer = 2
 collision_mask = 1033
 motion_mode = 1
 safe_margin = 0.5
 script = ExtResource("1_gx1l0")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=275320516]
 
-[node name="Sprite" type="AnimatedSprite2D" parent="CanvasGroup"]
+[node name="Sprite" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=1258795002]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -8)
@@ -166,53 +166,53 @@ animation = &"walk_down"
 autoplay = "walk_down"
 frame_progress = 0.265417
 
-[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup" unique_id=641956679]
 offset_left = -15.0
 offset_top = -21.0
 offset_right = 15.0
 offset_bottom = 9.0
 color = Color(0.521569, 0, 0, 0)
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1450665706]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_l6efe")
 debug_color = Color(0.560784, 1, 1, 0.419608)
 
-[node name="InteractionRay" type="RayCast2D" parent="."]
+[node name="InteractionRay" type="RayCast2D" parent="." unique_id=524872902]
 self_modulate = Color(1, 0, 1, 1)
 target_position = Vector2(0, 8)
 collision_mask = 5
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="ArmorLayer" type="AnimatedSprite2D" parent="."]
+[node name="ArmorLayer" type="AnimatedSprite2D" parent="." unique_id=2092349774]
 visible = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_58jt5")
 animation = &"walk_down"
 
-[node name="Skateboard" type="Sprite2D" parent="."]
+[node name="Skateboard" type="Sprite2D" parent="." unique_id=395569064]
 visible = false
 position = Vector2(0, -6)
 texture = ExtResource("4_pnyn0")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Cellphone" type="Node2D" parent="."]
+[node name="Cellphone" type="Node2D" parent="." unique_id=2104346462]
 script = ExtResource("5_aokf4")
 
-[node name="SpecialAreaDetector" type="Area2D" parent="Cellphone"]
+[node name="SpecialAreaDetector" type="Area2D" parent="Cellphone" unique_id=1114693591]
 collision_layer = 0
 collision_mask = 64
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cellphone/SpecialAreaDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cellphone/SpecialAreaDetector" unique_id=974048772]
 shape = SubResource("RectangleShape2D_c5a0v")
 
-[node name="Events" type="Node2D" parent="."]
+[node name="Events" type="Node2D" parent="." unique_id=1663906285]
 script = ExtResource("6_qsmj6")
 
-[node name="EventTimer" type="Timer" parent="Events"]
+[node name="EventTimer" type="Timer" parent="Events" unique_id=1867439146]
 autostart = true
 
 [connection signal="timeout" from="Events/EventTimer" to="Events" method="_timer_tick"]

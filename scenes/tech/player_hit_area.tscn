@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsfbdos2ow8xt"]
+[gd_scene format=3 uid="uid://bsfbdos2ow8xt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yuoru"]
 radius = 2.0
 height = 6.0
 
-[node name="HitArea" type="Area2D"]
+[node name="HitArea" type="Area2D" unique_id=1115703336]
 collision_layer = 0
 collision_mask = 16
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1922433797]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_yuoru")

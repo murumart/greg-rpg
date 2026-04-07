@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://gf0e4l83w2w5"]
+[gd_scene format=3 uid="uid://gf0e4l83w2w5"]
 
 [ext_resource type="PackedScene" uid="uid://bklkimtl8kx7k" path="res://scenes/vfx/scn_vfx_xattack.tscn" id="1_cbwgv"]
 
@@ -449,7 +449,7 @@ tracks/12/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2d2l"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cbwgv"]
 resource_local_to_scene = true
 _data = {
 &"RESET": SubResource("Animation_jyugo"),
@@ -460,26 +460,24 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_pjw70"]
 radius = 18.1108
 
-[node name="VfxXAttack" instance=ExtResource("1_cbwgv")]
+[node name="VfxXAttack" unique_id=1479688896 instance=ExtResource("1_cbwgv")]
 
-[node name="Strike" parent="." index="0"]
+[node name="Strike" parent="." index="0" unique_id=1988049100]
 volume_db = -4.0
 
-[node name="Pre" parent="." index="1"]
+[node name="Pre" parent="." index="1" unique_id=1511694784]
 volume_db = -6.0
 
-[node name="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_u2d2l")
-}
-autoplay = "default_2"
+[node name="AnimationPlayer" parent="." index="5" unique_id=1360117823]
+libraries/ = SubResource("AnimationLibrary_cbwgv")
+autoplay = &"default_2"
 
-[node name="Destruction" type="Area2D" parent="." index="8"]
+[node name="Destruction" type="Area2D" parent="." index="8" unique_id=1633411413]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 metadata/damage = 40.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Destruction" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Destruction" index="0" unique_id=1083327114]
 shape = SubResource("CircleShape2D_pjw70")
 disabled = true

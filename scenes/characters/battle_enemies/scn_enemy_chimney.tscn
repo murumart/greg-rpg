@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3w1o74iw8emv"]
+[gd_scene format=3 uid="uid://c3w1o74iw8emv"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_coexb"]
 [ext_resource type="Texture2D" uid="uid://xk3e51detlbn" path="res://sprites/characters/battle/thugs/spr_chimney.png" id="2_uixsv"]
 
-[node name="Chimney" type="Node2D"]
+[node name="Chimney" type="Node2D" unique_id=1826216066]
 script = ExtResource("1_coexb")
 effect_center = Vector2i(0, -24)
 toughness = 0.699
@@ -11,5 +11,5 @@ altruism = 0.313
 innovation = 0.501
 can_flee = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=842786235]
 texture = ExtResource("2_uixsv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cf1yig2q6wh25"]
+[gd_scene format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="Resource" uid="uid://c0ncj8xjt5dma" path="res://resources/battle_infos/grandma_bossfight.tres" id="2_2esdu"]
@@ -53,32 +53,32 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o50qe"]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" unique_id=15726611]
 script = ExtResource("1_5j3jy")
 load_options = ExtResource("2_2esdu")
 
-[node name="Camera" parent="." instance=ExtResource("2_hinxn")]
+[node name="Camera" parent="." unique_id=2074817026 instance=ExtResource("2_hinxn")]
 ignore_rotation = false
 
-[node name="Party" type="Node2D" parent="."]
+[node name="Party" type="Node2D" parent="." unique_id=1363905819]
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=1147273559]
 script = ExtResource("4_3v3ux")
 radius = 110.0
 instant = false
 
-[node name="Background" type="Node2D" parent="."]
+[node name="Background" type="Node2D" parent="." unique_id=1090135808]
 z_index = -88
 position = Vector2(-80, -60)
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=738276205]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 120.0
 theme = ExtResource("3_v2dlj")
 
-[node name="MessageContainer" parent="UI" instance=ExtResource("4_vhvdj")]
+[node name="MessageContainer" parent="UI" unique_id=1191500573 instance=ExtResource("4_vhvdj")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.0
@@ -87,20 +87,20 @@ offset_right = 153.0
 offset_bottom = 33.0
 life_time = 1.5
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="Panel" type="Panel" parent="UI" unique_id=1698590563]
 layout_mode = 0
 offset_top = 76.0
 offset_right = 160.0
 offset_bottom = 120.0
 
-[node name="ScreenMainActions" type="Control" parent="UI/Panel"]
+[node name="ScreenMainActions" type="Control" parent="UI/Panel" unique_id=1067514864]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 44.0
 
-[node name="CurrentInfo" parent="UI/Panel/ScreenMainActions" instance=ExtResource("7_is2uq")]
+[node name="CurrentInfo" parent="UI/Panel/ScreenMainActions" unique_id=1770639848 instance=ExtResource("7_is2uq")]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -109,45 +109,45 @@ offset_top = 1.0
 offset_right = 99.0
 offset_bottom = 25.0
 
-[node name="Portrait" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="0"]
+[node name="Portrait" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="0" unique_id=746040360]
 offset_left = 2.0
 offset_right = 24.0
 texture = ExtResource("5_kl5pr")
 
-[node name="Name" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="1"]
+[node name="Name" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="1" unique_id=843195472]
 offset_left = -90.0
 offset_top = 56.0
 offset_right = -60.0
 offset_bottom = 67.0
 
-[node name="HealthBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="3"]
+[node name="HealthBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="3" unique_id=1742712135]
 self_modulate = Color(1, 1, 1, 0.388235)
 offset_left = 43.0
 offset_top = 25.0
 offset_right = 116.0
 offset_bottom = 31.0
 
-[node name="MagicBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="4"]
+[node name="MagicBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="4" unique_id=1790922365]
 self_modulate = Color(1, 1, 1, 0.388235)
 offset_left = 43.0
 offset_top = 33.0
 offset_right = 116.0
 offset_bottom = 39.0
 
-[node name="WaitBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="5"]
+[node name="WaitBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="5" unique_id=1467458791]
 offset_left = -90.0
 offset_top = 65.0
 offset_right = -60.0
 offset_bottom = 67.0
 
-[node name="AnimalBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="6"]
+[node name="AnimalBar" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="6" unique_id=1566308253]
 visible = false
 
-[node name="EffectsContainer" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="8"]
+[node name="EffectsContainer" parent="UI/Panel/ScreenMainActions/CurrentInfo" index="8" unique_id=1776973605]
 offset_left = 92.0
 offset_right = 127.0
 
-[node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+[node name="DescriptionText" type="RichTextLabel" parent="UI/Panel/ScreenMainActions" unique_id=1349387735]
 unique_name_in_owner = true
 show_behind_parent = true
 layout_mode = 0
@@ -157,7 +157,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_t32me")
 text = "descriptions go here"
 scroll_active = false
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="UI/Panel/ScreenMainActions"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI/Panel/ScreenMainActions" unique_id=1943631342]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
@@ -167,7 +167,7 @@ offset_bottom = 42.0
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
+[node name="AttackButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer" unique_id=1069278023]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -182,7 +182,7 @@ clip_text = true
 script = ExtResource("4_ht2pp")
 description = "go in with your %s"
 
-[node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
+[node name="SpiritButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer" unique_id=54156846]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -197,7 +197,7 @@ clip_text = true
 script = ExtResource("4_ht2pp")
 description = "maybe magic solves this"
 
-[node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer"]
+[node name="ItemButton" type="Button" parent="UI/Panel/ScreenMainActions/ButtonsContainer" unique_id=1896741926]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -212,7 +212,7 @@ clip_text = true
 script = ExtResource("4_ht2pp")
 description = "dig through your pockets"
 
-[node name="StatusEffectsList" type="VBoxContainer" parent="UI/Panel/ScreenMainActions"]
+[node name="StatusEffectsList" type="VBoxContainer" parent="UI/Panel/ScreenMainActions" unique_id=252475876]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 44.0
@@ -220,22 +220,22 @@ offset_right = 163.0
 offset_bottom = 110.0
 theme_override_constants/separation = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/ScreenMainActions/StatusEffectsList"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/ScreenMainActions/StatusEffectsList" unique_id=392720982]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer" unique_id=426338777]
 layout_mode = 2
 texture = SubResource("AtlasTexture_sfnon")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/Panel/ScreenMainActions/StatusEffectsList/HBoxContainer" unique_id=2139239813]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "inspiration lvl 33 for 33 turns"
 clip_text = true
 
-[node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+[node name="CharInfo1" type="RichTextLabel" parent="UI/Panel/ScreenMainActions" unique_id=564835822]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 45.0
@@ -248,7 +248,7 @@ lvl 3"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CharInfo2" type="RichTextLabel" parent="UI/Panel/ScreenMainActions"]
+[node name="CharInfo2" type="RichTextLabel" parent="UI/Panel/ScreenMainActions" unique_id=1762168482]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 86.0
@@ -264,7 +264,7 @@ sp: 100/100"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ScreenListSelect" type="Control" parent="UI/Panel"]
+[node name="ScreenListSelect" type="Control" parent="UI/Panel" unique_id=1512823872]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -272,7 +272,7 @@ anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 60.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenListSelect"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenListSelect" unique_id=2136486971]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -282,18 +282,18 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer"]
+[node name="ListContainer" type="HBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer" unique_id=1739006831]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
+[node name="Left" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer" unique_id=1016262797]
 layout_mode = 2
 
-[node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer"]
+[node name="Right" type="VBoxContainer" parent="UI/Panel/ScreenListSelect/ScrollContainer/ListContainer" unique_id=225571184]
 layout_mode = 2
 
-[node name="SelectedGuy" parent="UI/Panel/ScreenListSelect" instance=ExtResource("7_is2uq")]
+[node name="SelectedGuy" parent="UI/Panel/ScreenListSelect" unique_id=842283218 instance=ExtResource("7_is2uq")]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 164.0
@@ -301,48 +301,48 @@ offset_top = 3.0
 offset_right = 225.0
 offset_bottom = 59.0
 
-[node name="Portrait" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="0"]
+[node name="Portrait" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="0" unique_id=746040360]
 offset_left = -28.0
 offset_top = 28.0
 offset_right = -6.0
 offset_bottom = 50.0
 
-[node name="Name" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="1"]
+[node name="Name" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="1" unique_id=843195472]
 offset_left = 2.0
 offset_right = 75.0
 
-[node name="HealthBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="3"]
+[node name="HealthBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="3" unique_id=1742712135]
 offset_left = -163.0
 offset_top = 51.0
 offset_right = -5.0
 offset_bottom = 53.0
 
-[node name="MagicBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="4"]
+[node name="MagicBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="4" unique_id=1790922365]
 offset_left = -163.0
 offset_top = 54.0
 offset_right = -5.0
 offset_bottom = 56.0
 
-[node name="WaitBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="5"]
+[node name="WaitBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="5" unique_id=1467458791]
 layout_mode = 0
 offset_left = -163.0
 offset_top = 53.0
 offset_right = -5.0
 offset_bottom = 54.0
 
-[node name="AnimalBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="6"]
+[node name="AnimalBar" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="6" unique_id=1566308253]
 offset_left = -163.0
 offset_top = 50.0
 offset_right = -5.0
 offset_bottom = 51.0
 
-[node name="EffectsContainer" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="8"]
+[node name="EffectsContainer" parent="UI/Panel/ScreenListSelect/SelectedGuy" index="8" unique_id=1776973605]
 offset_left = -28.0
 offset_top = 28.0
 offset_right = -6.0
 offset_bottom = 50.0
 
-[node name="ScreenItemSelect" type="Control" parent="UI/Panel"]
+[node name="ScreenItemSelect" type="Control" parent="UI/Panel" unique_id=583503755]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -350,7 +350,7 @@ anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 60.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenItemSelect"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Panel/ScreenItemSelect" unique_id=1457682748]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -360,11 +360,11 @@ follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="List" type="VBoxContainer" parent="UI/Panel/ScreenItemSelect/ScrollContainer"]
+[node name="List" type="VBoxContainer" parent="UI/Panel/ScreenItemSelect/ScrollContainer" unique_id=1357772282]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ItemInfoLabel" type="RichTextLabel" parent="UI/Panel/ScreenItemSelect"]
+[node name="ItemInfoLabel" type="RichTextLabel" parent="UI/Panel/ScreenItemSelect" unique_id=1376178758]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 1.0
@@ -373,11 +373,11 @@ offset_bottom = 59.0
 bbcode_enabled = true
 scroll_active = false
 
-[node name="AutoscrollComponent" type="Node" parent="UI/Panel/ScreenItemSelect/ItemInfoLabel" node_paths=PackedStringArray("target")]
+[node name="AutoscrollComponent" type="Node" parent="UI/Panel/ScreenItemSelect/ItemInfoLabel" unique_id=266466998 node_paths=PackedStringArray("target")]
 script = ExtResource("11_jcqcf")
 target = NodePath("..")
 
-[node name="ScreenPartyInfo" type="Control" parent="UI/Panel"]
+[node name="ScreenPartyInfo" type="Control" parent="UI/Panel" unique_id=292557908]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -387,7 +387,7 @@ offset_top = -1.0
 offset_right = 159.0
 offset_bottom = 26.0
 
-[node name="Container" type="HBoxContainer" parent="UI/Panel/ScreenPartyInfo"]
+[node name="Container" type="HBoxContainer" parent="UI/Panel/ScreenPartyInfo" unique_id=1309037064]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 1.0
@@ -395,16 +395,16 @@ offset_right = 158.0
 offset_bottom = 26.0
 theme_override_constants/separation = -4
 
-[node name="MemberInfo" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+[node name="MemberInfo" parent="UI/Panel/ScreenPartyInfo/Container" unique_id=1151534721 instance=ExtResource("7_is2uq")]
 layout_mode = 2
 
-[node name="MemberInfo2" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+[node name="MemberInfo2" parent="UI/Panel/ScreenPartyInfo/Container" unique_id=1062884955 instance=ExtResource("7_is2uq")]
 layout_mode = 2
 
-[node name="MemberInfo3" parent="UI/Panel/ScreenPartyInfo/Container" instance=ExtResource("7_is2uq")]
+[node name="MemberInfo3" parent="UI/Panel/ScreenPartyInfo/Container" unique_id=1291408481 instance=ExtResource("7_is2uq")]
 layout_mode = 2
 
-[node name="ScreenSpiritName" type="Control" parent="UI/Panel"]
+[node name="ScreenSpiritName" type="Control" parent="UI/Panel" unique_id=972928220]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
@@ -412,7 +412,7 @@ offset_top = -39.0
 offset_right = 160.0
 offset_bottom = 1.0
 
-[node name="SpiritName" type="LineEdit" parent="UI/Panel/ScreenSpiritName"]
+[node name="SpiritName" type="LineEdit" parent="UI/Panel/ScreenSpiritName" unique_id=1325420620]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 3.0
@@ -429,12 +429,12 @@ placeholder_text = "speak a name"
 alignment = 1
 max_length = 28
 context_menu_enabled = false
-virtual_keyboard_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
+virtual_keyboard_enabled = false
 
-[node name="SpiritSpeakTimerProgress" type="ProgressBar" parent="UI/Panel/ScreenSpiritName"]
+[node name="SpiritSpeakTimerProgress" type="ProgressBar" parent="UI/Panel/ScreenSpiritName" unique_id=29571996]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 34.0
@@ -443,12 +443,12 @@ offset_bottom = 35.0
 value = 100.0
 show_percentage = false
 
-[node name="SpiritSpeakTimer" type="Timer" parent="UI/Panel/ScreenSpiritName"]
+[node name="SpiritSpeakTimer" type="Timer" parent="UI/Panel/ScreenSpiritName" unique_id=519276673]
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 
-[node name="ScreenEnd" type="Control" parent="UI/Panel"]
+[node name="ScreenEnd" type="Control" parent="UI/Panel" unique_id=63004720]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
@@ -457,7 +457,7 @@ offset_top = 1.0
 offset_right = 159.0
 offset_bottom = 59.0
 
-[node name="VictoryText" type="RichTextLabel" parent="UI/Panel/ScreenEnd"]
+[node name="VictoryText" type="RichTextLabel" parent="UI/Panel/ScreenEnd" unique_id=1369858998]
 unique_name_in_owner = true
 layout_mode = 0
 offset_top = 27.0
@@ -469,27 +469,27 @@ text = "
 all enemies defeated.[/center]"
 visible_characters_behavior = 1
 
-[node name="ScreenDanceBattle" parent="UI/Panel" instance=ExtResource("9_sbskt")]
+[node name="ScreenDanceBattle" parent="UI/Panel" unique_id=1418694077 instance=ExtResource("9_sbskt")]
 visible = false
 layout_mode = 0
 offset_top = 0.0
 offset_bottom = 44.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI" unique_id=955799989]
 stream = ExtResource("13_putf3")
 max_polyphony = 66
 bus = &"ECHO"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1795210240]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 fill_mode = 4
 
-[node name="SlowUpdateTimer" type="Timer" parent="."]
+[node name="SlowUpdateTimer" type="Timer" parent="." unique_id=1866048355]
 wait_time = 0.07
 
-[node name="CheatNode" type="Node" parent="."]
+[node name="CheatNode" type="Node" parent="." unique_id=1890294797]
 script = ExtResource("10_7y584")
 level_gain = 85
 new_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts", &"personally", &"roundup", &"mooncity"])

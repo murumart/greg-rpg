@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://3p4cs4edb71c"]
+[gd_scene format=3 uid="uid://3p4cs4edb71c"]
 
 [ext_resource type="Texture2D" uid="uid://bauv3inxqco72" path="res://sprites/characters/battle/cats/spr_cat.png" id="1_55253"]
 [ext_resource type="AudioStream" uid="uid://dem0gseb3kqqo" path="res://sounds/spirit/catcall.ogg" id="1_g0phl"]
@@ -152,22 +152,20 @@ height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Catcall" type="Node2D"]
+[node name="Catcall" type="Node2D" unique_id=4774184]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_25303")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1136970189]
+libraries/ = SubResource("AnimationLibrary_25303")
+autoplay = &"new_animation"
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1164026872]
 texture = SubResource("GradientTexture2D_7ghje")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=792699023]
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("1_55253")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 17)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=231666805]

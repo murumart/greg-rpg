@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm0hmv1y15g4u"]
+[gd_scene format=3 uid="uid://dm0hmv1y15g4u"]
 
 [ext_resource type="AudioStream" uid="uid://bhr82d56ke3am" path="res://sounds/car_overrun.ogg" id="1_grtvj"]
 [ext_resource type="Texture2D" uid="uid://kw4jfrj8ng6v" path="res://sprites/characters/battle/east/spr_scooterer.png" id="2_grtvj"]
@@ -151,22 +151,20 @@ gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_uu8p4")
 color_ramp = SubResource("GradientTexture1D_ijpnj")
 
-[node name="Overrun" type="Node2D"]
+[node name="Overrun" type="Node2D" unique_id=1081052609]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xwjq8")
-}
-autoplay = "defauly"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2025999784]
+libraries/ = SubResource("AnimationLibrary_xwjq8")
+autoplay = &"defauly"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=904246153]
 position = Vector2(-132, 0)
 scale = Vector2(1, 0.333333)
 texture = ExtResource("2_grtvj")
 flip_h = true
 region_rect = Rect2(0, 0, 28, 14)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=1107025808]
 position = Vector2(-13, 3)
 emitting = false
 amount = 128
@@ -176,16 +174,16 @@ fixed_fps = 60
 visibility_rect = Rect2(-300, -300, 300, 300)
 process_material = SubResource("ParticleProcessMaterial_b6mds")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1769157517]
 
-[node name="DustPuff" parent="." instance=ExtResource("4_jqcj0")]
+[node name="DustPuff" parent="." unique_id=765108598 instance=ExtResource("4_jqcj0")]
 
-[node name="DustPuff2" parent="." instance=ExtResource("4_jqcj0")]
+[node name="DustPuff2" parent="." unique_id=1021200395 instance=ExtResource("4_jqcj0")]
 
-[node name="DustPuff3" parent="." instance=ExtResource("4_jqcj0")]
+[node name="DustPuff3" parent="." unique_id=975614787 instance=ExtResource("4_jqcj0")]
 
-[node name="BangSpark" parent="." instance=ExtResource("5_skxh3")]
+[node name="BangSpark" parent="." unique_id=2083470792 instance=ExtResource("5_skxh3")]
 
-[node name="BangSpark2" parent="." instance=ExtResource("5_skxh3")]
+[node name="BangSpark2" parent="." unique_id=1406139316 instance=ExtResource("5_skxh3")]
 
-[node name="BangSpark3" parent="." instance=ExtResource("5_skxh3")]
+[node name="BangSpark3" parent="." unique_id=1508085323 instance=ExtResource("5_skxh3")]

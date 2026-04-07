@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=6 format=3 uid="uid://ce5gslrnwyknl"]
+[gd_resource type="Resource" script_class="Spirit" format=3 uid="uid://ce5gslrnwyknl"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_5lcsm"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_gx57i"]
@@ -12,40 +12,16 @@ duration = 8.0
 
 [sub_resource type="Resource" id="Resource_higgi"]
 script = ExtResource("1_gx57i")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 4
 effects = Array[ExtResource("1_5lcsm")]([SubResource("Resource_0iqwv")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_pw36q")
-name_in_file = &""
 name = &"radiation attack"
 description = "oops! all radiation"
 animation = &"radiation_attack"
-use_animation = &""
-receive_animation = &""
 cost = 99
 use = 3
 reach = 2
 payload_reception_count = 8
-payload_reception_wait = 0.0
-wait = 0.0
-wait_before = 0.0
 payload = SubResource("Resource_higgi")

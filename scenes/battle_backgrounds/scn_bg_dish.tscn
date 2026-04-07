@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3cd078pknkxl"]
+[gd_scene format=3 uid="uid://3cd078pknkxl"]
 
 [ext_resource type="Texture2D" uid="uid://bl0ht3qpuhtrf" path="res://sprites/vfx/spr_lake_mist.png" id="1_nv7y5"]
 
@@ -50,9 +50,9 @@ fractal_ping_pong_strength = 24.61
 width = 128
 height = 128
 generate_mipmaps = false
-seamless = true
-color_ramp = SubResource("Gradient_m2j1g")
 noise = SubResource("FastNoiseLite_x55jn")
+color_ramp = SubResource("Gradient_m2j1g")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_huapp"]
 shader = SubResource("Shader_07h0l")
@@ -83,9 +83,9 @@ turbulence_influence_max = 0.114
 turbulence_initial_displacement_min = -27.1
 turbulence_initial_displacement_max = 41.4
 
-[node name="ScnBgDish" type="Node2D"]
+[node name="ScnBgDish" type="Node2D" unique_id=93346130]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1395579418]
 material = SubResource("ShaderMaterial_huapp")
 offset_left = -11.0
 offset_top = -6.0
@@ -93,21 +93,21 @@ offset_right = 171.0
 offset_bottom = 129.0
 color = Color(0.10927, 0.115757, 0.329653, 1)
 
-[node name="Mist2" type="GPUParticles2D" parent="."]
+[node name="Mist2" type="GPUParticles2D" parent="." unique_id=99022083]
 z_as_relative = false
 position = Vector2(85, 103)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_xl7p2")
 texture = ExtResource("1_nv7y5")
 lifetime = 16.0
 preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_xl7p2")
 
-[node name="Mist" type="GPUParticles2D" parent="."]
+[node name="Mist" type="GPUParticles2D" parent="." unique_id=1264840149]
 z_as_relative = false
 position = Vector2(85, 103)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_xl7p2")
 texture = ExtResource("1_nv7y5")
 lifetime = 16.0
 preprocess = 4.0
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xl7p2")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://b1u58wec04miu"]
+[gd_resource type="Resource" script_class="ForestQuest" format=3 uid="uid://b1u58wec04miu"]
 
 [ext_resource type="Script" uid="uid://clmohrd5ib7ey" path="res://scenes/rooms/forest/forest_quest.gd" id="1_2vug6"]
 
@@ -8,6 +8,5 @@ name = "pacifist"
 description = "challenge: win a battle without laying a finger on the enemy! of course, other sources of damage still exist..."
 data_key = &"win_battle_no_attack"
 completion_value = 1
-completion_signal = &""
 glass_reward = 16
 meta_weight = 25

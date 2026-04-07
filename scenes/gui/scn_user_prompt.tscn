@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddl8nwc21ugoo"]
+[gd_scene format=3 uid="uid://ddl8nwc21ugoo"]
 
 [ext_resource type="Script" uid="uid://o55o3ei4xbvb" path="res://scenes/gui/scn_user_prompt.gd" id="1_28p0v"]
 
-[node name="UserPrompt" type="Control"]
+[node name="UserPrompt" type="Control" unique_id=242171447]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,50 +12,50 @@ grow_vertical = 2
 script = ExtResource("1_28p0v")
 metadata/_edit_lock_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=582884899]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 2.0
 offset_right = 157.0
 offset_bottom = 116.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=949308344]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1488169952]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="InstructionText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="InstructionText" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1310454145]
 unique_name_in_owner = true
 layout_mode = 2
 text = "what to do?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2034911654]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=385970794]
 layout_mode = 2
 theme_override_constants/margin_left = 1
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 1
 theme_override_constants/margin_bottom = 1
 
-[node name="OptionButtons" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="OptionButtons" type="HFlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=2127257429]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 
-[node name="TextLine" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="TextLine" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1733648632]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct74sh5jtp2j1"]
+[gd_scene format=3 uid="uid://ct74sh5jtp2j1"]
 
 [ext_resource type="AudioStream" uid="uid://d3v3ed6ei2grt" path="res://sounds/attack_sharp.ogg" id="1_8cm1h"]
 [ext_resource type="Texture2D" uid="uid://hxguedhaaixk" path="res://sprites/vfx/spr_knifeattack.png" id="1_8sk7t"]
@@ -206,23 +206,21 @@ animations = [{
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1x4fm"]
 
-[node name="VfxKnifeAttack" type="Node2D"]
+[node name="VfxKnifeAttack" type="Node2D" unique_id=665568467]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=575649479]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mri1t")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=998012759]
+libraries/ = SubResource("AnimationLibrary_mri1t")
+autoplay = &"default"
 
-[node name="Knife" type="AnimatedSprite2D" parent="."]
+[node name="Knife" type="AnimatedSprite2D" parent="." unique_id=443576823]
 material = SubResource("CanvasItemMaterial_j0ehd")
 sprite_frames = SubResource("SpriteFrames_heh4u")
 
-[node name="Knife2" type="AnimatedSprite2D" parent="Knife"]
+[node name="Knife2" type="AnimatedSprite2D" parent="Knife" unique_id=696481851]
 material = SubResource("CanvasItemMaterial_1x4fm")
 position = Vector2(-6, 7)
 sprite_frames = SubResource("SpriteFrames_heh4u")
 
-[node name="BangSpark" parent="." instance=ExtResource("3_ukjrb")]
+[node name="BangSpark" parent="." unique_id=588070621 instance=ExtResource("3_ukjrb")]

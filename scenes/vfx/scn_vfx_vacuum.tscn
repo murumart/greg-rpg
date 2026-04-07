@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhgibre44f5si"]
+[gd_scene format=3 uid="uid://dhgibre44f5si"]
 
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_0dad0"]
 [ext_resource type="AudioStream" uid="uid://bg3v2fdg4ty34" path="res://sounds/spirit/vacuum.ogg" id="2_rnas1"]
@@ -94,22 +94,20 @@ _data = {
 &"damn": SubResource("Animation_6pifo")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=2093792285]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=464595995]
 emitting = false
 amount = 128
-process_material = SubResource("ParticleProcessMaterial_3c5ms")
 texture = ExtResource("1_0dad0")
 lifetime = 0.2
 trail_enabled = true
 trail_sections = 4
 trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_3c5ms")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=368914447]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_circv")
-}
-autoplay = "damn"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1280604121]
+libraries/ = SubResource("AnimationLibrary_circv")
+autoplay = &"damn"

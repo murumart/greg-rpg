@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffectType" load_steps=8 format=3 uid="uid://byfxa4rckxhj1"]
+[gd_resource type="Resource" script_class="StatusEffectType" format=3 uid="uid://byfxa4rckxhj1"]
 
 [ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="1_5yp11"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_xevga"]
@@ -12,32 +12,10 @@ region = Rect2(12, 0, 6, 6)
 
 [sub_resource type="Resource" id="Resource_qubst"]
 script = ExtResource("3_w20ub")
-health_strength_modifier = 1.0
-magic_strength_modifier = 1.0
-health = 0.0
 health_percent = -7.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("3_gf37o")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_5yp11")
-s_id = &""
 name = "fire"
 icon = SubResource("AtlasTexture_hxf4h")
 turn_payload = SubResource("Resource_qubst")

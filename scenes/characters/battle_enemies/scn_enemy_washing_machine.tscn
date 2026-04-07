@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbl120wnwp7pm"]
+[gd_scene format=3 uid="uid://dbl120wnwp7pm"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_toy3w"]
 [ext_resource type="Texture2D" uid="uid://eyfx0y6wia" path="res://sprites/characters/battle/grandma/spr_washing_machine.png" id="2_t8jyc"]
@@ -41,20 +41,20 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx7lw"]
 size = Vector2(34, 36)
 
-[node name="WashingMachine" type="Node2D"]
+[node name="WashingMachine" type="Node2D" unique_id=2029550752]
 script = ExtResource("1_toy3w")
 toughness = 0.526
 vaimulembesus = 0.614
 gender = 1
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=1490745843]
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet" unique_id=1016890429]
 position = Vector2(0, -7)
-scale = Vector2(0.830386, 1.06804)
+scale = Vector2(0.9616141, 0.9331796)
 texture = ExtResource("2_t8jyc")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Sprite2D" unique_id=1133285405]
 position = Vector2(0, -7.44207)
 amount = 500
 amount_ratio = 0.0235
@@ -64,22 +64,22 @@ process_material = SubResource("ParticleProcessMaterial_f0mdn")
 script = SubResource("GDScript_xwdo7")
 curve = SubResource("Curve_qfaqi")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1801199588]
 collision_layer = 0
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1256296704]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_vx7lw")
 
-[node name="SinAnimator" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SinAnimator" type="Node" parent="." unique_id=1083475300 node_paths=PackedStringArray("target")]
 script = ExtResource("3_wka33")
 property_name = &"scale:y"
 target = NodePath("../Puppet/Sprite2D")
 min_value = 1.0
 max_value = 0.15
 
-[node name="SinAnimator2" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="SinAnimator2" type="Node" parent="." unique_id=1152772572 node_paths=PackedStringArray("target")]
 script = ExtResource("3_wka33")
 property_name = &"scale:x"
 target = NodePath("../Puppet/Sprite2D")
@@ -87,7 +87,7 @@ min_value = 0.895
 max_value = 0.17
 offset = 2.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1001962395]
 stream = ExtResource("5_55j3h")
 volume_db = -5.0
 pitch_scale = 0.37

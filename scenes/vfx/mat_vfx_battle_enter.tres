@@ -5,6 +5,6 @@
 [resource]
 shader = ExtResource("1_mgyld")
 shader_parameter/zoom = 1.0
-shader_parameter/white = 0.750000035625
-shader_parameter/gray = 1.0
+shader_parameter/white = 0.01
+shader_parameter/gray = 0.0
 shader_parameter/flower = 0.0

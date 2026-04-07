@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1ofiww22d6i3"]
+[gd_scene format=3 uid="uid://b1ofiww22d6i3"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_oy1h3"]
 [ext_resource type="Script" uid="uid://jvrxmv7grruv" path="res://scenes/vfx/scr_vfx_damage_number.gd" id="1_yuwj6"]
@@ -125,10 +125,10 @@ _data = {
 &"default": SubResource("Animation_2p12k")
 }
 
-[node name="DamageNumber" type="Node2D"]
+[node name="DamageNumber" type="Node2D" unique_id=1295764743]
 script = ExtResource("1_yuwj6")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1735921172]
 offset_left = -32.0
 offset_top = -3.0
 offset_right = 32.0
@@ -140,8 +140,6 @@ theme_override_font_sizes/font_size = 8
 text = "28"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_63jk0")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1347011378]
+libraries/ = SubResource("AnimationLibrary_63jk0")
+autoplay = &"default"

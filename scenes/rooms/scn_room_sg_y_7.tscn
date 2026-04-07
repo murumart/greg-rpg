@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://dhdnwsgvrmrer"]
+[gd_scene format=4 uid="uid://dhdnwsgvrmrer"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_trvx2"]
 [ext_resource type="PackedScene" uid="uid://c1wvxpth8q38v" path="res://scenes/decor/sgpuzzle/light_emitter_block.tscn" id="2_85fhe"]
@@ -159,135 +159,6 @@ initialized = true
 script = ExtResource("12_x40ce")
 
 [sub_resource type="VisualShader" id="VisualShader_p8wkl"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float time_speed = 1.0;
-
-
-// DistortionUVAnimated
-vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
-	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
-	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
-	return _uv_dist;
-}
-
-void fragment() {
-// Input:10
-	vec4 n_out10p0 = COLOR;
-
-
-// FloatParameter:12
-	float n_out12p0 = time_speed;
-
-
-// Input:7
-	float n_out7p0 = TIME;
-
-
-	vec2 n_out9p0;
-// DistortionUVAnimated:9
-	float n_in9p1 = 0.20000;
-	float n_in9p2 = 0.00000;
-	float n_in9p3 = 0.05000;
-	float n_in9p4 = 0.02000;
-	{
-		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
-	}
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(TEXTURE, n_out9p0);
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out10p0 * n_out8p0;
-
-
-// Input:18
-	vec2 n_out18p0 = UV;
-
-
-	vec2 n_out23p0;
-// Expression:23
-	n_out23p0 = vec2(0.0, 0.0);
-	{
-		n_out23p0 = vec2(
-			sin(n_out7p0),
-			cos(n_out7p0)
-		);
-	}
-
-
-	vec2 n_out24p0;
-// Remap:24
-	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
-	vec2 n_in24p2 = vec2(1.00000, 1.00000);
-	vec2 n_in24p3 = vec2(0.90000, 0.90000);
-	vec2 n_in24p4 = vec2(1.10000, 1.10000);
-	{
-		vec2 __input_range = n_in24p2 - n_in24p1;
-		vec2 __output_range = n_in24p4 - n_in24p3;
-		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
-	}
-
-
-// VectorOp:19
-	vec2 n_out19p0 = n_out18p0 * n_out24p0;
-
-
-	vec4 n_out17p0;
-// Texture2D:17
-	n_out17p0 = texture(TEXTURE, n_out19p0);
-
-
-// Vector4Constant:16
-	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
-
-
-// VectorOp:15
-	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
-
-
-	vec3 n_out11p0;
-// ColorOp:11
-	{
-		float base = vec3(n_out14p0.xyz).x;
-		float blend = vec3(n_out15p0.xyz).x;
-		if (base < 0.5) {
-			n_out11p0.x = (base * (blend + 0.5));
-		} else {
-			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).y;
-		float blend = vec3(n_out15p0.xyz).y;
-		if (base < 0.5) {
-			n_out11p0.y = (base * (blend + 0.5));
-		} else {
-			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).z;
-		float blend = vec3(n_out15p0.xyz).z;
-		if (base < 0.5) {
-			n_out11p0.z = (base * (blend + 0.5));
-		} else {
-			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-
-
-// Output:0
-	COLOR.rgb = n_out11p0;
-
-
-}
-"
-graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -349,12 +220,12 @@ initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_0f2ra")
 
-[node name="SgY7" instance=ExtResource("1_trvx2")]
+[node name="SgY7" unique_id=1585078967 instance=ExtResource("1_trvx2")]
 
 [node name="COLLISION" parent="COLLISION" index="0"]
 tile_map_data = PackedByteArray("AAD5//3/AAAPAA8AAAD6//3/AAAPAA8AAAD7//3/AAAPAA8AAAD8//3/AAAPAA8AAAD9//3/AAAPAA8AAAD+//3/AAAPAA8AAAD///3/AAAPAA8AAAAAAP3/AAAPAA8AAAABAP3/AAAPAA8AAAACAP3/AAAPAA8AAAADAP3/AAAPAA8AAAAEAP3/AAAPAA8AAAAFAP3/AAAPAA8AAAAGAP3/AAAPAA8AAAAHAP3/AAAPAA8AAAAIAP3/AAAPAA8AAAAJAP3/AAAPAA8AAAAKAP3/AAAPAA8AAAANAP3/AAAPAA8AAAD5//7/AAAPAA8AAAD5////AAAPAA8AAAD5/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD8/wAAAAAPAA8AAAD9/wAAAAAPAA8AAAD+/wAAAAAPAA8AAAD//wAAAAAPAA8AAAAIAAAAAAAPAA8AAAAHAAAAAAAPAA8AAAAGAAAAAAAPAA8AAAAFAAAAAAAPAA8AAAAEAAAAAAAPAA8AAAADAAAAAAAPAA8AAAACAAAAAAAPAA8AAAABAAAAAAAPAA8AAAAAAAAAAAAPAA8AAAAJAAAAAAAPAA8AAAAKAAAAAAAPAA8AAAAKAAEAAAAPAA8AAAAKAAIAAAAPAA8AAAAKAAMAAAAPAA8AAAAKAAQAAAAPAA8AAAAKAAUAAAAPAA8AAAAKAAYAAAAPAA8AAAAKAAcAAAAPAA8AAAAJAAcAAAAPAA8AAAAIAAcAAAAPAA8AAAAHAAcAAAAPAA8AAAAGAAcAAAAPAA8AAAAFAAcAAAAPAA8AAAAEAAcAAAAPAA8AAAAEAAgAAAAPAA8AAAAEAAkAAAAPAA8AAAAEAAoAAAAPAA8AAAAEAAsAAAAPAA8AAAAEAAwAAAAPAA8AAAAEAA0AAAAPAA8AAAAEAA4AAAAPAA8AAAAEAA8AAAAPAA8AAAAEABAAAAAPAA8AAAAEABEAAAAPAA8AAAAFABEAAAAPAA8AAAAGABEAAAAPAA8AAAAHABEAAAAPAA8AAAAIABEAAAAPAA8AAAAJABEAAAAPAA8AAAAKABEAAAAPAA8AAAALABEAAAAPAA8AAAAMABEAAAAPAA8AAAANABEAAAAPAA8AAAAOABEAAAAPAA8AAAAPABEAAAAPAA8AAAAQABEAAAAPAA8AAAARABEAAAAPAA8AAAASABEAAAAPAA8AAAATABEAAAAPAA8AAAATAAcAAAAPAA8AAAATAAgAAAAPAA8AAAATAAkAAAAPAA8AAAATAAoAAAAPAA8AAAATAAsAAAAPAA8AAAATAAwAAAAPAA8AAAATAA0AAAAPAA8AAAATAA4AAAAPAA8AAAATAA8AAAAPAA8AAAATABAAAAAPAA8AAAANAAcAAAAPAA8AAAAOAAcAAAAPAA8AAAAPAAcAAAAPAA8AAAAQAAcAAAAPAA8AAAARAAcAAAAPAA8AAAASAAcAAAAPAA8AAAANAP7/AAAPAA8AAAANAP//AAAPAA8AAAANAAAAAAAPAA8AAAANAAEAAAAPAA8AAAANAAIAAAAPAA8AAAANAAMAAAAPAA8AAAANAAQAAAAPAA8AAAANAAUAAAAPAA8AAAANAAYAAAAPAA8AAAA=")
 
-[node name="DoorBlocker" type="CollisionShape2D" parent="COLLISION" index="1"]
+[node name="DoorBlocker" type="CollisionShape2D" parent="COLLISION" index="1" unique_id=1868540856]
 position = Vector2(192, -40.5)
 shape = SubResource("RectangleShape2D_m3gr1")
 
@@ -379,77 +250,77 @@ gate_id = &"sg-y-71"
 extents = Vector2i(12, 4)
 spawnpoint = Vector2i(0, 8)
 
-[node name="Cat2" parent="Areas" index="2" instance=ExtResource("2_oak1r")]
+[node name="Cat2" parent="Areas" index="2" unique_id=2054971517 instance=ExtResource("2_oak1r")]
 position = Vector2(168, -30)
 default_lines = Array[StringName]([&"sg_7_warning"])
 
-[node name="Cat3" parent="Areas" index="3" instance=ExtResource("2_oak1r")]
+[node name="Cat3" parent="Areas" index="3" unique_id=2001173656 instance=ExtResource("2_oak1r")]
 position = Vector2(108, 168)
 default_lines = Array[StringName]([&"sg_7_puzzle_hint", &"sg_7_puzzle_hint_2"])
 
-[node name="DoorArea" parent="Areas" index="4" node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xujwb")]
+[node name="DoorArea" parent="Areas" index="4" unique_id=1073313921 node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xujwb")]
 position = Vector2(192, -27)
 gate_id = &"sg-y-71"
 spawn_point = NodePath(".")
 fail_dialogue = "door_locked"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DoorArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DoorArea" index="0" unique_id=2026573421]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_xujwb")
 
-[node name="SgResetCat" parent="Areas" index="5" node_paths=PackedStringArray("reset_saves") instance=ExtResource("4_oak1r")]
+[node name="SgResetCat" parent="Areas" index="5" unique_id=445632771 node_paths=PackedStringArray("reset_saves") instance=ExtResource("4_oak1r")]
 position = Vector2(295, 131)
 reset_saves = [NodePath("../../Puzzle1/SaveNodePositions")]
 
-[node name="Puzzle1" type="Node2D" parent="." index="6"]
+[node name="Puzzle1" type="Node2D" parent="." index="6" unique_id=1738596026]
 y_sort_enabled = true
 position = Vector2(192, 160)
 script = SubResource("GDScript_32ji7")
 battle_info = ExtResource("4_w1ig4")
 
-[node name="SaveNodePositions" type="Node" parent="Puzzle1" index="0" node_paths=PackedStringArray("save_these")]
+[node name="SaveNodePositions" type="Node" parent="Puzzle1" index="0" unique_id=75124465 node_paths=PackedStringArray("save_these")]
 script = ExtResource("5_m3gr1")
 save_these = [NodePath("../LightRedirector"), NodePath("../LightRedirector2"), NodePath("../LightRedirector5"), NodePath("../LightRedirector6"), NodePath("../LightRedirector3"), NodePath("../LightRedirector4")]
 metadata/_custom_type_script = "uid://c6gv482owpujf"
 
-[node name="Obstacle" parent="Puzzle1" index="1" instance=ExtResource("2_85fhe")]
+[node name="Obstacle" parent="Puzzle1" index="1" unique_id=729254275 instance=ExtResource("2_85fhe")]
 position = Vector2(0, 73)
 my_color = Color(1, 0.415686, 0.419608, 1)
 emitting = false
 direction = 2
 role = 1
 
-[node name="Obstacle2" parent="Puzzle1" index="2" instance=ExtResource("2_85fhe")]
+[node name="Obstacle2" parent="Puzzle1" index="2" unique_id=1975408513 instance=ExtResource("2_85fhe")]
 position = Vector2(-16, 10)
 my_color = Color(0.392157, 0.415686, 0.419608, 1)
 emitting = false
 direction = 1
 role = 1
 
-[node name="Obstacle3" parent="Puzzle1" index="3" instance=ExtResource("2_85fhe")]
+[node name="Obstacle3" parent="Puzzle1" index="3" unique_id=431653242 instance=ExtResource("2_85fhe")]
 position = Vector2(32, 42)
 my_color = Color(0, 0, 0.501961, 1)
 emitting = false
 direction = 1
 role = 1
 
-[node name="LightEmitterBlock2" parent="Puzzle1" index="4" instance=ExtResource("2_85fhe")]
+[node name="LightEmitterBlock2" parent="Puzzle1" index="4" unique_id=1392456382 instance=ExtResource("2_85fhe")]
 position = Vector2(-103, 58)
 my_color = Color(0, 0.533333, 0, 1)
 
-[node name="LightEmitterBlock3" parent="Puzzle1" index="5" instance=ExtResource("2_85fhe")]
+[node name="LightEmitterBlock3" parent="Puzzle1" index="5" unique_id=388573871 instance=ExtResource("2_85fhe")]
 position = Vector2(-88, 26)
 my_color = Color(0, 0.533333, 0, 1)
 
-[node name="LightEmitterBlock4" parent="Puzzle1" index="6" instance=ExtResource("2_85fhe")]
+[node name="LightEmitterBlock4" parent="Puzzle1" index="6" unique_id=1734309461 instance=ExtResource("2_85fhe")]
 position = Vector2(-96, 42)
 my_color = Color(0.533333, 0, 0, 1)
 
-[node name="LightEmitterBlock5" parent="Puzzle1" index="7" instance=ExtResource("2_85fhe")]
+[node name="LightEmitterBlock5" parent="Puzzle1" index="7" unique_id=551952175 instance=ExtResource("2_85fhe")]
 position = Vector2(-80, 10)
 my_color = Color(0.533333, 0, 0, 1)
 
-[node name="LightRedirector" parent="Puzzle1" index="8" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector" parent="Puzzle1" index="8" unique_id=1520999030 instance=ExtResource("2_85fhe")]
 position = Vector2(32, 74)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -457,14 +328,14 @@ direction = 1
 role = 1
 movable = true
 
-[node name="LightRedirector2" parent="Puzzle1" index="9" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector2" parent="Puzzle1" index="9" unique_id=1255653202 instance=ExtResource("2_85fhe")]
 position = Vector2(64, 74)
 my_color = Color(0, 0, 0, 1)
 emitting = false
 role = 1
 movable = true
 
-[node name="LightRedirector5" parent="Puzzle1" index="10" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector5" parent="Puzzle1" index="10" unique_id=409893516 instance=ExtResource("2_85fhe")]
 position = Vector2(48, -6)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -472,7 +343,7 @@ direction = 1
 role = 1
 movable = true
 
-[node name="LightRedirector6" parent="Puzzle1" index="11" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector6" parent="Puzzle1" index="11" unique_id=1104630181 instance=ExtResource("2_85fhe")]
 position = Vector2(32, -6)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -480,7 +351,7 @@ direction = 1
 role = 1
 movable = true
 
-[node name="LightRedirector3" parent="Puzzle1" index="12" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector3" parent="Puzzle1" index="12" unique_id=1194765149 instance=ExtResource("2_85fhe")]
 position = Vector2(64, 42)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -488,7 +359,7 @@ direction = -1
 role = 1
 movable = true
 
-[node name="LightRedirector4" parent="Puzzle1" index="13" instance=ExtResource("2_85fhe")]
+[node name="LightRedirector4" parent="Puzzle1" index="13" unique_id=1282164726 instance=ExtResource("2_85fhe")]
 position = Vector2(-32, 74)
 my_color = Color(0, 0, 0, 1)
 emitting = false
@@ -496,41 +367,41 @@ direction = 2
 role = 1
 movable = true
 
-[node name="LightTargetBlock" parent="Puzzle1" index="14" instance=ExtResource("3_32ji7")]
+[node name="LightTargetBlock" parent="Puzzle1" index="14" unique_id=1758606270 instance=ExtResource("3_32ji7")]
 position = Vector2(0, 92)
 color = Color(1, 1, 0, 1)
 
-[node name="DoorCamPos" type="Marker2D" parent="Puzzle1" index="15"]
+[node name="DoorCamPos" type="Marker2D" parent="Puzzle1" index="15" unique_id=2054916870]
 position = Vector2(0, -176)
 
-[node name="DoorHole" type="ColorRect" parent="Puzzle1" index="16"]
+[node name="DoorHole" type="ColorRect" parent="Puzzle1" index="16" unique_id=1527378088]
 offset_left = -14.0
 offset_top = -211.0
 offset_right = 13.0
 offset_bottom = -191.0
 color = Color(0, 0, 0, 1)
 
-[node name="Boss" parent="Puzzle1/DoorHole" index="0" instance=ExtResource("2_oak1r")]
+[node name="Boss" parent="Puzzle1/DoorHole" index="0" unique_id=52571707 instance=ExtResource("2_oak1r")]
 position = Vector2(14, 17)
 
-[node name="Door" type="Sprite2D" parent="Puzzle1/DoorHole" index="1"]
+[node name="Door" type="Sprite2D" parent="Puzzle1/DoorHole" index="1" unique_id=573778619]
 position = Vector2(7, 10)
 texture = ExtResource("5_vqt7x")
 region_enabled = true
 region_rect = Rect2(129, 12, 14, 20)
 
-[node name="Door2" type="Sprite2D" parent="Puzzle1/DoorHole/Door" index="0"]
+[node name="Door2" type="Sprite2D" parent="Puzzle1/DoorHole/Door" index="0" unique_id=1803898251]
 position = Vector2(13, 0)
 texture = ExtResource("5_vqt7x")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(129, 12, 14, 20)
 
-[node name="Decor" type="Node2D" parent="." index="7"]
+[node name="Decor" type="Node2D" parent="." index="7" unique_id=458225005]
 y_sort_enabled = true
 position = Vector2(176, 142)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="0"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="0" unique_id=2075399944]
 position = Vector2(-13, -27)
 amount = 24
 texture = ExtResource("10_x40ce")
@@ -538,26 +409,26 @@ visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0cjrv")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1" unique_id=1525980712]
 z_index = -1
 tile_map_data = PackedByteArray("AAD+////AAAAAAUAAAD+//7/AAAAAAUAAAD+//3/AAAAAAUAAAD8////AAAAAAUAAAD8//7/AAAAAAUAAAD6////AAAAAAUAAAD6//7/AAAAAAUAAAD6//3/AAAAAAQAAAADAP//AAAAAAUAAAADAP7/AAAAAAUAAAAFAP//AAAAAAUAAAAFAP7/AAAAAAUAAAAFAP3/AAAAAAUAAAAHAP//AAAAAAUAAAAHAP7/AAAAAAUAAAAHAP3/AAAAAAQAAAAFAPz/AAAAAAQAAAADAP3/AAAAAAUAAAADAPv/AAAAAAQAAAD+//v/AAAAAAQAAAD8//z/AAAAAAQAAAD8//3/AAAAAAUAAAD+//z/AAAAAAUAAAADAPz/AAAAAAUAAAD///T/AAABAAUAAEAAAPT/AAABAAUAAEABAPT/AAABAAUAAEACAPT/AAABAAUAAEACAPP/AAABAAUAAEABAPP/AAABAAUAAEAAAPP/AAABAAUAAED///P/AAABAAUAAED+//T/AAABAAQAAGD+//P/AAABAAQAAGADAPT/AAABAAQAAFADAPP/AAABAAQAAFA=")
 tile_set = ExtResource("11_06tny")
 
-[node name="Parallax2D3" type="Parallax2D" parent="." index="8"]
+[node name="Parallax2D3" type="Parallax2D" parent="." index="8" unique_id=1250242962]
 scroll_scale = Vector2(0.045, 0)
 scroll_offset = Vector2(99.64, 60.115)
 
-[node name="BattleBackground" parent="Parallax2D3" index="0" instance=ExtResource("11_0w81v")]
+[node name="BattleBackground" parent="Parallax2D3" index="0" unique_id=1458366890 instance=ExtResource("11_0w81v")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
 
-[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0" unique_id=1703095315]
 material = SubResource("ShaderMaterial_06tny")
 
-[node name="Parallax2D" type="Parallax2D" parent="." index="9"]
+[node name="Parallax2D" type="Parallax2D" parent="." index="9" unique_id=2100513062]
 scroll_scale = Vector2(1.3, 1)
 scroll_offset = Vector2(24, 85.84)
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D" index="0"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D" index="0" unique_id=307153821]
 modulate = Color(0.298381, 0.623881, 0.419181, 1)
 z_index = 1
 position = Vector2(12, 123.16)
@@ -566,7 +437,7 @@ tile_map_data = PackedByteArray("AAADAAMAAAAAAAUAAAADAAQAAAAAAAUAAAADAAUAAAAAAAU
 tile_set = ExtResource("11_06tny")
 y_sort_origin = -110
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D" index="1"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D" index="1" unique_id=2124760244]
 position = Vector2(949, -279.84)
 scale = Vector2(4, 4)
 amount = 56
@@ -575,11 +446,11 @@ visibility_rect = Rect2(-315.648, -162.585, 400, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_06tny")
 
-[node name="Parallax2D2" type="Parallax2D" parent="." index="10"]
+[node name="Parallax2D2" type="Parallax2D" parent="." index="10" unique_id=798850563]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(36, 42)
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0" unique_id=406488262]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
 z_index = -1
 position = Vector2(236, 525)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://xexb6drc42xp"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://xexb6drc42xp"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_e4y7v"]
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_ns0be"]
@@ -14,36 +14,14 @@ duration = 6
 
 [sub_resource type="Resource" id="Resource_5jfbm"]
 script = ExtResource("2_4mbcx")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
 effects = Array[ExtResource("1_e4y7v")]([SubResource("Resource_dopbm")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_ns0be")
-name_in_file = &""
 name = &"glue"
 description = "smells disgusting."
 texture = ExtResource("4_nwwcm")
-attack_animation = ""
 play_sound = ExtResource("3_uypww")
 price = 98
 use = 3
-consume_on_use = true
 payload = SubResource("Resource_5jfbm")

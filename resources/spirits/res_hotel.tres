@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://djeok3ssedq52"]
+[gd_resource type="Resource" script_class="Spirit" format=3 uid="uid://djeok3ssedq52"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_ghvdi"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_gw8mg"]
@@ -6,26 +6,11 @@
 
 [sub_resource type="Resource" id="Resource_mkacw"]
 script = ExtResource("1_ghvdi")
-health = 0.0
-health_percent = 0.0
 max_health_percent = 52.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = null
 defense_increase = null
 speed_increase = null
 gender = 4
-effects = Array[ExtResource("1_gw8mg")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("2_ja8xy")
@@ -33,13 +18,7 @@ name_in_file = &"hotel"
 name = &"hotel"
 description = "recuperation"
 animation = &"hotel"
-use_animation = &""
 receive_animation = &"hotel_local"
 cost = 21
 use = 0
-reach = 0
-payload_reception_count = 1
-payload_reception_wait = 0.0
-wait = 0.0
-wait_before = 0.0
 payload = SubResource("Resource_mkacw")

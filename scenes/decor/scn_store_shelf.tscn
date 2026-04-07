@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://emxihek3ybla"]
+[gd_scene format=3 uid="uid://emxihek3ybla"]
 
 [ext_resource type="Script" uid="uid://dywxnc33otryc" path="res://scenes/decor/scr_store_shelf.gd" id="1_ysbrw"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_ueb27"]
@@ -11,30 +11,30 @@ size = Vector2(18, 5)
 resource_local_to_scene = true
 size = Vector2(20, 5)
 
-[node name="StoreShelf" type="Node2D"]
+[node name="StoreShelf" type="Node2D" unique_id=1068707855]
 script = ExtResource("1_ysbrw")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=1004104658]
 position = Vector2(0, -10)
 texture = ExtResource("3_kbg3a")
 
-[node name="Foreground" type="Sprite2D" parent="."]
+[node name="Foreground" type="Sprite2D" parent="." unique_id=38853095]
 position = Vector2(0, -10)
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1129934125]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("2_ueb27")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=211912880]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_okccm")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2090175629]
 modulate = Color(0.34902, 1, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=500389870]
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_d6uwn")
 

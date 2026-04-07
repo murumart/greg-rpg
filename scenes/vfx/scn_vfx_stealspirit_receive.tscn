@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcq66bs14b6mu"]
+[gd_scene format=3 uid="uid://dcq66bs14b6mu"]
 
 [ext_resource type="Texture2D" uid="uid://vqcdq6705ehc" path="res://sprites/spirit/spr_stealspirit_local.png" id="1_c4hky"]
 
@@ -128,13 +128,11 @@ _data = {
 &"default": SubResource("Animation_paqq8")
 }
 
-[node name="VfxStealspiritReceive" type="Node2D"]
+[node name="VfxStealspiritReceive" type="Node2D" unique_id=122116556]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1983917162]
 sprite_frames = SubResource("SpriteFrames_lqe7q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_31j8l")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2134168226]
+libraries/ = SubResource("AnimationLibrary_31j8l")
+autoplay = &"default"

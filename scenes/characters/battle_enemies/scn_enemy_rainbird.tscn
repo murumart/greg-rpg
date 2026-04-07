@@ -1,7 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsqgtxdrih7sr"]
+[gd_scene format=3 uid="uid://bsqgtxdrih7sr"]
 
 [ext_resource type="Script" uid="uid://bdsdnb8ryyok3" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_dcebe"]
 [ext_resource type="Texture2D" uid="uid://c8nm0q51lp42k" path="res://sprites/characters/battle/animals/spr_bird.png" id="2_fnmdv"]
+
+[sub_resource type="Gradient" id="Gradient_jk2xi"]
+offsets = PackedFloat32Array(0, 0.284984, 0.428287, 0.543551, 0.699315)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235442, 1, 1, 1, 1, 1, 1, 1, 0.0620155, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0dqql"]
+gradient = SubResource("Gradient_jk2xi")
+width = 16
+height = 16
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_5jqtl"]
 offsets = PackedFloat32Array(0, 0.640662, 1)
@@ -28,18 +40,6 @@ tangential_accel_max = 28.57
 scale_max = 2.0
 scale_curve = SubResource("CurveTexture_7q0rs")
 color_ramp = SubResource("GradientTexture1D_xr2c8")
-
-[sub_resource type="Gradient" id="Gradient_jk2xi"]
-offsets = PackedFloat32Array(0, 0.284984, 0.428287, 0.543551, 0.699315)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.235442, 1, 1, 1, 1, 1, 1, 1, 0.0620155, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0dqql"]
-gradient = SubResource("Gradient_jk2xi")
-width = 16
-height = 16
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_hmp2e"]
 length = 0.001
@@ -309,24 +309,22 @@ _data = {
 &"swoop_out": SubResource("Animation_fbupd")
 }
 
-[node name="Bird" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Bird" type="Node2D" unique_id=1292517847 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_dcebe")
 effect_center = Vector2i(0, -24)
 animator = NodePath("Animator")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1482290449]
 position = Vector2(0, -19)
 texture = ExtResource("2_fnmdv")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=824198905]
 show_behind_parent = true
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_ew53a")
 texture = SubResource("GradientTexture2D_0dqql")
 fixed_fps = 12
 interpolate = false
+process_material = SubResource("ParticleProcessMaterial_ew53a")
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kvf27")
-}
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=709341907]
+libraries/ = SubResource("AnimationLibrary_kvf27")

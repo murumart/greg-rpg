@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://csv8e76rp6rs3"]
+[gd_scene format=3 uid="uid://csv8e76rp6rs3"]
 
 [ext_resource type="Script" uid="uid://ckwt4y1jumdqo" path="res://scenes/cutscene/scr_warstory.gd" id="1_538jo"]
 [ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="3_05os5"]
@@ -7,54 +7,54 @@
 [ext_resource type="Texture2D" uid="uid://dome5ldy8miu0" path="res://sprites/cutscene/warstory/spr_hero.png" id="5_7y3rv"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="5_t1ndu"]
 
-[node name="Warstory" type="Node2D"]
+[node name="Warstory" type="Node2D" unique_id=2052810612]
 script = ExtResource("1_538jo")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=215345811]
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="BarCounter" type="Node" parent="."]
+[node name="BarCounter" type="Node" parent="." unique_id=400201734]
 script = ExtResource("4_5qw33")
 bpm = 160.0
 beats_per_bar = 10
 
-[node name="Images" type="Node2D" parent="."]
+[node name="Images" type="Node2D" parent="." unique_id=1182944464]
 
-[node name="Image1" type="Sprite2D" parent="Images"]
+[node name="Image1" type="Sprite2D" parent="Images" unique_id=156656909]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(80, 56)
 texture = ExtResource("3_fmde4")
 
-[node name="SpiritMasterDisplay" type="Node2D" parent="Images"]
+[node name="SpiritMasterDisplay" type="Node2D" parent="Images" unique_id=1138272855]
 visible = false
 position = Vector2(80, 64)
 script = ExtResource("5_t1ndu")
 radius = 100.0
 
-[node name="Image2" type="Sprite2D" parent="Images"]
+[node name="Image2" type="Sprite2D" parent="Images" unique_id=660428958]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(80, 56)
 texture = ExtResource("5_7y3rv")
 
-[node name="BlackBars" type="Node2D" parent="."]
+[node name="BlackBars" type="Node2D" parent="." unique_id=2028617167]
 
-[node name="TopBlackBar" type="ColorRect" parent="BlackBars"]
+[node name="TopBlackBar" type="ColorRect" parent="BlackBars" unique_id=1609308569]
 offset_right = 160.0
 offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="BottomBlackBar" type="ColorRect" parent="BlackBars"]
+[node name="BottomBlackBar" type="ColorRect" parent="BlackBars" unique_id=941952427]
 offset_top = 80.0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Textbox" type="RichTextLabel" parent="."]
+[node name="Textbox" type="RichTextLabel" parent="." unique_id=1697921839]
 offset_left = 8.0
 offset_top = 82.0
 offset_right = 152.0

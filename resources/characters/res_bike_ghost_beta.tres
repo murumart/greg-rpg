@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://cbsinrwa443op"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://cbsinrwa443op"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_fnh2w"]
 [ext_resource type="Texture2D" uid="uid://b20yovsmiif8x" path="res://sprites/characters/portraits/spr_portrait_bike_beta.png" id="1_p5706"]
@@ -11,7 +11,6 @@ stream_0/stream = ExtResource("3_c7i3b")
 
 [resource]
 script = ExtResource("1_fnh2w")
-name_in_file = &""
 name = "bike ghost"
 info = "you can feel its gaze radiate through your body. it also smells quite bad."
 voice_sound = SubResource("AudioStreamRandomizer_xqb0m")
@@ -21,13 +20,8 @@ health = 200.0
 max_magic = 190.0
 magic = 190.0
 level = 36
-experience = 0
 attack = 36.0
 defense = 36.0
 speed = 36.0
-defeated_characters = {}
 inventory = Array[String](["glue", "glue", "glue", "brick", "gummy_fish", "gummy_fish", "gummy_fish", "soda"])
 spirits = Array[String](["dreaming_in_green", "radiation_attack", "splash_attack"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

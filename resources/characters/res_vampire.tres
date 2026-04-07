@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://vqh6hrkc2qpk"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://vqh6hrkc2qpk"]
 
 [ext_resource type="Texture2D" uid="uid://umffkrmgtydd" path="res://sprites/characters/portraits/spr_portrait_vampire_girl.png" id="1_5mjvp"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_o02g4"]
@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("1_o02g4")
-name_in_file = &""
 name = "vampire"
 info = "thinks blood is disgusting. enjoys soda, though."
 voice_sound = ExtResource("3_v7k2u")
@@ -16,13 +15,8 @@ health = 270.0
 max_magic = 900.0
 magic = 900.0
 level = 45
-experience = 0
 attack = 50.0
 defense = 50.0
 speed = 50.0
-defeated_characters = {}
 inventory = Array[String](["soda", "soda", "soda", "soda"])
 spirits = Array[String](["vampoison"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

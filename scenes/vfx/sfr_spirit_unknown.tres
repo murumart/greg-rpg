@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://ddlqe2u756lpy"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://ddlqe2u756lpy"]
 
 [ext_resource type="Texture2D" uid="uid://bx8gb1mdibu06" path="res://sprites/spirit/spr_spirit_unknown.png" id="1_uxnp3"]
 

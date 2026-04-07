@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbcdsllk3863s"]
+[gd_scene format=3 uid="uid://dbcdsllk3863s"]
 
 [ext_resource type="Script" uid="uid://d8clhe602dnw" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_healer.gd" id="1_fhxrm"]
 [ext_resource type="Texture2D" uid="uid://uq2d54i8sd1n" path="res://sprites/world/building/greenhouse/spr_floor.png" id="2_vywjg"]
@@ -11,11 +11,11 @@ size = Vector2(6, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lktmr"]
 size = Vector2(8, 20)
 
-[node name="GdungHealer" type="Node2D"]
+[node name="GdungHealer" type="Node2D" unique_id=1671343504]
 y_sort_enabled = true
 script = ExtResource("1_fhxrm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701496376]
 position = Vector2(0, -13)
 texture = ExtResource("2_vywjg")
 centered = false
@@ -23,7 +23,7 @@ offset = Vector2(-4, -3)
 region_enabled = true
 region_rect = Rect2(10, 42, 8, 22)
 
-[node name="Plants" type="Sprite2D" parent="."]
+[node name="Plants" type="Sprite2D" parent="." unique_id=1805975434]
 position = Vector2(0, -2)
 texture = ExtResource("3_8h343")
 centered = false
@@ -31,20 +31,20 @@ offset = Vector2(-4, -23)
 region_enabled = true
 region_rect = Rect2(10, 33, 14, 31)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1256893563]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2032104539]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_yh73m")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=177049695]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("4_6co3f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1063107239]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_lktmr")
 

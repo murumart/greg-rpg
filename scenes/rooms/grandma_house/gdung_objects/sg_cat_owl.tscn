@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx3xpngxhydy0"]
+[gd_scene format=3 uid="uid://cx3xpngxhydy0"]
 
 [ext_resource type="Script" uid="uid://c4t0nod70cpfb" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_owl.gd" id="1_x8rt0"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_oawvn"]
@@ -66,7 +66,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="SgCatOwl" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
+[node name="SgCatOwl" type="CharacterBody2D" unique_id=989429772 node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
 collision_layer = 12
 collision_mask = 1025
 motion_mode = 1
@@ -78,33 +78,33 @@ detection_raycast = NodePath("DetectionArea/DetectionRaycast")
 chase_distance = 64
 save = false
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=17741685]
 shape = SubResource("RectangleShape2D_7ga0m")
 debug_color = Color(0.152941, 1, 1, 0.419608)
 
-[node name="CollisionDetectionArea" parent="." instance=ExtResource("2_oawvn")]
+[node name="CollisionDetectionArea" parent="." unique_id=1066275032 instance=ExtResource("2_oawvn")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 12
 collision_priority = 3.0
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea" unique_id=46199300]
 shape = SubResource("RectangleShape2D_a3fxt")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=2023483991]
 collision_layer = 0
 collision_mask = 11
 monitorable = false
 
-[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea" unique_id=2104697457]
 shape = SubResource("CircleShape2D_fqveb")
 debug_color = Color(1, 1, 0.317647, 0.054902)
 
-[node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea"]
+[node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea" unique_id=383838017]
 self_modulate = Color(1, 1, 0.435294, 0.207843)
 target_position = Vector2(0, 32)
 collision_mask = 11
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1412347416]
 sprite_frames = SubResource("SpriteFrames_i0aor")
 offset = Vector2(0, -8)

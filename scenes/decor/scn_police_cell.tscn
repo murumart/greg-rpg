@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://l3bq5b3qrfgl"]
+[gd_scene format=3 uid="uid://l3bq5b3qrfgl"]
 
 [ext_resource type="Script" uid="uid://djb42sig5e55m" path="res://scenes/decor/scr_police_cell.gd" id="1_0xvi1"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="2_micmi"]
@@ -7,11 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kn5e"]
 size = Vector2(10, 5)
 
-[node name="Cell" type="Node2D"]
+[node name="Cell" type="Node2D" unique_id=1076697379]
 y_sort_enabled = true
 script = ExtResource("1_0xvi1")
 
-[node name="Bottom" type="Sprite2D" parent="."]
+[node name="Bottom" type="Sprite2D" parent="." unique_id=1929096627]
 self_modulate = Color(0.343567, 0.343567, 0.343567, 1)
 position = Vector2(0, -24)
 texture = ExtResource("2_micmi")
@@ -19,7 +19,7 @@ offset = Vector2(0, 24)
 region_enabled = true
 region_rect = Rect2(112, 72, 16, 16)
 
-[node name="BackBars" type="Sprite2D" parent="."]
+[node name="BackBars" type="Sprite2D" parent="." unique_id=664773423]
 modulate = Color(0.541245, 0.541245, 0.541245, 1)
 position = Vector2(0, -12)
 texture = ExtResource("2_micmi")
@@ -27,13 +27,13 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(112, 88, 16, 24)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=412410799]
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1352099332]
 polygon = PackedVector2Array(-8, -3, 8, -3, 8, 5, 5, 5, 5, 0, -5, 0, -5, 5, 8, 5, 8, 8, -8, 8)
 
-[node name="FrontBars" type="Sprite2D" parent="."]
+[node name="FrontBars" type="Sprite2D" parent="." unique_id=326627844]
 self_modulate = Color(0.932984, 0.932984, 0.932984, 1)
 position = Vector2(0, 8)
 texture = ExtResource("2_micmi")
@@ -41,20 +41,20 @@ offset = Vector2(0, -12)
 region_enabled = true
 region_rect = Rect2(112, 88, 16, 24)
 
-[node name="Top" type="Sprite2D" parent="."]
+[node name="Top" type="Sprite2D" parent="." unique_id=19459053]
 self_modulate = Color(0.741742, 0.741742, 0.741742, 1)
 texture = ExtResource("2_micmi")
 offset = Vector2(0, -24)
 region_enabled = true
 region_rect = Rect2(112, 72, 16, 16)
 
-[node name="Inside" type="Area2D" parent="."]
+[node name="Inside" type="Area2D" parent="." unique_id=567485738]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("3_p24br")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inside" unique_id=1321037014]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_8kn5e")
 

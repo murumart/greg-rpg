@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0x2en8ugqvan"]
+[gd_scene format=3 uid="uid://b0x2en8ugqvan"]
 
 [ext_resource type="Texture2D" uid="uid://5arhrcpgceni" path="res://sprites/vfx/spr_rockdrop.png" id="1_tk35h"]
 [ext_resource type="AudioStream" uid="uid://bffxmtq4bt5ac" path="res://sounds/attack_brick.ogg" id="2_2bnma"]
@@ -103,20 +103,18 @@ _data = {
 &"default": SubResource("Animation_mx5ei")
 }
 
-[node name="VfxRockDropped" type="Node2D"]
+[node name="VfxRockDropped" type="Node2D" unique_id=141086908]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=985727989]
 texture = ExtResource("1_tk35h")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1ynaw")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=243266250]
+libraries/ = SubResource("AnimationLibrary_1ynaw")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1666971980]
 stream = ExtResource("2_2bnma")
 
-[node name="DustPuff" parent="." instance=ExtResource("3_asfgl")]
+[node name="DustPuff" parent="." unique_id=1205040216 instance=ExtResource("3_asfgl")]
 
-[node name="BangSpark" parent="." instance=ExtResource("4_cknr3")]
+[node name="BangSpark" parent="." unique_id=1528814236 instance=ExtResource("4_cknr3")]

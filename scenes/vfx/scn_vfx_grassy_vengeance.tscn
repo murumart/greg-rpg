@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://diglsek3ao8j"]
+[gd_scene format=3 uid="uid://diglsek3ao8j"]
 
 [ext_resource type="Texture2D" uid="uid://dj7cianv5lksd" path="res://sprites/spirit/spr_grassy_vengeance.png" id="1_qb8kc"]
 [ext_resource type="AudioStream" uid="uid://gv3cwxlrc2ww" path="res://sounds/spirit/grassyvengeance.ogg" id="2_iho3l"]
@@ -77,15 +77,15 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="VfxGrassyVengeance" type="Node2D"]
+[node name="VfxGrassyVengeance" type="Node2D" unique_id=612617824]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=395715238]
 sprite_frames = SubResource("SpriteFrames_sardw")
 autoplay = "default"
 frame = 9
 frame_progress = 1.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2016911877]
 stream = ExtResource("2_iho3l")
 autoplay = true
 

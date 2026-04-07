@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://0qbllbvcdhim"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://0qbllbvcdhim"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_80q78"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_hnqyn"]
@@ -9,36 +9,17 @@
 [sub_resource type="Resource" id="Resource_y1e0i"]
 script = ExtResource("1_hnqyn")
 health = -35.0
-health_percent = 0.0
-max_health_percent = 0.0
 pierce_defense = 1.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 3
-effects = Array[ExtResource("1_80q78")]([])
 delay = 1.08
-summon_enemy = ""
-max_enemies = 6
 animation_on_receive = "explosion"
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_nri4k")
-name_in_file = &""
 name = &"firecracker"
 description = "blow it up in your hands! not to be used by adults."
 texture = ExtResource("4_y52mh")
-attack_animation = ""
 play_sound = ExtResource("2_ytesq")
 price = 270
 use = 1
-consume_on_use = true
 payload = SubResource("Resource_y1e0i")
-key = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://cgrinognjr8q7"]
+[gd_resource type="Resource" script_class="BattleInfo" format=3 uid="uid://cgrinognjr8q7"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_7mmxl"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="1_qging"]
@@ -9,14 +9,6 @@ script = ExtResource("1_qging")
 enemies = Array[StringName]([&"bike_ghost_beta"])
 background = "lakeside"
 music = "bike_beta"
-party = Array[StringName]([])
 death_reason = 5
 start_text = "ca sent le mouille."
 rewards = ExtResource("1_rxf2e")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_7mmxl")]({})
-increment_data_with_enemies = &""

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://ccddbgi5fjlnb"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://ccddbgi5fjlnb"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_2ijx3"]
 [ext_resource type="Texture2D" uid="uid://e50g7lqyahrn" path="res://sprites/characters/battle/grandma/spr_vacuum.png" id="1_5vsjc"]
@@ -9,22 +9,13 @@ region = Rect2(10, 20, 22, 22)
 
 [resource]
 script = ExtResource("1_2ijx3")
-name_in_file = &""
 name = "vacuum"
 info = "this enemy sucks!"
 portrait = SubResource("AtlasTexture_pn5bj")
-max_health = 100.0
-health = 100.0
 max_magic = 8809.0
 magic = 9809.0
 level = 75
-experience = 0
 attack = 65.0
 defense = 73.0
 speed = 68.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["vacuum"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

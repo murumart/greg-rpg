@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://du7xjqyagybpt"]
+[gd_scene format=3 uid="uid://du7xjqyagybpt"]
 
 [ext_resource type="Texture2D" uid="uid://d2wb7hi8e8ksc" path="res://sprites/vfx/spr_circles.png" id="1_h4mu7"]
 [ext_resource type="AudioStream" uid="uid://5egreqp41r2o" path="res://sounds/spirit/roundup.ogg" id="2_jm5ni"]
@@ -216,27 +216,25 @@ width = 160
 height = 120
 fill_to = Vector2(0, 1)
 
-[node name="VfxRoundup" type="Node2D"]
+[node name="VfxRoundup" type="Node2D" unique_id=1778304927]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1604267477]
 material = SubResource("CanvasItemMaterial_3nm0n")
 position = Vector2(0, -22)
 emitting = false
 amount = 12
-process_material = SubResource("ParticleProcessMaterial_qkuhi")
 texture = ExtResource("1_h4mu7")
 lifetime = 0.4
 trail_lifetime = 1.13
 trail_sections = 32
 trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_qkuhi")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ri4d7")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1291257078]
+libraries/ = SubResource("AnimationLibrary_ri4d7")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2069075556]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1482485029]
 texture = SubResource("GradientTexture2D_5d1em")

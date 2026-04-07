@@ -1,18 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://cto3bejs3ds7x"]
+[gd_scene format=3 uid="uid://cto3bejs3ds7x"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_oh1vv"]
 [ext_resource type="Script" uid="uid://cbs6ebt0hs7ea" path="res://scenes/characters/overworld/scr_mayor_overworld.gd" id="2_iwm4i"]
 [ext_resource type="Texture2D" uid="uid://wy8kb7u6j5bq" path="res://sprites/characters/overworld/mayor.png" id="3_ifqff"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwm4i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqff"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifqff"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o2vj"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7o2vj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifbrs"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -234,58 +234,55 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mayor" instance=ExtResource("1_oh1vv")]
+[node name="Mayor" unique_id=235893901 instance=ExtResource("1_oh1vv")]
 script = ExtResource("2_iwm4i")
 speeds = PackedFloat32Array(0, 0, 0, 0, 0)
 mov_sizes = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_iwm4i")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
-
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
 shape = SubResource("RectangleShape2D_ifqff")
 
+[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+shape = SubResource("RectangleShape2D_7o2vj")
+
 [node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_7o2vj")
+shape = SubResource("CircleShape2D_ifbrs")
 
-[node name="Body" type="Node2D" parent="." index="3"]
+[node name="Body" type="Node2D" parent="." index="3" unique_id=624989829]
 
-[node name="Body" type="Node2D" parent="Body" index="0"]
+[node name="Body" type="Node2D" parent="Body" index="0" unique_id=847941094]
 position = Vector2(0, -7)
 
-[node name="Body" type="AnimatedSprite2D" parent="Body/Body" index="0"]
+[node name="Body" type="AnimatedSprite2D" parent="Body/Body" index="0" unique_id=674557343]
 sprite_frames = SubResource("SpriteFrames_ifbrs")
 animation = &"forward"
 
-[node name="Legs" type="Node2D" parent="Body" index="1"]
+[node name="Legs" type="Node2D" parent="Body" index="1" unique_id=1715270479]
 position = Vector2(1, -8)
 
-[node name="Legs" type="AnimatedSprite2D" parent="Body/Legs" index="0"]
+[node name="Legs" type="AnimatedSprite2D" parent="Body/Legs" index="0" unique_id=1430866043]
 sprite_frames = SubResource("SpriteFrames_1pk26")
 frame_progress = 0.602113
 
-[node name="Head" type="Node2D" parent="Body" index="2"]
+[node name="Head" type="Node2D" parent="Body" index="2" unique_id=1878688936]
 position = Vector2(0, -14)
 
-[node name="Head" type="AnimatedSprite2D" parent="Body/Head" index="0"]
+[node name="Head" type="AnimatedSprite2D" parent="Body/Head" index="0" unique_id=1249388027]
 sprite_frames = SubResource("SpriteFrames_sem33")
 
-[node name="LeftArm" type="Node2D" parent="Body" index="3"]
+[node name="LeftArm" type="Node2D" parent="Body" index="3" unique_id=857504333]
 position = Vector2(7, -6)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="LeftArm" type="AnimatedSprite2D" parent="Body/LeftArm" index="0"]
+[node name="LeftArm" type="AnimatedSprite2D" parent="Body/LeftArm" index="0" unique_id=618662414]
 sprite_frames = SubResource("SpriteFrames_pg76y")
 animation = &"hip"
 
-[node name="RightArm" type="Node2D" parent="Body" index="4"]
+[node name="RightArm" type="Node2D" parent="Body" index="4" unique_id=1880123036]
 position = Vector2(-6, -6)
 
-[node name="RightArm" type="AnimatedSprite2D" parent="Body/RightArm" index="0"]
+[node name="RightArm" type="AnimatedSprite2D" parent="Body/RightArm" index="0" unique_id=107966135]
 sprite_frames = SubResource("SpriteFrames_pg76y")
 animation = &"hip"
 frame_progress = 0.0753903

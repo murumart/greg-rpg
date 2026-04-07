@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp3am6dlqcst7"]
+[gd_scene format=3 uid="uid://dp3am6dlqcst7"]
 
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="1_ws20f"]
 [ext_resource type="AudioStream" uid="uid://cwn3fdb5cw8xh" path="res://sounds/circus/ball_explode.ogg" id="2_ov1ys"]
@@ -35,6 +35,10 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8nyv"]
+atlas = ExtResource("1_ws20f")
+region = Rect2(33, 1, 25, 25)
+
 [sub_resource type="Curve" id="Curve_e6k7g"]
 _data = [Vector2(0, 0.566166), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -53,10 +57,6 @@ damping_max = 100.0
 scale_curve = SubResource("CurveTexture_q4ln7")
 anim_offset_min = 0.1705
 anim_offset_max = 0.3721
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l8nyv"]
-atlas = ExtResource("1_ws20f")
-region = Rect2(33, 1, 25, 25)
 
 [sub_resource type="Animation" id="Animation_fh4nh"]
 length = 0.001
@@ -180,34 +180,32 @@ _data = {
 &"explode": SubResource("Animation_5ey4u")
 }
 
-[node name="Ball" type="Area2D" groups=["poppable_balls"]]
+[node name="Ball" type="Area2D" unique_id=1276918317 groups=["poppable_balls"]]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = SubResource("GDScript_0ugw2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=383636199]
 position = Vector2(-13, -13)
 texture = ExtResource("1_ws20f")
 centered = false
 region_enabled = true
 region_rect = Rect2(33, 1, 25, 25)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=661972943]
 shape = SubResource("CircleShape2D_80pfk")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=941706936]
 material = SubResource("CanvasItemMaterial_h6bp3")
 emitting = false
 amount = 12
-process_material = SubResource("ParticleProcessMaterial_158s2")
 texture = SubResource("AtlasTexture_l8nyv")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_158s2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ibhxp")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=958652552]
+libraries/ = SubResource("AnimationLibrary_ibhxp")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=879522426]
 stream = ExtResource("2_ov1ys")

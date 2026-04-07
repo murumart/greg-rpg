@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dnm88vv2nt73a"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dnm88vv2nt73a"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_mtbxe"]
 
 [resource]
 script = ExtResource("1_mtbxe")
-name_in_file = &""
 name = "woods guy"
 info = "teleports people to various places."
 max_health = 162.0
@@ -12,14 +11,7 @@ health = 162.0
 max_magic = 999.0
 magic = 999.0
 level = 65
-experience = 0
 attack = 62.0
 defense = 72.0
 speed = 65.0
-defeated_characters = {}
-inventory = Array[String]([])
-spirits = Array[String]([])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""
 metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

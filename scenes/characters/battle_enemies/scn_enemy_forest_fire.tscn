@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c34sc0n27wh2t"]
+[gd_scene format=3 uid="uid://c34sc0n27wh2t"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_x23wt"]
 [ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="2_ra7f7"]
@@ -94,26 +94,26 @@ turbulence_influence_max = 0.666
 turbulence_initial_displacement_min = -6.1
 turbulence_initial_displacement_max = 27.3
 
-[node name="ForestFire" type="Node2D"]
+[node name="ForestFire" type="Node2D" unique_id=132751585]
 script = ExtResource("1_x23wt")
 gender = 3
 effect_immunities = Array[StringName]([&"fire"])
 
-[node name="Particals" type="Node2D" parent="."]
+[node name="Particals" type="Node2D" parent="." unique_id=1807252713]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Particals"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particals" unique_id=1395557795]
 material = SubResource("CanvasItemMaterial_mlt5e")
-process_material = SubResource("ParticleProcessMaterial_jpr34")
 texture = ExtResource("2_ra7f7")
+process_material = SubResource("ParticleProcessMaterial_jpr34")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Particals"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Particals" unique_id=717773090]
 material = SubResource("CanvasItemMaterial_50p1f")
 amount = 28
-process_material = SubResource("ParticleProcessMaterial_2r1ab")
 texture = ExtResource("3_slqds")
+process_material = SubResource("ParticleProcessMaterial_2r1ab")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particals"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particals" unique_id=1340437760]
 material = SubResource("CanvasItemMaterial_mlt5e")
-process_material = SubResource("ParticleProcessMaterial_vrtfu")
 texture = ExtResource("2_ra7f7")
 lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_vrtfu")

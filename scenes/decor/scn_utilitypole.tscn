@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkm2rk2w5ibna"]
+[gd_scene format=3 uid="uid://bkm2rk2w5ibna"]
 
-[ext_resource type="Script" path="res://scenes/decor/scr_utilitypole.gd" id="1_1r5vv"]
+[ext_resource type="Script" uid="uid://cw3a5ul3cowc" path="res://scenes/decor/scr_utilitypole.gd" id="1_1r5vv"]
 [ext_resource type="Texture2D" uid="uid://kuv3j4sehv0m" path="res://sprites/world/object/spr_utilitypole.png" id="2_1r5vv"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="3_odlp3"]
 
@@ -10,35 +10,35 @@ size = Vector2(6, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38uvm"]
 size = Vector2(16, 88)
 
-[node name="UtilityPole" type="Node2D" node_paths=PackedStringArray("drawer") groups=["utility_poles"]]
+[node name="UtilityPole" type="Node2D" unique_id=999018671 node_paths=PackedStringArray("drawer") groups=["utility_poles"]]
 script = ExtResource("1_1r5vv")
 drawer = NodePath("PtsDrawer")
 
-[node name="VisibilityNotif" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibilityNotif" type="VisibleOnScreenNotifier2D" parent="." unique_id=402861844]
 modulate = Color(1, 1, 1, 0.0823529)
 position = Vector2(1.43051e-06, -56)
 scale = Vector2(2.4, 6.4)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1105345871]
 position = Vector2(0, -57)
 texture = ExtResource("2_1r5vv")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1313548784]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1546724260]
 modulate = Color(1, 1, 1, 0.396078)
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_o55p1")
 debug_color = Color(0.294118, 1, 1, 0.45098)
 
-[node name="BehindArea" parent="." node_paths=PackedStringArray("affected_node") instance=ExtResource("3_odlp3")]
+[node name="BehindArea" parent="." unique_id=1585764550 node_paths=PackedStringArray("affected_node") instance=ExtResource("3_odlp3")]
 affected_node = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BehindArea" unique_id=2001973739]
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_38uvm")
 
-[node name="PtsDrawer" type="Node2D" parent="."]
+[node name="PtsDrawer" type="Node2D" parent="." unique_id=398794786]
 z_index = 1
 position = Vector2(-2, -83)

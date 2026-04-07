@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsdq5h3auf48d"]
+[gd_scene format=3 uid="uid://bsdq5h3auf48d"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_4qwvp"]
 [ext_resource type="Script" uid="uid://bnxc7wf1hvpo" path="res://scenes/characters/overworld/scr_cat_overworld.gd" id="2_f3b8l"]
@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_4ntbf"]
 [ext_resource type="AudioStream" uid="uid://6pdofcrhmf61" path="res://sounds/meow/meow.tres" id="8_gu7w3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg7uk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu7w3"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5p2c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od4jn"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0h7is"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mipip"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -55,20 +55,10 @@ point_count = 10
 
 [sub_resource type="Resource" id="Resource_7jt7c"]
 script = ExtResource("5_fc8d6")
-enemies = Array[StringName]([])
 background = "greghouse"
 music = "catfight"
-party = Array[StringName]([])
-death_reason = "cats"
-start_text = ""
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("6_4ntbf")]({})
 
-[node name="Cat" instance=ExtResource("1_4qwvp")]
+[node name="Cat" unique_id=858899736 instance=ExtResource("1_4qwvp")]
 y_sort_enabled = true
 script = ExtResource("2_f3b8l")
 friendly = false
@@ -80,24 +70,21 @@ interact_on_touch = true
 save = false
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_jg7uk")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+shape = SubResource("RectangleShape2D_gu7w3")
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_a5p2c")
+shape = SubResource("RectangleShape2D_od4jn")
 
 [node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_0h7is")
+shape = SubResource("CircleShape2D_mipip")
 
-[node name="CatSprite" type="AnimatedSprite2D" parent="." index="3"]
+[node name="CatSprite" type="AnimatedSprite2D" parent="." index="3" unique_id=491358427]
 sprite_frames = ExtResource("3_8yccp")
 animation = &"idle"
 frame_progress = 0.397401
 offset = Vector2(0, -8)
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+[node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=1244109748 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_tjrt7")
 values = Array[ExtResource("5_opow6")]([SubResource("Resource_byucl"), SubResource("Resource_w5bnk"), SubResource("Resource_7ox55")])
 enemy_amount_by_level = SubResource("Curve_ehcju")
@@ -106,6 +93,6 @@ max_enemies = 3
 inject_target = NodePath("..")
 start_texts = Array[String](["ravenous beasts!", "meowmeowmeowmeow"])
 
-[node name="Meow" type="AudioStreamPlayer" parent="." index="5"]
+[node name="Meow" type="AudioStreamPlayer" parent="." index="5" unique_id=1930326390]
 stream = ExtResource("8_gu7w3")
 bus = &"Speech"

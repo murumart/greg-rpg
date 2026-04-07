@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://b5ur1rtq2de7o"]
+[gd_resource type="Resource" script_class="StatusEffectType" format=3 uid="uid://b5ur1rtq2de7o"]
 
 [ext_resource type="Script" uid="uid://bmx4w4r3gt74" path="res://resources/status_effect_types/scr_drenchfoot_hurt_response.gd" id="1_yee6p"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="2_y4mw0"]
@@ -10,7 +10,6 @@ region = Rect2(18, 12, 6, 6)
 
 [resource]
 script = ExtResource("3_t232p")
-s_id = &""
 name = "drenchfoot"
 icon = SubResource("AtlasTexture_ofgk4")
 color = Color(0.216232, 0.148752, 1, 1)

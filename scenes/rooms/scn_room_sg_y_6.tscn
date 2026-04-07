@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://flve44tb4856"]
+[gd_scene format=4 uid="uid://flve44tb4856"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_1y04c"]
 [ext_resource type="PackedScene" uid="uid://dxus87hdceyf3" path="res://scenes/tech/climbing_place.tscn" id="2_4um4c"]
@@ -41,7 +41,7 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4um4c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdtew"]
 resource_local_to_scene = true
 size = Vector2(12, 30)
 
@@ -51,7 +51,7 @@ size = Vector2(20, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0bw3"]
 size = Vector2(16, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhx0y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1uaj"]
 resource_local_to_scene = true
 size = Vector2(14, 19)
 
@@ -122,135 +122,6 @@ initialized = true
 script = ExtResource("12_lrnl8")
 
 [sub_resource type="VisualShader" id="VisualShader_e6a2e"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float time_speed = 1.0;
-
-
-// DistortionUVAnimated
-vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
-	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
-	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
-	return _uv_dist;
-}
-
-void fragment() {
-// Input:10
-	vec4 n_out10p0 = COLOR;
-
-
-// FloatParameter:12
-	float n_out12p0 = time_speed;
-
-
-// Input:7
-	float n_out7p0 = TIME;
-
-
-	vec2 n_out9p0;
-// DistortionUVAnimated:9
-	float n_in9p1 = 0.20000;
-	float n_in9p2 = 0.00000;
-	float n_in9p3 = 0.05000;
-	float n_in9p4 = 0.02000;
-	{
-		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
-	}
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(TEXTURE, n_out9p0);
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out10p0 * n_out8p0;
-
-
-// Input:18
-	vec2 n_out18p0 = UV;
-
-
-	vec2 n_out23p0;
-// Expression:23
-	n_out23p0 = vec2(0.0, 0.0);
-	{
-		n_out23p0 = vec2(
-			sin(n_out7p0),
-			cos(n_out7p0)
-		);
-	}
-
-
-	vec2 n_out24p0;
-// Remap:24
-	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
-	vec2 n_in24p2 = vec2(1.00000, 1.00000);
-	vec2 n_in24p3 = vec2(0.90000, 0.90000);
-	vec2 n_in24p4 = vec2(1.10000, 1.10000);
-	{
-		vec2 __input_range = n_in24p2 - n_in24p1;
-		vec2 __output_range = n_in24p4 - n_in24p3;
-		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
-	}
-
-
-// VectorOp:19
-	vec2 n_out19p0 = n_out18p0 * n_out24p0;
-
-
-	vec4 n_out17p0;
-// Texture2D:17
-	n_out17p0 = texture(TEXTURE, n_out19p0);
-
-
-// Vector4Constant:16
-	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
-
-
-// VectorOp:15
-	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
-
-
-	vec3 n_out11p0;
-// ColorOp:11
-	{
-		float base = vec3(n_out14p0.xyz).x;
-		float blend = vec3(n_out15p0.xyz).x;
-		if (base < 0.5) {
-			n_out11p0.x = (base * (blend + 0.5));
-		} else {
-			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).y;
-		float blend = vec3(n_out15p0.xyz).y;
-		if (base < 0.5) {
-			n_out11p0.y = (base * (blend + 0.5));
-		} else {
-			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).z;
-		float blend = vec3(n_out15p0.xyz).z;
-		if (base < 0.5) {
-			n_out11p0.z = (base * (blend + 0.5));
-		} else {
-			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-
-
-// Output:0
-	COLOR.rgb = n_out11p0;
-
-
-}
-"
-graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -312,7 +183,7 @@ initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_mdtew")
 
-[node name="SgY6" instance=ExtResource("1_1y04c")]
+[node name="SgY6" unique_id=193435302 instance=ExtResource("1_1y04c")]
 
 [node name="COLLISION" parent="COLLISION" index="0"]
 tile_map_data = PackedByteArray("AAD5//3/AAAPAA8AAAD6//3/AAAPAA8AAAD7//3/AAAPAA8AAAD8//3/AAAPAA8AAAD9//3/AAAPAA8AAAD+//3/AAAPAA8AAAD///3/AAAPAA8AAAAAAP3/AAAPAA8AAAABAP3/AAAPAA8AAAACAP3/AAAPAA8AAAADAP3/AAAPAA8AAAAEAP3/AAAPAA8AAAAFAP3/AAAPAA8AAAAGAP3/AAAPAA8AAAAGAP7/AAAPAA8AAAAGAP//AAAPAA8AAAAGAAAAAAAPAA8AAAAFAAAAAAAPAA8AAAAEAAAAAAAPAA8AAAADAAAAAAAPAA8AAAACAAAAAAAPAA8AAAABAAAAAAAPAA8AAAAAAAAAAAAPAA8AAAD//wAAAAAPAA8AAAD+/wAAAAAPAA8AAAD9/wAAAAAPAA8AAAD8/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD5/wAAAAAPAA8AAAD4/wAAAAAPAA8AAAD4//3/AAAPAA8AAAD3//3/AAAPAA8AAAD2//3/AAAPAA8AAAD1//3/AAAPAA8AAAD0//3/AAAPAA8AAADz//3/AAAPAA8AAADz//7/AAAPAA8AAADz////AAAPAA8AAADz/wAAAAAPAA8AAAD0/wAAAAAPAA8AAAD1/wAAAAAPAA8AAAD2/wAAAAAPAA8AAAD3/wAAAAAPAA8AAAANAMP/AAAPAA8AAAAMAMP/AAAPAA8AAAAMAMT/AAAPAA8AAAAMAMX/AAAPAA8AAAAMAMb/AAAPAA8AAAANAMb/AAAPAA8AAAAOAMb/AAAPAA8AAAAPAMb/AAAPAA8AAAAQAMb/AAAPAA8AAAARAMb/AAAPAA8AAAASAMb/AAAPAA8AAAATAMb/AAAPAA8AAAAUAMb/AAAPAA8AAAAVAMb/AAAPAA8AAAAWAMb/AAAPAA8AAAAXAMb/AAAPAA8AAAAYAMb/AAAPAA8AAAAZAMb/AAAPAA8AAAAaAMb/AAAPAA8AAAAbAMb/AAAPAA8AAAAcAMb/AAAPAA8AAAAdAMb/AAAPAA8AAAAdAMX/AAAPAA8AAAAdAMT/AAAPAA8AAAAdAMP/AAAPAA8AAAAcAMP/AAAPAA8AAAAbAMP/AAAPAA8AAAAaAMP/AAAPAA8AAAAZAMP/AAAPAA8AAAAYAMP/AAAPAA8AAAAXAMP/AAAPAA8AAAAWAMP/AAAPAA8AAAAVAMP/AAAPAA8AAAAUAMP/AAAPAA8AAAATAMP/AAAPAA8AAAASAMP/AAAPAA8AAAARAMP/AAAPAA8AAAAQAMP/AAAPAA8AAAAPAMP/AAAPAA8AAAAOAMP/AAAPAA8AAAARAMz/AAAPAA8AAAARAM3/AAAPAA8AAAARAM7/AAAPAA8AAAARAM//AAAPAA8AAAASAMz/AAAPAA8AAAATAMz/AAAPAA8AAAAUAMz/AAAPAA8AAAAVAMz/AAAPAA8AAAAWAMz/AAAPAA8AAAAXAMz/AAAPAA8AAAAYAMz/AAAPAA8AAAAZAMz/AAAPAA8AAAAaAMz/AAAPAA8AAAAaAM//AAAPAA8AAAAZAM//AAAPAA8AAAAYAM//AAAPAA8AAAAXAM//AAAPAA8AAAAWAM//AAAPAA8AAAAVAM//AAAPAA8AAAAUAM//AAAPAA8AAAATAM//AAAPAA8AAAASAM//AAAPAA8AAAD8/9b/AAAPAA8AAAD8/9f/AAAPAA8AAAD8/9j/AAAPAA8AAAD8/9n/AAAPAA8AAAD9/9n/AAAPAA8AAAD+/9n/AAAPAA8AAAD//9n/AAAPAA8AAAAAANn/AAAPAA8AAAABANn/AAAPAA8AAAACANn/AAAPAA8AAAADANn/AAAPAA8AAAAEANn/AAAPAA8AAAAFANn/AAAPAA8AAAAGANn/AAAPAA8AAAAHANn/AAAPAA8AAAAIANn/AAAPAA8AAAAJANn/AAAPAA8AAAAKANn/AAAPAA8AAAALANn/AAAPAA8AAAAMANn/AAAPAA8AAAANANn/AAAPAA8AAAAOANn/AAAPAA8AAAAPANn/AAAPAA8AAAAQANn/AAAPAA8AAAARANn/AAAPAA8AAAASANn/AAAPAA8AAAATANn/AAAPAA8AAAAUANn/AAAPAA8AAAAVANn/AAAPAA8AAAAWANn/AAAPAA8AAAAXANn/AAAPAA8AAAAYANn/AAAPAA8AAAAZANn/AAAPAA8AAAAaANn/AAAPAA8AAAAbANn/AAAPAA8AAAD9/9b/AAAPAA8AAAD+/9b/AAAPAA8AAAD//9b/AAAPAA8AAAAAANb/AAAPAA8AAAABANb/AAAPAA8AAAACANb/AAAPAA8AAAADANb/AAAPAA8AAAAEANb/AAAPAA8AAAAFANb/AAAPAA8AAAAGANb/AAAPAA8AAAAHANb/AAAPAA8AAAAIANb/AAAPAA8AAAAJANb/AAAPAA8AAAAKANb/AAAPAA8AAAALANb/AAAPAA8AAAAMANb/AAAPAA8AAAANANb/AAAPAA8AAAAOANb/AAAPAA8AAAAPANb/AAAPAA8AAAAQANb/AAAPAA8AAAARANb/AAAPAA8AAAASANb/AAAPAA8AAAATANb/AAAPAA8AAAAUANb/AAAPAA8AAAAVANb/AAAPAA8AAAAWANb/AAAPAA8AAAAXANb/AAAPAA8AAAAYANb/AAAPAA8AAAAZANb/AAAPAA8AAAAaANb/AAAPAA8AAAAbANb/AAAPAA8AAAAbANf/AAAPAA8AAAAbANj/AAAPAA8AAAAaAM3/AAAPAA8AAAAaAM7/AAAPAA8AAAA=")
@@ -327,198 +198,198 @@ position = Vector2(-73, -21)
 limit_left = -190
 limit_right = 462
 
-[node name="Rope" type="TileMapLayer" parent="." index="5"]
+[node name="Rope" type="TileMapLayer" parent="." index="5" unique_id=271949764]
 tile_map_data = PackedByteArray("AAD9//3/AAAFAAIAAAD9//z/AAAFAAEAAAD9//v/AAAFAAEAAAD9//r/AAAFAAEAAAD9//n/AAAFAAEAAAD9//j/AAAFAAEAAAD9//f/AAAFAAEAAAD9//b/AAAFAAEAAAD9//X/AAAFAAEAAAD9//T/AAAFAAEAAAD9//P/AAAFAAEAAAD9//L/AAAFAAEAAAD9//H/AAAGAAAAAAD+//H/AAAHAAMAAAD///H/AAAIAAIAAAD///D/AAAFAAEAAAD//+//AAAFAAEAAAD//+7/AAAFAAEAAAD//+3/AAAFAAEAAAD//+z/AAAIAAAAAAD+/+z/AAAHAAMAAAD9/+z/AAAGAAIAAAD9/+v/AAAFAAEAAAD9/+r/AAAFAAEAAAD9/+n/AAAFAAEAAAD9/+j/AAAIAAAAAAD8/+j/AAAHAAMAAAD7/+j/AAAGAAAAAAD7/+n/AAAFAAEAAAD7/+r/AAAIAAIAAAD6/+r/AAAHAAMAAAD5/+n/AAAFAAEAAAD5/+r/AAAGAAIAAAD5/+j/AAAFAAEAAAD5/+f/AAAFAAEAAAD5/+b/AAAGAAAAAAD6/+b/AAAHAAMAAAD7/+b/AAAHAAMAAAD8/+b/AAAHAAMAAAD9/+b/AAAHAAMAAAD+/+b/AAAHAAMAAAD//+b/AAAIAAAAAAD//+f/AAAFAAEAAAD//+j/AAAFAAEAAAD//+n/AAAGAAIAAAAAAOn/AAAHAAMAAAABAOn/AAAIAAIAAAABAOj/AAAFAAEAAAABAOf/AAAFAAEAAAABAOb/AAAFAAEAAAABAOX/AAAFAAEAAAABAOT/AAAIAAAAAAAAAOT/AAAHAAMAAAD//+T/AAAHAAMAAAD+/+T/AAAHAAMAAAD9/+T/AAAGAAIAAAD9/+P/AAAFAAEAAAD9/+L/AAAGAAAAAAD+/+L/AAAHAAMAAAD//+L/AAAHAAMAAAAAAOL/AAAHAAMAAAABAOL/AAAHAAMAAAACAOL/AAAIAAIAAAACAOH/AAAFAAEAAAACAOD/AAAIAAEAAAACAN//AAAFAAEAAAABAOD/AAAHAAMAAAAAAOD/AAAHAAMAAAD//+D/AAAHAAMAAAD+/+D/AAAGAAIAAAD+/9//AAAFAAEAAAD+/97/AAAFAAEAAAD+/93/AAAFAAEAAAACAN7/AAAFAAEAAAACAN3/AAAFAAEAAAACANz/AAAGAAAAAAADANz/AAAIAAMAAAD+/9z/AAAFAAEAAAD+/9v/AAAFAAEAAAD+/9r/AAAFAAEAAAD+/9n/AAAFAAEAAAD+/9j/AAAFAAAAAAA=")
 tile_set = ExtResource("3_5kvm4")
 
-[node name="Obstacles" type="Path2D" parent="Rope" index="0" node_paths=PackedStringArray("path")]
+[node name="Obstacles" type="Path2D" parent="Rope" index="0" unique_id=2132363895 node_paths=PackedStringArray("path")]
 position = Vector2(1, 17)
 curve = SubResource("Curve2D_tk8mv")
 script = ExtResource("3_u0bw3")
 path = NodePath(".")
 speed = 0.2
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles" index="0"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles" index="0" unique_id=510187753]
 position = Vector2(-143, -216)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D" index="0" unique_id=2006780521 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles" index="1"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles" index="1" unique_id=1437682947]
 position = Vector2(-143, -216)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D2" index="0" unique_id=1221518747 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles" index="2"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles" index="2" unique_id=1913191754]
 position = Vector2(-143, -216)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D3" index="0" unique_id=1073452757 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles" index="3"]
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles" index="3" unique_id=186470800]
 position = Vector2(-143, -216)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D4" index="0" unique_id=2139265957 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles" index="4"]
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles" index="4" unique_id=306892684]
 position = Vector2(-143, -216)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles/PathFollow2D5" index="0" unique_id=1221081015 instance=ExtResource("4_u0bw3")]
 
-[node name="Obstacles2" type="Path2D" parent="Rope" index="1" node_paths=PackedStringArray("path")]
+[node name="Obstacles2" type="Path2D" parent="Rope" index="1" unique_id=90065417 node_paths=PackedStringArray("path")]
 position = Vector2(-73, -344)
 rotation = -0.785397
 curve = SubResource("Curve2D_u0bw3")
 script = ExtResource("3_u0bw3")
 path = NodePath(".")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles2" index="0"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles2" index="0" unique_id=310943463]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D" index="0" unique_id=1351076592 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles2" index="1"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles2" index="1" unique_id=1981799444]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D2" index="0" unique_id=280749492 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles2" index="2"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles2" index="2" unique_id=2078137909]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D3" index="0" unique_id=1139962868 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles2" index="3"]
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles2" index="3" unique_id=1225553230]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D4" index="0" unique_id=1505617872 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles2" index="4"]
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles2" index="4" unique_id=1503155453]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D5" index="0" unique_id=1389344150 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles2" index="5"]
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles2" index="5" unique_id=10917935]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D6" index="0" unique_id=436606301 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles2" index="6"]
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles2" index="6" unique_id=944890576]
 position = Vector2(-170.413, -88.3882)
-rotation = 0.0183457
+rotation = 0.018345717
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles2/PathFollow2D7" index="0" unique_id=1045112173 instance=ExtResource("4_u0bw3")]
 
-[node name="Obstacles3" type="Path2D" parent="Rope" index="2" node_paths=PackedStringArray("path")]
+[node name="Obstacles3" type="Path2D" parent="Rope" index="2" unique_id=2062215403 node_paths=PackedStringArray("path")]
 position = Vector2(-121, -231)
 curve = SubResource("Curve2D_fhx0y")
 script = ExtResource("3_u0bw3")
 path = NodePath(".")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles3" index="0"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles3" index="0" unique_id=1831191120]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D" index="0" unique_id=1323941160 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles3" index="1"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles3" index="1" unique_id=1286580201]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D2" index="0" unique_id=530522437 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles3" index="2"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles3" index="2" unique_id=539907604]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D3" index="0" unique_id=2020665207 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles3" index="3"]
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles3" index="3" unique_id=1700172527]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D4" index="0" unique_id=1943703060 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles3" index="4"]
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles3" index="4" unique_id=1433265041]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D5" index="0" unique_id=953257014 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles3" index="5"]
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles3" index="5" unique_id=2036219214]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D6" index="0" unique_id=868953806 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles3" index="6"]
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles3" index="6" unique_id=1783158051]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D7" index="0" unique_id=126610274 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles3" index="7"]
+[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles3" index="7" unique_id=779006718]
 position = Vector2(-80, -32)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D8" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles3/PathFollow2D8" index="0" unique_id=687958675 instance=ExtResource("4_u0bw3")]
 
-[node name="Obstacles4" type="Path2D" parent="Rope" index="3" node_paths=PackedStringArray("path")]
+[node name="Obstacles4" type="Path2D" parent="Rope" index="3" unique_id=1031088611 node_paths=PackedStringArray("path")]
 position = Vector2(-56, -335)
 curve = SubResource("Curve2D_37pfp")
 script = ExtResource("3_u0bw3")
 path = NodePath(".")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles4" index="0"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Rope/Obstacles4" index="0" unique_id=443674265]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D" index="0" unique_id=766711800 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles4" index="1"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Rope/Obstacles4" index="1" unique_id=1870458662]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D2" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D2" index="0" unique_id=524269079 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles4" index="2"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Rope/Obstacles4" index="2" unique_id=972002111]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D3" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D3" index="0" unique_id=1169009289 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles4" index="3"]
+[node name="PathFollow2D4" type="PathFollow2D" parent="Rope/Obstacles4" index="3" unique_id=1939058736]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D4" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D4" index="0" unique_id=523910573 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles4" index="4"]
+[node name="PathFollow2D5" type="PathFollow2D" parent="Rope/Obstacles4" index="4" unique_id=577187536]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D5" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D5" index="0" unique_id=110337999 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles4" index="5"]
+[node name="PathFollow2D6" type="PathFollow2D" parent="Rope/Obstacles4" index="5" unique_id=1812403925]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D6" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D6" index="0" unique_id=1535687097 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles4" index="6"]
+[node name="PathFollow2D7" type="PathFollow2D" parent="Rope/Obstacles4" index="6" unique_id=1033740050]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D7" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D7" index="0" unique_id=1440262494 instance=ExtResource("4_u0bw3")]
 
-[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles4" index="7"]
+[node name="PathFollow2D8" type="PathFollow2D" parent="Rope/Obstacles4" index="7" unique_id=621826303]
 position = Vector2(-129, 8)
 
-[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D8" index="0" instance=ExtResource("4_u0bw3")]
+[node name="ClimbingObstacle" parent="Rope/Obstacles4/PathFollow2D8" index="0" unique_id=315616292 instance=ExtResource("4_u0bw3")]
 
-[node name="Rope2" type="TileMapLayer" parent="." index="6"]
+[node name="Rope2" type="TileMapLayer" parent="." index="6" unique_id=738961962]
 position = Vector2(16, -640)
 tile_map_data = PackedByteArray("AAAAAP//AAAFAAIAAAAAAP7/AAAFAAEAAAAAAP3/AAAFAAEAAAAAAPz/AAAFAAEAAAAAAPv/AAAFAAEAAAAAAPr/AAAFAAAAAAAAAPL/AAAFAAIAAAAAAPH/AAAFAAEAAAAAAPD/AAAFAAEAAAAAAO//AAAFAAEAAAAIAPX/AAAGAAAAAAAJAPX/AAAHAAMAAAAKAPX/AAAHAAMAAAALAPX/AAAIAAAAAAALAPb/AAAGAAIAAAAMAPb/AAAHAAMAAAANAPb/AAAIAAAAAAANAPf/AAAGAAIAAAAOAPf/AAAHAAMAAAAPAPb/AAAFAAEAAAAPAPf/AAAIAAIAAAAPAPX/AAAFAAEAAAAPAPT/AAAIAAAAAAAOAPT/AAAHAAMAAAANAPT/AAAGAAIAAAANAPP/AAAFAAEAAAANAPL/AAAGAAAAAAAOAPL/AAAHAAMAAAAPAPL/AAAHAAMAAAAAAO7/AAAFAAEAAAAAAO3/AAAFAAEAAAAAAOz/AAAFAAEAAAAAAOv/AAAGAAEAAAABAOv/AAAHAAIAAAABAOr/AAAHAAEAAAACAOr/AAAHAAEAAAACAOv/AAAHAAIAAAADAOv/AAAHAAIAAAABAOn/AAAHAAAAAAACAOn/AAAHAAAAAAADAOn/AAAHAAAAAAADAOr/AAAHAAEAAAAEAOr/AAAHAAEAAAAFAOr/AAAHAAEAAAAEAOn/AAAHAAAAAAAEAOv/AAAHAAIAAAAFAOv/AAAHAAIAAAAGAOv/AAAHAAIAAAAGAOr/AAAHAAEAAAAFAOn/AAAHAAAAAAAHAOr/AAAHAAEAAAAIAOr/AAAHAAEAAAAGAOn/AAAHAAAAAAAAAOr/AAAGAAEAAAAAAOn/AAAGAAAAAAAHAOn/AAAHAAAAAAAJAOr/AAAHAAEAAAAIAOv/AAAHAAIAAAAHAOv/AAAHAAIAAAAIAOn/AAAHAAAAAAAJAOn/AAAHAAAAAAAKAOn/AAAHAAAAAAAKAOr/AAAHAAEAAAAKAOv/AAAHAAIAAAAJAOv/AAAHAAIAAAALAOr/AAAHAAEAAAALAOn/AAAHAAAAAAAMAOr/AAAHAAEAAAAMAOv/AAAHAAEAAAALAOv/AAAHAAIAAAAMAOn/AAAHAAAAAAANAOr/AAAIAAEAAAANAOv/AAAIAAEAAAANAOn/AAAIAAAAAAAQAPL/AAAHAAMAAAARAPL/AAAIAAAAAAARAPP/AAAFAAEAAAARAPT/AAAFAAEAAAARAPX/AAAFAAIAAAAEAPb/AAAGAAMAAAAFAPb/AAAHAAMAAAAGAPb/AAAHAAMAAAAHAPb/AAAHAAMAAAAIAPb/AAAIAAIAAAAMAOz/AAAGAAIAAAANAOz/AAAIAAIAAAA=")
 tile_set = ExtResource("3_5kvm4")
 
-[node name="Rotator" type="Node2D" parent="." index="7"]
+[node name="Rotator" type="Node2D" parent="." index="7" unique_id=42442305]
 position = Vector2(24, -794)
-rotation = 1.18683
+rotation = 1.2706052
 script = ExtResource("5_fhx0y")
 enabled_in_editor = true
 speed = 24.0
 child_mode = true
 metadata/_custom_type_script = "uid://dw4cp3sxaiy4"
 
-[node name="Rope3" type="TileMapLayer" parent="Rotator" index="0"]
+[node name="Rope3" type="TileMapLayer" parent="Rotator" index="0" unique_id=1575319949]
 position = Vector2(-8, 9)
 tile_map_data = PackedByteArray("AAAAAP//AAAHAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAFAAEAAAAAAPz/AAAFAAEAAAAAAPv/AAAFAAAAAAD/////AAAHAAMAAAD+////AAAHAAMAAAD9////AAAHAAMAAAABAP//AAAHAAMAAAACAP//AAAHAAMAAAADAP//AAAHAAMAAAAEAP//AAAIAAMAAAD8////AAAGAAMAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAEAAAAAAAIAAAAFAAEAAAAAAAMAAAAFAAIAAAA=")
 tile_set = ExtResource("3_5kvm4")
@@ -534,7 +405,7 @@ destination = &"sg_y_7"
 gate_id = &"sg-y-67"
 extents = Vector2i(8, 16)
 
-[node name="ClimbingPlace" parent="Areas" index="2" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
+[node name="ClimbingPlace" parent="Areas" index="2" unique_id=76859044 node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
 position = Vector2(-41, -62)
 ground_levels = [NodePath("../Floor1")]
 ground_level_y = -26
@@ -544,27 +415,27 @@ greg_speed = 50.0
 
 [node name="CollisionShape2D" parent="Areas/ClimbingPlace" index="0"]
 position = Vector2(1, 21)
-shape = SubResource("RectangleShape2D_4um4c")
+shape = SubResource("RectangleShape2D_mdtew")
 
-[node name="StartClimping" type="Area2D" parent="Areas" index="3"]
+[node name="StartClimping" type="Area2D" parent="Areas" index="3" unique_id=22595617]
 position = Vector2(-40, -33)
 script = ExtResource("3_tk8mv")
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/StartClimping" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/StartClimping" index="0" unique_id=1451419207]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_tk8mv")
 
-[node name="Floor1" type="Area2D" parent="Areas" index="4"]
+[node name="Floor1" type="Area2D" parent="Areas" index="4" unique_id=1883667058]
 position = Vector2(-25, -637)
 collision_layer = 128
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Floor1" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Floor1" index="0" unique_id=1958494206]
 position = Vector2(2, 6.5)
 shape = SubResource("RectangleShape2D_u0bw3")
 
-[node name="Climbing2" parent="Areas" index="5" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
+[node name="Climbing2" parent="Areas" index="5" unique_id=820356662 node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("2_4um4c")]
 position = Vector2(24, -679)
 ground_levels = [NodePath("End"), NodePath("End2")]
 ground_level_y = -648
@@ -574,80 +445,80 @@ greg_speed = 45.0
 
 [node name="CollisionShape2D" parent="Areas/Climbing2" index="0"]
 position = Vector2(0, 21.5)
-shape = SubResource("RectangleShape2D_fhx0y")
+shape = SubResource("RectangleShape2D_i1uaj")
 
-[node name="Start" parent="Areas/Climbing2" index="2" instance=ExtResource("8_37pfp")]
+[node name="Start" parent="Areas/Climbing2" index="2" unique_id=575937084 instance=ExtResource("8_37pfp")]
 position = Vector2(71, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="0" unique_id=1528366507]
 position = Vector2(-71, 24)
 shape = SubResource("RectangleShape2D_7xdd6")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/Climbing2/Start" index="1" unique_id=1053914153]
 position = Vector2(201, -138.5)
 shape = SubResource("RectangleShape2D_7xdd6")
 
-[node name="End" type="Area2D" parent="Areas/Climbing2" index="3"]
+[node name="End" type="Area2D" parent="Areas/Climbing2" index="3" unique_id=647176432]
 position = Vector2(272, -130)
 collision_layer = 128
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End" index="0" unique_id=1755055299]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_37pfp")
 
-[node name="End2" type="Area2D" parent="Areas/Climbing2" index="4"]
+[node name="End2" type="Area2D" parent="Areas/Climbing2" index="4" unique_id=853143759]
 position = Vector2(199, -273)
 collision_layer = 128
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End2" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Climbing2/End2" index="0" unique_id=481733068]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_22jmq")
 
-[node name="SgCatOwl" parent="Areas" index="6" instance=ExtResource("9_7xdd6")]
+[node name="SgCatOwl" parent="Areas" index="6" unique_id=1575020343 instance=ExtResource("9_7xdd6")]
 position = Vector2(416, -654)
 default_lines = Array[StringName]([&"sg_6_climb_long"])
 
-[node name="SgCatOwl2" parent="Areas" index="7" instance=ExtResource("9_7xdd6")]
+[node name="SgCatOwl2" parent="Areas" index="7" unique_id=1365023970 instance=ExtResource("9_7xdd6")]
 position = Vector2(389, -814)
 default_lines = Array[StringName]([&"sg_6_climb_secret"])
 
-[node name="SgCatOwl3" parent="Areas" index="8" instance=ExtResource("9_7xdd6")]
+[node name="SgCatOwl3" parent="Areas" index="8" unique_id=2057940590 instance=ExtResource("9_7xdd6")]
 position = Vector2(1, -28)
 default_lines = Array[StringName]([&"sg_6_climb"])
 
-[node name="SgCatOwl4" parent="Areas" index="9" instance=ExtResource("9_7xdd6")]
+[node name="SgCatOwl4" parent="Areas" index="9" unique_id=2098054459 instance=ExtResource("9_7xdd6")]
 position = Vector2(345, -958)
 default_lines = Array[StringName]([&"sg_6_climb_future", &"sg_6_climb_future_2"])
 
-[node name="TrashBin" parent="Areas" index="10" instance=ExtResource("10_22jmq")]
+[node name="TrashBin" parent="Areas" index="10" unique_id=521451132 instance=ExtResource("10_22jmq")]
 position = Vector2(351, -800)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"milkshake"
 
-[node name="TrashBin2" parent="Areas" index="11" instance=ExtResource("10_22jmq")]
+[node name="TrashBin2" parent="Areas" index="11" unique_id=892315359 instance=ExtResource("10_22jmq")]
 position = Vector2(400, -641)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"gummy_fish"
 
-[node name="Parallax2D3" type="Parallax2D" parent="." index="9"]
+[node name="Parallax2D3" type="Parallax2D" parent="." index="9" unique_id=2091661277]
 scroll_scale = Vector2(0.045, 0)
 scroll_offset = Vector2(99.64, 60.115)
 
-[node name="BattleBackground" parent="Parallax2D3" index="0" instance=ExtResource("11_hjqv8")]
+[node name="BattleBackground" parent="Parallax2D3" index="0" unique_id=959717890 instance=ExtResource("11_hjqv8")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
 
-[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0" unique_id=1703095315]
 material = SubResource("ShaderMaterial_mv3gs")
 
-[node name="Parallax2D2" type="Parallax2D" parent="." index="10"]
+[node name="Parallax2D2" type="Parallax2D" parent="." index="10" unique_id=467695236]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(36, 42)
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0" unique_id=862157437]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
 z_index = -1
 position = Vector2(69, -49)
@@ -656,10 +527,10 @@ tile_map_data = PackedByteArray("AAD3/+L/AAAAAAAAAAD3/+P/AAAAAAEAAAD3/+T/AAAAAAE
 tile_set = ExtResource("3_5kvm4")
 y_sort_origin = -110
 
-[node name="Decor" type="Node2D" parent="." index="11"]
+[node name="Decor" type="Node2D" parent="." index="11" unique_id=1386170282]
 y_sort_enabled = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="0"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="0" unique_id=91378500]
 position = Vector2(82, -164)
 amount = 24
 texture = ExtResource("13_lrnl8")
@@ -667,7 +538,7 @@ visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_mdtew")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Decor" index="1"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Decor" index="1" unique_id=1087191916]
 position = Vector2(215, -810)
 amount = 24
 texture = ExtResource("13_lrnl8")
@@ -675,27 +546,27 @@ visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_mdtew")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="2"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="2" unique_id=1171684235]
 z_index = -1
 tile_map_data = PackedByteArray("AAASANf/AAAAAAUAAAASANb/AAAAAAUAAAASANX/AAAAAAUAAAASANT/AAAAAAUAAAASANP/AAAAAAUAAAASANL/AAAAAAUAAAASANH/AAAAAAUAAAASAND/AAAAAAUAAAASAM//AAAAAAUAAAASAM7/AAAAAAUAAAAUANb/AAAAAAUAAAAUANX/AAAAAAUAAAAUANT/AAAAAAUAAAAUANP/AAAAAAUAAAAUANL/AAAAAAUAAAAUANH/AAAAAAUAAAAUAND/AAAAAAUAAAAUAM//AAAAAAUAAAAUAM7/AAAAAAUAAAAWAM7/AAAAAAUAAAAZANf/AAAAAAUAAAAZANb/AAAAAAUAAAAZANX/AAAAAAUAAAAZANT/AAAAAAUAAAAZANP/AAAAAAUAAAAZANL/AAAAAAUAAAAZANH/AAAAAAUAAAAZAND/AAAAAAUAAAAZAM//AAAAAAUAAAAZAM7/AAAAAAUAAAAXANf/AAAAAAUAAAAXANb/AAAAAAUAAAAXANX/AAAAAAUAAAAXANT/AAAAAAUAAAAXANP/AAAAAAUAAAAXANL/AAAAAAUAAAAXANH/AAAAAAUAAAAXAND/AAAAAAUAAAAXAM//AAAAAAUAAAAUAM3/AAAAAAUAAAAUAMz/AAAAAAUAAAAXAM3/AAAAAAUAAAAXAMz/AAAAAAUAAAAUAMv/AAAAAAQAAAAXAMv/AAAAAAQAAAD+/9f/AAAAAAUAAAD+/9b/AAAAAAUAAAD+/9X/AAAAAAUAAAD+/9T/AAAAAAQAAAD7//7/AAAAAAUAAAD7//3/AAAAAAUAAAD7//z/AAAAAAUAAAD7//v/AAAAAAUAAAD7//r/AAAAAAUAAAD7//n/AAAAAAUAAAD7//j/AAAAAAUAAAD7//f/AAAAAAUAAAD7//b/AAAAAAUAAAD7//X/AAAAAAUAAAD7//T/AAAAAAQAAAD5//7/AAAAAAUAAAD5//3/AAAAAAUAAAD5//z/AAAAAAUAAAD5//v/AAAAAAUAAAD5//r/AAAAAAUAAAD5//n/AAAAAAUAAAD5//j/AAAAAAUAAAD5//f/AAAAAAUAAAD5//b/AAAAAAUAAAD5//X/AAAAAAUAAAD5//T/AAAAAAUAAAD5//P/AAAAAAUAAAD5//L/AAAAAAUAAAD5//H/AAAAAAUAAAD5//D/AAAAAAQAAAAUANf/AAAAAAUAAAABAPz/AAAAAAQAAAADAPz/AAAAAAQAAAAFAPz/AAAAAAQAAAABAP3/AAAAAAYAAAADAP3/AAAAAAYAAAAFAP3/AAAAAAYAAAAVAMP/AAABAAYAAAAVAML/AAABAAQAAAA=")
 tile_set = ExtResource("3_5kvm4")
 
-[node name="Plant" parent="Decor" index="3" instance=ExtResource("14_mdtew")]
+[node name="Plant" parent="Decor" index="3" unique_id=1334670656 instance=ExtResource("14_mdtew")]
 position = Vector2(16, -62)
 
-[node name="Plant2" parent="Decor" index="4" instance=ExtResource("14_mdtew")]
+[node name="Plant2" parent="Decor" index="4" unique_id=563998923 instance=ExtResource("14_mdtew")]
 position = Vector2(48, -62)
 
-[node name="Plant3" parent="Decor" index="5" instance=ExtResource("14_mdtew")]
+[node name="Plant3" parent="Decor" index="5" unique_id=858328483 instance=ExtResource("14_mdtew")]
 position = Vector2(80, -62)
 
-[node name="Plant4" parent="Decor" index="6" instance=ExtResource("14_mdtew")]
+[node name="Plant4" parent="Decor" index="6" unique_id=1178647521 instance=ExtResource("14_mdtew")]
 position = Vector2(320, -846)
 
-[node name="Plant5" parent="Decor" index="7" instance=ExtResource("14_mdtew")]
+[node name="Plant5" parent="Decor" index="7" unique_id=479745752 instance=ExtResource("14_mdtew")]
 position = Vector2(368, -846)
 
-[node name="Flower1" parent="Decor" index="8" instance=ExtResource("15_i1uaj")]
+[node name="Flower1" parent="Decor" index="8" unique_id=24231557 instance=ExtResource("15_i1uaj")]
 position = Vector2(336, -992)
 
 [connection signal="inspected" from="Areas/StartClimping" to="Areas/ClimbingPlace" method="begin_climping"]

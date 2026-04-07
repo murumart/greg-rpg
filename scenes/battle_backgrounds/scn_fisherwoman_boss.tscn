@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpcgx40me3jet"]
+[gd_scene format=3 uid="uid://dpcgx40me3jet"]
 
 [ext_resource type="Script" uid="uid://2xfafyoommfo" path="res://scenes/battle_backgrounds/scr_fisherwoman_boss.gd" id="1_65g3d"]
 [ext_resource type="Texture2D" uid="uid://dedbkkindpw06" path="res://sprites/photos/spr_lakeside.png" id="2_65g3d"]
-[ext_resource type="Shader" path="res://shaders/scr_wet_wet.gdshader" id="3_njvep"]
+[ext_resource type="Shader" uid="uid://b1hfv4yfxwlme" path="res://shaders/scr_wet_wet.gdshader" id="3_njvep"]
 [ext_resource type="PackedScene" uid="uid://d2rbwb8pdr8d4" path="res://scenes/fishing/blocks.tscn" id="4_65g3d"]
 
 [sub_resource type="Animation" id="Animation_vn271"]
@@ -253,19 +253,19 @@ frequency = 0.123
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_65g3d"]
 width = 12
 height = 10
-color_ramp = SubResource("Gradient_65g3d")
 noise = SubResource("FastNoiseLite_njvep")
+color_ramp = SubResource("Gradient_65g3d")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65g3d"]
 blend_mode = 3
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_njvep"]
 
-[node name="Lakeside" type="Node2D"]
+[node name="Lakeside" type="Node2D" unique_id=1170448459]
 z_index = -50
 script = ExtResource("1_65g3d")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1253663116]
 modulate = Color(0, 0.156863, 0, 1)
 self_modulate = Color(0.214041, 0.262357, 0.666043, 1)
 z_index = -6
@@ -273,13 +273,11 @@ position = Vector2(-54, 0)
 texture = ExtResource("2_65g3d")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bnqvc")
-}
-autoplay = "intro"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1137196884]
+libraries/ = SubResource("AnimationLibrary_bnqvc")
+autoplay = &"intro"
 
-[node name="Effect" type="ColorRect" parent="."]
+[node name="Effect" type="ColorRect" parent="." unique_id=1396937481]
 visible = false
 texture_repeat = 3
 material = SubResource("ShaderMaterial_rs4ts")
@@ -292,10 +290,10 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=533085415]
 position = Vector2(0, 71)
 
-[node name="Blocks" parent="Node2D" node_paths=PackedStringArray("noise_sprite") instance=ExtResource("4_65g3d")]
+[node name="Blocks" parent="Node2D" unique_id=1350410012 node_paths=PackedStringArray("noise_sprite") instance=ExtResource("4_65g3d")]
 position = Vector2(80, 72)
 foreground_source = 1
 noise_sprite = NodePath("NoiseSprite")
@@ -306,7 +304,7 @@ self_modulate = Color(1, 1, 1, 0.521569)
 [node name="foreground" parent="Node2D/Blocks" index="1"]
 self_modulate = Color(1, 1, 1, 0.537255)
 
-[node name="NoiseSprite" type="Sprite2D" parent="Node2D/Blocks"]
+[node name="NoiseSprite" type="Sprite2D" parent="Node2D/Blocks" unique_id=1925157563]
 visible = false
 modulate = Color(1, 1, 1, 0.0666667)
 position = Vector2(-96, -80)
@@ -314,7 +312,7 @@ scale = Vector2(16, 16)
 texture = SubResource("NoiseTexture2D_65g3d")
 centered = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1242513101]
 material = SubResource("CanvasItemMaterial_65g3d")
 offset_left = -38.0
 offset_top = -28.0
@@ -322,7 +320,7 @@ offset_right = 222.0
 offset_bottom = 148.0
 color = Color(0, 0.71966, 1, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=2514342]
 material = SubResource("CanvasItemMaterial_njvep")
 offset_left = -38.0
 offset_top = -28.0

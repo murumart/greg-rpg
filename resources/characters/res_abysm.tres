@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://d3vuple6kpgea"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://d3vuple6kpgea"]
 
 [ext_resource type="Texture2D" uid="uid://cxbrsfky38cnn" path="res://sprites/characters/battle/lakeside/spr_abysm_head.png" id="1_bw0lg"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_0kmdd"]
@@ -9,7 +9,6 @@ region = Rect2(10, 10, 22, 22)
 
 [resource]
 script = ExtResource("2_0kmdd")
-name_in_file = &""
 name = "abysm"
 info = "(wet squelch noise)"
 portrait = SubResource("AtlasTexture_54cuc")
@@ -18,13 +17,7 @@ health = 120.0
 max_magic = 720.0
 magic = 720.0
 level = 8
-experience = 0
 attack = 6.0
 defense = 45.0
 speed = 20.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["dreaming_in_green", "peptide", "jglove", "peanuts"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

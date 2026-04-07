@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://derlrmf2kmbcd"]
+[gd_scene format=3 uid="uid://derlrmf2kmbcd"]
 
 [ext_resource type="Texture2D" uid="uid://b1uyvhl2kkxuy" path="res://sprites/characters/overworld/spr_silhouette.png" id="1_1l71f"]
 [ext_resource type="Script" uid="uid://bvdjqlww8flfa" path="res://scenes/vfx/x_menacing.gd" id="1_kpvvp"]
@@ -59,13 +59,13 @@ random_pitch = 1.69
 streams_count = 1
 stream_0/stream = ExtResource("8_sc7yi")
 
-[node name="Menacing" type="Node2D"]
+[node name="Menacing" type="Node2D" unique_id=1703639088]
 script = ExtResource("1_kpvvp")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=757291189]
 material = ExtResource("2_kpvvp")
 
-[node name="Particles" type="GPUParticles2D" parent="CanvasGroup"]
+[node name="Particles" type="GPUParticles2D" parent="CanvasGroup" unique_id=929754598]
 amount = 128
 amount_ratio = 0.0265
 texture = ExtResource("1_1l71f")
@@ -73,17 +73,17 @@ fixed_fps = 60
 visibility_rect = Rect2(-200, -200, 400, 400)
 process_material = ExtResource("4_kpvvp")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=654115792]
 self_modulate = Color(0.0705882, 0, 0.152941, 1)
 texture = ExtResource("1_1l71f")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="BulletHome" type="CanvasGroup" parent="."]
+[node name="BulletHome" type="CanvasGroup" parent="." unique_id=1023061198]
 top_level = true
 material = ExtResource("2_kpvvp")
 
-[node name="PlosiveParticles" type="GPUParticles2D" parent="."]
+[node name="PlosiveParticles" type="GPUParticles2D" parent="." unique_id=1902137203]
 material = SubResource("CanvasItemMaterial_kpvvp")
 emitting = false
 amount = 20
@@ -97,26 +97,26 @@ trail_sections = 4
 trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_sc7yi")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=484578348]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="AttackShape" type="CollisionShape2D" parent="Area2D"]
+[node name="AttackShape" type="CollisionShape2D" parent="Area2D" unique_id=1778801587]
 shape = SubResource("CircleShape2D_kpvvp")
 disabled = true
 
-[node name="SwoopSound" type="AudioStreamPlayer" parent="."]
+[node name="SwoopSound" type="AudioStreamPlayer" parent="." unique_id=757811770]
 stream = ExtResource("5_475o0")
 
-[node name="ExplodeSound" type="AudioStreamPlayer" parent="."]
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="." unique_id=1467725453]
 stream = ExtResource("6_sc7yi")
 volume_db = -9.244
 
-[node name="BlareSound" type="AudioStreamPlayer" parent="."]
+[node name="BlareSound" type="AudioStreamPlayer" parent="." unique_id=438828904]
 stream = ExtResource("7_rocms")
 
-[node name="BulletSound" type="AudioStreamPlayer" parent="."]
+[node name="BulletSound" type="AudioStreamPlayer" parent="." unique_id=497147192]
 stream = SubResource("AudioStreamRandomizer_sc7yi")
 volume_db = 8.0
 max_polyphony = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://cc13veoqxe5gd"]
+[gd_scene format=4 uid="uid://cc13veoqxe5gd"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_flcgy"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_01ui4"]
@@ -48,8 +48,8 @@ domain_warp_fractal_gain = -0.465
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6jute"]
 width = 128
 height = 128
-color_ramp = SubResource("Gradient_t4lsx")
 noise = SubResource("FastNoiseLite_wsc7f")
+color_ramp = SubResource("Gradient_t4lsx")
 
 [sub_resource type="GDScript" id="GDScript_nhmtv"]
 resource_name = "music_changer"
@@ -299,27 +299,27 @@ size = Vector2(46, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxi6o"]
 size = Vector2(44, 2)
 
-[node name="StoreRestroom" type="Node2D"]
+[node name="StoreRestroom" type="Node2D" unique_id=2136528611]
 y_sort_enabled = true
 script = ExtResource("1_flcgy")
 music = "air_conditioning"
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
-[node name="CheatNode" type="Node" parent="."]
+[node name="CheatNode" type="Node" parent="." unique_id=2133852330]
 script = ExtResource("2_555gl")
 silver_gain = 75
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
-[node name="Tiles" type="Node2D" parent="."]
+[node name="Tiles" type="Node2D" parent="." unique_id=2056655828]
 position = Vector2(0, -130)
 
-[node name="Floor" type="TileMapLayer" parent="Tiles"]
+[node name="Floor" type="TileMapLayer" parent="Tiles" unique_id=1346525490]
 modulate = Color(0.628675, 0.626895, 0.543797, 1)
 position = Vector2(0, 130)
 tile_map_data = PackedByteArray("AAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP//AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAACAP//AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAA=")
 tile_set = ExtResource("2_01ui4")
 
-[node name="TextureRect" type="TextureRect" parent="Tiles"]
+[node name="TextureRect" type="TextureRect" parent="Tiles" unique_id=1954494083]
 material = SubResource("CanvasItemMaterial_gkmwl")
 offset_left = -43.0
 offset_top = 114.0
@@ -327,13 +327,13 @@ offset_right = 85.0
 offset_bottom = 242.0
 texture = SubResource("NoiseTexture2D_6jute")
 
-[node name="Wall" type="TileMapLayer" parent="Tiles"]
+[node name="Wall" type="TileMapLayer" parent="Tiles" unique_id=1457176146]
 self_modulate = Color(0.873676, 0.718352, 0.503495, 1)
 position = Vector2(0, 130)
 tile_map_data = PackedByteArray("AAANAAcAAQARAAMAAAANAAYAAQARAAIAAAANAAUAAQARAAIAAAANAAQAAQARAAIAAAANAAMAAQARAAIAAAANAAIAAQARAAIAAAANAAEAAQARAAIAAAANAAAAAQARAAIAAAANAP//AQARAAIAAAANAP7/AQARAAIAAAANAP3/AQARAAIAAAANAPz/AQARAAIAAAANAPv/AQARAAIAAAANAPr/AQARAAIAAAANAPn/AQARAAIAAAANAPj/AQARAAIAAAANAPf/AQARAAAAAAAMAAcAAQAPAAMAAAAMAAYAAQAPAAIAAAAMAAUAAQAPAAIAAAAMAAQAAQAPAAIAAAAMAAMAAQAPAAIAAAAMAAIAAQAPAAIAAAAMAAEAAQAPAAIAAAAMAAAAAQAPAAIAAAAMAP//AQAPAAIAAAAMAP7/AQAPAAIAAAAMAP3/AQAPAAIAAAAMAPz/AQAPAAIAAAAMAPv/AQAPAAIAAAAMAPr/AQAPAAIAAAAMAPn/AQAPAAIAAAAMAPj/AQAPAAIAAAAMAPf/AQAQAAAAAAALAAcAAQAPAAMAAAALAAYAAQAPAAIAAAALAAUAAQAPAAIAAAALAAQAAQAPAAIAAAALAAMAAQAPAAIAAAALAAIAAQAPAAIAAAALAAEAAQAPAAIAAAALAAAAAQAPAAIAAAALAP//AQAPAAIAAAALAP7/AQAPAAIAAAALAP3/AQAPAAIAAAALAPz/AQAPAAIAAAALAPv/AQAPAAIAAAALAPr/AQAPAAIAAAALAPn/AQAPAAIAAAALAPj/AQAPAAIAAAALAPf/AQAQAAAAAAAKAAcAAQAPAAMAAAAKAAYAAQAPAAIAAAAKAAUAAQAPAAIAAAAKAAQAAQAPAAIAAAAKAAMAAQAPAAIAAAAKAAIAAQAPAAIAAAAKAAEAAQAPAAIAAAAKAAAAAQAPAAIAAAAKAP//AQAPAAIAAAAKAP7/AQAPAAIAAAAKAP3/AQAPAAIAAAAKAPz/AQAPAAIAAAAKAPv/AQAPAAIAAAAKAPr/AQAPAAIAAAAKAPn/AQAPAAIAAAAKAPj/AQAPAAIAAAAKAPf/AQAQAAAAAAAJAAcAAQAPAAMAAAAJAAYAAQAPAAIAAAAJAAUAAQAPAAIAAAAJAAQAAQAPAAIAAAAJAAMAAQAPAAIAAAAJAAIAAQAPAAIAAAAJAAEAAQAPAAIAAAAJAAAAAQAPAAIAAAAJAP//AQAPAAIAAAAJAP7/AQAPAAIAAAAJAP3/AQAPAAIAAAAJAPz/AQAPAAIAAAAJAPv/AQAPAAIAAAAJAPr/AQAPAAIAAAAJAPn/AQAPAAIAAAAJAPj/AQAPAAIAAAAJAPf/AQAQAAAAAAAIAAcAAQAPAAMAAAAIAAYAAQAPAAIAAAAIAAUAAQAPAAIAAAAIAAQAAQAPAAIAAAAIAAMAAQAPAAIAAAAIAAIAAQAPAAIAAAAIAAEAAQAPAAIAAAAIAAAAAQAPAAIAAAAIAP//AQAPAAIAAAAIAP7/AQAPAAIAAAAIAP3/AQAPAAIAAAAIAPz/AQAPAAIAAAAIAPv/AQAPAAIAAAAIAPr/AQAPAAIAAAAIAPn/AQAPAAIAAAAIAPj/AQAPAAIAAAAIAPf/AQAQAAAAAAAHAAcAAQAPAAMAAAAHAAYAAQAPAAIAAAAHAAUAAQAPAAIAAAAHAAQAAQAPAAIAAAAHAAMAAQAPAAIAAAAHAAIAAQAPAAIAAAAHAAEAAQAPAAIAAAAHAAAAAQAPAAIAAAAHAP//AQAPAAIAAAAHAP7/AQAPAAIAAAAHAP3/AQAPAAIAAAAHAPz/AQAPAAIAAAAHAPv/AQAPAAIAAAAHAPr/AQAPAAIAAAAHAPn/AQAPAAIAAAAHAPj/AQAPAAIAAAAHAPf/AQAQAAAAAAAGAAcAAQAPAAMAAAAGAAYAAQAPAAIAAAAGAAUAAQAPAAIAAAAGAAQAAQAPAAIAAAAGAAMAAQAPAAIAAAAGAAIAAQAPAAIAAAAGAAEAAQAPAAIAAAAGAAAAAQAPAAIAAAAGAP//AQAPAAIAAAAGAP7/AQAPAAIAAAAGAP3/AQAPAAIAAAAGAPz/AQAPAAIAAAAGAPv/AQAPAAIAAAAGAPr/AQAPAAIAAAAGAPn/AQAPAAIAAAAGAPj/AQAPAAIAAAAGAPf/AQAQAAAAAAAFAAcAAQAPAAMAAAAFAAYAAQAPAAIAAAAFAAUAAQAPAAIAAAAFAAQAAQAPAAIAAAAFAAMAAQAPAAIAAAAFAAIAAQAPAAIAAAAFAAEAAQAPAAIAAAAFAAAAAQAPAAIAAAAFAP//AQAPAAIAAAAFAP7/AQAPAAIAAAAFAP3/AQAPAAIAAAAFAPz/AQAPAAIAAAAFAPv/AQAPAAIAAAAFAPr/AQAPAAIAAAAFAPn/AQAPAAIAAAAFAPj/AQAPAAIAAAAFAPf/AQAQAAAAAAAEAAcAAQAPAAMAAAAEAAYAAQAPAAIAAAAEAAUAAQAPAAIAAAAEAAQAAQAPAAIAAAAEAAMAAQAPAAIAAAAEAAIAAQALAAEAAAAEAP3/AQALAAIAAAAEAPz/AQAPAAIAAAAEAPv/AQAPAAIAAAAEAPr/AQAPAAIAAAAEAPn/AQAPAAIAAAAEAPj/AQAPAAIAAAAEAPf/AQAQAAAAAAADAAcAAQAPAAMAAAADAAYAAQAPAAIAAAADAAUAAQAPAAIAAAADAAQAAQAPAAIAAAADAAMAAQAPAAIAAAADAAIAAQAQAAAAAAADAP3/AQAPAAMAAAADAPz/AQAPAAIAAAADAPv/AQAPAAIAAAADAPr/AQAPAAIAAAADAPn/AQAPAAIAAAADAPj/AQAPAAIAAAADAPf/AQAQAAAAAAACAAcAAQAPAAMAAAACAAYAAQAPAAIAAAACAAUAAQAPAAIAAAACAAQAAQAPAAIAAAACAAMAAQAPAAIAAAACAAIAAQAQAAAAAAACAP3/AQAPAAMAAAACAPz/AQAPAAIAAAACAPv/AQAPAAIAAAACAPr/AQAPAAIAAAACAPn/AQAPAAIAAAACAPj/AQAPAAIAAAACAPf/AQAQAAAAAAABAAcAAQAPAAMAAAABAAYAAQAPAAIAAAABAAUAAQAPAAIAAAABAAQAAQAPAAIAAAABAAMAAQAPAAIAAAABAAIAAQAQAAAAAAABAP3/AQAPAAMAAAABAPz/AQAPAAIAAAABAPv/AQAPAAIAAAABAPr/AQAPAAIAAAABAPn/AQAPAAIAAAABAPj/AQAPAAIAAAABAPf/AQAQAAAAAAAAAAcAAQAPAAMAAAAAAAYAAQAPAAIAAAAAAAUAAQAPAAIAAAAAAAQAAQAPAAIAAAAAAAMAAQAPAAIAAAAAAAIAAQAQAAAAAAAAAP3/AQAPAAMAAAAAAPz/AQAPAAIAAAAAAPv/AQAPAAIAAAAAAPr/AQAPAAIAAAAAAPn/AQAPAAIAAAAAAPj/AQAPAAIAAAAAAPf/AQAQAAAAAAD//wcAAQAPAAMAAAD//wYAAQAPAAIAAAD//wUAAQAPAAIAAAD//wQAAQAPAAIAAAD//wMAAQAPAAIAAAD///3/AQAPAAMAAAD///z/AQAPAAIAAAD///v/AQAPAAIAAAD///r/AQAPAAIAAAD///n/AQAPAAIAAAD///j/AQAPAAIAAAD///f/AQAQAAAAAAD+/wcAAQAPAAMAAAD+/wYAAQAPAAIAAAD+/wUAAQAPAAIAAAD+/wQAAQAPAAIAAAD+/wMAAQAPAAIAAAD+/wIAAQAQAAAAAAD+//3/AQAPAAMAAAD+//z/AQAPAAIAAAD+//v/AQAPAAIAAAD+//r/AQAPAAIAAAD+//n/AQAPAAIAAAD+//j/AQAPAAIAAAD+//f/AQAQAAAAAAD9/wcAAQAPAAMAAAD9/wYAAQAPAAIAAAD9/wUAAQAPAAIAAAD9/wQAAQAPAAIAAAD9/wMAAQAPAAIAAAD9/wIAAQAMAAEAAAD9/wEAAQARAAIAAAD9/wAAAQARAAIAAAD9////AQARAAIAAAD9//7/AQARAAIAAAD9//3/AQAMAAIAAAD9//z/AQAPAAIAAAD9//v/AQAPAAIAAAD9//r/AQAPAAIAAAD9//n/AQAPAAIAAAD9//j/AQAPAAIAAAD9//f/AQAQAAAAAAD8/wcAAQAPAAMAAAD8/wYAAQAPAAIAAAD8/wUAAQAPAAIAAAD8/wQAAQAPAAIAAAD8/wMAAQAPAAIAAAD8/wIAAQAPAAIAAAD8/wEAAQAPAAIAAAD8/wAAAQAPAAIAAAD8////AQAPAAIAAAD8//7/AQAPAAIAAAD8//3/AQAPAAIAAAD8//z/AQAPAAIAAAD8//v/AQAPAAIAAAD8//r/AQAPAAIAAAD8//n/AQAPAAIAAAD8//j/AQAPAAIAAAD8//f/AQAQAAAAAAD7/wcAAQAPAAMAAAD7/wYAAQAPAAIAAAD7/wUAAQAPAAIAAAD7/wQAAQAPAAIAAAD7/wMAAQAPAAIAAAD7/wIAAQAPAAIAAAD7/wEAAQAPAAIAAAD7/wAAAQAPAAIAAAD7////AQAPAAIAAAD7//7/AQAPAAIAAAD7//3/AQAPAAIAAAD7//z/AQAPAAIAAAD7//v/AQAPAAIAAAD7//r/AQAPAAIAAAD7//n/AQAPAAIAAAD7//j/AQAPAAIAAAD7//f/AQAQAAAAAAD6/wcAAQAPAAMAAAD6/wYAAQAPAAIAAAD6/wUAAQAPAAIAAAD6/wQAAQAPAAIAAAD6/wMAAQAPAAIAAAD6/wIAAQAPAAIAAAD6/wEAAQAPAAIAAAD6/wAAAQAPAAIAAAD6////AQAPAAIAAAD6//7/AQAPAAIAAAD6//3/AQAPAAIAAAD6//z/AQAPAAIAAAD6//v/AQAPAAIAAAD6//r/AQAPAAIAAAD6//n/AQAPAAIAAAD6//j/AQAPAAIAAAD6//f/AQAQAAAAAAD5/wcAAQAPAAMAAAD5/wYAAQAPAAIAAAD5/wUAAQAPAAIAAAD5/wQAAQAPAAIAAAD5/wMAAQAPAAIAAAD5/wIAAQAPAAIAAAD5/wEAAQAPAAIAAAD5/wAAAQAPAAIAAAD5////AQAPAAIAAAD5//7/AQAPAAIAAAD5//3/AQAPAAIAAAD5//z/AQAPAAIAAAD5//v/AQAPAAIAAAD5//r/AQAPAAIAAAD5//n/AQAPAAIAAAD5//j/AQAPAAIAAAD5//f/AQAQAAAAAAD4/wcAAQAPAAMAAAD4/wYAAQAPAAIAAAD4/wUAAQAPAAIAAAD4/wQAAQAPAAIAAAD4/wMAAQAPAAIAAAD4/wIAAQAPAAIAAAD4/wEAAQAPAAIAAAD4/wAAAQAPAAIAAAD4////AQAPAAIAAAD4//7/AQAPAAIAAAD4//3/AQAPAAIAAAD4//z/AQAPAAIAAAD4//v/AQAPAAIAAAD4//r/AQAPAAIAAAD4//n/AQAPAAIAAAD4//j/AQAPAAIAAAD4//f/AQAQAAAAAAD3/wcAAQAPAAMAAAD3/wYAAQAPAAIAAAD3/wUAAQAPAAIAAAD3/wQAAQAPAAIAAAD3/wMAAQAPAAIAAAD3/wIAAQAPAAIAAAD3/wEAAQAPAAIAAAD3/wAAAQAPAAIAAAD3////AQAPAAIAAAD3//7/AQAPAAIAAAD3//3/AQAPAAIAAAD3//z/AQAPAAIAAAD3//v/AQAPAAIAAAD3//r/AQAPAAIAAAD3//n/AQAPAAIAAAD3//j/AQAPAAIAAAD3//f/AQAQAAAAAAD2/wcAAQAPAAMAAAD2/wYAAQAPAAIAAAD2/wUAAQAPAAIAAAD2/wQAAQAPAAIAAAD2/wMAAQAPAAIAAAD2/wIAAQAPAAIAAAD2/wEAAQAPAAIAAAD2/wAAAQAPAAIAAAD2////AQAPAAIAAAD2//7/AQAPAAIAAAD2//3/AQAPAAIAAAD2//z/AQAPAAIAAAD2//v/AQAPAAIAAAD2//r/AQAPAAIAAAD2//n/AQAPAAIAAAD2//j/AQAPAAIAAAD2//f/AQAQAAAAAAD1/wcAAQAPAAMAAAD1/wYAAQAPAAIAAAD1/wUAAQAPAAIAAAD1/wQAAQAPAAIAAAD1/wMAAQAPAAIAAAD1/wIAAQAPAAIAAAD1/wEAAQAPAAIAAAD1/wAAAQAPAAIAAAD1////AQAPAAIAAAD1//7/AQAPAAIAAAD1//3/AQAPAAIAAAD1//z/AQAPAAIAAAD1//v/AQAPAAIAAAD1//r/AQAPAAIAAAD1//n/AQAPAAIAAAD1//j/AQAPAAIAAAD1//f/AQAQAAAAAAD0/wcAAQAPAAMAAAD0/wYAAQAPAAIAAAD0/wUAAQAPAAIAAAD0/wQAAQAPAAIAAAD0/wMAAQAPAAIAAAD0/wIAAQAPAAIAAAD0/wEAAQAPAAIAAAD0/wAAAQAPAAIAAAD0////AQAPAAIAAAD0//7/AQAPAAIAAAD0//3/AQAPAAIAAAD0//z/AQAPAAIAAAD0//v/AQAPAAIAAAD0//r/AQAPAAIAAAD0//n/AQAPAAIAAAD0//j/AQAPAAIAAAD0//f/AQAQAAAAAADz/wcAAQAPAAMAAADz/wYAAQAPAAIAAADz/wUAAQAPAAIAAADz/wQAAQAPAAIAAADz/wMAAQAPAAIAAADz/wIAAQAPAAIAAADz/wEAAQAPAAIAAADz/wAAAQAPAAIAAADz////AQAPAAIAAADz//7/AQAPAAIAAADz//3/AQAPAAIAAADz//z/AQAPAAIAAADz//v/AQAPAAIAAADz//r/AQAPAAIAAADz//n/AQAPAAIAAADz//j/AQAPAAIAAADz//f/AQAQAAAAAADy/wcAAQAOAAMAAADy/wYAAQAOAAEAAADy/wUAAQAOAAEAAADy/wQAAQAOAAEAAADy/wMAAQAOAAEAAADy/wIAAQAOAAEAAADy/wEAAQAOAAEAAADy/wAAAQAOAAEAAADy////AQAOAAEAAADy//7/AQAOAAEAAADy//3/AQAOAAEAAADy//z/AQAOAAEAAADy//v/AQAOAAEAAADy//r/AQAOAAEAAADy//n/AQAOAAEAAADy//j/AQAOAAEAAADy//f/AQAOAAAAAAD//wIAAQAPAAAAAAAEAP7/AQAOAAEAAAAEAP//AQAOAAEAAAAEAAAAAQAOAAEAAAAEAAEAAQAOAAEAAAA=")
 tile_set = ExtResource("2_01ui4")
 
-[node name="TextureRect2" type="TextureRect" parent="Tiles/Wall"]
+[node name="TextureRect2" type="TextureRect" parent="Tiles/Wall" unique_id=879350728]
 material = SubResource("CanvasItemMaterial_gkmwl")
 offset_left = -47.0
 offset_top = -144.0
@@ -341,40 +341,40 @@ offset_right = 81.0
 offset_bottom = -16.0
 texture = SubResource("NoiseTexture2D_6jute")
 
-[node name="Camera" parent="." instance=ExtResource("3_dfshh")]
+[node name="Camera" parent="." unique_id=385689926 instance=ExtResource("3_dfshh")]
 position = Vector2(16, 0)
 
-[node name="Greg" parent="." instance=ExtResource("4_mgdvh")]
+[node name="Greg" parent="." unique_id=159906596 instance=ExtResource("4_mgdvh")]
 position = Vector2(-23, 5)
 
-[node name="RoomGate" parent="." instance=ExtResource("5_hdt53")]
+[node name="RoomGate" parent="." unique_id=1176829104 instance=ExtResource("5_hdt53")]
 position = Vector2(-8, 39)
 destination = &"store"
 gate_id = &"store-restroom"
 extents = Vector2i(6, 8)
 spawnpoint = Vector2i(0, -12)
 
-[node name="MusicChanger" type="Node" parent="."]
+[node name="MusicChanger" type="Node" parent="." unique_id=2058730599]
 script = SubResource("GDScript_nhmtv")
 
-[node name="DailyTrash" type="Node2D" parent="."]
+[node name="DailyTrash" type="Node2D" parent="." unique_id=1772887201]
 position = Vector2(-22, -16)
 script = ExtResource("6_4d1bw")
 
-[node name="TrashBin" parent="DailyTrash" instance=ExtResource("7_n8fep")]
+[node name="TrashBin" parent="DailyTrash" unique_id=854684908 instance=ExtResource("7_n8fep")]
 full = false
 replenish_minutes = -1
 replenish_seconds = -60
 save = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="DailyTrash/TrashBin"]
+[node name="Sprite2D2" type="Sprite2D" parent="DailyTrash/TrashBin" unique_id=629809682]
 visible = false
 material = SubResource("CanvasItemMaterial_27t7h")
 position = Vector2(0, -22)
 scale = Vector2(1e-05, 1)
 texture = SubResource("GradientTexture2D_tva8e")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="DailyTrash/TrashBin/Sprite2D2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="DailyTrash/TrashBin/Sprite2D2" unique_id=1734947007]
 material = SubResource("CanvasItemMaterial_ywvc6")
 position = Vector2(0, 16)
 emitting = false
@@ -382,19 +382,17 @@ amount = 16
 texture = ExtResource("15_hvmee")
 process_material = SubResource("ParticleProcessMaterial_tva8e")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DailyTrash/TrashBin/Sprite2D2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DailyTrash/TrashBin/Sprite2D2" unique_id=752764329]
 stream = ExtResource("9_ywvc6")
 volume_db = -5.0
 pitch_scale = 1.2
 bus = &"ECHO"
 
-[node name="OpenAnimation" type="AnimationPlayer" parent="DailyTrash/TrashBin"]
-libraries = {
-&"": SubResource("AnimationLibrary_xtoxy")
-}
-autoplay = "RESET"
+[node name="OpenAnimation" type="AnimationPlayer" parent="DailyTrash/TrashBin" unique_id=1880156744]
+libraries/ = SubResource("AnimationLibrary_xtoxy")
+autoplay = &"RESET"
 
-[node name="Sparkles" type="GPUParticles2D" parent="DailyTrash"]
+[node name="Sparkles" type="GPUParticles2D" parent="DailyTrash" unique_id=1779943443]
 material = SubResource("CanvasItemMaterial_3ntbh")
 amount = 2
 texture = ExtResource("7_k1mj7")
@@ -403,7 +401,7 @@ visibility_rect = Rect2(-16, -16, 32, 32)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hvhl4")
 
-[node name="Ui" type="Control" parent="DailyTrash"]
+[node name="Ui" type="Control" parent="DailyTrash" unique_id=1726922833]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -414,7 +412,7 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="DailyTrash/Ui"]
+[node name="ColorRect" type="ColorRect" parent="DailyTrash/Ui" unique_id=1704904222]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -423,13 +421,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.545098)
 
-[node name="TextureRect" type="TextureRect" parent="DailyTrash/Ui"]
+[node name="TextureRect" type="TextureRect" parent="DailyTrash/Ui" unique_id=692371117]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("8_wl6bd")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="DailyTrash/Ui/TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="DailyTrash/Ui/TextureRect" unique_id=1576404025]
 layout_mode = 0
 offset_left = 51.0
 offset_top = 52.0
@@ -438,74 +436,74 @@ offset_bottom = 110.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "each weekday, come here to receive a different free item!!"
 
-[node name="Sprite2D" type="Sprite2D" parent="DailyTrash"]
+[node name="Sprite2D" type="Sprite2D" parent="DailyTrash" unique_id=364522967]
 position = Vector2(11, -14)
 texture = ExtResource("9_83jlk")
 
-[node name="InteractionArea" type="Area2D" parent="DailyTrash/Sprite2D"]
+[node name="InteractionArea" type="Area2D" parent="DailyTrash/Sprite2D" unique_id=2101255023]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("10_x1fn2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DailyTrash/Sprite2D/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DailyTrash/Sprite2D/InteractionArea" unique_id=1071929300]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_2emwr")
 
-[node name="RefillSound" type="AudioStreamPlayer" parent="DailyTrash"]
+[node name="RefillSound" type="AudioStreamPlayer" parent="DailyTrash" unique_id=1775500712]
 stream = ExtResource("11_0k1ew")
 pitch_scale = 0.1
 
-[node name="RefillTimer" type="Timer" parent="DailyTrash"]
+[node name="RefillTimer" type="Timer" parent="DailyTrash" unique_id=1570637491]
 autostart = true
 
-[node name="Stalls" type="Node2D" parent="." groups=["save_me"]]
+[node name="Stalls" type="Node2D" parent="." unique_id=1153696133 groups=["save_me"]]
 position = Vector2(32, -21)
 script = ExtResource("13_371wy")
 
-[node name="People" type="Node2D" parent="Stalls"]
+[node name="People" type="Node2D" parent="Stalls" unique_id=1711362719]
 
-[node name="Sprite2D2" type="Sprite2D" parent="Stalls/People"]
+[node name="Sprite2D2" type="Sprite2D" parent="Stalls/People" unique_id=112743629]
 visible = false
 position = Vector2(-24, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="Sprite2D5" type="Sprite2D" parent="Stalls/People"]
+[node name="Sprite2D5" type="Sprite2D" parent="Stalls/People" unique_id=882938299]
 visible = false
 position = Vector2(-8, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Stalls/People"]
+[node name="Sprite2D3" type="Sprite2D" parent="Stalls/People" unique_id=472437792]
 visible = false
 position = Vector2(8, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Stalls/People"]
+[node name="Sprite2D4" type="Sprite2D" parent="Stalls/People" unique_id=1721525692]
 visible = false
 position = Vector2(24, 2)
 texture = ExtResource("14_dhvoq")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="Shadow" type="Sprite2D" parent="Stalls"]
+[node name="Shadow" type="Sprite2D" parent="Stalls" unique_id=1701955387]
 modulate = Color(0, 0, 0, 0.211765)
 clip_children = 2
 position = Vector2(1.40071e-06, 13)
 scale = Vector2(64, 4.5)
 texture = ExtResource("15_hvmee")
 
-[node name="Stall" type="Sprite2D" parent="Stalls"]
+[node name="Stall" type="Sprite2D" parent="Stalls" unique_id=905901077]
 self_modulate = Color(0.815018, 0.547878, 0.175156, 1)
 clip_children = 2
 texture = ExtResource("13_a2olc")
 
-[node name="TextureRect2" type="TextureRect" parent="Stalls/Stall"]
+[node name="TextureRect2" type="TextureRect" parent="Stalls/Stall" unique_id=1458453386]
 material = SubResource("CanvasItemMaterial_gkmwl")
 offset_left = -106.0
 offset_top = 13.0
@@ -516,16 +514,16 @@ texture = SubResource("NoiseTexture2D_6jute")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Collision" type="StaticBody2D" parent="Stalls"]
+[node name="Collision" type="StaticBody2D" parent="Stalls" unique_id=2134071112]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Collision" unique_id=1381870419]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_1ljgr")
 
-[node name="Interactions" type="Node2D" parent="Stalls"]
+[node name="Interactions" type="Node2D" parent="Stalls" unique_id=1718422163]
 
-[node name="InteractionArea" type="Area2D" parent="Stalls/Interactions"]
+[node name="InteractionArea" type="Area2D" parent="Stalls/Interactions" unique_id=987296096]
 modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(-24, 11)
 collision_layer = 4
@@ -534,10 +532,10 @@ input_pickable = false
 monitoring = false
 script = ExtResource("10_x1fn2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea" unique_id=1301556629]
 shape = SubResource("RectangleShape2D_0bo5q")
 
-[node name="InteractionArea2" type="Area2D" parent="Stalls/Interactions"]
+[node name="InteractionArea2" type="Area2D" parent="Stalls/Interactions" unique_id=712026578]
 modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(-8, 11)
 collision_layer = 4
@@ -546,10 +544,10 @@ input_pickable = false
 monitoring = false
 script = ExtResource("10_x1fn2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea2" unique_id=1851348119]
 shape = SubResource("RectangleShape2D_0bo5q")
 
-[node name="InteractionArea3" type="Area2D" parent="Stalls/Interactions"]
+[node name="InteractionArea3" type="Area2D" parent="Stalls/Interactions" unique_id=1126699702]
 modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(8, 11)
 collision_layer = 4
@@ -558,10 +556,10 @@ input_pickable = false
 monitoring = false
 script = ExtResource("10_x1fn2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea3" unique_id=1603909071]
 shape = SubResource("RectangleShape2D_0bo5q")
 
-[node name="InteractionArea4" type="Area2D" parent="Stalls/Interactions"]
+[node name="InteractionArea4" type="Area2D" parent="Stalls/Interactions" unique_id=668460965]
 modulate = Color(0.905882, 0.639216, 1, 1)
 position = Vector2(24, 11)
 collision_layer = 4
@@ -570,10 +568,10 @@ input_pickable = false
 monitoring = false
 script = ExtResource("10_x1fn2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stalls/Interactions/InteractionArea4" unique_id=35031570]
 shape = SubResource("RectangleShape2D_0bo5q")
 
-[node name="GamblingUI" type="Control" parent="Stalls"]
+[node name="GamblingUI" type="Control" parent="Stalls" unique_id=1336849111]
 custom_minimum_size = Vector2(160, 120)
 layout_mode = 3
 anchors_preset = 0
@@ -581,7 +579,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("17_51g13")
 
-[node name="ColorRect" type="ColorRect" parent="Stalls/GamblingUI"]
+[node name="ColorRect" type="ColorRect" parent="Stalls/GamblingUI" unique_id=212761356]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -590,7 +588,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0.215686, 0.541176)
 
-[node name="CenterContainer" type="CenterContainer" parent="Stalls/GamblingUI"]
+[node name="CenterContainer" type="CenterContainer" parent="Stalls/GamblingUI" unique_id=1944283927]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -598,11 +596,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Stalls/GamblingUI/CenterContainer"]
+[node name="Panel" type="Panel" parent="Stalls/GamblingUI/CenterContainer" unique_id=1937991913]
 custom_minimum_size = Vector2(84, 16)
 layout_mode = 2
 
-[node name="Texture" type="TextureRect" parent="Stalls/GamblingUI/CenterContainer/Panel"]
+[node name="Texture" type="TextureRect" parent="Stalls/GamblingUI/CenterContainer/Panel" unique_id=1301342835]
 self_modulate = Color(1, 1, 1, 0.415686)
 layout_mode = 1
 anchors_preset = -1
@@ -620,7 +618,7 @@ texture = ExtResource("17_vx1by")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Stalls/GamblingUI/CenterContainer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Stalls/GamblingUI/CenterContainer/Panel" unique_id=1213745213]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -628,22 +626,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TrashDisplay" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+[node name="TrashDisplay" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" unique_id=1597636555 instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
-[node name="TrashDisplay2" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+[node name="TrashDisplay2" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" unique_id=1799596157 instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
-[node name="TrashDisplay3" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+[node name="TrashDisplay3" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" unique_id=2019576643 instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
-[node name="TrashDisplay4" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+[node name="TrashDisplay4" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" unique_id=9818724 instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
-[node name="TrashDisplay5" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" instance=ExtResource("17_pcmp6")]
+[node name="TrashDisplay5" parent="Stalls/GamblingUI/CenterContainer/Panel/HBoxContainer" unique_id=976017919 instance=ExtResource("17_pcmp6")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Stalls/GamblingUI"]
+[node name="Label" type="Label" parent="Stalls/GamblingUI" unique_id=1047997640]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 103.0
@@ -653,7 +651,7 @@ text = "movement keys to select
 accept to open"
 label_settings = SubResource("LabelSettings_utpdi")
 
-[node name="Hand" type="TextureRect" parent="Stalls/GamblingUI"]
+[node name="Hand" type="TextureRect" parent="Stalls/GamblingUI" unique_id=6173389]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 49.0
@@ -665,19 +663,19 @@ texture = SubResource("AtlasTexture_555gl")
 flip_h = true
 flip_v = true
 
-[node name="Sinks" type="StaticBody2D" parent="."]
+[node name="Sinks" type="StaticBody2D" parent="." unique_id=1424598373]
 position = Vector2(34, 24)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sinks"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sinks" unique_id=904316659]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_hce0a")
 
-[node name="Sprite2D" type="Sprite2D" parent="Sinks"]
+[node name="Sprite2D" type="Sprite2D" parent="Sinks" unique_id=610936430]
 clip_children = 2
 texture = ExtResource("20_qcn5b")
 metadata/_edit_lock_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="Sinks/Sprite2D"]
+[node name="TextureRect2" type="TextureRect" parent="Sinks/Sprite2D" unique_id=1911506670]
 material = SubResource("CanvasItemMaterial_gkmwl")
 offset_left = -101.0
 offset_top = 14.0
@@ -688,7 +686,7 @@ texture = SubResource("NoiseTexture2D_6jute")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sinks"]
+[node name="Sprite2D2" type="Sprite2D" parent="Sinks" unique_id=2024724377]
 clip_children = 2
 position = Vector2(-20, 4)
 texture = ExtResource("20_qcn5b")
@@ -696,7 +694,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(4, 12, 12, 3)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Sinks"]
+[node name="Sprite2D3" type="Sprite2D" parent="Sinks" unique_id=690471510]
 clip_children = 2
 position = Vector2(-6, 4)
 texture = ExtResource("20_qcn5b")
@@ -704,7 +702,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(4, 12, 12, 3)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Sinks"]
+[node name="Sprite2D4" type="Sprite2D" parent="Sinks" unique_id=1814963298]
 clip_children = 2
 position = Vector2(8, 4)
 texture = ExtResource("20_qcn5b")
@@ -712,13 +710,13 @@ centered = false
 region_enabled = true
 region_rect = Rect2(4, 12, 12, 3)
 
-[node name="InspectArea" type="Area2D" parent="Sinks"]
+[node name="InspectArea" type="Area2D" parent="Sinks" unique_id=379157724]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("21_0qtim")
 key = "restroom_sinks"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sinks/InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sinks/InspectArea" unique_id=1277563639]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_vxi6o")

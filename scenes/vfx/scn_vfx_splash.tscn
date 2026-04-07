@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ceno3cgqckamw"]
+[gd_scene format=3 uid="uid://ceno3cgqckamw"]
 
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_05uaa"]
 [ext_resource type="Texture2D" uid="uid://du7kinrednfqw" path="res://sprites/vfx/soplet.png" id="2_4vcj2"]
@@ -167,27 +167,25 @@ _data = {
 &"default": SubResource("Animation_byci8")
 }
 
-[node name="VfxSplash" type="Node2D"]
+[node name="VfxSplash" type="Node2D" unique_id=353197000]
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=2097412657]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_ab8ea")
 texture = ExtResource("1_05uaa")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ab8ea")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=312960334]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_n7eed")
 texture = ExtResource("2_4vcj2")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n7eed")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4w8f0")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=927709226]
+libraries/ = SubResource("AnimationLibrary_4w8f0")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2080673246]
 stream = ExtResource("2_slmsa")

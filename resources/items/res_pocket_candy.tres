@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://cn4247ceaf252"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cn4247ceaf252"]
 
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_f1dpc"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_h2mtm"]
@@ -8,25 +8,7 @@
 [sub_resource type="Resource" id="Resource_i1pgw"]
 script = ExtResource("1_h2mtm")
 health = 12.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
 magic = 6.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_sg828")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_f1dpc")
@@ -34,8 +16,6 @@ name_in_file = &"pocket_candy"
 name = &"pocket candy"
 description = "from the bottom of your pocket"
 texture = ExtResource("3_ekoog")
-attack_animation = ""
 price = 12
 use = 0
-consume_on_use = true
 payload = SubResource("Resource_i1pgw")

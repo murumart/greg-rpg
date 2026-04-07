@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://di0tywkhpnohj"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://di0tywkhpnohj"]
 
 [ext_resource type="Texture2D" uid="uid://dr1x5cciyut6b" path="res://sprites/spirit/spr_hotel_hint.png" id="1_6dtn2"]
 

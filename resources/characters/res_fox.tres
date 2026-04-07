@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://dihxby72i37pc"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dihxby72i37pc"]
 
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_5rmnw"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_p4u7d"]
@@ -9,22 +9,14 @@ region = Rect2(0, 71, 22, 22)
 
 [resource]
 script = ExtResource("1_p4u7d")
-name_in_file = &""
 name = "fox"
 info = "a creature skittering on the forest floor at an alarming speed."
 portrait = SubResource("AtlasTexture_e7na1")
-max_health = 100.0
-health = 100.0
 max_magic = 39.0
 magic = 39.0
 level = 60
-experience = 0
 attack = 60.0
 defense = 60.0
 speed = 60.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["peanuts"])
-unused_spirits = Array[String]([])
-armour = ""
 weapon = "animal_bite_poisonous"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://mvih26nda2tx"]
+[gd_scene format=3 uid="uid://mvih26nda2tx"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_h1b1s"]
 [ext_resource type="Texture2D" uid="uid://mqtcaojnu3up" path="res://sprites/characters/battle/thugs/spr_benthon_mantle.png" id="2_kgv6q"]
@@ -303,20 +303,18 @@ _data = {
 &"use_spirit": SubResource("Animation_5tvgc")
 }
 
-[node name="Benthon" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Benthon" type="Node2D" unique_id=1669864767 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_h1b1s")
 animator = NodePath("AnimationPlayer")
 altruism = 0.908
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." unique_id=756184829]
 texture = ExtResource("2_kgv6q")
 
-[node name="Head" type="Sprite2D" parent="."]
+[node name="Head" type="Sprite2D" parent="." unique_id=1462138052]
 position = Vector2(-3, 3)
 texture = ExtResource("3_faenw")
 offset = Vector2(-3.18608, -22.52)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cpnlk")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=743420482]
+libraries/ = SubResource("AnimationLibrary_cpnlk")

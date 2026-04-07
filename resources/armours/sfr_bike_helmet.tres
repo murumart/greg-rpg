@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://r32f074n6igh"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://r32f074n6igh"]
 
 [ext_resource type="Texture2D" uid="uid://dndmsyb4bjju1" path="res://sprites/characters/overworld/armours/spr_bike_helmet.png" id="1_7icsu"]
 

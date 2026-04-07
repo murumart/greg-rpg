@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://ba45gknaw0fsh"]
+[gd_resource type="Resource" script_class="StatusEffectType" format=3 uid="uid://ba45gknaw0fsh"]
 
 [ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="1_1jky5"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_fb8wd"]
@@ -10,14 +10,10 @@ region = Rect2(18, 12, 6, 6)
 
 [resource]
 script = ExtResource("1_1jky5")
-s_id = &""
 name = "crying"
 icon = SubResource("AtlasTexture_v8owv")
 color = Color(0.67451, 1, 1, 1)
-gender = 0
 use = 3
 cost = 8
 turn_visual = &"sopping"
-process_visual = &""
 turn_script = ExtResource("3_l6c21")
-process_visual_chance = 0.005

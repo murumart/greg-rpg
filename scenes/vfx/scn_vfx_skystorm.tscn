@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d8h6tghqis5u"]
+[gd_scene format=3 uid="uid://d8h6tghqis5u"]
 
 [ext_resource type="Texture2D" uid="uid://cv0bkcf6jlmkf" path="res://sprites/spirit/spr_sunrain.png" id="1_0dl8b"]
 [ext_resource type="AudioStream" uid="uid://c1ribfeo51bma" path="res://sounds/spirit/solar/skystorm.ogg" id="2_67axh"]
@@ -289,29 +289,26 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_sjtk6")
 color_ramp = SubResource("GradientTexture1D_62b0v")
 
-[node name="VfxSkystorm" type="Node2D"]
+[node name="VfxSkystorm" type="Node2D" unique_id=492868091]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1954593101]
 visible = false
 sprite_frames = SubResource("SpriteFrames_iwa2m")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=521281698]
 visible = false
 sprite_frames = SubResource("SpriteFrames_iwa2m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_12bn6")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410547597]
+libraries/ = SubResource("AnimationLibrary_12bn6")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1232907515]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=373749004]
 position = Vector2(0, -64)
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_qbnra")
 texture = ExtResource("3_k523l")
 lifetime = 2.0
 fixed_fps = 12
@@ -319,3 +316,4 @@ interpolate = false
 visibility_rect = Rect2(-100, -10, 200, 200)
 trail_enabled = true
 trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_qbnra")

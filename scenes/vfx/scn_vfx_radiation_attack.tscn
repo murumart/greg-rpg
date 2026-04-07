@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cq8rou1ns7gjp"]
+[gd_scene format=3 uid="uid://cq8rou1ns7gjp"]
 
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_utiuo"]
 [ext_resource type="AudioStream" uid="uid://dklpqnop7rwrw" path="res://sounds/spirit/bikeghost/radiation_attack.ogg" id="2_0oica"]
@@ -226,29 +226,27 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ynwit"]
 blend_mode = 1
 
-[node name="VfxRadiationAttack" type="Node2D"]
+[node name="VfxRadiationAttack" type="Node2D" unique_id=764803528]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2092805897]
 material = SubResource("CanvasItemMaterial_5j6of")
 emitting = false
 amount = 74
 sub_emitter = NodePath(".")
-process_material = SubResource("ParticleProcessMaterial_d3u7d")
 texture = ExtResource("1_utiuo")
 lifetime = 3.0
 fixed_fps = 60
 trail_enabled = true
 trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_d3u7d")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ie1wd")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1576290924]
+libraries/ = SubResource("AnimationLibrary_ie1wd")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1208181836]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1612958754]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_ynwit")
 texture = ExtResource("1_utiuo")

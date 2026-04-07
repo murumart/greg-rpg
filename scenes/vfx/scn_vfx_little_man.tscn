@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvkcwsvr4w1l8"]
+[gd_scene format=3 uid="uid://dvkcwsvr4w1l8"]
 
 [ext_resource type="Texture2D" uid="uid://dqqbxljcu3x6p" path="res://sprites/spirit/spr_littleman.png" id="1_xx770"]
 [ext_resource type="AudioStream" uid="uid://bwlfyd3jdfjly" path="res://sounds/spirit/littleman.ogg" id="2_btgyy"]
@@ -200,25 +200,23 @@ scale_max = 4.0
 scale_over_velocity_curve = SubResource("CurveTexture_g54ut")
 color_ramp = SubResource("GradientTexture1D_mgx6v")
 
-[node name="VfxLittleMan" type="Node2D"]
+[node name="VfxLittleMan" type="Node2D" unique_id=1260096460]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tr5ke")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=434571530]
+libraries/ = SubResource("AnimationLibrary_tr5ke")
+autoplay = &"new_animation"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1503579160]
 scale = Vector2(0.53, 1)
 texture = ExtResource("1_xx770")
 hframes = 2
 vframes = 4
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1296637456]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1836310932]
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_d06ts")
 texture = ExtResource("3_jrp52")
 lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_d06ts")

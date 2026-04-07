@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://csysyuokc0kef"]
+[gd_scene format=3 uid="uid://csysyuokc0kef"]
 
 [ext_resource type="AudioStream" uid="uid://dctixbicj6c78" path="res://sounds/spirit/moon_city_loud.ogg" id="1_8n013"]
 [ext_resource type="Script" uid="uid://bvg5wd7gqgsx1" path="res://scenes/vfx/scr_vfx_mooncity_global.gd" id="1_x23ul"]
@@ -682,32 +682,32 @@ height = 120
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_20cuw"]
+[sub_resource type="Gradient" id="Gradient_r2nha"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_7awi5"]
+[sub_resource type="Gradient" id="Gradient_cbyin"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_2rbsq"]
+[sub_resource type="Gradient" id="Gradient_ec3cq"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_end5v"]
+[sub_resource type="Gradient" id="Gradient_ggd4j"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_ewvld"]
+[sub_resource type="Gradient" id="Gradient_ke23e"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_vrs7j"]
+[sub_resource type="Gradient" id="Gradient_ukmgv"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 1, 1)
@@ -813,16 +813,16 @@ color_ramp = SubResource("GradientTexture1D_jotvs")
 alpha_curve = SubResource("CurveTexture_7eemg")
 emission_curve = SubResource("CurveTexture_kuyoa")
 
-[node name="MooncityGlobal" type="Node2D"]
+[node name="MooncityGlobal" type="Node2D" unique_id=745224957]
 script = ExtResource("1_x23ul")
 
-[node name="ScreenRef" type="ColorRect" parent="."]
+[node name="ScreenRef" type="ColorRect" parent="." unique_id=532378653]
 visible = false
 offset_left = -160.0
 offset_top = -120.0
 color = Color(0.678431, 0.678431, 0.678431, 0.137255)
 
-[node name="ScreenRef2" type="ColorRect" parent="."]
+[node name="ScreenRef2" type="ColorRect" parent="." unique_id=782744085]
 visible = false
 offset_left = -80.0
 offset_top = -60.0
@@ -830,109 +830,107 @@ offset_right = 80.0
 offset_bottom = 60.0
 color = Color(0.836088, 0.525076, 0.997535, 0.137255)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1599285403]
 visible = false
 sprite_frames = SubResource("SpriteFrames_3bije")
 
-[node name="Glow2" type="Sprite2D" parent="."]
+[node name="Glow2" type="Sprite2D" parent="." unique_id=1954732968]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_40uyq")
 texture = SubResource("GradientTexture2D_haty8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=198020598]
 volume_db = 2.152
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6q6g0")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1304641277]
+libraries/ = SubResource("AnimationLibrary_6q6g0")
+autoplay = &"new_animation"
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="."]
+[node name="CameraTransform" type="RemoteTransform2D" parent="." unique_id=2052426517]
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CameraTransform"]
+[node name="ReferenceRect" type="ReferenceRect" parent="CameraTransform" unique_id=1442807950]
 offset_left = -80.0
 offset_top = -60.0
 offset_right = 80.0
 offset_bottom = 60.0
 
-[node name="Glow" type="Sprite2D" parent="."]
+[node name="Glow" type="Sprite2D" parent="." unique_id=1036502720]
 material = SubResource("CanvasItemMaterial_qstth")
 texture = SubResource("GradientTexture2D_stjwm")
 
-[node name="Powerlines" type="Node2D" parent="."]
+[node name="Powerlines" type="Node2D" parent="." unique_id=1238294170]
 modulate = Color(1, 1, 1, 0.360784)
 metadata/_edit_group_ = true
 
-[node name="VfxPowerline" parent="Powerlines" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline" parent="Powerlines" unique_id=1499640002 instance=ExtResource("3_w60g1")]
 position = Vector2(-97, 1)
 rotation = -1.56288
 scale = Vector2(3.11753, 2.45687)
-gradient = SubResource("Gradient_20cuw")
+gradient = SubResource("Gradient_r2nha")
 lifetime = 0.0
 
-[node name="VfxPowerline2" parent="Powerlines" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline2" parent="Powerlines" unique_id=1272585577 instance=ExtResource("3_w60g1")]
 position = Vector2(-113, 1)
 rotation = -1.56288
 scale = Vector2(3.60109, 4.81638)
-gradient = SubResource("Gradient_7awi5")
+gradient = SubResource("Gradient_cbyin")
 lifetime = 0.0
 
-[node name="VfxPowerline3" parent="Powerlines" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline3" parent="Powerlines" unique_id=2032910661 instance=ExtResource("3_w60g1")]
 position = Vector2(-135, 6)
 rotation = -1.56288
 scale = Vector2(4.25561, 5.96763)
-gradient = SubResource("Gradient_2rbsq")
+gradient = SubResource("Gradient_ec3cq")
 lifetime = 0.0
 
-[node name="Powerlines2" type="Node2D" parent="."]
+[node name="Powerlines2" type="Node2D" parent="." unique_id=1523916758]
 modulate = Color(1, 1, 1, 0.129412)
 scale = Vector2(-1, -1)
 metadata/_edit_group_ = true
 
-[node name="VfxPowerline" parent="Powerlines2" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline" parent="Powerlines2" unique_id=1728223128 instance=ExtResource("3_w60g1")]
 position = Vector2(-97, 1)
 rotation = -1.56288
 scale = Vector2(3.11753, 2.45687)
-gradient = SubResource("Gradient_end5v")
+gradient = SubResource("Gradient_ggd4j")
 lifetime = 0.0
 
-[node name="VfxPowerline2" parent="Powerlines2" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline2" parent="Powerlines2" unique_id=1738186033 instance=ExtResource("3_w60g1")]
 position = Vector2(-113, 1)
 rotation = -1.56288
 scale = Vector2(3.60109, 4.81638)
-gradient = SubResource("Gradient_ewvld")
+gradient = SubResource("Gradient_ke23e")
 lifetime = 0.0
 
-[node name="VfxPowerline3" parent="Powerlines2" instance=ExtResource("3_w60g1")]
+[node name="VfxPowerline3" parent="Powerlines2" unique_id=368240417 instance=ExtResource("3_w60g1")]
 position = Vector2(-135, 6)
 rotation = -1.56288
 scale = Vector2(4.25561, 5.96763)
-gradient = SubResource("Gradient_vrs7j")
+gradient = SubResource("Gradient_ukmgv")
 lifetime = 0.0
 
-[node name="Dust1" type="GPUParticles2D" parent="."]
+[node name="Dust1" type="GPUParticles2D" parent="." unique_id=1443260927]
 position = Vector2(-23, 61)
 amount = 128
-process_material = SubResource("ParticleProcessMaterial_v1js0")
 texture = ExtResource("4_naeej")
 visibility_rect = Rect2(-100, -200, 200, 300)
+process_material = SubResource("ParticleProcessMaterial_v1js0")
 
-[node name="Rocks" type="GPUParticles2D" parent="."]
+[node name="Rocks" type="GPUParticles2D" parent="." unique_id=1702279174]
 position = Vector2(0, -79)
 amount = 32
 amount_ratio = 0.0
-process_material = SubResource("ParticleProcessMaterial_23x2q")
 texture = ExtResource("5_2bvvs")
 lifetime = 0.8
 visibility_rect = Rect2(-100, -18.89, 200, 200)
+process_material = SubResource("ParticleProcessMaterial_23x2q")
 
-[node name="Lines" type="GPUParticles2D" parent="."]
+[node name="Lines" type="GPUParticles2D" parent="." unique_id=777773789]
 material = SubResource("CanvasItemMaterial_4143x")
 position = Vector2(-82, -62)
 rotation = -0.807271
 amount = 128
 amount_ratio = 0.0
-process_material = SubResource("ParticleProcessMaterial_1ep7c")
 texture = ExtResource("6_g2xxj")
 trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_1ep7c")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dr8u35o2ygx4e"]
+[gd_scene format=3 uid="uid://dr8u35o2ygx4e"]
 
 [ext_resource type="Script" uid="uid://b55t11vu7o878" path="res://scenes/cutscene/scr_evilend.gd" id="1_h2ccp"]
 [ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="2_bqngp"]
@@ -33,17 +33,17 @@ shader = SubResource("Shader_34xtc")
 atlas = ExtResource("6_0xgl4")
 region = Rect2(0, 0, 130, 48)
 
-[node name="Evilend" type="Node2D"]
+[node name="Evilend" type="Node2D" unique_id=822525770]
 script = ExtResource("1_h2ccp")
 
-[node name="Darkness" type="ColorRect" parent="."]
+[node name="Darkness" type="ColorRect" parent="." unique_id=1183986251]
 offset_left = -3.0
 offset_top = -4.0
 offset_right = 164.0
 offset_bottom = 124.0
 color = Color(0, 0, 0, 1)
 
-[node name="Textbox" type="RichTextLabel" parent="."]
+[node name="Textbox" type="RichTextLabel" parent="." unique_id=260905274]
 offset_left = 8.0
 offset_top = 82.0
 offset_right = 152.0
@@ -52,54 +52,54 @@ bbcode_enabled = true
 script = ExtResource("2_bqngp")
 metadata/_edit_use_anchors_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=2026709342]
 offset_right = 160.0
 offset_bottom = 80.0
 
-[node name="Images" type="Control" parent="CenterContainer"]
+[node name="Images" type="Control" parent="CenterContainer" unique_id=18549623]
 clip_children = 2
 clip_contents = true
 custom_minimum_size = Vector2(130, 48)
 layout_mode = 2
 
-[node name="Directionless" type="TextureRect" parent="CenterContainer/Images"]
+[node name="Directionless" type="TextureRect" parent="CenterContainer/Images" unique_id=229080728]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_right = 130.0
 offset_bottom = 48.0
 texture = ExtResource("3_5w75a")
 
-[node name="Violence" type="TextureRect" parent="CenterContainer/Images"]
+[node name="Violence" type="TextureRect" parent="CenterContainer/Images" unique_id=28045944]
 visible = false
 material = SubResource("ShaderMaterial_2prwr")
-layout_mode = 2
+layout_mode = 0
 offset_right = 130.0
 offset_bottom = 48.0
 texture = ExtResource("4_df1x5")
 
-[node name="Destruction" type="TextureRect" parent="CenterContainer/Images"]
+[node name="Destruction" type="TextureRect" parent="CenterContainer/Images" unique_id=1155710166]
 visible = false
 material = SubResource("ShaderMaterial_2prwr")
-layout_mode = 2
+layout_mode = 0
 offset_right = 130.0
 offset_bottom = 48.0
 texture = ExtResource("5_v0qsg")
 
-[node name="Sea" type="TextureRect" parent="CenterContainer/Images"]
+[node name="Sea" type="TextureRect" parent="CenterContainer/Images" unique_id=652056951]
 visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_2prwr")
-layout_mode = 2
+layout_mode = 0
 offset_right = 130.0
 offset_bottom = 48.0
 texture = SubResource("AtlasTexture_txhwo")
 stretch_mode = 1
 
-[node name="Dead" type="TextureRect" parent="CenterContainer/Images"]
+[node name="Dead" type="TextureRect" parent="CenterContainer/Images" unique_id=1756667179]
 visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_2prwr")
-layout_mode = 2
+layout_mode = 0
 offset_right = 130.0
 offset_bottom = 48.0
 texture = ExtResource("7_xdnlx")

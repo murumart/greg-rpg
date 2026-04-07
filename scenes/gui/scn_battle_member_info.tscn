@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsrntxiwcuv2v"]
+[gd_scene format=3 uid="uid://bsrntxiwcuv2v"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_qos12"]
 [ext_resource type="Script" uid="uid://cfdr23rggg00o" path="res://scenes/gui/scr_battle_member_info.gd" id="2_kv8cv"]
@@ -11,21 +11,21 @@ blend_mode = 1
 atlas = ExtResource("3_4g8c8")
 region = Rect2(0, 6, 6, 6)
 
-[node name="MemberInfo" type="Panel"]
+[node name="MemberInfo" type="Panel" unique_id=237629409]
 custom_minimum_size = Vector2(56, 24)
 offset_right = 56.0
 offset_bottom = 24.0
 theme = ExtResource("1_qos12")
 script = ExtResource("2_kv8cv")
 
-[node name="Portrait" type="TextureRect" parent="."]
+[node name="Portrait" type="TextureRect" parent="." unique_id=746040360]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 23.0
 offset_bottom = 23.0
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=843195472]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 2.0
@@ -34,11 +34,11 @@ offset_bottom = 13.0
 text = "name"
 clip_text = true
 
-[node name="EffectCenter" type="Marker2D" parent="."]
+[node name="EffectCenter" type="Marker2D" parent="." unique_id=204860509]
 position = Vector2(12, 12)
 gizmo_extents = 11.0
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1742712135]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 24.0
@@ -48,7 +48,7 @@ offset_bottom = 13.0
 value = 51.0
 show_percentage = false
 
-[node name="MagicBar" type="ProgressBar" parent="."]
+[node name="MagicBar" type="ProgressBar" parent="." unique_id=1790922365]
 modulate = Color(0, 1, 1, 1)
 layout_mode = 0
 offset_left = 24.0
@@ -59,7 +59,7 @@ step = 1.0
 allow_greater = true
 show_percentage = false
 
-[node name="WaitBar" type="ProgressBar" parent="."]
+[node name="WaitBar" type="ProgressBar" parent="." unique_id=1467458791]
 modulate = Color(1, 1, 0.490196, 1)
 layout_mode = 1
 offset_left = 24.0
@@ -69,7 +69,7 @@ offset_bottom = 19.0
 allow_greater = true
 show_percentage = false
 
-[node name="AnimalBar" type="ProgressBar" parent="."]
+[node name="AnimalBar" type="ProgressBar" parent="." unique_id=1566308253]
 modulate = Color(3.14902, 0.45098, 3.23529, 0.882353)
 material = SubResource("CanvasItemMaterial_nw40l")
 layout_mode = 1
@@ -81,10 +81,10 @@ value = 31.0
 allow_greater = true
 show_percentage = false
 
-[node name="RemoteTransform" type="RemoteTransform2D" parent="."]
+[node name="RemoteTransform" type="RemoteTransform2D" parent="." unique_id=1331536774]
 position = Vector2(12, 12)
 
-[node name="EffectsContainer" type="GridContainer" parent="."]
+[node name="EffectsContainer" type="GridContainer" parent="." unique_id=1776973605]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
@@ -94,26 +94,26 @@ theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 3
 
-[node name="TextureRect" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect" type="TextureRect" parent="EffectsContainer" unique_id=1068297966]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")
 
-[node name="TextureRect2" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect2" type="TextureRect" parent="EffectsContainer" unique_id=1490577764]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")
 
-[node name="TextureRect3" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect3" type="TextureRect" parent="EffectsContainer" unique_id=1964843074]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")
 
-[node name="TextureRect4" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect4" type="TextureRect" parent="EffectsContainer" unique_id=490931300]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")
 
-[node name="TextureRect5" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect5" type="TextureRect" parent="EffectsContainer" unique_id=1859853182]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")
 
-[node name="TextureRect6" type="TextureRect" parent="EffectsContainer"]
+[node name="TextureRect6" type="TextureRect" parent="EffectsContainer" unique_id=73690774]
 layout_mode = 2
 texture = SubResource("AtlasTexture_6oscw")

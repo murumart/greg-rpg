@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brei3yd3ajqqr"]
+[gd_scene format=3 uid="uid://brei3yd3ajqqr"]
 
 [ext_resource type="Texture2D" uid="uid://caxtnijbq1v7k" path="res://sprites/photos/spr_shopping_cart.png" id="1_ka4vw"]
 [ext_resource type="AudioStream" uid="uid://b0p3klkpr8nsc" path="res://sounds/spirit/shopping_cart.ogg" id="2_fjebg"]
@@ -118,20 +118,18 @@ _data = {
 &"default": SubResource("Animation_fnqoa")
 }
 
-[node name="VfxGotCarted" type="Node2D"]
+[node name="VfxGotCarted" type="Node2D" unique_id=1136641074]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=68480519]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ka4vw")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_udih8")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1191708206]
+libraries/ = SubResource("AnimationLibrary_udih8")
+autoplay = &"default"
 
-[node name="BangSpark" parent="." instance=ExtResource("2_ymv84")]
+[node name="BangSpark" parent="." unique_id=209260753 instance=ExtResource("2_ymv84")]
 
-[node name="DustPuff" parent="." instance=ExtResource("3_s5edp")]
+[node name="DustPuff" parent="." unique_id=101921359 instance=ExtResource("3_s5edp")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1445049594]

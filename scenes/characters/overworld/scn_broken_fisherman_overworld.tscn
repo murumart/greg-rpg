@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cuq7r8jwkjto0"]
+[gd_scene format=3 uid="uid://cuq7r8jwkjto0"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_57ade"]
 [ext_resource type="Texture2D" uid="uid://dkxw00c6l1ek5" path="res://sprites/characters/overworld/spr_broken_fisherman_overworld.png" id="2_23irk"]
@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_il21p"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="7_c4ac7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ulo7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hde0"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8mvl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il21p"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v11g1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4ac7"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -222,32 +222,12 @@ curve = SubResource("Curve_1qt73")
 [sub_resource type="Resource" id="Resource_8nto2"]
 script = ExtResource("7_c4ac7")
 name = &"drenchfoot"
-strength = 1.0
 duration = 9999
 metadata/_custom_type_script = "uid://dr10ikau5bgrg"
 
 [sub_resource type="Resource" id="Resource_gvojf"]
 script = ExtResource("6_il21p")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
 effects = Array[ExtResource("7_c4ac7")]([SubResource("Resource_8nto2")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [sub_resource type="Resource" id="Resource_v2hfp"]
@@ -255,21 +235,14 @@ script = ExtResource("6_7wttt")
 enemies = Array[StringName]([&"broken_fisherman"])
 background = "lakeside"
 music = "lake_battle"
-party = Array[StringName]([])
 death_reason = 5
-start_text = ""
 rewards = ExtResource("6_5ctlp")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
 player_missing_armour_effects = Dictionary[StringName, ExtResource("6_il21p")]({
 &"rubber_boots": SubResource("Resource_gvojf")
 })
 increment_data_with_enemies = &"broken_fishermen_fought"
 
-[node name="BrokenFisherman" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
+[node name="BrokenFisherman" unique_id=1695416724 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_57ade")]
 animated_sprite = NodePath("AnimatedSprite2D")
 speed = 2700
 random_movement = true
@@ -280,23 +253,20 @@ default_lines = Array[StringName]([&"fisherman_attack"])
 save = false
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_7ulo7")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+shape = SubResource("RectangleShape2D_4hde0")
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_n8mvl")
+shape = SubResource("RectangleShape2D_il21p")
 
 [node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_v11g1")
+shape = SubResource("CircleShape2D_c4ac7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=109748648]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_yd2uh")
 animation = &"walk_down"
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+[node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=1095584789 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_txuqq")
 values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb"), SubResource("Resource_3epx7"), SubResource("Resource_d08lo"), SubResource("Resource_cdx0q")])
 default_battle = SubResource("Resource_v2hfp")

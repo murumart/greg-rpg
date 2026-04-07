@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bu02y13ilypfd"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bu02y13ilypfd"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_c84hy"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_qvc4w"]
@@ -7,36 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_bmsip"]
 script = ExtResource("1_qvc4w")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = 6.0
-defense_increase = 0.0
 speed_increase = -4.0
-gender = 0
-effects = Array[ExtResource("1_c84hy")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_xq3xy")
-name_in_file = &""
 name = &"bronze rifle"
 description = "a decorative rifle cast from bronze."
 texture = ExtResource("3_sonnr")
 attack_animation = "gun_bludgeon"
 price = 9999
 use = 4
-consume_on_use = true
 payload = SubResource("Resource_bmsip")
-key = false

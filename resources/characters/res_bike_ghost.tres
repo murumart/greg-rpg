@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://c2gl4k6xnmud6"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://c2gl4k6xnmud6"]
 
 [ext_resource type="Texture2D" uid="uid://dnknk25juokeu" path="res://sprites/characters/portraits/spr_portrait_bike_ghost.png" id="1_68e1p"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_4e27u"]
@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("2_4e27u")
-name_in_file = &""
 name = "bike ghost"
 info = "its voice rapidly changes as it curses and laughs at you."
 voice_sound = ExtResource("3_qh8ga")
@@ -15,14 +14,6 @@ max_health = 99.0
 health = 99.0
 max_magic = 200.0
 magic = 200.0
-level = 1
-experience = 0
-attack = 1.0
-defense = 1.0
-speed = 1.0
-defeated_characters = {}
 inventory = Array[String](["gummy_worm", "gummy_worm", "sugar_lemon"])
 spirits = Array[String](["alpha_radio", "ghostpunches"])
-unused_spirits = Array[String]([])
-armour = ""
 weapon = "bike_ghost_arm"

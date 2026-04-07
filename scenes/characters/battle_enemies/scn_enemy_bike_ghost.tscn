@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfb7l37bxkl8d"]
+[gd_scene format=3 uid="uid://cfb7l37bxkl8d"]
 
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_axreb"]
 [ext_resource type="Texture2D" uid="uid://da74g7iyjvbem" path="res://sprites/characters/battle/bike_ghosts/alpha.png" id="2_mvywq"]
@@ -3462,7 +3462,7 @@ _limits = [50.0, 200.0, 1.0, 99.0]
 _data = [Vector2(1, 50), 0.0, 0.0, 0, 0, Vector2(26.3585, 97.9058), 0.0, 0.0, 0, 0, Vector2(99, 200), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="BikeGhost" node_paths=PackedStringArray("animator") instance=ExtResource("1_axreb")]
+[node name="BikeGhost" unique_id=1588519248 node_paths=PackedStringArray("animator") instance=ExtResource("1_axreb")]
 script = ExtResource("2_v7npc")
 effect_center = Vector2i(0, -20)
 animator = NodePath("Puppet/AnimationPlayer")
@@ -3473,10 +3473,10 @@ xp_multiplier = 7.0
 gender = 4
 effect_immunities = Array[StringName]([&"poison"])
 
-[node name="Puppet" type="CanvasGroup" parent="." index="0"]
+[node name="Puppet" type="CanvasGroup" parent="." index="0" unique_id=1772922621]
 script = ExtResource("2_s7p5t")
 
-[node name="Torso" type="Sprite2D" parent="Puppet" index="0"]
+[node name="Torso" type="Sprite2D" parent="Puppet" index="0" unique_id=605703757]
 position = Vector2(0, -4)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3484,34 +3484,34 @@ offset = Vector2(-10, -21)
 region_enabled = true
 region_rect = Rect2(1, 17, 20, 21)
 
-[node name="Lines" type="Node2D" parent="Puppet/Torso" index="0"]
+[node name="Lines" type="Node2D" parent="Puppet/Torso" index="0" unique_id=139567426]
 position = Vector2(-10, -21)
 
-[node name="Line2D" type="Line2D" parent="Puppet/Torso/Lines" index="0"]
+[node name="Line2D" type="Line2D" parent="Puppet/Torso/Lines" index="0" unique_id=1405161215]
 position = Vector2(7, 5)
 points = PackedVector2Array(1, -13, 0, 1)
 width = 1.0
 default_color = Color(0.164706, 0.498039, 0.329412, 1)
 
-[node name="Line2D2" type="Line2D" parent="Puppet/Torso/Lines" index="1"]
+[node name="Line2D2" type="Line2D" parent="Puppet/Torso/Lines" index="1" unique_id=1144053278]
 position = Vector2(9, 5)
 points = PackedVector2Array(0, -9, 0, 1)
 width = 1.0
 default_color = Color(0, 0.329412, 0.329412, 1)
 
-[node name="Line2D3" type="Line2D" parent="Puppet/Torso/Lines" index="2"]
+[node name="Line2D3" type="Line2D" parent="Puppet/Torso/Lines" index="2" unique_id=1990864745]
 position = Vector2(11, 5)
 points = PackedVector2Array(0, -12, 0, 1)
 width = 1.0
 default_color = Color(0.164706, 0.498039, 0.329412, 1)
 
-[node name="Line2D4" type="Line2D" parent="Puppet/Torso/Lines" index="3"]
+[node name="Line2D4" type="Line2D" parent="Puppet/Torso/Lines" index="3" unique_id=956175739]
 position = Vector2(13, 5)
 points = PackedVector2Array(-1, -13, 0, 1)
 width = 1.0
 default_color = Color(0, 0.329412, 0.329412, 1)
 
-[node name="Cover" type="Sprite2D" parent="Puppet/Torso" index="1"]
+[node name="Cover" type="Sprite2D" parent="Puppet/Torso" index="1" unique_id=1491229704]
 position = Vector2(0, -19)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3519,7 +3519,7 @@ offset = Vector2(-7, -1)
 region_enabled = true
 region_rect = Rect2(23, 6, 14, 6)
 
-[node name="Pelvis" type="Sprite2D" parent="Puppet/Torso" index="2"]
+[node name="Pelvis" type="Sprite2D" parent="Puppet/Torso" index="2" unique_id=1239441319]
 position = Vector2(0, 9)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3527,7 +3527,7 @@ offset = Vector2(-9, -9)
 region_enabled = true
 region_rect = Rect2(2, 39, 18, 9)
 
-[node name="RULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="0"]
+[node name="RULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="0" unique_id=1484523845]
 position = Vector2(-5, 0)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3535,7 +3535,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 19)
 
-[node name="RLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/RULeg" index="0"]
+[node name="RLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/RULeg" index="0" unique_id=279973797]
 position = Vector2(0, 17)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3543,7 +3543,7 @@ offset = Vector2(-10, -1)
 region_enabled = true
 region_rect = Rect2(17, 50, 14, 30)
 
-[node name="LULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="1"]
+[node name="LULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="1" unique_id=1876592598]
 position = Vector2(5, 0)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3551,7 +3551,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 19)
 
-[node name="LLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/LULeg" index="0"]
+[node name="LLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/LULeg" index="0" unique_id=672453504]
 position = Vector2(0, 17)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3559,7 +3559,7 @@ offset = Vector2(-4, -1)
 region_enabled = true
 region_rect = Rect2(32, 50, 14, 30)
 
-[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="3"]
+[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="3" unique_id=1658353209]
 position = Vector2(0, -21)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3567,26 +3567,26 @@ offset = Vector2(-10, -16)
 region_enabled = true
 region_rect = Rect2(1, 0, 20, 16)
 
-[node name="Connections" type="Node2D" parent="Puppet/Torso/Head" index="0"]
+[node name="Connections" type="Node2D" parent="Puppet/Torso/Head" index="0" unique_id=2106912727]
 position = Vector2(0, -3)
 
-[node name="Marker2D" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="0"]
+[node name="Marker2D" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="0" unique_id=1868245489]
 position = Vector2(-2, -5)
 gizmo_extents = 2.0
 
-[node name="Marker2D2" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="1"]
+[node name="Marker2D2" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="1" unique_id=1801479139]
 position = Vector2(-1, -1)
 gizmo_extents = 2.0
 
-[node name="Marker2D3" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="2"]
+[node name="Marker2D3" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="2" unique_id=1705890429]
 position = Vector2(1, -4)
 gizmo_extents = 2.0
 
-[node name="Marker2D4" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="3"]
+[node name="Marker2D4" type="Marker2D" parent="Puppet/Torso/Head/Connections" index="3" unique_id=956316024]
 position = Vector2(2, -5)
 gizmo_extents = 2.0
 
-[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="4"]
+[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="4" unique_id=599226498]
 position = Vector2(11, -17)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3594,7 +3594,7 @@ offset = Vector2(-3, -4)
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 18)
 
-[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/RUArm" index="0"]
+[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/RUArm" index="0" unique_id=514843941]
 position = Vector2(0, 14)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3602,7 +3602,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 18, 6, 16)
 
-[node name="RHand" type="Sprite2D" parent="Puppet/Torso/RUArm/RLArm" index="0"]
+[node name="RHand" type="Sprite2D" parent="Puppet/Torso/RUArm/RLArm" index="0" unique_id=1858745157]
 position = Vector2(0, 14)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3610,7 +3610,7 @@ offset = Vector2(-5, -1)
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="5"]
+[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="5" unique_id=1363890725]
 position = Vector2(-11, -17)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3619,7 +3619,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 18)
 
-[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/LUArm" index="0"]
+[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/LUArm" index="0" unique_id=1501672571]
 position = Vector2(0, 14)
 rotation = 6.28953
 texture = ExtResource("2_mvywq")
@@ -3628,7 +3628,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 18, 6, 16)
 
-[node name="LHand" type="Sprite2D" parent="Puppet/Torso/LUArm/RLArm" index="0"]
+[node name="LHand" type="Sprite2D" parent="Puppet/Torso/LUArm/RLArm" index="0" unique_id=1173057894]
 position = Vector2(0, 14)
 texture = ExtResource("2_mvywq")
 centered = false
@@ -3637,15 +3637,12 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_5cdq0")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1" unique_id=114345479]
+libraries/ = SubResource("AnimationLibrary_5cdq0")
+autoplay = &"idle"
 
-[node name="CopyGregStatsComponent" type="Node" parent="." index="1"]
+[node name="CopyGregStatsComponent" type="Node" parent="." index="1" unique_id=908490164]
 script = ExtResource("5_bfaqi")
-to_copy = Array[StringName]([])
 copy_params = Dictionary[int, float]({
 0: 1.0,
 1: 1.0,

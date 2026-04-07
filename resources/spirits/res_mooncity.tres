@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://b7d5kjol5wpkt"]
+[gd_resource type="Resource" script_class="Spirit" format=3 uid="uid://b7d5kjol5wpkt"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_5d5nq"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_7dndk"]
@@ -6,26 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_1m4tw"]
 script = ExtResource("1_7dndk")
-health = 0.0
-health_percent = 0.0
 max_health_percent = -2.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 6
-effects = Array[ExtResource("1_5d5nq")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("2_l7sxr")
@@ -33,7 +15,6 @@ name_in_file = &"mooncity"
 name = &"moon city"
 description = "turn that world upside down"
 animation = &"mooncity_global"
-use_animation = &""
 receive_animation = &"mooncity_local"
 cost = 350
 use = 1

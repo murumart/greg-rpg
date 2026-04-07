@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnml4e1ipm7jj"]
+[gd_scene format=3 uid="uid://dnml4e1ipm7jj"]
 
 [ext_resource type="Script" uid="uid://emr5i8v8dqoq" path="res://scenes/fishing/scr_fish.gd" id="1_uv0y4"]
 [ext_resource type="Texture2D" uid="uid://ckqqgopvkjqog" path="res://sprites/fishing/spr_fish1.png" id="2_nads7"]
@@ -232,33 +232,31 @@ _data = {
 &"catch": SubResource("Animation_s8j6f")
 }
 
-[node name="Fish" type="Node2D" groups=["fishing_fish"]]
+[node name="Fish" type="Node2D" unique_id=601983978 groups=["fishing_fish"]]
 script = ExtResource("1_uv0y4")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=952941395]
 material = SubResource("ShaderMaterial_wlj8a")
 texture = ExtResource("2_nads7")
 
-[node name="HookArea" type="Area2D" parent="."]
+[node name="HookArea" type="Area2D" parent="." unique_id=144252366]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookArea" unique_id=816867980]
 editor_description = "among us
 "
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_qcg6s")
 
-[node name="WallrunArea" type="Area2D" parent="."]
+[node name="WallrunArea" type="Area2D" parent="." unique_id=453178975]
 collision_layer = 4
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallrunArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallrunArea" unique_id=290356423]
 shape = SubResource("CircleShape2D_8485c")
 
-[node name="CatchAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_l3i56")
-}
+[node name="CatchAnimation" type="AnimationPlayer" parent="." unique_id=1129722147]
+libraries/ = SubResource("AnimationLibrary_l3i56")
 
 [connection signal="body_entered" from="WallrunArea" to="." method="_on_wall_hit"]

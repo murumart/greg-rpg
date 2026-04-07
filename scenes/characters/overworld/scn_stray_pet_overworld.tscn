@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://jgjwvx47vp8i"]
+[gd_scene format=3 uid="uid://jgjwvx47vp8i"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_wlyw3"]
 [ext_resource type="Script" uid="uid://c2wi6wkdi6t3a" path="res://scenes/characters/overworld/scr_stray_pet_overworld.gd" id="2_4ypex"]
@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="6_2q67l"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="6_e0xo0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r02ng"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0xo0"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bauq7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohj45"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_81hvx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mg2nk"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -70,19 +70,10 @@ script = ExtResource("6_2q67l")
 enemies = Array[StringName]([&"stray_pet"])
 background = "town_grass"
 music = "foreign_fauna"
-party = Array[StringName]([])
-death_reason = "default"
-start_text = ""
 rewards = ExtResource("5_vwj65")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("6_e0xo0")]({})
 increment_data_with_enemies = &"stray_animals_fought"
 
-[node name="StrayPet" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
+[node name="StrayPet" unique_id=776950648 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_wlyw3")]
 script = ExtResource("2_4ypex")
 animated_sprite = NodePath("AnimatedSprite2D")
 speed = 4200
@@ -90,24 +81,21 @@ random_movement = true
 interact_on_touch = true
 save = false
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_r02ng")
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
+shape = SubResource("RectangleShape2D_e0xo0")
 
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_ohj45")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_bauq7")
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
+shape = SubResource("CircleShape2D_mg2nk")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_81hvx")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=1404069043]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_bjidh")
 animation = &"walk_down"
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+[node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=740070247 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_l5lw5")
 values = Array[ExtResource("5_kb7wn")]([SubResource("Resource_nn0xv"), SubResource("Resource_txo5y"), SubResource("Resource_nxfnn"), SubResource("Resource_lha4a")])
 enemy_amount_by_level = SubResource("Curve_8mlnm")

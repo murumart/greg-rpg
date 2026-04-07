@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5ixw3imxgvg"]
+[gd_scene format=3 uid="uid://bi5ixw3imxgvg"]
 
 [ext_resource type="Script" uid="uid://c7r4lkua7pbmn" path="res://scenes/characters/battle_enemies/scr_enemy_zerma.gd" id="1_bbso1"]
 [ext_resource type="Texture2D" uid="uid://bf4u78ydslmh4" path="res://sprites/characters/battle/zerma/spr_fight.png" id="2_p5hpa"]
 
-[node name="Zerma" type="Node2D"]
+[node name="Zerma" type="Node2D" unique_id=218678386]
 script = ExtResource("1_bbso1")
 effect_center = Vector2i(0, -16)
 auto_ai = false
 
-[node name="Visual" type="Node2D" parent="."]
+[node name="Visual" type="Node2D" parent="." unique_id=531809405]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=1276760616]
 texture = ExtResource("2_p5hpa")

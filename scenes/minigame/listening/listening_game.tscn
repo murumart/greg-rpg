@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6lh168xkbvro"]
+[gd_scene format=3 uid="uid://c6lh168xkbvro"]
 
 [ext_resource type="Script" uid="uid://dpuvo2drfp36y" path="res://scenes/minigame/listening/listening_game.gd" id="1_fyy76"]
 [ext_resource type="AudioStream" uid="uid://byqw0xlh82vyb" path="res://sounds/crickets.ogg" id="2_0pewj"]
@@ -39,12 +39,12 @@ fill_to = Vector2(1, 0.5)
 font_size = 8
 font_color = Color(0.253, 0.253, 0.253, 0.55)
 
-[node name="ListeningGame" type="Node2D"]
+[node name="ListeningGame" type="Node2D" unique_id=1883305588]
 script = ExtResource("1_fyy76")
 volume_curve = SubResource("Curve_3uwvn")
 default_signal_noise = SubResource("FastNoiseLite_3uwvn")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1132429665]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -55,55 +55,55 @@ offset_bottom = 85.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundImage" type="TextureRect" parent="PanelContainer"]
+[node name="BackgroundImage" type="TextureRect" parent="PanelContainer" unique_id=1382058340]
 modulate = Color(0, 0.315563, 0.372426, 1)
 layout_mode = 2
 texture = SubResource("AtlasTexture_4ksuf")
 expand_mode = 2
 stretch_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=593494486]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=1717005095]
 layout_mode = 2
 
-[node name="DrawPanel" type="Panel" parent="PanelContainer/VBoxContainer"]
+[node name="DrawPanel" type="Panel" parent="PanelContainer/VBoxContainer" unique_id=321018609]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fyy76")
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBarContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="ProgressBarContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=288209408]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Noise" type="AudioStreamPlayer" parent="."]
+[node name="Noise" type="AudioStreamPlayer" parent="." unique_id=903433128]
 stream = ExtResource("2_0pewj")
 volume_db = 8.0
 pitch_scale = 2.15
 bus = &"Radio Music"
 
-[node name="Signal" type="AudioStreamPlayer" parent="."]
+[node name="Signal" type="AudioStreamPlayer" parent="." unique_id=1624195267]
 stream = ExtResource("3_3uwvn")
 volume_db = 4.0
 pitch_scale = 1.4
 bus = &"Radio Music"
 
-[node name="Pointer" type="Sprite2D" parent="."]
+[node name="Pointer" type="Sprite2D" parent="." unique_id=801262738]
 position = Vector2(84, 9)
 texture = ExtResource("3_f5dc4")
 flip_v = true
 region_enabled = true
 region_rect = Rect2(4, 12, 8, 16)
 
-[node name="RecordIndicator" type="Sprite2D" parent="."]
+[node name="RecordIndicator" type="Sprite2D" parent="." unique_id=565435689]
 unique_name_in_owner = true
 position = Vector2(12, 73)
 texture = SubResource("GradientTexture2D_4ksuf")
 
-[node name="GiveUpLabel" type="Label" parent="."]
+[node name="GiveUpLabel" type="Label" parent="." unique_id=718134572]
 offset_top = 85.0
 offset_right = 86.0
 offset_bottom = 93.0

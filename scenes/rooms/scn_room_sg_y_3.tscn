@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dclju8db80o67"]
+[gd_scene format=4 uid="uid://dclju8db80o67"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_6m64o"]
 [ext_resource type="PackedScene" uid="uid://nhjuvuyqoydd" path="res://scenes/characters/overworld/scn_grandma_housecat_overworld.tscn" id="2_oktlr"]
@@ -18,10 +18,7 @@
 
 [sub_resource type="Resource" id="Resource_fanvs"]
 script = ExtResource("4_pq05u")
-type = 0
 property = "50"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_edgde"]
@@ -34,17 +31,9 @@ script = ExtResource("4_g5g53")
 enemies = Array[StringName]([&"cat", &"bulb", &"cat"])
 background = "sun"
 music = "catfight"
-party = Array[StringName]([])
 death_reason = 16
 start_text = "meow?"
 rewards = SubResource("Resource_edgde")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
-increment_data_with_enemies = &""
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="Resource" id="Resource_8vjba"]
@@ -52,17 +41,9 @@ script = ExtResource("4_g5g53")
 enemies = Array[StringName]([&"cat", &"bulb", &"washing_machine"])
 background = "sun"
 music = "catfight"
-party = Array[StringName]([])
 death_reason = 16
 start_text = "meow?"
 rewards = SubResource("Resource_edgde")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
-increment_data_with_enemies = &""
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="Resource" id="Resource_b4ga2"]
@@ -70,17 +51,9 @@ script = ExtResource("4_g5g53")
 enemies = Array[StringName]([&"vacuum", &"cat", &"couch"])
 background = "sun"
 music = "catfight"
-party = Array[StringName]([])
 death_reason = 16
 start_text = "meow?"
 rewards = SubResource("Resource_edgde")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
-increment_data_with_enemies = &""
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="Resource" id="Resource_gnktg"]
@@ -88,17 +61,9 @@ script = ExtResource("4_g5g53")
 enemies = Array[StringName]([&"vacuum", &"bulb", &"vacuum"])
 background = "sun"
 music = "catfight"
-party = Array[StringName]([])
 death_reason = 16
 start_text = "meow?"
 rewards = SubResource("Resource_edgde")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("3_mop6x")]({})
-increment_data_with_enemies = &""
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mcyet"]
@@ -159,135 +124,6 @@ initialized = true
 script = ExtResource("14_mcyet")
 
 [sub_resource type="VisualShader" id="VisualShader_ind58"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float time_speed = 1.0;
-
-
-// DistortionUVAnimated
-vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
-	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
-	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
-	return _uv_dist;
-}
-
-void fragment() {
-// Input:10
-	vec4 n_out10p0 = COLOR;
-
-
-// FloatParameter:12
-	float n_out12p0 = time_speed;
-
-
-// Input:7
-	float n_out7p0 = TIME;
-
-
-	vec2 n_out9p0;
-// DistortionUVAnimated:9
-	float n_in9p1 = 0.20000;
-	float n_in9p2 = 0.00000;
-	float n_in9p3 = 0.05000;
-	float n_in9p4 = 0.02000;
-	{
-		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
-	}
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(TEXTURE, n_out9p0);
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out10p0 * n_out8p0;
-
-
-// Input:18
-	vec2 n_out18p0 = UV;
-
-
-	vec2 n_out23p0;
-// Expression:23
-	n_out23p0 = vec2(0.0, 0.0);
-	{
-		n_out23p0 = vec2(
-			sin(n_out7p0),
-			cos(n_out7p0)
-		);
-	}
-
-
-	vec2 n_out24p0;
-// Remap:24
-	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
-	vec2 n_in24p2 = vec2(1.00000, 1.00000);
-	vec2 n_in24p3 = vec2(0.90000, 0.90000);
-	vec2 n_in24p4 = vec2(1.10000, 1.10000);
-	{
-		vec2 __input_range = n_in24p2 - n_in24p1;
-		vec2 __output_range = n_in24p4 - n_in24p3;
-		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
-	}
-
-
-// VectorOp:19
-	vec2 n_out19p0 = n_out18p0 * n_out24p0;
-
-
-	vec4 n_out17p0;
-// Texture2D:17
-	n_out17p0 = texture(TEXTURE, n_out19p0);
-
-
-// Vector4Constant:16
-	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
-
-
-// VectorOp:15
-	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
-
-
-	vec3 n_out11p0;
-// ColorOp:11
-	{
-		float base = vec3(n_out14p0.xyz).x;
-		float blend = vec3(n_out15p0.xyz).x;
-		if (base < 0.5) {
-			n_out11p0.x = (base * (blend + 0.5));
-		} else {
-			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).y;
-		float blend = vec3(n_out15p0.xyz).y;
-		if (base < 0.5) {
-			n_out11p0.y = (base * (blend + 0.5));
-		} else {
-			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).z;
-		float blend = vec3(n_out15p0.xyz).z;
-		if (base < 0.5) {
-			n_out11p0.z = (base * (blend + 0.5));
-		} else {
-			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-
-
-// Output:0
-	COLOR.rgb = n_out11p0;
-
-
-}
-"
-graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -366,7 +202,7 @@ initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_mcyet")
 
-[node name="SgY3" instance=ExtResource("1_6m64o")]
+[node name="SgY3" unique_id=516325157 instance=ExtResource("1_6m64o")]
 
 [node name="COLLISION" parent="COLLISION" index="0"]
 tile_map_data = PackedByteArray("AAD5/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD8/wAAAAAPAA8AAAD9/wAAAAAPAA8AAAD+/wAAAAAPAA8AAAD//wAAAAAPAA8AAAAAAAAAAAAPAA8AAAABAAAAAAAPAA8AAAACAAAAAAAPAA8AAAADAAAAAAAPAA8AAAAEAAAAAAAPAA8AAAAFAAAAAAAPAA8AAAAFAAEAAAAPAA8AAAAFAAIAAAAPAA8AAAAFAAMAAAAPAA8AAAAFAAQAAAAPAA8AAAAFAAUAAAAPAA8AAAAFAAYAAAAPAA8AAAAFAAcAAAAPAA8AAAAGAAcAAAAPAA8AAAAHAAcAAAAPAA8AAAAIAAcAAAAPAA8AAAAJAAcAAAAPAA8AAAAKAAcAAAAPAA8AAAALAAcAAAAPAA8AAAAMAAcAAAAPAA8AAAANAAcAAAAPAA8AAAAOAAcAAAAPAA8AAAAPAAcAAAAPAA8AAAAQAAcAAAAPAA8AAAARAAcAAAAPAA8AAAARAAYAAAAPAA8AAAARAAUAAAAPAA8AAAARAAQAAAAPAA8AAAARAAMAAAAPAA8AAAARAAIAAAAPAA8AAAARAAEAAAAPAA8AAAARAAAAAAAPAA8AAAASAAAAAAAPAA8AAAATAAAAAAAPAA8AAAATAAEAAAAPAA8AAAATAAIAAAAPAA8AAAATAAMAAAAPAA8AAAATAAQAAAAPAA8AAAATAAUAAAAPAA8AAAATAAYAAAAPAA8AAAATAAcAAAAPAA8AAAAUAAcAAAAPAA8AAAAVAAcAAAAPAA8AAAAWAAcAAAAPAA8AAAAXAAcAAAAPAA8AAAAXAAYAAAAPAA8AAAAXAAUAAAAPAA8AAAAXAAQAAAAPAA8AAAAXAAMAAAAPAA8AAAAXAAIAAAAPAA8AAAAXAAEAAAAPAA8AAAAXAAAAAAAPAA8AAAAXAP//AAAPAA8AAAAXAP7/AAAPAA8AAAAXAP3/AAAPAA8AAAAXAPz/AAAPAA8AAAAWAPz/AAAPAA8AAAAVAPz/AAAPAA8AAAAUAPz/AAAPAA8AAAATAPz/AAAPAA8AAAASAPz/AAAPAA8AAAARAPz/AAAPAA8AAAAQAPz/AAAPAA8AAAAPAPz/AAAPAA8AAAAOAPz/AAAPAA8AAAANAPz/AAAPAA8AAAANAP3/AAAPAA8AAAANAP7/AAAPAA8AAAANAAIAAAAPAA8AAAANAAEAAAAPAA8AAAANAAAAAAAPAA8AAAANAP//AAAPAA8AAAANAAMAAAAPAA8AAAAJAAMAAAAPAA8AAAAJAAIAAAAPAA8AAAAJAAEAAAAPAA8AAAAJAAAAAAAPAA8AAAAJAP//AAAPAA8AAAAJAP7/AAAPAA8AAAAJAP3/AAAPAA8AAAAJAPz/AAAPAA8AAAAIAPz/AAAPAA8AAAAHAPz/AAAPAA8AAAAGAPz/AAAPAA8AAAAFAPz/AAAPAA8AAAAEAPz/AAAPAA8AAAADAPz/AAAPAA8AAAACAPz/AAAPAA8AAAABAPz/AAAPAA8AAAAAAPz/AAAPAA8AAAD///z/AAAPAA8AAAD+//z/AAAPAA8AAAD9//z/AAAPAA8AAAD8//z/AAAPAA8AAAD7//z/AAAPAA8AAAD6//z/AAAPAA8AAAD5//z/AAAPAA8AAAD5//3/AAAPAA8AAAD5//7/AAAPAA8AAAD5////AAAPAA8AAAADAPv/AAAPAA8AAAADAPr/AAAPAA8AAAADAPn/AAAPAA8AAAADAPj/AAAPAA8AAAADAPf/AAAPAA8AAAADAPb/AAAPAA8AAAADAPX/AAAPAA8AAAADAPT/AAAPAA8AAAADAPP/AAAPAA8AAAADAPL/AAAPAA8AAAADAPH/AAAPAA8AAAAEAPH/AAAPAA8AAAAFAPH/AAAPAA8AAAAGAPH/AAAPAA8AAAAHAPH/AAAPAA8AAAAHAPT/AAAPAA8AAAAHAPX/AAAPAA8AAAAHAPb/AAAPAA8AAAAHAPf/AAAPAA8AAAAHAPj/AAAPAA8AAAAIAPj/AAAPAA8AAAAJAPj/AAAPAA8AAAAKAPj/AAAPAA8AAAALAPj/AAAPAA8AAAAMAPj/AAAPAA8AAAANAPj/AAAPAA8AAAAOAPj/AAAPAA8AAAAPAPj/AAAPAA8AAAAQAPj/AAAPAA8AAAARAPj/AAAPAA8AAAASAPj/AAAPAA8AAAATAPj/AAAPAA8AAAAOAPf/AAAPAA8AAAAOAPb/AAAPAA8AAAAOAPX/AAAPAA8AAAAOAPT/AAAPAA8AAAAPAPT/AAAPAA8AAAARAPT/AAAPAA8AAAASAPT/AAAPAA8AAAATAPT/AAAPAA8AAAAUAPT/AAAPAA8AAAAVAPT/AAAPAA8AAAAWAPT/AAAPAA8AAAAXAPT/AAAPAA8AAAAYAPT/AAAPAA8AAAAZAPT/AAAPAA8AAAAaAPT/AAAPAA8AAAAbAPT/AAAPAA8AAAAcAPT/AAAPAA8AAAAcAPj/AAAPAA8AAAAbAPj/AAAPAA8AAAAaAPj/AAAPAA8AAAAZAPj/AAAPAA8AAAAYAPj/AAAPAA8AAAAXAPj/AAAPAA8AAAAPAPP/AAAPAA8AAAAPAPL/AAAPAA8AAAAPAPH/AAAPAA8AAAARAPH/AAAPAA8AAAAQAPH/AAAPAA8AAAARAPL/AAAPAA8AAAARAPP/AAAPAA8AAAAIAPH/AAAPAA8AAAAJAPH/AAAPAA8AAAAKAPH/AAAPAA8AAAALAPH/AAAPAA8AAAAMAPH/AAAPAA8AAAAMAPD/AAAPAA8AAAAMAO//AAAPAA8AAAAMAO7/AAAPAA8AAAANAO7/AAAPAA8AAAAOAO7/AAAPAA8AAAALAO3/AAAPAA8AAAALAO7/AAAPAA8AAAALAOz/AAAPAA8AAAALAOv/AAAPAA8AAAALAOr/AAAPAA8AAAALAOn/AAAPAA8AAAALAOj/AAAPAA8AAAALAOf/AAAPAA8AAAAMAOf/AAAPAA8AAAANAOf/AAAPAA8AAAAOAOf/AAAPAA8AAAAPAOf/AAAPAA8AAAAQAOf/AAAPAA8AAAARAOf/AAAPAA8AAAASAOf/AAAPAA8AAAATAOf/AAAPAA8AAAAUAOf/AAAPAA8AAAAVAOf/AAAPAA8AAAAVAOj/AAAPAA8AAAAVAOn/AAAPAA8AAAAVAOr/AAAPAA8AAAAVAOv/AAAPAA8AAAAVAO3/AAAPAA8AAAAVAOz/AAAPAA8AAAAVAO7/AAAPAA8AAAAUAO7/AAAPAA8AAAATAO7/AAAPAA8AAAASAO7/AAAPAA8AAAAQAO7/AAAPAA8AAAAUAO//AAAPAA8AAAAUAPD/AAAPAA8AAAAUAPH/AAAPAA8AAAAVAPH/AAAPAA8AAAAWAPH/AAAPAA8AAAAXAPH/AAAPAA8AAAAYAPH/AAAPAA8AAAAZAPH/AAAPAA8AAAAaAPH/AAAPAA8AAAAeAPH/AAAPAA8AAAAfAPH/AAAPAA8AAAAdAPH/AAAPAA8AAAAbAPH/AAAPAA8AAAAcAPH/AAAPAA8AAAAgAPH/AAAPAA8AAAAgAPL/AAAPAA8AAAAgAPP/AAAPAA8AAAAgAPT/AAAPAA8AAAAgAPX/AAAPAA8AAAAgAPb/AAAPAA8AAAAcAPn/AAAPAA8AAAAcAPr/AAAPAA8AAAAdAPr/AAAPAA8AAAAeAPr/AAAPAA8AAAAfAPr/AAAPAA8AAAAgAPr/AAAPAA8AAAAgAPn/AAAPAA8AAAAgAPj/AAAPAA8AAAAgAPf/AAAPAA8AAAAYAAcAAAAPAA8AAAAZAAcAAAAPAA8AAAAaAAcAAAAPAA8AAAAaAAYAAAAPAA8AAAAaAAUAAAAPAA8AAAAaAAIAAAAPAA8AAAAaAAEAAAAPAA8AAAAaAP7/AAAPAA8AAAAaAP3/AAAPAA8AAAAaAPr/AAAPAA8AAAAaAPn/AAAPAA8AAAAIAPT/AAAPAA8AAAAJAPT/AAAPAA8AAAAKAPT/AAAPAA8AAAALAPT/AAAPAA8AAAAMAPT/AAAPAA8AAAANAPT/AAAPAA8AAAAbAAIAAAAPAA8AAAAcAAIAAAAPAA8AAAAdAAIAAAAPAA8AAAAeAAIAAAAPAA8AAAAfAAIAAAAPAA8AAAAgAAIAAAAPAA8AAAAhAAIAAAAPAA8AAAAiAAIAAAAPAA8AAAAjAAIAAAAPAA8AAAAkAAIAAAAPAA8AAAAlAAIAAAAPAA8AAAAbAAUAAAAPAA8AAAAcAAUAAAAPAA8AAAAdAAUAAAAPAA8AAAAeAAUAAAAPAA8AAAAfAAUAAAAPAA8AAAAgAAUAAAAPAA8AAAAhAAUAAAAPAA8AAAAiAAUAAAAPAA8AAAAiAAYAAAAPAA8AAAAiAAcAAAAPAA8AAAAiAAgAAAAPAA8AAAAiAAkAAAAPAA8AAAAiAAoAAAAPAA8AAAAiAAsAAAAPAA8AAAAjAAsAAAAPAA8AAAAkAAsAAAAPAA8AAAAlAAsAAAAPAA8AAAAlAAoAAAAPAA8AAAAlAAkAAAAPAA8AAAAlAAgAAAAPAA8AAAAlAAcAAAAPAA8AAAAlAAYAAAAPAA8AAAAlAAUAAAAPAA8AAAAlAAQAAAAPAA8AAAAlAAMAAAAPAA8AAAAbAAEAAAAPAA8AAAAcAAEAAAAPAA8AAAAdAAEAAAAPAA8AAAAeAAEAAAAPAA8AAAAfAAEAAAAPAA8AAAAgAAEAAAAPAA8AAAAhAAEAAAAPAA8AAAAiAAEAAAAPAA8AAAAjAAEAAAAPAA8AAAAkAAEAAAAPAA8AAAAlAAEAAAAPAA8AAAAmAAEAAAAPAA8AAAAnAAEAAAAPAA8AAAAoAAEAAAAPAA8AAAApAAEAAAAPAA8AAAAqAAEAAAAPAA8AAAArAAEAAAAPAA8AAAAsAAEAAAAPAA8AAAAsAAAAAAAPAA8AAAAsAP//AAAPAA8AAAAsAP7/AAAPAA8AAAArAP7/AAAPAA8AAAAqAP7/AAAPAA8AAAApAP7/AAAPAA8AAAAoAP7/AAAPAA8AAAAnAP7/AAAPAA8AAAAmAP7/AAAPAA8AAAAlAP7/AAAPAA8AAAAkAP7/AAAPAA8AAAAjAP7/AAAPAA8AAAAiAP7/AAAPAA8AAAAhAP7/AAAPAA8AAAAgAP7/AAAPAA8AAAAfAP7/AAAPAA8AAAAeAP7/AAAPAA8AAAAdAP7/AAAPAA8AAAAcAP7/AAAPAA8AAAAbAP7/AAAPAA8AAAAbAP3/AAAPAA8AAAAcAP3/AAAPAA8AAAAdAP3/AAAPAA8AAAAeAP3/AAAPAA8AAAAfAP3/AAAPAA8AAAAgAP3/AAAPAA8AAAAhAP3/AAAPAA8AAAAiAP3/AAAPAA8AAAAjAP3/AAAPAA8AAAAkAP3/AAAPAA8AAAAlAP3/AAAPAA8AAAAlAPz/AAAPAA8AAAAlAPv/AAAPAA8AAAAlAPr/AAAPAA8AAAAlAPn/AAAPAA8AAAAlAPj/AAAPAA8AAAAlAPf/AAAPAA8AAAAlAPb/AAAPAA8AAAAlAPX/AAAPAA8AAAAkAPX/AAAPAA8AAAAjAPX/AAAPAA8AAAAiAPX/AAAPAA8AAAAiAPb/AAAPAA8AAAAiAPf/AAAPAA8AAAAiAPj/AAAPAA8AAAAiAPn/AAAPAA8AAAAiAPr/AAAPAA8AAAAhAPr/AAAPAA8AAAAbAPr/AAAPAA8AAAA=")
@@ -387,7 +223,7 @@ position = Vector2(706, 0)
 destination = &"sg_y_4"
 gate_id = &"sg-y-34"
 
-[node name="GrandmaHousecat" parent="Areas" index="2" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat" parent="Areas" index="2" unique_id=1329226881 instance=ExtResource("2_oktlr")]
 position = Vector2(185, -23)
 collision_mask = 1025
 random_movement = false
@@ -396,7 +232,7 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="GrandmaHousecat2" parent="Areas" index="3" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat2" parent="Areas" index="3" unique_id=1182692660 instance=ExtResource("2_oktlr")]
 position = Vector2(312, -147)
 collision_mask = 1025
 random_movement = false
@@ -405,7 +241,7 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="GrandmaHousecat4" parent="Areas" index="4" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat4" parent="Areas" index="4" unique_id=1589074464 instance=ExtResource("2_oktlr")]
 position = Vector2(343, 93)
 collision_mask = 1025
 battle_info = SubResource("Resource_8vjba")
@@ -413,7 +249,7 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="GrandmaHousecat5" parent="Areas" index="5" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat5" parent="Areas" index="5" unique_id=1358527898 instance=ExtResource("2_oktlr")]
 position = Vector2(576, -145)
 collision_mask = 1025
 battle_info = SubResource("Resource_b4ga2")
@@ -421,7 +257,7 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="GrandmaHousecat3" parent="Areas" index="6" instance=ExtResource("2_oktlr")]
+[node name="GrandmaHousecat3" parent="Areas" index="6" unique_id=1424157266 instance=ExtResource("2_oktlr")]
 position = Vector2(88, -171)
 collision_mask = 1025
 random_movement = false
@@ -430,51 +266,51 @@ save = true
 save_position = true
 save_battled = true
 
-[node name="RoomGate3" parent="Areas" index="7" instance=ExtResource("7_fanvs")]
+[node name="RoomGate3" parent="Areas" index="7" unique_id=56468980 instance=ExtResource("7_fanvs")]
 position = Vector2(264, -229)
 destination = &"sg_y_3_side"
 gate_id = &"sg-y-3-side"
 spawnpoint = Vector2i(0, 17)
 
-[node name="SgCatOwl" parent="Areas" index="8" instance=ExtResource("8_8vjba")]
+[node name="SgCatOwl" parent="Areas" index="8" unique_id=1873787089 instance=ExtResource("8_8vjba")]
 position = Vector2(44, -44)
 default_lines = Array[StringName]([&"sg_appliances", &"sg_appliances_2"])
 
-[node name="SgCatOwl2" parent="Areas" index="9" instance=ExtResource("8_8vjba")]
+[node name="SgCatOwl2" parent="Areas" index="9" unique_id=610399237 instance=ExtResource("8_8vjba")]
 position = Vector2(576, 165)
 default_lines = Array[StringName]([&"sg_deadend"])
 
-[node name="SgCatOwl3" parent="Areas" index="10" instance=ExtResource("8_8vjba")]
+[node name="SgCatOwl3" parent="Areas" index="10" unique_id=1065643072 instance=ExtResource("8_8vjba")]
 position = Vector2(250, -354)
 default_lines = Array[StringName]([&"sg_healer", &"sg_healer_2"])
 
-[node name="SgCatOwl4" parent="Areas" index="11" instance=ExtResource("8_8vjba")]
+[node name="SgCatOwl4" parent="Areas" index="11" unique_id=897159439 instance=ExtResource("8_8vjba")]
 position = Vector2(278, -370)
 default_lines = Array[StringName]([&"sg_healer_comment"])
 
-[node name="Node2D" type="Node2D" parent="." index="6"]
+[node name="Node2D" type="Node2D" parent="." index="6" unique_id=1497809570]
 y_sort_enabled = true
 
-[node name="TrashBin" parent="Node2D" index="0" instance=ExtResource("7_gnktg")]
+[node name="TrashBin" parent="Node2D" index="0" unique_id=24348000 instance=ExtResource("7_gnktg")]
 position = Vector2(255, -150)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"mueslibar"
 
-[node name="TrashBin2" parent="Node2D" index="1" instance=ExtResource("7_gnktg")]
+[node name="TrashBin2" parent="Node2D" index="1" unique_id=229072295 instance=ExtResource("7_gnktg")]
 position = Vector2(88, -200)
 replenish_minutes = -1
 replenish_seconds = -60
 item = &"soda"
 
-[node name="GdungHealer" parent="Node2D" index="2" instance=ExtResource("9_edgde")]
+[node name="GdungHealer" parent="Node2D" index="2" unique_id=1106029445 instance=ExtResource("9_edgde")]
 position = Vector2(265, -332)
 
-[node name="Parallax2D2" type="Parallax2D" parent="." index="7"]
+[node name="Parallax2D2" type="Parallax2D" parent="." index="7" unique_id=689500212]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(0, 83)
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0" unique_id=1795012254]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
 z_index = -1
 position = Vector2(-1223, -9)
@@ -483,28 +319,28 @@ tile_map_data = PackedByteArray("AAByAPH/AAACAAMAAAB0APH/AAACAAMAAABzAPH/AAACAAM
 tile_set = ExtResource("11_j8xdu")
 y_sort_origin = -110
 
-[node name="Parallax2D3" type="Parallax2D" parent="." index="8"]
+[node name="Parallax2D3" type="Parallax2D" parent="." index="8" unique_id=1488118068]
 scroll_scale = Vector2(0.05, 0)
 scroll_offset = Vector2(99.64, 60.115)
 
-[node name="BattleBackground" parent="Parallax2D3" index="0" instance=ExtResource("13_5rtb7")]
+[node name="BattleBackground" parent="Parallax2D3" index="0" unique_id=880716243 instance=ExtResource("13_5rtb7")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
 
-[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0" unique_id=1703095315]
 material = SubResource("ShaderMaterial_nxy7h")
 
-[node name="Decor" type="Node2D" parent="." index="9"]
+[node name="Decor" type="Node2D" parent="." index="9" unique_id=38911343]
 y_sort_enabled = true
 
-[node name="Flower1" parent="Decor" index="0" instance=ExtResource("15_mcyet")]
+[node name="Flower1" parent="Decor" index="0" unique_id=85431395 instance=ExtResource("15_mcyet")]
 position = Vector2(351, -308)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1" unique_id=816670858]
 z_index = -1
 tile_map_data = PackedByteArray("AAAWAO3/AAAAAAQAAAAWAO7/AAAAAAUAAAAWAO//AAAAAAUAAAAWAPD/AAAAAAUAAAAWAPH/AAAAAAUAAAAWAPL/AAAAAAUAAAAYAO7/AAAAAAUAAAAYAO//AAAAAAUAAAAYAPD/AAAAAAUAAAAYAPH/AAAAAAUAAAAYAPL/AAAAAAUAAAAYAO3/AAAAAAQAAAA=")
 tile_set = ExtResource("11_j8xdu")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="2" unique_id=2038620442]
 position = Vector2(220, -34)
 amount = 24
 texture = ExtResource("12_sd4hl")
@@ -512,12 +348,12 @@ visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_mcyet")
 
-[node name="Parallax2D" type="Parallax2D" parent="." index="10"]
+[node name="Parallax2D" type="Parallax2D" parent="." index="10" unique_id=1020552552]
 y_sort_enabled = true
 scroll_scale = Vector2(1.3, 1)
 scroll_offset = Vector2(24, 85.84)
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D" index="0"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D" index="0" unique_id=1836859227]
 modulate = Color(0.832187, 0.331167, 0.633083, 1)
 y_sort_enabled = true
 position = Vector2(2, -38.84)
@@ -526,7 +362,7 @@ tile_map_data = PackedByteArray("AAArAAMAAAAAAAUAAAArAAQAAAAAAAUAAAArAAUAAAAAAAU
 tile_set = ExtResource("11_j8xdu")
 y_sort_origin = 1565
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D" index="1"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D" index="1" unique_id=1931662296]
 z_index = 1
 position = Vector2(949, -279.84)
 scale = Vector2(4, 4)

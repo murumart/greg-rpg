@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckqn4csbruevf"]
+[gd_scene format=3 uid="uid://ckqn4csbruevf"]
 
 [ext_resource type="Script" uid="uid://6fhrly3iunws" path="res://scenes/characters/battle_enemies/woods_guy_fight/warning.gd" id="1_j3nke"]
 [ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="1_tafks"]
@@ -54,27 +54,25 @@ _data = {
 &"atk1": SubResource("Animation_7lfy5")
 }
 
-[node name="Warning" type="Node2D"]
+[node name="Warning" type="Node2D" unique_id=1003928261]
 script = ExtResource("1_j3nke")
 
-[node name="Marker" type="Sprite2D" parent="."]
+[node name="Marker" type="Sprite2D" parent="." unique_id=1096039705]
 material = SubResource("CanvasItemMaterial_i6mvi")
 texture = ExtResource("1_tafks")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
-[node name="Tp3" type="AudioStreamPlayer" parent="."]
+[node name="Tp3" type="AudioStreamPlayer" parent="." unique_id=1472919501]
 stream = ExtResource("3_2vksp")
 volume_db = 14.49
 pitch_scale = 0.34
 
-[node name="Tp2" type="AudioStreamPlayer" parent="."]
+[node name="Tp2" type="AudioStreamPlayer" parent="." unique_id=174331435]
 stream = ExtResource("3_i6mvi")
 pitch_scale = 1.99
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_lqqhc")
-}
-autoplay = "atk1"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=568676928]
+libraries/ = SubResource("AnimationLibrary_lqqhc")
+autoplay = &"atk1"

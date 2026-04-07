@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://vw1imlch4fml"]
+[gd_scene format=3 uid="uid://vw1imlch4fml"]
 
 [ext_resource type="Script" uid="uid://ejrbfuer6n5k" path="res://scenes/biking/moving_objects/scr_biking_mailbox.gd" id="1_m5ewb"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_xhk8e"]
@@ -104,10 +104,10 @@ _data = {
 &"yum": SubResource("Animation_ve5me")
 }
 
-[node name="Mailbox" type="Node2D" groups=["biking_mailboxes"]]
+[node name="Mailbox" type="Node2D" unique_id=2048897548 groups=["biking_mailboxes"]]
 script = ExtResource("1_m5ewb")
 
-[node name="Pole" type="Sprite2D" parent="."]
+[node name="Pole" type="Sprite2D" parent="." unique_id=1403243602]
 position = Vector2(-2, -8)
 scale = Vector2(1, 2)
 texture = ExtResource("2_xhk8e")
@@ -115,7 +115,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2(38, 41, 5, 4)
 
-[node name="Box" type="Sprite2D" parent="."]
+[node name="Box" type="Sprite2D" parent="." unique_id=346123738]
 position = Vector2(0, -7)
 texture = ExtResource("2_xhk8e")
 centered = false
@@ -123,18 +123,16 @@ offset = Vector2(-5, -14)
 region_enabled = true
 region_rect = Rect2(25, 23, 11, 14)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=680121779]
 visible = false
 collision_layer = 0
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1813979628]
 position = Vector2(0.5, -13.5)
 shape = SubResource("RectangleShape2D_s7n2r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_5qfpm")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=902592528]
+libraries/ = SubResource("AnimationLibrary_5qfpm")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

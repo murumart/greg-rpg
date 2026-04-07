@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://deii706cg03d"]
+[gd_scene format=3 uid="uid://deii706cg03d"]
 
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="1_tgp5f"]
 
@@ -35,7 +35,7 @@ scale_curve = SubResource("CurveTexture_54sd8")
 anim_speed_min = 2.0
 anim_speed_max = 4.0
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" unique_id=462374707]
 material = SubResource("CanvasItemMaterial_3ntbh")
 amount = 2
 texture = ExtResource("1_tgp5f")

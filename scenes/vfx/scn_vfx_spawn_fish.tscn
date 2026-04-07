@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck1xqs2ye7c1"]
+[gd_scene format=3 uid="uid://ck1xqs2ye7c1"]
 
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="1_7y64s"]
 [ext_resource type="AudioStream" uid="uid://x2ydnp02334l" path="res://sounds/spirit/spawn_fish.ogg" id="2_kh2yr"]
@@ -122,27 +122,25 @@ _data = {
 &"default": SubResource("Animation_nuh0s")
 }
 
-[node name="VfxSpawnFish" type="Node2D"]
+[node name="VfxSpawnFish" type="Node2D" unique_id=1324118981]
 
-[node name="FallingFish" type="GPUParticles2D" parent="."]
+[node name="FallingFish" type="GPUParticles2D" parent="." unique_id=1064572535]
 modulate = Color(1, 1, 1, 0)
 z_index = -14
 material = SubResource("CanvasItemMaterial_na75h")
 position = Vector2(0, -120)
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_x3ps4")
 texture = ExtResource("1_7y64s")
 lifetime = 3.0
 randomness = 0.52
 fixed_fps = 60
 visibility_rect = Rect2(-600, 0, 1200, 800)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_x3ps4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=148042189]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_1tx34")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1081236228]
+libraries/ = SubResource("AnimationLibrary_1tx34")
+autoplay = &"default"

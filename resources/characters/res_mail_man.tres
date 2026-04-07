@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bb4sfjrnpxfl7"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://bb4sfjrnpxfl7"]
 
 [ext_resource type="Texture2D" uid="uid://bm4rwxl0motml" path="res://sprites/characters/portraits/spr_portrait_mail_man.png" id="1_iw8xs"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_52w2x"]
@@ -6,7 +6,6 @@
 
 [resource]
 script = ExtResource("2_52w2x")
-name_in_file = &""
 name = "mail man"
 info = "the town's only postman. mail man."
 voice_sound = ExtResource("3_lhw58")
@@ -16,13 +15,10 @@ health = 150.0
 max_magic = 80.0
 magic = 80.0
 level = 21
-experience = 0
 attack = 16.0
 defense = 20.0
 speed = 19.0
 defeated_characters = null
 inventory = null
 spirits = null
-unused_spirits = Array[String]([])
 armour = "mail_hat"
-weapon = ""

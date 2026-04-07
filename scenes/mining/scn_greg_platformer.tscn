@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ca56k2yykgyfs"]
+[gd_scene format=3 uid="uid://ca56k2yykgyfs"]
 
 [ext_resource type="Script" uid="uid://dovrp187cie0l" path="res://scenes/mining/scr_greg_platformer.gd" id="1_hj66a"]
 [ext_resource type="Texture2D" uid="uid://ba7j8ayhal8sw" path="res://sprites/mining/spr_platformer_greg.png" id="2_dnayx"]
@@ -841,6 +841,7 @@ animation = &"walking"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xanbp"]
 graph_offset = Vector2(115.072, 97.4456)
+nodes/output/position = Vector2(1021.74, 152.174)
 nodes/falling/node = SubResource("AnimationNodeAnimation_g7mgb")
 nodes/falling/position = Vector2(130.435, 347.826)
 nodes/fallornot/node = SubResource("AnimationNodeAdd2_25fvb")
@@ -853,35 +854,34 @@ nodes/jump/node = SubResource("AnimationNodeAnimation_xfrd3")
 nodes/jump/position = Vector2(-43.4783, 260.87)
 nodes/jumpshot/node = SubResource("AnimationNodeOneShot_1ihph")
 nodes/jumpshot/position = Vector2(173.913, 108.696)
-nodes/output/position = Vector2(1021.74, 152.174)
 nodes/swing/node = SubResource("AnimationNodeAnimation_hjj6f")
 nodes/swing/position = Vector2(695.652, 326.087)
 nodes/walking/node = SubResource("AnimationNodeAnimation_la3ra")
 nodes/walking/position = Vector2(503.456, 329.387)
 nodes/walkornot/node = SubResource("AnimationNodeBlend2_mb3vx")
 nodes/walkornot/position = Vector2(608.696, 130.435)
-node_connections = [&"fallornot", 0, &"jumpshot", &"fallornot", 1, &"falling", &"hitshot", 0, &"walkornot", &"hitshot", 1, &"swing", &"jumpshot", 0, &"idle", &"jumpshot", 1, &"jump", &"output", 0, &"hitshot", &"walkornot", 0, &"fallornot", &"walkornot", 1, &"walking"]
+node_connections = [&"output", 0, &"hitshot", &"fallornot", 0, &"jumpshot", &"fallornot", 1, &"falling", &"hitshot", 0, &"walkornot", &"hitshot", 1, &"swing", &"jumpshot", 0, &"idle", &"jumpshot", 1, &"jump", &"walkornot", 0, &"fallornot", &"walkornot", 1, &"walking"]
 
-[node name="GregPlatform" type="CharacterBody2D"]
+[node name="GregPlatform" type="CharacterBody2D" unique_id=1711572342]
 collision_layer = 2
 collision_mask = 9
 floor_constant_speed = true
 script = ExtResource("1_hj66a")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1588998027]
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_dttm6")
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=1579934292]
 
-[node name="Body" type="Sprite2D" parent="Puppet"]
+[node name="Body" type="Sprite2D" parent="Puppet" unique_id=213546733]
 texture = ExtResource("2_dnayx")
 centered = false
 offset = Vector2(-4, -5)
 region_enabled = true
 region_rect = Rect2(0, 16, 7, 5)
 
-[node name="Head" type="Sprite2D" parent="Puppet"]
+[node name="Head" type="Sprite2D" parent="Puppet" unique_id=1460393873]
 position = Vector2(-2, -9)
 texture = ExtResource("2_dnayx")
 centered = false
@@ -889,7 +889,7 @@ offset = Vector2(-4, -5)
 region_enabled = true
 region_rect = Rect2(0, 0, 14, 10)
 
-[node name="RightLeg" type="Sprite2D" parent="Puppet"]
+[node name="RightLeg" type="Sprite2D" parent="Puppet" unique_id=365335543]
 position = Vector2(0, -1)
 texture = ExtResource("2_dnayx")
 centered = false
@@ -897,7 +897,7 @@ offset = Vector2(-2, 0)
 region_enabled = true
 region_rect = Rect2(1, 22, 4, 4)
 
-[node name="LeftLeg" type="Sprite2D" parent="Puppet"]
+[node name="LeftLeg" type="Sprite2D" parent="Puppet" unique_id=1986761817]
 z_index = -1
 position = Vector2(2, -1)
 texture = ExtResource("2_dnayx")
@@ -906,7 +906,7 @@ offset = Vector2(-2, 0)
 region_enabled = true
 region_rect = Rect2(1, 22, 4, 4)
 
-[node name="RightArm" type="Sprite2D" parent="Puppet"]
+[node name="RightArm" type="Sprite2D" parent="Puppet" unique_id=454100145]
 position = Vector2(-1, -4)
 texture = ExtResource("2_dnayx")
 centered = false
@@ -914,7 +914,7 @@ offset = Vector2(-2, 0)
 region_enabled = true
 region_rect = Rect2(9, 16, 4, 5)
 
-[node name="HeldItem" type="Sprite2D" parent="Puppet/RightArm"]
+[node name="HeldItem" type="Sprite2D" parent="Puppet/RightArm" unique_id=280001111]
 show_behind_parent = true
 position = Vector2(7.24995, -6.24995)
 rotation = 0.849475
@@ -922,7 +922,7 @@ scale = Vector2(0.499183, 0.499183)
 texture = ExtResource("3_k1m2p")
 centered = false
 
-[node name="LeftArm" type="Sprite2D" parent="Puppet"]
+[node name="LeftArm" type="Sprite2D" parent="Puppet" unique_id=109837055]
 z_index = -1
 position = Vector2(4, -4)
 texture = ExtResource("2_dnayx")
@@ -931,13 +931,11 @@ offset = Vector2(-2, 0)
 region_enabled = true
 region_rect = Rect2(9, 16, 4, 5)
 
-[node name="PuppetAnimator" type="AnimationPlayer" parent="Puppet"]
-libraries = {
-&"": SubResource("AnimationLibrary_qv11b")
-}
-autoplay = "idle"
+[node name="PuppetAnimator" type="AnimationPlayer" parent="Puppet" unique_id=1648818553]
+libraries/ = SubResource("AnimationLibrary_qv11b")
+autoplay = &"idle"
 
-[node name="AnimationTree" type="AnimationTree" parent="Puppet"]
+[node name="AnimationTree" type="AnimationTree" parent="Puppet" unique_id=5127723]
 tree_root = SubResource("AnimationNodeBlendTree_xanbp")
 anim_player = NodePath("../PuppetAnimator")
 parameters/fallornot/add_amount = 0.0

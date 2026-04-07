@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkuu3x2gw38ch"]
+[gd_scene format=3 uid="uid://bkuu3x2gw38ch"]
 
 [ext_resource type="Script" uid="uid://l45eiqhxoib7" path="res://scenes/decor/scr_bike.gd" id="1_hdwvo"]
 [ext_resource type="Texture2D" uid="uid://covfpj431gar4" path="res://sprites/world/object/spr_bikes.png" id="1_sseea"]
@@ -287,51 +287,49 @@ _data = {
 &"hover": SubResource("Animation_fhef4")
 }
 
-[node name="Bike" type="Node2D" groups=["room_gates"]]
+[node name="Bike" type="Node2D" unique_id=1095601571 groups=["room_gates"]]
 script = ExtResource("1_hdwvo")
 
-[node name="Gradient" type="Sprite2D" parent="."]
+[node name="Gradient" type="Sprite2D" parent="." unique_id=1053285065]
 material = SubResource("CanvasItemMaterial_objt5")
 position = Vector2(-16, -32)
 texture = SubResource("GradientTexture2D_6lhb2")
 centered = false
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." unique_id=713750838]
 position = Vector2(-9, -13)
 texture = ExtResource("1_sseea")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 18, 13)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=87596849]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1197462606]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_732j1")
 
-[node name="InteractionArea" parent="." instance=ExtResource("3_x7yb1")]
+[node name="InteractionArea" parent="." unique_id=1342530947 instance=ExtResource("3_x7yb1")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=125961458]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_cyjnj")
 
-[node name="Ghost" type="Node2D" parent="."]
+[node name="Ghost" type="Node2D" parent="." unique_id=2123687986]
 
-[node name="Image" type="Sprite2D" parent="Ghost"]
+[node name="Image" type="Sprite2D" parent="Ghost" unique_id=180935800]
 position = Vector2(0, -8)
 texture = ExtResource("6_82grt")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_pcfhw")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=808784061]
+libraries/ = SubResource("AnimationLibrary_pcfhw")
+autoplay = &"RESET"
 
-[node name="SpawnPoint" type="Marker2D" parent="."]
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1147346825]
 position = Vector2(0, 5)
 
 [connection signal="interacted" from="InteractionArea" to="." method="_interacted"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dhve75utx7fh7"]
+[gd_scene format=3 uid="uid://dhve75utx7fh7"]
 
 [ext_resource type="Texture2D" uid="uid://bwng2xhy78hng" path="res://sprites/characters/battle/president/spr_dish_big.png" id="2_7agk0"]
 [ext_resource type="Script" uid="uid://bqxnprkdxhh7w" path="res://scenes/characters/battle_enemies/scr_enemy_dish.gd" id="2_rem6r"]
@@ -104,19 +104,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_tygy2"]
+[sub_resource type="Gradient" id="Gradient_yhrta"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.50192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_h0sk3"]
+[sub_resource type="Gradient" id="Gradient_joo8m"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.50192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_t6d7i"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_camnn"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_h0sk3")
+gradient = SubResource("Gradient_joo8m")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aihdk"]
@@ -885,7 +885,7 @@ _data = {
 &"use_spirit": SubResource("Animation_dpfpo")
 }
 
-[node name="Dish" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Dish" type="Node2D" unique_id=1440936799 node_paths=PackedStringArray("animator")]
 script = ExtResource("2_rem6r")
 animator = NodePath("AnimationPlayer")
 toughness = 1.0
@@ -895,20 +895,20 @@ xp_multiplier = 4.0
 gender = 4
 effect_immunities = Array[StringName]([&"little", &"sopping"])
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=540446898]
 
-[node name="CanvasGroup" type="CanvasGroup" parent="Node"]
+[node name="CanvasGroup" type="CanvasGroup" parent="Node" unique_id=1797705809]
 material = SubResource("ShaderMaterial_38e2f")
 position = Vector2(0, -27)
 
-[node name="Body" type="Sprite2D" parent="Node/CanvasGroup"]
+[node name="Body" type="Sprite2D" parent="Node/CanvasGroup" unique_id=1240555957]
 position = Vector2(-111, 0)
 texture = ExtResource("2_7agk0")
 centered = false
 region_enabled = true
 region_rect = Rect2(1, 96, 220, 95)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node/CanvasGroup/Body"]
+[node name="Sprite2D" type="Sprite2D" parent="Node/CanvasGroup/Body" unique_id=1425764574]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_js0um")
 position = Vector2(110, -29.625)
@@ -916,7 +916,7 @@ scale = Vector2(9.5, 5.39453)
 texture = SubResource("GradientTexture2D_2hil2")
 metadata/_edit_lock_ = true
 
-[node name="Head" type="Sprite2D" parent="Node/CanvasGroup"]
+[node name="Head" type="Sprite2D" parent="Node/CanvasGroup" unique_id=1330922470]
 position = Vector2(0, 23)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -924,7 +924,7 @@ offset = Vector2(-30, -72)
 region_enabled = true
 region_rect = Rect2(82, 3, 60, 88)
 
-[node name="LeftHand" type="Sprite2D" parent="Node/CanvasGroup"]
+[node name="LeftHand" type="Sprite2D" parent="Node/CanvasGroup" unique_id=1660744955]
 position = Vector2(75, 72)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -932,7 +932,7 @@ offset = Vector2(-43, -63)
 region_enabled = true
 region_rect = Rect2(229, 48, 48, 70)
 
-[node name="RightHand" type="Sprite2D" parent="Node/CanvasGroup"]
+[node name="RightHand" type="Sprite2D" parent="Node/CanvasGroup" unique_id=79183833]
 position = Vector2(-76, 73)
 texture = ExtResource("2_7agk0")
 centered = false
@@ -941,35 +941,35 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(229, 48, 48, 70)
 
-[node name="UseSprite" type="AnimatedSprite2D" parent="Node"]
+[node name="UseSprite" type="AnimatedSprite2D" parent="Node" unique_id=1644191271]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_vr7js")
 sprite_frames = SubResource("SpriteFrames_gfbcs")
 metadata/_edit_lock_ = true
 
-[node name="FunnyCutscenePeople" type="Node2D" parent="Node"]
+[node name="FunnyCutscenePeople" type="Node2D" parent="Node" unique_id=711980732]
 script = ExtResource("5_jvhgd")
 
-[node name="President" type="Sprite2D" parent="Node/FunnyCutscenePeople"]
+[node name="President" type="Sprite2D" parent="Node/FunnyCutscenePeople" unique_id=1192362497]
 position = Vector2(189, 12)
 texture = ExtResource("4_k0s8a")
 
-[node name="PizzaGuy" type="Sprite2D" parent="Node/FunnyCutscenePeople"]
+[node name="PizzaGuy" type="Sprite2D" parent="Node/FunnyCutscenePeople" unique_id=764936573]
 position = Vector2(253, 12)
 texture = ExtResource("5_ov1ks")
 
-[node name="VfxPowerline" parent="Node/FunnyCutscenePeople/PizzaGuy" instance=ExtResource("7_v1iur")]
+[node name="VfxPowerline" parent="Node/FunnyCutscenePeople/PizzaGuy" unique_id=1563736175 instance=ExtResource("7_v1iur")]
 visible = false
 divisions = 14
 deviation_distance = 5.69
 line_width = 49.005
-gradient = SubResource("Gradient_tygy2")
+gradient = SubResource("Gradient_yhrta")
 lifetime = 0.0
 
 [node name="Line2D" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="0"]
 points = PackedVector2Array(0, 106, 1.11846, 95.7328, 5.5835, 75.4034, -3.83772, 62.6625, -5.13052, 40.1549, 1.2842, 32.3124, -3.83481, 15.1267, 1.97613, -10.2589, -1.23934, -15.2158, 3.30977, -41.2437, -1.83402, -57.8479, -4.75251, -65.1788, -2.49486, -89.2677, 0, -100)
 width = 49.005
-texture = SubResource("GradientTexture2D_t6d7i")
+texture = SubResource("GradientTexture2D_camnn")
 
 [node name="Start" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="1"]
 position = Vector2(0, 106)
@@ -977,37 +977,35 @@ position = Vector2(0, 106)
 [node name="End" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="2"]
 position = Vector2(0, -100)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node/FunnyCutscenePeople/PizzaGuy"]
+[node name="Sprite2D" type="Sprite2D" parent="Node/FunnyCutscenePeople/PizzaGuy" unique_id=267033851]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_aihdk")
 texture = SubResource("GradientTexture2D_xovsu")
 
-[node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople"]
+[node name="Node2D" type="Node2D" parent="Node/FunnyCutscenePeople" unique_id=44716043]
 scale = Vector2(0.48, 0.48)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople/Node2D"]
+[node name="Pizzabox" type="Node2D" parent="Node/FunnyCutscenePeople/Node2D" unique_id=162195456]
 modulate = Color(1, 1, 1, 0)
 
-[node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
-libraries = {
-&"": SubResource("AnimationLibrary_4sxmm")
-}
+[node name="PizzAnimation" type="AnimationPlayer" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox" unique_id=1148102643]
+libraries/ = SubResource("AnimationLibrary_4sxmm")
 
-[node name="Box" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
+[node name="Box" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox" unique_id=1893198014]
 texture = ExtResource("7_8uiop")
 region_enabled = true
 region_rect = Rect2(0, 0, 185, 189)
 
-[node name="Gun" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
+[node name="Gun" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox" unique_id=2116645172]
 visible = false
 rotation = 0.349066
 texture = ExtResource("7_8uiop")
 region_enabled = true
 region_rect = Rect2(18, 208, 150, 90)
 
-[node name="Label" type="Label" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox/Gun"]
+[node name="Label" type="Label" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox/Gun" unique_id=482553954]
 offset_left = -54.876
 offset_top = -58.4399
 offset_right = -14.876
@@ -1015,28 +1013,26 @@ offset_bottom = -50.4399
 scale = Vector2(3.47919, 3.1754)
 text = "(gun)"
 
-[node name="Lid" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox"]
+[node name="Lid" type="Sprite2D" parent="Node/FunnyCutscenePeople/Node2D/Pizzabox" unique_id=946151845]
 position = Vector2(0, -96)
 texture = ExtResource("7_8uiop")
 offset = Vector2(0, 90)
 region_enabled = true
 region_rect = Rect2(187, 0, 185, 177)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_0btp4")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=906197817]
+libraries/ = SubResource("AnimationLibrary_0btp4")
+autoplay = &"idle"
 playback_default_blend_time = 0.1
 speed_scale = 2.2
 
-[node name="TimeForPizz" type="Control" parent="."]
+[node name="TimeForPizz" type="Control" parent="." unique_id=1554218153]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PowerLabel" type="Label" parent="TimeForPizz"]
+[node name="PowerLabel" type="Label" parent="TimeForPizz" unique_id=426054596]
 self_modulate = Color(1, 1, 1, 0.729412)
 layout_mode = 0
 offset_left = 2.0

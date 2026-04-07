@@ -1,114 +1,114 @@
-[gd_scene load_steps=5 format=3 uid="uid://u236x81t2hu5"]
+[gd_scene format=3 uid="uid://u236x81t2hu5"]
 
 [ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_pil78"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_tn5wl"]
 [ext_resource type="Script" uid="uid://dsgd3lhs4v205" path="res://scenes/characters/battle_enemies/scr_worm_component.gd" id="3_wncoe"]
 [ext_resource type="Script" uid="uid://b66w5glrigri6" path="res://scenes/characters/battle_enemies/scr_screen_edge_bounce_component.gd" id="4_cnnnr"]
 
-[node name="Worm" type="Node2D"]
+[node name="Worm" type="Node2D" unique_id=963604960]
 script = ExtResource("1_pil78")
 gender = 5
 
-[node name="Worm" type="Node2D" parent="."]
+[node name="Worm" type="Node2D" parent="." unique_id=1063016602]
 top_level = true
 z_index = -1
 y_sort_enabled = true
 
-[node name="Head" type="Sprite2D" parent="Worm"]
+[node name="Head" type="Sprite2D" parent="Worm" unique_id=1427588778]
 z_index = 1
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(121, 3, 40, 34)
 
-[node name="Tail1" type="Sprite2D" parent="Worm"]
+[node name="Tail1" type="Sprite2D" parent="Worm" unique_id=2017297579]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(162, 12, 30, 7)
 
-[node name="Tail2" type="Sprite2D" parent="Worm"]
+[node name="Tail2" type="Sprite2D" parent="Worm" unique_id=1945647561]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(162, 12, 30, 7)
 
-[node name="Tail3" type="Sprite2D" parent="Worm"]
+[node name="Tail3" type="Sprite2D" parent="Worm" unique_id=1214306784]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(162, 12, 30, 7)
 
-[node name="Tail4" type="Sprite2D" parent="Worm"]
+[node name="Tail4" type="Sprite2D" parent="Worm" unique_id=1305762025]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(162, 12, 30, 7)
 
-[node name="Tail5" type="Sprite2D" parent="Worm"]
+[node name="Tail5" type="Sprite2D" parent="Worm" unique_id=1789966495]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(162, 12, 30, 7)
 
-[node name="Tail6" type="Sprite2D" parent="Worm"]
+[node name="Tail6" type="Sprite2D" parent="Worm" unique_id=882310585]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail10" type="Sprite2D" parent="Worm"]
+[node name="Tail10" type="Sprite2D" parent="Worm" unique_id=235806745]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail11" type="Sprite2D" parent="Worm"]
+[node name="Tail11" type="Sprite2D" parent="Worm" unique_id=637166591]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail12" type="Sprite2D" parent="Worm"]
+[node name="Tail12" type="Sprite2D" parent="Worm" unique_id=363479919]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail7" type="Sprite2D" parent="Worm"]
+[node name="Tail7" type="Sprite2D" parent="Worm" unique_id=273170391]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail8" type="Sprite2D" parent="Worm"]
+[node name="Tail8" type="Sprite2D" parent="Worm" unique_id=1893620561]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail9" type="Sprite2D" parent="Worm"]
+[node name="Tail9" type="Sprite2D" parent="Worm" unique_id=80336237]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail13" type="Sprite2D" parent="Worm"]
+[node name="Tail13" type="Sprite2D" parent="Worm" unique_id=1501383168]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail14" type="Sprite2D" parent="Worm"]
+[node name="Tail14" type="Sprite2D" parent="Worm" unique_id=893286919]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail15" type="Sprite2D" parent="Worm"]
+[node name="Tail15" type="Sprite2D" parent="Worm" unique_id=490035869]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="Tail16" type="Sprite2D" parent="Worm"]
+[node name="Tail16" type="Sprite2D" parent="Worm" unique_id=1367598863]
 texture = ExtResource("2_tn5wl")
 region_enabled = true
 region_rect = Rect2(168, 24, 16, 5)
 
-[node name="WormComponent" type="Node" parent="." node_paths=PackedStringArray("segments", "pos_base")]
+[node name="WormComponent" type="Node" parent="." unique_id=892253985 node_paths=PackedStringArray("segments", "pos_base")]
 script = ExtResource("3_wncoe")
 segments = NodePath("../Worm")
 pos_base = NodePath("..")
 
-[node name="ScreenEdgeBounceComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="ScreenEdgeBounceComponent" type="Node" parent="." unique_id=888032584 node_paths=PackedStringArray("target")]
 script = ExtResource("4_cnnnr")
 target = NodePath("..")
 bounce_rect = Rect2i(-80, -60, 80, 60)

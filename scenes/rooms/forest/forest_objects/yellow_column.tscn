@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cj0fqo2oyg3tk"]
+[gd_scene format=3 uid="uid://cj0fqo2oyg3tk"]
 
 [ext_resource type="Script" uid="uid://c7ni2eovoem6q" path="res://scenes/rooms/forest/forest_objects/yellow_column.gd" id="1_e6dt0"]
 [ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="3_uocl1"]
@@ -133,32 +133,32 @@ _data = {
 &"active": SubResource("Animation_ihfqe")
 }
 
-[node name="Puzzles" type="StaticBody2D" node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
+[node name="Puzzles" type="StaticBody2D" unique_id=437264815 node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
 collision_mask = 0
 script = ExtResource("1_e6dt0")
 interaction_area = NodePath("InteractionArea")
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1247122497]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 monitoring = false
 script = ExtResource("4_ihfqe")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractionArea" unique_id=1475726795]
 shape = SubResource("RectangleShape2D_dxvwd")
 debug_color = Color(1, 0.564706, 1, 0.419608)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77731502]
 shape = SubResource("RectangleShape2D_ltmb5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1236704852]
 position = Vector2(0, -10)
 texture = ExtResource("3_uocl1")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 32)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=1825250567]
 material = SubResource("CanvasItemMaterial_vjta2")
 position = Vector2(0, 9)
 amount = 100
@@ -166,10 +166,8 @@ amount_ratio = 0.0
 texture = ExtResource("4_kjwpp")
 process_material = SubResource("ParticleProcessMaterial_706dv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1328670551]
 stream = ExtResource("5_vjta2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_uocl1")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=46481741]
+libraries/ = SubResource("AnimationLibrary_uocl1")

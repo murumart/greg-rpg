@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7t36y3r024xn"]
+[gd_scene format=3 uid="uid://c7t36y3r024xn"]
 
 [ext_resource type="Script" uid="uid://ubw41wbkgk7h" path="res://scenes/characters/battle_enemies/woods_guy_fight/bird_attrack.gd" id="1_1utea"]
 [ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="1_x4xgy"]
@@ -103,17 +103,17 @@ _data = {
 &"ready": SubResource("Animation_g32n6")
 }
 
-[node name="BirdAttrack" type="Node2D"]
+[node name="BirdAttrack" type="Node2D" unique_id=996901943]
 script = ExtResource("1_1utea")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=144689773]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(5.93824, 0)
+position = Vector2(6.314727, 0)
 texture = ExtResource("1_x4xgy")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=1814537868]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_x4xgy")
 texture = SubResource("AtlasTexture_o326f")
@@ -121,7 +121,7 @@ lifetime = 1.92
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_ibd47")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Sprite2D" unique_id=1385855779]
 modulate = Color(1, 1, 1, 0.592157)
 material = SubResource("CanvasItemMaterial_x4xgy")
 texture = SubResource("AtlasTexture_o326f")
@@ -129,7 +129,7 @@ lifetime = 0.83
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_bbdd3")
 
-[node name="SinAnimator" type="Node" parent="Sprite2D" node_paths=PackedStringArray("target")]
+[node name="SinAnimator" type="Node" parent="Sprite2D" unique_id=925949779 node_paths=PackedStringArray("target")]
 script = ExtResource("2_o326f")
 property_name = &"position:x"
 target = NodePath("..")
@@ -137,164 +137,162 @@ min_value = -4.0
 max_value = 32.0
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1043520965]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1768962504]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D2" type="Area2D" parent="Sprite2D"]
+[node name="Area2D2" type="Area2D" parent="Sprite2D" unique_id=1958155769]
 position = Vector2(9.83016, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D2" unique_id=33136745]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D3" type="Area2D" parent="Sprite2D"]
+[node name="Area2D3" type="Area2D" parent="Sprite2D" unique_id=275207403]
 position = Vector2(-9.65842, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D3" unique_id=335265851]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D4" type="Area2D" parent="Sprite2D"]
+[node name="Area2D4" type="Area2D" parent="Sprite2D" unique_id=1665711314]
 position = Vector2(-19.5134, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D4" unique_id=1900781819]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D5" type="Area2D" parent="Sprite2D"]
+[node name="Area2D5" type="Area2D" parent="Sprite2D" unique_id=412060641]
 position = Vector2(19.0404, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D5" unique_id=2080199284]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D6" type="Area2D" parent="Sprite2D"]
+[node name="Area2D6" type="Area2D" parent="Sprite2D" unique_id=2046476183]
 position = Vector2(4.95967, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D6" unique_id=542859590]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D7" type="Area2D" parent="Sprite2D"]
+[node name="Area2D7" type="Area2D" parent="Sprite2D" unique_id=1765298943]
 position = Vector2(14.7898, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D7" unique_id=227663808]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D8" type="Area2D" parent="Sprite2D"]
+[node name="Area2D8" type="Area2D" parent="Sprite2D" unique_id=1875749082]
 position = Vector2(-4.69876, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D8" unique_id=857461540]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D9" type="Area2D" parent="Sprite2D"]
+[node name="Area2D9" type="Area2D" parent="Sprite2D" unique_id=1082738607]
 position = Vector2(-14.5538, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D9" unique_id=1800220020]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D10" type="Area2D" parent="Sprite2D"]
+[node name="Area2D10" type="Area2D" parent="Sprite2D" unique_id=956441329]
 position = Vector2(24, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D10" unique_id=1729533229]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D11" type="Area2D" parent="Sprite2D"]
+[node name="Area2D11" type="Area2D" parent="Sprite2D" unique_id=1311399996]
 position = Vector2(-3.58748, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D11"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D11" unique_id=1857893884]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D12" type="Area2D" parent="Sprite2D"]
+[node name="Area2D12" type="Area2D" parent="Sprite2D" unique_id=1361422133]
 position = Vector2(6.24268, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D12"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D12" unique_id=1050374884]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D13" type="Area2D" parent="Sprite2D"]
+[node name="Area2D13" type="Area2D" parent="Sprite2D" unique_id=1118259236]
 position = Vector2(-13.2459, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D13"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D13" unique_id=515279209]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D14" type="Area2D" parent="Sprite2D"]
+[node name="Area2D14" type="Area2D" parent="Sprite2D" unique_id=1666429237]
 position = Vector2(-23.1009, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D14"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D14" unique_id=2034180184]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="Area2D15" type="Area2D" parent="Sprite2D"]
+[node name="Area2D15" type="Area2D" parent="Sprite2D" unique_id=1546588484]
 position = Vector2(15.4529, 0)
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D15"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D15" unique_id=911117676]
 position = Vector2(-0.0653753, 0)
 shape = SubResource("RectangleShape2D_ibd47")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1861970221]
 stream = ExtResource("4_ibd47")
 volume_db = -3.333
 pitch_scale = 0.17
 autoplay = true
 bus = &"ECHO"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ojunq")
-}
-autoplay = "ready"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1181531924]
+libraries/ = SubResource("AnimationLibrary_ojunq")
+autoplay = &"ready"

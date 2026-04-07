@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ForestQuest" load_steps=2 format=3 uid="uid://emq7jg7vff1p"]
+[gd_resource type="Resource" script_class="ForestQuest" format=3 uid="uid://emq7jg7vff1p"]
 
 [ext_resource type="Script" uid="uid://clmohrd5ib7ey" path="res://scenes/rooms/forest/forest_quest.gd" id="1_lm5fx"]
 
@@ -8,6 +8,5 @@ name = "dogfighter"
 description = "help quell lizard overpopulation!"
 data_key = &"killed_wild_lizard"
 completion_value = 1
-completion_signal = &""
 glass_reward = 4
 meta_weight = 200

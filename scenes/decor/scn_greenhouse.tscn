@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo30s0jr7gxse"]
+[gd_scene format=3 uid="uid://bo30s0jr7gxse"]
 
 [ext_resource type="Script" uid="uid://k4ba4tmr8of2" path="res://scenes/decor/scr_greenhouse.gd" id="1_xl1wo"]
 [ext_resource type="Texture2D" uid="uid://jliineedmxw6" path="res://sprites/world/building/greenhouse/spr_spr_back_layer.png" id="2_tbboa"]
@@ -16,67 +16,67 @@ size = Vector2(28, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ay3b"]
 size = Vector2(28, 18)
 
-[node name="Greenhouse" type="Node2D"]
+[node name="Greenhouse" type="Node2D" unique_id=411898319]
 y_sort_enabled = true
 script = ExtResource("1_xl1wo")
 
-[node name="SprSprBackLayer" type="Sprite2D" parent="."]
+[node name="SprSprBackLayer" type="Sprite2D" parent="." unique_id=1148442707]
 z_index = -1
 texture = ExtResource("2_tbboa")
 offset = Vector2(0, -32)
 
-[node name="SprFloor" type="Sprite2D" parent="."]
+[node name="SprFloor" type="Sprite2D" parent="." unique_id=1534583966]
 z_index = -1
 texture = ExtResource("3_wumk5")
 offset = Vector2(0, -32)
 
-[node name="SprVegetables" type="Sprite2D" parent="."]
+[node name="SprVegetables" type="Sprite2D" parent="." unique_id=2037661420]
 texture = ExtResource("4_0tin1")
 offset = Vector2(0, -32)
 
-[node name="SprTopLayer" type="Sprite2D" parent="."]
+[node name="SprTopLayer" type="Sprite2D" parent="." unique_id=20741626]
 texture = ExtResource("4_si44d")
 offset = Vector2(0, -32)
 
-[node name="SprFrontLayer" type="Sprite2D" parent="."]
+[node name="SprFrontLayer" type="Sprite2D" parent="." unique_id=522400014]
 texture = ExtResource("5_w5xvm")
 offset = Vector2(0, -32)
 
-[node name="Collider" type="StaticBody2D" parent="."]
+[node name="Collider" type="StaticBody2D" parent="." unique_id=266498823]
 modulate = Color(0, 0.6, 0.6, 1)
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collider"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collider" unique_id=1972389676]
 polygon = PackedVector2Array(-5, 0, -15, 0, -15, -19, 15, -19, 15, 0, 5, 0, 5, -1, 7, -1, 7, -18, -7, -18, -7, -1, -5, -1)
 
-[node name="InsideArea" type="Area2D" parent="."]
+[node name="InsideArea" type="Area2D" parent="." unique_id=1192050428]
 modulate = Color(1, 0.419608, 1, 1)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InsideArea" unique_id=1588269258]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_ugha4")
 
-[node name="UpdateTimer" type="Timer" parent="."]
+[node name="UpdateTimer" type="Timer" parent="." unique_id=1461423307]
 wait_time = 10.0
 autostart = true
 
-[node name="PhoneAreaGreenhouse" type="Area2D" parent="."]
+[node name="PhoneAreaGreenhouse" type="Area2D" parent="." unique_id=2137706320]
 collision_layer = 64
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneAreaGreenhouse"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneAreaGreenhouse" unique_id=2036042279]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_g6nbg")
 
-[node name="NpcBlocker" type="StaticBody2D" parent="."]
+[node name="NpcBlocker" type="StaticBody2D" parent="." unique_id=280371920]
 collision_layer = 2048
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NpcBlocker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NpcBlocker" unique_id=564363891]
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_1ay3b")
 

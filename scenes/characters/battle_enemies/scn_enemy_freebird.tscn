@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfh0g6uryjrkk"]
+[gd_scene format=3 uid="uid://cfh0g6uryjrkk"]
 
 [ext_resource type="Script" uid="uid://bdsdnb8ryyok3" path="res://scenes/characters/battle_enemies/scr_enemy_bird.gd" id="1_yr8i8"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_l2o71"]
@@ -1146,15 +1146,15 @@ _data = {
 &"swoop_out": SubResource("Animation_lsx41")
 }
 
-[node name="Freebird" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Freebird" type="Node2D" unique_id=648777604 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_yr8i8")
 animator = NodePath("AnimationPlayer")
 can_flee = true
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=581060783]
 position = Vector2(0, -16)
 
-[node name="Leg3" type="Sprite2D" parent="Puppet"]
+[node name="Leg3" type="Sprite2D" parent="Puppet" unique_id=8632500]
 position = Vector2(2, -2)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1163,7 +1163,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(26, 2, 10, 20)
 
-[node name="Leg2" type="Sprite2D" parent="Puppet"]
+[node name="Leg2" type="Sprite2D" parent="Puppet" unique_id=137894904]
 position = Vector2(7, 1)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1172,7 +1172,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(26, 2, 10, 20)
 
-[node name="Tail" type="Sprite2D" parent="Puppet"]
+[node name="Tail" type="Sprite2D" parent="Puppet" unique_id=1582341599]
 position = Vector2(-4, 1)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1180,7 +1180,7 @@ offset = Vector2(-46, -9)
 region_enabled = true
 region_rect = Rect2(2, 39, 47, 14)
 
-[node name="Leg4" type="Sprite2D" parent="Puppet"]
+[node name="Leg4" type="Sprite2D" parent="Puppet" unique_id=271350170]
 position = Vector2(-9, -2)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1188,7 +1188,7 @@ offset = Vector2(-7, 0)
 region_enabled = true
 region_rect = Rect2(26, 2, 10, 20)
 
-[node name="Wing2" type="Sprite2D" parent="Puppet"]
+[node name="Wing2" type="Sprite2D" parent="Puppet" unique_id=2029199125]
 position = Vector2(5, -7)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1197,21 +1197,21 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(54, 8, 59, 55)
 
-[node name="Body" type="Sprite2D" parent="Puppet"]
+[node name="Body" type="Sprite2D" parent="Puppet" unique_id=2121283425]
 position = Vector2(-11, -11)
 texture = ExtResource("2_l2o71")
 centered = false
 region_enabled = true
 region_rect = Rect2(1, 1, 23, 18)
 
-[node name="Head" type="Sprite2D" parent="Puppet"]
+[node name="Head" type="Sprite2D" parent="Puppet" unique_id=113232791]
 position = Vector2(1, -5)
 texture = ExtResource("2_l2o71")
 centered = false
 region_enabled = true
 region_rect = Rect2(4, 20, 14, 18)
 
-[node name="Leg" type="Sprite2D" parent="Puppet"]
+[node name="Leg" type="Sprite2D" parent="Puppet" unique_id=328984265]
 position = Vector2(-4, 1)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1219,7 +1219,7 @@ offset = Vector2(-7, -1)
 region_enabled = true
 region_rect = Rect2(26, 2, 10, 20)
 
-[node name="Wing" type="Sprite2D" parent="Puppet"]
+[node name="Wing" type="Sprite2D" parent="Puppet" unique_id=436954107]
 position = Vector2(-4, -5)
 texture = ExtResource("2_l2o71")
 centered = false
@@ -1227,9 +1227,7 @@ offset = Vector2(-57, -28)
 region_enabled = true
 region_rect = Rect2(54, 8, 59, 55)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xprky")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=72933382]
+libraries/ = SubResource("AnimationLibrary_xprky")
+autoplay = &"idle"
 playback_default_blend_time = 0.1

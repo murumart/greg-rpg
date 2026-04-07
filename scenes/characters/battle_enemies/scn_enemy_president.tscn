@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://1a1gu4tumyl4"]
+[gd_scene format=3 uid="uid://1a1gu4tumyl4"]
 
 [ext_resource type="Script" uid="uid://bd6b1nc31d3xt" path="res://scenes/characters/battle_enemies/scr_enemy_president.gd" id="1_2r85o"]
 [ext_resource type="Texture2D" uid="uid://bkp0gw7o5yt7o" path="res://sprites/characters/battle/president/spr_president.png" id="2_r6iib"]
@@ -11,16 +11,14 @@ _data = {
 &"hurt": SubResource("Animation_408t0")
 }
 
-[node name="President" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="President" type="Node2D" unique_id=1300176799 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_2r85o")
 effect_center = Vector2i(31, -30)
 animator = NodePath("AnimationPlayer")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1720355545]
 position = Vector2(31, 0)
 texture = ExtResource("2_r6iib")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mcdku")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1203245417]
+libraries/ = SubResource("AnimationLibrary_mcdku")

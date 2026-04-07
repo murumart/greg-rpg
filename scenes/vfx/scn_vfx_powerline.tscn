@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3grs3liet5e4"]
+[gd_scene format=3 uid="uid://d3grs3liet5e4"]
 
 [ext_resource type="Script" uid="uid://b0kgs17cw8xw5" path="res://scenes/vfx/scr_vfx_powerline.gd" id="1_dnkul"]
 
@@ -12,20 +12,19 @@ resource_local_to_scene = true
 gradient = SubResource("Gradient_22rxs")
 fill_from = Vector2(1, 1)
 
-[node name="VfxPowerline" type="Node2D"]
+[node name="VfxPowerline" type="Node2D" unique_id=652239261]
 script = ExtResource("1_dnkul")
 gradient = SubResource("Gradient_22rxs")
-lifetime = null
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-25, 0, -17.5301, -0.5792, -11.9013, 0.222466, -9.27838, -1.76264, -4.71392, -0.501347, 1.82473, -1.75832, 6.76638, -1.24283, 12.0094, -0.683626, 21.408, -0.380187, 25, 0)
+[node name="Line2D" type="Line2D" parent="." unique_id=134236045]
+points = PackedVector2Array(-25, 0, -17.521826, -0.5509409, -12.327337, 1.2496239, -7.1778316, 1.6324275, -2.9513547, -1.9924535, 2.248521, 1.9287007, 9.587819, -1.5576495, 15.013355, 1.6539578, 17.575836, 0.71294737, 25, 0)
 width = 2.0
 texture = SubResource("GradientTexture2D_fwucu")
 texture_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Start" type="Marker2D" parent="."]
+[node name="Start" type="Marker2D" parent="." unique_id=1667776555]
 position = Vector2(-25, 0)
 
-[node name="End" type="Marker2D" parent="."]
+[node name="End" type="Marker2D" parent="." unique_id=816528644]
 position = Vector2(25, 0)

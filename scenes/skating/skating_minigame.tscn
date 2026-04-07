@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ct32b3bmill01"]
+[gd_scene format=3 uid="uid://ct32b3bmill01"]
 
 [ext_resource type="Script" uid="uid://csvg7bpud0h7c" path="res://scenes/skating/skating_minigame.gd" id="1_e2i3m"]
 [ext_resource type="Texture2D" uid="uid://c2pqp3l5n4wv0" path="res://sprites/skating/backgrouind.png" id="2_avmvn"]
@@ -61,50 +61,50 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 1.0
 
-[node name="SkatingMinigame" type="Node2D"]
+[node name="SkatingMinigame" type="Node2D" unique_id=1869213289]
 script = ExtResource("1_e2i3m")
 
-[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=651780650]
 script = ExtResource("2_nq2wu")
 metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 
-[node name="Sun" type="Node" parent="CanvasModulateGroup"]
+[node name="Sun" type="Node" parent="CanvasModulateGroup" unique_id=1866014855]
 script = ExtResource("3_y86ds")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate")]
+[node name="Sunsetter" type="Node" parent="." unique_id=1974423695 node_paths=PackedStringArray("sky_modulate")]
 script = ExtResource("4_0tbqj")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1293596576]
 texture = ExtResource("2_avmvn")
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=929118463]
 texture = ExtResource("2_o68lv")
 centered = false
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=394654473]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_84nc0")
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="Panel" type="Panel" parent="UI" unique_id=1341272431]
 layout_mode = 0
 offset_left = 107.0
 offset_top = 2.0
 offset_right = 157.0
 offset_bottom = 94.0
 
-[node name="Balance" type="Control" parent="UI/Panel"]
+[node name="Balance" type="Control" parent="UI/Panel" unique_id=1331596999]
 anchors_preset = 0
 offset_right = 50.0
 offset_bottom = 19.0
 
-[node name="Label" type="Label" parent="UI/Panel/Balance"]
+[node name="Label" type="Label" parent="UI/Panel/Balance" unique_id=1427064614]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 3.0
@@ -113,26 +113,26 @@ offset_bottom = 11.0
 text = "balance"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/Panel/Balance"]
+[node name="Sprite2D" type="Sprite2D" parent="UI/Panel/Balance" unique_id=437632178]
 position = Vector2(3.00001, 13)
 scale = Vector2(44, 3)
 texture = ExtResource("4_f883l")
 centered = false
 
-[node name="Pointer" type="Sprite2D" parent="UI/Panel/Balance"]
+[node name="Pointer" type="Sprite2D" parent="UI/Panel/Balance" unique_id=1997820782]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(44, 11)
 scale = Vector2(3, 7)
 texture = ExtResource("4_f883l")
 centered = false
 
-[node name="Boredom" type="Control" parent="UI/Panel"]
+[node name="Boredom" type="Control" parent="UI/Panel" unique_id=945851131]
 anchors_preset = 0
 offset_top = 74.0
 offset_right = 50.0
 offset_bottom = 93.0
 
-[node name="Label" type="Label" parent="UI/Panel/Boredom"]
+[node name="Label" type="Label" parent="UI/Panel/Boredom" unique_id=2055652933]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 5.0
@@ -141,26 +141,26 @@ offset_bottom = 13.0
 text = "boredom"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/Panel/Boredom"]
+[node name="Sprite2D" type="Sprite2D" parent="UI/Panel/Boredom" unique_id=1052321621]
 position = Vector2(3.00001, 13)
 scale = Vector2(44, 3)
 texture = ExtResource("4_f883l")
 centered = false
 
-[node name="Pointer" type="Sprite2D" parent="UI/Panel/Boredom"]
+[node name="Pointer" type="Sprite2D" parent="UI/Panel/Boredom" unique_id=805685622]
 modulate = Color(0.866667, 0.529412, 0.258824, 1)
 position = Vector2(44, 13)
 scale = Vector2(1.99999, 3)
 texture = ExtResource("4_f883l")
 centered = false
 
-[node name="Points" type="Control" parent="UI/Panel"]
+[node name="Points" type="Control" parent="UI/Panel" unique_id=611277623]
 anchors_preset = 0
 offset_top = 58.0
 offset_right = 50.0
 offset_bottom = 77.0
 
-[node name="Label" type="Label" parent="UI/Panel/Points"]
+[node name="Label" type="Label" parent="UI/Panel/Points" unique_id=1222952910]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
@@ -169,7 +169,7 @@ offset_bottom = 12.0
 text = "points"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="UI/Panel/Points"]
+[node name="Label2" type="Label" parent="UI/Panel/Points" unique_id=1790320505]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 12.0
@@ -177,19 +177,19 @@ offset_right = 47.0
 offset_bottom = 20.0
 text = "0"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/Panel/Points"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/Panel/Points" unique_id=1486896827]
 stream = ExtResource("5_m0kbv")
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="UI/Panel/Points"]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="UI/Panel/Points" unique_id=654755070]
 stream = ExtResource("6_k2w4j")
 
-[node name="Combo" type="Control" parent="UI/Panel"]
+[node name="Combo" type="Control" parent="UI/Panel" unique_id=997798768]
 anchors_preset = 0
 offset_top = 49.0
 offset_right = 50.0
 offset_bottom = 68.0
 
-[node name="Label" type="Label" parent="UI/Panel/Combo"]
+[node name="Label" type="Label" parent="UI/Panel/Combo" unique_id=624184343]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
@@ -198,13 +198,13 @@ offset_bottom = 12.0
 text = "combo x1"
 horizontal_alignment = 1
 
-[node name="Reaction" type="Control" parent="UI/Panel"]
+[node name="Reaction" type="Control" parent="UI/Panel" unique_id=1768816008]
 anchors_preset = 0
 offset_top = 18.0
 offset_right = 50.0
 offset_bottom = 37.0
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="UI/Panel/Reaction"]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="UI/Panel/Reaction" unique_id=457732600]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 10.0
@@ -215,7 +215,7 @@ stream = ExtResource("8_6p0aw")
 autoplay = true
 loop = true
 
-[node name="Label" type="Label" parent="UI/Panel/Reaction"]
+[node name="Label" type="Label" parent="UI/Panel/Reaction" unique_id=157737584]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 2.0
@@ -224,7 +224,7 @@ offset_bottom = 10.0
 text = "reaction"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UI/Panel/Reaction"]
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/Reaction" unique_id=840628741]
 visible = false
 layout_mode = 0
 offset_left = 18.0
@@ -234,7 +234,7 @@ offset_bottom = 29.0
 texture = ExtResource("9_nfu84")
 stretch_mode = 1
 
-[node name="Jumpscare" type="Sprite2D" parent="UI"]
+[node name="Jumpscare" type="Sprite2D" parent="UI" unique_id=1949474683]
 z_index = 1
 position = Vector2(-30, 80)
 texture = ExtResource("12_g3s73")
@@ -242,59 +242,59 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 30, 40)
 
-[node name="MainCamera" parent="." instance=ExtResource("2_ern6p")]
+[node name="MainCamera" parent="." unique_id=1667259052 instance=ExtResource("2_ern6p")]
 position = Vector2(80, 60)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1130659623]
 position = Vector2(50, 46)
 collision_layer = 2
 floor_stop_on_slope = false
 floor_max_angle = 0.357792
 script = ExtResource("3_i87m7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1631689144]
 shape = SubResource("CapsuleShape2D_auvad")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1491674483]
 position = Vector2(0, -3)
 texture = ExtResource("4_e53a1")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 24)
 
-[node name="JumpCase" type="RayCast2D" parent="Player"]
+[node name="JumpCase" type="RayCast2D" parent="Player" unique_id=415294801]
 position = Vector2(0, 1)
 target_position = Vector2(0, 11)
 
-[node name="BalanceRight" type="RayCast2D" parent="Player"]
+[node name="BalanceRight" type="RayCast2D" parent="Player" unique_id=548098559]
 position = Vector2(4, 3)
 target_position = Vector2(0, 13)
 
-[node name="BalanceLeft" type="RayCast2D" parent="Player"]
+[node name="BalanceLeft" type="RayCast2D" parent="Player" unique_id=146494096]
 position = Vector2(-4, 3)
 target_position = Vector2(0, 13)
 
-[node name="PlayerCamera" parent="Player" instance=ExtResource("2_ern6p")]
+[node name="PlayerCamera" parent="Player" unique_id=2068963937 instance=ExtResource("2_ern6p")]
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 limit_bottom = 120
 
-[node name="JumpSound" type="AudioStreamPlayer" parent="Player"]
+[node name="JumpSound" type="AudioStreamPlayer" parent="Player" unique_id=947397221]
 stream = ExtResource("10_tddx3")
 
-[node name="LandSound" type="AudioStreamPlayer" parent="Player"]
+[node name="LandSound" type="AudioStreamPlayer" parent="Player" unique_id=1726209263]
 
-[node name="Ground" type="StaticBody2D" parent="."]
+[node name="Ground" type="StaticBody2D" parent="." unique_id=599808857]
 position = Vector2(0, 43)
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground" unique_id=1166260608]
 polygon = PackedVector2Array(48, 66, 63, 66, 78, 62, 89, 56, 95, 48, 98, 37, 98, -37, 19, -38, 19, -43, 160, -43, 160, 77, 0, 77, 0, -43, 19, -43, 18, 37, 20, 48, 25, 56, 34, 62)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Ground"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Ground" unique_id=1489063626]
 occluder = SubResource("OccluderPolygon2D_o58em")
 
-[node name="JackParticles" type="GPUParticles2D" parent="."]
+[node name="JackParticles" type="GPUParticles2D" parent="." unique_id=605906392]
 material = SubResource("CanvasItemMaterial_vunw8")
 position = Vector2(-24, 31)
 emitting = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvojebwfdfafc"]
+[gd_scene format=3 uid="uid://cvojebwfdfafc"]
 
 [ext_resource type="Texture2D" uid="uid://din46a7xat7wh" path="res://sprites/spirit/spr_peanuts_screen.png" id="1_xqenx"]
 [ext_resource type="AudioStream" uid="uid://b06jeho5rq5o3" path="res://sounds/spirit/peanuts.ogg" id="2_lvyh5"]
@@ -190,17 +190,15 @@ _data = {
 &"default": SubResource("Animation_rciol")
 }
 
-[node name="VfxPeanutsScreen" type="Node2D"]
+[node name="VfxPeanutsScreen" type="Node2D" unique_id=304675429]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=483980404]
 visible = false
 self_modulate = Color(0.478431, 0, 1, 0.682353)
 sprite_frames = SubResource("SpriteFrames_7oefj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yahsl")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2076339697]
+libraries/ = SubResource("AnimationLibrary_yahsl")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1442416405]

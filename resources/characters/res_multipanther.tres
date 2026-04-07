@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://bwgeojj6g0bdr"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://bwgeojj6g0bdr"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_o0dki"]
 [ext_resource type="Texture2D" uid="uid://bauv3inxqco72" path="res://sprites/characters/battle/cats/spr_cat.png" id="1_yagas"]
 
 [resource]
 script = ExtResource("1_o0dki")
-name_in_file = &""
 name = "multipanther"
 info = "cute..."
 portrait = ExtResource("1_yagas")
@@ -14,13 +13,8 @@ health = 478.0
 max_magic = 999.0
 magic = 999.0
 level = 80
-experience = 0
 attack = 74.0
 defense = 79.0
 speed = 76.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["grandma_electric"])
-unused_spirits = Array[String]([])
-armour = ""
 weapon = "panther_attack"

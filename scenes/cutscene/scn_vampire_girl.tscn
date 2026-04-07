@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d32ap8ww8t2bk"]
+[gd_scene format=3 uid="uid://d32ap8ww8t2bk"]
 
 [ext_resource type="Script" uid="uid://sntqywsquyrf" path="res://scenes/rooms/town/scr_town_vampire_girl.gd" id="1_bmtv2"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="2_uy5ef"]
@@ -9,44 +9,44 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlfy3"]
 size = Vector2(128, 60)
 
-[node name="VampireGirl" type="Node2D" groups=["save_me"]]
+[node name="VampireGirl" type="Node2D" unique_id=2045531392 groups=["save_me"]]
 y_sort_enabled = true
 script = ExtResource("1_bmtv2")
 
-[node name="Girl" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
+[node name="Girl" parent="." unique_id=385361399 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
 position = Vector2(7, 0)
 animated_sprite = NodePath("GirlSprite")
 save = false
 
-[node name="GirlSprite" type="AnimatedSprite2D" parent="Girl"]
+[node name="GirlSprite" type="AnimatedSprite2D" parent="Girl" unique_id=2075598758]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_cr61l")
 animation = &"gleeful"
 frame_progress = 0.405063
 
-[node name="Guy" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
+[node name="Guy" parent="." unique_id=71831746 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_uy5ef")]
 position = Vector2(-7, 0)
 animated_sprite = NodePath("GuySprite")
 movement_wait = 3.0
 chase_distance = 300
 chase_closeness = 324
 
-[node name="GuySprite" type="AnimatedSprite2D" parent="Guy"]
+[node name="GuySprite" type="AnimatedSprite2D" parent="Guy" unique_id=1722714356]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("4_tbc4r")
 animation = &"walk_down"
 
-[node name="Sprite2D" type="Sprite2D" parent="Guy/GuySprite"]
+[node name="Sprite2D" type="Sprite2D" parent="Guy/GuySprite" unique_id=479376042]
 texture = ExtResource("5_uy5ef")
 
-[node name="TransformKiller_____" type="Node" parent="."]
+[node name="TransformKiller_____" type="Node" parent="." unique_id=632639445]
 
-[node name="CutsceneEnterRea" type="Area2D" parent="TransformKiller_____"]
+[node name="CutsceneEnterRea" type="Area2D" parent="TransformKiller_____" unique_id=437394365]
 position = Vector2(37, 5)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformKiller_____/CutsceneEnterRea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransformKiller_____/CutsceneEnterRea" unique_id=1595807987]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_dlfy3")

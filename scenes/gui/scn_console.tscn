@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bip8066h1vkjp"]
+[gd_scene format=3 uid="uid://bip8066h1vkjp"]
 
 [ext_resource type="Script" uid="uid://bmxcxoxkgrg6s" path="res://scenes/gui/scr_console.gd" id="1_emplj"]
 [ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="2_ohhmw"]
@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4w8y"]
 bg_color = Color(0, 0, 0, 0.686275)
 
-[node name="Console" type="Control"]
+[node name="Console" type="Control" unique_id=1802004157]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_emplj")
 
-[node name="Line" type="LineEdit" parent="."]
+[node name="Line" type="LineEdit" parent="." unique_id=2129900727]
 layout_mode = 0
 offset_top = 62.0
 offset_right = 160.0
@@ -26,7 +26,7 @@ placeholder_text = "command..."
 context_menu_enabled = false
 middle_mouse_paste_enabled = false
 
-[node name="Log" type="RichTextLabel" parent="."]
+[node name="Log" type="RichTextLabel" parent="." unique_id=1580220363]
 modulate = Color(1, 1, 1, 0.968627)
 layout_mode = 0
 offset_right = 160.0

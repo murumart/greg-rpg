@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds7na5427u6m"]
+[gd_scene format=3 uid="uid://ds7na5427u6m"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_axpkp"]
 [ext_resource type="Texture2D" uid="uid://bia4mxdrlrrdx" path="res://sprites/spirit/spr_blip.png" id="2_c8sc2"]
@@ -54,7 +54,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_pe6oi")
 
-[node name="Blips" type="Node2D"]
+[node name="Blips" type="Node2D" unique_id=2077657332]
 script = ExtResource("1_axpkp")
 toughness = 1.0
 altruism = 0.0
@@ -66,12 +66,12 @@ gender = 3
 effect_immunities = Array[StringName]([&"fire"])
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1646864972]
 amount = 24
 texture = ExtResource("2_c8sc2")
 process_material = SubResource("ParticleProcessMaterial_p0bqg")
 
-[node name="Sprite2D" type="GPUParticles2D" parent="."]
+[node name="Sprite2D" type="GPUParticles2D" parent="." unique_id=1302359362]
 material = SubResource("CanvasItemMaterial_3ypmk")
 texture = SubResource("GradientTexture2D_3jj2f")
 process_material = SubResource("ParticleProcessMaterial_ybqsd")

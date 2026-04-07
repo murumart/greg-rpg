@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://ds0kogux3qbfo"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://ds0kogux3qbfo"]
 
 [ext_resource type="Texture2D" uid="uid://c10sh3va2mo4q" path="res://sprites/characters/portraits/spr_portrait_ringleader.png" id="1_4glec"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_wcmu0"]
 
 [resource]
 script = ExtResource("1_wcmu0")
-name_in_file = &""
 name = "ringleader"
 info = "none of your business."
 portrait = ExtResource("1_4glec")
@@ -18,9 +17,3 @@ experience = 77
 attack = 75.0
 defense = 75.0
 speed = 74.0
-defeated_characters = {}
-inventory = Array[String]([])
-spirits = Array[String]([])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

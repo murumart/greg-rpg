@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7kiypobvkptg"]
+[gd_scene format=3 uid="uid://b7kiypobvkptg"]
 
 [ext_resource type="Script" uid="uid://66l1h6ymjt1x" path="res://scenes/characters/battle_enemies/scr_enemy_fish.gd" id="1_a6he8"]
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="2_1cvso"]
@@ -42,20 +42,18 @@ _data = {
 &"idle": SubResource("Animation_mkstr")
 }
 
-[node name="Fish" type="Node2D"]
+[node name="Fish" type="Node2D" unique_id=200070530]
 script = ExtResource("1_a6he8")
 altruism = 0.199
 can_flee = true
 gender = 2
 
-[node name="FishSprite" type="Sprite2D" parent="."]
+[node name="FishSprite" type="Sprite2D" parent="." unique_id=652836179]
 position = Vector2(0, -13)
 texture = ExtResource("2_1cvso")
 hframes = 5
 vframes = 3
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_078ep")
-}
-autoplay = "idle"
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1340927177]
+libraries/ = SubResource("AnimationLibrary_078ep")
+autoplay = &"idle"

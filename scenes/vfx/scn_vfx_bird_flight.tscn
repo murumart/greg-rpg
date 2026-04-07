@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1whcru0fbstr"]
+[gd_scene format=3 uid="uid://d1whcru0fbstr"]
 
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="1_1kmkn"]
 [ext_resource type="Script" uid="uid://cbwre3bnoel8q" path="res://scenes/vfx/scr_vfx_bird_flight.gd" id="1_qmt70"]
@@ -136,10 +136,10 @@ radial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_6ybi2")
 
-[node name="ScnVfxBirdFlight" type="Node2D"]
+[node name="ScnVfxBirdFlight" type="Node2D" unique_id=1728128784]
 script = ExtResource("1_qmt70")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1837411651]
 position = Vector2(-8, -15)
 sprite_frames = SubResource("SpriteFrames_7w216")
 animation = &"fly"
@@ -147,16 +147,16 @@ autoplay = "fly"
 frame_progress = 0.690738
 centered = false
 
-[node name="FlapSound" type="AudioStreamPlayer2D" parent="."]
+[node name="FlapSound" type="AudioStreamPlayer2D" parent="." unique_id=1466445296]
 stream = SubResource("AudioStreamRandomizer_fxpli")
 max_distance = 200.0
 panning_strength = 1.35
 area_mask = 0
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=324020385]
 one_shot = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=769689353]
 emitting = false
 amount = 2
 texture = ExtResource("4_mqisx")

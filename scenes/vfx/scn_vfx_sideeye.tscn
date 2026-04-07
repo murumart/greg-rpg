@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crf03tu0yt60"]
+[gd_scene format=3 uid="uid://crf03tu0yt60"]
 
 [ext_resource type="Texture2D" uid="uid://cuannf2u0hxr5" path="res://sprites/spirit/spr_sideeye.png" id="1_2hkrd"]
 [ext_resource type="AudioStream" uid="uid://drnn43utwf0b" path="res://sounds/spirit/sideeye.ogg" id="2_nqccs"]
@@ -158,13 +158,13 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="VFXSideeye" type="Node2D"]
+[node name="VFXSideeye" type="Node2D" unique_id=1325286462]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1652385716]
 sprite_frames = SubResource("SpriteFrames_82xgy")
 autoplay = "default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=144186804]
 stream = ExtResource("2_nqccs")
 autoplay = true
 

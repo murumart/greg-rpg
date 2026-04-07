@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5ptog2hofxx7"]
+[gd_scene format=3 uid="uid://c5ptog2hofxx7"]
 
 [ext_resource type="Texture2D" uid="uid://c27ab6b27ixyf" path="res://sprites/spirit/spr_jglove_local.png" id="1_jolop"]
 
@@ -126,14 +126,12 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="VfxJgloveLocal" type="Node2D"]
+[node name="VfxJgloveLocal" type="Node2D" unique_id=1416600964]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tqvcl")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=286414522]
+libraries/ = SubResource("AnimationLibrary_tqvcl")
+autoplay = &"default"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=620473910]
 sprite_frames = SubResource("SpriteFrames_iygvc")
 autoplay = "default"

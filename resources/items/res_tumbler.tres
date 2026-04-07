@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://bljyuqjkv1tdl"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bljyuqjkv1tdl"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_4ge8a"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_4psst"]
@@ -8,31 +8,19 @@
 [sub_resource type="Resource" id="Resource_p6dxe"]
 script = ExtResource("1_4ge8a")
 name = "confusion"
-strength = 1.0
 duration = 5.0
 
 [sub_resource type="Resource" id="Resource_0w00j"]
 script = ExtResource("1_4psst")
 health = null
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
 magic = null
 magic_percent = null
 max_magic_percent = null
-steal_magic = 0.0
 attack_increase = null
 defense_increase = null
 speed_increase = null
 gender = 6
 effects = Array[ExtResource("1_4ge8a")]([SubResource("Resource_p6dxe")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("2_dyxa5")
@@ -40,8 +28,6 @@ name_in_file = &"tumbler"
 name = &"tumbler"
 description = "what's this? how confusing!"
 texture = ExtResource("3_l8xjx")
-attack_animation = ""
 price = 8889
 use = 3
-consume_on_use = true
 payload = SubResource("Resource_0w00j")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://cmd8863gajglq"]
+[gd_scene format=3 uid="uid://cmd8863gajglq"]
 
 [ext_resource type="Script" uid="uid://dyaag4q2epm6y" path="res://scenes/characters/battle_enemies/scr_enemy_grandma_boss.gd" id="1_45sk8"]
 [ext_resource type="Texture2D" uid="uid://c6u4gnen30tqb" path="res://sprites/characters/battle/grandma/spr_battle.png" id="2_ywnvn"]
@@ -866,7 +866,7 @@ _data = {
 &"strike": SubResource("Animation_s3ql5")
 }
 
-[node name="GrandmaBoss" type="Node2D"]
+[node name="GrandmaBoss" type="Node2D" unique_id=557319435]
 script = ExtResource("1_45sk8")
 enemy_health_toughness_curve = SubResource("Curve_n5fjy")
 effect_center = Vector2i(0, -22)
@@ -874,17 +874,17 @@ toughness = 0.489
 xp_multiplier = 10.0
 effect_immunities = Array[StringName]([&"crying"])
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1322713288]
 position = Vector2(0, -4)
 texture = ExtResource("2_ywnvn")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite" unique_id=1073303749]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_1ryrp")
 texture = ExtResource("2_ywnvn")
 process_material = ExtResource("3_23nbp")
 
-[node name="CopyGregStatsComponent" type="Node" parent="."]
+[node name="CopyGregStatsComponent" type="Node" parent="." unique_id=547400428]
 script = ExtResource("3_twl0x")
 copy_params = Dictionary[int, float]({
 0: 1.0,
@@ -893,30 +893,28 @@ copy_params = Dictionary[int, float]({
 3: 1.0
 })
 
-[node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimationSprite" type="AnimatedSprite2D" parent="." unique_id=819420172]
 sprite_frames = SubResource("SpriteFrames_p7ri3")
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimationSprite"]
+[node name="Sprite2D" type="Sprite2D" parent="AnimationSprite" unique_id=849204061]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.0313416, 0.262481, 0, 1)
 z_index = -1
 position = Vector2(62, -171)
 texture = ExtResource("5_eaeq7")
 
-[node name="FinalAnimation" type="AnimationPlayer" parent="AnimationSprite"]
+[node name="FinalAnimation" type="AnimationPlayer" parent="AnimationSprite" unique_id=176531171]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_e0ebt")
-}
+libraries/ = SubResource("AnimationLibrary_e0ebt")
 
-[node name="Cs1" type="AudioStreamPlayer" parent="AnimationSprite"]
+[node name="Cs1" type="AudioStreamPlayer" parent="AnimationSprite" unique_id=1966075953]
 bus = &"ECHO"
 
-[node name="Cs2" type="AudioStreamPlayer" parent="AnimationSprite"]
+[node name="Cs2" type="AudioStreamPlayer" parent="AnimationSprite" unique_id=1696147564]
 stream = ExtResource("10_m0s5u")
 
-[node name="Cs3" type="AudioStreamPlayer" parent="AnimationSprite"]
+[node name="Cs3" type="AudioStreamPlayer" parent="AnimationSprite" unique_id=1280071525]
 stream = ExtResource("13_23nbp")
 pitch_scale = 1.09
 bus = &"Radio Music"

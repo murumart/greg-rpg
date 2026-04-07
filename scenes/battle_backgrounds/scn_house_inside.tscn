@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://crlulq2utosge"]
+[gd_scene format=3 uid="uid://crlulq2utosge"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_j2yrc"]
 [ext_resource type="Shader" uid="uid://duyc827l1g47w" path="res://scenes/battle_backgrounds/shd_house_inside.tres" id="2_bouop"]
@@ -7,9 +7,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygkgt"]
 shader = ExtResource("2_bouop")
 
-[node name="HouseInside" instance=ExtResource("1_j2yrc")]
+[node name="HouseInside" unique_id=686941224 instance=ExtResource("1_j2yrc")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=135572072]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_ygkgt")
 position = Vector2(80, 60)

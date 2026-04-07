@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://wjbvsiy3iovq"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://wjbvsiy3iovq"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_88anu"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_d2vke"]
@@ -8,34 +8,11 @@
 [sub_resource type="Resource" id="Resource_khvp2"]
 script = ExtResource("1_88anu")
 health = 1.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_d2vke")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("2_sa7qu")
-name_in_file = &""
 name = &"eggshell"
 description = "it's an animal's egg's shell's wall's shards."
 texture = ExtResource("3_ithwb")
-attack_animation = ""
 price = 94
-use = -1
-consume_on_use = true
 payload = SubResource("Resource_khvp2")

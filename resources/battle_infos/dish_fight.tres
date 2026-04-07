@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=11 format=3 uid="uid://dq15d2quoe8li"]
+[gd_resource type="Resource" script_class="BattleInfo" format=3 uid="uid://dq15d2quoe8li"]
 
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_7w6y5"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_m2h65"]
@@ -7,31 +7,24 @@
 
 [sub_resource type="Resource" id="Resource_5vc6s"]
 script = ExtResource("1_7w6y5")
-type = 0
 property = "101"
-chance = 1.0
-unique = false
 
 [sub_resource type="Resource" id="Resource_ap36u"]
 script = ExtResource("1_7w6y5")
 type = 1
 property = "frankling_badge"
-chance = 1.0
 unique = true
 
 [sub_resource type="Resource" id="Resource_m2h65"]
 script = ExtResource("1_7w6y5")
 type = 3
 property = "777"
-chance = 1.0
-unique = false
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_61ica"]
 script = ExtResource("1_7w6y5")
 type = 2
 property = "jglove"
-chance = 1.0
 unique = true
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
@@ -39,7 +32,6 @@ metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 script = ExtResource("1_7w6y5")
 type = 1
 property = "flower_nasturtium"
-chance = 1.0
 unique = true
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
@@ -52,14 +44,7 @@ script = ExtResource("1_oh4at")
 enemies = Array[StringName]([&"dish"])
 background = "bg_dish"
 music = "dishout"
-party = Array[StringName]([])
 death_reason = 13
-start_text = ""
 rewards = SubResource("Resource_qddtr")
 victory_music = &"extremophile"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
 crits_enabled = false
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_m2h65")]({})
-increment_data_with_enemies = &""

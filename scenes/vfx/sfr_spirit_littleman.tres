@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://s65kghjgst4r"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://s65kghjgst4r"]
 
 [ext_resource type="Texture2D" uid="uid://csxd1fcvxaa1f" path="res://sprites/spirit/spr_littleman_hint.png" id="1_bu2mi"]
 

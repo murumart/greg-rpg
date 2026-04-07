@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ke721s7wxwdc"]
+[gd_scene format=4 uid="uid://ke721s7wxwdc"]
 
 [ext_resource type="Script" uid="uid://cwvpjm0onn5gc" path="res://scenes/rooms/sg/scn_xprefb.gd" id="1_0v02i"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="1_qpwdf"]
@@ -671,21 +671,21 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqxlv"]
 gradient = SubResource("Gradient_1hb2r")
 
-[node name="XPreFB" type="Node2D"]
+[node name="XPreFB" type="Node2D" unique_id=567404440]
 y_sort_enabled = true
 script = ExtResource("1_0v02i")
 
-[node name="MusBarCounter" type="Node" parent="."]
+[node name="MusBarCounter" type="Node" parent="." unique_id=1126511541]
 script = ExtResource("8_pu3y8")
 bpm = 81.37
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
-[node name="Greg" parent="." instance=ExtResource("2_mnmvu")]
+[node name="Greg" parent="." unique_id=1430457217 instance=ExtResource("2_mnmvu")]
 position = Vector2(1218, 0)
 saving_disabled = true
 menu_disabled = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Greg"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Greg" unique_id=652226061]
 modulate = Color(0, 0.03089655, 0.032000005, 1)
 z_index = -1
 material = ExtResource("3_hf1n7")
@@ -694,12 +694,12 @@ amount = 54
 texture = SubResource("AtlasTexture_vo3ai")
 process_material = ExtResource("5_1guws")
 
-[node name="Camera" parent="Greg" instance=ExtResource("3_bgwyw")]
+[node name="Camera" parent="Greg" unique_id=28785305 instance=ExtResource("3_bgwyw")]
 position = Vector2(0, -9)
 zoom = Vector2(4, 4)
 resolution_scale_factor = 0.25
 
-[node name="ColorRect" type="ColorRect" parent="Greg/Camera"]
+[node name="ColorRect" type="ColorRect" parent="Greg/Camera" unique_id=590520918]
 z_index = -3
 material = SubResource("ShaderMaterial_0gnln")
 offset_left = -83.0
@@ -708,42 +708,42 @@ offset_right = 87.0
 offset_bottom = 64.0
 color = Color(0.080783345, 0.080783345, 0.0807833, 1)
 
-[node name="PulseD" type="Sprite2D" parent="Greg/Camera"]
+[node name="PulseD" type="Sprite2D" parent="Greg/Camera" unique_id=320585524]
 z_index = 6
 texture_filter = 2
 texture = SubResource("GradientTexture2D_p6eob")
 
-[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="Greg" node_paths=PackedStringArray("from", "to")]
+[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="Greg" unique_id=1243447963 node_paths=PackedStringArray("from", "to")]
 script = ExtResource("7_3bfs0")
 from = NodePath("../CanvasGroup/Sprite")
 to = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://b4no27m8ikd0y"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1148618974]
 stream = SubResource("AudioStreamSynchronized_0v02i")
 pitch_scale = 0.79
 autoplay = true
 bus = &"ECHO MUSIC"
 
-[node name="Collision" type="TileMapLayer" parent="."]
+[node name="Collision" type="TileMapLayer" parent="." unique_id=157315284]
 visible = false
 tile_map_data = PackedByteArray("AAD///3/AAAPAA8AAAD+//3/AAAPAA8AAAD9//3/AAAPAA8AAAD9//7/AAAPAA8AAAD9////AAAPAA8AAAD9/wAAAAAPAA8AAAD9/wEAAAAPAA8AAAD9/wIAAAAPAA8AAAD+/wIAAAAPAA8AAAD//wIAAAAPAA8AAAAAAAIAAAAPAA8AAAABAAIAAAAPAA8AAAACAAIAAAAPAA8AAAADAAIAAAAPAA8AAAAEAAIAAAAPAA8AAAAFAAIAAAAPAA8AAAAGAAIAAAAPAA8AAAAHAAIAAAAPAA8AAAAIAAIAAAAPAA8AAAAJAAIAAAAPAA8AAAAKAAIAAAAPAA8AAAALAAIAAAAPAA8AAAAMAAIAAAAPAA8AAAANAAIAAAAPAA8AAAAOAAIAAAAPAA8AAAAPAAIAAAAPAA8AAAAQAAIAAAAPAA8AAAARAAIAAAAPAA8AAAASAAIAAAAPAA8AAAATAAIAAAAPAA8AAAAUAAIAAAAPAA8AAAAVAAIAAAAPAA8AAAAAAP3/AAAPAA8AAAABAP3/AAAPAA8AAAACAP3/AAAPAA8AAAADAP3/AAAPAA8AAAAEAP3/AAAPAA8AAAAFAP3/AAAPAA8AAAAGAP3/AAAPAA8AAAAHAP3/AAAPAA8AAAAIAP3/AAAPAA8AAAAJAP3/AAAPAA8AAAAKAP3/AAAPAA8AAAALAP3/AAAPAA8AAAAMAP3/AAAPAA8AAAANAP3/AAAPAA8AAAAOAP3/AAAPAA8AAAAPAP3/AAAPAA8AAAAQAP3/AAAPAA8AAAARAP3/AAAPAA8AAAASAP3/AAAPAA8AAAATAP3/AAAPAA8AAAAUAP3/AAAPAA8AAAAVAP3/AAAPAA8AAAAWAPr/AAAPAA8AAAAWAPv/AAAPAA8AAAAWAPz/AAAPAA8AAAAWAP3/AAAPAA8AAAAWAAIAAAAPAA8AAAAWAAMAAAAPAA8AAAAWAAQAAAAPAA8AAAAWAAUAAAAPAA8AAAAXAPr/AAAPAA8AAAAYAPr/AAAPAA8AAAAZAPr/AAAPAA8AAAAaAPr/AAAPAA8AAAAbAPr/AAAPAA8AAAAcAPr/AAAPAA8AAAAdAPr/AAAPAA8AAAAeAPr/AAAPAA8AAAAfAPr/AAAPAA8AAAAgAPr/AAAPAA8AAAAhAPr/AAAPAA8AAAAiAPr/AAAPAA8AAAAjAPr/AAAPAA8AAAAkAPr/AAAPAA8AAAAlAPr/AAAPAA8AAAAmAPr/AAAPAA8AAAAnAPr/AAAPAA8AAAAoAPr/AAAPAA8AAAApAPr/AAAPAA8AAAAqAPr/AAAPAA8AAAArAPr/AAAPAA8AAAAsAPr/AAAPAA8AAAAtAPr/AAAPAA8AAAAuAPr/AAAPAA8AAAAvAPr/AAAPAA8AAAAwAPr/AAAPAA8AAAAxAPr/AAAPAA8AAAAyAPr/AAAPAA8AAAAzAPr/AAAPAA8AAAAXAAUAAAAPAA8AAAAYAAUAAAAPAA8AAAAZAAUAAAAPAA8AAAAaAAUAAAAPAA8AAAAbAAUAAAAPAA8AAAAcAAUAAAAPAA8AAAAdAAUAAAAPAA8AAAAeAAUAAAAPAA8AAAAfAAUAAAAPAA8AAAAgAAUAAAAPAA8AAAAhAAUAAAAPAA8AAAAiAAUAAAAPAA8AAAAjAAUAAAAPAA8AAAAkAAUAAAAPAA8AAAAlAAUAAAAPAA8AAAAmAAUAAAAPAA8AAAAnAAUAAAAPAA8AAAAoAAUAAAAPAA8AAAApAAUAAAAPAA8AAAAqAAUAAAAPAA8AAAArAAUAAAAPAA8AAAAsAAUAAAAPAA8AAAAtAAUAAAAPAA8AAAAuAAUAAAAPAA8AAAAvAAUAAAAPAA8AAAAwAAUAAAAPAA8AAAAxAAUAAAAPAA8AAAAyAAUAAAAPAA8AAAAzAAUAAAAPAA8AAAA0AAUAAAAPAA8AAAA1AAUAAAAPAA8AAAA2AAUAAAAPAA8AAAA3AAUAAAAPAA8AAAA4AAUAAAAPAA8AAAA0APr/AAAPAA8AAAA1APr/AAAPAA8AAAA2APr/AAAPAA8AAAA3APr/AAAPAA8AAAA4APr/AAAPAA8AAAA5APr/AAAPAA8AAAA6APr/AAAPAA8AAAA7APr/AAAPAA8AAAA8APr/AAAPAA8AAAA9APr/AAAPAA8AAAA+APr/AAAPAA8AAAA/APr/AAAPAA8AAABAAPr/AAAPAA8AAABBAPr/AAAPAA8AAABCAPr/AAAPAA8AAABDAPr/AAAPAA8AAAA5AAUAAAAPAA8AAAA6AAUAAAAPAA8AAAA7AAUAAAAPAA8AAAA8AAUAAAAPAA8AAAA9AAUAAAAPAA8AAAA+AAUAAAAPAA8AAAA/AAUAAAAPAA8AAABAAAUAAAAPAA8AAABBAAUAAAAPAA8AAABCAAUAAAAPAA8AAABDAAUAAAAPAA8AAABEAAUAAAAPAA8AAABFAAUAAAAPAA8AAABEAPr/AAAPAA8AAABFAPr/AAAPAA8AAABGAPr/AAAPAA8AAABGAAUAAAAPAA8AAABHAPr/AAAPAA8AAABHAAUAAAAPAA8AAABIAPr/AAAPAA8AAABIAAUAAAAPAA8AAABJAPr/AAAPAA8AAABJAAUAAAAPAA8AAABKAPr/AAAPAA8AAABKAAUAAAAPAA8AAABLAPr/AAAPAA8AAABLAAUAAAAPAA8AAABMAPr/AAAPAA8AAABMAAUAAAAPAA8AAABNAPr/AAAPAA8AAABNAAUAAAAPAA8AAABOAPr/AAAPAA8AAABOAAUAAAAPAA8AAABPAPr/AAAPAA8AAABPAAUAAAAPAA8AAABQAPr/AAAPAA8AAABQAPv/AAAPAA8AAABQAPz/AAAPAA8AAABQAP3/AAAPAA8AAABQAP7/AAAPAA8AAABQAP//AAAPAA8AAABQAAAAAAAPAA8AAABQAAEAAAAPAA8AAABQAAIAAAAPAA8AAABQAAMAAAAPAA8AAABQAAQAAAAPAA8AAABQAAUAAAAPAA8AAAA=")
 tile_set = ExtResource("12_1dtc0")
 
-[node name="Decor" type="Node2D" parent="."]
+[node name="Decor" type="Node2D" parent="." unique_id=867088769]
 y_sort_enabled = true
 
-[node name="StonePerson" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson" parent="Decor" unique_id=1209993543 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(255, 28)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson" unique_id=1319224753 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson" unique_id=1899039862 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -754,17 +754,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson2" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson2" parent="Decor" unique_id=1613564255 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(373, -29)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson2" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson2" unique_id=1961162337 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson2" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson2" unique_id=652245074 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -775,17 +775,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson3" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson3" parent="Decor" unique_id=1875008610 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(460, 75)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson3" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson3" unique_id=2028201436 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson3" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson3" unique_id=1556172581 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -796,17 +796,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson4" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson4" parent="Decor" unique_id=610178326 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(546, -63)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson4" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson4" unique_id=899141632 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson4" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson4" unique_id=1739795576 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -817,17 +817,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson5" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson5" parent="Decor" unique_id=1575831186 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(604, 49)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson5" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson5" unique_id=1775778314 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson5" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson5" unique_id=919305329 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -838,17 +838,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson6" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson6" parent="Decor" unique_id=132109803 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(757, -51)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson6" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson6" unique_id=1916366350 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson6" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson6" unique_id=330299016 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -859,17 +859,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson7" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson7" parent="Decor" unique_id=1477078846 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(839, 46)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson7" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson7" unique_id=1634560689 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson7" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson7" unique_id=1284572709 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -880,17 +880,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson8" parent="Decor" groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
+[node name="StonePerson8" parent="Decor" unique_id=1372164885 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(884, -28)
 save = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson8" groups=["stonepeople_sprites"]]
+[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson8" unique_id=689364505 groups=["stonepeople_sprites"]]
 position = Vector2(0, -8)
 texture = ExtResource("14_0v02i")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson8" groups=["stonepeople_sprites"]]
+[node name="Shade" type="Sprite2D" parent="Decor/StonePerson8" unique_id=907560956 groups=["stonepeople_sprites"]]
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
 position = Vector2(5.625, -6.575)
 skew = 0.71733034
@@ -901,17 +901,17 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Grand" parent="Decor" instance=ExtResource("13_kh2gp")]
+[node name="Grand" parent="Decor" unique_id=784715634 instance=ExtResource("13_kh2gp")]
 position = Vector2(1243, 0)
 save = false
 
-[node name="Vis" type="Sprite2D" parent="Decor/Grand"]
+[node name="Vis" type="Sprite2D" parent="Decor/Grand" unique_id=1202549749]
 position = Vector2(0, -8)
 texture = ExtResource("17_p6eob")
 region_enabled = true
 region_rect = Rect2(48, 48, 16, 16)
 
-[node name="Shade" type="Sprite2D" parent="Decor/Grand"]
+[node name="Shade" type="Sprite2D" parent="Decor/Grand" unique_id=56393883]
 modulate = Color(0.003921569, 0, 0, 0.69411767)
 position = Vector2(1, -6)
 skew = 0.71733034
@@ -922,7 +922,7 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(48, 48, 16, 16)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor/Grand"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor/Grand" unique_id=1981135773]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -15)
 emitting = false
@@ -931,36 +931,34 @@ texture = ExtResource("18_ivea1")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_h8xhg")
 
-[node name="SpeechBuble" parent="." instance=ExtResource("18_rm4p2")]
+[node name="SpeechBuble" parent="." unique_id=1999333113 instance=ExtResource("18_rm4p2")]
 z_index = 9
 position = Vector2(97, 9)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1013380803]
 environment = SubResource("Environment_p6eob")
 
-[node name="Intensiivne" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ahkm6")
-}
+[node name="Intensiivne" type="AnimationPlayer" parent="." unique_id=1589572361]
+libraries/ = SubResource("AnimationLibrary_ahkm6")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Intensiivne"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Intensiivne" unique_id=997696559]
 stream = ExtResource("19_ahkm6")
 
-[node name="Flash" type="Sprite2D" parent="Intensiivne"]
+[node name="Flash" type="Sprite2D" parent="Intensiivne" unique_id=1738348312]
 modulate = Color(1, 1, 1, 0)
 material = ExtResource("3_hf1n7")
 position = Vector2(1243, 0)
 scale = Vector2(0.5, 2.59375)
 texture = SubResource("GradientTexture2D_hqxlv")
 
-[node name="Menacing" parent="." node_paths=PackedStringArray("move_target") instance=ExtResource("21_1hb2r")]
+[node name="Menacing" parent="." unique_id=74590759 node_paths=PackedStringArray("move_target") instance=ExtResource("21_1hb2r")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 position = Vector2(1244, -37)
 move_mode = 1
 move_target = NodePath("../Target")
 
-[node name="Target" type="Node2D" parent="."]
+[node name="Target" type="Node2D" parent="." unique_id=1349619393]
 position = Vector2(1245, -23)
 
 [editable path="Greg"]

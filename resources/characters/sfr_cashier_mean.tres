@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://dn7o24r8k120d"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dn7o24r8k120d"]
 
 [ext_resource type="Texture2D" uid="uid://vm5q5pq4pmlu" path="res://sprites/characters/overworld/spr_cashier_mean_overworld.png" id="1_w8i4t"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d4kmrdxuewqcx"]
+[gd_scene format=3 uid="uid://d4kmrdxuewqcx"]
 
 [ext_resource type="Script" uid="uid://bmtyx3acqli6q" path="res://scenes/characters/battle_enemies/woods_guy_fight/zoom_bullet.gd" id="1_qsolb"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_qccqe"]
@@ -41,19 +41,19 @@ _data = {
 &"atk1": SubResource("Animation_7lfy5")
 }
 
-[node name="ZoomBullet" type="Area2D"]
+[node name="ZoomBullet" type="Area2D" unique_id=1697826285]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_qsolb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1824077987]
 position = Vector2(7.15256e-07, -1.19209e-06)
 texture = ExtResource("2_qccqe")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=729722116]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_n4ctl")
 texture = SubResource("AtlasTexture_s6go7")
@@ -61,20 +61,18 @@ lifetime = 0.1
 trail_lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_cxxk3")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1734810850]
 shape = SubResource("CircleShape2D_n4ctl")
 disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_lqqhc")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1166738272]
+libraries/ = SubResource("AnimationLibrary_lqqhc")
 
-[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+[node name="Whoosh" type="AudioStreamPlayer" parent="." unique_id=2058605567]
 stream = ExtResource("3_n4ctl")
 volume_db = 4.0
 pitch_scale = 1.51
 
-[node name="Tp" type="AudioStreamPlayer" parent="."]
+[node name="Tp" type="AudioStreamPlayer" parent="." unique_id=1332376586]
 stream = ExtResource("4_n4ctl")
 pitch_scale = 1.02

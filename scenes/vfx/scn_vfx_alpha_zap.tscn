@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d3gh8m5fnhw0k"]
+[gd_scene format=3 uid="uid://d3gh8m5fnhw0k"]
 
 [ext_resource type="Texture2D" uid="uid://b7p1rbmdhlxw7" path="res://sprites/spirit/spr_radio_alpha.png" id="1_xv0s8"]
 [ext_resource type="AudioStream" uid="uid://3pclljo138fl" path="res://sounds/spirit/bikeghost/radio_alpha.ogg" id="2_ts1f8"]
@@ -170,15 +170,13 @@ _data = {
 &"default": SubResource("Animation_50bh7")
 }
 
-[node name="VfxAlphaZap" type="Node2D"]
+[node name="VfxAlphaZap" type="Node2D" unique_id=1177185391]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=742903439]
 sprite_frames = SubResource("SpriteFrames_u31px")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yn7n8")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1267640347]
+libraries/ = SubResource("AnimationLibrary_yn7n8")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1309675504]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://jiwivi764dxc"]
+[gd_scene format=4 uid="uid://jiwivi764dxc"]
 
 [ext_resource type="Script" uid="uid://ct525lpipas5" path="res://scenes/mining/scr_mining_game.gd" id="1_0eiox"]
 [ext_resource type="Texture2D" uid="uid://bulsofeyxd6am" path="res://sprites/mining/spr_tiles.png" id="2_3h1uj"]
@@ -456,8 +456,8 @@ sources/4 = SubResource("TileSetAtlasSource_juj1q")
 width = 20
 height = 400
 generate_mipmaps = false
-normalize = false
 noise = ExtResource("4_xuf81")
+normalize = false
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vmols"]
 blend_mode = 1
@@ -479,7 +479,7 @@ anti_aliasing = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fnne"]
 size = Vector2(8, 160)
 
-[node name="MiningGame" type="Node2D" node_paths=PackedStringArray("solid_tiles", "liquid_tiles")]
+[node name="MiningGame" type="Node2D" unique_id=1514404595 node_paths=PackedStringArray("solid_tiles", "liquid_tiles")]
 script = ExtResource("1_0eiox")
 solid_tiles = NodePath("Tiles/solids")
 liquid_tiles = NodePath("Tiles/liquids")
@@ -489,10 +489,10 @@ main_tunnel_noise = ExtResource("4_qrari")
 water_noise = ExtResource("5_ompu0")
 gas_noise = ExtResource("4_xuf81")
 
-[node name="BgWall" type="Node2D" parent="."]
+[node name="BgWall" type="Node2D" parent="." unique_id=2120300041]
 z_index = -2
 
-[node name="TextureRect" type="NinePatchRect" parent="BgWall"]
+[node name="TextureRect" type="NinePatchRect" parent="BgWall" unique_id=2030393933]
 modulate = Color(0.494118, 0.407843, 0.478431, 1)
 offset_top = 112.0
 offset_right = 160.0
@@ -504,50 +504,50 @@ patch_margin_bottom = 16
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="BgWall"]
+[node name="Sprite2D2" type="Sprite2D" parent="BgWall" unique_id=384640711]
 modulate = Color(0, 0, 0, 0.486275)
 position = Vector2(2, 114)
 texture = ExtResource("2_mm17a")
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="BgWall"]
+[node name="Sprite2D" type="Sprite2D" parent="BgWall" unique_id=1195132479]
 position = Vector2(0, 112)
 texture = ExtResource("2_mm17a")
 centered = false
 
-[node name="UpdateTimer" type="Timer" parent="."]
+[node name="UpdateTimer" type="Timer" parent="." unique_id=107471289]
 wait_time = 0.1
 
-[node name="Tiles" type="Node2D" parent="."]
+[node name="Tiles" type="Node2D" parent="." unique_id=52353273]
 script = ExtResource("4_kcfpy")
 metadata/_custom_type_script = "uid://trdp1tp7ibo0"
 
-[node name="solids" type="TileMapLayer" parent="Tiles"]
+[node name="solids" type="TileMapLayer" parent="Tiles" unique_id=192022292]
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAEAA0AAAACAAAAAAAFAA0AAAACAAAAAAAGAA0AAAACAAAAAAAHAA0AAAACAAAAAAAIAA0AAAACAAAAAAAJAA0AAAACAAAAAAAKAA0AAAACAAAAAAALAA0AAAACAAAAAAALAAoAAAACAAAAAAALAAsAAAACAAAAAAALAAwAAAACAAAAAAAMAAwAAAACAAAAAAANAAwAAAACAAAAAAAOAAwAAAACAAAAAAAPAAwAAAACAAAAAAAQAAwAAAACAAAAAAARAAwAAAACAAAAAAARAAsAAAACAAAAAAARAAoAAAACAAAAAAAKAAwAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_ivaes")
 rendering_quadrant_size = 8
 
-[node name="liquids" type="TileMapLayer" parent="Tiles"]
+[node name="liquids" type="TileMapLayer" parent="Tiles" unique_id=1999167823]
 use_parent_material = true
 tile_set = SubResource("TileSet_ivaes")
 
-[node name="NoiseDisplay" type="Sprite2D" parent="."]
+[node name="NoiseDisplay" type="Sprite2D" parent="." unique_id=264376258]
 visible = false
 z_index = -2
 scale = Vector2(8, 8)
 texture = SubResource("NoiseTexture2D_cgu8p")
 centered = false
 
-[node name="GregPlatform" parent="." instance=ExtResource("3_hjwtw")]
+[node name="GregPlatform" parent="." unique_id=649394005 instance=ExtResource("3_hjwtw")]
 position = Vector2(62, 97)
 
-[node name="Camera" parent="GregPlatform" instance=ExtResource("4_khxvi")]
+[node name="Camera" parent="GregPlatform" unique_id=1652266264 instance=ExtResource("4_khxvi")]
 limit_left = 0
 limit_right = 160
 position_smoothing_enabled = true
 
-[node name="MiningComponent" type="Node2D" parent="GregPlatform" node_paths=PackedStringArray("target", "display", "tilemap_solid", "tilemap_liquid")]
+[node name="MiningComponent" type="Node2D" parent="GregPlatform" unique_id=1145891476 node_paths=PackedStringArray("target", "display", "tilemap_solid", "tilemap_liquid")]
 top_level = true
 script = ExtResource("6_qjefl")
 target = NodePath("..")
@@ -555,22 +555,22 @@ display = NodePath("Panel")
 tilemap_solid = NodePath("../../Tiles/solids")
 tilemap_liquid = NodePath("../../Tiles/liquids")
 
-[node name="Panel" type="Panel" parent="GregPlatform/MiningComponent"]
+[node name="Panel" type="Panel" parent="GregPlatform/MiningComponent" unique_id=593922119]
 material = SubResource("CanvasItemMaterial_vmols")
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(0, 8)
 theme_override_styles/panel = SubResource("StyleBoxFlat_1gpg1")
 
-[node name="Wall" type="StaticBody2D" parent="."]
+[node name="Wall" type="StaticBody2D" parent="." unique_id=253876924]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1281471018]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_1fnne")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=1195938952]
 position = Vector2(164, 0)
 shape = SubResource("RectangleShape2D_1fnne")
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node" parent="." unique_id=1740036615]

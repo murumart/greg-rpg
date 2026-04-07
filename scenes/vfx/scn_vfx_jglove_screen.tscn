@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://blr27s51blmq4"]
+[gd_scene format=3 uid="uid://blr27s51blmq4"]
 
 [ext_resource type="Texture2D" uid="uid://bxts5odealncg" path="res://sprites/spirit/spr_jglove_screen.png" id="1_5ygtf"]
 [ext_resource type="AudioStream" uid="uid://cnfsav5xksbnm" path="res://sounds/spirit/jglove.ogg" id="2_o7ohq"]
@@ -206,16 +206,14 @@ _data = {
 &"default": SubResource("Animation_f5gxb")
 }
 
-[node name="VfxJgloveScreen" type="Node2D"]
+[node name="VfxJgloveScreen" type="Node2D" unique_id=197713084]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=585817278]
 visible = false
 sprite_frames = SubResource("SpriteFrames_uxx15")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_181w8")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2072577623]
+libraries/ = SubResource("AnimationLibrary_181w8")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1659079531]

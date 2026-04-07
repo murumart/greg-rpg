@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7v6bq0p8ea7t"]
+[gd_scene format=3 uid="uid://7v6bq0p8ea7t"]
 
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="1_kkx4x"]
 
-[node name="InteriorTiles" type="TileMap"]
+[node name="InteriorTiles" type="TileMap" unique_id=1966505820]
 y_sort_enabled = true
 tile_set = ExtResource("1_kkx4x")
 format = 2

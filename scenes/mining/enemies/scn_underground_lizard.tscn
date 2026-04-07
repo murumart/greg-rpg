@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b18s2g8p0xnlj"]
+[gd_scene format=3 uid="uid://b18s2g8p0xnlj"]
 
 [ext_resource type="Script" uid="uid://db1hr6nt3bs7p" path="res://scenes/mining/scr_platformer_enemy_moving_component.gd" id="1_8jsl8"]
 [ext_resource type="SpriteFrames" uid="uid://b0j546op24bxm" path="res://resources/characters/sfr_stray_pet.tres" id="2_aarm7"]
@@ -7,27 +7,27 @@
 radius = 4.0
 height = 8.0
 
-[node name="UndergroundLizard" type="CharacterBody2D"]
+[node name="UndergroundLizard" type="CharacterBody2D" unique_id=1406469308]
 collision_layer = 12
 
-[node name="ShapeCast" type="ShapeCast2D" parent="."]
+[node name="ShapeCast" type="ShapeCast2D" parent="." unique_id=1675274724]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_iok87")
 target_position = Vector2(32, 1)
 max_results = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1835654492]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_iok87")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1441716296]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_aarm7")
 animation = &"walk_left"
 autoplay = "walk_left"
 frame_progress = 0.882724
 
-[node name="PlatformerEnemyMovingComponent" type="Node" parent="." node_paths=PackedStringArray("target", "visual", "edge_shape_cast")]
+[node name="PlatformerEnemyMovingComponent" type="Node" parent="." unique_id=868034563 node_paths=PackedStringArray("target", "visual", "edge_shape_cast")]
 script = ExtResource("1_8jsl8")
 target = NodePath("..")
 visual = NodePath("../AnimatedSprite2D")

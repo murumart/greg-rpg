@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StatusEffectType" load_steps=5 format=3 uid="uid://dnvjv2eylh0pc"]
+[gd_resource type="Resource" script_class="StatusEffectType" format=3 uid="uid://dnvjv2eylh0pc"]
 
 [ext_resource type="Script" uid="uid://cpdi158pvlebi" path="res://code/scr_status_effect_type.gd" id="1_o13jt"]
 [ext_resource type="Texture2D" uid="uid://k1pgpa3hgoas" path="res://sprites/gui/spr_effects.png" id="1_tfuor"]
@@ -10,14 +10,11 @@ region = Rect2(6, 0, 6, 6)
 
 [resource]
 script = ExtResource("1_o13jt")
-s_id = &""
 name = "coughing"
 icon = SubResource("AtlasTexture_svbde")
 color = Color(0.498039, 0.329412, 0.498039, 1)
 gender = 2
 use = 1
 cost = 3
-turn_visual = &""
-process_visual = &""
 turn_script = ExtResource("3_tre6t")
 process_visual_chance = 0.02

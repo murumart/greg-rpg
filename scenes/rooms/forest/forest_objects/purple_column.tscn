@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bh78ls33qdjmw"]
+[gd_scene format=3 uid="uid://bh78ls33qdjmw"]
 
 [ext_resource type="Texture2D" uid="uid://dv8go5ikd456q" path="res://sprites/world/object/spr_forest_columns.png" id="1_6gg0v"]
 [ext_resource type="Script" uid="uid://bwlt2c4fqkvxf" path="res://scenes/rooms/forest/forest_objects/purple_column.gd" id="1_7wt7o"]
@@ -12,80 +12,62 @@
 script = ExtResource("2_cfek6")
 title = "transmute"
 silver_required = 100
-input = Array[StringName]([])
-silver_granted = 0
 output = Array[StringName]([&"gold"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_cfek6"]
 script = ExtResource("2_cfek6")
 title = "rose|relive"
-silver_required = 0
 input = Array[StringName]([&"meat"])
-silver_granted = 0
 output = Array[StringName]([&"rose_petals", &"rose_petals"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_jd7a5"]
 script = ExtResource("2_cfek6")
 title = "rose|reuse"
-silver_required = 0
 input = Array[StringName]([&"sleepy_flower"])
-silver_granted = 0
 output = Array[StringName]([&"rose_petals", &"rose_thorns"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_eembn"]
 script = ExtResource("2_cfek6")
 title = "rose|plast"
-silver_required = 0
 input = Array[StringName]([&"plaster"])
-silver_granted = 0
 output = Array[StringName]([&"rose_petals"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_arbjb"]
 script = ExtResource("2_cfek6")
 title = "rose|unburn"
-silver_required = 0
 input = Array[StringName]([&"cigarette"])
-silver_granted = 0
 output = Array[StringName]([&"rose_thorns"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_q0jd0"]
 script = ExtResource("2_cfek6")
 title = "rose|wall"
-silver_required = 0
 input = Array[StringName]([&"eggshell"])
-silver_granted = 0
 output = Array[StringName]([&"rose_thorns"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_bg2yb"]
 script = ExtResource("2_cfek6")
 title = "tasty"
-silver_required = 0
 input = Array[StringName]([&"brick"])
-silver_granted = 0
 output = Array[StringName]([&"berries", &"berries", &"berries"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_lyk1c"]
 script = ExtResource("2_cfek6")
 title = "glue"
-silver_required = 0
 input = Array[StringName]([&"egg", &"egg", &"pills"])
-silver_granted = 0
 output = Array[StringName]([&"glue"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
 [sub_resource type="Resource" id="Resource_ei1fi"]
 script = ExtResource("2_cfek6")
 title = "cereal"
-silver_required = 0
 input = Array[StringName]([&"milk", &"mueslibar", &"mueslibar", &"mueslibar"])
-silver_granted = 0
 output = Array[StringName]([&"muesli"])
 metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 
@@ -380,39 +362,39 @@ _data = {
 &"transmute": SubResource("Animation_lmvt5")
 }
 
-[node name="StoneColumn" type="StaticBody2D" node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
+[node name="StoneColumn" type="StaticBody2D" unique_id=530472595 node_paths=PackedStringArray("interaction_area") groups=["forest_curiosities"]]
 collision_mask = 0
 script = ExtResource("1_7wt7o")
 exchanges = Array[ExtResource("2_cfek6")]([SubResource("Resource_fbg1o"), SubResource("Resource_cfek6"), SubResource("Resource_jd7a5"), SubResource("Resource_eembn"), SubResource("Resource_arbjb"), SubResource("Resource_q0jd0"), SubResource("Resource_bg2yb"), SubResource("Resource_lyk1c"), SubResource("Resource_ei1fi")])
 interaction_area = NodePath("InspectArea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=885517210]
 shape = SubResource("RectangleShape2D_ltmb5")
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=886420813]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("2_lmvt5")
 metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=2146770876]
 shape = SubResource("RectangleShape2D_dxvwd")
 debug_color = Color(1, 0.564706, 1, 0.419608)
 
-[node name="Flash" type="Sprite2D" parent="."]
+[node name="Flash" type="Sprite2D" parent="." unique_id=1588555668]
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_a28sd")
 position = Vector2(0, -27)
 texture = SubResource("GradientTexture2D_lmvt5")
 
-[node name="Bottom" type="Sprite2D" parent="."]
+[node name="Bottom" type="Sprite2D" parent="." unique_id=659018289]
 position = Vector2(0, -6)
 texture = ExtResource("1_6gg0v")
 region_enabled = true
 region_rect = Rect2(34, 26, 12, 22)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Bottom"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Bottom" unique_id=1173662492]
 material = SubResource("CanvasItemMaterial_lmvt5")
 position = Vector2(0, -6)
 amount = 100
@@ -420,24 +402,22 @@ amount_ratio = 0.0
 texture = ExtResource("4_0oeip")
 process_material = SubResource("ParticleProcessMaterial_fbg1o")
 
-[node name="Top" type="Sprite2D" parent="."]
+[node name="Top" type="Sprite2D" parent="." unique_id=1773333497]
 position = Vector2(0, -21)
 texture = ExtResource("1_6gg0v")
 region_enabled = true
 region_rect = Rect2(32, 2, 16, 24)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=730633534]
 stream = ExtResource("4_a28sd")
 volume_db = 2.0
 pitch_scale = 2.0
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1634748684]
 stream = ExtResource("6_lmvt5")
 volume_db = 8.0
 pitch_scale = 0.54
 bus = &"ECHO"
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_arbjb")
-}
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1448188188]
+libraries/ = SubResource("AnimationLibrary_arbjb")

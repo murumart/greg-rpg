@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://e5p36iavtsuc"]
+[gd_scene format=3 uid="uid://e5p36iavtsuc"]
 
 [ext_resource type="Script" uid="uid://ekq3dj5scw77" path="res://scenes/characters/overworld/scr_bird.gd" id="1_8xof1"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_2dony"]
@@ -110,32 +110,32 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0c5e"]
 radius = 32.1403
 
-[node name="Bird" type="Node2D" groups=["birds"]]
+[node name="Bird" type="Node2D" unique_id=1397051764 groups=["birds"]]
 script = ExtResource("1_8xof1")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=527904117]
 position = Vector2(-8, -15)
 sprite_frames = SubResource("SpriteFrames_qqm5t")
 animation = &"fly"
 frame_progress = 0.802245
 centered = false
 
-[node name="BehaviourTimer" type="Timer" parent="."]
+[node name="BehaviourTimer" type="Timer" parent="." unique_id=761122776]
 wait_time = 4.0
 
-[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=2081613043]
 modulate = Color(0, 0, 1, 0.431373)
 position = Vector2(0, -4)
 scale = Vector2(1, 1.2)
 
-[node name="DisturbanceArea" type="Area2D" parent="."]
+[node name="DisturbanceArea" type="Area2D" parent="." unique_id=1746503387]
 modulate = Color(0.721569, 0.831373, 1, 0.145098)
 collision_layer = 0
 collision_mask = 10
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DisturbanceArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisturbanceArea" unique_id=1678942731]
 shape = SubResource("CircleShape2D_j0c5e")
 
-[node name="CollisionTest" type="RayCast2D" parent="."]
+[node name="CollisionTest" type="RayCast2D" parent="." unique_id=1368555981]
 hit_from_inside = true

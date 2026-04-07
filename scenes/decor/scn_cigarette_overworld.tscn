@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccr6ytgfbwa3a"]
+[gd_scene format=3 uid="uid://ccr6ytgfbwa3a"]
 
 [ext_resource type="Script" uid="uid://c3os1ml2uh0ld" path="res://scenes/decor/scr_cigarette_overworld.gd" id="1_6m0dp"]
 [ext_resource type="Texture2D" uid="uid://bw687u1lbrodi" path="res://sprites/vfx/cigarette.png" id="2_4vegs"]
@@ -22,26 +22,26 @@ emission_box_extents = Vector3(2, 2, 1)
 gravity = Vector3(0, -5, 0)
 scale_curve = SubResource("CurveTexture_i1um3")
 
-[node name="CigaretteOverworld" type="Area2D" groups=["save_me"]]
+[node name="CigaretteOverworld" type="Area2D" unique_id=1584241773 groups=["save_me"]]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_6m0dp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1852451795]
 shape = SubResource("RectangleShape2D_h3luv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=363677290]
 z_index = -1
 texture = ExtResource("2_4vegs")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=231200299]
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_qxlep")
 texture = ExtResource("3_76v3f")
 lifetime = 4.0
 visibility_rect = Rect2(-25, -41, 50, 50)
+process_material = SubResource("ParticleProcessMaterial_qxlep")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=871886816]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

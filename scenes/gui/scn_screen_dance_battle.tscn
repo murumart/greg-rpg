@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cami7pi4o2hiw"]
+[gd_scene format=3 uid="uid://cami7pi4o2hiw"]
 
 [ext_resource type="Script" uid="uid://cfnowsqwbfckx" path="res://scenes/gui/scr_screen_dance_battle.gd" id="1_c1kpb"]
 [ext_resource type="Texture2D" uid="uid://g6vadjxbhs8l" path="res://sprites/gui/spr_dancer.png" id="2_i1uev"]
@@ -86,7 +86,7 @@ outline_color = Color(5.05373e-07, 0, 0.339718, 1)
 shadow_size = 0
 shadow_color = Color(0.0422852, 4.57242e-07, 0.298603, 0.745098)
 
-[node name="ScreenDanceBattle" type="Control"]
+[node name="ScreenDanceBattle" type="Control" unique_id=168145444]
 layout_mode = 3
 anchors_preset = 0
 offset_top = 76.0
@@ -95,12 +95,12 @@ offset_bottom = 120.0
 script = ExtResource("1_c1kpb")
 accuracy_curve = SubResource("Curve_g0gmc")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1069570241]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 44.0
 
-[node name="TextureRect" type="ColorRect" parent="Panel"]
+[node name="TextureRect" type="ColorRect" parent="Panel" unique_id=1609206464]
 clip_children = 2
 layout_mode = 1
 anchors_preset = -1
@@ -113,7 +113,7 @@ offset_top = 0.02
 offset_right = 0.0799866
 offset_bottom = -0.0200005
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/TextureRect"]
+[node name="TextureRect2" type="TextureRect" parent="Panel/TextureRect" unique_id=1957802461]
 material = SubResource("ShaderMaterial_tfkoh")
 layout_mode = 1
 anchors_preset = 15
@@ -125,7 +125,7 @@ texture = ExtResource("3_b22q7")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ColorRect" type="ColorRect" parent="Panel/TextureRect/TextureRect2"]
+[node name="ColorRect" type="ColorRect" parent="Panel/TextureRect/TextureRect2" unique_id=1532816380]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,12 +134,12 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.803922)
 
-[node name="Dancer" type="Sprite2D" parent="."]
+[node name="Dancer" type="Sprite2D" parent="." unique_id=1883476087]
 position = Vector2(21, 22)
 texture = SubResource("AtlasTexture_sypoc")
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="GregAncestors" type="GPUParticles2D" parent="Dancer"]
+[node name="GregAncestors" type="GPUParticles2D" parent="Dancer" unique_id=1860624489]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ijg1f")
 amount = 20
@@ -147,12 +147,12 @@ amount_ratio = 0.0
 texture = SubResource("AtlasTexture_sypoc")
 process_material = SubResource("ParticleProcessMaterial_m1fvd")
 
-[node name="AnimalDancer" type="Sprite2D" parent="."]
+[node name="AnimalDancer" type="Sprite2D" parent="." unique_id=339895413]
 position = Vector2(137, 22)
 texture = SubResource("AtlasTexture_ijg1f")
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="AnimalAncestors" type="GPUParticles2D" parent="AnimalDancer"]
+[node name="AnimalAncestors" type="GPUParticles2D" parent="AnimalDancer" unique_id=379584868]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ijg1f")
 amount = 20
@@ -160,34 +160,34 @@ amount_ratio = 0.0
 texture = SubResource("AtlasTexture_ijg1f")
 process_material = SubResource("ParticleProcessMaterial_ijg1f")
 
-[node name="InTheRye" type="Panel" parent="."]
+[node name="InTheRye" type="Panel" parent="." unique_id=1347068292]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 13.0
 offset_right = 58.0
 offset_bottom = 29.0
 
-[node name="PlayerSplash" type="Node2D" parent="InTheRye"]
+[node name="PlayerSplash" type="Node2D" parent="InTheRye" unique_id=127592298]
 position = Vector2(8, 8)
 
-[node name="EnCatcher" type="Panel" parent="."]
+[node name="EnCatcher" type="Panel" parent="." unique_id=44467082]
 layout_mode = 0
 offset_left = 102.0
 offset_top = 13.0
 offset_right = 118.0
 offset_bottom = 29.0
 
-[node name="EnemySplash" type="Node2D" parent="EnCatcher"]
+[node name="EnemySplash" type="Node2D" parent="EnCatcher" unique_id=84912626]
 position = Vector2(8, 8)
 
-[node name="ScoreDisplay" type="VBoxContainer" parent="."]
+[node name="ScoreDisplay" type="VBoxContainer" parent="." unique_id=492578836]
 layout_mode = 0
 offset_left = 8.0
 offset_top = -45.0
 offset_right = 151.0
 offset_bottom = -5.0
 
-[node name="StreakLabel" type="Label" parent="ScoreDisplay"]
+[node name="StreakLabel" type="Label" parent="ScoreDisplay" unique_id=1155918659]
 z_index = -1
 layout_mode = 2
 size_flags_vertical = 6
@@ -195,39 +195,39 @@ text = "õniit"
 label_settings = SubResource("LabelSettings_ijg1f")
 horizontal_alignment = 1
 
-[node name="ScoreTexts" type="HBoxContainer" parent="ScoreDisplay"]
+[node name="ScoreTexts" type="HBoxContainer" parent="ScoreDisplay" unique_id=1121915079]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="ScoreDisplay/ScoreTexts"]
+[node name="Label" type="Label" parent="ScoreDisplay/ScoreTexts" unique_id=478358125]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "you..."
 
-[node name="Label2" type="Label" parent="ScoreDisplay/ScoreTexts"]
+[node name="Label2" type="Label" parent="ScoreDisplay/ScoreTexts" unique_id=1738065504]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "animal..q"
 horizontal_alignment = 2
 
-[node name="FallingArrows" type="Node2D" parent="."]
+[node name="FallingArrows" type="Node2D" parent="." unique_id=974084156]
 position = Vector2(50, 21)
 
-[node name="MusBarCounter" type="Node" parent="."]
+[node name="MusBarCounter" type="Node" parent="." unique_id=953805771]
 script = ExtResource("4_sifqe")
 bpm = 150.0
 
-[node name="GoodSound" type="AudioStreamPlayer" parent="."]
+[node name="GoodSound" type="AudioStreamPlayer" parent="." unique_id=2135950954]
 stream = ExtResource("7_tfkoh")
 volume_db = -10.196
 pitch_scale = 1.2
 
-[node name="WinSound" type="AudioStreamPlayer" parent="."]
+[node name="WinSound" type="AudioStreamPlayer" parent="." unique_id=65733968]
 stream = ExtResource("8_fu7ux")
 volume_db = -2.0
 pitch_scale = 0.9
 
-[node name="BadSound" type="AudioStreamPlayer" parent="."]
+[node name="BadSound" type="AudioStreamPlayer" parent="." unique_id=1938878812]
 stream = ExtResource("8_ijg1f")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://by35c4lat0xgr"]
+[gd_scene format=3 uid="uid://by35c4lat0xgr"]
 
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="1_007a3"]
 [ext_resource type="Texture2D" uid="uid://du7kinrednfqw" path="res://sprites/vfx/soplet.png" id="2_pbjl3"]
@@ -315,35 +315,33 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="VfxSplash" type="Node2D"]
+[node name="VfxSplash" type="Node2D" unique_id=293340429]
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1039929994]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_k0opb")
 texture = ExtResource("1_007a3")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_k0opb")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=992440423]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_n7eed")
 texture = ExtResource("2_pbjl3")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_n7eed")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4w8f0")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=145805057]
+libraries/ = SubResource("AnimationLibrary_4w8f0")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1479095724]
 stream = ExtResource("3_k723y")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1084189323]
 sprite_frames = SubResource("SpriteFrames_qbb5s")
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=445817406]
 stream = ExtResource("5_2osy1")
 volume_db = -5.021
 pitch_scale = 2.06

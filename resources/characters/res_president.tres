@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://cg88yxp6l571p"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://cg88yxp6l571p"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_fqokn"]
 [ext_resource type="Texture2D" uid="uid://du2lwib5veg6w" path="res://sprites/characters/portraits/spr_portrait_president.png" id="1_utpyr"]
 
 [resource]
 script = ExtResource("1_fqokn")
-name_in_file = &""
 name = "president"
 info = "a gaunt old man. the president of somewhere?"
 portrait = ExtResource("1_utpyr")
@@ -14,13 +13,7 @@ health = 145.0
 max_magic = 300.0
 magic = 300.0
 level = 48
-experience = 0
 attack = 40.0
 defense = 45.0
 speed = 55.0
-defeated_characters = {}
-inventory = Array[String]([])
-spirits = Array[String]([])
-unused_spirits = Array[String]([])
 armour = "frankling_badge"
-weapon = ""

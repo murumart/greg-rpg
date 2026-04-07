@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x12vt5wvj4qb"]
+[gd_scene format=3 uid="uid://x12vt5wvj4qb"]
 
 [ext_resource type="Script" uid="uid://bl4dof5ylfonl" path="res://scenes/rooms/grandma_house/gdung_objects/gdung_exit_portal.gd" id="1_n24w5"]
 [ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="1_oiab4"]
@@ -31,29 +31,29 @@ shader_parameter/modulate_a = 1.0
 radius = 13.0
 height = 40.0
 
-[node name="ExitPortal" type="Node2D"]
+[node name="ExitPortal" type="Node2D" unique_id=1296396866]
 script = ExtResource("1_n24w5")
 battle_infos = Array[ExtResource("2_qq1bq")]([ExtResource("3_fpwig"), ExtResource("5_fu8ys"), ExtResource("5_ufjpf")])
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1933090780]
 material = SubResource("ShaderMaterial_52bo6")
 position = Vector2(0, -15)
 scale = Vector2(1, 0.958333)
 texture = SubResource("GradientTexture2D_gwqqb")
 
-[node name="Screener" type="Sprite2D" parent="."]
+[node name="Screener" type="Sprite2D" parent="." unique_id=356400477]
 visible = false
 material = SubResource("ShaderMaterial_4tiuv")
 position = Vector2(80, 60)
 scale = Vector2(5, 2.5)
 texture = SubResource("GradientTexture2D_gwqqb")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=422413679]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=32932553]
 position = Vector2(0, 1)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_qons8")

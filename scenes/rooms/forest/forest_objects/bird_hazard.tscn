@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbbuhjlfppnwq"]
+[gd_scene format=3 uid="uid://cbbuhjlfppnwq"]
 
 [ext_resource type="Script" uid="uid://cw7khm5jf2uhn" path="res://scenes/rooms/forest/forest_objects/bird_hazard.gd" id="1_xfo64"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_hbmky"]
@@ -61,10 +61,10 @@ stream_0/stream = ExtResource("3_xfo64")
 [sub_resource type="CircleShape2D" id="CircleShape2D_xfo64"]
 radius = 91.444
 
-[node name="BirdHazard" type="Node2D" groups=["forest_hazards"]]
+[node name="BirdHazard" type="Node2D" unique_id=1987167613 groups=["forest_hazards"]]
 script = ExtResource("1_xfo64")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1374080406]
 self_modulate = Color(0.402213, 0.402213, 0.402213, 1)
 material = SubResource("CanvasItemMaterial_xfo64")
 amount = 5
@@ -72,32 +72,32 @@ texture = SubResource("AtlasTexture_vyxes")
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_vyxes")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1642737597]
 material = SubResource("CanvasItemMaterial_xfo64")
 amount = 12
 texture = SubResource("AtlasTexture_vyxes")
 lifetime = 4.0
 process_material = SubResource("ParticleProcessMaterial_vyxes")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1395066346]
 stream = SubResource("AudioStreamRandomizer_vyxes")
 volume_db = 2.0
 max_distance = 234.0
 attenuation = 1.36604
 max_polyphony = 12
 
-[node name="Timer" type="Timer" parent="AudioStreamPlayer2D"]
+[node name="Timer" type="Timer" parent="AudioStreamPlayer2D" unique_id=1180764521]
 wait_time = 0.11
 autostart = true
 
-[node name="PlayerAra" type="Area2D" parent="."]
+[node name="PlayerAra" type="Area2D" parent="." unique_id=1087424727]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAra"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAra" unique_id=976107367]
 shape = SubResource("CircleShape2D_xfo64")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=657952060]
 
 [connection signal="timeout" from="AudioStreamPlayer2D/Timer" to="AudioStreamPlayer2D" method="play"]

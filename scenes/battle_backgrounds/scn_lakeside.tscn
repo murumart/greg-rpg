@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://i2h5dwb2rtlu"]
+[gd_scene format=3 uid="uid://i2h5dwb2rtlu"]
 
 [ext_resource type="Script" uid="uid://k81cbfoklt" path="res://scenes/battle_backgrounds/scr_lakeside.gd" id="1_dpgjg"]
 [ext_resource type="Texture2D" uid="uid://dedbkkindpw06" path="res://sprites/photos/spr_lakeside.png" id="2_rcxpg"]
@@ -240,23 +240,21 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rs4ts"]
 shader = ExtResource("3_8ngyl")
 
-[node name="Lakeside" type="Node2D"]
+[node name="Lakeside" type="Node2D" unique_id=1252408497]
 z_index = -50
 script = ExtResource("1_dpgjg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=945010366]
 modulate = Color(0, 0.156863, 0, 1)
 position = Vector2(-54, 0)
 texture = ExtResource("2_rcxpg")
 centered = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bnqvc")
-}
-autoplay = "intro"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1383173470]
+libraries/ = SubResource("AnimationLibrary_bnqvc")
+autoplay = &"intro"
 
-[node name="Effect" type="ColorRect" parent="."]
+[node name="Effect" type="ColorRect" parent="." unique_id=2064472480]
 texture_repeat = 3
 material = SubResource("ShaderMaterial_rs4ts")
 custom_minimum_size = Vector2(160, 120)

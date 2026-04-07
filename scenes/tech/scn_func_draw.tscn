@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://r3prthiadnj0"]
+[gd_scene format=3 uid="uid://r3prthiadnj0"]
 
 [ext_resource type="Script" uid="uid://my0xai2l7vso" path="res://scenes/tech/scr_func_draw.gd" id="1_0b1n7"]
 
-[node name="FuncDraw" type="Node2D"]
+[node name="FuncDraw" type="Node2D" unique_id=364849377]
 script = ExtResource("1_0b1n7")
-redraw = null
+funk = Callable()

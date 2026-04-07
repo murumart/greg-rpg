@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cafsoyr6e6d0m"]
+[gd_scene format=3 uid="uid://cafsoyr6e6d0m"]
 
 [ext_resource type="Texture2D" uid="uid://b7prmmhf4qfwe" path="res://sprites/vfx/sleepy.png" id="1_6n42m"]
 
@@ -69,16 +69,14 @@ _data = {
 &"default": SubResource("Animation_xyigk")
 }
 
-[node name="VfxSleepy" type="Node2D"]
+[node name="VfxSleepy" type="Node2D" unique_id=726359465]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1586236707]
 amount = 3
-process_material = SubResource("ParticleProcessMaterial_vrm5b")
 texture = ExtResource("1_6n42m")
 lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_vrm5b")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tphai")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1085401028]
+libraries/ = SubResource("AnimationLibrary_tphai")
+autoplay = &"default"

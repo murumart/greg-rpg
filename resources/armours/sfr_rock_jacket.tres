@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://cydm5x54apd1t"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cydm5x54apd1t"]
 
 [ext_resource type="Texture2D" uid="uid://ssh7te5ad1j" path="res://sprites/characters/overworld/armours/spr_rock_jacket.png" id="1_sxjgr"]
 

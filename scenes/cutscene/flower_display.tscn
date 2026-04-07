@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d1llrbtuvl11h"]
+[gd_scene format=3 uid="uid://d1llrbtuvl11h"]
 
 [ext_resource type="Script" uid="uid://bpeototnubspc" path="res://scenes/cutscene/flower_display.gd" id="1_bc6ai"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="1_ctpc8"]
@@ -27,6 +27,7 @@ gradient = SubResource("Gradient_rbnfn")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_roywe"]
 shader = ExtResource("2_1l4g6")
 shader_parameter/Gradient = SubResource("GradientTexture1D_8k46y")
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tmuvp"]
 stream_count = 4
@@ -39,14 +40,14 @@ stream_2/volume = -60.0
 stream_3/stream = ExtResource("15_0vwmh")
 stream_3/volume = 0.0
 
-[node name="FlowerDisplay" type="Node2D"]
+[node name="FlowerDisplay" type="Node2D" unique_id=489381638]
 script = ExtResource("1_bc6ai")
 
-[node name="Camera" parent="." instance=ExtResource("1_ctpc8")]
+[node name="Camera" parent="." unique_id=216567619 instance=ExtResource("1_ctpc8")]
 zoom = Vector2(2, 2)
 resolution_scale_factor = 0.5
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=83707892]
 z_index = -1
 material = SubResource("ShaderMaterial_roywe")
 offset_left = -96.0
@@ -54,41 +55,41 @@ offset_top = -73.0
 offset_right = 92.0
 offset_bottom = 80.0
 
-[node name="FlowerCircle" type="Node2D" parent="."]
+[node name="FlowerCircle" type="Node2D" parent="." unique_id=1699821608]
 
-[node name="Sprite2D8" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D8" type="Sprite2D" parent="FlowerCircle" unique_id=1577795723]
 position = Vector2(-18, -16)
 texture = ExtResource("10_ug8dw")
 
-[node name="Sprite2D5" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D5" type="Sprite2D" parent="FlowerCircle" unique_id=1057182617]
 position = Vector2(-18, 16)
 texture = ExtResource("4_bc6ai")
 
-[node name="Sprite2D7" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D7" type="Sprite2D" parent="FlowerCircle" unique_id=30957898]
 position = Vector2(18, -16)
 texture = ExtResource("8_wrsv8")
 
-[node name="Sprite2D4" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D4" type="Sprite2D" parent="FlowerCircle" unique_id=1426292628]
 position = Vector2(0, -24)
 texture = ExtResource("9_301l5")
 
-[node name="Sprite2D6" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D6" type="Sprite2D" parent="FlowerCircle" unique_id=291435238]
 position = Vector2(18, 18)
 texture = ExtResource("6_t1dqm")
 
-[node name="Sprite2D3" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D3" type="Sprite2D" parent="FlowerCircle" unique_id=1607298514]
 position = Vector2(24, 0)
 texture = ExtResource("7_pgrbf")
 
-[node name="Sprite2D" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D" type="Sprite2D" parent="FlowerCircle" unique_id=697687693]
 position = Vector2(-24, 0)
 texture = ExtResource("3_rvgc3")
 
-[node name="Sprite2D2" type="Sprite2D" parent="FlowerCircle"]
+[node name="Sprite2D2" type="Sprite2D" parent="FlowerCircle" unique_id=1946887601]
 position = Vector2(0, 24)
 texture = ExtResource("5_635x7")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=94241397]
 stream = SubResource("AudioStreamSynchronized_tmuvp")
 autoplay = true
 bus = &"Music"

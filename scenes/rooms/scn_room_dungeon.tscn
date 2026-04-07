@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cu84ipbqt3xqx"]
+[gd_scene format=3 uid="uid://cu84ipbqt3xqx"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_rk5ny"]
 [ext_resource type="Script" uid="uid://trdp1tp7ibo0" path="res://code/scr_tilemap_layer_parent.gd" id="2_ps0sp"]
@@ -2010,10 +2010,10 @@ fractal_weighted_strength = 0.18
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vypvc"]
 width = 128
 height = 128
+noise = SubResource("FastNoiseLite_p7o85")
+color_ramp = SubResource("Gradient_yhwn4")
 seamless = true
 seamless_blend_skirt = 0.035
-color_ramp = SubResource("Gradient_yhwn4")
-noise = SubResource("FastNoiseLite_p7o85")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_glmk8"]
 shader = ExtResource("8_hje8f")
@@ -2023,14 +2023,14 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_vypvc")
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.119201, 0.869122), 0.0, 0.0, 0, 0, Vector2(0.194837, 0.238972), -4.25198, -4.25198, 0, 0, Vector2(0.920936, 0.517693), 0.0, 0.0, 0, 0, Vector2(1, 0.202617), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[node name="Dungeon" type="Node2D"]
+[node name="Dungeon" type="Node2D" unique_id=136098524]
 y_sort_enabled = true
 script = ExtResource("1_rk5ny")
 music = "gdung"
 metadata/_edit_vertical_guides_ = [1741.0]
 metadata/_edit_horizontal_guides_ = [1425.0]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=362691135]
 z_index = -1
 offset_left = -241.0
 offset_top = -161.0
@@ -2038,17 +2038,17 @@ offset_right = 2026.0
 offset_bottom = 1571.0
 color = Color(0, 0, 0, 1)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1865949395]
 color = Color(0.521038, 0.444563, 0.374513, 1)
 
-[node name="Tiles" type="Node2D" parent="."]
+[node name="Tiles" type="Node2D" parent="." unique_id=676851690]
 y_sort_enabled = true
 script = ExtResource("2_ps0sp")
 
-[node name="LayoutGenerator" type="Node" parent="Tiles"]
+[node name="LayoutGenerator" type="Node" parent="Tiles" unique_id=963270501]
 script = ExtResource("3_1an2q")
 
-[node name="Decorator" type="Node" parent="Tiles" node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line", "canvas_modulate") groups=["room_gates"]]
+[node name="Decorator" type="Node" parent="Tiles" unique_id=1464713833 node_paths=PackedStringArray("generator", "greg", "objects_node", "path_line", "canvas_modulate") groups=["room_gates"]]
 script = ExtResource("4_hfwjo")
 generator = NodePath("../LayoutGenerator")
 greg = NodePath("../../Greg")
@@ -2056,38 +2056,38 @@ objects_node = NodePath("../../Objects")
 path_line = NodePath("../../PathLine")
 canvas_modulate = NodePath("../../CanvasModulate")
 
-[node name="Layer0" type="TileMapLayer" parent="Tiles"]
+[node name="Layer0" type="TileMapLayer" parent="Tiles" unique_id=1698509287]
 z_index = -1
 use_parent_material = true
 tile_set = SubResource("TileSet_shs1d")
 
-[node name="Layer1" type="TileMapLayer" parent="Tiles"]
+[node name="Layer1" type="TileMapLayer" parent="Tiles" unique_id=1480215591]
 z_index = -1
 y_sort_enabled = true
 use_parent_material = true
 tile_set = SubResource("TileSet_shs1d")
 y_sort_origin = 202
 
-[node name="Layer2" type="TileMapLayer" parent="Tiles"]
+[node name="Layer2" type="TileMapLayer" parent="Tiles" unique_id=740867045]
 y_sort_enabled = true
 use_parent_material = true
 tile_set = SubResource("TileSet_shs1d")
 
-[node name="Greg" parent="." instance=ExtResource("5_vka64")]
+[node name="Greg" parent="." unique_id=1142616352 instance=ExtResource("5_vka64")]
 position = Vector2(24, 26)
 
-[node name="Camera" parent="Greg" instance=ExtResource("4_pruij")]
+[node name="Camera" parent="Greg" unique_id=413303399 instance=ExtResource("4_pruij")]
 
-[node name="testcam" parent="." instance=ExtResource("4_pruij")]
+[node name="testcam" parent="." unique_id=1612033194 instance=ExtResource("4_pruij")]
 position = Vector2(642, 441)
 enabled = false
 zoom = Vector2(0.125, 0.125)
 window_mode = 1
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="Objects" type="Node2D" parent="." unique_id=293407010]
 y_sort_enabled = true
 
-[node name="PathLine" type="Line2D" parent="."]
+[node name="PathLine" type="Line2D" parent="." unique_id=48610382]
 z_index = 1
 material = SubResource("ShaderMaterial_glmk8")
 points = PackedVector2Array(-131, 33, 144, 68, 145, 294, 328, 298, 338, 59, 481, 49, 482, 309)
@@ -2098,6 +2098,6 @@ joint_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 
-[node name="Storyline" type="Node" parent="." node_paths=PackedStringArray("layout_gen") groups=["save_me"]]
+[node name="Storyline" type="Node" parent="." unique_id=412601461 node_paths=PackedStringArray("layout_gen") groups=["save_me"]]
 script = ExtResource("10_76lej")
 layout_gen = NodePath("../Tiles/LayoutGenerator")

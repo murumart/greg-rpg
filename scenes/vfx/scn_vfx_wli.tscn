@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ty5n304plx50"]
+[gd_scene format=3 uid="uid://ty5n304plx50"]
 
 [ext_resource type="Texture2D" uid="uid://bbm4cj6mawtw3" path="res://sprites/characters/battle/cashier_mean/spr_wli.png" id="1_bjh2b"]
 [ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="2_45obo"]
@@ -117,15 +117,15 @@ _data = {
 &"default": SubResource("Animation_5446m")
 }
 
-[node name="VfxWLI" type="Node2D"]
+[node name="VfxWLI" type="Node2D" unique_id=1170537579]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=193318123]
 z_index = -1
 texture = SubResource("GradientTexture2D_7s403")
 
-[node name="Rays" type="Node2D" parent="."]
+[node name="Rays" type="Node2D" parent="." unique_id=2028387696]
 
-[node name="Hand" type="Sprite2D" parent="Rays"]
+[node name="Hand" type="Sprite2D" parent="Rays" unique_id=1569701214]
 position = Vector2(-36, 32)
 texture = ExtResource("1_bjh2b")
 centered = false
@@ -133,20 +133,19 @@ offset = Vector2(-9.6015, -12.373)
 region_enabled = true
 region_rect = Rect2(41, 42, 19, 24)
 
-[node name="Rotator" parent="Rays/Hand" instance=ExtResource("2_45obo")]
-enabled_in_editor = false
+[node name="Rotator" parent="Rays/Hand" unique_id=1539069824 instance=ExtResource("2_45obo")]
 speed = -40.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand" unique_id=1920156070]
 modulate = Color(1, 1, 1, 0.368627)
 show_behind_parent = true
 z_index = -2
 material = SubResource("CanvasItemMaterial_gwnx6")
-process_material = ExtResource("3_jr1ki")
 texture = SubResource("AtlasTexture_u8ifh")
 fixed_fps = 60
+process_material = ExtResource("3_jr1ki")
 
-[node name="Hand2" type="Sprite2D" parent="Rays"]
+[node name="Hand2" type="Sprite2D" parent="Rays" unique_id=1402179320]
 position = Vector2(34, 25)
 texture = ExtResource("1_bjh2b")
 centered = false
@@ -154,20 +153,19 @@ offset = Vector2(-7.5071, -8.6855)
 region_enabled = true
 region_rect = Rect2(22, 71, 17, 25)
 
-[node name="Rotator" parent="Rays/Hand2" instance=ExtResource("2_45obo")]
-enabled_in_editor = false
+[node name="Rotator" parent="Rays/Hand2" unique_id=514811182 instance=ExtResource("2_45obo")]
 speed = -40.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand2" unique_id=691196853]
 modulate = Color(1, 1, 1, 0.368627)
 show_behind_parent = true
 z_index = -2
 material = SubResource("CanvasItemMaterial_gwnx6")
-process_material = ExtResource("3_jr1ki")
 texture = SubResource("AtlasTexture_qv7kv")
 fixed_fps = 60
+process_material = ExtResource("3_jr1ki")
 
-[node name="Hand3" type="Sprite2D" parent="Rays"]
+[node name="Hand3" type="Sprite2D" parent="Rays" unique_id=1145317347]
 position = Vector2(-3, -37)
 texture = ExtResource("1_bjh2b")
 centered = false
@@ -175,31 +173,29 @@ offset = Vector2(-10.1139, -11.6846)
 region_enabled = true
 region_rect = Rect2(4, 44, 20, 25)
 
-[node name="Rotator" parent="Rays/Hand3" instance=ExtResource("2_45obo")]
-enabled_in_editor = false
+[node name="Rotator" parent="Rays/Hand3" unique_id=1823572953 instance=ExtResource("2_45obo")]
 speed = -40.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand3"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Rays/Hand3" unique_id=475143662]
 modulate = Color(1, 1, 1, 0.368627)
 show_behind_parent = true
 z_index = -2
 material = SubResource("CanvasItemMaterial_gwnx6")
-process_material = ExtResource("3_jr1ki")
 texture = SubResource("AtlasTexture_cnnfe")
 fixed_fps = 60
+process_material = ExtResource("3_jr1ki")
 
-[node name="Rotator" parent="Rays" instance=ExtResource("2_45obo")]
-enabled_in_editor = false
+[node name="Rotator" parent="Rays" unique_id=1510613319 instance=ExtResource("2_45obo")]
 speed = 40.0
 
-[node name="Stalk" type="Sprite2D" parent="."]
+[node name="Stalk" type="Sprite2D" parent="." unique_id=2030207042]
 position = Vector2(-2, -17)
 texture = ExtResource("1_bjh2b")
 centered = false
 region_enabled = true
 region_rect = Rect2(42, 9, 20, 20)
 
-[node name="Eye" type="Sprite2D" parent="Stalk"]
+[node name="Eye" type="Sprite2D" parent="Stalk" unique_id=434323799]
 position = Vector2(2, 6)
 texture = ExtResource("1_bjh2b")
 centered = false
@@ -207,8 +203,6 @@ offset = Vector2(-11, 0)
 region_enabled = true
 region_rect = Rect2(15, 3, 21, 37)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e5lr5")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1181101481]
+libraries/ = SubResource("AnimationLibrary_e5lr5")
+autoplay = &"default"

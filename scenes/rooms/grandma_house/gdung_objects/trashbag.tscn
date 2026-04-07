@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcelkfgs3hysn"]
+[gd_scene format=3 uid="uid://bcelkfgs3hysn"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_sav87"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_rife5"]
@@ -6,20 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhe46"]
 size = Vector2(14, 4)
 
-[node name="Trashbag" type="Node2D"]
+[node name="Trashbag" type="Node2D" unique_id=1536862848]
 y_sort_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1916304372]
 position = Vector2(8, 10)
 texture = ExtResource("1_sav87")
 offset = Vector2(0, -6)
 region_enabled = true
 region_rect = Rect2(0, 16, 16, 16)
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=756112249]
 position = Vector2(8, 8)
 script = ExtResource("2_rife5")
 key = "gdung_trashbag"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=500276658]
 shape = SubResource("RectangleShape2D_vhe46")

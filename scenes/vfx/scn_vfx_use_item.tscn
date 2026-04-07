@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://l703mpu0fwkw"]
+[gd_scene format=3 uid="uid://l703mpu0fwkw"]
 
 [ext_resource type="Texture2D" uid="uid://bsathyv4qn785" path="res://sprites/items/spr_item_milkshake.png" id="1_aq6ed"]
 [ext_resource type="Script" uid="uid://c46pgnhflvvly" path="res://scenes/vfx/scr_vfx_use_item.gd" id="1_jnb8y"]
@@ -183,24 +183,22 @@ emission_box_extents = Vector3(8, 4, 1)
 gravity = Vector3(0, -80, 0)
 color_ramp = SubResource("GradientTexture1D_0t3cp")
 
-[node name="ItemAnimation" type="Node2D"]
+[node name="ItemAnimation" type="Node2D" unique_id=1712713276]
 script = ExtResource("1_jnb8y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1479857223]
 texture = ExtResource("1_aq6ed")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ljlxc")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=288706705]
+libraries/ = SubResource("AnimationLibrary_ljlxc")
+autoplay = &"default"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=629833530]
 emitting = false
 amount = 24
-process_material = SubResource("ParticleProcessMaterial_gsq6i")
 texture = ExtResource("2_kl3y2")
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gsq6i")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=295311738]
 volume_db = -8.0

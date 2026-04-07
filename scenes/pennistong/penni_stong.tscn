@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ycujm54lg8r5"]
+[gd_scene format=3 uid="uid://ycujm54lg8r5"]
 
 [ext_resource type="Script" uid="uid://d1uea0l538s2l" path="res://scenes/pennistong/penni_stong.gd" id="1_l60sq"]
 [ext_resource type="Texture2D" uid="uid://ewqspdu3o3op" path="res://sprites/penni_stong/rps.png" id="2_r0guw"]
@@ -52,104 +52,104 @@ region = Rect2(32, 48, 16, 16)
 atlas = ExtResource("2_r0guw")
 region = Rect2(32, 48, 16, 16)
 
-[node name="PenniStong" type="Node2D"]
+[node name="PenniStong" type="Node2D" unique_id=273282200]
 script = ExtResource("1_l60sq")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=161540434]
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 
-[node name="Edges" type="StaticBody2D" parent="."]
+[node name="Edges" type="StaticBody2D" parent="." unique_id=296999831]
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_3xgc5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Edges"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Edges" unique_id=2021897323]
 shape = SubResource("WorldBoundaryShape2D_g0q2j")
 
-[node name="TOP" type="CollisionShape2D" parent="Edges"]
+[node name="TOP" type="CollisionShape2D" parent="Edges" unique_id=522278794]
 position = Vector2(0, -8)
 shape = SubResource("WorldBoundaryShape2D_cakyq")
 
-[node name="BOTTOM" type="CollisionShape2D" parent="Edges"]
+[node name="BOTTOM" type="CollisionShape2D" parent="Edges" unique_id=1462304125]
 position = Vector2(160, 128)
 shape = SubResource("WorldBoundaryShape2D_nxp4l")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Edges"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Edges" unique_id=470082089]
 position = Vector2(160, 120)
 shape = SubResource("WorldBoundaryShape2D_otdd7")
 
-[node name="Paddles" type="Node2D" parent="."]
+[node name="Paddles" type="Node2D" parent="." unique_id=385537287]
 
-[node name="Upper" type="AnimatableBody2D" parent="Paddles"]
+[node name="Upper" type="AnimatableBody2D" parent="Paddles" unique_id=869694012]
 position = Vector2(80, 8)
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_3xgc5")
 
-[node name="ColorRect" type="ColorRect" parent="Paddles/Upper"]
+[node name="ColorRect" type="ColorRect" parent="Paddles/Upper" unique_id=1586964312]
 offset_left = -16.0
 offset_top = -2.0
 offset_right = 16.0
 offset_bottom = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Upper"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Upper" unique_id=654804222]
 shape = SubResource("RectangleShape2D_qagis")
 
-[node name="Lower" type="AnimatableBody2D" parent="Paddles"]
+[node name="Lower" type="AnimatableBody2D" parent="Paddles" unique_id=1025667209]
 position = Vector2(80, 112)
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_3xgc5")
 
-[node name="ColorRect2" type="ColorRect" parent="Paddles/Lower"]
+[node name="ColorRect2" type="ColorRect" parent="Paddles/Lower" unique_id=325607031]
 offset_left = -16.0
 offset_top = -2.0
 offset_right = 16.0
 offset_bottom = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Lower"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddles/Lower" unique_id=1757641756]
 shape = SubResource("RectangleShape2D_qagis")
 
-[node name="Ball" type="CharacterBody2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=952537229]
 position = Vector2(80, 60)
 collision_layer = 2
 motion_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=283287076]
 texture = SubResource("GradientTexture2D_18kcn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=2012951425]
 shape = SubResource("RectangleShape2D_p6qs8")
 
-[node name="RpsUi" type="Node2D" parent="."]
+[node name="RpsUi" type="Node2D" parent="." unique_id=1886139775]
 visible = false
 position = Vector2(47, 53)
 
-[node name="Rock" type="Sprite2D" parent="RpsUi"]
+[node name="Rock" type="Sprite2D" parent="RpsUi" unique_id=1802960246]
 position = Vector2(16, -9)
 texture = ExtResource("2_r0guw")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
-[node name="Paper" type="Sprite2D" parent="RpsUi"]
+[node name="Paper" type="Sprite2D" parent="RpsUi" unique_id=1146285984]
 position = Vector2(0, 19)
 texture = ExtResource("2_r0guw")
 region_enabled = true
 region_rect = Rect2(0, 32, 32, 32)
 
-[node name="Scissors" type="Sprite2D" parent="RpsUi"]
+[node name="Scissors" type="Sprite2D" parent="RpsUi" unique_id=368712765]
 position = Vector2(-16, -9)
 texture = ExtResource("2_r0guw")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=832576354]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
 offset_right = 156.0
 offset_bottom = 119.0
 
-[node name="S" type="HBoxContainer" parent="UI"]
+[node name="S" type="HBoxContainer" parent="UI" unique_id=1187951533]
 modulate = Color(1, 1, 1, 0.509804)
 layout_mode = 1
 anchors_preset = 14
@@ -160,66 +160,66 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Player" type="VBoxContainer" parent="UI/S"]
+[node name="Player" type="VBoxContainer" parent="UI/S" unique_id=2137469711]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Lives" type="HBoxContainer" parent="UI/S/Player"]
+[node name="Lives" type="HBoxContainer" parent="UI/S/Player" unique_id=2033017796]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="UI/S/Player/Lives"]
+[node name="TextureRect" type="TextureRect" parent="UI/S/Player/Lives" unique_id=1748745342]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI/S/Player/Lives"]
+[node name="TextureRect2" type="TextureRect" parent="UI/S/Player/Lives" unique_id=838535826]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="UI/S/Player/Lives"]
+[node name="TextureRect3" type="TextureRect" parent="UI/S/Player/Lives" unique_id=1039359528]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
 
-[node name="Score" type="Label" parent="UI/S/Player"]
+[node name="Score" type="Label" parent="UI/S/Player" unique_id=325517170]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "score: "
 
-[node name="Enemy" type="VBoxContainer" parent="UI/S"]
+[node name="Enemy" type="VBoxContainer" parent="UI/S" unique_id=469933191]
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Lives" type="HBoxContainer" parent="UI/S/Enemy"]
+[node name="Lives" type="HBoxContainer" parent="UI/S/Enemy" unique_id=2100842702]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="UI/S/Enemy/Lives"]
+[node name="TextureRect" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=1228612735]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_ejx3w")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI/S/Enemy/Lives"]
+[node name="TextureRect2" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=1736340191]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_d3jqf")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="UI/S/Enemy/Lives"]
+[node name="TextureRect3" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=937571995]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_kwava")
 expand_mode = 1
 
-[node name="Score" type="Label" parent="UI/S/Enemy"]
+[node name="Score" type="Label" parent="UI/S/Enemy" unique_id=905431917]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

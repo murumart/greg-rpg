@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ev31rx6xrvmf"]
+[gd_scene format=3 uid="uid://ev31rx6xrvmf"]
 
 [ext_resource type="Script" uid="uid://cl54nprs20rp3" path="res://scenes/characters/battle_enemies/scr_enemy_fisherwoman.gd" id="1_8og3a"]
 [ext_resource type="Texture2D" uid="uid://cmw7wweli7g6x" path="res://sprites/characters/battle/lakeside/spr_fisherwoman.png" id="2_u0ivd"]
@@ -45,6 +45,7 @@ gradient = SubResource("Gradient_xuu4h")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ev8bu"]
 shader = ExtResource("4_u0ivd")
 shader_parameter/Gradient = SubResource("GradientTexture2D_o0hl6")
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_xo0px"]
 interpolation_mode = 1
@@ -59,28 +60,28 @@ domain_warp_enabled = true
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u0ivd"]
 width = 12
 height = 10
-color_ramp = SubResource("Gradient_xo0px")
 noise = SubResource("FastNoiseLite_1d7nm")
+color_ramp = SubResource("Gradient_xo0px")
 
-[node name="ScnEnemyFisherwoman" type="Node2D"]
+[node name="ScnEnemyFisherwoman" type="Node2D" unique_id=251422113]
 script = ExtResource("1_8og3a")
 effect_center = Vector2i(0, -30)
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=852765964]
 texture = ExtResource("2_u0ivd")
 
-[node name="Particles" type="GPUParticles2D" parent="Sprite2D"]
+[node name="Particles" type="GPUParticles2D" parent="Sprite2D" unique_id=847622543]
 z_index = -1
 material = SubResource("CanvasItemMaterial_u0ivd")
 texture = ExtResource("2_u0ivd")
 process_material = SubResource("ParticleProcessMaterial_w1lab")
 
-[node name="FishingMinigame" type="Node2D" parent="."]
+[node name="FishingMinigame" type="Node2D" parent="." unique_id=67239612]
 modulate = Color(1, 1, 1, 0)
 z_index = 10
 
-[node name="Blocks" parent="FishingMinigame" node_paths=PackedStringArray("noise_sprite") instance=ExtResource("3_xo0px")]
+[node name="Blocks" parent="FishingMinigame" unique_id=982588325 node_paths=PackedStringArray("noise_sprite") instance=ExtResource("3_xo0px")]
 noise_sprite = NodePath("NoiseSprite")
 
 [node name="background" parent="FishingMinigame/Blocks" index="0"]
@@ -90,7 +91,7 @@ self_modulate = Color(0.156863, 0, 0.223529, 0.313726)
 material = SubResource("ShaderMaterial_ev8bu")
 use_parent_material = false
 
-[node name="NoiseSprite" type="Sprite2D" parent="FishingMinigame/Blocks"]
+[node name="NoiseSprite" type="Sprite2D" parent="FishingMinigame/Blocks" unique_id=1705032216]
 visible = false
 modulate = Color(1, 1, 1, 0.0666667)
 position = Vector2(-96, -80)
@@ -98,11 +99,11 @@ scale = Vector2(16, 16)
 texture = SubResource("NoiseTexture2D_u0ivd")
 centered = false
 
-[node name="Hook" parent="FishingMinigame" node_paths=PackedStringArray("line_drawer") instance=ExtResource("4_1d7nm")]
+[node name="Hook" parent="FishingMinigame" unique_id=1649921323 node_paths=PackedStringArray("line_drawer") instance=ExtResource("4_1d7nm")]
 position = Vector2(0, -94)
 line_drawer = NodePath("..")
 
-[node name="Choir" type="AudioStreamPlayer" parent="FishingMinigame"]
+[node name="Choir" type="AudioStreamPlayer" parent="FishingMinigame" unique_id=256257815]
 stream = ExtResource("6_u0ivd")
 volume_db = -7.0
 pitch_scale = 0.1

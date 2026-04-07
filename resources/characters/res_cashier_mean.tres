@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=3 format=3 uid="uid://dbwip50ofkg8x"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dbwip50ofkg8x"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_18wpw"]
 [ext_resource type="Texture2D" uid="uid://cfcqfp8bl8rov" path="res://sprites/characters/portraits/spr_portrait_cashier_mean.png" id="1_ky6uf"]
@@ -14,13 +14,7 @@ health = 140.0
 max_magic = 100.0
 magic = 100.0
 level = 40
-experience = 0
 attack = 40.0
 defense = 40.0
 speed = 40.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["wli_attack"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

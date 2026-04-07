@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ynums4xe2afs"]
+[gd_scene format=3 uid="uid://ynums4xe2afs"]
 
 [ext_resource type="Script" uid="uid://d1o6aamqs7471" path="res://scenes/biking/moving_objects/scr_biking_obstacle.gd" id="1_f0ahl"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="2_c2srh"]
@@ -6,24 +6,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lre6j"]
 size = Vector2(5.1162, 20.2285)
 
-[node name="Log" type="Node2D" node_paths=PackedStringArray("area")]
+[node name="Log" type="Node2D" unique_id=1362946427 node_paths=PackedStringArray("area")]
 z_index = -1
 script = ExtResource("1_f0ahl")
 area = NodePath("Area2D")
 damage = 18
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=242815078]
 texture = ExtResource("2_c2srh")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 21)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1462315935]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 metadata/log = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1527717756]
 position = Vector2(0.344161, 0.0873477)
 rotation = 0.576214
 shape = SubResource("RectangleShape2D_lre6j")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://kmkgemto8als"]
+[gd_scene format=3 uid="uid://kmkgemto8als"]
 
 [ext_resource type="Texture2D" uid="uid://b3jfla2rj3cab" path="res://sprites/spirit/spr_dish_pow.png" id="1_avv4d"]
 [ext_resource type="AudioStream" uid="uid://bac5lfvp2gw4e" path="res://sounds/spirit/dishpunch.ogg" id="2_sctmg"]
@@ -153,16 +153,14 @@ _data = {
 &"default": SubResource("Animation_7e2xx")
 }
 
-[node name="VfxDishpunch" type="Node2D"]
+[node name="VfxDishpunch" type="Node2D" unique_id=1837859408]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2065360619]
 material = SubResource("CanvasItemMaterial_qwkvn")
 sprite_frames = SubResource("SpriteFrames_p42pl")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1841181375]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lgmbk")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1524972292]
+libraries/ = SubResource("AnimationLibrary_lgmbk")
+autoplay = &"default"

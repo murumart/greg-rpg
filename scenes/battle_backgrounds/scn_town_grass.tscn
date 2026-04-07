@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c55x0xxrsfwke"]
+[gd_scene format=3 uid="uid://c55x0xxrsfwke"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_ma210"]
 [ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="2_gmfnm"]
@@ -126,22 +126,20 @@ _data = {
 &"default": SubResource("Animation_bpvym")
 }
 
-[node name="BattleBackground" instance=ExtResource("1_ma210")]
+[node name="BattleBackground" unique_id=431470366 instance=ExtResource("1_ma210")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1507809785]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_7jum3")
 texture = ExtResource("3_q1w5d")
 centered = false
 
-[node name="SprTown1" type="Sprite2D" parent="." index="1"]
+[node name="SprTown1" type="Sprite2D" parent="." index="1" unique_id=1328113588]
 self_modulate = Color(0.223529, 0.466667, 0.301961, 1)
 material = SubResource("CanvasItemMaterial_p4nni")
 position = Vector2(80, 60)
 texture = ExtResource("2_gmfnm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-libraries = {
-"": SubResource("AnimationLibrary_qk8gv")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1120086686]
+libraries/ = SubResource("AnimationLibrary_qk8gv")
+autoplay = &"default"

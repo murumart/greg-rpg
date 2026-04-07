@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8go4y8lln00d"]
+[gd_scene format=3 uid="uid://c8go4y8lln00d"]
 
 [ext_resource type="Script" uid="uid://cast3agxwnf7" path="res://scenes/fishing/hook.gd" id="1_srxkc"]
 [ext_resource type="Texture2D" uid="uid://b5qecnar0yc28" path="res://sprites/fishing/spr_hook.png" id="2_clxtv"]
@@ -93,15 +93,15 @@ _data = {
 &"hit": SubResource("Animation_5qvrl")
 }
 
-[node name="Hook" type="Node2D"]
+[node name="Hook" type="Node2D" unique_id=1762702641]
 script = ExtResource("1_srxkc")
 
-[node name="Look" type="Sprite2D" parent="."]
+[node name="Look" type="Sprite2D" parent="." unique_id=844593835]
 texture = ExtResource("2_clxtv")
 centered = false
 offset = Vector2(-7.96791, 0)
 
-[node name="Look2" type="Sprite2D" parent="Look"]
+[node name="Look2" type="Sprite2D" parent="Look" unique_id=235488586]
 self_modulate = Color(8.49, 10.38, 9.12, 1)
 position = Vector2(4, 8)
 texture = ExtResource("2_clxtv")
@@ -110,19 +110,17 @@ offset = Vector2(-7.96791, 0)
 region_enabled = true
 region_rect = Rect2(4, 8, 8, 8)
 
-[node name="HookCollision" type="Area2D" parent="."]
+[node name="HookCollision" type="Area2D" parent="." unique_id=1147845529]
 position = Vector2(0, 11)
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HookCollision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookCollision" unique_id=1912928462]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_i3be8")
 
-[node name="HookAnimator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qnjc6")
-}
+[node name="HookAnimator" type="AnimationPlayer" parent="." unique_id=838691259]
+libraries/ = SubResource("AnimationLibrary_qnjc6")
 
-[node name="CrashSound" type="AudioStreamPlayer" parent="."]
+[node name="CrashSound" type="AudioStreamPlayer" parent="." unique_id=711163437]
 stream = ExtResource("3_clxtv")

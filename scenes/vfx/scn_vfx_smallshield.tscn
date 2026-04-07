@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://beexy3u2osptn"]
+[gd_scene format=3 uid="uid://beexy3u2osptn"]
 
 [ext_resource type="Texture2D" uid="uid://bupucffay7rlu" path="res://sprites/vfx/president_background/beam.png" id="1_03r83"]
 [ext_resource type="Texture2D" uid="uid://ky2i1r8qgvnj" path="res://sprites/spirit/spr_peptide_local.png" id="1_jfiyv"]
@@ -234,26 +234,23 @@ _data = {
 &"new_animation": SubResource("Animation_smhcd")
 }
 
-[node name="Smallshield" type="Node2D"]
+[node name="Smallshield" type="Node2D" unique_id=760357993]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1722181499]
 material = SubResource("CanvasItemMaterial_kampi")
 rotation = 4.81711
 scale = Vector2(1, 0.09)
 texture = ExtResource("1_03r83")
 
-[node name="Rotator" type="Node2D" parent="Sprite2D"]
+[node name="Rotator" type="Node2D" parent="Sprite2D" unique_id=1269532641]
 script = ExtResource("2_2iud2")
-enabled_in_editor = false
 speed = 360.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=111274517]
 sprite_frames = SubResource("SpriteFrames_hbptv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ia5wu")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=89230540]
+libraries/ = SubResource("AnimationLibrary_ia5wu")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=181125937]

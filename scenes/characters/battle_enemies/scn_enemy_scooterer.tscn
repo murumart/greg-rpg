@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://8mocx2p3m6og"]
+[gd_scene format=3 uid="uid://8mocx2p3m6og"]
 
 [ext_resource type="Script" uid="uid://3f27meyj37hd" path="res://scenes/characters/battle_enemies/scr_enemy_scooterer.gd" id="1_xy2wr"]
 [ext_resource type="Texture2D" uid="uid://kw4jfrj8ng6v" path="res://sprites/characters/battle/east/spr_scooterer.png" id="2_xy2wr"]
 
-[node name="SaucesScooter" type="Node2D"]
+[node name="SaucesScooter" type="Node2D" unique_id=96749106]
 script = ExtResource("1_xy2wr")
 toughness = 0.065
 altruism = 0.0
@@ -12,5 +12,5 @@ can_flee = true
 xp_multiplier = 1.2
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=419394492]
 texture = ExtResource("2_xy2wr")

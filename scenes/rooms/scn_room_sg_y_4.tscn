@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cwetkgvwlby0i"]
+[gd_scene format=4 uid="uid://cwetkgvwlby0i"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_tgjow"]
 [ext_resource type="Script" uid="uid://c6gv482owpujf" path="res://code/save_positions.gd" id="2_e74x2"]
@@ -103,134 +103,6 @@ initialized = true
 script = ExtResource("9_tgily")
 
 [sub_resource type="VisualShader" id="VisualShader_uwx22"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float time_speed = 1.0;
-
-
-// DistortionUVAnimated
-vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
-	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
-	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
-	return _uv_dist;
-}
-
-void fragment() {
-// Input:10
-	vec4 n_out10p0 = COLOR;
-
-
-// FloatParameter:12
-	float n_out12p0 = time_speed;
-
-
-// Input:7
-	float n_out7p0 = TIME;
-
-
-	vec2 n_out9p0;
-// DistortionUVAnimated:9
-	float n_in9p1 = 0.20000;
-	float n_in9p2 = 0.00000;
-	float n_in9p3 = 0.05000;
-	float n_in9p4 = 0.02000;
-	{
-		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
-	}
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(TEXTURE, n_out9p0);
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out10p0 * n_out8p0;
-
-
-// Input:18
-	vec2 n_out18p0 = UV;
-
-
-	vec2 n_out23p0;
-// Expression:23
-	n_out23p0 = vec2(0.0, 0.0);
-	{
-		n_out23p0 = vec2(
-			sin(n_out7p0),
-			cos(n_out7p0)
-		);
-	}
-
-
-	vec2 n_out24p0;
-// Remap:24
-	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
-	vec2 n_in24p2 = vec2(1.00000, 1.00000);
-	vec2 n_in24p3 = vec2(0.90000, 0.90000);
-	vec2 n_in24p4 = vec2(1.10000, 1.10000);
-	{
-		vec2 __input_range = n_in24p2 - n_in24p1;
-		vec2 __output_range = n_in24p4 - n_in24p3;
-		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
-	}
-
-
-// VectorOp:19
-	vec2 n_out19p0 = n_out18p0 * n_out24p0;
-
-
-	vec4 n_out17p0;
-// Texture2D:17
-	n_out17p0 = texture(TEXTURE, n_out19p0);
-
-
-// Vector4Constant:16
-	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
-
-
-// VectorOp:15
-	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
-
-
-	vec3 n_out11p0;
-// ColorOp:11
-	{
-		float base = vec3(n_out14p0.xyz).x;
-		float blend = vec3(n_out15p0.xyz).x;
-		if (base < 0.5) {
-			n_out11p0.x = (base * (blend + 0.5));
-		} else {
-			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).y;
-		float blend = vec3(n_out15p0.xyz).y;
-		if (base < 0.5) {
-			n_out11p0.y = (base * (blend + 0.5));
-		} else {
-			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).z;
-		float blend = vec3(n_out15p0.xyz).z;
-		if (base < 0.5) {
-			n_out11p0.z = (base * (blend + 0.5));
-		} else {
-			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-
-
-// Output:0
-	COLOR.rgb = n_out11p0;
-
-
-}
-"
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -292,7 +164,7 @@ initial_velocity_max = 49.28
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_d8e3x")
 
-[node name="SgY4" instance=ExtResource("1_tgjow")]
+[node name="SgY4" unique_id=1068851947 instance=ExtResource("1_tgjow")]
 
 [node name="COLLISION" parent="COLLISION" index="0"]
 tile_map_data = PackedByteArray("AAD///z/AAAPAA8AAAD+//z/AAAPAA8AAAD9//z/AAAPAA8AAAD8//z/AAAPAA8AAAD7//z/AAAPAA8AAAD6//z/AAAPAA8AAAD5//z/AAAPAA8AAAD5//3/AAAPAA8AAAD5//7/AAAPAA8AAAD5////AAAPAA8AAAD5/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD8/wAAAAAPAA8AAAD9/wAAAAAPAA8AAAD+/wAAAAAPAA8AAAD//wAAAAAPAA8AAAAAAAAAAAAPAA8AAAABAAAAAAAPAA8AAAACAAAAAAAPAA8AAAACAP//AAAPAA8AAAACAP7/AAAPAA8AAAACAP3/AAAPAA8AAAACAPz/AAAPAA8AAAACAPv/AAAPAA8AAAADAP3/AAAPAA8AAAAEAP3/AAAPAA8AAAAFAP3/AAAPAA8AAAAGAP3/AAAPAA8AAAAHAP3/AAAPAA8AAAAIAP3/AAAPAA8AAAAJAP3/AAAPAA8AAAAKAP3/AAAPAA8AAAAKAPz/AAAPAA8AAAAKAPv/AAAPAA8AAAAKAPr/AAAPAA8AAAAKAPn/AAAPAA8AAAAKAPj/AAAPAA8AAAAKAPf/AAAPAA8AAAAKAPb/AAAPAA8AAAAKAPX/AAAPAA8AAAAJAPX/AAAPAA8AAAAIAPX/AAAPAA8AAAAHAPX/AAAPAA8AAAAGAPX/AAAPAA8AAAAFAPX/AAAPAA8AAAAEAPX/AAAPAA8AAAADAPX/AAAPAA8AAAACAPX/AAAPAA8AAAACAPb/AAAPAA8AAAACAPf/AAAPAA8AAAD///v/AAAPAA8AAAD///r/AAAPAA8AAAD///n/AAAPAA8AAAD///j/AAAPAA8AAAD///f/AAAPAA8AAAD///b/AAAPAA8AAAD///X/AAAPAA8AAAD///T/AAAPAA8AAAD///P/AAAPAA8AAAD///L/AAAPAA8AAAAAAPL/AAAPAA8AAAABAPL/AAAPAA8AAAACAPL/AAAPAA8AAAADAPL/AAAPAA8AAAAEAPL/AAAPAA8AAAAFAPL/AAAPAA8AAAAGAPL/AAAPAA8AAAAHAPL/AAAPAA8AAAAIAPL/AAAPAA8AAAAJAPL/AAAPAA8AAAAKAPL/AAAPAA8AAAALAPL/AAAPAA8AAAAMAPL/AAAPAA8AAAANAPL/AAAPAA8AAAAOAPL/AAAPAA8AAAAPAPL/AAAPAA8AAAAQAPL/AAAPAA8AAAARAPL/AAAPAA8AAAASAPL/AAAPAA8AAAATAPL/AAAPAA8AAAATAPP/AAAPAA8AAAATAPT/AAAPAA8AAAATAPX/AAAPAA8AAAASAPX/AAAPAA8AAAARAPX/AAAPAA8AAAAQAPX/AAAPAA8AAAAPAPX/AAAPAA8AAAAOAPX/AAAPAA8AAAANAPX/AAAPAA8AAAAMAPX/AAAPAA8AAAALAPX/AAAPAA8AAAA=")
@@ -313,94 +185,94 @@ position = Vector2(303, -191)
 destination = &"sg_y_5"
 gate_id = &"sg-y-45"
 
-[node name="Puzzle" type="StaticBody2D" parent="Areas" index="2"]
+[node name="Puzzle" type="StaticBody2D" parent="Areas" index="2" unique_id=1894430103]
 y_sort_enabled = true
 position = Vector2(80, -143)
 collision_mask = 0
 script = SubResource("GDScript_hq4by")
 
-[node name="SaveNodePositions" type="Node" parent="Areas/Puzzle" index="0" node_paths=PackedStringArray("save_these")]
+[node name="SaveNodePositions" type="Node" parent="Areas/Puzzle" index="0" unique_id=2143555904 node_paths=PackedStringArray("save_these")]
 script = ExtResource("2_e74x2")
 save_these = [NodePath("../Redirector"), NodePath("../Redirector2"), NodePath("../Redirector3"), NodePath("../Redirector4"), NodePath("../Redirector5")]
 metadata/_custom_type_script = "uid://c6gv482owpujf"
 
-[node name="LightTargetBlock" parent="Areas/Puzzle" index="1" instance=ExtResource("2_hq4by")]
+[node name="LightTargetBlock" parent="Areas/Puzzle" index="1" unique_id=497259505 instance=ExtResource("2_hq4by")]
 
-[node name="LightTargetBlock2" parent="Areas/Puzzle" index="2" instance=ExtResource("2_hq4by")]
+[node name="LightTargetBlock2" parent="Areas/Puzzle" index="2" unique_id=552843803 instance=ExtResource("2_hq4by")]
 position = Vector2(32, 0)
 
-[node name="LightEmitterBlock" parent="Areas/Puzzle" index="3" instance=ExtResource("3_18dv3")]
+[node name="LightEmitterBlock" parent="Areas/Puzzle" index="3" unique_id=1808711508 instance=ExtResource("3_18dv3")]
 position = Vector2(32, 48)
 direction = 1
 
-[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="4" instance=ExtResource("3_18dv3")]
+[node name="LightEmitterBlock2" parent="Areas/Puzzle" index="4" unique_id=1422618341 instance=ExtResource("3_18dv3")]
 position = Vector2(64, 48)
 direction = 1
 
-[node name="Redirector" parent="Areas/Puzzle" index="5" instance=ExtResource("3_18dv3")]
+[node name="Redirector" parent="Areas/Puzzle" index="5" unique_id=42478644 instance=ExtResource("3_18dv3")]
 position = Vector2(48, 64)
 emitting = false
 direction = 2
 role = 1
 movable = true
 
-[node name="Redirector2" parent="Areas/Puzzle" index="6" instance=ExtResource("3_18dv3")]
+[node name="Redirector2" parent="Areas/Puzzle" index="6" unique_id=1578494519 instance=ExtResource("3_18dv3")]
 position = Vector2(-16, 80)
 emitting = false
 direction = 2
 role = 1
 movable = true
 
-[node name="Redirector3" parent="Areas/Puzzle" index="7" instance=ExtResource("3_18dv3")]
+[node name="Redirector3" parent="Areas/Puzzle" index="7" unique_id=25417899 instance=ExtResource("3_18dv3")]
 position = Vector2(0, 80)
 emitting = false
 direction = -1
 role = 1
 movable = true
 
-[node name="Redirector4" parent="Areas/Puzzle" index="8" instance=ExtResource("3_18dv3")]
+[node name="Redirector4" parent="Areas/Puzzle" index="8" unique_id=873312479 instance=ExtResource("3_18dv3")]
 position = Vector2(16, 48)
 emitting = false
 direction = -1
 role = 1
 movable = true
 
-[node name="Redirector5" parent="Areas/Puzzle" index="9" instance=ExtResource("3_18dv3")]
+[node name="Redirector5" parent="Areas/Puzzle" index="9" unique_id=202876654 instance=ExtResource("3_18dv3")]
 position = Vector2(16, 32)
 emitting = false
 role = 1
 movable = true
 
-[node name="Floor" type="TileMapLayer" parent="Areas/Puzzle" index="10"]
+[node name="Floor" type="TileMapLayer" parent="Areas/Puzzle" index="10" unique_id=459749646]
 y_sort_enabled = true
 position = Vector2(-6, 12)
 tile_map_data = PackedByteArray("AAAAAPz/AAABAAIAAAABAPz/AAACAAIAAAACAPz/AAACAAIAAAADAPz/AAADAAIAAAAAAPv/AAABAAAAAAABAPv/AAACAAAAAAACAPv/AAACAAAAAAADAPv/AAADAAAAAAA=")
 tile_set = ExtResource("4_18dv3")
 y_sort_origin = -440
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle" index="11"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Puzzle" index="11" unique_id=1733696319]
 position = Vector2(26, -50)
 shape = SubResource("RectangleShape2D_18dv3")
 
-[node name="SgCatOwl" parent="Areas" index="3" instance=ExtResource("5_o2ieo")]
+[node name="SgCatOwl" parent="Areas" index="3" unique_id=217737455 instance=ExtResource("5_o2ieo")]
 position = Vector2(147, -100)
 default_lines = Array[StringName]([&"sg_bridge_puzzle_hint"])
 
-[node name="SgCatOwl2" parent="Areas" index="4" instance=ExtResource("5_o2ieo")]
+[node name="SgCatOwl2" parent="Areas" index="4" unique_id=719151360 instance=ExtResource("5_o2ieo")]
 position = Vector2(145, -206)
 default_lines = Array[StringName]([&"sg_bridge"])
 
-[node name="SgResetCat" parent="Areas" index="5" node_paths=PackedStringArray("reset_saves") instance=ExtResource("7_ypwwi")]
+[node name="SgResetCat" parent="Areas" index="5" unique_id=1344359976 node_paths=PackedStringArray("reset_saves") instance=ExtResource("7_ypwwi")]
 position = Vector2(38, -125)
 reset_saves = [NodePath("../Puzzle/SaveNodePositions")]
 
-[node name="Parallax2D2" type="Parallax2D" parent="." index="6"]
+[node name="Parallax2D2" type="Parallax2D" parent="." index="6" unique_id=510812316]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(0, 83)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" index="0" unique_id=2069339304]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
 z_index = -1
 position = Vector2(-2047, -9)
@@ -409,7 +281,7 @@ tile_map_data = PackedByteArray("AAD8APv/AAADAAMAAAD7APv/AAACAAAAAAD6APv/AAACAAM
 tile_set = ExtResource("4_18dv3")
 y_sort_origin = -110
 
-[node name="Rotator" type="Node2D" parent="Parallax2D2" index="1"]
+[node name="Rotator" type="Node2D" parent="Parallax2D2" index="1" unique_id=1560406713]
 position = Vector2(90, -116)
 scale = Vector2(2, 2)
 script = ExtResource("8_tgily")
@@ -419,110 +291,110 @@ metadata/_custom_type_script = "uid://dw4cp3sxaiy4"
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Node2D" type="CanvasGroup" parent="Parallax2D2/Rotator" index="0"]
+[node name="Node2D" type="CanvasGroup" parent="Parallax2D2/Rotator" index="0" unique_id=1627259517]
 modulate = Color(0.854902, 0.360784, 0.231373, 0.639216)
 z_index = -2
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="0"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="0" unique_id=1541553004]
 position = Vector2(8, 0)
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="1"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="1" unique_id=1274048804]
 position = Vector2(7, 4)
 rotation = 0.523598
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="2"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="2" unique_id=1173151854]
 position = Vector2(3, 6)
 rotation = 1.0472
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="3"]
+[node name="TileMapLayer3" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="3" unique_id=1662572083]
 position = Vector2(0, 7)
 rotation = 1.57079
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer5" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="4"]
+[node name="TileMapLayer5" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="4" unique_id=702776741]
 position = Vector2(2, -7.5)
 rotation = -1.309
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer6" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="5"]
+[node name="TileMapLayer6" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="5" unique_id=2059823011]
 position = Vector2(5.5, -5.5)
 rotation = -0.785397
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer7" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="6"]
+[node name="TileMapLayer7" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="6" unique_id=1701081244]
 position = Vector2(6, -2)
 rotation = -0.261799
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer8" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="7"]
+[node name="TileMapLayer8" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="7" unique_id=1915438012]
 position = Vector2(-8, -2)
 rotation = -2.87979
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer9" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="8"]
+[node name="TileMapLayer9" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="8" unique_id=1020045716]
 position = Vector2(-6, -5)
 rotation = -2.35619
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer10" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="9"]
+[node name="TileMapLayer10" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="9" unique_id=16044411]
 position = Vector2(-2, -7.5)
 rotation = -1.83259
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer11" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="10"]
+[node name="TileMapLayer11" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="10" unique_id=1622286055]
 position = Vector2(-3.5, 6.5)
 rotation = 2.0944
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer12" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="11"]
+[node name="TileMapLayer12" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="11" unique_id=679437470]
 position = Vector2(-7, 4.5)
 rotation = 2.618
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="TileMapLayer13" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="12"]
+[node name="TileMapLayer13" type="TileMapLayer" parent="Parallax2D2/Rotator/Node2D" index="12" unique_id=1467557344]
 position = Vector2(-8, 0.5)
 rotation = -3.14159
 tile_map_data = PackedByteArray("AAD/////AAAAAAUAAAD///7/AAAAAAUAAAD///3/AAAAAAUAAAD///z/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="Parallax2D3" type="Parallax2D" parent="." index="7"]
+[node name="Parallax2D3" type="Parallax2D" parent="." index="7" unique_id=1387756865]
 scroll_scale = Vector2(0.05, 0)
 scroll_offset = Vector2(99.64, 60.115)
 
-[node name="BattleBackground" parent="Parallax2D3" index="0" instance=ExtResource("8_blp8m")]
+[node name="BattleBackground" parent="Parallax2D3" index="0" unique_id=186462451 instance=ExtResource("8_blp8m")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
 
-[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0" unique_id=1703095315]
 material = SubResource("ShaderMaterial_y01vh")
 
-[node name="Decor" type="Node2D" parent="." index="8"]
+[node name="Decor" type="Node2D" parent="." index="8" unique_id=1178440331]
 y_sort_enabled = true
 
-[node name="Flower1" parent="Decor" index="0" instance=ExtResource("8_3oiow")]
+[node name="Flower1" parent="Decor" index="0" unique_id=638871312 instance=ExtResource("8_3oiow")]
 position = Vector2(79, -245)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" index="1" unique_id=722651823]
 z_index = -1
 position = Vector2(-272, 63)
 tile_map_data = PackedByteArray("AAAWAO3/AAAAAAQAAAAWAO7/AAAAAAUAAAAWAO//AAAAAAUAAAAWAPD/AAAAAAUAAAAWAPH/AAAAAAUAAAAWAPL/AAAAAAUAAAAYAO7/AAAAAAUAAAAYAO//AAAAAAUAAAAYAPD/AAAAAAUAAAAYAPH/AAAAAAUAAAAYAPL/AAAAAAUAAAAYAO3/AAAAAAQAAAA=")
 tile_set = ExtResource("4_18dv3")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor" index="2" unique_id=1546896062]
 position = Vector2(103, -113)
 amount = 24
 texture = ExtResource("9_wofyv")

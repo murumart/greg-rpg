@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dopjpe7bk1png"]
+[gd_scene format=3 uid="uid://dopjpe7bk1png"]
 
 [ext_resource type="Texture2D" uid="uid://tqtwvqlix3wt" path="res://sprites/spirit/spr_dish_buff.png" id="1_5301g"]
 [ext_resource type="AudioStream" uid="uid://idf0wsa5epfp" path="res://sounds/spirit/dish_buff.ogg" id="2_ei83t"]
@@ -273,41 +273,49 @@ _data = {
 &"new_animation": SubResource("Animation_wxpnr")
 }
 
-[sub_resource type="Gradient" id="Gradient_tejui"]
+[sub_resource type="Gradient" id="Gradient_ro1qr"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxrdl"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eq8gn"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_tejui")
+gradient = SubResource("Gradient_ro1qr")
 fill_from = Vector2(1, 1)
 
-[node name="ScnVfxDishBuff" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_woa8o"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qu4xs"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_woa8o")
+fill_from = Vector2(1, 1)
+
+[node name="ScnVfxDishBuff" type="Node2D" unique_id=953581346]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2086807203]
 position = Vector2(0, 69)
 texture = SubResource("GradientTexture2D_3sjyh")
 metadata/_edit_lock_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=141264395]
 sprite_frames = SubResource("SpriteFrames_876vo")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_5ri33")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1914841886]
+libraries/ = SubResource("AnimationLibrary_5ri33")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=731676901]
 
-[node name="VfxPowerline" parent="." instance=ExtResource("3_i08m3")]
-gradient = SubResource("Gradient_tejui")
+[node name="VfxPowerline" parent="." unique_id=406116674 instance=ExtResource("3_i08m3")]
+gradient = SubResource("Gradient_ro1qr")
 lifetime = 0.0
 
 [node name="Line2D" parent="VfxPowerline" index="0"]
-points = PackedVector2Array(-122, 101, -116.58, 79.8649, -112.47, 52.9012, -105.923, 29.8101, -100.845, 10.425, -95.8169, -16.4545, -91.3192, -39.6666, -87.948, -59.7669, -79.4143, -82.8302, -76, -107)
-texture = SubResource("GradientTexture2D_cxrdl")
+points = PackedVector2Array(-122, 101, -118.88764, 77.95937, -109.82415, 54.3496, -107.0131, 33.636433, -99.555565, 8.549987, -96.55776, -12.55877, -90.49731, -39.483555, -84.84685, -59.32577, -79.95224, -82.25885, -76, -107)
+texture = SubResource("GradientTexture2D_eq8gn")
 
 [node name="Start" parent="VfxPowerline" index="1"]
 position = Vector2(-122, 101)
@@ -315,15 +323,15 @@ position = Vector2(-122, 101)
 [node name="End" parent="VfxPowerline" index="2"]
 position = Vector2(-76, -107)
 
-[node name="VfxPowerline2" parent="." instance=ExtResource("3_i08m3")]
+[node name="VfxPowerline2" parent="." unique_id=1202967092 instance=ExtResource("3_i08m3")]
 divisions = 12
 deviation_distance = 4.0
-gradient = SubResource("Gradient_tejui")
+gradient = SubResource("Gradient_woa8o")
 lifetime = 0.0
 
 [node name="Line2D" parent="VfxPowerline2" index="0"]
-points = PackedVector2Array(211, 133, 207.839, 111.652, 200.222, 90.7474, 194.483, 74.5203, 186.995, 51.7836, 180.52, 36.0846, 173.629, 12.7707, 164.753, -8.80692, 152.729, -26.2752, 145.754, -43.581, 142.058, -68.1998, 136, -84)
-texture = SubResource("GradientTexture2D_cxrdl")
+points = PackedVector2Array(211, 133, 207.53885, 111.097786, 198.19502, 97.4581, 186.88193, 75.42396, 184.94566, 57.900826, 177.0457, 38.361298, 173.04752, 11.942203, 161.59875, -8.723791, 152.73184, -23.3548, 145.64565, -44.27313, 138.846, -63.80187, 136, -84)
+texture = SubResource("GradientTexture2D_qu4xs")
 
 [node name="Start" parent="VfxPowerline2" index="1"]
 position = Vector2(211, 133)

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://bdwsjxpbvsx3l"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://bdwsjxpbvsx3l"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_egqdc"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="1_nuxs4"]
@@ -9,7 +9,6 @@ region = Rect2(2, 20, 22, 22)
 
 [resource]
 script = ExtResource("1_egqdc")
-name_in_file = &""
 name = "freebird"
 info = "this bird taunts you from its free position."
 portrait = SubResource("AtlasTexture_0say6")
@@ -18,13 +17,8 @@ health = 55.0
 max_magic = 60.0
 magic = 60.0
 level = 57
-experience = 0
 attack = 60.0
 defense = 50.0
 speed = 60.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["rock_drop"])
-unused_spirits = Array[String]([])
-armour = ""
 weapon = "animal_bite"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgepjvtvo82in"]
+[gd_scene format=3 uid="uid://bgepjvtvo82in"]
 
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="1_8nwun"]
 
@@ -61,9 +61,9 @@ _data = {
 &"default": SubResource("Animation_gq4e0")
 }
 
-[node name="DustPuff" type="Node2D"]
+[node name="DustPuff" type="Node2D" unique_id=1225318864]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1438471438]
 amount = 16
 texture = ExtResource("1_8nwun")
 one_shot = true
@@ -81,8 +81,6 @@ linear_accel_max = -44.83
 scale_amount_curve = SubResource("Curve_pukkq")
 color_ramp = SubResource("Gradient_l2y3r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_qv1kd")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1605430062]
+libraries/ = SubResource("AnimationLibrary_qv1kd")
+autoplay = &"default"

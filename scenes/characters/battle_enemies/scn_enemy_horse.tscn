@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsieajjshq3hc"]
+[gd_scene format=3 uid="uid://bsieajjshq3hc"]
 
 [ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_nnlas"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_hxcqq"]
@@ -496,17 +496,17 @@ _data = {
 &"idle": SubResource("Animation_q2owa")
 }
 
-[node name="Horse" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Horse" type="Node2D" unique_id=192600725 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_nnlas")
 animator = NodePath("AnimationPlayer")
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=570063504]
 
-[node name="Back" type="Node2D" parent="Puppet"]
+[node name="Back" type="Node2D" parent="Puppet" unique_id=134965063]
 position = Vector2(-5, -5)
 scale = Vector2(0.936877, 0.937081)
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Back"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Back" unique_id=1667721751]
 modulate = Color(0.476224, 0.640853, 0.576782, 1)
 position = Vector2(11, -75)
 texture = ExtResource("2_hxcqq")
@@ -514,7 +514,7 @@ offset = Vector2(0, 59)
 region_enabled = true
 region_rect = Rect2(134, 45, 12, 120)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Back"]
+[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Back" unique_id=1205537667]
 modulate = Color(0.476224, 0.640853, 0.576782, 1)
 position = Vector2(-11, -75)
 texture = ExtResource("2_hxcqq")
@@ -523,17 +523,17 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(134, 45, 12, 120)
 
-[node name="Front" type="Node2D" parent="Puppet"]
+[node name="Front" type="Node2D" parent="Puppet" unique_id=539289882]
 position = Vector2(-2, -1)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Puppet/Front"]
+[node name="Sprite2D3" type="Sprite2D" parent="Puppet/Front" unique_id=1135894614]
 position = Vector2(16, -70)
 texture = ExtResource("2_hxcqq")
 offset = Vector2(0, 58)
 region_enabled = true
 region_rect = Rect2(134, 45, 12, 120)
 
-[node name="Sprite2D4" type="Sprite2D" parent="Puppet/Front"]
+[node name="Sprite2D4" type="Sprite2D" parent="Puppet/Front" unique_id=390790049]
 position = Vector2(-7, -72)
 texture = ExtResource("2_hxcqq")
 offset = Vector2(1, 59)
@@ -541,15 +541,13 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(134, 45, 12, 120)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet" unique_id=1681284288]
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_4tgpm")
 texture = ExtResource("3_tnim7")
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4tgpm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lvt0a")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2138159875]
+libraries/ = SubResource("AnimationLibrary_lvt0a")
+autoplay = &"idle"

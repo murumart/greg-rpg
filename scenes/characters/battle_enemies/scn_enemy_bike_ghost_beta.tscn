@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0gwrevpps1h1"]
+[gd_scene format=3 uid="uid://d0gwrevpps1h1"]
 
 [ext_resource type="Script" uid="uid://b5cskx765ymxf" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost_beta.gd" id="1_qawkf"]
 [ext_resource type="Texture2D" uid="uid://b8u56xy3uqblk" path="res://sprites/characters/battle/bike_ghosts/beta.png" id="2_oadhf"]
@@ -1014,7 +1014,7 @@ _data = {
 &"use_spirit": SubResource("Animation_n5pqx")
 }
 
-[node name="BikeGhostBeta" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="BikeGhostBeta" type="Node2D" unique_id=906872998 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_qawkf")
 effect_center = Vector2i(0, -23)
 animator = NodePath("Animator")
@@ -1022,9 +1022,9 @@ toughness = 0.527
 altruism = 0.741
 xp_multiplier = 3.0
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=757638582]
 
-[node name="Pelvis" type="Sprite2D" parent="Puppet"]
+[node name="Pelvis" type="Sprite2D" parent="Puppet" unique_id=1544989654]
 position = Vector2(0, 4)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1032,7 +1032,7 @@ offset = Vector2(-9, -8)
 region_enabled = true
 region_rect = Rect2(2, 39, 18, 9)
 
-[node name="RULeg" type="Sprite2D" parent="Puppet/Pelvis"]
+[node name="RULeg" type="Sprite2D" parent="Puppet/Pelvis" unique_id=1325166488]
 position = Vector2(-5, 2)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1040,7 +1040,7 @@ offset = Vector2(-4, -1)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 18)
 
-[node name="RDLeg" type="Sprite2D" parent="Puppet/Pelvis/RULeg"]
+[node name="RDLeg" type="Sprite2D" parent="Puppet/Pelvis/RULeg" unique_id=1825741416]
 position = Vector2(2, 16)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1048,7 +1048,7 @@ offset = Vector2(-12, -4)
 region_enabled = true
 region_rect = Rect2(17, 49, 14, 31)
 
-[node name="LULeg" type="Sprite2D" parent="Puppet/Pelvis"]
+[node name="LULeg" type="Sprite2D" parent="Puppet/Pelvis" unique_id=1025123061]
 position = Vector2(5, 2)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1056,7 +1056,7 @@ offset = Vector2(-4, -1)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 18)
 
-[node name="LDLeg" type="Sprite2D" parent="Puppet/Pelvis/LULeg"]
+[node name="LDLeg" type="Sprite2D" parent="Puppet/Pelvis/LULeg" unique_id=781488116]
 position = Vector2(-2, 16)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1065,7 +1065,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(17, 49, 14, 31)
 
-[node name="Torso" type="Sprite2D" parent="Puppet/Pelvis"]
+[node name="Torso" type="Sprite2D" parent="Puppet/Pelvis" unique_id=27967158]
 position = Vector2(0, -10)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1073,7 +1073,7 @@ offset = Vector2(-10, -19)
 region_enabled = true
 region_rect = Rect2(1, 17, 21, 21)
 
-[node name="Cloak2" type="Sprite2D" parent="Puppet/Pelvis/Torso"]
+[node name="Cloak2" type="Sprite2D" parent="Puppet/Pelvis/Torso" unique_id=921160613]
 self_modulate = Color(0.493863, 0.493863, 0.493863, 1)
 z_index = -1
 position = Vector2(-1.19209e-07, -18)
@@ -1085,7 +1085,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(46, 16, 25, 40)
 
-[node name="Head" type="Sprite2D" parent="Puppet/Pelvis/Torso"]
+[node name="Head" type="Sprite2D" parent="Puppet/Pelvis/Torso" unique_id=949622837]
 position = Vector2(0, -20)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1093,11 +1093,10 @@ offset = Vector2(-10, -15)
 region_enabled = true
 region_rect = Rect2(1, 0, 20, 16)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Pelvis/Torso/Head"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Puppet/Pelvis/Torso/Head" unique_id=1918269939]
 material = SubResource("CanvasItemMaterial_t4rrw")
 position = Vector2(2.5, -6.5)
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_bpisp")
 texture = ExtResource("3_eel2a")
 lifetime = 2.0
 randomness = 0.32
@@ -1106,20 +1105,21 @@ trail_enabled = true
 trail_lifetime = 0.81
 trail_sections = 5
 trail_section_subdivisions = 2
+process_material = SubResource("ParticleProcessMaterial_bpisp")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Puppet/Pelvis/Torso/Head"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Puppet/Pelvis/Torso/Head" unique_id=985322510]
 material = SubResource("CanvasItemMaterial_t4rrw")
 position = Vector2(-2.5, -6.5)
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_bpisp")
 texture = ExtResource("3_eel2a")
 lifetime = 7.0
 randomness = 0.25
 fixed_fps = 15
 trail_enabled = true
 trail_lifetime = 0.89
+process_material = SubResource("ParticleProcessMaterial_bpisp")
 
-[node name="Cloak" type="Sprite2D" parent="Puppet/Pelvis/Torso"]
+[node name="Cloak" type="Sprite2D" parent="Puppet/Pelvis/Torso" unique_id=1777180515]
 position = Vector2(0, -16)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1127,7 +1127,7 @@ offset = Vector2(-13, -5)
 region_enabled = true
 region_rect = Rect2(46, 16, 25, 40)
 
-[node name="LUArm" type="Sprite2D" parent="Puppet/Pelvis/Torso"]
+[node name="LUArm" type="Sprite2D" parent="Puppet/Pelvis/Torso" unique_id=18061032]
 position = Vector2(12, -15)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1135,7 +1135,7 @@ offset = Vector2(-2, -5)
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 18)
 
-[node name="LLArm" type="Sprite2D" parent="Puppet/Pelvis/Torso/LUArm"]
+[node name="LLArm" type="Sprite2D" parent="Puppet/Pelvis/Torso/LUArm" unique_id=1483182938]
 position = Vector2(1, 13)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1143,7 +1143,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 19, 6, 15)
 
-[node name="LHand" type="Sprite2D" parent="Puppet/Pelvis/Torso/LUArm/LLArm"]
+[node name="LHand" type="Sprite2D" parent="Puppet/Pelvis/Torso/LUArm/LLArm" unique_id=551371107]
 position = Vector2(0, 13)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1151,7 +1151,7 @@ offset = Vector2(-5, -1)
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="RUArm" type="Sprite2D" parent="Puppet/Pelvis/Torso"]
+[node name="RUArm" type="Sprite2D" parent="Puppet/Pelvis/Torso" unique_id=1562553668]
 position = Vector2(-13, -14)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1160,7 +1160,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 18)
 
-[node name="LLArm" type="Sprite2D" parent="Puppet/Pelvis/Torso/RUArm"]
+[node name="LLArm" type="Sprite2D" parent="Puppet/Pelvis/Torso/RUArm" unique_id=1943806390]
 position = Vector2(0, 12)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1168,7 +1168,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 19, 6, 15)
 
-[node name="LHand" type="Sprite2D" parent="Puppet/Pelvis/Torso/RUArm/LLArm"]
+[node name="LHand" type="Sprite2D" parent="Puppet/Pelvis/Torso/RUArm/LLArm" unique_id=124450718]
 position = Vector2(0, 13)
 texture = ExtResource("2_oadhf")
 centered = false
@@ -1177,8 +1177,6 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_jv4wv")
-}
-autoplay = "idle"
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=265588701]
+libraries/ = SubResource("AnimationLibrary_jv4wv")
+autoplay = &"idle"

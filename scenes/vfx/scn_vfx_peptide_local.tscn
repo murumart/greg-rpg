@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://box6ntfnofexg"]
+[gd_scene format=3 uid="uid://box6ntfnofexg"]
 
 [ext_resource type="Texture2D" uid="uid://ky2i1r8qgvnj" path="res://sprites/spirit/spr_peptide_local.png" id="1_errxw"]
 
@@ -117,13 +117,11 @@ _data = {
 &"default": SubResource("Animation_kepfu")
 }
 
-[node name="PeptideLocalSpell" type="Node2D"]
+[node name="PeptideLocalSpell" type="Node2D" unique_id=1745690912]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297854066]
 sprite_frames = SubResource("SpriteFrames_60qla")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_lkfmf")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1730509843]
+libraries/ = SubResource("AnimationLibrary_lkfmf")
+autoplay = &"default"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GlassExchange" load_steps=4 format=3 uid="uid://2pae02l45ttm"]
+[gd_resource type="Resource" script_class="GlassExchange" format=3 uid="uid://2pae02l45ttm"]
 
 [ext_resource type="Script" uid="uid://ia6c8pg30u3p" path="res://code/scr_key_float_pair.gd" id="1_decpr"]
 [ext_resource type="Script" uid="uid://bp3cwrx5enstb" path="res://code/scr_exchange_forest.gd" id="2_02ior"]
@@ -11,12 +11,5 @@ value = 4.0
 [resource]
 script = ExtResource("2_02ior")
 glass_required = 2
-gold_required = 0
 add_to_perk = SubResource("Resource_rm5v1")
-perk_time = 0
-description = ""
 title = "gummyfish+"
-silver_required = 0
-input = Array[StringName]([])
-silver_granted = 0
-output = Array[StringName]([])

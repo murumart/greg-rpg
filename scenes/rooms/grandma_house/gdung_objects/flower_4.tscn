@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgevysutt8p82"]
+[gd_scene format=3 uid="uid://dgevysutt8p82"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_nebyt"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_sni8i"]
@@ -6,20 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w52c6"]
 size = Vector2(18, 18)
 
-[node name="Flower1" type="Node2D"]
+[node name="Flower1" type="Node2D" unique_id=1134148837]
 y_sort_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=732229279]
 position = Vector2(8, 8)
 texture = ExtResource("1_nebyt")
 offset = Vector2(0, -4)
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=2023544159]
 script = ExtResource("2_sni8i")
 key = "other_flowers"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=1293394393]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_w52c6")

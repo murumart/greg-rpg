@@ -2807,10 +2807,10 @@ script = ExtResource("39_3hvci")
 position = Vector2(-74, 48)
 dont_close = true
 
-[node name="DialogueBoxPanel" parent="AfterFightCutscene/DialogueBox" index="0"]
+[node name="DialogueBoxPanel" parent="AfterFightCutscene/DialogueBox" index="0" unique_id=1015046709]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ppjx1")
 
-[node name="DialogueTextbox" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="0"]
+[node name="DialogueTextbox" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="0" unique_id=937157989]
 theme_override_colors/default_color = Color(0.780691, 1, 0.759367, 1)
 theme_override_colors/font_outline_color = Color(0, 0.176471, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 18.784, 0, 0.133)
@@ -2821,7 +2821,7 @@ theme_override_constants/outline_size = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FinishedMarker" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="4"]
+[node name="FinishedMarker" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="4" unique_id=1685108641]
 visible = false
 region_rect = Rect2(80, 56, 8, 8)
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://ce4yfyycyqs2e"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://ce4yfyycyqs2e"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_bba6c"]
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_krq1w"]
@@ -7,26 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_g7puc"]
 script = ExtResource("1_bba6c")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = 2.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 2
-effects = Array[ExtResource("1_mh2l3")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s75my"]
 atlas = ExtResource("3_1ft1p")
@@ -34,12 +16,10 @@ region = Rect2(75, 48, 19, 9)
 
 [resource]
 script = ExtResource("1_krq1w")
-name_in_file = &""
 name = &"fish"
 description = "fish"
 texture = SubResource("AtlasTexture_s75my")
 attack_animation = "fish_attack"
 price = 2222
 use = 4
-consume_on_use = true
 payload = SubResource("Resource_g7puc")

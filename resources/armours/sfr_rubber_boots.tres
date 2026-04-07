@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://cjssj2183nurx"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cjssj2183nurx"]
 
 [ext_resource type="Texture2D" uid="uid://cxble4thedstv" path="res://sprites/characters/overworld/armours/spr_rubber_boots.png" id="1_t2t4d"]
 

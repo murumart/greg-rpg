@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b0hhsgn6wiug6"]
+[gd_scene format=3 uid="uid://b0hhsgn6wiug6"]
 
 [ext_resource type="Script" uid="uid://bjke51w7lchyj" path="res://scenes/battle_backgrounds/scr_bg_vampire.gd" id="1_w554i"]
 [ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="3_3ghhq"]
@@ -904,6 +904,15 @@ blend_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yuxg1"]
 blend_mode = 1
 
+[sub_resource type="Gradient" id="Gradient_ua5wu"]
+offsets = PackedFloat32Array(0, 0.426095)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bfmuc"]
+gradient = SubResource("Gradient_ua5wu")
+fill = 1
+fill_from = Vector2(0.467349, 0.202977)
+
 [sub_resource type="Curve" id="Curve_8up5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -928,15 +937,6 @@ scale_max = 2.0
 alpha_curve = SubResource("CurveTexture_d2o68")
 hue_variation_min = 0.9
 hue_variation_max = 1.0
-
-[sub_resource type="Gradient" id="Gradient_ua5wu"]
-offsets = PackedFloat32Array(0, 0.426095)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bfmuc"]
-gradient = SubResource("Gradient_ua5wu")
-fill = 1
-fill_from = Vector2(0.467349, 0.202977)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lp1yu"]
 blend_mode = 2
@@ -978,24 +978,22 @@ scale_curve = SubResource("CurveTexture_1332g")
 hue_variation_min = -0.38
 hue_variation_max = 0.12
 
-[node name="VampireBackground" type="Node2D"]
+[node name="VampireBackground" type="Node2D" unique_id=550763424]
 script = ExtResource("1_w554i")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1686491817]
 offset_left = -3.0
 offset_top = -2.0
 offset_right = 164.0
 offset_bottom = 123.0
 color = Color(0.262745, 0.0901961, 0.0901961, 1)
 
-[node name="Anim" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nimk3")
-}
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=752733203]
+libraries/ = SubResource("AnimationLibrary_nimk3")
 
-[node name="BGPieces" type="Node2D" parent="."]
+[node name="BGPieces" type="Node2D" parent="." unique_id=454283684]
 
-[node name="Sec1Pan" type="Sprite2D" parent="BGPieces"]
+[node name="Sec1Pan" type="Sprite2D" parent="BGPieces" unique_id=316837058]
 visible = false
 modulate = Color(0.109804, 1, 0.0666667, 1)
 material = SubResource("CanvasItemMaterial_fpas6")
@@ -1003,36 +1001,36 @@ position = Vector2(260, 21)
 scale = Vector2(3, 3)
 texture = ExtResource("3_4vmej")
 
-[node name="Sec1Glow" type="Sprite2D" parent="BGPieces"]
+[node name="Sec1Glow" type="Sprite2D" parent="BGPieces" unique_id=1123581244]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_qd0ps")
 texture = SubResource("GradientTexture2D_jmqng")
 centered = false
 
-[node name="Sec2" type="Node2D" parent="BGPieces"]
+[node name="Sec2" type="Node2D" parent="BGPieces" unique_id=1861276976]
 
-[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec2"]
+[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec2" unique_id=237981513]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_p5sst")
 texture = ExtResource("4_gcitl")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec2"]
+[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec2" unique_id=884739660]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_p5sst")
 position = Vector2(0, -199)
 texture = ExtResource("4_gcitl")
 centered = false
 
-[node name="Sec3" type="Node2D" parent="BGPieces"]
+[node name="Sec3" type="Node2D" parent="BGPieces" unique_id=85931640]
 modulate = Color(1, 1, 1, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec3"]
+[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec3" unique_id=1996615542]
 position = Vector2(-1, -3)
 texture = ExtResource("5_ofw1i")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec3"]
+[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec3" unique_id=74319691]
 self_modulate = Color(0.419608, 0, 1, 1)
 texture_repeat = 3
 material = SubResource("CanvasItemMaterial_h3lyd")
@@ -1042,61 +1040,61 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 397, 125)
 
-[node name="Sec4" type="Node2D" parent="BGPieces"]
+[node name="Sec4" type="Node2D" parent="BGPieces" unique_id=624063937]
 
-[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec4"]
+[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec4" unique_id=1648572719]
 visible = false
 self_modulate = Color(0.494118, 1, 1, 1)
 material = SubResource("CanvasItemMaterial_q0vxx")
 position = Vector2(-174, 200)
 texture = ExtResource("6_j8s1i")
 
-[node name="Sec7" type="Node2D" parent="BGPieces"]
+[node name="Sec7" type="Node2D" parent="BGPieces" unique_id=131020287]
 visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec7"]
+[node name="Sprite2D" type="Sprite2D" parent="BGPieces/Sec7" unique_id=283139407]
 material = SubResource("CanvasItemMaterial_oaks3")
 position = Vector2(80, 60)
 rotation = 1.87565
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("3_3ghhq")
 
-[node name="Rotator" parent="BGPieces/Sec7/Sprite2D" instance=ExtResource("8_ky8u5")]
+[node name="Rotator" parent="BGPieces/Sec7/Sprite2D" unique_id=850496636 instance=ExtResource("8_ky8u5")]
 speed = 8.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec7"]
+[node name="Sprite2D2" type="Sprite2D" parent="BGPieces/Sec7" unique_id=1236280151]
 modulate = Color(1, 1, 1, 0.235294)
 material = SubResource("CanvasItemMaterial_5330b")
 position = Vector2(80, 60)
 rotation = 0.68951
 texture = ExtResource("9_f36h7")
 
-[node name="Rotator" parent="BGPieces/Sec7/Sprite2D2" instance=ExtResource("8_ky8u5")]
+[node name="Rotator" parent="BGPieces/Sec7/Sprite2D2" unique_id=1021422672 instance=ExtResource("8_ky8u5")]
 speed = 64.0
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="BGPieces/Sec7"]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="BGPieces/Sec7" unique_id=1766859149]
 material = SubResource("CanvasItemMaterial_yuxg1")
 position = Vector2(80, 60)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_24uek")
 texture = SubResource("GradientTexture2D_bfmuc")
 lifetime = 4.0
 trail_enabled = true
 trail_lifetime = 3.82
 trail_sections = 4
+process_material = SubResource("ParticleProcessMaterial_24uek")
 
-[node name="Sprite2D3" type="Sprite2D" parent="BGPieces/Sec7"]
+[node name="Sprite2D3" type="Sprite2D" parent="BGPieces/Sec7" unique_id=1863935923]
 modulate = Color(1, 1, 1, 0.34902)
 material = SubResource("CanvasItemMaterial_lp1yu")
 texture = ExtResource("9_f36h7")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="BGPieces/Sec7"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BGPieces/Sec7" unique_id=1440568133]
 modulate = Color(1, 0, 1, 1)
 material = SubResource("CanvasItemMaterial_p86sb")
 position = Vector2(80, 60)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_xc8lr")
 lifetime = 0.9
 trail_enabled = true
 trail_lifetime = 0.1
 trail_sections = 2
+process_material = SubResource("ParticleProcessMaterial_xc8lr")

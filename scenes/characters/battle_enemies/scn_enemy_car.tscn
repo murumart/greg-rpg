@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv7g42ix5k5le"]
+[gd_scene format=3 uid="uid://dv7g42ix5k5le"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_6k3xs"]
 [ext_resource type="Texture2D" uid="uid://bcdj7lnnje8bf" path="res://sprites/characters/battle/car/spr_car_battle.png" id="2_kloqt"]
@@ -304,27 +304,25 @@ _data = {
 &"use_spirit": SubResource("Animation_obxov")
 }
 
-[node name="Car" type="Node2D" node_paths=PackedStringArray("animator") groups=["battle_actors"]]
+[node name="Car" type="Node2D" unique_id=457616058 node_paths=PackedStringArray("animator") groups=["battle_actors"]]
 script = ExtResource("1_6k3xs")
 animator = NodePath("CarAnimator")
 altruism = 0.0
 innovation = 0.09
 can_flee = true
 
-[node name="CarAnimator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_rvbyp")
-}
+[node name="CarAnimator" type="AnimationPlayer" parent="." unique_id=37988429]
+libraries/ = SubResource("AnimationLibrary_rvbyp")
 
-[node name="SprCarBattle" type="Sprite2D" parent="."]
+[node name="SprCarBattle" type="Sprite2D" parent="." unique_id=1955803587]
 modulate = Color(0.564706, 0.584314, 1, 1)
 texture = ExtResource("2_kloqt")
 script = ExtResource("3_i52wk")
 
-[node name="SprCarBlur" type="Sprite2D" parent="SprCarBattle"]
+[node name="SprCarBlur" type="Sprite2D" parent="SprCarBattle" unique_id=1495832602]
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("4_3ilxp")
 metadata/_edit_lock_ = true
 
-[node name="SprCarLights" type="Sprite2D" parent="."]
+[node name="SprCarLights" type="Sprite2D" parent="." unique_id=464436087]
 texture = ExtResource("3_8yjnt")

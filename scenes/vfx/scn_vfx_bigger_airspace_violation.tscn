@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc0570aabgk7t"]
+[gd_scene format=3 uid="uid://cc0570aabgk7t"]
 
 [ext_resource type="PackedScene" uid="uid://5g642vaf5n30" path="res://scenes/vfx/scn_vfx_airspace_violation.tscn" id="1_g0kve"]
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="2_fwgrd"]
@@ -12,30 +12,29 @@ point_count = 5
 offsets = PackedFloat32Array(0, 0.267792, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.960784, 1, 1, 1, 0)
 
-[node name="VfxBiggerAirspaceViolation" type="Node2D"]
+[node name="VfxBiggerAirspaceViolation" type="Node2D" unique_id=1863864219]
 
-[node name="VfxAirspaceViolation" parent="." instance=ExtResource("1_g0kve")]
+[node name="VfxAirspaceViolation" parent="." unique_id=997465193 instance=ExtResource("1_g0kve")]
 position = Vector2(-8, -8)
 
-[node name="VfxAirspaceViolation2" parent="." instance=ExtResource("1_g0kve")]
+[node name="VfxAirspaceViolation2" parent="." unique_id=887209279 instance=ExtResource("1_g0kve")]
 position = Vector2(-8, 9)
 
-[node name="VfxAirspaceViolation3" parent="." instance=ExtResource("1_g0kve")]
+[node name="VfxAirspaceViolation3" parent="." unique_id=1026050388 instance=ExtResource("1_g0kve")]
 position = Vector2(8, 8)
 
-[node name="VfxAirspaceViolation4" parent="." instance=ExtResource("1_g0kve")]
+[node name="VfxAirspaceViolation4" parent="." unique_id=529921670 instance=ExtResource("1_g0kve")]
 position = Vector2(8, -8)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=771493146]
 scale = Vector2(4, 4)
-emitting = false
 amount = 16
+texture = ExtResource("2_fwgrd")
 lifetime = 11.29
 one_shot = true
 explosiveness = 1.0
 randomness = 0.34
 local_coords = true
-texture = ExtResource("2_fwgrd")
 direction = Vector2(0, -1)
 spread = 114.94
 gravity = Vector2(0, 10)
@@ -47,7 +46,7 @@ linear_accel_max = -44.83
 scale_amount_curve = SubResource("Curve_w0st6")
 color_ramp = SubResource("Gradient_ey0mv")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1809750098]
 wait_time = 10.0
 autostart = true
 

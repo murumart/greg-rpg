@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://wwu8pc12twc8"]
+[gd_scene format=3 uid="uid://wwu8pc12twc8"]
 
 [ext_resource type="Script" uid="uid://splgdmereykt" path="res://scenes/tech/men_bullet.gd" id="1_dqv17"]
 
@@ -17,14 +17,14 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dbl1"]
 radius = 2.0
 
-[node name="MenBullet" type="Area2D"]
+[node name="MenBullet" type="Area2D" unique_id=1181867574]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_dqv17")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1027312353]
 texture = SubResource("GradientTexture2D_dqv17")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1556247261]
 shape = SubResource("CircleShape2D_4dbl1")

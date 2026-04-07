@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://den7q17m1tcvp"]
+[gd_scene format=3 uid="uid://den7q17m1tcvp"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_6yd5k"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_qn6k5"]
@@ -9,25 +9,25 @@ size = Vector2(12, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3egi"]
 size = Vector2(14, 10)
 
-[node name="Litterbox" type="StaticBody2D"]
+[node name="Litterbox" type="StaticBody2D" unique_id=1092996324]
 y_sort_enabled = true
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=800094329]
 position = Vector2(8, 3)
 texture = ExtResource("1_6yd5k")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429257308]
 position = Vector2(8, 6)
 shape = SubResource("RectangleShape2D_j57lm")
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=1854854308]
 position = Vector2(8, 8)
 script = ExtResource("2_qn6k5")
 key = "gdung_litterbox"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=2136826263]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_g3egi")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ptej8464s6ut"]
+[gd_scene format=3 uid="uid://ptej8464s6ut"]
 
 [ext_resource type="Texture2D" uid="uid://d1a5xaqld56sq" path="res://sprites/vfx/spr_hook.png" id="1_7buls"]
 [ext_resource type="AudioStream" uid="uid://c6wif7mx0gakw" path="res://sounds/spirit/hook_attack.ogg" id="2_ikjv5"]
@@ -223,18 +223,16 @@ _data = {
 &"default": SubResource("Animation_paqq8")
 }
 
-[node name="VfxHookAttack" type="Node2D"]
+[node name="VfxHookAttack" type="Node2D" unique_id=196951999]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2097394289]
 modulate = Color(0, 0.282353, 1, 0.317647)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_84was")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_31j8l")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1349298023]
+libraries/ = SubResource("AnimationLibrary_31j8l")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=768014402]
 stream = ExtResource("2_ikjv5")

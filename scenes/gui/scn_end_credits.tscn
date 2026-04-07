@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8gsbeagl2a3i"]
+[gd_scene format=3 uid="uid://c8gsbeagl2a3i"]
 
 [ext_resource type="Script" uid="uid://pvb04ion08yu" path="res://scenes/gui/scr_end_credits.gd" id="1_yal4k"]
 [ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="2_b6f8n"]
@@ -13,58 +13,58 @@ gradient = SubResource("Gradient_lt8ie")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ajo6"]
 bg_color = Color(0, 0, 0, 0.701961)
 
-[node name="EndCredits" type="Node2D"]
+[node name="EndCredits" type="Node2D" unique_id=1014030379]
 script = ExtResource("1_yal4k")
 
-[node name="ImageScrollContainer" type="ScrollContainer" parent="."]
+[node name="ImageScrollContainer" type="ScrollContainer" parent="." unique_id=405032400]
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 85.0
 offset_bottom = 118.0
 vertical_scroll_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="ImageScrollContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="ImageScrollContainer" unique_id=376981160]
 position = Vector2(9, 58)
 scale = Vector2(1.53125, 1.875)
 texture = SubResource("GradientTexture2D_abrxy")
 flip_h = true
 
-[node name="ImageContainer" type="VBoxContainer" parent="ImageScrollContainer"]
+[node name="ImageContainer" type="VBoxContainer" parent="ImageScrollContainer" unique_id=1855926220]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Spacer" type="Control" parent="ImageScrollContainer/ImageContainer"]
+[node name="Spacer" type="Control" parent="ImageScrollContainer/ImageContainer" unique_id=1006433385]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ImageScrollContainer/ImageContainer"]
+[node name="Label" type="Label" parent="ImageScrollContainer/ImageContainer" unique_id=971486730]
 layout_mode = 2
 text = "the end."
 
-[node name="Spacer2" type="Control" parent="ImageScrollContainer/ImageContainer"]
+[node name="Spacer2" type="Control" parent="ImageScrollContainer/ImageContainer" unique_id=1979333171]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374175374]
 position = Vector2(111, 60)
 scale = Vector2(1.53125, 1.875)
 texture = SubResource("GradientTexture2D_abrxy")
 
-[node name="CreditsScrollContainer" type="ScrollContainer" parent="."]
+[node name="CreditsScrollContainer" type="ScrollContainer" parent="." unique_id=85051467]
 offset_left = 64.0
 offset_top = 2.0
 offset_right = 152.0
 offset_bottom = 118.0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsScrollContainer" unique_id=1541723218]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CreditsLabel" type="Label" parent="CreditsScrollContainer/VBoxContainer"]
+[node name="CreditsLabel" type="Label" parent="CreditsScrollContainer/VBoxContainer" unique_id=106852432]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(88, 0)
 layout_mode = 2
@@ -73,7 +73,7 @@ theme_override_font_sizes/font_size = 6
 text = "rsdsdg<sdh<sdh<rhrhdss<faf<a"
 autowrap_mode = 3
 
-[node name="ReturnLabel" type="Label" parent="."]
+[node name="ReturnLabel" type="Label" parent="." unique_id=1449809669]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 2.0
 offset_top = 99.0

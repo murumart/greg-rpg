@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbu4u32fsr7b8"]
+[gd_scene format=3 uid="uid://dbu4u32fsr7b8"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_nn7k1"]
 [ext_resource type="Script" uid="uid://ui7g1lg4kusx" path="res://scenes/characters/overworld/scr_thug_overworld.gd" id="2_w1dwd"]
@@ -7,15 +7,15 @@
 [ext_resource type="Script" uid="uid://cbtl2xny34q67" path="res://code/key_curve_pair.gd" id="5_m3fvl"]
 [ext_resource type="Resource" uid="uid://ogl3l5vhytym" path="res://resources/battle_infos/thug_east_base.tres" id="6_2ak0v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv4y4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ak0v"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqpr0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr42f"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3rax2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn7k1"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -74,7 +74,7 @@ _limits = [0.0, 4.0, 0.0, 1.0]
 _data = [Vector2(0.616, 0.998302), 0.0, 0.0, 0, 0, Vector2(0.668, 2.01358), 0.0, 0.0, 0, 0, Vector2(0.812, 2.27844), 0.0, 0.0, 0, 0, Vector2(0.904, 3.16129), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[node name="ThugOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_nn7k1")]
+[node name="ThugOverworld" unique_id=1522828246 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_nn7k1")]
 script = ExtResource("2_w1dwd")
 animated_sprite = NodePath("ThugSprite")
 speed = 2700
@@ -84,25 +84,22 @@ action_right_after_dialogue = true
 interact_on_touch = true
 default_lines = Array[StringName]([&"thug_catch_1"])
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_mv4y4")
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
+shape = SubResource("RectangleShape2D_2ak0v")
 
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_cr42f")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_cqpr0")
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
+shape = SubResource("CircleShape2D_nn7k1")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_3rax2")
-
-[node name="ThugSprite" type="AnimatedSprite2D" parent="." index="3"]
+[node name="ThugSprite" type="AnimatedSprite2D" parent="." index="3" unique_id=306773228]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_nn7k1")
 animation = &"walk_down"
 frame_progress = 0.110381
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+[node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=1040459157 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_2ypi4")
 values = Array[ExtResource("5_m3fvl")]([SubResource("Resource_3dwe5"), SubResource("Resource_p6f1u"), SubResource("Resource_5e0hk"), SubResource("Resource_h4yq8"), SubResource("Resource_bhe8o")])
 enemy_amount_by_level = SubResource("Curve_3dwe5")

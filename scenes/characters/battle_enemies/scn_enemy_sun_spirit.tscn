@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dknu48mwph60"]
+[gd_scene format=3 uid="uid://dknu48mwph60"]
 
 [ext_resource type="Script" uid="uid://srd1rbfrklke" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
 [ext_resource type="Texture2D" uid="uid://dgr3wuk3enp53" path="res://sprites/characters/battle/sunspirit/spr_sunspirit.png" id="2_sivrd"]
@@ -2221,7 +2221,7 @@ bg_color = Color(0.196078, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdf0t"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="SunSpirit" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="SunSpirit" type="Node2D" unique_id=522517688 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_l2g0k")
 mod_gradient = SubResource("Gradient_ln5vb")
 size_curve = SubResource("Curve_m7siq")
@@ -2234,14 +2234,14 @@ xp_multiplier = 4.0
 gender = 3
 effect_immunities = Array[StringName]([&"fire", &"crying"])
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=1471406201]
 
-[node name="Pivot" type="Node2D" parent="Puppet"]
+[node name="Pivot" type="Node2D" parent="Puppet" unique_id=1887879311]
 
-[node name="Pelvis" type="Node2D" parent="Puppet/Pivot"]
+[node name="Pelvis" type="Node2D" parent="Puppet/Pivot" unique_id=200490349]
 position = Vector2(0, 3)
 
-[node name="Bg" type="Sprite2D" parent="Puppet/Pivot/Pelvis"]
+[node name="Bg" type="Sprite2D" parent="Puppet/Pivot/Pelvis" unique_id=1714486691]
 position = Vector2(-6, -3)
 scale = Vector2(12, 7)
 texture = ExtResource("2_sivrd")
@@ -2249,25 +2249,25 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 50, 1, 1)
 
-[node name="Blublub" type="Sprite2D" parent="Puppet/Pivot/Pelvis"]
+[node name="Blublub" type="Sprite2D" parent="Puppet/Pivot/Pelvis" unique_id=1419635654]
 position = Vector2(-6, -13)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(24, 42, 11, 16)
 
-[node name="Fg" type="Sprite2D" parent="Puppet/Pivot/Pelvis"]
+[node name="Fg" type="Sprite2D" parent="Puppet/Pivot/Pelvis" unique_id=1276878335]
 position = Vector2(-8, -3)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(4, 46, 16, 9)
 
-[node name="RightLeg" type="Node2D" parent="Puppet/Pivot/Pelvis"]
+[node name="RightLeg" type="Node2D" parent="Puppet/Pivot/Pelvis" unique_id=395664409]
 position = Vector2(5, 6)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/RightLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/RightLeg" unique_id=218957789]
 position = Vector2(-4, -3)
 texture = ExtResource("2_sivrd")
 centered = false
@@ -2275,11 +2275,11 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(1, 56, 11, 24)
 
-[node name="Bottom" type="Node2D" parent="Puppet/Pivot/Pelvis/RightLeg"]
+[node name="Bottom" type="Node2D" parent="Puppet/Pivot/Pelvis/RightLeg" unique_id=1256903985]
 show_behind_parent = true
 position = Vector2(5, 19)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/RightLeg/Bottom"]
+[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/RightLeg/Bottom" unique_id=1635892986]
 position = Vector2(-13, -2)
 texture = ExtResource("2_sivrd")
 centered = false
@@ -2287,110 +2287,109 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(11, 67, 25, 28)
 
-[node name="LeftLeg" type="Node2D" parent="Puppet/Pivot/Pelvis"]
+[node name="LeftLeg" type="Node2D" parent="Puppet/Pivot/Pelvis" unique_id=326739219]
 position = Vector2(-5, 6)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/LeftLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/LeftLeg" unique_id=745440815]
 position = Vector2(-7, -3)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(1, 56, 11, 24)
 
-[node name="Bottom" type="Node2D" parent="Puppet/Pivot/Pelvis/LeftLeg"]
+[node name="Bottom" type="Node2D" parent="Puppet/Pivot/Pelvis/LeftLeg" unique_id=679524090]
 show_behind_parent = true
 position = Vector2(-4, 19)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/LeftLeg/Bottom"]
+[node name="Sprite2D2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/LeftLeg/Bottom" unique_id=869209851]
 position = Vector2(-13, -2)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(11, 67, 25, 28)
 
-[node name="Torso" type="Node2D" parent="Puppet/Pivot/Pelvis"]
+[node name="Torso" type="Node2D" parent="Puppet/Pivot/Pelvis" unique_id=18468887]
 position = Vector2(0, -5)
 
-[node name="BackgroundSun" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso"]
+[node name="BackgroundSun" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso" unique_id=156067813]
 position = Vector2(0, -24)
 
-[node name="Ray" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun"]
+[node name="Ray" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun" unique_id=2038603695]
 z_index = -1
 rotation = 2.00131
 metadata/_edit_group_ = true
 
-[node name="Ray1" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray1" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=2001832243]
 position = Vector2(0, 2.38419e-07)
 rotation = 0.897099
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray2" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1264900684]
 rotation = 1.79594
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray3" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray3" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1534104675]
 rotation = 2.69304
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray4" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray4" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1860111371]
 rotation = 3.59014
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray5" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray5" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=2067088063]
 rotation = 4.48724
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray6" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray6" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1390046270]
 rotation = 5.38609
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Ray7" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray"]
+[node name="Ray7" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1281316637]
 rotation = 6.28319
 texture = SubResource("GradientTexture2D_hivxi")
 centered = false
 
-[node name="Rotator" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" instance=ExtResource("3_g30y0")]
-enabled_in_editor = false
+[node name="Rotator" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun/Ray" unique_id=1128362652 instance=ExtResource("3_g30y0")]
 speed = 32.0
 
-[node name="Bg" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun"]
+[node name="Bg" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/BackgroundSun" unique_id=1182678928]
 position = Vector2(-15, -15)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(31, 0, 33, 28)
 
-[node name="Fg" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso"]
+[node name="Fg" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso" unique_id=942109431]
 position = Vector2(-10, -22)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(2, 23, 20, 22)
 
-[node name="Head" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso"]
+[node name="Head" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso" unique_id=1139146961]
 position = Vector2(0, -20)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/Head"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/Head" unique_id=1901541225]
 position = Vector2(-12, -22)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 24, 22)
 
-[node name="RightArm" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso"]
+[node name="RightArm" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso" unique_id=1475839349]
 position = Vector2(-11, -19)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/RightArm"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/RightArm" unique_id=1404834685]
 position = Vector2(-21, -4)
 texture = ExtResource("2_sivrd")
 centered = false
@@ -2398,30 +2397,28 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(37, 28, 26, 48)
 
-[node name="LeftArm" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso"]
+[node name="LeftArm" type="Node2D" parent="Puppet/Pivot/Pelvis/Torso" unique_id=987537676]
 position = Vector2(11, -19)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/LeftArm"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet/Pivot/Pelvis/Torso/LeftArm" unique_id=371320406]
 position = Vector2(-5, -4)
 texture = ExtResource("2_sivrd")
 centered = false
 region_enabled = true
 region_rect = Rect2(37, 28, 26, 48)
 
-[node name="Animations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_thwtv")
-}
-autoplay = "idle"
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=626887729]
+libraries/ = SubResource("AnimationLibrary_thwtv")
+autoplay = &"idle"
 
-[node name="NovaProspect" type="Control" parent="."]
+[node name="NovaProspect" type="Control" parent="." unique_id=1050589807]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 64.0
 
-[node name="ProgressBar" type="ProgressBar" parent="NovaProspect"]
+[node name="ProgressBar" type="ProgressBar" parent="NovaProspect" unique_id=1883310739]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 24.0
@@ -2430,7 +2427,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_2fcit")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mdf0t")
 max_value = 1.0
 
-[node name="Label" type="Label" parent="NovaProspect"]
+[node name="Label" type="Label" parent="NovaProspect" unique_id=1601332077]
 layout_mode = 0
 offset_left = -1.0
 offset_top = 16.0

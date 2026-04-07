@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7vd3hg6exwa1"]
+[gd_scene format=3 uid="uid://b7vd3hg6exwa1"]
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_stwf7"]
 [ext_resource type="Script" uid="uid://wu5vq5o8rcho" path="res://scenes/gui/scr_death_screen.gd" id="2_c5eij"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://m2mms3pjc366" path="res://sprites/death/spr_default.png" id="3_squjp"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_c1lwk"]
 
-[node name="DeathScreen" type="Control"]
+[node name="DeathScreen" type="Control" unique_id=668510415]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,14 +16,14 @@ grow_vertical = 2
 theme = ExtResource("1_stwf7")
 script = ExtResource("2_c5eij")
 
-[node name="Bg" type="ColorRect" parent="."]
+[node name="Bg" type="ColorRect" parent="." unique_id=556778671]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1232774542]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 80.0
@@ -32,7 +32,7 @@ scale = Vector2(2, 2)
 text = "game over"
 horizontal_alignment = 1
 
-[node name="TextBox" type="RichTextLabel" parent="."]
+[node name="TextBox" type="RichTextLabel" parent="." unique_id=583025034]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 70.0
@@ -43,26 +43,26 @@ text = "jobu"
 scroll_active = false
 script = ExtResource("2_pk72b")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=87345651]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 96.0
 offset_right = 128.0
 offset_bottom = 120.0
 
-[node name="RetryButton" type="Button" parent="HBoxContainer"]
+[node name="RetryButton" type="Button" parent="HBoxContainer" unique_id=710140265]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 text = "retry"
 
-[node name="QuitButton" type="Button" parent="HBoxContainer"]
+[node name="QuitButton" type="Button" parent="HBoxContainer" unique_id=856199966]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 text = "quit"
 
-[node name="Pictures" type="TextureRect" parent="."]
+[node name="Pictures" type="TextureRect" parent="." unique_id=1553471065]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 24.0
@@ -70,7 +70,7 @@ offset_right = 120.0
 offset_bottom = 64.0
 texture = ExtResource("3_squjp")
 
-[node name="Camera" parent="." instance=ExtResource("5_c1lwk")]
+[node name="Camera" parent="." unique_id=761611355 instance=ExtResource("5_c1lwk")]
 position = Vector2(80, 60)
 
 [connection signal="pressed" from="HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]

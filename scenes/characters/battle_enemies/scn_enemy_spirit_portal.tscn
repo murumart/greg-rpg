@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7jgbv134hqq0"]
+[gd_scene format=3 uid="uid://b7jgbv134hqq0"]
 
 [ext_resource type="Script" uid="uid://yctxwjcw2aft" path="res://scenes/characters/battle_enemies/scr_enemy_spirit_portal.gd" id="1_q6pf4"]
 
-[node name="SpiritPortal" type="Node2D"]
+[node name="SpiritPortal" type="Node2D" unique_id=1431015944]
 script = ExtResource("1_q6pf4")
 auto_ai = false
 gender = 6
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="BegoneError" type="Node2D" parent="."]
+[node name="BegoneError" type="Node2D" parent="." unique_id=424784717]

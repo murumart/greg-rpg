@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://v6h1naknl1hj"]
+[gd_scene format=3 uid="uid://v6h1naknl1hj"]
 
 [ext_resource type="Texture2D" uid="uid://din46a7xat7wh" path="res://sprites/spirit/spr_peanuts_screen.png" id="1_6543m"]
 [ext_resource type="AudioStream" uid="uid://corjwlsv7cj0x" path="res://sounds/spirit/grandma_debuff.ogg" id="2_06ggl"]
@@ -185,18 +185,16 @@ _data = {
 &"default": SubResource("Animation_rciol")
 }
 
-[node name="VfxPeanutsScreen" type="Node2D"]
+[node name="VfxPeanutsScreen" type="Node2D" unique_id=522268352]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1898894651]
 visible = false
 self_modulate = Color(9.14484e-07, 0.502343, 0.206176, 0.682353)
 sprite_frames = SubResource("SpriteFrames_7oefj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yahsl")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2093395653]
+libraries/ = SubResource("AnimationLibrary_yahsl")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1687917808]
 volume_db = 3.0

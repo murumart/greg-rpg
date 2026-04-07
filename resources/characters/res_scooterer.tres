@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://e03f1o4bufr7"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://e03f1o4bufr7"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_mwpnh"]
 [ext_resource type="Texture2D" uid="uid://kw4jfrj8ng6v" path="res://sprites/characters/battle/east/spr_scooterer.png" id="1_ta21t"]
@@ -10,24 +10,14 @@ region = Rect2(16, 8, 22, 22)
 
 [resource]
 script = ExtResource("1_mwpnh")
-name_in_file = &""
 name = "scootin' sauces"
 info = "he's the mayor"
 voice_sound = ExtResource("3_hlcl0")
 portrait = SubResource("AtlasTexture_dhq1g")
-max_health = 100.0
-health = 100.0
 max_magic = 500.0
-magic = 30.0
 level = 75
-experience = 0
 attack = 75.0
 defense = 75.0
 speed = 70.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["scooter_rev", "scooter_overrun"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""
 metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

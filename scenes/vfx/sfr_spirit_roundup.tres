@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://bsjeviada1f0r"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bsjeviada1f0r"]
 
 [ext_resource type="Texture2D" uid="uid://bqrdtm7bp21u4" path="res://sprites/spirit/spr_roundup_hint.png" id="1_gjxti"]
 

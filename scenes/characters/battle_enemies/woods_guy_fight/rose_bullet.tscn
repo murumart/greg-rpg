@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbas43xc8v0x7"]
+[gd_scene format=3 uid="uid://cbas43xc8v0x7"]
 
 [ext_resource type="Script" uid="uid://b3uiqfbr2yi1t" path="res://scenes/characters/battle_enemies/woods_guy_fight/rose_bullet.gd" id="1_ufviu"]
 [ext_resource type="Texture2D" uid="uid://dib5ead4jgl61" path="res://sprites/characters/battle/woodsman/spr_woodsguy_attacks.png" id="2_106p3"]
@@ -9,18 +9,18 @@ blend_mode = 1
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
 radius = 3.0
 
-[node name="RoseBullet" type="Area2D"]
+[node name="RoseBullet" type="Area2D" unique_id=1619072237]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_ufviu")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1913416933]
 texture = ExtResource("2_106p3")
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="Sprite" type="Sprite2D" parent="Sprite"]
+[node name="Sprite" type="Sprite2D" parent="Sprite" unique_id=50878120]
 self_modulate = Color(1, 1, 1, 0.266667)
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_106p3")
@@ -31,10 +31,10 @@ centered = false
 region_enabled = true
 region_rect = Rect2(16, 0, 8, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1212537305]
 shape = SubResource("CircleShape2D_2v3to")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=140367274]
 scale = Vector2(0.6, 0.6)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

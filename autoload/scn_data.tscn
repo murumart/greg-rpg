@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://btmuekw61xs7e"]
+[gd_scene format=3 uid="uid://btmuekw61xs7e"]
 
 [ext_resource type="Script" uid="uid://dp5kxv3xbhrew" path="res://autoload/scr_data.gd" id="1_jydat"]
 
-[node name="DAT" type="Node"]
+[node name="DAT" type="Node" unique_id=70479596]
 script = ExtResource("1_jydat")
 
-[node name="GameTimer" type="Timer" parent="."]
+[node name="GameTimer" type="Timer" parent="." unique_id=2026393653]
 process_mode = 1
 autostart = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmvo43leoc5ci"]
+[gd_scene format=3 uid="uid://cmvo43leoc5ci"]
 
 [ext_resource type="Texture2D" uid="uid://du7kinrednfqw" path="res://sprites/vfx/soplet.png" id="1_drikc"]
 
@@ -73,17 +73,15 @@ _data = {
 &"default": SubResource("Animation_o6ob2")
 }
 
-[node name="VfxSopping" type="Node2D"]
+[node name="VfxSopping" type="Node2D" unique_id=1875420036]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1383727603]
 modulate = Color(1, 1, 1, 0)
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_q0q4l")
 texture = ExtResource("1_drikc")
 lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_q0q4l")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_db3hx")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1731207924]
+libraries/ = SubResource("AnimationLibrary_db3hx")
+autoplay = &"default"

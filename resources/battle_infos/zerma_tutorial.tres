@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://wy2pad6a4u0h"]
+[gd_resource type="Resource" script_class="BattleInfo" format=3 uid="uid://wy2pad6a4u0h"]
 
 [ext_resource type="Resource" uid="uid://d166p4x3l8nls" path="res://resources/rewards/res_zerma_tut_rewards.tres" id="1_5mkkn"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="1_mc71a"]
@@ -9,14 +9,7 @@ script = ExtResource("1_mc71a")
 enemies = Array[StringName]([&"zerma"])
 background = "greghouse"
 music = "greg_battle"
-party = Array[StringName]([])
 death_reason = 10
 start_text = "you will be so educated!"
 rewards = ExtResource("1_5mkkn")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
 crits_enabled = false
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_toiam")]({})
-increment_data_with_enemies = &""

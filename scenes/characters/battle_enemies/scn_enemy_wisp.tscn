@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dkmltgm3i0dhb"]
+[gd_scene format=3 uid="uid://dkmltgm3i0dhb"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_sj3p3"]
 [ext_resource type="Texture2D" uid="uid://bie8bvgbo4idd" path="res://sprites/characters/battle/east/spr_wisp.png" id="2_nqmc2"]
@@ -140,23 +140,23 @@ _data = {
 &"hurt": SubResource("Animation_oacy0")
 }
 
-[node name="Wisp" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Wisp" type="Node2D" unique_id=66007567 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_sj3p3")
 animator = NodePath("Animator")
 metadata/_custom_type_script = "uid://dfbbahimpb2ie"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=716577181]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_alqaa")
 autoplay = "default"
 frame_progress = 0.333329
 
-[node name="TextureCopier" type="Node" parent="AnimatedSprite2D" node_paths=PackedStringArray("from", "to")]
+[node name="TextureCopier" type="Node" parent="AnimatedSprite2D" unique_id=1832444396 node_paths=PackedStringArray("from", "to")]
 script = ExtResource("3_oacy0")
 from = NodePath("..")
 to = NodePath("../Particles")
 
-[node name="Particles" type="GPUParticles2D" parent="AnimatedSprite2D"]
+[node name="Particles" type="GPUParticles2D" parent="AnimatedSprite2D" unique_id=898151909]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_bnjhy")
 amount = 32
@@ -164,7 +164,5 @@ texture = SubResource("AtlasTexture_oacy0")
 lifetime = 1.4
 process_material = SubResource("ParticleProcessMaterial_s6stk")
 
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bnjhy")
-}
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=322259126]
+libraries/ = SubResource("AnimationLibrary_bnjhy")

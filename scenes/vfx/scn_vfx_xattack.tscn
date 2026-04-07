@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bklkimtl8kx7k"]
+[gd_scene format=3 uid="uid://bklkimtl8kx7k"]
 
 [ext_resource type="AudioStream" uid="uid://ckmlw4vj4wj1g" path="res://sounds/men-02.ogg" id="1_iahi7"]
 [ext_resource type="AudioStream" uid="uid://buib1ge4kwxnl" path="res://sounds/men-03.ogg" id="2_jyugo"]
@@ -446,23 +446,23 @@ radial_accel_max = 33.63
 scale_curve = SubResource("CurveTexture_2eucv")
 alpha_curve = SubResource("CurveTexture_n27to")
 
-[node name="VfxXAttack" type="Node2D"]
+[node name="VfxXAttack" type="Node2D" unique_id=1574206031]
 
-[node name="Strike" type="AudioStreamPlayer" parent="."]
+[node name="Strike" type="AudioStreamPlayer" parent="." unique_id=1988049100]
 stream = ExtResource("1_iahi7")
 pitch_scale = 0.85
 
-[node name="Pre" type="AudioStreamPlayer" parent="."]
+[node name="Pre" type="AudioStreamPlayer" parent="." unique_id=1511694784]
 stream = ExtResource("2_jyugo")
 pitch_scale = 3.0
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=571600788]
 material = SubResource("ShaderMaterial_2eucv")
 position = Vector2(605, 633)
 rotation = -0.756021
 scale = Vector2(1, 128)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasGroup" unique_id=818695405]
 material = SubResource("CanvasItemMaterial_n27to")
 amount = 512
 texture = SubResource("GradientTexture2D_yg6r4")
@@ -471,14 +471,14 @@ fixed_fps = 120
 visibility_rect = Rect2(-400, -400, 800, 800)
 process_material = SubResource("ParticleProcessMaterial_fxmfi")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=709633015]
 material = SubResource("CanvasItemMaterial_iahi7")
 amount = 2
 texture = SubResource("GradientTexture2D_n27to")
 lifetime = 0.43
 process_material = SubResource("ParticleProcessMaterial_3hvx2")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." unique_id=1758836254]
 material = SubResource("CanvasItemMaterial_iahi7")
 amount = 20
 texture = SubResource("GradientTexture2D_n27to")
@@ -491,17 +491,15 @@ trail_sections = 4
 trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_c8xa4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jyugo")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1360117823]
+libraries/ = SubResource("AnimationLibrary_jyugo")
+autoplay = &"default"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1766103484]
 material = SubResource("CanvasItemMaterial_jyugo")
 texture = SubResource("GradientTexture2D_3hvx2")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1546822718]
 material = SubResource("CanvasItemMaterial_2eucv")
 amount = 2
 texture = SubResource("GradientTexture2D_n8xmi")

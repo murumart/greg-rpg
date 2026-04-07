@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://unx5ufy0r3l8"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://unx5ufy0r3l8"]
 
 [ext_resource type="Texture2D" uid="uid://bnusfluirkrpi" path="res://sprites/characters/overworld/spr_president_overworld.png" id="1_6vleh"]
 

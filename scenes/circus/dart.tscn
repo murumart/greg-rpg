@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://busagi1l3bw4n"]
+[gd_scene format=3 uid="uid://busagi1l3bw4n"]
 
 [ext_resource type="Texture2D" uid="uid://cs0x6sf4qvbga" path="res://sprites/circus/ballgame.png" id="1_v240g"]
 
@@ -17,10 +17,10 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 "
 
-[node name="Dart" type="Node2D"]
+[node name="Dart" type="Node2D" unique_id=1721474325]
 script = SubResource("GDScript_x2yxb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1720552630]
 position = Vector2(-13, -13)
 texture = ExtResource("1_v240g")
 centered = false

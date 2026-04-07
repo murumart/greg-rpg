@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dl1cbxwg280oe"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dl1cbxwg280oe"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_7kr5e"]
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_aw1dr"]
@@ -7,35 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_dr2tg"]
 script = ExtResource("1_k3eld")
-health = 0.0
-health_percent = 0.0
 max_health_percent = 10.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
 max_magic_percent = 27.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 2
-effects = Array[ExtResource("1_7kr5e")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_aw1dr")
-name_in_file = &""
 name = &"gummy fish"
 description = "it glows in the dark!"
 texture = ExtResource("3_f8mt3")
-attack_animation = ""
 price = 60
 use = 0
-consume_on_use = true
 payload = SubResource("Resource_dr2tg")

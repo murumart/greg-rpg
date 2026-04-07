@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://g6h0jepyhdep"]
+[gd_scene format=3 uid="uid://g6h0jepyhdep"]
 
 [ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_c5qhk"]
 [ext_resource type="Texture2D" uid="uid://duteuuoqobk04" path="res://sprites/characters/battle/animals/forest.png" id="2_7p2rh"]
@@ -1049,16 +1049,16 @@ _data = {
 &"idle": SubResource("Animation_uwssv")
 }
 
-[node name="Fox" type="Node2D"]
+[node name="Fox" type="Node2D" unique_id=888775561]
 script = ExtResource("1_c5qhk")
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=1489453457]
 z_index = -1
 position = Vector2(0, -13)
 
-[node name="Skeleton2D" type="Skeleton2D" parent="Puppet"]
+[node name="Skeleton2D" type="Skeleton2D" parent="Puppet" unique_id=1517061568]
 
-[node name="TailBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="TailBone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1613344698]
 position = Vector2(15, 0)
 rest = Transform2D(1, 0, 0, 1, 27, -2)
 auto_calculate_length_and_angle = false
@@ -1066,14 +1066,14 @@ length = 48.136
 bone_angle = 22.618
 metadata/_edit_group_ = true
 
-[node name="Tail" type="Sprite2D" parent="Puppet/Skeleton2D/TailBone2D"]
+[node name="Tail" type="Sprite2D" parent="Puppet/Skeleton2D/TailBone2D" unique_id=2012966878]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(0, -1)
 region_enabled = true
 region_rect = Rect2(80, 77, 47, 31)
 
-[node name="T5Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="T5Bone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1526691385]
 position = Vector2(-6, 2)
 rest = Transform2D(1, 0, 0, 1, 2, 3)
 auto_calculate_length_and_angle = false
@@ -1081,14 +1081,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T5" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D"]
+[node name="T5" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D" unique_id=1093958389]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D" unique_id=1789610522]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1096,14 +1096,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D" unique_id=1225465449]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D" unique_id=1323576967]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1111,14 +1111,14 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T5Bone2D/MBone2D/BBone2D" unique_id=682623069]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="T2Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="T2Bone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=2012082651]
 position = Vector2(7, 2)
 rest = Transform2D(1, 0, 0, 1, 18, 3)
 auto_calculate_length_and_angle = false
@@ -1126,14 +1126,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T2" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D"]
+[node name="T2" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D" unique_id=1032138359]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D" unique_id=1622858603]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1141,14 +1141,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D" unique_id=992852751]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D" unique_id=1282106974]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1156,14 +1156,14 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T2Bone2D/MBone2D/BBone2D" unique_id=1786049275]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="TBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="TBone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1733709108]
 position = Vector2(-20, 2)
 rest = Transform2D(1, 0, 0, 1, -16, 3)
 auto_calculate_length_and_angle = false
@@ -1171,14 +1171,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D"]
+[node name="T" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D" unique_id=1997291435]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D" unique_id=402210317]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1186,14 +1186,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D" unique_id=1759883958]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D" unique_id=600146833]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1201,14 +1201,14 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/TBone2D/MBone2D/BBone2D" unique_id=582187077]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="TorsoBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="TorsoBone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1456192915]
 position = Vector2(7, 0)
 rest = Transform2D(1, 0, 0, 1, 7, 0)
 auto_calculate_length_and_angle = false
@@ -1216,14 +1216,14 @@ length = 16.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="Torso" type="Sprite2D" parent="Puppet/Skeleton2D/TorsoBone2D"]
+[node name="Torso" type="Sprite2D" parent="Puppet/Skeleton2D/TorsoBone2D" unique_id=1381204450]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-32, -13)
 region_enabled = true
 region_rect = Rect2(22, 69, 57, 23)
 
-[node name="HeadBone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="HeadBone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1905006811]
 position = Vector2(-21, -3)
 rest = Transform2D(1, 0, 0, 1, -21, -3)
 auto_calculate_length_and_angle = false
@@ -1231,14 +1231,14 @@ length = 10.644
 bone_angle = -180.0
 metadata/_edit_group_ = true
 
-[node name="Head" type="Sprite2D" parent="Puppet/Skeleton2D/HeadBone2D"]
+[node name="Head" type="Sprite2D" parent="Puppet/Skeleton2D/HeadBone2D" unique_id=696811914]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-19, -7)
 region_enabled = true
 region_rect = Rect2(0, 72, 21, 38)
 
-[node name="T3Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="T3Bone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=108544544]
 position = Vector2(-14, 3)
 rest = Transform2D(1, 0, 0, 1, -6, 3)
 auto_calculate_length_and_angle = false
@@ -1246,14 +1246,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T3" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D"]
+[node name="T3" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D" unique_id=1701437118]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D" unique_id=1782554994]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1261,14 +1261,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D" unique_id=133250030]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D" unique_id=1066111308]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1276,14 +1276,14 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T3Bone2D/MBone2D/BBone2D" unique_id=1279489244]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="T4Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="T4Bone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=590518059]
 position = Vector2(0, 3)
 rest = Transform2D(1, 0, 0, 1, 11, 3)
 auto_calculate_length_and_angle = false
@@ -1291,14 +1291,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T4" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D"]
+[node name="T4" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D" unique_id=2120560146]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D" unique_id=1654400670]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1306,14 +1306,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D" unique_id=716621513]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D" unique_id=1052408385]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1321,14 +1321,14 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T4Bone2D/MBone2D/BBone2D" unique_id=217096500]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="T6Bone2D" type="Bone2D" parent="Puppet/Skeleton2D"]
+[node name="T6Bone2D" type="Bone2D" parent="Puppet/Skeleton2D" unique_id=1330467220]
 position = Vector2(14, 3)
 rest = Transform2D(1, 0, 0, 1, 23, 3)
 auto_calculate_length_and_angle = false
@@ -1336,14 +1336,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="T6" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D"]
+[node name="T6" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D" unique_id=1598898374]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-6, -2)
 region_enabled = true
 region_rect = Rect2(8, 113, 10, 16)
 
-[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D"]
+[node name="MBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D" unique_id=247901624]
 position = Vector2(-2, 14)
 rest = Transform2D(1, 0, 0, 1, -2, 14)
 auto_calculate_length_and_angle = false
@@ -1351,14 +1351,14 @@ length = 5.0
 bone_angle = 0.0
 metadata/_edit_group_ = true
 
-[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D"]
+[node name="M" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D" unique_id=711222489]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(8, 131, 11, 11)
 
-[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D"]
+[node name="BBone2D" type="Bone2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D" unique_id=1808842464]
 position = Vector2(6, 9)
 rest = Transform2D(1, 0, 0, 1, 6, 9)
 auto_calculate_length_and_angle = false
@@ -1366,15 +1366,13 @@ length = 16.0
 bone_angle = 180.0
 metadata/_edit_group_ = true
 
-[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D/BBone2D"]
+[node name="B" type="Sprite2D" parent="Puppet/Skeleton2D/T6Bone2D/MBone2D/BBone2D" unique_id=564312919]
 texture = ExtResource("2_7p2rh")
 centered = false
 offset = Vector2(-12, -1)
 region_enabled = true
 region_rect = Rect2(5, 144, 14, 4)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ee5y8")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1263423157]
+libraries/ = SubResource("AnimationLibrary_ee5y8")
+autoplay = &"idle"

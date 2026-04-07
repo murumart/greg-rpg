@@ -1,23 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://i2clqqkd2570"]
+[gd_scene format=3 uid="uid://i2clqqkd2570"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_r8h6s"]
 [ext_resource type="Texture2D" uid="uid://bb30ke8j1icxj" path="res://sprites/characters/battle/thugs/spr_stabbing_fella.png" id="2_3fyih"]
 [ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="3_grl1v"]
 
-[node name="StabbingFella" type="Node2D"]
+[node name="StabbingFella" type="Node2D" unique_id=990365333]
 script = ExtResource("1_r8h6s")
 toughness = 1.0
 altruism = 0.0
 innovation = 0.0
 vaimulembesus = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1753274592]
 texture = ExtResource("2_3fyih")
 
-[node name="CopyGregStatsComponent" type="Node" parent="."]
+[node name="CopyGregStatsComponent" type="Node" parent="." unique_id=1381777435]
 script = ExtResource("3_grl1v")
-multiplier = 0.904
-to_copy = Array[StringName]([&"speed"])
 copy_params = Dictionary[int, float]({
 3: 0.94
 })

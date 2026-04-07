@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cko1ubxcv6llv"]
+[gd_scene format=3 uid="uid://cko1ubxcv6llv"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_pvxis"]
 [ext_resource type="Texture2D" uid="uid://ddtn5wrqi5pa5" path="res://sprites/characters/battle/thugs/spr_stray_cart.png" id="2_07h6y"]
@@ -165,7 +165,7 @@ _data = {
 &"idle": SubResource("Animation_rb56y")
 }
 
-[node name="ShoppingCart" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="ShoppingCart" type="Node2D" unique_id=288591030 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_pvxis")
 effect_center = null
 animator = NodePath("AnimationPlayer")
@@ -179,16 +179,14 @@ gender = 4
 stat_multiplier = null
 wait = null
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=501428325]
 visible = false
 texture = ExtResource("2_07h6y")
 
-[node name="CoolSprite" type="Sprite2D" parent="."]
+[node name="CoolSprite" type="Sprite2D" parent="." unique_id=1789172327]
 visible = false
 scale = Vector2(0.185644, 0.172249)
 texture = ExtResource("3_wijol")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_e40oi")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=210704402]
+libraries/ = SubResource("AnimationLibrary_e40oi")

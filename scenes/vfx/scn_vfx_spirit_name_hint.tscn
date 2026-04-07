@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn42modbosehc"]
+[gd_scene format=3 uid="uid://bn42modbosehc"]
 
 [ext_resource type="Script" uid="uid://b3dni0eskfx76" path="res://scenes/vfx/scr_vfx_spirit_name_hint.gd" id="1_s5mtt"]
 [ext_resource type="Texture2D" uid="uid://vd83bulj4v1m" path="res://sprites/vfx/spr_sparkle.png" id="3_ogb4b"]
@@ -35,20 +35,20 @@ color_ramp = SubResource("GradientTexture1D_7chpf")
 anim_speed_min = 1.0
 anim_speed_max = 3.0
 
-[node name="SpiritNameHint" type="Node2D"]
+[node name="SpiritNameHint" type="Node2D" unique_id=525615990]
 script = ExtResource("1_s5mtt")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2067697969]
 material = SubResource("CanvasItemMaterial_lkvja")
-process_material = SubResource("ParticleProcessMaterial_y2785")
 texture = ExtResource("3_ogb4b")
 fixed_fps = 6
+process_material = SubResource("ParticleProcessMaterial_y2785")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1298096127]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_r8ijn")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1181385869]
 offset_left = -56.0
 offset_top = 2.0
 offset_right = 56.0
@@ -56,5 +56,5 @@ offset_bottom = 13.0
 text = "hi"
 horizontal_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1907044952]
 autostart = true

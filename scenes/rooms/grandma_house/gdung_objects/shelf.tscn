@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj517qpsnj0x0"]
+[gd_scene format=3 uid="uid://cj517qpsnj0x0"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_ed13n"]
 
-[node name="Shelf" type="Node2D"]
+[node name="Shelf" type="Node2D" unique_id=528310790]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411052977]
 position = Vector2(0, -16)
 texture = ExtResource("1_ed13n")
 centered = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7abgwgw2w6xa"]
+[gd_scene format=3 uid="uid://c7abgwgw2w6xa"]
 
 [ext_resource type="PackedScene" uid="uid://dmd4qo8vsceo3" path="res://scenes/tech/scn_battle_enemy.tscn" id="1_etmw4"]
 [ext_resource type="Texture2D" uid="uid://dnqlcua0daxsu" path="res://sprites/characters/battle/president/spr_dish.png" id="2_6xc3v"]
@@ -3119,13 +3119,13 @@ _data = {
 &"use_spirit": SubResource("Animation_a70di")
 }
 
-[node name="DishScale" instance=ExtResource("1_etmw4")]
+[node name="DishScale" unique_id=1580583526 instance=ExtResource("1_etmw4")]
 z_index = -86
 
-[node name="Puppet" type="CanvasGroup" parent="." index="0"]
+[node name="Puppet" type="CanvasGroup" parent="." index="0" unique_id=1162790544]
 z_index = -2
 
-[node name="Torso" type="Sprite2D" parent="Puppet" index="0"]
+[node name="Torso" type="Sprite2D" parent="Puppet" index="0" unique_id=799097063]
 position = Vector2(0, -4)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3133,7 +3133,7 @@ offset = Vector2(-10, -21)
 region_enabled = true
 region_rect = Rect2(1, 17, 20, 21)
 
-[node name="Pelvis" type="Sprite2D" parent="Puppet/Torso" index="0"]
+[node name="Pelvis" type="Sprite2D" parent="Puppet/Torso" index="0" unique_id=246722934]
 position = Vector2(0, 9)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3141,7 +3141,7 @@ offset = Vector2(-9, -9)
 region_enabled = true
 region_rect = Rect2(2, 38, 18, 10)
 
-[node name="RULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="0"]
+[node name="RULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="0" unique_id=116472707]
 position = Vector2(-5, 0)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3149,7 +3149,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 19)
 
-[node name="RLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/RULeg" index="0"]
+[node name="RLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/RULeg" index="0" unique_id=1250968097]
 position = Vector2(0, 17)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3157,7 +3157,7 @@ offset = Vector2(-10, -1)
 region_enabled = true
 region_rect = Rect2(17, 50, 14, 30)
 
-[node name="LULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="1"]
+[node name="LULeg" type="Sprite2D" parent="Puppet/Torso/Pelvis" index="1" unique_id=1763279525]
 position = Vector2(5, 0)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3165,7 +3165,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(2, 51, 8, 19)
 
-[node name="LLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/LULeg" index="0"]
+[node name="LLLeg" type="Sprite2D" parent="Puppet/Torso/Pelvis/LULeg" index="0" unique_id=1908493357]
 position = Vector2(0, 17)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3173,7 +3173,7 @@ offset = Vector2(-4, -1)
 region_enabled = true
 region_rect = Rect2(32, 50, 14, 30)
 
-[node name="NeckLine" type="Line2D" parent="Puppet/Torso" index="1" node_paths=PackedStringArray("follow_what")]
+[node name="NeckLine" type="Line2D" parent="Puppet/Torso" index="1" unique_id=1702689355 node_paths=PackedStringArray("follow_what")]
 show_behind_parent = true
 texture_repeat = 2
 points = PackedVector2Array(0, -17, 0, -25)
@@ -3183,7 +3183,7 @@ texture_mode = 1
 script = ExtResource("4_if78n")
 follow_what = NodePath("../Head")
 
-[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="2"]
+[node name="Head" type="Sprite2D" parent="Puppet/Torso" index="2" unique_id=2102473657]
 position = Vector2(0, -25)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3191,7 +3191,7 @@ offset = Vector2(-6, -11)
 region_enabled = true
 region_rect = Rect2(5, 0, 12, 16)
 
-[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="3"]
+[node name="RUArm" type="Sprite2D" parent="Puppet/Torso" index="3" unique_id=1468299912]
 position = Vector2(11, -17)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3199,7 +3199,7 @@ offset = Vector2(-3, -4)
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 21)
 
-[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/RUArm" index="0"]
+[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/RUArm" index="0" unique_id=1984958118]
 position = Vector2(0.0951033, 16.019)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3207,7 +3207,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 18, 6, 16)
 
-[node name="RHand" type="Sprite2D" parent="Puppet/Torso/RUArm/RLArm" index="0"]
+[node name="RHand" type="Sprite2D" parent="Puppet/Torso/RUArm/RLArm" index="0" unique_id=442175329]
 position = Vector2(0, 14)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3215,7 +3215,7 @@ offset = Vector2(-5, -1)
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="4"]
+[node name="LUArm" type="Sprite2D" parent="Puppet/Torso" index="4" unique_id=1855947134]
 position = Vector2(-11, -17)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3224,7 +3224,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(22, 16, 8, 21)
 
-[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/LUArm" index="0"]
+[node name="RLArm" type="Sprite2D" parent="Puppet/Torso/LUArm" index="0" unique_id=1741727858]
 position = Vector2(0.0951033, 16.019)
 rotation = 0.00634432
 texture = ExtResource("2_6xc3v")
@@ -3233,7 +3233,7 @@ offset = Vector2(-3, -1)
 region_enabled = true
 region_rect = Rect2(33, 18, 6, 16)
 
-[node name="LHand" type="Sprite2D" parent="Puppet/Torso/LUArm/RLArm" index="0"]
+[node name="LHand" type="Sprite2D" parent="Puppet/Torso/LUArm/RLArm" index="0" unique_id=141270996]
 position = Vector2(0, 14)
 texture = ExtResource("2_6xc3v")
 centered = false
@@ -3242,7 +3242,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(31, 37, 8, 11)
 
-[node name="Bell" type="Sprite2D" parent="Puppet/Torso" index="5"]
+[node name="Bell" type="Sprite2D" parent="Puppet/Torso" index="5" unique_id=10004211]
 modulate = Color(0.494118, 0.337255, 0.494118, 1)
 show_behind_parent = true
 position = Vector2(-5, -10)
@@ -3251,8 +3251,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2(20, 1, 10, 11)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1"]
-libraries = {
-"": SubResource("AnimationLibrary_5cdq0")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Puppet" index="1" unique_id=64474706]
+libraries/ = SubResource("AnimationLibrary_5cdq0")
+autoplay = &"idle"

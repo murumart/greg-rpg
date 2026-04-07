@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kqx43gmkaehn"]
+[gd_scene format=3 uid="uid://kqx43gmkaehn"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_triqe"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_vqd7j"]
@@ -68,27 +68,25 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ajm0"]
 size = Vector2(16, 2)
 
-[node name="Catface" type="Node2D"]
+[node name="Catface" type="Node2D" unique_id=1998732809]
 y_sort_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1362380734]
 position = Vector2(16, -8)
 scale = Vector2(1, 0.75)
 texture = ExtResource("1_triqe")
 region_enabled = true
 region_rect = Rect2(16, 0, 32, 32)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_bc7vf")
-}
-autoplay = "squish"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=136089920]
+libraries/ = SubResource("AnimationLibrary_bc7vf")
+autoplay = &"squish"
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=1815294548]
 position = Vector2(16, 8)
 script = ExtResource("2_vqd7j")
 key = "gdung_huge_catface"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=1577657614]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_4ajm0")

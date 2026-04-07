@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://buhnow3nipcl5"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://buhnow3nipcl5"]
 
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_jj1kr"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_lverc"]
@@ -6,34 +6,9 @@
 
 [sub_resource type="Resource" id="Resource_v4dvi"]
 script = ExtResource("1_yet3m")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_lverc")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_jj1kr")
-name_in_file = &""
-name = &""
-description = ""
 attack_animation = "panther_attack"
-price = 0
 use = 4
-consume_on_use = true
 payload = SubResource("Resource_v4dvi")

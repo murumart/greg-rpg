@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://veb0n0d0uu3k"]
+[gd_scene format=3 uid="uid://veb0n0d0uu3k"]
 
 [ext_resource type="PackedScene" uid="uid://d3grs3liet5e4" path="res://scenes/vfx/scn_vfx_powerline.tscn" id="1_keg01"]
 
-[sub_resource type="Gradient" id="Gradient_6cvqx"]
+[sub_resource type="Gradient" id="Gradient_lut0x"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.48992, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_36m7d"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5026b"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_6cvqx")
+gradient = SubResource("Gradient_lut0x")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_h5umf"]
@@ -135,26 +135,23 @@ _data = {
 &"default": SubResource("Animation_ralit")
 }
 
-[node name="VfxZap" type="Node2D"]
+[node name="VfxZap" type="Node2D" unique_id=2067027361]
 
-[node name="VfxPowerline" parent="." instance=ExtResource("1_keg01")]
-gradient = SubResource("Gradient_6cvqx")
-lifetime = 0.0
+[node name="VfxPowerline" parent="." unique_id=1168731909 instance=ExtResource("1_keg01")]
+gradient = SubResource("Gradient_lut0x")
 
-[node name="Line2D" parent="VfxPowerline" index="0"]
-points = PackedVector2Array(-8, -11, -3.8892, -8.3688, -4.6084, -7.48603, -3.22755, -4.25046, 2.24767, -1.19842, 0.565186, 2.52936, 2.67355, 5.16577, 7.40073, 5.76616, 10.6545, 11.2728, 11, 13)
-texture = SubResource("GradientTexture2D_36m7d")
+[node name="Line2D" parent="VfxPowerline" index="0" unique_id=134236045]
+points = PackedVector2Array(-8, -11, -7.538482, -9.464191, -1.782432, -5.530302, 0.252012, -3.5645108, 1.753336, -1.845551, 2.319892, 0.3472669, 3.245851, 3.5924196, 4.8748817, 7.051049, 10.3453245, 8.962642, 11, 13)
+texture = SubResource("GradientTexture2D_5026b")
 
-[node name="Start" parent="VfxPowerline" index="1"]
+[node name="Start" parent="VfxPowerline" index="1" unique_id=1667776555]
 position = Vector2(-8, -11)
 
-[node name="End" parent="VfxPowerline" index="2"]
+[node name="End" parent="VfxPowerline" index="2" unique_id=816528644]
 position = Vector2(11, 13)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_33eru")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=205431157]
+libraries/ = SubResource("AnimationLibrary_33eru")
+autoplay = &"default"
 
 [editable path="VfxPowerline"]

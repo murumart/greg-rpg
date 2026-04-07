@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://mlsxbbj5t3pw"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://mlsxbbj5t3pw"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_2jj1j"]
 [ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="1_lottt"]
@@ -14,34 +14,14 @@ duration = 9
 [sub_resource type="Resource" id="Resource_wgt4l"]
 script = ExtResource("2_qahgo")
 health = 25.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 2
 effects = Array[ExtResource("1_2jj1j")]([SubResource("Resource_g4g77")])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_lottt")
-name_in_file = &""
 name = &"red sauce"
 description = "savory sauce made from some sort of fruit. and plastic"
 texture = ExtResource("4_apvry")
-attack_animation = ""
 price = 115
 use = 2
-consume_on_use = true
 payload = SubResource("Resource_wgt4l")

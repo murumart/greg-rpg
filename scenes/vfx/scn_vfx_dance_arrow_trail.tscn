@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0umt1phbxj5t"]
+[gd_scene format=3 uid="uid://d0umt1phbxj5t"]
 
 [ext_resource type="Shader" uid="uid://dpfuqkiyjn0e6" path="res://shaders/shd_canvas_group_outline.gdshader" id="1_qi8nq"]
 
@@ -38,12 +38,12 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.25
 scale_curve = SubResource("CurveTexture_7ca8o")
 
-[node name="VfxDanceArrowTrail" type="CanvasGroup"]
+[node name="VfxDanceArrowTrail" type="CanvasGroup" unique_id=888028562]
 show_behind_parent = true
 z_index = -1
 material = SubResource("ShaderMaterial_0ycqa")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1731048814]
 material = SubResource("CanvasItemMaterial_3bgy3")
 position = Vector2(0, 8)
 amount = 16
@@ -51,7 +51,7 @@ texture = SubResource("GradientTexture2D_67lgd")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_e2ng6")
 
-[node name="GPUParticles2D2" type="CPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="CPUParticles2D" parent="." unique_id=397081078]
 visible = false
 z_index = -1
 material = SubResource("CanvasItemMaterial_3bgy3")

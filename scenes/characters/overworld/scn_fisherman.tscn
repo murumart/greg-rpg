@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://50csctmtw55r"]
+[gd_scene format=3 uid="uid://50csctmtw55r"]
 
 [ext_resource type="Script" uid="uid://dj88ixhm22ied" path="res://scenes/characters/overworld/scr_fisherman.gd" id="1_0spjj"]
 [ext_resource type="Texture2D" uid="uid://d1s2np52q3rhb" path="res://sprites/characters/overworld/spr_fishermen_overworld.png" id="1_itcb7"]
@@ -10,30 +10,30 @@ size = Vector2(10, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecy3r"]
 size = Vector2(12, 6)
 
-[node name="Fisherman" type="Node2D" groups=["fishermen"]]
+[node name="Fisherman" type="Node2D" unique_id=1409656829 groups=["fishermen"]]
 script = ExtResource("1_0spjj")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=708360158]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1378198606]
 shape = SubResource("RectangleShape2D_sad0f")
 
-[node name="InteractionArea" parent="." instance=ExtResource("2_n6n77")]
+[node name="InteractionArea" parent="." unique_id=290678136 instance=ExtResource("2_n6n77")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1647926610]
 shape = SubResource("RectangleShape2D_ecy3r")
 
-[node name="Face" type="Sprite2D" parent="."]
+[node name="Face" type="Sprite2D" parent="." unique_id=807883768]
 position = Vector2(0, -8)
 texture = ExtResource("1_itcb7")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Pole" type="Sprite2D" parent="."]
+[node name="Pole" type="Sprite2D" parent="." unique_id=1236761342]
 position = Vector2(2, -3)
 texture = ExtResource("1_itcb7")
 centered = false
@@ -41,7 +41,7 @@ offset = Vector2(-1, -28)
 region_enabled = true
 region_rect = Rect2(33, 0, 15, 28)
 
-[node name="Line2D" type="Line2D" parent="Pole"]
+[node name="Line2D" type="Line2D" parent="Pole" unique_id=1185135753]
 position = Vector2(13, -27)
 points = PackedVector2Array(1, 0, 1, 30)
 width = 1.0

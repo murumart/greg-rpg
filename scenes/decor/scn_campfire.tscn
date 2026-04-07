@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1bw3nluoktrc"]
+[gd_scene format=3 uid="uid://d1bw3nluoktrc"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_2fmfa"]
 [ext_resource type="Script" uid="uid://dwbv3dxq05g70" path="res://scenes/decor/scr_campfire.gd" id="2_02woc"]
@@ -7,24 +7,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0drw"]
 size = Vector2(31, 15)
 
-[node name="Campfire" type="Node2D" groups=["save_me"]]
+[node name="Campfire" type="Node2D" unique_id=796636494 groups=["save_me"]]
 script = ExtResource("2_02woc")
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=429886144]
 position = Vector2(1, -1)
 script = ExtResource("2_mwsdn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=986897433]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_q0drw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1738989517]
 position = Vector2(-15, -6)
 texture = ExtResource("1_2fmfa")
 centered = false
 region_enabled = true
 region_rect = Rect2(16, 33, 33, 16)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1518816606]
 
 [connection signal="inspected" from="InspectArea" to="." method="_on_inspected"]

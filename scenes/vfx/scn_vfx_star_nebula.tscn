@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqkygmvqae6eb"]
+[gd_scene format=3 uid="uid://cqkygmvqae6eb"]
 
 [ext_resource type="Texture2D" uid="uid://plui5dnb4250" path="res://sprites/vfx/coolexplosion.png" id="1_qri25"]
 [ext_resource type="AudioStream" uid="uid://crv3ecsoy46a5" path="res://sounds/spirit/solar/nebula.ogg" id="2_nydp2"]
@@ -188,25 +188,23 @@ _data = {
 &"default": SubResource("Animation_biqrw")
 }
 
-[node name="VfxStarNebula" type="Node2D"]
+[node name="VfxStarNebula" type="Node2D" unique_id=1404493479]
 
-[node name="CentreStar" type="Sprite2D" parent="."]
+[node name="CentreStar" type="Sprite2D" parent="." unique_id=1063003774]
 scale = Vector2(0.104, 0.104)
 texture = SubResource("GradientTexture2D_gojon")
 
-[node name="Explode" type="Sprite2D" parent="."]
+[node name="Explode" type="Sprite2D" parent="." unique_id=1515843549]
 texture = ExtResource("1_qri25")
 hframes = 4
 vframes = 4
 region_rect = Rect2(143, 143, 100, 101)
 
-[node name="RingAround" type="Sprite2D" parent="."]
+[node name="RingAround" type="Sprite2D" parent="." unique_id=716797381]
 texture = SubResource("GradientTexture2D_nx8gd")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=950433259]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_0vrqe")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1589830280]
+libraries/ = SubResource("AnimationLibrary_0vrqe")
+autoplay = &"default"

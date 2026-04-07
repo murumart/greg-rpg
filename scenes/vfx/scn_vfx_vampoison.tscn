@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvqaheqs6vyar"]
+[gd_scene format=3 uid="uid://bvqaheqs6vyar"]
 
 [ext_resource type="Texture2D" uid="uid://cruhdhnud3hhs" path="res://sprites/spirit/spr_isotoxin.png" id="1_672xs"]
 [ext_resource type="AudioStream" uid="uid://cerxlpdi7jyon" path="res://sounds/spirit/isotoxin.ogg" id="2_8su2j"]
@@ -152,21 +152,19 @@ _data = {
 &"default": SubResource("Animation_u68tp")
 }
 
-[node name="VfxIsotoxin" type="Node2D"]
+[node name="VfxIsotoxin" type="Node2D" unique_id=1441937455]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=34843979]
 self_modulate = Color(1, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_r1bpw")
 autoplay = "default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1915242855]
 stream = ExtResource("2_8su2j")
 volume_db = -5.157
 pitch_scale = 2.95
 autoplay = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_hpt1j")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1580414607]
+libraries/ = SubResource("AnimationLibrary_hpt1j")
+autoplay = &"default"

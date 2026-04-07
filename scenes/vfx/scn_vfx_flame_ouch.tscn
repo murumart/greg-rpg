@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://3vhlgnq68xoh"]
+[gd_scene format=3 uid="uid://3vhlgnq68xoh"]
 
 [ext_resource type="Texture2D" uid="uid://d15r8ki4lmuh4" path="res://sprites/characters/battle/animals/forestfire.png" id="1_olqhc"]
 [ext_resource type="AudioStream" uid="uid://b64cuxds1ww1a" path="res://sounds/fire.ogg" id="2_ojpai"]
@@ -129,22 +129,20 @@ _data = {
 &"new_animation": SubResource("Animation_4eo6e")
 }
 
-[node name="VfxFlameOuch" type="Node2D"]
+[node name="VfxFlameOuch" type="Node2D" unique_id=286164615]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1655348127]
 material = SubResource("CanvasItemMaterial_2tqx7")
 emitting = false
 amount = 128
-process_material = SubResource("ParticleProcessMaterial_4yx0n")
 texture = ExtResource("1_olqhc")
 explosiveness = 0.59
+process_material = SubResource("ParticleProcessMaterial_4yx0n")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_v4tbv")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1321218161]
+libraries/ = SubResource("AnimationLibrary_v4tbv")
+autoplay = &"new_animation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=984150843]
 max_polyphony = 3
 bus = &"ECHO"

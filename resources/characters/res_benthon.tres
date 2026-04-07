@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://h0h7kb3xojk6"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://h0h7kb3xojk6"]
 
 [ext_resource type="Texture2D" uid="uid://bah7sf2ahaqbi" path="res://sprites/characters/battle/thugs/spr_benthon_head.png" id="1_gy57l"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_q41es"]
@@ -9,7 +9,6 @@ region = Rect2(10, 10, 22, 22)
 
 [resource]
 script = ExtResource("2_q41es")
-name_in_file = &""
 name = "benthon"
 info = "OoooooOOOoooOOOoo"
 portrait = SubResource("AtlasTexture_344at")
@@ -18,13 +17,7 @@ health = 87.0
 max_magic = 300.0
 magic = 300.0
 level = 9
-experience = 0
 attack = 6.0
 defense = 13.0
 speed = 9.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["isotoxin", "dreaming_in_green", "smallshield"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

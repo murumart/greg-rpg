@@ -1,18 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvlakcwvqo8hk"]
+[gd_scene format=3 uid="uid://cvlakcwvqo8hk"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_g5xi7"]
 [ext_resource type="Texture2D" uid="uid://beidgtxgk3ykd" path="res://sprites/world/sg/chars.png" id="2_4vltj"]
 [ext_resource type="Script" uid="uid://7wboxr3ax2j2" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_snake.gd" id="2_ltano"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vltj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltano"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltano"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr14f"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nr14f"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jqr5v"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -50,33 +50,31 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="Animation" id="Animation_ltano"]
-resource_name = "wiggle"
-length = 2.0
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_jqr5v"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Line2D:points")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.333333, 0.933333, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, -20), Vector2(8, -20), Vector2(-2, -14)]
+"values": [PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Line2D:points")
-tracks/1/interp = 2
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.38, 0.9, 1.42),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [PackedVector2Array(0, 0, -1, -5, 0, -11, -1, -19), PackedVector2Array(0, 0, -3, -7, -2, -15, 2, -21), PackedVector2Array(0, 0, 5, -6, 7, -13, 8, -21), PackedVector2Array(0, 0, 3, -6, 2, -12, -2, -16)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nr14f"]
@@ -106,33 +104,6 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(2, -10), Vector2(-1.21967, -17.4122)]
 }
 
-[sub_resource type="Animation" id="Animation_jqr5v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Line2D:points")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_5m2hj"]
 resource_name = "enhole"
 tracks/0/type = "value"
@@ -160,6 +131,35 @@ tracks/1/keys = {
 "values": [Vector2(-1.21967, -17.4122), Vector2(3, -12), Vector2(1, -1), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ltano"]
+resource_name = "wiggle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.333333, 0.933333, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -20), Vector2(8, -20), Vector2(-2, -14)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Line2D:points")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.9, 1.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(0, 0, -1, -5, 0, -11, -1, -19), PackedVector2Array(0, 0, -3, -7, -2, -15, 2, -21), PackedVector2Array(0, 0, 5, -6, 7, -13, 8, -21), PackedVector2Array(0, 0, 3, -6, 2, -12, -2, -16)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5m2hj"]
 _data = {
 &"RESET": SubResource("Animation_jqr5v"),
@@ -168,34 +168,32 @@ _data = {
 &"wiggle": SubResource("Animation_ltano")
 }
 
-[node name="SgCatSnake" instance=ExtResource("1_g5xi7")]
+[node name="SgCatSnake" unique_id=1807293503 instance=ExtResource("1_g5xi7")]
 script = ExtResource("2_ltano")
 snakes_up = true
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_4vltj")
-
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_ltano")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_nr14f")
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_nr14f")
 
-[node name="Line2D" type="Line2D" parent="." index="3"]
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
+shape = SubResource("CircleShape2D_jqr5v")
+
+[node name="Line2D" type="Line2D" parent="." index="3" unique_id=1679406223]
 points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0)
 width = 4.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4" unique_id=858498303]
 sprite_frames = SubResource("SpriteFrames_jqr5v")
 autoplay = "default"
 frame_progress = 0.919796
 offset = Vector2(0, -8)
 
-[node name="Animator" type="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_5m2hj")
-}
+[node name="Animator" type="AnimationPlayer" parent="." index="5" unique_id=740334737]
+libraries/ = SubResource("AnimationLibrary_5m2hj")
 playback_default_blend_time = 0.1

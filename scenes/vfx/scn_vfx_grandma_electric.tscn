@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bh7m7o7ayst84"]
+[gd_scene format=3 uid="uid://bh7m7o7ayst84"]
 
 [ext_resource type="Texture2D" uid="uid://c27ab6b27ixyf" path="res://sprites/spirit/spr_jglove_local.png" id="1_o8yqr"]
 [ext_resource type="AudioStream" uid="uid://c6q8eqq1ej54a" path="res://sounds/spirit/grandma_electric.ogg" id="1_wevbp"]
@@ -143,16 +143,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="VfxJgloveLocal" type="Node2D"]
+[node name="VfxJgloveLocal" type="Node2D" unique_id=2912834]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tqvcl")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1261763645]
+libraries/ = SubResource("AnimationLibrary_tqvcl")
+autoplay = &"default"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1287027424]
 sprite_frames = SubResource("SpriteFrames_iygvc")
 autoplay = "default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1805771497]

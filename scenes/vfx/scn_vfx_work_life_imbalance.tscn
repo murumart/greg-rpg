@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhamt1n7cfv0i"]
+[gd_scene format=3 uid="uid://dhamt1n7cfv0i"]
 
 [ext_resource type="Texture2D" uid="uid://b4duli40gis6u" path="res://sprites/characters/battle/cashier_mean/spr_lunge.png" id="1_yoxtq"]
 [ext_resource type="AudioStream" uid="uid://b8bf1na1ejnko" path="res://sounds/spirit/wli_up.ogg" id="2_1v3fs"]
@@ -122,16 +122,16 @@ _data = {
 &"default": SubResource("Animation_3jdeo")
 }
 
-[node name="VfxWorkLifeImbalance" type="Node2D"]
+[node name="VfxWorkLifeImbalance" type="Node2D" unique_id=1825788462]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1581089086]
 offset_left = -218.0
 offset_top = -191.0
 offset_right = 247.0
 offset_bottom = 181.0
 color = Color(0.137255, 1, 1, 0.247059)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=9105511]
 modulate = Color(0, 4.71, 100, 1)
 z_index = -30
 texture_repeat = 2
@@ -140,13 +140,11 @@ texture = ExtResource("1_yoxtq")
 region_enabled = true
 region_rect = Rect2(0, 0, 640, 960)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_q0wug")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=147093446]
+libraries/ = SubResource("AnimationLibrary_q0wug")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=59702609]
 volume_db = -10.0
 max_polyphony = 2
 bus = &"ECHO"

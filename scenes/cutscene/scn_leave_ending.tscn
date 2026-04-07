@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy1g1vyw8gd8s"]
+[gd_scene format=3 uid="uid://dy1g1vyw8gd8s"]
 
 [ext_resource type="Script" uid="uid://b6k17cgh5v427" path="res://scenes/cutscene/scr_leave_ending.gd" id="1_efdju"]
 [ext_resource type="SpriteFrames" uid="uid://cgg6yedlort55" path="res://resources/characters/sfr_greg.tres" id="2_dkmg4"]
@@ -49,32 +49,32 @@ color = Color(1, 1, 0, 1)
 color_ramp = SubResource("GradientTexture1D_yk1j1")
 turbulence_enabled = true
 
-[node name="LeaveEnding" type="Node2D"]
+[node name="LeaveEnding" type="Node2D" unique_id=1824880908]
 script = ExtResource("1_efdju")
 
-[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=1329196624]
 script = ExtResource("7_4hf52")
 
-[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup" unique_id=2025933529]
 script = ExtResource("8_850yq")
 
-[node name="Sunsetter" type="Node" parent="." node_paths=PackedStringArray("sky_modulate")]
+[node name="Sunsetter" type="Node" parent="." unique_id=1830878023 node_paths=PackedStringArray("sky_modulate")]
 script = ExtResource("4_dg85e")
 sky_modulate = NodePath("../CanvasModulateGroup/ColorContainer")
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
-[node name="sky" type="ColorRect" parent="."]
+[node name="sky" type="ColorRect" parent="." unique_id=413179277]
 offset_right = 162.0
 offset_bottom = 124.0
 color = Color(0.0745098, 0.2, 0.415686, 1)
 
-[node name="song" type="AudioStreamPlayer" parent="."]
+[node name="song" type="AudioStreamPlayer" parent="." unique_id=1209082104]
 stream = ExtResource("3_f2ajq")
 volume_db = 8.0
 autoplay = true
 bus = &"Music"
 
-[node name="forest" type="TextureRect" parent="."]
+[node name="forest" type="TextureRect" parent="." unique_id=1813654351]
 material = SubResource("ShaderMaterial_mu3cc")
 offset_left = -1.0
 offset_top = -28.0
@@ -82,21 +82,21 @@ offset_right = 396.0
 offset_bottom = 97.0
 texture = ExtResource("3_ubqcj")
 
-[node name="ground" type="TextureRect" parent="."]
+[node name="ground" type="TextureRect" parent="." unique_id=429761392]
 offset_top = 42.0
 offset_right = 269.0
 offset_bottom = 122.0
 texture = SubResource("AtlasTexture_lawmk")
 stretch_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="ground"]
+[node name="Sprite2D" type="Sprite2D" parent="ground" unique_id=1769328993]
 position = Vector2(134.75, 70)
 scale = Vector2(4.21094, 3.10625)
 texture = ExtResource("4_iu7qt")
 region_enabled = true
 region_rect = Rect2(64, 82, 64, 8)
 
-[node name="ground2" type="TextureRect" parent="ground"]
+[node name="ground2" type="TextureRect" parent="ground" unique_id=787387131]
 layout_mode = 0
 offset_left = 269.0
 offset_right = 538.0
@@ -104,24 +104,24 @@ offset_bottom = 80.0
 texture = SubResource("AtlasTexture_lawmk")
 stretch_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="ground/ground2"]
+[node name="Sprite2D" type="Sprite2D" parent="ground/ground2" unique_id=566924047]
 position = Vector2(134.75, 70)
 scale = Vector2(4.21094, 3.10625)
 texture = ExtResource("4_iu7qt")
 region_enabled = true
 region_rect = Rect2(64, 82, 64, 8)
 
-[node name="Gre" type="AnimatedSprite2D" parent="."]
+[node name="Gre" type="AnimatedSprite2D" parent="." unique_id=236417722]
 position = Vector2(-9, 80)
 sprite_frames = ExtResource("2_dkmg4")
 animation = &"walk_right"
 frame_progress = 0.0917944
 
-[node name="bgus" type="GPUParticles2D" parent="."]
+[node name="bgus" type="GPUParticles2D" parent="." unique_id=1049688896]
 position = Vector2(83, 73)
 lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_dwsdq")
 
-[node name="crickets" type="AudioStreamPlayer" parent="."]
+[node name="crickets" type="AudioStreamPlayer" parent="." unique_id=1144922653]
 stream = ExtResource("9_mq61k")
 volume_db = -80.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd4td5fdl0n68"]
+[gd_scene format=3 uid="uid://dd4td5fdl0n68"]
 
 [ext_resource type="Script" uid="uid://bwcvung88txia" path="res://scenes/circus/scr_ball_popping_minigame.gd" id="1_mb3ox"]
 [ext_resource type="Texture2D" uid="uid://b3lrufphy31w8" path="res://sprites/photos/spr_woods1.png" id="1_q78m0"]
@@ -40,101 +40,101 @@ region = Rect2(34, 0, 24, 26)
 atlas = ExtResource("3_gakp2")
 region = Rect2(1, 0, 29, 31)
 
-[node name="BallPoppingMinigame" type="Node2D"]
+[node name="BallPoppingMinigame" type="Node2D" unique_id=121732365]
 script = ExtResource("1_mb3ox")
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=735296573]
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 158.0
 offset_bottom = 117.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_leb8f")
 
-[node name="TextureRect" type="TextureRect" parent="Panel"]
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=537670062]
 modulate = Color(0.243137, 0.294118, 0.133333, 1)
 self_modulate = Color(1, 1, 1, 0.847059)
 layout_mode = 2
 texture = ExtResource("1_q78m0")
 expand_mode = 1
 
-[node name="Timers" type="Node" parent="."]
+[node name="Timers" type="Node" parent="." unique_id=1395226923]
 
-[node name="BallCreationTimer" type="Timer" parent="Timers"]
+[node name="BallCreationTimer" type="Timer" parent="Timers" unique_id=2090329122]
 autostart = true
 
-[node name="Lanes" type="Node" parent="."]
+[node name="Lanes" type="Node" parent="." unique_id=1665846688]
 
-[node name="BallLane1" type="Line2D" parent="Lanes"]
+[node name="BallLane1" type="Line2D" parent="Lanes" unique_id=403567796]
 position = Vector2(0, 7)
 points = PackedVector2Array(4, 24, 157, 24)
 width = 1.0
 
-[node name="BallLane2" type="Line2D" parent="Lanes"]
+[node name="BallLane2" type="Line2D" parent="Lanes" unique_id=2114358378]
 position = Vector2(0, 30)
 points = PackedVector2Array(4, 24, 157, 24)
 width = 1.0
 
-[node name="BallLane3" type="Line2D" parent="Lanes"]
+[node name="BallLane3" type="Line2D" parent="Lanes" unique_id=1143219874]
 position = Vector2(0, 54)
 points = PackedVector2Array(4, 24, 157, 24)
 width = 1.0
 
-[node name="BallLane4" type="Line2D" parent="Lanes"]
+[node name="BallLane4" type="Line2D" parent="Lanes" unique_id=633744024]
 position = Vector2(0, 76)
 points = PackedVector2Array(4, 24, 157, 24)
 width = 1.0
 
-[node name="Pointer" type="Node2D" parent="."]
+[node name="Pointer" type="Node2D" parent="." unique_id=432568189]
 z_index = 1
 position = Vector2(80, 56)
 
-[node name="Sprite2D" type="Sprite2D" parent="Pointer"]
+[node name="Sprite2D" type="Sprite2D" parent="Pointer" unique_id=802106649]
 material = SubResource("ShaderMaterial_6uugk")
 texture = ExtResource("3_gakp2")
 region_enabled = true
 region_rect = Rect2(64, 3, 9, 9)
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=343618924]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 29.0
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
+[node name="ColorRect" type="ColorRect" parent="UI" unique_id=144144441]
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 16.0
 color = Color(0, 0, 0, 0.517647)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect" unique_id=1463171750]
 layout_mode = 0
 offset_left = 6.0
 offset_right = 154.0
 offset_bottom = 16.0
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect/HBoxContainer" unique_id=764831989]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/ColorRect/HBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/ColorRect/HBoxContainer/HBoxContainer" unique_id=1496363962]
 layout_mode = 2
 texture = SubResource("AtlasTexture_p80hk")
 expand_mode = 3
 
-[node name="BallsLabel" type="Label" parent="UI/ColorRect/HBoxContainer/HBoxContainer"]
+[node name="BallsLabel" type="Label" parent="UI/ColorRect/HBoxContainer/HBoxContainer" unique_id=1743241894]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ColorRect/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ColorRect/HBoxContainer" unique_id=1996788064]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/ColorRect/HBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="UI/ColorRect/HBoxContainer/HBoxContainer2" unique_id=230435142]
 layout_mode = 2
 texture = SubResource("AtlasTexture_nsetq")
 expand_mode = 3
 
-[node name="DartsLabel" type="Label" parent="UI/ColorRect/HBoxContainer/HBoxContainer2"]
+[node name="DartsLabel" type="Label" parent="UI/ColorRect/HBoxContainer/HBoxContainer2" unique_id=193080681]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"

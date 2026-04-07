@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattleInfo" load_steps=4 format=3 uid="uid://dtp0dndpfu60u"]
+[gd_resource type="Resource" script_class="BattleInfo" format=3 uid="uid://dtp0dndpfu60u"]
 
 [ext_resource type="Resource" uid="uid://bjdta44b75tuj" path="res://resources/rewards/res_bike_ghost_alpha.tres" id="1_mdgh0"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_pbh4l"]
@@ -7,16 +7,6 @@
 [resource]
 script = ExtResource("2_hiioj")
 enemies = Array[StringName]([&"bike_ghost"])
-background = "town"
 music = "bike_spirit"
-party = Array[StringName]([])
-death_reason = 0
 start_text = "toute phrase en langue etrangere."
 rewards = ExtResource("1_mdgh0")
-victory_music = &"victory"
-stop_music_before_end = true
-kill_music = true
-play_fanfare = true
-crits_enabled = true
-player_missing_armour_effects = Dictionary[StringName, ExtResource("1_pbh4l")]({})
-increment_data_with_enemies = &""

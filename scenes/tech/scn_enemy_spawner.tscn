@@ -1,23 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://ou1blsidn1su"]
+[gd_scene format=3 uid="uid://ou1blsidn1su"]
 
 [ext_resource type="Script" uid="uid://bggty3j3px056" path="res://scenes/tech/scr_enemy_spawner.gd" id="1_jv8nd"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="2_35lj2"]
 
-[node name="EnemySpawner" type="Node2D" groups=["save_me", "thug_spawners"]]
+[node name="EnemySpawner" type="Node2D" unique_id=697082775 groups=["save_me", "thug_spawners"]]
 y_sort_enabled = true
 script = ExtResource("1_jv8nd")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1010633742]
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1356853116]
 modulate = Color(0.619608, 1, 1, 0.52549)
 z_index = 2
 position = Vector2(2.38419e-07, 2.38419e-07)
 scale = Vector2(6, 6)
 texture = ExtResource("2_35lj2")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1274327836]
 self_modulate = Color(0.568627, 0, 1, 1)
 collision_mask = 3
 collide_with_areas = true

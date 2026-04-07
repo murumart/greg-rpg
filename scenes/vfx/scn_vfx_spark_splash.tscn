@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://btjbkpg3p1pf6"]
+[gd_scene format=3 uid="uid://btjbkpg3p1pf6"]
 
 [ext_resource type="Texture2D" uid="uid://bxn3kuhhohw8r" path="res://sprites/vfx/spr_bangspark.png" id="1_kpkbe"]
 
@@ -26,7 +26,8 @@ scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_j0uxn")
 
-[node name="SparkSplash" type="GPUParticles2D"]
+[node name="SparkSplash" type="GPUParticles2D" unique_id=807902699]
+emitting = false
 amount = 16
 texture = ExtResource("1_kpkbe")
 lifetime = 0.3
@@ -34,7 +35,7 @@ one_shot = true
 explosiveness = 0.82
 process_material = SubResource("ParticleProcessMaterial_sa00i")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1132522568]
 autostart = true
 
 [connection signal="ready" from="." to="." method="set_emitting" binds= [true]]

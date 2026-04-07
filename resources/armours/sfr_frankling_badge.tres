@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://qtieugf1mjvy"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://qtieugf1mjvy"]
 
 [ext_resource type="Texture2D" uid="uid://6m7up4q8sgif" path="res://sprites/characters/overworld/armours/spr_frankling_badge.png" id="1_xfty4"]
 

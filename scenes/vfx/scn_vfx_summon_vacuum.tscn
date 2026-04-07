@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs7ow36jvk4yd"]
+[gd_scene format=3 uid="uid://bs7ow36jvk4yd"]
 
 [ext_resource type="Texture2D" uid="uid://e50g7lqyahrn" path="res://sprites/characters/battle/grandma/spr_vacuum.png" id="1_ikh7b"]
 [ext_resource type="AudioStream" uid="uid://cu6jycsoodo1h" path="res://sounds/spirit/summon_vacuum.ogg" id="2_f6js5"]
@@ -98,23 +98,21 @@ _data = {
 &"new_animation": SubResource("Animation_t634h")
 }
 
-[node name="SummonVacuum" type="Node2D"]
+[node name="SummonVacuum" type="Node2D" unique_id=1997915466]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=897417170]
 emitting = false
 amount = 34
-process_material = SubResource("ParticleProcessMaterial_s0qgn")
 texture = ExtResource("1_ikh7b")
 lifetime = 5.0
 one_shot = true
 speed_scale = 3.0
 fixed_fps = 120
 trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_s0qgn")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1885838111]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6favj")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=919213011]
+libraries/ = SubResource("AnimationLibrary_6favj")
+autoplay = &"new_animation"

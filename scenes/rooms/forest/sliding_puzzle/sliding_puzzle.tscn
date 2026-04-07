@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b86f65y4e0huw"]
+[gd_scene format=3 uid="uid://b86f65y4e0huw"]
 
 [ext_resource type="Script" uid="uid://dvkemvv7le4bq" path="res://scenes/rooms/forest/sliding_puzzle/sliding_puzzle.gd" id="1_qo05k"]
 [ext_resource type="Texture2D" uid="uid://di64xn4tu0e06" path="res://sprites/photos/spr_forest2.png" id="2_8mtsu"]
@@ -110,24 +110,24 @@ random_pitch = 1.9
 streams_count = 1
 stream_0/stream = ExtResource("7_diur1")
 
-[node name="SlidingPuzzle" type="Node2D"]
+[node name="SlidingPuzzle" type="Node2D" unique_id=1996291026]
 script = ExtResource("1_qo05k")
 puzzle_size = 3
 image_texture = ExtResource("2_rjc4u")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1061956121]
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 0.611765)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1802767398]
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 153.0
 offset_bottom = 113.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wyuj7")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=602376161]
 show_behind_parent = true
 texture_repeat = 3
 material = SubResource("ShaderMaterial_yrvbv")
@@ -136,13 +136,13 @@ texture = ExtResource("2_8mtsu")
 expand_mode = 2
 stretch_mode = 6
 
-[node name="TileHaver" type="Panel" parent="."]
+[node name="TileHaver" type="Panel" parent="." unique_id=57769448]
 offset_left = 38.0
 offset_top = 18.0
 offset_right = 122.0
 offset_bottom = 102.0
 
-[node name="_TextureRect_23" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_23" type="TextureRect" parent="TileHaver" unique_id=2018154949]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 62.0
@@ -152,13 +152,13 @@ offset_bottom = 22.0
 texture = SubResource("AtlasTexture_mxq4w")
 expand_mode = 1
 
-[node name="_Label_24" type="Label" parent="TileHaver/_TextureRect_23"]
+[node name="_Label_24" type="Label" parent="TileHaver/_TextureRect_23" unique_id=234317998]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "1"
 
-[node name="_TextureRect_25" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_25" type="TextureRect" parent="TileHaver" unique_id=1195019710]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 22.0
@@ -168,13 +168,13 @@ offset_bottom = 82.0
 texture = SubResource("AtlasTexture_7t03m")
 expand_mode = 1
 
-[node name="_Label_26" type="Label" parent="TileHaver/_TextureRect_25"]
+[node name="_Label_26" type="Label" parent="TileHaver/_TextureRect_25" unique_id=1683378597]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "2"
 
-[node name="_TextureRect_27" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_27" type="TextureRect" parent="TileHaver" unique_id=1433777055]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 62.0
@@ -184,13 +184,13 @@ offset_bottom = 42.0
 texture = SubResource("AtlasTexture_c2htj")
 expand_mode = 1
 
-[node name="_Label_28" type="Label" parent="TileHaver/_TextureRect_27"]
+[node name="_Label_28" type="Label" parent="TileHaver/_TextureRect_27" unique_id=1214051273]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "3"
 
-[node name="_TextureRect_29" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_29" type="TextureRect" parent="TileHaver" unique_id=1637717657]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 42.0
@@ -200,13 +200,13 @@ offset_bottom = 42.0
 texture = SubResource("AtlasTexture_1e3nl")
 expand_mode = 1
 
-[node name="_Label_30" type="Label" parent="TileHaver/_TextureRect_29"]
+[node name="_Label_30" type="Label" parent="TileHaver/_TextureRect_29" unique_id=1490116737]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "4"
 
-[node name="_TextureRect_31" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_31" type="TextureRect" parent="TileHaver" unique_id=632743020]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 62.0
@@ -216,13 +216,13 @@ offset_bottom = 62.0
 texture = SubResource("AtlasTexture_4obac")
 expand_mode = 1
 
-[node name="_Label_32" type="Label" parent="TileHaver/_TextureRect_31"]
+[node name="_Label_32" type="Label" parent="TileHaver/_TextureRect_31" unique_id=1293546392]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "5"
 
-[node name="_TextureRect_33" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_33" type="TextureRect" parent="TileHaver" unique_id=371541179]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 22.0
@@ -232,13 +232,13 @@ offset_bottom = 42.0
 texture = SubResource("AtlasTexture_c7ubj")
 expand_mode = 1
 
-[node name="_Label_34" type="Label" parent="TileHaver/_TextureRect_33"]
+[node name="_Label_34" type="Label" parent="TileHaver/_TextureRect_33" unique_id=1274132607]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "6"
 
-[node name="_TextureRect_35" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_35" type="TextureRect" parent="TileHaver" unique_id=1526141336]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 42.0
@@ -248,13 +248,13 @@ offset_bottom = 82.0
 texture = SubResource("AtlasTexture_wwknf")
 expand_mode = 1
 
-[node name="_Label_36" type="Label" parent="TileHaver/_TextureRect_35"]
+[node name="_Label_36" type="Label" parent="TileHaver/_TextureRect_35" unique_id=163154650]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "7"
 
-[node name="_TextureRect_37" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_37" type="TextureRect" parent="TileHaver" unique_id=2039881350]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 2.0
@@ -264,13 +264,13 @@ offset_bottom = 22.0
 texture = SubResource("AtlasTexture_cveao")
 expand_mode = 1
 
-[node name="_Label_38" type="Label" parent="TileHaver/_TextureRect_37"]
+[node name="_Label_38" type="Label" parent="TileHaver/_TextureRect_37" unique_id=1777277026]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "8"
 
-[node name="_TextureRect_39" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_39" type="TextureRect" parent="TileHaver" unique_id=196463867]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 2.0
@@ -280,13 +280,13 @@ offset_bottom = 62.0
 texture = SubResource("AtlasTexture_p0xxa")
 expand_mode = 1
 
-[node name="_Label_40" type="Label" parent="TileHaver/_TextureRect_39"]
+[node name="_Label_40" type="Label" parent="TileHaver/_TextureRect_39" unique_id=1163581616]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "9"
 
-[node name="_TextureRect_41" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_41" type="TextureRect" parent="TileHaver" unique_id=948656358]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 62.0
@@ -296,13 +296,13 @@ offset_bottom = 82.0
 texture = SubResource("AtlasTexture_6oi5r")
 expand_mode = 1
 
-[node name="_Label_42" type="Label" parent="TileHaver/_TextureRect_41"]
+[node name="_Label_42" type="Label" parent="TileHaver/_TextureRect_41" unique_id=1057445210]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "10"
 
-[node name="_TextureRect_43" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_43" type="TextureRect" parent="TileHaver" unique_id=2055816403]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 2.0
@@ -312,13 +312,13 @@ offset_bottom = 82.0
 texture = SubResource("AtlasTexture_1uemw")
 expand_mode = 1
 
-[node name="_Label_44" type="Label" parent="TileHaver/_TextureRect_43"]
+[node name="_Label_44" type="Label" parent="TileHaver/_TextureRect_43" unique_id=307508709]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "11"
 
-[node name="_TextureRect_45" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_45" type="TextureRect" parent="TileHaver" unique_id=1573213001]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 42.0
@@ -328,13 +328,13 @@ offset_bottom = 22.0
 texture = SubResource("AtlasTexture_ubjfe")
 expand_mode = 1
 
-[node name="_Label_46" type="Label" parent="TileHaver/_TextureRect_45"]
+[node name="_Label_46" type="Label" parent="TileHaver/_TextureRect_45" unique_id=999383341]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "12"
 
-[node name="_TextureRect_47" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_47" type="TextureRect" parent="TileHaver" unique_id=1422240632]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 2.0
@@ -344,13 +344,13 @@ offset_bottom = 42.0
 texture = SubResource("AtlasTexture_wmpfo")
 expand_mode = 1
 
-[node name="_Label_48" type="Label" parent="TileHaver/_TextureRect_47"]
+[node name="_Label_48" type="Label" parent="TileHaver/_TextureRect_47" unique_id=18452097]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "13"
 
-[node name="_TextureRect_49" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_49" type="TextureRect" parent="TileHaver" unique_id=83970203]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 22.0
@@ -360,13 +360,13 @@ offset_bottom = 22.0
 texture = SubResource("AtlasTexture_a07jy")
 expand_mode = 1
 
-[node name="_Label_50" type="Label" parent="TileHaver/_TextureRect_49"]
+[node name="_Label_50" type="Label" parent="TileHaver/_TextureRect_49" unique_id=39949923]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "14"
 
-[node name="_TextureRect_51" type="TextureRect" parent="TileHaver"]
+[node name="_TextureRect_51" type="TextureRect" parent="TileHaver" unique_id=877454814]
 material = ExtResource("4_j12ag")
 layout_mode = 0
 offset_left = 22.0
@@ -376,20 +376,20 @@ offset_bottom = 62.0
 texture = SubResource("AtlasTexture_yep5v")
 expand_mode = 1
 
-[node name="_Label_52" type="Label" parent="TileHaver/_TextureRect_51"]
+[node name="_Label_52" type="Label" parent="TileHaver/_TextureRect_51" unique_id=1250289232]
 layout_mode = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "15"
 
-[node name="Pointer" type="Panel" parent="."]
+[node name="Pointer" type="Panel" parent="." unique_id=1844530931]
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 12.0
 offset_bottom = 12.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mbj7c")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2049289193]
 modulate = Color(1, 1, 1, 0.486275)
 offset_left = 9.0
 offset_top = 103.0
@@ -399,14 +399,14 @@ theme_override_fonts/font = ExtResource("6_ecxor")
 theme_override_font_sizes/font_size = 6
 text = "press [cancel] to exit"
 
-[node name="RockSound" type="AudioStreamPlayer" parent="."]
+[node name="RockSound" type="AudioStreamPlayer" parent="." unique_id=1400368429]
 stream = ExtResource("6_3rd5m")
 volume_db = 2.0
 pitch_scale = 1.05
 max_polyphony = 5
 bus = &"ECHO"
 
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+[node name="SelectSound" type="AudioStreamPlayer" parent="." unique_id=995387862]
 stream = SubResource("AudioStreamRandomizer_u8vir")
 pitch_scale = 1.26
 max_polyphony = 5

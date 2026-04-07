@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5k6k4dsuo7gs"]
+[gd_scene format=3 uid="uid://b5k6k4dsuo7gs"]
 
 [ext_resource type="Script" uid="uid://h3g87hadssyy" path="res://scenes/tech/scr_battle_enemy_animal.gd" id="1_sut8r"]
 [ext_resource type="Texture2D" uid="uid://dyep8f2c4jh0d" path="res://sprites/characters/battle/lakeside/spr_strider.png" id="2_t00q0"]
@@ -1262,7 +1262,7 @@ random_pitch = 1.19
 streams_count = 1
 stream_0/stream = ExtResource("3_8w2fy")
 
-[node name="Strider" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Strider" type="Node2D" unique_id=1674450898 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_sut8r")
 effect_center = Vector2i(0, -20)
 animator = NodePath("AnimationPlayer")
@@ -1270,10 +1270,10 @@ vaimulembesus = 0.63
 gender = 5
 effect_immunities = Array[StringName]([&"sopping", &"poison", &"sleepy"])
 
-[node name="Puppet" type="Node2D" parent="."]
+[node name="Puppet" type="Node2D" parent="." unique_id=497999414]
 position = Vector2(0, -23)
 
-[node name="Leg4" type="Sprite2D" parent="Puppet"]
+[node name="Leg4" type="Sprite2D" parent="Puppet" unique_id=770229404]
 position = Vector2(6, -7)
 rotation = -0.261799
 texture = ExtResource("2_t00q0")
@@ -1283,7 +1283,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(8, 14, 8, 81)
 
-[node name="Leg5" type="Sprite2D" parent="Puppet"]
+[node name="Leg5" type="Sprite2D" parent="Puppet" unique_id=1201059087]
 position = Vector2(-6, -6)
 rotation = 0.261799
 texture = ExtResource("2_t00q0")
@@ -1292,7 +1292,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(8, 14, 8, 81)
 
-[node name="Fur" type="Sprite2D" parent="Puppet"]
+[node name="Fur" type="Sprite2D" parent="Puppet" unique_id=1604689916]
 position = Vector2(-3, -3)
 rotation = 0.679407
 texture = ExtResource("2_t00q0")
@@ -1301,7 +1301,7 @@ offset = Vector2(-13, -2)
 region_enabled = true
 region_rect = Rect2(53, 22, 28, 28)
 
-[node name="Fur2" type="Sprite2D" parent="Puppet"]
+[node name="Fur2" type="Sprite2D" parent="Puppet" unique_id=1938098221]
 position = Vector2(3, -3)
 rotation = -0.420022
 texture = ExtResource("2_t00q0")
@@ -1310,7 +1310,7 @@ offset = Vector2(-13, -2)
 region_enabled = true
 region_rect = Rect2(53, 22, 28, 28)
 
-[node name="Leg2" type="Sprite2D" parent="Puppet"]
+[node name="Leg2" type="Sprite2D" parent="Puppet" unique_id=168544870]
 position = Vector2(-6, 1)
 texture = ExtResource("2_t00q0")
 centered = false
@@ -1318,7 +1318,7 @@ offset = Vector2(-4, 0)
 region_enabled = true
 region_rect = Rect2(8, 14, 8, 81)
 
-[node name="Leg3" type="Sprite2D" parent="Puppet"]
+[node name="Leg3" type="Sprite2D" parent="Puppet" unique_id=338221500]
 position = Vector2(6, 2)
 texture = ExtResource("2_t00q0")
 centered = false
@@ -1327,7 +1327,7 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(8, 14, 8, 81)
 
-[node name="Head" type="Sprite2D" parent="Puppet"]
+[node name="Head" type="Sprite2D" parent="Puppet" unique_id=826358947]
 position = Vector2(0, 6)
 texture = ExtResource("2_t00q0")
 centered = false
@@ -1335,24 +1335,22 @@ offset = Vector2(-12, -32)
 region_enabled = true
 region_rect = Rect2(26, 0, 24, 39)
 
-[node name="Sprite2D" type="Sprite2D" parent="Puppet"]
+[node name="Sprite2D" type="Sprite2D" parent="Puppet" unique_id=1414561236]
 visible = false
 texture = SubResource("GradientTexture2D_bbysd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4p0kj")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=85807585]
+libraries/ = SubResource("AnimationLibrary_4p0kj")
+autoplay = &"idle"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1054741721]
 autoplay = true
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=936995260]
 stream = SubResource("AudioStreamRandomizer_aq7aw")
 autoplay = true
 
-[node name="CopyGregStatsComponent" type="Node" parent="."]
+[node name="CopyGregStatsComponent" type="Node" parent="." unique_id=1673098861]
 script = ExtResource("6_w8vk7")
 copy_params = Dictionary[int, float]({
 0: 1.0,

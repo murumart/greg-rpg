@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cemd5vtqlqwib"]
+[gd_scene format=3 uid="uid://cemd5vtqlqwib"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_pv84y"]
 [ext_resource type="Texture2D" uid="uid://r2hessd2pjhl" path="res://sprites/characters/battle/lakeside/spr_sopping.png" id="2_qqgwe"]
 
-[node name="EnemySopping" type="Node2D"]
+[node name="EnemySopping" type="Node2D" unique_id=257634250]
 script = ExtResource("1_pv84y")
 effect_center = Vector2i(0, -13)
 altruism = 0.0
@@ -11,8 +11,8 @@ vaimulembesus = 0.361
 default_intent = 3
 can_flee = true
 gender = 2
-effect_immunities = Array[String](["fire"])
+effect_immunities = Array[StringName]([&"fire"])
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=719929895]
 position = Vector2(-11, -8)
 texture = ExtResource("2_qqgwe")

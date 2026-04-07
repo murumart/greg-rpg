@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5i0wek400rn3"]
+[gd_scene format=3 uid="uid://5i0wek400rn3"]
 
 [ext_resource type="Script" uid="uid://cn67627o8p6ud" path="res://scenes/biking/moving_objects/scr_biking_coin.gd" id="1_nsihm"]
 [ext_resource type="Texture2D" uid="uid://ci6mhv0bic0pe" path="res://sprites/vfx/spr_coin.png" id="2_lbs03"]
@@ -60,28 +60,28 @@ radius = 3.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h5bqn"]
 radius = 16.0312
 
-[node name="BikingCoin" type="Node2D" groups=["biking_coins"]]
+[node name="BikingCoin" type="Node2D" unique_id=528607776 groups=["biking_coins"]]
 script = ExtResource("1_nsihm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1107650451]
 sprite_frames = SubResource("SpriteFrames_gr1ij")
 autoplay = "default"
 frame_progress = 0.027404
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1071128032]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1883815000]
 shape = SubResource("CircleShape2D_ie6b8")
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("3_2dkjn")]
+[node name="GPUParticles2D" parent="." unique_id=1649617480 instance=ExtResource("3_2dkjn")]
 
-[node name="ManArea" type="Area2D" parent="."]
+[node name="ManArea" type="Area2D" parent="." unique_id=473309437]
 collision_layer = 0
 collision_mask = 16
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ManArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManArea" unique_id=1774552339]
 shape = SubResource("CircleShape2D_h5bqn")

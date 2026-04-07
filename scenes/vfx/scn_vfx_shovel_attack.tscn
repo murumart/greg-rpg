@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dych0wo8kblpv"]
+[gd_scene format=3 uid="uid://dych0wo8kblpv"]
 
 [ext_resource type="Texture2D" uid="uid://buvll7fa8e06l" path="res://sprites/items/spr_item_shovel_full.png" id="1_y1bba"]
 [ext_resource type="AudioStream" uid="uid://bc0bicsmsqvuo" path="res://sounds/attack_shovel.ogg" id="2_c53my"]
@@ -7,11 +7,62 @@
 [ext_resource type="Shader" uid="uid://dpfuqkiyjn0e6" path="res://shaders/shd_canvas_group_outline.gdshader" id="3_bg8rj"]
 [ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="4_a4et3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cwhc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_off85"]
 resource_local_to_scene = true
 shader = ExtResource("3_bg8rj")
 shader_parameter/line_colour = Color(0.533985, 0.151532, 1, 1)
 shader_parameter/line_thickness = 1
+
+[sub_resource type="Animation" id="Animation_a4et3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(27, 43)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_461p8"]
 resource_name = "default"
@@ -78,57 +129,6 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_a4et3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(27, 43)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer:playing")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_off85"]
 _data = {
 &"RESET": SubResource("Animation_a4et3"),
@@ -141,25 +141,23 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("2_c53my")
 
-[node name="VfxShovel" type="Node2D"]
+[node name="VfxShovel" type="Node2D" unique_id=1989240731]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1838248701]
 position = Vector2(27, 43)
 texture = ExtResource("1_y1bba")
 
-[node name="VfxDanceArrowTrail" parent="Sprite2D" instance=ExtResource("2_off85")]
-material = SubResource("ShaderMaterial_2cwhc")
+[node name="VfxDanceArrowTrail" parent="Sprite2D" unique_id=991743027 instance=ExtResource("2_off85")]
+material = SubResource("ShaderMaterial_off85")
 position = Vector2(10.4274, -17.9729)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_off85")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=317428803]
+libraries/ = SubResource("AnimationLibrary_off85")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=420699652]
 stream = SubResource("AudioStreamRandomizer_bg8rj")
 
-[node name="DustPuff" parent="." instance=ExtResource("3_461p8")]
+[node name="DustPuff" parent="." unique_id=1705043756 instance=ExtResource("3_461p8")]
 
-[node name="BangSpark" parent="." instance=ExtResource("4_a4et3")]
+[node name="BangSpark" parent="." unique_id=41910015 instance=ExtResource("4_a4et3")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cac0ytbj65bu"]
+[gd_scene format=3 uid="uid://cac0ytbj65bu"]
 
 [ext_resource type="Texture2D" uid="uid://csna6kkkhaber" path="res://sprites/world/building/spr_gdung.png" id="1_agy57"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="2_1oh55"]
@@ -9,25 +9,25 @@ size = Vector2(22, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3egi"]
 size = Vector2(24, 10)
 
-[node name="Mayonnaise" type="StaticBody2D"]
+[node name="Mayonnaise" type="StaticBody2D" unique_id=44419768]
 y_sort_enabled = true
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1109470423]
 position = Vector2(16, 13)
 texture = ExtResource("1_agy57")
 offset = Vector2(0, -11)
 region_enabled = true
 region_rect = Rect2(64, 16, 32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=833865368]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_j57lm")
 
-[node name="InspectArea" type="Area2D" parent="."]
+[node name="InspectArea" type="Area2D" parent="." unique_id=178071090]
 position = Vector2(16, 16)
 script = ExtResource("2_1oh55")
 key = "gdung_mayonnaise_huge"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InspectArea" unique_id=8996091]
 shape = SubResource("RectangleShape2D_g3egi")

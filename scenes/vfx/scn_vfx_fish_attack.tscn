@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bcqwomki0qm2l"]
+[gd_scene format=3 uid="uid://bcqwomki0qm2l"]
 
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="1_wev0x"]
 [ext_resource type="PackedScene" uid="uid://birvn4pdmfujd" path="res://scenes/vfx/scn_vfx_bangspark.tscn" id="2_jkgfh"]
@@ -255,17 +255,15 @@ _data = {
 &"default": SubResource("Animation_wsw6e")
 }
 
-[node name="VfxFishAttack" type="Node2D"]
+[node name="VfxFishAttack" type="Node2D" unique_id=2072276476]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2029879151]
 sprite_frames = SubResource("SpriteFrames_onham")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_5gwqs")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2041756364]
+libraries/ = SubResource("AnimationLibrary_5gwqs")
+autoplay = &"default"
 
-[node name="BangSpark" parent="." instance=ExtResource("2_jkgfh")]
+[node name="BangSpark" parent="." unique_id=1875617353 instance=ExtResource("2_jkgfh")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1128234987]

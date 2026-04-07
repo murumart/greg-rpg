@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvsmr7eokcomq"]
+[gd_scene format=3 uid="uid://dvsmr7eokcomq"]
 
 [ext_resource type="AudioStream" uid="uid://bf3ho31c5q6uh" path="res://sounds/spirit/solar/flare.ogg" id="1_3lgmb"]
 [ext_resource type="Texture2D" uid="uid://cqdvmopkyxcun" path="res://sprites/spirit/spr_flare.png" id="2_3f317"]
@@ -222,19 +222,17 @@ use_hdr = true
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[node name="VfxFlare" type="Node2D"]
+[node name="VfxFlare" type="Node2D" unique_id=1756631528]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4438f")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=960036004]
+libraries/ = SubResource("AnimationLibrary_4438f")
+autoplay = &"default"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1663901223]
 sprite_frames = SubResource("SpriteFrames_fatf8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=280588540]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1427954084]
 modulate = Color(1, 1, 1, 0)
 texture = SubResource("GradientTexture2D_53q0h")

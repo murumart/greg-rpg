@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://6ochmfrpo7bs"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://6ochmfrpo7bs"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_5bdkw"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_84uqt"]
@@ -7,35 +7,14 @@
 
 [sub_resource type="Resource" id="Resource_fheij"]
 script = ExtResource("1_5bdkw")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = 1.0
-defense_increase = 0.0
-speed_increase = 0.0
 gender = 4
-effects = Array[ExtResource("1_84uqt")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_vo5fe")
-name_in_file = &""
 name = &"bike ghost arm"
 description = "piu"
 texture = ExtResource("3_62gvs")
 attack_animation = "bikeghost_attack"
-price = 0
 use = 4
-consume_on_use = true
 payload = SubResource("Resource_fheij")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://h7tl42pvikny"]
+[gd_scene format=3 uid="uid://h7tl42pvikny"]
 
 [ext_resource type="Texture2D" uid="uid://bccy2s8dfoqc4" path="res://sprites/vfx/president_background/lighthouse.png" id="1_3h3h7"]
 [ext_resource type="Script" uid="uid://drcswl7vnjubq" path="res://scenes/battle_backgrounds/scr_president_background.gd" id="1_sckib"]
@@ -12,30 +12,50 @@
 [ext_resource type="Texture2D" uid="uid://csyrhomxysu3f" path="res://sprites/vfx/spr_waves.png" id="9_kw803"]
 [ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="10_ds01p"]
 
-[sub_resource type="Gradient" id="Gradient_0jvk6"]
+[sub_resource type="Gradient" id="Gradient_3nin5"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_yi33l"]
+[sub_resource type="Gradient" id="Gradient_c6ehi"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rryk2"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6uw1f"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_yi33l")
+gradient = SubResource("Gradient_c6ehi")
 fill_from = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_ly6d5"]
+[sub_resource type="Gradient" id="Gradient_tc4g5"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
 
-[sub_resource type="Gradient" id="Gradient_jy1j7"]
+[sub_resource type="Gradient" id="Gradient_8r8ll"]
 resource_local_to_scene = true
 offsets = PackedFloat32Array(0, 0.452282, 1)
 colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kp0l5"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_8r8ll")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_6eyya"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.452282, 1)
+colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
+[sub_resource type="Gradient" id="Gradient_2vfvl"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.452282, 1)
+colors = PackedColorArray(1, 1, 0.313726, 0, 1, 1, 1, 1, 1, 1, 0, 0.541176)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lb6yb"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_2vfvl")
+fill_from = Vector2(1, 1)
 
 [sub_resource type="Curve" id="Curve_578y2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.320403, 0.105671), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -224,10 +244,10 @@ _data = {
 &"zoom_in": SubResource("Animation_pqi71")
 }
 
-[node name="PresidentBackground" type="Node2D"]
+[node name="PresidentBackground" type="Node2D" unique_id=771993778]
 script = ExtResource("1_sckib")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=140358339]
 z_index = -3
 offset_left = -6.0
 offset_top = -3.0
@@ -235,18 +255,18 @@ offset_right = 168.0
 offset_bottom = 123.0
 color = Color(0, 0, 0, 1)
 
-[node name="More" type="Node2D" parent="."]
+[node name="More" type="Node2D" parent="." unique_id=412278939]
 
-[node name="VfxPowerline" parent="More" instance=ExtResource("2_8t0xc")]
+[node name="VfxPowerline" parent="More" unique_id=19488421 instance=ExtResource("2_8t0xc")]
 visible = false
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_0jvk6")
+gradient = SubResource("Gradient_3nin5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline" index="0"]
 points = PackedVector2Array(-8, -6, -4.08215, 1.58455, -4.69494, 14.4663, -4.26389, 19.3025, 1.84377, 29.3544, 1.90378, 41.4224, 4.86893, 49.8085, 5.43319, 59.4622, 8.73027, 64.3443, 7.48496, 72.8231, 12.8635, 83.0018, 11.4483, 95.2998, 11.9144, 101.208, 18.5052, 111.818, 18, 120)
-texture = SubResource("GradientTexture2D_rryk2")
+texture = SubResource("GradientTexture2D_6uw1f")
 
 [node name="Start" parent="More/VfxPowerline" index="1"]
 position = Vector2(-8, -6)
@@ -254,17 +274,17 @@ position = Vector2(-8, -6)
 [node name="End" parent="More/VfxPowerline" index="2"]
 position = Vector2(18, 120)
 
-[node name="VfxPowerline2" parent="More" instance=ExtResource("2_8t0xc")]
+[node name="VfxPowerline2" parent="More" unique_id=696925976 instance=ExtResource("2_8t0xc")]
 visible = false
 position = Vector2(132, 4)
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_ly6d5")
+gradient = SubResource("Gradient_tc4g5")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline2" index="0"]
 points = PackedVector2Array(-9, -11, -8.95006, -2.22451, -4.1045, 11.7102, -3.59702, 21.7085, -0.402282, 27.0716, -0.326438, 41.1584, 1.36122, 49.7145, 3.51348, 60.2593, 10.3015, 71.4039, 8.05269, 79.1616, 10.2257, 89.2465, 14.9085, 98.0943, 17.439, 108.322, 16.3827, 120.501, 21, 131)
-texture = SubResource("GradientTexture2D_rryk2")
+texture = SubResource("GradientTexture2D_kp0l5")
 
 [node name="Start" parent="More/VfxPowerline2" index="1"]
 position = Vector2(-9, -11)
@@ -272,17 +292,17 @@ position = Vector2(-9, -11)
 [node name="End" parent="More/VfxPowerline2" index="2"]
 position = Vector2(21, 131)
 
-[node name="VfxPowerline3" parent="More" instance=ExtResource("2_8t0xc")]
+[node name="VfxPowerline3" parent="More" unique_id=361318443 instance=ExtResource("2_8t0xc")]
 visible = false
 position = Vector2(73, 4)
 divisions = 15
 deviation_distance = 2.5
-gradient = SubResource("Gradient_jy1j7")
+gradient = SubResource("Gradient_6eyya")
 lifetime = 0.0
 
 [node name="Line2D" parent="More/VfxPowerline3" index="0"]
 points = PackedVector2Array(26, -7, 21.4787, 3.619, 23.1319, 10.1701, 21.2704, 22.8129, 14.6363, 29.8519, 15.4648, 42.8349, 9.82313, 49.5691, 7.60888, 58.7703, 8.48314, 71.3788, 5.60867, 76.0065, 2.06446, 90.2555, 1.31622, 95.0425, 1.00725, 107.563, -5.59233, 114.85, -6, 126)
-texture = SubResource("GradientTexture2D_rryk2")
+texture = SubResource("GradientTexture2D_lb6yb")
 
 [node name="Start" parent="More/VfxPowerline3" index="1"]
 position = Vector2(26, -7)
@@ -290,44 +310,44 @@ position = Vector2(26, -7)
 [node name="End" parent="More/VfxPowerline3" index="2"]
 position = Vector2(-6, 126)
 
-[node name="Mist2" type="GPUParticles2D" parent="."]
+[node name="Mist2" type="GPUParticles2D" parent="." unique_id=340519010]
 z_as_relative = false
 position = Vector2(85, 103)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_f0gpj")
 texture = ExtResource("2_shpnw")
 lifetime = 16.0
 preprocess = 4.0
+process_material = SubResource("ParticleProcessMaterial_f0gpj")
 
-[node name="Lighthouse" type="Sprite2D" parent="."]
+[node name="Lighthouse" type="Sprite2D" parent="." unique_id=328406173]
 y_sort_enabled = true
 position = Vector2(79, 52)
 texture = ExtResource("1_3h3h7")
 centered = false
 offset = Vector2(-38, -55)
 
-[node name="Beam" type="Sprite2D" parent="Lighthouse"]
+[node name="Beam" type="Sprite2D" parent="Lighthouse" unique_id=2130208858]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_2hpv4")
 position = Vector2(0, -39)
 texture = ExtResource("2_efvev")
 
-[node name="SpinPivot" type="Node2D" parent="Lighthouse"]
+[node name="SpinPivot" type="Node2D" parent="Lighthouse" unique_id=1519420286]
 modulate = Color(1, 1, 1, 0)
 y_sort_enabled = true
 position = Vector2(0, -2)
 
-[node name="OverworldCharacter" parent="Lighthouse/SpinPivot" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_sj8jt")]
+[node name="OverworldCharacter" parent="Lighthouse/SpinPivot" unique_id=936023089 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_sj8jt")]
 position = Vector2(0, 25)
 animated_sprite = NodePath("AnimatedSprite2D2")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Lighthouse/SpinPivot/OverworldCharacter"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Lighthouse/SpinPivot/OverworldCharacter" unique_id=1353958889]
 material = SubResource("CanvasItemMaterial_r4bp5")
 position = Vector2(0, -7)
 sprite_frames = ExtResource("6_g0ddx")
 animation = &"walk_down"
 
-[node name="OverworldCharacter2" parent="Lighthouse/SpinPivot" node_paths=PackedStringArray("animated_sprite", "collision_shape", "collision_detection_area", "detection_area", "detection_raycast") instance=ExtResource("5_sj8jt")]
+[node name="OverworldCharacter2" parent="Lighthouse/SpinPivot" unique_id=1527832366 node_paths=PackedStringArray("animated_sprite", "collision_shape", "collision_detection_area", "detection_area", "detection_raycast") instance=ExtResource("5_sj8jt")]
 position = Vector2(0, -22)
 animated_sprite = NodePath("AnimatedSprite2D2")
 collision_shape = NodePath("../OverworldCharacter/CollisionShape")
@@ -335,41 +355,39 @@ collision_detection_area = NodePath("../OverworldCharacter/CollisionDetectionAre
 detection_area = NodePath("../OverworldCharacter/DetectionArea")
 detection_raycast = NodePath("../OverworldCharacter/DetectionArea/DetectionRaycast")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Lighthouse/SpinPivot/OverworldCharacter2"]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Lighthouse/SpinPivot/OverworldCharacter2" unique_id=1629484707]
 material = SubResource("CanvasItemMaterial_r4bp5")
 position = Vector2(0, -7)
 sprite_frames = ExtResource("5_nlbht")
 animation = &"walk_down"
 
-[node name="ZoomAnimation" type="AnimationPlayer" parent="Lighthouse"]
-libraries = {
-"": SubResource("AnimationLibrary_uw302")
-}
+[node name="ZoomAnimation" type="AnimationPlayer" parent="Lighthouse" unique_id=795538516]
+libraries/ = SubResource("AnimationLibrary_uw302")
 
-[node name="Waves" type="Node2D" parent="."]
+[node name="Waves" type="Node2D" parent="." unique_id=66554130]
 
-[node name="Sprite2D" type="Sprite2D" parent="Waves"]
+[node name="Sprite2D" type="Sprite2D" parent="Waves" unique_id=1239414383]
 texture_repeat = 2
-position = Vector2(-178.301, 43)
+position = Vector2(-54.815845, 43)
 scale = Vector2(1, 1.04029)
 texture = ExtResource("9_kw803")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 360, 80)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Waves"]
+[node name="Sprite2D2" type="Sprite2D" parent="Waves" unique_id=1639748102]
 modulate = Color(0.145098, 0.447059, 0.686275, 1)
 z_index = -1
 texture_repeat = 2
-position = Vector2(-110.877, 30)
-scale = Vector2(1, 1.15897)
+position = Vector2(-36.261856, 30)
+scale = Vector2(1, 1.0401012)
 texture = ExtResource("9_kw803")
 centered = false
 flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 0, 360, 64)
 
-[node name="SinAnimator" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+[node name="SinAnimator" type="Node" parent="Waves" unique_id=875640545 node_paths=PackedStringArray("target")]
 script = ExtResource("10_ds01p")
 property_name = &"position:x"
 target = NodePath("../Sprite2D2")
@@ -377,7 +395,7 @@ speed = 0.75
 min_value = -80.0
 max_value = 120.0
 
-[node name="SinAnimator2" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+[node name="SinAnimator2" type="Node" parent="Waves" unique_id=270128519 node_paths=PackedStringArray("target")]
 script = ExtResource("10_ds01p")
 property_name = &"position:x"
 target = NodePath("../Sprite2D")
@@ -385,7 +403,7 @@ min_value = -96.0
 max_value = 180.0
 offset = 3.575
 
-[node name="SinAnimator3" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+[node name="SinAnimator3" type="Node" parent="Waves" unique_id=1122306792 node_paths=PackedStringArray("target")]
 script = ExtResource("10_ds01p")
 property_name = &"scale:y"
 target = NodePath("../Sprite2D")
@@ -394,7 +412,7 @@ min_value = 1.1
 max_value = 0.12
 offset = 3.575
 
-[node name="SinAnimator4" type="Node" parent="Waves" node_paths=PackedStringArray("target")]
+[node name="SinAnimator4" type="Node" parent="Waves" unique_id=2017602775 node_paths=PackedStringArray("target")]
 script = ExtResource("10_ds01p")
 property_name = &"scale:y"
 target = NodePath("../Sprite2D2")
@@ -403,17 +421,17 @@ min_value = 1.1
 max_value = 0.12
 offset = 3.575
 
-[node name="Mist" type="GPUParticles2D" parent="."]
+[node name="Mist" type="GPUParticles2D" parent="." unique_id=1737390821]
 z_as_relative = false
 position = Vector2(85, 103)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_f0gpj")
 texture = ExtResource("2_shpnw")
 lifetime = 16.0
 preprocess = 4.0
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_f0gpj")
 
-[node name="MusBarCounter" type="Node" parent="."]
+[node name="MusBarCounter" type="Node" parent="." unique_id=20272386]
 script = ExtResource("5_2jjai")
 bpm = 155.0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4hc8cv64guil"]
+[gd_scene format=3 uid="uid://c4hc8cv64guil"]
 
 [ext_resource type="AudioStream" uid="uid://c46uvc4p3uc0s" path="res://sounds/hurt.ogg" id="1_t2ibo"]
 [ext_resource type="Texture2D" uid="uid://dnc1n4fbnamgn" path="res://sprites/spirit/spr_mooncity_local.png" id="2_7ey72"]
@@ -214,19 +214,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="MooncityLocal" type="Node2D"]
+[node name="MooncityLocal" type="Node2D" unique_id=663063857]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=381387118]
 stream = ExtResource("1_t2ibo")
 pitch_scale = 3.15
 bus = &"ECHO"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_mpqp1")
-}
-autoplay = "new_animation"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2017889519]
+libraries/ = SubResource("AnimationLibrary_mpqp1")
+autoplay = &"new_animation"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1222665717]
 position = Vector2(0, -13)
 sprite_frames = SubResource("SpriteFrames_ivbg7")

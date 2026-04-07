@@ -1,4 +1,4 @@
-[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://6pdofcrhmf61"]
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://6pdofcrhmf61"]
 
 [ext_resource type="AudioStream" uid="uid://dlm3ie106mnq4" path="res://sounds/meow/oskitty-2.ogg" id="1_n8ud1"]
 [ext_resource type="AudioStream" uid="uid://dlo5waxpihpst" path="res://sounds/meow/oskitty-3.ogg" id="2_qg4gd"]

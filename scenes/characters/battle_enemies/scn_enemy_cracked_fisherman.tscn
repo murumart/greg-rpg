@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://o2ra53h5ycm5"]
+[gd_scene format=3 uid="uid://o2ra53h5ycm5"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_sttyi"]
 [ext_resource type="Texture2D" uid="uid://d3b2afl8yht35" path="res://sprites/characters/battle/lakeside/spr_super_fisherman.png" id="2_7am5s"]
@@ -30,7 +30,7 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_fcnjg")
 alpha_curve = SubResource("CurveTexture_o0ip5")
 
-[node name="BrackedFisherman" type="Node2D"]
+[node name="BrackedFisherman" type="Node2D" unique_id=682745133]
 script = ExtResource("1_sttyi")
 effect_center = Vector2i(0, -32)
 toughness = 1.0
@@ -38,10 +38,10 @@ altruism = 0.0
 innovation = 0.614
 vaimulembesus = 0.666
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1634291568]
 texture = ExtResource("2_7am5s")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1639632434]
 z_index = -1
 material = SubResource("CanvasItemMaterial_3rltk")
 texture = ExtResource("2_7am5s")

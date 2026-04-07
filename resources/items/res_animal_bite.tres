@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bokn13mnk2oyu"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bokn13mnk2oyu"]
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_0pg8d"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_4pqwh"]
@@ -6,34 +6,13 @@
 
 [sub_resource type="Resource" id="Resource_12s3g"]
 script = ExtResource("1_0pg8d")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
 attack_increase = 2.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_4pqwh")]([])
 delay = 0.1
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
-meta = {}
 
 [resource]
 script = ExtResource("1_og31p")
-name_in_file = &""
 name = &"animal bite"
 description = "the teeth are sharp, watch out!"
 attack_animation = "animal_attack"
-price = 0
 use = 4
-consume_on_use = true
 payload = SubResource("Resource_12s3g")

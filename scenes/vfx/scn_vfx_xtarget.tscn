@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://hbwg7n8rn6ph"]
+[gd_scene format=3 uid="uid://hbwg7n8rn6ph"]
 
 [ext_resource type="AudioStream" uid="uid://buib1ge4kwxnl" path="res://sounds/men-03.ogg" id="2_6vswd"]
 
@@ -132,21 +132,19 @@ _data = {
 &"default": SubResource("Animation_iahi7")
 }
 
-[node name="VfxXAttack" type="Node2D"]
+[node name="VfxXAttack" type="Node2D" unique_id=1153964985]
 
-[node name="Pre" type="AudioStreamPlayer" parent="."]
+[node name="Pre" type="AudioStreamPlayer" parent="." unique_id=998873610]
 stream = ExtResource("2_6vswd")
 pitch_scale = 3.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=370898862]
 material = SubResource("CanvasItemMaterial_iahi7")
 amount = 2
 texture = SubResource("GradientTexture2D_n27to")
 lifetime = 0.43
 process_material = SubResource("ParticleProcessMaterial_3hvx2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8u0lk")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1573051257]
+libraries/ = SubResource("AnimationLibrary_8u0lk")
+autoplay = &"default"

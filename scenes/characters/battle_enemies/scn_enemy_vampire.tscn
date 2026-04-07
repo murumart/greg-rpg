@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvdnvagmho443"]
+[gd_scene format=3 uid="uid://dvdnvagmho443"]
 
 [ext_resource type="Script" uid="uid://w6cut2tevwn7" path="res://scenes/characters/battle_enemies/scr_enemy_vampire.gd" id="1_7550x"]
 [ext_resource type="Texture2D" uid="uid://cjlkdo3wvxdud" path="res://sprites/characters/battle/vampire/spr_girl.png" id="2_cxoyq"]
@@ -1816,7 +1816,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="VampireGirl" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="VampireGirl" type="Node2D" unique_id=156267179 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_7550x")
 effect_center = Vector2i(0, -25)
 animator = NodePath("AnimationPlayer")
@@ -1825,46 +1825,44 @@ altruism = 0.0
 innovation = 0.705
 gender = 4
 
-[node name="Girl" type="Sprite2D" parent="."]
+[node name="Girl" type="Sprite2D" parent="." unique_id=1719990773]
 texture = ExtResource("2_cxoyq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_mkiiy")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1363723674]
+libraries/ = SubResource("AnimationLibrary_mkiiy")
+autoplay = &"idle"
 
-[node name="Vampire" type="Node2D" parent="."]
+[node name="Vampire" type="Node2D" parent="." unique_id=319928874]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 0.12549, 0.537255, 1)
 z_index = -1
 
-[node name="Core" type="Node2D" parent="Vampire"]
+[node name="Core" type="Node2D" parent="Vampire" unique_id=1938887118]
 position = Vector2(0, -15)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Vampire/Core"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Vampire/Core" unique_id=826105821]
 position = Vector2(-14, -12)
 sprite_frames = SubResource("SpriteFrames_0wdwq")
 autoplay = "default"
 frame_progress = 0.867717
 centered = false
 
-[node name="LeftLeg" type="Node2D" parent="Vampire/Core"]
+[node name="LeftLeg" type="Node2D" parent="Vampire/Core" unique_id=1354143621]
 position = Vector2(3, 5)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftLeg" unique_id=610977630]
 texture = ExtResource("3_1v6ng")
 centered = false
 region_enabled = true
 region_rect = Rect2(34, 42, 21, 57)
 metadata/_edit_lock_ = true
 
-[node name="RightLeg" type="Node2D" parent="Vampire/Core"]
+[node name="RightLeg" type="Node2D" parent="Vampire/Core" unique_id=1833655146]
 position = Vector2(-6, 5)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightLeg"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightLeg" unique_id=1036977757]
 position = Vector2(-20, 0)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1873,22 +1871,22 @@ region_enabled = true
 region_rect = Rect2(34, 42, 21, 57)
 metadata/_edit_lock_ = true
 
-[node name="LeftArm" type="Node2D" parent="Vampire/Core"]
+[node name="LeftArm" type="Node2D" parent="Vampire/Core" unique_id=494513660]
 position = Vector2(20, -4)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftArm"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftArm" unique_id=1390264853]
 texture = ExtResource("3_1v6ng")
 centered = false
 region_enabled = true
 region_rect = Rect2(62, 46, 29, 26)
 metadata/_edit_lock_ = true
 
-[node name="LeftHand" type="Node2D" parent="Vampire/Core/LeftArm"]
+[node name="LeftHand" type="Node2D" parent="Vampire/Core/LeftArm" unique_id=1774889845]
 position = Vector2(28, 9)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftArm/LeftHand"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/LeftArm/LeftHand" unique_id=35651290]
 position = Vector2(-3, -19)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1896,11 +1894,11 @@ region_enabled = true
 region_rect = Rect2(83, 2, 15, 20)
 metadata/_edit_lock_ = true
 
-[node name="RightArm" type="Node2D" parent="Vampire/Core"]
+[node name="RightArm" type="Node2D" parent="Vampire/Core" unique_id=1393442426]
 position = Vector2(-19, -4)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightArm"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightArm" unique_id=340854760]
 position = Vector2(-28, -1)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1909,11 +1907,11 @@ region_enabled = true
 region_rect = Rect2(62, 46, 29, 26)
 metadata/_edit_lock_ = true
 
-[node name="RightHand" type="Node2D" parent="Vampire/Core/RightArm"]
+[node name="RightHand" type="Node2D" parent="Vampire/Core/RightArm" unique_id=104300667]
 position = Vector2(-27, 7)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightArm/RightHand"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/RightArm/RightHand" unique_id=1546576811]
 position = Vector2(-13, -17)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1922,10 +1920,10 @@ region_enabled = true
 region_rect = Rect2(83, 2, 15, 20)
 metadata/_edit_lock_ = true
 
-[node name="Ribs" type="Node2D" parent="Vampire/Core"]
+[node name="Ribs" type="Node2D" parent="Vampire/Core" unique_id=1211746877]
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Ribs"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Ribs" unique_id=1482964838]
 position = Vector2(-27, -12)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1933,7 +1931,7 @@ region_enabled = true
 region_rect = Rect2(25, 1, 26, 35)
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D2" type="Sprite2D" parent="Vampire/Core/Ribs"]
+[node name="Sprite2D2" type="Sprite2D" parent="Vampire/Core/Ribs" unique_id=1556850750]
 position = Vector2(1, -12)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1941,10 +1939,10 @@ region_enabled = true
 region_rect = Rect2(53, 1, 26, 35)
 metadata/_edit_lock_ = true
 
-[node name="Neck" type="Node2D" parent="Vampire/Core"]
+[node name="Neck" type="Node2D" parent="Vampire/Core" unique_id=1255470484]
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck" unique_id=559453311]
 z_index = -1
 position = Vector2(-6, -19)
 texture = ExtResource("3_1v6ng")
@@ -1953,10 +1951,10 @@ region_enabled = true
 region_rect = Rect2(2, 64, 12, 16)
 metadata/_edit_lock_ = true
 
-[node name="Head" type="Node2D" parent="Vampire/Core/Neck"]
+[node name="Head" type="Node2D" parent="Vampire/Core/Neck" unique_id=1763845841]
 position = Vector2(0, -14)
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck/Head"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck/Head" unique_id=412879283]
 position = Vector2(-10, -21)
 texture = ExtResource("3_1v6ng")
 centered = false
@@ -1964,18 +1962,18 @@ region_enabled = true
 region_rect = Rect2(2, 1, 20, 21)
 metadata/_edit_lock_ = true
 
-[node name="Glasses" type="Sprite2D" parent="Vampire/Core/Neck/Head"]
+[node name="Glasses" type="Sprite2D" parent="Vampire/Core/Neck/Head" unique_id=73510561]
 position = Vector2(-6, -13)
 texture = ExtResource("3_1v6ng")
 centered = false
 region_enabled = true
 region_rect = Rect2(2, 84, 12, 7)
 
-[node name="Jaw" type="Node2D" parent="Vampire/Core/Neck/Head"]
+[node name="Jaw" type="Node2D" parent="Vampire/Core/Neck/Head" unique_id=397435664]
 show_behind_parent = true
 position = Vector2(0, -1)
 
-[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck/Head/Jaw"]
+[node name="Sprite2D" type="Sprite2D" parent="Vampire/Core/Neck/Head/Jaw" unique_id=702321289]
 position = Vector2(-10, -11)
 texture = ExtResource("3_1v6ng")
 centered = false

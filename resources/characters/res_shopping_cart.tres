@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=4 format=3 uid="uid://e2f0lq8pk3rk"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://e2f0lq8pk3rk"]
 
 [ext_resource type="Texture2D" uid="uid://ddtn5wrqi5pa5" path="res://sprites/characters/battle/thugs/spr_stray_cart.png" id="1_jdyiw"]
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_osi47"]
@@ -15,16 +15,8 @@ info = "rolls around without a care in the world."
 portrait = SubResource("AtlasTexture_7p7xq")
 max_health = 41.0
 health = 41.0
-max_magic = 30.0
-magic = 30.0
 level = 9
-experience = 0
 attack = 2.0
 defense = 2.0
 speed = 15.0
-defeated_characters = {}
-inventory = Array[String]([])
 spirits = Array[String](["shopping_cart"])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

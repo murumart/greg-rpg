@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyqyneiimprxf"]
+[gd_scene format=3 uid="uid://dyqyneiimprxf"]
 
 [ext_resource type="Script" uid="uid://baf0m66n60bwa" path="res://scenes/battle_backgrounds/scr_battle_background.gd" id="1_cnegl"]
 [ext_resource type="Texture2D" uid="uid://cplmtkwpp1aue" path="res://sprites/world/sg/stars.png" id="2_hrlvi"]
@@ -72,8 +72,8 @@ offset = Vector3(-32.4965, 14.3318, -62.224)
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2meqt"]
 width = 270
 height = 330
-color_ramp = SubResource("Gradient_3xrp4")
 noise = SubResource("FastNoiseLite_hrlvi")
+color_ramp = SubResource("Gradient_3xrp4")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rty82"]
 blend_mode = 3
@@ -89,17 +89,17 @@ height = 305
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=414268580]
 script = ExtResource("1_cnegl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1905933764]
 offset_left = -42.0
 offset_top = -16.0
 offset_right = 198.0
 offset_bottom = 144.0
 texture = SubResource("GradientTexture2D_hrlvi")
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="." unique_id=2031943304]
 material = SubResource("CanvasItemMaterial_2meqt")
 position = Vector2(166, 62)
 scale = Vector2(0.5, 0.5)
@@ -113,13 +113,13 @@ visibility_rect = Rect2(-1100, -400, 1200, 800)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1813892050]
 material = SubResource("CanvasItemMaterial_hrlvi")
 position = Vector2(84.4119, 93.1518)
 scale = Vector2(3.67188, 1.62011)
 texture = SubResource("GradientTexture2D_rty82")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1950246779]
 material = SubResource("CanvasItemMaterial_2meqt")
 position = Vector2(164, 63)
 amount = 24
@@ -132,7 +132,7 @@ visibility_rect = Rect2(-500, -200, 500, 400)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1588048062]
 material = SubResource("CanvasItemMaterial_2meqt")
 position = Vector2(171, 62)
 scale = Vector2(2, 2)
@@ -145,14 +145,14 @@ visibility_rect = Rect2(-215.106, -71.7787, 228.633, 139.823)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_rty82")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=655397715]
 
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup"]
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasGroup" unique_id=446960484]
 position = Vector2(84, 64.5)
 scale = Vector2(0.8, 0.499999)
 texture = SubResource("NoiseTexture2D_2meqt")
 
-[node name="Gra" type="Sprite2D" parent="CanvasGroup"]
+[node name="Gra" type="Sprite2D" parent="CanvasGroup" unique_id=1066997347]
 material = SubResource("CanvasItemMaterial_rty82")
 position = Vector2(83, 67)
 scale = Vector2(0.680597, 0.563934)

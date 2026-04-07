@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv38sai68pkah"]
+[gd_scene format=3 uid="uid://bv38sai68pkah"]
 
 [ext_resource type="Script" uid="uid://dfbbahimpb2ie" path="res://scenes/tech/scr_battle_enemy.gd" id="1_wttet"]
 [ext_resource type="Texture2D" uid="uid://cqska2jrnb17i" path="res://sprites/characters/battle/thugs/spr_well.png" id="2_lahef"]
@@ -154,7 +154,7 @@ _data = {
 &"idle": SubResource("Animation_grt3c")
 }
 
-[node name="Well" type="Node2D" node_paths=PackedStringArray("animator")]
+[node name="Well" type="Node2D" unique_id=1441466381 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_wttet")
 effect_center = Vector2i(0, -23)
 animator = NodePath("AnimationPlayer")
@@ -162,10 +162,8 @@ toughness = 0.625
 altruism = 0.765
 innovation = 0.872
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=554302538]
 texture = ExtResource("2_lahef")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dyp6w")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=165442015]
+libraries/ = SubResource("AnimationLibrary_dyp6w")

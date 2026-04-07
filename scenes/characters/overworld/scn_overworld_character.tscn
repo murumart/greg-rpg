@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://xk5mtrl26xyo"]
+[gd_scene format=3 uid="uid://xk5mtrl26xyo"]
 
 [ext_resource type="Script" uid="uid://8ycmg7qfn2b1" path="res://scenes/characters/overworld/scr_overworld_character.gd" id="1_j2mdd"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="2_meflg"]
@@ -15,7 +15,7 @@ size = Vector2(8, 6)
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="OverworldCharacter" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
+[node name="OverworldCharacter" type="CharacterBody2D" unique_id=623431601 node_paths=PackedStringArray("collision_shape", "collision_detection_area", "detection_area", "detection_raycast") groups=["save_me"]]
 collision_layer = 12
 collision_mask = 3073
 motion_mode = 1
@@ -26,29 +26,29 @@ detection_area = NodePath("DetectionArea")
 detection_raycast = NodePath("DetectionArea/DetectionRaycast")
 chase_distance = 64
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=88290997]
 shape = SubResource("RectangleShape2D_wj6rh")
 debug_color = Color(0.152941, 1, 1, 0.419608)
 
-[node name="CollisionDetectionArea" parent="." instance=ExtResource("2_meflg")]
+[node name="CollisionDetectionArea" parent="." unique_id=1353807789 instance=ExtResource("2_meflg")]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 12
 collision_priority = 3.0
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetectionArea" unique_id=53099754]
 shape = SubResource("RectangleShape2D_ka84t")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=744931465]
 collision_layer = 0
 collision_mask = 11
 monitorable = false
 
-[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea" unique_id=1547779472]
 shape = SubResource("CircleShape2D_56sxh")
 debug_color = Color(1, 1, 0.317647, 0.054902)
 
-[node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea"]
+[node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea" unique_id=1691478099]
 self_modulate = Color(1, 1, 0.435294, 0.207843)
 target_position = Vector2(0, 32)
 collision_mask = 11

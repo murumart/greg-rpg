@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://oby8hwvjmaw1"]
+[gd_scene format=3 uid="uid://oby8hwvjmaw1"]
 
 [ext_resource type="Script" uid="uid://bcfpxm4mdpi52" path="res://scenes/vfx/scr_vfx_explosion.gd" id="1_fr4dm"]
 [ext_resource type="Texture2D" uid="uid://plui5dnb4250" path="res://sprites/vfx/coolexplosion.png" id="1_ucts6"]
@@ -186,19 +186,17 @@ stream_1/weight = 0.25
 stream_2/stream = ExtResource("5_t2anl")
 stream_2/weight = 0.5
 
-[node name="VfxExplosion" type="Node2D"]
+[node name="VfxExplosion" type="Node2D" unique_id=474450588]
 script = ExtResource("1_fr4dm")
 
-[node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=930169362]
 self_modulate = Color(2, 2, 2, 1)
 sprite_frames = SubResource("SpriteFrames_kqyd1")
 animation = &"explode"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_c70lo")
-}
-autoplay = "explode"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2066418390]
+libraries/ = SubResource("AnimationLibrary_c70lo")
+autoplay = &"explode"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=840906296]
 stream = SubResource("AudioStreamRandomizer_7g4wx")

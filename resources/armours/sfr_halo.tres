@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://drofe3sr8sg6c"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://drofe3sr8sg6c"]
 
 [ext_resource type="Texture2D" uid="uid://8et6vyrfq73x" path="res://sprites/characters/overworld/armours/spr_halo.png" id="1_80ckd"]
 

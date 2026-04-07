@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://h5fe53nim66n"]
+[gd_scene format=3 uid="uid://h5fe53nim66n"]
 
 [ext_resource type="Texture2D" uid="uid://dftcwn505plwx" path="res://sprites/spirit/spr_peptide.png" id="1_7wtc5"]
 [ext_resource type="AudioStream" uid="uid://bm0muic7hvm2e" path="res://sounds/spirit/peptide.ogg" id="2_1veln"]
@@ -261,21 +261,19 @@ _data = {
 &"default": SubResource("Animation_kug1l")
 }
 
-[node name="PeptideSpell" type="Node2D"]
+[node name="PeptideSpell" type="Node2D" unique_id=1292426043]
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=111209514]
 modulate = Color(0.0392157, 0, 0.529412, 1)
 z_index = -30
 scale = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_mavf3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2142641849]
 sprite_frames = SubResource("SpriteFrames_mavf3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_a04b2")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1006552257]
+libraries/ = SubResource("AnimationLibrary_a04b2")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1916342104]

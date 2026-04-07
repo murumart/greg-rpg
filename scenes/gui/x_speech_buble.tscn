@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck2rx4jm7lv2l"]
+[gd_scene format=3 uid="uid://ck2rx4jm7lv2l"]
 
 [ext_resource type="Script" uid="uid://ck3ncktecbdfc" path="res://scenes/gui/x_speech_buble.gd" id="1_jaw03"]
 [ext_resource type="Material" uid="uid://cilv0qdeqaou" path="res://scenes/vfx/x_menacing_outline.tres" id="1_kcrei"]
@@ -20,28 +20,28 @@ anti_aliasing = false
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jaw03"]
 size = Vector2(4, 4)
 
-[node name="SpeechBuble" type="CanvasGroup"]
+[node name="SpeechBuble" type="CanvasGroup" unique_id=1909347306]
 material = ExtResource("1_kcrei")
 script = ExtResource("1_jaw03")
 
-[node name="PointerLine" type="Line2D" parent="."]
+[node name="PointerLine" type="Line2D" parent="." unique_id=99068]
 points = PackedVector2Array(5, 7, 5, 34)
 width_curve = SubResource("Curve_kcrei")
 default_color = Color(0, 0, 0, 1)
 
-[node name="Container" type="PanelContainer" parent="."]
+[node name="Container" type="PanelContainer" parent="." unique_id=1174978337]
 offset_right = 55.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ly0h0")
 
-[node name="MarginContainer" type="MarginContainer" parent="Container"]
+[node name="MarginContainer" type="MarginContainer" parent="Container" unique_id=1167857144]
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Textbox" type="RichTextLabel" parent="Container/MarginContainer"]
+[node name="Textbox" type="RichTextLabel" parent="Container/MarginContainer" unique_id=278498461]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 1, 0, 1)
 theme_override_fonts/normal_font = ExtResource("1_wmj1a")
@@ -52,11 +52,11 @@ shortcut_keys_enabled = false
 horizontal_alignment = 1
 script = ExtResource("1_rl2w6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1390541178]
 visible = false
 texture = SubResource("PlaceholderTexture2D_jaw03")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1395425948]
 visible = false
 position = Vector2(160, 120)
 texture = SubResource("PlaceholderTexture2D_jaw03")

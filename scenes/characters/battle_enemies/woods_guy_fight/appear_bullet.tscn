@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ds00ycmrswc77"]
+[gd_scene format=3 uid="uid://ds00ycmrswc77"]
 
 [ext_resource type="Script" uid="uid://sjviamd84jsh" path="res://scenes/characters/battle_enemies/woods_guy_fight/appear_bullet.gd" id="1_5b78j"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="2_5b78j"]
@@ -296,43 +296,41 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p6gl1"]
 blend_mode = 1
 
-[node name="AppearBullet" type="Area2D"]
+[node name="AppearBullet" type="Area2D" unique_id=1953622088]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_5b78j")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=259142974]
 position = Vector2(7.15256e-07, -1.19209e-06)
 texture = ExtResource("2_5b78j")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D" unique_id=1495885532]
 material = SubResource("CanvasItemMaterial_n4ctl")
 texture = SubResource("AtlasTexture_s6go7")
 lifetime = 0.1
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_cxxk3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1101798099]
 shape = SubResource("CircleShape2D_5b78j")
 disabled = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5b78j")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1624740969]
+libraries/ = SubResource("AnimationLibrary_5b78j")
 
-[node name="Tp2" type="AudioStreamPlayer" parent="."]
+[node name="Tp2" type="AudioStreamPlayer" parent="." unique_id=399163926]
 stream = ExtResource("2_10f75")
 pitch_scale = 3.24
 
-[node name="Tp" type="AudioStreamPlayer" parent="."]
+[node name="Tp" type="AudioStreamPlayer" parent="." unique_id=599484337]
 stream = ExtResource("4_rb4xg")
 pitch_scale = 1.41
 
-[node name="Marker" type="Sprite2D" parent="."]
+[node name="Marker" type="Sprite2D" parent="." unique_id=386376057]
 self_modulate = Color(1, 1, 1, 0.627451)
 material = SubResource("CanvasItemMaterial_p6gl1")
 texture = ExtResource("5_5b78j")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cdwtuk8ha1gvu"]
+[gd_scene format=4 uid="uid://cdwtuk8ha1gvu"]
 
 [ext_resource type="PackedScene" uid="uid://c1fjmpmle64kr" path="res://scenes/rooms/sg_room_base.tscn" id="1_0r628"]
 [ext_resource type="PackedScene" uid="uid://cvlakcwvqo8hk" path="res://scenes/rooms/grandma_house/gdung_objects/sg_cat_snake.tscn" id="2_mq2c1"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yhxwtfjggtnm" path="res://sprites/characters/overworld/spr_cats_overworld.png" id="11_yjnrc"]
 [ext_resource type="AudioStream" uid="uid://dfqg02ryqxphq" path="res://sounds/men-01.ogg" id="12_x5jws"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eug"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5jws"]
 resource_local_to_scene = true
 size = Vector2(4, 164)
 
@@ -255,7 +255,7 @@ _data = {
 &"RESET": SubResource("Animation_eamjl")
 }
 
-[node name="SgB1" instance=ExtResource("1_0r628")]
+[node name="SgB1" unique_id=926716352 instance=ExtResource("1_0r628")]
 
 [node name="SGRoom" parent="." index="0"]
 song_pitch = 0.89
@@ -288,20 +288,20 @@ position = Vector2(914, 48)
 destination = &"sg_b_2"
 gate_id = &"sg-b-12"
 
-[node name="SgCatSnake" parent="Areas" index="2" instance=ExtResource("2_mq2c1")]
+[node name="SgCatSnake" parent="Areas" index="2" unique_id=1813246322 instance=ExtResource("2_mq2c1")]
 position = Vector2(415, 27)
 default_lines = Array[StringName]([&"sg_b_1", &"sg_b_2"])
 
-[node name="SgCatSnake2" parent="Areas" index="3" instance=ExtResource("2_mq2c1")]
+[node name="SgCatSnake2" parent="Areas" index="3" unique_id=1916321265 instance=ExtResource("2_mq2c1")]
 position = Vector2(766, 63)
 snakes_up = false
 default_lines = Array[StringName]([&"sg_b_3", &"sg_b_2"])
 
-[node name="SgCatSnake3" parent="Areas" index="4" instance=ExtResource("2_mq2c1")]
+[node name="SgCatSnake3" parent="Areas" index="4" unique_id=1656322002 instance=ExtResource("2_mq2c1")]
 position = Vector2(776, -209)
 default_lines = Array[StringName]([&"sg_b_lore_1", &"sg_b_lore_2"])
 
-[node name="ClimbingPlace" parent="Areas" index="5" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("3_q00e6")]
+[node name="ClimbingPlace" parent="Areas" index="5" unique_id=566846455 node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("3_q00e6")]
 position = Vector2(776, -42)
 ground_levels = [NodePath("../Exit")]
 ground_level_y = -16
@@ -311,35 +311,35 @@ grace_time = 0.0
 
 [node name="CollisionShape2D" parent="Areas/ClimbingPlace" index="0"]
 position = Vector2(0, -52)
-shape = SubResource("RectangleShape2D_b4eug")
+shape = SubResource("RectangleShape2D_x5jws")
 
-[node name="InteractionArea" type="Area2D" parent="Areas" index="6"]
+[node name="InteractionArea" type="Area2D" parent="Areas" index="6" unique_id=893945985]
 position = Vector2(776, -24)
 script = ExtResource("4_b4eug")
 metadata/_custom_type_script = "uid://b4lqogy5daqbf"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InteractionArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InteractionArea" index="0" unique_id=757898533]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_6p3hy")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InteractionArea" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InteractionArea" index="1" unique_id=779855171]
 position = Vector2(0, -152)
 shape = SubResource("RectangleShape2D_6p3hy")
 
-[node name="Exit" type="Area2D" parent="Areas" index="7"]
+[node name="Exit" type="Area2D" parent="Areas" index="7" unique_id=1121021719]
 position = Vector2(776, -178)
 collision_layer = 128
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Exit" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Exit" index="0" unique_id=1818680944]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_7nj0q")
 
-[node name="Floor2" type="TileMapLayer" parent="." index="6"]
+[node name="Floor2" type="TileMapLayer" parent="." index="6" unique_id=1447877455]
 tile_map_data = PackedByteArray("AAAGAAIAAAABAAEAAAAHAAIAAAAEAAAAAAAIAAIAAAADAAEAAAAIAAMAAAADAAEAAAAIAAQAAAADAAEAAAAIAAUAAAADAAEAAAAIAAYAAAADAAEAAAAIAAcAAAADAAEAAAAGAAMAAAABAAEAAAAGAAQAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAGAAcAAAABAAEAAAAHAAcAAAAEAAAAAAAHAAgAAAACAAEAAAAHAAkAAAACAAEAAAAHAAoAAAACAAEAAAAHAAsAAAAEAAAAAAAGAAgAAAABAAEAAAAIABoAAAADAAEAAAAIABkAAAADAAEAAAAIABgAAAADAAEAAAAIABcAAAADAAEAAAAIABYAAAADAAEAAAAIABUAAAADAAEAAAAIABQAAAADAAEAAAAIABMAAAADAAEAAAAIABIAAAADAAEAAAAIABEAAAADAAEAAAAIABAAAAADAAEAAAAIAA8AAAADAAEAAAAIAA4AAAADAAEAAAAIAA0AAAADAAEAAAAIAAwAAAADAAEAAAAIAAsAAAADAAEAAAAIAAoAAAADAAEAAAAIAAkAAAADAAEAAAAIAAgAAAADAAEAAAAHABoAAAACAAEAAAAHABkAAAAEAAAAAAAHABgAAAAEAAAAAAAHABcAAAACAAEAAAAHABYAAAAEAAAAAAAHABUAAAACAAEAAAAHABQAAAACAAEAAAAHABMAAAACAAEAAAAHABIAAAAEAAAAAAAHABEAAAAEAAAAAAAHABAAAAAEAAAAAAAHAA8AAAACAAEAAAAHAA4AAAAEAAAAAAAHAA0AAAAEAAAAAAAHAAwAAAAEAAAAAAAHAAYAAAAEAAAAAAAHAAUAAAACAAEAAAAHAAQAAAAEAAAAAAAHAAMAAAAEAAAAAAAGABoAAAABAAEAAAAGABkAAAABAAEAAAAGABgAAAABAAEAAAAGABcAAAABAAEAAAAGABYAAAABAAEAAAAGABUAAAABAAEAAAAGABQAAAABAAEAAAAGABMAAAABAAEAAAAGABIAAAABAAEAAAAGABEAAAABAAEAAAAGABAAAAABAAEAAAAGAA8AAAABAAEAAAAGAA4AAAABAAEAAAAGAA0AAAABAAEAAAAGAAwAAAABAAEAAAAGAAsAAAABAAEAAAAGAAoAAAABAAEAAAAGAAkAAAABAAEAAAAIAB0AAAADAAIAAAAIABwAAAADAAEAAAAIABsAAAADAAEAAAAHAB0AAAACAAIAAAAHABwAAAACAAEAAAAHABsAAAAEAAAAAAAGAB0AAAABAAIAAAAGABwAAAABAAEAAAAGABsAAAABAAEAAAAGAAEAAAABAAEAAAAHAAEAAAAEAAAAAAAIAAEAAAADAAEAAAAGAAAAAAACAAAAAAAFAAAAAAACAAMAAAAEAAAAAAABAAMAAAAHAAAAAAACAAAAAAAIAAAAAAACAAAAAAAJAAAAAAACAAMAAAAKAAAAAAADAAMAAAA=")
 tile_set = ExtResource("2_y5egi")
 
-[node name="ColorRect" type="ColorRect" parent="Floor2" index="0"]
+[node name="ColorRect" type="ColorRect" parent="Floor2" index="0" unique_id=219846929]
 show_behind_parent = true
 z_index = -1
 offset_left = 2.0
@@ -348,22 +348,22 @@ offset_right = 246.0
 offset_bottom = 537.0
 color = Color(0, 0, 0, 1)
 
-[node name="Parallax2D" type="Parallax2D" parent="." index="7"]
+[node name="Parallax2D" type="Parallax2D" parent="." index="7" unique_id=857972861]
 z_index = -5
 scroll_scale = Vector2(0.04, 0.022)
 scroll_offset = Vector2(-6.715, 0)
 
-[node name="Node2D" parent="Parallax2D" index="0" instance=ExtResource("6_6p3hy")]
+[node name="Node2D" parent="Parallax2D" index="0" unique_id=1026229280 instance=ExtResource("6_6p3hy")]
 position = Vector2(106, 69)
 
-[node name="Reemerge" type="TileMapLayer" parent="." index="8"]
+[node name="Reemerge" type="TileMapLayer" parent="." index="8" unique_id=1787926934]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAADAAAAAAACAAMAAAACAAAAAAACAAMAAAABAAAAAAACAAMAAAAAAAAAAAACAAMAAAD//wAAAAACAAMAAAD+/wAAAAACAAMAAAD9/wAAAAACAAMAAAD8/wAAAAACAAMAAAD7/wAAAAACAAMAAAD6/wAAAAACAAMAAAD5/wAAAAACAAMAAAAEAAAAAAADAAMAAAD4/wAAAAACAAMAAAD3/wAAAAACAAMAAAD2/wAAAAABAAIAAAD2////AAAAAAEAAAD2//7/AAAAAAEAAAD2//3/AAADAAAAAAD1//3/AAACAAMAAAD0//3/AAACAAMAAADz//7/AAAAAAEAAADz////AAADAAIAAADz//3/AAABAAAAAADy////AAACAAMAAADx////AAACAAMAAADw////AAABAAMAAAA=")
 tile_set = ExtResource("2_y5egi")
 y_sort_origin = -1000
 script = ExtResource("7_nw7as")
 
-[node name="DoorArea" parent="Reemerge" index="0" node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_7nj0q")]
+[node name="DoorArea" parent="Reemerge" index="0" unique_id=1497761301 node_paths=PackedStringArray("spawn_point") instance=ExtResource("7_7nj0q")]
 y_sort_enabled = true
 position = Vector2(-248, -12)
 destination = &"sg_b_4"
@@ -371,34 +371,34 @@ gate_id = &"sg-b-41"
 spawn_point = NodePath(".")
 fail_dialogue = "door_locked"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Reemerge/DoorArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reemerge/DoorArea" index="0" unique_id=948964054]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_nw7as")
 
-[node name="Sprite2D" type="Sprite2D" parent="Reemerge/DoorArea" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Reemerge/DoorArea" index="1" unique_id=644871083]
 position = Vector2(1, -23)
 texture = ExtResource("9_nvusu")
 offset = Vector2(-1, 9)
 region_enabled = true
 region_rect = Rect2(145, 12, 14, 20)
 
-[node name="Block" type="StaticBody2D" parent="Reemerge" index="1"]
+[node name="Block" type="StaticBody2D" parent="Reemerge" index="1" unique_id=528971420]
 position = Vector2(6, 8)
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Reemerge/Block" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reemerge/Block" index="0" unique_id=1172902201]
 shape = SubResource("RectangleShape2D_nvusu")
 
-[node name="Warner" parent="Reemerge" index="2" instance=ExtResource("2_mq2c1")]
+[node name="Warner" parent="Reemerge" index="2" unique_id=372368673 instance=ExtResource("2_mq2c1")]
 position = Vector2(-86, 8)
 collision_extents = Vector2i(8, 10)
 default_lines = Array[StringName]([&"sg_b_pre_multip"])
 
-[node name="OutlineMe" type="CanvasGroup" parent="Reemerge" index="3"]
+[node name="OutlineMe" type="CanvasGroup" parent="Reemerge" index="3" unique_id=868845618]
 material = SubResource("ShaderMaterial_yjnrc")
 position = Vector2(-71, 183)
 
-[node name="Tail12" type="Line2D" parent="Reemerge/OutlineMe" index="0"]
+[node name="Tail12" type="Line2D" parent="Reemerge/OutlineMe" index="0" unique_id=217591320]
 position = Vector2(3, -30)
 rotation = 0.385227
 points = PackedVector2Array(-20.1136, -12.3468, -19.2576, 50.972, -2.9271, 48.6665, -8.76146, 71.5349, -18.2292, 72.1367, -16.825, 94.228, -40.5692, 99.5396)
@@ -408,7 +408,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Tail11" type="Line2D" parent="Reemerge/OutlineMe" index="1"]
+[node name="Tail11" type="Line2D" parent="Reemerge/OutlineMe" index="1" unique_id=33939303]
 position = Vector2(12, -35)
 rotation = 0.911502
 points = PackedVector2Array(0.790424, 0.61256, 23.7718, 1.97566, 48.5118, 5.96687, 59.4589, -3.2614, 95.028, 24.3038, 144.943, 30.0928)
@@ -418,7 +418,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Tail4" type="Line2D" parent="Reemerge/OutlineMe" index="2"]
+[node name="Tail4" type="Line2D" parent="Reemerge/OutlineMe" index="2" unique_id=1559642979]
 position = Vector2(-11, -22)
 rotation = -2.70362
 points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
@@ -428,7 +428,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(6, 1)
 
-[node name="Tail3" type="Line2D" parent="Reemerge/OutlineMe" index="3"]
+[node name="Tail3" type="Line2D" parent="Reemerge/OutlineMe" index="3" unique_id=1033499934]
 position = Vector2(3, 29)
 rotation = -0.378716
 points = PackedVector2Array(-8, -2, -10.2205, -4.06701, -9.11135, -6.85443, -8.19185, -11.8699, -6.71294, -15.5864, -4.8643, -20.2321, 1.73751, -23.7493, 0.472765, -29.0127)
@@ -438,7 +438,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(6, 1)
 
-[node name="Tail2" type="Line2D" parent="Reemerge/OutlineMe" index="4"]
+[node name="Tail2" type="Line2D" parent="Reemerge/OutlineMe" index="4" unique_id=444833433]
 position = Vector2(13, 30)
 rotation = -0.378716
 points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
@@ -448,7 +448,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(6, 1)
 
-[node name="Tail" type="Line2D" parent="Reemerge/OutlineMe" index="5"]
+[node name="Tail" type="Line2D" parent="Reemerge/OutlineMe" index="5" unique_id=740422068]
 position = Vector2(7, 7)
 rotation = 1.35998
 points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
@@ -458,7 +458,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(6, 1)
 
-[node name="Tail5" type="Line2D" parent="Reemerge/OutlineMe" index="6"]
+[node name="Tail5" type="Line2D" parent="Reemerge/OutlineMe" index="6" unique_id=1165202702]
 position = Vector2(-7, 8)
 rotation = 2.65843
 points = PackedVector2Array(-8, -2, -7, -5, -4, -9, -2.4041, -11.6324, -1, -15, 0.847409, -19.2907, 1.73751, -23.7493, 0.472765, -29.0127)
@@ -468,7 +468,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(6, 1)
 
-[node name="Tail6" type="Line2D" parent="Reemerge/OutlineMe" index="7"]
+[node name="Tail6" type="Line2D" parent="Reemerge/OutlineMe" index="7" unique_id=881996967]
 z_index = -1
 position = Vector2(1.61975, 15.3098)
 rotation = 2.71997
@@ -479,7 +479,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(18, 1)
 
-[node name="Tail7" type="Line2D" parent="Reemerge/OutlineMe" index="8"]
+[node name="Tail7" type="Line2D" parent="Reemerge/OutlineMe" index="8" unique_id=381650264]
 position = Vector2(4, 6)
 rotation = -3.06924
 points = PackedVector2Array(-0.959102, 1.03929, -7, -5, -17.6679, -16.3047, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
@@ -489,7 +489,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Tail10" type="Line2D" parent="Reemerge/OutlineMe" index="9"]
+[node name="Tail10" type="Line2D" parent="Reemerge/OutlineMe" index="9" unique_id=1691520429]
 position = Vector2(-1, 7)
 rotation = -2.51251
 points = PackedVector2Array(-11.9727, 39.6315, -27.8634, 4.19871, -35.8088, -13.5177, -34.2565, -30.6512, -51.0054, -48.9944, -60.1184, -51.6311, -64.476, -60.4635, -61.3212, -81.607)
@@ -499,7 +499,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Tail8" type="Line2D" parent="Reemerge/OutlineMe" index="10"]
+[node name="Tail8" type="Line2D" parent="Reemerge/OutlineMe" index="10" unique_id=186310725]
 z_index = -1
 position = Vector2(-18, 19)
 rotation = -0.0590966
@@ -512,7 +512,7 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Tail9" type="Line2D" parent="Reemerge/OutlineMe" index="11"]
+[node name="Tail9" type="Line2D" parent="Reemerge/OutlineMe" index="11" unique_id=2078962642]
 position = Vector2(-6, 15)
 rotation = -0.477812
 points = PackedVector2Array(3.64445, -10.8036, -6.22578, 3.63865, -19.2679, 20.8985, -26.9645, 32.4641, -40.6505, 43.6753, -53.043, 49.9544, -67.3729, 55.117, -73.9531, 64.7452)
@@ -522,63 +522,61 @@ script = ExtResource("10_cd0ib")
 active_in_editor = false
 wiggle_range = Vector2(12, 1)
 
-[node name="Pantherform" type="Node2D" parent="Reemerge/OutlineMe" index="12"]
+[node name="Pantherform" type="Node2D" parent="Reemerge/OutlineMe" index="12" unique_id=1060279818]
 position = Vector2(8, 3)
 
-[node name="Torse" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="0"]
+[node name="Torse" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="0" unique_id=449638216]
 position = Vector2(1, -17)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
-[node name="Segment" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="1"]
+[node name="Segment" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="1" unique_id=943429665]
 position = Vector2(3, -3)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
-[node name="Segment2" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="2"]
+[node name="Segment2" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="2" unique_id=1888896277]
 position = Vector2(4, -25)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 
-[node name="Segment5" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="3"]
+[node name="Segment5" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="3" unique_id=197540587]
 position = Vector2(-2, -29)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 
-[node name="Segment3" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="4"]
+[node name="Segment3" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="4" unique_id=766533329]
 position = Vector2(-3, -4)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(32, 32, 16, 16)
 
-[node name="Segment4" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="5"]
+[node name="Segment4" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="5" unique_id=780289680]
 position = Vector2(-5, -16)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(48, 32, 16, 16)
 
-[node name="Head" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="6"]
+[node name="Head" type="Sprite2D" parent="Reemerge/OutlineMe/Pantherform" index="6" unique_id=819365062]
 position = Vector2(-5, -36)
 texture = ExtResource("11_yjnrc")
 region_enabled = true
 region_rect = Rect2(32, 16, 16, 16)
 
-[node name="Pantheranim" type="AnimationPlayer" parent="Reemerge/OutlineMe/Pantherform" index="7"]
-libraries = {
-&"": SubResource("AnimationLibrary_pg684")
-}
+[node name="Pantheranim" type="AnimationPlayer" parent="Reemerge/OutlineMe/Pantherform" index="7" unique_id=1476819468]
+libraries/ = SubResource("AnimationLibrary_pg684")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Reemerge/OutlineMe/Pantherform" index="8"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Reemerge/OutlineMe/Pantherform" index="8" unique_id=1880600494]
 stream = ExtResource("12_x5jws")
 volume_db = -9.639
 pitch_scale = 10.0
 bus = &"ECHO"
 
-[node name="SgCatSnake" parent="Reemerge" index="4" instance=ExtResource("2_mq2c1")]
+[node name="SgCatSnake" parent="Reemerge" index="4" unique_id=1990762902 instance=ExtResource("2_mq2c1")]
 position = Vector2(45, -10)
 snakes_up = false
 default_lines = Array[StringName]([&"sg_b_short", &"sg_b_short_2"])

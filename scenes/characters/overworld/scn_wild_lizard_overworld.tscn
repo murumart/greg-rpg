@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://eof23vq2xau7"]
+[gd_scene format=3 uid="uid://eof23vq2xau7"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_y4qwe"]
 [ext_resource type="SpriteFrames" uid="uid://dmk1ubmskyeqn" path="res://resources/characters/sfr_wild_lizard.tres" id="2_3eeu5"]
@@ -12,15 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://bawch37iessfy" path="res://sprites/characters/overworld/spr_wild_lizard.png" id="10_va32c"]
 [ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="11_gtn0g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_viuke"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1l7e"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmsf5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va32c"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i1l7e"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtn0g"]
 resource_local_to_scene = true
 radius = 24.0
 
@@ -120,31 +120,25 @@ metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_qlh54"]
 script = ExtResource("6_fm10m")
-type = 0
 property = "range 2,12"
-chance = 1.0
-unique = false
 
 [sub_resource type="Resource" id="Resource_ucie8"]
 script = ExtResource("6_fm10m")
 type = 1
 property = "meat"
 chance = 0.045
-unique = false
 
 [sub_resource type="Resource" id="Resource_uuitj"]
 script = ExtResource("6_fm10m")
 type = 4
 property = "1"
 chance = 0.375
-unique = false
 
 [sub_resource type="Resource" id="Resource_2kuia"]
 script = ExtResource("6_fm10m")
 type = 1
 property = "egg"
 chance = 0.135
-unique = false
 
 [sub_resource type="Resource" id="Resource_4d0j7"]
 script = ExtResource("7_celod")
@@ -152,20 +146,14 @@ rewards = Array[ExtResource("6_fm10m")]([SubResource("Resource_i1l7e"), SubResou
 
 [sub_resource type="Resource" id="Resource_5excg"]
 script = ExtResource("6_kdwyn")
-enemies = Array[StringName]([])
 background = "bg_forest"
 music = "lion"
-party = Array[StringName]([])
-death_reason = 0
-start_text = ""
 rewards = SubResource("Resource_4d0j7")
 victory_music = &""
 stop_music_before_end = false
 kill_music = false
 play_fanfare = false
 crits_enabled = false
-player_missing_armour_effects = Dictionary[StringName, ExtResource("6_i1l7e")]({})
-increment_data_with_enemies = &""
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i1l7e"]
 blend_mode = 1
@@ -202,7 +190,7 @@ scale_max = 1.2
 scale_curve = SubResource("CurveTexture_tsaws")
 alpha_curve = SubResource("CurveTexture_gtn0g")
 
-[node name="WildLizard" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
+[node name="WildLizard" unique_id=1370001406 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_y4qwe")]
 script = ExtResource("2_4xx1x")
 animated_sprite = NodePath("AnimatedSprite2D")
 movement_wait = 0.5
@@ -211,21 +199,21 @@ chase_distance = 40
 interact_on_touch = true
 save = false
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_viuke")
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
+shape = SubResource("RectangleShape2D_i1l7e")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_bmsf5")
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_va32c")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_i1l7e")
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
+shape = SubResource("CircleShape2D_gtn0g")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=1830823141]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("2_3eeu5")
 animation = &"walk_down"
 
-[node name="RandomBattleComponent" type="Node" parent="." index="4" node_paths=PackedStringArray("inject_target")]
+[node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=1080480096 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_1wms1")
 values = Array[ExtResource("5_krk2i")]([SubResource("Resource_wf6no"), SubResource("Resource_o4ych"), SubResource("Resource_0bny4"), SubResource("Resource_iq6ak"), SubResource("Resource_1cllb"), SubResource("Resource_jgm32"), SubResource("Resource_6keoo"), SubResource("Resource_fhegs"), SubResource("Resource_jmlxt")])
 enemy_amount_by_level = SubResource("Curve_xxdpe")
@@ -233,7 +221,7 @@ default_battle = SubResource("Resource_5excg")
 inject_target = NodePath("..")
 start_texts = Array[String](["ravenous.", "hungry.", "wild.", "rampaging.", "found you.", "life."])
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="5"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="5" unique_id=1556148636]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_i1l7e")
 position = Vector2(0, -8)
@@ -242,7 +230,7 @@ texture = SubResource("AtlasTexture_x00gp")
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_i1l7e")
 
-[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="." index="6" node_paths=PackedStringArray("from", "to")]
+[node name="SpriteFrameToParticleTextureCopier" type="Node" parent="." index="6" unique_id=191889839 node_paths=PackedStringArray("from", "to")]
 script = ExtResource("11_gtn0g")
 from = NodePath("../AnimatedSprite2D")
 to = NodePath("../GPUParticles2D")

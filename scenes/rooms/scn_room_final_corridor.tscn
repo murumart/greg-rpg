@@ -2610,16 +2610,16 @@ shape = SubResource("RectangleShape2D_jbyid")
 [node name="Grandma" parent="InteriorTiles/Grandma" unique_id=682728197 instance=ExtResource("27_t0iwo")]
 position = Vector2(-1, -79)
 
-[node name="CollisionShape" parent="InteriorTiles/Grandma/Grandma" index="0"]
+[node name="CollisionShape" parent="InteriorTiles/Grandma/Grandma" index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_60vux")
 
-[node name="CollisionShape2D" parent="InteriorTiles/Grandma/Grandma/CollisionDetectionArea" index="0"]
+[node name="CollisionShape2D" parent="InteriorTiles/Grandma/Grandma/CollisionDetectionArea" parent_id_path=PackedInt32Array(682728197, 1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_oghcq")
 
-[node name="DetectionShape" parent="InteriorTiles/Grandma/Grandma/DetectionArea" index="0"]
+[node name="DetectionShape" parent="InteriorTiles/Grandma/Grandma/DetectionArea" parent_id_path=PackedInt32Array(682728197, 744931465) index="0" unique_id=1547779472]
 shape = SubResource("CircleShape2D_ydek8")
 
-[node name="Sprite" parent="InteriorTiles/Grandma/Grandma" index="3"]
+[node name="Sprite" parent="InteriorTiles/Grandma/Grandma" index="3" unique_id=1189305422]
 animation = &"backward"
 
 [node name="ItemSound" type="AudioStreamPlayer" parent="InteriorTiles/Grandma" unique_id=263623078]

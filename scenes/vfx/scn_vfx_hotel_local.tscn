@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dohba3jlbbwsl"]
+[gd_scene format=3 uid="uid://dohba3jlbbwsl"]
 
 [ext_resource type="Texture2D" uid="uid://8mudlo7sgoqd" path="res://sprites/spirit/spr_hotel_local.png" id="1_2i2im"]
 
@@ -140,13 +140,11 @@ _data = {
 &"default": SubResource("Animation_4hjw7")
 }
 
-[node name="LocalHotel" type="Node2D"]
+[node name="LocalHotel" type="Node2D" unique_id=362103289]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=905551133]
 sprite_frames = SubResource("SpriteFrames_1fgyi")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xutw0")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1125103059]
+libraries/ = SubResource("AnimationLibrary_xutw0")
+autoplay = &"default"

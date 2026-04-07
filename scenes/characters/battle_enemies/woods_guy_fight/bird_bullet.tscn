@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dha4afjf0xt7t"]
+[gd_scene format=3 uid="uid://dha4afjf0xt7t"]
 
 [ext_resource type="Script" uid="uid://bxkykctmdyl8l" path="res://scenes/characters/battle_enemies/woods_guy_fight/bird_bullet.gd" id="1_y02p6"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="2_fnjvn"]
@@ -147,23 +147,23 @@ scale_curve = SubResource("CurveTexture_6ybi2")
 [sub_resource type="CircleShape2D" id="CircleShape2D_2v3to"]
 radius = 3.0
 
-[node name="RoseBullet" type="Area2D"]
+[node name="RoseBullet" type="Area2D" unique_id=370242918]
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_y02p6")
 
-[node name="Line" type="Line2D" parent="."]
+[node name="Line" type="Line2D" parent="." unique_id=866044577]
 material = SubResource("CanvasItemMaterial_y02p6")
 points = PackedVector2Array(0, 0, 0, -101)
 width_curve = SubResource("Curve_fnjvn")
 default_color = Color(1, 0, 0.282353, 1)
 gradient = SubResource("Gradient_fnjvn")
 
-[node name="ScnVfxBirdFlight" type="Node2D" parent="."]
+[node name="ScnVfxBirdFlight" type="Node2D" parent="." unique_id=1991148396]
 position = Vector2(0, 4)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight"]
+[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight" unique_id=1903866113]
 position = Vector2(-8, -15)
 sprite_frames = SubResource("SpriteFrames_7w216")
 animation = &"fly"
@@ -171,7 +171,7 @@ autoplay = "fly"
 frame_progress = 0.690738
 centered = false
 
-[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight/Sprite"]
+[node name="Sprite" type="AnimatedSprite2D" parent="ScnVfxBirdFlight/Sprite" unique_id=733185591]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_fnjvn")
 position = Vector2(-3, -3)
@@ -182,17 +182,17 @@ autoplay = "fly"
 frame_progress = 0.690738
 centered = false
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="ScnVfxBirdFlight"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ScnVfxBirdFlight" unique_id=506340478]
 texture = ExtResource("3_y02p6")
 process_material = SubResource("ParticleProcessMaterial_ctd8h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1082333938]
 shape = SubResource("CircleShape2D_2v3to")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=108374053]
 scale = Vector2(0.6, 0.6)
 
-[node name="WarningAudio" type="AudioStreamPlayer" parent="."]
+[node name="WarningAudio" type="AudioStreamPlayer" parent="." unique_id=588229426]
 stream = ExtResource("4_y02p6")
 volume_db = -7.0
 pitch_scale = 9.46

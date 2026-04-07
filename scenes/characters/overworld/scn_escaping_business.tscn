@@ -1,18 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4sg54o4qc6g4"]
+[gd_scene format=3 uid="uid://c4sg54o4qc6g4"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_p3bpj"]
 [ext_resource type="Texture2D" uid="uid://d0unrqngckm85" path="res://sprites/characters/overworld/spr_business_overworld.png" id="2_8my1b"]
 [ext_resource type="Script" uid="uid://crncmo2owp1y3" path="res://scenes/characters/overworld/scr_escaping_business.gd" id="2_j3y10"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_esqgc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsyur"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ngn6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o08fk"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c8355"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xi5xq"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -151,7 +151,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EscapingBusiness" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_p3bpj")]
+[node name="EscapingBusiness" unique_id=1844583234 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_p3bpj")]
 script = ExtResource("2_j3y10")
 escape_offset = Vector2(0, 0)
 animated_sprite = NodePath("Sprite")
@@ -159,22 +159,19 @@ speed = 2100
 save = false
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_esqgc")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+shape = SubResource("RectangleShape2D_hsyur")
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_7ngn6")
+shape = SubResource("RectangleShape2D_o08fk")
 
 [node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_c8355")
+shape = SubResource("CircleShape2D_xi5xq")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." index="3"]
+[node name="Sprite" type="AnimatedSprite2D" parent="." index="3" unique_id=1696599496]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_dabdh")
 animation = &"walk_left"
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=494739453]
 position = Vector2(0, -5)
 scale = Vector2(0.4, 0.8)

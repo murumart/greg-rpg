@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spirit" load_steps=5 format=3 uid="uid://d2drkbv5yt8xa"]
+[gd_resource type="Resource" script_class="Spirit" format=3 uid="uid://d2drkbv5yt8xa"]
 
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_aaxyx"]
 [ext_resource type="Script" uid="uid://cmr7ybf3j71jj" path="res://code/scr_spirit.gd" id="1_dw0rn"]
@@ -6,25 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_xhf04"]
 script = ExtResource("1_lkohb")
-health = 0.0
-health_percent = 0.0
-max_health_percent = 0.0
-pierce_defense = 0.0
-steal_health = 0.0
-magic = 0.0
-magic_percent = 0.0
-max_magic_percent = 0.0
-steal_magic = 0.0
-attack_increase = 0.0
-defense_increase = 0.0
-speed_increase = 0.0
-gender = 0
-effects = Array[ExtResource("1_aaxyx")]([])
-delay = 0.0
-summon_enemy = ""
-max_enemies = 6
-animation_on_receive = ""
-message_user = &""
 meta = {
 "reveal_enemy_info": true
 }
@@ -34,14 +15,6 @@ script = ExtResource("1_dw0rn")
 name_in_file = &"sideeye"
 name = &"sideeye"
 description = "make a judgement"
-animation = &""
-use_animation = &""
 receive_animation = &"sideeye"
 cost = 3
-use = -1
-reach = 0
-payload_reception_count = 1
-payload_reception_wait = 0.0
-wait = 0.0
-wait_before = 0.0
 payload = SubResource("Resource_xhf04")

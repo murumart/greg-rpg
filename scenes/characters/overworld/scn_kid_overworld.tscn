@@ -1,40 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtvsshfr18lnh"]
+[gd_scene format=3 uid="uid://dtvsshfr18lnh"]
 
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="1_lt34x"]
 [ext_resource type="Script" uid="uid://ds7ssk5r687ax" path="res://scenes/characters/overworld/scr_kid_overworld.gd" id="2_6yd75"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="3_rr505"]
 [ext_resource type="Script" uid="uid://dun1b5hylk2jh" path="res://code/scr_exchange.gd" id="3_vys0y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdw3p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vys0y"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw86a"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l71kv"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5nydu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvst8"]
 resource_local_to_scene = true
 radius = 32.0
 
-[node name="KidOverworld" node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_lt34x")]
+[node name="KidOverworld" unique_id=1894904423 node_paths=PackedStringArray("animated_sprite") instance=ExtResource("1_lt34x")]
 script = ExtResource("2_6yd75")
 trades = Array[ExtResource("3_vys0y")]([])
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape" parent="." index="0"]
-shape = SubResource("RectangleShape2D_vdw3p")
-
-[node name="CollisionDetectionArea" parent="." index="1"]
-modulate = Color(0.905882, 0.639216, 1, 1)
+shape = SubResource("RectangleShape2D_vys0y")
 
 [node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
-shape = SubResource("RectangleShape2D_sw86a")
+shape = SubResource("RectangleShape2D_l71kv")
 
 [node name="DetectionShape" parent="DetectionArea" index="0"]
-shape = SubResource("CircleShape2D_5nydu")
+shape = SubResource("CircleShape2D_lvst8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=140325043]
 position = Vector2(0, -8)
 sprite_frames = ExtResource("3_rr505")
 animation = &"walk_down"

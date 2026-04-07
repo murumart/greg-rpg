@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://lvdqg7mjwheo"]
+[gd_scene format=3 uid="uid://lvdqg7mjwheo"]
 
 [ext_resource type="Script" uid="uid://cisqduhi0kcg0" path="res://autoload/scr_screen_overlay.gd" id="1_3f4vq"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="2_1cax3"]
 
-[node name="SOL" type="CanvasLayer"]
+[node name="SOL" type="CanvasLayer" unique_id=1451096589]
 script = ExtResource("1_3f4vq")
 
-[node name="ScreenFadeOrderer" type="Node2D" parent="."]
+[node name="ScreenFadeOrderer" type="Node2D" parent="." unique_id=541996228]
 z_index = 11
 
-[node name="DialogueBox" parent="." instance=ExtResource("2_1cax3")]
+[node name="DialogueBox" parent="." unique_id=415215500 instance=ExtResource("2_1cax3")]

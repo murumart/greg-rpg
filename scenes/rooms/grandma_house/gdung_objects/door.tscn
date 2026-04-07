@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbb0ssychwhl1"]
+[gd_scene format=3 uid="uid://dbb0ssychwhl1"]
 
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="1_awymi"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="2_grw8v"]
@@ -19,22 +19,22 @@ func _on_interaction_area_on_interact() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ank8w"]
 size = Vector2(14, 2)
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" unique_id=970640194]
 script = SubResource("GDScript_lx5rv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1489645500]
 position = Vector2(8, -10)
 texture = ExtResource("1_awymi")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 20)
 
-[node name="InteractionArea" type="Area2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=976700834]
 modulate = Color(0.905882, 0.639216, 1, 1)
 collision_layer = 5
 input_pickable = false
 script = ExtResource("2_grw8v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1176790084]
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_ank8w")
 

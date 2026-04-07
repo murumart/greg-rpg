@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dsf10v6gqlamp"]
+[gd_scene format=3 uid="uid://dsf10v6gqlamp"]
 
 [ext_resource type="Texture2D" uid="uid://d1a5xaqld56sq" path="res://sprites/vfx/spr_hook.png" id="1_3udky"]
 
@@ -198,13 +198,11 @@ _data = {
 &"default": SubResource("Animation_paqq8")
 }
 
-[node name="VfxHookAttack" type="Node2D"]
+[node name="VfxHookAttack" type="Node2D" unique_id=669803847]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=847427257]
 sprite_frames = SubResource("SpriteFrames_84was")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_31j8l")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=550571326]
+libraries/ = SubResource("AnimationLibrary_31j8l")
+autoplay = &"default"

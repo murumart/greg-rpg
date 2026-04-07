@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0boy1v2h80jo"]
+[gd_scene format=3 uid="uid://d0boy1v2h80jo"]
 
 [ext_resource type="PackedScene" uid="uid://dm6o78hlxv64n" path="res://scenes/battle_backgrounds/scn_battle_background.tscn" id="1_g01qy"]
 [ext_resource type="Texture2D" uid="uid://c3crb04ogq7gy" path="res://sprites/photos/spr_town1.png" id="2_1s8l4"]
@@ -113,15 +113,13 @@ _data = {
 &"default": SubResource("Animation_bpvym")
 }
 
-[node name="BattleBackground" instance=ExtResource("1_g01qy")]
+[node name="BattleBackground" unique_id=716067618 instance=ExtResource("1_g01qy")]
 
-[node name="SprTown1" type="Sprite2D" parent="." index="0"]
+[node name="SprTown1" type="Sprite2D" parent="." index="0" unique_id=258909267]
 self_modulate = Color(0.223529, 0.466667, 0.301961, 1)
 position = Vector2(80, 60)
 texture = ExtResource("2_1s8l4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-autoplay = "default"
-libraries = {
-"": SubResource("AnimationLibrary_qk8gv")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1411023567]
+libraries/ = SubResource("AnimationLibrary_qk8gv")
+autoplay = &"default"

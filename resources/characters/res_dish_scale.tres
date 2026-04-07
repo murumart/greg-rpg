@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://by5mxebgvif7a"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://by5mxebgvif7a"]
 
 [ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="1_wnrui"]
 
 [resource]
 script = ExtResource("1_wnrui")
-name_in_file = &""
 name = "dish"
 info = "it towers above you. you can feel its groan in your bones."
 max_health = 1000.0
@@ -12,13 +11,6 @@ health = 1000.0
 max_magic = 90000.0
 magic = 90000.0
 level = 55
-experience = 0
 attack = 55.0
 defense = 35.0
 speed = 55.0
-defeated_characters = {}
-inventory = Array[String]([])
-spirits = Array[String]([])
-unused_spirits = Array[String]([])
-armour = ""
-weapon = ""

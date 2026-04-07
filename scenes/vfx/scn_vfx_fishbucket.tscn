@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb1oo53pfhnn6"]
+[gd_scene format=3 uid="uid://bb1oo53pfhnn6"]
 
 [ext_resource type="Texture2D" uid="uid://bfqk1vtf2mr68" path="res://sprites/characters/battle/lakeside/spr_fish.png" id="1_wk0ju"]
 [ext_resource type="AudioStream" uid="uid://wjj6747ulvyr" path="res://sounds/spirit/fish_attack.ogg" id="2_5ccn7"]
@@ -254,53 +254,51 @@ _data = {
 &"default": SubResource("Animation_qm840")
 }
 
-[node name="VfxFishbucket" type="Node2D"]
+[node name="VfxFishbucket" type="Node2D" unique_id=1965241171]
 
-[node name="FallingFish" type="GPUParticles2D" parent="."]
+[node name="FallingFish" type="GPUParticles2D" parent="." unique_id=1310943051]
 modulate = Color(1, 1, 1, 0)
 z_index = -14
 material = SubResource("CanvasItemMaterial_4oxvp")
 position = Vector2(0, -120)
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_7mov3")
 texture = ExtResource("1_wk0ju")
 lifetime = 3.0
 randomness = 0.52
 fixed_fps = 60
 visibility_rect = Rect2(-600, 0, 1200, 800)
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_7mov3")
 
-[node name="FishParticles" type="GPUParticles2D" parent="."]
+[node name="FishParticles" type="GPUParticles2D" parent="." unique_id=1761187328]
 material = SubResource("CanvasItemMaterial_4oxvp")
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_fc5ut")
 texture = ExtResource("1_wk0ju")
 preprocess = 1.0
 explosiveness = 1.0
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fc5ut")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1327168145]
 stream = ExtResource("2_5ccn7")
 pitch_scale = 0.38
 bus = &"ECHO"
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1458477822]
 stream = ExtResource("2_5ccn7")
 pitch_scale = 0.6
 bus = &"ECHO"
 
-[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=1741581837]
 stream = ExtResource("2_5ccn7")
 bus = &"ECHO"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yjrw8")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=255661585]
+libraries/ = SubResource("AnimationLibrary_yjrw8")
+autoplay = &"default"
 
-[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." unique_id=1055683118]
 stream = ExtResource("3_bjptj")

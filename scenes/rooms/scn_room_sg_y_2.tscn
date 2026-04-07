@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://cbc46l0kg4hg1"]
+[gd_scene format=4 uid="uid://cbc46l0kg4hg1"]
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_owq78"]
 [ext_resource type="Script" uid="uid://dqfootmfjeyuy" path="res://scenes/rooms/sg/sg_room.gd" id="2_d10ls"]
@@ -25,11 +25,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7awtx"]
 size = Vector2(12, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rixhj"]
+resource_local_to_scene = true
+size = Vector2(16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmjjk"]
 resource_local_to_scene = true
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmeqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wofwu"]
+resource_local_to_scene = true
+size = Vector2(14, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm2wf"]
 resource_local_to_scene = true
@@ -93,135 +101,6 @@ initialized = true
 script = ExtResource("12_7wvqf")
 
 [sub_resource type="VisualShader" id="VisualShader_vygom"]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform float time_speed = 1.0;
-
-
-// DistortionUVAnimated
-vec2 _distortionUVAnimatedFunc(vec2 _uv_dist, float _distX_dist, float _distY_dist, float _waveX_dist, float _waveY_dist, float _spd_dist, float _time_dist){
-	_uv_dist.x += sin(_uv_dist.y * _waveX_dist + _time_dist * _spd_dist) * _distX_dist;
-	_uv_dist.y += sin(_uv_dist.x * _waveY_dist + _time_dist * _spd_dist) * _distY_dist;
-	return _uv_dist;
-}
-
-void fragment() {
-// Input:10
-	vec4 n_out10p0 = COLOR;
-
-
-// FloatParameter:12
-	float n_out12p0 = time_speed;
-
-
-// Input:7
-	float n_out7p0 = TIME;
-
-
-	vec2 n_out9p0;
-// DistortionUVAnimated:9
-	float n_in9p1 = 0.20000;
-	float n_in9p2 = 0.00000;
-	float n_in9p3 = 0.05000;
-	float n_in9p4 = 0.02000;
-	{
-		n_out9p0.xy = _distortionUVAnimatedFunc(UV.xy, n_in9p3, n_in9p4, n_in9p1, n_in9p2, n_out12p0, n_out7p0);
-	}
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(TEXTURE, n_out9p0);
-
-
-// VectorOp:14
-	vec4 n_out14p0 = n_out10p0 * n_out8p0;
-
-
-// Input:18
-	vec2 n_out18p0 = UV;
-
-
-	vec2 n_out23p0;
-// Expression:23
-	n_out23p0 = vec2(0.0, 0.0);
-	{
-		n_out23p0 = vec2(
-			sin(n_out7p0),
-			cos(n_out7p0)
-		);
-	}
-
-
-	vec2 n_out24p0;
-// Remap:24
-	vec2 n_in24p1 = vec2(-1.00000, -1.00000);
-	vec2 n_in24p2 = vec2(1.00000, 1.00000);
-	vec2 n_in24p3 = vec2(0.90000, 0.90000);
-	vec2 n_in24p4 = vec2(1.10000, 1.10000);
-	{
-		vec2 __input_range = n_in24p2 - n_in24p1;
-		vec2 __output_range = n_in24p4 - n_in24p3;
-		n_out24p0 = n_in24p3 + __output_range * ((n_out23p0 - n_in24p1) / __input_range);
-	}
-
-
-// VectorOp:19
-	vec2 n_out19p0 = n_out18p0 * n_out24p0;
-
-
-	vec4 n_out17p0;
-// Texture2D:17
-	n_out17p0 = texture(TEXTURE, n_out19p0);
-
-
-// Vector4Constant:16
-	vec4 n_out16p0 = vec4(2.000000, 2.000000, 32.000000, 1.000000);
-
-
-// VectorOp:15
-	vec4 n_out15p0 = pow(n_out17p0, n_out16p0);
-
-
-	vec3 n_out11p0;
-// ColorOp:11
-	{
-		float base = vec3(n_out14p0.xyz).x;
-		float blend = vec3(n_out15p0.xyz).x;
-		if (base < 0.5) {
-			n_out11p0.x = (base * (blend + 0.5));
-		} else {
-			n_out11p0.x = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).y;
-		float blend = vec3(n_out15p0.xyz).y;
-		if (base < 0.5) {
-			n_out11p0.y = (base * (blend + 0.5));
-		} else {
-			n_out11p0.y = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-	{
-		float base = vec3(n_out14p0.xyz).z;
-		float blend = vec3(n_out15p0.xyz).z;
-		if (base < 0.5) {
-			n_out11p0.z = (base * (blend + 0.5));
-		} else {
-			n_out11p0.z = (1.0 - (1.0 - base) * (1.0 - (blend - 0.5)));
-		}
-	}
-
-
-// Output:0
-	COLOR.rgb = n_out11p0;
-
-
-}
-"
-graph_offset = Vector2(-1124.56, 420.634)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1040, 320)
@@ -289,62 +168,62 @@ _data = {
 }
 point_count = 13
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rixhj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f270g"]
 resource_local_to_scene = true
 size = Vector2(10, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpxyo"]
 size = Vector2(14, 20)
 
-[node name="SgY2" type="Node2D"]
+[node name="SgY2" type="Node2D" unique_id=422774060]
 y_sort_enabled = true
 script = ExtResource("1_owq78")
 music = "secret_garden"
 metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
-[node name="SGRoom" type="Node" parent="." node_paths=PackedStringArray("collision_hide")]
+[node name="SGRoom" type="Node" parent="." unique_id=74855681 node_paths=PackedStringArray("collision_hide")]
 script = ExtResource("2_d10ls")
 collision_hide = NodePath("../COLLISION")
 
-[node name="CanvasModulateGroup" type="CanvasModulate" parent="."]
+[node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=1365279992]
 color = Color(1, 0.953853, 0.857532, 1)
 script = ExtResource("3_cq6vl")
 metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 
-[node name="ColorContainer" type="Node" parent="CanvasModulateGroup"]
+[node name="ColorContainer" type="Node" parent="CanvasModulateGroup" unique_id=1679199274]
 script = ExtResource("4_yglxy")
 color = Color(1, 0.953853, 0.857532, 1)
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="COLLISION" type="StaticBody2D" parent="."]
+[node name="COLLISION" type="StaticBody2D" parent="." unique_id=479142274]
 collision_mask = 0
 
-[node name="COLLISION" type="TileMapLayer" parent="COLLISION"]
+[node name="COLLISION" type="TileMapLayer" parent="COLLISION" unique_id=723870245]
 z_index = 4
 tile_map_data = PackedByteArray("AAAGAP3/AAAPAA8AAAAGAP7/AAAPAA8AAAAGAP//AAAPAA8AAAAGAAAAAAAPAA8AAAAFAAAAAAAPAA8AAAAEAAAAAAAPAA8AAAADAAAAAAAPAA8AAAACAAAAAAAPAA8AAAABAAAAAAAPAA8AAAAAAAAAAAAPAA8AAAAAAAEAAAAPAA8AAAAAAAIAAAAPAA8AAAABAAIAAAAPAA8AAAACAAIAAAAPAA8AAAADAAIAAAAPAA8AAAAEAAIAAAAPAA8AAAAFAAIAAAAPAA8AAAAGAAIAAAAPAA8AAAAHAAIAAAAPAA8AAAAQAAIAAAAPAA8AAAARAAIAAAAPAA8AAAAPAAIAAAAPAA8AAAAOAAIAAAAPAA8AAAANAAIAAAAPAA8AAAAMAAIAAAAPAA8AAAALAAIAAAAPAA8AAAAKAAIAAAAPAA8AAAAJAAIAAAAPAA8AAAAIAAIAAAAPAA8AAAASAAIAAAAPAA8AAAATAAIAAAAPAA8AAAAUAAIAAAAPAA8AAAAVAAIAAAAPAA8AAAAWAAIAAAAPAA8AAAAXAAIAAAAPAA8AAAAYAAIAAAAPAA8AAAAYAAMAAAAPAA8AAAAYAAQAAAAPAA8AAAAWAAQAAAAPAA8AAAAVAAQAAAAPAA8AAAAUAAQAAAAPAA8AAAATAAQAAAAPAA8AAAASAAQAAAAPAA8AAAARAAQAAAAPAA8AAAAQAAQAAAAPAA8AAAAPAAQAAAAPAA8AAAAOAAQAAAAPAA8AAAANAAQAAAAPAA8AAAAMAAQAAAAPAA8AAAALAAQAAAAPAA8AAAAKAAQAAAAPAA8AAAAJAAQAAAAPAA8AAAAIAAQAAAAPAA8AAAAHAAQAAAAPAA8AAAAGAAQAAAAPAA8AAAAFAAQAAAAPAA8AAAAEAAQAAAAPAA8AAAADAAQAAAAPAA8AAAACAAQAAAAPAA8AAAABAAQAAAAPAA8AAAAAAAQAAAAPAA8AAAD+/wMAAAAPAA8AAAD+/wQAAAAPAA8AAAD//wQAAAAPAA8AAAD+/wIAAAAPAA8AAAD+/wEAAAAPAA8AAAD+/wAAAAAPAA8AAAD9/wAAAAAPAA8AAAD8/wAAAAAPAA8AAAD7/wAAAAAPAA8AAAD6/wAAAAAPAA8AAAD5/wAAAAAPAA8AAAD5////AAAPAA8AAAD5//7/AAAPAA8AAAD5//3/AAAPAA8AAAD5//z/AAAPAA8AAAD6//z/AAAPAA8AAAD7//z/AAAPAA8AAAD8//z/AAAPAA8AAAD9//z/AAAPAA8AAAD+//z/AAAPAA8AAAD///z/AAAPAA8AAAAAAPz/AAAPAA8AAAABAPz/AAAPAA8AAAACAPz/AAAPAA8AAAADAPz/AAAPAA8AAAAEAPz/AAAPAA8AAAAFAPz/AAAPAA8AAAAGAPz/AAAPAA8AAAAXAPz/AAAPAA8AAAAWAPz/AAAPAA8AAAAVAPz/AAAPAA8AAAAUAPz/AAAPAA8AAAATAPz/AAAPAA8AAAATAP3/AAAPAA8AAAATAP7/AAAPAA8AAAATAP//AAAPAA8AAAATAAAAAAAPAA8AAAAUAAAAAAAPAA8AAAAVAAAAAAAPAA8AAAAWAAAAAAAPAA8AAAAXAAAAAAAPAA8AAAAYAAAAAAAPAA8AAAAZAAAAAAAPAA8AAAAaAAAAAAAPAA8AAAAbAAAAAAAPAA8AAAAcAAAAAAAPAA8AAAAdAAAAAAAPAA8AAAAYAPz/AAAPAA8AAAAZAPz/AAAPAA8AAAAaAPz/AAAPAA8AAAAbAPz/AAAPAA8AAAAcAPz/AAAPAA8AAAAdAPz/AAAPAA8AAAAeAPz/AAAPAA8AAAAfAPz/AAAPAA8AAAAgAPz/AAAPAA8AAAAgAP3/AAAPAA8AAAAgAP7/AAAPAA8AAAAgAP//AAAPAA8AAAAgAAAAAAAPAA8AAAAfAAAAAAAPAA8AAAAdAAEAAAAPAA8AAAAdAAIAAAAPAA8AAAAeAAIAAAAPAA8AAAAfAAIAAAAPAA8AAAAgAAIAAAAPAA8AAAAhAAIAAAAPAA8AAAAiAAIAAAAPAA8AAAAjAAIAAAAPAA8AAAAkAAIAAAAPAA8AAAAlAAIAAAAPAA8AAAAmAAIAAAAPAA8AAAAnAAIAAAAPAA8AAAAoAAIAAAAPAA8AAAApAAIAAAAPAA8AAAApAAEAAAAPAA8AAAApAAAAAAAPAA8AAAAoAAAAAAAPAA8AAAAnAAAAAAAPAA8AAAAmAAAAAAAPAA8AAAAlAAAAAAAPAA8AAAAkAAAAAAAPAA8AAAAjAAAAAAAPAA8AAAAiAAAAAAAPAA8AAAAhAAAAAAAPAA8AAAAmAP//AAAPAA8AAAAmAP7/AAAPAA8AAAAmAP3/AAAPAA8AAAAmAPz/AAAPAA8AAAAnAPz/AAAPAA8AAAAnAPv/AAAPAA8AAAAnAPr/AAAPAA8AAAAnAPn/AAAPAA8AAAAoAPn/AAAPAA8AAAApAPn/AAAPAA8AAAApAPr/AAAPAA8AAAApAPv/AAAPAA8AAAApAPz/AAAPAA8AAAAqAPz/AAAPAA8AAAArAPz/AAAPAA8AAAAsAPz/AAAPAA8AAAAtAPz/AAAPAA8AAAAuAPz/AAAPAA8AAAAuAP3/AAAPAA8AAAAuAP7/AAAPAA8AAAAuAP//AAAPAA8AAAAuAAAAAAAPAA8AAAAtAAAAAAAPAA8AAAAsAAAAAAAPAA8AAAArAAAAAAAPAA8AAAAqAAAAAAAPAA8AAAAWAAUAAAAPAA8AAAAXAAYAAAAPAA8AAAAYAAYAAAAPAA8AAAAZAAYAAAAPAA8AAAAaAAYAAAAPAA8AAAAbAAUAAAAPAA8AAAAbAAQAAAAPAA8AAAAaAAMAAAAPAA8AAAAZAAMAAAAPAA8AAAAWAAYAAAAPAA8AAAAbAAMAAAAPAA8AAAAbAAYAAAAPAA8AAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = -1270
 
-[node name="Floor" type="TileMapLayer" parent="."]
+[node name="Floor" type="TileMapLayer" parent="." unique_id=504504924]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD6//3/AAABAAAAAAD6//7/AAABAAEAAAD6////AAABAAIAAAADAP//AAACAAIAAAADAP7/AAACAAEAAAADAP3/AAACAAAAAAACAP//AAACAAIAAAACAP7/AAAEAAAAAAACAP3/AAACAAAAAAABAP//AAACAAIAAAABAP7/AAACAAEAAAABAP3/AAACAAAAAAAAAP//AAACAAIAAAAAAP7/AAACAAEAAAAAAP3/AAACAAAAAAD/////AAACAAEAAAD///7/AAAEAAAAAAD///3/AAACAAAAAAD+////AAACAAIAAAD+//7/AAACAAEAAAD+//3/AAACAAAAAAD9////AAACAAIAAAD9//7/AAAEAAAAAAD9//3/AAACAAAAAAD8////AAACAAIAAAD8//7/AAACAAEAAAD8//3/AAACAAAAAAD7////AAACAAIAAAD7//7/AAACAAEAAAD7//3/AAACAAAAAAAFAP//AAADAAIAAAAFAP7/AAADAAEAAAAFAP3/AAADAAAAAAAEAP//AAACAAIAAAAEAP7/AAAEAAAAAAAEAP3/AAACAAAAAAD//wAAAAAAAAEAAAD//wEAAAAAAAEAAAD//wIAAAAAAAEAAAD//wMAAAABAAIAAAAAAAMAAAACAAMAAAABAAMAAAACAAMAAAACAAMAAAACAAMAAAADAAMAAAACAAMAAAAEAAMAAAACAAMAAAAFAAMAAAACAAMAAAAGAAMAAAACAAMAAAAHAAMAAAACAAMAAAAIAAMAAAACAAMAAAAJAAMAAAACAAMAAAAKAAMAAAACAAMAAAALAAMAAAACAAMAAAAMAAMAAAACAAMAAAANAAMAAAACAAMAAAAOAAMAAAACAAMAAAAPAAMAAAACAAMAAAAQAAMAAAACAAMAAAARAAMAAAACAAMAAAASAAMAAAACAAMAAAATAAMAAAACAAMAAAAUAAMAAAACAAMAAAAVAAMAAAACAAMAAAAWAAMAAAACAAMAAAAXAAMAAAADAAAAAAAeAP//AAAEAAAAAAAeAP7/AAAEAAAAAAAdAP//AAACAAIAAAAdAP7/AAACAAEAAAAcAP//AAACAAIAAAAcAP7/AAACAAEAAAAbAP//AAACAAIAAAAbAP7/AAAEAAAAAAAaAP//AAACAAIAAAAaAP7/AAACAAEAAAAZAP//AAACAAIAAAAZAP7/AAACAAEAAAAYAP//AAACAAIAAAAYAP7/AAACAAEAAAAYAP3/AAACAAAAAAAZAP3/AAACAAAAAAAaAP3/AAACAAAAAAAbAP3/AAACAAAAAAAcAP3/AAACAAAAAAAdAP3/AAACAAAAAAAeAP3/AAACAAAAAAAfAP3/AAADAAAAAAAfAP7/AAADAAEAAAAfAP//AAADAAIAAAAUAP3/AAABAAAAAAAVAP3/AAACAAAAAAAWAP3/AAACAAAAAAAXAP3/AAACAAAAAAAXAP7/AAACAAEAAAAXAP//AAACAAIAAAAWAP//AAACAAIAAAAVAP//AAACAAIAAAAVAP7/AAACAAEAAAAUAP7/AAABAAEAAAAWAP7/AAAEAAAAAAAUAP//AAABAAIAAAAeAAAAAAAAAAEAAAAeAAEAAAABAAIAAAAoAP3/AAAEAAAAAAAoAP7/AAAEAAAAAAApAP7/AAAEAAAAAAApAP//AAACAAIAAAAqAP//AAACAAIAAAArAP//AAACAAIAAAArAP7/AAACAAEAAAAsAP7/AAAEAAAAAAAtAP7/AAADAAEAAAAtAP3/AAADAAAAAAAsAP3/AAACAAAAAAArAP3/AAACAAAAAAAqAP3/AAACAAAAAAApAP3/AAACAAAAAAAoAP//AAACAAIAAAAsAP//AAACAAIAAAAqAP7/AAACAAEAAAAtAP//AAADAAIAAAAnAP3/AAABAAAAAAAnAP7/AAABAAEAAAAnAP//AAABAAIAAAAoAPz/AAAAAAEAAAAoAPv/AAAAAAEAAAAoAPr/AAAAAAAAAAAfAAEAAAACAAMAAAAgAAEAAAACAAMAAAAhAAEAAAACAAMAAAAiAAEAAAACAAMAAAAjAAEAAAACAAMAAAAkAAEAAAACAAMAAAAlAAEAAAACAAMAAAAmAAEAAAACAAMAAAAnAAEAAAACAAMAAAAoAAEAAAADAAMAAAAXAAQAAAAAAAEAAAAXAAUAAAABAAIAAAAYAAUAAAACAAMAAAAZAAUAAAACAAIAAAAZAAQAAAABAAAAAAAaAAQAAAADAAAAAAAaAAUAAAADAAIAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = -1270
 
-[node name="Climp" type="TileMapLayer" parent="."]
+[node name="Climp" type="TileMapLayer" parent="." unique_id=2109563504]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAPz/AAAFAAIAAAAEAPv/AAAFAAEAAAAEAPr/AAAGAAEAAAAEAPn/AAAFAAEAAAAEAPj/AAAFAAAAAAAFAPr/AAAHAAMAAAAGAPr/AAAHAAMAAAAHAPr/AAAHAAMAAAAIAPr/AAAHAAMAAAAJAPr/AAAIAAAAAAAJAPv/AAAFAAEAAAAJAPz/AAAGAAIAAAAKAPz/AAAHAAMAAAALAPz/AAAHAAMAAAAMAPz/AAAHAAMAAAANAPz/AAAHAAMAAAAOAPz/AAAIAAIAAAATAPr/AAAHAAMAAAAUAPr/AAAHAAMAAAAVAPr/AAAIAAAAAAAOAPv/AAAGAAAAAAAPAPv/AAAHAAMAAAAQAPr/AAAGAAAAAAAQAPv/AAAIAAIAAAARAPr/AAAHAAMAAAASAPr/AAAHAAMAAAAVAPv/AAAGAAIAAAAWAPv/AAAIAAAAAAAWAPz/AAAFAAIAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = -1270
 
-[node name="Climp2" type="TileMapLayer" parent="."]
+[node name="Climp2" type="TileMapLayer" parent="." unique_id=1255002409]
 y_sort_enabled = true
-position = Vector2(480, -86.4733)
+position = Vector2(480, -86.24197)
 tile_map_data = PackedByteArray("AAAAAP//AAAFAAEAAAAAAP7/AAAFAAEAAAAAAP3/AAAGAAAAAAAAAAAAAAAFAAEAAAAAAAEAAAAFAAIAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAIAAIAAAAGAP3/AAAGAAIAAAAHAP3/AAAHAAMAAAAIAP3/AAAHAAMAAAAJAP3/AAAHAAMAAAAKAP3/AAAIAAAAAAAKAP7/AAAFAAEAAAAKAP//AAAFAAIAAAAEAPz/AAAGAAAAAAAFAPz/AAAHAAMAAAAGAPz/AAAIAAAAAAA=")
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = 15455
 
-[node name="SinAnimator" type="Node" parent="Climp2" node_paths=PackedStringArray("target")]
+[node name="SinAnimator" type="Node" parent="Climp2" unique_id=1761704400 node_paths=PackedStringArray("target")]
 script = ExtResource("4_pmeqf")
 property_name = &"position:y"
 target = NodePath("..")
@@ -352,40 +231,40 @@ min_value = -78.515
 max_value = 16.74
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
-[node name="SoptClimping2" type="Area2D" parent="Climp2"]
+[node name="SoptClimping2" type="Area2D" parent="Climp2" unique_id=1535349252]
 position = Vector2(168, -10.7282)
 collision_layer = 128
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Climp2/SoptClimping2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Climp2/SoptClimping2" unique_id=909695154]
 light_mask = 0
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_7awtx")
 
-[node name="Greg" parent="." instance=ExtResource("4_1qk27")]
+[node name="Greg" parent="." unique_id=1750387672 instance=ExtResource("4_1qk27")]
 position = Vector2(-70, -16)
 
-[node name="Camera" parent="Greg" instance=ExtResource("5_g65iy")]
+[node name="Camera" parent="Greg" unique_id=865467302 instance=ExtResource("5_g65iy")]
 position = Vector2(0, -9)
 zoom = Vector2(2, 2)
 limit_left = -93
 limit_right = 735
 resolution_scale_factor = 0.5
 
-[node name="Areas" type="Node2D" parent="."]
+[node name="Areas" type="Node2D" parent="." unique_id=1233926626]
 y_sort_enabled = true
 
-[node name="SoptClimping" type="Area2D" parent="Areas"]
+[node name="SoptClimping" type="Area2D" parent="Areas" unique_id=1565536063]
 position = Vector2(360, -56)
 collision_layer = 128
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/SoptClimping"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/SoptClimping" unique_id=65949696]
 light_mask = 0
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_7awtx")
 
-[node name="ClimbingPlace" parent="Areas" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
+[node name="ClimbingPlace" parent="Areas" unique_id=131167984 node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
 position = Vector2(70, -71)
 ground_levels = [NodePath("../SoptClimping")]
 ground_level_y = 48
@@ -394,38 +273,38 @@ camera = NodePath("../../Greg/Camera")
 
 [node name="CollisionShape2D" parent="Areas/ClimbingPlace" index="0"]
 position = Vector2(2, 16)
-shape = SubResource("RectangleShape2D_kmjjk")
+shape = SubResource("RectangleShape2D_rixhj")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/ClimbingPlace"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/ClimbingPlace" unique_id=405128893]
 position = Vector2(290, 16)
 shape = SubResource("RectangleShape2D_kmjjk")
 debug_color = Color(0.703641, 0.716196, 0.125455, 0.419608)
 
-[node name="Start" type="Area2D" parent="Areas"]
+[node name="Start" type="Area2D" parent="Areas" unique_id=994616260]
 position = Vector2(72, -55)
 script = ExtResource("7_kmjjk")
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Start"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Start" unique_id=629262680]
 shape = SubResource("RectangleShape2D_pmeqf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/Start"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/Start" unique_id=807454718]
 position = Vector2(288, -1)
 shape = SubResource("RectangleShape2D_pmeqf")
 
-[node name="InspectArea2" type="Area2D" parent="Areas"]
+[node name="InspectArea2" type="Area2D" parent="Areas" unique_id=1389653450]
 position = Vector2(488, -55)
 script = ExtResource("7_kmjjk")
 metadata/_custom_type_script = "uid://c68b383voql6x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/InspectArea2" unique_id=70793139]
 shape = SubResource("RectangleShape2D_pmeqf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InspectArea2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/InspectArea2" unique_id=1418524753]
 position = Vector2(160, -36)
 shape = SubResource("RectangleShape2D_pmeqf")
 
-[node name="ClimbingPlace2" parent="Areas" node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
+[node name="ClimbingPlace2" parent="Areas" unique_id=1211899883 node_paths=PackedStringArray("ground_levels", "greg", "camera") instance=ExtResource("6_g65iy")]
 position = Vector2(494, -27)
 ground_levels = [NodePath("../../Climp2/SoptClimping2")]
 ground_level_y = 20
@@ -434,54 +313,54 @@ camera = NodePath("../../Greg/Camera")
 
 [node name="CollisionShape2D" parent="Areas/ClimbingPlace2" index="0"]
 position = Vector2(-6, -28.5)
-shape = SubResource("RectangleShape2D_lm2wf")
+shape = SubResource("RectangleShape2D_wofwu")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/ClimbingPlace2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Areas/ClimbingPlace2" unique_id=1387396103]
 position = Vector2(154, -69)
 shape = SubResource("RectangleShape2D_lm2wf")
 debug_color = Color(0.703641, 0.716196, 0.125455, 0.419608)
 
-[node name="RoomGate" parent="Areas" instance=ExtResource("9_7awtx")]
+[node name="RoomGate" parent="Areas" unique_id=1525728640 instance=ExtResource("9_7awtx")]
 position = Vector2(-96, -24)
 destination = &"sg_y_1"
 gate_id = &"sgy1-2"
 extents = Vector2i(8, 24)
 spawnpoint = Vector2i(14, 0)
 
-[node name="RoomGate2" parent="Areas" instance=ExtResource("9_7awtx")]
+[node name="RoomGate2" parent="Areas" unique_id=2055132426 instance=ExtResource("9_7awtx")]
 position = Vector2(736, -24)
 destination = &"sg_y_3"
 gate_id = &"sgy2-3"
 extents = Vector2i(8, 24)
 spawnpoint = Vector2i(-14, 0)
 
-[node name="SgCatOwl" parent="Areas" instance=ExtResource("10_lm2wf")]
+[node name="SgCatOwl" parent="Areas" unique_id=701890182 instance=ExtResource("10_lm2wf")]
 position = Vector2(20, -46)
 default_lines = Array[StringName]([&"sg_climb_1", &"sg_climb_2"])
 
-[node name="SgCatOwl2" parent="Areas" instance=ExtResource("10_lm2wf")]
+[node name="SgCatOwl2" parent="Areas" unique_id=269243591 instance=ExtResource("10_lm2wf")]
 position = Vector2(463, -44)
 default_lines = Array[StringName]([&"sg_climb_2"])
 
-[node name="SgCatOwl3" parent="Areas" instance=ExtResource("10_lm2wf")]
+[node name="SgCatOwl3" parent="Areas" unique_id=132777628 instance=ExtResource("10_lm2wf")]
 position = Vector2(425, 66)
 default_lines = Array[StringName]([&"sg_climb_cream"])
 
-[node name="Parallax2D3" type="Parallax2D" parent="."]
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=612600255]
 scroll_scale = Vector2(0.05, 0)
 scroll_offset = Vector2(99.64, 60.115)
 
-[node name="BattleBackground" parent="Parallax2D3" instance=ExtResource("11_r1p7l")]
+[node name="BattleBackground" parent="Parallax2D3" unique_id=349484149 instance=ExtResource("11_r1p7l")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)
 
-[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0"]
+[node name="Sprite2D" parent="Parallax2D3/BattleBackground" index="0" unique_id=1703095315]
 material = SubResource("ShaderMaterial_cq6vl")
 
-[node name="Parallax2D2" type="Parallax2D" parent="."]
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=2011783756]
 scroll_scale = Vector2(0.5, 0.645)
 scroll_offset = Vector2(0, 83)
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="Parallax2D2" unique_id=1259668019]
 modulate = Color(0.639205, 0.668347, 0.316329, 1)
 z_index = -1
 position = Vector2(-825, 0)
@@ -490,12 +369,12 @@ tile_map_data = PackedByteArray("AAByAPH/AAACAAMAAAB0APH/AAACAAMAAABzAPH/AAACAAM
 tile_set = ExtResource("3_5ykuy")
 y_sort_origin = -110
 
-[node name="SgCatOwl2" parent="Parallax2D2/TileMapLayer4" instance=ExtResource("10_lm2wf")]
+[node name="SgCatOwl2" parent="Parallax2D2/TileMapLayer4" unique_id=782228069 instance=ExtResource("10_lm2wf")]
 position = Vector2(2488, -144)
 collision_extents = Vector2i(1, 1)
 default_lines = Array[StringName]([&"sg_climb_bg"])
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D2"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Parallax2D2" unique_id=483954928]
 position = Vector2(158, -81.84)
 amount = 24
 texture = ExtResource("16_pqh00")
@@ -503,59 +382,59 @@ visibility_rect = Rect2(-404.563, -162.585, 806.123, 350.506)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_4sdex")
 
-[node name="Decor" type="Node2D" parent="."]
+[node name="Decor" type="Node2D" parent="." unique_id=1902572501]
 position = Vector2(650, 80)
 
-[node name="Path2D" type="Path2D" parent="Decor" node_paths=PackedStringArray("path")]
+[node name="Path2D" type="Path2D" parent="Decor" unique_id=2105004531 node_paths=PackedStringArray("path")]
 position = Vector2(0, -9)
 curve = SubResource("Curve2D_wofwu")
 script = ExtResource("16_4sdex")
 path = NodePath(".")
 speed = 0.2
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Decor/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Decor/Path2D" unique_id=1915027763]
 position = Vector2(-38, 15)
 rotation = -1.35213
 rotates = false
 
-[node name="Flower1" parent="Decor/Path2D/PathFollow2D" instance=ExtResource("17_rqs1b")]
+[node name="Flower1" parent="Decor/Path2D/PathFollow2D" unique_id=1233732290 instance=ExtResource("17_rqs1b")]
 position = Vector2(-7.41515, -10.6778)
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Decor/Path2D"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="Decor/Path2D" unique_id=1186149448]
 position = Vector2(-38, 15)
-rotation = -1.35213
+rotation = -1.3521273
 
-[node name="Flower1" parent="Decor/Path2D/PathFollow2D2" instance=ExtResource("18_mpxyo")]
+[node name="Flower1" parent="Decor/Path2D/PathFollow2D2" unique_id=836888547 instance=ExtResource("18_mpxyo")]
 position = Vector2(-7.41515, -10.6778)
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Decor/Path2D"]
+[node name="PathFollow2D3" type="PathFollow2D" parent="Decor/Path2D" unique_id=545428212]
 position = Vector2(-38, 15)
-rotation = -1.35213
+rotation = -1.3521273
 
-[node name="Flower1" parent="Decor/Path2D/PathFollow2D3" instance=ExtResource("19_rixhj")]
+[node name="Flower1" parent="Decor/Path2D/PathFollow2D3" unique_id=1597874909 instance=ExtResource("19_rixhj")]
 position = Vector2(-7.41515, -10.6778)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Decor"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Decor" unique_id=1358811838]
 position = Vector2(0, -26)
 tile_map_data = PackedByteArray("AADc/wIAAAAAAAUAAADc/wMAAAAAAAUAAADc/wQAAAAAAAUAAADc/wUAAAAAAAUAAADe/wIAAAAAAAUAAADe/wMAAAAAAAUAAADe/wQAAAAAAAUAAADe/wUAAAAAAAUAAADg/wIAAAAAAAUAAADg/wMAAAAAAAUAAADg/wQAAAAAAAUAAADg/wUAAAAAAAUAAADi/wIAAAAAAAUAAADi/wMAAAAAAAUAAADi/wQAAAAAAAUAAADi/wUAAAAAAAUAAADk/wIAAAAAAAUAAADk/wMAAAAAAAUAAADk/wQAAAAAAAUAAADk/wUAAAAAAAUAAADm/wIAAAAAAAUAAADm/wMAAAAAAAUAAADm/wQAAAAAAAUAAADm/wUAAAAAAAUAAADo/wIAAAAAAAUAAADo/wMAAAAAAAUAAADo/wQAAAAAAAUAAADo/wUAAAAAAAUAAADq/wIAAAAAAAUAAADq/wMAAAAAAAUAAADq/wQAAAAAAAUAAADq/wUAAAAAAAUAAADs/wIAAAAAAAUAAADs/wMAAAAAAAUAAADs/wQAAAAAAAUAAADs/wUAAAAAAAUAAADc/wEAAAAAAAQAAADe/wEAAAAAAAQAAADg/wEAAAAAAAQAAADi/wEAAAAAAAQAAADk/wEAAAAAAAQAAADm/wEAAAAAAAQAAADo/wEAAAAAAAQAAADq/wEAAAAAAAQAAADs/wEAAAAAAAYAADA=")
 tile_set = ExtResource("3_5ykuy")
 
-[node name="icecream" parent="Decor" instance=ExtResource("20_rqs1b")]
+[node name="icecream" parent="Decor" unique_id=840786840 instance=ExtResource("20_rqs1b")]
 position = Vector2(-228, -150)
 item_type = &"ice_cream"
 save = true
 
-[node name="CollisionShape2D" parent="Decor/icecream" index="0"]
+[node name="CollisionShape2D" parent="Decor/icecream" index="0" unique_id=1279058300]
 position = Vector2(0, 18)
-shape = SubResource("RectangleShape2D_rixhj")
+shape = SubResource("RectangleShape2D_f270g")
 
-[node name="BehindArea" parent="Decor/icecream" node_paths=PackedStringArray("affected_node") instance=ExtResource("21_mpxyo")]
+[node name="BehindArea" parent="Decor/icecream" unique_id=277689268 node_paths=PackedStringArray("affected_node") instance=ExtResource("21_mpxyo")]
 position = Vector2(0, 12)
 affected_node = NodePath("..")
 change_time = 4.0
 default_alpha = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/icecream/BehindArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/icecream/BehindArea" unique_id=142154302]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_mpxyo")
 
