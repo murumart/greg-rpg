@@ -57,8 +57,8 @@ script/source = "extends Node
 
 
 func _ready() -> void:
-	AudioServer.set_bus_effect_enabled(1, 0, true)
-	tree_exiting.connect(AudioServer.set_bus_effect_enabled.bind(1, 0, false))
+	AudioServer.set_bus_effect_enabled(OPT.AB_MUSIC, 0, true)
+	tree_exiting.connect(AudioServer.set_bus_effect_enabled.bind(OPT.AB_MUSIC, 0, false))
 "
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_27t7h"]

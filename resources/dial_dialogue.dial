@@ -1629,9 +1629,9 @@ CHOICE_LINK fish
 	the tendency to jump out of the water and beat peoples' asses...
 	...is a local adaptation. to what, we're not sure.
 	the fishermen here have to be hardened souls.
-	of course, humans don't actually have souls.
+	or maybe not have souls at all...
 CHOICES ok,humans
-	that was just a saying, i mean.
+	that's a saying, i think.
 
 CHOICE_LINK humans
 	about humans?

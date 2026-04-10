@@ -1,18 +1,21 @@
-- [x] Interaction areas dont work
-	- [x] bird in town
-	- [x] house doors
 - [x] displays float in battle status effect menu
 - [x] bird attack target feet
 - [x] ushanka guy walks nowhere
-- [ ] dialogue load in biking game? in kiok menu??
-- [ ] while sopping deals more damage to vacuum?
-- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
-- [ ] secret garden grandma cutscene room the block puzzle don't get saved
-- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
-- [ ] sg pink entrance cave is see-through
 - [X] fish are too dark in fishing game
 - [X] no blue environment at lakeside? (I imagined it probably)
+- [x] Interaction areas dont work
+  - [x] bird in town
+  - [x] house doors
+- [ ] dialogue load in biking game? in kiok menu??
+- [ ] secret garden grandma cutscene room the block puzzle don't get saved
+- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
+- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
+- [ ] sg pink entrance cave is see-through
+- [ ] lake hint npc doesn't dialogue cutscene
+- [ ] while sopping deals more damage to vacuum?
 - [ ] bad lines
+  - [X] i dont like one fish fact
+  - [X] nature guy souls lore
   - [ ] sg blue cat about spirits hating her
   - [ ] sg pink entrance cat joviality & joy of living
 - [ ] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
