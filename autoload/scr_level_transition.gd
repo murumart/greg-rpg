@@ -125,10 +125,10 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
 	DAT.capture_player("entering_battle")
-	for i in range(1, 6):
-		AudioServer.set_bus_volume_linear(i, 0.0)
 	if info.kill_music:
 		SND.play_song("", 100.0, {save_audio_position = true})
+		for i in range(1, 6):
+			AudioServer.set_bus_volume_linear(i, 0.0)
 	var zing := SND.play_sound(preload("res://sounds/enter_battle_zing.ogg"), {"bus": &"BattleEnter"});
 	if info.play_fanfare:
 		zing.finished.connect(SND.play_sound.bind(options.get("sound", preload("res://sounds/enter_battle.ogg")), {"bus": &"BattleEnter"}))

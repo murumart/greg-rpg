@@ -10,12 +10,13 @@ var rng: RandomNumberGenerator
 func _ready() -> void:
 	_generate_characters()
 	for c: OverworldCharacter in get_children():
-		c.battle_info = default_battle.duplicate()
-		c.battle_info.enemies.append("gen_char_" + str(randi_range(0, 9)))
+		var inf := default_battle.duplicate(true) as BattleInfo
+		inf.enemies.append("gen_char_" + str(randi_range(0, 9)))
 		if randf() < 0.4:
-			c.battle_info.enemies.append("gen_char_" + str(randi_range(0, 9)))
+			inf.enemies.append("gen_char_" + str(randi_range(0, 9)))
 		if randf() < 0.1:
-			c.battle_info.enemies.append("gen_char_" + str(randi_range(0, 9)))
+			inf.enemies.append("gen_char_" + str(randi_range(0, 9)))
+		c.battle_info = inf
 
 
 func _generate_characters() -> void:
@@ -43,6 +44,8 @@ func _generate_characters() -> void:
 			char.weapon = aval_weapons.pop_at(rng.randi_range(0, aval_weapons.size() - 1))
 
 		ResMan.characters[fn] = char
+	chars_genned = true
+
 
 func _get_name() -> String:
 	const beg: Array[String] = [
