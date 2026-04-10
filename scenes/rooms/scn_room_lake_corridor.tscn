@@ -248,7 +248,7 @@ extents = Vector2i(40, 8)
 spawnpoint = Vector2i(-32, 16)
 
 [node name="RoomGate2" parent="Areas" unique_id=44057567 instance=ExtResource("5_5nos6")]
-position = Vector2(-8, 192)
+position = Vector2(-8, 197)
 destination = &"lakeside"
 gate_id = &"corridor-lake"
 extents = Vector2i(40, 8)

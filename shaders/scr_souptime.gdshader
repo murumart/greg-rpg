@@ -63,10 +63,9 @@ vec4 zoomBlurFunc(sampler2D _tex_z00m_blur, vec2 _uv_z00m_blur, int _amount_z00m
 	return _col_z00m_blur;
 }
 
-
+varying vec3 VERTEX_COLOR;
 void vertex() {
-// Output:0
-
+	VERTEX_COLOR.rgb = COLOR.rgb;
 }
 
 void fragment() {
@@ -154,7 +153,7 @@ void fragment() {
 	}
 
 // Output:0
-	COLOR.rgb = final_output.rgb * COLOR.rgb;
+	COLOR.rgb = final_output.rgb * VERTEX_COLOR;
 
 }
 

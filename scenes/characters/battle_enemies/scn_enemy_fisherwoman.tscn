@@ -37,7 +37,7 @@ alpha_curve = SubResource("CurveTexture_o0hl6")
 [sub_resource type="Gradient" id="Gradient_xuu4h"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.75)
-colors = PackedColorArray(0, 0.313377, 0.487319, 1, 0, 0.478809, 0, 1)
+colors = PackedColorArray(0.407225, 0.6456564, 0.8257554, 1, 0.61199933, 0.8205047, 0.69261694, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_o0hl6"]
 gradient = SubResource("Gradient_xuu4h")
@@ -84,10 +84,10 @@ z_index = 10
 [node name="Blocks" parent="FishingMinigame" unique_id=982588325 node_paths=PackedStringArray("noise_sprite") instance=ExtResource("3_xo0px")]
 noise_sprite = NodePath("NoiseSprite")
 
-[node name="background" parent="FishingMinigame/Blocks" index="0"]
+[node name="background" parent="FishingMinigame/Blocks" index="0" unique_id=1445163869]
 self_modulate = Color(0.156863, 0, 0.223529, 0.313726)
 
-[node name="foreground" parent="FishingMinigame/Blocks" index="1"]
+[node name="foreground" parent="FishingMinigame/Blocks" index="1" unique_id=1257569654]
 material = SubResource("ShaderMaterial_ev8bu")
 use_parent_material = false
 

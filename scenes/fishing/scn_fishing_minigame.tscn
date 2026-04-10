@@ -27,11 +27,6 @@ script = ExtResource("2_8qmcw")
 id = &"gummy_fish"
 weight = 25
 
-[sub_resource type="Resource" id="Resource_gk55d"]
-script = ExtResource("2_8qmcw")
-id = &"rain_boot"
-weight = 16
-
 [sub_resource type="Resource" id="Resource_ylpm1"]
 script = ExtResource("2_8qmcw")
 id = &"fish"
@@ -70,7 +65,7 @@ id = &"umbrella_lure"
 
 [sub_resource type="Resource" id="Resource_inxmd"]
 script = ExtResource("2_clupb")
-elements = Array[ExtResource("2_8qmcw")]([SubResource("Resource_ak44i"), SubResource("Resource_gk55d"), SubResource("Resource_ylpm1"), SubResource("Resource_yawqg"), SubResource("Resource_w2a5d"), SubResource("Resource_qflo4"), SubResource("Resource_ps4ll"), SubResource("Resource_swvdc"), SubResource("Resource_tbueb"), SubResource("Resource_qvlaj")])
+elements = Array[ExtResource("2_8qmcw")]([SubResource("Resource_ak44i"), SubResource("Resource_ylpm1"), SubResource("Resource_yawqg"), SubResource("Resource_w2a5d"), SubResource("Resource_qflo4"), SubResource("Resource_ps4ll"), SubResource("Resource_swvdc"), SubResource("Resource_tbueb"), SubResource("Resource_qvlaj")])
 
 [sub_resource type="Environment" id="Environment_3gpcx"]
 background_mode = 3

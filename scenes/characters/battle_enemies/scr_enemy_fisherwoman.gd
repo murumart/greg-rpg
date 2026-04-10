@@ -1,6 +1,5 @@
 extends BattleEnemy
 
-
 const Blocks = preload("res://scenes/fishing/blocks.gd")
 const Hook = preload("res://scenes/fishing/hook.gd")
 const Spawner = preload("res://scenes/fishing/spawner.gd")
@@ -19,6 +18,8 @@ var greg: BattleActor
 
 func _ready() -> void:
 	super()
+	remove_child(fishing_minigame)
+	get_parent().add_sibling(fishing_minigame)
 	greg = reference_to_opposing_array[0]
 
 

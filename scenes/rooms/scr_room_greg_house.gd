@@ -28,6 +28,8 @@ func _ready() -> void:
 	super()
 	$Areas/ExitExplainer.body_entered.connect(_explain_exit.unbind(1))
 	if intro_progress == 0 and (LTS.gate_id == &"intro" or play_intro):
+		# hack to forget we went anywhere in the intro
+		DAT.set_data("visited_rooms", [])
 		start()
 		SOL.dialogue("intro_convo_4")
 	elif intro_progress == 1:

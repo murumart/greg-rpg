@@ -15,7 +15,7 @@ const SND_HISCR := preload("res://sounds/fishing/highscore.ogg")
 const SND_TMOUT := preload("res://sounds/fishing/timeout.ogg")
 const SND_CAR := preload("res://sounds/car_overrun.ogg")
 
-const UNIQUE_REWARDS: Array[StringName] = [&"fish", &"rain_boot"]
+const UNIQUE_REWARDS: Array[StringName] = [&"fish"]
 
 @onready var blocks: Blocks = $Blocks
 @onready var spawner: Spawner = $Spawner
