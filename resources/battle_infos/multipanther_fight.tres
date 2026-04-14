@@ -5,6 +5,13 @@
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="3_sadgl"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="4_yhr5o"]
 
+[sub_resource type="Resource" id="Resource_sadgl"]
+script = ExtResource("2_fryrj")
+type = 1
+property = "key_pink"
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
 [sub_resource type="Resource" id="Resource_hw6pg"]
 script = ExtResource("2_fryrj")
 property = "121"
@@ -24,7 +31,7 @@ metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
 [sub_resource type="Resource" id="Resource_hkonc"]
 script = ExtResource("3_sadgl")
-rewards = Array[ExtResource("2_fryrj")]([SubResource("Resource_hw6pg"), SubResource("Resource_cd75k"), SubResource("Resource_fryrj")])
+rewards = Array[ExtResource("2_fryrj")]([SubResource("Resource_sadgl"), SubResource("Resource_hw6pg"), SubResource("Resource_cd75k"), SubResource("Resource_fryrj")])
 
 [resource]
 script = ExtResource("4_yhr5o")

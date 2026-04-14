@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="4_4bsij"]
 [ext_resource type="Texture2D" uid="uid://cdqumwxc1kw5o" path="res://sprites/world/building/spr_house_exterior.png" id="5_7pb4t"]
 [ext_resource type="PackedScene" uid="uid://dx40je2gy61b0" path="res://scenes/battle_backgrounds/scn_rot.tscn" id="8_opbgg"]
+[ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="8_xgi6a"]
 [ext_resource type="Environment" uid="uid://bjnrd6slwu5nn" path="res://resources/sg_p_env.tres" id="9_ekqmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opbgg"]
@@ -98,6 +99,11 @@ region_rect = Rect2(145, 12, 14, 20)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/DoorArea/StaticBody2D" index="0" unique_id=2054569422]
 position = Vector2(14, 6)
 shape = SubResource("RectangleShape2D_ekqmr")
+
+[node name="Key" parent="Areas" index="5" unique_id=1719982095 instance=ExtResource("8_xgi6a")]
+position = Vector2(7, 413)
+item_type = &"key_green"
+save = true
 
 [node name="BabySG" type="TileMapLayer" parent="." index="7" unique_id=2055922166]
 z_index = -1

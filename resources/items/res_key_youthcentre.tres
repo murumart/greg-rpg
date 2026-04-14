@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [resource]
 script = ExtResource("3_55svi")
-name = &"purple key"
+name = &"silver key"
 description = "not for the factory?"
 texture = ExtResource("4_aqumg")
 price = 38

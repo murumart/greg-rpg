@@ -27,6 +27,7 @@ signal leaving
 		spawnpoint = to
 		if get_node_or_null(spawn_point_path):
 			get_node(spawn_point_path).position = to
+@export var predicate: Predicate
 
 
 func set_extents(to: Vector2i) -> void:
@@ -42,6 +43,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	#assert(DIR.room_exists(destination))
 	var area: Area2D = get_node_or_null(area_path)
 	if area:
 		area.body_entered.connect(_on_area_entered)
@@ -53,6 +55,11 @@ func _on_area_entered(body: Node2D) -> void:
 		var player := body as PlayerOverworld
 		if player.state == PlayerOverworld.States.NOT_FREE_MOVE:
 			return
+		if predicate != null:
+			var check := predicate.check()
+			if check != Predicate.SUCCESS:
+				SOL.dialogue(check)
+				return
 		if DIR.room_exists(destination):
 			# set the gate id
 			LTS.gate_id = gate_id

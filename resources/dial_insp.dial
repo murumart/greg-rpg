@@ -493,3 +493,19 @@ CHOICE_LINK yes
 
 DIALOGUE insp_factory_vines
 	nature has taken its place.
+
+
+DIALOGUE fail_sg_y
+	you are missing a golden key.
+
+
+DIALOGUE fail_sg_b
+	you are missing a blue key.
+
+
+DIALOGUE fail_sg_p
+	you are missing a pink key.
+
+
+DIALOGUE fail_sg_g
+	a green key opens this gate.

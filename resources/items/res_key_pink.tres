@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bfc7a3pwgu5ch"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_phc27"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_onrrt"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="3_adcgb"]
+[ext_resource type="Texture2D" uid="uid://vhmqe7p5cpg6" path="res://sprites/items/spr_key_purple.png" id="4_phc27"]
+
+[sub_resource type="Resource" id="Resource_aqumg"]
+script = ExtResource("2_onrrt")
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("3_adcgb")
+name = &"pink key"
+texture = ExtResource("4_phc27")
+consume_on_use = false
+payload = SubResource("Resource_aqumg")
+key = true

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://8wd03w8bp43x"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_l1r63"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_lardn"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="3_t5yk3"]
+[ext_resource type="Texture2D" uid="uid://2vnvs5np7f8" path="res://sprites/items/spr_key_blue.png" id="4_l1r63"]
+
+[sub_resource type="Resource" id="Resource_aqumg"]
+script = ExtResource("2_lardn")
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("3_t5yk3")
+name = &"blue key"
+texture = ExtResource("4_l1r63")
+consume_on_use = false
+payload = SubResource("Resource_aqumg")
+key = true

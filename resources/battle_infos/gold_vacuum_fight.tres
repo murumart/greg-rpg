@@ -9,9 +9,16 @@
 script = ExtResource("2_0s78x")
 property = "1000"
 
+[sub_resource type="Resource" id="Resource_ngbaw"]
+script = ExtResource("2_0s78x")
+type = 1
+property = "key_blue"
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
 [sub_resource type="Resource" id="Resource_fqadj"]
 script = ExtResource("3_pu10o")
-rewards = Array[ExtResource("2_0s78x")]([SubResource("Resource_4cc3d")])
+rewards = Array[ExtResource("2_0s78x")]([SubResource("Resource_4cc3d"), SubResource("Resource_ngbaw")])
 
 [resource]
 script = ExtResource("4_k01rl")

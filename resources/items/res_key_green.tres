@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cqdx5nyurm8vj"]
+
+[ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="1_w4tp2"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_ce6f4"]
+[ext_resource type="Script" uid="uid://cyql48l3hr5kl" path="res://code/scr_item.gd" id="3_wpt5a"]
+[ext_resource type="Texture2D" uid="uid://vx16g8lmeveh" path="res://sprites/items/spr_key_green.png" id="4_w4tp2"]
+
+[sub_resource type="Resource" id="Resource_aqumg"]
+script = ExtResource("2_ce6f4")
+metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
+
+[resource]
+script = ExtResource("3_wpt5a")
+name = &"green key"
+texture = ExtResource("4_w4tp2")
+consume_on_use = false
+payload = SubResource("Resource_aqumg")
+key = true
