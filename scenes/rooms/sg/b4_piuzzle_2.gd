@@ -24,6 +24,7 @@ func _ready() -> void:
 		progress |= 0b10
 		go()
 	)
+	go()
 
 
 func go() -> void:
