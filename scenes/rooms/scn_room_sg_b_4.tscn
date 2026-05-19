@@ -63,6 +63,7 @@ script = ExtResource("16_2vj6p")
 enemies = Array[StringName]([&"cat", &"cat", &"cat", &"cat"])
 background = "bg_stars"
 music = "blue"
+death_reason = 17
 start_text = "the stars are bold tonight."
 rewards = SubResource("Resource_2kmb6")
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

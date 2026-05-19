@@ -1,3 +1,12 @@
+## Things to change
+
+- [ ] first sg light puzzle road change not visible on screen
+- [ ] first moving cat obstacles in sg dont attack
+- [ ] want to see a queue of enemies attacking next
+- [ ] want to backtrack in before boss sgy room
+- [ ] wrong death screens in sgb cat fights
+## Bugs
+
 - interaction areas dont work
   - [x] bird in town
   - [x] house doors
@@ -19,3 +28,7 @@
   - [X] nature guy souls lore
   - [ ] sg blue cat about spirits hating her
   - [ ] sg pink entrance cat joviality & joy of living
+## Cool to haf
+
+- sgy boss, puzzle cats new dialogue
+- cats react to being wet..
