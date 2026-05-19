@@ -4053,6 +4053,10 @@ DIALOGUE sg_7_attack
 
 
 DIALOGUE sg_7_after
+	%SGNow that that's done, what's behind this door doesn't suck.
+
+
+DIALOGUE sg_7_after_cat3
 	%SGOkay, that just happened! etc..
 
 

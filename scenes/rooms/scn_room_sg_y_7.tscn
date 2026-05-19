@@ -32,6 +32,7 @@ script/source = "extends Node2D
 @onready var door_sprite: Sprite2D = $DoorHole/Door
 @onready var boss := $DoorHole/Boss
 @onready var cat_2: OverworldCharacter = $\"../Areas/Cat2\"
+@onready var cat_3: CharacterBody2D = $\"../Areas/Cat3\"
 
 @export var battle_info: BattleInfo
 
@@ -45,6 +46,8 @@ func _ready() -> void:
 		door_sprite.hide()
 		boss.queue_free()
 		cat_2.default_lines = [\"sg_7_after\"]
+		cat_3.default_lines = [\"sg_7_after_cat3\"]
+		$\"../Areas/SgResetCat\".queue_free()
 		door_area.queue_free()
 		$\"../COLLISION/DoorBlocker\".queue_free()
 		return
