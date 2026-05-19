@@ -1,10 +1,10 @@
 ## Things to change
 
-- [ ] first sg light puzzle road change not visible on screen
+- [x] first sg light puzzle road change not visible on screen
 - [ ] first moving cat obstacles in sg dont attack
 - [ ] want to see a queue of enemies attacking next
 - [ ] want to backtrack in before boss sgy room
-- [ ] wrong death screens in sgb cat fights
+- [x] wrong death screens in sgb cat fights
 ## Bugs
 
 - interaction areas dont work
