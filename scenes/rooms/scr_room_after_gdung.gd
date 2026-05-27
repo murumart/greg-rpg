@@ -1,8 +1,5 @@
 extends Room
 
-@onready var ending_1 := $Ending1
-@onready var ending_2 := $Ending2
-
 
 func _ready() -> void:
 	super()
@@ -14,7 +11,3 @@ func _ready() -> void:
 
 func select_ending() -> void:
 	return
-	#if ResMan.get_character("greg").level > 95 and DAT.get_data("heard_warstory", false):
-	#	ending_2.play()
-	#	return
-	#ending_1.play()

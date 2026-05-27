@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func act() -> void:
 	if reference_to_opposing_array[0].character.health_perc() < 0.5:
-		SOL.dialogue("grandma_fight_sütupid")
+		SOL.dialogue("grandma_fight_stupid")
 		SND.play_song("")
 		await SOL.dialogue_closed
 		attacked = true

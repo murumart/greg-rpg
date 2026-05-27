@@ -22,7 +22,7 @@ const TRACKED_BOUNTIES := {
 		&"description": """annoying fishermen always complain and moan about the fish they lost!! just shut them up already!! eviscerate 40 broken fishermen!!"""
 	},
 	&"sun_spirit": {
-		&"description": """around the lake, rogue spirit attack reports are coming in... it's best to stay away from the area for the time being.""",
+		&"description": """behind the lake, rogue spirit attack reports are coming in... it's best to stay away from the area for the time being.""",
 		&"hidden": true,
 	},
 	&"vampire": {
@@ -151,7 +151,6 @@ func _on_popo_1_interact_on_interact() -> void:
 
 
 			await dlg.speak_choice()
-	#SOL.dialogue("police_main")
 
 
 func _bounty_interacted() -> void:

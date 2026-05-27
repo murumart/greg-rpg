@@ -72,27 +72,25 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # load the dialogues from files
-func _load_dialogue_files() -> void:
-	dialogues_dict = {}
-	load_dialogue_file("res://resources/dial_menus.dial")
-	load_dialogue_file("res://resources/dial_dialogue.dial")
-	load_dialogue_file("res://resources/dial_fisher_dialogue.dial")
-	load_dialogue_file("res://resources/dial_status_effect_descriptions.dial")
-	load_dialogue_file("res://resources/dial_res_phonecalls.dial")
-	load_dialogue_file("res://resources/dial_insp.dial")
+static func load_dialogue_files(dict: Dictionary) -> void:
+	load_dialogue_file(dict, "res://resources/dial_menus.dial")
+	load_dialogue_file(dict, "res://resources/dial_dialogue.dial")
+	load_dialogue_file(dict, "res://resources/dial_fisher_dialogue.dial")
+	load_dialogue_file(dict, "res://resources/dial_status_effect_descriptions.dial")
+	load_dialogue_file(dict, "res://resources/dial_res_phonecalls.dial")
+	load_dialogue_file(dict, "res://resources/dial_insp.dial")
 
 
-func load_dialogue_file(path: String) -> void:
-	dialogues_dict.merge(
-			DialogueParser.parse_dialogue_from_file(
-					FileAccess.open(path, FileAccess.READ)
-	))
+static func load_dialogue_file(dict: Dictionary, path: String) -> void:
+	dict.merge(DialogueParser.parse_dialogue_from_file(FileAccess.open(path, FileAccess.READ)))
 
 
-func load_dialogue_string(string: String) -> void:
-	dialogues_dict.merge(
-			DialogueParser.parse_dialogue_from_string(string)
-	)
+static func load_dialogue_string(dict: Dictionary, string: String) -> void:
+	dict.merge(DialogueParser.parse_dialogue_from_string(string))
+
+
+func add_dialogue_from_string(string: String) -> void:
+	load_dialogue_string(dialogues_dict, string)
 
 
 func copy_dial(dial: Dialogue) -> Dialogue:
@@ -107,7 +105,7 @@ func copy_dial(dial: Dialogue) -> Dialogue:
 
 func prepare_dialogue_key(key: StringName) -> void:
 	if dialogues_dict.is_empty():
-		_load_dialogue_files()
+		load_dialogue_files(dialogues_dict)
 	assert(key in dialogues_dict.keys(), "no key %s in dialogues" % key)
 	prepare_dialogue_d(dialogues_dict.get(key, preload("res://resources/res_default_dialogue.tres")))
 
@@ -312,20 +310,20 @@ func adjust_line(key: String, line_id: int, to: String) -> void:
 
 func adjust(key: String, line_id: int, param: StringName, to: Variant) -> void:
 	if dialogues_dict.is_empty():
-		_load_dialogue_files()
+		load_dialogue_files(dialogues_dict)
 	dialogues_dict.get(key).get_line(line_id).set(param, to)
 
 
 func adjust_dial(key: String, param: StringName, to: Variant) -> void:
 	if dialogues_dict.is_empty():
-		_load_dialogue_files()
+		load_dialogue_files(dialogues_dict)
 	dialogues_dict[key].set(param, to)
 
 
 # replace the %s in dialogue strings with something else
 func dial_concat(key: String, line_id: int, params: Array) -> void:
 	if dialogues_dict.is_empty():
-		_load_dialogue_files()
+		load_dialogue_files(dialogues_dict)
 	assert(key in dialogues_dict, "can't concat nonexistent line")
 	var get_key := key + "_" + str(line_id)
 	if not get_key in unmodified_dialogue_lines:

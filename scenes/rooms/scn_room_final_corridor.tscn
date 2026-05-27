@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="13_mv6aa"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="13_ph05g"]
 [ext_resource type="Texture2D" uid="uid://x4cs3ynswavu" path="res://sprites/world/object/spr_restroom_sinks.png" id="14_uui2y"]
-[ext_resource type="AudioStream" uid="uid://dsecnyf8owaqj" path="res://sounds/choir.ogg" id="15_7t271"]
 [ext_resource type="Texture2D" uid="uid://cni1jgut4eqlt" path="res://sprites/world/object/spr_restroom_door.png" id="15_gspb0"]
 [ext_resource type="PackedScene" uid="uid://cxahup3mwiu71" path="res://scenes/rooms/grandma_house/gdung_objects/carpets.tscn" id="16_bppnf"]
 [ext_resource type="Texture2D" uid="uid://w8w2h3ql2nu6" path="res://sprites/world/object/spr_stairs.png" id="16_xsdpb"]
@@ -33,13 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://den7q17m1tcvp" path="res://scenes/rooms/grandma_house/gdung_objects/litterbox.tscn" id="20_1rw1k"]
 [ext_resource type="AudioStream" uid="uid://bvn412ekdb6ev" path="res://sounds/walking/wood-04.ogg" id="20_mvxwl"]
 [ext_resource type="PackedScene" uid="uid://bsdq5h3auf48d" path="res://scenes/characters/overworld/scn_cat_overworld.tscn" id="21_u345r"]
-[ext_resource type="Texture2D" uid="uid://cbx7xowh0oxa2" path="res://sprites/cutscene/end/end1picture.png" id="21_uui2y"]
 [ext_resource type="PackedScene" uid="uid://b1yb8i3bjtnci" path="res://scenes/rooms/grandma_house/gdung_objects/catface.tscn" id="22_60vux"]
-[ext_resource type="Script" uid="uid://d32qqj0km0goc" path="res://scenes/rooms/grandma_house/ending2.gd" id="22_gspb0"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="23_bppnf"]
-[ext_resource type="Texture2D" uid="uid://bjrn4cs8cm4rd" path="res://sprites/cutscene/evilend/staregreg.png" id="24_23ypo"]
 [ext_resource type="PackedScene" uid="uid://c466046gdv3gq" path="res://scenes/rooms/grandma_house/gdung_objects/bent_tree.tscn" id="24_e4myc"]
-[ext_resource type="Texture2D" uid="uid://dypm4git30eek" path="res://sprites/cutscene/evilend/stareanu.png" id="25_8fimx"]
 [ext_resource type="PackedScene" uid="uid://bnr8lp8udqs1e" path="res://scenes/rooms/grandma_house/gdung_objects/grandma_statue.tscn" id="25_mvxwl"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="26_4p4v0"]
 [ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="26_60vux"]
@@ -2115,88 +2110,6 @@ sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_juacr"]
 polygon = PackedVector2Array(-3, 0, -3, -8, -4, -8, -4, -14, 4, -14, 4, -8, 3, -8, 3, 0)
 
-[sub_resource type="Shader" id="Shader_iamh2"]
-code = "shader_type canvas_item;
-
-uniform vec4 modulate : source_color = vec4(1.0);
-uniform float amount = 1.0;
-
-void fragment() {
-	vec2 uv = UV;
-	uv.x += sin(TIME * 0.8 + uv.y) * 0.01;
-	float red_addition = texture(TEXTURE, uv).r;
-	uv.y += cos(TIME * 3.0 + uv.x) * 0.01;
-	float fuck = mix(step(0.5, uv.x * cos(TIME * 20.0) * uv.y * sin(TIME * 20.0)), uv.x, uv.y
-			-(uv.x * sin(TIME) * 0.5)) + 0.5;
-	uv.x = mix(uv.x, fuck, sin(TIME * 0.02) * sin(TIME * 0.2) * sin(TIME * 0.02));
-
-	vec4 textr = modulate * texture(TEXTURE, mix(UV, uv, amount));
-	textr.r -= red_addition * sin(TIME * 0.2 * cos(TIME - uv.x + uv.y * uv.y * uv.x)) * 0.05
-			* amount;
-	COLOR = textr;
-}
-
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkc1w"]
-shader = SubResource("Shader_iamh2")
-shader_parameter/modulate = Color(1, 1, 1, 1)
-shader_parameter/amount = 0.0
-
-[sub_resource type="Shader" id="Shader_34xtc"]
-code = "shader_type canvas_item;
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
-void fragment() {
-	float red = texture(TEXTURE, vec2(UV.x - cos(UV.y) * 0.05, UV.y - sin(TIME - UV.y * 20.0) * 0.05)).r;
-	COLOR = vec4(COLOR.r + red, COLOR.g, COLOR.b, COLOR.a);
-}
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lgg4"]
-shader = SubResource("Shader_34xtc")
-
-[sub_resource type="Shader" id="Shader_tbd3n"]
-code = "shader_type canvas_item;
-
-uniform float mix_amount = 0.5;
-
-
-void fragment() {
-	float red = texture(TEXTURE, vec2(UV.x - cos(UV.y) * 0.05, UV.y - sin(TIME - UV.y * 20.0) * 0.05)).r;
-	float green = texture(
-		TEXTURE, 
-		vec2(
-			UV.x * cos(UV.x + TIME * 0.2) * 0.5 + 0.65,
-			UV.y - sin(TIME - cos(UV.y) * 0.5) * 0.1
-		)
-	).g;
-	vec4 greencol = vec4(green, green, green, 1.0);
-	vec4 normcol = vec4(COLOR.r * green + red, COLOR.g * red + green, COLOR.b + red * green, COLOR.a);
-	vec4 mixed = vec4(
-		mix(green, normcol.r, mix_amount),
-		mix(green, normcol.g, mix_amount),
-		mix(green, normcol.b, mix_amount),
-		COLOR.a
-	);
-	COLOR = mixed;
-	//COLOR = greencol;
-}
-
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8ut1"]
-shader = SubResource("Shader_tbd3n")
-shader_parameter/mix_amount = -0.01
-
 [node name="FinalCorridor" type="Node2D" unique_id=207703457]
 y_sort_enabled = true
 script = ExtResource("1_knvuo")
@@ -2719,59 +2632,6 @@ position = Vector2(192, -1106)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Greg" unique_id=190441922]
 occluder = SubResource("OccluderPolygon2D_juacr")
-
-[node name="Ending1" type="Node2D" parent="." unique_id=1194695203]
-position = Vector2(-86, -645)
-
-[node name="AAh" type="AudioStreamPlayer2D" parent="Ending1" unique_id=921381630]
-stream = ExtResource("15_7t271")
-max_distance = 260.0
-attenuation = 2.0
-
-[node name="Picture" type="Sprite2D" parent="Ending1" unique_id=194682016]
-visible = false
-texture_repeat = 3
-material = SubResource("ShaderMaterial_gkc1w")
-texture = ExtResource("21_uui2y")
-centered = false
-
-[node name="Ending2" type="Node2D" parent="." unique_id=522030961]
-visible = false
-script = ExtResource("22_gspb0")
-
-[node name="GregPos" type="Node2D" parent="Ending2" unique_id=1279646057]
-position = Vector2(8, -99)
-
-[node name="Mirror" type="Sprite2D" parent="Ending2" unique_id=154504029]
-visible = false
-z_index = -1
-position = Vector2(3, -161)
-texture = ExtResource("23_bppnf")
-centered = false
-region_enabled = true
-region_rect = Rect2(82, 96, 11, 16)
-
-[node name="Darkness" type="ColorRect" parent="Ending2" unique_id=125992399]
-custom_minimum_size = Vector2(160, 120)
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 1)
-
-[node name="Greg" type="TextureRect" parent="Ending2/Darkness" unique_id=1367825814]
-visible = false
-material = SubResource("ShaderMaterial_6lgg4")
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("24_23ypo")
-
-[node name="Anu" type="TextureRect" parent="Ending2/Darkness" unique_id=1870110386]
-visible = false
-material = SubResource("ShaderMaterial_f8ut1")
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("25_8fimx")
 
 [node name="RoomGate" parent="." unique_id=1354469097 instance=ExtResource("26_4p4v0")]
 position = Vector2(8, 486)

@@ -26,6 +26,8 @@ const LB := "
 const NEW_MACRO := &"MACRO "
 const NEW_KEY_ACTION := &"ACTION_"
 
+static var ignore_errors := false
+
 
 static func parse_dialogue_from_file(file: FileAccess) -> Dictionary:
 	print("dial " + file.get_path() + " ")
@@ -145,7 +147,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 			loop_to_set = int(line.right(-NEW_LOOP.length()))
 		elif line.begins_with(NEW_ITEM):
 			item_to_give = str(line.right(-NEW_ITEM.length()))
-			assert(ResMan.item_exists(item_to_give))
+			if not ignore_errors: assert(ResMan.item_exists(item_to_give), "item " + item_to_give + " doenśn't exist")
 		elif line.begins_with(NEW_SPIRIT):
 			spirit_to_give = str(line.right(-NEW_SPIRIT.length()))
 		elif line.begins_with(NEW_SILVER):

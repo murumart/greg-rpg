@@ -1,38 +1,17 @@
 extends BattleEnemy
 
-var at_gdung := false
-
 
 func _ready() -> void:
 	super ()
-	at_gdung = DAT.get_data("gdung_floor", -1) >= 1
-	if not at_gdung:
-		SOL.dialogue("bike_beta_battle_1")
-		return
-	animator.speed_scale = 1.575
-	CopyGregStatsComponent.copy_stats_if_im_less(ResMan.get_character("greg"), character, 0.99)
+	SOL.dialogue("bike_beta_battle_1")
 
 
 func act() -> void:
-	if at_gdung and turn > 15:
-		if reference_to_team_array.size() == 1:
-			SOL.dialogue("bike_ghost_gdung_enough_no_bikeghost")
-			await SOL.dialogue_closed
-			flee()
-			return
-		else:
-			SOL.dialogue("bike_ghost_gdung_enough")
-			SOL.dialogue_box.started_speaking.connect(_flee_at_right_time)
-			SOL.dialogue_closed.connect(func():
-				for actor in reference_to_team_array:
-					actor.flee()
-			, CONNECT_ONE_SHOT)
-			return
 	super ()
 
 
 func hurt(amt: float, g: int) -> void:
-	if character.health - _hurt_damage(amt, g) <= 0 and not at_gdung:
+	if character.health - _hurt_damage(amt, g) <= 0:
 		SOL.dialogue("bike_beta_battle_2")
 		await SOL.dialogue_closed
 		auto_ai = false
@@ -50,9 +29,6 @@ func hurt(amt: float, g: int) -> void:
 		await SOL.dialogue_closed
 		die()
 		return
-	elif character.health - _hurt_damage(amt, g) <= 0 and reference_to_team_array.size() == 1:
-		SOL.dialogue("bike_ghost_gdung_defeat")
-		await SOL.dialogue_closed
 	super (amt, g)
 
 

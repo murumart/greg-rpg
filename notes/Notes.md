@@ -107,3 +107,12 @@
 - [x] võta see valge kuju ära (paistab liiga silma intros)
 - [ ] uuenda kaarti (eset)
 - [ ] ma ei ütle kuidas seivida??
+
+## järgmine
+- [ ] diploma turns not into nothing when making hat
+- [ ] do we ever check if the kid has been talked to
+- [ ] rain boots combined but not equipped automatically
+- [ ] should remove closeby enemies when entering any battle
+- [ ] getting ite in fishing should give more timer
+- [ ] fish fact after no more fish facts
+- [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
