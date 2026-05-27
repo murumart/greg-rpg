@@ -3,13 +3,14 @@ extends Node
 # handles changing scenes
 
 signal scene_changed
+signal battle_enter_started
 
 const ROOM_SCENE_PATH := "res://scenes/rooms/scn_room_%s.tscn"
 
 # this specifies the type of change between scenes
 var gate_id: StringName
 const GATE_LOADING := &"loading"
-const GATE_ENTER_BATTLE := &"entering_battle"
+const GATE_ENTER_BATTLE := &"is_currently_entering_battle"
 const GATE_EXIT_BATTLE := &"exit_battle"
 const GATE_EXIT_BIKING := &"bike_exit"
 const GATE_EXIT_FISHING := &"fishing_exit"
@@ -18,7 +19,7 @@ const GATE_BIKE_TRAVEL := &"bike_travel"
 const GATE_EXIT_CUTSCENE := &"curscene_exit"
 const GATE_EXIT_GAMING := &"gaming_exit"
 
-var entering_battle := false
+var is_currently_entering_battle := false
 
 
 func _init() -> void:
@@ -114,17 +115,18 @@ func to_game_over_screen() -> void:
 
 
 func enter_battle(info: BattleInfo, options := {}) -> void:
-	if entering_battle:
+	if is_currently_entering_battle:
 		return
 	if options.get("sbcheck", false) and skateboard_check():
 		return
 	if info.increment_data_with_enemies:
 		DAT.incri(info.increment_data_with_enemies, info.enemies.size())
-	entering_battle = true
+	is_currently_entering_battle = true
 	DAT.incri("battles", 1)
 	gate_id = GATE_ENTER_BATTLE
 	get_tree().call_group("free_on_level_transition", "queue_free")
-	DAT.capture_player("entering_battle")
+	battle_enter_started.emit()
+	DAT.capture_player("is_currently_entering_battle")
 	if info.kill_music:
 		SND.play_song("", 100.0, {save_audio_position = true})
 		for i in range(1, 6):
@@ -132,14 +134,15 @@ func enter_battle(info: BattleInfo, options := {}) -> void:
 	var zing := SND.play_sound(preload("res://sounds/enter_battle_zing.ogg"), {"bus": &"BattleEnter"});
 	if info.play_fanfare:
 		zing.finished.connect(SND.play_sound.bind(options.get("sound", preload("res://sounds/enter_battle.ogg")), {"bus": &"BattleEnter"}))
-	SOL.vfx("battle_enter", Vector2(), {"wait_time": options.get("wait_time", 3.0)})
-	await create_tween().tween_interval(options.get("wait_time", 3.0)).finished
+	var wait_time: float = options.get("wait_time", 3.0)
+	SOL.vfx("battle_enter", Vector2(), {"wait_time": wait_time})
+	await create_tween().tween_interval(wait_time).finished
 	DAT.save_nodes_data()
 	change_scene_to("res://scenes/tech/scn_battle.tscn", {"battle_info": info})
 	await scene_changed
 	OPT.correct_audio_bus_volumes()
-	entering_battle = false
-	DAT.free_player("entering_battle")
+	is_currently_entering_battle = false
+	DAT.free_player("is_currently_entering_battle")
 
 
 # this matters when exiting the store

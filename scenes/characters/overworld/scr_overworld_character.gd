@@ -91,6 +91,7 @@ func _ready() -> void:
 	chase_timer.timeout.connect(_on_chase_timer_timeout)
 	if chase_target:
 		chase_timer.start(time_between_chase_updates)
+	LTS.battle_enter_started.connect(check_freeze)
 	path_timer = Timer.new()
 	add_child(path_timer)
 	path_timer.one_shot = true
@@ -176,14 +177,14 @@ func interacted() -> void:
 		return
 	interactions += 1
 	inspected.emit()
-	if default_lines.size() > 0 or battle_info or len(transport_to_scene):
+	if default_lines.size() > 0 or battle_info or not transport_to_scene.is_empty():
 		enter_a_state_of_conversation()
 	elif velocity.length_squared() <= 0.1:
 		face_me()
 	if default_lines.size() > 0:
 		var continuing := true
 		if convo_progress >= default_lines.size():
-			if battle_info != null or transport_to_scene != "":
+			if battle_info != null or not transport_to_scene.is_empty():
 				continuing = false
 			else:
 				convo_progress -= 1
@@ -244,19 +245,6 @@ func enter_battle() -> bool:
 	if convo_progress + 1 >= default_lines.size() or default_lines.size() < 1:
 		LTS.enter_battle(battle_info, {"sbcheck": true})
 		freeze_and_thaw()
-		# stop processing of all surrounding npcs
-		# so perhaps their spawners dont save their positions
-		var shashsasha: PhysicsDirectSpaceState2D = (
-				LTS.get_current_scene().get_world_2d().direct_space_state)
-		var params := PhysicsShapeQueryParameters2D.new()
-		params.shape = CircleShape2D.new()
-		params.shape.radius = 48.0
-		params.transform = global_transform
-		var results := shashsasha.intersect_shape(params)
-		for result in results:
-			if result.collider is OverworldCharacter:
-				result.collider.freeze_and_thaw()
-		# did that
 		return true
 	return false
 
@@ -481,3 +469,12 @@ func freeze_and_thaw() -> void:
 	var tw := create_tween()
 	tw.tween_interval(4.0)
 	tw.tween_callback(set_physics_process.bind(true))
+
+
+func check_freeze() -> void:
+	var greg := get_tree().get_first_node_in_group("players") as PlayerOverworld
+	debprint("my greg is " + str(greg))
+	if greg == null: return
+	if global_position.distance_squared_to(greg.global_position) >= 70 * 70:
+		return
+	freeze_and_thaw()
