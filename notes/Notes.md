@@ -110,9 +110,9 @@
 
 ## järgmine
 - [X] diploma turns not into nothing when making hat
-- [ ] do we ever check if the kid has been talked to
 - [X] rain boots combined but not equipped automatically
 - [X] should remove closeby enemies when entering any battle
-- [ ] getting ite in fishing should give more timer
-- [ ] fish fact after no more fish facts
+- [X] getting ite in fishing should give more timer
+- [X] fish fact after no more fish facts
 - [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
+- [ ] do we ever check if the kid has been talked to

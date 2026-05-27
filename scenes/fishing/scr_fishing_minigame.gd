@@ -139,11 +139,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _fish_caught(node: FishingFish) -> void:
+	var combo := 1
 	if not node.item:
-		var combo := roundi(recent_fish_caught)
+		combo = roundi(recent_fish_caught)
 		var pts := roundi((node.value + combo) * hook_data.point_multiplier)
 		points += pts
-		time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
 		update_points_display()
 		SOL.vfx("damage_number", node.global_position, {
 				"text": str("+", pts),
@@ -171,6 +171,7 @@ func _fish_caught(node: FishingFish) -> void:
 				"speed": 0.75
 			}
 		)
+	time_left += (20 + (combo * 20)) * clampf(2000 / depth, 0.1, 1.6)
 	node.caught()
 	SND.play_sound(SND_CATCH, {"pitch_scale": remap(node.value, 1, 11, 1.0, 0.66)})
 	SND.play_sound(preload("res://sounds/spirit/fish_attack.ogg"),

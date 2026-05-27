@@ -315,7 +315,15 @@ DIALOGUE fish_fact_73
 
 
 DIALOGUE fish_fact_74
+ACTUALLY fish_fact_end
+
+
+DIALOGUE fish_fact_75
 	did you know? the half life of a fish is 3 nanoseconds.
+
+
+DIALOGUE fish_fact_76
+	did you know? fish have their own greg rpg.
 
 
 DIALOGUE fish_fact_end
