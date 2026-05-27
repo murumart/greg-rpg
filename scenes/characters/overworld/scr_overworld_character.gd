@@ -473,7 +473,6 @@ func freeze_and_thaw() -> void:
 
 func check_freeze() -> void:
 	var greg := get_tree().get_first_node_in_group("players") as PlayerOverworld
-	debprint("my greg is " + str(greg))
 	if greg == null: return
 	if global_position.distance_squared_to(greg.global_position) >= 70 * 70:
 		return

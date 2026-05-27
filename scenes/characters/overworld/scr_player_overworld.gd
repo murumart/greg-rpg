@@ -40,9 +40,11 @@ func _ready() -> void:
 	menu.skateboard_dequipped.connect(func(): move_mode = MoveModes.WALK)
 	SOL.add_ui_child(menu)
 	menu.hide()
-	load_armour()
+	load_armour_sprites()
 	spawn_position()
 	direct_animation()
+	var greg := ResMan.get_character("greg") as Character
+	greg.armour_changed.connect(load_armour_sprites.unbind(1))
 	print("player ready")
 
 
@@ -189,6 +191,8 @@ func _character_message_received(msg := &"") -> void:
 		&"diploma_crumpled":
 			close_menu()
 			SOL.dialogue("diploma_crumpled")
+			var inv := ResMan.get_character("greg").inventory
+			inv.erase("diploma")
 			DAT.grant_item(&"winner_hat")
 		&"rain_boot_used":
 			close_menu()
@@ -197,7 +201,7 @@ func _character_message_received(msg := &"") -> void:
 				inv.erase("rain_boot")
 				inv.erase("rain_boot")
 				SOL.dialogue("rubber_boots_make")
-				DAT.grant_item(&"rubber_boots", 0, false)
+				ResMan.get_character("greg").handle_item("rubber_boots")
 			else:
 				SOL.dialogue("rubber_boots_cant_make")
 
@@ -215,7 +219,6 @@ func get_save_key(key: String) -> String:
 func close_menu() -> void:
 	menu.call_deferred("hideme")
 	DAT.free_player("overworld_menu")
-	load_armour()
 
 
 func set_saving_disabled(to: bool) -> void:
@@ -223,7 +226,7 @@ func set_saving_disabled(to: bool) -> void:
 	menu.saving_disabled = to
 
 
-func load_armour() -> void:
+func load_armour_sprites() -> void:
 	armour.hide()
 	updating_armour = false
 	var greg := ResMan.get_character("greg") as Character

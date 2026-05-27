@@ -4,7 +4,6 @@ extends Control
 
 signal close_requested
 signal skateboard_dequipped
-signal armour_changed
 
 const TIME_AFTER_WARN_SAVE := 60
 
