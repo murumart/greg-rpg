@@ -21,6 +21,7 @@ func load_trades() -> void:
 
 
 func interacted() -> void:
+	DAT.set_data("kid_encountered", true)
 	SOL.dialogue_box.adjust(default_lines[0], 1, "choices",
 			Math.reaap(trades_dict.keys(), "nvm"))
 	super.interacted()

@@ -1,27 +1,27 @@
 - [ ] playtest session june
+	- [ ] secretn plant dialogue(bnech?)
+	- [ ] more grnamda item interaction
+	- [ ] more diagetic immersion for intro room exit area dialogue
 	- [x] pan around town in the intro (instead of following the car only)
 	- [x] intro car slower
-	- [ ] secretn plant dialogue(bnech?)
 	- [x] gramdma face the radio and and wait at the radio
-	- [ ] gaster secret room grandma (SCARY)
 	- [x] grandma MEANER
 	- [x] grandma meaner when you ask for house
 	- [x] friendlier zerma? offer to tutorial
 	- [x] fix intro skip
-	- [ ] more diagetic immersion for intro room exit area dialogue
 	- [x] dont turn off radio when its off
-	- [ ] more grnamda item interaction
 	- [x] put boot in trash can
 	- [x] rebind screenshit
+	- [ ] gaster secret room grandma (SCARY)
 - [ ] change greandma green dialo
 - [x] lore: last 2 police bounties from grandma
 - [ ] playtest seession 2 june
+	- [ ] add another biek next to the park tree
 	- [x] tone down thugs nexta police station
 	- [x] hole in neighbor house fense behind tree
 	- [x] give cars in town paths
 	- [x] another greenhouse
 	- [x] guru remind of press c in battle
-	- [ ] add another biek next to the park tree
 	- [x] incidental mentions of lakeside, town east in npc dialogue
 	- [x] fix greg turning purple
 	- [x] reevaluate mail man hate you and your items
@@ -68,51 +68,51 @@
 - [x] GOING INTO BATHROOM SHOPLIFINGP!!?!=!=
 
 ## ardenna playtets
+- [ ] not enough sp (sp == cost)
 - [ ] add slower spirit timer option
+- [ ] police station vampire context if you dont talk to her... unify the dialoguye
 - [x] death sprite from zerma battle in store..??
 - [x] mail game price labels out of sync with actual price
 - [x] greg house scene make road *thinner*
 - [x] "semotion" typo 
 - [x] street signs
 - [x] thugs remain in town after bountyh complete??
-- [ ] not enough sp (sp == cost)
 - [x] fish area too harsh..?
 - [x] pond lady ysort
 - [x] idea.. break the regular fishermen with"wrong dialogue choice"
 - [x] wrogn death screen fisherman fight
 - [x] penalty for equipping wrong armor in lakeside battle.?
 - [x] increase cracked fisherman spawn elvel..?
-- [x] reset xp after missing item message
-- [ ] police station vampire context if you dont talk to her... unify the dialoguye
 - [x] use suin spirit to light campfire...
+- [x] reset xp after missing item message
 
 ## 21.08.25
 - [x] Disable bathroom door if shop is soaked afterr frnaking
 
 ## June playetes
+- [ ] more mentions of mayor before east
 - [ ] Nerf casual
-- [x] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
 - [ ] move spirit mana portal damage battle camera downward
+- [x] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
 - [x] text you received begonia
 - [x] make grandma room darker after flowers
 - [x] telegraph movement direction restrictions of pizzle pieces. (WONTFIX: dont use restrictions)
 - [x] enter battle private in overworld character
-- [ ] more mentions of mayor before east
 - [x] nerf casual
 - [x] fix camera tiny ui in main menu when exiting from secret garden
 - [x] red text line too far. too meta as they say
 
 ## asdjasjdas
-- [x] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
-- [x] võta see valge kuju ära (paistab liiga silma intros)
 - [ ] uuenda kaarti (eset)
 - [ ] ma ei ütle kuidas seivida??
+- [x] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
+- [x] võta see valge kuju ära (paistab liiga silma intros)
 
 ## järgmine
+- [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
+- [ ] do we ever check if the kid has been talked to
 - [X] diploma turns not into nothing when making hat
 - [X] rain boots combined but not equipped automatically
 - [X] should remove closeby enemies when entering any battle
 - [X] getting ite in fishing should give more timer
 - [X] fish fact after no more fish facts
-- [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
-- [ ] do we ever check if the kid has been talked to
