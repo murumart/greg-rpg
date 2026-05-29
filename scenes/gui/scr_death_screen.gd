@@ -136,5 +136,5 @@ func _on_retry_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	if leaving:
 		return
-	LTS.level_transition("res://scenes/gui/scn_main_menu.tscn")
+	LTS.level_transition("res://scenes/gui/scn_main_menu.tscn", {"stealing_enabled": false})
 	leaving = true

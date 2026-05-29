@@ -1122,17 +1122,16 @@ offset = Vector2(0, -8)
 position = Vector2(24, 3)
 line_width = 5.0
 gradient = SubResource("Gradient_ppggd")
-lifetime = 0.0
 
-[node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0"]
+[node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0" unique_id=134236045]
 points = PackedVector2Array(-24, -3, -24.451, -12.6958, -24.4705, -28.3179, -23.3057, -36.2842, -26.4443, -49.6942, -25.8346, -59.7958, -22.8818, -73.9024, -24.4311, -82.6969, -23.678, -97.9251, -25, -108)
 width = 5.0
 texture = SubResource("GradientTexture2D_0ivro")
 
-[node name="Start" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="1"]
+[node name="Start" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="1" unique_id=1667776555]
 position = Vector2(-24, -3)
 
-[node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2"]
+[node name="End" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="2" unique_id=816528644]
 position = Vector2(-25, -108)
 
 [node name="VampireGirl" parent="." unique_id=1614872159 node_paths=PackedStringArray("greg") instance=ExtResource("37_ppggd")]

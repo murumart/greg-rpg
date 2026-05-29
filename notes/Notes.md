@@ -111,6 +111,7 @@
 ## järgmine
 - [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
 - [ ] do we ever check if the kid has been talked to
+- [X] you find items after losing cashier fight and quitting??
 - [X] diploma turns not into nothing when making hat
 - [X] rain boots combined but not equipped automatically
 - [X] should remove closeby enemies when entering any battle
