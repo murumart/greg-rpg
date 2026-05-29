@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="7_ce3xq"]
 [ext_resource type="Script" uid="uid://twu3g0cxdejw" path="res://scenes/rooms/town/scr_neighbour_house.gd" id="7_fnqrf"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_l27gf"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="8_smefo"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_0hylv"]
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="9_8v8jp"]
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="10_0smbp"]
@@ -628,11 +629,18 @@ script = ExtResource("3_8fjbe")
 script = ExtResource("3_8fjbe")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=1201563621 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=2100675990]
+script = ExtResource("3_8fjbe")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." unique_id=1201563621 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_smefo")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_music = "sunset"
+rainy_music = "rainy"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="EdgeCollision" type="StaticBody2D" parent="." unique_id=1193902447]
@@ -691,8 +699,9 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(115, -25)
 metadata/_edit_group_ = true
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
 
 [node name="Camera" parent="Greg" unique_id=1600642534 instance=ExtResource("4_fy0lb")]
 position = Vector2(0, -9)

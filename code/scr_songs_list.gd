@@ -209,6 +209,14 @@ var songs := {
 		"title": "perturberance",
 		"stream": preload("res://music/mus_perturberance.ogg")
 	},
+	"rainsnail": {
+		"title": "rainsnail",
+		"stream": preload("res://music/mus_rainsnail.ogg")
+	},
+	"rainy": {
+		"title": "rainy",
+		"stream": preload("res://music/mus_rainy.ogg")
+	},
 	"secret_garden": {
 		"title": "secret garden",
 		"stream": preload("res://music/mus_secret_garden.ogg")

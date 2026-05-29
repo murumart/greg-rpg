@@ -31,6 +31,8 @@ func _ready() -> void:
 				i.erase_thugs_from_mem()
 				i.queue_free()
 
+	if !Sunsetter.is_raining: $Sunsetter.start_raining() # DEBUG
+
 
 func naturalist_setup() -> void:
 	var left := $Other/NatureGuyLeft/NatureGuy
@@ -42,7 +44,7 @@ func kid_setup() -> void:
 	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
 	if not $Other/CampfireSite/Campfire.lit:
 		$Other/CampfireSite/CampsiteKid.queue_free()
-	if DAT.get_data("kid_encountered", false):
+	if DAT.get_data("kid_encountered", false) or Sunsetter.is_raining:
 		first_encounter.queue_free()
 		return
 	first_encounter.inspected.connect(kid_first_encounter, CONNECT_ONE_SHOT)

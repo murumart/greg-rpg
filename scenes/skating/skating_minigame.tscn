@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://c5rfklorfwi3t" path="res://sounds/skating/s1.ogg" id="10_tddx3"]
 [ext_resource type="Texture2D" uid="uid://cgvikoo32h15w" path="res://sprites/skating/jumpscare.png.png" id="12_g3s73"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="15_gc7jg"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="19_y86ds"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_auvad"]
 radius = 4.0
@@ -72,9 +73,15 @@ metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 script = ExtResource("3_y86ds")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=1974423695 node_paths=PackedStringArray("sky_modulate")]
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=1081823952]
+script = ExtResource("3_y86ds")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." unique_id=1974423695 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles")]
 script = ExtResource("4_0tbqj")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../RainParticles")
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1293596576]
@@ -303,3 +310,6 @@ texture = SubResource("AtlasTexture_kp0j1")
 lifetime = 2.0
 trail_lifetime = 1.82
 process_material = SubResource("ParticleProcessMaterial_q8ybc")
+
+[node name="RainParticles" parent="." unique_id=1059334322 instance=ExtResource("19_y86ds")]
+position = Vector2(75, 53)

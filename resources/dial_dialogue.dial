@@ -803,8 +803,12 @@ CHOICES browse,leave
 DIALOGUE biking_welcome_4
 CHAR mail_man
 EMO 
+DATA_LINK raining,false
 CHOICES browse,leave
 	good weather we are having.
+DATA_LINK raining,true
+CHOICES browse,leave
+	it has not rained in a while.
 
 
 DIALOGUE biking_welcome_5

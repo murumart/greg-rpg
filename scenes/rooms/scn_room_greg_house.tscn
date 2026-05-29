@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="8_7g8ll"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="8_gp7pc"]
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="8_vn8mu"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="9_3spj5"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="9_qoivq"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="9_xism4"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="10_5xp3u"]
@@ -77,9 +78,14 @@ metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 [node name="Sun" type="Node" parent="CanvasModulateGroup" unique_id=82376073]
 script = ExtResource("3_agme8")
 
-[node name="Sunsetter" type="Node" parent="." unique_id=1618051938 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=25085050]
+script = ExtResource("3_agme8")
+
+[node name="Sunsetter" type="Node" parent="." unique_id=1618051938 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_3t2i8")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
@@ -294,6 +300,8 @@ limit_left = -304
 limit_top = -208
 limit_right = 336
 limit_bottom = 272
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("9_3spj5")]
 
 [node name="ActualHouse" type="Node2D" parent="." unique_id=1438160128]
 y_sort_enabled = true

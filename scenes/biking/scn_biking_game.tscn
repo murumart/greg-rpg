@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bsuf211rk241i" path="res://sprites/biking/spr_biking_elements.png" id="9_a2fuc"]
 [ext_resource type="Script" uid="uid://c36opwdihcsqn" path="res://scenes/biking/scr_biking_ui.gd" id="9_l1vy5"]
 [ext_resource type="AudioStream" uid="uid://ctje0ls4qog7u" path="res://sounds/paper/paper4.ogg" id="10_5fkpw"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="12_gng6e"]
 [ext_resource type="Texture2D" uid="uid://dvsd0jvyaskrw" path="res://sprites/items/spr_item_masking_tape.png" id="12_hbmle"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sij3x"]
@@ -796,13 +797,19 @@ metadata/_custom_type_script = "uid://c200sjcxbtqxr"
 script = ExtResource("3_gng6e")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=1487543557]
+script = ExtResource("3_gng6e")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
 [node name="Red" type="Node" parent="CanvasModulateGroup" unique_id=2022493582]
 script = ExtResource("3_gng6e")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=551761131 node_paths=PackedStringArray("sky_modulate")]
+[node name="Sunsetter" type="Node" parent="." unique_id=551761131 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles")]
 script = ExtResource("4_4d1jd")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_particles = NodePath("../Background/RainParticles")
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Camera" parent="." unique_id=938471292 instance=ExtResource("5_qc4rn")]
@@ -871,6 +878,10 @@ centered = false
 position = Vector2(-1, 0)
 texture = ExtResource("7_pxwvr")
 centered = false
+
+[node name="RainParticles" parent="Background" unique_id=1059334322 instance=ExtResource("12_gng6e")]
+z_index = 14
+position = Vector2(82, 81)
 
 [node name="Road" parent="." unique_id=680043126 instance=ExtResource("1_fjpor")]
 position = Vector2(-4, 6)

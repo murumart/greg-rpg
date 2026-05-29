@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="5_gxb62"]
 [ext_resource type="PackedScene" uid="uid://cgq5pk53ehdvm" path="res://scenes/tech/scn_enemy_encounter_area.tscn" id="6_p0mbs"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="8_0d8jh"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="8_hnbx1"]
 [ext_resource type="PackedScene" uid="uid://50csctmtw55r" path="res://scenes/characters/overworld/scn_fisherman.tscn" id="8_j6fv8"]
 [ext_resource type="PackedScene" uid="uid://ou1blsidn1su" path="res://scenes/tech/scn_enemy_spawner.tscn" id="10_w8d1t"]
 [ext_resource type="AudioStream" uid="uid://c3nhh1tantvs2" path="res://sounds/water_river.ogg" id="11_n82my"]
@@ -371,6 +372,9 @@ script = ExtResource("3_xexyo")
 [node name="Sun" type="Node" parent="CanvasModulateGroup" unique_id=1346817159]
 script = ExtResource("3_xexyo")
 
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=732400133]
+script = ExtResource("3_xexyo")
+
 [node name="CheatNode" type="Node" parent="." unique_id=323547095]
 script = ExtResource("4_wb2do")
 level_gain = 25
@@ -378,9 +382,11 @@ new_items = Array[StringName]([&"bike_helmet"])
 replace_armour = &"rubber_boots"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=624990841 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Sunsetter" type="Node" parent="." unique_id=624990841 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_u5pcv")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
@@ -395,6 +401,8 @@ limit_left = -600
 limit_top = -384
 limit_right = 696
 limit_bottom = 400
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_hnbx1")]
 
 [node name="Water" type="ColorRect" parent="." unique_id=870538083]
 z_index = -11

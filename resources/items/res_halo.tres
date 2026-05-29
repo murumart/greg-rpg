@@ -13,7 +13,7 @@ defense_increase = 12.0
 
 [resource]
 script = ExtResource("3_x26e7")
-name = &"halo of the recluse"
+name = &"recluse halo"
 description = "provides great protection, despite being so light it's imperceptible."
 texture = ExtResource("5_x26e7")
 play_sound = ExtResource("3_hx036")

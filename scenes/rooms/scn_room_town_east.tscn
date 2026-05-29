@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://byxv0c510ftyr" path="res://scenes/tech/scn_behind_area.tscn" id="8_k0yp4"]
 [ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="9_c52i7"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="9_fhxp8"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="9_v1ajh"]
 [ext_resource type="Script" uid="uid://bhmcqufm3yow0" path="res://scenes/rooms/town/east_housing_block.gd" id="10_2mkd6"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="10_stciw"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="11_bu27y"]
@@ -752,9 +753,15 @@ metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 script = ExtResource("3_3jvnm")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=553368631 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=1874622529]
+script = ExtResource("3_3jvnm")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." unique_id=553368631 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_s1sou")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_music = "sunset"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
@@ -841,6 +848,8 @@ limit_left = -846
 limit_top = -570
 limit_right = 464
 limit_bottom = 352
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("9_v1ajh")]
 
 [node name="Poles" type="Node2D" parent="." unique_id=608950]
 y_sort_enabled = true
@@ -995,7 +1004,7 @@ ground_level_y = -168
 greg = NodePath("../../../Greg")
 greg_speed = 20.0
 
-[node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0"]
+[node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
 shape = SubResource("RectangleShape2D_gh5h4")
@@ -1302,9 +1311,6 @@ offset = Vector2(-10, -26)
 position = Vector2(6, 31)
 texture = SubResource("ViewportTexture_v1ajh")
 
-[node name="AnimationPlayer" parent="Houses/Factory/ShardsTexture" index="1"]
-autoplay = &"RESET"
-
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false
 
@@ -1373,15 +1379,15 @@ gate_id = &"east-factory"
 extents = Vector2i(8, 4)
 spawnpoint = Vector2i(0, 9)
 
-[node name="Area2D" parent="Houses/Factory/RoomGate" index="0"]
+[node name="Area2D" parent="Houses/Factory/RoomGate" index="0" unique_id=1089282861]
 collision_layer = 0
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0"]
+[node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0" unique_id=582535130]
 shape = SubResource("RectangleShape2D_odbt0")
 
-[node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1"]
+[node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1" unique_id=110762082]
 position = Vector2(0, 9)
 
 [node name="Chapel" type="Node2D" parent="Houses" unique_id=30406025]

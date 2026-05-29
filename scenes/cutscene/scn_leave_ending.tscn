@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c200sjcxbtqxr" path="res://code/scr_canvas_modulate_group.gd" id="7_4hf52"]
 [ext_resource type="Script" uid="uid://bsg7ovv4vatdp" path="res://code/scr_color_container.gd" id="8_850yq"]
 [ext_resource type="AudioStream" uid="uid://byqw0xlh82vyb" path="res://sounds/crickets.ogg" id="9_mq61k"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="11_ocf5a"]
 
 [sub_resource type="Shader" id="Shader_hafu8"]
 code = "shader_type canvas_item;
@@ -58,9 +59,14 @@ script = ExtResource("7_4hf52")
 [node name="ColorContainer" type="Node" parent="CanvasModulateGroup" unique_id=2025933529]
 script = ExtResource("8_850yq")
 
-[node name="Sunsetter" type="Node" parent="." unique_id=1830878023 node_paths=PackedStringArray("sky_modulate")]
+[node name="ColorContainer2" type="Node" parent="CanvasModulateGroup" unique_id=1172821773]
+script = ExtResource("8_850yq")
+
+[node name="Sunsetter" type="Node" parent="." unique_id=1830878023 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles")]
 script = ExtResource("4_dg85e")
 sky_modulate = NodePath("../CanvasModulateGroup/ColorContainer")
+rain_modulate = NodePath("../CanvasModulateGroup/ColorContainer2")
+rain_particles = NodePath("../RainParticles")
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="sky" type="ColorRect" parent="." unique_id=413179277]
@@ -125,3 +131,6 @@ process_material = SubResource("ParticleProcessMaterial_dwsdq")
 [node name="crickets" type="AudioStreamPlayer" parent="." unique_id=1144922653]
 stream = ExtResource("9_mq61k")
 volume_db = -80.0
+
+[node name="RainParticles" parent="." unique_id=1059334322 instance=ExtResource("11_ocf5a")]
+position = Vector2(73, 52)

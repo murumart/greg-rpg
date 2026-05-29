@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://u7uuutmsqq0r" path="res://scenes/gui/scn_message_container.tscn" id="9_dsf2t"]
 [ext_resource type="PackedScene" uid="uid://bsfbdos2ow8xt" path="res://scenes/tech/player_hit_area.tscn" id="9_vjkwb"]
 [ext_resource type="Script" uid="uid://batwscwrsgd1b" path="res://scenes/tech/scr_battle_actor.gd" id="10_ni3vs"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="11_bvd07"]
 [ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="12_cyq4r"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="12_mqh78"]
 
@@ -102,9 +103,14 @@ metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 [node name="Sun" type="Node" parent="CanvasModulate" unique_id=228325281]
 script = ExtResource("3_mqh78")
 
-[node name="Sunsetter" type="Node" parent="." unique_id=999877635 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Rain" type="Node" parent="CanvasModulate" unique_id=789775134]
+script = ExtResource("3_mqh78")
+
+[node name="Sunsetter" type="Node" parent="." unique_id=999877635 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_vjkwb")
 sky_modulate = NodePath("../CanvasModulate/Sun")
+rain_modulate = NodePath("../CanvasModulate/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
@@ -252,6 +258,8 @@ limit_bottom = 256
 position = Vector2(0, -10)
 script = ExtResource("10_ni3vs")
 metadata/_custom_type_script = "uid://batwscwrsgd1b"
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("11_bvd07")]
 
 [node name="Gates" type="Node2D" parent="." unique_id=1044928470]
 

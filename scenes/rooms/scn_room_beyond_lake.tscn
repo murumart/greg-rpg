@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://cx4qk7n0gc5dd" path="res://resources/battle_infos/sun_spirit_fight.tres" id="12_ojo5n"]
 [ext_resource type="SpriteFrames" uid="uid://cff0i2cal1ro4" path="res://resources/characters/sfr_tarikas.tres" id="13_nkm1r"]
 [ext_resource type="Texture2D" uid="uid://b75ypvux1yvpt" path="res://sprites/characters/overworld/spr_townspeople.png" id="17_7tg3y"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="19_7tg3y"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_mglh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fbrin"]
@@ -238,9 +239,14 @@ color = Color(0.883179, 0.963229, 1, 1)
 [node name="Sun" type="Node" parent="CanvasModulateGroup" unique_id=960285765]
 script = ExtResource("3_4qote")
 
-[node name="Sunsetter" type="Node" parent="." unique_id=575570518 node_paths=PackedStringArray("sky_modulate", "room")]
+[node name="Rain" type="Node" parent="CanvasModulateGroup" unique_id=461186266]
+script = ExtResource("3_4qote")
+
+[node name="Sunsetter" type="Node" parent="." unique_id=575570518 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_ojo5n")
 sky_modulate = NodePath("../CanvasModulateGroup/Sun")
+rain_modulate = NodePath("../CanvasModulateGroup/Rain")
+rain_particles = NodePath("../Greg/RainParticles")
 room = NodePath("..")
 sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
@@ -482,6 +488,8 @@ limit_left = -448
 limit_top = -232
 limit_right = 1416
 limit_bottom = 272
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("19_7tg3y")]
 
 [node name="Building" type="Node2D" parent="." unique_id=1521773287]
 y_sort_enabled = true

@@ -25,7 +25,7 @@ var refbutton_options := {
 
 func _ready() -> void:
 	ResMan.load_resources()
-	dialogue_box._load_dialogue_files()
+	dialogue_box.load_dialogue_files(dialogue_box.dialogues_dict)
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 	Math.load_reference_buttons(dialdict().keys(), containers, _reference_button_pressed, _on_button_reference_received, refbutton_options)
 	for charc in ResMan.characters:
@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_text_edit_text_submitted(new_text: String) -> void:
 	print(new_text)
-	dialogue_box._load_dialogue_files()
+	dialogue_box.load_dialogue_files(dialogue_box.dialogues_dict)
 	var array := dialdict().keys().duplicate()
 	var array2 := []
 	if new_text:

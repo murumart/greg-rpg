@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="7_cgtsx"]
 [ext_resource type="PackedScene" uid="uid://bp4upclobui8l" path="res://scenes/decor/scn_tree.tscn" id="8_cgtsx"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="9_3vnjx"]
+[ext_resource type="PackedScene" uid="uid://cqgbn1thc8rr7" path="res://scenes/decor/rain_particles.tscn" id="9_yrl0e"]
 [ext_resource type="AudioStream" uid="uid://dbt5rotugiiay" path="res://music/mus_lion.ogg" id="10_mdhu1"]
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="11_xqqwx"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="12_yva5b"]
@@ -73,8 +74,16 @@ metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 script = ExtResource("3_dscab")
 metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
 
-[node name="Sunsetter" type="Node" parent="." unique_id=720866269]
+[node name="Rainy" type="Node" parent="CanvasModulateGroup" unique_id=620523875]
+script = ExtResource("3_dscab")
+metadata/_custom_type_script = "uid://bsg7ovv4vatdp"
+
+[node name="Sunsetter" type="Node" parent="." unique_id=720866269 node_paths=PackedStringArray("sky_modulate", "rain_modulate", "rain_particles", "room")]
 script = ExtResource("4_r31lb")
+sky_modulate = NodePath("../CanvasModulateGroup/Mobulate")
+rain_modulate = NodePath("../CanvasModulateGroup/Rainy")
+rain_particles = NodePath("../Greg/RainParticles")
+room = NodePath("..")
 sunset_music = "sunset"
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
@@ -139,6 +148,8 @@ limit_left = -576
 limit_top = -156
 limit_right = 300
 limit_bottom = 224
+
+[node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("9_yrl0e")]
 
 [node name="Areas" type="Node2D" parent="." unique_id=1822205063]
 
