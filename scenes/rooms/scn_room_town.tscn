@@ -574,7 +574,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlv1q"]
 size = Vector2(14, 52)
 
-[sub_resource type="Curve2D" id="Curve2D_qhmci"]
+[sub_resource type="Curve2D" id="Curve2D_smefo"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -135, -26, 114.876, -76.8595, -114.876, 76.8595, -447, 304, 198.907, 3.12066, -198.907, -3.12066, -955, 372, 243.884, 10.4959, -243.884, -10.4959, -1539, 380)
@@ -2443,7 +2443,7 @@ position = Vector2(-1157, 392)
 position = Vector2(-1620, 391)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
-curve = SubResource("Curve2D_qhmci")
+curve = SubResource("Curve2D_smefo")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-135, -26)

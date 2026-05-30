@@ -31,8 +31,6 @@ func _ready() -> void:
 				i.erase_thugs_from_mem()
 				i.queue_free()
 
-	if !Sunsetter.is_raining: $Sunsetter.start_raining() # DEBUG
-
 
 func naturalist_setup() -> void:
 	var left := $Other/NatureGuyLeft/NatureGuy
