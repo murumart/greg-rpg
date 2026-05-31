@@ -270,7 +270,7 @@ func _cmd_xp(args: PackedStringArray) -> void:
 	var amount := int(args[1]) if args.size() == 2 else 0
 	if not LTS.get_current_scene().name == "Battle":
 		if amount != 0:
-			chara.add_experience(amount)
+			chara.add_experience(amount, true)
 			output("gave %s exp to %s" % [amount, charname])
 			return
 		output("char %s has %s/%s exp" %
@@ -281,7 +281,7 @@ func _cmd_xp(args: PackedStringArray) -> void:
 	var battle = LTS.get_current_scene()
 	chara = battle.party[0].character
 	if amount != 0:
-		chara.add_experience(amount)
+		chara.add_experience(amount, true)
 		return
 
 	output("char %s has %s/%s exp" %

@@ -35,6 +35,7 @@ const UPGRADE_MAX := {
 @export var magic := 30.0
 
 @export_range(1, 99) var level := 1
+@export_range(1, 99) var max_level: int = 99
 @export var experience := 0: set = set_experience
 @export_range(1.0, 99.0) var attack := 1.0
 @export_range(1.0, 99.0) var defense := 1.0
@@ -56,6 +57,7 @@ func get_saveable_dict() -> Dictionary:
 		"max_magic": max_magic,
 		"magic": magic,
 		"level": level,
+		"max_level": max_level,
 		"experience": experience,
 		"attack": attack,
 		"defense": defense,
@@ -103,42 +105,27 @@ static func xp2lvl(lvl: int) -> int:
 	return roundi(Math.LEVEL_UP_CURVE.sample_baked(lvl * 0.01) * lvl)
 
 
-# currently only greg can functionally gain xp and level up
 func add_experience(amount: int, speak := false) -> void:
 	SOL.dialogue_box.dial_concat("levelup", 1, ["0", "0"])
-	var _old_level := level
-	if speak:
-		SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
-		SOL.dialogue("get_experience")
+	var local_level := level
+	var discarded_experience := 0
 	for i in amount:
-		if level >= 99:
-			break
-		experience += 1
-		if experience >= xp2lvl(level + 1):
-			experience = 0
-			if name_in_file == &"greg":
-				if await limit_levelup():
-					return
-			level_up()
-	leveled_up.emit()
-
-
-func limit_levelup() -> bool:
-	const required: Dictionary[int, StringName] = {
-		40: &"flower_hollyhock",
-		50: &"flower_yellow_balsam",
-		60: &"flower_nasturtium",
-		70: &"flower_rose",
-		80: &"flower_meadowsweet",
-	}
-
-	if (level + 1 in required and required[level + 1] not in inventory):
-		var dlg := DialogueBuilder.new()
-		dlg.add_line(dlg.ml("[center]level... not up.[/center]"))
-		dlg.add_line(dlg.ml("the %s is still missing. find it." % ResMan.get_item(required[level + 1]).name))
-		await dlg.speak_choice()
-		return true
-	return false
+		if local_level == max_level:
+			discarded_experience += 1
+		else:
+			experience += 1
+			if experience >= xp2lvl(level + 1):
+				experience = 0
+				local_level += 1
+	if speak:
+		if local_level > level:
+			SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
+			SOL.dialogue("get_experience")
+		elif discarded_experience > 0:
+			SOL.dialogue("discard_experience")
+	if local_level > level:
+		level_up(local_level - level)
+		leveled_up.emit()
 
 
 func level_up(by := 1, overflow := false, talk := true) -> void:
@@ -159,10 +146,9 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 		# less chance of gaining a point in a stat as level gets higher
 		var upgrade_chance := curve.sample(remap(level, 1, 99, 0.0, 1.0))
 		for k in upgrades:
-
-			var perfect_inc: float = (UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0
+			var perfect_inc: float = (UPGRADE_MAX[k] - UPGRADE_MIN[k]) / 99.0
 			var perfect_stat: float = (
-				(UPGRADE_MAX[k]-UPGRADE_MIN[k])/99.0 * level
+				(UPGRADE_MAX[k] - UPGRADE_MIN[k]) / 99.0 * level
 			) + UPGRADE_MIN[k] - 1
 
 			# except every 11 levels, missed points catch up then

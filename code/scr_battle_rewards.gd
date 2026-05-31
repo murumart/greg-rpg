@@ -53,8 +53,8 @@ func grant(speak := true) -> void:
 			Types.GLASS:
 				if randf() <= reward.chance:
 					glass_pool += prop
-	# then go through the pools and give stuff. to the player
-	for i in item_pool: # give flowe r first so we can level up 👍👍👍👍
+	# go through the pools and give stuff to the player
+	for i in item_pool:
 		DAT.grant_item(i, 0, speak)
 	if silver_pool:
 		var mult: float = DAT.get_data("ng_silver_multiplier", 1)

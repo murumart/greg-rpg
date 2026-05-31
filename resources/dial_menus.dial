@@ -2,6 +2,7 @@ MACRO GREEN #00ff00
 MACRO SPIRITCOLOR #7799ff
 MACRO PRESCOLOR #ff9999
 MACRO SUNCOLOR #ffbb99
+MACRO YELLOW #ffff00
 
 
 DIALOGUE load_warning_outdatedgame
@@ -55,6 +56,14 @@ CHOICES no,yes
 
 DIALOGUE get_experience
 	%s experience was gained.
+
+
+DIALOGUE discard_experience
+	[color=YELLOW]did not learn anything from the experience.[/color]
+DATA_LINK heard_xp_discard,false
+	[color=YELLOW]you are already at your maximum level.[/color]
+SET_DATA heard_xp_discard,true
+	[color=YELLOW]maybe a more special experience could further your potential...?[/color]
 
 
 DIALOGUE levelup

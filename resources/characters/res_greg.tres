@@ -8,6 +8,6 @@ script = ExtResource("2_21jyn")
 name = "greg"
 info = "you should shave! and take a shower!"
 portrait = ExtResource("1_bs81s")
-defeated_characters = null
+max_level = 10
 inventory = Array[String](["pocket_candy", "pocket_candy", "pocket_candy", "cellphone", "flower_strawberry"])
 spirits = Array[String](["sideeye"])

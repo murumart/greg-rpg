@@ -1,7 +1,7 @@
 @tool
 class_name EditorHelperTool extends Node
 
-@export_tool_button("Auto") var call_auto := auto
+@export_tool_button("Update project version") var spv := set_project_version
 @export_tool_button("Static Check") var sck := static_check_all_code_files
 
 

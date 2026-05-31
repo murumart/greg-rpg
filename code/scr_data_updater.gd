@@ -14,6 +14,7 @@ static func needs_updating(data: Dictionary) -> bool:
 static func update_data(data: Dictionary) -> void:
 	_fix_sprits_typo(data)
 	_replace_you_sop(data)
+	_fix_character_data(data)
 
 
 static func _fix_sprits_typo(data: Dictionary) -> void:
@@ -51,3 +52,10 @@ static func _replace_you_sop(data: Dictionary) -> void:
 		spirits.erase("splash_attack")
 		spirits.append("blue_carpet")
 		greg["spirits"] = spirits
+
+
+static func _fix_character_data(data: Dictionary) -> void:
+	var greg: Dictionary = data.get("char_greg_save", {})
+	if greg.is_empty(): return
+	if greg.level > greg.get("max_level", 0):
+		greg["max_level"] = greg.level
