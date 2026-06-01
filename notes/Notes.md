@@ -128,3 +128,10 @@ multipanther -> +10 (=99)
 - [X] should remove closeby enemies when entering any battle
 - [X] getting ite in fishing should give more timer
 - [X] fish fact after no more fish facts
+
+## troy
+- [ ] softlock after turf battle.. no rewards? what?
+- [ ] house inside ready line 29 animated sprite not found
+- [ ] grandma loine for eating candy
+- [ ] speed up stalling at granmdma
+- [ ] make fence breaking car slower

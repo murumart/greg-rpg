@@ -802,7 +802,7 @@ func open_end_screen(victory: bool) -> void:
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
 		_check_on_bounties()
-		await SOL.dialogue_closed
+		if SOL.dialogue_open: await SOL.dialogue_closed
 		doing = Doings.DONE
 		listening_to_player_input = true
 		if not _used_attack:

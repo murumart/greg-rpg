@@ -105,7 +105,7 @@ DIALOGUE insp_park_board
 
 
 DIALOGUE insp_trash_road
-	the road conditions look terrible up ahead.
+	the road condition looks terrible up ahead.
 
 
 DIALOGUE insp_trashguy_1

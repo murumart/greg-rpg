@@ -109,19 +109,22 @@ func add_experience(amount: int, speak := false) -> void:
 	SOL.dialogue_box.dial_concat("levelup", 1, ["0", "0"])
 	var local_level := level
 	var discarded_experience := 0
+	var gotten_experience := 0
 	for i in amount:
 		if local_level == max_level:
 			discarded_experience += 1
 		else:
 			experience += 1
+			gotten_experience += 1
 			if experience >= xp2lvl(level + 1):
 				experience = 0
 				local_level += 1
-	if speak:
-		if local_level > level:
-			SOL.dialogue_box.dial_concat("get_experience", 0, [amount])
+	if local_level > level or gotten_experience > 0:
+		SOL.dialogue_box.dial_concat("get_experience", 0, [gotten_experience])
+		if speak:
 			SOL.dialogue("get_experience")
-		elif discarded_experience > 0:
+	elif discarded_experience > 0:
+		if speak:
 			SOL.dialogue("discard_experience")
 	if local_level > level:
 		level_up(local_level - level)
