@@ -170,6 +170,15 @@ func level_up(by := 1, overflow := false, talk := true) -> void:
 		DAT.grant_spirit(sp, DAT.get_data("party", ["greg"]).find(name_in_file), talk)
 
 
+func set_max_level(to: int) -> void:
+	if to == max_level:
+		return
+	assert(to >= max_level, "max level shouldn't be decreased ever")
+	max_level = to
+	SOL.dialogue_box.dial_concat("max_level_up", 1, [name, max_level])
+	SOL.dialogue("max_level_up")
+
+
 func handle_item(id: String) -> void:
 	var item = ResMan.get_item(id)
 	if item.use == Item.Uses.ARMOUR:

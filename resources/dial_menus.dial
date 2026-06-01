@@ -74,6 +74,14 @@ SPEED 1
 	%s leveled up to %s.
 
 
+DIALOGUE max_level_up
+SOUND max_level_up
+SPEED 0.69
+	[center][color=YELLOW]max level up![/color][/center]
+SPEED 1
+	%s's maximum level rose to %s.
+
+
 DIALOGUE getitem
 	%s was found.
 

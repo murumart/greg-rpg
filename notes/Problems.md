@@ -1,12 +1,17 @@
 ## Things to change
 
-- [x] first sg light puzzle road change not visible on screen
 - [ ] first moving cat obstacles in sg dont attack
 - [ ] want to see a queue of enemies attacking next
 - [ ] want to backtrack in before boss sgy room
+- [x] first sg light puzzle road change not visible on screen
 - [x] wrong death screens in sgb cat fights
 ## Bugs
 
+- [ ] dialogue load in biking game? in kiok menu??
+- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
+- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
+- [ ] lake hint npc doesn't dialogue cutscene
+- [ ] while sopping deals more damage to vacuum?
 - interaction areas dont work
   - [x] bird in town
   - [x] house doors
@@ -18,16 +23,11 @@
 - [X] sg pink entrance cave is see-through
 - [X] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
 - [X] secret garden grandma cutscene room the block puzzle don't get saved
-- [ ] dialogue load in biking game? in kiok menu??
-- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
-- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
-- [ ] lake hint npc doesn't dialogue cutscene
-- [ ] while sopping deals more damage to vacuum?
 - bad lines
-  - [X] i dont like one fish fact
-  - [X] nature guy souls lore
   - [ ] sg blue cat about spirits hating her
   - [ ] sg pink entrance cat joviality & joy of living
+  - [X] i dont like one fish fact
+  - [X] nature guy souls lore
 ## Cool to haf
 
 - sgy boss, puzzle cats new dialogue

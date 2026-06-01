@@ -2306,6 +2306,7 @@ frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="Other/VampireGirl/TransformKiller_____/CutsceneEnterRea" parent_id_path=PackedInt32Array(329539896, 437394365) index="0" unique_id=1595807987]
 position = Vector2(-0.5, -36)
+debug_color = Color(1, 1, 1, 0.18039216)
 
 [node name="BirdBlocker" type="Node2D" parent="Other" unique_id=208224164]
 y_sort_enabled = true

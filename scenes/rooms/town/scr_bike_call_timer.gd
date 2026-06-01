@@ -31,7 +31,7 @@ func _ready() -> void:
 		queue_free()
 		return
 	timeout.connect(func():
-		if (Math.inrange(ResMan.get_character("greg").level, 11, 20)
+		if (Math.inrange(ResMan.get_character("greg").level, 9, 20)
 			and DAT.get_data("bike_ghosts_fought", []).is_empty()
 			and not active
 			and not chasing

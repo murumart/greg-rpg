@@ -22,6 +22,7 @@ const DeathReasons = dat.DeathReasons
 @export var crits_enabled := true
 @export var player_missing_armour_effects: Dictionary[StringName, BattlePayload]
 @export var increment_data_with_enemies: StringName
+@export_range(0, 99) var max_greg_level_after_battle: int = 0
 
 
 func set_enemies(x: Array[StringName]) -> BattleInfo:
