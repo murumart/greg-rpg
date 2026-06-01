@@ -2157,7 +2157,7 @@ LOOP 1
 CHOICE_LINK yes!!
 	in essence, "rock paper scissors" is a game of luck.
 	it is played between two players. both players make a choice.
-	they spontaneously choose between "rock", "paper", and "scissors".
+	they simultaneously choose between "rock", "paper", and "scissors".
 	they both display their choice using a hand sign:
 	"rock" is a closed fist,
 	"paper" is a flat hand,

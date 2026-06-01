@@ -135,3 +135,6 @@ multipanther -> +10 (=99)
 - [ ] grandma loine for eating candy
 - [ ] speed up stalling at granmdma
 - [ ] make fence breaking car slower
+- [ ] do radiation attack before level up screen adn such
+- [ ] didn't get tooth multiple times..?
+- [ ] savescumming at the random prize..
