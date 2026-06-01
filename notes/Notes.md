@@ -108,6 +108,17 @@
 - [x] vasakul maja stseenis tundub nagu saaks edasi minna aga ei saa ju
 - [x] võta see valge kuju ära (paistab liiga silma intros)
 
+## max levels up
+default: 10
+bike ghost: -> +12 (= 22)
+fw -> +15 (= 37)
+bike beta -> +12 (= 49)
+vampire -> +10 (= 59)
+franking -> +3 (= 62)
+woods guy -> +10 (= 72)
+ts -> +17 (= 89)
+multipanther -> +10 (=99)
+
 ## järgmine
 - [ ] flavor text for magnet effect enemies (a la bike ghost becomes super rich)
 - [ ] do we ever check if the kid has been talked to

@@ -185,7 +185,7 @@ func _police_cutscene() -> void:
 	DAT.capture_player("cutscene")
 	greg.animate("walk_right")
 	var popo: OverworldCharacter = $"../Popo1"
-	var station: PoliceStation = $"../.."
+	var _station: PoliceStation = $"../.."
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, ^"global_position", popo.global_position.lerp(girl.global_position, .5).floor(), 1.0)
 	await tw.finished

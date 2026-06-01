@@ -22,3 +22,4 @@ music = "forestguy"
 start_text = "it could be woods time"
 rewards = SubResource("Resource_ekjgu")
 crits_enabled = false
+increase_max_greg_level = 10

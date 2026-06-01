@@ -44,3 +44,4 @@ rewards = SubResource("Resource_hkonc")
 victory_music = &"extremophile"
 kill_music = false
 play_fanfare = false
+increase_max_greg_level = 10

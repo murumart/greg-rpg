@@ -10,4 +10,4 @@ enemies = Array[StringName]([&"bike_ghost"])
 music = "bike_spirit"
 start_text = "toute phrase en langue etrangere."
 rewards = ExtResource("1_mdgh0")
-max_greg_level_after_battle = 22
+increase_max_greg_level = 12

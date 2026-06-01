@@ -9,4 +9,5 @@ enemies = Array[StringName]([&"spirit_portal"])
 background = ""
 music = "spboss"
 crits_enabled = false
+increase_max_greg_level = 17
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"

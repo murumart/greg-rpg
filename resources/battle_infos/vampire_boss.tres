@@ -13,3 +13,4 @@ party = Array[StringName]([&"greg", &"cashier_nice"])
 death_reason = 11
 start_text = "the girl who is also a vampire?"
 rewards = ExtResource("1_7mdua")
+increase_max_greg_level = 10

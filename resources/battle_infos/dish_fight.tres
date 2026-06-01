@@ -48,3 +48,4 @@ death_reason = 13
 rewards = SubResource("Resource_qddtr")
 victory_music = &"extremophile"
 crits_enabled = false
+increase_max_greg_level = 3

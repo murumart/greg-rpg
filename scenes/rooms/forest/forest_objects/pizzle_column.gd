@@ -64,7 +64,7 @@ func _play_game() -> void:
 	, CONNECT_ONE_SHOT)
 
 
-func _pick_item(puzzle: SlidingPuzzle, level: float) -> void:
+func _pick_item(pzle: SlidingPuzzle, level: float) -> void:
 	rewards.clear()
 	if custom_puzzle_reward:
 
@@ -73,14 +73,14 @@ func _pick_item(puzzle: SlidingPuzzle, level: float) -> void:
 				.stype(BattleRewards.Types.ITEM)
 				.sproperty(custom_puzzle_reward.name_in_file))
 
-			puzzle.image_texture = custom_puzzle_reward.texture
+			pzle.image_texture = custom_puzzle_reward.texture
 		elif custom_puzzle_reward is Spirit:
 			rewards.add(Reward.new()
 				.stype(BattleRewards.Types.SPIRIT)
 				.sproperty(custom_puzzle_reward.name_in_file))
 
 		if custom_puzzle_image:
-			puzzle.image_texture = custom_puzzle_image
+			pzle.image_texture = custom_puzzle_image
 		return
 	const ITEM_CHANCES := ForestGenerator.BIN_LOOT
 	var chosen_thing: StringName
@@ -93,10 +93,10 @@ func _pick_item(puzzle: SlidingPuzzle, level: float) -> void:
 		chosen_thing = Math.weighted_random(ITEM_CHANCES.keys(), ITEM_CHANCES.values())
 
 	if chosen_thing in ResMan.items:
-		puzzle.image_texture = ResMan.get_item(chosen_thing).texture
+		pzle.image_texture = ResMan.get_item(chosen_thing).texture
 		var amount := 1
 		if chosen_thing in ITEM_CHANCES:
-			var wishful_thinking := puzzle.puzzle_size + randi_range(-1, 1)
+			var wishful_thinking := pzle.puzzle_size + randi_range(-1, 1)
 			amount += randi_range(0,
 					mini(roundi(sqrt(ITEM_CHANCES[chosen_thing])), wishful_thinking))
 		for a in amount:
@@ -104,10 +104,10 @@ func _pick_item(puzzle: SlidingPuzzle, level: float) -> void:
 					"property": str(chosen_thing)}))
 	elif chosen_thing == &"kid":
 		rewards.add(Reward.new({"type": BattleRewards.Types.GLASS, "property": "15"}))
-		puzzle.image_texture = ResMan.get_character(chosen_thing).portrait
+		pzle.image_texture = ResMan.get_character(chosen_thing).portrait
 	elif chosen_thing == &"greg":
 		var greg := ResMan.get_character(chosen_thing)
-		puzzle.image_texture = greg.portrait
+		pzle.image_texture = greg.portrait
 		rewards.add(Reward.new({"type": BattleRewards.Types.EXP, "property":
 				str(randi_range(greg.xp2lvl(greg.level + 1),
 				greg.xp2lvl(greg.level + 2)))}))
