@@ -30,6 +30,7 @@ func _ready() -> void:
 		ushanka_guy_cutscene.cleanup()
 
 	pink_haired_girl_setup(force_atgirl)
+	DAT.save_autosave()
 
 
 func _on_interaction_area_on_interact() -> void:

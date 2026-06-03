@@ -130,7 +130,7 @@ multipanther -> +10 (=99)
 - [X] fish fact after no more fish facts
 
 ## troy
-- [ ] softlock after turf battle.. no rewards? what?
+- [X] softlock after turf battle.. no rewards? what?
 - [ ] house inside ready line 29 animated sprite not found
 - [ ] grandma loine for eating candy
 - [ ] speed up stalling at granmdma
