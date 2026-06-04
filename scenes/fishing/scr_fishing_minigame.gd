@@ -211,13 +211,15 @@ func _on_after_crash_timer_timeout() -> void:
 	var srew := Reward.new()
 	srew.type = BattleRewards.Types.SILVER
 	srew.property = str(roundi(score * 0.19))
-
-	var xrew := Reward.new()
-	xrew.type = BattleRewards.Types.EXP
-	xrew.property = str(roundi(score * 0.088))
-
 	rewards.add(srew)
-	rewards.add(xrew)
+
+	var greg := ResMan.get_character("greg")
+	if greg.level < greg.max_level:
+		var xrew := Reward.new()
+		xrew.type = BattleRewards.Types.EXP
+		xrew.property = str(roundi(score * 0.088))
+		rewards.add(xrew)
+
 	if high_score:
 		var hsrew := Reward.new()
 		hsrew.type = BattleRewards.Types.SILVER
