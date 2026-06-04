@@ -492,7 +492,7 @@ func handle_payload(pld: BattlePayload) -> void:
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:
 	var oldhp := character.health
 	if pld.critical:
-		damage *= 2.5 if character.name_in_file != &"greg" else 1.5 # greg takes less devastating crits
+		damage *= (2.5 if character.name_in_file != &"greg" else 1.5) # greg takes less devastating crits
 	@warning_ignore("redundant_await")
 	await hurt(damage, pld.gender)
 	var change := absf(character.health - oldhp)
