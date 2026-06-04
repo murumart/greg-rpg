@@ -57,6 +57,7 @@ point_count = 10
 script = ExtResource("5_fc8d6")
 background = "greghouse"
 music = "catfight"
+death_reason = 7
 
 [node name="Cat" unique_id=858899736 instance=ExtResource("1_4qwvp")]
 y_sort_enabled = true
@@ -69,13 +70,13 @@ chase_distance = 80
 interact_on_touch = true
 save = false
 
-[node name="CollisionShape" parent="." index="0"]
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_gu7w3")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_od4jn")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
 shape = SubResource("CircleShape2D_mipip")
 
 [node name="CatSprite" type="AnimatedSprite2D" parent="." index="3" unique_id=491358427]

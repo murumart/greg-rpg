@@ -147,6 +147,7 @@ multipanther -> +10 (=99)
 - [ ] savescumming at the random prize..
 - [ ] autosaves after bosses check if those exist
 - [ ] more npcs after level 30 aroud town
+- [ ] move police appointment npc between seats
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
