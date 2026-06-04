@@ -20,6 +20,6 @@ level = 22
 attack = 15.0
 defense = 22.0
 speed = 22.0
-inventory = Array[String](["bread", "bread"])
+inventory = Array[String](["bread"])
 spirits = Array[String](["splash_attack"])
 weapon = "fish"

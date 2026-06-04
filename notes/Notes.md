@@ -112,10 +112,10 @@
 default: 11
 bike ghost: -> +11 (= 22)
 lakeside: -> + 8 (= 30)
-fw -> +15 (= 45)
-bike beta -> +4 (= 49)
-vampire -> +10 (= 59)
-franking -> +3 (= 62)
+bike beta -> +14 (= 44)
+vampire -> +10 (= 54)
+franking -> +3 (= 57)
+fw -> +5 (= 62)
 woods guy -> +10 (= 72)
 ts -> +17 (= 89)
 multipanther -> +10 (=99)
@@ -145,3 +145,7 @@ multipanther -> +10 (=99)
 - [ ] do radiation attack before level up screen adn such
 - [ ] didn't get tooth multiple times..?
 - [ ] savescumming at the random prize..
+- [ ] autosaves after bosses check if those exist
+
+need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
+and sort of the last one you have to reach. match greg's level
