@@ -6,7 +6,7 @@ extends Room
 @onready var fast_guy: OverworldCharacter = $Areas/FastGuy
 
 var greg_went_in_with_boots: bool:
-	get: return DAT.get_data("lakeside_greg_went_in_with_boots")
+	get: return DAT.get_data("lakeside_greg_went_in_with_boots", false)
 	set(to): DAT.set_data("lakeside_greg_went_in_with_boots", to)
 
 
