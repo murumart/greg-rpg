@@ -146,6 +146,7 @@ multipanther -> +10 (=99)
 - [ ] didn't get tooth multiple times..?
 - [ ] savescumming at the random prize..
 - [ ] autosaves after bosses check if those exist
+- [ ] more npcs after level 30 aroud town
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level

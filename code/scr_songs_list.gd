@@ -138,7 +138,7 @@ var songs := {
 		"stream": preload("res://music/mus_geezer.ogg")
 	},
 	"greenhouse": {
-		"title": "webcatz - greenhouse",
+		"title": "lamb - greenhouse",
 		"stream": preload("res://music/mus_greenhouse.ogg")
 	},
 	"grand": {
@@ -166,7 +166,7 @@ var songs := {
 		"stream": preload("res://music/mus_lake_battle.ogg")
 	},
 	"lightningthief": {
-		"title": "webcatz - lightningthief",
+		"title": "lamb - lightningthief",
 		"stream": preload("res://music/mus_lightningthief.ogg")
 	},
 	"lily_lesson": {

@@ -269,6 +269,8 @@ func uguy_follow() -> void:
 	uguy.chase_target = greg
 	uguy._on_detection_area_body_entered(greg) # this is dirty
 	uguy.global_position = DAT.get_data(uguy.get_save_key("position"), uguy.global_position)
+	if campsite_area == null:
+		return
 	campsite_area.body_entered.connect(func(body: Node2D):
 		if body != greg or not DAT.get_data(GUY_FOLLOW, false):
 			return

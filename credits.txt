@@ -1,8 +1,8 @@
 -- music --
 
 menu music - radio
-greenhouse music - webcatz
-town east battle music - webcatz
+greenhouse music - lamb
+town east battle music - lamb
 fisher hut theme - radio and murumart
 other music made by murumart
 
@@ -33,8 +33,8 @@ jack and aric skaters by aiden
 hand by radio
 	https://teethinvitro.neocities.org/
 
-fake cat by webcatz
-	https://juneish.neocities.org/
+fake cat by lamb
+	https://lambchapel.neocities.org/
 
 old gun from pixabay
 	https://pixabay.com/photos/guns-old-vintage-history-5487430/
@@ -48,17 +48,17 @@ high-res font jupiteroid regular
 
 -- special thanks --
 
-sprite help by aj, webcatz
+sprite help by aj, lamb
 
-"legal help" (non-binding) by alan, kin, webcatz
+"legal help" (non-binding) by alan, kin, lamb
 
-thank you very much for ideas aiden, alan, ardenna, benny, drakonic, eni, julian, kin, radio, the conspicuous northerner, june...
-fish facts provided by alan, ardenna, caboose, radio, webcatz
+thank you very much for ideas aiden, alan, ardenna, benny, drakonic, eni, julian, kin, radio, the conspicuous northerner, lamb...
+fish facts provided by alan, ardenna, caboose, radio, lamb
 
-voice acting by alan, julian, kin, webcatz
+voice acting by alan, julian, kin, lamb
 
-pizz animation by webcatz
+pizz animation by lamb
 
-thank you to play testers alan, cresentri., drakonic, kin, radio, webcatz
+thank you to play testers alan, cresentri., drakonic, kin, radio, lamb
 
-thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, june
+thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, lamb
