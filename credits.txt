@@ -52,8 +52,8 @@ sprite help by aj, webcatz
 
 "legal help" (non-binding) by alan, kin, webcatz
 
-thank you very much for ideas aiden, alan, ardenna, benny, drakonic, julian, kin, radio, the conspicuous northerner, webcatz...
-fish facts provided by alan, ardenna, caboose, radio, octopixel, webcatz
+thank you very much for ideas aiden, alan, ardenna, benny, drakonic, eni, julian, kin, radio, the conspicuous northerner, june...
+fish facts provided by alan, ardenna, caboose, radio, webcatz
 
 voice acting by alan, julian, kin, webcatz
 
@@ -61,4 +61,4 @@ pizz animation by webcatz
 
 thank you to play testers alan, cresentri., drakonic, kin, radio, webcatz
 
-thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, webcatz
+thanks to free software gimp, audacity, godot, piskel, jummbox, lmms, june

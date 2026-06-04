@@ -35,16 +35,9 @@ type = 3
 property = "118"
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 
-[sub_resource type="Resource" id="Resource_dt32i"]
-script = ExtResource("2_l8tpc")
-type = 2
-property = "peptide"
-unique = true
-metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
-
 [sub_resource type="Resource" id="Resource_l7rs0"]
 script = ExtResource("3_dt32i")
-rewards = Array[ExtResource("2_l8tpc")]([SubResource("Resource_uplrs"), SubResource("Resource_y4nr7"), SubResource("Resource_lt3yy"), SubResource("Resource_dt32i")])
+rewards = Array[ExtResource("2_l8tpc")]([SubResource("Resource_uplrs"), SubResource("Resource_y4nr7"), SubResource("Resource_lt3yy")])
 metadata/_custom_type_script = "uid://c6s82fw7twwpy"
 
 [resource]

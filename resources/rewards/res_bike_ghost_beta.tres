@@ -12,6 +12,13 @@ script = ExtResource("1_hw8h0")
 type = 1
 property = "bike_bell"
 
+[sub_resource type="Resource" id="Resource_vv5j6"]
+script = ExtResource("1_hw8h0")
+type = 2
+property = "peptide"
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
 [resource]
 script = ExtResource("1_vq2dp")
-rewards = Array[ExtResource("1_hw8h0")]([SubResource("Resource_ui4ok"), SubResource("Resource_wdtt7")])
+rewards = Array[ExtResource("1_hw8h0")]([SubResource("Resource_ui4ok"), SubResource("Resource_wdtt7"), SubResource("Resource_vv5j6")])
