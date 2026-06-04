@@ -302,7 +302,6 @@ func get_attack_payload(target: BattleActor) -> BattlePayload:
 	var crit := target in crittable
 	var pld := create_payload().set_health(-BattleActor.calc_attack_damage(get_attack()))
 	if crit:
-		pld.health *= 2.5
 		pld.critical = true
 	var weapon: Item
 	if character.weapon:
@@ -492,6 +491,8 @@ func handle_payload(pld: BattlePayload) -> void:
 
 func _handle_hurt(pld: BattlePayload, damage: float) -> void:
 	var oldhp := character.health
+	if pld.critical:
+		damage *= 2.5 if character.name_in_file != &"greg" else 1.5 # greg takes less devastating crits
 	@warning_ignore("redundant_await")
 	await hurt(damage, pld.gender)
 	var change := absf(character.health - oldhp)

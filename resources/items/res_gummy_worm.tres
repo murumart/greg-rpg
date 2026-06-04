@@ -7,14 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_lquol"]
 script = ExtResource("1_smf7p")
-health = null
-max_health_percent = 8.0
-magic = null
-magic_percent = null
+max_health_percent = 9.0
 max_magic_percent = 10.0
-attack_increase = null
-defense_increase = null
-speed_increase = null
 
 [resource]
 script = ExtResource("2_ghdt4")

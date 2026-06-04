@@ -2805,7 +2805,7 @@ spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
 active_range = Vector2i(6, 99)
-wait_time = 3.0
+wait_time = 9.0
 spawn_radius = 64.0
 
 [node name="ThugSpawner2" parent="Areas" unique_id=991353031 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
@@ -2814,7 +2814,7 @@ spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
 active_range = Vector2i(20, 99)
-wait_time = 7.0
+wait_time = 21.0
 
 [node name="ThugSpawner3" parent="Areas" unique_id=428578546 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(226, -471)
@@ -2822,7 +2822,7 @@ spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 5
 player = NodePath("../../Greg")
 active_range = Vector2i(12, 99)
-wait_time = 2.0
+wait_time = 12.0
 
 [node name="ThugSpawner4" parent="Areas" unique_id=52305207 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(886, -220)
@@ -2830,7 +2830,7 @@ spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")
 active_range = Vector2i(8, 99)
-wait_time = 2.0
+wait_time = 6.0
 
 [node name="AnimalSpawner" parent="Areas" unique_id=537632258 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(-102, -302)
@@ -2838,7 +2838,7 @@ spawn_enemy = ExtResource("31_itqdw")
 max_enemies = 1
 player = NodePath("../../Greg")
 active_range = Vector2i(7, 99)
-wait_time = 2.0
+wait_time = 7.0
 
 [node name="AnimalSpawner2" parent="Areas" unique_id=899953157 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(467, -496)
@@ -2846,7 +2846,7 @@ spawn_enemy = ExtResource("31_itqdw")
 max_enemies = 2
 player = NodePath("../../Greg")
 active_range = Vector2i(7, 99)
-wait_time = 2.0
+wait_time = 4.0
 
 [node name="AnimalSpawner3" parent="Areas" unique_id=1617536447 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
 position = Vector2(728, -503)
@@ -2854,7 +2854,7 @@ spawn_enemy = ExtResource("31_itqdw")
 max_enemies = 4
 player = NodePath("../../Greg")
 active_range = Vector2i(7, 99)
-wait_time = 2.0
+wait_time = 4.0
 
 [node name="LakeCorridorGate" parent="Areas" unique_id=484655808 instance=ExtResource("9_0hylv")]
 position = Vector2(41, 327)

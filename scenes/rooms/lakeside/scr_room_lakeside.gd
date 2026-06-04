@@ -5,6 +5,10 @@ extends Room
 @onready var fisherwoman: OverworldCharacter = $Buildings/Pier/Fisherwoman
 @onready var fast_guy: OverworldCharacter = $Areas/FastGuy
 
+var greg_went_in_with_boots: bool:
+	get: return DAT.get_data("lakeside_greg_went_in_with_boots")
+	set(to): DAT.set_data("lakeside_greg_went_in_with_boots", to)
+
 
 func _ready() -> void:
 	super._ready()
@@ -19,6 +23,12 @@ func _ready() -> void:
 
 	if PoliceStation.is_bounty_fulfilled("broken_fishermen"):
 		spawners.map(func(a): a.queue_free())
+	
+	if not greg_went_in_with_boots:
+		var greg := ResMan.get_character("greg")
+		if greg.armour == &"rubber_boots":
+			greg_went_in_with_boots = true
+			greg.set_max_level(greg.max_level + 8)
 
 
 func _on_pole_interacted() -> void:

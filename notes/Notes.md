@@ -109,10 +109,11 @@
 - [x] võta see valge kuju ära (paistab liiga silma intros)
 
 ## max levels up
-default: 10
-bike ghost: -> +12 (= 22)
-fw -> +15 (= 37)
-bike beta -> +12 (= 49)
+default: 11
+bike ghost: -> +11 (= 22)
+lakeside: -> + 8 (= 30)
+fw -> +15 (= 45)
+bike beta -> +4 (= 49)
 vampire -> +10 (= 59)
 franking -> +3 (= 62)
 woods guy -> +10 (= 72)
@@ -131,6 +132,12 @@ multipanther -> +10 (=99)
 
 ## troy
 - [X] softlock after turf battle.. no rewards? what?
+- [X] thugs spawn slower in town
+- [X] healing items too small
+  - made bread and gummy worm and such heal more..
+- [X] crits are too big
+  - 1.5x against greg instead of 2.5x
+- [X] max level up when putting on boots or somthing at lakeside
 - [ ] house inside ready line 29 animated sprite not found
 - [ ] grandma loine for eating candy
 - [ ] speed up stalling at granmdma

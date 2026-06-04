@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_vqlt5"]
 script = ExtResource("1_mhvf1")
-health = 25.0
+health = 35.0
 magic = null
 magic_percent = null
 max_magic_percent = null
