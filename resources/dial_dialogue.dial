@@ -639,7 +639,7 @@ DIALOGUE cashier_absent_tally_poor
 
 DIALOGUE cashier_nice_finish
 CHAR cashier_nice
-	thanks... have a great day.
+	thanks... have a day.
 
 
 DIALOGUE cashier_mean_finish

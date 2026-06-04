@@ -61,6 +61,7 @@ func heal(amt: float) -> void:
 func nova_process(add: float) -> void:
 	var old_nova := nova
 	nova += add
+	nova = clampf(nova, 0, 1.0)
 	var tw1 := create_tween()
 	var tw2 := create_tween()
 	tw1.tween_property(nova_prospect.get_child(0), "value", nova, 0.5)
