@@ -22,6 +22,22 @@ DIALOGUE insp_zerma_car
 	there is no escape.
 
 
+DIALOGUE insp_purple_curtains
+	the curtains are purple.
+
+
+DIALOGUE insp_purple_curtains2
+	the purplains are curtle.
+
+
+DIALOGUE insp_purple_curtains3
+	the curtlains are purplines.
+
+
+DIALOGUE insp_garage_window
+	in the garage, automotive tools are neatly laid in a puddle of oil.
+
+
 DIALOGUE insp_campfire_site
 	a campfire spot. hasn't been used in a while.
 

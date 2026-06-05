@@ -106,6 +106,9 @@ size = Vector2(26, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n25ss"]
 size = Vector2(30, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sm05"]
+size = Vector2(13, 20)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynb2e"]
 size = Vector2(9, 7)
 
@@ -1065,6 +1068,50 @@ collision_mask = 1
 [node name="StreetSign" parent="Houses/NeighbourHouse" unique_id=1991654241 instance=ExtResource("25_qhmci")]
 position = Vector2(142, 112)
 dialogue_key = &"town_sign"
+
+[node name="WindowInspect" type="Area2D" parent="Houses/NeighbourHouse" unique_id=1161374657]
+z_index = 1
+position = Vector2(7, 39)
+script = ExtResource("10_fbdk7")
+keys = Array[String](["purple_curtains", "purple_curtains2", "purple_curtains3", "purple_curtains"])
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/WindowInspect" unique_id=1962048412]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6sm05")
+
+[node name="WindowInspect2" type="Area2D" parent="Houses/NeighbourHouse" unique_id=2016959764]
+z_index = 1
+position = Vector2(-41, 39)
+script = ExtResource("10_fbdk7")
+keys = Array[String](["purple_curtains", "purple_curtains2", "purple_curtains3", "purple_curtains"])
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/WindowInspect2" unique_id=752440512]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6sm05")
+
+[node name="WindowInspect3" type="Area2D" parent="Houses/NeighbourHouse" unique_id=1827343263]
+z_index = 1
+position = Vector2(-89, 7)
+script = ExtResource("10_fbdk7")
+key = "garage_window"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/WindowInspect3" unique_id=1342708425]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6sm05")
+
+[node name="WindowInspect4" type="Area2D" parent="Houses/NeighbourHouse" unique_id=1952579883]
+z_index = 1
+position = Vector2(-137, 7)
+script = ExtResource("10_fbdk7")
+key = "garage_window"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/NeighbourHouse/WindowInspect4" unique_id=1737329189]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_6sm05")
 
 [node name="BlockNeighbours" type="Node2D" parent="Houses" unique_id=56889885]
 y_sort_enabled = true

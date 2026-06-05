@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://jj6bwkmk6vr8" path="res://scenes/rooms/grandma_house/gdung_objects/flower_6.tscn" id="13_3t2i8"]
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="13_bun5o"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="14_rld88"]
+[ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="16_0ex4s"]
+[ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="17_241vd"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="21_bcrgk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_70heg"]
@@ -44,6 +46,24 @@ distance = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cong6"]
 size = Vector2(163, 40)
 
+[sub_resource type="Resource" id="Resource_qs4ke"]
+script = ExtResource("16_0ex4s")
+text = "the light from the inside takes on a green tone."
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_0ex4s"]
+script = ExtResource("16_0ex4s")
+text = "can't make out anything else."
+metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
+
+[sub_resource type="Resource" id="Resource_xrjgq"]
+script = ExtResource("17_241vd")
+lines = Array[ExtResource("16_0ex4s")]([SubResource("Resource_qs4ke"), SubResource("Resource_0ex4s")])
+metadata/_custom_type_script = "uid://crxdditnh0akt"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3spj5"]
+size = Vector2(13, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wi2j2"]
 size = Vector2(20, 18)
 
@@ -56,7 +76,7 @@ size = Vector2(16, 67)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23cv8"]
 size = Vector2(18, 63)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t2i8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1s7sh"]
 resource_local_to_scene = true
 size = Vector2(26, 10)
 
@@ -360,6 +380,26 @@ position = Vector2(-64, -8)
 [node name="TrashBin2" parent="ActualHouse" unique_id=965565117 instance=ExtResource("10_5xp3u")]
 position = Vector2(8, 17)
 
+[node name="InteractionArea" type="Area2D" parent="ActualHouse" unique_id=1158506137]
+position = Vector2(24, 11)
+script = ExtResource("10_h38ha")
+dialogue = SubResource("Resource_xrjgq")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActualHouse/InteractionArea" unique_id=928306185]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_3spj5")
+
+[node name="InteractionArea2" type="Area2D" parent="ActualHouse" unique_id=460954723]
+position = Vector2(72, 11)
+script = ExtResource("10_h38ha")
+dialogue = SubResource("Resource_xrjgq")
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActualHouse/InteractionArea2" unique_id=1803092822]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_3spj5")
+
 [node name="Areas" type="Node2D" parent="." unique_id=1219451171]
 y_sort_enabled = true
 
@@ -483,7 +523,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape" parent="Cutscenes/ZermCar/CollisionArea" index="0" unique_id=1804751238]
-shape = SubResource("RectangleShape2D_3t2i8")
+shape = SubResource("RectangleShape2D_1s7sh")
 
 [node name="VroomVroom" parent="Cutscenes/ZermCar" index="2" unique_id=242380998]
 volume_db = 4.0
