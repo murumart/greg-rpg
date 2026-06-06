@@ -4,5 +4,5 @@ extends Node2D
 
 
 func _ready() -> void:
-	if "lakeside" in DAT.get_data("visited_rooms", []) or ResMan.get_character("greg").level > 19:
+	if "lakeside" in DAT.get_data("visited_rooms", []):
 		fish_scared.queue_free()
