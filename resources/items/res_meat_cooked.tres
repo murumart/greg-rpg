@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_xlvor"]
 script = ExtResource("1_3aqc5")
 name = "attack"
+strength = 5.0
 duration = 10
 
 [sub_resource type="Resource" id="Resource_ywmpl"]

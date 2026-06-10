@@ -138,6 +138,7 @@ multipanther -> +10 (=99)
 - [X] crits are too big
   - 1.5x against greg instead of 2.5x
 - [X] max level up when putting on boots or somthing at lakeside
+- [X] play dish music from beginning in frakning
 - [ ] house inside ready line 29 animated sprite not found
 - [ ] grandma loine for eating candy
 - [ ] speed up stalling at granmdma

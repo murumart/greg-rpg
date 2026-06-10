@@ -89,7 +89,7 @@ func dish_time(dish: BattleEnemy) -> void:
 	SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 1.9, {"free_rect": false})
 	tw.finished.connect(func():
 		SND.play_song("", 2992)
-		SND.play_song("dishout", 0.2, {"volume": 2})
+		SND.play_song("dishout", 0.2, {"volume": 2, "play_from_beginning": true})
 		var t := create_tween()
 		t.tween_property(
 				SND.current_song_player,
