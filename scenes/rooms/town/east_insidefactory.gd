@@ -11,3 +11,4 @@ func _ready() -> void:
 	if not gave_levelup:
 		var greg := ResMan.get_character("greg")
 		greg.set_max_level(greg.max_level + 17)
+		gave_levelup = true
