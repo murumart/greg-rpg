@@ -2762,7 +2762,7 @@ DIALOGUE woods_guy_try_shield
 
 DIALOGUE woods_guy_battle_1
 	in the woods, there is a pathway to unnatural prowess.
-	its a tale undertaken by those who are worthy.
+	it's a tale undertaken by those who are worthy.
 
 
 DIALOGUE woods_guy_battle_2

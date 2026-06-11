@@ -16,8 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="12_lds7q"]
 [ext_resource type="PackedScene" uid="uid://bbsyh4m7x7uhg" path="res://scenes/tech/scn_room_gate.tscn" id="13_3wac8"]
 [ext_resource type="Texture2D" uid="uid://c6002i562a4my" path="res://sprites/vfx/spr_dustpuff.png" id="15_scyxr"]
+[ext_resource type="Script" uid="uid://4vo843qm0m7p" path="res://scenes/rooms/town/east_insidefactory.gd" id="17_4vd7i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_scyxr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r68gr"]
 resource_local_to_scene = true
 size = Vector2(10, 13)
 
@@ -35,7 +36,7 @@ fill = 1
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vd7i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hem5t"]
 resource_local_to_scene = true
 size = Vector2(10, 10)
 
@@ -234,7 +235,7 @@ save = true
 
 [node name="CollisionShape2D" parent="Decor/Meadowsweet" index="0" unique_id=1279058300]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_scyxr")
+shape = SubResource("RectangleShape2D_r68gr")
 
 [node name="Sprite2D" parent="Decor/Meadowsweet" index="1" unique_id=417693384]
 position = Vector2(-2, -14)
@@ -255,7 +256,7 @@ item_type = &"shovel"
 save = true
 
 [node name="CollisionShape2D" parent="Decor/Shovel" index="0" unique_id=1279058300]
-shape = SubResource("RectangleShape2D_4vd7i")
+shape = SubResource("RectangleShape2D_hem5t")
 
 [node name="Sprite2D" parent="Decor/Shovel" index="1" unique_id=417693384]
 visible = false
@@ -299,6 +300,9 @@ destination = &"town_east"
 gate_id = &"east-factory"
 extents = Vector2i(13, 8)
 spawnpoint = Vector2i(0, -13)
+
+[node name="Levelincrease" type="Node" parent="." unique_id=463113863]
+script = ExtResource("17_4vd7i")
 
 [editable path="Decor/Meadowsweet"]
 [editable path="Decor/Shovel"]

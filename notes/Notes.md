@@ -152,6 +152,28 @@ multipanther -> +10 (=99)
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
 - [ ] piece of grass should follow kids around
 - [ ] special boss battle start animation
+- [ ] way to cancel shopping basket
+- [ ] 1 damage from drenchfoot? at high level?
+- [ ] make flower dialogue first in order and save the order across interactions
+- [ ] zerma forgets you did the dialogue when calling in battle
+- [ ] fw progress only when attacking... not very good if youre trying not to kill
+- [ ] peptide should work in woodsguy
+- [ ] sliding puzzle hints
+- [ ] turn glass to xp when leaving the woods i guess..
+- [ ] incidental forest npc written by june
+  - the democrats are going in droves to forests and SKINNING striders
+  - who gives a shit?
+  - this country used to be about GLASS
+- [ ] make forest bird stop shooting when player captured. its annoying
+- [ ] remove empty trash... from wood..s..
+- [ ] ugly forest entrance when canvas is modulate
+- [ ] note of maximum level in forest HUD
+- [ ] rose cutscene after resets sunset...
+- [ ] new line to bald guy
+- [ ] skater says press x to jump (wrong)
+- [ ] town east enemies bad with level limit.. increase level limit..
+- [ ] make the ladder easier..
+- [ ] spboss music shoud play form beginingn
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level

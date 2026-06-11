@@ -102,7 +102,7 @@ size = Vector2(1, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
 size = Vector2(1, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gh5h4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1ajh"]
 resource_local_to_scene = true
 size = Vector2(21, 16)
 
@@ -306,7 +306,7 @@ height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_v1ajh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2b71j"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_gcnui"]
@@ -1007,7 +1007,7 @@ greg_speed = 20.0
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
-shape = SubResource("RectangleShape2D_gh5h4")
+shape = SubResource("RectangleShape2D_v1ajh")
 
 [node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock" unique_id=612154986]
 position = Vector2(-40, 16)
@@ -1309,7 +1309,7 @@ offset = Vector2(-10, -26)
 
 [node name="ShardsTexture" parent="Houses/Factory" unique_id=1455373539 instance=ExtResource("35_ani0e")]
 position = Vector2(6, 31)
-texture = SubResource("ViewportTexture_v1ajh")
+texture = SubResource("ViewportTexture_2b71j")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false

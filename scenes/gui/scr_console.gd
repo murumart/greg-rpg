@@ -301,6 +301,20 @@ func _cmd_lvup(args: PackedStringArray) -> void:
 	output("leveled %s to %s" % [charname, amount + 1])
 
 
+func _cmd_maxlvup(args: PackedStringArray) -> void:
+	if args.size() < 1:
+		output("usage: maxlvlup charname amount")
+		return
+	if args.size() != 2:
+		output("need 2arguments,", true)
+		return
+	var charname := args[0]
+	var amount := int(args[1])
+	var chara := ResMan.get_character(charname)
+	chara.set_max_level(chara.max_level + amount)
+	output("increased %s max level by %s" % [charname, amount])
+
+
 func _cmd_hurt(args: PackedStringArray) -> void:
 	if args.size() < 1:
 		output("usage: hurt charname amount")
