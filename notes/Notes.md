@@ -174,6 +174,16 @@ multipanther -> +10 (=99)
 - [ ] town east enemies bad with level limit.. increase level limit..
 - [ ] make the ladder easier..
 - [ ] spboss music shoud play form beginingn
+- [ ] nerf turf2..
+- [ ] sk8 guy and atgirl should have mmore speech after mayor gone
+- [ ] check oiut spirit costs more..
+- [ ] car ran away??? not should happen..
+- [ ] dont respawn guy in mayor room...
+  - scootin sauces respawns ther too..
+- [ ] do smthabout science guy. remove or add to east
+- [ ] town east has cliffs with flowers on them bad
+- [ ] save campfire litness
+- [ ] make campfire less horrible to use
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
