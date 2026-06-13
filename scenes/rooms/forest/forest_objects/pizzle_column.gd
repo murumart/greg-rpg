@@ -35,7 +35,9 @@ func _exit_tree() -> void:
 
 
 func _interacted() -> void:
-	if active or custom_finished:
+	#var ac := active
+	var cf := custom_finished
+	if cf:
 		return
 	SOL.dialogue("sliding_pizzle_what")
 	$AudioStreamPlayer.play()

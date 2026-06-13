@@ -130,6 +130,42 @@ multipanther -> +10 (=99)
 - [X] getting ite in fishing should give more timer
 - [X] fish fact after no more fish facts
 
+## Things to change
+
+- [ ] first moving cat obstacles in sg dont attack
+- [ ] want to see a queue of enemies attacking next
+- [ ] want to backtrack in before boss sgy room
+- [x] first sg light puzzle road change not visible on screen
+- [x] wrong death screens in sgb cat fights
+
+## Bugs
+
+- [ ] dialogue load in biking game? in kiok menu??
+- [ ] secret garden room with walls you take down can get softlocked coming out of the cave
+- [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
+- [ ] lake hint npc doesn't dialogue cutscene
+- [ ] while sopping deals more damage to vacuum?
+- interaction areas dont work
+  - [x] bird in town
+  - [x] house doors
+- [x] displays float in battle status effect menu
+- [x] bird attack target feet
+- [x] ushanka guy walks nowhere
+- [X] fish are too dark in fishing game
+- [X] no blue environment at lakeside? (I imagined it probably)
+- [X] sg pink entrance cave is see-through
+- [X] sg pink enemy room THIRTY FIVE ENEMIES IN ONE ENCOUNTER WHAT THE FUCK
+- [X] secret garden grandma cutscene room the block puzzle don't get saved
+- bad lines
+  - [ ] sg blue cat about spirits hating her
+  - [ ] sg pink entrance cat joviality & joy of living
+  - [X] i dont like one fish fact
+  - [X] nature guy souls lore
+## Cool to haf
+
+- sgy boss, puzzle cats new dialogue
+- cats react to being wet..
+
 ## troy
 - [X] softlock after turf battle.. no rewards? what?
 - [X] thugs spawn slower in town
@@ -184,6 +220,13 @@ multipanther -> +10 (=99)
 - [ ] town east has cliffs with flowers on them bad
 - [ ] save campfire litness
 - [ ] make campfire less horrible to use
+- [ ] have npcs remark sunset so epople dont thinik its apocalypse..
+- [ ] why are thery playing grandma music in the hiyse whebn last?
+- [ ] goodl key dont get
+- [ ] resetting puzzle replays the animation
+- [ ] guive impure prism hint on first interaction
+- [ ] add greenhousicle to sg hub
+- [ ] starmap puzzle feedback when you get correct solution
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level

@@ -32,7 +32,7 @@ script/source = "extends Node2D
 @onready var door_sprite: Sprite2D = $DoorHole/Door
 @onready var boss := $DoorHole/Boss
 @onready var cat_2: OverworldCharacter = $\"../Areas/Cat2\"
-@onready var cat_3: CharacterBody2D = $\"../Areas/Cat3\"
+@onready var cat_3: OverworldCharacter = $\"../Areas/Cat3\"
 
 @export var battle_info: BattleInfo
 
