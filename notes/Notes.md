@@ -227,6 +227,7 @@ multipanther -> +10 (=99)
 - [ ] guive impure prism hint on first interaction
 - [ ] add greenhousicle to sg hub
 - [ ] starmap puzzle feedback when you get correct solution
+- [ ] fire is a bit Bad for bossfight balance..
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
