@@ -6,6 +6,7 @@ extends Room
 @onready var radio := $Radio
 @onready var flower_darkness: Sprite2D = $FlowerDarkness
 @onready var note: Sprite2D = $Decor/Note
+@onready var grandma: OverworldCharacter = $Grandma
 
 
 func _ready() -> void:
@@ -23,12 +24,6 @@ func _ready() -> void:
 		return
 	note.queue_free()
 	flower_darkness.hide()
-	# long grandma lol
-	if Math.inrange(DAT.get_data("nr", 0), 0.665, 0.67) and not DAT.get_data("sscyr", false):
-		DAT.set_data("sscyr", true)
-		$Grandma/AnimatedSprite2D.scale.y = 4.875
-		$Grandma.default_lines.clear()
-		$Grandma.default_lines.append(&"grandma_fight_1")
 
 
 func _on_phone_interacted() -> void:

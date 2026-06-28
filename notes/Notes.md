@@ -175,7 +175,8 @@ multipanther -> +10 (=99)
   - 1.5x against greg instead of 2.5x
 - [X] max level up when putting on boots or somthing at lakeside
 - [X] play dish music from beginning in frakning
-- [ ] house inside ready line 29 animated sprite not found
+- [TEST ME] fire is a bit Bad for bossfight balance..
+- [X] house inside ready line 29 animated sprite not found
 - [ ] grandma loine for eating candy
 - [ ] speed up stalling at granmdma
 - [ ] make fence breaking car slower
@@ -227,7 +228,6 @@ multipanther -> +10 (=99)
 - [ ] guive impure prism hint on first interaction
 - [ ] add greenhousicle to sg hub
 - [ ] starmap puzzle feedback when you get correct solution
-- [ ] fire is a bit Bad for bossfight balance..
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
