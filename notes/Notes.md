@@ -180,7 +180,8 @@ multipanther -> +10 (=99)
 - [X] grandma loine for eating candy
 - [X] speed up stalling at granmdma
 - [X] why are thery playing grandma music in the hiyse whebn last?
-- [ ] make fence breaking car slower
+- [X] car ran away??? not should happen..
+- [X] make fence breaking car slower
 - [ ] do radiation attack before level up screen adn such
 - [ ] didn't get tooth multiple times..?
 - [ ] savescumming at the random prize..
@@ -215,7 +216,6 @@ multipanther -> +10 (=99)
 - [ ] nerf turf2..
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..
-- [ ] car ran away??? not should happen..
 - [ ] dont respawn guy in mayor room...
   - scootin sauces respawns ther too..
 - [ ] do smthabout science guy. remove or add to east
