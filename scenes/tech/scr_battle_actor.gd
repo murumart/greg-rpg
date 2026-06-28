@@ -172,7 +172,7 @@ func die() -> void:
 		SOL.vfx(
 			"damage_number",
 			parentless_effcenter(self),
-			{text = absf(roundi(character.health)),
+			{text = absi(roundi(character.health)),
 			color = Color.RED,
 		})
 	character.health = 0.0

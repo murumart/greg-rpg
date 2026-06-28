@@ -39,11 +39,18 @@ func _act_normal() -> void:
 func hurt(amount: float, gnd: int) -> void:
 	if dead:
 		return
-	super.hurt(amount, gnd)
-	if is_zero_approx(character.health_perc()):
+	if character.health - _hurt_damage(amount, gnd) <= 0:
 		dead = true
+		auto_ai = false
+		ignore_my_finishes = true
+		animate("death")
+		SND.play_song("")
 		SOL.dialogue("bike_ghost_defeat")
-		SOL.dialogue_box.changed_dialogue.connect(
-			func():
-				use_spirit("radiation_attack", reference_to_opposing_array[0])
-		, CONNECT_ONE_SHOT)
+		await SOL.dialogue_closed
+		SOL.dialogue_open = true
+		use_spirit("radiation_attack", reference_to_opposing_array[0])
+		await Math.timer(5.0)
+		SOL.dialogue_open = false
+		die()
+		return
+	super.hurt(amount, gnd)

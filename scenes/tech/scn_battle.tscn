@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Resource" uid="uid://dgwwditacpta7" path="res://resources/battle_infos/fisherwoman_fight.tres" id="2_putf3"]
+[ext_resource type="Resource" uid="uid://dtp0dndpfu60u" path="res://resources/battle_infos/bike_ghost_alpha.tres" id="2_putf3"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
