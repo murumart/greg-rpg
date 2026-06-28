@@ -41,6 +41,7 @@ script = ExtResource("1_os0mr")
 [resource]
 mode = 1
 flags/light_only = false
+nodes/vertex/0/position = Vector2(673.913, 152.1739)
 nodes/fragment/0/position = Vector2(420, 140)
 nodes/fragment/7/node = SubResource("VisualShaderNodeInput_h57w7")
 nodes/fragment/7/position = Vector2(-380, 360)

@@ -681,7 +681,7 @@ bpm = 81.37
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." unique_id=1430457217 instance=ExtResource("2_mnmvu")]
-position = Vector2(1218, 0)
+position = Vector2(28, 0)
 saving_disabled = true
 menu_disabled = true
 

@@ -28,7 +28,7 @@ func _get_return_icon_type() -> VisualShaderNode.PortType:
 func _get_input_port_count() -> int:
 	return 7
 
-func _get_input_port_name(port: int):
+func _get_input_port_name(port: int) -> String:
 	match port:
 		0:
 			return "uv"
@@ -44,8 +44,9 @@ func _get_input_port_name(port: int):
 			return "speed"
 		6:
 			return "time"
+	return ""
 
-func _get_input_port_type(port: int):
+func _get_input_port_type(port: int) -> VisualShaderNode.PortType:
 	match port:
 		0:
 			return VisualShaderNode.PORT_TYPE_VECTOR_2D
@@ -61,6 +62,7 @@ func _get_input_port_type(port: int):
 			return VisualShaderNode.PORT_TYPE_SCALAR
 		6:
 			return VisualShaderNode.PORT_TYPE_SCALAR
+	return VisualShaderNode.PORT_TYPE_SCALAR
 
 func _get_output_port_count() -> int:
 	return 1
@@ -81,8 +83,8 @@ func _get_global_code(_mode: Shader.Mode) -> String:
 
 func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
-	
+
 	if input_vars[0]:
 		uv = input_vars[0]
-	
+
 	return "%s.xy = _distortionUVAnimatedFunc(%s.xy, %s, %s, %s, %s, %s, %s);" % [output_vars[0], uv, input_vars[3], input_vars[4], input_vars[1], input_vars[2], input_vars[5], input_vars[6]]

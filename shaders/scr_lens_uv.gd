@@ -31,6 +31,7 @@ func _get_input_port_name(port: int):
 			return "uv"
 		1:
 			return "factor"
+	return ""
 
 func _get_input_port_type(port: int):
 	match port:
@@ -38,6 +39,7 @@ func _get_input_port_type(port: int):
 			return VisualShaderNode.PORT_TYPE_VECTOR_2D
 		1:
 			return VisualShaderNode.PORT_TYPE_SCALAR
+	return PORT_TYPE_SCALAR
 
 func _get_output_port_count() -> int:
 	return 1
@@ -63,8 +65,8 @@ vec2 lensD1st0rti0nFunc(vec2 _uv_d1s_1en5, float _fctr_d1s_1en5){
 
 func _get_code(input_vars: Array[String], output_vars: Array[String], _mode: Shader.Mode, _type: VisualShader.Type) -> String:
 	var uv = "UV"
-	
+
 	if input_vars[0]:
 		uv = input_vars[0]
-	
+
 	return "%s.xy = lensD1st0rti0nFunc(%s.xy, %s);" % [output_vars[0], uv, input_vars[1]]
