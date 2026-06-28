@@ -70,7 +70,7 @@ func _on_popo_1_interact_on_interact() -> void:
 				dlg.add_line(dlg.ml("yo! new guy!"))
 				dlg.add_line(dlg.ml("we've been following you around for a while..."))
 				dlg.add_line(dlg.ml("and you've done a bunch of goodie duties!!"))
-				dlg.add_line(dlg.ml("and we have a bunch of rewards available for that."))
+				dlg.add_line(dlg.ml("and we have, for you, rewards for that."))
 			newbounts = true
 			SOL.dialogue_d(dlg.get_dial())
 		var complete_dial := "bounty_complete_%s" % b
@@ -311,6 +311,8 @@ func art_sun_spirit_rage()->void:
 func _waiter_setup() -> void:
 	var waiter: OverworldCharacter = $Npcs/TheWaiter
 	var lines: Array[StringName] = []
+	var offset := int(int(DAT.seconds / 37) % 4 - 2) * 9.0
+	waiter.position.x += offset
 	for i in range(1, 5 + 1):
 		lines.append(&"police_waiter_mid_" + str(i))
 	if DAT.get_data("greenhouses_eaten", 0) > 0:

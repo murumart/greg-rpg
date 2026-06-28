@@ -182,12 +182,12 @@ multipanther -> +10 (=99)
 - [X] why are thery playing grandma music in the hiyse whebn last?
 - [X] car ran away??? not should happen..
 - [X] make fence breaking car slower
-- [ ] do radiation attack before level up screen adn such
+- [X] do radiation attack before level up screen adn such
+- [X] move police appointment npc between seats
 - [ ] didn't get tooth multiple times..?
 - [ ] savescumming at the random prize..
 - [ ] autosaves after bosses check if those exist
 - [ ] more npcs after level 30 aroud town
-- [ ] move police appointment npc between seats
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
 - [ ] piece of grass should follow kids around
 - [ ] special boss battle start animation
