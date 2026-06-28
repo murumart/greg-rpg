@@ -139,6 +139,13 @@ CHAR grandma
 	- a hat to look like an idiot! well done!
 
 
+DIALOGUE grandma_pocket_candy_use
+CHAR grandma
+	oh? candy? for me, dear?
+# thanks june
+	awesome gift. from a rat.
+
+
 DIALOGUE intro_exit_explain
 	this is where you would walk into town from...
 	...if you had completed the intro.

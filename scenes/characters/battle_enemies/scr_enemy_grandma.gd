@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func act() -> void:
-	if reference_to_opposing_array[0].character.health_perc() < 0.5:
+	if reference_to_opposing_array[0].character.health_perc() < 0.76:
 		SOL.dialogue("grandma_fight_stupid")
 		SND.play_song("")
 		await SOL.dialogue_closed
@@ -49,21 +49,6 @@ func act() -> void:
 		LTS.gate_id = &"lol"
 		LTS.change_scene_to("res://scenes/rooms/scn_room_grandma_house_inside.tscn")
 	)
-	#var greg: BattleActor = reference_to_opposing_array[0]
-	#message.emit("grandma attacked greg!")
-	#sprite.texture = ATTACK
-	#for i in 400:
-		#greg.hurt(1, Genders.VAST)
-		#await get_tree().process_frame
-		#sprite.flip_h = not sprite.flip_h
-		#if greg.character.health_perc() < 0.1:
-			#break
-	#SND.play_song("")
-	#DAT.set_data("fought_grandma", true)
-	#DAT.set_data("intro_progress", 2)
-	#LTS.gate_id = LTS.GATE_EXIT_BATTLE
-	#await get_tree().create_timer(1.5).timeout
-	#LTS.level_transition(LTS.ROOM_SCENE_PATH % "grandma_house_inside")
 
 
 func hurt(_amt: float, _gnd: int) -> void:
@@ -71,7 +56,6 @@ func hurt(_amt: float, _gnd: int) -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	sprite.scale = Vector2(1.2, 0.8)
 	SND.play_sound(preload("res://sounds/whoosh.ogg"))
-	#SND.play_sound(preload("res://sounds/flee.ogg"))
 	SOL.vfx(
 		"damage_number",
 		get_effect_center(self),
@@ -85,3 +69,10 @@ func _item_diploma_used_on() -> void:
 
 func _item_winner_hat_used_on() -> void:
 	SOL.dialogue("grandma_winner_hat_use")
+
+
+func _item_pocket_candy_used_on() -> void:
+	if not DAT.get_data("fed_grandma_candy", false):
+		SOL.dialogue("grandma_pocket_candy_use")
+		DAT.set_data("fed_grandma_candy", true)
+	

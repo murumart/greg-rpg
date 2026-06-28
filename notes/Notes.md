@@ -177,8 +177,9 @@ multipanther -> +10 (=99)
 - [X] play dish music from beginning in frakning
 - [TEST ME] fire is a bit Bad for bossfight balance..
 - [X] house inside ready line 29 animated sprite not found
-- [ ] grandma loine for eating candy
-- [ ] speed up stalling at granmdma
+- [X] grandma loine for eating candy
+- [X] speed up stalling at granmdma
+- [X] why are thery playing grandma music in the hiyse whebn last?
 - [ ] make fence breaking car slower
 - [ ] do radiation attack before level up screen adn such
 - [ ] didn't get tooth multiple times..?
@@ -191,11 +192,11 @@ multipanther -> +10 (=99)
 - [ ] special boss battle start animation
 - [ ] way to cancel shopping basket
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] make flower dialogue first in order and save the order across interactions
+- [ ] fisherwoman make flower dialogue first in order and save the order across interactions
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] fw progress only when attacking... not very good if youre trying not to kill
 - [ ] peptide should work in woodsguy
-- [ ] sliding puzzle hints
+- [ ] sliding puzzle tutorial npc
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] incidental forest npc written by june
   - the democrats are going in droves to forests and SKINNING striders
@@ -222,7 +223,6 @@ multipanther -> +10 (=99)
 - [ ] save campfire litness
 - [ ] make campfire less horrible to use
 - [ ] have npcs remark sunset so epople dont thinik its apocalypse..
-- [ ] why are thery playing grandma music in the hiyse whebn last?
 - [ ] goodl key dont get
 - [ ] resetting puzzle replays the animation
 - [ ] guive impure prism hint on first interaction
