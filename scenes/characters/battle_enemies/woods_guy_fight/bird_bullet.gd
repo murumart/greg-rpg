@@ -8,7 +8,7 @@ const BIRD_BULLET = preload("res://scenes/characters/battle_enemies/woods_guy_fi
 
 
 func _ready() -> void:
-	line.points[1] = direction * 20
+	line.set_point_position(1, direction * 20)
 	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC).tween_property(line, "modulate:a", 0.0, 4.0)
 	audio.play()
 

@@ -71,11 +71,12 @@ func update_display() -> void:
 	if Engine.is_editor_hint():
 		line = _getline
 	for p in divisions:
-		line.points[p] = start.position.lerp(
-				end.position, float(p) / (divisions - 1))
+		line.set_point_position(p, start.position.lerp(
+				end.position, float(p) / (divisions - 1)))
 	line.texture.gradient = gradient
 
 ## Deviates the line's points' positions. Called in [code]_physics_process[/code].
 func wobble() -> void:
 	for p in divisions - 2:
-		line.points[p + 1] += Vector2.from_angle(randf_range(-PI, PI)) * deviation_distance
+		line.set_point_position(p + 1, line.points[p + 1]
+				+ Vector2.from_angle(randf_range(-PI, PI)) * deviation_distance)

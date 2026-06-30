@@ -14,11 +14,11 @@ var box_readable := false
 
 
 @warning_ignore("unused_private_class_variable") var _pp: Vector2:
-	set(to): pointer_line.points[1] = to
+	set(to): pointer_line.set_point_position(1, to)
 	get: return pointer_line.points[1]
 
 @warning_ignore("unused_private_class_variable") var _sp: Vector2:
-	set(to): pointer_line.points[0] = to
+	set(to): pointer_line.set_point_position(0, to)
 	get: return pointer_line.points[0]
 
 

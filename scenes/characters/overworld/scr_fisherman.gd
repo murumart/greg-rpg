@@ -25,7 +25,9 @@ func _set_line_lenght(to: int) -> void:
 	var line: Line2D = get_node_or_null("Pole/Line2D")
 	if not is_instance_valid(line): return
 
-	line.points[1].y = line_length
+	var tmp := line.points[1]
+	tmp.y = line_length
+	line.set_point_position(1, tmp)
 
 
 func _set_type(to: int) -> void:
