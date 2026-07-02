@@ -49,7 +49,7 @@ static var CHANNELS := [
 		K.STREAM: preload("res://music/mus_forestguy.ogg"),
 		K.WEIGHT: 5,
 		K.CUTSCENE: (func() -> void:
-			SND.play_song("forestguy", 0.46, {pitch_scale = 0.67, bus = "Radio Music"})
+			SND.play_song("forestguy", 0.46, {pitch_scale = 0.67, bus = "Radio Music", play_from_beginning = true})
 			var dlg := DialogueBuilder.new()
 			await Math.timer(1.0)
 			dlg.al("our path...")
@@ -75,7 +75,7 @@ static var CHANNELS := [
 		K.STREAM: preload("res://music/mus_president_fight.ogg"),
 		K.WEIGHT: 5,
 		K.CUTSCENE: (func() -> void:
-			SND.play_song("president_fight", 0.46, {pitch_scale = 0.67, bus = "Radio Music", volume = -5})
+			SND.play_song("president_fight", 0.46, {pitch_scale = 0.67, bus = "Radio Music", volume = -5, play_from_beginning = true})
 			var r := SND.play_sound(preload("res://sounds/water_river.ogg"), {bus = "Radio Music", pitch = 0.67})
 			await Math.timer(1.0)
 			var dlg := DialogueBuilder.new()
