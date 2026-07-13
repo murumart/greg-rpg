@@ -1,5 +1,12 @@
 class_name PlayerOverworld extends CharacterBody2D
 
+const MENU_SCENE_PATH := "res://scenes/gui/scn_overworld_menu.tscn"
+#const MENU_SCENE_PATH := "res://scenes/gui/menu_new.tscn"
+const MENU_SCRIPT_PATH := "res://scenes/gui/scr_overworld_menu.gd"
+#const MENU_SCRIPT_PATH := "res://scenes/gui/menu_new.gd"
+
+const MenuType = preload(MENU_SCRIPT_PATH)
+
 enum States {FREE_MOVE, NOT_FREE_MOVE}
 enum MoveModes {WALK, SKATE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
@@ -27,12 +34,14 @@ var move_mode: MoveModes = MoveModes.WALK:
 @onready var armour := $ArmorLayer
 var updating_armour := false
 
-var menu: Control = preload("res://scenes/gui/scn_overworld_menu.tscn").instantiate()
+var menu: MenuType = preload(MENU_SCENE_PATH).instantiate()
+
+var greg := ResMan.get_character("greg")
 
 
 func _ready() -> void:
 	DAT.player_captured.connect(_update_capture)
-	ResMan.get_character("greg").message_owner.connect(_character_message_received)
+	greg.message_owner.connect(_character_message_received)
 	if DAT.player_capturers.size() > 0:
 		state = States.NOT_FREE_MOVE
 	move_mode = DAT.get_data("player_move_mode", 0) as MoveModes
@@ -43,7 +52,6 @@ func _ready() -> void:
 	load_armour_sprites()
 	spawn_position()
 	direct_animation()
-	var greg := ResMan.get_character("greg") as Character
 	greg.armour_changed.connect(load_armour_sprites.unbind(1))
 	print("player ready")
 
@@ -52,9 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		if (not menu.visible) and DAT.player_capturers.is_empty():
 			if not menu_disabled:
-				menu.call_deferred("showme")
-				DAT.capture_player("overworld_menu")
-				DAT.set_data("has_opened_inventory", true)
+				open_menu()
 		else:
 			close_menu()
 	if event.is_action_pressed("escape") and menu.visible:
@@ -191,17 +197,17 @@ func _character_message_received(msg := &"") -> void:
 		&"diploma_crumpled":
 			close_menu()
 			SOL.dialogue("diploma_crumpled")
-			var inv := ResMan.get_character("greg").inventory
+			var inv := greg.inventory
 			inv.erase("diploma")
 			DAT.grant_item(&"winner_hat")
 		&"rain_boot_used":
 			close_menu()
-			var inv := ResMan.get_character("greg").inventory
+			var inv := greg.inventory
 			if inv.count("rain_boot") >= 2:
 				inv.erase("rain_boot")
 				inv.erase("rain_boot")
 				SOL.dialogue("rubber_boots_make")
-				ResMan.get_character("greg").handle_item("rubber_boots")
+				greg.handle_item("rubber_boots")
 			else:
 				SOL.dialogue("rubber_boots_cant_make")
 
@@ -216,8 +222,14 @@ func get_save_key(key: String) -> String:
 	return str("player_in_", scene.name.to_snake_case(), "_", key)
 
 
+func open_menu() -> void:
+	menu.open.call_deferred()
+	DAT.capture_player("overworld_menu")
+	DAT.set_data("has_opened_inventory", true)
+
+
 func close_menu() -> void:
-	menu.call_deferred("hideme")
+	menu.close.call_deferred()
 	DAT.free_player("overworld_menu")
 
 
@@ -229,7 +241,6 @@ func set_saving_disabled(to: bool) -> void:
 func load_armour_sprites() -> void:
 	armour.hide()
 	updating_armour = false
-	var greg := ResMan.get_character("greg") as Character
 	if not greg.armour:
 		return
 	var path := "res://resources/armours/sfr_%s.tres" % greg.armour

@@ -184,50 +184,54 @@ multipanther -> +10 (=99)
 - [X] make fence breaking car slower
 - [X] do radiation attack before level up screen adn such
 - [X] move police appointment npc between seats
+
+### bugs to fix
 - [ ] didn't get tooth multiple times..?
-- [ ] savescumming at the random prize..
-- [ ] autosaves after bosses check if those exist
-- [ ] more npcs after level 30 aroud town
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
-- [ ] piece of grass should follow kids around
-- [ ] special boss battle start animation
-- [ ] way to cancel shopping basket
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] fisherwoman make flower dialogue first in order and save the order across interactions
+- [ ] skater says press x to jump (wrong)
+- [ ] rose cutscene after resets sunset...
 - [ ] zerma forgets you did the dialogue when calling in battle
-- [ ] fw progress only when attacking... not very good if youre trying not to kill
+- [ ] make forest bird stop shooting when player captured. its annoying
+- [ ] spboss music shoud play form beginingn
+- [ ] remove empty trash... from wood..s..
+- [ ] ugly forest entrance when canvas is modulate
+- [ ] autosaves after bosses check if those exist
+- [ ] make the ladder easier..
+- [ ] nerf turf2..
+- [ ] town east enemies bad with level limit.. increase level limit..
 - [ ] peptide should work in woodsguy
-- [ ] sliding puzzle tutorial npc
+- [ ] dont respawn guy in mayor room...
+  - scootin sauces respawns ther too..
+- [ ] town east has cliffs with flowers on them bad
+- [ ] save campfire litness
+- [ ] resetting puzzle replays the animation (wghat does this mean)
+- [ ] guive impure prism hint on first interaction
+
+### smally
 - [ ] turn glass to xp when leaving the woods i guess..
+- [ ] sliding puzzle tutorial npc
+- [ ] note of maximum level in forest HUD
+- [ ] new line to bald guy
 - [ ] incidental forest npc written by june
   - the democrats are going in droves to forests and SKINNING striders
   - who gives a shit?
   - this country used to be about GLASS
-- [ ] make forest bird stop shooting when player captured. its annoying
-- [ ] remove empty trash... from wood..s..
-- [ ] ugly forest entrance when canvas is modulate
-- [ ] note of maximum level in forest HUD
-- [ ] rose cutscene after resets sunset...
-- [ ] new line to bald guy
-- [ ] skater says press x to jump (wrong)
-- [ ] town east enemies bad with level limit.. increase level limit..
-- [ ] make the ladder easier..
-- [ ] spboss music shoud play form beginingn
-- [ ] nerf turf2..
+- [ ] savescumming at the random prize..
+- [ ] fw progress only when attacking... not very good if youre trying not to kill
+- [ ] way to cancel shopping basket
+- [ ] have npcs remark sunset so epople dont thinik its apocalypse..
+- [ ] more npcs after level 30 aroud town
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..
-- [ ] dont respawn guy in mayor room...
-  - scootin sauces respawns ther too..
-- [ ] do smthabout science guy. remove or add to east
-- [ ] town east has cliffs with flowers on them bad
-- [ ] save campfire litness
-- [ ] make campfire less horrible to use
-- [ ] have npcs remark sunset so epople dont thinik its apocalypse..
-- [ ] goodl key dont get
-- [ ] resetting puzzle replays the animation
-- [ ] guive impure prism hint on first interaction
-- [ ] add greenhousicle to sg hub
 - [ ] starmap puzzle feedback when you get correct solution
+- [ ] special boss battle start animation
+- [ ] piece of grass should follow kids around
+- [ ] do smthabout science guy. remove or add to east
+- [ ] make campfire less horrible to use
+- [ ] goodl key dont get
+- [ ] add greenhousicle to sg hub
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level

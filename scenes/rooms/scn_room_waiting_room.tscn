@@ -173,11 +173,11 @@ shape = SubResource("RectangleShape2D_elsyf")
 [node name="Flower1" parent="." unique_id=1276348882 instance=ExtResource("13_metlk")]
 position = Vector2(115, 50)
 
-[node name="Sprite2D" parent="Flower1" index="0"]
+[node name="Sprite2D" parent="Flower1" index="0" unique_id=732229279]
 position = Vector2(6, 9)
 offset = Vector2(0, -9)
 
-[node name="CollisionShape2D" parent="Flower1/InspectArea" index="0"]
+[node name="CollisionShape2D" parent="Flower1/InspectArea" parent_id_path=PackedInt32Array(1276348882, 2023544159) index="0" unique_id=1293394393]
 position = Vector2(6, 8.5)
 
 [node name="Camera" parent="." unique_id=1102927763 instance=ExtResource("14_elsyf")]

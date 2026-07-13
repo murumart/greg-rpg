@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bxmq4uw7q6br0"]
+
+[ext_resource type="Script" uid="uid://c6rs257drbwyl" path="res://scenes/gui/menu_new.gd" id="1_t5i4s"]
+[ext_resource type="PackedScene" uid="uid://bsy78manjrd1y" path="res://scenes/gui/menu/party_member_button.tscn" id="2_4yl0o"]
+[ext_resource type="PackedScene" uid="uid://dcrvvycxe0ptv" path="res://scenes/tech/scn_reference_button.tscn" id="3_k5un1"]
+
+[node name="MenuNew" type="Control" unique_id=1492030134]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5i4s")
+
+[node name="PartyMembers" type="VBoxContainer" parent="." unique_id=1173816803]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 58.0
+offset_bottom = 119.0
+theme_override_constants/separation = 1
+
+[node name="PartyMemberButton" parent="PartyMembers" unique_id=1711983764 instance=ExtResource("2_4yl0o")]
+layout_mode = 2
+
+[node name="PartyMemberButton2" parent="PartyMembers" unique_id=2101886221 instance=ExtResource("2_4yl0o")]
+layout_mode = 2
+
+[node name="CharacterOptions" type="PanelContainer" parent="." unique_id=611536462]
+visible = false
+layout_mode = 0
+offset_left = 61.0
+offset_top = 2.0
+offset_right = 101.0
+offset_bottom = 42.0
+
+[node name="CharacterOptionsContainer" type="VBoxContainer" parent="CharacterOptions" unique_id=1316466265]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ReferenceButton" parent="CharacterOptions/CharacterOptionsContainer" unique_id=1969032859 instance=ExtResource("3_k5un1")]
+layout_mode = 2
+text = "items"
+
+[node name="ReferenceButton2" parent="CharacterOptions/CharacterOptionsContainer" unique_id=640995648 instance=ExtResource("3_k5un1")]
+layout_mode = 2
+text = "spirits"

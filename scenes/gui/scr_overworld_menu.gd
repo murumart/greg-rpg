@@ -442,7 +442,7 @@ func fullparty() -> Array:
 
 
 var save_warning_tween: Tween
-func showme():
+func open():
 	show()
 	SND.menusound()
 	update_tabs()
@@ -460,7 +460,7 @@ func showme():
 		save_warning_tween.tween_callback(save_warning_label.hide)
 
 
-func hideme():
+func close():
 	if is_instance_valid(save_warning_tween) and save_warning_tween.is_valid():
 		save_warning_tween.kill()
 	hide()

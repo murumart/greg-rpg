@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bsy78manjrd1y"]
+
+[ext_resource type="Script" uid="uid://b2wxvvhuu6gjf" path="res://scenes/gui/menu/party_member_button.gd" id="1_07j3f"]
+[ext_resource type="PackedScene" uid="uid://bsrntxiwcuv2v" path="res://scenes/gui/scn_battle_member_info.tscn" id="1_hfhbe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_07j3f"]
+
+[node name="PartyMemberButton" type="Button" unique_id=1711983764]
+custom_minimum_size = Vector2(0, 26)
+offset_right = 69.0
+offset_bottom = 26.0
+script = ExtResource("1_07j3f")
+
+[node name="MemberInfo" parent="." unique_id=237629409 instance=ExtResource("1_hfhbe")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_07j3f")
+
+[node name="Portrait" parent="MemberInfo" index="0" unique_id=746040360]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+
+[node name="Name" parent="MemberInfo" index="1" unique_id=843195472]
+offset_left = 25.0
+offset_right = 55.0
+
+[node name="EffectCenter" parent="MemberInfo" index="2" unique_id=204860509]
+visible = false
+
+[node name="HealthBar" parent="MemberInfo" index="3" unique_id=1742712135]
+offset_left = 25.0
+offset_right = 55.0
+mouse_filter = 2
+
+[node name="MagicBar" parent="MemberInfo" index="4" unique_id=1790922365]
+offset_left = 25.0
+offset_right = 55.0
+mouse_filter = 2
+
+[node name="WaitBar" parent="MemberInfo" index="5" unique_id=1467458791]
+offset_left = -68.0
+offset_top = 29.0
+offset_right = -38.0
+offset_bottom = 31.0
+mouse_filter = 2
+
+[node name="AnimalBar" parent="MemberInfo" index="6" unique_id=1566308253]
+offset_left = -68.0
+offset_top = 33.0
+offset_right = -38.0
+offset_bottom = 35.0
+mouse_filter = 2
+
+[node name="RemoteTransform" parent="MemberInfo" index="7" unique_id=1331536774]
+visible = false
+
+[node name="EffectsContainer" parent="MemberInfo" index="8" unique_id=1776973605]
+visible = false
+offset_left = -41.0
+offset_top = 2.0
+offset_right = -19.0
+offset_bottom = 24.0
+mouse_filter = 2
+
+[node name="TextureRect" parent="MemberInfo/EffectsContainer" index="0" unique_id=1068297966]
+mouse_filter = 2
+
+[node name="TextureRect2" parent="MemberInfo/EffectsContainer" index="1" unique_id=1490577764]
+mouse_filter = 2
+
+[node name="TextureRect3" parent="MemberInfo/EffectsContainer" index="2" unique_id=1964843074]
+mouse_filter = 2
+
+[node name="TextureRect4" parent="MemberInfo/EffectsContainer" index="3" unique_id=490931300]
+mouse_filter = 2
+
+[node name="TextureRect5" parent="MemberInfo/EffectsContainer" index="4" unique_id=1859853182]
+mouse_filter = 2
+
+[node name="TextureRect6" parent="MemberInfo/EffectsContainer" index="5" unique_id=73690774]
+mouse_filter = 2
+
+[node name="LevelLabel" type="Label" parent="." unique_id=281151452]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 18.0
+offset_right = 65.0
+offset_bottom = 26.0
+text = "lvl 10"
+
+[editable path="MemberInfo"]

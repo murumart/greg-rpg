@@ -13,28 +13,32 @@ class_name PartyMemberInfoPanel
 @onready var remote_transform: RemoteTransform2D = $RemoteTransform
 
 
-func update(actor: BattleActor) -> void:
-	var charc := actor.character
-	portrait.modulate = actor.modulate
+func display(charc: Character) -> void:
 	portrait.modulate.a = 1.0
 	portrait.texture = charc.portrait
 	portrait.scale = Vector2.ONE
-	if actor.has_status_effect(&"little"):
-		portrait.scale = Vector2(0.5, 0.5)
 	name_label.text = str(charc.name)
 	health_bar.max_value = charc.max_health
 	health_bar.value = charc.health
 	magic_bar.max_value = charc.max_magic
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
+	#remote_transform.position = Vector2(12, 12)
+	if charc.health <= 0.0:
+		portrait.modulate.a = 0.5
+
+
+func update(actor: BattleActor) -> void:
+	var charc := actor.character
+	display(charc)
+	effects_display(actor)
 	wait_bar.value = 1 - actor.wait
 	animal_bar.visible = actor is EnemyAnimal
 	if actor is EnemyAnimal:
 		animal_bar.value = actor.soul
-	#remote_transform.position = Vector2(12, 12)
-	if charc.health <= 0.0:
-		portrait.modulate.a = 0.5
-	effects_display(actor)
+	if actor.has_status_effect(&"little"):
+		portrait.scale = Vector2(0.5, 0.5)
+	portrait.modulate = actor.modulate
 
 
 func effects_display(actor: BattleActor) -> void:
