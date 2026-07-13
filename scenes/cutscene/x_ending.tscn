@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cui10m1qacdjm"]
+
+[ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="1_5u7wd"]
+[ext_resource type="Script" uid="uid://b2rpcu4bqtyub" path="res://scenes/cutscene/x_ending.gd" id="1_a0p2r"]
+[ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="3_8cb1n"]
+[ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fafe4"]
+[ext_resource type="FontFile" uid="uid://dter0kyeu6smq" path="res://fonts/Jupiteroid-Regular.ttf" id="5_u5gpx"]
+[ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="6_k6r81"]
+
+[sub_resource type="Gradient" id="Gradient_fafe4"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o6lqo"]
+gradient = SubResource("Gradient_fafe4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgyld"]
+shader = ExtResource("3_8cb1n")
+shader_parameter/Gradient = SubResource("GradientTexture1D_o6lqo")
+shader_parameter/offset = Vector2(0, 0)
+
+[node name="BigEnd" type="Node2D" unique_id=96463244]
+script = ExtResource("1_a0p2r")
+
+[node name="MusBarCounter" type="Node" parent="." unique_id=562314109]
+script = ExtResource("1_5u7wd")
+bpm = 147.0
+beats_per_bar = 9.0
+metadata/_custom_type_script = "uid://d374oilx2sent"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1087386592]
+material = SubResource("ShaderMaterial_mgyld")
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = 60.0
+color = Color(0.038397167, 0.038397167, 0.03839716, 1)
+metadata/_edit_lock_ = true
+
+[node name="Camera" parent="." unique_id=1653248768 instance=ExtResource("4_fafe4")]
+zoom = Vector2(4, 4)
+resolution_scale_factor = 0.25
+
+[node name="Textbox" type="RichTextLabel" parent="." unique_id=131784691]
+offset_left = -74.0
+offset_top = 37.0
+offset_right = 74.0
+offset_bottom = 54.0
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_u5gpx")
+theme_override_font_sizes/normal_font_size = 7
+bbcode_enabled = true
+text = "hee hoo"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+script = ExtResource("6_k6r81")

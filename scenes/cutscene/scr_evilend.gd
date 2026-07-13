@@ -54,7 +54,7 @@ func do_something() -> void:
 			var tw := create_tween()
 			imgs.violence.show()
 			tw.tween_property(imgs.violence, "modulate:a", 1.0, 1.0).from(0.0)
-		8:
+		9:
 			talk("")
 			imgs.destruction.show()
 			imgs.violence.hide()

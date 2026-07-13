@@ -2,6 +2,8 @@ extends Node2D
 
 const SpeechBuble = preload("res://scenes/gui/x_speech_buble.gd")
 
+const MUSIC_SPEED := 0.89
+
 @onready var mus_bar_counter: MusBarCounter = $MusBarCounter
 @onready var pulse_d: Sprite2D = $Greg/Camera/PulseD
 @onready var greg: PlayerOverworld = $Greg
@@ -48,8 +50,10 @@ func _ready() -> void:
 
 func _g_statue_interact() -> void:
 	DAT.capture_player("cutscene")
-	var t := create_tween()
-	t.tween_property(camera, ^"global_position:x", floorf((greg.global_position.x + grand.global_position.x) * 0.5), 2.0)
+	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	var moveto := grand.global_position.x - 12
+	t.tween_property(greg, ^"global_position:x", moveto, 1.0)
+	t.tween_callback(greg.animate.bind("walk_right"))
 	await t.finished
 	var dlg := DialogueBuilder.new().set_char("silent")
 	dlg.al(dlg.SGD + "There once was a little gardener.")
@@ -70,11 +74,11 @@ func _g_statue_interact() -> void:
 	greg.animate(greg.sprite.animation, false, 0.0)
 	music.stop()
 	SOL.vfx("xtarget", grand.global_position, {parent = grand})
-	await Math.timer(2.0)
+	await Math.timer(1.75)
 	intensiivne.play(&"def", -1, 1)
-	SND.play_song("bymssc", 0.1)
+	SND.play_song("bymssc", 0.1, {pitch_scale = MUSIC_SPEED})
 	mus_bar_counter.reset_floats()
-	mus_bar_counter.bpm = 89
+	mus_bar_counter.bpm = 89 * MUSIC_SPEED
 	await intensiivne.animation_finished
 	_cs_2()
 
@@ -89,11 +93,8 @@ func _pos_at_men() -> void:
 func _cs_2() -> void:
 	var tw := create_tween()
 	var cb := _pos_at_men
-	tw.tween_property(menacing, "modulate:a", 0.07, 2.0)
-	tw.tween_callback(func() -> void:
-		speech.exhibit()
-	)
-	tw.tween_interval(0.5)
+	tw.tween_property(menacing, "modulate:a", 0.07, 0.75)
+	tw.tween_interval(0.15)
 	var dlg := DialogueBuilder.new()
 	dlg.al("little forgetful gardener").scallback(cb)
 	dlg.al("did i forget who i am too?").scallback(cb)
@@ -101,6 +102,7 @@ func _cs_2() -> void:
 	dlg.al("i get so into my little persona").scallback(cb)
 	dlg.al("...").scallback(cb)
 	tw.tween_callback(func() -> void:
+		speech.exhibit()
 		await speech.speak(dlg.get_dial())
 		_cs_3()
 	)
@@ -113,8 +115,7 @@ func _cs_3() -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_interval(1.0)
 	tw.tween_property(menacing, "global_position", grand.global_position - Vector2(0, 8), 1.3)
-	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 1.3)
-	tw.parallel().tween_property(menacing, "modulate:a", 1.0, 1.3)
+	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 0.8)
 	await tw.finished
 	var dlg := DialogueBuilder.new()
 	dlg.al("let me tell you what you've done").scallback(_pos_at_men)
@@ -124,6 +125,8 @@ func _cs_3() -> void:
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.set_ease(Tween.EASE_IN).tween_property(shader_bg.material, "shader_parameter/offset:x", -15.0, 3.0)
 	tw.parallel().tween_property(ints, "volume_db", 0.0, 3.0).from(-20.0)
+	tw.parallel().tween_property(greg, "global_position:x", greg.global_position.x + 400, 3.0)
+	tw.parallel().tween_property(menacing, "global_position:x", menacing.global_position.x + 400, 3.0)
 	tw.parallel().tween_property(ints, "pitch_scale", 0.66, 3.0)
 	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.TRANSPARENT, Color.WHITE, 1.5, {free_rect = false})).set_delay(1.5)
 
@@ -131,9 +134,10 @@ func _cs_3() -> void:
 
 
 func _process(delta: float) -> void:
-	var dist := 1275 - greg.position.x
+	var dist := maxf(0, 1275 - greg.position.x)
 	if dist < 300:
-		music.volume_linear = remap(dist, 300, 0, 1.0, 0.05)
+		var r := remap(dist, 300, 0, 1.0, 0.05)
+		music.volume_linear = r
 	if speech.box_readable and menacing.modulate.a > 0:
 		_smoothp = _smoothp.move_toward(menacing.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 4.0)
 		speech.repos(_smoothp, false, false)
