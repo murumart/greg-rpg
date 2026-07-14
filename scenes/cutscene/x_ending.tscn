@@ -22,8 +22,7 @@ script = ExtResource("1_a0p2r")
 
 [node name="MusBarCounter" type="Node" parent="." unique_id=562314109]
 script = ExtResource("1_5u7wd")
-bpm = 147.0
-beats_per_bar = 9.0
+bpm = 137.0
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1087386592]

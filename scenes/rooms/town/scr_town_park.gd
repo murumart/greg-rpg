@@ -152,7 +152,7 @@ func _on_tarikas_inspected() -> void:
 			if not DAT.get_data("fisherwoman_fought", false):
 				dlg.al("the lady at the lake, fishing...")
 				dlg.al("...the way you appeared here, it reminds me of her.")
-				dlg.al("mh, but she stays out of trouble... dilligently...")
+				dlg.al("mh, but she stays out of trouble... diligently...")
 				dlg.al("something weighs her down.")
 				dlg.al("but you... might feel encouraged by the very same thing.")
 			else:

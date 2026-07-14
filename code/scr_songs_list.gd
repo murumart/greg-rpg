@@ -275,6 +275,10 @@ var songs := {
 		"title": "trepid",
 		"stream": preload("res://music/mus_xchase.ogg"),
 	},
+	"xexposition": {
+		"title": "moving a shaker",
+		"stream": preload("res://music/mus_xexposition.ogg"),
+	},
 }
 
 
