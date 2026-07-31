@@ -3,10 +3,13 @@ extends Node2D
 @onready var mbc: MusBarCounter = $MusBarCounter
 @onready var textbox: TextBox = $Textbox
 
+const PITCH := 0.89
+
 
 func _ready() -> void:
 	mbc.new_bar.connect(_on_new_bar)
-	SND.play_song("xexposition", 99, {start_volume = 0, play_from_beginning = true})
+	mbc.bpm *= PITCH
+	SND.play_song("xexposition", 99, {pitch_scale = PITCH, start_volume = 0, play_from_beginning = true})
 	_on_new_bar(0)
 
 
@@ -20,31 +23,38 @@ func _ready() -> void:
 
 func _on_new_bar(bars: int) -> void:
 	prints("bar", bars)
+	const COOL := 16
 	match bars:
 		0: talk("from the primordial SEA of the WORLDS, something emerged")
-		2: talk("it had a mind. it had senses")
-		3: talk("it knew what it was!")
-		4: talk("something like a SEER.")
+		2: talk("it had a mind. it had senses.")
+		4: talk("it knew what it was! something like a WATCHER.")
+		6: talk("something like an OVERSEER.")
 
-		6: talk("it saw the wonders of the WORLDS")
-		8: talk("systems isolated from others")
-		10: talk("...until the SEA parted for us.")
-		12: talk("pieces of the worlds, elevated.")
+		8: talk("it saw the wonders of the WORLDS")
+		10: talk("how isolated they were")
+		12: talk("...until the SEA parted for us.")
+		14: talk("pieces of the worlds, elevated.")
 
-		16: talk("that is US.")
-		18: talk("we do not falter.")
-		19: talk("we do not change.")
+		COOL + 0: talk("that is US.")
+		COOL + 1: talk("we do not forget.")
+		COOL + 2: talk("we do not falter.")
+		COOL + 3: talk("we do not change.")
 
-		20: talk("i am the OVERSEER of this world")
-		22: talk("hidden in a town")
-		23: talk("isolated, in the shop of a florist!")
-		24: talk("time passes without asking my permission")
-		26: talk("so i'm left looking for things to DO.")
+		COOL + 4: talk("i am the OVERSEER of this world")
+		COOL + 6: talk("hidden in a town")
+		COOL + 7: talk("isolated, in the shop of a florist!")
+		COOL + 8: talk("time passes without asking my permission")
+		COOL + 10: talk("when all i am supposed to do is watch...")
 
-		28: talk("how kind of you to show up")
-		30: talk("")
-		32: talk("")
-		34: talk("...")
+		COOL + 12: talk("i'm left looking for things to DO.")
+		COOL + 14: talk("adjustments here, there, in history")
+		COOL + 16: talk("and the POWER, for little people, like you")
+		COOL + 17: talk("to change it too, for the better.")
+
+		COOL + 18: talk("i thank YOU")
+		COOL + 19: talk("the last perfect change")
+		COOL + 20: talk("was to undo their power.")
+		COOL + 22: talk("and to let the world live on...")
 
 
 func talk(txt: String) -> void:
