@@ -233,5 +233,8 @@ multipanther -> +10 (=99)
 - [ ] goodl key dont get
 - [ ] add greenhousicle to sg hub
 
+### nice
+- [ ] more enemies with interesting genders
+
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
