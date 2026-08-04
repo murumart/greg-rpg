@@ -10,6 +10,8 @@ const G := preload("res://scenes/characters/overworld/scr_grandma_overworld.gd")
 @onready var radio_music: AudioStreamPlayer2D = $"../Radio/RadioMusic"
 @onready var zoom_gradient: TextureRect = $"../ZoomGradient"
 @onready var color_container: ColorContainer = $"../CanvasModulateGroup/ColorContainer"
+@onready var interaction_area: InteractionArea = $InteractionArea
+@onready var walk_inside_to_interacti_with_grandma: Area2D = $"../Areas/WalkInsideTOInteractiWithGrandma"
 var initial_color: Color
 var got_to_talk: bool:
 	set(to):
@@ -24,7 +26,8 @@ func _ready() -> void:
 	initial_color = color_container.color
 	if not got_to_talk:
 		grandma.inspected.connect(initial_interaction)
-		$InteractionArea.interacted.connect(initial_interaction)
+		interaction_area.interacted.connect(initial_interaction)
+		walk_inside_to_interacti_with_grandma.body_entered.connect(initial_interaction.unbind(1))
 	else:
 		if LTS.gate_id == &"greghouse_inside-outside":
 			SND.play_song.call_deferred("grand")
@@ -38,7 +41,7 @@ func initial_interaction() -> void:
 	zoom_gradient.get_parent().remove_child(zoom_gradient)
 	room_center.add_child(zoom_gradient)
 	grandma.inspected.disconnect(initial_interaction)
-	$InteractionArea.interacted.disconnect(initial_interaction)
+	interaction_area.interacted.disconnect(initial_interaction)
 	grandma.inspected.connect(second_interaction)
 	await cs_setup()
 	await cs_talk_1()
