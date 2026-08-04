@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="7_fqnfh"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="8_3j6wt"]
 [ext_resource type="AudioStream" uid="uid://hy3n726fcxds" path="res://music/mus_grandma_radio.ogg" id="8_cxs6r"]
+[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower_strawberry.png" id="9_ppjx1"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="9_r0b2n"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_dqc58"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]
@@ -28,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="16_u5i7e"]
 [ext_resource type="PackedScene" uid="uid://560xc7yjtkcs" path="res://scenes/rooms/grandma_house/gdung_objects/flower_33.tscn" id="17_8mjs0"]
 [ext_resource type="Texture2D" uid="uid://2v3qstvc8x5q" path="res://sprites/world/nature/plants2.png" id="17_f1any"]
+[ext_resource type="AudioStream" uid="uid://cowh3ady8xq7a" path="res://music/mus_gflorist.ogg" id="17_u5i7e"]
 [ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="18_7ay6p"]
 [ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="19_76b83"]
 [ext_resource type="PackedScene" uid="uid://c24750kmvrhtk" path="res://scenes/rooms/grandma_house/gdung_objects/flower_sprawl.tscn" id="19_jtaha"]
@@ -2059,7 +2061,7 @@ sources/1 = SubResource("TileSetAtlasSource_dmdfs")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qw5xy"]
 playback_mode = 1
-streams_count = 6
+streams_count = 7
 stream_0/stream = ExtResource("8_cxs6r")
 stream_0/weight = 8.0
 stream_1/stream = ExtResource("3_2fxrg")
@@ -2070,6 +2072,7 @@ stream_4/stream = ExtResource("6_3hvci")
 stream_4/weight = 3.0
 stream_5/stream = ExtResource("7_cpg8x")
 stream_5/weight = 0.5
+stream_6/stream = ExtResource("17_u5i7e")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrqee"]
 size = Vector2(17, 17)
@@ -2108,19 +2111,19 @@ metadata/_custom_type_script = "uid://crxdditnh0akt"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k71g"]
 size = Vector2(41, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hvci"]
-resource_local_to_scene = true
-size = Vector2(18, 31)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw5xy"]
-resource_local_to_scene = true
-size = Vector2(18, 31)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5i7e"]
+resource_local_to_scene = true
+size = Vector2(18, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppjx1"]
+resource_local_to_scene = true
+size = Vector2(18, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvbng"]
 resource_local_to_scene = true
 size = Vector2(48, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppjx1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbse"]
 resource_local_to_scene = true
 size = Vector2(18, 15)
 
@@ -2228,6 +2231,11 @@ limit_bottom = 63
 [node name="Grandma" parent="." unique_id=1523039460 groups=["empty_delete"] instance=ExtResource("32_76b83")]
 position = Vector2(144, -60)
 collision_mask = 1
+
+[node name="StrawberrySprite" type="Sprite2D" parent="Grandma" unique_id=1973437069]
+visible = false
+position = Vector2(0, -15)
+texture = ExtResource("9_ppjx1")
 
 [node name="InteriorTiles" type="Node2D" parent="." unique_id=1444693161]
 y_sort_enabled = true
@@ -2585,7 +2593,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower3/InspectArea" parent_id_path=PackedInt32Array(841369000, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_3hvci")
+shape = SubResource("RectangleShape2D_u5i7e")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower3" unique_id=311851123]
 position = Vector2(12, 26)
@@ -2611,7 +2619,7 @@ region_rect = Rect2(115, 16, 10, 16)
 
 [node name="CollisionShape2D" parent="Decor/Flower6/InspectArea" parent_id_path=PackedInt32Array(2109372868, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_qw5xy")
+shape = SubResource("RectangleShape2D_ppjx1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower6" unique_id=476163735]
 position = Vector2(12, 26)
@@ -2636,7 +2644,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" parent_id_path=PackedInt32Array(1385014011, 944040291) index="0" unique_id=1956733182]
 position = Vector2(-7, 13.5)
-shape = SubResource("RectangleShape2D_u5i7e")
+shape = SubResource("RectangleShape2D_bvbng")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower4" unique_id=510591594]
 position = Vector2(-3, 14)
@@ -2668,7 +2676,7 @@ offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" parent_id_path=PackedInt32Array(1636502311, 2120813262) index="0" unique_id=1702024312]
 position = Vector2(8, 13.5)
-shape = SubResource("RectangleShape2D_ppjx1")
+shape = SubResource("RectangleShape2D_tdbse")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower5" unique_id=1308115593]
 position = Vector2(6, 23)

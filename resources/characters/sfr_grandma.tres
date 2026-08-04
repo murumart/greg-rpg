@@ -44,7 +44,7 @@ atlas = ExtResource("1_ojyvb")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_khqi5"]
-atlas = ExtResource("1_ssng8")
+atlas = ExtResource("1_ojyvb")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfud3"]

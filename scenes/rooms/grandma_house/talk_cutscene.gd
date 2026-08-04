@@ -3,6 +3,7 @@ extends Node2D
 const G := preload("res://scenes/characters/overworld/scr_grandma_overworld.gd")
 
 @onready var grandma: G = $"../Grandma"
+@onready var strawberry_sprite: Sprite2D = $"../Grandma/StrawberrySprite"
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var camera: Camera2D = $"../Greg/Camera"
 @onready var room_center: Marker2D = $RoomCenter
@@ -150,6 +151,17 @@ func cs_talk_1() -> void:
 			grandma.direct_walking_animation(Vector2.LEFT)
 	))
 	await dlg.speak_choice()
+	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
+	strawberry_sprite.show()
+	tw.tween_property(strawberry_sprite, ^"position", strawberry_sprite.position - Vector2(0, 12), 0.5)
+	tw.tween_interval(0.2)
+	var middlepos := (greg.global_position + Vector2(0, -12)) + strawberry_sprite.global_position
+	middlepos *= 0.5
+	middlepos.y += 4
+	tw.tween_property(strawberry_sprite, ^"global_position", middlepos, 0.2).set_ease(Tween.EASE_IN)
+	tw.tween_property(strawberry_sprite, ^"global_position", greg.global_position + Vector2(0, -8), 0.2).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(strawberry_sprite, ^"scale", Vector2.ZERO, 0.4)
+	tw.tween_callback(strawberry_sprite.hide)
 	DAT.grant_item("flower_strawberry")
 	await SOL.dialogue_closed
 
@@ -283,14 +295,26 @@ func cs_talk_2() -> void:
 					grandma.tanim_shake(10, 4.0)
 					grandma.sanimate("shock")
 			))
-			dlg.add_line(dlg.ml("no!!").schoices(["give me house"]))
-			dlg.add_line(dlg.ml("stop that!!").schoices(["mmm house"]))
+			dlg.add_line(dlg.ml("no!!").schoices(["give me house"])
+				.scallback(func() -> void:
+					grandma.tanim_shake(10, 4.0)
+					grandma.sanimate("shock")
+			))
+			dlg.add_line(dlg.ml("stop that!!").schoices(["mmm house"])
+				.scallback(func() -> void:
+					grandma.tanim_shake(10, 4.0)
+					grandma.sanimate("shock")
+			))
 			dlg.add_line(dlg.ml("hey, \"dear\".")
 				.scallback(func() -> void:
 					grandma.sanimate("")
 					grandma.direct_walking_animation(Vector2.DOWN)
 			))
-			dlg.add_line(dlg.ml("get out of my house."))
+			dlg.add_line(dlg.ml("get out of my house.")
+				.scallback(func() -> void:
+					grandma.sanimate("")
+					grandma.direct_walking_animation(Vector2.RIGHT)
+			))
 			dlg.add_line(dlg.ml("if you don't, i'll have to call someone...")
 				.scallback(func() -> void:
 					grandma.sanimate("smile")
