@@ -349,8 +349,6 @@ func _on_game_timer_timeout() -> void:
 			DIR.screenshot(true)
 
 
-
-# storing the level up spirit names here. i love keeping data and code separate.
 func get_levelup_spirit(level: int) -> StringName:
 	var dict := {
 		#11: "hotel",

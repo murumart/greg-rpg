@@ -299,6 +299,8 @@ func item_names(opt := {}) -> void:
 		var worse: bool = comparison.get_equip_score() < item.get_equip_score()
 		if better or worse:
 			_add_better_marker(button, false, not (better and not worse))
+	if item is FlowerItem:
+		button.add_theme_color_override("font_color", Color("99ff61"))
 	# funny typoes
 	if randf() <= 0.01 and Math.inrange(item_name.length(), 4, 8):
 		item_name = Math.typos(item_name)

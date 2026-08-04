@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func act() -> void:
-	if reference_to_opposing_array[0].character.health_perc() < 0.76:
+	if reference_to_opposing_array[0].character.health_perc() < 0.91:
 		SOL.dialogue("grandma_fight_stupid")
 		SND.play_song("")
 		await SOL.dialogue_closed
@@ -75,4 +75,3 @@ func _item_pocket_candy_used_on() -> void:
 	if not DAT.get_data("fed_grandma_candy", false):
 		SOL.dialogue("grandma_pocket_candy_use")
 		DAT.set_data("fed_grandma_candy", true)
-	

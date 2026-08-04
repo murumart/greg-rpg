@@ -20,6 +20,11 @@ func _ready() -> void:
 	# needed due to godot 4 beta somethingsomething camera changes
 	if enabled:
 		make_current()
+	update_window_stuff()
+
+
+func update_window_stuff() -> void:
+	if enabled:
 		get_window().content_scale_mode = window_mode
 	get_window().content_scale_factor = resolution_scale_factor
 	SOL.transform.x.x = 1.0 / resolution_scale_factor

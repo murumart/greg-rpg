@@ -20,6 +20,13 @@ var got_to_talk: bool:
 	get:
 		return DAT.get_data("inhouse_secondtalk", false)
 
+var talked_topic_aboutyou: bool:
+	set(to):
+		DAT.set_data("inhouse_secondtalk_aboutyou", to)
+	get:
+		return DAT.get_data("inhouse_secondtalk_aboutyou", false)
+
+
 
 func _ready() -> void:
 	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
@@ -194,6 +201,7 @@ func cs_talk_2() -> void:
 			grandma.sanimate("")
 			break
 		elif choice == &"aboutyou":
+			talked_topic_aboutyou = true
 			dlg.reset().set_char("grandma_talk")
 			dlg.add_line(dlg.ml("about me?")
 				.scallback(func() -> void:
@@ -232,7 +240,6 @@ func cs_talk_2() -> void:
 			))
 			dlg.add_line(dlg.ml("...i make up for in plants. and such.")
 				.scallback(grandma.sanimate.bind("spin")))
-
 			await dlg.speak_choice()
 		elif choice == &"aboutme":
 			dlg.reset().set_char("grandma_talk")
@@ -249,7 +256,7 @@ func cs_talk_2() -> void:
 				dlg.add_line(dlg.ml("say... listen to this old florist's advice:"))
 				dlg.add_line(dlg.ml("keep yourself occupied! there's so much to do in the world...")
 					.scallback(grandma.sanimate.bind("spin")))
-				dlg.add_line(dlg.ml("places to go! plants to care for! people to water!")
+				dlg.add_line(dlg.ml("places to go! plants to talk to! people to water!")
 					.scallback(grandma.sanimate.bind("spin_fast")))
 				dlg.add_line(dlg.ml("ahh, so much to do!! i want to explode!!")
 					.scallback(func() -> void:

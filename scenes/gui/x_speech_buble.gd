@@ -168,3 +168,7 @@ func speak(dlg: Dialogue) -> void:
 
 func bang(guipos: Vector2) -> void:
 	SOL.vfx("bangspark", guipos)
+
+
+static func wpos_to_local(global_pos: Vector2, cam: Camera2D) -> Vector2:
+	return global_pos - cam.global_position + SOL.SCREEN_CENTER

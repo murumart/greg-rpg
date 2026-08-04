@@ -42,6 +42,10 @@
 [ext_resource type="Script" uid="uid://ey2th5yjtw1k" path="res://scenes/rooms/grandma_house/after_fight_cutscene.gd" id="39_3hvci"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="40_qw5xy"]
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="41_u5i7e"]
+[ext_resource type="Script" uid="uid://c6imu45r82qvc" path="res://scenes/rooms/grandma_house/after_expo_cutscene.gd" id="43_bvbng"]
+[ext_resource type="Texture2D" uid="uid://bt3lne874fpsm" path="res://sprites/cutscene/end/x32.png" id="44_tdbse"]
+[ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="45_uuffi"]
+[ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="46_vl7lh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3hvci"]
 blend_mode = 3
@@ -2174,11 +2178,111 @@ size = Vector2(14, 17)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppjx1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ys4q"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(0, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpg5t"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(64, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbc1s"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(32, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl7lh"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(0, 0, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm28d"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(32, 74, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeel5"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(64, 0, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en7kf"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(32, 0, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3687"]
+atlas = ExtResource("44_tdbse")
+region = Rect2(0, 74, 32, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0ya7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ys4q")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpg5t")
+}],
+"loop": 1,
+"name": &"big",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbc1s")
+}],
+"loop": 1,
+"name": &"dark",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl7lh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm28d")
+}],
+"loop": 1,
+"name": &"o",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeel5")
+}],
+"loop": 1,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en7kf")
+}],
+"loop": 1,
+"name": &"tilt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3687")
+}],
+"loop": 1,
+"name": &"worm",
+"speed": 5.0
+}]
+
 [node name="GrandmaHouseInside" type="Node2D" unique_id=712360266]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
 
 [node name="FlowerDarkness" type="Sprite2D" parent="." unique_id=338681340]
+visible = false
 z_index = 5
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_3hvci")
@@ -2200,7 +2304,7 @@ script = ExtResource("3_r36ay")
 [node name="Background" type="Sprite2D" parent="." unique_id=2087178560]
 z_index = -1
 material = SubResource("ShaderMaterial_kae55")
-position = Vector2(62, -1955)
+position = Vector2(55.999996, -1955)
 scale = Vector2(24.0902, 34.0308)
 texture = ExtResource("3_kixp1")
 offset = Vector2(-0.419559, 62.6302)
@@ -2843,13 +2947,37 @@ theme_override_constants/outline_size = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScrollContainer" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="2" unique_id=1172280808]
+visible = false
+
 [node name="FinishedMarker" parent="AfterFightCutscene/DialogueBox/DialogueBoxPanel" index="4" unique_id=1685108641]
 visible = false
 region_rect = Rect2(80, 56, 8, 8)
 
 [node name="CheatNode" type="Node" parent="." unique_id=1705838747]
 script = ExtResource("40_qw5xy")
+give_flowers = true
+force_gate_id = &"afterexpo"
 metadata/_custom_type_script = "uid://dkf3yix03l3hc"
+
+[node name="AfterExpoCutscene" type="Node2D" parent="." unique_id=1707225861]
+position = Vector2(-2, 16)
+script = ExtResource("43_bvbng")
+
+[node name="mdp" type="Node2D" parent="AfterExpoCutscene" unique_id=2065792814]
+position = Vector2(24, 1)
+
+[node name="mdp" type="AnimatedSprite2D" parent="AfterExpoCutscene/mdp" unique_id=1611657205]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_u0ya7")
+offset = Vector2(0, -14)
+
+[node name="SpeechBuble" parent="AfterExpoCutscene" unique_id=1909347306 instance=ExtResource("45_uuffi")]
+position = Vector2(102, -7)
+
+[node name="Menacing" parent="AfterExpoCutscene" unique_id=1703639088 instance=ExtResource("46_vl7lh")]
+visible = false
+position = Vector2(24, -7)
 
 [connection signal="interacted" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
 

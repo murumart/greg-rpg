@@ -6,6 +6,7 @@ class_name CheatNode extends Node
 @export var silver_gain: int = 0
 @export var new_spirits: Array[StringName] = []
 @export var new_items: Array[StringName] = []
+@export var give_flowers: bool
 @export var replace_spirits: Array[StringName] = []
 @export var replace_items: Array[StringName] = []
 @export var replace_armour: StringName = &""
@@ -59,6 +60,8 @@ func _ready() -> void:
 		if replace_items:
 			charac.inventory.clear()
 			charac.inventory.append_array(replace_items)
+		if give_flowers:
+			new_items.append_array(DAT.FLOWERS)
 		charac.inventory.append_array(new_items)
 		charac.armour = replace_armour
 		charac.weapon = replace_weapon
