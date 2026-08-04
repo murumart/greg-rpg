@@ -18,7 +18,6 @@ func _ready() -> void:
 	set_collision_layer_value(3, true)
 	monitoring = false
 	input_pickable = false
-	modulate = Color.from_string("#e7a3ff", Color.WHITE)
 
 	if save_progress:
 		progress = mini(DAT.get_data(save_key("progress"), 0), keys.size() - 1)
