@@ -4,6 +4,11 @@ const CT := preload("res://scenes/tech/scr_camera.gd")
 const SP := preload("res://scenes/gui/x_speech_buble.gd")
 const M := preload("res://scenes/vfx/x_menacing.gd")
 
+const S_EEP = preload("res://sounds/x/eep.ogg")
+const S_HEH = preload("res://sounds/x/heh.ogg")
+const S_HMPH = preload("res://sounds/x/hmph.ogg")
+const S_EHEH = preload("res://sounds/x/eheh.ogg")
+
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var flower_darkness: Sprite2D = $"../FlowerDarkness"
 @onready var camera: CT = $"../Greg/Camera"
@@ -12,18 +17,22 @@ const M := preload("res://scenes/vfx/x_menacing.gd")
 @onready var mdpsprite: AnimatedSprite2D = $mdp/mdp
 @onready var menacing: M = $Menacing
 @onready var shake_sound: AudioStreamPlayer = $mdp/ShakeSound
+@onready var giggle: AudioStreamPlayer = $mdp/Giggle1
+@onready var speech: AudioStreamPlayer = $mdp/Speech
 
 
 func _ready() -> void:
 	if LTS.gate_id != &"afterexpo":
 		queue_free()
 		return
+	DAT.capture_player("cutscene")
 	greg.global_position = global_position
 	flower_darkness.hide.call_deferred()
 	camera.resolution_scale_factor = 0.25
 	camera.zoom = Math.v2(4)
 	camera.update_window_stuff()
 	menacing.show()
+	speech_buble.spam_sound = null
 	mdp.hide()
 	_c1.call_deferred()
 	_face_default()
@@ -33,18 +42,21 @@ var tweener: Tween
 func _c1() -> void:
 	var dlg := DialogueBuilder.new()
 	var tw := create_tween()
-	tw.tween_interval(1.0)
+	tw.tween_interval(0.5)
+	tw.tween_callback(greg.animate.bind("walk_right"))
+	tw.tween_interval(0.5)
 	tw.tween_callback(func() -> void:
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 15
 		SND.play_song("bells", 80, {"pitch_scale": 0.7, "play_from_beginning": true})
 		dlg.al("congratulations").stext_speed(4)
 		dlg.al("...to me!").scallback(func() -> void:
+			speech_buble.spam_sound = speech
 			_stopanim()
 			_face_smile()
 			mdp.show()
 			menacing.hide()
-			SND.play_sound(preload("res://sounds/skating/s9.ogg"))
+			SND.play_sound(S_HEH)
 			SOL.vfx("dustpuff", mdp.global_position, {parent = mdp})
 			SND.play_song("", 80)
 		)
@@ -55,11 +67,14 @@ func _c1() -> void:
 		)
 		dlg.al("y'know... it's hard to remember who got them.").scallback(func() -> void:
 			_face_o()
-			
+			SND.play_sound(S_HMPH)
+			speech_buble.spam_sound = null
 		)
 		dlg.al("the FLOWERS").scallback(func() -> void:
 			_flip()
 			_stopanim()
+			giggle.play()
+			speech_buble.spam_sound = speech
 		)
 		dlg.al("and like").scallback(func() -> void:
 			_face_default()
@@ -86,6 +101,7 @@ func _c1() -> void:
 		dlg.al("didn't you read the note..?").scallback(func() -> void:
 			_shake()
 			shake_sound.play()
+			SND.play_sound(S_HMPH)
 		)
 		dlg.al("whatevs. gig's up anyway").scallback(func() -> void:
 			_face_default()
@@ -97,12 +113,15 @@ func _c1() -> void:
 		dlg.al("so... you win!").scallback(func() -> void:
 			_flip()
 			_face_4()
+			SND.play_sound(S_EEP)
 		)
 		dlg.al("you have your little house back").scallback(func() -> void:
 			_stopanim()
+			speech_buble.spam_sound = null
 		)
 		dlg.al("enjoy boy. ..... bye").scallback(func() -> void:
 			_face_default()
+			giggle.play()
 		)
 		_repos()
 		speech_buble.exhibit()

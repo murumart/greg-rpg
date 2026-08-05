@@ -46,7 +46,12 @@
 [ext_resource type="Texture2D" uid="uid://bt3lne874fpsm" path="res://sprites/cutscene/end/x32.png" id="44_tdbse"]
 [ext_resource type="AudioStream" uid="uid://c1xi4uxrnbs18" path="res://sounds/skating/s12.ogg" id="45_8ys4q"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="45_uuffi"]
+[ext_resource type="AudioStream" uid="uid://chajtu8hqs64m" path="res://sounds/x/gigle1.ogg" id="46_bbc1s"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="46_vl7lh"]
+[ext_resource type="AudioStream" uid="uid://b8n5dclkgnqhm" path="res://sounds/x/gigle2.ogg" id="47_lm28d"]
+[ext_resource type="AudioStream" uid="uid://cnj3du46oxdqd" path="res://sounds/x/eep.ogg" id="48_en7kf"]
+[ext_resource type="AudioStream" uid="uid://ec6bdukux26d" path="res://sounds/x/eheh.ogg" id="49_o3687"]
+[ext_resource type="AudioStream" uid="uid://bfju2qp76uukl" path="res://sounds/x/heh.ogg" id="50_qbgra"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3hvci"]
 blend_mode = 3
@@ -2278,6 +2283,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xos6n"]
+streams_count = 2
+stream_0/stream = ExtResource("46_bbc1s")
+stream_1/stream = ExtResource("47_lm28d")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bbc1s"]
+streams_count = 3
+stream_0/stream = ExtResource("48_en7kf")
+stream_1/stream = ExtResource("49_o3687")
+stream_2/stream = ExtResource("50_qbgra")
+
 [node name="GrandmaHouseInside" type="Node2D" unique_id=712360266]
 y_sort_enabled = true
 script = ExtResource("1_eampk")
@@ -2978,8 +2994,22 @@ stream = ExtResource("45_8ys4q")
 volume_db = -12.0
 pitch_scale = 1.68
 
-[node name="SpeechBuble" parent="AfterExpoCutscene" unique_id=1909347306 instance=ExtResource("45_uuffi")]
+[node name="Giggle1" type="AudioStreamPlayer" parent="AfterExpoCutscene/mdp" unique_id=724362306]
+stream = SubResource("AudioStreamRandomizer_xos6n")
+volume_db = -4.0
+pitch_scale = 1.1
+bus = &"ECHO"
+
+[node name="Speech" type="AudioStreamPlayer" parent="AfterExpoCutscene/mdp" unique_id=1822667287]
+stream = SubResource("AudioStreamRandomizer_bbc1s")
+volume_db = -12.0
+pitch_scale = 1.1
+max_polyphony = 12
+bus = &"Speech"
+
+[node name="SpeechBuble" parent="AfterExpoCutscene" unique_id=1909347306 node_paths=PackedStringArray("spam_sound") instance=ExtResource("45_uuffi")]
 position = Vector2(102, -7)
+spam_sound = NodePath("../mdp/Speech")
 
 [node name="Menacing" parent="AfterExpoCutscene" unique_id=1703639088 instance=ExtResource("46_vl7lh")]
 position = Vector2(24, -7)
