@@ -86,8 +86,9 @@ func play_song(song: String, fade_speed := 1.0, options := {}):
 			new_audio_player.seek(skip_to)
 	var tween := create_tween().set_ease(fade_in_ease_type).set_trans(trans_type)
 	var volume_to: float = song_dict.get("default_volume", DEFAULT_VOLUME) if not volume_override else volume
+	volume_to = db_to_linear(volume_to)
 	tween.tween_property(
-			new_audio_player, "volume_db", volume_to,
+			new_audio_player, "volume_linear", volume_to,
 			DEFAULT_WAIT_SPEED / float(fade_speed))
 
 
@@ -99,7 +100,7 @@ func fade_out_song_player(player, fade_speed := 1.0, options := {}):
 	var trans_type = options.get("trans_type", Tween.TRANS_QUAD)
 
 	var tween := create_tween().set_ease(fade_out_ease_type).set_trans(trans_type)
-	tween.tween_property(player, "volume_db", -80.0, DEFAULT_WAIT_SPEED/float(fade_speed))
+	tween.tween_property(player, "volume_linear", 0.0, DEFAULT_WAIT_SPEED/float(fade_speed))
 	tween.finished.connect(_on_fadeout_tween_step_finished.bind(player, options), CONNECT_ONE_SHOT)
 
 
