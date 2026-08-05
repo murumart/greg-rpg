@@ -46,9 +46,8 @@
 [ext_resource type="Texture2D" uid="uid://bt3lne874fpsm" path="res://sprites/cutscene/end/x32.png" id="44_tdbse"]
 [ext_resource type="AudioStream" uid="uid://c1xi4uxrnbs18" path="res://sounds/skating/s12.ogg" id="45_8ys4q"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="45_uuffi"]
-[ext_resource type="AudioStream" uid="uid://chajtu8hqs64m" path="res://sounds/x/gigle1.ogg" id="46_bbc1s"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="46_vl7lh"]
-[ext_resource type="AudioStream" uid="uid://b8n5dclkgnqhm" path="res://sounds/x/gigle2.ogg" id="47_lm28d"]
+[ext_resource type="AudioStream" uid="uid://f7dxgflqario" path="res://sounds/x/gigle.tres" id="46_xeel5"]
 [ext_resource type="AudioStream" uid="uid://cnj3du46oxdqd" path="res://sounds/x/eep.ogg" id="48_en7kf"]
 [ext_resource type="AudioStream" uid="uid://ec6bdukux26d" path="res://sounds/x/eheh.ogg" id="49_o3687"]
 [ext_resource type="AudioStream" uid="uid://bfju2qp76uukl" path="res://sounds/x/heh.ogg" id="50_qbgra"]
@@ -2121,19 +2120,19 @@ metadata/_custom_type_script = "uid://crxdditnh0akt"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k71g"]
 size = Vector2(41, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl7lh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en7kf"]
 resource_local_to_scene = true
 size = Vector2(18, 31)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ys4q"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3687"]
 resource_local_to_scene = true
 size = Vector2(18, 31)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpg5t"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbgra"]
 resource_local_to_scene = true
 size = Vector2(48, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbc1s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twfx3"]
 resource_local_to_scene = true
 size = Vector2(18, 15)
 
@@ -2282,11 +2281,6 @@ animations = [{
 "name": &"worm",
 "speed": 5.0
 }]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xos6n"]
-streams_count = 2
-stream_0/stream = ExtResource("46_bbc1s")
-stream_1/stream = ExtResource("47_lm28d")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bbc1s"]
 streams_count = 3
@@ -2452,18 +2446,18 @@ offset = Vector2(0, 13)
 region_enabled = true
 region_rect = Rect2(0, 33, 16, 15)
 
-[node name="Sprite2D5" type="Sprite2D" parent="Decor" unique_id=1327859154]
+[node name="Carnations" type="Sprite2D" parent="Decor" unique_id=1327859154]
 position = Vector2(7, -19)
 texture = ExtResource("7_fqnfh")
 offset = Vector2(0, -12)
 region_enabled = true
 region_rect = Rect2(67, 16, 9, 17)
 
-[node name="InspectArea" type="Area2D" parent="Decor/Sprite2D5" unique_id=600128491]
+[node name="InspectArea" type="Area2D" parent="Decor/Carnations" unique_id=600128491]
 script = ExtResource("13_kx26r")
 key = "carnations"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Sprite2D5/InspectArea" unique_id=1341992241]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Decor/Carnations/InspectArea" unique_id=1341992241]
 position = Vector2(1, 0.75)
 shape = SubResource("RectangleShape2D_mnnht")
 
@@ -2714,7 +2708,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower3/InspectArea" parent_id_path=PackedInt32Array(841369000, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_vl7lh")
+shape = SubResource("RectangleShape2D_en7kf")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower3" unique_id=311851123]
 position = Vector2(12, 26)
@@ -2740,7 +2734,7 @@ region_rect = Rect2(115, 16, 10, 16)
 
 [node name="CollisionShape2D" parent="Decor/Flower6/InspectArea" parent_id_path=PackedInt32Array(2109372868, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_8ys4q")
+shape = SubResource("RectangleShape2D_o3687")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower6" unique_id=476163735]
 position = Vector2(12, 26)
@@ -2765,7 +2759,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" parent_id_path=PackedInt32Array(1385014011, 944040291) index="0" unique_id=1956733182]
 position = Vector2(-7, 13.5)
-shape = SubResource("RectangleShape2D_hpg5t")
+shape = SubResource("RectangleShape2D_qbgra")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower4" unique_id=510591594]
 position = Vector2(-3, 14)
@@ -2797,7 +2791,7 @@ offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" parent_id_path=PackedInt32Array(1636502311, 2120813262) index="0" unique_id=1702024312]
 position = Vector2(8, 13.5)
-shape = SubResource("RectangleShape2D_bbc1s")
+shape = SubResource("RectangleShape2D_twfx3")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower5" unique_id=1308115593]
 position = Vector2(6, 23)
@@ -2807,7 +2801,7 @@ offset = Vector2(-7, -20)
 region_enabled = true
 region_rect = Rect2(80, 16, 17, 15)
 
-[node name="Sprite2D" type="Sprite2D" parent="Decor" unique_id=596998163]
+[node name="Carpet" type="Sprite2D" parent="Decor" unique_id=596998163]
 position = Vector2(-5.33824, -8.96301)
 rotation = -1.57079
 texture = ExtResource("17_f1any")
@@ -2982,6 +2976,7 @@ position = Vector2(-2, 16)
 script = ExtResource("43_bvbng")
 
 [node name="mdp" type="Node2D" parent="AfterExpoCutscene" unique_id=2065792814]
+visible = false
 position = Vector2(24, 1)
 
 [node name="mdp" type="AnimatedSprite2D" parent="AfterExpoCutscene/mdp" unique_id=1611657205]
@@ -2995,7 +2990,7 @@ volume_db = -12.0
 pitch_scale = 1.68
 
 [node name="Giggle1" type="AudioStreamPlayer" parent="AfterExpoCutscene/mdp" unique_id=724362306]
-stream = SubResource("AudioStreamRandomizer_xos6n")
+stream = ExtResource("46_xeel5")
 volume_db = -4.0
 pitch_scale = 1.1
 bus = &"ECHO"
@@ -3008,10 +3003,12 @@ max_polyphony = 12
 bus = &"Speech"
 
 [node name="SpeechBuble" parent="AfterExpoCutscene" unique_id=1909347306 node_paths=PackedStringArray("spam_sound") instance=ExtResource("45_uuffi")]
+visible = false
 position = Vector2(102, -7)
 spam_sound = NodePath("../mdp/Speech")
 
 [node name="Menacing" parent="AfterExpoCutscene" unique_id=1703639088 instance=ExtResource("46_vl7lh")]
+visible = false
 position = Vector2(24, -7)
 
 [node name="Particles" parent="AfterExpoCutscene/Menacing/CanvasGroup" parent_id_path=PackedInt32Array(1703639088, 757291189) index="0" unique_id=929754598]

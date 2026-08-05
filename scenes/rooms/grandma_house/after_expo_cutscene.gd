@@ -3,6 +3,7 @@ extends Node2D
 const CT := preload("res://scenes/tech/scr_camera.gd")
 const SP := preload("res://scenes/gui/x_speech_buble.gd")
 const M := preload("res://scenes/vfx/x_menacing.gd")
+const RG := preload("res://scenes/tech/scr_room_gate.gd")
 
 const S_EEP = preload("res://sounds/x/eep.ogg")
 const S_HEH = preload("res://sounds/x/heh.ogg")
@@ -20,6 +21,12 @@ const S_EHEH = preload("res://sounds/x/eheh.ogg")
 @onready var giggle: AudioStreamPlayer = $mdp/Giggle1
 @onready var speech: AudioStreamPlayer = $mdp/Speech
 
+@onready var note: Sprite2D = $"../Decor/Note"
+@onready var carpet: Sprite2D = $"../Decor/Carpet"
+@onready var carnations: Sprite2D = $"../Decor/Carnations"
+@onready var door: Sprite2D = $"../Door"
+@onready var room_gate: RG = $"../Areas/RoomGate"
+
 
 func _ready() -> void:
 	if LTS.gate_id != &"afterexpo":
@@ -36,6 +43,12 @@ func _ready() -> void:
 	mdp.hide()
 	_c1.call_deferred()
 	_face_default()
+	if is_instance_valid(note): note.queue_free()
+	if is_instance_valid(carpet): carpet.queue_free()
+	if is_instance_valid(carnations): carnations.queue_free()
+	if is_instance_valid(door): door.queue_free()
+	room_gate.destination = &"house_float"
+
 
 var tweener: Tween
 
@@ -141,7 +154,8 @@ func _c2() -> void:
 	tw.tween_interval(0.7)
 	tw.tween_callback(menacing.swoop_sound.play)
 	tw.tween_property(menacing, "position", menacing.position + Vector2(0, -500), 2.0)
-	#tw.tween_callback(menacing.hide)
+	tw.tween_callback(menacing.hide)
+	tw.tween_callback(DAT.free_player.bind("cutscene"))
 
 
 func _repos() -> void:
