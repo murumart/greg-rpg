@@ -145,7 +145,8 @@ func speak(dlg: Dialogue) -> void:
 	for line in dlg.lines:
 		typing_currently = true
 		textbox.text = line.text
-		textbox.speak_text()
+		var leng := Dialogue.len_no_bbcode(line.text)
+		textbox.speak_text({speed = 0.05 * leng * line.text_speed})
 		if line.callback.is_valid():
 			line.callback.call()
 			#print("le sip")

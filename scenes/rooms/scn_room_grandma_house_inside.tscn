@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://8e6qtrpg4jaf" path="res://scenes/gui/scn_dialogue_box.tscn" id="41_u5i7e"]
 [ext_resource type="Script" uid="uid://c6imu45r82qvc" path="res://scenes/rooms/grandma_house/after_expo_cutscene.gd" id="43_bvbng"]
 [ext_resource type="Texture2D" uid="uid://bt3lne874fpsm" path="res://sprites/cutscene/end/x32.png" id="44_tdbse"]
+[ext_resource type="AudioStream" uid="uid://c1xi4uxrnbs18" path="res://sounds/skating/s12.ogg" id="45_8ys4q"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="45_uuffi"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="46_vl7lh"]
 
@@ -2115,19 +2116,19 @@ metadata/_custom_type_script = "uid://crxdditnh0akt"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3k71g"]
 size = Vector2(41, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5i7e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl7lh"]
 resource_local_to_scene = true
 size = Vector2(18, 31)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppjx1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ys4q"]
 resource_local_to_scene = true
 size = Vector2(18, 31)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvbng"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpg5t"]
 resource_local_to_scene = true
 size = Vector2(48, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbse"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbc1s"]
 resource_local_to_scene = true
 size = Vector2(18, 15)
 
@@ -2697,7 +2698,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower3/InspectArea" parent_id_path=PackedInt32Array(841369000, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_u5i7e")
+shape = SubResource("RectangleShape2D_vl7lh")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower3" unique_id=311851123]
 position = Vector2(12, 26)
@@ -2723,7 +2724,7 @@ region_rect = Rect2(115, 16, 10, 16)
 
 [node name="CollisionShape2D" parent="Decor/Flower6/InspectArea" parent_id_path=PackedInt32Array(2109372868, 2032760750) index="0" unique_id=1652527084]
 position = Vector2(9, 17.5)
-shape = SubResource("RectangleShape2D_ppjx1")
+shape = SubResource("RectangleShape2D_8ys4q")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower6" unique_id=476163735]
 position = Vector2(12, 26)
@@ -2748,7 +2749,7 @@ offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="Decor/Flower4/InspectArea" parent_id_path=PackedInt32Array(1385014011, 944040291) index="0" unique_id=1956733182]
 position = Vector2(-7, 13.5)
-shape = SubResource("RectangleShape2D_bvbng")
+shape = SubResource("RectangleShape2D_hpg5t")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower4" unique_id=510591594]
 position = Vector2(-3, 14)
@@ -2780,7 +2781,7 @@ offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" parent="Decor/Flower5/InspectArea" parent_id_path=PackedInt32Array(1636502311, 2120813262) index="0" unique_id=1702024312]
 position = Vector2(8, 13.5)
-shape = SubResource("RectangleShape2D_tdbse")
+shape = SubResource("RectangleShape2D_bbc1s")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Decor/Flower5" unique_id=1308115593]
 position = Vector2(6, 23)
@@ -2972,12 +2973,22 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_u0ya7")
 offset = Vector2(0, -14)
 
+[node name="ShakeSound" type="AudioStreamPlayer" parent="AfterExpoCutscene/mdp" unique_id=644100765]
+stream = ExtResource("45_8ys4q")
+volume_db = -12.0
+pitch_scale = 1.68
+
 [node name="SpeechBuble" parent="AfterExpoCutscene" unique_id=1909347306 instance=ExtResource("45_uuffi")]
 position = Vector2(102, -7)
 
 [node name="Menacing" parent="AfterExpoCutscene" unique_id=1703639088 instance=ExtResource("46_vl7lh")]
-visible = false
 position = Vector2(24, -7)
+
+[node name="Particles" parent="AfterExpoCutscene/Menacing/CanvasGroup" parent_id_path=PackedInt32Array(1703639088, 757291189) index="0" unique_id=929754598]
+visibility_rect = Rect2(-400, -400, 800, 800)
+
+[node name="PlosiveParticles" parent="AfterExpoCutscene/Menacing" index="2" unique_id=1902137203]
+visibility_rect = Rect2(-400, -100, 800, 800)
 
 [connection signal="interacted" from="Phone/PhoneInteraction" to="." method="_on_phone_interacted"]
 
@@ -2987,3 +2998,4 @@ position = Vector2(24, -7)
 [editable path="Decor/Flower4"]
 [editable path="Decor/Flower5"]
 [editable path="AfterFightCutscene/DialogueBox"]
+[editable path="AfterExpoCutscene/Menacing"]

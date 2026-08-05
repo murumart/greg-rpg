@@ -2,6 +2,7 @@ extends Node2D
 
 const CT := preload("res://scenes/tech/scr_camera.gd")
 const SP := preload("res://scenes/gui/x_speech_buble.gd")
+const M := preload("res://scenes/vfx/x_menacing.gd")
 
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var flower_darkness: Sprite2D = $"../FlowerDarkness"
@@ -9,7 +10,8 @@ const SP := preload("res://scenes/gui/x_speech_buble.gd")
 @onready var speech_buble: SP = $SpeechBuble
 @onready var mdp: Node2D = $mdp
 @onready var mdpsprite: AnimatedSprite2D = $mdp/mdp
-@onready var menacing: Node2D = $Menacing
+@onready var menacing: M = $Menacing
+@onready var shake_sound: AudioStreamPlayer = $mdp/ShakeSound
 
 
 func _ready() -> void:
@@ -21,7 +23,10 @@ func _ready() -> void:
 	camera.resolution_scale_factor = 0.25
 	camera.zoom = Math.v2(4)
 	camera.update_window_stuff()
+	menacing.show()
+	mdp.hide()
 	_c1.call_deferred()
+	_face_default()
 
 var tweener: Tween
 
@@ -32,20 +37,92 @@ func _c1() -> void:
 	tw.tween_callback(func() -> void:
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 15
-		_bounce(1.0)
-		dlg.al("congratulations")
+		SND.play_song("bells", 80, {"pitch_scale": 0.7, "play_from_beginning": true})
+		dlg.al("congratulations").stext_speed(4)
 		dlg.al("...to me!").scallback(func() -> void:
 			_stopanim()
 			_face_smile()
+			mdp.show()
+			menacing.hide()
+			SND.play_sound(preload("res://sounds/skating/s9.ogg"))
+			SOL.vfx("dustpuff", mdp.global_position, {parent = mdp})
+			SND.play_song("", 80)
 		)
-		dlg.al("").scallback(func() -> void:
+		dlg.al("i really didn't know how i was gonna fix all of that").scallback(func() -> void:
 			_bounce(1.0)
+			_face_default()
+			SND.play_song("beyond", 0.1, {"pitch_scale": 1.0, "play_from_beginning": true})
+		)
+		dlg.al("y'know... it's hard to remember who got them.").scallback(func() -> void:
+			_face_o()
+			
+		)
+		dlg.al("the FLOWERS").scallback(func() -> void:
+			_flip()
+			_stopanim()
+		)
+		dlg.al("and like").scallback(func() -> void:
+			_face_default()
+		)
+		dlg.al("even if i went to grab them back").scallback(func() -> void:
+			_face_worm()
+		)
+		dlg.al("no way there wouldnt be a fight.")
+		dlg.al("that Isn't Good...").scallback(func() -> void:
+			_flip()
+			_face_dark()
+		)
+		dlg.al("but a fellow ant going rogue... no-one would bat an eye").scallback(func() -> void:
+			_face_tilt()
+			_bounce(1.2)
+		)
+		dlg.al("cept me i guess").scallback(func() -> void:
+			_face_smile()
+			_stopanim()
+		)
+		dlg.al("you werent supposed to enter my SECRET GARDEN").scallback(func() -> void:
+			_face_big()
+		)
+		dlg.al("didn't you read the note..?").scallback(func() -> void:
+			_shake()
+			shake_sound.play()
+		)
+		dlg.al("whatevs. gig's up anyway").scallback(func() -> void:
+			_face_default()
+			_flip()
+			_bounce(1.0)
+			shake_sound.stop()
+		)
+		dlg.al("my boss won't be seeing any of this \"florist\" crap")
+		dlg.al("so... you win!").scallback(func() -> void:
+			_flip()
+			_face_4()
+		)
+		dlg.al("you have your little house back").scallback(func() -> void:
+			_stopanim()
+		)
+		dlg.al("enjoy boy. ..... bye").scallback(func() -> void:
 			_face_default()
 		)
 		_repos()
 		speech_buble.exhibit()
-		speech_buble.speak(dlg.get_dial())
+		await speech_buble.speak(dlg.get_dial())
+		SND.play_song("", 0.3)
+		_c2.call_deferred()
 	)
+
+
+func _c2() -> void:
+	mdp.hide()
+	menacing.show()
+	menacing.splode()
+	menacing.particles(0.6)
+	menacing.explode_sound.play()
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tw.tween_interval(0.7)
+	tw.tween_callback(menacing.swoop_sound.play)
+	tw.tween_property(menacing, "position", menacing.position + Vector2(0, -500), 2.0)
+	#tw.tween_callback(menacing.hide)
 
 
 func _repos() -> void:
@@ -54,6 +131,8 @@ func _repos() -> void:
 
 func _stopanim() -> void:
 	if is_instance_valid(tweener) and tweener.is_valid(): tweener.kill()
+	mdp.scale = Vector2.ONE
+	mdpsprite.position = Vector2.ZERO
 
 
 func _bounce(speed: float) -> void:
@@ -61,6 +140,17 @@ func _bounce(speed: float) -> void:
 	tweener = create_tween().set_trans(Tween.TRANS_CUBIC).set_loops()
 	tweener.tween_property(mdp, ^"scale", Vector2(1.1, 0.9), 0.8 / speed)
 	tweener.tween_property(mdp, ^"scale", Vector2(0.9, 1.1), 0.8 / speed)
+
+
+func _shake() -> void:
+	_stopanim()
+	tweener = create_tween().set_loops()
+	tweener.tween_callback(func() -> void: mdpsprite.position = Vector2(randf_range(-1, 1), randf_range(-1, 1)))
+	tweener.tween_interval(0.01)
+
+
+func _stretch() -> void:
+	mdp.scale = Vector2(1.1, 0.9)
 
 
 func _face_4() -> void: mdpsprite.animation = "4"
@@ -71,3 +161,4 @@ func _face_o() -> void: mdpsprite.animation = "o"
 func _face_smile() -> void: mdpsprite.animation = "smile"
 func _face_tilt() -> void: mdpsprite.animation = "tilt"
 func _face_worm() -> void: mdpsprite.animation = "worm"
+func _flip() -> void: mdpsprite.flip_h = not mdpsprite.flip_h

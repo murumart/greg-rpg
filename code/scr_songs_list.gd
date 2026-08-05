@@ -27,6 +27,10 @@ var songs := {
 		"title": "soundtrack highlight",
 		"stream": preload("res://music/mus_best.ogg")
 	},
+	"beyond": {
+		"title": "beyond matter and spirit",
+		"stream": preload("res://music/mus_beyond.ogg")
+	},
 	"bike_beta": {
 		"title": "personal transport apparition",
 		"stream": preload("res://music/mus_bike_beta.ogg")

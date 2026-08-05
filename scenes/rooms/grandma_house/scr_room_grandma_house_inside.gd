@@ -17,7 +17,7 @@ func _ready() -> void:
 		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
 		door_area.destination = &"secret_garden_entrance"
 		musicplayer.stop()
-		radio.default_song = preload("res://music/mus_bmssc.ogg")
+		radio.default_song = null # preload("res://music/mus_bmssc.ogg")
 		radio.radio_song = null
 		radio.default_pitch = 0.2
 		radio.setup()
