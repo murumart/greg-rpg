@@ -6,9 +6,15 @@
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="4_x38iq"]
 [ext_resource type="Script" uid="uid://bvr08cuq0x5wp" path="res://scenes/rooms/grandma_house/house_float.gd" id="6_pyu2v"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="6_ucnwq"]
+[ext_resource type="Shader" uid="uid://c5ynpoiwyyfnf" path="res://shaders/shd_dish_iridescence.gdshader" id="7_m25bn"]
 [ext_resource type="AudioStream" uid="uid://cowh3ady8xq7a" path="res://music/mus_gflorist.ogg" id="7_pyu2v"]
+[ext_resource type="AudioStream" uid="uid://b0gbrqb6p6ff1" path="res://music/mus_bymsps.ogg" id="8_d0u7o"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="8_din4i"]
+[ext_resource type="Texture2D" uid="uid://c2bqmfq3w674" path="res://sprites/photos/rot_background.png" id="8_o2bfl"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="9_1b7wc"]
+[ext_resource type="Texture2D" uid="uid://cbx7xowh0oxa2" path="res://sprites/cutscene/end/end1picture.png" id="9_bq8ou"]
+[ext_resource type="Material" uid="uid://ca7vnbb3kqhd7" path="res://resources/add_material.tres" id="10_y2qhl"]
+[ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="11_3t3g5"]
 
 [sub_resource type="Gradient" id="Gradient_pyu2v"]
 offsets = PackedFloat32Array(0, 0.26568267, 0.6088561, 1)
@@ -34,6 +40,241 @@ background_mode = 3
 adjustment_enabled = true
 adjustment_contrast = 1.035
 adjustment_color_correction = SubResource("GradientTexture1D_3d7it")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0ya7"]
+shader = ExtResource("7_m25bn")
+shader_parameter/noise_texture = ExtResource("8_o2bfl")
+shader_parameter/iridescence_reducer = 0.19
+shader_parameter/iridescence_reducer_multiplier = 3.835
+
+[sub_resource type="Animation" id="Animation_lf6ej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overlay1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(107, 42)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overlay3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-121.99999, -39)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overlay3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Greg/Camera:zoom")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasModulate:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Ambient:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.42]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Ambient:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-18.0]
+}
+
+[sub_resource type="Animation" id="Animation_1fv37"]
+resource_name = "end"
+length = 22.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.6733334, 9.166667, 21.233334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.69411767)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7.2, 15.818255),
+"transitions": PackedFloat32Array(0.35355338, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.48235294)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Overlay1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.2, 15.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(107, 42), Vector2(-196.165, 42)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Overlay3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(10.2, 11.633333, 18.98841),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-121.99999, -39), Vector2(-121.99999, -39), Vector2(97.00001, -39)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overlay3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(11.633333, 18.166666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.49411765, 1, 1, 0.49803922)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Greg/Camera:zoom")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.4666667, 19.433332),
+"transitions": PackedFloat32Array(1.0717733, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(5, 5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasModulate:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 19.395708),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.81260175, 0.9377021, 0.71967643, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Ambient:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 19.621239),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.42, 0.23]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Ambient:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 18.869467),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-18.0, -39.71]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuaj1"]
+_data = {
+&"RESET": SubResource("Animation_lf6ej"),
+&"end": SubResource("Animation_1fv37")
+}
 
 [node name="HouseFloat" type="Node2D" unique_id=216233771]
 y_sort_enabled = true
@@ -110,17 +351,63 @@ color = Color(0.32172796, 0.32172796, 0.32172796, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1366111195]
 environment = SubResource("Environment_xos6n")
 
-[node name="Node" type="Node" parent="." unique_id=683558677]
+[node name="Cutscenes" type="Node" parent="." unique_id=683558677]
 script = ExtResource("6_pyu2v")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=773986654]
+[node name="Overlay2" type="Sprite2D" parent="Cutscenes" unique_id=1568611132]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+material = SubResource("ShaderMaterial_u0ya7")
+position = Vector2(-24, 0)
+texture = ExtResource("9_bq8ou")
+
+[node name="Overlay1" type="Sprite2D" parent="Cutscenes" unique_id=978662178]
+modulate = Color(1, 1, 1, 0)
+material = ExtResource("10_y2qhl")
+position = Vector2(107, 42)
+scale = Vector2(6.25, 6.25)
+texture = ExtResource("11_3t3g5")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Overlay3" type="Sprite2D" parent="Cutscenes" unique_id=913096841]
+modulate = Color(1, 1, 1, 0)
+z_index = 22
+material = ExtResource("10_y2qhl")
+position = Vector2(-121.99999, -39)
+scale = Vector2(4.4375, 4.4375)
+texture = ExtResource("11_3t3g5")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Overlay" type="AnimationPlayer" parent="Cutscenes" unique_id=1597064562]
+libraries/ = SubResource("AnimationLibrary_tuaj1")
+
+[node name="SecondMusic" type="AudioStreamPlayer" parent="." unique_id=773986654]
 stream = ExtResource("7_pyu2v")
 pitch_scale = 0.5
+bus = &"Music"
+
+[node name="Ambient" type="AudioStreamPlayer" parent="." unique_id=1997718602]
+stream = ExtResource("8_d0u7o")
+volume_db = -18.0
+pitch_scale = 1.42
 autoplay = true
-bus = &"ECHO MUSIC"
+bus = &"Music"
 
 [node name="Menacing" parent="." unique_id=1703639088 instance=ExtResource("8_din4i")]
 position = Vector2(-78, 98)
 
 [node name="SpeechBuble" parent="." unique_id=1909347306 instance=ExtResource("9_1b7wc")]
 visible = false
+
+[node name="Fade" type="ColorRect" parent="." unique_id=1861739609]
+visible = false
+z_index = 222
+offset_left = -167.0
+offset_top = -137.0
+offset_right = 191.0
+offset_bottom = 117.0
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=663588536]

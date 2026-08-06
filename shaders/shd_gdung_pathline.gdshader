@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform sampler2D noise_texture: filter_nearest, repeat_enable;
+uniform float speed = 1.0;
 
 void vertex() {
 	vec2 vertex = VERTEX;

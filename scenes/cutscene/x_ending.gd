@@ -2,6 +2,17 @@ extends Node2D
 
 @onready var mbc: MusBarCounter = $MusBarCounter
 @onready var textbox: TextBox = $Textbox
+@onready var animations: AnimationPlayer = $Animations
+@onready var rogues: Node2D = $Things/Rogues
+
+const COLORS: PackedColorArray = [
+	Color.MAGENTA,
+	Color.WHITE,
+	Color.YELLOW,
+	Color.PURPLE,
+	Color.RED,
+	Color.GREEN,
+]
 
 const PITCH := 0.89
 
@@ -9,8 +20,11 @@ const PITCH := 0.89
 func _ready() -> void:
 	mbc.new_bar.connect(_on_new_bar)
 	mbc.bpm *= PITCH
+	mbc.flbar += 14 # DEBUG!!!!
 	SND.play_song("xexposition", 99, {pitch_scale = PITCH, start_volume = 0, play_from_beginning = true})
 	_on_new_bar(0)
+	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 2.0, {kill_rects = true})
+	rogues.hide()
 
 
 # bars:
@@ -25,22 +39,52 @@ func _on_new_bar(bars: int) -> void:
 	prints("bar", bars)
 	const COOL := 16
 	match bars:
-		0: talk("from the primordial SEA of the WORLDS, something emerged")
+		0:
+			talk("from the primordial SEA of the WORLDS, something emerged")
+			animations.play(&"emerge0")
 		2: talk("it had a mind. it had senses.")
 		4: talk("it knew what it was! something like a WATCHER.")
-		6: talk("something like an OVERSEER.")
+		6:
+			talk("something like an OVERSEER.")
+			animations.play(&"emerge1")
 
-		8: talk("it saw the wonders of the WORLDS")
+		8:
+			talk("it saw the wonders of the WORLDS")
+			animations.play(&"wonder1")
 		10: talk("how isolated they were")
-		12: talk("...until the SEA parted for us.")
+		12:
+			talk("...until the SEA parted for us.")
+			animations.play(&"wonder2")
 		14: talk("pieces of the worlds, elevated.")
 
-		COOL + 0: talk("that is US.")
-		COOL + 1: talk("we do not forget.")
-		COOL + 2: talk("we do not falter.")
+		COOL + 0:
+			talk("that is US.")
+			rogues.show()
+			var i := 0
+			for r: Sprite2D in rogues.get_children():
+				r.modulate.a = 0.0
+				var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+				tw.tween_interval(i * 0.66)
+				tw.tween_property(r, ^"modulate:a", 1.0, 1.0).from(0.0)
+				i += 1
+			var t := create_tween()
+			t.tween_property(rogues, ^"scale", rogues.scale * 1.1, 7.0)
+		COOL + 1:
+			talk("we do not forget.")
+			var i := 0
+			for r: Sprite2D in rogues.get_children():
+				var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
+				tw.tween_interval(i * 0.35)
+				tw.tween_property(r, "self_modulate", COLORS[i], 1.0)
+				i += 1
+		COOL + 2:
+			talk("we do not falter.")
 		COOL + 3: talk("we do not change.")
 
-		COOL + 4: talk("i am the OVERSEER of this world")
+		COOL + 4:
+			rogues.hide()
+			talk("i am the OVERSEER of this world")
+
 		COOL + 6: talk("hidden in a town")
 		COOL + 7: talk("isolated, in the shop of a florist!")
 		COOL + 8: talk("time passes without asking my permission")

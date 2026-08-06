@@ -118,7 +118,8 @@ func _cs_3() -> void:
 	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 0.8)
 	await tw.finished
 	var dlg := DialogueBuilder.new()
-	dlg.al("let me tell you what you've done").scallback(_pos_at_men)
+	dlg.al("let me explain to you").scallback(_pos_at_men)
+	dlg.al("what we've done.").scallback(_pos_at_men)
 	await speech.speak(dlg.get_dial())
 	var ints := $Intensiivne/AudioStreamPlayer
 	ints.play()
@@ -131,6 +132,10 @@ func _cs_3() -> void:
 	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.TRANSPARENT, Color.WHITE, 1.5, {free_rect = false})).set_delay(1.5)
 
 	tw.tween_callback(ints.stop)
+	tw.tween_interval(1.3)
+	tw.tween_callback(func() -> void:
+		LTS.change_scene_to("res://scenes/cutscene/x_ending.tscn")
+	)
 
 
 func _process(delta: float) -> void:

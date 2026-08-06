@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_fafe4"]
 [ext_resource type="FontFile" uid="uid://dter0kyeu6smq" path="res://fonts/Jupiteroid-Regular.ttf" id="5_u5gpx"]
 [ext_resource type="Script" uid="uid://dmjhn5qrpt7r4" path="res://code/scr_textbox.gd" id="6_k6r81"]
+[ext_resource type="Shader" uid="uid://b31h4uou73tqd" path="res://shaders/shd_gdung_pathline.gdshader" id="7_w07ew"]
+[ext_resource type="Texture2D" uid="uid://d0ryba388sks7" path="res://sprites/cutscene/end/sea.png" id="8_655ak"]
+[ext_resource type="Texture2D" uid="uid://bwh2lhys38lun" path="res://sprites/photos/hand.png" id="8_qor0v"]
+[ext_resource type="Shader" uid="uid://dr00s0ufbon5k" path="res://shaders/shd_exit_portal.gdshader" id="10_vipqr"]
+[ext_resource type="Texture2D" uid="uid://mbl4126u48b2" path="res://sprites/cutscene/end/e.png" id="11_67vi7"]
+[ext_resource type="Shader" uid="uid://dhsa6lmyqol33" path="res://shaders/shd_forest_bg.gdshader" id="12_ojvlk"]
+[ext_resource type="Texture2D" uid="uid://dkn5yagw10ss8" path="res://sprites/cutscene/end/wonder.png" id="13_k4x3g"]
+[ext_resource type="Texture2D" uid="uid://dsn5rircdv5cd" path="res://sprites/cutscene/end/wonder1.png" id="14_cppmv"]
+[ext_resource type="Texture2D" uid="uid://crn6ee3ok61tb" path="res://sprites/cutscene/end/wonder2.png" id="15_lm4nn"]
+[ext_resource type="Texture2D" uid="uid://t63i2cms80d1" path="res://sprites/cutscene/end/rogues/rogue (5).PNG" id="16_m31h6"]
+[ext_resource type="Texture2D" uid="uid://d4iqftk6ft1bt" path="res://sprites/cutscene/end/rogues/rogue (1).PNG" id="17_vlenu"]
+[ext_resource type="Texture2D" uid="uid://cq3fvnnviexti" path="res://sprites/cutscene/end/rogues/rogue (3).PNG" id="18_b7wdo"]
+[ext_resource type="Texture2D" uid="uid://c705wqxq2wllw" path="res://sprites/cutscene/end/rogues/rogue (6).PNG" id="19_3ce8o"]
+[ext_resource type="Texture2D" uid="uid://dcl6tqmamrfnt" path="res://sprites/cutscene/end/rogues/rogue (4).PNG" id="20_irvqe"]
+[ext_resource type="Texture2D" uid="uid://due2p5l6cklia" path="res://sprites/cutscene/end/rogues/rogue (2).PNG" id="21_j34rg"]
 
 [sub_resource type="Gradient" id="Gradient_fafe4"]
 
@@ -16,6 +31,385 @@ gradient = SubResource("Gradient_fafe4")
 shader = ExtResource("3_8cb1n")
 shader_parameter/Gradient = SubResource("GradientTexture1D_o6lqo")
 shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0ya7"]
+shader = ExtResource("7_w07ew")
+shader_parameter/noise_texture = ExtResource("8_qor0v")
+shader_parameter/speed = 2.08
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtglo"]
+shader = ExtResource("10_vipqr")
+shader_parameter/modulate_a = 0.0
+shader_parameter/intensity = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt34f"]
+shader = ExtResource("12_ojvlk")
+
+[sub_resource type="Animation" id="Animation_vipqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Sea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/eye:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/eye:material:shader_parameter/modulate_a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Things/eye:material:shader_parameter/intensity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Things/Wonder3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Things/Wonder3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Things/Wonder:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Things/Wonder2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Things/Wonder2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -9)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Things/Wonder:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -9)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Things/Sea:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_67vi7"]
+resource_name = "emerge0"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Sea:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/Sea:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_girad"]
+resource_name = "emerge1"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/eye:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/eye:material:shader_parameter/modulate_a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33829722),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/eye:material:shader_parameter/intensity")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.33829722, 1.4666667, 2.3666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [8.0, 0.0, -0.15]
+}
+
+[sub_resource type="Animation" id="Animation_qf3ge"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_ojvlk"]
+resource_name = "wonder1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Wonder3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/Wonder3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45015374),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/Sea:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Things/eye:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_k4x3g"]
+resource_name = "wonder2"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Things/Wonder3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Things/Wonder:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Things/Wonder2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Things/Wonder2:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.029264186, 0.042566087, 0.05054723, 0.05320761, 0.069169894, 0.5503778, 0.5749169, 0.57996297, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(-1.5854492, -10), Vector2(-0.5854492, -8), Vector2(0.41455078, -9), Vector2(-0.5854492, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(99, -9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Things/Wonder:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.029264186, 0.042566087, 0.05054723, 0.05320761, 0.069169894, 0.5503778, 0.57996297, 0.5889393, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(-1.5854492, -10), Vector2(-0.5854492, -8), Vector2(0.41455078, -9), Vector2(-0.5854492, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(0.41455078, -9), Vector2(-104, -9)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Things/eye:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Things/eye:material:shader_parameter/modulate_a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.36458147, 0.46666667, 2.9666667, 3.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Things/eye:material:shader_parameter/intensity")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.13333333, 3.545663),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.465, 0.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojvlk"]
+_data = {
+&"RESET": SubResource("Animation_vipqr"),
+&"emerge0": SubResource("Animation_67vi7"),
+&"emerge1": SubResource("Animation_girad"),
+&"new_animation": SubResource("Animation_qf3ge"),
+&"wonder1": SubResource("Animation_ojvlk"),
+&"wonder2": SubResource("Animation_k4x3g")
+}
 
 [node name="BigEnd" type="Node2D" unique_id=96463244]
 script = ExtResource("1_a0p2r")
@@ -35,10 +429,11 @@ color = Color(0.038397167, 0.038397167, 0.03839716, 1)
 metadata/_edit_lock_ = true
 
 [node name="Camera" parent="." unique_id=1653248768 instance=ExtResource("4_fafe4")]
-zoom = Vector2(4, 4)
-resolution_scale_factor = 0.25
+zoom = Vector2(8, 8)
+resolution_scale_factor = 0.125
 
 [node name="Textbox" type="RichTextLabel" parent="." unique_id=131784691]
+z_index = 5
 offset_left = -74.0
 offset_top = 37.0
 offset_right = 74.0
@@ -52,3 +447,83 @@ scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 script = ExtResource("6_k6r81")
+
+[node name="Things" type="Node2D" parent="." unique_id=1438617196]
+
+[node name="Sea" type="Sprite2D" parent="Things" unique_id=1800416087]
+visible = false
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_u0ya7")
+position = Vector2(0, -11)
+scale = Vector2(0.4666667, 0.46666667)
+texture = ExtResource("8_655ak")
+
+[node name="eye" type="Sprite2D" parent="Things" unique_id=724036870]
+visible = false
+material = SubResource("ShaderMaterial_dtglo")
+position = Vector2(0, -12)
+scale = Vector2(0.19867551, 0.1986755)
+texture = ExtResource("11_67vi7")
+
+[node name="Wonder3" type="Sprite2D" parent="Things" unique_id=1823586010]
+visible = false
+modulate = Color(1, 1, 1, 0)
+texture_repeat = 3
+material = SubResource("ShaderMaterial_wt34f")
+position = Vector2(0, -9)
+scale = Vector2(0.17088605, 0.17088607)
+texture = ExtResource("13_k4x3g")
+
+[node name="Wonder" type="Sprite2D" parent="Things" unique_id=2129371572]
+visible = false
+texture_repeat = 3
+material = SubResource("ShaderMaterial_wt34f")
+position = Vector2(0, -9)
+scale = Vector2(0.17088605, 0.17088607)
+texture = ExtResource("14_cppmv")
+
+[node name="Wonder2" type="Sprite2D" parent="Things" unique_id=1623541309]
+visible = false
+texture_repeat = 3
+material = SubResource("ShaderMaterial_wt34f")
+position = Vector2(0, -9)
+scale = Vector2(0.17088605, 0.17088607)
+texture = ExtResource("15_lm4nn")
+
+[node name="Rogues" type="Node2D" parent="Things" unique_id=675394704]
+visible = false
+position = Vector2(0, 11)
+scale = Vector2(1.5099465, 1.5099465)
+
+[node name="Rogue(5)" type="Sprite2D" parent="Things/Rogues" unique_id=813167997]
+position = Vector2(17, -14)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("16_m31h6")
+
+[node name="Rogue(1)" type="Sprite2D" parent="Things/Rogues" unique_id=2144025393]
+position = Vector2(15.232327, -11.920951)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("17_vlenu")
+
+[node name="Rogue(3)" type="Sprite2D" parent="Things/Rogues" unique_id=639015551]
+position = Vector2(15.894602, -2.6491005)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("18_b7wdo")
+
+[node name="Rogue(6)" type="Sprite2D" parent="Things/Rogues" unique_id=1157210208]
+position = Vector2(-18.000002, -9)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("19_3ce8o")
+
+[node name="Rogue(4)" type="Sprite2D" parent="Things/Rogues" unique_id=2143299165]
+position = Vector2(-9, -3)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("20_irvqe")
+
+[node name="Rogue(2)" type="Sprite2D" parent="Things/Rogues" unique_id=1876780888]
+position = Vector2(0.80099034, 0)
+scale = Vector2(0.06480021, 0.06480021)
+texture = ExtResource("21_j34rg")
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=1862066081]
+libraries/ = SubResource("AnimationLibrary_ojvlk")
