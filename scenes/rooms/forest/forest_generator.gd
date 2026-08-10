@@ -168,10 +168,10 @@ func _init_board(a) -> void:
 
 func gen_bins() -> void:
 	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
-		forest.current_room / 100.0) * randf()
-		+ forest.questing.get_perk_extra_trash_amount())
+		forest.current_room / 100.0) * randf())
 	if forest.questing.get_perk_double_trash():
 		trash_count *= 2
+	trash_count += roundi(forest.questing.get_perk_extra_trash_amount())
 	for i in trash_count:
 		var trash := TRASH.instantiate() as TrashBin
 		trash.save = false
@@ -186,11 +186,11 @@ func gen_bins() -> void:
 
 func bin_loot(bin: TrashBin) -> void:
 	bin.add_to_group("forest_bins")
-	if randf() <= 0.06:
-		return
-	if randf() <= 0.11:
-		bin.full = false
-		return
+	#if randf() <= 0.06:
+		#return
+	#if randf() <= 0.11:
+		#bin.full = false
+		#return
 	if randf() <= 0.5:
 		# silver
 		bin.silver = roundi(forest.current_room * randf_range(1.0, 1.5)

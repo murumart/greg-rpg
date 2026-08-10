@@ -187,6 +187,7 @@ multipanther -> +10 (=99)
 
 ### bugs to fix
 - [X] make forest bird stop shooting when player captured. its annoying
+- [X] remove empty trash... from wood..s..
 - [ ] didn't get tooth multiple times..?
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
 - [ ] 1 damage from drenchfoot? at high level?
@@ -195,7 +196,6 @@ multipanther -> +10 (=99)
 - [ ] rose cutscene after resets sunset...
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] spboss music shoud play form beginingn
-- [ ] remove empty trash... from wood..s..
 - [ ] ugly forest entrance when canvas is modulate
 - [ ] autosaves after bosses check if those exist
 - [ ] make the ladder easier..
