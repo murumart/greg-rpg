@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 func _timer() -> void:
-	if is_instance_valid(player):
+	if is_instance_valid(player) and not DAT.is_player_captured():
 		var bb := BirdBullet.create_bird()
 		bb.direction = global_position.direction_to(player.global_position + Vector2.UP * 8) * 80
 		add_sibling(bb)

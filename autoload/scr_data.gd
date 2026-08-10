@@ -239,6 +239,14 @@ func capture_player(type := &"", overlap := false, dial_closed := true) -> void:
 	player_captured.emit(true)
 
 
+func is_player_captured() -> bool:
+	return player_capturers.size() > 0
+
+
+func is_player_captured_by(reason: StringName) -> bool:
+	return reason in player_capturers
+
+
 # allowing the player to move again
 func free_player(type := &"") -> void:
 	player_capturers.erase(type)

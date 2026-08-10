@@ -186,6 +186,7 @@ multipanther -> +10 (=99)
 - [X] move police appointment npc between seats
 
 ### bugs to fix
+- [X] make forest bird stop shooting when player captured. its annoying
 - [ ] didn't get tooth multiple times..?
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
 - [ ] 1 damage from drenchfoot? at high level?
@@ -193,7 +194,6 @@ multipanther -> +10 (=99)
 - [ ] skater says press x to jump (wrong)
 - [ ] rose cutscene after resets sunset...
 - [ ] zerma forgets you did the dialogue when calling in battle
-- [ ] make forest bird stop shooting when player captured. its annoying
 - [ ] spboss music shoud play form beginingn
 - [ ] remove empty trash... from wood..s..
 - [ ] ugly forest entrance when canvas is modulate
@@ -225,7 +225,7 @@ multipanther -> +10 (=99)
 - [ ] more npcs after level 30 aroud town
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..
-- [ ] starmap puzzle feedback when you get correct solution
+- [X] starmap puzzle feedback when you get correct solution
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around
 - [ ] do smthabout science guy. remove or add to east
