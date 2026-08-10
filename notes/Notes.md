@@ -210,6 +210,7 @@ multipanther -> +10 (=99)
 - [ ] guive impure prism hint on first interaction
 
 ### smally
+- [X] starmap puzzle feedback when you get correct solution
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
@@ -225,7 +226,6 @@ multipanther -> +10 (=99)
 - [ ] more npcs after level 30 aroud town
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..
-- [X] starmap puzzle feedback when you get correct solution
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around
 - [ ] do smthabout science guy. remove or add to east
