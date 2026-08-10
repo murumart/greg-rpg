@@ -51,7 +51,7 @@ func next_bar(bar: int) -> void:
 		$BarCounter.flbar += 0.6
 	match bar:
 		0:
-			talk("it happened twenty years ago now.")
+			talk("it happened thirty years ago now.")
 		1:
 			talk("a man discovered within himself spirit mastery.")
 			imgs[0].texture = texs["anu"]
@@ -166,7 +166,7 @@ func next_bar(bar: int) -> void:
 			fadeout(imgs[0], 0.0001)
 			imgs[0].texture = texs["nostatue"]
 		27:
-			talk("it has been twenty years since the horrors ended")
+			talk("it has been thirty years since the horrors ended")
 			imgs[0].position.y = 36
 			move(imgs[0], Vector2(80, 72), 4.0)
 			fadein(imgs[0])
