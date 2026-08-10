@@ -319,31 +319,19 @@ y_sort_enabled = true
 position = Vector2(920, -29)
 script = ExtResource("19_2vj6p")
 
-[node name="Starmap" parent="Areas/Piuzzle_" index="0" unique_id=222561558 node_paths=PackedStringArray("disks", "camera") instance=ExtResource("20_4f3sm")]
+[node name="Starmap" parent="Areas/Piuzzle_" index="0" unique_id=222561558 node_paths=PackedStringArray("camera") instance=ExtResource("20_4f3sm")]
 position = Vector2(-16, -93)
 star_count = 15
 radius = 32
-disks = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3")]
+disk_count = 3
 camera = NodePath("../../../Greg/Camera")
 
-[node name="Node2D" type="Node2D" parent="Areas/Piuzzle_/Starmap" index="3" unique_id=663442464]
-
-[node name="Node2D2" type="Node2D" parent="Areas/Piuzzle_/Starmap" index="4" unique_id=1704150803]
-
-[node name="Node2D3" type="Node2D" parent="Areas/Piuzzle_/Starmap" index="5" unique_id=2097042399]
-
-[node name="Starmap2" parent="Areas/Piuzzle_" index="1" unique_id=118833445 node_paths=PackedStringArray("disks", "camera") instance=ExtResource("20_4f3sm")]
+[node name="Starmap2" parent="Areas/Piuzzle_" index="1" unique_id=118833445 node_paths=PackedStringArray("camera") instance=ExtResource("20_4f3sm")]
 position = Vector2(48, -44)
 star_count = 25
 radius = 32
-disks = [NodePath("Node2D"), NodePath("Node2D2"), NodePath("Node2D3")]
+disk_count = 3
 camera = NodePath("../../../Greg/Camera")
-
-[node name="Node2D" type="Node2D" parent="Areas/Piuzzle_/Starmap2" index="3" unique_id=718374705]
-
-[node name="Node2D2" type="Node2D" parent="Areas/Piuzzle_/Starmap2" index="4" unique_id=1546743470]
-
-[node name="Node2D3" type="Node2D" parent="Areas/Piuzzle_/Starmap2" index="5" unique_id=1920542400]
 
 [node name="StoneColumn" parent="Areas/Piuzzle_" index="2" unique_id=1487678775 instance=ExtResource("21_uorbj")]
 position = Vector2(112, 4)

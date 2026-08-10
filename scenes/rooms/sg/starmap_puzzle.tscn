@@ -32,16 +32,20 @@ offset_bottom = 120.0
 layout_mode = 0
 offset_right = 162.0
 offset_bottom = 24.0
+scale = Vector2(0.5, 0.5)
+offset_transform_enabled = true
 text = "press [cancel] to return
 press [accept] to swap current disk
 press [left] and [right] to rotate disk"
 label_settings = SubResource("LabelSettings_4hxux")
 
-[node name="Label2" type="Label" parent="Ui" unique_id=1358688050]
+[node name="DiskNrLabel" type="Label" parent="Ui" unique_id=1358688050]
 layout_mode = 0
 offset_top = 112.0
 offset_right = 162.0
 offset_bottom = 119.0
+scale = Vector2(0.5, 0.5)
+offset_transform_enabled = true
 text = "disk nr "
 label_settings = SubResource("LabelSettings_4hxux")
 
