@@ -102,6 +102,10 @@ func appenda_uq(key: StringName, thing: Variant) -> void:
 			th.append(th)
 
 
+func visited_room(n: String) -> bool:
+	return n in get_data("visited_rooms", [])
+
+
 func save_to_data() -> void:
 	save_nodes_data()
 	save_chars_to_data()

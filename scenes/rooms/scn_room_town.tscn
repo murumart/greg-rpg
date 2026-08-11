@@ -2343,6 +2343,7 @@ rotation = -1.57079
 shape = SubResource("CapsuleShape2D_qhmci")
 
 [node name="VampireGirl" parent="Other" unique_id=329539896 node_paths=PackedStringArray("greg", "camera", "campsite_area") instance=ExtResource("57_qhmci")]
+visible = false
 position = Vector2(25, -34)
 greg = NodePath("../../Greg")
 camera = NodePath("../../Greg/Camera")
@@ -2351,7 +2352,10 @@ campsite_area = NodePath("../CampsiteArea")
 [node name="GirlSprite" parent="Other/VampireGirl/Girl" parent_id_path=PackedInt32Array(329539896, 385361399) index="3" unique_id=2075598758]
 frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="Other/VampireGirl/TransformKiller_____/CutsceneEnterRea" parent_id_path=PackedInt32Array(329539896, 437394365) index="0" unique_id=1595807987]
+[node name="CutsceneEnterRea" parent="Other/VampireGirl/TransformKiller_____" parent_id_path=PackedInt32Array(329539896, 632639445) index="0" unique_id=437394365]
+visible = false
+
+[node name="CollisionShape2D" parent="Other/VampireGirl/TransformKiller_____/CutsceneEnterRea" index="0" unique_id=1595807987]
 position = Vector2(-0.5, -36)
 debug_color = Color(1, 1, 1, 0.18039216)
 

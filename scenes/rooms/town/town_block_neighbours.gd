@@ -4,5 +4,5 @@ extends Node2D
 
 
 func _ready() -> void:
-	if "lakeside" in DAT.get_data("visited_rooms", []):
+	if DAT.visited_rooms("lakeside"):
 		fish_scared.queue_free()

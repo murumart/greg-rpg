@@ -9,11 +9,14 @@ var tarikas_talked: bool:
 var unlocked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_topics", to)
 	get: return DAT.get_data("tarikas_topics", [])
+var talked_topics: PackedStringArray:
+	set(to): DAT.set_data("tarikas_talked_topics", to)
+	get: return DAT.get_data("tarikas_talked_topics", [])
 
 
 func _ready() -> void:
-	if not unlocked_topics:
-		unlocked_topics = []
+	if not unlocked_topics: unlocked_topics = []
+	if not talked_topics: talked_topics = []
 	tarikas.inspected.connect(_on_tarikas_inspected)
 	if DAT.get_data("tarikas_solar_done", false) or DAT.get_data("tarikas_done", false):
 		tarikas.queue_free()
@@ -131,7 +134,7 @@ func _on_tarikas_inspected() -> void:
 					dlg.al("maybe it'd help to go on a...")
 					dlg.al("calming... walk in the woods?")
 					dlg.al("there's a path to there around the north of town.")
-					if "forest" in DAT.get_data("visited_rooms", []):
+					if DAT.visited_room("forest"):
 						dlg.al("...you've been there...?")
 						cokay = true
 						dlg.al("...you survived... okay... okay...")
@@ -213,7 +216,7 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("...")
 			elif flowers_c < 6:
 				dlg.al("growth...")
-				dlg.al("that is what a [color=%s]flower[/color] means...")
+				dlg.al("that is what a [color=%s]flower[/color] means..." % dlg.FLOWERCOLOR)
 				dlg.al("what it beckons...")
 				dlg.al("you will... finish growing... eventually.")
 				dlg.al("what's a ripe fruit good for, think...?")

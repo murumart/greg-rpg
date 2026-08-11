@@ -35,13 +35,13 @@ func lake_hint_npc_setup() -> void:
 	var npc := $LakeHintNpc as OverworldCharacter
 	var time := DAT.seconds % DAT.LAKE_HINT_CYCLE as int
 	var cyc := DAT.LAKE_HINT_CYCLE as int
-	if "lakeside" not in DAT.get_data("visited_rooms", []) and not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
+	if not DAT.visited_room("lakeside") and not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):
 		npc.queue_free()
 		DAT.set_data("lake_hint_received", false)
 		return
 	npc.inspected.connect(_on_lake_hint_received)
 	var level := ResMan.get_character("greg").level
-	if level >= 24 and not "lakeside" in DAT.get_data("visited_rooms", []):
+	if level >= 24 and not DAT.visited_room("lakeside"):
 		npc.default_lines.append("lake_hint")
 		return
 	npc.default_lines.append("lake_hint_" + str((randi() % 8) + 1))

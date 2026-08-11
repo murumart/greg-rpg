@@ -26,7 +26,7 @@ var room_entered := false
 
 
 func _ready() -> void:
-	room_entered = &"mayor_apartment" in DAT.get_data("visited_rooms", [])
+	room_entered = DAT.visited_room("mayor_apartment")
 	if room_entered:
 		climbing_place.greg_speed = 60.0
 	camera_area.body_entered.connect(_cam_in.unbind(1))

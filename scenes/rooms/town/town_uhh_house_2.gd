@@ -4,7 +4,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	if "town_east" in DAT.get_data("visited_rooms", []):
+	if DAT.visited_room("town_east"):
 		science_g_uy.queue_free()
 		return
 	if DAT.get_data("popo_blockade_lifted", false):
