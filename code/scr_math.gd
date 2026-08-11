@@ -304,3 +304,11 @@ static func remove_connections(sig: Signal) -> void:
 	var cnncts := sig.get_connections()
 	for c: Dictionary in cnncts:
 		sig.disconnect(c[&"callable"])
+
+
+static func same_contents(arr1: Array, arr2: Array) -> bool:
+	if arr1.size() != arr2.size(): return false
+	for item in arr1:
+		if item not in arr2:
+			return false
+	return true

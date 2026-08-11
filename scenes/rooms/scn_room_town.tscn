@@ -67,7 +67,9 @@
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="44_6b3qf"]
 [ext_resource type="AudioStream" uid="uid://c6rjjyc2k3gpf" path="res://sounds/car_motor.ogg" id="44_xhysj"]
 [ext_resource type="Texture2D" uid="uid://cccik3bi2bxmv" path="res://sprites/characters/overworld/spr_cashier_nice_overworld.png" id="48_ke24d"]
+[ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="50_paqtu"]
 [ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="50_qhmci"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="51_06enm"]
 [ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
 [ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 [ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="57_qhmci"]
@@ -2092,6 +2094,23 @@ save = false
 position = Vector2(0, -8)
 sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
+
+[node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
+position = Vector2(-3, -26)
+texture = ExtResource("50_paqtu")
+centered = false
+region_enabled = true
+region_rect = Rect2(64, 0, 7, 10)
+
+[node name="SinAnimator" type="Node" parent="Other/BackPark/Tarikas/Notif" unique_id=1813535897 node_paths=PackedStringArray("target")]
+script = ExtResource("51_06enm")
+property_name = &"modulate:a"
+target = NodePath("..")
+speed = 10.0
+max_value = 2.0
+offset = 0.125
+easing = 0.02194983
+metadata/_custom_type_script = "uid://durusiw115m3o"
 
 [node name="StatusEffectGuru" parent="Other/BackPark" unique_id=2005995754 instance=ExtResource("38_a0o03")]
 position = Vector2(-87, 23)

@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var guru: OverworldCharacter = $StatusEffectGuru
 @onready var tarikas: OverworldCharacter = $Tarikas
+@onready var notif: Sprite2D = $Tarikas/Notif
+@onready var notif_anim: SinAnimator = $Tarikas/Notif/SinAnimator
 
 var tarikas_talked: bool:
 	set(to): DAT.set_data("tarikas_talked_to", to)
@@ -12,22 +14,37 @@ var unlocked_topics: PackedStringArray:
 var talked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_talked_topics", to)
 	get: return DAT.get_data("tarikas_talked_topics", [])
+var talked_now_last_level: int:
+	set(to): DAT.set_data("tarikas_talked_now_last_level", to)
+	get: return DAT.get_data("tarikas_talked_now_last_level", 0) 
+
+var done: bool:
+	set(to): DAT.set_data("tarikas_done", to)
+	get: return DAT.get_data("tarikas_done", false) 
+
+var notif_cleared: bool:
+	set(to): DAT.set_data("tarikas_notif_cleared", to)
+	get: return DAT.get_data("tarikas_notif_cleared", false) 
 
 
 func _ready() -> void:
-	if not unlocked_topics: unlocked_topics = []
-	if not talked_topics: talked_topics = []
+	if not unlocked_topics: unlocked_topics = ["now", "bye"]
+	if not talked_topics: talked_topics = ["bye"]
 	tarikas.inspected.connect(_on_tarikas_inspected)
-	if DAT.get_data("tarikas_solar_done", false) or DAT.get_data("tarikas_done", false):
+	if DAT.get_data("tarikas_solar_done", false) or done:
 		tarikas.queue_free()
 	if DAT.get_data("known_status_effects", []).is_empty():
 		pass
 		guru.queue_free()
+	_check_topics()
+	_notif()
 
 
 var cokay := false
 var cfinal := false
 func _on_tarikas_inspected() -> void:
+	notif.hide()
+	notif_cleared = true
 	var dlg := DialogueBuilder.new().set_char("tarikas")
 	var greg := ResMan.get_character("greg")
 	var flowers_c := DAT.flower_progress(greg.inventory)
@@ -39,7 +56,7 @@ func _on_tarikas_inspected() -> void:
 
 	if flowers_c == 7:
 		SND.play_song("extremophile", 0.1, {pitch_scale = 0.2})
-		DAT.set_data("tarikas_done", true)
+		done = true
 		dlg.al("...seven [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
 		dlg.al("you are missing an eighth.")
 		dlg.al("despite my... warnings.")
@@ -67,12 +84,13 @@ func _on_tarikas_inspected() -> void:
 		await dlg.speak_choice()
 
 	while true:
-		var aval_choices := [&"bye", &"now"]
-		if flowers_c > 1:
-			aval_choices.append(&"flowers")
+		var aval_choices := []
 		for t in unlocked_topics:
 			aval_choices.append(t)
-		dlg.reset().add_line(dlg.ml("what brings you here?" if flowers_c < 2 else "...").schoices(aval_choices))
+		aval_choices.sort()
+		dlg.reset().add_line(
+			dlg.ml("what brings you here?" if flowers_c < 2 else "...")
+			.schoices(aval_choices))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
 			if flowers_c < 2:
@@ -81,75 +99,9 @@ func _on_tarikas_inspected() -> void:
 				await dlg.speak_choice()
 			break
 		elif choice == &"now":
-			dlg.reset()
-			if flowers_c < 2:
-				dlg.al("advice on what to do now? mh.")
-			if greg.level < 5:
-				dlg.al("you look weak... and frail.")
-				dlg.al("back as little kids, we used to go into the tall grass...")
-				dlg.al("...and fight whatever... sprung up to attack us.")
-				dlg.al("that grew character. you clearly... didn't do that.")
-			elif greg.level < 20:
-				dlg.al("if i were you...")
-				dlg.al("i'd be careful... loitering around town.")
-				dlg.al("the new generation has been growing up into...")
-				dlg.al("...a bunch of thugs.")
-				dlg.al("you contend for the same niche...")
-			elif greg.level < 40:
-				if not DAT.get_data("fisherwoman_fought", false):
-					if flowers_c == 1:
-						dlg.al("it's... good weather for a stroll by the lake today.")
-						dlg.al("i wouldn't go. the fish are too... aggressive.")
-						dlg.al("i know someone who fell in the lake... once.")
-						dlg.al("when he managed to clamber out, he was... changed...")
-						dlg.al("extremely muscular and wise from all the combat experience...")
-						dlg.al("...from fighting for his life with the underwater creatures.")
-						dlg.al("he later died in a car accident,")
-					else:
-						dlg.al("the fisher-woman...")
-						dlg.al("don't bother her with your... trife... troubles...")
-				else:
-					dlg.al("...")
-					dlg.al("now there is nothing to do but to... loiter.")
-					dlg.al("for a while.")
-			elif greg.level < 50:
-				if not DAT.get_data("vampire_fought", false):
-					dlg.al("another newcomer in town...")
-					dlg.al("i figured one wouldn't be... the end of it...")
-					dlg.al("someone ought to keep an eye on her...")
-				else:
-					dlg.al("(whistle)")
-					dlg.al("i should go to the store... soon...")
-					dlg.al("(whistle...)")
-			elif greg.level < 60:
-				if not DAT.get_data("president_fought", false):
-					dlg.al("i decided against going shopping.")
-					dlg.al("there is someone there...")
-				else:
-					dlg.al("hm? he's... gone? i can go shopping?")
-					dlg.al("i'll... i'll...")
-					dlg.al("maybe not... today.")
-			elif greg.level < 70:
-				if not cokay:
-					dlg.al("maybe it'd help to go on a...")
-					dlg.al("calming... walk in the woods?")
-					dlg.al("there's a path to there around the north of town.")
-					if DAT.visited_room("forest"):
-						dlg.al("...you've been there...?")
-						cokay = true
-						dlg.al("...you survived... okay... okay...")
-				else:
-					dlg.al("...that's... nice...")
-			elif greg.level < 80:
-				if not "town_east" in DAT.get_data("visited_rooms"):
-					dlg.al("i was thinking about walking to... east of town.")
-					dlg.al("but the police were blocking the road, last i checked...")
-					dlg.al("i wonder if they still are...?")
-				else:
-					dlg.al("i don't think i'm going to east of town like this...")
-
-			await dlg.speak_choice()
+			await _what_now(dlg)
 		elif choice == &"fisher":
+			_mention("fisher")
 			DAT.set_data("tarikas_talked_fisherwoman", true)
 			dlg.reset()
 			if not DAT.get_data("fisherwoman_fought", false):
@@ -163,6 +115,7 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("...")
 			await dlg.speak_choice()
 		elif choice == &"vampire":
+			_mention("vampire")
 			dlg.al("i... she was a vampire... i see.")
 			dlg.al("there isn't much cursed blood left... in the world.")
 			dlg.al("...thankfully.")
@@ -173,9 +126,9 @@ func _on_tarikas_inspected() -> void:
 			dlg.al("...")
 			dlg.al("the... the [color=#0f0]green demon[/color]?")
 			dlg.al("...is that so...")
-
 			await dlg.speak_choice()
 		elif choice == &"president":
+			_mention("president")
 			dlg.reset()
 			dlg.al("he is a... broken man.")
 			dlg.al("i don't think \"beacon archipelago\" is much more than a single rock...")
@@ -183,6 +136,7 @@ func _on_tarikas_inspected() -> void:
 			dlg.al("none should have this... magnitude... of power over nature.")
 			await dlg.speak_choice()
 		elif choice == &"flowerboy":
+			_mention("flowerboy")
 			dlg.reset()
 			dlg.al("i don't know much... about him.")
 			dlg.al("he doesn't talk to us at all.")
@@ -192,6 +146,7 @@ func _on_tarikas_inspected() -> void:
 			dlg.al("it'd be best if you stayed... away.")
 			await dlg.speak_choice()
 		elif choice == &"mayor":
+			_mention("mayor")
 			dlg.reset()
 			dlg.al("so you met the... mayor.")
 			dlg.al("he hasn't actually been in power for a long... time...")
@@ -202,6 +157,7 @@ func _on_tarikas_inspected() -> void:
 			dlg.al("i think... he was caught at an... opportune moment.")
 			await dlg.speak_choice()
 		elif choice == &"flowers":
+			_mention("flowers")
 			dlg.reset()
 			if flowers_c < 2:
 				dlg.al("the... [color=%s]flowers[/color]?" % dlg.FLOWERCOLOR)
@@ -233,3 +189,116 @@ func _on_tarikas_inspected() -> void:
 			await dlg.speak_choice()
 		else:
 			break
+	_notif.call_deferred()
+
+
+func _check_topics() -> void:
+	var greg := ResMan.get_character("greg")
+	var flowers_c := DAT.flower_progress(greg.inventory)
+	if flowers_c > 1 and "flowers" not in unlocked_topics:
+		unlocked_topics.append("flowers")
+	for l in [5, 20, 40, 50, 60, 70, 80]:
+		if greg.level >= l and talked_now_last_level < greg.level:
+			_unmention("now")
+	if unlocked_topics.size() > talked_topics.size():
+		notif_cleared = false
+
+
+func _mention(topic: String) -> void:
+	if topic not in talked_topics:
+		talked_topics.append(topic)
+
+
+func _unmention(topic: String) -> void:
+	if topic in talked_topics:
+		talked_topics.erase(topic)
+
+
+const NOTIF_ALERT_X = 64.0
+const NOTIF_CONTINUE_X = NOTIF_ALERT_X + 7
+
+func _notif() -> void:
+	notif.hide()
+	notif_anim.speed = 10.0
+	notif.region_rect.position.x = NOTIF_ALERT_X
+	if not Math.same_contents(talked_topics, unlocked_topics):
+		if notif_cleared:
+			notif.region_rect.position.x = NOTIF_CONTINUE_X
+			notif_anim.speed = 0.0
+			notif_anim.offset = 0.125
+		notif.show()
+
+
+func _what_now(dlg: DialogueBuilder) -> void:
+	var greg := ResMan.get_character("greg")
+	var flowers_c := DAT.flower_progress(greg.inventory)
+	dlg.reset()
+	talked_now_last_level = greg.level
+	_mention("now")
+	if flowers_c < 2:
+		dlg.al("advice on what to do now? mh.")
+	if greg.level < 5:
+		dlg.al("you look weak... and frail.")
+		dlg.al("back as little kids, we used to go into the tall grass...")
+		dlg.al("...and fight whatever... sprung up to attack us.")
+		dlg.al("that grew character. you clearly... didn't do that.")
+	elif greg.level < 20:
+		dlg.al("if i were you...")
+		dlg.al("i'd be careful... loitering around town.")
+		dlg.al("the new generation has been growing up into...")
+		dlg.al("...a bunch of thugs.")
+		dlg.al("you contend for the same niche...")
+	elif greg.level < 40:
+		if not DAT.get_data("fisherwoman_fought", false):
+			if flowers_c == 1:
+				dlg.al("it's... good weather for a stroll by the lake today.")
+				dlg.al("i wouldn't go. the fish are too... aggressive.")
+				dlg.al("i know someone who fell in the lake... once.")
+				dlg.al("when he managed to clamber out, he was... changed...")
+				dlg.al("extremely muscular and wise from all the combat experience...")
+				dlg.al("...from fighting for his life with the underwater creatures.")
+				dlg.al("he later died in a car accident,")
+			else:
+				dlg.al("the fisher-woman...")
+				dlg.al("don't bother her with your... trife... troubles...")
+		else:
+			dlg.al("...")
+			dlg.al("now there is nothing to do but to... loiter.")
+			dlg.al("for a while.")
+	elif greg.level < 50:
+		if not DAT.get_data("vampire_fought", false):
+			dlg.al("another newcomer in town...")
+			dlg.al("i figured one wouldn't be... the end of it...")
+			dlg.al("someone ought to keep an eye on her...")
+		else:
+			dlg.al("(whistle)")
+			dlg.al("i should go to the store... soon...")
+			dlg.al("(whistle...)")
+	elif greg.level < 60:
+		if not DAT.get_data("president_fought", false):
+			dlg.al("i decided against going shopping.")
+			dlg.al("there is someone there...")
+		else:
+			dlg.al("hm? he's... gone? i can go shopping?")
+			dlg.al("i'll... i'll...")
+			dlg.al("maybe not... today.")
+	elif greg.level < 70:
+		if not cokay:
+			dlg.al("maybe it'd help to go on a...")
+			dlg.al("calming... walk in the woods?")
+			dlg.al("there's a path to there around the north of town.")
+			if DAT.visited_room("forest"):
+				dlg.al("...you've been there...?")
+				cokay = true
+				dlg.al("...you survived... okay... okay...")
+		else:
+			dlg.al("...that's... nice...")
+	elif greg.level < 80:
+		if not "town_east" in DAT.get_data("visited_rooms"):
+			dlg.al("i was thinking about walking to... east of town.")
+			dlg.al("but the police were blocking the road, last i checked...")
+			dlg.al("i wonder if they still are...?")
+		else:
+			dlg.al("i don't think i'm going to east of town like this...")
+
+	await dlg.speak_choice()
