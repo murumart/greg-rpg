@@ -26,6 +26,7 @@ const MAX_TEXT_LENGTH := 66
 @export var set_data := []
 
 @export var callback: Callable
+@export var choice_visual_setup_callable: Callable
 
 
 static func mk(text_: String) -> DialogueLine:
@@ -81,6 +82,11 @@ func sloop(to: int) -> DialogueLine:
 
 func scallback(to: Callable) -> DialogueLine:
 	callback = to
+	return self
+
+
+func schoice_visual_setup_callable(to: Callable) -> DialogueLine:
+	choice_visual_setup_callable = to
 	return self
 
 

@@ -132,7 +132,7 @@ static func load_reference_buttons(
 	var REFERENCE_BUTTON := preload("res://scenes/tech/scn_reference_button.tscn")
 	var mouse_interaction := options.get("mouse_interaction", false) as bool
 	var text_left := options.get("text_left", 2147483647) as int
-	var custom_pass_function = options.get("custom_pass_function", null)
+	var custom_pass_function: Callable = options.get("custom_pass_function", Callable())
 	var us2space := options.get("us2space", false) as bool
 	var name_overwrite_array := options.get("name_overwrite_array", []) as Array
 	if options.get("clear", true):
@@ -149,7 +149,7 @@ static func load_reference_buttons(
 		if name_overwrite_array:
 			refbutton.text = str(name_overwrite_array[i]).left(text_left)
 		if us2space: refbutton.text = refbutton.text.replace("_", " ")
-		if custom_pass_function:
+		if custom_pass_function.is_valid():
 			custom_pass_function.call({
 					"button": refbutton,
 					"reference": ref,

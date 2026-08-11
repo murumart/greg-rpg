@@ -240,7 +240,16 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() - 1 else 2)
 
 	if choices:
-		Math.load_reference_buttons(choices, [choices_container], _reference_button_pressed, _on_button_reference_received, {"text_left": int(choices_container.size.x * 0.25 - 1)})
+		Math.load_reference_buttons(
+				choices,
+				[choices_container],
+				_reference_button_pressed,
+				_on_button_reference_received,
+				{
+					"text_left": int(choices_container.size.x * 0.25 - 1),
+					"custom_pass_function": loaded_dialogue_line.choice_visual_setup_callable,
+				}
+		)
 		choices_container.get_parent().show()
 		choices_open = true
 		choices_container.get_child(0).call_deferred("grab_focus")

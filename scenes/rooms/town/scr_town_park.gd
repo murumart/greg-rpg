@@ -90,7 +90,14 @@ func _on_tarikas_inspected() -> void:
 		aval_choices.sort()
 		dlg.reset().add_line(
 			dlg.ml("what brings you here?" if flowers_c < 2 else "...")
-			.schoices(aval_choices))
+			.schoices(aval_choices)
+			.schoice_visual_setup_callable(func(d: Dictionary) -> void:
+				#"button": refbutton,
+				#"reference": ref,
+				#"nr": i
+				if d.reference not in talked_topics:
+					d.button.modulate = Color.GREEN
+				))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
 			if flowers_c < 2:
@@ -198,7 +205,7 @@ func _check_topics() -> void:
 	if flowers_c > 1 and "flowers" not in unlocked_topics:
 		unlocked_topics.append("flowers")
 	for l in [5, 20, 40, 50, 60, 70, 80]:
-		if greg.level >= l and talked_now_last_level < greg.level:
+		if greg.level >= l and talked_now_last_level < l:
 			_unmention("now")
 	if unlocked_topics.size() > talked_topics.size():
 		notif_cleared = false
