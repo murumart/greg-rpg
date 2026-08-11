@@ -2096,6 +2096,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
+modulate = Color(1, 1, 1, 0.9988346)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false

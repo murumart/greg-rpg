@@ -12,7 +12,7 @@ const S_EHEH = preload("res://sounds/x/eheh.ogg")
 
 @onready var greg: PlayerOverworld = $"../Greg"
 @onready var flower_darkness: Sprite2D = $"../FlowerDarkness"
-@onready var camera: CT = $"../Greg/Camera"
+@onready var camera: CT
 @onready var speech_buble: SP = $SpeechBuble
 @onready var mdp: Node2D = $mdp
 @onready var mdpsprite: AnimatedSprite2D = $mdp/mdp
@@ -32,6 +32,7 @@ func _ready() -> void:
 	if LTS.gate_id != &"afterexpo":
 		queue_free()
 		return
+	camera = $"../Greg/Camera"
 	DAT.capture_player("cutscene")
 	greg.global_position = global_position
 	flower_darkness.hide.call_deferred()

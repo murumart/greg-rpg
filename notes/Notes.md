@@ -213,6 +213,7 @@ multipanther -> +10 (=99)
 - [X] starmap puzzle feedback when you get correct solution
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
+- [ ] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [ ] note of maximum level in forest HUD
 - [ ] new line to bald guy
 - [ ] incidental forest npc written by june
@@ -238,3 +239,7 @@ multipanther -> +10 (=99)
 
 need some sort of way to direct players to bosses... people like fw are very obscure. maybe make that specific one non-linear
 and sort of the last one you have to reach. match greg's level
+
+tarikas:
+	talk about using bike to escape loitering thugs
+	bike ghosts topic

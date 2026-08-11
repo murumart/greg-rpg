@@ -17,6 +17,9 @@ var talked_topics: PackedStringArray:
 var talked_now_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_now_last_level", to)
 	get: return DAT.get_data("tarikas_talked_now_last_level", 0) 
+var talked_flowers_last_level: int:
+	set(to): DAT.set_data("tarikas_talked_flowers_last_level", to)
+	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0) 
 
 var done: bool:
 	set(to): DAT.set_data("tarikas_done", to)
@@ -207,6 +210,9 @@ func _check_topics() -> void:
 	for l in [5, 20, 40, 50, 60, 70, 80]:
 		if greg.level >= l and talked_now_last_level < l:
 			_unmention("now")
+	for f in [2, 4, 6, 7]:
+		if flowers_c >= f and talked_flowers_last_level < f:
+			_unmention("flowers")
 	if unlocked_topics.size() > talked_topics.size():
 		notif_cleared = false
 

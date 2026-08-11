@@ -133,7 +133,7 @@ func _ready() -> void:
 
 
 func _choose_lines() -> Array[StringName]:
-	var n := naturalist
+	#var n := naturalist
 	var greg := ResMan.get_character(\"greg\")
 
 	if greg.armour == RBOOTS:

@@ -27,15 +27,15 @@ func act() -> void:
 	turn_finished()
 
 
-func hurt(amount: float, gender: int) -> void:
-	if character.health - _hurt_damage(amount, gender) <= 0:
+func hurt(amount: float, gnd: int) -> void:
+	if character.health - _hurt_damage(amount, gnd) <= 0:
 		var prev := ignore_my_finishes
 		ignore_my_finishes = false
 		for x in 100:
 			use_item(&"gummy_worm", self)
 		ignore_my_finishes = prev
 		character.health += 121831293
-	super(amount, gender)
+	super(amount, gnd)
 
 
 func _on_player_act_finished() -> void:
@@ -44,7 +44,7 @@ func _on_player_act_finished() -> void:
 	var target := get_la_parm("target") as BattleActor
 	var dialogue_key := ""
 	dialogue_key = "zerma_fight_%s_%s_%s" % [progress, last_action_type,
-			target.character.name_in_file if target else ""]
+			target.character.name_in_file if target else &""]
 	if last_action_type == "item":
 		if SOL.dialogue_exists(dialogue_key + "_" + get_la_parm("item")):
 			dialogue_key += "_" + get_la_parm("item")
