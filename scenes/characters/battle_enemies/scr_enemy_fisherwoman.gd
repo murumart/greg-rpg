@@ -3,6 +3,7 @@ extends BattleEnemy
 const Blocks = preload("res://scenes/fishing/blocks.gd")
 const Hook = preload("res://scenes/fishing/hook.gd")
 const Spawner = preload("res://scenes/fishing/spawner.gd")
+const Camera = preload("res://scenes/tech/scr_camera.gd")
 
 @onready var blocks: Blocks = $FishingMinigame/Blocks
 @onready var hook: Hook = $FishingMinigame/Hook
@@ -11,6 +12,8 @@ const Spawner = preload("res://scenes/fishing/spawner.gd")
 
 @onready var particles: GPUParticles2D = $Sprite2D/Particles
 @onready var sprite: Sprite2D = $Sprite2D
+
+var camera: Camera
 
 var dlg := DialogueBuilder.new()
 var greg: BattleActor
@@ -21,6 +24,7 @@ func _ready() -> void:
 	remove_child(fishing_minigame)
 	get_parent().add_sibling(fishing_minigame)
 	greg = reference_to_opposing_array[0]
+	camera = get_window().get_camera_2d()
 
 
 func act() -> void:
@@ -36,6 +40,12 @@ func act() -> void:
 
 
 func hurt(amt: float, gnd: int) -> void:
+	if character.health_perc() < 0.5:
+		amt *= 0.5
+	if character.health_perc() < 0.25:
+		amt *= 0.5
+	if character.health_perc() < 0.125:
+		amt *= 0.5
 	if character.health - _hurt_damage(amt, gnd) <= 0:
 		dlg.reset().set_char("fisherwoman").set_emo("brood")
 		dlg.add_line(dlg.ml("...i understand."))
@@ -76,6 +86,9 @@ func dialogue() -> void:
 
 signal doneful
 func its_fishing_time() -> void:
+	camera.resolution_scale_factor = 0.5
+	camera.zoom = Math.v2(2.0)
+	camera.update_window_stuff()
 	choir.play()
 	blocks.noise.frequency = 0.123
 	hook.fish_caught.connect(func(a: FishingFish) -> void:
