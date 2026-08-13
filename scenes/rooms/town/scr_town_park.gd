@@ -1,4 +1,4 @@
-extends Node2D
+class_name TownPark extends Node2D
 
 @onready var guru: OverworldCharacter = $StatusEffectGuru
 @onready var tarikas: OverworldCharacter = $Tarikas
@@ -8,10 +8,10 @@ extends Node2D
 var tarikas_talked: bool:
 	set(to): DAT.set_data("tarikas_talked_to", to)
 	get: return DAT.get_data("tarikas_talked_to", false)
-var unlocked_topics: PackedStringArray:
+static var unlocked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_topics", to)
 	get: return DAT.get_data("tarikas_topics", [])
-var talked_topics: PackedStringArray:
+static var talked_topics: PackedStringArray:
 	set(to): DAT.set_data("tarikas_talked_topics", to)
 	get: return DAT.get_data("tarikas_talked_topics", [])
 var talked_now_last_level: int:
@@ -217,12 +217,24 @@ func _check_topics() -> void:
 		notif_cleared = false
 
 
-func _mention(topic: String) -> void:
+static func add_tarikas_topic(topic: String) -> void:
+	if topic not in unlocked_topics:
+		unlocked_topics.append(topic)
+
+
+static func _mention(topic: String) -> void:
 	if topic not in talked_topics:
 		talked_topics.append(topic)
 
 
-func _unmention(topic: String) -> void:
+static func refresh_tarikas_topic(topic: String) -> void:
+	if topic not in talked_topics:
+		add_tarikas_topic(topic)
+		return
+	_unmention(topic)
+
+
+static func _unmention(topic: String) -> void:
 	if topic in talked_topics:
 		talked_topics.erase(topic)
 

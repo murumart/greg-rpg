@@ -132,15 +132,15 @@ size = Vector2(66, 42.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3da"]
 size = Vector2(56, 121)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o1ix"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnbx1"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnbx1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwr42"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nwr42"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kvxqu"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -226,7 +226,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ey82i")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 5.0
 }, {
@@ -243,7 +243,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5sy27")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -260,7 +260,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jue2x")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }, {
@@ -277,13 +277,16 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pqwka")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88xhv"]
 size = Vector2(13, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xos6n"]
+size = Vector2(66, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d6pt"]
 size = Vector2(20, 12)
@@ -653,13 +656,13 @@ chase_target = NodePath("../../Greg")
 chase_distance = 200
 
 [node name="CollisionShape" parent="Areas/FastGuy" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_5o1ix")
-
-[node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" parent_id_path=PackedInt32Array(1503159895, 1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_hnbx1")
 
+[node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" parent_id_path=PackedInt32Array(1503159895, 1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_nwr42")
+
 [node name="DetectionShape" parent="Areas/FastGuy/DetectionArea" parent_id_path=PackedInt32Array(1503159895, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_nwr42")
+shape = SubResource("CircleShape2D_kvxqu")
 
 [node name="Buildings" type="Node2D" parent="." unique_id=1118214489]
 y_sort_enabled = true
@@ -754,6 +757,13 @@ position = Vector2(-12, 35)
 
 [node name="Node2D4" type="Node2D" parent="Buildings/Pier/FisherwomanPath" unique_id=1031597130]
 position = Vector2(8, 36)
+
+[node name="NpcBlocker" type="StaticBody2D" parent="Buildings/Pier" unique_id=227810671]
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Pier/NpcBlocker" unique_id=1170056628]
+shape = SubResource("RectangleShape2D_xos6n")
 
 [node name="KidStand" type="Node2D" parent="Buildings" unique_id=115905725]
 y_sort_enabled = true

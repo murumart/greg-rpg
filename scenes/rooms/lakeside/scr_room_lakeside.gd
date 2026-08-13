@@ -79,37 +79,33 @@ func _car_scared_setup() -> void:
 		$Fishermen/Fisherman33.queue_free()
 
 
+var fisherwoman_fought: bool:
+	get: return DAT.get_data("fisherwoman_fought", false)
+	set(to): DAT.set_data("fisherwoman_fought", to)
+var fisherwoman_violently: bool:
+	get: return DAT.get_data("fisherwoman_violently", false)
+	set(to): DAT.set_data("fisherwoman_violently", to)
+
+
 func _fisherwoman_setup() -> void:
-	if DAT.get_data("fisherwoman_violently", false):
+	if fisherwoman_violently:
 		fisherwoman.queue_free()
 		return
-	if DAT.get_data("fisherwoman_fought", false) and Math.inrange(ResMan.get_character("greg").level, 0, 70):
+	if fisherwoman_fought and Math.inrange(ResMan.get_character("greg").level, 0, 70):
 		fisherwoman.queue_free()
 		return
 
 
-var _flower_prog := 0
+var _flower_prog: int:
+	get: return DAT.get_data("fisherwoman_flower_progrss", 0)
+	set(to): DAT.set_data("fisherwoman_flower_progrss", to)
+
 func _on_fisherwoman_inspected() -> void:
-	DAT.appenda_uq("tarikas_topics", "fisher")
-	#var dbox := SOL.dialogue_box as DialogueBox
+	TownPark.add_tarikas_topic("fisher")
 	fisherwoman.enter_a_state_of_conversation()
 	var dlg := DialogueBuilder.new().set_char("fisherwoman")
-	if DAT.get_data("fisherwoman_fought", false):
-		if not DAT.get_data("fisherwoman_opened", false):
-			dlg.add_line(dlg.ml("oh... it's you."))
-			dlg.add_line(dlg.ml("..."))
-			dlg.add_line(dlg.ml("you're not them."))
-			dlg.add_line(dlg.ml("i think we might be more similar than i first thought."))
-			dlg.add_line(dlg.ml("..."))
-			dlg.add_line(dlg.ml("...do you remember..."))
-			dlg.add_line(dlg.ml("...who you were before?"))
-			dlg.add_line(dlg.ml("..."))
-			dlg.add_line(dlg.ml("...").semotion("brood"))
-			dlg.add_line(dlg.ml("nevermind. pretend i didn't say anything."))
-			DAT.set_data("fisherwoman_opened", true)
-		else:
-			dlg.add_line(dlg.ml("the fishing pole is over there."))
-		await dlg.speak_choice()
+	if fisherwoman_fought:
+		SOL.dialogue("fisherwoman_70")
 		return
 	var greeting := "hola, amigo. sup?"
 	if not DAT.get_data("fisherwoman_introduced", false):
@@ -125,15 +121,15 @@ func _on_fisherwoman_inspected() -> void:
 			SND.current_song_player.volume_db = 0
 		if DAT.get_data("fishings_finished", 0) > 0:
 			aval_choices.insert(2, &"lures")
-		if DAT.get_data("fishings_finished", 0) > 4 or DAT.get_data("tarikas_talked_fisherwoman", false):
+		if DAT.get_data("fishings_finished", 0) > 2 or DAT.get_data("tarikas_talked_fisherwoman", false):
 			aval_choices.insert(3, &"flower")
 		if _flower_prog > 0:
-			aval_choices.erase(&"you")
-			aval_choices.erase(&"me")
-		if _flower_prog > 1:
 			aval_choices.erase(&"fishing")
 			aval_choices.erase(&"lures")
 			greeting = "..."
+		if _flower_prog > 1:
+			aval_choices.erase(&"you")
+			aval_choices.erase(&"me")
 			if is_instance_valid(SND.current_song_player):
 				SND.current_song_player.volume_db = -10
 		if _flower_prog > 2:
@@ -144,22 +140,37 @@ func _on_fisherwoman_inspected() -> void:
 			if is_instance_valid(SND.current_song_player):
 				SND.current_song_player.volume_db = -80
 		dlg.clear().set_char("fisherwoman")
-		dlg.add_line(dlg.ml(greeting).schoices(aval_choices))
+		dlg.add_line(dlg.ml(greeting).schoices(aval_choices).schoice_visual_setup_callable(
+			func(d: Dictionary) -> void:
+				if d.reference == "flower":
+					d.button.modulate = dlg.FLOWERCOLOR
+		))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
+			if _flower_prog <= 0:
+				dlg.reset().clear_char()
+				dlg.al("(too engrossed by thinking about fish to reply)")
+				await dlg.speak_choice()
+			_flower_prog = maxi(0, _flower_prog - 1)
 			break
 		elif choice == &"you":
 			dlg.reset().set_char("fisherwoman")
-			dlg.add_line(dlg.ml("like, who i am?"))
-			dlg.add_line(dlg.ml("hahaha! who knows!"))
-			dlg.add_line(dlg.ml("i discovered fishing one day..."))
-			dlg.add_line(dlg.ml("and life has been good ever since."))
+			if _flower_prog == 0:
+				dlg.add_line(dlg.ml("like, who i am?"))
+				dlg.add_line(dlg.ml("hahaha! who knows!"))
+				dlg.add_line(dlg.ml("i discovered fishing one day..."))
+				dlg.add_line(dlg.ml("and life has been good ever since."))
+			else:
+				dlg.al("like... why do you need to know about me...?")
 			await dlg.speak_choice()
 		elif choice == &"me":
 			dlg.reset().set_char("fisherwoman")
-			dlg.add_line(dlg.ml("about you?"))
-			dlg.add_line(dlg.ml("i don't know you, dude... why not introduce yourself?"))
-			dlg.add_line(dlg.ml("...nothing? okay, i know that feel, bro..."))
+			if _flower_prog == 0:
+				dlg.add_line(dlg.ml("about you?"))
+				dlg.add_line(dlg.ml("i don't know you, dude... why not introduce yourself?"))
+				dlg.add_line(dlg.ml("...nothing? okay, i know that feel, bro..."))
+			else:
+				dlg.al("i don't know you.")
 			await dlg.speak_choice()
 		elif choice == &"fishing":
 			dlg.reset().set_char("fisherwoman")
@@ -199,15 +210,15 @@ func _on_fisherwoman_inspected() -> void:
 				if is_instance_valid(SND.current_song_player):
 					SND.current_song_player.volume_db -= 6
 				dlg.add_line(dlg.ml("..."))
-				dlg.add_line(dlg.ml("that \"life\" is behind me."))
-				dlg.add_line(dlg.ml("what did they expect?"))
+				dlg.add_line(dlg.ml("that \"life\" is not mine."))
+				dlg.add_line(dlg.ml("...what did they expect?"))
 				_flower_prog += 1
 			elif _flower_prog == 2:
 				if is_instance_valid(SND.current_song_player):
 					SND.current_song_player.volume_db -= 12
-				dlg.add_line(dlg.ml("..."))
+				dlg.add_line(dlg.ml("...like... dude."))
 				dlg.add_line(dlg.ml("...i'm warning you."))
-				dlg.add_line(dlg.ml("we can talk about fish all day, dude."))
+				dlg.add_line(dlg.ml("we can talk about fish all day, man."))
 				dlg.add_line(dlg.ml("you don't have to bring this up."))
 				dlg.add_line(dlg.ml("forget about it, okay?"))
 				_flower_prog += 1
@@ -223,9 +234,10 @@ func _on_fisherwoman_inspected() -> void:
 				if is_instance_valid(SND.current_song_player):
 					SND.current_song_player.volume_db = -80
 				dlg.add_line(dlg.ml("..."))
-				dlg.add_line(dlg.ml("......").stext_speed(0.5))
+				dlg.add_line(dlg.ml("......i see.").stext_speed(0.5))
 				await dlg.speak_choice()
-				DAT.set_data("fisherwoman_fought", true)
+				fisherwoman_fought = true
+				TownPark.refresh_tarikas_topic("fisher")
 				LTS.enter_battle(preload("res://resources/battle_infos/fisherwoman_fight.tres"))
 				break
 

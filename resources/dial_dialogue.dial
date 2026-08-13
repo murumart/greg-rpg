@@ -3908,6 +3908,35 @@ CHAR mayor
 	i'm gonna whoop your [color=SAUCECOLOR]butt[/color], son.
 
 
+DIALOGUE fisherwoman_70
+CHAR fisherwoman
+DATA_LINK fisherwoman_opened,true
+EMO 
+	the fishing pole is over there.
+DATA_LINK fisherwoman_opened,false
+	oh... it's you.
+	you're not her.
+	...i suppose we're more alike than i first thought.
+	i... had a very different life before all this.
+	in some ways, it was worse.
+	like... i like the fishing. i like the greens and blues.
+	i miss real conversations. i miss "real people".
+	and here, too, it's, like... an escape.
+	an escape from the "real world"... where i should be.
+	even the [color=FLOWERCOLOR]flower[/color]... i'm escaping from its purpose.
+	i don't want to be, like, a big mover and shaker.
+	but that's her expectation...
+	...maybe you can show her what being someone like that...
+	...really means.
+	...i don't know.
+	like...
+EMO brood
+	...
+	...your eyes are like glass.
+SET_DATA fisherwoman_opened,true
+	i only see my own reflection.
+
+
 DIALOGUE sg_welcome
 	%SGWelcome to the [color=FLOWERCOLOR]SECRET GARDEN[/color], Greg.
 	%SGYour journey is nearing its end.

@@ -12,6 +12,7 @@ const Camera = preload("res://scenes/tech/scr_camera.gd")
 
 @onready var particles: GPUParticles2D = $Sprite2D/Particles
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var gregparticles: ParticleProcessMaterial = $FishingMinigame/Hook/Look/Sprite2D/Particles.process_material
 
 var camera: Camera
 
@@ -56,29 +57,31 @@ func hurt(amt: float, gnd: int) -> void:
 	character.speed = 65.0
 
 
+var d_progress := 0
+
 func will_final_attack() -> bool:
 	return d_progress > 10
 
 
-var d_progress := 0
 func dialogue() -> void:
 	dlg.reset().set_char("fisherwoman").set_emo("brood")
 	match d_progress:
-		0: dlg.add_line(dlg.ml("go away."))
-		1: dlg.add_line(dlg.ml("i knew you'd come back to toy with me."))
-		2: dlg.add_line(dlg.ml("you made a mistake by bringing me here."))
-		3: dlg.add_line(dlg.ml("giving me the [color=%s]flower[/color] was a mistake, too." % DialogueBuilder.FLOWERCOLOR))
-		4: dlg.add_line(dlg.ml("so, you're finally correcting your mistake."))
-		6: dlg.add_line(dlg.ml("...i don't remember you smelling this bad, though."))
-		8: dlg.add_line(dlg.ml("..."))
-		10: dlg.add_line(dlg.ml("...!"))
+		0: dlg.al("go away.")
+		1: dlg.al("i knew you'd come back to toy with me.")
+		2: dlg.al("you made a mistake by bringing me here.")
+		3: dlg.al("giving me the [color=%s]flower[/color] was a mistake, too." % DialogueBuilder.FLOWERCOLOR)
+		4: dlg.al("are you finally correcting your mistake now?")
+		5: dlg.al("confiscating this power...")
+		6: dlg.al("...i don't remember you smelling this bad, though.")
+		8: dlg.al("...")
+		10: dlg.al("...!")
 		11:
-			dlg.add_line(dlg.ml("you know what? whatever!!"))
-			dlg.add_line(dlg.ml("this is why i'm here..."))
-			dlg.add_line(dlg.ml("but, i'll tell you officially, now."))
-			dlg.add_line(dlg.ml("i reject my [color=%s]flower[/color]!" % DialogueBuilder.FLOWERCOLOR).stext_speed(0.8))
-			dlg.add_line(dlg.ml("if you want it back so bad..."))
-			dlg.add_line(dlg.ml("well, go fish for it!"))
+			dlg.al("you know what? whatever!!")
+			dlg.al("this is why i'm here...")
+			dlg.al("but, i'll tell you officially: remember it!")
+			dlg.al("i reject my [color=%s]flower[/color]!" % DialogueBuilder.FLOWERCOLOR).stext_speed(0.8)
+			dlg.al("if you want it back so bad...")
+			dlg.al("go fish for it!")
 	d_progress += 1
 	if not dlg.is_empty():
 		await dlg.speak_choice()
@@ -90,6 +93,7 @@ func its_fishing_time() -> void:
 	camera.zoom = Math.v2(2.0)
 	camera.update_window_stuff()
 	choir.play()
+	SND.play_song("", 99.0)
 	blocks.noise.frequency = 0.123
 	hook.fish_caught.connect(func(a: FishingFish) -> void:
 		a.caught()
@@ -126,17 +130,19 @@ func its_fishing_time() -> void:
 	tw.parallel().tween_property(choir, ^"pitch_scale", 1.0, 0.9)
 	hook.state = Blocks.FG.States.MOVE
 	blocks.state = Blocks.FG.States.MOVE
-	tw.set_trans(Tween.TRANS_CUBIC).parallel().tween_method(func(a: float) -> void:
+	tw.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).parallel().tween_method(func(a: float) -> void:
 		hook.speed = a
 		blocks.speed = a
-	, 50.0, max_speed, wait_time * 1.3)
-	tw.parallel().tween_property(choir, ^"pitch_scale", 2.0, wait_time * 1.3)
+	, 50.0, max_speed, wait_time)
+	tw.parallel().set_ease(Tween.EASE_OUT).tween_property(choir, ^"pitch_scale", 2.0, wait_time * 1.3)
+	tw.parallel().set_ease(Tween.EASE_OUT).tween_property(gregparticles, ^"initial_velocity_max", 120.0, wait_time * 1.3)
 	tw.tween_property(flower, ^"position:y", 0.0, wait_time)
-	tw.parallel().tween_method(func(a: float) -> void:
+	tw.parallel().set_ease(Tween.EASE_IN_OUT).tween_method(func(a: float) -> void:
 		hook.speed = a
 		blocks.speed = a
-	, max_speed, 0.0, wait_time)
+	, max_speed, 0.0, wait_time * 0.75)
 	tw.parallel().tween_property(choir, ^"pitch_scale", 0.75, wait_time)
 	tw.parallel().tween_property(choir, ^"volume_db", -10, wait_time)
+	tw.parallel().tween_property(gregparticles, ^"initial_velocity_max", 10.0, wait_time)
 	tw.parallel().tween_property(blocks.noise, ^"frequency", 0.02, wait_time + 1.0)
 	await doneful
