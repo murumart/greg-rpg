@@ -406,7 +406,10 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 func chase(body: Node2D) -> void:
 	# test if raycast can reach the target
-	detection_raycast.target_position = to_local(body.global_position)
+	var bodylocal := to_local(body.global_position)
+	if not bodylocal.is_finite():
+		bodylocal = Vector2.ZERO
+	detection_raycast.target_position = bodylocal
 	detection_raycast.force_raycast_update()
 	var collider := detection_raycast.get_collider()
 	var collider_is_target := collider == chase_target

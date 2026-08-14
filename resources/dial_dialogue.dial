@@ -3106,6 +3106,20 @@ DIALOGUE asphalt_comment_2
 	my shoes are melting
 
 
+DIALOGUE wb_talk_1
+	ya'll, it's a darn good weather for grillin'!!
+	yippie-ka(unintelligible)
+
+
+DIALOGUE wb_talk_2
+	we don't see new faces 'round these parts often, y'hear.
+	toss 'em on the grill and (indecipherable)!!
+
+
+DIALOGUE wb_talk_3
+	i love my [color=f00]husband[/color], nya!!
+
+
 DIALOGUE mafia_mumbles_1
 	(it's dark.)
 	(you overhear a quiet conversation.)

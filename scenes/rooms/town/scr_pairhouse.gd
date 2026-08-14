@@ -7,7 +7,7 @@ var int_disabled := false
 @onready var guy: OverworldCharacter = $Guy
 @onready var door: Area2D = $DoorArea2
 
-@onready var bald_man := $MailInfo as OverworldCharacter
+@onready var bald_man := get_node_or_null(^"MailInfo") as OverworldCharacter
 
 
 
@@ -30,6 +30,8 @@ func pairhouse_guy_setup() -> void:
 
 
 func _bald_man_setup() -> void:
+	if not is_instance_valid(bald_man):
+		return
 	if DAT.get_data("heard_mail_info_played", false):
 		bald_man.default_lines.append("bald_man_default")
 	elif DAT.get_data("biking_games_finished", 0) and DAT.get_data("heard_mail_info", false):

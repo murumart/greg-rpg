@@ -64,7 +64,7 @@ func _position_dialogue_box() -> void:
 
 func dialogue_exists(key: String) -> bool:
 	if dialogue_box.dialogues_dict.is_empty():
-		dialogue_box._load_dialogue_files()
+		dialogue_box.load_dialogue_files(dialogue_box.dialogues_dict)
 	return key in dialogue_box.dialogues_dict
 
 

@@ -127,6 +127,23 @@ size = Vector2(14, 9.99994)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smefo"]
 size = Vector2(16.0001, 8)
 
+[sub_resource type="Resource" id="Resource_50lhf"]
+script = ExtResource("35_06enm")
+level_max = 60
+metadata/_custom_type_script = "uid://c50jackklahng"
+
+[sub_resource type="Resource" id="Resource_06enm"]
+script = ExtResource("35_06enm")
+level_min = 60
+level_max = 99
+metadata/_custom_type_script = "uid://c50jackklahng"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xos6n"]
+size = Vector2(15.000008, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d7it"]
+size = Vector2(14.000001, 11.999985)
+
 [sub_resource type="GDScript" id="GDScript_so86e"]
 resource_name = "roof_hide_funny"
 script/source = "extends TileMapLayer
@@ -1353,12 +1370,59 @@ rotation = -3.14159
 scale = Vector2(1, -1)
 default_lines = Array[StringName]([&"mail_game_info", &"mail_game_info_2"])
 save = false
+existence_predicate = SubResource("Resource_50lhf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/Pairhouse/MailInfo" unique_id=1775079523]
 position = Vector2(0, -8)
 texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(32, 32, 16, 16)
+
+[node name="BaldGuy" parent="Houses/Pairhouse" unique_id=623431601 instance=ExtResource("10_dem56")]
+position = Vector2(-74.99964, -142.00017)
+rotation = -3.14159
+scale = Vector2(1, -1)
+default_lines = Array[StringName]([&"wb_talk_1", &"wb_talk_2", &"wb_talk_3"])
+save = false
+existence_predicate = SubResource("Resource_06enm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Pairhouse/BaldGuy" unique_id=1111982633]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(16, 64, 16, 16)
+
+[node name="UpHouse" type="Area2D" parent="Houses/Pairhouse" unique_id=1690921965]
+position = Vector2(0.00035746064, -141)
+script = ExtResource("10_fbdk7")
+key = "grillhouse"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/UpHouse" unique_id=872360833]
+position = Vector2(7.5000153, -5.0000916)
+shape = SubResource("RectangleShape2D_xos6n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/Pairhouse/UpHouse" unique_id=244157142]
+position = Vector2(-23.999989, -5.000171)
+shape = SubResource("RectangleShape2D_xos6n")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Houses/Pairhouse/UpHouse" unique_id=2036063919]
+position = Vector2(-55.99999, -5.0002522)
+shape = SubResource("RectangleShape2D_xos6n")
+
+[node name="InspectArea" type="Area2D" parent="Houses/Pairhouse" unique_id=1281118294]
+position = Vector2(-50.000126, 49.999874)
+script = ExtResource("10_fbdk7")
+key = "gamerhouse"
+metadata/_custom_type_script = "uid://c68b383voql6x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/InspectArea" unique_id=1419378162]
+position = Vector2(26.000015, -5.999939)
+shape = SubResource("RectangleShape2D_3d7it")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/Pairhouse/InspectArea" unique_id=153872732]
+position = Vector2(-21.99998, -7.0000606)
+shape = SubResource("RectangleShape2D_3d7it")
 
 [node name="Store" type="Node2D" parent="Houses" unique_id=1195424476]
 y_sort_enabled = true
@@ -1557,7 +1621,7 @@ position = Vector2(502, -278)
 [node name="UguyPath11" type="Node2D" parent="Houses/Store/UguyPath" unique_id=2041189417]
 position = Vector2(588, -285)
 
-[node name="AsphaltComment" parent="Houses/Store" unique_id=623431601 instance=ExtResource("10_dem56")]
+[node name="AsphaltComment" parent="Houses/Store" unique_id=1806394742 instance=ExtResource("10_dem56")]
 position = Vector2(92, -163)
 default_lines = Array[StringName]([&"asphalt_comment_1", &"asphalt_comment_2"])
 existence_predicate = SubResource("Resource_xos6n")
@@ -2113,7 +2177,6 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.9998336)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false

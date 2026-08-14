@@ -18,7 +18,11 @@ func _ready() -> void:
 	set_collision_layer_value(3, true)
 	monitoring = false
 	input_pickable = false
-
+	if key:
+		assert(SOL.dialogue_exists(INTERACTION_DIALOGUE_BASE + key))
+	elif keys.size() > 0:
+		for k in keys:
+			assert(SOL.dialogue_exists(INTERACTION_DIALOGUE_BASE + k))
 	if save_progress:
 		progress = mini(DAT.get_data(save_key("progress"), 0), keys.size() - 1)
 

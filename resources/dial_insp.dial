@@ -507,6 +507,17 @@ CHOICE_LINK yes
 	the grill is cold.
 
 
+DIALOGUE insp_grillhouse
+	peeking inside, you see a lovely family home.
+	spatulae are hung proudly on the walls.
+	there's a fridge labeled "meat".
+
+
+DIALOGUE insp_gamerhouse
+	darkness constricts your view...
+	information gain reduced outside of [color=ff0]gamer points[/color].
+
+
 DIALOGUE insp_factory_vines
 	nature has taken its place.
 
