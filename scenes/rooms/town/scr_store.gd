@@ -32,7 +32,9 @@ func _store_door_setup() -> void:
 
 
 func lake_hint_npc_setup() -> void:
-	var npc := $LakeHintNpc as OverworldCharacter
+	var npc := get_node_or_null("LakeHintNpc") as OverworldCharacter
+	if not is_instance_valid(npc):
+		return
 	var time := DAT.seconds % DAT.LAKE_HINT_CYCLE as int
 	var cyc := DAT.LAKE_HINT_CYCLE as int
 	if not DAT.visited_room("lakeside") and not (Math.inrange(time, cyc * 0.33, cyc * 0.66)):

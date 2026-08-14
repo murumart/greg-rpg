@@ -3120,6 +3120,21 @@ DIALOGUE wb_talk_3
 	i love my [color=f00]husband[/color], nya!!
 
 
+DIALOGUE lakehint_sunset_1
+	do you see how blue my door and roof are?
+	they match the [color=YUKUCOLOR]yuku[/color] branding quite well.
+	same with my clothes.
+	it's unintentional. i think it's a [color=YUKUCOLOR]curse[/color].
+
+
+# todo add meaning
+DIALOGUE lakehint_sunset_2
+	they stock the products you love...
+	and the products you loathe...
+	and the products that loathe you...
+	i'm waiting for [color=YUKUCOLOR]slime tuesday[/color]. [color=YUKUCOLOR]slime[/color] 20% off.
+
+
 DIALOGUE mafia_mumbles_1
 	(it's dark.)
 	(you overhear a quiet conversation.)

@@ -48,6 +48,8 @@
 [ext_resource type="Script" uid="uid://d3ou8r8xmeefi" path="res://scenes/rooms/town/scr_uhh_house.gd" id="26_w7wx6"]
 [ext_resource type="Script" uid="uid://c2gv7d4ggcs5" path="res://scenes/rooms/town/scr_store.gd" id="26_yxj03"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="27_00mvv"]
+[ext_resource type="Script" uid="uid://cybgyxtius8n1" path="res://code/predicates/not.gd" id="27_2hmyh"]
+[ext_resource type="Script" uid="uid://cgk8pqbe8vy2x" path="res://code/predicates/room_visited.gd" id="28_ycmof"]
 [ext_resource type="Script" uid="uid://y0t2b0j22rkh" path="res://scenes/rooms/town/scr_town_park.gd" id="29_1p6ww"]
 [ext_resource type="SpriteFrames" uid="uid://dcynyx0nrqt20" path="res://resources/characters/sfr_naturalist.tres" id="29_25qm4"]
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
@@ -115,6 +117,22 @@ size = Vector2(13, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynb2e"]
 size = Vector2(9, 7)
 
+[sub_resource type="Resource" id="Resource_6v6ai"]
+script = ExtResource("28_ycmof")
+room_key = &"lakeside"
+metadata/_custom_type_script = "uid://cgk8pqbe8vy2x"
+
+[sub_resource type="Resource" id="Resource_ycmof"]
+script = ExtResource("27_2hmyh")
+what = SubResource("Resource_6v6ai")
+metadata/_custom_type_script = "uid://cybgyxtius8n1"
+
+[sub_resource type="Resource" id="Resource_dlfy3"]
+script = ExtResource("35_06enm")
+level_min = 72
+level_max = 99
+metadata/_custom_type_script = "uid://c50jackklahng"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgui"]
 size = Vector2(21, 13)
 
@@ -135,7 +153,7 @@ metadata/_custom_type_script = "uid://c50jackklahng"
 [sub_resource type="Resource" id="Resource_06enm"]
 script = ExtResource("35_06enm")
 level_min = 60
-level_max = 99
+level_max = 71
 metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xos6n"]
@@ -192,6 +210,11 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmmce"]
 size = Vector2(34, 22)
+
+[sub_resource type="Resource" id="Resource_2hmyh"]
+script = ExtResource("35_06enm")
+level_max = 71
+metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="Animation" id="Animation_fqrk0"]
 length = 0.001
@@ -1221,12 +1244,25 @@ tutorial_type = 1
 position = Vector2(-42, 150)
 default_lines = Array[StringName]([&"fish_victim_hint_1"])
 save = false
+existence_predicate = SubResource("Resource_ycmof")
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/BlockNeighbours/FishScared" unique_id=528907103]
 position = Vector2(0, -8)
 texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(0, 48, 16, 16)
+
+[node name="FishScared2" parent="Houses/BlockNeighbours" unique_id=623431601 instance=ExtResource("10_dem56")]
+position = Vector2(33, 21)
+default_lines = Array[StringName]([&"lakehint_sunset_1", &"lakehint_sunset_2"])
+save = false
+existence_predicate = SubResource("Resource_dlfy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/BlockNeighbours/FishScared2" unique_id=1170049940]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(48, 16, 16, 16)
 
 [node name="Pairhouse" type="Node2D" parent="Houses" unique_id=213342539]
 y_sort_enabled = true
@@ -1378,7 +1414,7 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(32, 32, 16, 16)
 
-[node name="BaldGuy" parent="Houses/Pairhouse" unique_id=623431601 instance=ExtResource("10_dem56")]
+[node name="BaldGuy" parent="Houses/Pairhouse" unique_id=1236501524 instance=ExtResource("10_dem56")]
 position = Vector2(-74.99964, -142.00017)
 rotation = -3.14159
 scale = Vector2(1, -1)
@@ -1553,6 +1589,7 @@ tutorial_type = 2
 position = Vector2(108, 96)
 animated_sprite = NodePath("AnimatedSprite2D")
 save = false
+existence_predicate = SubResource("Resource_2hmyh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Houses/Store/LakeHintNpc" unique_id=1654958103]
 position = Vector2(0, -8)
@@ -2177,6 +2214,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
