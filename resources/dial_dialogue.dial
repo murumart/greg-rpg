@@ -3092,6 +3092,20 @@ DATA_LINK bike_beta_fought,false
 	it's nearby. just follow the path to the east...
 
 
+DIALOGUE asphalt_comment_1
+	ohhhhh yesssss (sniffffffff)
+	this parking lot... it's perfect.
+	huge, asphalt, parking lot... no greenery.
+	no fun.
+	so hot you can fry an egg on the floor
+	when i own a car, i'll be sure to park here
+	in the sun
+
+
+DIALOGUE asphalt_comment_2
+	my shoes are melting
+
+
 DIALOGUE mafia_mumbles_1
 	(it's dark.)
 	(you overhear a quiet conversation.)

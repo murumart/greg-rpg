@@ -54,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" uid="uid://lxu2lp5c0pkw" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
 [ext_resource type="Script" uid="uid://c8jbwmqob580s" path="res://scenes/rooms/town/town_uhh_house_2.gd" id="35_6b3qf"]
+[ext_resource type="Script" uid="uid://c50jackklahng" path="res://code/predicates/greg_level_range.gd" id="35_06enm"]
 [ext_resource type="Script" uid="uid://ct4x4l2aeh408" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
 [ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
 [ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
@@ -457,6 +458,11 @@ _data = {
 &"cutscene_start": SubResource("Animation_ddthu")
 }
 
+[sub_resource type="Resource" id="Resource_xos6n"]
+script = ExtResource("35_06enm")
+level_max = 50
+metadata/_custom_type_script = "uid://c50jackklahng"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_expa7"]
 size = Vector2(24, 6)
 
@@ -579,7 +585,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlv1q"]
 size = Vector2(14, 52)
 
-[sub_resource type="Curve2D" id="Curve2D_smefo"]
+[sub_resource type="Curve2D" id="Curve2D_50lhf"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -135, -26, 114.876, -76.8595, -114.876, 76.8595, -447, 304, 198.907, 3.12066, -198.907, -3.12066, -955, 372, 243.884, 10.4959, -243.884, -10.4959, -1539, 380)
@@ -1551,6 +1557,17 @@ position = Vector2(502, -278)
 [node name="UguyPath11" type="Node2D" parent="Houses/Store/UguyPath" unique_id=2041189417]
 position = Vector2(588, -285)
 
+[node name="AsphaltComment" parent="Houses/Store" unique_id=623431601 instance=ExtResource("10_dem56")]
+position = Vector2(92, -163)
+default_lines = Array[StringName]([&"asphalt_comment_1", &"asphalt_comment_2"])
+existence_predicate = SubResource("Resource_xos6n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Store/AsphaltComment" unique_id=1194747719]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
 [node name="PostOffice" type="Node2D" parent="Houses" unique_id=595469183]
 y_sort_enabled = true
 position = Vector2(336, -272)
@@ -2096,7 +2113,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.9988346)
+modulate = Color(1, 1, 1, 0.9998336)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2515,7 +2532,7 @@ position = Vector2(-1157, 392)
 position = Vector2(-1620, 391)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
-curve = SubResource("Curve2D_smefo")
+curve = SubResource("Curve2D_50lhf")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-135, -26)
@@ -2880,7 +2897,7 @@ wait_time = 9.0
 spawn_radius = 64.0
 
 [node name="ThugSpawner2" parent="Areas" unique_id=991353031 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
-position = Vector2(461, 27)
+position = Vector2(378, 12)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")

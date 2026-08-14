@@ -24,6 +24,6 @@ script = ExtResource("1_fqh4f")
 name = &"medkit"
 description = "heals you for a while"
 texture = ExtResource("4_7h1vw")
-price = 60
+price = 100
 use = 0
 payload = SubResource("Resource_h1edd")

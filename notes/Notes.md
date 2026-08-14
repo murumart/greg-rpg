@@ -188,7 +188,6 @@ multipanther -> +10 (=99)
 ### bugs to fix
 - [X] make forest bird stop shooting when player captured. its annoying
 - [X] remove empty trash... from wood..s..
-- [ ] didn't get tooth multiple times..?
 - [ ] tarikas vampire dialogue shows you '...' ?? broken overall
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] fisherwoman make flower dialogue first in order and save the order across interactions
@@ -211,9 +210,9 @@ multipanther -> +10 (=99)
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
+- [X] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
-- [ ] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [ ] note of maximum level in forest HUD
 - [ ] new line to bald guy
 - [ ] incidental forest npc written by june
