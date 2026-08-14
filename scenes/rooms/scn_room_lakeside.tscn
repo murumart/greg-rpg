@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://1slu6faa5w81" path="res://sprites/world/object/spr_carpile.png" id="20_w7psx"]
 [ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="21_85vv0"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="21_wb2do"]
+[ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="22_kvxqu"]
+[ext_resource type="Script" uid="uid://c50jackklahng" path="res://code/predicates/greg_level_range.gd" id="23_6io26"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="32_5o1ix"]
 [ext_resource type="SpriteFrames" uid="uid://qmv14jiuvhmw" path="res://resources/characters/sfr_lake_hint_grandma.tres" id="32_61gk4"]
 [ext_resource type="Script" uid="uid://dr10ikau5bgrg" path="res://code/scr_status_effect.gd" id="33_hnbx1"]
@@ -132,17 +134,29 @@ size = Vector2(66, 42.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3da"]
 size = Vector2(56, 121)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnbx1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvxqu"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwr42"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6io26"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kvxqu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_onlym"]
 resource_local_to_scene = true
 radius = 32.0
+
+[sub_resource type="Resource" id="Resource_nwr42"]
+script = ExtResource("22_kvxqu")
+data_key = &"fisherwoman_fought"
+matches = true
+metadata/_custom_type_script = "uid://qboohb38rsxs"
+
+[sub_resource type="Resource" id="Resource_hnbx1"]
+script = ExtResource("23_6io26")
+level_max = 70
+and_with = SubResource("Resource_nwr42")
+metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu707"]
 size = Vector2(12, 20)
@@ -656,13 +670,24 @@ chase_target = NodePath("../../Greg")
 chase_distance = 200
 
 [node name="CollisionShape" parent="Areas/FastGuy" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_hnbx1")
+shape = SubResource("RectangleShape2D_kvxqu")
 
 [node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" parent_id_path=PackedInt32Array(1503159895, 1353807789) index="0" unique_id=53099754]
-shape = SubResource("RectangleShape2D_nwr42")
+shape = SubResource("RectangleShape2D_6io26")
 
 [node name="DetectionShape" parent="Areas/FastGuy/DetectionArea" parent_id_path=PackedInt32Array(1503159895, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_kvxqu")
+shape = SubResource("CircleShape2D_onlym")
+
+[node name="BikeHint" parent="Areas" unique_id=623431601 instance=ExtResource("12_tsmfn")]
+position = Vector2(-214, -189)
+default_lines = Array[StringName]([&"bike_beta_hint_1", &"bike_beta_hint_2", &"bike_beta_hint_3"])
+existence_predicate = SubResource("Resource_hnbx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Areas/BikeHint" unique_id=20704055]
+position = Vector2(0, -8)
+texture = ExtResource("14_n53oy")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
 
 [node name="Buildings" type="Node2D" parent="." unique_id=1118214489]
 y_sort_enabled = true

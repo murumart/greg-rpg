@@ -3067,6 +3067,31 @@ DIALOGUE dance_battle_tutorial
 	be nimble about it, because losing to an animal is humiliating.
 
 
+DIALOGUE bike_beta_hint_1
+	oh... the fisherwoman...
+DATA_LINK fisherwoman_violently,false
+	she just stormed past here...
+	i guess she went toward the fast travel spot.
+	there's one near the fishermen's hut...
+
+
+DIALOGUE bike_beta_hint_2
+	she inspired me to fish, too...
+	i wish i had told her that... but it looks like...
+	i missed my chance... forever...
+
+
+DIALOGUE bike_beta_hint_3
+DATA_LINK bike_beta_fought,true
+	oh, you found the fast travel spot?
+	yeah... they've suddenly become haunted.
+	i have no idea who caused this...
+	it's really annoying.
+DATA_LINK bike_beta_fought,false
+	if you're looking for the fast travel spot...
+	it's nearby. just follow the path to the east...
+
+
 DIALOGUE mafia_mumbles_1
 	(it's dark.)
 	(you overhear a quiet conversation.)
@@ -4252,4 +4277,3 @@ DIALOGUE the_end
 DIALOGUE end_of_the_line
 	welcome to the end.
 	there is nothing further from here.
-

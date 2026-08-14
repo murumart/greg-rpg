@@ -26,6 +26,7 @@ func hurt(amt: float, g: int) -> void:
 			await create_tween().tween_interval(0.3).finished
 		await create_tween().tween_interval(1.0).finished
 		SOL.dialogue("bike_beta_battle_3")
+		DAT.set_data("bike_beta_fought", true)
 		await SOL.dialogue_closed
 		die()
 		return

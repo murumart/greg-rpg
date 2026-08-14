@@ -64,6 +64,9 @@ var player_collision_timer := Timer.new()
 @export var save_convo_progess: bool = false
 @export var save_battled := false
 
+@export_group("")
+@export var existence_predicate: Predicate
+
 var target: Vector2: set = set_target
 
 
@@ -73,6 +76,10 @@ func _ready() -> void:
 		pass
 	if save_battled:
 		if DAT.get_data(get_save_key("battled"), false):
+			queue_free()
+			return
+	if existence_predicate:
+		if existence_predicate.check() != Predicate.SUCCESS:
 			queue_free()
 			return
 	if save_position:
