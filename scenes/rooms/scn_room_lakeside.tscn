@@ -608,7 +608,7 @@ player = NodePath("../../Greg")
 [node name="EnemySpawner2" parent="Areas" unique_id=513958805 node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
 position = Vector2(226, -129)
 spawn_enemy = ExtResource("11_wk6gi")
-max_enemies = 4
+max_enemies = 2
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner3" parent="Areas" unique_id=895377593 node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
@@ -620,7 +620,7 @@ player = NodePath("../../Greg")
 [node name="EnemySpawner4" parent="Areas" unique_id=105048141 node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
 position = Vector2(434, 309)
 spawn_enemy = ExtResource("11_wk6gi")
-max_enemies = 3
+max_enemies = 2
 player = NodePath("../../Greg")
 
 [node name="EnemySpawner5" parent="Areas" unique_id=263064679 node_paths=PackedStringArray("player") instance=ExtResource("10_w8d1t")]
