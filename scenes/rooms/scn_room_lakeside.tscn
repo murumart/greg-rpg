@@ -681,6 +681,7 @@ shape = SubResource("CircleShape2D_onlym")
 [node name="BikeHint" parent="Areas" unique_id=623431601 instance=ExtResource("12_tsmfn")]
 position = Vector2(-214, -189)
 default_lines = Array[StringName]([&"bike_beta_hint_1", &"bike_beta_hint_2", &"bike_beta_hint_3"])
+save_convo_progess = true
 existence_predicate = SubResource("Resource_hnbx1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Areas/BikeHint" unique_id=20704055]
