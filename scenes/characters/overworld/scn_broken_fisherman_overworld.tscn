@@ -100,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jofv2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 5.0
 }, {
@@ -117,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pnvpk")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -134,7 +134,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k71e7")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }, {
@@ -151,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1cbnq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 5.0
 }]
@@ -184,7 +184,7 @@ key = &"fish"
 curve = SubResource("Curve_af0c2")
 
 [sub_resource type="Curve" id="Curve_wtvfl"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.296048, 0.263209), 0.0, 0.0, 0, 0, Vector2(1, 0.481338), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.35748792, 0.06741583), 0.0, 0.0, 0, 0, Vector2(1, 0.481338), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_e6gdb"]
@@ -219,6 +219,11 @@ script = ExtResource("5_2m4wv")
 key = &"strider"
 curve = SubResource("Curve_1qt73")
 
+[sub_resource type="Curve" id="Curve_p5phn"]
+_limits = [1.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.26457396, 1.3707862), 0.0, 0.0, 0, 0, Vector2(0.4215246, 2.2134829), 0.0, 0.0, 0, 0, Vector2(1, 3.9999995), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="Resource" id="Resource_8nto2"]
 script = ExtResource("7_c4ac7")
 name = &"drenchfoot"
@@ -252,13 +257,13 @@ interact_on_touch = true
 default_lines = Array[StringName]([&"fisherman_attack"])
 save = false
 
-[node name="CollisionShape" parent="." index="0"]
+[node name="CollisionShape" parent="." index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_4hde0")
 
-[node name="CollisionShape2D" parent="CollisionDetectionArea" index="0"]
+[node name="CollisionShape2D" parent="CollisionDetectionArea" parent_id_path=PackedInt32Array(1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_il21p")
 
-[node name="DetectionShape" parent="DetectionArea" index="0"]
+[node name="DetectionShape" parent="DetectionArea" parent_id_path=PackedInt32Array(744931465) index="0" unique_id=1547779472]
 shape = SubResource("CircleShape2D_c4ac7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=109748648]
@@ -269,5 +274,6 @@ animation = &"walk_down"
 [node name="RandomBattleComponent" type="Node" parent="." index="4" unique_id=1095584789 node_paths=PackedStringArray("inject_target")]
 script = ExtResource("4_txuqq")
 values = Array[ExtResource("5_2m4wv")]([SubResource("Resource_jh7as"), SubResource("Resource_7f55p"), SubResource("Resource_qgcim"), SubResource("Resource_e6gdb"), SubResource("Resource_3epx7"), SubResource("Resource_d08lo"), SubResource("Resource_cdx0q")])
+enemy_amount_by_level = SubResource("Curve_p5phn")
 default_battle = SubResource("Resource_v2hfp")
 inject_target = NodePath("..")
