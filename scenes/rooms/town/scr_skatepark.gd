@@ -72,9 +72,17 @@ func sk8r_kid_talk() -> void:
 					DAT.grant_item("ladder")
 					DAT.set_data("got_sk8r_ladder", true)
 		else:
-			#if &"ladder" not in ResMan.get_character("greg").inventory
-			dlg.al("you got the ladder, bro... just climb in thru his window.")
-			dlg.al("his window is one of them on the housing block to the north of here.")
+			if DAT.visited_room("mafia_house"):
+				dlg.al("what? the youth center is full of mafia guys?")
+				dlg.al("yo... that's really cool...")
+			elif &"key_youthcentre" in ResMan.get_character("greg").inventory:
+				dlg.al("yeah, i see the key, stop waving it under my nose...")
+				dlg.al("i think the youth center used to be locked with that one.")
+				dlg.al("until it was closed forever... the mayor hates youth, you see.")
+				dlg.al("i have no idea where the factory key could be, then...")
+			else:
+				dlg.al("you got the ladder, bro... just climb in thru his window.")
+				dlg.al("his window is one of them on the housing block to the north of here.")
 			await dlg.speak_choice()
 
 	elif choice == &"skate":

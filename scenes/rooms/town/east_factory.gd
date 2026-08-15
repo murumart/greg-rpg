@@ -64,7 +64,7 @@ func _door() -> void:
 		)
 		end = true
 	elif &"key_youthcentre" in inv:
-		dlg.al("you try the purple key.")
+		dlg.al("you try the silver key.")
 		dlg.al("the keyhole is way too spacious for it.")
 		dlg.al("you jangle the key around the hole.").scallback(func() -> void:
 			SND.play_sound(preload("res://sounds/biking_bell.ogg"), {pitch_scale = 0.5})

@@ -20,5 +20,5 @@ level = 72
 attack = 67.0
 defense = 70.0
 speed = 74.0
-spirits = Array[String](["peanuts"])
+spirits = Array[String](["vampeanuts"])
 metadata/_custom_type_script = "uid://cvf0g4tgojs8x"

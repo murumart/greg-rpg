@@ -9,11 +9,11 @@ const Mayor = preload("res://scenes/characters/overworld/scr_mayor_overworld.gd"
 
 
 func _ready() -> void:
+	if DAT.get_data("saw_mayor_intro", false):
+		mayor.global_position = factory_in_front_of.global_position
 	if LTS.gate_id == &"town-east" and not DAT.get_data("saw_mayor_intro", false):
 		_play_intro_cutscene()
 		DAT.set_data("saw_mayor_intro", true)
-	if DAT.get_data("saw_mayor_intro", false):
-		mayor.global_position = factory_in_front_of.global_position
 
 
 func _play_intro_cutscene() -> void:
