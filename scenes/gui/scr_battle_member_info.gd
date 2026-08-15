@@ -24,8 +24,6 @@ func display(charc: Character) -> void:
 	magic_bar.value = charc.magic
 	wait_bar.max_value = 1.0
 	#remote_transform.position = Vector2(12, 12)
-	if charc.health <= 0.0:
-		portrait.modulate.a = 0.5
 
 
 func update(actor: BattleActor) -> void:
@@ -39,6 +37,8 @@ func update(actor: BattleActor) -> void:
 	if actor.has_status_effect(&"little"):
 		portrait.scale = Vector2(0.5, 0.5)
 	portrait.modulate = actor.modulate
+	if charc.health <= 0.0:
+		portrait.modulate.a = 0.5
 
 
 func effects_display(actor: BattleActor) -> void:

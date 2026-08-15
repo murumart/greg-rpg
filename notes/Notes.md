@@ -198,8 +198,8 @@ multipanther -> +10 (=99)
 - [X] dont respawn guy in mayor room...
   - scootin sauces respawns ther too..
 - [X] vampire girl invisible when loading from uguy chase state
-- [ ] vampire girl visible in rooms when in uguy chase state
-- [ ] color change from effect overrides modulate from death
+- [X] color change from effect overrides modulate from death
+- [X] vampire girl visible in rooms when in uguy chase state
 - [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] skater says press x to jump (wrong)
