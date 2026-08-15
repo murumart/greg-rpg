@@ -14,8 +14,8 @@ duration = 8
 [sub_resource type="Resource" id="Resource_sqss2"]
 script = ExtResource("1_0gskp")
 name = &"poison"
-strength = 10.0
-duration = 16
+strength = 8.0
+duration = 12
 
 [sub_resource type="Resource" id="Resource_nastd"]
 script = ExtResource("2_eaorb")

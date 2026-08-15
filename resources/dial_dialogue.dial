@@ -3466,12 +3466,14 @@ CHAR vampire
 	you!! dodgy bugger in that ugly sweatshirt!
 	you're following me...
 	you've been following me since i came here...
-	so... it's about the [color=FLOWERCOLOR]flower[/color]...
-	the one i was given along with my [color=VAMPCOLOR]vampiric ability[/color]...
+	it's about the [color=FLOWERCOLOR]flower[/color], isn't it?
+	the one i was given to change the world...
+	and with which i acquired my [color=VAMPCOLOR]vampiric ability[/color]...
 	you've ambushed me here to steal my power!
 	no! no!! no!!! not happening!
 	but i've heard of your escapades.
-	getting stronger... at this rate...
+	you already gained a [color=FLOWERCOLOR]flower[/color]...
+	growing stronger... at this rate...
 	you might become an actual threat.
 	the solution is easy, though!
 	i will smear you into the dirt first!!
@@ -3503,18 +3505,18 @@ CHAR cashier_nice
 DIALOGUE vampire_battle_start
 CHAR vampire
 	smelly man, here to steal the [color=FLOWERCOLOR]flowers[/color]...
-	i will take great joy in absorbing your spirits...
+	i will take great joy in [color=VAMPCOLOR]absorbing your spirits[/color]...
 	...after i kill your arse.
 	well, ta ta, then!
 CHAR cashier_nice
 	i wasn't expecting to die this way, that's for sure.
 	i'm not good at fighting... but i have some stuff in...
-	...my pockets. maybe that's of some help?
+	...my pockets. maybe you can make use of that.
 
 
 DIALOGUE vampire_battle_70p
 CHAR vampire
-	i need to get over with this faster!
+	i need to get this over with faster!
 	smelly man's cohort - face my power!
 
 
@@ -3556,6 +3558,7 @@ DIALOGUE vampire_battle_salt
 CHAR vampire
 	salt working against vampires is a common myth!
 	if you want to use salt, find a...
+SPEED 0.5
 	...[color=RED]snail!!!!!!!!!!!!!!!!![/color]
 
 
@@ -3567,8 +3570,9 @@ CHAR vampire
 
 DIALOGUE vampire_steal_hotel_used_by_vampire
 CHAR vampire
-	what a good healing ability...
-	i'll put this to good use, you just watch.
+	[color=VAMPCOLOR]it's over...[/color]
+	with this healing ability, there's no way...
+	...for you to kill me anymore!
 
 
 DIALOGUE vampire_steal_peptide
@@ -3635,8 +3639,8 @@ CHAR vampire
 DIALOGUE vampire_after_battle_2
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
-	you barely aged... i guess it's no wonder that...
-	...we survived against a rookie vampire.
+	you barely aged...
+	i guess we were lucky to be against a rookie vampire.
 EMO human
 CHAR vampire
 	that is so mean...
@@ -3662,7 +3666,7 @@ EMO human
 	the human body is... flimsy! you know that!
 	and you have brought me back down to your level.
 
-DATA_LINK
+DATA_LINK 
 	if you'd mind, i'd like a moment for myself now.
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
@@ -3676,20 +3680,19 @@ EMO what
 	i didn't pay attention to what she was saying, but...
 	some sort of [color=FLOWERCOLOR]flower[/color]...
 	is that what you wanted from her...?
-	the [color=FLOWERCOLOR]old florist[/color]...
-	she's the only one dealing with flowers in this town.
+	who... who are you?
+	the only one dealing with flowers in this town...
+	is the [color=FLOWERCOLOR]old florist[/color]...
 	are you her henchman or...?
-	then, do you know...
-	what was that [color=GREEN]green demon[/color]?
-CHAR
+	but then, what was that... [color=GREEN]thing[/color]?
+CHAR 
 	...
-
 
 
 DIALOGUE vampire_after_battle_4
 CHAR cashier_nice
 DATA_LINK is_cashier_dead_during_vampire_battle,false
-	well, whatever. i have bigger things to worry about.
+	eh, whatever. i have bigger things to worry about.
 	you better clean up here. i'm late for work.
 	and... you're in trouble. i hope you understand.
 	just don't rope anyone else into it, anymore.
@@ -3703,6 +3706,7 @@ EMO ouch
 	i need to limp home and put an ice pack on that...
 	uh, smelly man... [color=GREEN]whatever[/color] you've gotten yourself into...
 	keep others out of it from now on... ow...
+
 
 DIALOGUE leave_ending_check
 	you remember that this is the road you drove in from.

@@ -20,9 +20,10 @@ var player_dir_timer: Timer
 
 @onready var girl := $Girl as OverworldCharacter
 @onready var uguy := $Guy as OverworldCharacter
+@onready var guy_sprite: AnimatedSprite2D = $Guy/GuySprite
 @export var greg: PlayerOverworld
 @export var camera: Camera2D
-@export var location: Locations
+@export var location: Locations = Locations.TOWN_PARK
 @export var campsite_area: Area2D
 @onready var thug_spawners := LTS.get_current_scene().find_children("ThugSpawner*")
 @onready var animal_spawners := LTS.get_current_scene().find_children("AnimalSpawner*")
@@ -32,13 +33,14 @@ var player_dir_timer: Timer
 func _ready() -> void:
 	DAT.set_data(VISITS, girl_visits)
 	if not (LTS.gate_id == LTS.GATE_EXIT_BATTLE and DAT.get_data("vampire_end_cutscene", false)):
-		if not Math.inrange(ResMan.get_character("greg").level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
+		var gregc := ResMan.get_character("greg")
+		if not Math.inrange(gregc.level, 40, 49) or DAT.get_data(VAMP_FOUGHT, false):
 			queue_free()
 			return
+	show()
 	if DAT.get_data(GUY_FOLLOW, false):
 		uguy_follow()
 		return
-	show()
 	if location == Locations.TOWN_PARK:
 		position = Vector2(9999, 9999)
 		cutscene_enter_rea.body_entered.connect(func(_a) -> void:
@@ -269,6 +271,9 @@ func uguy_follow() -> void:
 	uguy.chase_target = greg
 	uguy._on_detection_area_body_entered(greg) # this is dirty
 	uguy.global_position = DAT.get_data(uguy.get_save_key("position"), uguy.global_position)
+	girl.global_position = Vector2(9999, 9999)
+	girl.hide()
+	guy_sprite.rotation = 0
 	if campsite_area == null:
 		return
 	campsite_area.body_entered.connect(func(body: Node2D):
@@ -281,8 +286,10 @@ func uguy_follow() -> void:
 
 
 func _on_uguy_cannot_reach_target() -> void:
-	print("a")
+	#print("a")
 	if not DAT.get_data(GUY_FOLLOW, false):
+		return
+	if DAT.is_player_captured():
 		return
 	var tw := create_tween()
 	SND.play_sound(preload("res://sounds/teleport.ogg"), {"pitch_scale": randf_range(0.9, 1.2)})

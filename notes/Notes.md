@@ -197,6 +197,9 @@ multipanther -> +10 (=99)
 - [X] town east has cliffs with flowers on them bad
 - [X] dont respawn guy in mayor room...
   - scootin sauces respawns ther too..
+- [X] vampire girl invisible when loading from uguy chase state
+- [ ] vampire girl visible in rooms when in uguy chase state
+- [ ] color change from effect overrides modulate from death
 - [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] skater says press x to jump (wrong)
@@ -214,6 +217,7 @@ multipanther -> +10 (=99)
 - [X] starmap puzzle feedback when you get correct solution
 - [X] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [X] have npcs remark sunset so epople dont thinik its apocalypse..
+- [ ] vampire cutscene starts very suddenly and greg is off screen side probably
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
