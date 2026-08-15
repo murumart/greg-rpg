@@ -3,6 +3,7 @@
 
 # stutid temp files
 *.tmp
+*~
 
 # other
 desktop.ini
