@@ -188,14 +188,14 @@ multipanther -> +10 (=99)
 ### bugs to fix
 - [X] make forest bird stop shooting when player captured. its annoying
 - [X] remove empty trash... from wood..s..
-- [ ] tarikas vampire dialogue shows you '...' ?? broken overall
+- [X] rose cutscene after resets sunset...
+- [X] tarikas vampire dialogue shows you '...' ?? broken overall
+- [X] fisherwoman make flower dialogue pop out
+- [X] ugly forest entrance when canvas is modulate
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] fisherwoman make flower dialogue first in order and save the order across interactions
 - [ ] skater says press x to jump (wrong)
-- [ ] rose cutscene after resets sunset...
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] spboss music shoud play form beginingn
-- [ ] ugly forest entrance when canvas is modulate
 - [ ] autosaves after bosses check if those exist
 - [ ] make the ladder easier..
 - [ ] nerf turf2..
@@ -211,6 +211,7 @@ multipanther -> +10 (=99)
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
 - [X] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
+- [X] have npcs remark sunset so epople dont thinik its apocalypse..
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
@@ -222,7 +223,6 @@ multipanther -> +10 (=99)
 - [ ] savescumming at the random prize..
 - [ ] fw progress only when attacking... not very good if youre trying not to kill
 - [ ] way to cancel shopping basket
-- [ ] have npcs remark sunset so epople dont thinik its apocalypse..
 - [ ] more npcs after level 30 aroud town
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..

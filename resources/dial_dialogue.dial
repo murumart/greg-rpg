@@ -43,7 +43,7 @@ CHOICES yes,no
 	aren't you excited?
 CHAR greg
 INSTASKIP
-	i'm really  
+	i'm really
 CHAR zerma
 	hey, look, we're almost there...!
 
@@ -94,7 +94,7 @@ CHAR zerma
 	well? how'd it go, dude?
 CHAR greg
 INSTASKIP
-	i think  
+	i think
 CHAR zerma
 	you should talk to whoever you saw inside!
 	you gotta have a lot of catching up to do!
@@ -270,7 +270,7 @@ DIALOGUE zerma_fight_3_attack_zerma
 CHAR zerma
 	ow! scared me there!
 	uh, let me just disable... that.
-CHAR 
+CHAR
 	(he files your nails.)
 
 
@@ -278,7 +278,7 @@ DIALOGUE zerma_fight_3_attack_greg
 CHAR zerma
 	stop hitting yourself!!
 	uh, let me just disable... that.
-CHAR 
+CHAR
 	(he files your nails.)
 
 
@@ -293,7 +293,7 @@ CHAR zerma
 	well done! so, what did the spirit say? i'm curious.
 CHAR greg
 INSTASKIP
-	...it said  
+	...it said
 CHAR zerma
 	you saw how your magic [color=SPIRITCOLOR]spirit points[/color] decreased, right?
 	you can only use spirits when you have enough [color=SPIRITCOLOR]sp[/color].
@@ -369,7 +369,7 @@ CHAR zerma
 DIALOGUE zerma_fight_6_attack_zerma
 CHAR zerma
 	ouchie wouchie!
-	well, there you have it, greg!! 
+	well, there you have it, greg!!
 	i hope you enjoyed my tutorial, remember to leave a...
 	...good review and to subscribe to my newsletter!
 	this is all for today!
@@ -414,7 +414,7 @@ CHAR zerma
 	maybe i can help!
 	here's a cell phone.
 ITEM cellphone
-CHAR 
+CHAR
 	cellphone was received.
 CHAR zerma
 	have a wonderful rest of your day!
@@ -471,7 +471,7 @@ CHAR cashier_mean
 	all the products you will ever need - here!
 DATA_LINK is_cashier_dead_during_vampire_battle,true
 	due to recent events i have been promoted to work double-fulltime!
-DATA_LINK 
+DATA_LINK
 CHOICES buying,stealing,bye
 	do you need any help? i will be glad to help!
 	(smile, smile)
@@ -556,7 +556,7 @@ DATA_LINK vampire_fought,true
 	let's talk about something else.
 DATA_LINK vampire_fought,false
 	...vampire? what vampire...
-DATA_LINK 
+DATA_LINK
 CHOICE_LINK bye
 	chatting on company time is pretty nice, actually.
 
@@ -566,7 +566,7 @@ CHAR cashier_mean
 	you have a wish for idle chatting?
 	uh, sure! we here at [color=YUKUCOLOR]yuku[/color] are devoted...
 	...to give the best customer experience possible!
-CHAR 
+CHAR
 	(interesting how loudly she can grind her teeth...)
 	(...while speaking unhindered.)
 CHAR cashier_mean
@@ -579,7 +579,7 @@ LOOP 5
 CHOICE_LINK me
 	about you?
 	you are a pleasure to speak with!
-CHAR 
+CHAR
 	(did you hear that?)
 LOOP 5
 	(are her teeth even still intact?)
@@ -595,7 +595,7 @@ LOOP 5
 DATA_LINK is_cashier_dead_during_vampire_battle,true
 	she is on extended sick leave!
 	she'll never attain employee of the month status at this rate.
-DATA_LINK 
+DATA_LINK
 CHOICE_LINK bye
 CHAR cashier_mean
 	goodbye! we hope your experience at [color=YUKUCOLOR]yuku[/color] has been great!!
@@ -685,7 +685,7 @@ CHAR cashier_mean
 	you're a bold vermin, aren't you?
 	strolling out with %s silver worth of products...
 	...stashed in your clothes? in broad daylight.
-CHAR 
+CHAR
 	...
 	(smile, smile)
 	thieves like you [color=#ff8800]piss me off.
@@ -709,7 +709,7 @@ DATA_LINK cashier_defeated_thru_damage,false
 	it appears i'm out of [color=SPIRITCOLOR]sp[/color]...
 DATA_LINK cashier_defeated_thru_damage,true
 	it appears i've been... badly beaten...
-DATA_LINK 
+DATA_LINK
 	vermin... like you... can be hard to...
 	...exterminate sometimes...
 	[color=WLICOLOR]work life imbalance...
@@ -730,7 +730,7 @@ DIALOGUE cashier_fight_interrupt_2
 DIALOGUE cashier_fight_interrupt_3
 CHAR cashier_mean
 	...
-CHAR 
+CHAR
 	[color=WLICOLOR]the rules are in his favour.
 	[color=WLICOLOR]i'm stopping the battle right here.
 	[color=WLICOLOR]we're done.
@@ -755,7 +755,7 @@ DATA_LINK vampire_fought,false
 DATA_LINK vampire_fought,true
 	that's... uh...
 	i'm pretty sure i'm going to get fired over this.
-DATA_LINK 
+DATA_LINK
 	...
 	yeah, that's a good reaction to having the store flooded.
 	and a guy being beaten to half death.
@@ -767,24 +767,24 @@ CHAR cashier_mean
 	i don't have the time to kill you right now!
 	i need to clean up all the █████████ you ███████!
 	(smile, smile)
-CHAR 
+CHAR
 	(you can hear her teeth be ground down gradually.)
 
 
 DIALOGUE biking_welcome_1
 CHAR mail_man
-EMO 
+EMO
 DATA_LINK mail_heard_name,true
 	hello there, greg. you made it to my checkpoint.
 DATA_LINK mail_heard_name,false
 	hello there, newspaper boy. you made it to my checkpoint.
-DATA_LINK 
+DATA_LINK
 CHOICES browse,leave,help
 	i sell items to help you do your job.
 CHOICE_LINK help
 EMO serious
 	confused? unsurprising. you can buy items from me.
-EMO 
+EMO
 	and then you will use the items while biking. to help yourself.
 	it will make this menial job much more bearable.
 	do note that items here do not behave like in battles.
@@ -795,7 +795,7 @@ LOOP 2
 
 DIALOGUE biking_welcome_2
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
 	hello again. buy items.
 
@@ -809,7 +809,7 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_4
 CHAR mail_man
-EMO 
+EMO
 DATA_LINK raining,false
 CHOICES browse,leave
 	good weather we are having.
@@ -826,14 +826,14 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_6
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
 	these items are cheaper than in the store.
 
 
 DIALOGUE biking_welcome_7
 CHAR mail_man
-EMO 
+EMO
 	milk... it is good for your bones.
 CHOICES browse,leave
 	drink milk to not take damage for a while.
@@ -841,14 +841,14 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_8
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
-	do you ever wonder what they put in the cough syrup?	
+	do you ever wonder what they put in the cough syrup?
 
 
 DIALOGUE biking_welcome_beforelast
 CHAR mail_man
-EMO 
+EMO
 	you are getting close to the end of your shift.
 CHOICES browse,leave
 	this is your final chance to give me your money.
@@ -872,14 +872,14 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_afterwhile
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
 	it is good for you to see me again.
 
 
 DIALOGUE biking_welcome_hellmention
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
 	i warned you! i told you to not crush the snails!
 
@@ -894,7 +894,7 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_3hells
 CHAR mail_man
-EMO 
+EMO
 CHOICES browse,leave
 	you have problems, don't you?
 
@@ -903,7 +903,7 @@ DIALOGUE biking_welcome_morehells
 CHAR mail_man
 EMO serious
 	...are you addicted to the snail fumes or...?
-EMO 
+EMO
 	i don't know. i will just pretend nothing is happening.
 CHOICES browse,leave
 	buy my items now.
@@ -913,8 +913,8 @@ DIALOGUE biking_welcome_smalltalk_1
 CHAR mail_man
 EMO serious
 	you come back here a lot.
-EMO 
-	of course, it is a prestigious job. i understand.	
+EMO
+	of course, it is a prestigious job. i understand.
 EMO content
 CHOICES browse,leave
 	maybe one day i will promote you to work in the office.
@@ -927,13 +927,13 @@ DATA_LINK mail_heard_name,true
 	mysterious greg... where exactly are you from?
 DATA_LINK mail_heard_name,false
 	mysterious newspaper boy... where exactly are you from?
-DATA_LINK 
+DATA_LINK
 	they have not assigned anyone here for years now.
 	you really had to want to come here, then.
 	why?
 	...
 	no answer?
-EMO 
+EMO
 	correct answer.
 CHOICES browse,leave
 	keep it distant.
@@ -941,14 +941,14 @@ CHOICES browse,leave
 
 DIALOGUE biking_welcome_smalltalk_3
 CHAR mail_man
-EMO 
+EMO
 	remember my problem with some asshole mailing envelopes full of food?
 EMO serious
 	that is still an issue.
 	every few days, one of those envelopes appears in my bag...
 	...and subsequently smears red sauce over everything else in it.
 	i have questioned many people. the police will not help.
-EMO 
+EMO
 	maybe you should try instead.
 	you look like someone the police would like.
 CHOICES browse,leave
@@ -957,7 +957,7 @@ CHOICES browse,leave
 
 DIALOGUE biking_browse
 CHAR mail_man
-EMO 
+EMO
 	this is what i have available now.
 
 
@@ -974,14 +974,14 @@ CHAR mail_man
 
 DIALOGUE biking_perks
 CHAR mail_man
-EMO 
+EMO
 	perks are a little magic for the next section of road.
 
 
 DIALOGUE biking_bye_1
 CHAR mail_man
 CHOICES ok,no
-EMO 
+EMO
 	before you leave, get yourself a perk. they are free.
 
 
@@ -993,7 +993,7 @@ EMO serious
 
 DIALOGUE biking_bye_3
 CHAR mail_man
-EMO 
+EMO
 	good. off you go.
 
 
@@ -1003,13 +1003,13 @@ DATA_LINK mail_heard_name,true
 	well done, greg! you have reached the end of the road.
 DATA_LINK mail_heard_name,false
 	well done! you have reached the end of the road.
-DATA_LINK 
+DATA_LINK
 	let us meet in the office and discuss your payment.
 
 
 DIALOGUE biking_do_you_wish_to_buy
 CHAR mail_man
-EMO 
+EMO
 CHOICES yes,no
 	do you wish to buy the %s?
 
@@ -1022,7 +1022,7 @@ EMO serious
 
 DIALOGUE biking_man_buy_item
 CHAR mail_man
-EMO 
+EMO
 	one %s for the road.
 
 
@@ -1030,7 +1030,7 @@ DIALOGUE biking_man_not_enough_space
 CHAR mail_man
 EMO serious
 	you can't carry more than %s items.
-EMO 
+EMO
 	i'd be glad to take the weight of all your items off you, though.
 
 
@@ -1041,7 +1041,7 @@ CHAR mail_man
 
 DIALOGUE biking_perk_mail_attraction
 CHAR mail_man
-EMO 
+EMO
 	mail will gravitate towards boxes on its own.
 
 
@@ -1111,11 +1111,11 @@ EMO serious
 	by the way, newspaper boy...
 DATA_LINK mail_heard_name,true
 	by the way, greg...
-DATA_LINK 
+DATA_LINK
 	do you happen to know anything about this?
 	envelopes full of red sauce arriving at the post office...
 	...that ruin entire bags of mail?
-EMO 
+EMO
 	come forward. do not be shy.
 
 
@@ -1133,15 +1133,15 @@ SET_DATA mail_heard_name,true
 CHOICE_LINK don't
 	...okay!
 
-DATA_LINK 
-CHOICE_LINK 
+DATA_LINK
+CHOICE_LINK
 	nice to meet you!
 	very interestin! so this foreigner just arrived...
 	...and you put him to work right away?
 CHAR mail_man
 EMO content
 	yes.
-EMO 
+EMO
 CHAR uguy
 	that's entrepeneurship, i say!
 	true entrepeneurship's rare to see in this town!
@@ -1177,12 +1177,12 @@ CHAR mail_man
 EMO serious
 	...is that another joke?
 CHAR uguy
-	...well, vampires are serious business...  
+	...well, vampires are serious business...
 CHAR mail_man
 EMO serious
 	the man in question is a menial laborer.
 	vampires have ambition. but he?
-EMO 
+EMO
 	i think all he likes to do is to inhale snail fumes.
 CHAR uguy
 	oh?
@@ -1191,7 +1191,7 @@ CHAR mail_man
 	your talk of salt made me hungry.
 EMO content
 	in any case, it is about time we all went home.
-EMO 
+EMO
 	it has been a long day.
 CHAR uguy
 	but it's barely past noon........
@@ -1212,7 +1212,7 @@ DATA_LINK mail_heard_name,true
 	greg...
 DATA_LINK mail_heard_name,false
 	newspaper boy...
-DATA_LINK 
+DATA_LINK
 	it is not true that you are ambitionless.
 	you are looking for [color=FLOWERCOLOR]flowers[/color], correct?
 	maybe that is good.
@@ -1220,7 +1220,7 @@ DATA_LINK
 	...external threats.
 	but, knowing the kind of people that live here...
 	...i would be more concerned about my own back.
-EMO 
+EMO
 	hey! newspaper boy!
 	our collaboration has been great thus far.
 	if your won't end up getting those [color=FLOWERCOLOR]flowers[/color]...
@@ -1230,7 +1230,7 @@ EMO content
 
 DIALOGUE mail_man_store_1
 CHAR mail_man
-EMO 
+EMO
 	hello there! shopping as well i see.
 EMO serious
 	i need to buy cleaning supplies again.
@@ -1446,7 +1446,7 @@ DIALOGUE naturalist_lcorridor_warning_first
 CHAR naturalist
 	hey! this road takes you to the lakeside, and you aren't wearing any boots!
 	you need rubber boots to not get your feet horribly wet, i mean.
-	
+
 
 DIALOGUE naturalist_lcorridor_putbootson
 CHAR naturalist
@@ -1542,7 +1542,7 @@ CHOICE_LINK stray
 	interestingly, the pets' population seems to have declined sharply.
 CHOICES ok,pets
 	i suppose there's some good in that.
-	
+
 CHOICE_LINK pets
 	about the lizards in general...
 	this sounds like a first-grade topic of discussion.
@@ -1552,7 +1552,7 @@ CHOICE_LINK pets
 	the lizards tend to return to a wild state when neglected, though...
 LOOP 2
 	so any "professional" animals have to be very well trained.
-	
+
 CHOICE_LINK turf
 	it's an interesting symbiotic adaptation.
 	the turf, i mean. it's not a single organism.
@@ -1561,7 +1561,7 @@ CHOICE_LINK turf
 	...and we think, even from the grass' photosynthesis.
 CHOICES ok,flora
 	they also eat worms in the soil together.
-	
+
 CHOICE_LINK flora
 	about the flora? i love these questions!
 	it's strangely bland in this region, to be quite honest.
@@ -1610,7 +1610,7 @@ CHOICE_LINK birds
 	the phylogeny in that regard is also very interesting.
 CHOICES ok,name
 	i love birds!
-	
+
 CHOICE_LINK name
 	name all birds? sure!
 	%s, %s, %s...
@@ -1632,7 +1632,7 @@ CHOICE_LINK snails
 	i mean, i guess it's fine if you're doing it for, like, inspiration...
 	some of the artists on the mainland have... uh... credited...
 	...their works to snail-induced dreams, but, uh...
-	i don't... i just don't think it's... well... 
+	i don't... i just don't think it's... well...
 LOOP 2
 	uhm...
 CHOICE_LINK fish
@@ -1785,7 +1785,7 @@ CHOICE_LINK bye
 	how gracious!!
 CHOICE_LINK travel
 DATA_LINK fast_travel_tutorialed,false
-	fast travel?? 
+	fast travel??
 	what an inquiry in this post-asskicking world!
 SET_DATA fast_travel_tutorialed,true
 	...okay i'll do it just stop making that face.
@@ -1797,12 +1797,12 @@ CHAR bike_ghost
 	you'd kick my sore, cold, aluminium ass again.
 CHOICES travel,bye
 	let's just get this over with.
-	
+
 CHOICE_LINK bye
 	how gracious!!
 CHOICE_LINK travel
 DATA_LINK fast_travel_tutorialed,false
-	fast travel?? 
+	fast travel??
 	what an inquiry in this post-asskicking world!
 SET_DATA fast_travel_tutorialed,true
 	eeby gleeby goo... poopy schmoopy...
@@ -1950,7 +1950,7 @@ CHOICES yes,no
 CHOICE_LINK yes
 ITEM gummy_fish
 	and here it is for you.
-CHAR 
+CHAR
 	(you got something.)
 CHAR bike_ghost
 	i believe you are now indebted to me.
@@ -2426,7 +2426,7 @@ CHAR clown
 
 DIALOGUE police_greeting
 CHAR popo_1
-	greetings, citizen! 
+	greetings, citizen!
 
 
 DIALOGUE police_greeting_happy
@@ -2467,14 +2467,14 @@ CHAR popo_1
 	you really showed those fishermen where they belong.
 EMO mad
 	in hell.
-EMO 
+EMO
 	you see, my father used to also be a fisherman...
 	and he would constantly beg me to go fish with him
 EMO mad
 	"ooogh, gabs! come to the lake with mee!"
 	"let's spend time together gaa~bs! im your dad!"
 	old man!!!! you're!!! so!! annoying!!!1
-EMO 
+EMO
 	needless to say, i snuck 72 pills in his morning tea.
 	he survived, but our home life didn't.
 	oh, your rewards? sorry!! hehe, here they are...
@@ -2526,7 +2526,7 @@ CHAR popo_1
 	i think i'll be claiming that!
 	have your pocket change for now! if you want the rest...
 	you know who to contact...
-CHAR 
+CHAR
 	[font_size=12](you decide not to)[/font_size]
 
 
@@ -2609,7 +2609,7 @@ CHAR kid
 CHOICES yes,no
 	yo! you interested in some goods?
 CHOICE_LINK yes
-CHOICES 
+CHOICES
 	check my warez...
 CHOICE_LINK nvm
 	you dare deny me?
@@ -2622,7 +2622,7 @@ CHAR kid
 CHOICES yes,no
 	is there something we can do for you?
 CHOICE_LINK yes
-CHOICES 
+CHOICES
 	the forest is a pathway to unnatural prowess.
 CHOICE_LINK nvm
 	we'll meet again.
@@ -2635,7 +2635,7 @@ CHAR kid
 CHOICES yes,no
 	is there something we can do for you?
 CHOICE_LINK yes
-CHOICES 
+CHOICES
 	the forest is a pathway to unnatural prowess.
 CHOICE_LINK nvm
 	we'll never meet again.
@@ -2909,23 +2909,32 @@ DIALOGUE woods_guy_has_materials
 	my [color=FLOWERCOLOR]rose[/color]...
 	...
 	i understand why she wants it back.
-	my path was never going to end up with me basking in glory.
+	my path was never going to end up with me at the top.
 	but [color=FLOWERCOLOR]their flowers[/color]...
-	what you have achieved...
-	what you will achieve...
-	it outshines everything else, doesn't it?
-	...
+	what they did... some more, some less.
+	all their paths will converge with yours.
+	and they will fold before you.
+	not that many left to go now, right...?
 
 
 DIALOGUE woods_guy_after_2
 	here is my [color=FLOWERCOLOR]rose[/color].
-	my work is done... i don't believe we will meet again.
-	it's been a good walk for both of us, hasn't it?
+	with this sort of power... once you cross her path...
+	who knows what could happen?
+	all i ask you is to not stop there.
+	don't freeze in place... keep walking.
+	otherwise, you might grow a layer of moss.
+	but even then... under the stone, there is water.
+	...
+	i enjoyed walking beside you, however briefly.
+	my [color=FLOWERCOLOR]rose[/color]... even if unlike what she wanted...
+	it did matter.
+	my work is done. i don't believe we will meet again.
 	goodbye.
 
 
 DIALOGUE woods_guy_after_3
-	my
+	...
 
 
 DIALOGUE lost_guy_1
@@ -2988,8 +2997,7 @@ DIALOGUE lost_guy_13
 
 
 DIALOGUE lost_guy_14
-	hahahahah! the look on your face was awesome.
-	ahh, it went right back to just "ugly".
+	...you don't even react, do you? do you???
 
 
 DIALOGUE lost_guy_15
@@ -3192,7 +3200,7 @@ DATA_LINK mfia_first_corrects,2
 DATA_LINK mfia_first_corrects,3
 	would you look at that...
 	you actually wrote all the numbers down correctly.
-DATA_LINK 
+DATA_LINK
 	what boring work, though!
 CHAR mafia_yellow
 	i would rather die than write another number!
@@ -3287,7 +3295,7 @@ DIALOGUE lake_hint_cutscene_1
 CHAR cashier_nice
 	hello... the company has decided to pay your wage this month.
 	it's as thanks for the rampant advertising. keep it up...
-CHAR 
+CHAR
 	splendid. with enough money, i can finally buy some [color=YUKUCOLOR]yuku[/color] brand muesli.
 CHAR cashier_nice
 	please don't say things like that to my face ever again.
@@ -3397,7 +3405,7 @@ DATA_LINK v_cs_cashier,mean
 CHAR cashier_mean
 	i'm very sorry!! but we don't sell that here!!
 	would you like to buy something else?
-DATA_LINK 
+DATA_LINK
 CHAR vampire_talk
 	that stinks... what kind of shop doesn't sell soda?
 	we're outta here!
@@ -3448,7 +3456,7 @@ DIALOGUE vampire_cutscene_1
 CHAR uguy
 	hey, girl!
 INSTASKIP
-	you ran off and left all your luggage 
+	you ran off and left all your luggage
 
 
 DIALOGUE vampire_cutscene_2
@@ -3534,7 +3542,7 @@ CHAR cashier_nice
 	i'll be late to work at this pace. could we hurry up?
 CHAR vampire
 	shut up!!!
-DATA_LINK 
+DATA_LINK
 	i'm killing you! i'm killing you! i'm killing you!  i'm killing you! i'm killing you!
 
 
@@ -3644,7 +3652,7 @@ EMO human
 	i have to readjust my whole life now... again!
 	i was meant for [color=FLOWERCOLOR]big things[/color]...
 	but now...
-	
+
 CHAR cashier_nice
 EMO ouch
 	.......medic.......
@@ -3654,7 +3662,7 @@ EMO human
 	the human body is... flimsy! you know that!
 	and you have brought me back down to your level.
 
-DATA_LINK 
+DATA_LINK
 	if you'd mind, i'd like a moment for myself now.
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
@@ -3673,9 +3681,9 @@ EMO what
 	are you her henchman or...?
 	then, do you know...
 	what was that [color=GREEN]green demon[/color]?
-CHAR 
+CHAR
 	...
-	
+
 
 
 DIALOGUE vampire_after_battle_4
@@ -3713,7 +3721,7 @@ CHAR president
 CHAR greg
 	...
 CHAR president
-	you don't seem to display awareness of... 
+	you don't seem to display awareness of...
 	...whose aquaintance you're making.
 	well... let me enlighten you.
 
@@ -3737,7 +3745,7 @@ DIALOGUE president_start
 	that milk was intended to feed our people.
 	thus, i demand reparations...
 	...i will beat your ass until you donate your money.
-	
+
 
 DIALOGUE president_50
 CHAR president
@@ -3779,7 +3787,7 @@ CHAR president
 EMO power
 	do you see the weather?
 	[color=PRESCOLOR]dish[/color] draws its power from the thunderclouds.
-	
+
 
 DIALOGUE president_monologue_2
 CHAR president
@@ -3861,14 +3869,14 @@ EMO power
 DIALOGUE president_pizz_3
 SPEED 0.7
 INSTASKIP
-	just kidding. it's a      
+	just kidding. it's a
 
 
 DIALOGUE president_die_die_die
 CHAR president
 EMO power
 	no... this cannot be!
-CHAR 
+CHAR
 SOUND spirit/dish_president_he_die
 	...
 
@@ -3979,7 +3987,7 @@ CHAR mayor
 DIALOGUE fisherwoman_70
 CHAR fisherwoman
 DATA_LINK fisherwoman_opened,true
-EMO 
+EMO
 	the fishing pole is over there.
 DATA_LINK fisherwoman_opened,false
 	oh... it's you.
@@ -4221,7 +4229,7 @@ DIALOGUE sg_b_armor_hint
 	%SGGood job weaving yourself between all those visibility cones...
 	%SG...and with finding the entrance to this room at all.
 	%SG...huh...? You came from the other direction?
-	%SGWell... 
+	%SGWell...
 	%SGMaybe I shouldn't spoil your surprise of the SECRET ARMOUR, then...
 
 

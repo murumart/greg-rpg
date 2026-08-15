@@ -7,6 +7,8 @@ const FLOWER_PIECE_COUNT := 10
 @onready var forest_music: AudioStreamPlayer2D = $"../Areas/RoomGate2/AudioStreamPlayer2D"
 @onready var greg: PlayerOverworld = $"../Greg"
 
+@onready var despair_style: OverworldCharacter = get_node_or_null(^"DespairStyle")
+
 
 func _ready() -> void:
 	if DAT.get_data(&"got_flower_rose", false):
@@ -14,7 +16,7 @@ func _ready() -> void:
 	var inv := ResMan.get_character(&"greg").inventory
 	woodsman.inspected.connect(func() -> void:
 		if DAT.get_data(&"got_flower_rose", false):
-			SOL.dialogue_d(DialogueBuilder.new().add_line(DialogueLine.mk("...")).get_dial())
+			SOL.dialogue("woods_guy_after_3")
 			return
 		if inv.count(&"rose_petals") >= FLOWER_PIECE_COUNT and inv.count(&"rose_thorns") >= FLOWER_PIECE_COUNT and not DAT.get_data(&"got_flower_rose", false):
 			woodsman.default_lines = []
@@ -31,6 +33,8 @@ func _ready() -> void:
 			choices.append(&"flower")
 		SOL.dialogue_box.adjust("woods_guy_help", 0, &"choices", choices)
 	)
+	if is_instance_valid(despair_style):
+		despair_style.inspected.connect(_despair_style)
 
 
 func _rose_cutscene() -> void:
@@ -62,3 +66,19 @@ func _rose_cutscene() -> void:
 	tw = create_tween()
 	DAT.free_player("cutscene")
 	tw.tween_property(mobulate, ^"color", Color.WHITE, 8.0)
+
+
+var _despair_talked := false
+func _despair_style() -> void:
+	var dlg := DialogueBuilder.new()
+	var despair_sprite: Sprite2D = $DespairStyle/DespairSprite
+	if not _despair_talked:
+		dlg.al("ahhhhhhhhh!!! the world is ending!!!!")
+		dlg.al("everything is consumed by orange glow!!!!")
+		dlg.al("...oh, no, that's just the sunset.").scallback(func() -> void:
+			despair_sprite.region_rect.position.x = 32)
+		_despair_talked = true
+	else:
+		dlg.al("ahhhhhhhh!!! the world is not ending!!!!").scallback(func() -> void:
+			despair_sprite.region_rect.position.x = 48)
+	SOL.dialogue_d(dlg.get_dial())
