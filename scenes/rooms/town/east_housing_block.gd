@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	t += delta
 	if not climping or room_entered:
 		return
-	var add := sin(t * 1.76) * 14.0
+	var add := sin(t * 1.76) * 10.0
 	ladder.position.x = LPOS + add
 
 

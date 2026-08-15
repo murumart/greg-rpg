@@ -21,7 +21,9 @@
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="15_l7m8h"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="17_l7m8h"]
 [ext_resource type="PackedScene" uid="uid://deii706cg03d" path="res://scenes/vfx/scn_vfx_wow_sparkles.tscn" id="18_mxm45"]
+[ext_resource type="Script" uid="uid://bigcamnl7dpgg" path="res://code/predicates/gate_id_matches.gd" id="20_kgmay"]
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_xvh1i"]
+[ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="21_ptg6y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i37mn"]
 resource_local_to_scene = true
@@ -60,6 +62,23 @@ background = "house_inside"
 music = "daylightthief"
 start_text = "are you not the thug now?"
 rewards = SubResource("Resource_mxm45")
+
+[sub_resource type="Resource" id="Resource_kgmay"]
+script = ExtResource("20_kgmay")
+gate_id_string = &"town-mayor"
+metadata/_custom_type_script = "uid://bigcamnl7dpgg"
+
+[sub_resource type="Resource" id="Resource_i37mn"]
+script = ExtResource("20_kgmay")
+gate_id_preset = 1
+or_with = SubResource("Resource_kgmay")
+metadata/_custom_type_script = "uid://bigcamnl7dpgg"
+
+[sub_resource type="Resource" id="Resource_ptg6y"]
+script = ExtResource("21_ptg6y")
+data_key = &"mayor_fought"
+and_with = SubResource("Resource_i37mn")
+metadata/_custom_type_script = "uid://qboohb38rsxs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmay"]
 resource_local_to_scene = true
@@ -266,6 +285,7 @@ script = ExtResource("10_mf7ga")
 position = Vector2(36, 12)
 chase_target = NodePath("../../Greg")
 battle_info = SubResource("Resource_pn2uj")
+existence_predicate = SubResource("Resource_ptg6y")
 
 [node name="CollisionShape" parent="Category2/ThugOverworld" index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_kgmay")

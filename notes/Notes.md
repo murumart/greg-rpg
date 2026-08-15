@@ -192,18 +192,19 @@ multipanther -> +10 (=99)
 - [X] tarikas vampire dialogue shows you '...' ?? broken overall
 - [X] fisherwoman make flower dialogue pop out
 - [X] ugly forest entrance when canvas is modulate
+- [X] make the ladder easier..
+- [X] town east has cliffs with flowers on them bad
+- [X] dont respawn guy in mayor room...
+  - scootin sauces respawns ther too..
+- [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] skater says press x to jump (wrong)
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] spboss music shoud play form beginingn
 - [ ] autosaves after bosses check if those exist
-- [ ] make the ladder easier..
 - [ ] nerf turf2..
 - [ ] town east enemies bad with level limit.. increase level limit..
 - [ ] peptide should work in woodsguy
-- [ ] dont respawn guy in mayor room...
-  - scootin sauces respawns ther too..
-- [ ] town east has cliffs with flowers on them bad
 - [ ] save campfire litness
 - [ ] resetting puzzle replays the animation (wghat does this mean)
 - [ ] guive impure prism hint on first interaction
@@ -230,7 +231,6 @@ multipanther -> +10 (=99)
 - [ ] piece of grass should follow kids around
 - [ ] do smthabout science guy. remove or add to east
 - [ ] make campfire less horrible to use
-- [ ] goodl key dont get
 - [ ] add greenhousicle to sg hub
 
 ### nice
