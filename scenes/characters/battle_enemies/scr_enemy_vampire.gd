@@ -85,6 +85,7 @@ func _handle_hurt(pld: BattlePayload, damage: float) -> void:
 	await _progress_check()
 	if progress == 4 and SOL.dialogue_open:
 		await SOL.dialogue_closed
+		DAT.add_max_level(10)
 		die()
 		return
 

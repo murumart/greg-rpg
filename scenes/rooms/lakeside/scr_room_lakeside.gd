@@ -28,7 +28,7 @@ func _ready() -> void:
 		var greg := ResMan.get_character("greg")
 		if greg.armour == &"rubber_boots":
 			greg_went_in_with_boots = true
-			greg.set_max_level(greg.max_level + 8)
+			DAT.add_max_level(8)
 
 
 func _on_pole_interacted() -> void:

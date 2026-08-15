@@ -110,14 +110,15 @@
 
 ## max levels up
 default: 11
-bike ghost: -> +11 (= 22)
-lakeside: -> + 8 (= 30)
-bike beta -> +14 (= 44)
-vampire -> +10 (= 54)
-franking -> +3 (= 57)
-fw -> +5 (= 62)
+bike ghost: -> +10 (= 21)
+lakeside: -> +8 (= 29)
+bike beta -> +10 (= 39)
+fw -> +10 (= 49)
+vampire -> +10 (= 59)
+franking -> +3 (= 62)
 woods guy -> +10 (= 72)
-ts -> +17 (= 89)
+enter east: -> +7 (= 79)
+ts -> +10 (= 89)
 multipanther -> +10 (=99)
 
 ## järgmine

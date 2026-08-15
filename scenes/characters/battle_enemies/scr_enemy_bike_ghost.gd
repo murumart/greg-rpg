@@ -19,8 +19,6 @@ func _act_normal() -> void:
 		if character.health_perc() <= 0.65:
 			add_status_effect_s(&"speed", 32, 16)
 		SOL.dialogue("bike_ghost_welcome")
-
-
 	if turn == 2:
 		SOL.dialogue("bike_ghost_convo_1")
 	elif turn == 4:
@@ -52,5 +50,6 @@ func hurt(amount: float, gnd: int) -> void:
 		await Math.timer(5.0)
 		SOL.dialogue_open = false
 		die()
+		DAT.add_max_level(10)
 		return
 	super.hurt(amount, gnd)

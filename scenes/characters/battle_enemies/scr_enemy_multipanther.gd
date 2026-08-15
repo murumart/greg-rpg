@@ -21,6 +21,11 @@ func animate(animation: StringName, queue_idle := true) -> void:
 		wiggle(128)
 
 
+func die() -> void:
+	super()
+	DAT.add_max_level(10)
+
+
 func wiggle(size := 56.0) -> void:
 	for child in $OutlineMe.get_children():
 		child = child as WigglerType

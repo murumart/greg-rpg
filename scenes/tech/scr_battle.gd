@@ -795,9 +795,6 @@ func open_end_screen(victory: bool) -> void:
 		xp_reward.type = BattleRewards.Types.EXP
 		xp_reward.property = str(xp_pool)
 		battle_rewards.add(xp_reward)
-		var greg := ResMan.get_character("greg")
-		if load_options.increase_max_greg_level > 0:
-			greg.set_max_level(mini(99, greg.max_level + load_options.increase_max_greg_level))
 		if battle_rewards.rewards.size() > 0:
 			_grant_rewards()
 		_check_on_bounties()

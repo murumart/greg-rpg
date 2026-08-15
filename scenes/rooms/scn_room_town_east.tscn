@@ -103,7 +103,7 @@ size = Vector2(1, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
 size = Vector2(1, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1ajh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odbt0"]
 resource_local_to_scene = true
 size = Vector2(21, 16)
 
@@ -308,7 +308,7 @@ height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2b71j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_n6s44"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_gcnui"]
@@ -519,7 +519,7 @@ _data = {
 a = Vector2(-42, 0)
 b = Vector2(43, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odbt0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boafo"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
 
@@ -662,7 +662,7 @@ size = Vector2(8, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 7)
 
-[sub_resource type="Curve2D" id="Curve2D_n6s44"]
+[sub_resource type="Curve2D" id="Curve2D_3b86v"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -76, 164, 150.748, -194.999, -150.748, 194.999, -223, 415, 137.19, 6.61157, -137.19, -6.61157, -528, 572, 0, 0, 0, 0, -898, 571)
@@ -1010,7 +1010,7 @@ greg_speed = 20.0
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
-shape = SubResource("RectangleShape2D_v1ajh")
+shape = SubResource("RectangleShape2D_odbt0")
 
 [node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock" unique_id=612154986]
 position = Vector2(-40, 16)
@@ -1312,7 +1312,7 @@ offset = Vector2(-10, -26)
 
 [node name="ShardsTexture" parent="Houses/Factory" unique_id=1455373539 instance=ExtResource("35_ani0e")]
 position = Vector2(6, 31)
-texture = SubResource("ViewportTexture_2b71j")
+texture = SubResource("ViewportTexture_n6s44")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false
@@ -1388,7 +1388,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0" unique_id=582535130]
-shape = SubResource("RectangleShape2D_odbt0")
+shape = SubResource("RectangleShape2D_boafo")
 
 [node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1" unique_id=110762082]
 position = Vector2(0, 9)
@@ -1653,7 +1653,7 @@ position = Vector2(-961, 595)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
 position = Vector2(46, 0)
-curve = SubResource("Curve2D_n6s44")
+curve = SubResource("Curve2D_3b86v")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-76, 164)

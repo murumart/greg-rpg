@@ -63,6 +63,7 @@ func hurt(amount: float, h_gender: int) -> void:
 		SOL.dialogue("president_die_die_die")
 		await SOL.dialogue_closed
 		die()
+		DAT.add_max_level(3)
 		return
 	super(amount, gender)
 	if h_gender == Genders.ELECTRIC and not DAT.get_data(

@@ -29,6 +29,7 @@ func hurt(amt: float, g: int) -> void:
 		DAT.set_data("bike_beta_fought", true)
 		await SOL.dialogue_closed
 		die()
+		DAT.add_max_level(10)
 		return
 	super (amt, g)
 

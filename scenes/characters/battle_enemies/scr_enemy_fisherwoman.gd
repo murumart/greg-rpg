@@ -34,6 +34,7 @@ func act() -> void:
 		animate("flee")
 		await its_fishing_time()
 		fled.emit(self)
+		DAT.add_max_level(10)
 	else:
 		await dialogue()
 		super()
@@ -53,6 +54,7 @@ func hurt(amt: float, gnd: int) -> void:
 		dlg.add_line(dlg.ml("i'm glad it's over, now."))
 		DAT.set_data("fisherwoman_violently", true)
 		await dlg.speak_choice()
+		DAT.add_max_level(10)
 	await super(amt, gnd)
 	character.speed = 65.0
 

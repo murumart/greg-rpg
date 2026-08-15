@@ -315,6 +315,11 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 	DAT.incri("spirits_gotten", 1)
 
 
+func add_max_level(amount: int) -> void:
+	var greg := ResMan.get_character("greg")
+	greg.set_max_level(greg.max_level + amount)
+
+
 func char_save_string_key(which: String, key: String) -> String:
 	return "char_" + which + "_" + key
 

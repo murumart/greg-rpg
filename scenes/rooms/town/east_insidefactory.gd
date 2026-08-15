@@ -10,5 +10,5 @@ static var gave_levelup: bool:
 func _ready() -> void:
 	if not gave_levelup:
 		var greg := ResMan.get_character("greg")
-		greg.set_max_level(greg.max_level + 17)
+		DAT.add_max_level(10)
 		gave_levelup = true

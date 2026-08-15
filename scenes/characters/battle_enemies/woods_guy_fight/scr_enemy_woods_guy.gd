@@ -294,5 +294,6 @@ func grandma_zoom() -> void:
 	SOL.dialogue("woods_guy_battle_final")
 	await SOL.dialogue_closed
 	fled.emit(self)
+	DAT.add_max_level(10)
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(sprite, ^"position:x", 400, 1.0)
