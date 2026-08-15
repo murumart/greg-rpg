@@ -81,7 +81,7 @@ func _ready() -> void:
 	ui.display_health(bike.health)
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	var music := "mail_mission" if not Sunsetter.is_raining else "rainsnail"
-	SND.play_song(music, 1.0, {"play_from_beginning": true})
+	SND.play_song_from_beginning(music, 1.0)
 	DAT.death_reason = DAT.DeathReasons.DEFAULT
 	update_ui()
 

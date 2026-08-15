@@ -24,7 +24,7 @@ func _play_intro_cutscene() -> void:
 	greg.animate("walk_right")
 	dlg.al("hold it right there, son.")
 	await dlg.speak_choice()
-	SND.play_song.call_deferred("mayor", 99, {play_from_beginning = true})
+	SND.play_song_from_beginning.call_deferred("mayor", 99)
 	var tw := create_tween()
 	mayor.a_leg("walk", 2.0)
 	tw.tween_property(mayor, ^"global_position", greg.global_position + Vector2(32, 0), 2.0)

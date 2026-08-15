@@ -32,7 +32,7 @@ func _ready() -> void:
 	DAT.set_data("heard_warstory", true)
 	var speed := remap(OPT.get_opt("text_speak_time"), 0.25, 1.0, 1.0, 0.86)
 	$BarCounter.bpm *= speed
-	SND.play_song("warstory", 1.0, {start_volume = 1.0, play_from_beginning = true, pitch_scale = speed})
+	SND.play_song_from_beginning("warstory", 1.0, {start_volume = 1.0, pitch_scale = speed})
 	next_bar(0)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = ceili(Math.süsarv() * 1000)

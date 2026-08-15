@@ -62,7 +62,7 @@ func _c1() -> void:
 	tw.tween_callback(func() -> void:
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 15
-		SND.play_song("bells", 80, {"pitch_scale": 0.7, "play_from_beginning": true})
+		SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.7})
 		dlg.al("congratulations").stext_speed(4)
 		dlg.al("...to me!").scallback(func() -> void:
 			speech_buble.spam_sound = speech
@@ -77,7 +77,7 @@ func _c1() -> void:
 		dlg.al("i really didn't know how i was gonna fix all of that").scallback(func() -> void:
 			_bounce(1.0)
 			_face_default()
-			SND.play_song("beyond", 0.1, {"pitch_scale": 1.0, "play_from_beginning": true})
+			SND.play_song_from_beginning("beyond", 0.1, {"pitch_scale": 1.0})
 		)
 		dlg.al("y'know... it's hard to remember who got them.").scallback(func() -> void:
 			_face_o()

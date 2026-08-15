@@ -22,7 +22,7 @@ var section := -1
 
 func _ready() -> void:
 	timeout()
-	SND.play_song("vampire_fight", 1.0, {start_volume = 0, play_from_beginning = true})
+	SND.play_song_from_beginning("vampire_fight", 1.0, {start_volume = 0})
 
 
 func _process(delta: float) -> void:

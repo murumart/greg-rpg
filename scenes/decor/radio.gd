@@ -26,7 +26,7 @@ func _interacted() -> void:
 	if musicplayer.playing:
 		music_last_position = musicplayer.get_playback_position()
 		musicplayer.stop()
-		SND.play_song(silence_song, 3.0, {"play_from_beginning": true})
+		SND.play_song_from_beginning(silence_song, 3.0)
 	else:
 		musicplayer.stream = radio_song if radio_song else default_song
 		musicplayer.play(music_last_position)

@@ -23,7 +23,7 @@ func _ready() -> void:
 	car.moves = false
 	car.position.y = -80
 
-	SND.play_song("arent_you_excited", 2931, {play_from_beginning = true, save_audio_position = false})
+	SND.play_song_from_beginning("arent_you_excited", 2931, {save_audio_position = false})
 
 	await animator.animation_finished
 	skipping_enabled = false

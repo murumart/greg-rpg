@@ -48,7 +48,7 @@ func _rose_cutscene() -> void:
 	tw.parallel().tween_property(greg, ^"global_position", woodsman.global_position + Vector2.DOWN * 12, 1.0)
 	tw.tween_callback(func() -> void:
 		greg.animate("walk_up")
-		SND.play_song("extremophile", 0.89, {pitch_scale = 0.89, play_from_beginning = true})
+		SND.play_song_from_beginning("extremophile", 0.89, {pitch_scale = 0.89})
 	)
 	tw.tween_interval(0.2)
 	await tw.finished

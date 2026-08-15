@@ -72,7 +72,7 @@ func _ready() -> void:
 
 	remove_child(ui)
 	SOL.add_ui_child(ui)
-	SND.play_song("fishing_game", 1.0, {start_volume = 0, play_from_beginning = true})
+	SND.play_song_from_beginning("fishing_game", 1.0, {start_volume = 0})
 	if DAT.get_data("fishing_hook_data", ""):
 		hook_data = ResMan.get_item(DAT.get_data("fishing_hook_data")).payload
 	hook.set_data(hook_data)

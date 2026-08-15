@@ -50,7 +50,7 @@ func _door() -> void:
 		inv.erase(&"explosive_soap")
 		dlg.set_char("mayor").al("there we go, son! you found something we can use!").scallback(func() -> void:
 			mayor.animate(mayor.HEAD, "backward")
-			SND.play_song("mayor", 1.0, {play_from_beginning = true})
+			SND.play_song_from_beginning("mayor", 1.0)
 		)
 		dlg.al("thanks for letting us in. i was really starting to think i'd be stranded here.").scallback(func() -> void:
 			var tw := create_tween()
@@ -157,7 +157,7 @@ func _open_door_cutscene(skip := false) -> void:
 	tw.tween_property(modul, ^"color", Color(0.321, 0.844, 1.0), 2.0)
 	tw.parallel().tween_property(skary.material, "shader_parameter/modulate_a", 1.0, 3.0)
 	tw.parallel().tween_property(get_viewport().get_camera_2d(), ^"global_position", dark_hole.global_position, 2.5)
-	SND.play_song("spboss", 0.7)
+	SND.play_song_from_beginning("spboss", 0.7)
 	await tw.finished
 	if not skip:
 		dlg.reset().set_char("mayor")

@@ -36,7 +36,7 @@ func _on_inside_area_body_entered(body: PlayerOverworld) -> void:
 	is_player_in = true
 	cam_zoom(Vector2(2, 2), 1)
 	set_physics_process(true)
-	SND.play_song("greenhouse", 1.0, {play_from_beginning = true})
+	SND.play_song_from_beginning("greenhouse", 1.0)
 	previous_song_key = SND.previously_played_song_key
 
 

@@ -211,7 +211,7 @@ func load_battle(_info: BattleInfo) -> void:
 		add_enemy(e)
 	set_background(info.background)
 	death_reason = info.death_reason
-	SND.play_song(info.music, 1.0, {start_volume = 0, play_from_beginning = true})
+	SND.play_song_from_beginning(info.music, 1.0, {start_volume = 0})
 	battle_rewards = info.get_("rewards",
 			preload("res://resources/rewards/res_default_reward.tres"
 			)).duplicate(true)
@@ -788,10 +788,9 @@ func open_end_screen(victory: bool) -> void:
 			p.offload_character()
 		resize_panel(60)
 		if not play_victory_music.is_empty():
-			SND.play_song(
+			SND.play_song_from_beginning(
 					play_victory_music, 10,
-					{start_volume = 0.0,
-					play_from_beginning = true})
+					{start_volume = 0.0})
 		var xp_reward := Reward.new()
 		xp_reward.type = BattleRewards.Types.EXP
 		xp_reward.property = str(xp_pool)

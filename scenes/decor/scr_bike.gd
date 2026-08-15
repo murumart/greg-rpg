@@ -94,9 +94,8 @@ func _prefight_anim() -> void:
 	await SOL.dialogue_closed
 	DAT.capture_player("cutscene")
 	animator.play("emerge")
-	SND.play_song("bike_spirit_appear",
-			10, {volume = -2,
-				start_volume = 0.0, play_from_beginning = true})
+	SND.play_song_from_beginning("bike_spirit_appear",
+			10, {volume = -2, start_volume = 0.0})
 	await get_tree().create_timer(2.0).timeout
 	SOL.dialogue(G_DIAL_PREXES[ghost] + "interact_2" + (extra_dial_once_key if not _has_interacted else &""))
 	await SOL.dialogue_closed

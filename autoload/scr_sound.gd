@@ -29,7 +29,12 @@ func _ready() -> void:
 	sound_clear_timer.process_mode = Node.PROCESS_MODE_ALWAYS # sounds cleanup shan't pause
 
 
-func play_song(song: String, fade_speed := 1.0, options := {}):
+func play_song_from_beginning(song: String, fade_speed := 1.0, options := {}) -> void:
+	options.merge({"play_from_beginning": true}, true)
+	play_song(song, fade_speed, options)
+
+
+func play_song(song: String, fade_speed := 1.0, options := {}) -> void:
 	var _save_audio_position: bool = options.get("save_audio_position", true)
 	var play_from_beginning: bool = options.get("play_from_beginning", false)
 	var pitch_scale: float = options.get("pitch_scale", 1.0)

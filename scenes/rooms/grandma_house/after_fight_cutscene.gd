@@ -42,7 +42,7 @@ func cs1() -> void:
 	, TAU * 2, 0.0, 1.0).set_ease(Tween.EASE_OUT)
 	tw.tween_interval(2.0)
 	tw.tween_callback(func() -> void:
-		SND.play_song("grandma_scary", 0.5, {play_from_beginning = true})
+		SND.play_song_from_beginning("grandma_scary", 0.5)
 		grandma.sanimate("walk_down", 0.1)
 		dlg.reset().set_char("grandma_talk")
 		dlg.add_line(dlg.ml("greg.").stext_speed(0.3))

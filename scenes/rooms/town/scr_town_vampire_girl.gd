@@ -80,7 +80,7 @@ func _pre_setup_basic(inters: int) -> bool:
 		return false
 	if not location in girl_visits:
 		girl_visits.append(location)
-	SND.play_song.call_deferred("sweet_girls", 1.0, {play_from_beginning = true})
+	SND.play_song_from_beginning.call_deferred("sweet_girls", 1.0)
 
 	girl.inspected.connect(func() -> void:
 		girl_inters += 1

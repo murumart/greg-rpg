@@ -138,7 +138,7 @@ func get_welcome_message() -> String:
 	var bike = game_get("bike")
 	var health: float = bike.health / float(bike.max_health)
 	if ending:
-		SND.play_song("victory", 1.0, {"start_volume": 1.0, "play_from_beginning": true})
+		SND.play_song_from_beginning("victory", 1.0, {"start_volume": 1.0})
 		return "biking_last_stop"
 	if health < 0.24:
 		return "biking_welcome_lowhealth"

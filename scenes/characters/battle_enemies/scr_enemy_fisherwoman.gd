@@ -98,7 +98,7 @@ func its_fishing_time() -> void:
 	hook.fish_caught.connect(func(a: FishingFish) -> void:
 		a.caught()
 		choir.stop()
-		SND.play_song("extremophile", 99, {"play_from_beginning": true})
+		SND.play_song_from_beginning("extremophile", 99)
 		hook.state = Blocks.FG.States.STOP
 		blocks.state = Blocks.FG.States.STOP
 		await Math.timer(2.0)

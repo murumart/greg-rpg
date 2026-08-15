@@ -21,7 +21,7 @@ func _ready() -> void:
 	mbc.new_bar.connect(_on_new_bar)
 	mbc.bpm *= PITCH
 	mbc.flbar += 14 # DEBUG!!!!
-	SND.play_song("xexposition", 99, {pitch_scale = PITCH, start_volume = 0, play_from_beginning = true})
+	SND.play_song_from_beginning("xexposition", 99, {pitch_scale = PITCH, start_volume = 0})
 	_on_new_bar(0)
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 2.0, {kill_rects = true})
 	rogues.hide()

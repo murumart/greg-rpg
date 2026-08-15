@@ -52,7 +52,7 @@ func start() -> void:
 	)
 	tw.tween_interval(1.0)
 	tw.tween_callback(func():
-		SND.play_song("ball_sounds", 1.0, {"play_from_beginning": true})
+		SND.play_song_from_beginning("ball_sounds", 1.0)
 		state = States.PLAYING
 	)
 

@@ -47,7 +47,7 @@ func _close_cutscene() -> void:
 		dlg.al("the [color=%s]flowers!" % dlg.FLOWERCOLOR).scallback(func() -> void:
 			grandma.sanimate("smile")
 			grandma.tanim_bounce(1.4)
-			SND.play_song("grand", 99, {play_from_beginning = true})
+			SND.play_song_from_beginning("grand", 99)
 		)
 		await dlg.speak_choice()
 		grandma.sanimate("flip")
