@@ -8,19 +8,24 @@
 [ext_resource type="Texture2D" uid="uid://yp6yxcafrgdp" path="res://sprites/characters/overworld/spr_greg_overworld.png" id="4_0gnln"]
 [ext_resource type="Material" uid="uid://djsum41brb3wt" path="res://resources/ppm_power.tres" id="5_1guws"]
 [ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="7_3bfs0"]
-[ext_resource type="AudioStream" uid="uid://pwvtqr5aib3e" path="res://music/flower/flower1.ogg" id="8_0i110"]
 [ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="8_pu3y8"]
-[ext_resource type="AudioStream" uid="uid://dppx1vispw8a5" path="res://music/flower/flower2.ogg" id="9_1dtc0"]
-[ext_resource type="AudioStream" uid="uid://b0ngnm4lkmp1f" path="res://music/flower/flower3.ogg" id="10_8uhvm"]
-[ext_resource type="AudioStream" uid="uid://kv870s2yo7bi" path="res://music/flower/flower4.ogg" id="11_kh2gp"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="12_1dtc0"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="13_kh2gp"]
 [ext_resource type="Texture2D" uid="uid://bfioyjnm3kog5" path="res://sprites/characters/overworld/spr_stonepeople.png" id="14_0v02i"]
+[ext_resource type="AudioStream" uid="uid://bp85bw4eyi7eu" path="res://music/flower/1_flowers1.ogg" id="14_d5hvl"]
+[ext_resource type="AudioStream" uid="uid://da8kkehrm3goa" path="res://music/flower/2_flowers2.ogg" id="15_231p0"]
+[ext_resource type="AudioStream" uid="uid://dj0coxpkuv8jc" path="res://music/flower/3_flowers3.ogg" id="16_rat15"]
+[ext_resource type="AudioStream" uid="uid://c62iqpikyb1lc" path="res://music/flower/4_flowers4.ogg" id="17_3k4mv"]
 [ext_resource type="Texture2D" uid="uid://dlp16sgqwkg03" path="res://sprites/characters/overworld/spr_grandma_epic.png" id="17_p6eob"]
+[ext_resource type="AudioStream" uid="uid://v35jb1vdc6vr" path="res://music/flower/5_flowers5.ogg" id="18_axk5i"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="18_ivea1"]
 [ext_resource type="PackedScene" uid="uid://ck2rx4jm7lv2l" path="res://scenes/gui/x_speech_buble.tscn" id="18_rm4p2"]
 [ext_resource type="AudioStream" uid="uid://s2d6x2mt7wmh" path="res://sounds/men-04.ogg" id="19_ahkm6"]
+[ext_resource type="AudioStream" uid="uid://tu3na01veknw" path="res://music/flower/6_flowers6.ogg" id="19_mqvib"]
+[ext_resource type="AudioStream" uid="uid://bhvgauf6lj1sc" path="res://music/flower/7_flowers7.ogg" id="20_6dqom"]
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="21_1hb2r"]
+[ext_resource type="AudioStream" uid="uid://xmy8fmiin6na" path="res://music/flower/8_flowers8.ogg" id="21_b5kph"]
+[ext_resource type="AudioStream" uid="uid://cwt65hkvh6thx" path="res://music/flower/flowersd.ogg" id="22_231p0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
 atlas = ExtResource("4_0gnln")
@@ -39,28 +44,38 @@ shader = ExtResource("1_qpwdf")
 shader_parameter/Gradient = SubResource("GradientTexture1D_hf1n7")
 shader_parameter/offset = Vector2(0, 0)
 
-[sub_resource type="Gradient" id="Gradient_pu3y8"]
+[sub_resource type="Gradient" id="Gradient_wfge7"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.33576643, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.13333334)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_p6eob"]
-gradient = SubResource("Gradient_pu3y8")
+gradient = SubResource("Gradient_wfge7")
 width = 166
 height = 126
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_0v02i"]
-stream_count = 4
-stream_0/stream = ExtResource("8_0i110")
-stream_0/volume = -2.57
-stream_1/stream = ExtResource("9_1dtc0")
-stream_1/volume = -18.0
-stream_2/stream = ExtResource("10_8uhvm")
-stream_2/volume = 0.0
-stream_3/stream = ExtResource("11_kh2gp")
-stream_3/volume = -12.86
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rat15"]
+stream_count = 9
+stream_0/stream = ExtResource("14_d5hvl")
+stream_0/volume = -6.52
+stream_1/stream = ExtResource("15_231p0")
+stream_1/volume = 0.54
+stream_2/stream = ExtResource("16_rat15")
+stream_2/volume = -10.71
+stream_3/stream = ExtResource("17_3k4mv")
+stream_3/volume = -9.29
+stream_4/stream = ExtResource("18_axk5i")
+stream_4/volume = -2.9
+stream_5/stream = ExtResource("19_mqvib")
+stream_5/volume = -2.61
+stream_6/stream = ExtResource("20_6dqom")
+stream_6/volume = -3.41
+stream_7/stream = ExtResource("21_b5kph")
+stream_7/volume = 3.64
+stream_8/stream = ExtResource("22_231p0")
+stream_8/volume = -0.38
 
 [sub_resource type="Curve" id="Curve_1hb2r"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5285715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -695,7 +710,7 @@ script = ExtResource("1_0v02i")
 
 [node name="MusBarCounter" type="Node" parent="." unique_id=1126511541]
 script = ExtResource("8_pu3y8")
-bpm = 81.37
+bpm = 78.455
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." unique_id=1430457217 instance=ExtResource("2_mnmvu")]
@@ -737,9 +752,9 @@ from = NodePath("../CanvasGroup/Sprite")
 to = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://b4no27m8ikd0y"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1148618974]
-stream = SubResource("AudioStreamSynchronized_0v02i")
-pitch_scale = 0.79
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=975386682]
+stream = SubResource("AudioStreamSynchronized_rat15")
+pitch_scale = 0.71
 autoplay = true
 bus = &"ECHO MUSIC"
 

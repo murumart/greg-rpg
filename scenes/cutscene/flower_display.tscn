@@ -11,15 +11,19 @@
 [ext_resource type="Texture2D" uid="uid://d2k7gs1cmalbb" path="res://sprites/items/flower_liatris.png" id="8_wrsv8"]
 [ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower_meadowsweet.png" id="9_301l5"]
 [ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower_begonia.png" id="10_ug8dw"]
-[ext_resource type="AudioStream" uid="uid://pwvtqr5aib3e" path="res://music/flower/flower1.ogg" id="12_wrsv8"]
-[ext_resource type="AudioStream" uid="uid://dppx1vispw8a5" path="res://music/flower/flower2.ogg" id="13_301l5"]
-[ext_resource type="AudioStream" uid="uid://b0ngnm4lkmp1f" path="res://music/flower/flower3.ogg" id="14_ug8dw"]
-[ext_resource type="AudioStream" uid="uid://kv870s2yo7bi" path="res://music/flower/flower4.ogg" id="15_0vwmh"]
+[ext_resource type="AudioStream" uid="uid://bp85bw4eyi7eu" path="res://music/flower/1_flowers1.ogg" id="12_tmuvp"]
+[ext_resource type="AudioStream" uid="uid://da8kkehrm3goa" path="res://music/flower/2_flowers2.ogg" id="13_mt17u"]
+[ext_resource type="AudioStream" uid="uid://dj0coxpkuv8jc" path="res://music/flower/3_flowers3.ogg" id="14_44twe"]
+[ext_resource type="AudioStream" uid="uid://c62iqpikyb1lc" path="res://music/flower/4_flowers4.ogg" id="15_06gnr"]
+[ext_resource type="AudioStream" uid="uid://v35jb1vdc6vr" path="res://music/flower/5_flowers5.ogg" id="16_hjq73"]
+[ext_resource type="AudioStream" uid="uid://tu3na01veknw" path="res://music/flower/6_flowers6.ogg" id="17_dmqqe"]
+[ext_resource type="AudioStream" uid="uid://bhvgauf6lj1sc" path="res://music/flower/7_flowers7.ogg" id="18_a7rwx"]
+[ext_resource type="AudioStream" uid="uid://xmy8fmiin6na" path="res://music/flower/8_flowers8.ogg" id="19_7y0nc"]
 
 [sub_resource type="Gradient" id="Gradient_rbnfn"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.00869565, 0.113043, 0.243478, 0.426087, 0.556522, 0.66087, 0.808696, 0.956522)
-colors = PackedColorArray(0.241156, 0.241156, 0.241156, 1, 0.122252, 0.122252, 0.122252, 1, 0.184066, 0.00141723, 0.401222, 1, 0.266667, 0, 0.4, 1, 0.360784, 0.345098, 0.4, 1, 0.717647, 0.345098, 0.847059, 1, 0.114897, 0.114897, 0.114897, 1, 0, 0.145675, 0.145856, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.2544784, 0.34650296, 0.4139876, 0.92932504)
+colors = PackedColorArray(0.184066, 0.00141723, 0.401222, 1, 0.254902, 0.94026536, 1, 1, 0.266667, 0, 0.4, 1, 0.10099049, 0.038647898, 0.25685108, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8k46y"]
 gradient = SubResource("Gradient_rbnfn")
@@ -30,22 +34,45 @@ shader_parameter/Gradient = SubResource("GradientTexture1D_8k46y")
 shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tmuvp"]
-stream_count = 4
-stream_0/stream = ExtResource("12_wrsv8")
+stream_count = 8
+stream_0/stream = ExtResource("12_tmuvp")
 stream_0/volume = -60.0
-stream_1/stream = ExtResource("13_301l5")
+stream_1/stream = ExtResource("13_mt17u")
 stream_1/volume = -60.0
-stream_2/stream = ExtResource("14_ug8dw")
+stream_2/stream = ExtResource("15_06gnr")
 stream_2/volume = -60.0
-stream_3/stream = ExtResource("15_0vwmh")
-stream_3/volume = 0.0
+stream_3/stream = ExtResource("14_44twe")
+stream_3/volume = -60.0
+stream_4/stream = ExtResource("16_hjq73")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("17_dmqqe")
+stream_5/volume = -60.0
+stream_6/stream = ExtResource("18_a7rwx")
+stream_6/volume = -60.0
+stream_7/stream = ExtResource("19_7y0nc")
+stream_7/volume = -60.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wfge7"]
+blend_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_pu3y8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.33576643, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.13333334)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmuvp"]
+gradient = SubResource("Gradient_pu3y8")
+width = 166
+height = 126
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="FlowerDisplay" type="Node2D" unique_id=489381638]
 script = ExtResource("1_bc6ai")
 
 [node name="Camera" parent="." unique_id=216567619 instance=ExtResource("1_ctpc8")]
-zoom = Vector2(2, 2)
-resolution_scale_factor = 0.5
+zoom = Vector2(4, 4)
+resolution_scale_factor = 0.25
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=83707892]
 z_index = -1
@@ -91,5 +118,13 @@ texture = ExtResource("5_635x7")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=94241397]
 stream = SubResource("AudioStreamSynchronized_tmuvp")
-autoplay = true
 bus = &"Music"
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="." unique_id=1419486607]
+resources = [PackedStringArray("1_flowers1", "2_flowers2", "3_flowers3", "4_flowers4", "5_flowers5", "6_flowers6", "7_flowers7", "8_flowers8"), [ExtResource("12_tmuvp"), ExtResource("13_mt17u"), ExtResource("14_44twe"), ExtResource("15_06gnr"), ExtResource("16_hjq73"), ExtResource("17_dmqqe"), ExtResource("18_a7rwx"), ExtResource("19_7y0nc")]]
+
+[node name="PulseD" type="Sprite2D" parent="." unique_id=2025693958]
+z_index = 6
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_wfge7")
+texture = SubResource("GradientTexture2D_tmuvp")

@@ -3666,7 +3666,7 @@ EMO human
 	the human body is... flimsy! you know that!
 	and you have brought me back down to your level.
 
-DATA_LINK 
+DATA_LINK
 	if you'd mind, i'd like a moment for myself now.
 DATA_LINK is_cashier_dead_during_vampire_battle,false
 CHAR cashier_nice
@@ -3685,7 +3685,7 @@ EMO what
 	is the [color=FLOWERCOLOR]old florist[/color]...
 	are you her henchman or...?
 	but then, what was that... [color=GREEN]thing[/color]?
-CHAR 
+CHAR
 	...
 
 

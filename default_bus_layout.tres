@@ -58,7 +58,7 @@ tap2_level_db = -9.63
 
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
 resource_name = "PitchShift"
-pitch_scale = 1.78
+pitch_scale = 1.3
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
 resource_name = "Reverb"
@@ -125,7 +125,7 @@ bus/6/send = &"Master"
 bus/6/effect/0/effect = SubResource("AudioEffectDelay_j3pel")
 bus/6/effect/0/enabled = true
 bus/6/effect/1/effect = SubResource("AudioEffectPitchShift_j3pel")
-bus/6/effect/1/enabled = true
+bus/6/effect/1/enabled = false
 bus/6/effect/2/effect = SubResource("AudioEffectReverb_j3pel")
 bus/6/effect/2/enabled = true
 bus/7/name = &"BattleEnter"
