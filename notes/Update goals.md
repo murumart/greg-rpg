@@ -104,7 +104,7 @@
 	- [x] Remove prodecural floors (for now)
 	- [x] NPCS
 		- [ ] flower freaks
-		- [ ] cat freaks
+		- [X] cat freaks
 	- [x] Central room, Three away-ways (Secret Garden? OS hideout)
 		- [x] Zerma call explains no reach in these rooms
 		- [ ] Lots of filler in the directions to make them feel longer
@@ -132,60 +132,22 @@
 	- [ ] Grandma bossfight changes
 		- [x] Make it shorter
 		- [ ] Final attack
-			- [ ] final attack animation
-				- [ ] background change
-				- [ ] background pan up to show camera perspective change
-			- [ ] branch based on armor equipped
-				- [ ] off branch: turn to stone..
-					- [ ] show stoned greg sprite, zoom out slowly into the dark
-					- [ ] slow music
-					- [ ] credits
-				- [ ] on branch: reflect
-					- [ ] animation
-						- [ ] lightning bounces back
-						- [ ] black florist silhouette on white shakes
+			- [X] final attack animation
+				- [X] background change
+				- [X] background pan up to show camera perspective change
+			- [X] branch based on armor equipped
+				- [X] off branch: turn to stone..
+					- [X] show stoned greg sprite, zoom out slowly into the dark
+					- [X] slow music
+					- [X] credits
+				- [X] on branch: reflect
+					- [X] animation
+						- [X] lightning bounces back
+						- [X] black florist silhouette on white shakes
 						- [ ] show stone sprite
-					- [ ] into overworld
-					- [ ] weird background
+					- [X] into overworld
+					- [X] weird background
 					- [ ] npcs that lore dump
-					- [ ] final boss appears
-						- [ ] giggle sound effect
-						- [ ] cool sprite. 32x32?
-						- [ ] dialogue (bubble, lowercase green..)
-					- [ ] transition to final battle
-- [ ] Final boss![[Pasted image 20250710193306.png]]
-	- [ ] Monster
-		- [ ] first part of song look normal, after a few turns into the next part of song and transform into scary mode
-		- [ ] many parts puppet
-		- [ ] jiggly bones?
-		- [ ] flies around
-		- [ ] bouncy speech bubble
-		- [ ] scary sounds
-	- [ ] fight
-		- [ ] ui![[bossui.png]]
-		- [ ] feels crushing and intense but dont make it that hard..
-		- [ ] awareness level you increase through the fight
-			- [ ] if its full the fight ends (bullshit ending it gets wiped from the earth by Big Beam)
-			- [ ] minigames
-				- [ ] they should get more difficult as you repeat them
-				- [ ] Fishing minigame
-					- [ ] Box that you maneuver to the bottom of
-					- [ ] Rotates the box after you get to goal
-					- [ ] Move back to top
-					- [ ] Lose penalty: ouch
-					- [ ] Stars
-				- [ ] Healing minigame (only for healing)
-					- [ ] shuffle a couple of greenhouses
-					- [ ] pick the correct one
-					- [ ] lose penalty: ouch
-					- [ ] Love
-				- [ ] Pong minigame
-					- [ ] Loser gets damaged
-					- [ ] Ball gets faster
-					- [ ] screen shake, sound effects (intense)
-					- [ ] Bounce the SUN
-			- [ ] ending animation
-	- [ ] Background
 - [ ] Newe game pluys
 	- [ ] challenges
 		- [ ] dark mode
