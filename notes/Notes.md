@@ -200,9 +200,9 @@ multipanther -> +10 (=99)
 - [X] vampire girl invisible when loading from uguy chase state
 - [X] color change from effect overrides modulate from death
 - [X] vampire girl visible in rooms when in uguy chase state
+- [X] skater says press x to jump (wrong)
 - [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] skater says press x to jump (wrong)
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] spboss music shoud play form beginingn
 - [ ] autosaves after bosses check if those exist

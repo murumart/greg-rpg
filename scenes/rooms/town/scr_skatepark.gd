@@ -92,6 +92,6 @@ func sk8r_kid_talk() -> void:
 		if c == &"yes":
 			dlg.al("very well. here's my skateboard.")
 			dlg.al("move with movement keys, jump with %s and tilt with %s in the air."
-				% [KeybindsSettings.action_string(&"cancel"), KeybindsSettings.action_string(&"menu")])
+				% [KeybindsSettings.action_string(&"ui_accept"), KeybindsSettings.action_string(&"menu")])
 			await dlg.speak_choice()
 			LTS.level_transition("res://scenes/skating/skating_minigame.tscn")
