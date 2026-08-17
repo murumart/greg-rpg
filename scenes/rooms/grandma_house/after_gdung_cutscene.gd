@@ -1,9 +1,11 @@
 extends Node2D
 
+const FlowerCircle = preload("res://scenes/cutscene/flower_circle.gd")
+
 @onready var enter_area: Area2D = $EnterArea
 @onready var camera: Camera2D = $"../../Greg/Camera"
 @onready var grandma := $Grandma
-@onready var flower_circle: Node2D = $FlowerCircle
+@onready var flower_circle: FlowerCircle = $FlowerCircle
 @onready var walk_up_position: Marker2D = $WalkUpPosition
 @onready var walking: AudioStreamPlayer = $Walking
 
@@ -59,15 +61,8 @@ func _close_cutscene() -> void:
 		)
 		await dlg.speak_choice()
 		flower_circle.show()
-		var i := 0
-		for c: Sprite2D in flower_circle.get_children():
-			c.modulate.a = 0.0
-			var ft := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-			ft.tween_interval(i * 0.12)
-			ft.tween_callback($ItemSound.play)
-			ft.tween_property(c, ^"scale", Vector2.ONE, 0.3).from(Vector2.ONE * 4)
-			ft.parallel().tween_property(c, ^"modulate:a", 1.0, 0.3)
-			i += 1
+		flower_circle.found = 4
+		flower_circle.show_cool()
 		for f in DAT.FLOWERS:
 			gchar.inventory.erase(f)
 		await Math.timer(1.0)

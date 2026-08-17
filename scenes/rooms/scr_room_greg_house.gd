@@ -47,14 +47,14 @@ func _ready() -> void:
 		elif intro_progress >= 4:
 			var inv := ResMan.get_character("greg").inventory
 			var have := DAT.flower_progress(inv)
-			if have == 8:
+			if have == 7:
 				house_door.destination = "grandma_house_inside"
 			else:
 				var dlg := DialogueBuilder.new()
 				dlg.al("[color=%s]your bouquet is incomplete." % dlg.FLOWERCOLOR)
 				if &"sleepy_flower" in inv:
 					dlg.al("[color=%s](and the \"sleepy flower\" you have won't be part of it.)" % dlg.FLOWERCOLOR)
-				dlg.al("[color=%s]you have %s out of eight." % [dlg.FLOWERCOLOR, ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine..???"][have]])
+				dlg.al("[color=%s]you have %s out of seven." % [dlg.FLOWERCOLOR, ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine..???"][have]])
 				await SOL.dialogue_closed # door default dialogue
 				SOL.dialogue_d(dlg.get_dial())
 	)

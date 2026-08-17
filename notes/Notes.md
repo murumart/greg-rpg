@@ -202,8 +202,9 @@ multipanther -> +10 (=99)
 - [X] vampire girl visible in rooms when in uguy chase state
 - [X] skater says press x to jump (wrong)
 - [X] spboss music shoud play form beginingn
+- [X] golden key dont get
+- [ ] add rain..
 - [ ] replace nasturtium
-- [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] autosaves after bosses check if those exist
@@ -219,6 +220,7 @@ multipanther -> +10 (=99)
 - [X] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [X] have npcs remark sunset so epople dont thinik its apocalypse..
 - [ ] vampire cutscene starts very suddenly and greg is off screen side probably
+- [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD

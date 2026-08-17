@@ -3,14 +3,7 @@
 [ext_resource type="Script" uid="uid://bpeototnubspc" path="res://scenes/cutscene/flower_display.gd" id="1_bc6ai"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="1_ctpc8"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="2_1l4g6"]
-[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower6.png" id="3_rvgc3"]
-[ext_resource type="Texture2D" uid="uid://j755sl6lpjmw" path="res://sprites/items/flower1.png" id="4_bc6ai"]
-[ext_resource type="Texture2D" uid="uid://dl6wj0ew3qxrt" path="res://sprites/items/flower7.png" id="5_635x7"]
-[ext_resource type="Texture2D" uid="uid://dybt1difdp48s" path="res://sprites/items/flower4.png" id="6_t1dqm"]
-[ext_resource type="Texture2D" uid="uid://behxvxjfa7gwd" path="res://sprites/items/flower5.png" id="7_pgrbf"]
-[ext_resource type="Texture2D" uid="uid://d2k7gs1cmalbb" path="res://sprites/items/flower2.png" id="8_wrsv8"]
-[ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower3.png" id="9_301l5"]
-[ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower0.png" id="10_ug8dw"]
+[ext_resource type="PackedScene" uid="uid://drsux6op2py4w" path="res://scenes/cutscene/flower_circle.tscn" id="4_635x7"]
 [ext_resource type="AudioStream" uid="uid://bp85bw4eyi7eu" path="res://music/flower/1_flowers1.ogg" id="12_tmuvp"]
 [ext_resource type="AudioStream" uid="uid://da8kkehrm3goa" path="res://music/flower/2_flowers2.ogg" id="13_mt17u"]
 [ext_resource type="AudioStream" uid="uid://dj0coxpkuv8jc" path="res://music/flower/3_flowers3.ogg" id="14_44twe"]
@@ -36,21 +29,21 @@ shader_parameter/offset = Vector2(0, 0)
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_tmuvp"]
 stream_count = 8
 stream_0/stream = ExtResource("12_tmuvp")
-stream_0/volume = -60.0
+stream_0/volume = 0.0
 stream_1/stream = ExtResource("13_mt17u")
-stream_1/volume = -60.0
+stream_1/volume = 0.0
 stream_2/stream = ExtResource("15_06gnr")
-stream_2/volume = -60.0
+stream_2/volume = 0.0
 stream_3/stream = ExtResource("14_44twe")
-stream_3/volume = -60.0
+stream_3/volume = 0.0
 stream_4/stream = ExtResource("16_hjq73")
-stream_4/volume = -60.0
+stream_4/volume = 0.0
 stream_5/stream = ExtResource("17_dmqqe")
-stream_5/volume = -60.0
+stream_5/volume = 0.0
 stream_6/stream = ExtResource("18_a7rwx")
-stream_6/volume = -60.0
+stream_6/volume = 0.0
 stream_7/stream = ExtResource("19_7y0nc")
-stream_7/volume = -60.0
+stream_7/volume = 0.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wfge7"]
 blend_mode = 2
@@ -82,39 +75,7 @@ offset_top = -73.0
 offset_right = 92.0
 offset_bottom = 80.0
 
-[node name="FlowerCircle" type="Node2D" parent="." unique_id=1699821608]
-
-[node name="Sprite2D8" type="Sprite2D" parent="FlowerCircle" unique_id=1577795723]
-position = Vector2(-18, -16)
-texture = ExtResource("10_ug8dw")
-
-[node name="Sprite2D5" type="Sprite2D" parent="FlowerCircle" unique_id=1057182617]
-position = Vector2(-18, 16)
-texture = ExtResource("4_bc6ai")
-
-[node name="Sprite2D7" type="Sprite2D" parent="FlowerCircle" unique_id=30957898]
-position = Vector2(18, -16)
-texture = ExtResource("8_wrsv8")
-
-[node name="Sprite2D4" type="Sprite2D" parent="FlowerCircle" unique_id=1426292628]
-position = Vector2(0, -24)
-texture = ExtResource("9_301l5")
-
-[node name="Sprite2D6" type="Sprite2D" parent="FlowerCircle" unique_id=291435238]
-position = Vector2(18, 18)
-texture = ExtResource("6_t1dqm")
-
-[node name="Sprite2D3" type="Sprite2D" parent="FlowerCircle" unique_id=1607298514]
-position = Vector2(24, 0)
-texture = ExtResource("7_pgrbf")
-
-[node name="Sprite2D" type="Sprite2D" parent="FlowerCircle" unique_id=697687693]
-position = Vector2(-24, 0)
-texture = ExtResource("3_rvgc3")
-
-[node name="Sprite2D2" type="Sprite2D" parent="FlowerCircle" unique_id=1946887601]
-position = Vector2(0, 24)
-texture = ExtResource("5_635x7")
+[node name="FlowerCircle" parent="." unique_id=938508617 instance=ExtResource("4_635x7")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=94241397]
 stream = SubResource("AudioStreamSynchronized_tmuvp")

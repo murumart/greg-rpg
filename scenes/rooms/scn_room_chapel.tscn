@@ -281,25 +281,19 @@ dialogue = SubResource("Resource_df63c")
 modulate = Color(0.912851, 0.301124, 0.777803, 1)
 position = Vector2(32, 20)
 
-[node name="Pot" type="Sprite2D" parent="Decor/Pedestal" unique_id=1699772286]
-position = Vector2(0, -4)
-texture = ExtResource("11_4r7cx")
-region_enabled = true
-region_rect = Rect2(48, 24, 16, 8)
-
-[node name="Liatris" parent="Decor" unique_id=1681019377 instance=ExtResource("16_6gh48")]
+[node name="Thing" parent="Decor" unique_id=1681019377 instance=ExtResource("16_6gh48")]
 position = Vector2(32, 20)
-item_type = &"flower2"
+item_type = &"key_gold"
 save = true
 
-[node name="CollisionShape2D" parent="Decor/Liatris" index="0" unique_id=1279058300]
+[node name="CollisionShape2D" parent="Decor/Thing" index="0" unique_id=1279058300]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_x660b")
 
-[node name="Sprite2D" parent="Decor/Liatris" index="1" unique_id=417693384]
+[node name="Sprite2D" parent="Decor/Thing" index="1" unique_id=417693384]
 position = Vector2(0, -13)
 
-[node name="WindowLight4" type="Sprite2D" parent="Decor/Liatris" unique_id=2000197747]
+[node name="WindowLight4" type="Sprite2D" parent="Decor/Thing" unique_id=2000197747]
 modulate = Color(0.329858, 0.402213, 0.302122, 1)
 z_index = 2
 material = SubResource("CanvasItemMaterial_ppj0e")
@@ -310,4 +304,4 @@ texture = SubResource("GradientTexture2D_t0sih")
 offset = Vector2(1.90735e-06, 16.4571)
 
 [editable path="Decor/Bookshelf"]
-[editable path="Decor/Liatris"]
+[editable path="Decor/Thing"]

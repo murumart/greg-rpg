@@ -57,15 +57,15 @@ func _on_tarikas_inspected() -> void:
 		await dlg.speak_choice()
 		return
 
-	if flowers_c == 7:
+	if flowers_c == 6:
 		SND.play_song("extremophile", 0.1, {pitch_scale = 0.2})
 		done = true
-		dlg.al("...seven [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
-		dlg.al("you are missing an eighth.")
+		dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+		dlg.al("you are missing a seventh.")
 		dlg.al("despite my... warnings.")
 		dlg.al("despite my stalling...")
-		dlg.al("...seven [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
-		dlg.al("i hold the eighth...")
+		dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+		dlg.al("i hold the seventh...")
 		dlg.al("...")
 		dlg.al("there's nothing else for me to do than to give... it to you.")
 		dlg.clear_char().al("(you received the begonia.)").sitem_to_give(&"flower0")
@@ -193,14 +193,14 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("...that is a foolish hope.")
 				dlg.al("considering... whose... whose... ...")
 				dlg.al("...")
-			elif flowers_c < 6:
+			elif flowers_c < 5:
 				dlg.al("growth...")
 				dlg.al("that is what a [color=%s]flower[/color] means..." % dlg.FLOWERCOLOR)
 				dlg.al("what it beckons...")
 				dlg.al("you will... finish growing... eventually.")
 				dlg.al("what's a ripe fruit good for, think...?")
 				dlg.al("...")
-			elif flowers_c < 7:
+			elif flowers_c < 6:
 				dlg.al("the [color=0f0]danger[/color] of the flowers.")
 				dlg.al("i can't tell you much... more, but...")
 				dlg.al("do you think you're better than them?")
@@ -223,7 +223,7 @@ func _check_topics() -> void:
 	for l in [5, 20, 40, 50, 60, 70, 80]:
 		if greg.level >= l and talked_now_last_level < l:
 			_unmention("now")
-	for f in [2, 4, 6, 7]:
+	for f in [2, 4, 5, 6]:
 		if flowers_c >= f and talked_flowers_last_level < f:
 			_unmention("flowers")
 	if unlocked_topics.size() > talked_topics.size():

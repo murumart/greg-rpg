@@ -12,7 +12,7 @@ extends Room
 func _ready() -> void:
 	super._ready()
 
-	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
+	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 7:
 		flower_darkness.show()
 		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
 		door_area.destination = &"secret_garden_entrance"

@@ -29,7 +29,7 @@ var talked_topic_aboutyou: bool:
 
 
 func _ready() -> void:
-	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 8:
+	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 7:
 		return
 	initial_color = color_container.color
 	if not got_to_talk:

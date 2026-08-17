@@ -8,7 +8,6 @@ const GDUNG_LEVEL := 72
 const FLOWERS = [
 	&"flower0",
 	&"flower1",
-	&"flower2",
 	&"flower3",
 	&"flower4",
 	&"flower5",

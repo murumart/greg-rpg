@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://drsux6op2py4w"]
+
+[ext_resource type="Script" uid="uid://cip25j0snu0gw" path="res://scenes/cutscene/flower_circle.gd" id="1_et7xa"]
+[ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower0.png" id="1_rp6e2"]
+[ext_resource type="Texture2D" uid="uid://j755sl6lpjmw" path="res://sprites/items/flower1.png" id="2_et7xa"]
+[ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower3.png" id="3_pisx1"]
+[ext_resource type="Texture2D" uid="uid://dybt1difdp48s" path="res://sprites/items/flower4.png" id="4_44irl"]
+[ext_resource type="Texture2D" uid="uid://behxvxjfa7gwd" path="res://sprites/items/flower5.png" id="5_s3by7"]
+[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower6.png" id="6_tfx03"]
+[ext_resource type="Texture2D" uid="uid://dl6wj0ew3qxrt" path="res://sprites/items/flower7.png" id="7_0dqrh"]
+
+[node name="FlowerCircle" type="Node2D" unique_id=938508617]
+script = ExtResource("1_et7xa")
+
+[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=1675401270]
+position = Vector2(-18, -16)
+texture = ExtResource("1_rp6e2")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=1704077453]
+position = Vector2(-18, 16)
+texture = ExtResource("2_et7xa")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=795563176]
+position = Vector2(0, -24)
+texture = ExtResource("3_pisx1")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=268395722]
+position = Vector2(18, 18)
+texture = ExtResource("4_44irl")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1372492437]
+position = Vector2(24, 0)
+texture = ExtResource("5_s3by7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2047551975]
+position = Vector2(-24, 0)
+texture = ExtResource("6_tfx03")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=541255123]
+position = Vector2(0, 24)
+texture = ExtResource("7_0dqrh")

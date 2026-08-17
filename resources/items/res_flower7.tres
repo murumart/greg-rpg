@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [resource]
 script = ExtResource("3_dw808")
-name = &"yellow balsam"
+name = &"touch-me-not"
 description = "holding this is making you impatient."
 texture = ExtResource("4_87tjo")
 consume_on_use = false

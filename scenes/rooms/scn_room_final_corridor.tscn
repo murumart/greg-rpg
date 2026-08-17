@@ -40,15 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://dv3guaurer2pv" path="res://scenes/decor/radio.tscn" id="26_60vux"]
 [ext_resource type="AudioStream" uid="uid://dk0rosugl706u" path="res://sounds/silent.ogg" id="27_oghcq"]
 [ext_resource type="PackedScene" uid="uid://cjug5v3lju2m1" path="res://scenes/characters/overworld/scn_grandma_overworld.tscn" id="27_t0iwo"]
-[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower6.png" id="28_4p4v0"]
-[ext_resource type="Texture2D" uid="uid://j755sl6lpjmw" path="res://sprites/items/flower1.png" id="29_1rw1k"]
-[ext_resource type="Texture2D" uid="uid://dl6wj0ew3qxrt" path="res://sprites/items/flower7.png" id="30_u345r"]
-[ext_resource type="Texture2D" uid="uid://dybt1difdp48s" path="res://sprites/items/flower4.png" id="31_60vux"]
-[ext_resource type="Texture2D" uid="uid://behxvxjfa7gwd" path="res://sprites/items/flower5.png" id="32_oghcq"]
-[ext_resource type="Texture2D" uid="uid://d2k7gs1cmalbb" path="res://sprites/items/flower2.png" id="33_ydek8"]
-[ext_resource type="Texture2D" uid="uid://gnb52q5l7x3n" path="res://sprites/items/flower3.png" id="34_6qorh"]
-[ext_resource type="Texture2D" uid="uid://bob5s3pb0a27g" path="res://sprites/items/flower0.png" id="35_h781b"]
-[ext_resource type="AudioStream" uid="uid://cl2pqsq7v68vx" path="res://sounds/use_item.ogg" id="36_1rw1k"]
+[ext_resource type="PackedScene" uid="uid://drsux6op2py4w" path="res://scenes/cutscene/flower_circle.tscn" id="36_xsdpb"]
 
 [sub_resource type="GDScript" id="GDScript_kcpxu"]
 resource_name = "fridge"
@@ -91,15 +83,15 @@ size = Vector2(36, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbyid"]
 size = Vector2(66, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_60vux"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsdpb"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oghcq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv6aa"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ydek8"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0iwo"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -2524,65 +2516,28 @@ shape = SubResource("RectangleShape2D_jbyid")
 position = Vector2(-1, -79)
 
 [node name="CollisionShape" parent="InteriorTiles/Grandma/Grandma" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_60vux")
+shape = SubResource("RectangleShape2D_xsdpb")
 
 [node name="CollisionShape2D" parent="InteriorTiles/Grandma/Grandma/CollisionDetectionArea" parent_id_path=PackedInt32Array(682728197, 1353807789) index="0" unique_id=53099754]
-shape = SubResource("RectangleShape2D_oghcq")
+shape = SubResource("RectangleShape2D_mv6aa")
 
 [node name="DetectionShape" parent="InteriorTiles/Grandma/Grandma/DetectionArea" parent_id_path=PackedInt32Array(682728197, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_ydek8")
+shape = SubResource("CircleShape2D_t0iwo")
 
 [node name="Sprite" parent="InteriorTiles/Grandma/Grandma" index="3" unique_id=1189305422]
 animation = &"backward"
-
-[node name="ItemSound" type="AudioStreamPlayer" parent="InteriorTiles/Grandma" unique_id=263623078]
-stream = ExtResource("36_1rw1k")
-volume_db = -6.0
-pitch_scale = 2.0
 
 [node name="Walking" type="AudioStreamPlayer" parent="InteriorTiles/Grandma" unique_id=1648774891]
 stream = SubResource("AudioStreamRandomizer_crlhn")
 max_polyphony = 4
 bus = &"ECHO"
 
-[node name="FlowerCircle" type="Node2D" parent="InteriorTiles/Grandma" unique_id=1717322330]
-visible = false
-position = Vector2(-1, -89)
-
-[node name="Sprite2D" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=1493175876]
-position = Vector2(-24, 0)
-texture = ExtResource("28_4p4v0")
-
-[node name="Sprite2D5" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=627745891]
-position = Vector2(-18, 16)
-texture = ExtResource("29_1rw1k")
-
-[node name="Sprite2D2" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=286357320]
-position = Vector2(0, 24)
-texture = ExtResource("30_u345r")
-
-[node name="Sprite2D6" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=1718726952]
-position = Vector2(18, 18)
-texture = ExtResource("31_60vux")
-
-[node name="Sprite2D3" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=24215587]
-position = Vector2(24, 0)
-texture = ExtResource("32_oghcq")
-
-[node name="Sprite2D7" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=426126671]
-position = Vector2(18, -16)
-texture = ExtResource("33_ydek8")
-
-[node name="Sprite2D4" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=1620031077]
-position = Vector2(0, -24)
-texture = ExtResource("34_6qorh")
-
-[node name="Sprite2D8" type="Sprite2D" parent="InteriorTiles/Grandma/FlowerCircle" unique_id=756960486]
-position = Vector2(-18, -16)
-texture = ExtResource("35_h781b")
-
 [node name="WalkUpPosition" type="Marker2D" parent="InteriorTiles/Grandma" unique_id=834806019]
 position = Vector2(0, -41)
+
+[node name="FlowerCircle" parent="InteriorTiles/Grandma" unique_id=938508617 instance=ExtResource("36_xsdpb")]
+visible = false
+position = Vector2(-1, -86)
 
 [node name="Darkness" type="Sprite2D" parent="InteriorTiles" unique_id=1425383524]
 material = SubResource("CanvasItemMaterial_3wrfu")
