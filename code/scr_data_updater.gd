@@ -72,4 +72,7 @@ static func _update_flowers(data: Dictionary) -> void:
 			print("replacing " + map[i] + " with " + "flower" + str(i))
 			inventory.erase(map[i])
 			inventory.append("flower" + str(i))
+	while "flower2" in inventory:
+		print("removing flower2..")
+		inventory.erase("flower2")
 	greg["inventory"] = inventory

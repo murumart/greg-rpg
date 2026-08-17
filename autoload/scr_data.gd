@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(1, 2, 0)
+const VERSION := Vector3(1, 2, 1)
 const GDUNG_LEVEL := 72
 const FLOWERS = [
 	&"flower0",
