@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gnb52q5l7x3n"
-path="res://.godot/imported/flower_meadowsweet.png-c37550cb5bfde58887a3eea73fa8f11e.ctex"
+uid="uid://bctasshyto2yt"
+path="res://.godot/imported/flower6.png-21691d0233ce0e13c0342b7adeadbbe2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/items/flower_meadowsweet.png"
-dest_files=["res://.godot/imported/flower_meadowsweet.png-c37550cb5bfde58887a3eea73fa8f11e.ctex"]
+source_file="res://sprites/items/flower6.png"
+dest_files=["res://.godot/imported/flower6.png-21691d0233ce0e13c0342b7adeadbbe2.ctex"]
 
 [params]
 

@@ -15,6 +15,7 @@ static func update_data(data: Dictionary) -> void:
 	_fix_sprits_typo(data)
 	_replace_you_sop(data)
 	_fix_character_data(data)
+	_update_flowers(data)
 
 
 static func _fix_sprits_typo(data: Dictionary) -> void:
@@ -59,3 +60,16 @@ static func _fix_character_data(data: Dictionary) -> void:
 	if greg.is_empty(): return
 	if greg.level > greg.get("max_level", 0):
 		greg["max_level"] = greg.level
+
+
+static func _update_flowers(data: Dictionary) -> void:
+	var greg: Dictionary = data.get("char_greg_save", {})
+	if greg.is_empty(): return
+	var inventory: Array = greg["inventory"]
+	const map := ["flower_begonia", "flower_hollyhock", "flower_liatris", "flower_meadowsweet", "flower_nasturtium", "flower_rose", "flower_strawberry", "flower_yellow_balsam"]
+	for i in map.size():
+		while map[i] in inventory:
+			print("replacing " + map[i] + " with " + "flower" + str(i))
+			inventory.erase(map[i])
+			inventory.append("flower" + str(i))
+	greg["inventory"] = inventory

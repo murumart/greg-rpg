@@ -59,7 +59,7 @@ func _rose_cutscene() -> void:
 	for i in FLOWER_PIECE_COUNT:
 		inv.erase(&"rose_petals")
 		inv.erase(&"rose_thorns")
-	inv.append(&"flower_rose")
+	inv.append(&"flower5")
 	await Math.timer(1.0)
 	SOL.dialogue("woods_guy_after_2")
 	await SOL.dialogue_closed

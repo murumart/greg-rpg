@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_jd4g5"]
 script = ExtResource("1_natb2")
 type = 1
-property = "flower_yellow_balsam"
+property = "flower7"
 unique = true
 metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
 

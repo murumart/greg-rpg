@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="7_fqnfh"]
 [ext_resource type="Texture2D" uid="uid://cxe3cfr8tnyjl" path="res://sprites/world/building/spr_indoors.png" id="8_3j6wt"]
 [ext_resource type="AudioStream" uid="uid://hy3n726fcxds" path="res://music/mus_grandma_radio.ogg" id="8_cxs6r"]
-[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower_strawberry.png" id="9_ppjx1"]
+[ext_resource type="Texture2D" uid="uid://bctasshyto2yt" path="res://sprites/items/flower6.png" id="9_ppjx1"]
 [ext_resource type="Script" uid="uid://b4lqogy5daqbf" path="res://scenes/tech/scr_interaction_area.gd" id="9_r0b2n"]
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="10_dqc58"]
 [ext_resource type="PackedScene" uid="uid://f4icx0po6ob5" path="res://scenes/decor/scn_door_area.tscn" id="10_frp4p"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dybt1difdp48s"
-path="res://.godot/imported/flower_nasturtium.png-9c1dab84c0d0005b8a6da2ed2aea7e4e.ctex"
+uid="uid://behxvxjfa7gwd"
+path="res://.godot/imported/flower5.png-83c0a197422abe43a3436e2c578b0448.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/items/flower_nasturtium.png"
-dest_files=["res://.godot/imported/flower_nasturtium.png-9c1dab84c0d0005b8a6da2ed2aea7e4e.ctex"]
+source_file="res://sprites/items/flower5.png"
+dest_files=["res://.godot/imported/flower5.png-83c0a197422abe43a3436e2c578b0448.ctex"]
 
 [params]
 

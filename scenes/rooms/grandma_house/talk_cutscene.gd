@@ -169,7 +169,7 @@ func cs_talk_1() -> void:
 	tw.tween_property(strawberry_sprite, ^"global_position", greg.global_position + Vector2(0, -8), 0.2).set_ease(Tween.EASE_OUT)
 	tw.parallel().tween_property(strawberry_sprite, ^"scale", Vector2.ZERO, 0.4)
 	tw.tween_callback(strawberry_sprite.hide)
-	DAT.grant_item("flower_strawberry")
+	DAT.grant_item("flower6")
 	await SOL.dialogue_closed
 
 

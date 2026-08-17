@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl6wj0ew3qxrt"
-path="res://.godot/imported/flower_yellow_balsam.png-9404c6f9d2b181b08fe9ba02d3dc4e7a.ctex"
+uid="uid://gnb52q5l7x3n"
+path="res://.godot/imported/flower3.png-076c81a740109aeeadec55bea5992681.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/items/flower_yellow_balsam.png"
-dest_files=["res://.godot/imported/flower_yellow_balsam.png-9404c6f9d2b181b08fe9ba02d3dc4e7a.ctex"]
+source_file="res://sprites/items/flower3.png"
+dest_files=["res://.godot/imported/flower3.png-076c81a740109aeeadec55bea5992681.ctex"]
 
 [params]
 

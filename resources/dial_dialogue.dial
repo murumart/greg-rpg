@@ -1935,7 +1935,7 @@ SPEED 1.00
 	once you meet your goal, what then?
 	...
 	...but stopping you is not... something i can do.
-ITEM flower_begonia
+ITEM flower0
 	please take this [color=FLOWERCOLOR]flower[/color]...
 	...and take care.
 

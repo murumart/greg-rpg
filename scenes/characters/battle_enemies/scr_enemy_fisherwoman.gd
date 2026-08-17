@@ -119,7 +119,7 @@ func its_fishing_time() -> void:
 	flower.moving = true
 	flower.speed = 0
 	flower.ymoving = false
-	flower.item = &"flower_hollyhock"
+	flower.item = &"flower1"
 	flower.global_position = Vector2(0, 300)
 
 	fishing_minigame.add_child(flower)

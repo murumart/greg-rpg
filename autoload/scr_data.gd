@@ -3,17 +3,17 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(1, 1, 0)
+const VERSION := Vector3(1, 2, 0)
 const GDUNG_LEVEL := 72
 const FLOWERS = [
-	&"flower_begonia",
-	&"flower_hollyhock",
-	&"flower_liatris",
-	&"flower_meadowsweet",
-	&"flower_nasturtium",
-	&"flower_rose",
-	&"flower_strawberry",
-	&"flower_yellow_balsam",
+	&"flower0",
+	&"flower1",
+	&"flower2",
+	&"flower3",
+	&"flower4",
+	&"flower5",
+	&"flower6",
+	&"flower7",
 ]
 
 enum DeathReasons {

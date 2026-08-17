@@ -9,5 +9,5 @@ name = "greg"
 info = "you should shave! and take a shower!"
 portrait = ExtResource("1_bs81s")
 max_level = 11
-inventory = Array[String](["pocket_candy", "pocket_candy", "pocket_candy", "cellphone", "flower_strawberry"])
+inventory = Array[String](["pocket_candy", "pocket_candy", "pocket_candy", "cellphone", "flower6"])
 spirits = Array[String](["sideeye"])

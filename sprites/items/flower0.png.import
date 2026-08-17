@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2k7gs1cmalbb"
-path="res://.godot/imported/flower_liatris.png-77a5282ce3239ef1ef45fa204103ccd0.ctex"
+uid="uid://bob5s3pb0a27g"
+path="res://.godot/imported/flower0.png-922a8f0a069d7e6ae62752ef49e5d300.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/items/flower_liatris.png"
-dest_files=["res://.godot/imported/flower_liatris.png-77a5282ce3239ef1ef45fa204103ccd0.ctex"]
+source_file="res://sprites/items/flower0.png"
+dest_files=["res://.godot/imported/flower0.png-922a8f0a069d7e6ae62752ef49e5d300.ctex"]
 
 [params]
 

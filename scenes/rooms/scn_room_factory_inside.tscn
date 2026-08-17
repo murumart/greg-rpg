@@ -230,7 +230,7 @@ region_rect = Rect2(48, 24, 16, 8)
 
 [node name="Meadowsweet" parent="Decor" unique_id=1991928852 instance=ExtResource("11_011l0")]
 position = Vector2(0, -68)
-item_type = &"flower_meadowsweet"
+item_type = &"flower3"
 save = true
 
 [node name="CollisionShape2D" parent="Decor/Meadowsweet" index="0" unique_id=1279058300]

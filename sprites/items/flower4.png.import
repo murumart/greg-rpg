@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bob5s3pb0a27g"
-path="res://.godot/imported/flower_begonia.png-b1a392190003fc69674ca0e6f6c29cf2.ctex"
+uid="uid://dybt1difdp48s"
+path="res://.godot/imported/flower4.png-37984a162bc40a20c779358ade281a3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/items/flower_begonia.png"
-dest_files=["res://.godot/imported/flower_begonia.png-b1a392190003fc69674ca0e6f6c29cf2.ctex"]
+source_file="res://sprites/items/flower4.png"
+dest_files=["res://.godot/imported/flower4.png-37984a162bc40a20c779358ade281a3a.ctex"]
 
 [params]
 

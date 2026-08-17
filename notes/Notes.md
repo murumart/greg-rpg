@@ -202,6 +202,7 @@ multipanther -> +10 (=99)
 - [X] vampire girl visible in rooms when in uguy chase state
 - [X] skater says press x to jump (wrong)
 - [X] spboss music shoud play form beginingn
+- [ ] replace nasturtium
 - [ ] golden key dont get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] zerma forgets you did the dialogue when calling in battle

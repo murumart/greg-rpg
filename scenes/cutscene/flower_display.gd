@@ -6,14 +6,14 @@ extends Node2D
 
 const ORDER := [7, 1, 5, 6, 3, 4, 0, 2]
 """
-	&"flower_begonia", 7
-	&"flower_hollyhock", 1
-	&"flower_liatris", 5
-	&"flower_meadowsweet", 6
-	&"flower_nasturtium", 3
-	&"flower_rose", 4
-	&"flower_strawberry", 0
-	&"flower_yellow_balsam", 2
+	&"flower0", 7
+	&"flower1", 1
+	&"flower2", 5
+	&"flower3", 6
+	&"flower4", 3
+	&"flower5", 4
+	&"flower6", 0
+	&"flower7", 2
 """
 
 
