@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bgj726r0ubr21"]
 
 [ext_resource type="Script" uid="uid://dsuq4ss3rx5" path="res://scenes/rooms/store/scr_room_store.gd" id="1_4louq"]
+[ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="2_5uuf7"]
 [ext_resource type="TileSet" uid="uid://b5w8xwy2ck6vp" path="res://resources/res_interior_tiles.tres" id="2_ud36p"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="3_p4n0p"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="4_t0r6d"]
@@ -543,26 +544,34 @@ _data = {
 &"drain": SubResource("Animation_qos5f")
 }
 
-[sub_resource type="Gradient" id="Gradient_ppggd"]
+[sub_resource type="Gradient" id="Gradient_0ivro"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_5uuf7"]
+[sub_resource type="Gradient" id="Gradient_qv0vh"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.12592, 0.50992, 0.88192, 1)
 colors = PackedColorArray(1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ivro"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_egm2u"]
 resource_local_to_scene = true
-gradient = SubResource("Gradient_5uuf7")
+gradient = SubResource("Gradient_qv0vh")
 fill_from = Vector2(1, 1)
 
 [node name="Store" type="Node2D" unique_id=1480772587 groups=["save_me"]]
 y_sort_enabled = true
 script = ExtResource("1_4louq")
+
+[node name="CheatNode" type="Node" parent="." unique_id=1218928583]
+script = ExtResource("2_5uuf7")
+data_overrides = Dictionary[StringName, Variant]({
+&"raining": true,
+&"you_gotta_see_the_water_drain": true
+})
+metadata/_custom_type_script = "uid://dkf3yix03l3hc"
 
 [node name="InteriorTiles" type="Node2D" parent="." unique_id=1882486566]
 z_index = -1
@@ -1121,12 +1130,12 @@ offset = Vector2(0, -8)
 [node name="VfxPowerline" parent="PresidentEncounter/WetMessSlop/DeliveryGuy" unique_id=752730248 instance=ExtResource("26_tunbu")]
 position = Vector2(24, 3)
 line_width = 5.0
-gradient = SubResource("Gradient_ppggd")
+gradient = SubResource("Gradient_0ivro")
 
 [node name="Line2D" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="0" unique_id=134236045]
 points = PackedVector2Array(-24, -3, -24.451, -12.6958, -24.4705, -28.3179, -23.3057, -36.2842, -26.4443, -49.6942, -25.8346, -59.7958, -22.8818, -73.9024, -24.4311, -82.6969, -23.678, -97.9251, -25, -108)
 width = 5.0
-texture = SubResource("GradientTexture2D_0ivro")
+texture = SubResource("GradientTexture2D_egm2u")
 
 [node name="Start" parent="PresidentEncounter/WetMessSlop/DeliveryGuy/VfxPowerline" index="1" unique_id=1667776555]
 position = Vector2(-24, -3)

@@ -203,7 +203,7 @@ multipanther -> +10 (=99)
 - [X] skater says press x to jump (wrong)
 - [X] spboss music shoud play form beginingn
 - [X] golden key dont get
-- [ ] add rain..
+- [X] add rain..
 - [ ] replace nasturtium
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] zerma forgets you did the dialogue when calling in battle

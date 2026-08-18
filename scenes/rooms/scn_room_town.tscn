@@ -1464,10 +1464,11 @@ shape = SubResource("RectangleShape2D_3d7it")
 position = Vector2(-21.99998, -7.0000606)
 shape = SubResource("RectangleShape2D_3d7it")
 
-[node name="Store" type="Node2D" parent="Houses" unique_id=1195424476]
+[node name="Store" type="Node2D" parent="Houses" unique_id=1195424476 node_paths=PackedStringArray("sunsetter")]
 y_sort_enabled = true
 position = Vector2(368, 144)
 script = ExtResource("26_yxj03")
+sunsetter = NodePath("../../Sunsetter")
 
 [node name="OverworldTiles" type="Node2D" parent="Houses/Store" unique_id=2110246155]
 y_sort_enabled = true

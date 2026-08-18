@@ -68,6 +68,6 @@ func stop_raining() -> void:
 	is_raining = false
 	var tw := create_tween()
 	tw.tween_property(rain_modulate, ^"color", Color.WHITE, 4.0).from(RAIN_COLOR)
-	tw.parallel().tween_property(rain_particles, ^"amount_ratio", 1.0, 4.0).from(0.0)
+	tw.parallel().tween_property(rain_particles, ^"amount_ratio", 0.0, 4.0).from(1.0)
 	tw.tween_callback(rain_particles.set_emitting.bind(false))
 	SND.play_song(default_music, 0.5)

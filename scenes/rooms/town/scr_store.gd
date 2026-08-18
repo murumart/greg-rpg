@@ -6,6 +6,8 @@ const STORE_CLEANUP_TIME_SECONDS := 400
 @onready var guy: OverworldCharacter = $UguyWalk
 @onready var boot_trash: TrashBin = $Strash3
 
+@export var sunsetter: Sunsetter
+
 
 func setup() -> void:
 	_store_door_setup()
@@ -29,6 +31,8 @@ func _store_door_setup() -> void:
 			and DAT.seconds - cleanup_start_second < STORE_CLEANUP_TIME_SECONDS):
 		store_door.destination = ""
 		store_door.fail_dialogue = "store_under_cleanup"
+		if sunsetter.is_raining:
+			sunsetter.stop_raining()
 
 
 func lake_hint_npc_setup() -> void:
