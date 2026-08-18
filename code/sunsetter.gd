@@ -25,6 +25,7 @@ var default_music := ""
 
 func _ready() -> void:
 	assert(rain_particles, "no rain particles assigned")
+	RenderingServer.global_shader_parameter_set(&"wind_strength", 0.01)
 	var lvl := ResMan.get_character("greg").level
 	var is_sunset := _sunset_triggered()
 	if is_sunset or lvl >= SUNSET_LEVEL and _correct_gate():

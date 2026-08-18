@@ -660,14 +660,17 @@ music = "dry_summer"
 
 [node name="CheatNode" type="Node" parent="." unique_id=1555275563]
 script = ExtResource("5_ev43v")
+level_gain = 45
 new_spirits = Array[StringName]([&"hotel", &"peptide", &"peanuts", &"personally"])
 new_items = Array[StringName]([&"diploma", &"sugar_lemon", &"cough_syrup", &"cough_syrup", &"porridge", &"cellphone", &"bike_bell", &"pills", &"salt", &"pills", &"plaster", &"bike_helmet", &"plaster", &"sugar_lemon", &"egg", &"cough_syrup", &"egg", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"egg", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"pills", &"plaster", &"brick", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"bread", &"bread", &"gummy_worm", &"gummy_worm", &"rain_boot", &"gummy_fish", &"gummy_worm", &"bread", &"bike_bell", &"plaster", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"cough_syrup", &"gummy_worm", &"pills", &"bread", &"magnet", &"water_balloon", &"gummy_fish", &"water_balloon", &"bread", &"gummy_worm", &"mueslibar", &"mueslibar", &"cough_syrup", &"gummy_worm", &"gummy_worm", &"sugar_lemon", &"tape", &"gummy_worm", &"plaster", &"bread", &"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"pills", &"frankling_badge", &"bread", &"gummy_worm", &"pizz", &"soda", &"soda", &"soda", &"soda", &"soda", &"ash_bucket", &"magnet", &"bread", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"bread", &"gummy_fish", &"bread", &"water_balloon", &"mueslibar", &"bread", &"bread", &"gummy_worm", &"tape", &"glue", &"muesli", &"pills", &"plaster", &"plaster", &"gummy_worm", &"sugar_lemon", &"gummy_worm", &"bread", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"plaster", &"plaster", &"eggshell", &"bread", &"eggshell", &"sleepy_flower", &"eggshell", &"gummy_fish", &"sleepy_flower", &"gummy_fish", &"free_hugs_coupon", &"lighter", &"lighter", &"lighter", &"lighter"])
 replace_items = Array[StringName]([&"mueslibar", &"mueslibar", &"mueslibar", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_worm", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"gummy_fish", &"pills", &"tape", &"tape", &"plaster", &"plaster", &"plaster", &"plaster", &"plaster", &"cellphone", &"frozen_meat", &"antifreeze", &"water_balloon", &"water_balloon", &"soda", &"soda", &"soda", &"fish", &"tumbler", &"tumbler", &"pocket_candy", &"pocket_candy", &"pocket_candy"])
 replace_armour = &"cool_jacket"
 replace_weapon = &"fish"
+force_gate_id = &"exit_battle"
 data_overrides = Dictionary[StringName, Variant]({
 &"bike_ghosts_fought": [1, 0],
-&"gdung_floor": -1
+&"gdung_floor": -1,
+&"vampire_end_cutscene": true
 })
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=1380093549]
@@ -2087,10 +2090,11 @@ replenish_minutes = 24
 replenish_seconds = 1440
 item = &"glue"
 
-[node name="VampireCutscene" type="Node2D" parent="Other/CampfireSite" unique_id=602003665]
+[node name="VampireCutscene" type="Node2D" parent="Other/CampfireSite" unique_id=602003665 node_paths=PackedStringArray("sunsetter")]
 visible = false
 y_sort_enabled = true
 script = ExtResource("33_v2bux")
+sunsetter = NodePath("../../../Sunsetter")
 
 [node name="GregPos" type="Marker2D" parent="Other/CampfireSite/VampireCutscene" unique_id=1363002520]
 position = Vector2(-58, 12)

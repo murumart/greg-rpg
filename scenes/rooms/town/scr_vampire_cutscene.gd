@@ -18,6 +18,9 @@ const M = preload("res://scenes/vfx/x_menacing.gd")
 @onready var thug_spawners := $"../../../Areas".find_children("ThugSpawner*")
 @onready var animal_spawners := $"../../../Areas".find_children("AnimalSpawner*")
 
+@export var sunsetter: Sunsetter
+
+
 func _ready() -> void:
 	await get_tree().process_frame # cutscene greebles are below in the tree
 	if LTS.gate_id == &"vampire_cutscene":
@@ -184,6 +187,7 @@ func end() -> void:
 	SND.play_song("")
 	SOL.dialogue("vampire_after_battle_4")
 	await SOL.dialogue_closed
+	sunsetter.start_raining()
 	cashier.set_physics_process(true)
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, "global_position", greg.global_position, 3.0 + int(cashier_ouch) * 10.0)
