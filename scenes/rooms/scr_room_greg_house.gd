@@ -136,6 +136,7 @@ func evicted() -> void:
 		SOL.dialogue_closed.connect(func():
 			if SOL.dialogue_choice == "yes":
 				SOL.dialogue_choice = ""
+				DAT.set_data("got_battle_tutorial", true)
 				LTS.enter_battle(preload("res://resources/battle_infos/zerma_tutorial.tres"))
 				intro_progress += 1
 			elif SOL.dialogue_choice == "no":

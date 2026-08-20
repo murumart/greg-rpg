@@ -42,7 +42,7 @@ CHAR stabbing_fella
 DIALOGUE prank_call_2
 CHAR benthon
 	oooooooooooo
-CHAR 
+CHAR
 	(you can smell cheap booze through the receiver)
 	(somehow)
 CHAR benthon
@@ -52,11 +52,11 @@ CHAR benthon
 DIALOGUE prank_call_3
 CHAR stray_pet
 	gnaw... gnaw...
-CHAR 
+CHAR
 	(you can hear the receiver being chewed by some animal)
 CHAR stray_pet
 	gnaw... gnaw... crack...
-CHAR 
+CHAR
 	jooky!!! nooooo!!!
 
 
@@ -109,7 +109,7 @@ CHAR zerma
 	how's it going inside the house?
 CHAR greg
 INSTASKIP
-	i think  
+	i think
 CHAR zerma
 	that's nice to hear! keep it up, man!
 	talk to her if you haven't already!
@@ -170,7 +170,7 @@ DATA_LINK got_battle_tutorial,false
 	but, you know... you had other plans!
 	uhm, try hitting the enemy? that might work...?
 	good luck!
-DATA_LINK 
+DATA_LINK
 	have a wonderful rest of your day!
 
 
@@ -184,11 +184,11 @@ CHAR well
 	...i should call... uh... my uh...
 	...my wife... ...hic...
 SOUND phone/phone_call
-CHAR 
+CHAR
 	(...)
 CHAR well
 	...hello...?
-CHAR 
+CHAR
 	well, well well, look who it is. the blithering idiot!
 	i told you not to call me before you're sober! asshat
 SOUND phone/call_end
@@ -265,7 +265,7 @@ DATA_LINK biking_games_finished,true
 	keep on delivering that mail!
 DATA_LINK biking_games_finished,false
 	try out the mail delivery job!
-DATA_LINK 
+DATA_LINK
 	you can buy healing items from the store...
 	...or find alternative meals. i mean ways...
 	...to heal.
@@ -296,7 +296,7 @@ DATA_LINK lake_visited,true
 	but at the same time, all that fightin' experience...
 	just saying!
 	fishing sounds fun too!
-DATA_LINK 
+DATA_LINK
 	good luck for now! have a great day!
 
 
@@ -314,10 +314,10 @@ PORTRAIT_SCALE -1,1
 	hh heheeeehheh eeh hehheh eheeee..........
 PORTRAIT_SCALE -1,1
 	hah aaaha v eeea a   woodnerf   rdayyyyy....
-CHAR 
+CHAR
 SOUND phone/call_end
 	(...it hung up.)
-	
+
 
 DIALOGUE phone_town_under40
 CHAR zerma
@@ -327,7 +327,7 @@ DATA_LINK lake_visited,false
 DATA_LINK lake_visited,true
 	hang out at the lake! it's sweltering today!
 	grind those fish... fishermen... fishing... you know!
-DATA_LINK 
+DATA_LINK
 	and i'm pretty sure someone... interesting...
 	...will show up at the town soon enough! yeah!
 	damn, i can't speak for any longer!
@@ -362,7 +362,7 @@ DATA_LINK president_fought,true
 	well, at least.. uh.. you know...
 	you got experience... which you'll need to reach level 60!
 	which is when the next cool thing happens probably!
-DATA_LINK 
+DATA_LINK
 	have a good day!
 
 
@@ -425,7 +425,7 @@ DATA_LINK president_fought,true
 	well, at least.. uh.. you know...
 	you got some experience toward! level 60!
 	which is a good level to be at, i think!
-DATA_LINK 
+DATA_LINK
 	have a wonderful rest of your day!!
 
 

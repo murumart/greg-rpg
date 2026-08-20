@@ -204,9 +204,10 @@ multipanther -> +10 (=99)
 - [X] spboss music shoud play form beginingn
 - [X] golden key dont get
 - [X] add rain..
+- [X] zerma forgets you did the dialogue when calling in battle
 - [ ] replace nasturtium
+- [ ] swap begonia and hollyhock
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] zerma forgets you did the dialogue when calling in battle
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
 - [ ] town east enemies bad with level limit.. increase level limit..

@@ -381,6 +381,11 @@ DIALOGUE insp_ph_doghouse
 	a pet-sized house.
 
 
+DIALOGUE insp_ball
+	it's someone's ball for kicking around...
+	it must've reached escape velocity to be here.
+
+
 DIALOGUE insp_stone_column
 	what is the purpose of this lone stone column?
 
