@@ -11,7 +11,7 @@ var starting := false
 ]
 @onready var version_text: Label = $VersionText
 @onready var logo_texture: TextureRect = $LogoTexture
-@onready var logo_animated: AnimatedSprite2D = $LogoAnimated
+@onready var funny_text: RichTextLabel = $FunnyText
 
 
 func _ready() -> void:
@@ -22,10 +22,9 @@ func _ready() -> void:
 	$VBoxContainer/NewGameButton.grab_focus()
 	choose_music()
 	version_text.text += " " + DAT.version_str()
-	if randf() >= 0.5 and DIR.gej(0, 0) > 0:
-		$Label.text = "[center]" + str(get_funny_messages().pick_random())
-		if $Label.text.ends_with("[/url]"):
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	funny_text.text = "[center]" + str(get_funny_messages().pick_random())
+	if funny_text.text.ends_with("[/url]"):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	# mail message
 	for b in buttons:
 		b.focus_exited.connect(_on_button_focus_exited.bind(b))
@@ -42,10 +41,6 @@ func _ready() -> void:
 			mov.bounce_rect.size.x -= 90
 			x.add_child(mov)
 	DIR.incj(0, 1)
-	var e: Array = DIR.gej(3, [])
-	if e.size() > 1 and DAT.seconds > 1:
-		logo_texture.hide()
-		logo_animated.show()
 
 
 func _input(event: InputEvent) -> void:
@@ -116,8 +111,6 @@ func get_funny_messages() -> Array:
 		"the soulless snail",
 		"new!",
 		"in the flesh",
-		SND.list.songs[SND.list.songs.keys().pick_random()]["title"],
-		SND.current_song.get("title"),
 		"",
 		"thank you lamb!",
 		"thank you radio!",
@@ -126,7 +119,6 @@ func get_funny_messages() -> Array:
 		"don't eat the soap." if randf() < 0.75 else "don't eat the soup" if randf() < 0.5 else "don't eat the saup" if randf() < 0.25 else "don't eat the soeuüp",
 		"histories of mail and man",
 		"greg",
-		"[color=#8888ff][u][url=https://www.google.com/search?q=greg+merch]buy cool merch! ->[/url]"
 	]
 
 
