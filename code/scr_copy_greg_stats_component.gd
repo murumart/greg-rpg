@@ -19,7 +19,7 @@ enum CopyType {
 
 
 func _ready() -> void:
-	# character is ready before this is ready - hopefully
+	assert(get_parent() is BattleActor)
 	get_parent().ready.connect(func():
 		var character := (get_parent() as BattleActor).character
 		var greg := ResMan.get_character("greg")
@@ -41,6 +41,7 @@ static func copy_stats_d(from: Character, to: Character, params: Dictionary[Copy
 				to.health = to.max_health
 			CopyType.SET_HEALTH_BASED_ON_LVL:
 				to.max_health = roundf(from.level * mult)
+				to.health = to.max_health
 			CopyType.SET_ATTACK_BASED_ON_LVL: to.attack = roundf(from.level * mult)
 			CopyType.SET_DEFENSE_BASED_ON_LVL: to.defense = roundf(from.level * mult)
 			CopyType.SET_SPEED_BASED_ON_LVL: to.speed = roundf(from.level * mult)

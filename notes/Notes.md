@@ -205,6 +205,7 @@ multipanther -> +10 (=99)
 - [X] golden key dont get
 - [X] add rain..
 - [X] zerma forgets you did the dialogue when calling in battle
+- [X] remove fire before it does extra damage from sopping effect
 - [ ] replace nasturtium
 - [ ] swap begonia and hollyhock
 - [ ] 1 damage from drenchfoot? at high level?

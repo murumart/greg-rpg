@@ -16,25 +16,25 @@ static var talked_topics: PackedStringArray:
 	get: return DAT.get_data("tarikas_talked_topics", [])
 var talked_now_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_now_last_level", to)
-	get: return DAT.get_data("tarikas_talked_now_last_level", 0) 
+	get: return DAT.get_data("tarikas_talked_now_last_level", 0)
 var talked_flowers_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_flowers_last_level", to)
-	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0) 
+	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0)
 
 var done: bool:
 	set(to): DAT.set_data("tarikas_done", to)
-	get: return DAT.get_data("tarikas_done", false) 
+	get: return DAT.get_data("tarikas_done", false)
 
 var notif_cleared: bool:
 	set(to): DAT.set_data("tarikas_notif_cleared", to)
-	get: return DAT.get_data("tarikas_notif_cleared", false) 
+	get: return DAT.get_data("tarikas_notif_cleared", false)
 
 
 func _ready() -> void:
 	if not unlocked_topics: unlocked_topics = ["now", "bye"]
 	if not talked_topics: talked_topics = ["bye"]
 	tarikas.inspected.connect(_on_tarikas_inspected)
-	if DAT.get_data("tarikas_solar_done", false) or done:
+	if done:
 		tarikas.queue_free()
 	if DAT.get_data("known_status_effects", []).is_empty():
 		pass

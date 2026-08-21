@@ -14,7 +14,7 @@ const ANGLE_DOWN := 1.5708
 const ANGLE_UP := -1.5708
 
 const VECS_FROM_DIR: PackedVector2Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
-
+const NUMSTR: PackedStringArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():

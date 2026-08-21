@@ -54,7 +54,7 @@ func _ready() -> void:
 				dlg.al("[color=%s]your bouquet is incomplete." % dlg.FLOWERCOLOR)
 				if &"sleepy_flower" in inv:
 					dlg.al("[color=%s](and the \"sleepy flower\" you have won't be part of it.)" % dlg.FLOWERCOLOR)
-				dlg.al("[color=%s]you have %s out of seven." % [dlg.FLOWERCOLOR, ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine..???"][have]])
+				dlg.al("[color=%s]you have %s out of seven." % [dlg.FLOWERCOLOR, Math.NUMSTR[have]])
 				await SOL.dialogue_closed # door default dialogue
 				SOL.dialogue_d(dlg.get_dial())
 	)

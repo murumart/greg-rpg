@@ -58,6 +58,7 @@ var rng := RandomNumberGenerator.new()
 @export var effect_immunities: Array[StringName] = []
 @export_range(0.0, 1.0) var stat_multiplier := 1.0
 @export var wait := 1.0
+@export var hide_stat_view := false
 @export var _logsalot := false
 var ignore_my_finishes := false # cutscenes and such?
 
@@ -466,10 +467,13 @@ func handle_payload(pld: BattlePayload) -> void:
 		teammate_requested.emit(self, pld.summon_enemy)
 
 	if pld.meta.get("reveal_enemy_info", false) and pld.sender.player_controlled:
+		var rlvl: Variant = str(character.level) if not hide_stat_view else "??"
+		var ratk: Variant = str(roundi(get_attack())) if not hide_stat_view else "??"
+		var rdef: Variant = str(roundi(get_defense())) if not hide_stat_view else "??"
+		var rspd: Variant = str(roundi(get_speed())) if not hide_stat_view else "??"
 		SOL.dialogue_box.dial_concat("battle_inspect", 1, [actor_name])
-		SOL.dialogue_box.dial_concat("battle_inspect", 2, [character.level])
-		SOL.dialogue_box.dial_concat("battle_inspect", 3,
-				[roundi(get_attack()), roundi(get_defense()), roundi(get_speed()), Genders.NAMES[get_gender()]])
+		SOL.dialogue_box.dial_concat("battle_inspect", 2, [rlvl])
+		SOL.dialogue_box.dial_concat("battle_inspect", 3, [ratk, rdef, rspd, Genders.NAMES[get_gender()]])
 		SOL.dialogue_box.dial_concat("battle_inspect", 4, [character.info if character.info else "secretive one... nothing else could be found."])
 		SOL.dialogue("battle_inspect")
 
@@ -570,11 +574,12 @@ func remove_status_effect(nimi: StringName) -> void:
 
 func status_effect_update() -> void:
 	for eff in status_effects:
-		var effect := status_effects[eff]
-		await effect.turn(self)
 		# remove if immune
 		if is_immune_to(eff):
 			remove_status_effect(eff)
+	for eff in status_effects:
+		var effect := status_effects[eff]
+		await effect.turn(self)
 		if _logsalot:
 			print(self, ": ", effect)
 

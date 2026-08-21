@@ -128,7 +128,7 @@ func next_bar(bar: int) -> void:
 			fadein(imgs[0], 0.00001)
 			fadeout(imgs[1])
 		16:
-			talk("%s powerful spirit masters banded together" % heroes)
+			talk("%s powerful spirit masters banded together" % Math.NUMSTR[heroes])
 			imgs[1].texture = texs["redback"]
 		17:
 			talk("to end anu's reign of terror over the world.")

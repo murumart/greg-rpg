@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://srd1rbfrklke" path="res://scenes/characters/battle_enemies/scr_enemy_sun_spirit.gd" id="1_l2g0k"]
 [ext_resource type="Texture2D" uid="uid://dgr3wuk3enp53" path="res://sprites/characters/battle/sunspirit/spr_sunspirit.png" id="2_sivrd"]
 [ext_resource type="PackedScene" uid="uid://cmqriao5lqsnv" path="res://scenes/tech/scn_rotator.tscn" id="3_g30y0"]
+[ext_resource type="Script" uid="uid://dkna7fhou1pf7" path="res://code/scr_copy_greg_stats_component.gd" id="4_3adg4"]
 
 [sub_resource type="Gradient" id="Gradient_ln5vb"]
 offsets = PackedFloat32Array(0, 0.191111, 0.814676, 0.861439, 0.949281, 0.952549)
@@ -2233,6 +2234,7 @@ altruism = 0.0
 xp_multiplier = 4.0
 gender = 3
 effect_immunities = Array[StringName]([&"fire", &"crying"])
+hide_stat_view = true
 
 [node name="Puppet" type="Node2D" parent="." unique_id=1471406201]
 
@@ -2438,3 +2440,7 @@ theme_override_constants/outline_size = 2
 text = "
 nova"
 horizontal_alignment = 1
+
+[node name="CopyGregStatsComponent" type="Node" parent="." unique_id=1810219322]
+script = ExtResource("4_3adg4")
+metadata/_custom_type_script = "uid://dkna7fhou1pf7"

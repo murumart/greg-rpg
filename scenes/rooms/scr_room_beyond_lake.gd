@@ -25,14 +25,14 @@ func _ready() -> void:
 			if DAT.get_data("tarikas_solar_done", false):
 				tarikas.queue_free()
 		if LTS.gate_id == LTS.GATE_EXIT_CUTSCENE and not DAT.get_data("tarikas_solar_done"):
-			SOL.dialogue("tarikas_beyond_lake_3")
+			SOL.dialogue("tarikas_beyond_lake_2")
 			DAT.set_data("tarikas_solar_done", true)
 	else:
 		_remove_spirit()
 		tarikas.queue_free()
 		$BronzeRifle.queue_free()
 
-	if not Math.inrange(DAT.get_data("nr", 0.33), 0.33, 0.97):
+	if Math.inrange(DAT.get_data("nr", 0.32), 0.33, 0.97):
 		fisher_ghost.queue_free()
 	if DAT.get_data("sun_spirit_engagement_position", false):
 		$OverworldTiles/BurnMark.global_position = (
@@ -56,7 +56,8 @@ func _on_dialogue_closed() -> void:
 	if DAT.get_data("show_anu_cutscene", false):
 		DAT.set_data("show_anu_cutscene", false)
 		DAT.set_data("heard_tarikas_story", true)
-		LTS.level_transition("res://scenes/cutscene/scn_warstory.tscn")
+		SND.play_song("")
+		LTS.level_transition("res://scenes/cutscene/scn_warstory.tscn", {"fade_time": 2.0})
 	elif SOL.dialogue_choice in ["power", "souls", "desire", "human", "inhuman"]:
 		DAT.set_data("spirit_definition", SOL.dialogue_choice)
 		DIR.sej(14, SOL.dialogue_choice)

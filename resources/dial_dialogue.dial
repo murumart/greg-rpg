@@ -1911,33 +1911,22 @@ CHAR tarikas
 	...dreadful. dreadful.
 	[color=SUNCOLOR]solar protuberance[/color] has been... plaguing... the woods for a long time.
 	...until now.
+	mh... i should thank you. spending some of your precious time...
+	...here... instead of collecting... your [color=FLOWERCOLOR]flowers[/color].
+	...
+	singleminded ambition takes men down dark paths.
+	alongside the... rest of the world.
+	don't you remember what happened to us... thirty years ago?
+SET_DATA show_anu_cutscene,true
+	what [color=aaa]anu armu[/color] did?
 
 
 DIALOGUE tarikas_beyond_lake_2
 CHAR tarikas
-	i should be glad, of course.
-	but... something that can overpower [color=SUNCOLOR]solar protuberance[/color]...
-	such power is not fit for a single man.
-SET_DATA show_anu_cutscene,true
-	a tale from history... that should be heeded as warning...
-
-
-DIALOGUE tarikas_beyond_lake_3
-CHAR tarikas
-	...
-	...that is something we should... all be afraid of.
-SPEED 0.7
-	[color=SPIRITCOLOR]spirit power.[/color]
-SPEED 1.00
-	no one needs these amounts of it.
-	boy...
-	whatever you're seeking to grow your power for...
-	once you meet your goal, what then?
-	...
-	...but stopping you is not... something i can do.
-ITEM flower0
-	please take this [color=FLOWERCOLOR]flower[/color]...
-	...and take care.
+	i don't know what you have... planned. but once you reach your goal...
+	...your seven [color=FLOWERCOLOR]flowers[/color]...
+	what's the next step?
+	will your... will... still have value?
 
 
 DIALOGUE bike_ghost_fishing_1
