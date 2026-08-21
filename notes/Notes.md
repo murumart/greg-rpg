@@ -206,8 +206,8 @@ multipanther -> +10 (=99)
 - [X] add rain..
 - [X] zerma forgets you did the dialogue when calling in battle
 - [X] remove fire before it does extra damage from sopping effect
+- [X] swap begonia and hollyhock
 - [ ] replace nasturtium
-- [ ] swap begonia and hollyhock
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
