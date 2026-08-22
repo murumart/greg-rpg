@@ -294,14 +294,14 @@ func version_string(data: Dictionary) -> String:
 	else:
 		text += "unknown version"
 	if (super_difference < 0
-			or (not super_difference and (major_difference < 0 or minor_difference < 0))
-			or (not super_difference and not major_difference and minor_difference < 0)):
+			or (super_difference == 0 and (major_difference < 0))
+			or (super_difference == 0 and major_difference == 0 and minor_difference < 0)):
 		load_warning_message = "outdatedgame"
 		text = "[color=#ff0000]%s[/color]" % text
-	elif super_difference:
+	elif super_difference > 0:
 		text = "[color=#ff0000]%s[/color]" % text
 		load_warning_message = "superdiff"
-	elif major_difference:
+	elif major_difference > 0:
 		text = "[color=#ffccaa]%s[/color]" % text
 		load_warning_message = "majordiff"
 	else:
