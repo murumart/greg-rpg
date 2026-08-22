@@ -259,7 +259,7 @@ default_lines = Array[StringName]([&"sg_7_warning"])
 
 [node name="Cat3" parent="Areas" parent_id_path=PackedInt32Array(705709897) index="3" unique_id=2001173656 instance=ExtResource("2_oak1r")]
 position = Vector2(108, 168)
-default_lines = Array[StringName]([&"sg_7_puzzle_hint", &"sg_7_puzzle_hint_2"])
+default_lines = Array[StringName]([&"sg_7_puzzle_hint"])
 
 [node name="DoorArea" parent="Areas" parent_id_path=PackedInt32Array(705709897) index="4" unique_id=1073313921 node_paths=PackedStringArray("spawn_point") instance=ExtResource("4_xujwb")]
 position = Vector2(192, -27)
@@ -420,6 +420,8 @@ tile_set = ExtResource("11_06tny")
 [node name="Parallax2D3" type="Parallax2D" parent="." index="8" unique_id=1250242962]
 scroll_scale = Vector2(0.045, 0)
 scroll_offset = Vector2(99.64, 60.115)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="BattleBackground" parent="Parallax2D3" index="0" unique_id=1458366890 instance=ExtResource("11_0w81v")]
 modulate = Color(0.474006, 0.289712, 4.81308e-08, 1)

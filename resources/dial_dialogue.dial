@@ -4172,10 +4172,6 @@ DIALOGUE sg_7_after_cat3
 
 DIALOGUE sg_7_puzzle_hint
 	%SGThe final light must consist of all sources.
-
-
-DIALOGUE sg_7_puzzle_hint_2
-	%SGThe final light must consist of all sources.
 	%SGAvoid the impure prisms...
 
 

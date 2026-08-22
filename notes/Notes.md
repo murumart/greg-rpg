@@ -207,15 +207,15 @@ multipanther -> +10 (=99)
 - [X] zerma forgets you did the dialogue when calling in battle
 - [X] remove fire before it does extra damage from sopping effect
 - [X] swap begonia and hollyhock
+- [X] town east enemies bad with level limit.. increase level limit..
+- [X] guive impure prism hint on first interaction
+- [X] resetting puzzle replays the animation (wghat does this mean)
 - [ ] replace nasturtium
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
-- [ ] town east enemies bad with level limit.. increase level limit..
 - [ ] peptide should work in woodsguy
 - [ ] save campfire litness
-- [ ] resetting puzzle replays the animation (wghat does this mean)
-- [ ] guive impure prism hint on first interaction
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution

@@ -39,9 +39,6 @@ func _check() -> void:
 	if not solved and light_target_block.active and light_target_block_2.active:
 		solved = true
 		SND.play_sound(preload(\"res://sounds/pennistong/ppos.ogg\"))
-	if solved:
-		var pos := camera.position
-		blocker.disabled = true
 		DAT.capture_player(\"cs\")
 		var tw := create_tween()
 		tw.tween_interval(0.5)
@@ -52,8 +49,12 @@ func _check() -> void:
 			SND.play_sound(preload(\"res://sounds/skateboard_equip.ogg\"), {\"pitch_scale\": 1.3, \"volume\": -6})
 		)
 		tw.tween_interval(0.5)
+		var pos := camera.position
 		tw.tween_property(camera, ^\"position\", pos, 1.0)
 		tw.tween_callback(DAT.free_player.bind(\"cs\"))
+	elif solved:
+		blocker.disabled = true
+		floortm.show()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18dv3"]
