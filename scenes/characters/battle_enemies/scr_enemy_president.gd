@@ -2,6 +2,9 @@ extends BattleEnemy
 
 const BackgroundType := preload("res://scenes/battle_backgrounds/scr_president_background.gd")
 
+const SPRITE_NORMAL := preload("res://sprites/characters/battle/president/spr_president.png")
+const SPRITE_CALL := preload("res://sprites/characters/battle/president/spr_president_call.png")
+
 var background: BackgroundType
 
 var progress := 0
@@ -41,8 +44,8 @@ func _progress_check(damage: float) -> float:
 		progress = 2
 		SOL.dialogue("president_33")
 		damage += character.health - damage - character.max_health * 0.33
-		if Math.inrange(DAT.get_data("nr"), 0.87, 0.88):
-			SOL.dialogue_box.started_speaking.connect(_instrumental_solo)
+		SOL.dialogue_box.started_speaking.connect(_line_callback)
+
 		if not is_instance_valid(background):
 			return damage
 		SOL.dialogue_closed.connect(func():
@@ -53,17 +56,21 @@ func _progress_check(damage: float) -> float:
 			tw.tween_property(self, "scale", Vector2(0.2, 0.2), 2.0)
 			tw.finished.connect(func():
 				died.emit(self)
+				SOL.dialogue_box.started_speaking.disconnect(_line_callback)
 			)
 			reference_to_opposing_array.map(func(a): a.offload_character())
 		, CONNECT_ONE_SHOT)
 	return damage
 
 
-func _instrumental_solo(line: int) -> void:
-	if line >= 5:
+func _line_callback(line: int) -> void:
+	if line == 1:
+		sprite.texture = SPRITE_CALL
+	elif line == 2:
+		sprite.texture = SPRITE_NORMAL
+	elif line == 5 and Math.inrange(DAT.get_data("nr"), 0.87, 0.88):
 		SND.current_song_player.volume_db = -30.0
 		SND.play_sound(preload("res://sounds/talking/solo.ogg"))
 		var tw := create_tween()
 		tw.tween_interval(1.0)
 		tw.tween_property(SND.current_song_player, "volume_db", 0.0, 1.0)
-		SOL.dialogue_box.started_speaking.disconnect(_instrumental_solo)

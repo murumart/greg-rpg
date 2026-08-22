@@ -564,10 +564,14 @@ fill_from = Vector2(1, 1)
 [node name="Store" type="Node2D" unique_id=1480772587 groups=["save_me"]]
 y_sort_enabled = true
 script = ExtResource("1_4louq")
+music = "air_conditioning"
+music_play_from_beginning = true
 
 [node name="CheatNode" type="Node" parent="." unique_id=1218928583]
 script = ExtResource("2_5uuf7")
 data_overrides = Dictionary[StringName, Variant]({
+&"cashier_mean_defeated": false,
+&"is_cashier_dead_during_vampire_battle": false,
 &"raining": true,
 &"you_gotta_see_the_water_drain": true
 })

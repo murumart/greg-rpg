@@ -13,7 +13,6 @@ var cashier := "nice"
 
 
 func speak():
-	if cashier == "dead": return
 	var dat := DAT.A
 	var unpaid_items: Array = dat.get("unpaid_items", [])
 
@@ -97,9 +96,6 @@ func warn() -> void:
 
 
 static func which_cashier_should_be_here() -> String:
-	if DAT.get_data("cashier_dead", false):
-		DIR.sej(144, 1)
-		return "dead"
 	# load the current cashier based on their schedule
 	var schedule := DAT.seconds % (WAIT_UNTIL_CASHIER_SWITCH * 2)
 	var can_mean: bool = not DAT.get_data("cashier_mean_defeated", false)

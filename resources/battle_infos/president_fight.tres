@@ -8,4 +8,4 @@ script = ExtResource("1_ibgvi")
 enemies = Array[StringName]([&"president"])
 background = "president_background"
 music = "president_fight"
-start_text = "f"
+start_text = "frank it up real good..."

@@ -61,11 +61,6 @@ func _ready():
 	update_shopping_list()
 	load_store_data()
 	decor.store_cashier = store_cashier
-	if not store_cashier.cashier == "dead":
-		SND.play_song("air_conditioning", 1.0, {
-			play_from_beginning = LTS.gate_id != &"store-restroom",
-			start_volume = 0,
-		})
 	decor.neighbour_wife_position()
 	decor.product_placement()
 	if LTS.gate_id == &"exit_cashier_fight":

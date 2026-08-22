@@ -3749,14 +3749,16 @@ CHAR president
 DIALOGUE president_33
 CHAR president
 	one second.
+SOUND phone/phone_call
 	...
-	what brilliant trinkets we have today...
-	i have just sent a long-distance transmission...
-	...or, "called", the "pizz" delivery man.
+SOUND phone/call_end
+	we are approaching a maritime disaster...
+	i have just sent a mayday call...
+	...to the the "pizz" delivery people.
 	[instrumental solo]
 	they will be here soon, and you will fail.
 EMO power
-	but to buy myself time to escape...
+	but before they arrive, to buy myself time to escape...
 	come forth!! [color=PRESCOLOR]dish[/color]!!
 
 
@@ -3852,7 +3854,7 @@ EMO power
 
 
 DIALOGUE president_pizz_2
-	delivery! here's the pizz, boss.
+	delivery! here's the pizz, sir.
 	we put [color=PRESCOLOR]snails[/color] and [color=PRESCOLOR]fish[/color] in it.
 CHAR president
 EMO power

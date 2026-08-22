@@ -21,6 +21,7 @@ func _ready() -> void:
 	if DAT.get_data("you_gotta_see_the_water_drain", false):
 		#DAT.set_data("you_gotta_see_the_water_drain", false) # set in store script
 		DAT.set_data("president_fought", true)
+		song_pitching = false
 		_after_battle()
 		greg.saving_disabled = true
 		return
@@ -91,6 +92,7 @@ func _president_inspected() -> void:
 
 
 func _after_battle() -> void:
+	SND.play_song.call_deferred("rainy", 1.0, {"pitch_scale": 0.89, "skip_to": 40.0})
 	DAT.capture_player("cutscene")
 	var powerline := $WetMessSlop/DeliveryGuy/VfxPowerline
 	wet_mess_slop.show()
@@ -107,9 +109,10 @@ func _after_battle() -> void:
 	wet_animation.animation_finished.connect(func(_a):
 		SOL.dialogue("president_after")
 		SOL.dialogue_closed.connect(func():
-			delivery_guy.modulate.a = 1.0
-			SND.play_sound(preload("res://sounds/pizz_arrive.ogg"))
 			tw = create_tween()
+			tw.tween_interval(1.0)
+			tw.tween_callback(SND.play_sound.bind(preload("res://sounds/pizz_arrive.ogg")))
+			tw.tween_property(delivery_guy, "modulate:a", 1.0, 0.0)
 			tw.tween_property(powerline, "line_width", 0.0, 1.0)
 			tw.tween_callback(func(): powerline.hide())
 			tw.tween_interval(0.5)
