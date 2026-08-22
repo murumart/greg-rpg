@@ -9,7 +9,7 @@ MACRO YELLOW #ffff00
 MACRO SUNCOLOR #ffbb99
 MACRO FLOWERCOLOR #99ff61
 MACRO SAUCECOLOR #ff4422
-MACRO %SG [font=res://fonts/gregorious_smaller.tres][font_size=16]
+MACRO %SG [font=res://fonts/gregorious_smaller.tres s=16 top=-5]
 
 
 DIALOGUE intro_convo_0
@@ -4148,7 +4148,7 @@ DIALOGUE sg_6_climb_future
 
 
 DIALOGUE sg_6_climb_future_2
-	%SGPlease forgive their inhispitality.
+	%SGPlease forgive their inhospitality.
 	%SG...and their unwillingness to play with you.
 
 

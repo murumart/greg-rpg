@@ -66,8 +66,9 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		for k in macros.keys():
 			line = line.replace(k, macros[k])
 		if line.begins_with(NEW_MACRO):
-			var t := line.trim_prefix(NEW_MACRO).split(" ")
-			macros[t[0]] = t[1]
+			var t := line.trim_prefix(NEW_MACRO)
+			var s := t.find(" ")
+			macros[t.substr(0, s)] = t.substr(s + 1)
 		elif line.begins_with(NEW_DIAL):
 			if not dial == null:
 				# if we have a dialogue at hand, we store a duplicate of it
