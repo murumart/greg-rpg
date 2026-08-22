@@ -38,7 +38,7 @@ func _ready() -> void:
 
 
 func _rose_cutscene() -> void:
-	DAT.appenda_uq("tarikas_topics", "flowerboy")
+	TownPark.add_tarikas_topic("flowerboy")
 	DAT.capture_player("cutscene")
 	var tw := create_tween()
 	SND.play_song("")

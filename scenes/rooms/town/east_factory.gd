@@ -361,7 +361,7 @@ func _battle_ending() -> void:
 	))
 	dlg.speak()
 	DAT.set_data("mayor_fought", true)
-	DAT.appenda_uq("tarikas_topics", "mayor")
+	TownPark.add_tarikas_topic("mayor")
 	await SOL.fade_finished
 	burn_mark.show()
 	await Math.timer(3.0)
