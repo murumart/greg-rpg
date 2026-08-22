@@ -3708,6 +3708,33 @@ CHOICE_LINK yes
 	can't wait to go home! see you there!
 
 
+DIALOGUE rain_hater_1
+	i hate this damn rain.
+	...but i love complaining.
+	so i only come outside in the rain.
+
+
+DIALOGUE rain_hater_2
+	thank you for letting me express myself.
+
+
+DIALOGUE rain_guy_1
+	it seems to raining...
+	what's useful is the umbrella.
+	it shields you from the drips drops.
+
+
+DIALOGUE rain_guy_2
+	if you get hit too much, you lose hp.
+	if you loose all your hp points,
+	you die.
+	i'm talking about battles, to be clear.
+
+
+DIALOGUE rain_guy_3
+	if it rains so much, why not have the ocean here?
+
+
 DIALOGUE president_bump
 CHAR president
 	...

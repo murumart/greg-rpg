@@ -77,7 +77,8 @@ func _guy_setup() -> void:
 	if (store_door.destination == ""
 			or LTS.gate_id == &"store_inside-outside" or LTS.gate_id == LTS.GATE_LOADING
 			or Math.inrange(ResMan.get_character("greg").level, 40, 50)
-			or not Math.inrange(DAT.playtime % 190, 90, 160)):
+			or not Math.inrange(DAT.playtime % 190, 90, 160)
+			or DAT.get_data("raining", false)):
 		guy.queue_free()
 		return
 

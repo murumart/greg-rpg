@@ -18,8 +18,8 @@ const GreenhouseType := preload("res://scenes/decor/scr_greenhouse.gd")
 
 
 func _ready() -> void:
+	var raining := bool(DAT.get_data("raining", false))
 	neighbour_wife_position()
-	neighbour_wife.inspected.connect(nwife_talk)
 	car_scared.inspected.connect(car_scared_inspected)
 	if DAT.seconds > 3600:
 		car_scared.default_lines.clear()
@@ -28,8 +28,10 @@ func _ready() -> void:
 	if DAT.get_data(FENCE_DESTROYED, false):
 		fence_inspect.key = "fence_carful"
 		fence_2.queue_free()
-	if DAT.get_data(CAR_SCARED_DIED, false):
+	if DAT.get_data(CAR_SCARED_DIED, false) or raining:
 		car_scared.queue_free()
+	if raining:
+		car_inspect.keys = ["neighbour_car_rain"]
 	if randf() < 0.2 and DAT.seconds > 600:
 		car_inspect.keys = ["neighbour_car_3"]
 	fence_destroy_area.body_entered.connect(_destroy_fence.unbind(1))
@@ -55,8 +57,9 @@ func nwife_talk() -> void:
 
 
 func neighbour_wife_position() -> void:
+	neighbour_wife.inspected.connect(nwife_talk)
 	var time := wrapi(DAT.seconds, 0, NEIGHBOUR_WIFE_CYCLE)
-	if time > (NEIGHBOUR_WIFE_CYCLE / 2.0) and LTS.gate_id != &"house-town":
+	if time > (NEIGHBOUR_WIFE_CYCLE / 2.0) and LTS.gate_id != &"house-town" or DAT.get_data("raining", false):
 		neighbour_wife.queue_free()
 
 

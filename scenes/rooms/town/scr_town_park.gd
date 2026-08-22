@@ -16,25 +16,25 @@ static var talked_topics: PackedStringArray:
 	get: return DAT.get_data("tarikas_talked_topics", [])
 var talked_now_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_now_last_level", to)
-	get: return DAT.get_data("tarikas_talked_now_last_level", 0)
+	get: return DAT.get_data("tarikas_talked_now_last_level", 0) 
 var talked_flowers_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_flowers_last_level", to)
-	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0)
+	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0) 
 
 var done: bool:
 	set(to): DAT.set_data("tarikas_done", to)
-	get: return DAT.get_data("tarikas_done", false)
+	get: return DAT.get_data("tarikas_done", false) 
 
 var notif_cleared: bool:
 	set(to): DAT.set_data("tarikas_notif_cleared", to)
-	get: return DAT.get_data("tarikas_notif_cleared", false)
+	get: return DAT.get_data("tarikas_notif_cleared", false) 
 
 
 func _ready() -> void:
 	if not unlocked_topics: unlocked_topics = ["now", "bye"]
 	if not talked_topics: talked_topics = ["bye"]
 	tarikas.inspected.connect(_on_tarikas_inspected)
-	if done:
+	if DAT.get_data("tarikas_solar_done", false) or done:
 		tarikas.queue_free()
 	if DAT.get_data("known_status_effects", []).is_empty():
 		pass
@@ -68,7 +68,7 @@ func _on_tarikas_inspected() -> void:
 		dlg.al("i hold the seventh...")
 		dlg.al("...")
 		dlg.al("there's nothing else for me to do than to give... it to you.")
-		dlg.clear_char().al("(you received the hollyhock.)").sitem_to_give(&"flower1")
+		dlg.clear_char().al("(you received the begonia.)").sitem_to_give(&"flower0")
 		dlg.set_char("tarikas").al("you have enough... now.")
 		dlg.al("... she's waiting.")
 		dlg.al("fare well.")
@@ -85,14 +85,20 @@ func _on_tarikas_inspected() -> void:
 		dlg.add_line(dlg.ml("boy... keep it down."))
 		dlg.add_line(dlg.ml("don't do anything interesting. we've had enough of that... already."))
 		await dlg.speak_choice()
-
+	
+	var raining := bool(DAT.get_data("raining", false))
 	while true:
 		var aval_choices := []
 		for t in unlocked_topics:
 			aval_choices.append(t)
 		aval_choices.sort()
+		var greeting := "what brings you here?"
+		if raining:
+			greeting = "mh... it started raining suddenly..."
+		elif flowers_c > 4:
+			greeting = "..."
 		dlg.reset().add_line(
-			dlg.ml("what brings you here?" if flowers_c < 2 else "...")
+			dlg.ml(greeting)
 			.schoices(aval_choices)
 			.schoice_visual_setup_callable(func(d: Dictionary) -> void:
 				#"button": refbutton,
@@ -103,10 +109,14 @@ func _on_tarikas_inspected() -> void:
 				))
 		var choice := await dlg.speak_choice()
 		if choice == &"bye":
-			if flowers_c < 2:
-				dlg.reset().add_line(dlg.ml("mh. step out the way of the sun..."))
-				dlg.add_line(dlg.ml("and come back... later."))
-				await dlg.speak_choice()
+			if raining:
+				dlg.reset().al("leaving already?")
+				dlg.al("mh, i liked the shade from the rain.")
+				dlg.al("come back... later.")
+			else:
+				dlg.reset().al("mh. step out the way of the sun...")
+				dlg.al("and come back... later.")
+			await dlg.speak_choice()
 			break
 		elif choice == &"now":
 			await _what_now(dlg)

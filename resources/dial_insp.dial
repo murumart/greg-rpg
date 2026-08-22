@@ -95,24 +95,31 @@ DIALOGUE insp_crime_scene
 
 DIALOGUE insp_neighbour_car_1
 	...hello...
-	...yes, i'm in the car.
-	i happen to work as a truck driver.
-	this means spending a lot of time in the truck...
-	you see, it is a bit jarring to come on vacation...
+	...yeah, i'm in the car.
+	i'm a truck driver.
+	this means i spend a lot of time in my truck...
+	so it's a bit jarring to come on vacation...
 	...and be without a truck all of a sudden.
 	i'm trying to acclimate...
-	once i'm done with the car, i can move on to something even smaller.
+	once i'm done with the car, i can move on to something smaller...
 	and one day, even exist without a vehicle.
 
 
 DIALOGUE insp_neighbour_car_2
-	leave me be now. trying to acclimate, remember?
+	i miss my wife... (cracks open a beer can)
 
 
 DIALOGUE insp_neighbour_car_3
 	i heard a baby cry outside a few days ago, but i knew it was a trap.
 	i drove into a lamppost or something solid...
 	...to draw attention and to damage the car.
+
+
+DIALOGUE insp_neighbour_car_rain
+	i miss my wife...
+	this rain, it reminds me of her...
+	...her watery ass breakfast omelette soup she makes!
+	ah ha ha!! (cracks open a beer can)
 
 
 DIALOGUE insp_park_board
@@ -330,6 +337,7 @@ DIALOGUE insp_lonetire
 DIALOGUE insp_blocking_bird_low
 	the road is blocked here. this bird is too intimidating...
 	but maybe, once you're strong enough...
+	...like, around level 60...?
 
 
 DIALOGUE insp_blocking_bird

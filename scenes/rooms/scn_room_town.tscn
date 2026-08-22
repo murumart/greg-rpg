@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://jgjwvx47vp8i" path="res://scenes/characters/overworld/scn_stray_pet_overworld.tscn" id="31_itqdw"]
 [ext_resource type="PackedScene" uid="uid://c4sg54o4qc6g4" path="res://scenes/characters/overworld/scn_escaping_business.tscn" id="32_lci3r"]
 [ext_resource type="Script" uid="uid://lxu2lp5c0pkw" path="res://scenes/rooms/town/scr_vampire_cutscene.gd" id="33_v2bux"]
+[ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="33_ycmof"]
 [ext_resource type="Script" uid="uid://c8jbwmqob580s" path="res://scenes/rooms/town/town_uhh_house_2.gd" id="35_6b3qf"]
 [ext_resource type="Script" uid="uid://c50jackklahng" path="res://code/predicates/greg_level_range.gd" id="35_06enm"]
 [ext_resource type="Script" uid="uid://ct4x4l2aeh408" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
@@ -145,9 +146,15 @@ size = Vector2(14, 9.99994)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smefo"]
 size = Vector2(16.0001, 8)
 
+[sub_resource type="Resource" id="Resource_6sm05"]
+script = ExtResource("33_ycmof")
+data_key = &"raining"
+metadata/_custom_type_script = "uid://qboohb38rsxs"
+
 [sub_resource type="Resource" id="Resource_50lhf"]
 script = ExtResource("35_06enm")
 level_max = 60
+and_with = SubResource("Resource_6sm05")
 metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="Resource" id="Resource_06enm"]
@@ -211,9 +218,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmmce"]
 size = Vector2(34, 22)
 
+[sub_resource type="Resource" id="Resource_5mrhl"]
+script = ExtResource("33_ycmof")
+data_key = &"raining"
+metadata/_custom_type_script = "uid://qboohb38rsxs"
+
 [sub_resource type="Resource" id="Resource_2hmyh"]
 script = ExtResource("35_06enm")
 level_max = 71
+and_with = SubResource("Resource_5mrhl")
 metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="Animation" id="Animation_fqrk0"]
@@ -503,11 +516,23 @@ script = ExtResource("35_06enm")
 level_max = 50
 metadata/_custom_type_script = "uid://c50jackklahng"
 
+[sub_resource type="Resource" id="Resource_gnvqg"]
+script = ExtResource("33_ycmof")
+data_key = &"raining"
+matches = true
+metadata/_custom_type_script = "uid://qboohb38rsxs"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_expa7"]
 size = Vector2(24, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0kbj"]
 size = Vector2(14, 18)
+
+[sub_resource type="Resource" id="Resource_mkitk"]
+script = ExtResource("33_ycmof")
+data_key = &"raining"
+matches = true
+metadata/_custom_type_script = "uid://qboohb38rsxs"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3utb"]
 size = Vector2(12, 12)
@@ -1676,6 +1701,24 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(0, 64, 16, 16)
 
+[node name="RainGuy" parent="Houses/Store" unique_id=209550049 instance=ExtResource("10_dem56")]
+position = Vector2(-72, 57)
+default_lines = Array[StringName]([&"rain_guy_1", &"rain_guy_2", &"rain_guy_3"])
+save = false
+existence_predicate = SubResource("Resource_gnvqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Store/RainGuy" unique_id=1784295079]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Houses/Store/RainGuy" unique_id=778325355]
+position = Vector2(1, -14)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)
+
 [node name="PostOffice" type="Node2D" parent="Houses" unique_id=595469183]
 y_sort_enabled = true
 position = Vector2(336, -272)
@@ -1787,6 +1830,18 @@ position = Vector2(8, 19)
 replenish_minutes = 2
 replenish_seconds = 120
 silver = 4
+
+[node name="LetsAllKillOurselves" parent="Houses/UhhHouse" unique_id=1562340623 instance=ExtResource("10_dem56")]
+position = Vector2(-1, 45)
+default_lines = Array[StringName]([&"rain_hater_1", &"rain_hater_2"])
+save = false
+existence_predicate = SubResource("Resource_mkitk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/UhhHouse/LetsAllKillOurselves" unique_id=1763477790]
+position = Vector2(0, -8)
+texture = ExtResource("16_o4xvl")
+region_enabled = true
+region_rect = Rect2(0, 80, 16, 16)
 
 [node name="UhhHouse2" type="Node2D" parent="Houses" unique_id=692736205]
 y_sort_enabled = true
@@ -2222,7 +2277,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.99999887)
+modulate = Color(1, 1, 1, 0.40269616)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2236,7 +2291,7 @@ target = NodePath("..")
 speed = 10.0
 max_value = 2.0
 offset = 0.125
-easing = 0.02194983
+easing = 7.1619515
 metadata/_custom_type_script = "uid://durusiw115m3o"
 
 [node name="StatusEffectGuru" parent="Other/BackPark" unique_id=2005995754 instance=ExtResource("38_a0o03")]
