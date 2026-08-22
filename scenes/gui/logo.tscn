@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dhdcnypeq8yay"]
+
+[ext_resource type="Script" uid="uid://c7osn2um4g171" path="res://scenes/gui/logo.gd" id="1_nfxvc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u0ya7"]
+line_spacing = -4.755
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(0, 1)
+stacked_shadow_0/color = Color(0, 0.08235294, 0.41568628, 1)
+
+[node name="Logo" type="Control" unique_id=1014779564]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nfxvc")
+intensity = 2.0
+idiff = 0.3
+
+[node name="G" type="Label" parent="." unique_id=841639654]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 17.0
+offset_transform_enabled = true
+text = "g"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="r" type="Label" parent="." unique_id=434317920]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 20.0
+offset_bottom = 17.0
+offset_transform_enabled = true
+text = "r"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="e" type="Label" parent="." unique_id=1323005148]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 29.0
+offset_bottom = 17.0
+offset_transform_enabled = true
+text = "e"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="R" type="Label" parent="." unique_id=1607508370]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 14.0
+offset_right = 20.0
+offset_bottom = 30.0
+offset_transform_enabled = true
+text = "r"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="p" type="Label" parent="." unique_id=2027397242]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 29.0
+offset_bottom = 30.0
+offset_transform_enabled = true
+text = "p"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="G3" type="Label" parent="." unique_id=1893848761]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 1.0
+offset_right = 38.0
+offset_bottom = 17.0
+offset_transform_enabled = true
+text = "g"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="G4" type="Label" parent="." unique_id=687283559]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 14.0
+offset_right = 38.0
+offset_bottom = 30.0
+offset_transform_enabled = true
+text = "g"
+label_settings = SubResource("LabelSettings_u0ya7")

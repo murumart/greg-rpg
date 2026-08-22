@@ -62,9 +62,9 @@ project/assembly_name="Greg RPG"
 
 [editor]
 
-movie_writer/mix_rate=41000
-movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/recording.avi"
-movie_writer/fps=24
+movie_writer/video_quality=0.91
+movie_writer/ogv/encoding_speed=1
+movie_writer/movie_file="D:/godoot/GREGRPG/.exports/movie/movie2.ogv"
 export/convert_text_resources_to_binary=false
 
 [editor_plugins]

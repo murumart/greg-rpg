@@ -2,13 +2,38 @@
 
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="1_egx3d"]
 [ext_resource type="Script" uid="uid://ct0h5y2kta1vs" path="res://scenes/gui/scr_main_menu.gd" id="2_wb8tk"]
+[ext_resource type="Shader" uid="uid://b8rqytedhwv1g" path="res://shaders/maim_text.gdshader" id="3_krser"]
 [ext_resource type="Shader" uid="uid://bb1elcdjjdwnt" path="res://shaders/scr_souptime.gdshader" id="3_ku6te"]
 [ext_resource type="Texture2D" uid="uid://13bvkhre7iec" path="res://sprites/spr_white_pixel.png" id="5_rqmy0"]
 [ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="6_vbxvf"]
 [ext_resource type="Script" uid="uid://dr7a15hp7bulc" path="res://code/scr_editor_helper_tool.gd" id="8_ipbln"]
 [ext_resource type="FontFile" uid="uid://dnlimkhpfp2qe" path="res://fonts/gregtiny.ttf" id="8_wo2s8"]
+[ext_resource type="PackedScene" uid="uid://dhdcnypeq8yay" path="res://scenes/gui/logo.tscn" id="11_krser"]
 [ext_resource type="FontVariation" uid="uid://dk7fefa23usxm" path="res://fonts/gregorious_smaller.tres" id="36_8tder"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="39_y0uhw"]
+
+[sub_resource type="Gradient" id="Gradient_u0ya7"]
+offsets = PackedFloat32Array(0.3534727, 0.91832626)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtglo"]
+frequency = 0.005
+offset = Vector3(-866.17, 0, 0)
+fractal_octaves = 2
+fractal_lacunarity = 2.505
+fractal_gain = 0.855
+fractal_weighted_strength = 0.28
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u0ya7"]
+width = 128
+height = 96
+noise = SubResource("FastNoiseLite_dtglo")
+color_ramp = SubResource("Gradient_u0ya7")
+seamless = true
+seamless_blend_skirt = 0.292
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_siwdc"]
+shader = ExtResource("3_krser")
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
@@ -20,9 +45,6 @@ gradient = SubResource("Gradient_wbkcl")
 shader = ExtResource("3_ku6te")
 shader_parameter/Gradient = SubResource("GradientTexture1D_qpb5b")
 shader_parameter/offset = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_u0ya7"]
-line_spacing = -4.755
 
 [node name="MainMenu" type="Control" unique_id=1545546014 node_paths=PackedStringArray("new_game_button", "load_game_button", "mail_button", "credits_button", "quit_button", "credits_text_panel", "credits_autoscroll", "credits_label", "mail_panel", "mail_label")]
 layout_mode = 3
@@ -52,6 +74,36 @@ offset_bottom = 120.0
 color = Color(0.00784314, 0.00392157, 0, 1)
 metadata/_edit_lock_ = true
 
+[node name="NoiseMask" type="TextureRect" parent="ColorRect" unique_id=307752750]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_u0ya7")
+
+[node name="rpgrpgrpg" type="RichTextLabel" parent="ColorRect/NoiseMask" unique_id=1388976623]
+material = SubResource("ShaderMaterial_siwdc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.000001
+offset_top = -11.0
+offset_right = 61.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.2264581, 0)
+theme_override_font_sizes/normal_font_size = 16
+text = "rpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumartrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgrpgmurumart"
+scroll_active = false
+
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=1885737020]
 visible = false
 material = SubResource("ShaderMaterial_0obdr")
@@ -77,7 +129,7 @@ offset_left = 78.0
 offset_top = 7.0
 offset_right = 151.0
 offset_bottom = 112.0
-theme_override_constants/separation = -1
+theme_override_constants/separation = 1
 
 [node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=555737970]
 custom_minimum_size = Vector2(0, 12)
@@ -279,91 +331,21 @@ script = ExtResource("8_ipbln")
 [node name="Camera" parent="." unique_id=1569710283 instance=ExtResource("39_y0uhw")]
 position = Vector2(80, 60)
 
-[node name="Control2" type="Control" parent="." unique_id=1978451258]
-anchors_preset = 0
-offset_left = 25.0
-offset_top = -8.0
-offset_right = 65.0
-offset_bottom = 32.0
-
-[node name="R" type="Label" parent="Control2" unique_id=1255073407]
+[node name="Logo" parent="." unique_id=1014779564 instance=ExtResource("11_krser")]
 layout_mode = 0
-offset_left = -6.0
-offset_top = 38.0
-offset_right = 4.0
-offset_bottom = 54.0
-text = "r"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="G" type="Label" parent="Control2" unique_id=991559822]
-layout_mode = 0
-offset_left = -15.0
-offset_top = 25.0
-offset_right = -5.0
-offset_bottom = 41.0
-text = "g"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="G2" type="Label" parent="Control2" unique_id=240701067]
-layout_mode = 0
-offset_left = -72.0
-offset_top = 85.0
-offset_right = -62.0
-offset_bottom = 101.0
-text = "g"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="G3" type="Label" parent="Control2" unique_id=980673080]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 25.0
-offset_right = 22.0
-offset_bottom = 41.0
-text = "g"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="G4" type="Label" parent="Control2" unique_id=1605781259]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 38.0
-offset_right = 22.0
-offset_bottom = 54.0
-text = "g"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="p" type="Label" parent="Control2" unique_id=1493890994]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 38.0
-offset_right = 13.0
-offset_bottom = 54.0
-text = "p"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="r" type="Label" parent="Control2" unique_id=175955749]
-layout_mode = 0
-offset_left = -6.0
-offset_top = 25.0
-offset_right = 4.0
-offset_bottom = 41.0
-text = "r"
-label_settings = SubResource("LabelSettings_u0ya7")
-
-[node name="e" type="Label" parent="Control2" unique_id=32987837]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 25.0
-offset_right = 13.0
-offset_bottom = 41.0
-text = "e"
-label_settings = SubResource("LabelSettings_u0ya7")
+offset_left = 9.0
+offset_top = 19.0
+offset_right = 49.0
+offset_bottom = 59.0
+intensity = 0.5
 
 [node name="FunnyText" type="RichTextLabel" parent="." unique_id=1867677603]
 layout_mode = 0
-offset_left = 79.0
-offset_top = 90.0
-offset_right = 151.0
-offset_bottom = 106.0
+offset_left = 5.0
+offset_top = 74.0
+offset_right = 57.0
+offset_bottom = 108.0
+theme_override_colors/default_color = Color(0.4653617, 0.4653617, 0.4653617, 1)
 bbcode_enabled = true
 text = "[center]rpg"
 scroll_active = false
