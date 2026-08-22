@@ -24,7 +24,7 @@ shader_parameter/offset = Vector2(0, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_u0ya7"]
 line_spacing = -4.755
 
-[node name="MainMenu" type="Control" unique_id=1545546014]
+[node name="MainMenu" type="Control" unique_id=1545546014 node_paths=PackedStringArray("new_game_button", "load_game_button", "mail_button", "credits_button", "quit_button", "credits_text_panel", "credits_autoscroll", "credits_label", "mail_panel", "mail_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_egx3d")
 script = ExtResource("2_wb8tk")
+new_game_button = NodePath("VBoxContainer/NewGameButton")
+load_game_button = NodePath("VBoxContainer/LoadGameButton")
+mail_button = NodePath("VBoxContainer/MailButton")
+credits_button = NodePath("VBoxContainer/CreditsButton")
+quit_button = NodePath("VBoxContainer/QuitButton")
+credits_text_panel = NodePath("VBoxContainer/CreditsButton/Node/Control/TextPanel")
+credits_autoscroll = NodePath("VBoxContainer/CreditsButton/Node/Control/TextPanel/RichTextLabel/AutoscrollComponent")
+credits_label = NodePath("VBoxContainer/CreditsButton/Node/Control/TextPanel/RichTextLabel")
+mail_panel = NodePath("VBoxContainer/MailButton/Node/Control/MailPanel")
+mail_label = NodePath("VBoxContainer/MailButton/Node/Control/MailPanel/RichTextLabel")
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=76503401]
@@ -108,26 +118,48 @@ alignment = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/MailButton" unique_id=2128424626]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(91, 1)
+position = Vector2(67, 1)
 scale = Vector2(4.5, 5)
 texture = ExtResource("5_rqmy0")
 centered = false
 
-[node name="MailPanel" type="Panel" parent="VBoxContainer/MailButton" unique_id=548812666]
+[node name="Node" type="Node" parent="VBoxContainer/MailButton" unique_id=1423772741]
+
+[node name="Control" type="Control" parent="VBoxContainer/MailButton/Node" unique_id=1109707245]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MailPanel" type="Panel" parent="VBoxContainer/MailButton/Node/Control" unique_id=548812666]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -27.0
-offset_top = -81.0
-offset_right = 124.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MailButton/MailPanel" unique_id=1450011163]
-layout_mode = 0
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MailButton/Node/Control/MailPanel" unique_id=1450011163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 149.0
-offset_bottom = 102.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("8_wo2s8")
+theme_override_font_sizes/normal_font_size = 6
 text = "undesirable hate
 
 you are my repugnance abominable: my avoided animus. you are my repulsion beloathed: my anathematised hate. my undesirable odium disgracefully strangles your avoided anathema. my repulsive dislike loathes your shunned resentment. you are my malevolence undesirable: my despised spite.
@@ -144,29 +176,49 @@ focus_next = NodePath("../NewGameButton")
 focus_previous = NodePath("../LoadGameButton")
 mouse_filter = 2
 button_mask = 0
-text = " view credits"
+text = " credits"
 alignment = 0
 
-[node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton" unique_id=1192636677]
+[node name="Node" type="Node" parent="VBoxContainer/CreditsButton" unique_id=185501885]
+
+[node name="Control" type="Control" parent="VBoxContainer/CreditsButton/Node" unique_id=231251927]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextPanel" type="Panel" parent="VBoxContainer/CreditsButton/Node/Control" unique_id=1192636677]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -27.0
-offset_top = -81.0
-offset_right = 124.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CreditsButton/TextPanel" unique_id=355652541]
-layout_mode = 0
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/CreditsButton/Node/Control/TextPanel" unique_id=355652541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 149.0
-offset_bottom = 102.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("36_8tder")
 theme_override_font_sizes/normal_font_size = 16
 text = "credots jere"
 
-[node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/TextPanel/RichTextLabel" unique_id=465762377 node_paths=PackedStringArray("target")]
+[node name="AutoscrollComponent" type="Node" parent="VBoxContainer/CreditsButton/Node/Control/TextPanel/RichTextLabel" unique_id=465762377 node_paths=PackedStringArray("target")]
 script = ExtResource("6_vbxvf")
 target = NodePath("..")
 speed = 0.9
@@ -180,7 +232,7 @@ focus_next = NodePath("../NewGameButton")
 focus_previous = NodePath("../LoadGameButton")
 mouse_filter = 2
 button_mask = 0
-text = " quit game"
+text = " quit"
 alignment = 0
 
 [node name="PressEsc" type="Label" parent="." unique_id=123312642]
@@ -207,6 +259,7 @@ text = "ver "
 
 [node name="LoadingScreen" type="ColorRect" parent="." unique_id=485577993]
 visible = false
+z_index = 11
 layout_mode = 0
 offset_right = 160.0
 offset_bottom = 120.0
@@ -235,64 +288,73 @@ offset_bottom = 32.0
 
 [node name="R" type="Label" parent="Control2" unique_id=1255073407]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 60.0
-offset_right = -4.0
-offset_bottom = 76.0
+offset_left = -6.0
+offset_top = 38.0
+offset_right = 4.0
+offset_bottom = 54.0
 text = "r"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="G" type="Label" parent="Control2" unique_id=991559822]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 21.0
-offset_right = 14.0
-offset_bottom = 37.0
+offset_left = -15.0
+offset_top = 25.0
+offset_right = -5.0
+offset_bottom = 41.0
 text = "g"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="G2" type="Label" parent="Control2" unique_id=240701067]
 layout_mode = 0
-offset_left = -74.0
-offset_top = 83.0
-offset_right = -64.0
-offset_bottom = 99.0
+offset_left = -72.0
+offset_top = 85.0
+offset_right = -62.0
+offset_bottom = 101.0
 text = "g"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="G3" type="Label" parent="Control2" unique_id=980673080]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 60.0
-offset_right = 14.0
-offset_bottom = 76.0
+offset_left = 12.0
+offset_top = 25.0
+offset_right = 22.0
+offset_bottom = 41.0
+text = "g"
+label_settings = SubResource("LabelSettings_u0ya7")
+
+[node name="G4" type="Label" parent="Control2" unique_id=1605781259]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 38.0
+offset_right = 22.0
+offset_bottom = 54.0
 text = "g"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="p" type="Label" parent="Control2" unique_id=1493890994]
 layout_mode = 0
-offset_left = -5.0
-offset_top = 60.0
-offset_right = 5.0
-offset_bottom = 76.0
+offset_left = 3.0
+offset_top = 38.0
+offset_right = 13.0
+offset_bottom = 54.0
 text = "p"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="r" type="Label" parent="Control2" unique_id=175955749]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 34.0
-offset_right = 14.0
-offset_bottom = 50.0
+offset_left = -6.0
+offset_top = 25.0
+offset_right = 4.0
+offset_bottom = 41.0
 text = "r"
 label_settings = SubResource("LabelSettings_u0ya7")
 
 [node name="e" type="Label" parent="Control2" unique_id=32987837]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 47.0
-offset_right = 14.0
-offset_bottom = 63.0
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 13.0
+offset_bottom = 41.0
 text = "e"
 label_settings = SubResource("LabelSettings_u0ya7")
 
@@ -306,9 +368,4 @@ bbcode_enabled = true
 text = "[center]rpg"
 scroll_active = false
 
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MailButton" to="." method="_on_mail_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="meta_clicked" from="FunnyText" to="." method="_on_label_meta_clicked"]

@@ -6,20 +6,42 @@ var pos := 0
 var menusound := preload("res://sounds/gui.ogg")
 var starting := false
 
-@onready var buttons := [
-	$VBoxContainer/NewGameButton, $VBoxContainer/LoadGameButton, $VBoxContainer/MailButton,$VBoxContainer/CreditsButton, $VBoxContainer/QuitButton,
-]
 @onready var version_text: Label = $VersionText
-@onready var logo_texture: TextureRect = $LogoTexture
 @onready var funny_text: RichTextLabel = $FunnyText
+@onready var loading_screen: ColorRect = $LoadingScreen
+
+@export var new_game_button: Button
+@export var load_game_button: Button
+@export var mail_button: Button
+@export var credits_button: Button
+@export var quit_button: Button
+@onready var buttons: Array[Button] = [
+	new_game_button,
+	load_game_button,
+	mail_button,
+	credits_button,
+	quit_button,
+]
+
+@export var credits_text_panel: Panel
+@export var credits_autoscroll: AutoscrollComponent
+@export var credits_label: RichTextLabel
+
+@export var mail_panel: Panel
+@export var mail_label: RichTextLabel
 
 
 func _ready() -> void:
+	new_game_button.pressed.connect(_on_new_game_button_pressed)
+	load_game_button.pressed.connect(_on_load_game_button_pressed)
+	mail_button.pressed.connect(_on_mail_button_pressed)
+	credits_button.pressed.connect(_on_credits_button_pressed)
+	quit_button.pressed.connect(_on_quit_button_pressed)
 	DAT.A = {}
 	ResMan.load_resources()
 	SOL.load_all_effects()
-	$LoadingScreen.call_deferred("hide")
-	$VBoxContainer/NewGameButton.grab_focus()
+	loading_screen.call_deferred("hide")
+	new_game_button.grab_focus()
 	choose_music()
 	version_text.text += " " + DAT.version_str()
 	funny_text.text = "[center]" + str(get_funny_messages().pick_random())
@@ -29,8 +51,8 @@ func _ready() -> void:
 	for b in buttons:
 		b.focus_exited.connect(_on_button_focus_exited.bind(b))
 	if randf() <= 0.01:
-		$VBoxContainer/MailButton/MailPanel/RichTextLabel.text = HateMail.letter()
-		$VBoxContainer/MailButton.visible = true
+		mail_label.text = HateMail.letter()
+		mail_button.visible = true
 	button_focuses()
 	_load_credits()
 	DAT.player_capturers.clear()
@@ -55,11 +77,11 @@ func _input(event: InputEvent) -> void:
 			#and not $VBoxContainer/CreditsButton/TextPanel.visible
 			and DAT.player_capturers.is_empty()):
 		if event.is_action_pressed("cancel"):
-			$VBoxContainer/MailButton/MailPanel.hide()
-			$VBoxContainer/NewGameButton.grab_focus.call_deferred()
-			$VBoxContainer/CreditsButton/TextPanel.hide()
-		elif event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
-			$VBoxContainer/NewGameButton.grab_focus.call_deferred()
+			mail_panel.hide()
+			credits_text_panel.hide()
+			new_game_button.grab_focus.call_deferred()
+		#elif event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
+		#	new_game_button.grab_focus.call_deferred()
 
 
 func _on_new_game_button_pressed() -> void:
@@ -91,7 +113,7 @@ func _on_label_meta_clicked(meta) -> void:
 func _on_button_focus_exited(_button: Button) -> void:
 	if OPT.options_open: return
 	SND.play_sound(menusound)
-	$VBoxContainer/CreditsButton/TextPanel.hide()
+	credits_text_panel.hide()
 
 
 # play only the first 2 menu themes on game start up
@@ -124,9 +146,10 @@ func get_funny_messages() -> Array:
 
 var read_messages := false
 func _on_mail_button_pressed() -> void:
-	$VBoxContainer/MailButton/MailPanel.visible = not $VBoxContainer/MailButton/MailPanel.visible
-	$VBoxContainer/MailButton.text = " messages"
-	$VBoxContainer/MailButton/Sprite2D.hide()
+	get_viewport().gui_release_focus()
+	mail_panel.visible = not mail_panel.visible
+	mail_button.text = " messages"
+	mail_button.get_child(0).hide()
 	if not read_messages:
 		DIR.incj(120, 1)
 	read_messages = true
@@ -137,10 +160,10 @@ func button_focuses() -> void:
 	var y := 0
 	for x in sz:
 		y = wrapi(x + 1, 0, sz)
-		var current := buttons[x] as Button
+		var current := buttons[x]
 		if not current.visible:
 			continue
-		var next := buttons[y] as Button
+		var next := buttons[y]
 		while not next.visible:
 			y = wrapi(y + 1, 0, sz)
 			next = buttons[y]
@@ -150,8 +173,8 @@ func button_focuses() -> void:
 
 func _on_credits_button_pressed() -> void:
 	get_window().gui_release_focus()
-	$VBoxContainer/CreditsButton/TextPanel.show()
-	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel/AutoscrollComponent.reset.call_deferred()
+	credits_text_panel.show()
+	credits_autoscroll.reset.call_deferred()
 
 
 func _load_credits() -> void:
@@ -188,4 +211,4 @@ func _load_credits() -> void:
 	text += "\n"
 	text += var_to_str(Engine.get_copyright_info())
 
-	$VBoxContainer/CreditsButton/TextPanel/RichTextLabel.text = text
+	credits_label.text = text
