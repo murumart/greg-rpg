@@ -4,7 +4,7 @@ MACRO WLICOLOR #ff8888
 MACRO GREEN #00ff00
 MACRO PURPLE #ff00ff
 MACRO VAMPCOLOR #ff2089
-MACRO PRESCOLOR #ff9999
+MACRO PRESCOLOR #f99
 MACRO YELLOW #ffff00
 MACRO SUNCOLOR #ffbb99
 MACRO FLOWERCOLOR #99ff61
@@ -3753,7 +3753,7 @@ SOUND phone/phone_call
 	...
 SOUND phone/call_end
 	we are approaching a maritime disaster...
-	i have just sent a mayday call...
+	so i have just sent a mayday call...
 	...to the the "pizz" delivery people.
 	[instrumental solo]
 	they will be here soon, and you will fail.
@@ -3766,15 +3766,10 @@ DIALOGUE theres_dish
 CHAR president
 EMO power
 	my [color=SPIRITCOLOR]spirit ally[/color], [color=PRESCOLOR]dish[/color]...
-	it is my greatest presidential tool and friend.
-	it rose from the sea and chose me.
-	at the hardest moment of both of our lives...
-	we joined as one and overcame their doubts.
-	but you, young man... i feel you doubt me.
-	doubt my rightful rule over [color=PRESCOLOR]beacon archipelago[/color].
-	do you deny my people their love towards me?
-	your doubts, young man, they shall be extinguished...
-	...by the sea itself, bubbling up from their love.
+	it is the executive branch of power.
+	i legislate... it executes...
+	and justice... arises out of those.
+	feel the power of my [color=PRESCOLOR]perfect administration!!
 
 
 DIALOGUE president_monologue_1
@@ -3782,33 +3777,46 @@ CHAR president
 EMO power
 	do you see the weather?
 	[color=PRESCOLOR]dish[/color] draws its power from the thunderclouds.
+	the storm is strengthening.
 
 
-DIALOGUE president_monologue_2
+DIALOGUE president_monologue_3
 CHAR president
 EMO power
-	it's getting more and more stormy...
-	your fate is sealed.
+	the storm is merely an extension of the will of the sea.
+	to wash over your lines in the sand...
+	to polish and change for the sake of change.
 
 
-DIALOGUE president_monologue_6
+DIALOGUE president_monologue_5
 CHAR president
 EMO power
-	throughout my many years of power, no time has been like now.
-	convenience at one's fingertips...
+	i was terrified of it. the sea...
+	every morning i woke up and couldn't recognise...
+	what is this place? the waves have come and gone.
+	the water is different. the winds have come and gone.
+	the air is different. it's not the same place.
 
 
 DIALOGUE president_monologue_7
 CHAR president
 EMO power
-	i love ordering "pizz". it's great food...
-	and i've made good connections through it.
-	as i'm sure you'll experience soon.
+	i was terrified... until...
+	i received some [color=FLOWERCOLOR]power[/color].
+	and the sea gave me [color=PRESCOLOR]dish[/color].
+	[color=PRESCOLOR]dish[/color] breaks the waves and makes them.
+	[color=PRESCOLOR]dish[/color] does not change.
+	[color=PRESCOLOR]dish[/color] is the buoy standing despite everything.
+	thus began the decades of my rule!
+	my people and i have something to anchor us, now.
 
 
 DIALOGUE president_monologue_10
 CHAR president
 EMO power
+	i love ordering "pizz". it's great food...
+	and i've made good connections through it.
+	you will see them very soon.
 	i have asked for an update on my "pizz" delivery.
 	they are a quarter of the way here.
 
@@ -3838,7 +3846,7 @@ DIALOGUE president_monologue_39
 CHAR president
 EMO power
 	my "pizz" will be here in one more turn.
-	brace yourself.
+	and then... i'll win!
 
 
 DIALOGUE president_monologue_40
@@ -3864,7 +3872,7 @@ EMO power
 DIALOGUE president_pizz_3
 SPEED 0.7
 INSTASKIP
-	just kidding. it's a
+	just kidding. it's a  
 
 
 DIALOGUE president_die_die_die
@@ -3878,7 +3886,7 @@ SOUND spirit/dish_president_he_die
 
 DIALOGUE president_after
 CHAR president
-	no.... the "pizz delivery" didn't arrive on time...
+	no... the "pizz delivery" didn't arrive on time...
 	i have been wholly defeated...
 	this is a tragic day for beacon archipelago.
 	leave me be now.
@@ -3889,16 +3897,15 @@ CHAR president
 
 DIALOGUE president_after_pizz
 	pizz delivery!
-	...oh... i see why he wanted that i bring a gun now.
+	...oh... i see why he wanted me to bring a gun.
 	...
 	...what? 1000 souls?
 	...damn... he really did that?
 	...
-	we need to reevaluate our valued customers...
-	...or maybe stop operating in this region.
-	i mean, look at you. you know how it is here...
+	we need to, uh, reevaluate, our valued customers...
+	...or maybe stop operating in this hellhole.
 	by the way... i need someone to pay for this delivery.
-	you looted his pockets already? give me that.
+	you looted his pockets already? gimme that.
 SILVER -100
 	(they force 100 silver out of you)
 	thanks. bye.

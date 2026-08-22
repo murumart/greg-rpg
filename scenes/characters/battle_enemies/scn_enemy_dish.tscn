@@ -99,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nwlqa")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -892,7 +892,7 @@ toughness = 1.0
 altruism = 0.949
 innovation = 0.5
 xp_multiplier = 4.0
-gender = 4
+gender = 6
 effect_immunities = Array[StringName]([&"little", &"sopping"])
 
 [node name="Node" type="Node" parent="." unique_id=540446898]
@@ -964,17 +964,16 @@ divisions = 14
 deviation_distance = 5.69
 line_width = 49.005
 gradient = SubResource("Gradient_yhrta")
-lifetime = 0.0
 
-[node name="Line2D" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="0"]
+[node name="Line2D" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="0" unique_id=134236045]
 points = PackedVector2Array(0, 106, 1.11846, 95.7328, 5.5835, 75.4034, -3.83772, 62.6625, -5.13052, 40.1549, 1.2842, 32.3124, -3.83481, 15.1267, 1.97613, -10.2589, -1.23934, -15.2158, 3.30977, -41.2437, -1.83402, -57.8479, -4.75251, -65.1788, -2.49486, -89.2677, 0, -100)
 width = 49.005
 texture = SubResource("GradientTexture2D_camnn")
 
-[node name="Start" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="1"]
+[node name="Start" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="1" unique_id=1667776555]
 position = Vector2(0, 106)
 
-[node name="End" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="2"]
+[node name="End" parent="Node/FunnyCutscenePeople/PizzaGuy/VfxPowerline" index="2" unique_id=816528644]
 position = Vector2(0, -100)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node/FunnyCutscenePeople/PizzaGuy" unique_id=267033851]

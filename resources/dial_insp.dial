@@ -302,14 +302,15 @@ CHAR popo_2
 DIALOGUE insp_president_cell_2
 CHAR president
 	...i have been thinking.
-	didn't my fall from grace start so long ago...?
-	that fateful day when...
-	...i received the attention of the [color=GREEN]green demon[/color].
-	i don't think it ever understood me.
-	all i want... is a happy life for my people.
-	all [color=GREEN]it[/color] wants...
-	...is to stir the water.
-	...are you not doing that right now?
+	i can still reach out to [color=PRESCOLOR]dish[/color], but...
+	i have no more will to direct it.
+	all i feel is a vast calm washing back from it.
+	maybe i never was in control of the sea.
+	it just took so long to notice... what had changed.
+	...or was it... you?
+	water... crashing... above my head...
+	...
+	i wonder if the "pizz" guys still like me...
 
 
 DIALOGUE insp_guy_house_bed
