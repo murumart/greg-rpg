@@ -221,18 +221,18 @@ multipanther -> +10 (=99)
 - [X] starmap puzzle feedback when you get correct solution
 - [X] npc in store parking lot saying something about how aesthetc it is or parking lot gothic
 - [X] have npcs remark sunset so epople dont thinik its apocalypse..
+- [X] fw progress only when attacking... not very good if youre trying not to kill
+- [X] new line to bald guy (?)
 - [ ] vampire cutscene starts very suddenly and greg is off screen side probably
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
-- [ ] new line to bald guy
 - [ ] incidental forest npc written by june
   - the democrats are going in droves to forests and SKINNING striders
   - who gives a shit?
   - this country used to be about GLASS
 - [ ] savescumming at the random prize..
-- [ ] fw progress only when attacking... not very good if youre trying not to kill
 - [ ] way to cancel shopping basket
 - [ ] more npcs after level 30 aroud town
 - [ ] sk8 guy and atgirl should have mmore speech after mayor gone
