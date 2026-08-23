@@ -83,6 +83,7 @@ random_movement_distance = 32
 action_right_after_dialogue = true
 interact_on_touch = true
 default_lines = Array[StringName]([&"thug_catch_1"])
+can_be_run_over = true
 
 [node name="CollisionShape" parent="." index="0" unique_id=88290997]
 shape = SubResource("RectangleShape2D_2ak0v")

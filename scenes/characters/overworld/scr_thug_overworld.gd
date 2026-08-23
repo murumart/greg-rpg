@@ -19,18 +19,3 @@ func _ready() -> void:
 			TUSSLE_SYNONYMS.pick_random()])
 	random_battle_component.set_level(ResMan.get_character("greg").level)
 	battle_info = random_battle_component.get_battle()
-
-
-func _car_collision_response(car: CarOverworld) -> void:
-	SOL.vfx("dustpuff", global_position, {"parent": get_parent()})
-	SOL.vfx("bangspark", global_position, {"parent": get_parent()})
-	battle_info = null
-	interact_on_touch = false
-	SND.play_sound_2d(preload("res://sounds/attack_blunt.ogg"), global_position)
-	var tw := create_tween()
-	set_collision_mask_value(2, false)
-	set_physics_process(false)
-	battle_info = null
-	var moveto := car.global_position.direction_to(car.target) * car.speed * 2.9
-	tw.tween_property(self, "global_position", moveto, 1.0)
-	tw.tween_callback(queue_free)

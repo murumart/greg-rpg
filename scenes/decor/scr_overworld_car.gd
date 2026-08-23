@@ -9,11 +9,11 @@ signal path_point_reached(pathpoint: Marker2D)
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 # different rotations are in the same sprite sheet
 var regions := []
-const SHAPE_SIZES := [Vector2i(26, 10), Vector2i(10, 20)]
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var collision_area: Area2D = $CollisionArea
-@onready var collision_shape: CollisionShape2D = $CollisionArea/CollisionShape
+@onready var collision_shape_1: CollisionShape2D = $CollisionArea/CollisionShape
+@onready var collision_shape_2: CollisionShape2D = $CollisionArea/CollisionShape2
 @onready var cigarette_timer: Timer = $CigaretteTimer
 
 @export var path_container: Node
@@ -55,6 +55,7 @@ func _ready() -> void:
 			.set_death_reason(DAT.DeathReasons.CAR)
 			.set_start_text("hope you saved before this!"))
 	set_color(color)
+	turn(0)
 	set_target(0)
 
 
@@ -103,8 +104,7 @@ func _on_collision(ob: Node2D) -> void:
 	if ob is PlayerOverworld:
 		_on_collided_with_player(ob)
 	elif ob is OverworldCharacter:
-		if ob.has_method("_car_collision_response"):
-			ob._car_collision_response(self)
+		ob._car_collision_response(global_position, target, speed)
 
 
 func _on_collided_with_player(_pl: PlayerOverworld) -> void:
@@ -129,7 +129,9 @@ func _on_collided_with_player(_pl: PlayerOverworld) -> void:
 func turn(rot: float) -> void:
 	var dir := Math.dir_from_rot(rot)
 	sprite.region_rect = regions[dir + 1]
-	collision_shape.shape.size = SHAPE_SIZES[int((dir + 1) % 2 == 0)]
+	var horizontal := int((dir + 1) % 2 == 0)
+	collision_shape_1.disabled = not horizontal
+	collision_shape_2.disabled = horizontal
 
 
 func set_color(to: Color) -> void:

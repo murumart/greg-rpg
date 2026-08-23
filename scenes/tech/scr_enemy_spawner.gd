@@ -60,6 +60,9 @@ func _on_timer_timeout() -> void:
 	if (is_instance_valid(player)
 			and player.global_position.distance_squared_to(global_position) < 10_000):
 		return
+	for i in range(enemies.size() - 1, -1, -1):
+		if not is_instance_valid(enemies[i]):
+			enemies.remove_at(i)
 	if enemies.size() < max_enemies and randf() <= 0.25:
 		var thug := spawn_enemy.instantiate() as OverworldCharacter
 		_place_thug(thug, _get_position())

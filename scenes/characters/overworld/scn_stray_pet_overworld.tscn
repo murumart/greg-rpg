@@ -79,6 +79,7 @@ animated_sprite = NodePath("AnimatedSprite2D")
 speed = 4200
 random_movement = true
 interact_on_touch = true
+can_be_run_over = true
 save = false
 
 [node name="CollisionShape" parent="." index="0" unique_id=88290997]

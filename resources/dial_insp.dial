@@ -162,6 +162,9 @@ CHOICE_LINK strength
 	the stronger the opponent...
 	...the more experienced you will leave the fight.
 	so, to gain strength... participate in tussles!
+	you'll level up until you hit your natural limit.
+	there might be opponents who provide experience...
+	...to increase that limit.
 CHOICE_LINK magic
 	spirits are a mysterious force that permeate the world...
 	people with powerful wills, spirit masters, can utilise them!

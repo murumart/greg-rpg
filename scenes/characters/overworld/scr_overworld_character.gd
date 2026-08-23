@@ -57,6 +57,7 @@ var interactions := 0
 # collision disabling
 var player_colliding := false
 var player_collision_timer := Timer.new()
+@export var can_be_run_over := false
 
 @export_group("Save Information")
 @export var save := true
@@ -123,6 +124,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not position.is_finite(): push_warning(self, ": positiion isnt finite")
+	if not global_position.is_finite(): push_warning(self, ": global_positiion isnt finite")
+	if not velocity.is_finite(): push_warning(self, ": velocity isnt finite")
+	if not detection_raycast.target_position.is_finite(): push_warning(self, ": raycast:target_position isnt finite")
 	match state:
 		States.IDLE:
 			velocity = Vector2()
@@ -487,3 +492,21 @@ func check_freeze() -> void:
 	if global_position.distance_squared_to(greg.global_position) >= 70 * 70:
 		return
 	freeze_and_thaw()
+
+
+func _car_collision_response(carpos: Vector2, cartarget: Vector2, carspeed: float) -> void:
+	if not can_be_run_over:
+		return
+	SOL.vfx("dustpuff", global_position, {"parent": get_parent()})
+	SOL.vfx("bangspark", global_position, {"parent": get_parent()})
+	battle_info = null
+	interact_on_touch = false
+	SND.play_sound_2d(preload("res://sounds/attack_blunt.ogg"), global_position)
+	set_collision_mask_value(2, false)
+	set_physics_process(false)
+	battle_info = null
+	var tw := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var moveto := carpos.direction_to(cartarget) * carspeed * 2.9
+	tw.tween_property(self, "global_position", moveto, 1.11)
+	tw.parallel().tween_property(self, "rotation", TAU * 2.41, 1.11)
+	tw.tween_callback(queue_free)

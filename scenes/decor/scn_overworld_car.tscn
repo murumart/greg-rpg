@@ -6,7 +6,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jn82m"]
 resource_local_to_scene = true
-size = Vector2(26, 10)
+size = Vector2(26, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixrwj"]
+resource_local_to_scene = true
+size = Vector2(10, 18)
 
 [node name="Car" type="Node2D" unique_id=976208479 groups=["save_me"]]
 script = ExtResource("1_vjj1t")
@@ -21,7 +25,14 @@ collision_layer = 12
 collision_mask = 10
 
 [node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea" unique_id=1804751238]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jn82m")
+disabled = true
+debug_color = Color(1, 0.309804, 1, 0.419608)
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="CollisionArea" unique_id=1510306411]
+shape = SubResource("RectangleShape2D_ixrwj")
+disabled = true
 debug_color = Color(1, 0.309804, 1, 0.419608)
 
 [node name="VroomVroom" type="AudioStreamPlayer2D" parent="." unique_id=242380998]
