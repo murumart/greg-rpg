@@ -1260,7 +1260,7 @@ replenish_seconds = -60
 item = &"brick"
 
 [node name="Trashguy" type="Sprite2D" parent="Houses/BlockNeighbours" unique_id=1639835072]
-position = Vector2(-74, 111)
+position = Vector2(-77, 114)
 texture = ExtResource("17_bger3")
 centered = false
 offset = Vector2(-7, -16)
@@ -2283,7 +2283,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, -0.3145238)
+modulate = Color(1, 1, 1, 0.99646574)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
