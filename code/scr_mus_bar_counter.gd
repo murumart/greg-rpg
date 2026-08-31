@@ -14,8 +14,8 @@ var flbeat := 0.0
 
 
 func _process(delta: float) -> void:
-	flbar += delta / (60 * beats_per_bar / bpm)
-	flbeat += delta / (60 / bpm)
+	flbar += bar(delta, beats_per_bar, bpm)
+	flbeat += beat(delta, bpm)
 	if flbeat >= beats + 1:
 		beats += 1
 		new_beat.emit()
@@ -32,6 +32,14 @@ func reset_floats() -> void:
 func reset_measures() -> void:
 	bars = 0
 	beats = 0
+
+
+static func bar(delta: float, bpb: float, bpm_: float) -> float:
+	return delta / (60 * bpb / bpm_)
+
+
+static func beat(delta: float, bpm_: float) -> float:
+	return delta / (60 / bpm_)
 
 
 "

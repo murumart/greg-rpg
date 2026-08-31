@@ -63,9 +63,10 @@ func _c1() -> void:
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 15
 		SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.7})
-		dlg.al("congratulations").stext_speed(4)
-		dlg.al("...to me!").scallback(func() -> void:
-			speech_buble.spam_sound = speech
+		dlg.al("to save the WORLD").stext_speed(4)
+		dlg.al("just have some dolt nab the FLOWERS").scallback(func() -> void:
+			giggle.play()
+
 			_stopanim()
 			_face_smile()
 			mdp.show()
@@ -74,7 +75,8 @@ func _c1() -> void:
 			SOL.vfx("dustpuff", mdp.global_position, {parent = mdp})
 			SND.play_song("", 80)
 		)
-		dlg.al("i really didn't know how i was gonna fix all of that").scallback(func() -> void:
+		dlg.al("i owe you one, buddy").scallback(func() -> void:
+			speech_buble.spam_sound = speech
 			_bounce(1.0)
 			_face_default()
 			SND.play_song_from_beginning("beyond", 0.1, {"pitch_scale": 1.0})
@@ -82,48 +84,61 @@ func _c1() -> void:
 		dlg.al("y'know... it's hard to remember who got them.").scallback(func() -> void:
 			_face_o()
 			SND.play_sound(S_HMPH)
-			speech_buble.spam_sound = null
 		)
 		dlg.al("the FLOWERS").scallback(func() -> void:
 			_flip()
 			_stopanim()
-			giggle.play()
+
 			speech_buble.spam_sound = speech
 		)
 		dlg.al("and like").scallback(func() -> void:
 			_face_default()
 		)
-		dlg.al("even if i went to grab them back").scallback(func() -> void:
+		dlg.al("even if i went to grab them back myself").scallback(func() -> void:
 			_face_worm()
 		)
 		dlg.al("no way there wouldnt be a fight.")
-		dlg.al("that Isn't Good...").scallback(func() -> void:
+		dlg.al("that Isn't Good... ").scallback(func() -> void:
 			_flip()
 			_face_dark()
 		)
+		dlg.al("not supposed to duke it out with residents.")
 		dlg.al("but a fellow ant going rogue... no-one would bat an eye").scallback(func() -> void:
 			_face_tilt()
 			_bounce(1.2)
 		)
-		dlg.al("cept me i guess").scallback(func() -> void:
+		dlg.al("until he goes REALLY rogue i guess").scallback(func() -> void:
 			_face_smile()
 			_stopanim()
 		)
 		dlg.al("you werent supposed to enter my SECRET GARDEN").scallback(func() -> void:
 			_face_big()
 		)
-		dlg.al("didn't you read the note..?").scallback(func() -> void:
+		dlg.al("didnt you read the note..?").scallback(func() -> void:
 			_shake()
 			shake_sound.play()
 			SND.play_sound(S_HMPH)
 		)
-		dlg.al("whatevs. gig's up anyway").scallback(func() -> void:
+		dlg.al("i was PREPARING to gracefully collect you.")
+		dlg.al("whatevs. we met in the end...").scallback(func() -> void:
 			_face_default()
 			_flip()
 			_bounce(1.0)
 			shake_sound.stop()
 		)
-		dlg.al("my boss won't be seeing any of this \"florist\" crap")
+		dlg.al("we got our differences sorted out")
+		dlg.al("one of your floral friends even got to show me his REFLECTION trick").scallback(func() -> void:
+			_face_big()
+			_stopanim()
+			_flip()
+		)
+		dlg.al("but whatevs!! the gig's up anyway").scallback(func() -> void:
+			_face_default()
+			_flip()
+			_bounce(1.0)
+			shake_sound.stop()
+		)
+		dlg.al("my boss wont be seeing any of this \"florist\" crap")
 		dlg.al("so... you win!").scallback(func() -> void:
 			_flip()
 			_face_4()
@@ -167,13 +182,16 @@ func _stopanim() -> void:
 	if is_instance_valid(tweener) and tweener.is_valid(): tweener.kill()
 	mdp.scale = Vector2.ONE
 	mdpsprite.position = Vector2.ZERO
+	mdpsprite.skew = 0.0
 
 
 func _bounce(speed: float) -> void:
 	_stopanim()
 	tweener = create_tween().set_trans(Tween.TRANS_CUBIC).set_loops()
-	tweener.tween_property(mdp, ^"scale", Vector2(1.1, 0.9), 0.8 / speed)
-	tweener.tween_property(mdp, ^"scale", Vector2(0.9, 1.1), 0.8 / speed)
+	tweener.tween_property(mdp, ^"scale:x", 1.1, 0.7 / speed)
+	tweener.parallel().tween_property(mdp, ^"scale:y", 0.9, 0.8 / speed)
+	tweener.tween_property(mdp, ^"scale:x", 0.9, 0.7 / speed)
+	tweener.parallel().tween_property(mdp, ^"scale:y", 1.1, 0.8 / speed)
 
 
 func _shake() -> void:
