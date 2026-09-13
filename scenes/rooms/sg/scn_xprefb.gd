@@ -55,22 +55,6 @@ func _g_statue_interact() -> void:
 	t.tween_property(greg, ^"global_position", moveto, 0.05 * moveto.distance_to(greg.global_position) * _debug_time_mul)
 	t.tween_callback(greg.animate.bind("walk_right"))
 	await t.finished
-	var dlg := DialogueBuilder.new().set_char("silent")
-	dlg.al(dlg.SGD + "There once was a little gardener.")
-	dlg.al(dlg.SGD + "Though she loved gardening, she never could stay still.")
-	dlg.al(dlg.SGD + "Anywhere a task required patience, she had not enough.")
-	dlg.al(dlg.SGD + "One day, she was asked to take care of a large garden.")
-	dlg.al(dlg.SGD + "She was told to just keep it as it is.")
-	dlg.al(dlg.SGD + "The garden didn't look too nice, she thought...")
-	dlg.al(dlg.SGD + "Overgrown in places, burned in others,")
-	dlg.al(dlg.SGD + "and harboring a disease that would, every now and then")
-	dlg.al(dlg.SGD + "wipe the garden of its life.")
-	dlg.al(dlg.SGD + "Who wouldn't try to improve things?")
-	dlg.al(dlg.SGD + "What could one do there, then...")
-	dlg.al(dlg.SGD + "medicine... culling the rot... introducing new species...")
-	dlg.al(dlg.SGD + "All good ideas the little gardener implements...")
-	dlg.al(dlg.SGD + "...forgetting to see them through.")
-	await dlg.speak_choice()
 	greg.animate(greg.sprite.animation, false, 0.0)
 	music.stop()
 	SOL.vfx("xtarget", grand.global_position, {parent = grand})
@@ -83,7 +67,7 @@ func _g_statue_interact() -> void:
 	_cs_2()
 
 
-var _debug_time_mul := 0.0001
+var _debug_time_mul := 1.0
 
 var _smoothp := Vector2()
 func _pos_at_men() -> void:
@@ -98,10 +82,9 @@ func _cs_2() -> void:
 	tw.tween_property(menacing, "modulate:a", 0.07, 0.75 * _debug_time_mul)
 	tw.tween_interval(0.15 * _debug_time_mul)
 	var dlg := DialogueBuilder.new()
-	dlg.al("little forgetful florist").scallback(cb)
-	dlg.al("did i forget who i am too?").scallback(cb)
 	dlg.al("it's embarrassing.").scallback(cb)
 	dlg.al("i get so into my little persona").scallback(cb)
+	dlg.al('"the little forgetful florist"').scallback(cb)
 	dlg.al("...").scallback(cb)
 	tw.tween_callback(func() -> void:
 		speech.exhibit()
@@ -147,6 +130,8 @@ func _cs_4() -> void:
 	speech.spam_sound = menacing.speech_snd
 	var dlg := DialogueBuilder.new()
 	dlg.al("lmao")
+	dlg.al("what a day huh.")
+	dlg.al("we have both learned so much.")
 	await speech.speak(dlg.get_dial())
 
 

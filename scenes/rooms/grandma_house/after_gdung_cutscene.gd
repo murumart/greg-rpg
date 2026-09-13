@@ -97,5 +97,6 @@ func _close_cutscene() -> void:
 		dlg.reset()
 		dlg.al("whatever. let's talk, greggy boy.")
 		await dlg.speak_choice()
+		DAT.free_player("cutscene")
 		LTS.enter_battle(preload("res://resources/battle_infos/grandma_bossfight.tres"), {"sound": preload("res://sounds/enter_battle_grandma.ogg")})
 	)
