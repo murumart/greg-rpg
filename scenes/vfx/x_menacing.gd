@@ -18,14 +18,25 @@ enum MoveMode {
 	SWOOP,
 }
 
+const S_EEP = preload("res://sounds/x/eep.ogg")
+const S_HEH = preload("res://sounds/x/heh.ogg")
+const S_HMPH = preload("res://sounds/x/hmph.ogg")
+const S_EHEH = preload("res://sounds/x/eheh.ogg")
+
 @onready var attack_shape: CollisionShape2D = $Area2D/AttackShape
-@onready var partic: GPUParticles2D = $CanvasGroup/Particles
+@onready var partic: GPUParticles2D = $DarkDisplay/Particles
 @onready var plosive_particles: GPUParticles2D = $PlosiveParticles
 @onready var bullet_home: CanvasGroup = $BulletHome
 @onready var swoop_sound: AudioStreamPlayer = $SwoopSound
 @onready var explode_sound: AudioStreamPlayer = $ExplodeSound
 @onready var blare_sound: AudioStreamPlayer = $BlareSound
 @onready var bullet_sound: AudioStreamPlayer = $BulletSound
+@onready var dark_display: CanvasGroup = $DarkDisplay
+@onready var light_display: Node2D = $mdp
+@onready var mdpsprite: AnimatedSprite2D = $mdp/mdp
+@onready var shake_sound: AudioStreamPlayer = $mdp/ShakeSound
+@onready var giggle_snd: AudioStreamPlayer = $mdp/Giggle1
+@onready var speech_snd: AudioStreamPlayer = $mdp/Speech
 
 @export var phase := Phase.NONE
 @export var move_mode := MoveMode.STOP
@@ -42,8 +53,10 @@ var _swoop_arc: float
 var _swoop_dip: float
 func _physics_process(delta: float) -> void:
 	if move_mode == MoveMode.FOLLOW:
+		show()
 		_movement(delta)
 	elif move_mode == MoveMode.SWOOP:
+		show()
 		_swoop_movement(_swoop_progress, _swoop_arc, _swoop_dip, _swoop_start, _swoop_dir)
 	_shooting(delta)
 
@@ -217,3 +230,59 @@ func particles(amount: float = 0.0265) -> void:
 
 func splode() -> void:
 	plosive_particles.restart()
+
+
+func go_light() -> void:
+	light_display.show()
+	dark_display.hide()
+
+
+func go_dark() -> void:
+	light_display.hide()
+	dark_display.show()
+
+
+func face_4() -> void: mdpsprite.animation = "4"
+func face_big() -> void: mdpsprite.animation = "big"
+func face_dark() -> void: mdpsprite.animation = "dark"
+func face_default() -> void: mdpsprite.animation = "default"
+func face_o() -> void: mdpsprite.animation = "o"
+func face_smile() -> void: mdpsprite.animation = "smile"
+func face_tilt() -> void: mdpsprite.animation = "tilt"
+func face_worm() -> void: mdpsprite.animation = "worm"
+func flip() -> void: mdpsprite.flip_h = not mdpsprite.flip_h
+
+var tweener: Tween
+
+func stopanim() -> void:
+	if is_instance_valid(tweener) and tweener.is_valid(): tweener.kill()
+	light_display.scale = Vector2.ONE
+	mdpsprite.position = Vector2.ZERO
+	mdpsprite.skew = 0.0
+
+
+func bounce(speed: float) -> void:
+	stopanim()
+	tweener = create_tween().set_trans(Tween.TRANS_CUBIC).set_loops()
+	tweener.tween_property(light_display, ^"scale:x", 1.1, 0.7 / speed)
+	tweener.parallel().tween_property(light_display, ^"scale:y", 0.9, 0.8 / speed)
+	tweener.tween_property(light_display, ^"scale:x", 0.9, 0.7 / speed)
+	tweener.parallel().tween_property(light_display, ^"scale:y", 1.1, 0.8 / speed)
+
+
+func shake() -> void:
+	stopanim()
+	tweener = create_tween().set_loops()
+	tweener.tween_callback(func() -> void: mdpsprite.position = Vector2(randf_range(-1, 1), randf_range(-1, 1)))
+	tweener.tween_interval(0.01)
+
+
+func stretch() -> void:
+	light_display.scale = Vector2(1.1, 0.9)
+
+
+func sound_eep(): SND.play_sound(S_EEP)
+func sound_heh(): SND.play_sound(S_HEH)
+func sound_hmph(): SND.play_sound(S_HMPH)
+func sound_eheh(): SND.play_sound(S_EHEH)
+func sound_giggle() -> void: giggle_snd.play()

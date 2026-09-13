@@ -42,6 +42,7 @@ func _c1() -> void:
 		dlg.al("we'll find another use for you.")
 		dlg.al("for sure.")
 		dlg.al("bye LOL")
+		speech_buble.spam_sound = menacing.speech_snd
 		speech_buble.repos(speech_buble.wpos_to_local(menacing.global_position, camera))
 		speech_buble.exhibit()
 		await speech_buble.speak(dlg.get_dial())
@@ -50,7 +51,8 @@ func _c1() -> void:
 
 
 func _c2() -> void:
-	SND.play_sound(GIGLE, {"bus": "ECHO", "volume": -4})
+	menacing.giggle_snd.volume_db = -4.0
+	menacing.sound_giggle()
 	second_music.play()
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	tw.tween_property(menacing, "global_position:y", menacing.global_position.y - 120, 1.0)
