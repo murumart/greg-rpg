@@ -24,6 +24,11 @@ func _process(delta: float) -> void:
 		new_bar.emit(bars)
 
 
+func reset() -> void:
+	reset_floats()
+	reset_measures()
+
+
 func reset_floats() -> void:
 	flbar = 0.0
 	flbeat = 0.0

@@ -250,6 +250,7 @@ func face_o() -> void: mdpsprite.animation = "o"
 func face_smile() -> void: mdpsprite.animation = "smile"
 func face_tilt() -> void: mdpsprite.animation = "tilt"
 func face_worm() -> void: mdpsprite.animation = "worm"
+func face_handout() -> void: mdpsprite.animation = "handout"
 func flip() -> void: mdpsprite.flip_h = not mdpsprite.flip_h
 
 var tweener: Tween
@@ -262,12 +263,13 @@ func stopanim() -> void:
 
 
 func bounce(speed: float) -> void:
+	var move_time := 1.0 / speed
 	stopanim()
-	tweener = create_tween().set_trans(Tween.TRANS_CUBIC).set_loops()
-	tweener.tween_property(light_display, ^"scale:x", 1.1, 0.7 / speed)
-	tweener.parallel().tween_property(light_display, ^"scale:y", 0.9, 0.8 / speed)
-	tweener.tween_property(light_display, ^"scale:x", 0.9, 0.7 / speed)
-	tweener.parallel().tween_property(light_display, ^"scale:y", 1.1, 0.8 / speed)
+	tweener = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_loops()
+	tweener.tween_property(light_display, ^"scale:x", 1.1, move_time)
+	tweener.parallel().tween_property(light_display, ^"scale:y", 0.9, move_time)
+	tweener.tween_property(light_display, ^"scale:x", 0.9, move_time)
+	tweener.parallel().tween_property(light_display, ^"scale:y", 1.1, move_time)
 
 
 func shake() -> void:
@@ -281,8 +283,8 @@ func stretch() -> void:
 	light_display.scale = Vector2(1.1, 0.9)
 
 
-func sound_eep(): SND.play_sound(S_EEP)
-func sound_heh(): SND.play_sound(S_HEH)
-func sound_hmph(): SND.play_sound(S_HMPH)
-func sound_eheh(): SND.play_sound(S_EHEH)
+func sound_eep() -> void: SND.play_sound(S_EEP)
+func sound_heh() -> void: SND.play_sound(S_HEH)
+func sound_hmph() -> void: SND.play_sound(S_HMPH)
+func sound_eheh() -> void: SND.play_sound(S_EHEH)
 func sound_giggle() -> void: giggle_snd.play()

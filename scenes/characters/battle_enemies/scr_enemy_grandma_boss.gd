@@ -6,7 +6,7 @@ const USE_ITEM := preload("res://sprites/characters/battle/grandma/spr_use_item.
 const USE_SPIRIT := preload("res://sprites/characters/battle/grandma/spr_use_spirit.png")
 const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png")
 
-const FINAL_TURNS := 16
+const FINAL_TURNS := 11
 
 @export var enemy_health_toughness_curve: Curve
 
@@ -50,7 +50,7 @@ func _ready() -> void:
 
 
 func turn_actions() -> bool:
-	var dbg_skip := false
+	var dbg_skip := false #DEBUG
 	await speak_line()
 	if should_die:
 		progress = FINAL_TURNS + 2
@@ -63,7 +63,10 @@ func turn_actions() -> bool:
 		elif progress == FINAL_TURNS + 1:
 			await Math.timer(1.0)
 			turn_finished()
-		elif progress == FINAL_TURNS + 2 or dbg_skip:
+		elif progress == FINAL_TURNS + 2:
+			await Math.timer(1.0)
+			turn_finished()
+		elif progress == FINAL_TURNS + 3 or dbg_skip:
 			await Math.timer(0.1)
 			_final_attack()
 			#turn_finished()
@@ -207,6 +210,18 @@ func use_spirit(spirit: String, whom: BattleActor) -> void:
 	super(spirit, whom)
 
 
+func get_attack_payload(target: BattleActor) -> BattlePayload:
+	var pld := super(target)
+	# try not to kill greg too bad
+	if target.has_status_effect("confusion"):
+		pld.health *= 0.5
+	if target.character.health_perc() < 0.125:
+		pld.health *= 0.5
+	if target.character.health_perc() < 0.0625:
+		pld.health *= 0.5
+	return pld
+
+
 func attack(whom: BattleActor) -> void:
 	super(whom)
 	sprite.texture = ATTACK
@@ -237,23 +252,24 @@ func _lines_by_turn() -> PackedStringArray:
 		]
 	match progress:
 		0: return [
-			"greg, you little... man!",
-			"it's never that easy!",
-			"well, maybe it could be!",
-			"maybe i could just send you back to your doorstep!",
-			"but."
+			"talking... love doing it.",
+			"is it ok if i beat the crap out of you while we talk?",
+			"thanks, dear.",
 		]
 		1: return [
-			"i'm a bit more interested in you now.",
-			"your flower-collection escapades were a huge boon!",
-			"all those... ants!! ants who thought they were mighty!!",
-			"the natural order of things returns, as it must...",
+			"so... here's whats up.",
+			"i arrived long ago... came from a much bigger place.",
+			"and that felt constricting! limiting! pointless!",
+			"i observed the people going about their processes.",
+			"and, dear... they were really stupid.",
+			"only suffering, inefficiency!",
 		]
 		3: return [
-			"dear, this fight right now...",
-			"consider this your final challenge, greg.",
-			"a final boss to surmount!",
-			"after all, you are experienced enough...",
+			"i thought i knew better. so i went in there.",
+			"i made my own flowers... and started telling things...",
+			"giving people advice, let's say...",
+			"the language of flowers is very expressive, you know.",
+			"and can be very elevating...",
 		]
 		4:
 			if pick_target().character.inventory.size() > 10:
@@ -261,70 +277,77 @@ func _lines_by_turn() -> PackedStringArray:
 					"by the way... all those items you've gathered...",
 					"i've been doing some gathering of my own!",
 					"so, it's a very fair battle!",
-					"fairest than any other thus far, actually.",
+					"fairest than any other thus far!! stop complaining!!",
 				]
 			return [
 				"by the way... while you were slacking off...",
-				"i was being vigilant and collecting items to use in battle!",
+				"i was being vigilant and collecting...",
+				"...items to use in battle!",
 				"and i won't hold back... if i need to heal, i will!",
 			]
 		6: return [
-			"when you arrived at my house, greg...",
-			"how glad i am i seized the opportunity!",
-			"you were not just another toy to throw aside...",
-			"...once focus waned... you came back!!",
+			"back to the matter at hand...",
+			"there's two mistakes. i've made two mistakes.",
+			"first. the processes... the people... they were like that...",
+			"because it made sense. because they should be like that.",
+			"people have charac- ters! energy trans- forms! cause! effect!",
 		]
 		7: return [
-			"no one has returned before, you know.",
-			"i stopped believing they could!",
-			"and when you did, i was momentarily terrified...",
-			"if my projects were to become common knowledge...",
-			"all those... rules... bindings!! i despise them!!",
-			"this is my world!!",
+			"when i went and whispered those things to those people...",
+			"there was no longer cause and effect.",
+			"there was cause-florist-effect!",
+			"what was supposed to happen then?",
+			"surprise: nothing good did.",
 		]
 		8: return [
-			"but you, greg... you found me again and lent your hand.",
-			"the greatest cover-up in all of time and space...!",
-			"and we're almost done here...",
+			"second mistake. forgetting.",
+			"...it was more refusal to learn than forgetting.",
+			"i gave out more flowers, more, more.",
+			"it didn't converge on a likable scenario.",
+			"just... more... nonsense.",
+			"stretching everything far away from the original purpose.",
 		]
 		10: return [
-			"...almost done... because you are the last step.",
-			"of course, i can't let you just go on your merry way...",
-			"...after all the effort you went through...",
-			"silencing you forever like them is not interesting.",
-		]
-		11: return [
-			"why? dear, you are... very well attuned to this world!",
-			"your spirit power rivals anyone elses!",
-			"and that's why i can't let you go to waste.",
-		]
-		13: return [
-			"someone like you should have much more to say...",
-			"in what this world will end up like.",
-			"but for now...",
-			"you should hide. you should be hidden.",
-		]
-		14: return [
-			"that is why, greg...",
-			"that is why i will put you to sleep.",
-			"and whenever you must intervene again...",
-			"you'll always have been ready for it!",
-			"you'll always be ready in stone!!",
+			"dear... greg. your flower was the last one.",
+			"it gave you what you needed to bring back the others.",
+			"the potential to overcome them...",
+			"the final nonsense to end all other nonsense...",
+			"the biggest instance.",
+			"do you even remember you were here for your house, dear?",
+			"all the distractions have consumed you.",
+			"and me too... i'm in such a hurry.",
+			"they'll be here soon to... oh, you shouldn't worry.",
+			"i barely sound like an old woman anymore.",
 		]
 		FINAL_TURNS: return [
-			"well, alright! stop the carnage!!",
+			"here's the thing, greg. greggy boy.",
+			"i can't just let you go back to the streets.",
+			"you're more cause than effect now. i'll do with you...",
+			"...what i do with all my good ideas.",
+			"note them down.",
+			"stop the carnage for now...",
 		]
 		FINAL_TURNS + 1: return [
-			"greg, dear... you've proven yourself more than enough.",
-			"and, i've had time to prepare my final move for now...",
-			"the fabled...",
-			"[color=#ff0]magical electric petrification beam!!!",
-			"just one more turn for me, and then...",
-			"i'll keep you safe, okay?",
+			"the perfect medium for storage... is stone.",
+			"stone doesn't rot or decay. it remembers even if it changes...",
+			"oh, you probably heard all about it in the woods already.",
+			"here's my proposition: you live forever... as a piece of stone.",
+			"your input on this idea will be your currently fleshy body.",
+			"stand still while i charge my [color=ff0]electric! petrification! beam!",
 		]
 		FINAL_TURNS + 2: return [
-			"greg!! take this!!",
-			"[color=#ff0]petrify!!!",
+			"electric attacks don't hurt that much, do they?",
+			"you probably got hit by a few while fighting those...",
+			"...appliances... tch... stupid freaks!!",
+			"they thought i'd like them more if they looked like cats. ugh...",
+			"whatever! one more turn for me to charge the beam!!",
+		]
+		FINAL_TURNS + 3: return [
+			"greg... thank you.",
+			"thank you for everything.",
+			"we'll meet again when you're needed.",
+			"see you... in a thousand years or so.",
+			"take this! [color=ff0]electric! petrification!! beammm!!!",
 		]
 	return []
 

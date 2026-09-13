@@ -50,9 +50,9 @@ func _ready() -> void:
 
 func _g_statue_interact() -> void:
 	DAT.capture_player("cutscene")
-	var t := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	var moveto := grand.global_position.x - 12
-	t.tween_property(greg, ^"global_position:x", moveto, 1.0)
+	var t := create_tween()
+	var moveto := Vector2(grand.global_position.x - 16, grand.global_position.y)
+	t.tween_property(greg, ^"global_position", moveto, 0.05 * moveto.distance_to(greg.global_position) * _debug_time_mul)
 	t.tween_callback(greg.animate.bind("walk_right"))
 	await t.finished
 	var dlg := DialogueBuilder.new().set_char("silent")
@@ -75,28 +75,30 @@ func _g_statue_interact() -> void:
 	music.stop()
 	SOL.vfx("xtarget", grand.global_position, {parent = grand})
 	await Math.timer(1.75)
-	intensiivne.play(&"def", -1, 1)
-	SND.play_song("bymssc", 0.1, {pitch_scale = MUSIC_SPEED})
-	mus_bar_counter.reset_floats()
-	mus_bar_counter.bpm = 89 * MUSIC_SPEED
+	intensiivne.play(&"def", -1, 1.0 / _debug_time_mul)
+	SND.play_song_from_beginning("bymssc", 0.1)
+	mus_bar_counter.reset()
+	mus_bar_counter.bpm = 89.0
 	await intensiivne.animation_finished
 	_cs_2()
 
+
+var _debug_time_mul := 0.0001
 
 var _smoothp := Vector2()
 func _pos_at_men() -> void:
 	_smoothp = menacing.global_position - camera.global_position + SOL.SCREEN_CENTER
 	speech.repos(_smoothp)
-	menacing.modulate.a += 0.07
+	menacing.modulate.a = minf(1.0, menacing.modulate.a + 0.07)
 
 
 func _cs_2() -> void:
 	var tw := create_tween()
 	var cb := _pos_at_men
-	tw.tween_property(menacing, "modulate:a", 0.07, 0.75)
-	tw.tween_interval(0.15)
+	tw.tween_property(menacing, "modulate:a", 0.07, 0.75 * _debug_time_mul)
+	tw.tween_interval(0.15 * _debug_time_mul)
 	var dlg := DialogueBuilder.new()
-	dlg.al("little forgetful gardener").scallback(cb)
+	dlg.al("little forgetful florist").scallback(cb)
 	dlg.al("did i forget who i am too?").scallback(cb)
 	dlg.al("it's embarrassing.").scallback(cb)
 	dlg.al("i get so into my little persona").scallback(cb)
@@ -113,39 +115,94 @@ func _cs_3() -> void:
 	menacing.move_mode = menacing.MoveMode.STOP
 	menacing.move_target = null
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_interval(1.0)
-	tw.tween_property(menacing, "global_position", grand.global_position - Vector2(0, 8), 1.3)
-	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 0.8)
+	tw.tween_interval(1.0 * _debug_time_mul)
+	tw.tween_property(menacing, "global_position", grand.global_position + Vector2(4, -8), 1.3 * _debug_time_mul)
+	tw.parallel().tween_property(camera, ^"global_position", greg.global_position + Vector2(8, 10), 1.0 * _debug_time_mul)
+	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 0.8 * _debug_time_mul)
 	await tw.finished
 	var dlg := DialogueBuilder.new()
-	dlg.al("let me explain to you").scallback(_pos_at_men)
-	dlg.al("what we've done.").scallback(_pos_at_men)
+	dlg.al("you destroyed the flower holders").scallback(_pos_at_men)
+	dlg.al("and you destroyed the florist.").scallback(_pos_at_men)
+	dlg.al("well done.").scallback(_pos_at_men)
+	dlg.al("the least i can do now is to show you...").scallback(_pos_at_men)
+	dlg.al("my true form.").scallback(_pos_at_men)
 	await speech.speak(dlg.get_dial())
+	await _go_intense(1.0, 4.0 * _debug_time_mul)
+	menacing.go_light()
+	menacing.modulate.a = 1.0
+	await _go_reverse_intense(0.0, 0.01)
+	menacing.sound_hmph()
+	_cs_4.call_deferred()
+
+
+func _cs_4() -> void:
+	await Math.timer(1.0)
+	const music_speed := 1.3
+	const bpm := 130.0
+	menacing.bounce(bpm * music_speed * (1.0 / 60.0) * 0.5)
+	mus_bar_counter.reset()
+	mus_bar_counter.bpm = bpm * music_speed * 0.5
+	SND.play_song_from_beginning("beyond", 1.0, {start_volume = 0.0, pitch_scale = music_speed})
+	_pos_at_men()
+	speech.spam_sound = menacing.speech_snd
+	var dlg := DialogueBuilder.new()
+	dlg.al("lmao")
+	await speech.speak(dlg.get_dial())
+
+
+var bg_move_speed := 0.0
+
+
+func _go_intense(to: float = 1.0, time := 1.0) -> void:
+	DAT.capture_player("intense_move")
+	greg.set_physics_process(false)
 	var ints := $Intensiivne/AudioStreamPlayer
 	ints.play()
-	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.set_ease(Tween.EASE_IN).tween_property(shader_bg.material, "shader_parameter/offset:x", -15.0, 3.0)
-	tw.parallel().tween_property(ints, "volume_db", 0.0, 3.0).from(-20.0)
-	tw.parallel().tween_property(greg, "global_position:x", greg.global_position.x + 400, 3.0)
-	tw.parallel().tween_property(menacing, "global_position:x", menacing.global_position.x + 400, 3.0)
-	tw.parallel().tween_property(ints, "pitch_scale", 0.66, 3.0)
-	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.TRANSPARENT, Color.WHITE, 1.5, {free_rect = false})).set_delay(1.5)
-
-	tw.tween_callback(ints.stop)
-	tw.tween_interval(1.3)
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tw.parallel().tween_property(ints, ^"volume_linear", to, time).from(0.0)
+	tw.parallel().tween_property(ints, ^"pitch_scale", to * 4.0 + 0.001, time)
+	tw.parallel().tween_property(self, ^"bg_move_speed", to * 400.0, time)
+	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.TRANSPARENT, Color.WHITE, time * 0.5, {free_rect = false})).set_delay(time * 0.5)
 	tw.tween_callback(func() -> void:
-		LTS.change_scene_to("res://scenes/cutscene/x_ending.tscn")
+		DAT.free_player("intense_move")
+		greg.set_physics_process(true)
+		ints.stop()
 	)
+	await tw.finished
+
+
+func _go_reverse_intense(to: float = 0.0, time := 1.0) -> void:
+	assert(to >= 0.0)
+	DAT.capture_player("intense_move")
+	greg.set_physics_process(false)
+	var ints := $Intensiivne/AudioStreamPlayer
+	ints.play()
+	var tw := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(ints, ^"volume_linear", to, time).from(1.0)
+	tw.parallel().tween_property(ints, ^"pitch_scale", to + 0.001, time)
+	tw.parallel().tween_property(self, ^"bg_move_speed", to, time)
+	tw.parallel().tween_callback(SOL.fade_screen.bind(Color.WHITE, Color.TRANSPARENT, time * 0.5, {kill_rects = true, free_rect = true}))
+	tw.tween_callback(func() -> void:
+		DAT.free_player("intense_move")
+		greg.set_physics_process(true)
+		ints.stop()
+	)
+	await tw.finished
 
 
 func _process(delta: float) -> void:
-	var dist := maxf(0, 1275 - greg.position.x)
+	var dist := maxf(0, grand.global_position.x - greg.position.x)
 	if dist < 300:
-		var r := remap(dist, 300, 0, 1.0, 0.05)
+		var r := remap(dist, 300, 0, 1.0, 0.0)
 		music.volume_linear = r
 	if speech.box_readable and menacing.modulate.a > 0:
-		_smoothp = _smoothp.move_toward(menacing.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 4.0)
+		_smoothp = _smoothp.move_toward(menacing.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 8.0)
 		speech.repos(_smoothp, false, false)
+	greg.global_position.x += bg_move_speed * delta
+	menacing.global_position.x += bg_move_speed * delta
+	var mat := (shader_bg.material as ShaderMaterial)
+	var offset: float = mat.get_shader_parameter("offset").x + bg_move_speed * 0.05 * delta
+	mat.set_shader_parameter("offset", Vector2(offset, offset))
 
 
 func shakey() -> void:
