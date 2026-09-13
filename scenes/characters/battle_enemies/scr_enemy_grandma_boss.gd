@@ -6,7 +6,7 @@ const USE_ITEM := preload("res://sprites/characters/battle/grandma/spr_use_item.
 const USE_SPIRIT := preload("res://sprites/characters/battle/grandma/spr_use_spirit.png")
 const ATTACK := preload("res://sprites/characters/battle/grandma/spr_attack.png")
 
-const FINAL_TURNS := 11
+const FINAL_TURNS := 12
 
 @export var enemy_health_toughness_curve: Curve
 
@@ -313,6 +313,8 @@ func _lines_by_turn() -> PackedStringArray:
 			"the potential to overcome them...",
 			"the final nonsense to end all other nonsense...",
 			"the biggest instance.",
+		]
+		11: return [
 			"do you even remember you were here for your house, dear?",
 			"all the distractions have consumed you.",
 			"and me too... i'm in such a hurry.",
@@ -340,7 +342,7 @@ func _lines_by_turn() -> PackedStringArray:
 			"you probably got hit by a few while fighting those...",
 			"...appliances... tch... stupid freaks!!",
 			"they thought i'd like them more if they looked like cats. ugh...",
-			"whatever! one more turn for me to charge the beam!!",
+			"whatever! next turn you'll feel my [color=ff0]beam!",
 		]
 		FINAL_TURNS + 3: return [
 			"greg... thank you.",

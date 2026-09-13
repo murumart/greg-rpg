@@ -186,7 +186,7 @@ multipanther -> +10 (=99)
 - [X] do radiation attack before level up screen adn such
 - [X] move police appointment npc between seats
 
-### bugs to fix
+### do
 - [X] make forest bird stop shooting when player captured. its annoying
 - [X] remove empty trash... from wood..s..
 - [X] rose cutscene after resets sunset...
@@ -210,6 +210,7 @@ multipanther -> +10 (=99)
 - [X] town east enemies bad with level limit.. increase level limit..
 - [X] guive impure prism hint on first interaction
 - [X] resetting puzzle replays the animation (wghat does this mean)
+- [ ] add ending data to pers in new ending
 - [ ] replace nasturtium
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist

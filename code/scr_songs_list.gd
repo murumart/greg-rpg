@@ -146,11 +146,11 @@ var songs := {
 		"stream": preload("res://music/mus_greenhouse.ogg")
 	},
 	"grand": {
-		"title": "gramd theme",
+		"title": "grand theme",
 		"stream": preload("res://music/mus_grand.ogg")
 	},
 	"grandma_boss": {
-		"title": "89 grand mother",
+		"title": "standoff 1989",
 		"stream": preload("res://music/mus_grandma_boss.ogg")
 	},
 	"grandma_scary": {
