@@ -157,42 +157,37 @@ func load_cat_names() -> Array:
 	return Array(list)
 
 
-func gej(k: int,
-d: Variant = null) \
--> Variant: return\
-get_dict_from_file("pers")\
-.get(k, d)
+func gej(k: int, d: Variant = null) -> Variant:
+	return get_dict_from_file("pers").get(k, d)
 
 
-func sej(
-k: int, t: Variant) -> void: var o :\
-= get_dict_from_file("pers"); o\
-[k] = t; write_dict_to_file(o, "pers")
+func sej(k: int, t: Variant) -> void:
+	var o := get_dict_from_file("pers")
+	o[k] = t
+	write_dict_to_file(o, "pers")
 
 
-func incj(k: int, a: int
-) -> void:
-	var o:\
-	= get_dict_from_file("pers"); o[k] = o.get(k, 0) + a\
-	; write_dict_to_file(o, "pers")
+func incj(k: int, a: int) -> void:
+	var o := get_dict_from_file("pers")
+	o[k] = o.get(k, 0) + a
+	write_dict_to_file(o, "pers")
 
 
-func appj(k: int, t: Variant)\
- ->void:var o := get_dict_from_file("pers");\
-			o\
-	[k] = Math.reaap(
-			o.get(k, []),
-	t);write_dict_to_file(
-			o,
-	"pers")
+func appj(k: int, t: Variant) -> void:
+	var o := get_dict_from_file("pers")
+	o[k] = Math.reaap(o.get(k, []), t)
+	write_dict_to_file(o, "pers")
 
 
 func screenshot(small: bool) -> void:
 	if not DirAccess.dir_exists_absolute("user://greg_rpg/screenshots"):
 		DirAccess.make_dir_absolute("user://greg_rpg/screenshots")
 	var img := get_viewport().get_texture().get_image()
-	if not small:
-		img.resize(img.get_size().x * 5, img.get_size().y * 5, Image.INTERPOLATE_NEAREST)
+	var imgsize := img.get_size()
+	if not small and imgsize.x < 800:
+		var sizecoef := 800.0 / imgsize.x
+		var newsize := Vector2i((imgsize * sizecoef).ceil())
+		img.resize(newsize.x, newsize.y, Image.INTERPOLATE_NEAREST)
 	img.save_png(
 		"user://greg_rpg/screenshots/" + str(
 				Time.get_datetime_string_from_system().validate_filename()) + ".png"

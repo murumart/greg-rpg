@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="21_1hb2r"]
 [ext_resource type="AudioStream" uid="uid://xmy8fmiin6na" path="res://music/flower/8_flowers8.ogg" id="21_b5kph"]
 [ext_resource type="AudioStream" uid="uid://cwt65hkvh6thx" path="res://music/flower/flowersd.ogg" id="22_231p0"]
+[ext_resource type="Texture2D" uid="uid://ccsvuui8atqwm" path="res://sprites/cutscene/end/stoneperson.png" id="24_c170x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
 atlas = ExtResource("4_0gnln")
@@ -76,6 +77,49 @@ stream_7/stream = ExtResource("21_b5kph")
 stream_7/volume = 3.64
 stream_8/stream = ExtResource("22_231p0")
 stream_8/volume = -0.38
+
+[sub_resource type="Gradient" id="Gradient_clqfd"]
+offsets = PackedFloat32Array(0, 0.04787869, 0.8761615, 1)
+colors = PackedColorArray(0.12941177, 0.12941177, 0.12941177, 0, 0.13173455, 0.13173455, 0.13173455, 1, 0.15769061, 0.15769061, 0.15769061, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_231p0"]
+gradient = SubResource("Gradient_clqfd")
+
+[sub_resource type="Curve" id="Curve_c170x"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_clqfd"]
+width = 32
+curve = SubResource("Curve_c170x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rat15"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(108, 64, 1)
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 0.09999776
+tangential_accel_max = 0.99999774
+scale_min = 0.099999994
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_clqfd")
+color_ramp = SubResource("GradientTexture1D_231p0")
+
+[sub_resource type="Gradient" id="Gradient_c170x"]
+offsets = PackedFloat32Array(0, 0.04787869, 0.8761615, 1)
+colors = PackedColorArray(0.12941177, 0.12941177, 0.12941177, 0, 0.22280854, 0.22280854, 0.22280854, 1, 0.26536173, 0.26536173, 0.26536173, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d5hvl"]
+gradient = SubResource("Gradient_c170x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u0ya7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(54, 32, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.45
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_d5hvl")
 
 [sub_resource type="Curve" id="Curve_1hb2r"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5285715, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -765,6 +809,44 @@ tile_set = ExtResource("12_1dtc0")
 
 [node name="Decor" type="Node2D" parent="." unique_id=867088769]
 y_sort_enabled = true
+
+[node name="Parallax2D2" type="Parallax2D" parent="Decor" unique_id=2070335336]
+z_index = -2
+scroll_scale = Vector2(0.1, 0.4)
+repeat_size = Vector2(320, 240)
+autoscroll = Vector2(3, 0)
+repeat_times = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor/Parallax2D2" unique_id=2122247321]
+position = Vector2(82, -34)
+amount = 64
+texture = ExtResource("24_c170x")
+lifetime = 120.0
+preprocess = 60.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rat15")
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/Parallax2D2" unique_id=458559643]
+visible = false
+texture = ExtResource("24_c170x")
+
+[node name="Parallax2D" type="Parallax2D" parent="Decor" unique_id=970146432]
+z_index = -2
+scroll_scale = Vector2(0.5, 0.855)
+repeat_size = Vector2(320, 240)
+autoscroll = Vector2(3, 0)
+repeat_times = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Decor/Parallax2D" unique_id=163679450]
+texture = ExtResource("24_c170x")
+lifetime = 120.0
+preprocess = 60.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_u0ya7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Decor/Parallax2D" unique_id=502723725]
+visible = false
+texture = ExtResource("24_c170x")
 
 [node name="StonePerson" parent="Decor" unique_id=1209993543 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(255, 28)

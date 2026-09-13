@@ -4,7 +4,7 @@ const FLOWERCOLOR = "#99ff61"
 const SPIRITCOLOR = "#7799ff"
 const VAMPCOLOR = "#ff2089"
 const PRESCOLOR = "#ff9999"
-const SGD = "[font=res://fonts/gregorious_smaller.tres][font_size=16]"
+const SGD = "[font=res://fonts/gregorious_smaller.tres s=16 top=-5]"
 
 var _dial: Dialogue
 
