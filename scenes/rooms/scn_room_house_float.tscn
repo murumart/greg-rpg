@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpfj25n4ytmas" path="res://scenes/scr_room.gd" id="1_ni15f"]
 [ext_resource type="PackedScene" uid="uid://dx3mkrjbqpref" path="res://scenes/characters/overworld/scn_greg_overworld.tscn" id="2_86l3c"]
+[ext_resource type="PackedScene" uid="uid://c8gsbeagl2a3i" path="res://scenes/gui/scn_end_credits.tscn" id="2_o2bfl"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_v80xa"]
 [ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="4_x38iq"]
 [ext_resource type="Script" uid="uid://bvr08cuq0x5wp" path="res://scenes/rooms/grandma_house/house_float.gd" id="6_pyu2v"]
@@ -382,6 +383,8 @@ region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Overlay" type="AnimationPlayer" parent="Cutscenes" unique_id=1597064562]
 libraries/ = SubResource("AnimationLibrary_tuaj1")
+
+[node name="EndCredits" parent="Cutscenes" unique_id=1014030379 instance=ExtResource("2_o2bfl")]
 
 [node name="SecondMusic" type="AudioStreamPlayer" parent="." unique_id=773986654]
 stream = ExtResource("7_pyu2v")
