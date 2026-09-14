@@ -1,6 +1,7 @@
 extends Node2D
 
 const SpeechBuble = preload("res://scenes/gui/x_speech_buble.gd")
+const Menacing = preload("res://scenes/vfx/x_menacing.gd")
 
 const MUSIC_SPEED := 0.89
 
@@ -11,7 +12,7 @@ const MUSIC_SPEED := 0.89
 @onready var grand: OverworldCharacter = $Decor/Grand
 @onready var speech: SpeechBuble = $SpeechBuble
 @onready var intensiivne: AnimationPlayer = $Intensiivne
-@onready var menacing := $Menacing
+@onready var mdp: Menacing = $Menacing
 @onready var camera: Camera2D = $Greg/Camera
 @onready var shader_bg: ColorRect = $Greg/Camera/ColorRect
 
@@ -67,19 +68,19 @@ func _g_statue_interact() -> void:
 	_cs_2()
 
 
-var _debug_time_mul := 1.0
+var _debug_time_mul := 0.0001
 
 var _smoothp := Vector2()
 func _pos_at_men() -> void:
-	_smoothp = menacing.global_position - camera.global_position + SOL.SCREEN_CENTER
+	_smoothp = mdp.global_position - camera.global_position + SOL.SCREEN_CENTER
 	speech.repos(_smoothp)
-	menacing.modulate.a = minf(1.0, menacing.modulate.a + 0.07)
+	mdp.modulate.a = minf(1.0, mdp.modulate.a + 0.07)
 
 
 func _cs_2() -> void:
 	var tw := create_tween()
 	var cb := _pos_at_men
-	tw.tween_property(menacing, "modulate:a", 0.07, 0.75 * _debug_time_mul)
+	tw.tween_property(mdp, "modulate:a", 0.07, 0.75 * _debug_time_mul)
 	tw.tween_interval(0.15 * _debug_time_mul)
 	var dlg := DialogueBuilder.new()
 	dlg.al("it's embarrassing.").scallback(cb)
@@ -95,44 +96,108 @@ func _cs_2() -> void:
 
 func _cs_3() -> void:
 	SND.play_song("", 0.6)
-	menacing.move_mode = menacing.MoveMode.STOP
-	menacing.move_target = null
+	mdp.move_mode = mdp.MoveMode.STOP
+	mdp.move_target = null
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_interval(1.0 * _debug_time_mul)
-	tw.tween_property(menacing, "global_position", grand.global_position + Vector2(4, -8), 1.3 * _debug_time_mul)
+	tw.tween_property(mdp, "global_position", grand.global_position + Vector2(4, -8), 1.3 * _debug_time_mul)
 	tw.parallel().tween_property(camera, ^"global_position", greg.global_position + Vector2(8, 10), 1.0 * _debug_time_mul)
-	tw.parallel().tween_method(menacing.particles, 0.0, 1.0, 0.8 * _debug_time_mul)
+	tw.parallel().tween_method(mdp.particles, 0.0, 1.0, 0.8 * _debug_time_mul)
 	await tw.finished
 	var dlg := DialogueBuilder.new()
-	dlg.al("you destroyed the flower holders").scallback(_pos_at_men)
-	dlg.al("and you destroyed the florist.").scallback(_pos_at_men)
-	dlg.al("well done.").scallback(_pos_at_men)
-	dlg.al("the least i can do now is to show you...").scallback(_pos_at_men)
-	dlg.al("my true form.").scallback(_pos_at_men)
+	dlg.al("like you destroyed the flower holders").scallback(_pos_at_men)
+	dlg.al("you also destroyed the florist.").scallback(_pos_at_men)
+	dlg.al("what's left under is ME.").scallback(_pos_at_men)
 	await speech.speak(dlg.get_dial())
 	await _go_intense(1.0, 4.0 * _debug_time_mul)
-	menacing.go_light()
-	menacing.modulate.a = 1.0
+	mdp.go_light()
+	mdp.modulate.a = 1.0
 	await _go_reverse_intense(0.0, 0.01)
-	menacing.sound_hmph()
+	mdp.sound_hmph()
 	_cs_4.call_deferred()
 
 
 func _cs_4() -> void:
-	await Math.timer(1.0)
+	await Math.timer(2.0)
 	const music_speed := 1.3
 	const bpm := 130.0
-	menacing.bounce(bpm * music_speed * (1.0 / 60.0) * 0.5)
+	mdp.bounce(bpm * music_speed * (1.0 / 60.0) * 0.5)
 	mus_bar_counter.reset()
 	mus_bar_counter.bpm = bpm * music_speed * 0.5
 	SND.play_song_from_beginning("beyond", 1.0, {start_volume = 0.0, pitch_scale = music_speed})
 	_pos_at_men()
-	speech.spam_sound = menacing.speech_snd
+	speech.spam_sound = mdp.speech_snd
 	var dlg := DialogueBuilder.new()
-	dlg.al("lmao")
-	dlg.al("what a day huh.")
-	dlg.al("we have both learned so much.")
+	var tw: Tween
+	dlg.al("hey.").scallback(mdp.sound_eheh)
+	dlg.al("well done there")
+	dlg.al("destroying my physis.").scallback(mdp.face_tilt)
+	dlg.al("what a day huh... lots to unpack.").scallback(mdp.flip)
+	dlg.al('you might be thinking: "what in the background noise are you?"').scallback(func() -> void:
+		tw = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mdp, "position:x", mdp.position.x + 10, 1.0)
+		mdp.face_handout()
+	)
+	dlg.al("so... there was no florist. it was just a front.").scallback(func() -> void:
+		mdp.flip()
+		mdp.face_smile()
+	)
+	dlg.al("after they took my hand and... pulled me out of the puddle that was my world...").scallback(func() -> void:
+		mdp.flip()
+		mdp.face_default()
+	)
+	dlg.al("and showed me the whole SEA...").scallback(mdp.face_o)
+	dlg.al("i was immediately made to keep watch over yours.").scallback(mdp.face_worm)
+	dlg.al("your awful! reeking! world!").scallback(func() -> void:
+		mdp.flip()
+		mdp.stopanim()
+		mdp.shake_horiz()
+	)
+	dlg.al("and i could only look! not touch!").scallback(func() -> void:
+		tw = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mdp, "position:x", mdp.position.x - 10, 1.0)
+	)
+	dlg.al("when my touch would change it for the BETTER!!").scallback(mdp.face_dark)
+	dlg.al("...it didn't change for the better.")
+	dlg.al("everyone i gave flowers just... moved... from their purpose.")
+	dlg.al("if you prod an anthill, the ants go crazy...").scallback(mdp.face_tilt)
+	dlg.al("they get violent. attack regardless of target.")
+	dlg.al("until it rains.").scallback(mdp.flip)
+	dlg.al("hey. greggy boy. my little droplet.").scallback(func() -> void:
+		tw = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mdp, "position:x", mdp.position.x - 10, 1.0)
+		mdp.face_smile()
+		mdp.sound_giggle()
+		mdp.bounce(bpm * music_speed * (1.0 / 60.0) * 0.5)
+		mdp.flip()
+	)
+	dlg.al("i've caused myself so much trouble").scallback(mdp.face_handout)
+	dlg.al("so thank you for freshening me up.").scallback(mdp.face_tilt)
+	dlg.al("i think you've earned your house back.").scallback(func() -> void:
+		mdp.flip()
+		mdp.face_default()
+	)
+	dlg.al("let's go... ").scallback(func() -> void:
+		tw = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tw.tween_property(mdp, "position:x", mdp.position.x + 10, 1.0)
+		SND.play_song("")
+	)
 	await speech.speak(dlg.get_dial())
+	await _go_intense(0.5, 2.0)
+	mdp.face_fell()
+	mdp.shake_horiz()
+	mdp.sound_hmph()
+	await _go_reverse_intense(0.0, 0.1)
+	await Math.timer(2.0)
+	mdp.face_lookdown()
+	mdp.shake_horiz()
+	await Math.timer(1,0)
+	dlg.clear()
+	dlg.al("let's go.")
+	await speech.speak(dlg.get_dial())
+	await _go_intense(1.0, 4.0)
+	LTS.gate_id = &"afterexpo"
+	LTS.change_scene_to("res://scenes/rooms/scn_room_grandma_house_inside.tscn")
 
 
 var bg_move_speed := 0.0
@@ -180,11 +245,11 @@ func _process(delta: float) -> void:
 	if dist < 300:
 		var r := remap(dist, 300, 0, 1.0, 0.0)
 		music.volume_linear = r
-	if speech.box_readable and menacing.modulate.a > 0:
-		_smoothp = _smoothp.move_toward(menacing.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 8.0)
+	if speech.box_readable and mdp.modulate.a > 0:
+		_smoothp = _smoothp.move_toward(mdp.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 8.0)
 		speech.repos(_smoothp, false, false)
 	greg.global_position.x += bg_move_speed * delta
-	menacing.global_position.x += bg_move_speed * delta
+	mdp.global_position.x += bg_move_speed * delta
 	var mat := (shader_bg.material as ShaderMaterial)
 	var offset: float = mat.get_shader_parameter("offset").x + bg_move_speed * 0.05 * delta
 	mat.set_shader_parameter("offset", Vector2(offset, offset))

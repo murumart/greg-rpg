@@ -144,19 +144,20 @@ pitch_scale = 1.1
 max_polyphony = 12
 bus = &"Speech"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="mdp" unique_id=593390277]
+[node name="LightParticles" type="GPUParticles2D" parent="mdp" unique_id=593390277]
 modulate = Color(1, 1, 1, 0.7490196)
 show_behind_parent = true
 material = ExtResource("11_gvrd2")
 position = Vector2(0, -6)
 scale = Vector2(0.21, 0.21)
+amount = 24
 texture = SubResource("AtlasTexture_vl7lh")
 process_material = ExtResource("12_gvrd2")
 
 [node name="SpriteFrameToParticleTextureCopier" type="Node" parent="mdp" unique_id=1825175093 node_paths=PackedStringArray("from", "to")]
 script = ExtResource("11_8o2xf")
 from = NodePath("../mdp")
-to = NodePath("../GPUParticles2D")
+to = NodePath("../LightParticles")
 metadata/_custom_type_script = "uid://b4no27m8ikd0y"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=484578348]

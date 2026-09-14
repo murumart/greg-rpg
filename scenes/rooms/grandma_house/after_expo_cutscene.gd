@@ -36,108 +36,45 @@ func _ready() -> void:
 	if is_instance_valid(carpet): carpet.queue_free()
 	if is_instance_valid(carnations): carnations.queue_free()
 	if is_instance_valid(door): door.queue_free()
+	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 1.0, {kill_rects = true})
 	room_gate.destination = &"house_float"
 
 
 func _c1() -> void:
 	var dlg := DialogueBuilder.new()
 	var tw := create_tween()
+	mdp.go_light()
+	mdp.particles(0.01)
+	mdp.flip()
+	mdp.face_o()
 	tw.tween_interval(0.5)
 	tw.tween_callback(greg.animate.bind("walk_right"))
-	tw.tween_interval(0.5)
+	tw.tween_interval(1.0)
 	tw.tween_callback(func() -> void:
+		speech_buble.spam_sound = mdp.speech_snd
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 30
-		SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.7})
-		dlg.al("to save the WORLD").stext_speed(4)
-		dlg.al("just have some dolt nab the FLOWERS").scallback(func() -> void:
+		SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.2})
+		dlg.al("your house... i'll miss it.").scallback(mdp.flip)
+		dlg.al("it gave me some more purpose... or the feeling of one.")
+		dlg.al("but i think... this town. it's very isolated.").scallback(mdp.flip)
+		dlg.al("i started ignoring the world here").scallback(mdp.face_tilt)
+		dlg.al("and getting lost in the SECRET GARDEN i found...").scallback(mdp.face_dark)
+		dlg.al("until i realised i'm in a big hurry, actually!").scallback(func() -> void:
+			mdp.flip()
+			mdp.face_smile()
+		)
+		dlg.al("so let's get this over with.").scallback(mdp.face_4)
+		dlg.al("...i don't have any big words left for you.").scallback(mdp.face_default)
+		dlg.al("you have your house back.").scallback(func() -> void:
+			mdp.flip()
+			mdp.face_handout()
+		)
+		dlg.al("enjoy boy. bye").scallback(func()->void:
 			mdp.sound_giggle()
-			mdp.stopanim()
-			mdp.face_smile()
-			mdp.go_light()
-			mdp.sound_heh()
-			SOL.vfx("dustpuff", mdp.global_position, {parent = mdp})
-			SND.play_song("", 80)
-		)
-		dlg.al("i owe you one, buddy").scallback(func() -> void:
-			speech_buble.spam_sound = mdp.speech_snd
-			mdp.bounce(1.0)
-			mdp.face_default()
-			SND.play_song_from_beginning("beyond", 0.1, {"pitch_scale": 1.0})
-		)
-		dlg.al("y'know... it's hard to remember who got them.").scallback(func() -> void:
-			mdp.face_o()
-			mdp.sound_hmph()
-		)
-		dlg.al("the FLOWERS").scallback(func() -> void:
-			mdp.flip()
-			mdp.stopanim()
-
-			speech_buble.spam_sound = mdp.speech_snd
-		)
-		dlg.al("and like").scallback(func() -> void:
-			mdp.face_default()
-		)
-		dlg.al("even if i went to grab them back myself").scallback(func() -> void:
-			mdp.face_worm()
-		)
-		dlg.al("no way there wouldnt be a fight.")
-		dlg.al("that Isn't Good... ").scallback(func() -> void:
-			mdp.flip()
-			mdp.face_dark()
-		)
-		dlg.al("not supposed to duke it out with residents.")
-		dlg.al("but a fellow ant going rogue... no-one would bat an eye").scallback(func() -> void:
-			mdp.face_tilt()
-			mdp.bounce(1.2)
-		)
-		dlg.al("until he goes REALLY rogue i guess").scallback(func() -> void:
-			mdp.face_smile()
-			mdp.stopanim()
-		)
-		dlg.al("you werent supposed to enter my SECRET GARDEN").scallback(func() -> void:
-			mdp.face_big()
-		)
-		dlg.al("didnt you read the note..?").scallback(func() -> void:
-			mdp.move_mode = mdp.MoveMode.FOLLOW
-			mdp.shake()
-			mdp.shake_sound.play()
-			mdp.sound_hmph()
-		)
-		dlg.al("i was PREPARING to gracefully collect you.")
-		dlg.al("whatevs. we met in the end...").scallback(func() -> void:
-			mdp.face_default()
-			mdp.flip()
-			mdp.bounce(1.0)
-			mdp.shake_sound.stop()
-			mdp.move_mode = mdp.MoveMode.STOP
-			mdp.position = Vector2(24, -10)
-		)
-		dlg.al("we got our differences sorted out")
-		dlg.al("one of your floral friends even got to show me his REFLECTION trick").scallback(func() -> void:
-			mdp.face_big()
-			mdp.stopanim()
-			mdp.flip()
-		)
-		dlg.al("but whatevs!! the gig's up anyway").scallback(func() -> void:
-			mdp.face_default()
-			mdp.flip()
-			mdp.bounce(1.0)
-			mdp.shake_sound.stop()
-		)
-		dlg.al("my boss wont be seeing any of this \"florist\" crap")
-		dlg.al("so... you win!").scallback(func() -> void:
-			mdp.flip()
 			mdp.face_4()
-			mdp.sound_eep()
-		)
-		dlg.al("you have your little house back").scallback(func() -> void:
-			mdp.stopanim()
-			speech_buble.spam_sound = null
-		)
-		dlg.al("enjoy boy. ..... bye").scallback(func() -> void:
-			mdp.face_default()
-			mdp.sound_giggle()
+			mdp.flip()
+			mdp.bounce(1.0)
 		)
 		_repos()
 		speech_buble.exhibit()

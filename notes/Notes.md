@@ -211,6 +211,7 @@ multipanther -> +10 (=99)
 - [X] guive impure prism hint on first interaction
 - [X] resetting puzzle replays the animation (wghat does this mean)
 - [ ] add ending data to pers in new ending
+- [ ] move grreg back to xprefb scene start
 - [ ] replace nasturtium
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist

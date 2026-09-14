@@ -25,6 +25,7 @@ const S_EHEH = preload("res://sounds/x/eheh.ogg")
 
 @onready var attack_shape: CollisionShape2D = $Area2D/AttackShape
 @onready var partic: GPUParticles2D = $DarkDisplay/Particles
+@onready var light_particles: GPUParticles2D = $mdp/LightParticles
 @onready var plosive_particles: GPUParticles2D = $PlosiveParticles
 @onready var bullet_home: CanvasGroup = $BulletHome
 @onready var swoop_sound: AudioStreamPlayer = $SwoopSound
@@ -226,6 +227,7 @@ func _switch_phase() -> void:
 
 func particles(amount: float = 0.0265) -> void:
 	partic.amount_ratio = amount
+	light_particles.amount_ratio = amount
 
 
 func splode() -> void:
@@ -251,6 +253,8 @@ func face_smile() -> void: mdpsprite.animation = "smile"
 func face_tilt() -> void: mdpsprite.animation = "tilt"
 func face_worm() -> void: mdpsprite.animation = "worm"
 func face_handout() -> void: mdpsprite.animation = "handout"
+func face_fell() -> void: mdpsprite.animation = "fell"
+func face_lookdown() -> void: mdpsprite.animation = "lookdown"
 func flip() -> void: mdpsprite.flip_h = not mdpsprite.flip_h
 
 var tweener: Tween
@@ -262,10 +266,10 @@ func stopanim() -> void:
 	mdpsprite.skew = 0.0
 
 
-func bounce(speed: float) -> void:
+func bounce(speed: float, loop := true) -> void:
 	var move_time := 1.0 / speed
 	stopanim()
-	tweener = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_loops()
+	tweener = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT).set_loops(0 if loop else 1)
 	tweener.tween_property(light_display, ^"scale:x", 1.1, move_time)
 	tweener.parallel().tween_property(light_display, ^"scale:y", 0.9, move_time)
 	tweener.tween_property(light_display, ^"scale:x", 0.9, move_time)
@@ -277,6 +281,16 @@ func shake() -> void:
 	tweener = create_tween().set_loops()
 	tweener.tween_callback(func() -> void: mdpsprite.position = Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 	tweener.tween_interval(0.01)
+
+
+func shake_horiz() -> void:
+	stopanim()
+	var tw := create_tween()
+	const shtime := 0.03
+	for i in 10:
+		var dist := (10.0 - i) * 0.25
+		tw.tween_property(mdpsprite, "position:x", dist, shtime)
+		tw.tween_property(mdpsprite, "position:x", -dist, shtime)
 
 
 func stretch() -> void:
