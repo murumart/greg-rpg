@@ -98,11 +98,6 @@ var songs := {
 		"title": "forestguy",
 		"stream": preload("res://music/mus_forestguy.ogg")
 	},
-	"evil_end": {
-		"title": "lost at sea",
-		"stream": preload("res://music/mus_evilending.ogg"),
-		"loop": false,
-	},
 	"extremophile": {
 		"title": "extremophile",
 		"stream": preload("res://music/mus_extremophile.ogg"),
