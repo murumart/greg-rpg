@@ -69,7 +69,7 @@ func _c2() -> void:
 	overlay.play(&"end")
 	tw.tween_callback(func() -> void:
 		var e: Array = DIR.gej(3, [])
-		e.append(4)
+		e.append(5)
 		DIR.sej(3, e)
 		SOL.add_ui_child(end_credits)
 		await get_tree().process_frame

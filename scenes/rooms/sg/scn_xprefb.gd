@@ -230,7 +230,7 @@ func _process(delta: float) -> void:
 		var r := remap(dist, 300, 0, 1.0, 0.0)
 		music.volume_linear = r
 	if speech.box_readable and mdp.modulate.a > 0:
-		_smoothp = _smoothp.move_toward(mdp.global_position - camera.global_position + SOL.SCREEN_CENTER + Vector2(0, 10), delta * 8.0) 
+		_smoothp = _smoothp.move_toward(mdp.global_position - camera.global_position + SOL.SCREEN_CENTER + Vector2(0, 10), delta * 8.0)
 		speech.repos(_smoothp, false, false)
 	greg.global_position.x += bg_move_speed * delta
 	mdp.global_position.x += bg_move_speed * delta

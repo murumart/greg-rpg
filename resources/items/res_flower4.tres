@@ -11,8 +11,8 @@ metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [resource]
 script = ExtResource("3_1cpyq")
-name = &"nasturtium"
-description = "there was an ugly, feverish pride in the holder of this flower."
+name = &"cranebell"
+description = "the holder's nerves left this flower shaky."
 texture = ExtResource("4_vh23j")
 consume_on_use = false
 payload = SubResource("Resource_ou3cw")
