@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="36_qk2vw"]
 [ext_resource type="AudioStream" uid="uid://ciuhytfn1ye8b" path="res://sounds/snail_quasar.ogg" id="37_gcnui"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="38_6wcl6"]
+[ext_resource type="Texture2D" uid="uid://bt3lne874fpsm" path="res://sprites/cutscene/end/x32.png" id="38_odbt0"]
 [ext_resource type="Texture2D" uid="uid://dhq11jug8fwm8" path="res://sprites/vfx/burn_mark.png" id="38_xx7yy"]
 [ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="41_f1gdv"]
 [ext_resource type="PackedScene" uid="uid://bo30s0jr7gxse" path="res://scenes/decor/scn_greenhouse.tscn" id="44_udk7p"]
@@ -103,7 +104,7 @@ size = Vector2(1, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
 size = Vector2(1, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odbt0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6s44"]
 resource_local_to_scene = true
 size = Vector2(21, 16)
 
@@ -308,8 +309,12 @@ height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n6s44"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_boafo"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl7lh"]
+atlas = ExtResource("38_odbt0")
+region = Rect2(0, 0, 32, 37)
 
 [sub_resource type="Gradient" id="Gradient_gcnui"]
 interpolation_mode = 2
@@ -519,7 +524,7 @@ _data = {
 a = Vector2(-42, 0)
 b = Vector2(43, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_boafo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b86v"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
 
@@ -662,7 +667,7 @@ size = Vector2(8, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 7)
 
-[sub_resource type="Curve2D" id="Curve2D_3b86v"]
+[sub_resource type="Curve2D" id="Curve2D_nd6mw"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -76, 164, 150.748, -194.999, -150.748, 194.999, -223, 415, 137.19, 6.61157, -137.19, -6.61157, -528, 572, 0, 0, 0, 0, -898, 571)
@@ -942,7 +947,7 @@ item = &"tumbler"
 
 [node name="Atgirl" parent="Houses/HousingBlock" unique_id=1808569170 instance=ExtResource("11_bu27y")]
 position = Vector2(6, 81)
-default_lines = Array[StringName]([&"atgirl_1", &"atgirl_2", &"atgirl_3"])
+default_lines = Array[StringName]([&"atgirl_1", &"atgirl_2"])
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/HousingBlock/Atgirl" unique_id=102488562]
 position = Vector2(0, -8)
@@ -1010,7 +1015,7 @@ greg_speed = 20.0
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
-shape = SubResource("RectangleShape2D_odbt0")
+shape = SubResource("RectangleShape2D_n6s44")
 
 [node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock" unique_id=612154986]
 position = Vector2(-40, 16)
@@ -1312,7 +1317,7 @@ offset = Vector2(-10, -26)
 
 [node name="ShardsTexture" parent="Houses/Factory" unique_id=1455373539 instance=ExtResource("35_ani0e")]
 position = Vector2(6, 31)
-texture = SubResource("ViewportTexture_n6s44")
+texture = SubResource("ViewportTexture_boafo")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false
@@ -1320,6 +1325,9 @@ visible = false
 [node name="Menacing" parent="Houses/Factory/Menace" unique_id=347178968 instance=ExtResource("36_qk2vw")]
 z_index = 12
 position = Vector2(8, -123)
+
+[node name="LightParticles" parent="Houses/Factory/Menace/Menacing/mdp" parent_id_path=PackedInt32Array(347178968, 1261399300) index="4" unique_id=593390277]
+texture = SubResource("AtlasTexture_vl7lh")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Houses/Factory/Menace/Menacing" unique_id=1162559465]
 visible = false
@@ -1388,7 +1396,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0" unique_id=582535130]
-shape = SubResource("RectangleShape2D_boafo")
+shape = SubResource("RectangleShape2D_3b86v")
 
 [node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1" unique_id=110762082]
 position = Vector2(0, 9)
@@ -1653,7 +1661,7 @@ position = Vector2(-961, 595)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
 position = Vector2(46, 0)
-curve = SubResource("Curve2D_3b86v")
+curve = SubResource("Curve2D_nd6mw")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-76, 164)

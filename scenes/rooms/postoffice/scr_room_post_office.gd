@@ -54,7 +54,7 @@ func enter_job() -> void:
 func pink_haired_girl_setup(force := false) -> void:
 	var time := wrapi(DAT.seconds, 0, DAT.ATGIRL_CYCLE)
 	var atgirl := $Decoration/Atgirl as OverworldCharacter
-	if not Math.inrange(time, time * 0.25, 0.5) and not force:
+	if not Math.inrange(time, DAT.ATGIRL_CYCLE * 0.25, DAT.ATGIRL_CYCLE * 0.5) and not force:
 		atgirl.queue_free()
 		return
 	if talker.relationship >= 12:

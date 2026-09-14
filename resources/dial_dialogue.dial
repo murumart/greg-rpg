@@ -2070,6 +2070,13 @@ DIALOGUE atgirl_3
 	i've had enough social interaction today.
 
 
+DIALOGUE atgirl_mayor
+SET_DATA atgirl_mayor_talked,true
+	what the hell was going on at the factory...
+	this town, i swear...
+	it was too boring, and now it's too interesting...
+
+
 DIALOGUE atgirl_at_postoffice_1
 	i'm waiting for a letter from my sister.
 

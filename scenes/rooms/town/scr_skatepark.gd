@@ -30,7 +30,13 @@ func sk8r_kid_talk() -> void:
 	var highscore: int = DAT.get_data("skating_points_hiscore", 0)
 	var dlg := DialogueBuilder.new()
 	var aval_choices := [&"key", &"skate", &"bye"]
-	dlg.al("yo.").schoices(aval_choices)
+	if DAT.get_data("mayor_fought", false):
+		dlg.al("uh... so the mayor...")
+		dlg.al("what happened with him...?")
+		dlg.al("you know, i'm not complaining. what a dumb old man.")
+		dlg.al("uh, what did you want..?").schoices(aval_choices)
+	else:
+		dlg.al("yo.").schoices(aval_choices)
 	var choice := await dlg.speak_choice()
 	dlg.reset()
 	if choice == &"bye":
@@ -73,13 +79,20 @@ func sk8r_kid_talk() -> void:
 					DAT.set_data("got_sk8r_ladder", true)
 		else:
 			if DAT.visited_room("mafia_house"):
-				dlg.al("what? the youth center is full of mafia guys?")
-				dlg.al("yo... that's really cool...")
+				if &"key_gold" in ResMan.get_character("greg").inventory:
+					dlg.al("yeah, i see the golden key, stop waving it... uh...")
+					dlg.al("are you supposed to have that?")
+					dlg.al("it's just been in the chapel...")
+					dlg.al("don't really know what door it opens...")
+					dlg.al("i hope it's not for some wacky adventure with cats.")
+				else:
+					dlg.al("what? the youth center is full of mafia guys?")
+					dlg.al("yo... that's really cool...")
 			elif &"key_youthcentre" in ResMan.get_character("greg").inventory:
-				dlg.al("yeah, i see the key, stop waving it under my nose...")
+				dlg.al("yeah, i see the silver key, stop waving it under my nose...")
 				dlg.al("i think the youth center used to be locked with that one.")
-				dlg.al("until it was closed forever... the mayor hates youth, you see.")
-				dlg.al("i have no idea where the factory key could be, then...")
+				dlg.al("until it was closed forever... the mayor hates youth.")
+				dlg.al("i have no idea where the factory key could be.")
 			else:
 				dlg.al("you got the ladder, bro... just climb in thru his window.")
 				dlg.al("his window is one of them on the housing block to the north of here.")

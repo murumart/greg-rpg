@@ -55,7 +55,11 @@ func _physics_process(delta: float) -> void:
 func _ladder_display() -> void:
 	ladder.visible = ladder_active
 	broken_window.visible = window_broken
-	if ladder_active:
+	if DAT.get_data("mayor_fought", false):
+		atgirl.default_lines = [&"atgirl_mayor"]
+		if DAT.get_data("atgirl_mayor_talked", false):
+			atgirl.queue_free()
+	elif ladder_active:
 		atgirl.default_lines = [&"atgirl_what"]
 
 
