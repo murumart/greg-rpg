@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/grandma.ogg-57b2e318c96f4cb8b4db9de9a3c29a8f.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

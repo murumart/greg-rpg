@@ -215,26 +215,25 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		text = text.replace(DialogueParser.NEW_KEY_ACTION, "")
 		var dict := KeybindsSettings.capital_action_action_string_dict()
 		text = text.format(dict)
-	var leng := Dialogue.len_no_bbcode(text)
 	while true:
 		if randf() > 0.001 or text.contains("[") or text.contains("{"): # avoids bbcode hopefully
 			break
 		text = Math.typos(text)
 	textbox.set_text(text)
 	started_speaking.emit(current_dialogue)
-	# speaking takes as much time as many there are letters to speak
-	textbox.speak_text({"speed": OPT.get_opt("text_speak_time")
-			/ text_speed * leng * 0.05})
+	textbox.speak_text({"speed": text_speed})
 	if character and character.voice_sound and dialogue_sound:
 		dialogue_sound.stream = character.voice_sound
 	else:
 		dialogue_sound.stream = preload("res://sounds/talking/telegram.ogg")
-	dialogue_sound.play()
+	if dialogue_sound:
+		textbox.letter_spoken.connect(_on_letter_spoken)
 	await textbox.speak_finished
 	if dialogue_sound:
-		dialogue_sound.stop()
+		textbox.letter_spoken.disconnect(_on_letter_spoken)
 	if part.instaskip:
-		next_dialogue_requested()
+		skip()
+		next_dialogue_requested.call_deferred()
 		return
 
 	set_finished_marker(1 if current_dialogue < loaded_dialogue.size() - 1 else 2)
@@ -256,6 +255,13 @@ func speak_this_dialogue_part(part: DialogueLine) -> void:
 		set_finished_marker(0)
 
 	finished_speaking.emit(current_dialogue)
+
+
+const SILENTS := " ,.-?!;:'\"()[]{}"
+
+func _on_letter_spoken(letter: String, _ix: int) -> void:
+	if letter in SILENTS: return
+	dialogue_sound.play()
 
 
 func next_dialogue_requested() -> void:

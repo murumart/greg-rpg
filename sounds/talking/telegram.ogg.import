@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/telegram.ogg-713e33b01dee84e648d4abd719e54078
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

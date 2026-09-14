@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/mafia_blue.ogg-0ab83dfba784151e6ba053d76b5063
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

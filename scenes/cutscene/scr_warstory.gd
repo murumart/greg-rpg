@@ -181,14 +181,13 @@ func next_bar(bar: int) -> void:
 			LTS.level_transition(LTS.ROOM_SCENE_PATH % DAT.get_data("current_room", "test_room"))
 
 
-func talk(w: String, speeddiv := 10.0) -> void:
-	speeddiv += 4
+func talk(w: String, _speeddiv := 10.0) -> void:
 	textbox.text = w
-	textbox.speak_text({speed = w.length() / speeddiv})
+	textbox.speak_text({})
 
 
 func talk_about_metal() -> void:
-	var text := SOL.vfx("damage_number",
+	var _text := SOL.vfx("damage_number",
 	Vector2(
 		randf_range(0, 160),
 		randf_range(32, 80)),

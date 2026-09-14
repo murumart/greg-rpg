@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/bike_ghost.ogg-93c90bea6d4a8ca6c6eaaa9c45487c
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

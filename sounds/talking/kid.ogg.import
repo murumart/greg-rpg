@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/kid.ogg-da4a21b66f129fdd33e3784a28ece071.oggv
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

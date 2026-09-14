@@ -108,7 +108,7 @@ func _ready() -> void:
 		SND.play_sound(load(death_reason.get("sound", "res://music/mus_defeat.ogg")), {"bus": "Music"})
 	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))
 	text_box.text = death_reason.get("text", "[center]your resolve was overcome.[/center]")
-	text_box.speak_text({"speed": 2})
+	text_box.speak_text({})
 	DAT.death_reason = DAT.DeathReasons.DEFAULT
 	retry_button.call_deferred("grab_focus")
 	DIR.incj(2, 1)

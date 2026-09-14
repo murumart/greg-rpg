@@ -12,9 +12,9 @@ var IONS := {
 		"default_value": 1.0 # what it is when reset
 	},
 	"text_speak_time": {
-		"value": 0.75,
+		"value": 0.7,
 		"range": [0.25, 1.0],
-		"default_value": 0.75
+		"default_value": 0.7
 	},
 	"main_volume": {
 		"value": 0.0,

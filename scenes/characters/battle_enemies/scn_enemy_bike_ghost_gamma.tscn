@@ -423,5 +423,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 bbcode_enabled = true
 text = "asdfasfa[color=ff0]bnaab[/color]"
-visible_characters = 0
-visible_ratio = 0.0
+visible_characters_behavior = 1

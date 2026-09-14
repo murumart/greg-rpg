@@ -5,7 +5,7 @@ class_name DialogueParser
 # i didn't want to do a long dictionary/json file again...
 
 const NEW_DIAL := &"DIALOGUE "
-const NEW_CHAR := &"CHAR "
+const NEW_CHAR := &"CHAR"
 const NEW_TXT_SPD := &"SPEED "
 const NEW_LINE := &"\t"
 const NEW_CHOICES := &"CHOICES "
@@ -121,7 +121,7 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		elif line.begins_with(NEW_ALIAS):
 			dial.alias = line.right(-NEW_ALIAS.length())
 		elif line.begins_with(NEW_CHAR):
-			char_to_set = line.right(-NEW_CHAR.length())
+			char_to_set = line.right(-NEW_CHAR.length() - 1)
 		elif line.begins_with(NEW_CHOICES):
 			choices_to_set = line.right(-NEW_CHOICES.length()).split(",")
 		elif line.begins_with(NEW_CHOICE_LINK):

@@ -112,7 +112,7 @@ func _on_new_bar(bars: int) -> void:
 func talk(txt: String) -> void:
 	var leng := Dialogue.len_no_bbcode(txt)
 	textbox.text = txt
-	textbox.speak_text({"speed": leng * 0.05})
+	textbox.speak_text({})
 
 
 func _show_rogues() -> void:

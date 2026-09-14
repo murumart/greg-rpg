@@ -148,13 +148,10 @@ func speak(dlg: Dialogue) -> void:
 
 	for line in dlg.lines:
 		if is_instance_valid(spam_sound):
-			spam_tw = create_tween().set_loops(0)
-			spam_tw.tween_callback(spam_sound.play)
-			spam_tw.tween_interval(0.05 * line.text_speed)
+			textbox.letter_spoken.connect(spam_sound.play.unbind(2))
 		typing_currently = true
 		textbox.text = line.text
-		var leng := Dialogue.len_no_bbcode(line.text)
-		textbox.speak_text({speed = 0.05 * leng * line.text_speed})
+		textbox.speak_text({speed = line.text_speed})
 		if line.callback.is_valid():
 			line.callback.call()
 			#print("le sip")
@@ -162,8 +159,8 @@ func speak(dlg: Dialogue) -> void:
 		_cancel.connect(_skipf, CONNECT_ONE_SHOT)
 		#print("awaitn finsh speak")
 		await textbox.speak_finished
-		if is_instance_valid(spam_tw):
-			spam_tw.kill()
+		if is_instance_valid(spam_sound):
+			textbox.letter_spoken.disconnect(spam_sound.play)
 		if _continue.is_connected(_skipf): _continue.disconnect(_skipf)
 		if _cancel.is_connected(_skipf): _cancel.disconnect(_skipf)
 		#print("awaitng continue")

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/tarikas.ogg-8da38b996333ccf16cf431aab7307258.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0
