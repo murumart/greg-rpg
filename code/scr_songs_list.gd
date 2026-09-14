@@ -35,6 +35,10 @@ var songs := {
 		"title": "personal transport apparition",
 		"stream": preload("res://music/mus_bike_beta.ogg")
 	},
+	"bike_gamma": {
+		"title": "gamma",
+		"stream": preload("res://music/mus_bike_gamma.ogg")
+	},
 	"bike_spirit": {
 		"title": "bike spirit",
 		"stream": preload("res://music/mus_bike_spirit.ogg")

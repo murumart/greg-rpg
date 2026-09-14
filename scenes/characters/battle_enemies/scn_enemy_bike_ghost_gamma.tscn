@@ -1,0 +1,427 @@
+[gd_scene format=3 uid="uid://c8qvo6i2ayn4f"]
+
+[ext_resource type="Script" uid="uid://d36f7qobas5b6" path="res://scenes/characters/battle_enemies/scr_enemy_bike_ghost_gamma.gd" id="1_ed4ce"]
+[ext_resource type="Texture2D" uid="uid://c6enqvnoiu0ec" path="res://sprites/characters/battle/bike_ghosts/gamma_body.PNG" id="2_dyxnk"]
+[ext_resource type="Shader" uid="uid://s8b8jla1m372" path="res://scenes/characters/battle_enemies/gamma_fire.gdshader" id="2_ed4ce"]
+[ext_resource type="Texture2D" uid="uid://cqlhr675jk3vi" path="res://sprites/characters/battle/bike_ghosts/gamma_head.PNG" id="3_13h2l"]
+[ext_resource type="Texture2D" uid="uid://dimfmisneobxx" path="res://sprites/characters/battle/bike_ghosts/gamma_fire.PNG" id="3_shio6"]
+[ext_resource type="Texture2D" uid="uid://ujn42nbn3xa7" path="res://sprites/characters/battle/bike_ghosts/gamma_arms.PNG" id="4_btgch"]
+[ext_resource type="Texture2D" uid="uid://b5hwpe2ggjwce" path="res://sprites/characters/battle/bike_ghosts/gamma_jacket.PNG" id="6_6s7xk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swwom"]
+shader = ExtResource("2_ed4ce")
+
+[sub_resource type="Animation" id="Animation_ed4ce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Arms:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Puppet/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -24)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Puppet/Body:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Puppet/Head:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Puppet/Head:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Puppet/Arms:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Puppet/Arms:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Puppet/Fire:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -33)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Puppet/Fire:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Puppet/Fire:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6s7xk"]
+resource_name = "hurt"
+length = 0.36666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Body:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.9440312), Vector2(1, 0.907), Vector2(1, 0.9440312)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Puppet/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05054723, 0.08779256, 0.11971712, 0.1516417, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -22.046572), Vector2(-2, -22), Vector2(0, -22), Vector2(-2, -22), Vector2(0, -22), Vector2(-1, -22.046572)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Puppet/Head:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Puppet/Head:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Puppet/Arms:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12.9088)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Puppet/Arms:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Puppet/Arms:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Puppet/Fire:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -33), Vector2(11.000002, -30), Vector2(-1, -33)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Puppet/Fire:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Puppet/Fire:scale")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.22999999, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.6933334, 0.25), Vector2(0.06275556, -0.008928572), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_shio6"]
+resource_name = "idle"
+length = 1.9666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Puppet/Body:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.79333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9444444)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Puppet/Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 48)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Puppet/Arms:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -19), Vector2(0, -13)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Puppet/Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -24), Vector2(-1, -22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6s7xk"]
+_data = {
+&"RESET": SubResource("Animation_ed4ce"),
+&"hurt": SubResource("Animation_6s7xk"),
+&"idle": SubResource("Animation_shio6")
+}
+
+[node name="BikeGhostGamma" type="Node2D" unique_id=490200476 node_paths=PackedStringArray("animator")]
+script = ExtResource("1_ed4ce")
+effect_center = Vector2i(0, -31)
+animator = NodePath("Animator")
+toughness = 0.67
+altruism = 0.487
+xp_multiplier = 3.0
+gender = 4
+effect_immunities = Array[StringName]([&"fire"])
+metadata/_custom_type_script = "uid://dfbbahimpb2ie"
+
+[node name="Puppet" type="Node2D" parent="." unique_id=215045659]
+position = Vector2(0, -4)
+
+[node name="Fire" type="Sprite2D" parent="Puppet" unique_id=1673568983]
+texture_repeat = 1
+material = SubResource("ShaderMaterial_swwom")
+position = Vector2(-1, -33)
+texture = ExtResource("3_shio6")
+centered = false
+offset = Vector2(-14, -13)
+
+[node name="Arms" type="Sprite2D" parent="Puppet" unique_id=1671352168]
+position = Vector2(0, -19)
+texture = ExtResource("4_btgch")
+centered = false
+offset = Vector2(-50, -2)
+
+[node name="Body" type="Sprite2D" parent="Puppet" unique_id=2030259079]
+position = Vector2(0, 48)
+texture = ExtResource("2_dyxnk")
+centered = false
+offset = Vector2(-13, -72)
+
+[node name="Jacket" type="Sprite2D" parent="Puppet/Body" unique_id=469029169]
+position = Vector2(-1, -68)
+texture = ExtResource("6_6s7xk")
+centered = false
+offset = Vector2(-23, -7)
+
+[node name="Head" type="Sprite2D" parent="Puppet" unique_id=1717328172]
+position = Vector2(-1, -24)
+texture = ExtResource("3_13h2l")
+centered = false
+offset = Vector2(-7, -16)
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=811625889]
+libraries/ = SubResource("AnimationLibrary_6s7xk")
+autoplay = &"idle"
+playback_default_blend_time = 0.1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=218986461]
+offset_left = -42.0
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "asdfasfa[color=ff0]bnaab[/color]"
+visible_characters = 0
+visible_ratio = 0.0

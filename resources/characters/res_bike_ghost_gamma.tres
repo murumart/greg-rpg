@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://71tvv8jjxmhp"]
+
+[ext_resource type="Texture2D" uid="uid://cqlhr675jk3vi" path="res://sprites/characters/battle/bike_ghosts/gamma_head.PNG" id="1_4i5wf"]
+[ext_resource type="Script" uid="uid://cvf0g4tgojs8x" path="res://code/scr_character.gd" id="2_ii5sh"]
+[ext_resource type="AudioStream" uid="uid://d2jk7oc1csuhy" path="res://sounds/talking/bike_ghost.ogg" id="3_htxvl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4i5wf"]
+random_pitch = 1.1432043
+streams_count = 1
+stream_0/stream = ExtResource("3_htxvl")
+
+[resource]
+script = ExtResource("2_ii5sh")
+name = "bike ghost"
+info = "you can feel its gaze radiate through your body. it also smells quite bad."
+voice_sound = SubResource("AudioStreamRandomizer_4i5wf")
+portrait = ExtResource("1_4i5wf")
+max_health = 200.0
+health = 200.0
+max_magic = 250.0
+magic = 800.0
+level = 85
+attack = 79.0
+defense = 79.0
+speed = 90.0
+inventory = Array[String](["glue", "soda"])
+spirits = Array[String](["radiation_attack", "flame_ouch_better", "flare"])
