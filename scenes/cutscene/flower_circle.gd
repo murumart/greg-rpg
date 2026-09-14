@@ -1,6 +1,7 @@
 extends Node2D
 
-var found := 0
+@export var found := 0
+@export var show_single := -1
 
 @export var distance := 24.0
 
@@ -16,6 +17,10 @@ func _ready() -> void:
 		particles.modulate.a = 0.1
 		particles.material = preload("res://resources/add_material.tres")
 		particles.show_behind_parent = true
+	if show_single > -1:
+		for i in 7:
+			flower(i).hide()
+		flower(show_single).show()
 
 
 var _d := 0.0

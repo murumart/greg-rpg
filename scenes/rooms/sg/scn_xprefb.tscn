@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://derlrmf2kmbcd" path="res://scenes/vfx/x_menacing.tscn" id="21_1hb2r"]
 [ext_resource type="AudioStream" uid="uid://xmy8fmiin6na" path="res://music/flower/8_flowers8.ogg" id="21_b5kph"]
 [ext_resource type="AudioStream" uid="uid://cwt65hkvh6thx" path="res://music/flower/flowersd.ogg" id="22_231p0"]
+[ext_resource type="PackedScene" uid="uid://drsux6op2py4w" path="res://scenes/cutscene/flower_circle.tscn" id="23_clqfd"]
 [ext_resource type="Texture2D" uid="uid://ccsvuui8atqwm" path="res://sprites/cutscene/end/stoneperson.png" id="24_c170x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vo3ai"]
@@ -758,7 +759,6 @@ bpm = 78.455
 metadata/_custom_type_script = "uid://d374oilx2sent"
 
 [node name="Greg" parent="." unique_id=1430457217 instance=ExtResource("2_mnmvu")]
-position = Vector2(1152, 0)
 saving_disabled = true
 menu_disabled = true
 
@@ -850,6 +850,7 @@ texture = ExtResource("24_c170x")
 
 [node name="StonePerson" parent="Decor" unique_id=1209993543 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(255, 28)
+default_lines = Array[StringName]([&"flower_lore_fw"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson" unique_id=1319224753 groups=["stonepeople_sprites"]]
@@ -869,8 +870,13 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="FlowerCircle" parent="Decor/StonePerson" unique_id=938508617 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 1
+
 [node name="StonePerson2" parent="Decor" unique_id=1613564255 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(373, -29)
+position = Vector2(392, -23)
+default_lines = Array[StringName]([&"flower_lore_vamp"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson2" unique_id=1961162337 groups=["stonepeople_sprites"]]
@@ -890,8 +896,13 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="FlowerCircle" parent="Decor/StonePerson2" unique_id=1082747349 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 6
+
 [node name="StonePerson3" parent="Decor" unique_id=1875008610 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(460, 75)
+position = Vector2(551, 18)
+default_lines = Array[StringName]([&"flower_lore_pres"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson3" unique_id=2028201436 groups=["stonepeople_sprites"]]
@@ -911,8 +922,13 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="FlowerCircle" parent="Decor/StonePerson3" unique_id=991718970 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 3
+
 [node name="StonePerson4" parent="Decor" unique_id=610178326 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(546, -63)
+position = Vector2(647, -72)
+default_lines = Array[StringName]([&"flower_lore_woods"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson4" unique_id=899141632 groups=["stonepeople_sprites"]]
@@ -932,8 +948,13 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="FlowerCircle" parent="Decor/StonePerson4" unique_id=1541948028 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 4
+
 [node name="StonePerson5" parent="Decor" unique_id=1575831186 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(604, 49)
+position = Vector2(770, -1)
+default_lines = Array[StringName]([&"flower_lore_mayor"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson5" unique_id=1775778314 groups=["stonepeople_sprites"]]
@@ -953,50 +974,13 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="StonePerson6" parent="Decor" unique_id=132109803 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(757, -51)
-save = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson6" unique_id=1916366350 groups=["stonepeople_sprites"]]
-position = Vector2(0, -8)
-texture = ExtResource("14_0v02i")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson6" unique_id=330299016 groups=["stonepeople_sprites"]]
-modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
-position = Vector2(5.625, -6.575)
-skew = 0.71733034
-texture = ExtResource("14_0v02i")
-offset = Vector2(0, 16)
-flip_h = true
-flip_v = true
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="StonePerson7" parent="Decor" unique_id=1477078846 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(839, 46)
-save = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson7" unique_id=1634560689 groups=["stonepeople_sprites"]]
-position = Vector2(0, -8)
-texture = ExtResource("14_0v02i")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="Shade" type="Sprite2D" parent="Decor/StonePerson7" unique_id=1284572709 groups=["stonepeople_sprites"]]
-modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.69411767)
-position = Vector2(5.625, -6.575)
-skew = 0.71733034
-texture = ExtResource("14_0v02i")
-offset = Vector2(0, 16)
-flip_h = true
-flip_v = true
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+[node name="FlowerCircle" parent="Decor/StonePerson5" unique_id=2070792855 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 2
 
 [node name="StonePerson8" parent="Decor" unique_id=1372164885 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
-position = Vector2(884, -28)
+position = Vector2(1098, 63)
+default_lines = Array[StringName]([&"flower_lore_aa"])
 save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Decor/StonePerson8" unique_id=689364505 groups=["stonepeople_sprites"]]
@@ -1015,6 +999,10 @@ flip_h = true
 flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="FlowerCircle" parent="Decor/StonePerson8" unique_id=1762928914 instance=ExtResource("23_clqfd")]
+found = 7
+show_single = 0
 
 [node name="Grand" parent="Decor" unique_id=784715634 instance=ExtResource("13_kh2gp")]
 position = Vector2(1243, 0)

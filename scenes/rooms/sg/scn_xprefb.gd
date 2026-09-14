@@ -30,23 +30,6 @@ func _ready() -> void:
 	for n: Sprite2D in get_tree().get_nodes_in_group("stonepeople_sprites"):
 		n.region_rect.position.x = randi_range(0, 3) * 16
 		n.region_rect.position.y = randi_range(0, 3) * 16
-	for n: OverworldCharacter in get_tree().get_nodes_in_group("stonepeople"):
-		n.inspected.connect(func() -> void:
-			var dlg := DialogueBuilder.new().set_char("column_talk")
-			dlg.al(dlg.SGD + "[center]" + [
-				"remembering",
-				"storing",
-				"saving",
-				"waiting",
-				"eagerly",
-				"reminiscing",
-				"reproduction",
-				"copy",
-				"right where we left off",
-				"ready",
-			].pick_random())
-			dlg.speak_choice()
-		)
 
 
 func _g_statue_interact() -> void:
@@ -68,11 +51,11 @@ func _g_statue_interact() -> void:
 	_cs_2()
 
 
-var _debug_time_mul := 0.0001
+var _debug_time_mul := 1.0
 
 var _smoothp := Vector2()
 func _pos_at_men() -> void:
-	_smoothp = mdp.global_position - camera.global_position + SOL.SCREEN_CENTER
+	_smoothp = mdp.global_position - camera.global_position + SOL.SCREEN_CENTER + Vector2(0, 10)
 	speech.repos(_smoothp)
 	mdp.modulate.a = minf(1.0, mdp.modulate.a + 0.07)
 
@@ -186,6 +169,7 @@ func _cs_4() -> void:
 	await _go_intense(0.5, 2.0)
 	mdp.face_fell()
 	mdp.shake_horiz()
+	mdp.particles(0.02)
 	mdp.sound_hmph()
 	await _go_reverse_intense(0.0, 0.1)
 	await Math.timer(2.0)
@@ -246,7 +230,7 @@ func _process(delta: float) -> void:
 		var r := remap(dist, 300, 0, 1.0, 0.0)
 		music.volume_linear = r
 	if speech.box_readable and mdp.modulate.a > 0:
-		_smoothp = _smoothp.move_toward(mdp.global_position - camera.global_position + SOL.SCREEN_CENTER, delta * 8.0)
+		_smoothp = _smoothp.move_toward(mdp.global_position - camera.global_position + SOL.SCREEN_CENTER + Vector2(0, 10), delta * 8.0) 
 		speech.repos(_smoothp, false, false)
 	greg.global_position.x += bg_move_speed * delta
 	mdp.global_position.x += bg_move_speed * delta

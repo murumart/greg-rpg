@@ -4334,9 +4334,62 @@ DIALOGUE sg_p_ellipsis
 	%SG...
 
 
-DIALOGUE grandma_final_fight_1
-CHAR grandma
-	items
+DIALOGUE flower_lore_fw
+CHAR column_talk
+	wh.. where have you brought me?
+	...the [color=FLOWERCOLOR]flower[/color]... is my strength?
+	maybe... maybe it won't be that bad...
+	there's fish in this world, right...?
+
+
+DIALOGUE flower_lore_vamp
+CHAR column_talk
+	who are you..!? you're not a vampire, are you!?
+	the way he just... exploded... into blood...
+	h-huh!! a [color=FLOWERCOLOR]flower??[/color] what do i do with...
+	...
+	...beyond humanity...?
+	...
+	...was his [color=VAMPCOLOR]strain[/color] a powerful one...?
+
+
+DIALOGUE flower_lore_pres
+CHAR column_talk
+	i can't take it anymore.
+	every morning i go outside and... it's... a new world.
+	i can't keep up.
+	...a [color=FLOWERCOLOR]flower[/color] that never wilts...
+	that's... beautiful... thank you.
+	it'll be my anchor...
+
+
+DIALOGUE flower_lore_woods
+CHAR column_talk
+	what is that...? a purpose?
+	no... i'll just keep going in circles.
+	any little flower won't change that.
+	...there's others?
+	...
+	i guess you can leave the [color=FLOWERCOLOR]rose[/color] with me...
+	if i see anyone else, i could... use it...
+
+
+DIALOGUE flower_lore_mayor
+CHAR column_talk
+	girl... back when we used to hold festivals...
+	there were so many flowers everywhere.
+	we gifted them... we received them...
+	so [color=FLOWERCOLOR]this one[/color]... it reminds me of those days.
+	thank you.
+
+
+DIALOGUE flower_lore_aa
+CHAR column_talk
+	[color=aaa]...
+	[color=aaa]...a [color=FLOWERCOLOR]flower[/color] will help me?
+	[color=aaa]you're right. the world is wrong.
+	[color=aaa]i can set it right with this power.
+	[color=aaa]thank you. i will not disappoint you.
 
 
 DIALOGUE free_hugs_grandma
