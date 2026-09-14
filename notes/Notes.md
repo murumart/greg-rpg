@@ -230,10 +230,10 @@ multipanther -> +10 (=99)
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
-- [ ] incidental forest npc written by june
-  - the democrats are going in droves to forests and SKINNING striders
-  - who gives a shit?
-  - this country used to be about GLASS
+- [ ] cool letter background in scene of her falling
+- [ ] cool letter background in her battle
+- [ ] use xending as a side room lore secret garden entrance
+- [ ] savescumming at the random prize..
 - [ ] savescumming at the random prize..
 - [ ] way to cancel shopping basket
 - [ ] more npcs after level 30 aroud town

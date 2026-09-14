@@ -5,15 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://j12da57vuv2v" path="res://scenes/tech/scn_interaction_area.tscn" id="3_x7yb1"]
 [ext_resource type="Texture2D" uid="uid://cpr2152aq2eya" path="res://sprites/characters/overworld/bike_ghosts.png" id="6_82grt"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_objt5"]
-blend_mode = 1
-
 [sub_resource type="Gradient" id="Gradient_rurkq"]
+resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
 colors = PackedColorArray(0, 0.745098, 0.976471, 0.862745, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_objt5"]
+blend_mode = 1
+
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6lhb2"]
+resource_local_to_scene = true
 gradient = SubResource("Gradient_rurkq")
 width = 32
 height = 32
@@ -289,6 +291,7 @@ _data = {
 
 [node name="Bike" type="Node2D" unique_id=1095601571 groups=["room_gates"]]
 script = ExtResource("1_hdwvo")
+gradient = SubResource("Gradient_rurkq")
 
 [node name="Gradient" type="Sprite2D" parent="." unique_id=1053285065]
 material = SubResource("CanvasItemMaterial_objt5")

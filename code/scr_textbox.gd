@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 
 func speak_text(options := {}):
-	_speaking_speed = 1.0 / options.get("speed", 1.0) * 1.5 as float
+	_speaking_speed = 1.0 / options.get("speed", 1.0) as float
 	_speak_time_mul = 1.0
 	_text_speak_time = OPT.get_opt("text_speak_time")
 	_bbcodeless_text = get_parsed_text()

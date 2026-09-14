@@ -7,14 +7,17 @@ enum Ghosts {ALPHA, BETA, GAMMA}
 const G_DIAL_PREXES = {
 	Ghosts.ALPHA: "bike_ghost_",
 	Ghosts.BETA: "bike_beta_",
+	Ghosts.GAMMA: "bike_gamma_",
 }
 const G_REGIONS = {
 	Ghosts.ALPHA: Rect2(0, 0, 16, 16),
 	Ghosts.BETA: Rect2(16, 0, 16, 16),
+	Ghosts.GAMMA: Rect2(32, 0, 16, 16),
 }
 const G_BATTLE_INFOS = {
 	Ghosts.ALPHA: preload("res://resources/battle_infos/bike_ghost_alpha.tres"),
 	Ghosts.BETA: preload("res://resources/battle_infos/bike_ghost_beta.tres"),
+	Ghosts.GAMMA: preload("res://resources/battle_infos/bike_ghost_gamma.tres"),
 }
 const DIAL_AFTER_DEFEAT := "afterdefeat"
 const DIAL_TRAVEL := "travel"
@@ -31,7 +34,9 @@ const DIAL_TRAVEL_NODESTS := "travel_nodests"
 @export var destination_name := &""
 @export var extra_dial_once_key := &""
 @export var scary_anim := false
+@export var gradient: Gradient
 
+## whether the bike has been interacted in the current scene
 var _has_interacted: bool:
 	set(to):
 		DAT.set_data("bike" + name + "in" + LTS.get_current_scene().name + "interacted", to)
@@ -51,6 +56,7 @@ func apply_spawn_point(player: PlayerOverworld) -> void:
 
 func _interacted() -> void:
 	var fought: Array = DAT.get_data("bike_ghosts_fought", [])
+	$Gradient.texture.gradient = gradient
 	if not ghost in fought:
 		_prefight()
 		return
@@ -120,7 +126,7 @@ func _travel() -> void:
 	SOL.dialogue_closed.connect(func():
 		LTS.gate_id = get_gate_id(where)
 		LTS.level_transition((get_regs().get(where, {}) as Dictionary).get(
-				"path", "res://scenes/rooms/scn_room_test_room.tscn"))
+				"path", "res://scenes/rooms/scn_room_waiting_room.tscn"))
 	, CONNECT_ONE_SHOT)
 
 

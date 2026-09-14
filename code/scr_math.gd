@@ -16,6 +16,7 @@ const ANGLE_UP := -1.5708
 const VECS_FROM_DIR: PackedVector2Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 const NUMSTR: PackedStringArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 
+
 static func num_string_type(input: String) -> int:
 	if input.is_valid_float():
 		return TYPE_FLOAT
@@ -66,6 +67,7 @@ static func dictdiff(a: Dictionary, b: Dictionary) -> Dictionary:
 		if typeof(a[key]) == typeof(b[key]):
 			ret[key] = a[key] - b[key]
 	return ret
+
 
 # unique elements only
 static func array_union(a: Array, b: Array) -> Array:
@@ -312,3 +314,18 @@ static func same_contents(arr1: Array, arr2: Array) -> bool:
 		if item not in arr2:
 			return false
 	return true
+
+
+## appends [param v] to [param arr] if [param v] is not present there, otherwise erases [param v] from it
+static func toggle_member(arr: Array, v: Variant) -> void:
+	if v in arr:
+		arr.erase(v)
+	else:
+		arr.append(v)
+
+
+## appends [param v] to [param arr] if [param v] is not present there
+static func ensure_member(arr: Array, v: Variant) -> void:
+	if v in arr:
+		return
+	arr.append(v)

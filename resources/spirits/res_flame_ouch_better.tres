@@ -21,6 +21,6 @@ script = ExtResource("3_2sf4x")
 name = &"fwoom"
 animation = &"flame_ouch"
 cost = 30
-use = 1
+use = 3
 reach = 2
 payload = SubResource("Resource_5cw45")

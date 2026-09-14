@@ -200,110 +200,110 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Puppet/Head:position")
+tracks/3/path = NodePath("Puppet/Head:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05054723, 0.08779256, 0.11971712, 0.1516417, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1, -22.046572), Vector2(-2, -22), Vector2(0, -22), Vector2(-2, -22), Vector2(0, -22), Vector2(-1, -22.046572)]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Puppet/Head:rotation")
+tracks/4/path = NodePath("Puppet/Head:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Puppet/Head:scale")
+tracks/5/path = NodePath("Puppet/Arms:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, -12.9088)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Puppet/Arms:position")
+tracks/6/path = NodePath("Puppet/Arms:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -12.9088)]
+"values": [0.0]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Puppet/Arms:rotation")
+tracks/7/path = NodePath("Puppet/Arms:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Puppet/Arms:scale")
-tracks/8/interp = 1
+tracks/8/path = NodePath("Puppet/Fire:position")
+tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Puppet/Fire:position")
-tracks/9/interp = 2
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-1, -33), Vector2(11.000002, -30), Vector2(-1, -33)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Puppet/Fire:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Puppet/Fire:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Puppet/Fire:scale")
-tracks/11/interp = 2
-tracks/11/loop_wrap = true
-tracks/11/keys = {
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Puppet/Fire:scale")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.22999999, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.6933334, 0.25), Vector2(0.06275556, -0.008928572), Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Puppet/Head:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.09815655, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -17), Vector2(-1, -9), Vector2(-1, -17)]
 }
 
 [sub_resource type="Animation" id="Animation_shio6"]
@@ -353,10 +353,10 @@ tracks/3/path = NodePath("Puppet/Head:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
+"times": PackedFloat32Array(0, 0.53635544),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1, -24), Vector2(-1, -22)]
+"values": [Vector2(-1, -22), Vector2(-1, -18)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6s7xk"]
@@ -372,6 +372,8 @@ effect_center = Vector2i(0, -31)
 animator = NodePath("Animator")
 toughness = 0.67
 altruism = 0.487
+innovation = 0.739
+default_intent = 2
 xp_multiplier = 3.0
 gender = 4
 effect_immunities = Array[StringName]([&"fire"])
@@ -416,11 +418,3 @@ offset = Vector2(-7, -16)
 libraries/ = SubResource("AnimationLibrary_6s7xk")
 autoplay = &"idle"
 playback_default_blend_time = 0.1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=218986461]
-offset_left = -42.0
-offset_right = 40.0
-offset_bottom = 40.0
-bbcode_enabled = true
-text = "asdfasfa[color=ff0]bnaab[/color]"
-visible_characters_behavior = 1

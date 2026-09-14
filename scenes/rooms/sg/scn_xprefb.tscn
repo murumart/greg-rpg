@@ -872,7 +872,7 @@ region_rect = Rect2(0, 0, 16, 16)
 
 [node name="FlowerCircle" parent="Decor/StonePerson" unique_id=938508617 instance=ExtResource("23_clqfd")]
 found = 7
-show_single = 1
+show_single = 0
 
 [node name="StonePerson2" parent="Decor" unique_id=1613564255 groups=["stonepeople"] instance=ExtResource("13_kh2gp")]
 position = Vector2(392, -23)
@@ -1002,7 +1002,7 @@ region_rect = Rect2(0, 0, 16, 16)
 
 [node name="FlowerCircle" parent="Decor/StonePerson8" unique_id=1762928914 instance=ExtResource("23_clqfd")]
 found = 7
-show_single = 0
+show_single = 1
 
 [node name="Grand" parent="Decor" unique_id=784715634 instance=ExtResource("13_kh2gp")]
 position = Vector2(1243, 0)

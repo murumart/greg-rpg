@@ -9,7 +9,7 @@ const NEW_CHAR := &"CHAR"
 const NEW_TXT_SPD := &"SPEED "
 const NEW_LINE := &"\t"
 const NEW_CHOICES := &"CHOICES "
-const NEW_CHOICE_LINK := &"CHOICE_LINK "
+const NEW_CHOICE_LINK := &"CHOICE_LINK"
 const NEW_INSTASKIP := &"INSTASKIP"
 const NEW_ALIAS := &"ACTUALLY "
 const NEW_LOOP := &"LOOP "
@@ -17,8 +17,8 @@ const NEW_ITEM := &"ITEM "
 const NEW_SPIRIT := &"SPIRIT "
 const NEW_SILVER := &"SILVER "
 const NEW_SOUND := &"SOUND "
-const NEW_EMOTION := &"EMO "
-const NEW_DATA_LINK := &"DATA_LINK "
+const NEW_EMOTION := &"EMO"
+const NEW_DATA_LINK := &"DATA_LINK"
 const NEW_SET_DATA := &"SET_DATA "
 const NEW_PORTRAIT_SCALE := &"PORTRAIT_SCALE "
 const LB := "
@@ -125,15 +125,15 @@ static func parse_dialogue_from_string(string: String) -> Dictionary:
 		elif line.begins_with(NEW_CHOICES):
 			choices_to_set = line.right(-NEW_CHOICES.length()).split(",")
 		elif line.begins_with(NEW_CHOICE_LINK):
-			choice_link_to_set = line.right(-NEW_CHOICE_LINK.length())
+			choice_link_to_set = line.right(-NEW_CHOICE_LINK.length() - 1)
 		elif line.begins_with(NEW_DATA_LINK):
-			var spl := line.right(-NEW_DATA_LINK.length()).split(",")
+			var spl := line.right(-NEW_DATA_LINK.length() - 1).split(",")
 			if spl.size() < 2:
 				data_link_to_set = []
 			else:
 				data_link_to_set = [StringName(spl[0]), Math.toexp(spl[1], true)]
 		elif line.begins_with(NEW_EMOTION):
-			emotion_to_set = line.right(-NEW_EMOTION.length())
+			emotion_to_set = line.right(-NEW_EMOTION.length() - 1)
 		elif line.begins_with(NEW_SET_DATA):
 			var spl := line.right(-NEW_SET_DATA.length()).split(",")
 			if spl.size() < 2:

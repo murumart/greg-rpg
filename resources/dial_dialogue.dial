@@ -4049,6 +4049,94 @@ SET_DATA fisherwoman_opened,true
 	i only see my own reflection.
 
 
+DIALOGUE bike_gamma_interact_1
+CHAR bike_ghost_gamma
+	hmm? (arms crossed) you're really approaching me?
+	(scoffs) (shakes my head) you really ought to know by now...
+	...what happens to thieves like you.
+
+
+DIALOGUE bike_gamma_interact_2
+CHAR bike_ghost_gamma
+	(snickers) they get burned up!
+
+
+DIALOGUE bike_gamma_battle_1
+CHAR bike_ghost_gamma
+	(boldly) my fire is the strongest element!
+	walls of flame will bear down on you!
+	and you won't be able to do (enunciating) anything!
+
+
+DIALOGUE bike_gamma_battle_immune
+CHAR bike_ghost_gamma
+	(gasp) what!? mida?! nani!?
+	(stuttering) y-you can't be serious...
+	you're immune to fire now?!
+	(eyes go dark) no...
+	i guess i'll just have to beat you to death manually
+
+
+DIALOGUE bike_gamma_battle_2
+CHAR bike_ghost_gamma
+	ok whatever you're winning
+	but, (smirks), here's where you're ████ed...
+	(eyes glow red) i'm doing the firegrave route
+
+
+DIALOGUE bike_gamma_battle_3
+CHAR bike_ghost_gamma
+	i-impossible!! how are you still standing!!
+	...
+	... ... ...
+	(beaming) well done!! you have survived my trial!!
+	(sweating) um, let's continue this outside of battle!!
+
+
+DIALOGUE bike_gamma_battle_die
+CHAR bike_ghost_gamma
+	(malding) you piece of ████. ████ you.
+	get firegraved!!!!
+
+
+DIALOGUE bike_gamma_afterdefeat
+CHAR bike_ghost_gamma
+	(sweating) uh, you came back?
+DATA_LINK bike_gamma_worried,false
+	i don't have anything to take from!!
+	i sold everything for this motorcycle!!
+DATA_LINK
+SET_DATA bike_gamma_worried,true
+CHOICES travel,bye
+	(grins) h-hey!!
+CHOICE_LINK bye
+	(blushes) (flames turn a little pink) b-bye...
+CHOICE_LINK travel
+	y-yessir!
+
+
+DIALOGUE bike_gamma_travel_options
+CHAR bike_ghost_gamma
+CHOICES nvm
+	(obedient and harmless) where do you wish to travel?
+CHOICE_LINK nvm
+	um. okay.
+
+
+DIALOGUE bike_gamma_travel_nodests
+CHAR bike_ghost_gamma
+	urm... you haven't fought any of the other bike ghosts yet...
+	(smirks) they would fold for you like crumpled ass...
+	(eyes closed) (smug) unlike me, who gave you a real fight...
+
+
+DIALOGUE bike_gamma_travel
+CHAR bike_ghost_gamma
+	(smirks) my expensive motorcycle...
+	(bashful scratches back of head) fits one person only...
+	so i'll magic my way over to your destination. hyah!!
+
+
 DIALOGUE sg_welcome
 	%SGWelcome to the [color=FLOWERCOLOR]SECRET GARDEN[/color], Greg.
 	%SGYour journey is nearing its end.

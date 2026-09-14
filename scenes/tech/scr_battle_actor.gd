@@ -143,7 +143,8 @@ func hurt(amt: float, gendr: int) -> void:
 	character.health = maxf(character.health - amount, 0.0)
 	hurted.emit(self, amt, gendr)
 	if character.health <= 0.0:
-		die()
+		@warning_ignore("redundant_await")
+		await die()
 	else:
 		# hurt sound
 		if randf() < 0.0001 and actor_name == "greg":
