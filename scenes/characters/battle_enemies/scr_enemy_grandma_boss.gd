@@ -53,7 +53,7 @@ func turn_actions() -> bool:
 	var dbg_skip := false #DEBUG
 	await speak_line()
 	if should_die:
-		progress = FINAL_TURNS + 2
+		progress = FINAL_TURNS + 3
 	if progress >= FINAL_TURNS or dbg_skip:
 		if progress == FINAL_TURNS:
 			accessible = false

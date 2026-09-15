@@ -499,6 +499,14 @@ func _cmd_dance(_args: PackedStringArray) -> void:
 		output("no animals", true)
 
 
+func _cmd_playsong(args: PackedStringArray) -> void:
+	if args.size() == 0:
+		output("usage: playsong songname")
+		return
+	var songname := args[0]
+	SND.play_song(songname)
+
+
 func _delt(node: Node) -> void:
 	for c in node.get_children():
 		await get_tree().process_frame
