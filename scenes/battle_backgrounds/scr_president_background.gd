@@ -20,9 +20,10 @@ var skip_intro := false
 
 
 func _ready() -> void:
+	var died := DeathScreen.get_session_deaths(DeathScreen.DeathReasons.DISH) > 0
 	SOL.fade_screen(Color.WHITE, Color.TRANSPARENT, 3.0, {"kill_rects": true})
 	SOL.dialogue_box.started_speaking.connect(new_line)
-	if not skip_intro:
+	if not skip_intro and not died:
 		SOL.dialogue_open = true
 		SOL.dialogue("president_start")
 		hide_ui()

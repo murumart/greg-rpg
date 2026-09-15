@@ -44,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _president_inspected() -> void:
+	var died := DeathScreen.get_session_deaths(DeathScreen.DeathReasons.DISH) > 0
 	song_pitching = false
 	president.path_container = null
 	president.speed = 0
@@ -77,18 +78,25 @@ func _president_inspected() -> void:
 	tw.tween_property(clickbait, "modulate:a", 1.0, 1.0)
 	tw.tween_interval(0.2)
 	tw.tween_callback(animation_player.play.bind("milkfall"))
-	animation_player.animation_finished.connect(func(_a):
-		tw = create_tween()
-		tw.tween_interval(1.0)
-		SOL.dialogue("president_bump")
-		SOL.dialogue_closed.connect(func():
-			SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.1, {"free_rect": false})
-			await SOL.fade_finished
-			LTS.gate_id = LTS.GATE_ENTER_BATTLE
-			LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
-					{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
+	if not died:
+		animation_player.animation_finished.connect(func(_a):
+			tw = create_tween()
+			tw.tween_interval(1.0)
+			SOL.dialogue("president_bump")
+			SOL.dialogue_closed.connect(func():
+				SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.1, {"free_rect": false})
+				await SOL.fade_finished
+				LTS.gate_id = LTS.GATE_ENTER_BATTLE
+				LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
+						{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
+			, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)
-	, CONNECT_ONE_SHOT)
+	else:
+		SOL.fade_screen(Color.TRANSPARENT, Color.WHITE, 0.1, {"free_rect": false})
+		await SOL.fade_finished
+		LTS.gate_id = LTS.GATE_ENTER_BATTLE
+		LTS.change_scene_to("res://scenes/tech/scn_battle.tscn",
+				{"battle_info": preload("res://resources/battle_infos/president_fight.tres")})
 
 
 func _after_battle() -> void:
