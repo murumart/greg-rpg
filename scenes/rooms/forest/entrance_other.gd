@@ -11,6 +11,7 @@ const FLOWER_PIECE_COUNT := 10
 
 
 func _ready() -> void:
+	_check_glass()
 	if DAT.get_data(&"got_flower_rose", false):
 		queue_free()
 	var inv := ResMan.get_character(&"greg").inventory
@@ -35,6 +36,28 @@ func _ready() -> void:
 	)
 	if is_instance_valid(despair_style):
 		despair_style.inspected.connect(_despair_style)
+
+
+func _check_glass() -> void:
+	var leftover_glass: int = DAT.get_data("forest_leftover_glass", 0)
+	var xpget := roundi(leftover_glass * 4.3)
+	if leftover_glass > 0:
+		var dlg := DialogueBuilder.new()
+		if not DAT.get_data("saw_forest_exit_glass_explain", false):
+			DAT.set_data("saw_forest_exit_glass_explain", true)
+			dlg.al("as you exit the woods, you notice...")
+			dlg.al("the glass you had in your pockets is gone...")
+			dlg.al("in its place is nothing but a handful of wilted leaves.")
+		dlg.al("what's left of the glass became %s exp." % xpget)
+		SOL.dialogue_d(dlg.get_dial())
+		var rewards := BattleRewards.new()
+		var xp_reward := Reward.new()
+		xp_reward.type = BattleRewards.Types.EXP
+		xp_reward.property = str(xpget)
+		rewards.add(xp_reward)
+		if rewards.rewards.size() > 0:
+			rewards.grant()
+		DAT.set_data("forest_leftover_glass", 0)
 
 
 func _rose_cutscene() -> void:

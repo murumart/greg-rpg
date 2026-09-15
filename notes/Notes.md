@@ -234,9 +234,9 @@ multipanther -> +10 (=99)
 - [X] sk8 guy and atgirl should have mmore speech after mayor gone
 - [X] cool letter background in her battle
 - [X] cool letter background in scene of her falling
+- [X] turn glass to xp when leaving the woods i guess..
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
-- [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east

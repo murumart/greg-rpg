@@ -83,7 +83,9 @@ func load_from_save() -> void:
 
 func leave() -> void:
 	DAT.set_data("forest_save", {})
+	var glass := questing.glass
 	DAT.set_data("forest_questing", null)
+	DAT.set_data("forest_leftover_glass", glass)
 	DAT.set_data("forest_active_quests", [])
 	DAT.set_data("forest_last_gate_entered", ForestGenerator.EAST)
 	DAT.set_data("forest_max_depth", maxi(DAT.get_data("forest_depth", 0), DAT.get_data("forest_max_depth", 0)))

@@ -7,6 +7,7 @@ const SlidingPuzzleLoad := preload("res://scenes/rooms/forest/sliding_puzzle/sli
 @export var puzzle_items: Array[KeyCurve] = []
 
 @export_group("Custom", "custom_")
+func is_custom() -> bool: return custom_puzzle_reward != null
 @export_range(-1, 5) var custom_puzzle_size := -1
 @export var custom_puzzle_reward: Resource
 @export var custom_puzzle_image: Texture
@@ -36,8 +37,11 @@ func _exit_tree() -> void:
 
 func _interacted() -> void:
 	#var ac := active
-	var cf := custom_finished
-	if cf:
+	if is_custom():
+		var cf := custom_finished
+		if cf:
+			return
+	if active:
 		return
 	SOL.dialogue("sliding_pizzle_what")
 	$AudioStreamPlayer.play()

@@ -121,7 +121,7 @@ DIALOGUE magnet_used
 
 
 DIALOGUE test2talk
-CHAR 
+CHAR
 	[color=GREEN]blaabl blaalb blaalb.[/color]
 	[color=#ff0000]blaabl blaalb blaalb.[/color]
 	[color=#0000ff]blaabl blaalb blaalb.[/color]
@@ -273,7 +273,7 @@ DIALOGUE store_cashier_absent
 
 
 DIALOGUE campfire_exchanges
-CHOICES 
+CHOICES
 	what would you like to do?
 
 
@@ -359,5 +359,3 @@ DIALOGUE sliding_puzzle_lose
 
 DIALOGUE daily_trash_wait
 	you have %s left until your next daily item.
-
-

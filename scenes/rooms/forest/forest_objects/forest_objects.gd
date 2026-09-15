@@ -76,7 +76,7 @@ const DB = {
 	&"pizzle_column": {
 		SCENE: preload("res://scenes/rooms/forest/forest_objects/puzzle_column.tscn"),
 		SIZE: Vector2i(2, 2),
-		WEIGHT: 56,
+		WEIGHT: 5600,
 		LIMIT: 1,
 		FUNCTION: &"_connect_pizzle_finish",
 		MIN_ROOM: 4,
