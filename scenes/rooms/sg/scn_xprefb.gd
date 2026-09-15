@@ -8,13 +8,14 @@ const MUSIC_SPEED := 0.89
 @onready var mus_bar_counter: MusBarCounter = $MusBarCounter
 @onready var pulse_d: Sprite2D = $Greg/Camera/PulseD
 @onready var greg: PlayerOverworld = $Greg
-@onready var music: AudioStreamPlayer = $AudioStreamPlayer
+@onready var music: AudioStreamPlayer = $Music
 @onready var grand: OverworldCharacter = $Decor/Grand
 @onready var speech: SpeechBuble = $SpeechBuble
 @onready var intensiivne: AnimationPlayer = $Intensiivne
 @onready var mdp: Menacing = $Menacing
 @onready var camera: Camera2D = $Greg/Camera
 @onready var shader_bg: ColorRect = $Greg/Camera/ColorRect
+@onready var words: RichTextLabel = $Greg/Camera/Words
 
 
 func _ready() -> void:
@@ -30,6 +31,9 @@ func _ready() -> void:
 	for n: Sprite2D in get_tree().get_nodes_in_group("stonepeople_sprites"):
 		n.region_rect.position.x = randi_range(0, 3) * 16
 		n.region_rect.position.y = randi_range(0, 3) * 16
+	var tw := create_tween()
+	music.play()
+	tw.tween_property(music, ^"volume_linear", 1.0, 8.0).from(0.0)
 
 
 func _g_statue_interact() -> void:
@@ -166,12 +170,16 @@ func _cs_4() -> void:
 		SND.play_song("")
 	)
 	await speech.speak(dlg.get_dial())
+	tw = create_tween()
+	tw.tween_property(words, ^"modulate:a", 2.0, 0.5).set_delay(1.3)
 	await _go_intense(0.5, 2.0)
 	mdp.face_fell()
 	mdp.shake_horiz()
 	mdp.particles(0.02)
 	mdp.sound_hmph()
 	await _go_reverse_intense(0.0, 0.1)
+	tw = create_tween()
+	tw.tween_property(words, ^"modulate:a", 0.0, 2.0).from(0.2)
 	await Math.timer(2.0)
 	mdp.face_lookdown()
 	mdp.shake_horiz()

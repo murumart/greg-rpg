@@ -232,13 +232,13 @@ multipanther -> +10 (=99)
 - [X] remember staticall how many times you die in each session
 - [X] vampire cutscene starts very suddenly and greg is off screen side probably
 - [X] sk8 guy and atgirl should have mmore speech after mayor gone
+- [X] cool letter background in her battle
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
 - [ ] cool letter background in scene of her falling
-- [ ] cool letter background in her battle
 - [ ] more mentions of mayor before east
 - [ ] use xending as a side room lore secret garden entrance
 - [ ] savescumming at the random prize..

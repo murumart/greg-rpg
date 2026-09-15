@@ -159,7 +159,7 @@ func speak(dlg: Dialogue) -> void:
 		_cancel.connect(_skipf, CONNECT_ONE_SHOT)
 		#print("awaitn finsh speak")
 		await textbox.speak_finished
-		if is_instance_valid(spam_sound):
+		if is_instance_valid(spam_sound) and textbox.letter_spoken.is_connected(spam_sound.play):
 			textbox.letter_spoken.disconnect(spam_sound.play)
 		if _continue.is_connected(_skipf): _continue.disconnect(_skipf)
 		if _cancel.is_connected(_skipf): _cancel.disconnect(_skipf)

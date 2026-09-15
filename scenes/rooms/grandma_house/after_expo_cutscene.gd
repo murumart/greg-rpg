@@ -43,6 +43,7 @@ func _ready() -> void:
 func _c1() -> void:
 	var dlg := DialogueBuilder.new()
 	var tw := create_tween()
+	SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.34})
 	mdp.go_light()
 	mdp.particles(0.01)
 	mdp.flip()
@@ -51,15 +52,16 @@ func _c1() -> void:
 	tw.tween_callback(greg.animate.bind("walk_right"))
 	tw.tween_interval(1.0)
 	tw.tween_callback(func() -> void:
-		speech_buble.spam_sound = mdp.speech_snd
 		var speechparent := speech_buble.get_parent()
 		speechparent.global_position.y += 30
-		SND.play_song_from_beginning("bells", 80, {"pitch_scale": 0.2})
+		dlg.al("...").scallback(func() -> void:
+			speech_buble.spam_sound = mdp.speech_snd
+		)
 		dlg.al("your house... i'll miss it.").scallback(mdp.flip)
 		dlg.al("it gave me some more purpose... or the feeling of one.")
 		dlg.al("but i think... this town. it's very isolated.").scallback(mdp.flip)
 		dlg.al("i started ignoring the world here").scallback(mdp.face_tilt)
-		dlg.al("and getting lost in the SECRET GARDEN i found...").scallback(mdp.face_dark)
+		dlg.al("and got lost in the SECRET GARDEN i found...").scallback(mdp.face_dark)
 		dlg.al("until i realised i'm in a big hurry, actually!").scallback(func() -> void:
 			mdp.flip()
 			mdp.face_smile()

@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://djsum41brb3wt" path="res://resources/ppm_power.tres" id="5_1guws"]
 [ext_resource type="Script" uid="uid://b4no27m8ikd0y" path="res://code/texture_copier.gd" id="7_3bfs0"]
 [ext_resource type="Script" uid="uid://d374oilx2sent" path="res://code/scr_mus_bar_counter.gd" id="8_pu3y8"]
+[ext_resource type="Shader" uid="uid://b8rqytedhwv1g" path="res://shaders/maim_text.gdshader" id="9_d5hvl"]
 [ext_resource type="TileSet" uid="uid://b32gv25wcvlpy" path="res://resources/res_sg_tiles.tres" id="12_1dtc0"]
 [ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="13_kh2gp"]
 [ext_resource type="Texture2D" uid="uid://bfioyjnm3kog5" path="res://sprites/characters/overworld/spr_stonepeople.png" id="14_0v02i"]
@@ -57,6 +58,12 @@ width = 166
 height = 126
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0ya7"]
+shader = ExtResource("9_d5hvl")
+shader_parameter/rmul = 0.0
+shader_parameter/gmul = 0.2
+shader_parameter/bmul = 0.06
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_rat15"]
 stream_count = 9
@@ -790,16 +797,25 @@ z_index = 6
 texture_filter = 2
 texture = SubResource("GradientTexture2D_p6eob")
 
+[node name="Words" type="RichTextLabel" parent="Greg/Camera" unique_id=250173083]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_u0ya7")
+offset_left = -104.0
+offset_top = -66.0
+offset_right = 127.0
+offset_bottom = 64.0
+theme_override_font_sizes/normal_font_size = 16
+text = "mdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpgmdpoverseesrpg"
+
 [node name="SpriteFrameToParticleTextureCopier" type="Node" parent="Greg" unique_id=1243447963 node_paths=PackedStringArray("from", "to")]
 script = ExtResource("7_3bfs0")
 from = NodePath("../CanvasGroup/Sprite")
 to = NodePath("../GPUParticles2D")
 metadata/_custom_type_script = "uid://b4no27m8ikd0y"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=975386682]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=975386682]
 stream = SubResource("AudioStreamSynchronized_rat15")
 pitch_scale = 0.71
-autoplay = true
 bus = &"ECHO MUSIC"
 
 [node name="Collision" type="TileMapLayer" parent="." unique_id=157315284]

@@ -329,6 +329,7 @@ func _battle_ending() -> void:
 	dlg.al("well... all's well that ends well.")
 	dlg.al("just... what is with that ominous, shadowy look, [color=0f0]girl[/color]?")
 	await dlg.speak_choice()
+	menacing.sound_giggle()
 	await Math.timer(1.0)
 	dlg.reset().set_char("mayor")
 	dlg.al("this is no way to talk to your [color=f42]mayor[/color], [color=0f0]girl[/color].").stext_speed(0.9)

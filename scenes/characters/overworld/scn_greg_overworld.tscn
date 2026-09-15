@@ -86,7 +86,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ecu36")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_down",
 "speed": 5.0
 }, {
@@ -103,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_72oqv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 5.0
 }, {
@@ -120,7 +120,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aeyb2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 5.0
 }, {
@@ -137,7 +137,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_km17g")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_up",
 "speed": 5.0
 }]
@@ -155,7 +155,7 @@ motion_mode = 1
 safe_margin = 0.5
 script = ExtResource("1_gx1l0")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=275320516]
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=449837791]
 
 [node name="Sprite" type="AnimatedSprite2D" parent="CanvasGroup" unique_id=1258795002]
 unique_name_in_owner = true
@@ -165,13 +165,6 @@ sprite_frames = SubResource("SpriteFrames_76min")
 animation = &"walk_down"
 autoplay = "walk_down"
 frame_progress = 0.265417
-
-[node name="ColorRect" type="ColorRect" parent="CanvasGroup" unique_id=641956679]
-offset_left = -15.0
-offset_top = -21.0
-offset_right = 15.0
-offset_bottom = 9.0
-color = Color(0.521569, 0, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1450665706]
 position = Vector2(0, -0.5)
