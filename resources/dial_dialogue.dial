@@ -2130,7 +2130,8 @@ DIALOGUE ph_guy_jooky_missing_2
 DIALOGUE ph_guy_inhouse_1
 	what an awesome machine!
 	new spirit-powered tech is truly out of this world.
-	this is an entertainment system. you can play "video games" on it.
+	this is an entertainment system. one can play "video games" on it.
+DATA_LINK turf_mission_fulfilled,true
 	perhaps you'd like to try one with me?
 
 
@@ -2146,7 +2147,7 @@ CHOICE_LINK help
 	how to play?
 	use the right and left movement keys to move your "paddle".
 	you control the bottom paddle.
-	you must catch the "ball" with your paddle and bounce it back to me.
+	you must catch the "ball" with your paddle and bounce it "back2me".
 	if you don't, you'll lose a "life".
 	furthermore, to gain points, you must win in a game of...
 	..."rock paper scissors". you navigate between choices with move keys.
@@ -2172,7 +2173,7 @@ CHOICE_LINK yes!!
 	the scissors cut paper, thus the player with scissors...
 	...wins, if the other player picked paper.
 	the rock breaks scissors! rock wins over scissors.
-	and paper, well... this never made too much sense to me.
+	and paper, well... this never made too much "sense2me".
 	but the paper covers the rock, thus winning.
 	as you might have noticed, the relations are in a "loop".
 	scissors triumph over paper, which trumps rock, which trumps scissors.
@@ -2182,6 +2183,12 @@ CHOICE_LINK yes!!
 	...that choice is played at the enemy's paddle, too.
 LOOP 0
 	i hope i cleared some things up.
+
+
+DIALOGUE ph_computer_dark
+	hey. don't touch anything.
+	that's my entertainment system.
+	not everyone is granted the "right2play"...
 
 
 DIALOGUE after_pennistong_first

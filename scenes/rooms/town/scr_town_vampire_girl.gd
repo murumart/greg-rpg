@@ -93,18 +93,23 @@ func _pre_setup_basic(inters: int) -> bool:
 func park_cutscene() -> void:
 	girl_inters += 1
 	position = Vector2(25, -34)
-	DAT.capture_player("cutscene")
-	SND.play_song("sweet_girls")
-	var gpos := global_position - Vector2(16, 0)
 	girl.speed = 9000
+	girl.collision_mask = 0
 	uguy.speed = 8000
+	uguy.collision_mask = 0
 	uguy.global_position.x = greg.global_position.x + 90
 	girl.global_position.x = greg.global_position.x + 90
-	girl.move_to(gpos)
-	uguy.move_to(gpos + Vector2(20, 0))
+	DAT.capture_player("cutscene")
+	greg.animate("walk_left")
+	SND.play_song("")
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, ^"global_position", global_position + Vector2(0, -16), 1.5)
 	await tw.finished
+	var gpos := global_position - Vector2(16, 0)
+	SND.play_song_from_beginning("sweet_girls")
+	girl.move_to(gpos)
+	uguy.move_to(gpos + Vector2(30, 0))
+	await girl.target_reached
 	girl.enter_a_state_of_conversation()
 	greg.raycast.target_position = greg.global_position.direction_to(global_position)
 	greg.direct_animation()
@@ -131,7 +136,7 @@ func park_cutscene() -> void:
 		girl.direct_walking_animation(Vector2.UP)
 	))
 	await dlg.speak_choice()
-	girl.move_to(gpos - Vector2(68, 15))
+	girl.move_to(gpos - Vector2(55, 15))
 	girl.target_reached.connect(girl.move_to.call_deferred.bind(girl.global_position - Vector2(0, 90)), CONNECT_ONE_SHOT)
 	tw = create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, ^"global_position", greg.global_position.lerp(uguy.global_position, 0.5).floor(), 2.0)
@@ -144,7 +149,7 @@ func park_cutscene() -> void:
 	dlg.add_line(dlg.ml("i don't fully trust 'er, that girl."))
 	dlg.add_line(dlg.ml("quite suspicious of 'er to just show up now, isn't it...?"))
 	dlg.add_line(dlg.ml("with the talk of a vampire in town..."))
-	dlg.add_line(dlg.ml("i hope she's not in trouble with him!").scallback(func() -> void:
+	dlg.add_line(dlg.ml("i 'ope she's not in trouble with 'im!").scallback(func() -> void:
 		uguy.direct_walking_animation(uguy.global_position.direction_to(greg.global_position))
 	))
 	dlg.add_line(dlg.ml("oi luggage bloke! you coming?").scharacter("vampire_talk").scallback(func() -> void:
@@ -210,8 +215,8 @@ func _police_cutscene() -> void:
 	dlg.reset()
 	dlg.add_line(dlg.ml("hey! you got some dirt on this girl?"))
 	dlg.add_line(dlg.ml("you must be suspicious of something!"))
-	dlg.add_line(dlg.ml("i'm literally right here.").scharacter("vampire_talk").scallback(func() -> void: girl.direct_walking_animation(girl.global_position.direction_to(popo.global_position))))
-	dlg.add_line(dlg.ml("sure! it's an interrogation!").scharacter("popo_1").scallback(func() -> void: popo.direct_walking_animation(popo.global_position.direction_to(girl.global_position))))
+	dlg.add_line(dlg.ml("i'm... literally right here.").scharacter("vampire_talk").scallback(func() -> void: girl.direct_walking_animation(girl.global_position.direction_to(popo.global_position))))
+	dlg.add_line(dlg.ml("sure! this is an interrogation!").scharacter("popo_1").scallback(func() -> void: popo.direct_walking_animation(popo.global_position.direction_to(girl.global_position))))
 	dlg.add_line(dlg.ml("spit it out! what have you done?"))
 	dlg.add_line(dlg.ml("i have been followed by a creep!!!").scharacter("vampire_talk"))
 	dlg.add_line(dlg.ml("i demand to have my complaints heard!"))

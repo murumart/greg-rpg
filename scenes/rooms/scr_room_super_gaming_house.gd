@@ -9,6 +9,10 @@ func _ready() -> void:
 
 
 func _on_computer_interacted() -> void:
+	if not DAT.get_data("turf_mission_fulfilled", false):
+		$EntertainmentSystem/AnimationPlayer.play(&"quiet")
+		SOL.dialogue("ph_computer_dark")
+		return
 	SOL.dialogue("ph_computer")
 	SOL.dialogue_closed.connect(
 		func():

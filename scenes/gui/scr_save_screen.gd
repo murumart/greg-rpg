@@ -26,13 +26,15 @@ const COMPLETED_GAME := {
 	"penni_stong_played": true,
 	"quest_board_introed": true,
 	"witnessed_ushanka_guy_cutscene": true,
-	"bike_ghosts_fought": [0, 1], # TODO add to when another bike ghost gets added
+	"bike_ghosts_fought": [0, 1, 2],
 	"gdung_floor": {"min": 2},
 	"greenhouses_eaten": {"min": 1},
 	"tarikas_talked_to": true,
 	"skatings_played": {"min": 1},
 	"snail_hells_survived": {"min": 1},
-	"char_greg_save": {"inventory_has": ["diploma"], "defeated_has": ["car"]},
+	"char_greg_save": {
+		"inventory_has": ["diploma", "key_gold", "key_blue", "key_green", "key_pink"],
+		"defeated_has": ["car"]},
 	"fishing_high_score": {"min": 400},
 	"birds_scared": {"min": 25},
 	"keybinds_changed": true,
@@ -317,36 +319,62 @@ func can_walk() -> bool:
 
 
 func _calc_completion_percent(file: Dictionary) -> float:
+	var checks := 0.0
 	var sum := 0.0
 	for key in COMPLETED_GAME:
 		var value: Variant = COMPLETED_GAME[key]
 		var gotten: Variant = file.get(key, null)
 		var truth := true
 		if value is Dictionary:
-			if "min" in value:
+			if truth and "min" in value:
+				checks += 1.0
 				truth = truth and gotten != null and gotten >= value.min
-			if "max" in value:
+				if truth:
+					sum += 1.0
+			if truth and "max" in value:
+				checks += 1.0
 				truth = truth and gotten != null and gotten <= value.max
-			if "inventory_has" in value:
+				if truth:
+					sum += 1.0
+			if truth and "inventory_has" in value:
 				if gotten == null:
 					truth = false
-				else: for item in value.inventory_has:
-					truth = truth and item in gotten.inventory
-			if "defeated_has" in value:
+				else:
+					for item in value.inventory_has:
+						checks += 1.0
+						if item in gotten.inventory:
+							sum += 1.0
+						else:
+							truth = false
+							break
+			if truth and "defeated_has" in value:
 				if gotten == null:
 					truth = false
-				else: for item in value.defeated_has:
-					truth = truth and item in gotten.defeated_characters
-			if "has" in value:
+				else:
+					for item in value.defeated_has:
+						checks += 1.0
+						if item in gotten.defeated_characters:
+							sum += 1.0
+						else:
+							truth = false
+							break
+			if truth and "has" in value:
 				if gotten == null:
 					truth = false
-				else: for thing in value.has:
-					truth = truth and thing in gotten
+				else:
+					for thing in value.has:
+						checks += 1.0
+						if thing in gotten:
+							sum += 1.0
+						else:
+							truth = false
+							break
 		else:
+			checks += 1.0
+			if value == gotten:
+				sum += 1.0
 			truth = value == gotten
-		if truth:
-			sum += 1.0
-	return (sum / COMPLETED_GAME.size()) * 100.0
+	return (sum / checks) * 100.0
 
 
 func vfx_msg(msg: String) -> void:

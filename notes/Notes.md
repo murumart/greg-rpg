@@ -220,6 +220,7 @@ multipanther -> +10 (=99)
 - [ ] fix map
 - [ ] make chase seq shorter
 - [ ] lake hint npc doesn't dialogue cutscene
+- [ ] finish completed game dict
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
@@ -228,7 +229,7 @@ multipanther -> +10 (=99)
 - [X] fw progress only when attacking... not very good if youre trying not to kill
 - [X] new line to bald guy (?)
 - [X] remember staticall how many times you die in each session
-- [ ] vampire cutscene starts very suddenly and greg is off screen side probably
+- [X] vampire cutscene starts very suddenly and greg is off screen side probably
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc

@@ -2110,6 +2110,18 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 0, 1, 1)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Glow:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(22.95054, 0, 19.786505, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_nrnct"]
 resource_name = "computer_loop"
@@ -2137,7 +2149,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -2224,10 +2236,50 @@ tracks/8/keys = {
 "values": [Color(1, 0, 1, 1), Color(1, 0, 1, 0), Color(1, 0, 1, 1), Color(1, 0, 1, 0), Color(1, 0, 1, 1), Color(1, 0, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_k78ao"]
+resource_name = "quiet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(22.95054, 0, 19.786505, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dot:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteFlash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbxdy"]
 _data = {
 &"RESET": SubResource("Animation_i5qxj"),
-&"computer_loop": SubResource("Animation_nrnct")
+&"computer_loop": SubResource("Animation_nrnct"),
+&"quiet": SubResource("Animation_k78ao")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mysui"]
@@ -2326,7 +2378,7 @@ region_rect = Rect2(64, 58, 16, 22)
 
 [node name="Glow" type="Sprite2D" parent="EntertainmentSystem" unique_id=2061853029]
 modulate = Color(1, 0, 1, 1)
-self_modulate = Color(22.95, 0, 19.81, 0.25)
+self_modulate = Color(22.95054, 0, 19.786505, 0)
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_lie6j")
 position = Vector2(0, -8)
