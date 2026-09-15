@@ -213,13 +213,13 @@ multipanther -> +10 (=99)
 - [X] replace nasturtium
 - [X] fix map
 - [X] make zerma calls topical (they are trust me)
+- [X] make chase seq shorter
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
 - [ ] peptide should work in woodsguy
 - [ ] save campfire litness
 - [ ] decide what do do with bike bells
-- [ ] make chase seq shorter
 - [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict
 
@@ -233,12 +233,12 @@ multipanther -> +10 (=99)
 - [X] vampire cutscene starts very suddenly and greg is off screen side probably
 - [X] sk8 guy and atgirl should have mmore speech after mayor gone
 - [X] cool letter background in her battle
+- [X] cool letter background in scene of her falling
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
-- [ ] cool letter background in scene of her falling
 - [ ] more mentions of mayor before east
 - [ ] use xending as a side room lore secret garden entrance
 - [ ] savescumming at the random prize..
