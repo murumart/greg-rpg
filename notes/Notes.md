@@ -211,13 +211,14 @@ multipanther -> +10 (=99)
 - [X] add ending data to pers in new ending
 - [X] move grreg back to xprefb scene start
 - [X] replace nasturtium
+- [X] fix map
+- [ ] make zerma calls topical
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
 - [ ] peptide should work in woodsguy
 - [ ] save campfire litness
 - [ ] decide what do do with bike bells
-- [ ] fix map
 - [ ] make chase seq shorter
 - [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict
@@ -230,6 +231,8 @@ multipanther -> +10 (=99)
 - [X] new line to bald guy (?)
 - [X] remember staticall how many times you die in each session
 - [X] vampire cutscene starts very suddenly and greg is off screen side probably
+- [X] sk8 guy and atgirl should have mmore speech after mayor gone
+- [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
 - [ ] sliding puzzle tutorial npc
@@ -242,7 +245,6 @@ multipanther -> +10 (=99)
 - [ ] savescumming at the random prize..
 - [ ] way to cancel shopping basket
 - [ ] more npcs after level 30 aroud town
-- [ ] sk8 guy and atgirl should have mmore speech after mayor gone
 - [ ] check oiut spirit costs more..
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around

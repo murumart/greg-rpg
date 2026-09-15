@@ -1269,7 +1269,7 @@ DIALOGUE thug_catch_1
 
 DIALOGUE neighbour_wife_talk_1
 	good day. you came from the flower shop just now?
-	that florist has some really strange ones.
+	that florist sells some strange ones.
 
 
 DIALOGUE neighbour_wife_talk_2

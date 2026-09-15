@@ -97,10 +97,14 @@ func park_cutscene() -> void:
 	girl.collision_mask = 0
 	uguy.speed = 8000
 	uguy.collision_mask = 0
-	uguy.global_position.x = greg.global_position.x + 90
-	girl.global_position.x = greg.global_position.x + 90
+	var dirto := greg.global_position.direction_to(global_position)
+	uguy.global_position.x = greg.global_position.x + (90 if dirto.x < 0 else -90)
+	girl.global_position.x = greg.global_position.x + (90 if dirto.x < 0 else -90)
 	DAT.capture_player("cutscene")
-	greg.animate("walk_left")
+	greg.animate("walk_down")
+	greg.raycast.target_position = dirto
+	greg.velocity = Vector2.ZERO
+	greg.direct_animation()
 	SND.play_song("")
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(camera, ^"global_position", global_position + Vector2(0, -16), 1.5)
@@ -111,8 +115,6 @@ func park_cutscene() -> void:
 	uguy.move_to(gpos + Vector2(30, 0))
 	await girl.target_reached
 	girl.enter_a_state_of_conversation()
-	greg.raycast.target_position = greg.global_position.direction_to(global_position)
-	greg.direct_animation()
 	var dlg := DialogueBuilder.new().set_char("vampire_talk")
 	dlg.add_line(dlg.ml("what a lovely town, innit...?"))
 	dlg.add_line(dlg.ml("so little's changed since i was here last...").scallback(func() -> void:
