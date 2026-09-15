@@ -38,7 +38,7 @@ func act() -> void:
 		hurting_spirits.erase("ghostpunches")
 		Math.ensure_member(debuffing_spirits, "flame_ouch_better")
 		Math.ensure_member(debuffing_spirits, "flare")
-	if turn > 3 and character.health_perc() < 0.33 and not _warned_firegrave:
+	if turn > 3 and character.health_perc() < 0.2 and not _warned_firegrave:
 		_warned_firegrave = true
 		ignore_my_finishes = true
 		SOL.dialogue("bike_gamma_battle_2")
