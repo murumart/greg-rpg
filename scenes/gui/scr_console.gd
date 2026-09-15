@@ -427,12 +427,14 @@ func _cmd_addperk(args: PackedStringArray) -> void:
 
 func _cmd_goto(args: PackedStringArray) -> void:
 	if args.size() < 1:
-		output("usage: goto room")
+		output("usage: goto room (gateid)?")
 		return
 	var room: String = LTS.ROOM_SCENE_PATH % args[0]
 	if not ResourceLoader.exists(room):
 		output("room %s doesn't exist" % args[0], true)
 		return
+	if args.size() > 1:
+		LTS.gate_id = args[1]
 	LTS.level_transition(room)
 	output("going to " + args[0])
 

@@ -227,6 +227,7 @@ multipanther -> +10 (=99)
 - [X] have npcs remark sunset so epople dont thinik its apocalypse..
 - [X] fw progress only when attacking... not very good if youre trying not to kill
 - [X] new line to bald guy (?)
+- [X] remember staticall how many times you die in each session
 - [ ] vampire cutscene starts very suddenly and greg is off screen side probably
 - [ ] mayor mention golden key
 - [ ] turn glass to xp when leaving the woods i guess..
@@ -247,7 +248,6 @@ multipanther -> +10 (=99)
 - [ ] do smthabout science guy. remove or add to east
 - [ ] make campfire less horrible to use
 - [ ] add greenhousicle to sg hub
-- [ ] remember staticall how many times you die in each session
 
 ### nice
 - [ ] more enemies with interesting genders
