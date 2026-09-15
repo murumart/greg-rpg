@@ -4102,7 +4102,7 @@ CHAR bike_ghost_gamma
 
 DIALOGUE bike_gamma_battle_die
 CHAR bike_ghost_gamma
-	(malding) you piece of ████. ████ you.
+	(seething) you piece of ████. ████ you.
 	get firegraved!!!!
 
 

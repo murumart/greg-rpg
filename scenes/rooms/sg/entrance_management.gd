@@ -19,6 +19,10 @@ const RoomGate = preload("res://scenes/tech/scr_room_gate.gd")
 	green_entrance,
 ]
 
+@onready var enter_side: Area2D = $"../Areas/EnterSide"
+@onready var exit_side: Area2D = $"../Areas/ExitSide"
+
+
 func _ready() -> void:
 	if DAT.get_data("sg_y_7_boss_done", false):
 		$"..".music = "secret_garden"
@@ -32,6 +36,15 @@ func _ready() -> void:
 
 	for en in entrances:
 		en.visible = en.predicate.check() == Predicate.SUCCESS
+
+
+	enter_side.body_entered.connect(func(_b) -> void:
+		SND.play_song("", 3.0)
+	)
+
+	exit_side.body_entered.connect(func(_b) -> void:
+		$"..".play_room_music(3.0)
+	)
 
 	#if DAT.get_data("sg_y_7_boss_done", false):
 	#	%BEntrance.disabled = false
