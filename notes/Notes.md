@@ -212,7 +212,7 @@ multipanther -> +10 (=99)
 - [X] move grreg back to xprefb scene start
 - [X] replace nasturtium
 - [X] fix map
-- [ ] make zerma calls topical
+- [X] make zerma calls topical (they are trust me)
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
