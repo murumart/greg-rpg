@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(song):
 		return
 	var playback_pos := song.get_playback_position()
-	if playback_pos >= 55.817:
+	if playback_pos >= 71.076:
 		sp = 1.0
 		spb = 1.415
 		if _timer <= 0:
