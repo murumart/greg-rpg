@@ -16,14 +16,14 @@ func _ready() -> void:
 	body_entered.connect((func(body: PlayerOverworld) -> void:
 		if _chase_on or _done:
 			return
-		DAT.death_reason = DAT.DeathReasons.X
+		DAT.death_reason = DeathScreen.DeathReasons.X
 		body.saving_disabled = true
 		_chase_on = true
 		menacing._delay = 4.0
 		menacing.global_position = body.global_position - Vector2(0, 32)
 		menacing.modulate.a = 0.0
 		DAT.capture_player("cutscene")
-		var deaths: int = DAT.get_data("deaths", []).count(int(DAT.DeathReasons.X))
+		var deaths: int = DAT.get_data("deaths", []).count(int(DeathScreen.DeathReasons.X))
 		if deaths == 0:
 			SOL.dialogue("phone_before_xchase_nodeaths")
 		elif deaths < 2:

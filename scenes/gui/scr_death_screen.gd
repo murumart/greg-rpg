@@ -1,4 +1,10 @@
-extends Control
+class_name DeathScreen extends Control
+
+enum DeathReasons {
+	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
+	CATS, SOLAR, NOVA, ZERMA, VAMPIRE, PRES_GUN, DISH, GDUNG,
+	MAYOR_DIE, SGY, SGB, SGP, X,
+}
 
 const DEATH_PICTURE_PATH := "res://sprites/death/spr_%s.png"
 const DEATH_REASONS := [
@@ -87,7 +93,9 @@ const DEATH_REASONS := [
 	},
 ]
 
-@export var test_death := DAT.DeathReasons.DEFAULT
+static var _death_counts_session: Dictionary[DeathReasons, int] = {}
+
+@export var test_death := DeathReasons.DEFAULT
 
 @onready var text_box := $TextBox
 @onready var picture := $Pictures
@@ -101,6 +109,7 @@ func _ready() -> void:
 	DAT.free_player("all")
 	if DAT.seconds < 2:
 		DAT.death_reason = test_death
+	_death_counts_session[DAT.death_reason] = _death_counts_session.get(DAT.death_reason, 0) + 1
 	var death_reason: Dictionary = DEATH_REASONS[DAT.death_reason]
 	DAT.appenda("deaths", DAT.death_reason)
 	DAT.force_data("deaths", DAT.get_data("deaths", []))
@@ -109,7 +118,7 @@ func _ready() -> void:
 	picture.texture = load(DEATH_PICTURE_PATH % death_reason.get("picture", "default"))
 	text_box.text = death_reason.get("text", "[center]your resolve was overcome.[/center]")
 	text_box.speak_text({})
-	DAT.death_reason = DAT.DeathReasons.DEFAULT
+	DAT.death_reason = DeathScreen.DeathReasons.DEFAULT
 	retry_button.call_deferred("grab_focus")
 	DIR.incj(2, 1)
 	if Math.inrange(DAT.get_data("nr"), 0.85, 0.86):
@@ -138,3 +147,11 @@ func _on_quit_button_pressed() -> void:
 		return
 	LTS.level_transition("res://scenes/gui/scn_main_menu.tscn", {"stealing_enabled": false})
 	leaving = true
+
+
+static func get_session_deaths(reason: DeathReasons) -> int:
+	return _death_counts_session.get(reason, 0)
+
+
+static func reset_session_deaths() -> void:
+	_death_counts_session.clear()

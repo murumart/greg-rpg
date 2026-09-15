@@ -78,7 +78,7 @@ func funny() -> void:
 	DAT.set_data("fake_game_over_second", DAT.seconds)
 	DAT.save_to_data()
 	LTS.gate_id = &"fake_game_over"
-	DAT.death_reason = DAT.DeathReasons.DEFAULT
+	DAT.death_reason = DeathScreen.DeathReasons.DEFAULT
 	LTS.to_game_over_screen()
 
 

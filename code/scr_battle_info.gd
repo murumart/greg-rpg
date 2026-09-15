@@ -3,9 +3,7 @@ class_name BattleInfo
 
 # resource to store info about battles
 
-const dat = preload("res://autoload/scr_data.gd")
-
-const DeathReasons = dat.DeathReasons
+const DeathReasons = DeathScreen.DeathReasons
 
 @export var enemies: Array[StringName] = []
 @export var background := "town"

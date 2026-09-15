@@ -103,7 +103,7 @@ var current_guy: BattleActor
 var loaded_spirits := {}
 var current_target: BattleActor
 
-var death_reason := DAT.DeathReasons.DEFAULT
+var death_reason := DeathScreen.DeathReasons.DEFAULT
 var battle_rewards: BattleRewards
 
 var _used_attack := false
@@ -809,7 +809,7 @@ func open_end_screen(victory: bool) -> void:
 			DAT.incri("win_battle_no_item", 1)
 		ending.emit()
 		return
-	if DAT.death_reason == DAT.DeathReasons.DEFAULT:
+	if DAT.death_reason == DeathScreen.DeathReasons.DEFAULT:
 		DAT.death_reason = death_reason
 	await get_tree().create_timer(1.0).timeout
 	ending.emit()

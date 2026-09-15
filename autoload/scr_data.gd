@@ -15,12 +15,6 @@ const FLOWERS = [
 	&"flower7",
 ]
 
-enum DeathReasons {
-	DEFAULT, CAR, BIKECRY, MAIL_DISAPP, SNAIL_BEAM, LAKESIDE, MORON,
-	CATS, SOLAR, NOVA, ZERMA, VAMPIRE, PRES_GUN, DISH, GDUNG,
-	MAYOR_DIE, SGY, SGB, SGP, X,
-}
-
 signal player_captured(capture: bool)
 
 # DATA
@@ -395,6 +389,7 @@ func init_data() -> void:
 	A.clear()
 	ResMan.kill_resources_forever()
 	ResMan.load_resources()
+	DeathScreen.reset_session_deaths()
 	seconds = 0
 	playtime = 0
 	player_capturers.clear()

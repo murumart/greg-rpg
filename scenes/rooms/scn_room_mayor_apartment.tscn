@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://wym533u3oyu6" path="res://scenes/decor/bookshelf.tscn" id="10_pn2uj"]
 [ext_resource type="PackedScene" uid="uid://dbu4u32fsr7b8" path="res://scenes/characters/overworld/scn_thug_east_overworld.tscn" id="10_s1xb4"]
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="13_gs358"]
+[ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="13_up824"]
 [ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="14_a7e7c"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="14_p7p2l"]
 [ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="15_l7m8h"]
@@ -25,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_xvh1i"]
 [ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="21_ptg6y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i37mn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptg6y"]
 resource_local_to_scene = true
 size = Vector2(14, 17.5)
 
@@ -80,15 +81,15 @@ data_key = &"mayor_fought"
 and_with = SubResource("Resource_i37mn")
 metadata/_custom_type_script = "uid://qboohb38rsxs"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmay"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up824"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptg6y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqse7"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_up824"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_j60dx"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -169,7 +170,7 @@ offset = Vector2(0, -19)
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" parent="Decor/Radio/RadioInteraction" index="0" unique_id=1288470124]
-shape = SubResource("RectangleShape2D_i37mn")
+shape = SubResource("RectangleShape2D_ptg6y")
 
 [node name="Lights" type="Node2D" parent="Decor" unique_id=1195485083]
 z_index = 1
@@ -201,52 +202,55 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(129, 12, 14, 20)
 
-[node name="Box" parent="Decor" unique_id=71012764 instance=ExtResource("8_x57em")]
+[node name="boxes" type="Node2D" parent="Decor" unique_id=1403758620]
+y_sort_enabled = true
+
+[node name="Box" parent="Decor/boxes" unique_id=71012764 instance=ExtResource("8_x57em")]
 position = Vector2(43, 40)
 
-[node name="Box6" parent="Decor" unique_id=542378280 instance=ExtResource("8_x57em")]
+[node name="Box6" parent="Decor/boxes" unique_id=542378280 instance=ExtResource("8_x57em")]
 position = Vector2(-64, -16)
 
-[node name="Box7" parent="Decor" unique_id=1390518753 instance=ExtResource("8_x57em")]
+[node name="Box7" parent="Decor/boxes" unique_id=1390518753 instance=ExtResource("8_x57em")]
 position = Vector2(-62, -11)
 
-[node name="Box8" parent="Decor" unique_id=1859552152 instance=ExtResource("8_x57em")]
+[node name="Box8" parent="Decor/boxes" unique_id=1859552152 instance=ExtResource("8_x57em")]
 position = Vector2(-23, -12)
 
-[node name="Box9" parent="Decor" unique_id=748324922 instance=ExtResource("8_x57em")]
+[node name="Box9" parent="Decor/boxes" unique_id=748324922 instance=ExtResource("8_x57em")]
 position = Vector2(-42, -16)
 
-[node name="Box10" parent="Decor" unique_id=2080907675 instance=ExtResource("8_x57em")]
+[node name="Box10" parent="Decor/boxes" unique_id=2080907675 instance=ExtResource("8_x57em")]
 position = Vector2(-47, -11)
 
-[node name="Box11" parent="Decor" unique_id=823843051 instance=ExtResource("8_x57em")]
+[node name="Box11" parent="Decor/boxes" unique_id=823843051 instance=ExtResource("8_x57em")]
 position = Vector2(63, -13)
 
-[node name="Box12" parent="Decor" unique_id=552602991 instance=ExtResource("8_x57em")]
+[node name="Box12" parent="Decor/boxes" unique_id=552602991 instance=ExtResource("8_x57em")]
 position = Vector2(63, -8)
 
-[node name="Box13" parent="Decor" unique_id=1546952049 instance=ExtResource("8_x57em")]
+[node name="Box13" parent="Decor/boxes" unique_id=1546952049 instance=ExtResource("8_x57em")]
 position = Vector2(63, -3)
 
-[node name="Box14" parent="Decor" unique_id=1529911814 instance=ExtResource("8_x57em")]
+[node name="Box14" parent="Decor/boxes" unique_id=1529911814 instance=ExtResource("8_x57em")]
 position = Vector2(63, 12)
 
-[node name="Box15" parent="Decor" unique_id=654696457 instance=ExtResource("8_x57em")]
+[node name="Box15" parent="Decor/boxes" unique_id=654696457 instance=ExtResource("8_x57em")]
 position = Vector2(54, 7)
 
-[node name="Box2" parent="Decor" unique_id=2077815575 instance=ExtResource("8_x57em")]
+[node name="Box2" parent="Decor/boxes" unique_id=2077815575 instance=ExtResource("8_x57em")]
 position = Vector2(56, 49)
 
-[node name="Box5" parent="Decor" unique_id=287337455 instance=ExtResource("8_x57em")]
+[node name="Box5" parent="Decor/boxes" unique_id=287337455 instance=ExtResource("8_x57em")]
 position = Vector2(17, 42)
 
-[node name="Box3" parent="Decor" unique_id=1664545914 instance=ExtResource("8_x57em")]
+[node name="Box3" parent="Decor/boxes" unique_id=1664545914 instance=ExtResource("8_x57em")]
 position = Vector2(30, 40)
 
-[node name="Box4" parent="Decor" unique_id=183274359 instance=ExtResource("8_x57em")]
+[node name="Box4" parent="Decor/boxes" unique_id=183274359 instance=ExtResource("8_x57em")]
 position = Vector2(38, 37)
 
-[node name="Sprite2D" parent="Decor/Box4" index="0" unique_id=309085024]
+[node name="Sprite2D" parent="Decor/boxes/Box4" index="0" unique_id=309085024]
 position = Vector2(8, 12)
 offset = Vector2(0, -16)
 
@@ -270,6 +274,12 @@ lines = PackedStringArray("this is a fake bookshelf.", "the real ones have no di
 position = Vector2(46, -14)
 lines = PackedStringArray("out of place books. a note slips out from in between...", "it\'s regarding an idea for a library planned to be built in town.", "it never seemed to have gained traction. there was no time.")
 
+[node name="Sprite2D" type="Sprite2D" parent="Decor" unique_id=1300143233]
+position = Vector2(40, 59)
+texture = ExtResource("13_up824")
+region_enabled = true
+region_rect = Rect2(112, 0, 16, 16)
+
 [node name="RoomGate" parent="." unique_id=310239663 instance=ExtResource("8_ilppi")]
 position = Vector2(40, 67)
 destination = &"town_east"
@@ -288,13 +298,13 @@ battle_info = SubResource("Resource_pn2uj")
 existence_predicate = SubResource("Resource_ptg6y")
 
 [node name="CollisionShape" parent="Category2/ThugOverworld" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_kgmay")
+shape = SubResource("RectangleShape2D_up824")
 
 [node name="CollisionShape2D" parent="Category2/ThugOverworld/CollisionDetectionArea" parent_id_path=PackedInt32Array(1653554915, 1353807789) index="0" unique_id=53099754]
-shape = SubResource("RectangleShape2D_ptg6y")
+shape = SubResource("RectangleShape2D_jqse7")
 
 [node name="DetectionShape" parent="Category2/ThugOverworld/DetectionArea" parent_id_path=PackedInt32Array(1653554915, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_up824")
+shape = SubResource("CircleShape2D_j60dx")
 
 [node name="RandomBattleComponent" parent="Category2/ThugOverworld" index="4" unique_id=1040459157]
 default_battle = SubResource("Resource_jr1v0")
@@ -314,5 +324,5 @@ replenish_seconds = -60
 silver = 667
 
 [editable path="Decor/Radio"]
-[editable path="Decor/Box4"]
+[editable path="Decor/boxes/Box4"]
 [editable path="Category2/ThugOverworld"]

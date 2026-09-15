@@ -77,7 +77,7 @@ func nova_process(add: float) -> void:
 			nova = 200
 			use_spirit("nova", self)
 			SND.play_song("", 300)
-			DAT.death_reason = DAT.DeathReasons.NOVA
+			DAT.death_reason = DeathScreen.DeathReasons.NOVA
 
 
 func _used_spirit_flare() -> void:

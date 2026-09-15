@@ -52,7 +52,7 @@ func _ready() -> void:
 			.set_enemies(["car"])
 			.set_background("cars")
 			.set_music("overrun")
-			.set_death_reason(DAT.DeathReasons.CAR)
+			.set_death_reason(DeathScreen.DeathReasons.CAR)
 			.set_start_text("hope you saved before this!"))
 	set_color(color)
 	turn(0)

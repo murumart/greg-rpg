@@ -13,7 +13,7 @@ var _deaths := 0
 
 
 func _ready() -> void:
-	_deaths = DAT.get_data("deaths", []).count(int(DAT.DeathReasons.X))
+	_deaths = DAT.get_data("deaths", []).count(int(DeathScreen.DeathReasons.X))
 	_timer = Timer.new()
 	_timer.wait_time = WAIT_TIME
 	_timer.one_shot = true

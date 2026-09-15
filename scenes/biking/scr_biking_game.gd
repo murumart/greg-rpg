@@ -82,7 +82,7 @@ func _ready() -> void:
 	DAT.set_data("last_kiosk_open_second", DAT.seconds)
 	var music := "mail_mission" if not Sunsetter.is_raining else "rainsnail"
 	SND.play_song_from_beginning(music, 1.0)
-	DAT.death_reason = DAT.DeathReasons.DEFAULT
+	DAT.death_reason = DeathScreen.DeathReasons.DEFAULT
 	update_ui()
 
 
@@ -142,7 +142,7 @@ func set_speed(to: int) -> void:
 func _on_died() -> void:
 	# setting the death reason only if it hasn't been set already
 	if DAT.death_reason == 0:
-		DAT.death_reason = DAT.DeathReasons.BIKECRY if randf() <= 0.95 else DAT.DeathReasons.MAIL_DISAPP
+		DAT.death_reason = DeathScreen.DeathReasons.BIKECRY if randf() <= 0.95 else DeathScreen.DeathReasons.MAIL_DISAPP
 	set_speed(0)
 	if currently_hell:
 		# funny

@@ -255,7 +255,7 @@ func _mayor_pld_after(pld: BattlePayload) -> void:
 	if battle_mayor.character.health <= 0:
 		mayor.rotate(PI / 2)
 		mayor.a_default()
-		DAT.death_reason = DAT.DeathReasons.MAYOR_DIE
+		DAT.death_reason = DeathScreen.DeathReasons.MAYOR_DIE
 		LTS.to_game_over_screen()
 
 
@@ -282,7 +282,7 @@ func _mayor_team_pld_after(pld: BattlePayload) -> void:
 	if battle_mayor.character.health <= 0:
 		mayor.rotate(PI / 2)
 		mayor.a_default()
-		DAT.death_reason = DAT.DeathReasons.MAYOR_DIE
+		DAT.death_reason = DeathScreen.DeathReasons.MAYOR_DIE
 		LTS.to_game_over_screen()
 
 

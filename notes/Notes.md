@@ -90,7 +90,6 @@
 - [x] Disable bathroom door if shop is soaked afterr frnaking
 
 ## June playetes
-- [ ] more mentions of mayor before east
 - [ ] Nerf casual
 - [ ] move spirit mana portal damage battle camera downward
 - [x] greenhouse breaks enemy area detection? (jkust mke enemies not enter greenhouse??)
@@ -144,7 +143,6 @@ multipanther -> +10 (=99)
 - [ ] dialogue load in biking game? in kiok menu??
 - [ ] secret garden room with walls you take down can get softlocked coming out of the cave
 - [ ] secret garden blue entrance multipanther tendril visible from entrance walkway aftr a while
-- [ ] lake hint npc doesn't dialogue cutscene
 - [ ] while sopping deals more damage to vacuum?
 - interaction areas dont work
   - [x] bird in town
@@ -218,6 +216,10 @@ multipanther -> +10 (=99)
 - [ ] nerf turf2..
 - [ ] peptide should work in woodsguy
 - [ ] save campfire litness
+- [ ] decide what do do with bike bells
+- [ ] fix map
+- [ ] make chase seq shorter
+- [ ] lake hint npc doesn't dialogue cutscene
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
@@ -232,6 +234,7 @@ multipanther -> +10 (=99)
 - [ ] note of maximum level in forest HUD
 - [ ] cool letter background in scene of her falling
 - [ ] cool letter background in her battle
+- [ ] more mentions of mayor before east
 - [ ] use xending as a side room lore secret garden entrance
 - [ ] savescumming at the random prize..
 - [ ] savescumming at the random prize..
@@ -244,6 +247,7 @@ multipanther -> +10 (=99)
 - [ ] do smthabout science guy. remove or add to east
 - [ ] make campfire less horrible to use
 - [ ] add greenhousicle to sg hub
+- [ ] remember staticall how many times you die in each session
 
 ### nice
 - [ ] more enemies with interesting genders
