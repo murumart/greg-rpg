@@ -49,6 +49,8 @@ shape = SubResource("CircleShape2D_56sxh")
 debug_color = Color(1, 1, 0.317647, 0.054902)
 
 [node name="DetectionRaycast" type="RayCast2D" parent="DetectionArea" unique_id=1691478099]
+process_mode = 4
 self_modulate = Color(1, 1, 0.435294, 0.207843)
+enabled = false
 target_position = Vector2(0, 32)
 collision_mask = 11

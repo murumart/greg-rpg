@@ -413,10 +413,25 @@ func chase(body: Node2D) -> void:
 	# test if raycast can reach the target
 	var bodylocal := to_local(body.global_position)
 	if not bodylocal.is_finite():
+		debprint("bodylocal isnt finite: " + str(bodylocal))
 		bodylocal = Vector2.ZERO
 	detection_raycast.target_position = bodylocal
-	detection_raycast.force_raycast_update()
-	var collider := detection_raycast.get_collider()
+	#detection_raycast.force_raycast_update()
+
+	var dss := get_world_2d().direct_space_state
+	var gt := detection_raycast.get_global_transform()
+	var ray_params := PhysicsRayQueryParameters2D.new()
+	ray_params.from = gt.get_origin();
+	ray_params.to = gt * detection_raycast.target_position;
+	ray_params.exclude = [get_rid(), collision_detection_area.get_rid()];
+	ray_params.collision_mask = detection_raycast.collision_mask;
+	ray_params.collide_with_bodies = detection_raycast.collide_with_bodies;
+	ray_params.collide_with_areas = detection_raycast.collide_with_areas;
+	ray_params.hit_from_inside = detection_raycast.hit_from_inside;
+
+	var result := dss.intersect_ray(ray_params)
+
+	var collider := result.get("collider", null) as Object
 	var collider_is_target := collider == chase_target
 	var target_immobilised: bool = ("state" in chase_target
 			and chase_target.state == PlayerOverworld.States.NOT_FREE_MOVE)

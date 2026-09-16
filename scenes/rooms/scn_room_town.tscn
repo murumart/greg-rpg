@@ -58,9 +58,7 @@
 [ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="33_ycmof"]
 [ext_resource type="Script" uid="uid://c8jbwmqob580s" path="res://scenes/rooms/town/town_uhh_house_2.gd" id="35_6b3qf"]
 [ext_resource type="Script" uid="uid://c50jackklahng" path="res://code/predicates/greg_level_range.gd" id="35_06enm"]
-[ext_resource type="Script" uid="uid://ct4x4l2aeh408" path="res://scenes/rooms/town/scr_town_football.gd" id="36_44od8"]
 [ext_resource type="PackedScene" uid="uid://k0usg7gl5pjo" path="res://scenes/characters/overworld/scn_status_effect_guru.tscn" id="38_a0o03"]
-[ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="38_nga16"]
 [ext_resource type="Resource" uid="uid://veqt6fg81hog" path="res://resources/battle_infos/grass_fight_6.tres" id="40_n6uem"]
 [ext_resource type="Resource" uid="uid://dskm4e1oce6lw" path="res://resources/battle_infos/grass_fight_4.tres" id="41_7vjto"]
 [ext_resource type="Texture2D" uid="uid://kpxort4yhw7v" path="res://sprites/characters/overworld/spr_birds.png" id="41_q4dt7"]
@@ -74,9 +72,8 @@
 [ext_resource type="Texture2D" uid="uid://da2os5pe7n7xn" path="res://sprites/gui/spr_gui.png" id="50_paqtu"]
 [ext_resource type="Texture2D" uid="uid://cg4ji2ughbw28" path="res://sprites/world/object/spr_forest_quest_board.png" id="50_qhmci"]
 [ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="51_06enm"]
-[ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="54_1mauo"]
-[ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="54_83ce0"]
 [ext_resource type="PackedScene" uid="uid://d32ap8ww8t2bk" path="res://scenes/cutscene/scn_vampire_girl.tscn" id="57_qhmci"]
+[ext_resource type="PackedScene" uid="uid://dw714831oymvf" path="res://scenes/decor/football.tscn" id="60_06enm"]
 [ext_resource type="Script" uid="uid://b53o0lkjn8kj5" path="res://scenes/rooms/town/scr_bird_blocker.gd" id="61_qhmci"]
 [ext_resource type="PackedScene" uid="uid://tamu3s3ouhh3" path="res://scenes/circus/troupe_overworld.tscn" id="62_0wmme"]
 [ext_resource type="PackedScene" uid="uid://bkm2rk2w5ibna" path="res://scenes/decor/scn_utilitypole.tscn" id="62_omkxg"]
@@ -569,25 +566,6 @@ size = Vector2(28, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6v6ai"]
 size = Vector2(28, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_evlwv"]
-size = Vector2(125, 7)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xxbw"]
-size = Vector2(10, 66.875)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spwqt"]
-friction = 0.01
-bounce = 0.67
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
-radius = 4.47214
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_u0ya7"]
-radius = 6.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sms2x"]
-size = Vector2(150, 102)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhmci"]
 radius = 98.5
 height = 223.0
@@ -659,13 +637,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlv1q"]
 size = Vector2(14, 52)
 
-[sub_resource type="Gradient" id="Gradient_ycmof"]
+[sub_resource type="Gradient" id="Gradient_06enm"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
 colors = PackedColorArray(0, 0.745098, 0.976471, 0.862745, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
 
-[sub_resource type="Curve2D" id="Curve2D_6v6ai"]
+[sub_resource type="Curve2D" id="Curve2D_50lhf"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -135, -26, 114.876, -76.8595, -114.876, 76.8595, -447, 304, 198.907, 3.12066, -198.907, -3.12066, -955, 372, 243.884, 10.4959, -243.884, -10.4959, -1539, 380)
@@ -2289,7 +2267,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.9984231)
+modulate = Color(1, 1, 1, 0.9741312)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2425,129 +2403,11 @@ escape_offset = Vector2(0, -60)
 position = Vector2(-313, -221)
 scale = Vector2(6.75, 4.55)
 
-[node name="Football" type="Node2D" parent="Other" unique_id=1797260510]
-y_sort_enabled = true
+[node name="Football" parent="Other" unique_id=672485704 node_paths=PackedStringArray("is_visible_notif", "greg", "camera") instance=ExtResource("60_06enm")]
 position = Vector2(-353, -272)
-script = ExtResource("36_44od8")
-
-[node name="Fense" type="Node2D" parent="Other/Football" unique_id=1970169781]
-y_sort_enabled = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Other/Football/Fense" unique_id=1524643121]
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Football/Fense/StaticBody2D" unique_id=712708348]
-position = Vector2(42, 18)
-shape = SubResource("RectangleShape2D_evlwv")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Other/Football/Fense/StaticBody2D" unique_id=481691321]
-position = Vector2(41, 86)
-shape = SubResource("RectangleShape2D_evlwv")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Other/Football/Fense/StaticBody2D" unique_id=1296533490]
-position = Vector2(-17, 49)
-shape = SubResource("RectangleShape2D_7xxbw")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Other/Football/Fense/StaticBody2D" unique_id=1682873047]
-position = Vector2(99, 48.4375)
-shape = SubResource("RectangleShape2D_7xxbw")
-
-[node name="house level" type="TileMapLayer" parent="Other/Football/Fense" unique_id=323088606]
-y_sort_enabled = true
-use_parent_material = true
-tile_map_data = PackedByteArray("AAAGAAAAAQATAAcAAAAGAAEAAQARAAcAAAAGAAIAAQARAAcAAAAGAAMAAQARAAcAAAAGAAQAAQARAAcAAAAGAAUAAQATAAgAAAAFAAUAAQASAAkAAAAEAAUAAQASAAkAAAADAAUAAQASAAkAAAACAAUAAQASAAkAAAABAAUAAQASAAkAAAAAAAUAAQASAAkAAAD//wUAAQASAAkAAAD+/wUAAQASAAgAAAD+/wQAAQARAAcAAAD+/wMAAQARAAcAAAD+/wIAAQARAAcAAAD+/wEAAQARAAcAAAD+/wAAAQASAAcAAAD//wAAAQASAAkAAAAAAAAAAQASAAkAAAABAAAAAQASAAkAAAACAAAAAQASAAkAAAADAAAAAQASAAkAAAAEAAAAAQASAAkAAAAFAAAAAQASAAkAAAA=")
-tile_set = ExtResource("15_1u67x")
-
-[node name="Ball" type="RigidBody2D" parent="Other/Football" unique_id=1513329959]
-position = Vector2(37, 45)
-collision_layer = 8
-collision_mask = 139
-mass = 0.01
-physics_material_override = SubResource("PhysicsMaterial_spwqt")
-gravity_scale = 0.0
-continuous_cd = 2
-angular_velocity = 6.28319
-angular_damp_mode = 1
-constant_torque = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Football/Ball" unique_id=1032288005]
-shape = SubResource("CircleShape2D_lo6wj")
-
-[node name="Sprite2D" type="Sprite2D" parent="Other/Football/Ball" unique_id=1520914167]
-texture = ExtResource("9_8v8jp")
-region_enabled = true
-region_rect = Rect2(32, 64, 9, 9)
-
-[node name="InspectArea" parent="Other/Football/Ball" unique_id=1131531395 instance=ExtResource("18_4rtss")]
-key = "ball"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Football/Ball/InspectArea" unique_id=1140123792]
-shape = SubResource("CircleShape2D_u0ya7")
-
-[node name="Baller1" parent="Other/Football" unique_id=1152899230 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("10_dem56")]
-position = Vector2(-8, 40)
-animated_sprite = NodePath("AnimatedSprite2D")
-speed = 6000
-movement_wait = 8.0
-random_movement = true
-chase_target = NodePath("../Ball")
-save = false
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/Football/Baller1" unique_id=1174451729]
-position = Vector2(0, -8)
-sprite_frames = ExtResource("38_nga16")
-animation = &"walk_right"
-
-[node name="Baller2" parent="Other/Football" unique_id=413880604 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("10_dem56")]
-position = Vector2(66, 39)
-animated_sprite = NodePath("AnimatedSprite2D")
-speed = 5000
-movement_wait = 2.0
-random_movement = true
-chase_target = NodePath("../Ball")
-save = false
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Other/Football/Baller2" unique_id=651076495]
-position = Vector2(0, -8)
-sprite_frames = ExtResource("38_nga16")
-animation = &"walk_down"
-
-[node name="CameraArea" type="Area2D" parent="Other/Football" unique_id=1155605858]
-collision_layer = 0
-collision_mask = 10
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Other/Football/CameraArea" unique_id=1204975311]
-position = Vector2(40, 51)
-shape = SubResource("RectangleShape2D_sms2x")
-
-[node name="CamCenter" type="Node2D" parent="Other/Football" unique_id=2119348386]
-position = Vector2(41, 51)
-
-[node name="Sprite2D4" type="Sprite2D" parent="Other/Football" unique_id=1735871407]
-position = Vector2(94, 44)
-texture = ExtResource("54_1mauo")
-centered = false
-offset = Vector2(-6, -2)
-flip_h = true
-
-[node name="Sprite2D3" type="Sprite2D" parent="Other/Football" unique_id=1686599592]
-position = Vector2(-10, 43)
-texture = ExtResource("54_1mauo")
-centered = false
-offset = Vector2(-6, -2)
-
-[node name="Sprite2D" type="Sprite2D" parent="Other/Football" unique_id=1954997325]
-position = Vector2(-12, 59)
-texture = ExtResource("54_83ce0")
-offset = Vector2(0, -14)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Other/Football" unique_id=1392272293]
-position = Vector2(93, 60)
-texture = ExtResource("54_83ce0")
-offset = Vector2(0, -14)
-flip_h = true
+is_visible_notif = NodePath("../IsFootballVisible")
+greg = NodePath("../../Greg")
+camera = NodePath("../../Greg/Camera")
 
 [node name="CampsiteArea" type="Area2D" parent="Other" unique_id=1949152571]
 visible = false
@@ -2680,7 +2540,7 @@ greg = NodePath("../../Greg")
 [node name="Bike" parent="Other" unique_id=524279476 instance=ExtResource("12_8ipa6")]
 position = Vector2(95, -59)
 destination_name = &"town"
-gradient = SubResource("Gradient_ycmof")
+gradient = SubResource("Gradient_06enm")
 
 [node name="BikeCallTimer" type="Timer" parent="Other/Bike" unique_id=545980096 node_paths=PackedStringArray("greg")]
 wait_time = 6.0
@@ -2715,7 +2575,7 @@ position = Vector2(-1157, 392)
 position = Vector2(-1620, 391)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
-curve = SubResource("Curve2D_6v6ai")
+curve = SubResource("Curve2D_50lhf")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-135, -26)

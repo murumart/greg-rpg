@@ -214,9 +214,19 @@ multipanther -> +10 (=99)
 - [X] fix map
 - [X] make zerma calls topical (they are trust me)
 - [X] make chase seq shorter
-- [ ] 1 damage from drenchfoot? at high level?
+- [ ] grandma shakes one way only (maybe its not negating the distance ?)
+- [ ] replace logo in intro
+- [ ] how do you get hotel without zerma tutorial..?
+- [ ] is boquiet.. bouquet.. spelled correctly..?
+- [ ] interact with sign bigger area from behind too pls
+- [ ] `-` shouldnt be a delay thing in speech'
+- [ ] make gamer guy hitbox fatter so yuou dont hit the door
+- [ ] buttons lose focus after exiting load menu
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
+- [ ] intro car interaction hitbox is weird
+- [ ] 1 damage from drenchfoot? at high level?
+- [ ] remove alley plants obscuring movement into second room in house
 - [ ] peptide should work in woodsguy
 - [ ] save campfire litness
 - [ ] decide what do do with bike bells

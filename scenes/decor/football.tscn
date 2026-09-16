@@ -1,0 +1,152 @@
+[gd_scene format=4 uid="uid://dw714831oymvf"]
+
+[ext_resource type="Script" uid="uid://ct4x4l2aeh408" path="res://scenes/rooms/town/scr_town_football.gd" id="1_0yrji"]
+[ext_resource type="TileSet" uid="uid://bycwpf48pd6y7" path="res://resources/res_overworld_tiles.tres" id="2_pilo7"]
+[ext_resource type="Texture2D" uid="uid://cjp5vxlhgnvpf" path="res://sprites/world/building/spr_decor.png" id="3_s371h"]
+[ext_resource type="PackedScene" uid="uid://cv4g5jhr5kmef" path="res://scenes/tech/scn_inspect_area.tscn" id="4_5eseo"]
+[ext_resource type="PackedScene" uid="uid://xk5mtrl26xyo" path="res://scenes/characters/overworld/scn_overworld_character.tscn" id="5_sctnv"]
+[ext_resource type="SpriteFrames" uid="uid://bavtmqfppokma" path="res://resources/characters/sfr_kid.tres" id="6_glyuf"]
+[ext_resource type="Texture2D" uid="uid://ddg5grs2fnf6g" path="res://sprites/world/object/spr_goal_background.png" id="7_erkww"]
+[ext_resource type="Texture2D" uid="uid://b88irvjomrods" path="res://sprites/world/object/spr_goal.png" id="8_sj2wy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evlwv"]
+size = Vector2(125, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xxbw"]
+size = Vector2(10, 66.875)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_spwqt"]
+friction = 0.01
+bounce = 0.67
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo6wj"]
+radius = 4.47214
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0ya7"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sms2x"]
+size = Vector2(150, 102)
+
+[node name="Football" type="Node2D" unique_id=672485704]
+y_sort_enabled = true
+script = ExtResource("1_0yrji")
+
+[node name="Fense" type="Node2D" parent="." unique_id=2013843486]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fense" unique_id=1804603592]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fense/StaticBody2D" unique_id=780976401]
+position = Vector2(42, 18)
+shape = SubResource("RectangleShape2D_evlwv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Fense/StaticBody2D" unique_id=963147311]
+position = Vector2(41, 86)
+shape = SubResource("RectangleShape2D_evlwv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Fense/StaticBody2D" unique_id=2113422121]
+position = Vector2(-17, 49)
+shape = SubResource("RectangleShape2D_7xxbw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Fense/StaticBody2D" unique_id=1124934615]
+position = Vector2(99, 48.4375)
+shape = SubResource("RectangleShape2D_7xxbw")
+
+[node name="house level" type="TileMapLayer" parent="Fense" unique_id=65964726]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAGAAAAAQATAAcAAAAGAAEAAQARAAcAAAAGAAIAAQARAAcAAAAGAAMAAQARAAcAAAAGAAQAAQARAAcAAAAGAAUAAQATAAgAAAAFAAUAAQASAAkAAAAEAAUAAQASAAkAAAADAAUAAQASAAkAAAACAAUAAQASAAkAAAABAAUAAQASAAkAAAAAAAUAAQASAAkAAAD//wUAAQASAAkAAAD+/wUAAQASAAgAAAD+/wQAAQARAAcAAAD+/wMAAQARAAcAAAD+/wIAAQARAAcAAAD+/wEAAQARAAcAAAD+/wAAAQASAAcAAAD//wAAAQASAAkAAAAAAAAAAQASAAkAAAABAAAAAQASAAkAAAACAAAAAQASAAkAAAADAAAAAQASAAkAAAAEAAAAAQASAAkAAAAFAAAAAQASAAkAAAA=")
+tile_set = ExtResource("2_pilo7")
+
+[node name="Ball" type="RigidBody2D" parent="." unique_id=1627552388]
+position = Vector2(37, 45)
+collision_layer = 8
+collision_mask = 139
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_spwqt")
+gravity_scale = 0.0
+continuous_cd = 2
+angular_velocity = 6.28319
+angular_damp_mode = 1
+constant_torque = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=121321424]
+shape = SubResource("CircleShape2D_lo6wj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1504982222]
+texture = ExtResource("3_s371h")
+region_enabled = true
+region_rect = Rect2(32, 64, 9, 9)
+
+[node name="InspectArea" parent="Ball" unique_id=1131531395 instance=ExtResource("4_5eseo")]
+key = "ball"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/InspectArea" unique_id=857320350]
+shape = SubResource("CircleShape2D_u0ya7")
+
+[node name="Baller1" parent="." unique_id=623431601 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("5_sctnv")]
+position = Vector2(-8, 40)
+animated_sprite = NodePath("AnimatedSprite2D")
+speed = 6000
+movement_wait = 8.0
+random_movement = true
+chase_target = NodePath("../Ball")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Baller1" unique_id=1831447327]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("6_glyuf")
+animation = &"walk_right"
+
+[node name="Baller2" parent="." unique_id=1102375792 node_paths=PackedStringArray("animated_sprite", "chase_target") instance=ExtResource("5_sctnv")]
+position = Vector2(66, 39)
+animated_sprite = NodePath("AnimatedSprite2D")
+speed = 5000
+movement_wait = 2.0
+random_movement = true
+chase_target = NodePath("../Ball")
+save = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Baller2" unique_id=1810565131]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("6_glyuf")
+animation = &"walk_down"
+
+[node name="CameraArea" type="Area2D" parent="." unique_id=717475549]
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea" unique_id=1434669483]
+position = Vector2(40, 51)
+shape = SubResource("RectangleShape2D_sms2x")
+
+[node name="CamCenter" type="Node2D" parent="." unique_id=94101646]
+position = Vector2(41, 51)
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=449350995]
+position = Vector2(94, 44)
+texture = ExtResource("7_erkww")
+centered = false
+offset = Vector2(-6, -2)
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1469278413]
+position = Vector2(-10, 43)
+texture = ExtResource("7_erkww")
+centered = false
+offset = Vector2(-6, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=360530605]
+position = Vector2(-12, 59)
+texture = ExtResource("8_sj2wy")
+offset = Vector2(0, -14)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=521231289]
+position = Vector2(93, 60)
+texture = ExtResource("8_sj2wy")
+offset = Vector2(0, -14)
+flip_h = true
