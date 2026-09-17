@@ -130,7 +130,7 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("mh, but she stays out of trouble... diligently...")
 				dlg.al("something seems to weigh her down.")
 				dlg.al("but you... might be elevated by the very same thing.")
-				dlg.al("mh... whatever. keep out of trouble, boy")
+				dlg.al("mh... whatever. keep out of trouble, boy.")
 			else:
 				dlg.al("she's gone...?")
 				dlg.al("...mh. boy...")

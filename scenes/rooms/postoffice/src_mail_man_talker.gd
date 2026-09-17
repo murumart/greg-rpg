@@ -108,7 +108,7 @@ func first_time_dialogue() -> void:
 			else:
 				dlg.add_line(dl.mk("i have no idea who you are."))
 				dlg.clear_emo().add_line(dl.mk("if you came to this town to look for yourself..."))
-				dlg.add_line(dl.mk("...ha, you won't like what you might find."))
+				dlg.add_line(dl.mk("...ha, you will not like what you might find."))
 			aval_choices.erase("me")
 			await dlg.speak_choice()
 		elif choice.begins_with("bye"):

@@ -212,18 +212,34 @@ multipanther -> +10 (=99)
 - [X] move grreg back to xprefb scene start
 - [X] replace nasturtium
 - [X] fix map
-- [X] make zerma calls topical (they are trust me)
 - [X] make chase seq shorter
+- [ ] does zerma say anything in town east (i dont think so)
+- [ ] softlock in tutorial when you dequip the sideeye...
+- [ ] nerf kor sten..?
+- [ ] tarikas forgets you talked about flowers
+- [ ] what happens in intro when you touch the interacttion area again?
+- [ ] naturalist shows up after vampire fight..
+- [ ] circus is in grass house backyar.d..?
+- [ ] get stuck in tree to the left of pier
 - [ ] grandma shakes one way only (maybe its not negating the distance ?)
+- [ ] car hitbox is big hits you from the side..?
+- [ ] add spirits to equipped spirits when getting them initially when have space
 - [ ] replace logo in intro
 - [ ] how do you get hotel without zerma tutorial..?
 - [ ] is boquiet.. bouquet.. spelled correctly..?
+- [ ] allow loading when saving disabled
+- [ ] test fighting someone who gets hit with car
+- [ ] thiugs spawn in store wall
 - [ ] interact with sign bigger area from behind too pls
 - [ ] `-` shouldnt be a delay thing in speech'
 - [ ] make gamer guy hitbox fatter so yuou dont hit the door
 - [ ] buttons lose focus after exiting load menu
 - [ ] autosaves after bosses check if those exist
 - [ ] nerf turf2..
+- [ ] add exit button to pennistone
+- [ ] maybe pils should give poison immune
+- [ ] replace enemy plaster with bread or something
+- [ ] make weird call rarer
 - [ ] intro car interaction hitbox is weird
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] remove alley plants obscuring movement into second room in house
@@ -245,6 +261,8 @@ multipanther -> +10 (=99)
 - [X] cool letter background in her battle
 - [X] cool letter background in scene of her falling
 - [X] turn glass to xp when leaving the woods i guess..
+- [X] change begonia description
+- [ ] redo spirit typing bar to look like logo + have letter background..?
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] sliding puzzle tutorial npc
