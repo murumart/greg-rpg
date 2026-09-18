@@ -1,9 +1,12 @@
 extends Node2D
 @onready var naturalist: OverworldCharacter = $Naturalist
+@onready var campsite_kid: OverworldCharacter = $CampsiteKid
+@onready var campfire: Campfire = $Campfire
 
 
 func _ready() -> void:
-
+	if not campfire.lit and is_instance_valid(campsite_kid):
+		campsite_kid.queue_free()
 	_naturalist_setup()
 
 

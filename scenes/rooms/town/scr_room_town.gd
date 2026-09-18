@@ -40,8 +40,6 @@ func naturalist_setup() -> void:
 
 func kid_setup() -> void:
 	var first_encounter := $Houses/NeighbourHouse/KidEncounter as OverworldCharacter
-	if not $Other/CampfireSite/Campfire.lit:
-		$Other/CampfireSite/CampsiteKid.queue_free()
 	if DAT.get_data("kid_encountered", false) or Sunsetter.is_raining:
 		first_encounter.queue_free()
 		return

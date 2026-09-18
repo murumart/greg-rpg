@@ -38,30 +38,6 @@ DIALOGUE insp_garage_window
 	in the garage, automotive tools are neatly laid in a puddle of oil.
 
 
-DIALOGUE insp_campfire_site
-	a campfire spot. hasn't been used in a while.
-
-
-DIALOGUE insp_campfire_has_lighter
-CHOICES yes,no
-	you have a lighter. would you like to light this?
-
-
-DIALOGUE insp_campfire_has_spirit
-CHOICES yes,no
-	you have a fire in your soul. would you like to light this?
-
-
-DIALOGUE insp_campfire_spirit_no_sp
-	but there was not enough spirit power.
-
-
-DIALOGUE insp_lit_campfire
-	this campfire is alight.
-CHOICES yes,no
-	you could use the fire to make things. do you want to look closer?
-
-
 DIALOGUE insp_postboxes
 	post boxes.
 

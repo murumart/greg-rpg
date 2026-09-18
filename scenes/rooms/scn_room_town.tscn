@@ -554,6 +554,11 @@ title = "sellshell"
 input = Array[StringName]([&"eggshell"])
 silver_granted = 20
 
+[sub_resource type="Resource" id="Resource_aymoh"]
+script = ExtResource("33_ycmof")
+data_key = &"raining"
+metadata/_custom_type_script = "uid://qboohb38rsxs"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ab04q"]
 size = Vector2(71, 20)
 
@@ -770,7 +775,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(-95, -38)
+position = Vector2(507, -432)
 metadata/_edit_group_ = true
 
 [node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
@@ -2047,10 +2052,10 @@ region_rect = Rect2(48, 32, 16, 24)
 position = Vector2(-9, 17)
 
 [node name="CampsiteKid" parent="Other/CampfireSite" unique_id=1667126163 instance=ExtResource("25_ffcbh")]
-visible = false
 position = Vector2(29, -6)
 collision_mask = 1
 trades = Array[ExtResource("26_ac4pt")]([SubResource("Resource_xq6fg")])
+existence_predicate = SubResource("Resource_aymoh")
 
 [node name="Roadblock" type="Node2D" parent="Other/CampfireSite" unique_id=1084817368]
 
@@ -2267,7 +2272,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, -0.97331035)
+modulate = Color(1, 1, 1, 0.97163045)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2533,8 +2538,9 @@ key = "police_block"
 position = Vector2(3, -14)
 shape = SubResource("RectangleShape2D_vlv1q")
 
-[node name="Troupe" parent="Other" unique_id=491413304 node_paths=PackedStringArray("greg") instance=ExtResource("62_0wmme")]
+[node name="Troupe" parent="Other" unique_id=491413304 node_paths=PackedStringArray("other_kids", "greg") instance=ExtResource("62_0wmme")]
 position = Vector2(554, 20)
+other_kids = [NodePath("../../Houses/NeighbourHouse/KidEncounter"), NodePath("../CampfireSite/CampsiteKid")]
 greg = NodePath("../../Greg")
 
 [node name="Bike" parent="Other" unique_id=524279476 instance=ExtResource("12_8ipa6")]

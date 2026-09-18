@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0drw"]
 size = Vector2(31, 15)
 
-[node name="Campfire" type="Node2D" unique_id=796636494 groups=["save_me"]]
+[node name="Campfire" type="Node2D" unique_id=796636494]
 script = ExtResource("2_02woc")
 
 [node name="InspectArea" type="Area2D" parent="." unique_id=429886144]

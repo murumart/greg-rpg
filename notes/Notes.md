@@ -215,6 +215,7 @@ multipanther -> +10 (=99)
 - [X] make chase seq shorter
 - [X] is boquiet.. bouquet.. spelled correctly..?
 - [X] does zerma say anything in town east (i dont think so)
+- [X] save campfire litness
 - [ ] softlock in tutorial when you dequip the sideeye...
 - [ ] nerf kor sten..?
 - [ ] tarikas forgets you talked about flowers
@@ -244,7 +245,6 @@ multipanther -> +10 (=99)
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] remove alley plants obscuring movement into second room in house
 - [ ] peptide should work in woodsguy
-- [ ] save campfire litness
 - [ ] decide what do do with bike bells
 - [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict
@@ -262,13 +262,14 @@ multipanther -> +10 (=99)
 - [X] cool letter background in scene of her falling
 - [X] turn glass to xp when leaving the woods i guess..
 - [X] change begonia description
+- [X] make campfire less horrible to use
+- [X] use xending as a side room lore secret garden entrance
 - [ ] redo spirit typing bar to look like logo + have letter background..?
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
-- [ ] use xending as a side room lore secret garden entrance
 - [ ] savescumming at the random prize..
 - [ ] savescumming at the random prize..
 - [ ] way to cancel shopping basket
@@ -277,7 +278,6 @@ multipanther -> +10 (=99)
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around
 - [ ] do smthabout science guy. remove or add to east
-- [ ] make campfire less horrible to use
 - [ ] add greenhousicle to sg hub
 
 ### nice

@@ -272,16 +272,6 @@ DIALOGUE store_cashier_absent
 	there's no cashier left to serve you at this time.
 
 
-DIALOGUE campfire_exchanges
-CHOICES
-	what would you like to do?
-
-
-DIALOGUE campfire_exchange_confirm
-CHOICES yes,no,info
-	you really want to %s?
-
-
 DIALOGUE bounty_board
 CHOICES exit,thugs,stryanmls,brknfishr,sunspirit,vampire,president
 	which bounty to check out in detail?

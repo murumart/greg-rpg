@@ -11,9 +11,7 @@ const Ballgame := preload("res://scenes/circus/ball_popping_minigame.tscn")
 @onready var caged_animal: OverworldCharacter = $Animal/CagedAnimal
 @onready var safeguard_collision: CollisionShape2D = $Animal/SafeguardCollision
 
-@onready var other_kids := [get_node_or_null("../../Houses/NeighbourHouse/KidEncounter"),
-	get_node_or_null("../../Houses/Skatepark/Goodness/KidOverworld"),
-	get_node_or_null("../CampfireSite/CampsiteKid")]
+@export var other_kids: Array[OverworldCharacter]
 
 @export var greg: PlayerOverworld
 var greg_parent: Node = null
