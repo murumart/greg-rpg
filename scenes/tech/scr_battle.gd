@@ -6,6 +6,8 @@ class_name Battle
 # (speedier = faster cooldown) and then acting, during which time
 # others cannot act. once one team is defeated, the battle ends.
 
+const SpiritNameScreen = preload("res://scenes/gui/scr_spirit_name_screen.gd")
+
 signal player_finished_acting
 signal ending
 signal battle_loaded
@@ -64,9 +66,10 @@ var keep_arranging := true # use enemies_node.arrange if still needed
 @onready var item_info_label := $UI/Panel/ScreenItemSelect/ItemInfoLabel
 
 @onready var screen_party_info := %ScreenPartyInfo
-@onready var screen_spirit_name := %ScreenSpiritName
+@onready var screen_spirit_name: SpiritNameScreen = %ScreenSpiritName
 @onready var screen_dance_battle := $UI/Panel/ScreenDanceBattle as ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
+
 @onready var current_info := %CurrentInfo as PartyMemberInfoPanel
 @onready var status_effects_list := $UI/Panel/ScreenMainActions/StatusEffectsList
 @onready var victory_text := %VictoryText
@@ -76,10 +79,7 @@ var keep_arranging := true # use enemies_node.arrange if still needed
 @onready var item_button := %ItemButton
 @onready var selected_guy_display := %SelectedGuy
 @onready var log_text := %MessageContainer as MessageContainer
-@onready var spirit_name := %SpiritName
-@onready var spirit_speak_timer := %SpiritSpeakTimer
-@onready var spirit_speak_timer_progress := %SpiritSpeakTimerProgress
-var spirit_speak_timer_wait := 2.0
+
 
 @onready var party_member_panel_container := $UI/Panel/ScreenPartyInfo/Container
 
@@ -100,7 +100,6 @@ var xp_pool := 0:
 
 var listening_to_player_input := false
 var current_guy: BattleActor
-var loaded_spirits := {}
 var current_target: BattleActor
 
 var death_reason := DeathScreen.DeathReasons.DEFAULT
@@ -130,9 +129,12 @@ func _ready() -> void:
 	spirit_button.pressed.connect(_on_spirit_pressed)
 	item_button.selected.connect(set_description)
 	item_button.pressed.connect(_on_item_pressed)
-	spirit_name.text_changed.connect(_on_spirit_name_changed)
-	spirit_name.text_submitted.connect(_on_spirit_name_submitted)
-	spirit_speak_timer.timeout.connect(_on_spirit_speak_timer_timeout)
+
+	screen_spirit_name.spirit_gotten.connect(_on_spirit_gotten)
+	screen_spirit_name.invalid_spirit_gotten.connect(_on_spirit_failed)
+	screen_spirit_name.not_enough_sp_spirit_gotten.connect(_on_spirit_failed)
+	screen_spirit_name.timed_out.connect(_on_spirit_failed)
+
 	screen_dance_battle.end.connect(_dance_battle_ended)
 	OPT.battle_text_opacity_changed.connect(func():
 		log_text.modulate.a = OPT.get_opt("battle_text_opacity")
@@ -153,12 +155,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	match doing:
-		Doings.SPIRIT_NAME:
-			# match the timer with the progress bar
-			spirit_speak_timer_progress.value = remap(
-					spirit_speak_timer.time_left, 0.0,
-					spirit_speak_timer_wait, 0.0, 100.0)
 	if screen_party_info.visible:
 		update_party()
 
@@ -679,94 +675,29 @@ func open_party_info_screen() -> void:
 
 
 func open_spirit_name_screen() -> void:
-	spirit_name.add_theme_font_size_override("font_size", 16)
 	doing = Doings.SPIRIT_NAME
 	held_item_id = ""
-	resize_panel(4, 0.1)
-	spirit_name.text = ""
-	spirit_name.editable = true
+	resize_panel(0, 0.1)
 	hide_screens()
-	screen_spirit_name.show()
-	spirit_speak_timer.paused = false
-	spirit_speak_timer.start(spirit_speak_timer_wait)
-	for i in current_guy.character.spirits:
-		var spirit: Spirit = ResMan.get_spirit(i)
-		loaded_spirits[spirit.name] = i
-	while not spirit_name.has_focus():
-		spirit_name.grab_focus()
+	screen_spirit_name.open()
 
 
-# you didn't type the spirit name fast enough
-func _on_spirit_speak_timer_timeout() -> void:
-	if not listening_to_player_input:
-		return
-	listening_to_player_input = false
-	SND.play_sound(
-			preload("res://sounds/error.ogg"),
-			{pitch_scale = 0.7, bus = "ECHO"})
-	spirit_name.text = "moment passed"
-	spirit_name.modulate = Color(2, 0.2, 0.4)
-	spirit_name.editable = false
-	append_action_history("spirit_fail")
-	await get_tree().create_timer(0.5).timeout
-	current_guy.turn_finished()
+func _on_spirit_gotten(id: StringName) -> void:
+	var spirit := ResMan.get_spirit(id)
+	current_guy.use_spirit(id, current_target)
+	SOL.vfx_damage_number(Vector2(0, 32), "-" + str(spirit.cost),
+			Color.DEEP_SKY_BLUE)
+	append_action_history(
+			"spirit", {"spirit":
+				id, "target": current_target})
+	_used_spirit = true
 	open_party_info_screen()
 
 
-func _on_spirit_name_changed(to: String) -> void:
-	to = to.to_lower() # no uppercase
-	spirit_name.text = to
-	spirit_name.caret_column = to.length()
-	spirit_name.add_theme_font_size_override("font_size", 16)
-	if to.length() > 12:
-		spirit_name.add_theme_font_size_override("font_size", 8)
-	if to in loaded_spirits.keys():
-		_on_spirit_name_submitted(to)
-		return
-
-	SND.play_sound(
-			preload("res://sounds/gui.ogg"),
-			{"bus": "ECHO", "pitch_scale":
-				[1.0, 1.0, 1.18921, 1.7818].pick_random()})
-	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
-	tw.tween_property(spirit_name, "modulate", Color(0.8, 0.8, 8.0, 2.0), 0.1)
-	tw.tween_property(spirit_name, "modulate", Color(1, 1, 1, 1), 0.3)
-
-
-func _on_spirit_name_submitted(submission: String) -> void:
-	if not listening_to_player_input:
-		return
-	listening_to_player_input = false
-	get_viewport().gui_release_focus()
-	spirit_speak_timer.paused = true
-	if submission in loaded_spirits.keys():
-		spirit_name.editable = false
-		var spirit_id = loaded_spirits[submission]
-		var spirit := ResMan.get_spirit(spirit_id)
-		if spirit.cost <= current_guy.character.magic:
-			SND.play_sound(preload("res://sounds/spirit/spirit_name_found.ogg"))
-			var tw := create_tween().set_trans(Tween.TRANS_QUART)
-			tw.tween_property(spirit_name, "modulate", Color(2, 2, 2, 10), 1.5)
-
-			await get_tree().create_timer(1.5).timeout
-			current_guy.use_spirit(spirit_id, current_target)
-			SOL.vfx_damage_number(Vector2(0, 32), "-" + str(spirit.cost),
-					Color.DEEP_SKY_BLUE)
-			append_action_history(
-					"spirit", {"spirit":
-						spirit_id, "target": current_target})
-			_used_spirit = true
-			open_party_info_screen()
-			return
-		else:
-			spirit_name.text = "not enough sp!"
-
-	SND.play_sound(preload("res://sounds/error.ogg"), {bus = "ECHO"})
+func _on_spirit_failed() -> void:
 	append_action_history("spirit_fail")
-	await get_tree().create_timer(0.5).timeout
 	current_guy.turn_finished()
 	open_party_info_screen()
-	erase_floating_spirits()
 
 
 # horrible function
@@ -883,7 +814,6 @@ func _on_spirit_pressed() -> void:
 	doing = Doings.SPIRIT
 	open_list_screen()
 	SND.menusound()
-	spirit_name.modulate = Color(1, 1, 1, 1)
 
 
 func _on_item_pressed() -> void:
@@ -1011,7 +941,7 @@ func hide_screens() -> void:
 	screen_list_select.hide()
 	screen_main_actions.hide()
 	screen_party_info.hide()
-	screen_spirit_name.hide()
+	screen_spirit_name.close()
 
 
 # woh

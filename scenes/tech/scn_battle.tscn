@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cf1yig2q6wh25"]
 
 [ext_resource type="Script" uid="uid://0654cihmoj1x" path="res://scenes/tech/scr_battle.gd" id="1_5j3jy"]
+[ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="2_aqb7u"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="2_hinxn"]
-[ext_resource type="Resource" uid="uid://c0ncj8xjt5dma" path="res://resources/battle_infos/grandma_bossfight.tres" id="2_putf3"]
+[ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="3_s7pj0"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="3_v2dlj"]
 [ext_resource type="Script" uid="uid://cwn4t0ihelf1" path="res://code/scr_even_spread.gd" id="4_3v3ux"]
 [ext_resource type="Script" uid="uid://cmin2i5j7iysd" path="res://scenes/tech/scr_reference_button.gd" id="4_ht2pp"]
@@ -13,7 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://cami7pi4o2hiw" path="res://scenes/gui/scn_screen_dance_battle.tscn" id="9_sbskt"]
 [ext_resource type="Script" uid="uid://dkf3yix03l3hc" path="res://code/scr_cheat_node.gd" id="10_7y584"]
 [ext_resource type="Script" uid="uid://5ft3meh2ry86" path="res://code/scr_autoscroll_component.gd" id="11_jcqcf"]
+[ext_resource type="PackedScene" uid="uid://b73mqmw2kwskc" path="res://scenes/gui/scn_spirit_name_screen.tscn" id="12_o8qi1"]
 [ext_resource type="AudioStream" uid="uid://3xpaekbolixj" path="res://sounds/gui.ogg" id="13_putf3"]
+
+[sub_resource type="Resource" id="Resource_o8qi1"]
+script = ExtResource("3_s7pj0")
+enemies = Array[StringName]([&"cashier_nice", &"cashier_nice", &"cashier_nice", &"cashier_nice"])
+metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
 bg_color = Color(0, 0, 0, 1)
@@ -22,40 +29,9 @@ bg_color = Color(0, 0, 0, 1)
 atlas = ExtResource("8_teagk")
 region = Rect2(0, 6, 6, 6)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6aa0q"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 2
-border_width_top = 3
-border_width_right = 2
-border_width_bottom = 3
-border_color = Color(0, 0.74902, 0.945098, 1)
-border_blend = true
-corner_radius_top_left = 5
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_size = 4
-shadow_offset = Vector2(1, 1)
-anti_aliasing_size = 2.603
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8778k"]
-bg_color = Color(0.235294, 0.686275, 0.592157, 0.203922)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o50qe"]
-
 [node name="Battle" type="Node2D" unique_id=15726611]
 script = ExtResource("1_5j3jy")
-load_options = ExtResource("2_putf3")
+load_options = SubResource("Resource_o8qi1")
 
 [node name="Camera" parent="." unique_id=2074817026 instance=ExtResource("2_hinxn")]
 ignore_rotation = false
@@ -89,12 +65,13 @@ life_time = 1.5
 
 [node name="Panel" type="Panel" parent="UI" unique_id=1698590563]
 layout_mode = 0
-offset_top = 76.0
+offset_top = 120.0
 offset_right = 160.0
 offset_bottom = 120.0
 
 [node name="ScreenMainActions" type="Control" parent="UI/Panel" unique_id=1067514864]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 0
 offset_right = 160.0
@@ -404,49 +381,12 @@ layout_mode = 2
 [node name="MemberInfo3" parent="UI/Panel/ScreenPartyInfo/Container" unique_id=1291408481 instance=ExtResource("7_is2uq")]
 layout_mode = 2
 
-[node name="ScreenSpiritName" type="Control" parent="UI/Panel" unique_id=972928220]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 0
-offset_top = -39.0
-offset_right = 160.0
-offset_bottom = 1.0
-
-[node name="SpiritName" type="LineEdit" parent="UI/Panel/ScreenSpiritName" unique_id=1325420620]
+[node name="ScreenSpiritName" parent="UI/Panel" unique_id=1662167000 node_paths=PackedStringArray("battle") instance=ExtResource("12_o8qi1")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 3.0
-offset_top = 10.0
-offset_right = 157.0
-offset_bottom = 32.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_uneditable_color = Color(1, 0, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_6aa0q")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_8778k")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o50qe")
-placeholder_text = "speak a name"
-alignment = 1
-max_length = 28
-context_menu_enabled = false
-shortcut_keys_enabled = false
-middle_mouse_paste_enabled = false
-selecting_enabled = false
-virtual_keyboard_enabled = false
-
-[node name="SpiritSpeakTimerProgress" type="ProgressBar" parent="UI/Panel/ScreenSpiritName" unique_id=29571996]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 160.0
-offset_bottom = 35.0
-value = 100.0
-show_percentage = false
-
-[node name="SpiritSpeakTimer" type="Timer" parent="UI/Panel/ScreenSpiritName" unique_id=519276673]
-unique_name_in_owner = true
-process_callback = 0
-one_shot = true
+offset_top = -73.0
+offset_bottom = -33.0
+battle = NodePath("../../..")
 
 [node name="ScreenEnd" type="Control" parent="UI/Panel" unique_id=63004720]
 unique_name_in_owner = true
