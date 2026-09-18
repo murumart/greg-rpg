@@ -68,7 +68,7 @@ func _on_tarikas_inspected() -> void:
 		dlg.al("i hold the seventh...")
 		dlg.al("...")
 		dlg.al("there's nothing else for me to do than to give... it to you.")
-		dlg.clear_char().al("(you received the begonia.)").sitem_to_give(&"flower0")
+		dlg.clear_char().al("(you received the hollyhock.)").sitem_to_give(&"flower1")
 		dlg.set_char("tarikas").al("you have enough... now.")
 		dlg.al("... she's waiting.")
 		dlg.al("fare well.")
@@ -212,6 +212,7 @@ func _on_tarikas_inspected() -> void:
 		elif choice == &"flowers":
 			dlg.reset()
 			_mention("flowers")
+			talked_flowers_last_level = flowers_c
 			if flowers_c < 2:
 				dlg.al("the... [color=%s]flowers[/color]?" % dlg.FLOWERCOLOR)
 				dlg.al("...")

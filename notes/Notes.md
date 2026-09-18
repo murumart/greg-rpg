@@ -226,21 +226,21 @@ multipanther -> +10 (=99)
 - [X] replace logo in intro
 - [X] intro car interaction hitbox is weird
 - [X] car hitbox is big hits you from the side..?
-- [ ] tarikas forgets you talked about flowers
+- [X] tarikas forgets you talked about flowers
+- [X] make gamer guy hitbox fatter so yuou dont hit the door
+- [X] make weird call rarer
+- [X] thiugs spawn in store wall
+- [X] how do you get hotel without zerma tutorial..?
+- [X] get stuck in tree to the left of pier
+- [X] `-` shouldnt be a delay thing in speech'
+- [ ] give tarikas aa lore
 - [ ] naturalist shows up after vampire fight..
 - [ ] circus is in grass house backyar.d..?
-- [ ] make weird call rarer
 - [ ] autosaves after bosses check if those exist
-- [ ] get stuck in tree to the left of pier
-- [ ] thiugs spawn in store wall
 - [ ] test fighting someone who gets hit with car
 - [ ] buttons lose focus after exiting load menu
-- [ ] how do you get hotel without zerma tutorial..?
-- [ ] `-` shouldnt be a delay thing in speech'
-- [ ] make gamer guy hitbox fatter so yuou dont hit the door
 - [ ] add exit button to pennistone
 - [ ] nerf turf2..
-- [ ] nerf kor sten..?
 - [ ] maybe pils should give poison immune
 - [ ] replace enemy plaster with bread or something
 - [ ] 1 damage from drenchfoot? at high level?

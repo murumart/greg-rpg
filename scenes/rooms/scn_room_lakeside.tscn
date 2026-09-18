@@ -134,15 +134,21 @@ size = Vector2(66, 42.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fm3da"]
 size = Vector2(56, 121)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvxqu"]
+[sub_resource type="Gradient" id="Gradient_kvxqu"]
 resource_local_to_scene = true
-size = Vector2(6, 3)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
+colors = PackedColorArray(0, 0.745098, 0.976471, 0.862745, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6io26"]
 resource_local_to_scene = true
+size = Vector2(6, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onlym"]
+resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_onlym"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rs5wr"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -409,7 +415,7 @@ sunset_trigger_gates = Array[StringName]([&"none"])
 metadata/_custom_type_script = "uid://boo8mif8ch6i8"
 
 [node name="Greg" parent="." unique_id=1190946658 instance=ExtResource("4_obfq8")]
-position = Vector2(139, -8)
+position = Vector2(-318, -152)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" unique_id=21838488 instance=ExtResource("5_gxb62")]
@@ -656,6 +662,7 @@ region_rect = Rect2(0, 48, 16, 16)
 position = Vector2(485, -135)
 ghost = 1
 destination_name = &"fishhut"
+gradient = SubResource("Gradient_kvxqu")
 
 [node name="SleepyFlower" parent="Areas" unique_id=1381150397 instance=ExtResource("21_wb2do")]
 position = Vector2(37, 396)
@@ -670,13 +677,13 @@ chase_target = NodePath("../../Greg")
 chase_distance = 200
 
 [node name="CollisionShape" parent="Areas/FastGuy" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_kvxqu")
-
-[node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" parent_id_path=PackedInt32Array(1503159895, 1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_6io26")
 
+[node name="CollisionShape2D" parent="Areas/FastGuy/CollisionDetectionArea" parent_id_path=PackedInt32Array(1503159895, 1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_onlym")
+
 [node name="DetectionShape" parent="Areas/FastGuy/DetectionArea" parent_id_path=PackedInt32Array(1503159895, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_onlym")
+shape = SubResource("CircleShape2D_rs5wr")
 
 [node name="BikeHint" parent="Areas" unique_id=623431601 instance=ExtResource("12_tsmfn")]
 position = Vector2(-214, -189)
@@ -909,7 +916,7 @@ scale = Vector2(-1, 1)
 type = 2
 
 [node name="Tree14" parent="Trees" unique_id=1185801425 instance=ExtResource("4_xwmth")]
-position = Vector2(-343, -149)
+position = Vector2(-342, -149)
 scale = Vector2(-1, 1)
 type = 5
 
@@ -1280,9 +1287,9 @@ position = Vector2(-356, 197)
 type = 2
 
 [node name="Tree100" parent="Trees" unique_id=152799200 instance=ExtResource("4_xwmth")]
-position = Vector2(-393, 99)
+position = Vector2(-399, 99)
 scale = Vector2(-1, 1)
-type = 3
+type = 2
 
 [node name="Tree101" parent="Trees" unique_id=1685949213 instance=ExtResource("4_xwmth")]
 position = Vector2(-471, 35)

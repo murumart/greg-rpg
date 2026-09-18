@@ -101,7 +101,7 @@ size = Vector2(40, 88)
 size = Vector2(19.5, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv1pm"]
-size = Vector2(21, 21.5)
+size = Vector2(13.999998, 21.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhndr"]
 size = Vector2(26, 11)
@@ -775,7 +775,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(-166, 232)
+position = Vector2(-50, -41)
 metadata/_edit_group_ = true
 
 [node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
@@ -1345,7 +1345,7 @@ gate_id = &"town-gaming"
 spawn_point = NodePath("Node2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Pairhouse/DoorArea2" unique_id=1334654345]
-position = Vector2(0, 5.25)
+position = Vector2(-1.9073486e-05, 5.25)
 shape = SubResource("RectangleShape2D_jv1pm")
 
 [node name="Node2D" type="Node2D" parent="Houses/Pairhouse/DoorArea2" unique_id=453986338]
@@ -1369,9 +1369,11 @@ replenish_seconds = 5280
 item = &"sugar_lemon"
 
 [node name="Guy" parent="Houses/Pairhouse" unique_id=1051556273 instance=ExtResource("10_dem56")]
-position = Vector2(24, 21)
+position = Vector2(24.000008, 18.000061)
 rotation = 3.14159
 scale = Vector2(1, -1)
+collision_extents = Vector2i(14, 3)
+save = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/Pairhouse/Guy" unique_id=1971568225]
 position = Vector2(0, -8)
@@ -2272,6 +2274,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
+modulate = Color(1, 1, 1, 0.9999998)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2945,7 +2948,7 @@ wait_time = 9.0
 spawn_radius = 64.0
 
 [node name="ThugSpawner2" parent="Areas" unique_id=991353031 node_paths=PackedStringArray("player") instance=ExtResource("13_a4qs7")]
-position = Vector2(378, 12)
+position = Vector2(340, -5)
 spawn_enemy = ExtResource("14_cftpx")
 max_enemies = 2
 player = NodePath("../../Greg")

@@ -6,7 +6,7 @@ class_name TextBox
 signal speak_finished
 signal letter_spoken(letter: String, ix: int)
 
-const SHORT_WAIT := ".,:;-?!"
+const SHORT_WAIT := ".,:;?!"
 
 var _bbcodeless_text: String
 
