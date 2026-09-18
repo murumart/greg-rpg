@@ -213,7 +213,8 @@ multipanther -> +10 (=99)
 - [X] replace nasturtium
 - [X] fix map
 - [X] make chase seq shorter
-- [ ] does zerma say anything in town east (i dont think so)
+- [X] is boquiet.. bouquet.. spelled correctly..?
+- [X] does zerma say anything in town east (i dont think so)
 - [ ] softlock in tutorial when you dequip the sideeye...
 - [ ] nerf kor sten..?
 - [ ] tarikas forgets you talked about flowers
@@ -226,7 +227,6 @@ multipanther -> +10 (=99)
 - [ ] add spirits to equipped spirits when getting them initially when have space
 - [ ] replace logo in intro
 - [ ] how do you get hotel without zerma tutorial..?
-- [ ] is boquiet.. bouquet.. spelled correctly..?
 - [ ] allow loading when saving disabled
 - [ ] test fighting someone who gets hit with car
 - [ ] thiugs spawn in store wall

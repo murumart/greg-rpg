@@ -16,18 +16,18 @@ static var talked_topics: PackedStringArray:
 	get: return DAT.get_data("tarikas_talked_topics", [])
 var talked_now_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_now_last_level", to)
-	get: return DAT.get_data("tarikas_talked_now_last_level", 0) 
+	get: return DAT.get_data("tarikas_talked_now_last_level", 0)
 var talked_flowers_last_level: int:
 	set(to): DAT.set_data("tarikas_talked_flowers_last_level", to)
-	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0) 
+	get: return DAT.get_data("tarikas_talked_flowers_last_level", 0)
 
 var done: bool:
 	set(to): DAT.set_data("tarikas_done", to)
-	get: return DAT.get_data("tarikas_done", false) 
+	get: return DAT.get_data("tarikas_done", false)
 
 var notif_cleared: bool:
 	set(to): DAT.set_data("tarikas_notif_cleared", to)
-	get: return DAT.get_data("tarikas_notif_cleared", false) 
+	get: return DAT.get_data("tarikas_notif_cleared", false)
 
 
 func _ready() -> void:
@@ -85,7 +85,7 @@ func _on_tarikas_inspected() -> void:
 		dlg.add_line(dlg.ml("boy... keep it down."))
 		dlg.add_line(dlg.ml("don't do anything interesting. we've had enough of that... already."))
 		await dlg.speak_choice()
-	
+
 	var raining := bool(DAT.get_data("raining", false))
 	while true:
 		var aval_choices := []

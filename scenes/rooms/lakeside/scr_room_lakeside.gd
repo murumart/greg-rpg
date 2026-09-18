@@ -23,7 +23,7 @@ func _ready() -> void:
 
 	if PoliceStation.is_bounty_fulfilled("broken_fishermen"):
 		spawners.map(func(a): a.queue_free())
-	
+
 	if not greg_went_in_with_boots:
 		var greg := ResMan.get_character("greg")
 		if greg.armour == &"rubber_boots":

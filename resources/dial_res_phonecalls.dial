@@ -200,25 +200,9 @@ CHAR well
 
 DIALOGUE phone_in_battle_grandma_boss
 CHAR grandma
-	huh? someone's calling me? give me that.
-	hello?
-CHAR zerma
-	uh, hello? miss?
-	maybe you could reconsider the whole house thing with greg...
-	i'm sure you two could come to a reasonable compromise!
-CHAR grandma
-	hahahaha!
-CHAR zerma
-	hehehehehe!
-CHAR grandma
-	pretty funny, pretty funny!
-	are you a comedian somewhere?
-CHAR zerma
-	you could say that!
-CHAR grandma
-	good work, young man. goodbye.
-CHAR zerma
-	have a wonderful rest of your day!
+	huh? cellphone?!
+	no! no!! no funny dialogue!!
+	the tone has shifted, didn't you notice?
 
 
 DIALOGUE phone_town_under6
@@ -390,10 +374,67 @@ DATA_LINK popo_blockade_lifted,false
 	well, maybe you should talk to them about it!
 	...the police person is scary?
 	why?...
-	well, good luck with it! have a great day!
+	well, good luck with it! have a great evening!
 DATA_LINK popo_blockade_lifted,true
 	that's probably the last place for you to progress in!
-	have a wonderful rest of your day there!
+	have a wonderful rest of evening there!
+
+
+DIALOGUE phone_town_east_under100
+CHAR zerma
+	hey, dude! you made it to east of town!
+DATA_LINK mayor_fought,false
+	that mayor guy seems important! you should do what he says.
+DATA_LINK mayor_fought,true
+	you fought with the mayor? and a bunch of spirits?
+	woaaah, dude. cool!
+DATA_LINK chape_puzzle_complete,false
+	hey... just askin'... have you seen a [color=fa0]key[/color] anywhere?
+	keys always come in handy, opening... doors... chests...
+	...gates to wacky cat adventures...
+DATA_LINK chape_puzzle_complete,true
+	you went to the chapel? woah. pious greg confirmed?
+DATA_LINK
+	have a wonderful evening!!
+
+
+DIALOGUE phone_mafia_house
+CHAR zerma
+	hey, dude!
+DATA_LINK mafia_introed,false
+	it's so dark i can barely hear you in there!!
+DATA_LINK mafia_introed,true
+	collaborating with the mafia sounds fun!!
+	love crime.
+	those guys sound like they can sell you a bomb.
+	or, like, a really strong explosive...
+	you never know where you might need it!!
+DATA_LINK
+	have a wonderful evening!!
+
+
+DIALOGUE phone_chapel
+CHAR zerma
+	hey, greg! at the chapel?
+	praise the sun!! hahahaha!!!
+DATA_LINK chape_puzzle_complete,false
+	having trouble with the puzzle?
+	i'm sorry... i didn't give you a puzzle tutorial.
+	that's my fault.
+	i hope you can forgive me.
+DATA_LINK chape_puzzle_complete,true
+	eazy puzzle, huh...???!!??!???!
+	!??
+DATA_LINK
+	have a wonderful evening!!
+
+
+DIALOGUE phone_mayor_apartment
+CHAR zerma
+	hey, dude!! sneaking into the mayor's apartment!?
+	if you see any keys or money be sure to grab them.
+	if you need to make a quick escape,... no..
+	no no no no no..!! (jumps out the window)
 
 
 DIALOGUE phone_town_greenhouse
@@ -402,6 +443,10 @@ CHAR zerma
 	you snuck into someone's greenhouse? wow!
 	relax and enjoy, man, relax and enjoy!
 	have a wonderful rest of your day!!
+
+
+DIALOGUE phone_town_east_greenhouse
+ACTUALLY phone_town_greenhouse
 
 
 DIALOGUE phone_store
@@ -583,9 +628,14 @@ CHAR zerma
 DIALOGUE phone_secret_garden_entrance
 CHAR zerma
 	hey hey! you're where now?
+DATA_LINK chape_puzzle_complete,true
 	hmm! i suppose you won't be able to call me much here!
 	the signal would be busted by all the magic stuff!
 	well, have a wonderful time in here, dude!
+DATA_LINK chape_puzzle_complete,false
+	i have a feeling you can't go further without some sort of...
+	...[color=fa0]key[/color]...
+	good luck finding it! bye!!
 
 
 DIALOGUE phone_before_xchase_nodeaths

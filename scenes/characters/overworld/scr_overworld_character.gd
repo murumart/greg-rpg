@@ -414,7 +414,7 @@ func chase(body: Node2D) -> void:
 	var bodylocal := to_local(body.global_position)
 	detection_raycast.target_position = bodylocal
 	#detection_raycast.force_raycast_update()
-	
+
 	var dss := get_world_2d().direct_space_state
 	var gt := detection_raycast.get_global_transform()
 	var ray_params := PhysicsRayQueryParameters2D.new()

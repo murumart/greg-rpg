@@ -1,6 +1,6 @@
 class_name Sunsetter extends Node
 
-const SUNSET_LEVEL := 72
+const SUNSET_LEVEL := DAT.ENTER_TOWN_EAST_LEVEL
 const SUNSET_COLOR := Color(1.0, 0.651, 0.576)
 const RAIN_COLOR := Color(0.78, 0.855, 0.929)
 const SUNSET_TRIGGER_KEY := &"sunset_triggered"

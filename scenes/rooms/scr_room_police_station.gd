@@ -112,13 +112,16 @@ func _on_popo_1_interact_on_interact() -> void:
 			if police_standing < 3:
 				dlg.add_line(dlg.ml("you're not in the police record..."))
 				dlg.add_line(dlg.ml("that must mean you're an awesome, law-abiding citizen..."))
-			elif police_standing < 10:
+			else:
 				dlg.add_line(dlg.ml("you're my fabourite guy!!"))
 				dlg.add_line(dlg.ml("very good at solving my problems!!"))
 				if is_bounty_fulfilled(&"president") or is_bounty_fulfilled(&"vampire"):
 					dlg.add_line(dlg.ml("...and others' problems too, i guess?"))
 					dlg.add_line(dlg.ml("(those last two bounties on the board...)"))
 					dlg.add_line(dlg.ml("(...who put them there?)"))
+			if DAT.get_data("agreed_to_zerma_crime", false):
+				dlg.al("...hey? buddy?")
+				dlg.al("there's no need to feel guilty about anything.")
 			await dlg.speak_choice()
 		elif choice == &"bounty":
 			dlg.reset().set_char("popo_1")
@@ -138,10 +141,10 @@ func _on_popo_1_interact_on_interact() -> void:
 				dlg.add_line(dlg.ml("but if you keep collaborating with us..."))
 				dlg.add_line(dlg.ml("we could grant you some access privileges."))
 			else:
-				if ResMan.get_character("greg").level < 70:
+				if ResMan.get_character("greg").level < DAT.ENTER_TOWN_EAST_LEVEL:
 					dlg.add_line(dlg.ml("ahhh... my love for you is strong..., my love..."))
 					dlg.add_line(dlg.ml("but not as strong as the enemies in that part of town."))
-					dlg.add_line(dlg.ml("please, level up to at least 70..."))
+					dlg.add_line(dlg.ml("please, level up to at least %s..." % DAT.ENTER_TOWN_EAST_LEVEL))
 					dlg.add_line(dlg.ml("you don't deserve to be super annihilated."))
 				else:
 					dlg.add_line(dlg.ml("well, you're not supposed to go there, yet..."))

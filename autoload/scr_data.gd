@@ -4,7 +4,6 @@ extends Node
 # ...and a bunch of other things.
 
 const VERSION := Vector3(1, 2, 1)
-const GDUNG_LEVEL := 72
 const FLOWERS = [
 	&"flower0",
 	&"flower1",
@@ -14,6 +13,7 @@ const FLOWERS = [
 	&"flower6",
 	&"flower7",
 ]
+const ENTER_TOWN_EAST_LEVEL := 70
 
 signal player_captured(capture: bool)
 

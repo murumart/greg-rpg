@@ -2072,9 +2072,10 @@ metadata/_custom_type_script = "uid://dun1b5hylk2jh"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_girn8"]
 size = Vector2(111, 83)
 
-[node name="MafiaHouse" type="Node2D" unique_id=361943282]
+[node name="MafiaHouse" type="Node2D" unique_id=1536145521]
 y_sort_enabled = true
 script = ExtResource("1_xrpuv")
+metadata/_custom_type_script = "uid://bpfj25n4ytmas"
 
 [node name="CanvasModulateGroup" type="CanvasModulate" parent="." unique_id=171971474]
 color = Color(0, 0, 0, 1)

@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://blgwy56e2lx33" path="res://scenes/decor/scn_trash_bin.tscn" id="20_xvh1i"]
 [ext_resource type="Script" uid="uid://qboohb38rsxs" path="res://code/predicates/data_matches_bool.gd" id="21_ptg6y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptg6y"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up824"]
 resource_local_to_scene = true
 size = Vector2(14, 17.5)
 
@@ -81,15 +81,15 @@ data_key = &"mayor_fought"
 and_with = SubResource("Resource_i37mn")
 metadata/_custom_type_script = "uid://qboohb38rsxs"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_up824"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqse7"]
 resource_local_to_scene = true
 size = Vector2(6, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqse7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j60dx"]
 resource_local_to_scene = true
 size = Vector2(8, 6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j60dx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6s46d"]
 resource_local_to_scene = true
 radius = 32.0
 
@@ -170,7 +170,7 @@ offset = Vector2(0, -19)
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" parent="Decor/Radio/RadioInteraction" index="0" unique_id=1288470124]
-shape = SubResource("RectangleShape2D_ptg6y")
+shape = SubResource("RectangleShape2D_up824")
 
 [node name="Lights" type="Node2D" parent="Decor" unique_id=1195485083]
 z_index = 1
@@ -298,13 +298,13 @@ battle_info = SubResource("Resource_pn2uj")
 existence_predicate = SubResource("Resource_ptg6y")
 
 [node name="CollisionShape" parent="Category2/ThugOverworld" index="0" unique_id=88290997]
-shape = SubResource("RectangleShape2D_up824")
-
-[node name="CollisionShape2D" parent="Category2/ThugOverworld/CollisionDetectionArea" parent_id_path=PackedInt32Array(1653554915, 1353807789) index="0" unique_id=53099754]
 shape = SubResource("RectangleShape2D_jqse7")
 
+[node name="CollisionShape2D" parent="Category2/ThugOverworld/CollisionDetectionArea" parent_id_path=PackedInt32Array(1653554915, 1353807789) index="0" unique_id=53099754]
+shape = SubResource("RectangleShape2D_j60dx")
+
 [node name="DetectionShape" parent="Category2/ThugOverworld/DetectionArea" parent_id_path=PackedInt32Array(1653554915, 744931465) index="0" unique_id=1547779472]
-shape = SubResource("CircleShape2D_j60dx")
+shape = SubResource("CircleShape2D_6s46d")
 
 [node name="RandomBattleComponent" parent="Category2/ThugOverworld" index="4" unique_id=1040459157]
 default_battle = SubResource("Resource_jr1v0")

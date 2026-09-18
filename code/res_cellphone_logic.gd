@@ -36,7 +36,7 @@ func phonecall() -> void:
 			if not area:
 				continue
 			test_id += "_" + area
-		for lvl in range(level + 1 + int(level % 2 == 0), 100, 2):
+		for lvl in range(level + 1 + int(level % 2 == 0), 101, 2):
 			var under_id := test_id + LVLUNDER + str(lvl)
 			if SOL.dialogue_exists(under_id):
 				SOL.dialogue(under_id)
