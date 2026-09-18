@@ -5,8 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://dutagwpfyc38h" path="res://scenes/decor/scn_overworld_car.tscn" id="2_6a7ua"]
 [ext_resource type="PackedScene" uid="uid://ekxwo70dmot1" path="res://scenes/tech/scn_camera.tscn" id="3_lb5fr"]
 [ext_resource type="Theme" uid="uid://wknpxv3x21lw" path="res://resources/thm_main_ui.tres" id="5_vttp0"]
-[ext_resource type="Texture2D" uid="uid://u4wi42685ktd" path="res://sprites/gui/spr_logo.png" id="6_ectdq"]
+[ext_resource type="PackedScene" uid="uid://dhdcnypeq8yay" path="res://scenes/gui/logo.tscn" id="6_yop7p"]
 [ext_resource type="Texture2D" uid="uid://du6e35jk4faus" path="res://sprites/cutscene/spr_intro_1.png" id="7_lci3t"]
+[ext_resource type="Shader" uid="uid://b8rqytedhwv1g" path="res://shaders/maim_text.gdshader" id="8_o5ux6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0ya7"]
+shader = ExtResource("8_o5ux6")
+shader_parameter/rmul = 0.75
+shader_parameter/gmul = 0.6
+shader_parameter/bmul = 0.8
+shader_parameter/vtxmul_amount = 0.2
+shader_parameter/offset_amount = 1.0
 
 [sub_resource type="Animation" id="Animation_odaft"]
 length = 0.001
@@ -25,31 +34,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UiGroup/UI/Title:modulate")
+tracks/1/path = NodePath("UiGroup:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UiGroup:modulate")
+tracks/2/path = NodePath("UiGroup/UI/Logo:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("UiGroup/UI/Logo:visible")
+tracks/3/path = NodePath("UiGroup/UI/CarRide:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,38 +70,50 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("UiGroup/UI/Title:visible")
+tracks/4/path = NodePath("UiGroup/UI/CarRide:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("UiGroup/UI/CarRide:visible")
+tracks/5/path = NodePath("UiGroup/UI/Logo/Logo:idiff")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [82.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("UiGroup/UI/CarRide:modulate")
+tracks/6/path = NodePath("UiGroup/UI/Logo/Logo:intensity")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [4.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UiGroup/UI/RichTextLabel:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1jsoh"]
@@ -105,70 +126,82 @@ tracks/0/path = NodePath("UiGroup/UI/Logo:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.06666668, 1.7333333),
+"transitions": PackedFloat32Array(1.8660666, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UiGroup/UI/Title:modulate")
+tracks/1/path = NodePath("UiGroup:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UiGroup:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 3, 4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UiGroup/UI/Logo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("UiGroup/UI/Title:visible")
+tracks/3/path = NodePath("UiGroup/UI/CarRide:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("UiGroup/UI/Logo:visible")
-tracks/4/interp = 1
+tracks/4/path = NodePath("UiGroup/UI/Logo/Logo:idiff")
+tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 1.53, 1.86),
+"transitions": PackedFloat32Array(0.55478394, 1, 1),
+"update": 0,
+"values": [12.0, 0.2, 0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("UiGroup/UI/CarRide:visible")
+tracks/5/path = NodePath("UiGroup/UI/Logo/Logo:intensity")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"times": PackedFloat32Array(0, 1.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UiGroup/UI/RichTextLabel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 2.3666666, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.5137255), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1dcq4"]
@@ -201,22 +234,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("UiGroup/UI/Title:visible")
+tracks/2/path = NodePath("UiGroup/UI/CarRide:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UiGroup/UI/CarRide:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -314,21 +335,35 @@ offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 1)
 
+[node name="RichTextLabel" type="RichTextLabel" parent="UiGroup/UI" unique_id=390150579]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_u0ya7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 16
+text = "gregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpggregrpg"
+scroll_active = false
+
 [node name="Logo" type="Sprite2D" parent="UiGroup/UI" unique_id=433581335]
 visible = false
 modulate = Color(1, 1, 1, 0)
-position = Vector2(80, 48)
-texture = ExtResource("6_ectdq")
+position = Vector2(63, 40)
 
-[node name="Title" type="Label" parent="UiGroup/UI" unique_id=2080200842]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 76.0
-offset_top = 83.0
-offset_right = 91.0
-offset_bottom = 94.0
-text = "rpg"
+[node name="Logo" parent="UiGroup/UI/Logo" unique_id=1014779564 instance=ExtResource("6_yop7p")]
+anchors_preset = -1
+anchor_left = 0.22600001
+anchor_right = 0.81200004
+anchor_bottom = 1.0
+offset_left = -2.226
+offset_right = -2.812
+offset_bottom = -1.0
+intensity = 4.0
+speed = 2.0
+idiff = 82.0
 
 [node name="CarRide" type="Sprite2D" parent="UiGroup/UI" unique_id=438966170]
 visible = false

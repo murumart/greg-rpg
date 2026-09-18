@@ -21,14 +21,14 @@ region_enabled = true
 region_rect = Rect2(0, 0, 28, 14)
 
 [node name="CollisionArea" type="Area2D" parent="." unique_id=268094811]
-collision_layer = 12
+collision_layer = 8
 collision_mask = 10
 
 [node name="CollisionShape" type="CollisionShape2D" parent="CollisionArea" unique_id=1804751238]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_jn82m")
 disabled = true
-debug_color = Color(1, 0.309804, 1, 0.419608)
+debug_color = Color(0.7146406, 0.30980396, 1, 0.41960785)
 
 [node name="CollisionShape2" type="CollisionShape2D" parent="CollisionArea" unique_id=1510306411]
 shape = SubResource("RectangleShape2D_ixrwj")

@@ -102,7 +102,7 @@ resource_local_to_scene = true
 size = Vector2(10, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fmsb"]
-size = Vector2(30, 15)
+size = Vector2(32, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xq52v"]
 size = Vector2(26, 7)

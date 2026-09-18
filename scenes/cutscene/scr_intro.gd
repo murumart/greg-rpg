@@ -12,11 +12,11 @@ const CAR := preload("res://scenes/decor/scn_overworld_car.tscn")
 
 @onready var ui := $UiGroup
 @onready var logo := $UiGroup/UI/Logo
-@onready var title := $UiGroup/UI/Title
 @onready var animator := $BeginningAnimation
 
 
 func _ready() -> void:
+	SOL.dialogue_box.load_dialogue_files(SOL.dialogue_box.dialogues_dict)
 	ResMan.get_character("greg").inventory.erase(&"cellphone")
 	ResMan.get_character("greg").inventory.erase(&"flower6")
 	car.turn(PI / 2)
@@ -25,11 +25,11 @@ func _ready() -> void:
 
 	SND.play_song_from_beginning("arent_you_excited", 2931, {save_audio_position = false})
 
-	await animator.animation_finished
+	await Math.timer(3.5)
 	skipping_enabled = false
 
 	var tw := create_tween()
-	tw.tween_property(car, "position:y", 0.0, 1.0)
+	tw.tween_property(car, "position:y", 0.0, 1.15)
 	await tw.step_finished
 	SOL.dialogue("intro_convo_0")
 	await SOL.dialogue_closed

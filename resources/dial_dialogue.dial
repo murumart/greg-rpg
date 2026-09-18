@@ -22,15 +22,14 @@ SPEED 0.5
 
 
 DIALOGUE intro_spection_1
-	i had a dream this one time...
+	i had this sort of dream once...
 	being driven back to a familiar place...
 	but finding things foreign there.
 
 
 DIALOGUE intro_spection_2
 	greg will be a stranger in his own home.
-	can you help him?
-	will you help him?
+	can you help him? will you help him?
 	will he find his place again?
 	it all rests in your hands.
 

@@ -55,7 +55,6 @@ func _ready() -> void:
 			.set_death_reason(DeathScreen.DeathReasons.CAR)
 			.set_start_text("hope you saved before this!"))
 	set_color(color)
-	turn(0)
 	set_target(0)
 
 
@@ -129,9 +128,9 @@ func _on_collided_with_player(_pl: PlayerOverworld) -> void:
 func turn(rot: float) -> void:
 	var dir := Math.dir_from_rot(rot)
 	sprite.region_rect = regions[dir + 1]
-	var horizontal := int((dir + 1) % 2 == 0)
-	collision_shape_1.disabled = not horizontal
-	collision_shape_2.disabled = horizontal
+	var horizontal := int((dir + 1) % 2 != 0)
+	collision_shape_1.set_deferred("disabled", not horizontal)
+	collision_shape_2.set_deferred("disabled", horizontal)
 
 
 func set_color(to: Color) -> void:

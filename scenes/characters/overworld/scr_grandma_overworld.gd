@@ -19,12 +19,13 @@ func sanimate(anim: StringName, aspd := 1.0) -> void:
 
 
 func tanim_shake(amt: int, strength: float, aspd := 1.0) -> void:
-	var tw := animated_sprite.create_tween().set_trans(Tween.TRANS_CUBIC)
+	var tw := animated_sprite.create_tween()
+	amt /= 2
 	for i in amt:
-		var s := (1.0 - i / float(amt)) * strength
-		tw.tween_property(animated_sprite, "position:x", -s, 0.01 / aspd)
-		tw.tween_property(animated_sprite, "position:x", s, 0.01 / aspd)
-	tw.tween_property(animated_sprite, "position:x", 0, 0.01 / aspd)
+		var s := (1.0 - i / float(amt)) * strength * 0.5
+		tw.tween_property(animated_sprite, "position:x", -s, 0.03 / aspd)
+		tw.tween_property(animated_sprite, "position:x", s, 0.03 / aspd)
+	tw.tween_property(animated_sprite, "position:x", 0, 0.03 / aspd)
 	await tw.finished
 
 

@@ -219,31 +219,31 @@ multipanther -> +10 (=99)
 - [X] interact with sign bigger area from behind too pls
 - [X] softlock in tutorial when you dequip the sideeye...
 - [X] allow loading when saving disabled
-- [ ] nerf kor sten..?
+- [X] what happens in intro when you touch the interacttion area again?
+- [X] add spirits to equipped spirits when getting them initially when have space
+- [X] grandma shakes one way only (maybe its not negating the distance ?)
+- [X] remove alley plants obscuring movement into second room in house
+- [X] replace logo in intro
+- [X] intro car interaction hitbox is weird
+- [X] car hitbox is big hits you from the side..?
 - [ ] tarikas forgets you talked about flowers
-- [ ] what happens in intro when you touch the interacttion area again?
 - [ ] naturalist shows up after vampire fight..
 - [ ] circus is in grass house backyar.d..?
+- [ ] make weird call rarer
+- [ ] autosaves after bosses check if those exist
 - [ ] get stuck in tree to the left of pier
-- [ ] grandma shakes one way only (maybe its not negating the distance ?)
-- [ ] car hitbox is big hits you from the side..?
-- [ ] add spirits to equipped spirits when getting them initially when have space
-- [ ] replace logo in intro
-- [ ] how do you get hotel without zerma tutorial..?
-- [ ] test fighting someone who gets hit with car
 - [ ] thiugs spawn in store wall
+- [ ] test fighting someone who gets hit with car
+- [ ] buttons lose focus after exiting load menu
+- [ ] how do you get hotel without zerma tutorial..?
 - [ ] `-` shouldnt be a delay thing in speech'
 - [ ] make gamer guy hitbox fatter so yuou dont hit the door
-- [ ] buttons lose focus after exiting load menu
-- [ ] autosaves after bosses check if those exist
-- [ ] nerf turf2..
 - [ ] add exit button to pennistone
+- [ ] nerf turf2..
+- [ ] nerf kor sten..?
 - [ ] maybe pils should give poison immune
 - [ ] replace enemy plaster with bread or something
-- [ ] make weird call rarer
-- [ ] intro car interaction hitbox is weird
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] remove alley plants obscuring movement into second room in house
 - [ ] peptide should work in woodsguy
 - [ ] decide what do do with bike bells
 - [ ] lake hint npc doesn't dialogue cutscene
@@ -270,7 +270,6 @@ multipanther -> +10 (=99)
 - [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
-- [ ] savescumming at the random prize..
 - [ ] savescumming at the random prize..
 - [ ] way to cancel shopping basket
 - [ ] more npcs after level 30 aroud town

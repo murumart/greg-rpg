@@ -175,6 +175,7 @@ func cs_talk_1() -> void:
 
 func cs_talk_2() -> void:
 	got_to_talk = true
+	walk_inside_to_interacti_with_grandma.queue_free()
 	var aval_choices := ["aboutyou", "aboutme", "house", "bye"]
 	var dlg := DialogueBuilder.new()
 	var about_talked := false

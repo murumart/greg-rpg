@@ -19,7 +19,7 @@ lines = Array[ExtResource("3_o6q21")]([SubResource("Resource_fvxjh")])
 metadata/_custom_type_script = "uid://crxdditnh0akt"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7tjic"]
-size = Vector2(8, 6)
+size = Vector2(10, 8)
 
 [node name="Chair" type="StaticBody2D" unique_id=623682626]
 y_sort_enabled = true

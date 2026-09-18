@@ -2204,10 +2204,11 @@ script = ExtResource("3_r36ay")
 [node name="Background" type="Sprite2D" parent="." unique_id=2087178560]
 z_index = -1
 material = SubResource("ShaderMaterial_kae55")
-position = Vector2(55.999996, -1955)
+position = Vector2(55.999996, -1951)
 scale = Vector2(24.0902, 34.0308)
 texture = ExtResource("3_kixp1")
 offset = Vector2(-0.419559, 62.6302)
+metadata/_edit_lock_ = true
 
 [node name="Morecollisions" type="StaticBody2D" parent="." unique_id=1782507216]
 collision_mask = 0
@@ -2540,25 +2541,18 @@ position = Vector2(-11, 67)
 shape = SubResource("RectangleShape2D_3k71g")
 
 [node name="Plant" parent="Decor" unique_id=28775828 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-110, 60)
+position = Vector2(-110, 64)
 
 [node name="Plant2" parent="Decor" unique_id=1221437254 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-110, 36)
-
-[node name="Plant3" parent="Decor" unique_id=742426583 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-110, 12)
+position = Vector2(-110, 41)
 
 [node name="Plant4" parent="Decor" unique_id=101196208 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-161, 59)
+position = Vector2(-161, 63)
 scale = Vector2(-1, 1)
 
 [node name="Plant5" parent="Decor" unique_id=82391958 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-158, 32)
+position = Vector2(-158, 40)
 rotation = 0.100607
-scale = Vector2(-1, 1)
-
-[node name="Plant6" parent="Decor" unique_id=399551174 groups=["empty_delete"] instance=ExtResource("16_rqgg7")]
-position = Vector2(-161, 11)
 scale = Vector2(-1, 1)
 
 [node name="Flower1" parent="Decor" unique_id=839496580 groups=["empty_delete"] instance=ExtResource("17_8mjs0")]
