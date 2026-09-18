@@ -218,6 +218,7 @@ multipanther -> +10 (=99)
 - [X] save campfire litness
 - [X] interact with sign bigger area from behind too pls
 - [X] softlock in tutorial when you dequip the sideeye...
+- [X] allow loading when saving disabled
 - [ ] nerf kor sten..?
 - [ ] tarikas forgets you talked about flowers
 - [ ] what happens in intro when you touch the interacttion area again?
@@ -229,7 +230,6 @@ multipanther -> +10 (=99)
 - [ ] add spirits to equipped spirits when getting them initially when have space
 - [ ] replace logo in intro
 - [ ] how do you get hotel without zerma tutorial..?
-- [ ] allow loading when saving disabled
 - [ ] test fighting someone who gets hit with car
 - [ ] thiugs spawn in store wall
 - [ ] `-` shouldnt be a delay thing in speech'

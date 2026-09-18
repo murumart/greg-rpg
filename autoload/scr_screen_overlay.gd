@@ -147,7 +147,7 @@ func shake(amt: float) -> void:
 
 # opening the saving/loading menu
 func save_menu(loading := false, options := {}) -> void:
-	var savemenu := preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
+	var savemenu: SaveScreen = preload("res://scenes/gui/scn_save_screen.tscn").instantiate()
 	savemenu.position += Vector2(SOL.SCREEN_SIZE / 2)
 	savemenu.init(options)
 	add_ui_child(savemenu)
