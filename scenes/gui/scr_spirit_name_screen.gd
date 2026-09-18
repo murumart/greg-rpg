@@ -39,6 +39,7 @@ const DEFAULT_GMUL := 0.975
 @onready var letter_container: HBoxContainer = $LetterContainer
 @onready var overlay: Sprite2D = $Overlay
 @onready var cool_text: RichTextLabel = $Overlay/CoolText
+@onready var beam: ColorRect = $Beam
 
 var _loaded_spirits: Dictionary[String, StringName] = {}
 
@@ -91,6 +92,7 @@ func _add_letter(letter: String) -> void:
 	assert(letter.length() == 1, "ltter length should be 1")
 	_text += letter
 	letter_container.add_child(_letter(letter))
+	beam.visible = _text.is_empty()
 	letter_container.offset_transform_scale = Vector2.ONE
 	if _text.length() >= 12:
 		letter_container.offset_transform_scale = Vector2.ONE * 0.5
@@ -101,6 +103,7 @@ func _remove_letter() -> void:
 	_text = _text.substr(0, _text.length() - 1)
 	letter_container.remove_child(letter_container.get_child(-1))
 	letter_container.offset_transform_scale = Vector2.ONE
+	beam.visible = _text.is_empty()
 	if _text.length() >= 12:
 		letter_container.offset_transform_scale = Vector2.ONE * 0.5
 	_on_spirit_name_changed(_text)
@@ -118,6 +121,7 @@ func open() -> void:
 		var spirit: Spirit = ResMan.get_spirit(i)
 		_loaded_spirits[spirit.name] = i
 	show()
+	beam.show()
 	_active = true
 	intensity = DEFAULT_INTENSITY
 	speed = DEFAULT_SPEED

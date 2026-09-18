@@ -2,6 +2,7 @@
 class_name SinAnimator extends Node
 
 @export var enabled := true
+@export var engine_editor_enabled := true
 @export var property_name := &""
 @export var target: Node
 @export var speed := 1.0
@@ -21,6 +22,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not enabled:
+		return
+	if Engine.is_editor_hint() and not engine_editor_enabled:
 		return
 	if not target.visible:
 		return

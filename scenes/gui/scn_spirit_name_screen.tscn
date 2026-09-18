@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dro7pvykuds1h" path="res://scenes/gui/scr_spirit_name_screen.gd" id="1_yconp"]
 [ext_resource type="LabelSettings" uid="uid://dnmo8rc2mwfgh" path="res://resources/ls_logo_label.tres" id="2_jkky0"]
 [ext_resource type="Shader" uid="uid://b8rqytedhwv1g" path="res://shaders/maim_text.gdshader" id="2_o0oiw"]
+[ext_resource type="Script" uid="uid://durusiw115m3o" path="res://code/scr_sin_animator.gd" id="4_kukyv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o0oiw"]
 blend_mode = 3
@@ -85,8 +86,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -17.0
-offset_bottom = 13.0
+offset_top = -12.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
@@ -164,3 +165,26 @@ use_parent_material = true
 layout_mode = 2
 text = "a"
 label_settings = ExtResource("2_jkky0")
+
+[node name="Beam" type="ColorRect" parent="." unique_id=950557699]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1.0
+offset_top = 8.0
+offset_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.99999917)
+
+[node name="SinAnimator" type="Node" parent="Beam" unique_id=502962189 node_paths=PackedStringArray("target")]
+script = ExtResource("4_kukyv")
+engine_editor_enabled = false
+property_name = &"color:a"
+target = NodePath("..")
+speed = 10.0
+max_value = 2.0
+easing = 6.964404
+metadata/_custom_type_script = "uid://durusiw115m3o"
