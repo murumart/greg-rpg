@@ -264,7 +264,7 @@ multipanther -> +10 (=99)
 - [X] change begonia description
 - [X] make campfire less horrible to use
 - [X] use xending as a side room lore secret garden entrance
-- [ ] redo spirit typing bar to look like logo + have letter background..?
+- [X] redo spirit typing bar to look like logo + have letter background..?
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] sliding puzzle tutorial npc

@@ -105,6 +105,15 @@ static func xp2lvl(lvl: int) -> int:
 	return roundi(Math.LEVEL_UP_CURVE.sample_baked(lvl * 0.01) * lvl)
 
 
+## meant to be used on leveling up and such on greg
+func add_spirit(spirit: StringName) -> void:
+	assert(spirit not in spirits and spirit not in unused_spirits, "character already ahs this spirit")
+	if spirits.size() < MAX_SPIRITS:
+		spirits.append(spirit)
+	else:
+		unused_spirits.append(spirit)
+
+
 func add_experience(amount: int, speak := false) -> void:
 	SOL.dialogue_box.dial_concat("levelup", 1, ["0", "0"])
 	var local_level := level

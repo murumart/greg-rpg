@@ -20,6 +20,7 @@
 [sub_resource type="Resource" id="Resource_o8qi1"]
 script = ExtResource("3_s7pj0")
 enemies = Array[StringName]([&"cashier_nice", &"cashier_nice", &"cashier_nice", &"cashier_nice"])
+music = "daylightthief"
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t32me"]
@@ -383,6 +384,7 @@ layout_mode = 2
 
 [node name="ScreenSpiritName" parent="UI/Panel" unique_id=1662167000 node_paths=PackedStringArray("battle") instance=ExtResource("12_o8qi1")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_top = -73.0
 offset_bottom = -33.0

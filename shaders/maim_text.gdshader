@@ -4,17 +4,20 @@ uniform float rmul = 0.4;
 uniform float gmul = 0.6;
 uniform float bmul = 0.8;
 
+uniform float vtxmul_amount = 1.0;
+uniform float offset_amount = 1.0;
+
 void vertex() {
 	float vtxmul = cos(TIME * 0.1);
 	vtxmul = pow(vtxmul, 4.0);
-	VERTEX.y += sin(TIME + VERTEX.x * 5184.0 / cos(VERTEX.y * 43.0)) * 14.0 * vtxmul;
-	VERTEX.x += sin(TIME) * 10.0;
+	VERTEX.y += sin(TIME + VERTEX.x * 5184.0 / cos(VERTEX.y * 43.0)) * 14.0 * vtxmul * vtxmul_amount;
+	VERTEX.x += sin(TIME) * 10.0 * vtxmul_amount;
 }
 
 void fragment() {
 	vec4 trues = texture(TEXTURE, UV);
 	vec4 sample = vec4(vec3(0.0), 0.0);
-	float dist = 0.005;
+	float dist = 0.005 * offset_amount;
 
 	vec4 sampler = texture(TEXTURE, vec2(UV.x - sin(TIME * 2.0) * dist * 4.0, UV.y));
 	vec4 sampleg = texture(TEXTURE, vec2(UV.x, UV.y + cos(TIME) * dist));

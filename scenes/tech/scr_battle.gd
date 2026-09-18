@@ -6,8 +6,6 @@ class_name Battle
 # (speedier = faster cooldown) and then acting, during which time
 # others cannot act. once one team is defeated, the battle ends.
 
-const SpiritNameScreen = preload("res://scenes/gui/scr_spirit_name_screen.gd")
-
 signal player_finished_acting
 signal ending
 signal battle_loaded
@@ -66,7 +64,7 @@ var keep_arranging := true # use enemies_node.arrange if still needed
 @onready var item_info_label := $UI/Panel/ScreenItemSelect/ItemInfoLabel
 
 @onready var screen_party_info := %ScreenPartyInfo
-@onready var screen_spirit_name: SpiritNameScreen = %ScreenSpiritName
+@onready var screen_spirit_name := %ScreenSpiritName
 @onready var screen_dance_battle := $UI/Panel/ScreenDanceBattle as ScreenDanceBattle
 @onready var screen_end := %ScreenEnd
 

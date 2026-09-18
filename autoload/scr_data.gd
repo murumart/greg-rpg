@@ -287,18 +287,12 @@ func grant_spirit(spirit: StringName, party_index := 0, dialogue := true) -> voi
 	var charc: Character = ResMan.get_character(A.get("party", ["greg"])[party_index])
 	if spirit in charc.unused_spirits or spirit in charc.spirits:
 		return
-	# this implementation looks so kooky because typed arrays if i remember right
-	var uuspirits: Array[String] = charc.unused_spirits.duplicate()
-	uuspirits.append(spirit)
-	charc.unused_spirits = uuspirits
-	# horrible but necessary with the current implementation of characters
+	charc.add_spirit(spirit)
 	if LTS.get_current_scene().name == "Battle":
 		var battle = LTS.get_current_scene()
 		if not battle.party.is_empty():
 			var character_is: Character = battle.party[party_index].character
-			var list: Array[String] = character_is.unused_spirits.duplicate()
-			list.append(spirit)
-			character_is.unused_spirits = list
+			character_is.add_spirit(spirit)
 	if not dialogue:
 		return
 	SOL.dialogue_box.dial_concat("getspirit", 0, [ResMan.get_spirit(spirit).name])

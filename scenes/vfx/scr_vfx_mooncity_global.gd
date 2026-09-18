@@ -6,7 +6,8 @@ var camera: Camera2D
 
 
 func _ready() -> void:
-	SND.current_song_player.stream_paused = true
+	if is_instance_valid(SND.current_song_player):
+		SND.current_song_player.stream_paused = true
 	camera = get_viewport().get_camera_2d()
 	if not is_instance_valid(camera):
 		set_physics_process(false)

@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dnmo8rc2mwfgh"]
+
+[resource]
+line_spacing = -4.755
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(0, 1)
+stacked_shadow_0/color = Color(0, 0.08235294, 0.41568628, 1)

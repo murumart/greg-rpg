@@ -99,7 +99,7 @@ DIALOGUE losesilver
 
 
 DIALOGUE getspirit
-SOUND spirit/spirit_get
+SOUND spirit/get
 	[center]the spirit [color=SPIRITCOLOR]%s[/color] joins you.[/center]
 
 
