@@ -34,6 +34,9 @@ seamless_blend_skirt = 0.292
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_siwdc"]
 shader = ExtResource("3_krser")
+shader_parameter/rmul = 0.4
+shader_parameter/gmul = 0.6
+shader_parameter/bmul = 0.8
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)
