@@ -233,6 +233,9 @@ multipanther -> +10 (=99)
 - [X] how do you get hotel without zerma tutorial..?
 - [X] get stuck in tree to the left of pier
 - [X] `-` shouldnt be a delay thing in speech'
+- [X] maybe pils should give poison immune
+- [X] replace enemy plaster with bread or something
+- [X] peptide should work in woodsguy
 - [ ] give tarikas aa lore
 - [ ] naturalist shows up after vampire fight..
 - [ ] circus is in grass house backyar.d..?
@@ -241,10 +244,7 @@ multipanther -> +10 (=99)
 - [ ] buttons lose focus after exiting load menu
 - [ ] add exit button to pennistone
 - [ ] nerf turf2..
-- [ ] maybe pils should give poison immune
-- [ ] replace enemy plaster with bread or something
 - [ ] 1 damage from drenchfoot? at high level?
-- [ ] peptide should work in woodsguy
 - [ ] decide what do do with bike bells
 - [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict

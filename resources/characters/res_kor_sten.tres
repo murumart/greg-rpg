@@ -20,5 +20,5 @@ level = 18
 attack = 18.0
 defense = 18.0
 speed = 18.0
-inventory = Array[String](["plaster", "plaster", "cough_syrup"])
+inventory = Array[String](["bread", "bread", "cough_syrup"])
 spirits = Array[String](["airspace_violation", "bigger_airspace_violation"])

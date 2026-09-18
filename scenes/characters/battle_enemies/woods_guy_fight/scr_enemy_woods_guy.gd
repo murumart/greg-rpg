@@ -188,10 +188,10 @@ func hide_board() -> void:
 	board.hide()
 
 
-func hit_area_entered(area: Area2D) -> void:
+func hit_area_entered(_area: Area2D) -> void:
 	var target := pick_target()
 	if is_instance_valid(target) and invtime <= 0 and greeble.state == PlayerOverworld.States.FREE_MOVE:
-		target.hurt(20, Genders.BRAIN)
+		target.hurt(20 if not target.has_status_effect("shield") else 15, Genders.VAST)
 		invtime = max_invtime
 
 
