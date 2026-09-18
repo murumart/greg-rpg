@@ -216,7 +216,8 @@ multipanther -> +10 (=99)
 - [X] is boquiet.. bouquet.. spelled correctly..?
 - [X] does zerma say anything in town east (i dont think so)
 - [X] save campfire litness
-- [ ] softlock in tutorial when you dequip the sideeye...
+- [X] interact with sign bigger area from behind too pls
+- [X] softlock in tutorial when you dequip the sideeye...
 - [ ] nerf kor sten..?
 - [ ] tarikas forgets you talked about flowers
 - [ ] what happens in intro when you touch the interacttion area again?
@@ -231,7 +232,6 @@ multipanther -> +10 (=99)
 - [ ] allow loading when saving disabled
 - [ ] test fighting someone who gets hit with car
 - [ ] thiugs spawn in store wall
-- [ ] interact with sign bigger area from behind too pls
 - [ ] `-` shouldnt be a delay thing in speech'
 - [ ] make gamer guy hitbox fatter so yuou dont hit the door
 - [ ] buttons lose focus after exiting load menu

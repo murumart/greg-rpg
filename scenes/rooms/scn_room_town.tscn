@@ -775,7 +775,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(507, -432)
+position = Vector2(-166, 232)
 metadata/_edit_group_ = true
 
 [node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
@@ -2272,7 +2272,6 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.97163045)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false

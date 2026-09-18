@@ -40,6 +40,7 @@ func _ready() -> void:
 		after_battle()
 	else:
 		DAT.set_data("intro_cutscene_over", true)
+		greg.menu_disabled = false
 		$Cutscenes.queue_free()
 	house_door.knocked.connect(func() -> void:
 		if intro_progress < 2:

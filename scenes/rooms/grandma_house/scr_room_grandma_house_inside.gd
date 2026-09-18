@@ -7,12 +7,14 @@ extends Room
 @onready var flower_darkness: Sprite2D = $FlowerDarkness
 @onready var note: Sprite2D = $Decor/Note
 @onready var grandma: OverworldCharacter = $Grandma
+@onready var greg: PlayerOverworld = $Greg
 
 
 func _ready() -> void:
 	super._ready()
 
 	if DAT.flower_progress(ResMan.get_character("greg").inventory) >= 7 or LTS.gate_id == &"afterexpo":
+		greg.menu_disabled = false
 		flower_darkness.show()
 		for n in get_tree().get_nodes_in_group("empty_delete"): n.queue_free()
 		door_area.destination = &"secret_garden_entrance"

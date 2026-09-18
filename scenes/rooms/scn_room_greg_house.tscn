@@ -97,6 +97,10 @@ size = Vector2(19, 30)
 resource_local_to_scene = true
 size = Vector2(26, 10)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs4ke"]
+resource_local_to_scene = true
+size = Vector2(10, 18)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fmsb"]
 size = Vector2(30, 15)
 
@@ -330,6 +334,7 @@ type = 3
 [node name="Greg" parent="." unique_id=1354714920 instance=ExtResource("3_bb2fy")]
 position = Vector2(-50, 200)
 saving_disabled = true
+menu_disabled = true
 
 [node name="Camera" parent="Greg" unique_id=976994686 instance=ExtResource("4_24deu")]
 position = Vector2(0, -10)
@@ -563,6 +568,9 @@ monitorable = false
 
 [node name="CollisionShape" parent="Cutscenes/ZermCar/CollisionArea" index="0" unique_id=1804751238]
 shape = SubResource("RectangleShape2D_241vd")
+
+[node name="CollisionShape2" parent="Cutscenes/ZermCar/CollisionArea" index="1" unique_id=1510306411]
+shape = SubResource("RectangleShape2D_qs4ke")
 
 [node name="VroomVroom" parent="Cutscenes/ZermCar" index="2" unique_id=242380998]
 volume_db = 4.0
