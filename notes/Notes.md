@@ -242,7 +242,7 @@ multipanther -> +10 (=99)
 - [X] buttons lose focus after exiting load menu
 - [X] test fighting someone who gets hit with car
 - [X] lake hint npc doesn't dialogue cutscene
-- [ ] autosaves after bosses check if those exist
+- [X] autosaves after bosses check if those exist
 - [ ] add exit button to pennistone
 - [ ] decide what do do with bike bells
 - [ ] finish completed game dict

@@ -133,6 +133,7 @@ func _after_battle() -> void:
 				tw.tween_callback(func(): delivery_guy.self_modulate.a = 0.0)
 				tw.tween_property(powerline, "line_width", 0, 0.2)
 				tw.tween_callback(delivery_guy.queue_free)
+				DAT.save_autosave()
 				DAT.free_player("cutscene")
 			, CONNECT_ONE_SHOT)
 		, CONNECT_ONE_SHOT)

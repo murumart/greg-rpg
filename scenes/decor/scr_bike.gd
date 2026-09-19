@@ -55,6 +55,7 @@ func apply_spawn_point(player: PlayerOverworld) -> void:
 
 
 func _interacted() -> void:
+	DAT.save_autosave()
 	var fought: Array = DAT.get_data("bike_ghosts_fought", [])
 	$Gradient.texture.gradient = gradient
 	if not ghost in fought:

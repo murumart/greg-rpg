@@ -375,5 +375,6 @@ func _battle_ending() -> void:
 	SOL.fade_screen(Color.GREEN, Color(Color.GREEN, 0.0), 4.0, {kill_rects = true})
 	camera.position = Vector2(0, -9)
 	await SOL.fade_finished
+	DAT.save_autosave()
 	$RoomGate.disabled = false
 	DAT.free_player("cutscene")

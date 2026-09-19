@@ -64,6 +64,7 @@ func _cutscene_after() -> void:
 	await Math.timer(1.0)
 	SOL.dialogue("woods_guy_after_battle")
 	await SOL.dialogue_closed
+	DAT.save_autosave()
 	var tw := create_tween().set_trans(Tween.TRANS_CUBIC)
 	tw.tween_property(woods_guy, ^"global_position:y", woods_guy.global_position.y - 48, 0.8)
 	tw.tween_callback(func() -> void:

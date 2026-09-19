@@ -208,6 +208,7 @@ func end() -> void:
 	await tw.finished
 	DAT.free_player("cutscene")
 	LTS.gate_id = LTS.GATE_EXIT_CUTSCENE
+	DAT.save_autosave()
 	LTS.level_transition("res://scenes/rooms/scn_room_town.tscn")
 
 
