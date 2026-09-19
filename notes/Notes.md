@@ -243,7 +243,7 @@ multipanther -> +10 (=99)
 - [X] test fighting someone who gets hit with car
 - [X] lake hint npc doesn't dialogue cutscene
 - [X] autosaves after bosses check if those exist
-- [ ] add exit button to pennistone
+- [X] add exit button to pennistone
 - [ ] decide what do do with bike bells
 - [ ] finish completed game dict
 - [ ] circus is in grass house backyar.d..?

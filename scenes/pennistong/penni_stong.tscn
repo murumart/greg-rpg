@@ -166,25 +166,28 @@ size_flags_horizontal = 2
 
 [node name="Lives" type="HBoxContainer" parent="UI/S/Player" unique_id=2033017796]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/S/Player/Lives" unique_id=1748745342]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="UI/S/Player/Lives" unique_id=838535826]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="TextureRect3" type="TextureRect" parent="UI/S/Player/Lives" unique_id=1039359528]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_y63v6")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="Score" type="Label" parent="UI/S/Player" unique_id=325517170]
 layout_mode = 2
@@ -199,25 +202,28 @@ size_flags_horizontal = 10
 
 [node name="Lives" type="HBoxContainer" parent="UI/S/Enemy" unique_id=2100842702]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 
 [node name="TextureRect" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=1228612735]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_ejx3w")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=1736340191]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_d3jqf")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="TextureRect3" type="TextureRect" parent="UI/S/Enemy/Lives" unique_id=937571995]
 custom_minimum_size = Vector2(12.74, 14.79)
 layout_mode = 2
 texture = SubResource("AtlasTexture_kwava")
 expand_mode = 1
+stretch_mode = 3
 
 [node name="Score" type="Label" parent="UI/S/Enemy" unique_id=905431917]
 layout_mode = 2
@@ -225,3 +231,11 @@ size_flags_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 text = "score: "
+
+[node name="GiveUpLabel" type="Label" parent="UI" unique_id=1930791448]
+visible = false
+layout_mode = 0
+offset_top = 94.0
+offset_right = 90.0
+offset_bottom = 102.0
+text = "(press %s to give up)"

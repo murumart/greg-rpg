@@ -14,6 +14,7 @@ const SOUNDS := [preload("res://sounds/pennistong/bounce.ogg"),
 	preload("res://sounds/pennistong/pennistong_lose.ogg"),
 	preload("res://sounds/pennistong/pennistong_win.ogg")
 ]
+const BOREDOM_LIMIT := 10.0
 
 @onready var paddle_u := $Paddles/Upper as AnimatableBody2D
 @onready var paddle_l := $Paddles/Lower as AnimatableBody2D
@@ -23,9 +24,12 @@ var bdir := Vector2()
 
 var rps_open := false
 @onready var rps_ui: Node2D = $RpsUi
+@onready var give_up_label: Label = $UI/GiveUpLabel
 var rps_choice := 0
 var ball_stored_choice := 0
 var over := false
+
+var _boredom := 0.0
 
 var score := 0:
 	set(to):
@@ -74,6 +78,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _boredom >= BOREDOM_LIMIT and event.is_action_pressed(&"cancel"):
+		lose()
+		return
 	if rps_open and not over:
 		var old_choice := rps_choice
 		var input := int(Input.get_axis("ui_left", "ui_right"))
@@ -98,9 +105,9 @@ func reset() -> void:
 	ignored_shape = null
 	ball.global_position = Vector2(80, 60)
 	bdir = v2dou()
-	ball.velocity = Vector2()
 	paddle_l.global_position.x = 80
 	paddle_u.global_position.x = 80
+	_boredom = 0.0
 	close_rps()
 	if lives <= 0:
 		lose()
@@ -134,11 +141,14 @@ func _ball_movement(delta: float) -> void:
 	ball.modulate.g = 1 - stuck / 10
 	var bpos := ball.global_position
 	var bvos := bdir * paddle_speed * delta
+	if bvos.length() < 20: bvos *= 1.2
+	_boredom += delta
+	give_up_label.visible = _boredom >= BOREDOM_LIMIT
 	var coll := ball.move_and_collide(bvos, false, 0.01, true)
-	if ball.velocity.length() < 20: ball.velocity *= 1.2
 	if bpos == ball.global_position:
-		ball.global_position +=  Vector2(randf_range(-1, 1), randf_range(-1, 1)) * stuck
+		ball.global_position += Vector2(randf_range(-1, 1), randf_range(-1, 1)) * stuck
 	if coll:
+		_boredom = 0.0
 		if coll.get_collider_shape() == ignored_shape:
 			stuck += delta
 			bdir += Vector2(randf_range(-1, 1), randf_range(-1, 1) * 2) * stuck
@@ -150,10 +160,12 @@ func _ball_movement(delta: float) -> void:
 				enlives -= 1
 			SND.play_sound(SOUNDS[4])
 			get_tree().create_timer(2.5).timeout.connect(reset)
-		elif (coll.get_normal().is_equal_approx(Vector2.UP) or
-		coll.get_normal().is_equal_approx(Vector2.DOWN)):
-			bdir = Vector2((randf_range(-1, 1) * 1 if randf() <= 0.95 else
-			randf_range(1, 3)), -bdir.y)
+		elif (coll.get_normal().is_equal_approx(Vector2.UP)
+				or coll.get_normal().is_equal_approx(Vector2.DOWN)):
+			bdir = Vector2(
+				(randf_range(-1, 1) * 1 if randf() <= 0.95 else randf_range(1, 3)),
+				-bdir.y
+			)
 			paddle_speed *= 1.01
 			# player handling
 			if bpos.y > 60:
