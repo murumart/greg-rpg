@@ -196,6 +196,8 @@ func screenshot(small: bool) -> void:
 
 func get_screenshots() -> PackedStringArray:
 	const WHERE := "user://greg_rpg/screenshots/"
+	if not DirAccess.dir_exists_absolute(WHERE):
+		DirAccess.make_dir_recursive_absolute(WHERE)
 	var screenshot_folder := Array(
 			DirAccess.get_files_at(WHERE)).map(func(screenie: String):
 				var filename := WHERE + screenie
