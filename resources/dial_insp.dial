@@ -163,6 +163,65 @@ CHOICE_LINK progress
 	and so on...
 
 
+DIALOGUE insp_uhhhouse_window
+	three dehumidifiers inside.
+
+
+DIALOGUE insp_uhhhouse2_window
+	these windows are actually painted on the bricks.
+
+
+DIALOGUE insp_blockneighbors_window
+	depressing grocery store memorabilia inside.
+
+
+DIALOGUE insp_store_window
+DATA_LINK store_being_cleaned,true
+	the ocean was here, briefly.
+DATA_LINK store_being_cleaned,false
+	the windows are grimy, but reveal an aged grocery store.
+	chain branding covers many surfaces.
+
+
+DIALOGUE insp_east_uhhhouse
+	looks pretty stupid inside, not gonna lie.
+
+
+DIALOGUE insp_east_uhhhouse2
+	...what color are these curtains? purple? green? octarine..?
+
+
+DIALOGUE insp_chapel_window
+	a seven pointed star symbol is set in the glass.
+	the window probably lets more light in than out.
+
+
+DIALOGUE insp_police_window
+DATA_LINK police_standing,0
+	jail cells... looks unwelcoming.
+DATA_LINK police_standing,1
+	you avoid looking suspicious.
+DATA_LINK police_standing,2
+	the room isn't as empty as it once was.
+DATA_LINK police_standing,3
+	jail cells fill the room more and more.
+DATA_LINK police_standing,4
+	the police person insde waves at you.
+DATA_LINK police_standing,5
+	the police person inside gapes their mouth and points at you.
+	you think the other one is yelling something back excitedly.
+DATA_LINK police_standing,6
+	heart stickers are placed on the other side of the glass.
+DATA_LINK police_standing,7
+	hell is love.
+DATA_LINK police_standing,8
+	jail cells... looks unwelcoming.
+DATA_LINK police_standing,9
+	jail cells... looks unwelcoming.
+DATA_LINK police_standing,10
+	jail cells... looks unwelcoming.
+
+
 DIALOGUE insp_police_paper
 	newspaper clipping.
 	"cyclists urged to avoid biking during snail mating season."

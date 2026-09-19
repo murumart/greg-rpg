@@ -131,6 +131,9 @@ level_min = 72
 level_max = 99
 metadata/_custom_type_script = "uid://c50jackklahng"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ya7"]
+size = Vector2(13, 7)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgui"]
 size = Vector2(21, 13)
 
@@ -525,6 +528,9 @@ data_key = &"raining"
 matches = true
 metadata/_custom_type_script = "uid://qboohb38rsxs"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mrhl"]
+size = Vector2(117, 7)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_expa7"]
 size = Vector2(24, 6)
 
@@ -775,7 +781,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(516, 249)
+position = Vector2(420, 234)
 metadata/_edit_group_ = true
 
 [node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
@@ -1290,6 +1296,18 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(48, 16, 16, 16)
 
+[node name="Windows2" parent="Houses/BlockNeighbours" unique_id=1131531395 instance=ExtResource("18_4rtss")]
+position = Vector2(-96, 33)
+key = "blockneighbors_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/BlockNeighbours/Windows2" unique_id=1719789030]
+position = Vector2(23.5, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/BlockNeighbours/Windows2" unique_id=1548256461]
+position = Vector2(71, 9)
+shape = SubResource("RectangleShape2D_u0ya7")
+
 [node name="Pairhouse" type="Node2D" parent="Houses" unique_id=213342539]
 y_sort_enabled = true
 position = Vector2(-32, -288)
@@ -1716,6 +1734,18 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)
 
+[node name="Windows2" parent="Houses/Store" unique_id=1412624092 instance=ExtResource("18_4rtss")]
+position = Vector2(-131, 34)
+key = "store_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Store/Windows2" unique_id=2046848293]
+position = Vector2(68.5, 13.5)
+shape = SubResource("RectangleShape2D_5mrhl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/Store/Windows2" unique_id=1599197966]
+position = Vector2(227, 11)
+shape = SubResource("RectangleShape2D_5mrhl")
+
 [node name="PostOffice" type="Node2D" parent="Houses" unique_id=595469183]
 y_sort_enabled = true
 position = Vector2(336, -272)
@@ -1840,6 +1870,18 @@ texture = ExtResource("16_o4xvl")
 region_enabled = true
 region_rect = Rect2(0, 80, 16, 16)
 
+[node name="Windows2" parent="Houses/UhhHouse" unique_id=1364889576 instance=ExtResource("18_4rtss")]
+position = Vector2(0, 1)
+key = "uhhhouse_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/UhhHouse/Windows2" unique_id=618952695]
+position = Vector2(23.5, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/UhhHouse/Windows2" unique_id=402309360]
+position = Vector2(56, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
 [node name="UhhHouse2" type="Node2D" parent="Houses" unique_id=692736205]
 y_sort_enabled = true
 position = Vector2(752, 24)
@@ -1903,6 +1945,17 @@ region_rect = Rect2(48, 48, 16, 16)
 [node name="StreetSign" parent="Houses/UhhHouse2" unique_id=811065111 instance=ExtResource("25_qhmci")]
 position = Vector2(111, -103)
 dialogue_key = &"town_sign_2"
+
+[node name="Windows" parent="Houses/UhhHouse2" unique_id=1100342386 instance=ExtResource("18_4rtss")]
+key = "uhhhouse2_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/UhhHouse2/Windows" unique_id=1754573689]
+position = Vector2(23.5, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/UhhHouse2/Windows" unique_id=974507236]
+position = Vector2(56, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
 
 [node name="Police" type="Node2D" parent="Houses" unique_id=1992672590]
 y_sort_enabled = true
@@ -2002,6 +2055,22 @@ position = Vector2(10, -171)
 rotation = 3.14159
 scale = Vector2(1, -1)
 grows_in_seconds = 1200
+
+[node name="Windows2" parent="Houses/Police" unique_id=948395335 instance=ExtResource("18_4rtss")]
+position = Vector2(-112, 1)
+key = "police_window"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Houses/Police/Windows2" unique_id=1666127467]
+position = Vector2(23.5, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Houses/Police/Windows2" unique_id=2054421586]
+position = Vector2(56, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Houses/Police/Windows2" unique_id=851858815]
+position = Vector2(87, 13.5)
+shape = SubResource("RectangleShape2D_u0ya7")
 
 [node name="Other" type="Node2D" parent="." unique_id=1360487450]
 y_sort_enabled = true

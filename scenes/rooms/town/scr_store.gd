@@ -19,6 +19,7 @@ func _store_door_setup() -> void:
 	var current_cashier := StoreCashier.which_cashier_should_be_here()
 	var stolen: int = DAT.get_data("stolen_from_store", 0)
 	var cleanup_start_second: int = DAT.get_data("store_cleanup_started_second", -31399)
+	DAT.set_data("store_being_cleaned", false)
 	if (stolen > 199
 			and not DAT.get_data("cashier_dead", false)
 			and current_cashier == "nice"):
@@ -29,6 +30,7 @@ func _store_door_setup() -> void:
 		store_door.fail_dialogue = "store_cashier_absent"
 	if (store_door.destination != ""
 			and DAT.seconds - cleanup_start_second < STORE_CLEANUP_TIME_SECONDS):
+		DAT.set_data("store_being_cleaned", true)
 		store_door.destination = ""
 		store_door.fail_dialogue = "store_under_cleanup"
 		if sunsetter.is_raining:

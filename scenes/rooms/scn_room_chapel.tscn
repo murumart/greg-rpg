@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://eqqbqk2lehe8" path="res://sprites/world/object/spr_town_opjekts.png" id="11_4r7cx"]
 [ext_resource type="Script" uid="uid://bo01p10pqy3rc" path="res://scenes/rooms/town/east_chapel_puzzle.gd" id="11_6gh48"]
 [ext_resource type="PackedScene" uid="uid://wym533u3oyu6" path="res://scenes/decor/bookshelf.tscn" id="12_w74hy"]
-[ext_resource type="Script" uid="uid://biwnkl4q2tk0r" path="res://code/scr_dialogue_line.gd" id="13_pvwdj"]
-[ext_resource type="Script" uid="uid://crxdditnh0akt" path="res://code/scr_dialogue.gd" id="14_53ydv"]
 [ext_resource type="PackedScene" uid="uid://d32kl8lvcw253" path="res://scenes/decor/pedestal.tscn" id="15_x660b"]
 [ext_resource type="PackedScene" uid="uid://3fchv7x6qrpx" path="res://scenes/decor/scn_pickable_item.tscn" id="16_6gh48"]
 
@@ -35,43 +33,7 @@ fill = 1
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="Resource" id="Resource_x660b"]
-script = ExtResource("13_pvwdj")
-text = "the three children of night."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_6gh48"]
-script = ExtResource("13_pvwdj")
-text = "the fire of the sun.
-the mystery of the stars."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_pvwdj"]
-script = ExtResource("13_pvwdj")
-text = "death."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_53ydv"]
-script = ExtResource("13_pvwdj")
-text = "the stars abandoned us and death terrifies us."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_ppj0e"]
-script = ExtResource("13_pvwdj")
-text = "thus, we worship the fire."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_t0sih"]
-script = ExtResource("13_pvwdj")
-text = "we follow the golden light of the sun."
-metadata/_custom_type_script = "uid://biwnkl4q2tk0r"
-
-[sub_resource type="Resource" id="Resource_df63c"]
-script = ExtResource("14_53ydv")
-lines = Array[ExtResource("13_pvwdj")]([SubResource("Resource_x660b"), SubResource("Resource_6gh48"), SubResource("Resource_pvwdj"), SubResource("Resource_53ydv"), SubResource("Resource_ppj0e"), SubResource("Resource_t0sih")])
-metadata/_custom_type_script = "uid://crxdditnh0akt"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_df63c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53ydv"]
 resource_local_to_scene = true
 size = Vector2(10, 13)
 
@@ -250,10 +212,7 @@ texture = SubResource("GradientTexture2D_w74hy")
 
 [node name="Bookshelf" parent="Decor" unique_id=1238455810 instance=ExtResource("12_w74hy")]
 position = Vector2(-48, 27)
-
-[node name="InspectArea" parent="Decor/Bookshelf" index="1" unique_id=1458298663]
-key = ""
-dialogue = SubResource("Resource_df63c")
+lines = PackedStringArray("the three children of night.", "the fire of the sun.\nthe mystery of the stars.", "death.", "the stars abandoned us and death terrifies us.", "thus, we worship the fire.", "we follow the golden light of the sun.")
 
 [node name="Pedestal" parent="Decor" unique_id=2135841375 instance=ExtResource("15_x660b")]
 modulate = Color(0.912851, 0.301124, 0.777803, 1)
@@ -266,7 +225,7 @@ save = true
 
 [node name="CollisionShape2D" parent="Decor/Thing" index="0" unique_id=1279058300]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_df63c")
+shape = SubResource("RectangleShape2D_53ydv")
 
 [node name="Sprite2D" parent="Decor/Thing" index="1" unique_id=417693384]
 position = Vector2(0, -13)
@@ -281,5 +240,4 @@ scale = Vector2(1.87292, 2.30982)
 texture = SubResource("GradientTexture2D_t0sih")
 offset = Vector2(1.90735e-06, 16.4571)
 
-[editable path="Decor/Bookshelf"]
 [editable path="Decor/Thing"]

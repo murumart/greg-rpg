@@ -268,7 +268,7 @@ multipanther -> +10 (=99)
 - [X] redo spirit typing bar to look like logo + have letter background..?
 - [X] check oiut spirit costs more..
 - [X] sliding puzzle tutorial npc
-- [ ] window peeking dialogue for all
+- [X] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east

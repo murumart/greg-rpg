@@ -190,9 +190,9 @@ func get_greeting() -> Dialogue:
 	var dlg := DialogueBuilder.new().set_char("popo_1")
 	if police_standing <= 3:
 		dlg.add_line(dlg.ml("greetings, citizen!"))
-	elif police_standing <= 10:
+	elif police_standing <= 7:
 		dlg.add_line(dlg.ml("welcome back, agent!"))
-	elif police_standing <= 10000:
+	else:
 		dlg.add_line(dlg.ml("i love you."))
 	return dlg.get_dial()
 
