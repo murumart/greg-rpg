@@ -1900,16 +1900,11 @@ CHAR bike_ghost_beta
 	so... brace yourself. this might hurt...
 
 
-DIALOGUE tarikas_finish
-CHAR tarikas
-	mh. come back later.
-	and step out of the way of the sun.
-
-
 DIALOGUE tarikas_beyond_lake_1
 CHAR tarikas
 	...dreadful. dreadful.
-	[color=SUNCOLOR]solar protuberance[/color] has been... plaguing... the woods for a long time.
+	[color=SUNCOLOR]solar protuberance[/color] has been... here...
+	in the woods behind the lake for a long time.
 	...until now.
 	mh... i should thank you. spending some of your precious time...
 	...here... instead of collecting... your [color=FLOWERCOLOR]flowers[/color].
