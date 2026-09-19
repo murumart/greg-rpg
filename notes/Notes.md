@@ -240,8 +240,8 @@ multipanther -> +10 (=99)
 - [X] give tarikas aa lore
 - [X] naturalist shows up after vampire fight..
 - [X] buttons lose focus after exiting load menu
+- [X] test fighting someone who gets hit with car
 - [ ] autosaves after bosses check if those exist
-- [ ] test fighting someone who gets hit with car
 - [ ] add exit button to pennistone
 - [ ] decide what do do with bike bells
 - [ ] lake hint npc doesn't dialogue cutscene

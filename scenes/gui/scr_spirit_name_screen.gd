@@ -5,7 +5,7 @@ signal not_enough_sp_spirit_gotten
 signal invalid_spirit_gotten
 signal timed_out
 
-const SPIRIT_SPEAK_TIMER_WAIT := 2.0
+const SPIRIT_SPEAK_TIMER_WAIT := 2.45
 const LS := preload("res://resources/ls_logo_label.tres")
 
 const SND_FAIL_2 = preload("uid://buqp3rch2u0bm")
