@@ -71,17 +71,22 @@ func _input(event: InputEvent) -> void:
 	if not event is InputEventKey:
 		return
 	var hf := (buttons.any(func(a: Button): return a.has_focus()))
-	if (not hf
+	var cancel_pressed := event.is_action_pressed("cancel")
+	if cancel_pressed or event.is_action_pressed(&"escape") or event.is_action_pressed(&"quick_load") or event.is_action_pressed(&"quick_save"):
+		if SOL.save_menu_open:
+			load_game_button.grab_focus.call_deferred()
+		if credits_text_panel.visible:
+			credits_text_panel.hide()
+			credits_button.grab_focus.call_deferred()
+		if mail_panel.visible:
+			mail_panel.hide()
+			mail_button.grab_focus.call_deferred()
+	elif (not hf
 			and not SOL.save_menu_open
 			and not SOL.dialogue_open
-			#and not $VBoxContainer/CreditsButton/TextPanel.visible
 			and DAT.player_capturers.is_empty()):
-		if event.is_action_pressed("cancel"):
-			mail_panel.hide()
-			credits_text_panel.hide()
+		if cancel_pressed or event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
 			new_game_button.grab_focus.call_deferred()
-		#elif event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
-		#	new_game_button.grab_focus.call_deferred()
 
 
 func _on_new_game_button_pressed() -> void:

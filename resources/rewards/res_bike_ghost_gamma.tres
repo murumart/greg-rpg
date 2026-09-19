@@ -12,13 +12,6 @@ script = ExtResource("1_otiq3")
 type = 1
 property = "bike_bell"
 
-[sub_resource type="Resource" id="Resource_ucfai"]
-script = ExtResource("1_otiq3")
-type = 2
-property = "peptide"
-unique = true
-metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
-
 [resource]
 script = ExtResource("2_oiio5")
-rewards = Array[ExtResource("1_otiq3")]([SubResource("Resource_otiq3"), SubResource("Resource_oiio5"), SubResource("Resource_ucfai")])
+rewards = Array[ExtResource("1_otiq3")]([SubResource("Resource_otiq3"), SubResource("Resource_oiio5")])

@@ -37,6 +37,8 @@ shader = ExtResource("3_krser")
 shader_parameter/rmul = 0.4
 shader_parameter/gmul = 0.6
 shader_parameter/bmul = 0.8
+shader_parameter/vtxmul_amount = 1.0
+shader_parameter/offset_amount = 1.0
 
 [sub_resource type="Gradient" id="Gradient_wbkcl"]
 colors = PackedColorArray(0, 0, 0, 1, 0.307143, 0.307143, 0.307143, 1)

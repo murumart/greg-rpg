@@ -238,17 +238,17 @@ multipanther -> +10 (=99)
 - [X] peptide should work in woodsguy
 - [X] replace icon with logo or gregface
 - [X] give tarikas aa lore
-- [ ] naturalist shows up after vampire fight..
-- [ ] circus is in grass house backyar.d..?
+- [X] naturalist shows up after vampire fight..
+- [X] buttons lose focus after exiting load menu
 - [ ] autosaves after bosses check if those exist
 - [ ] test fighting someone who gets hit with car
-- [ ] buttons lose focus after exiting load menu
 - [ ] add exit button to pennistone
-- [ ] nerf turf2..
-- [ ] 1 damage from drenchfoot? at high level?
 - [ ] decide what do do with bike bells
 - [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict
+- [ ] circus is in grass house backyar.d..?
+- [ ] 1 damage from drenchfoot? at high level?
+- [ ] nerf turf2..
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution

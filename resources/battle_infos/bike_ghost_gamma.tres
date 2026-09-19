@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c5vfksm4oeh8h" path="res://code/scr_battle_payload.gd" id="1_5f8ev"]
 [ext_resource type="Script" uid="uid://bdrmgu8c8as2u" path="res://code/scr_battle_info.gd" id="2_n8xvl"]
+[ext_resource type="Resource" uid="uid://duy7ltiuiw7kn" path="res://resources/rewards/res_bike_ghost_gamma.tres" id="2_uq6rg"]
 
 [resource]
 script = ExtResource("2_n8xvl")
 enemies = Array[StringName]([&"bike_ghost_gamma"])
 music = "bike_gamma"
 start_text = "why is it in french...?"
+rewards = ExtResource("2_uq6rg")
 metadata/_custom_type_script = "uid://bdrmgu8c8as2u"
