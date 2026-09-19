@@ -9,11 +9,12 @@
 [sub_resource type="Resource" id="Resource_um0i2"]
 script = ExtResource("1_2t53s")
 gender = 5
+message_user = &"bike_bell_used"
 
 [resource]
 script = ExtResource("2_fi1eq")
 name = &"bike bell"
-description = "alert everyone around you of your presence! they need the warning"
+description = "alert everyone around you of your presence! if you have three, something useful may happen."
 texture = ExtResource("3_ew41v")
 play_sound = ExtResource("1_ljb42")
 consume_on_use = false

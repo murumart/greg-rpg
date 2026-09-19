@@ -4109,12 +4109,18 @@ DATA_LINK bike_gamma_worried,false
 	i sold everything for this motorcycle!!
 DATA_LINK
 SET_DATA bike_gamma_worried,true
-CHOICES travel,bye
+CHOICES travel,bells,bye
 	(grins) h-hey!!
 CHOICE_LINK bye
 	(blushes) (flames turn a little pink) b-bye...
 CHOICE_LINK travel
 	y-yessir!
+CHOICE_LINK bells
+	(questioning face) huh? the bike bells?
+	(thinking) if you have all three...
+	they might just make a loud enough sound to summon...
+	...the bike near you!
+	(* u *)
 
 
 DIALOGUE bike_gamma_travel_options

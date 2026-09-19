@@ -153,3 +153,16 @@ func get_gate_id(where: StringName) -> StringName:
 
 func get_regs() -> Dictionary:
 	return (DAT.get_data(DAT_DESTS, {}) as Dictionary)
+
+
+func summon(global_at: Vector2) -> void:
+	collision.collision_layer = 0
+	SND.play_sound(preload("res://sounds/biking_bell.ogg"))
+	SND.play_sound(preload("res://sounds/spirit/found.ogg"))
+	SND.play_sound(preload("res://sounds/car_overrun.ogg"), {pitch_scale = 2.0})
+	var tw := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SPRING)
+	var finalpos := global_at + Vector2(0, -12)
+	var tofinal := (global_position - finalpos).limit_length(170.0)
+	global_position = finalpos + tofinal
+	tw.tween_property(self, ^"global_position", finalpos, 0.5)
+	tw.tween_callback(collision.set_collision_layer_value.bind(1, true))

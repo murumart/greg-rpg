@@ -181,6 +181,7 @@ func _update_capture(capture: bool) -> void:
 
 
 func _character_message_received(msg := &"") -> void:
+	var inv := greg.inventory
 	match msg:
 		&"skateboard_equipped":
 			move_mode = MoveModes.SKATE
@@ -197,12 +198,10 @@ func _character_message_received(msg := &"") -> void:
 		&"diploma_crumpled":
 			close_menu()
 			SOL.dialogue("diploma_crumpled")
-			var inv := greg.inventory
 			inv.erase("diploma")
 			DAT.grant_item(&"winner_hat")
 		&"rain_boot_used":
 			close_menu()
-			var inv := greg.inventory
 			if inv.count("rain_boot") >= 2:
 				inv.erase("rain_boot")
 				inv.erase("rain_boot")
@@ -210,6 +209,11 @@ func _character_message_received(msg := &"") -> void:
 				greg.handle_item("rubber_boots")
 			else:
 				SOL.dialogue("rubber_boots_cant_make")
+		&"bike_bell_used":
+			if inv.count("bike_bell") >= 3:
+				close_menu()
+				var bike := get_tree().get_first_node_in_group("bikes")
+				bike.call("summon", global_position)
 
 
 func _save_me() -> void:

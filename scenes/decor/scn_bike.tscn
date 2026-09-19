@@ -289,7 +289,7 @@ _data = {
 &"hover": SubResource("Animation_fhef4")
 }
 
-[node name="Bike" type="Node2D" unique_id=1095601571 groups=["room_gates"]]
+[node name="Bike" type="Node2D" unique_id=1095601571 groups=["bikes", "room_gates"]]
 script = ExtResource("1_hdwvo")
 gradient = SubResource("Gradient_rurkq")
 
@@ -307,6 +307,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 18, 13)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=87596849]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1197462606]
 position = Vector2(0, -0.5)
