@@ -9,8 +9,6 @@ const UNKNOWN_VERSION := Vector3(-4, 0, 0)
 const AUTOSAVE_NAME := "auto"
 
 const COMPLETED_GAME := {
-	#"zerma_fought": true,
-	#"fought_grandma": true,
 	"intro_cutscene_over": true,
 	"vampire_fought": true,
 	"cashier_mean_welcomed": true,
@@ -27,7 +25,6 @@ const COMPLETED_GAME := {
 	"quest_board_introed": true,
 	"witnessed_ushanka_guy_cutscene": true,
 	"bike_ghosts_fought": [0, 1, 2],
-	"gdung_floor": {"min": 2},
 	"greenhouses_eaten": {"min": 1},
 	"tarikas_talked_to": true,
 	"skatings_played": {"min": 1},

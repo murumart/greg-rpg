@@ -245,7 +245,7 @@ multipanther -> +10 (=99)
 - [X] autosaves after bosses check if those exist
 - [X] add exit button to pennistone
 - [X] decide what do do with bike bells
-- [ ] finish completed game dict
+- [X] finish completed game dict WHATEVR:::
 - [ ] circus is in grass house backyar.d..?
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
