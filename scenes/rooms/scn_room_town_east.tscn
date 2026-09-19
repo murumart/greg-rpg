@@ -871,7 +871,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_odpk7")
 
 [node name="Greg" parent="." unique_id=139843330 instance=ExtResource("6_s1sou")]
-position = Vector2(269, 40)
+position = Vector2(-529, -150)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" unique_id=523505788 instance=ExtResource("7_5ym11")]

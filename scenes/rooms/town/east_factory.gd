@@ -69,6 +69,9 @@ func _door() -> void:
 		dlg.al("you jangle the key around the hole.").scallback(func() -> void:
 			SND.play_sound(preload("res://sounds/biking_bell.ogg"), {pitch_scale = 0.5})
 		)
+	elif &"key_gold" in inv:
+		dlg.al("you try the golden key.")
+		dlg.al("the keyhole is way dirty for it, so it refuses to enter.")
 	else:
 		dlg.al("it's truly locked...")
 		dlg.al("it'd do good to have a key here.")
@@ -92,6 +95,13 @@ func _mayor_post_intro() -> void:
 		dlg.al("[color=ff4422]better[/color] than those lousy [color=ff4422]firecrackers[/color].")
 		dlg.al("i'm sure you can supply a good [color=ff4422]egshploshive[/color] from somewhere.")
 		dlg.al("i'm censoring the word to not get [color=ff4422]demonised[/color].")
+	elif &"key_gold" in inv:
+		dlg.al("son... that doesn't look like the right key.")
+		dlg.al("i'm incredibly disappointed in you. do [color=ff4422]better[/color].").scallback(func() -> void:
+			mayor.animate(mayor.HEAD, "default", 1.0, Vector2(3, 0))
+		)
+		dlg.al("in fact, i think you just stole the ceremonial key from the chapel.")
+		dlg.al("you're not opening any doors to my [color=f42]heart[/color] like this, son.")
 	elif &"key_youthcentre" in inv:
 		yc_mentioned = true
 		if not yct:
@@ -119,7 +129,7 @@ func _mayor_post_intro() -> void:
 		dlg.al("son... back in my day...").scallback(func() -> void:
 			mayor.animate(mayor.HEAD, "dark")
 		)
-		dlg.al("we went and interacted with our ladders under [color=ff4422]every window[/color] to find the right one.")
+		dlg.al("we went and interacted under [color=ff4422]every window[/color] to find the right one.")
 		dlg.al("go walk the walk, son!").scallback(func() -> void:
 			mayor.animate(mayor.HEAD, "default")
 			mayor.a_larm("finger")

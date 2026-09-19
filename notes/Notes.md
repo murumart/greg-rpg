@@ -269,7 +269,7 @@ multipanther -> +10 (=99)
 - [X] check oiut spirit costs more..
 - [X] sliding puzzle tutorial npc
 - [X] window peeking dialogue for all
-- [ ] mayor mention golden key
+- [X] mayor mention golden key
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
 - [ ] savescumming at the random prize..
