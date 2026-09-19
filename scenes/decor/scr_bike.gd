@@ -124,10 +124,14 @@ func _travel() -> void:
 	var where := SOL.dialogue_choice
 	SOL.dialogue_choice = ""
 	SOL.dialogue(G_DIAL_PREXES[ghost] + DIAL_TRAVEL)
+	var goto: String = ((get_regs()
+		.get(where, {}) as Dictionary)
+		.get("path", "res://scenes/rooms/scn_room_waiting_room.tscn"))
 	SOL.dialogue_closed.connect(func():
+		SND.play_song("", 3.0)
+		SND.play_sound(preload("res://sounds/spirit/found.ogg"))
 		LTS.gate_id = get_gate_id(where)
-		LTS.level_transition((get_regs().get(where, {}) as Dictionary).get(
-				"path", "res://scenes/rooms/scn_room_waiting_room.tscn"))
+		LTS.level_transition(goto, {start_color = Color(Color.ROYAL_BLUE, 0.0), end_color = Color.ROYAL_BLUE, fade_time = 1.0})
 	, CONNECT_ONE_SHOT)
 
 

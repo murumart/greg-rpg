@@ -133,6 +133,7 @@ func fade_screen(start: Color, end: Color, time := 1.0, options := {}) -> void:
 	tw.tween_callback(func():
 		self.fade_finished.emit()
 		if is_instance_valid(rect) and options.get("free_rect", true):
+			await Math.timer(0.05, true)
 			rect.queue_free()
 	)
 
