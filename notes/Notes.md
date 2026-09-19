@@ -241,10 +241,10 @@ multipanther -> +10 (=99)
 - [X] naturalist shows up after vampire fight..
 - [X] buttons lose focus after exiting load menu
 - [X] test fighting someone who gets hit with car
+- [X] lake hint npc doesn't dialogue cutscene
 - [ ] autosaves after bosses check if those exist
 - [ ] add exit button to pennistone
 - [ ] decide what do do with bike bells
-- [ ] lake hint npc doesn't dialogue cutscene
 - [ ] finish completed game dict
 - [ ] circus is in grass house backyar.d..?
 - [ ] 1 damage from drenchfoot? at high level?
