@@ -4008,6 +4008,21 @@ CHAR kid
 	i just follow them around to sell stuff!
 
 
+DIALOGUE pizzle_tutorial
+CHOICES explain,dont
+	i'm sliding puzzle guru. i'm so tired of explaining this...
+CHOICE_LINK explain
+	it's so damn easy!!! any puzzle, you can solve like this:
+	first, make the very top row be in order!
+	then, the leftmost row.
+	if you do that, then what's left is just a smaller puzzle!
+	if you fix the top and left rows of a 4x4 puzzle...
+	...you're left with a 3x3 puzzle!! an easier one!!
+	then just rinse and repeat until you solve it.
+CHOICE_LINK dont
+	ok..
+
+
 DIALOGUE mayor_intro
 CHAR mayor
 	i'm [color=SAUCECOLOR]thick sauces[/color].

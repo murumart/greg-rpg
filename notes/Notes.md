@@ -267,9 +267,9 @@ multipanther -> +10 (=99)
 - [X] use xending as a side room lore secret garden entrance
 - [X] redo spirit typing bar to look like logo + have letter background..?
 - [X] check oiut spirit costs more..
+- [X] sliding puzzle tutorial npc
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
-- [ ] sliding puzzle tutorial npc
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
 - [ ] savescumming at the random prize..

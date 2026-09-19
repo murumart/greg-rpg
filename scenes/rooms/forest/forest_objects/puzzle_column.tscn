@@ -161,6 +161,7 @@ metadata/_custom_type_script = "uid://cbtl2xny34q67"
 size = Vector2(14, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
+resource_local_to_scene = true
 size = Vector2(16, 12)
 
 [node name="PizzleColumn" type="StaticBody2D" unique_id=318737283 node_paths=PackedStringArray("interaction_area")]
