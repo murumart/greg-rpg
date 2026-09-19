@@ -775,7 +775,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Greg" parent="." unique_id=189692729 instance=ExtResource("3_sx16h")]
-position = Vector2(-50, -41)
+position = Vector2(-33, -79)
 metadata/_edit_group_ = true
 
 [node name="RainParticles" parent="Greg" unique_id=1059334322 instance=ExtResource("8_smefo")]
@@ -2274,7 +2274,7 @@ sprite_frames = ExtResource("17_nuhfb")
 animation = &"walk_down"
 
 [node name="Notif" type="Sprite2D" parent="Other/BackPark/Tarikas" unique_id=444157245]
-modulate = Color(1, 1, 1, 0.9999998)
+modulate = Color(1, 1, 1, 0.999978)
 position = Vector2(-3, -26)
 texture = ExtResource("50_paqtu")
 centered = false
@@ -2283,6 +2283,7 @@ region_rect = Rect2(64, 0, 7, 10)
 
 [node name="SinAnimator" type="Node" parent="Other/BackPark/Tarikas/Notif" unique_id=1813535897 node_paths=PackedStringArray("target")]
 script = ExtResource("51_06enm")
+engine_editor_enabled = false
 property_name = &"modulate:a"
 target = NodePath("..")
 speed = 10.0

@@ -236,7 +236,7 @@ multipanther -> +10 (=99)
 - [X] maybe pils should give poison immune
 - [X] replace enemy plaster with bread or something
 - [X] peptide should work in woodsguy
-- [ ] replace icon with logo or gregface
+- [X] replace icon with logo or gregface
 - [ ] give tarikas aa lore
 - [ ] naturalist shows up after vampire fight..
 - [ ] circus is in grass house backyar.d..?

@@ -91,11 +91,13 @@ func schoice_visual_setup_callable(to: Callable) -> DialogueLine:
 
 
 func sitem_to_give(to: StringName) -> DialogueLine:
+	assert(ResMan.item_exists(to))
 	item_to_give = to
 	return self
 
 
 func sspirit_to_give(to: StringName) -> DialogueLine:
+	assert(to in ResMan.spirits)
 	spirit_to_give = to
 	return self
 

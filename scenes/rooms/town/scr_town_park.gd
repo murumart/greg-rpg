@@ -57,27 +57,6 @@ func _on_tarikas_inspected() -> void:
 		await dlg.speak_choice()
 		return
 
-	if flowers_c == 6:
-		SND.play_song("extremophile", 0.1, {pitch_scale = 0.2})
-		done = true
-		dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
-		dlg.al("you are missing a seventh.")
-		dlg.al("despite my... warnings.")
-		dlg.al("despite my stalling...")
-		dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
-		dlg.al("i hold the seventh...")
-		dlg.al("...")
-		dlg.al("there's nothing else for me to do than to give... it to you.")
-		dlg.clear_char().al("(you received the hollyhock.)").sitem_to_give(&"flower1")
-		dlg.set_char("tarikas").al("you have enough... now.")
-		dlg.al("... she's waiting.")
-		dlg.al("fare well.")
-		dlg.al("i hope we don't meet... again.")
-
-		cfinal = true
-		await dlg.speak_choice()
-		return
-
 	if not tarikas_talked:
 		tarikas_talked = true
 		dlg.add_line(dlg.ml("mh. you're blocking the sunlight."))
@@ -167,13 +146,13 @@ func _on_tarikas_inspected() -> void:
 			dlg.al('a president... of "beacon achipelago"?')
 			dlg.al("well then.")
 			dlg.al("i've heard of him. he's... a broken man.")
+			dlg.al("i don't think \"beacon archipelago\" is much more than a single rock...")
+			dlg.al("...but no one dares sail near... there.")
+			dlg.al("with his kind of strength...")
 			dlg.al("his mind folded before nature... but gained... spirit power.")
 			dlg.al("boy... never trust spirits.")
 			dlg.al("what they seek... we do not know.")
 			dlg.al("but they steer the world toward... chaos.")
-			dlg.al("i don't think \"beacon archipelago\" is much more than a single rock...")
-			dlg.al("...but no one dares sail near... there.")
-			dlg.al("with his kind of power...")
 			dlg.al("...")
 			dlg.al("you got [color=%s]something[/color] from him." % dlg.FLOWERCOLOR)
 			dlg.al("...i shouldn't be surprised.")
@@ -237,10 +216,29 @@ func _on_tarikas_inspected() -> void:
 				dlg.al("do you think you're better than them?")
 				dlg.al("do you think the same won't... happen to you?")
 				dlg.al("your power... might just be... enough...")
+			elif flowers_c == 6:
+				SND.play_song("extremophile", 0.1, {pitch_scale = 0.2})
+				done = true
+				dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+				dlg.al("you are missing a seventh.")
+				dlg.al("despite my... warnings.")
+				dlg.al("despite my stalling...")
+				dlg.al("...six [color=%s]flowers[/color]." % dlg.FLOWERCOLOR)
+				dlg.al("i hold the seventh...")
+				dlg.al("...")
+				dlg.al("there's nothing else for me to do than to give... it to you.")
+				dlg.clear_char().al("(you received the hollyhock.)").sitem_to_give(&"flower1")
+				dlg.set_char("tarikas").al("you have enough... now.")
+				dlg.al("... she's waiting.")
+				dlg.al("fare well.")
+				dlg.al("i hope we don't meet... again.")
 
+				cfinal = true
 			else:
 				dlg.al("...")
 			await dlg.speak_choice()
+			if done:
+				break
 		else:
 			break
 	_notif.call_deferred()
@@ -359,7 +357,7 @@ func _what_now(dlg: DialogueBuilder) -> void:
 				dlg.al("...you survived... okay... okay...")
 		else:
 			dlg.al("...that's... nice...")
-	elif greg.level < 80:
+	else:
 		if not "town_east" in DAT.get_data("visited_rooms"):
 			dlg.al("i was thinking about walking to... east of town.")
 			dlg.al("but the police were blocking the road, last i checked...")
