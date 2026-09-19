@@ -266,6 +266,7 @@ multipanther -> +10 (=99)
 - [X] make campfire less horrible to use
 - [X] use xending as a side room lore secret garden entrance
 - [X] redo spirit typing bar to look like logo + have letter background..?
+- [X] check oiut spirit costs more..
 - [ ] window peeking dialogue for all
 - [ ] mayor mention golden key
 - [ ] sliding puzzle tutorial npc
@@ -274,7 +275,6 @@ multipanther -> +10 (=99)
 - [ ] savescumming at the random prize..
 - [ ] way to cancel shopping basket
 - [ ] more npcs after level 30 aroud town
-- [ ] check oiut spirit costs more..
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around
 - [ ] do smthabout science guy. remove or add to east

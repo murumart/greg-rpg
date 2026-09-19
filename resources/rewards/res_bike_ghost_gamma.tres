@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="BattleRewards" format=3 uid="uid://duy7ltiuiw7kn"]
+
+[ext_resource type="Script" uid="uid://cmpcuxcxag2ko" path="res://code/scr_battle_reward.gd" id="1_otiq3"]
+[ext_resource type="Script" uid="uid://c6s82fw7twwpy" path="res://code/scr_battle_rewards.gd" id="2_oiio5"]
+
+[sub_resource type="Resource" id="Resource_otiq3"]
+script = ExtResource("1_otiq3")
+property = "2"
+
+[sub_resource type="Resource" id="Resource_oiio5"]
+script = ExtResource("1_otiq3")
+type = 1
+property = "bike_bell"
+
+[sub_resource type="Resource" id="Resource_ucfai"]
+script = ExtResource("1_otiq3")
+type = 2
+property = "peptide"
+unique = true
+metadata/_custom_type_script = "uid://cmpcuxcxag2ko"
+
+[resource]
+script = ExtResource("2_oiio5")
+rewards = Array[ExtResource("1_otiq3")]([SubResource("Resource_otiq3"), SubResource("Resource_oiio5"), SubResource("Resource_ucfai")])

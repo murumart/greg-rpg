@@ -1529,11 +1529,12 @@ CHOICE_LINK you
 LOOP 2
 	and the studying!
 CHOICE_LINK me
-	about you? you're new in town, i think.
-	i don't pay too much attention to such matters.
-	people coming and going, i mean.
+	about you? uhhh... i don't know...
+	i guess i haven't seen you around here before today.
+	i know from experience it's not gonna work...
+	...if i ask people here why they came here.
 LOOP 2
-	even though it barely ever happens.
+	so i can't answer any questions you have about yourself.
 CHOICE_LINK stray
 	about the stray pets?
 	they've been pretty devastating for the local ecosystem.
