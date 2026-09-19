@@ -25,6 +25,7 @@ position = Vector2(0, -56)
 texture = ExtResource("2_mh3gg")
 region_enabled = true
 region_rect = Rect2(16, 0, 48, 128)
+region_filter_clip_enabled = true
 
 [node name="Face" type="Sprite2D" parent="Sprite" unique_id=242850934]
 visible = false

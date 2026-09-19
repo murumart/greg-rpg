@@ -270,6 +270,7 @@ multipanther -> +10 (=99)
 - [X] sliding puzzle tutorial npc
 - [X] window peeking dialogue for all
 - [X] mayor mention golden key
+- [X] do smthabout science guy. remove or add to east
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
 - [ ] savescumming at the random prize..
@@ -277,7 +278,6 @@ multipanther -> +10 (=99)
 - [ ] more npcs after level 30 aroud town
 - [ ] special boss battle start animation
 - [ ] piece of grass should follow kids around
-- [ ] do smthabout science guy. remove or add to east
 - [ ] add greenhousicle to sg hub
 
 ### nice

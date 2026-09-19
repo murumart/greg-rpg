@@ -2312,6 +2312,19 @@ DIALOGUE science_guy_free_2
 	but i loved watching them leave.
 
 
+DIALOGUE science_guy_athome
+	ah, it feels good to be home at my weird science lab.
+	i love doing experiments with chemicals.
+	my hero is the philosopher, chemicles.
+
+
+DIALOGUE science_guy_athome_2
+	huh? take you into my weird science lab?
+	to play a minigame?
+	now why the ████ would i let you do that?
+	get lost!
+
+
 DIALOGUE restroom_default
 	...
 
@@ -4035,6 +4048,9 @@ CHAR mayor
 	i'm the [color=SAUCECOLOR]mayor[/color].
 	i'm also one of your enemy encounters in this area.
 	i'm gonna whoop your [color=SAUCECOLOR]butt[/color], son.
+
+
+
 
 
 DIALOGUE fisherwoman_70

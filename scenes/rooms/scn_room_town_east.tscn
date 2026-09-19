@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://duxvpsyqmlgud" path="res://scenes/rooms/town/scr_fake_cat.gd" id="19_phep0"]
 [ext_resource type="Script" uid="uid://bot6miaxo87sk" path="res://code/scr_move_axis_add_area.gd" id="20_1fst2"]
 [ext_resource type="Texture2D" uid="uid://6kw7miy8f3tw" path="res://sprites/world/building/factory/overlay.png" id="20_fhxp8"]
+[ext_resource type="Script" uid="uid://c50jackklahng" path="res://code/predicates/greg_level_range.gd" id="21_boafo"]
 [ext_resource type="Texture2D" uid="uid://dcfpaki7ir318" path="res://sprites/world/building/factory/shadow.png" id="21_stciw"]
 [ext_resource type="Script" uid="uid://cy4y0kuvm57rq" path="res://scenes/rooms/town/east_factory.gd" id="22_1fst2"]
 [ext_resource type="Script" uid="uid://c68b383voql6x" path="res://scenes/tech/scr_inspect_area.gd" id="22_stciw"]
@@ -105,7 +106,7 @@ size = Vector2(1, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
 size = Vector2(1, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_boafo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6s44"]
 resource_local_to_scene = true
 size = Vector2(21, 16)
 
@@ -310,7 +311,7 @@ height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3b86v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_boafo"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl7lh"]
@@ -525,9 +526,15 @@ _data = {
 a = Vector2(-42, 0)
 b = Vector2(43, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd6mw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b86v"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
+
+[sub_resource type="Resource" id="Resource_vegnp"]
+script = ExtResource("21_boafo")
+level_min = 72
+level_max = 89
+metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxvwd"]
 size = Vector2(16, 12)
@@ -665,7 +672,7 @@ size = Vector2(13, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcl6"]
 size = Vector2(14, 18)
 
-[sub_resource type="Gradient" id="Gradient_n5fi2"]
+[sub_resource type="Gradient" id="Gradient_nd6mw"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
@@ -677,7 +684,7 @@ size = Vector2(8, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 7)
 
-[sub_resource type="Curve2D" id="Curve2D_ark2t"]
+[sub_resource type="Curve2D" id="Curve2D_n5fi2"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -76, 164, 150.748, -194.999, -150.748, 194.999, -223, 415, 137.19, 6.61157, -137.19, -6.61157, -528, 572, 0, 0, 0, 0, -898, 571)
@@ -1039,7 +1046,7 @@ greg_speed = 20.0
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
-shape = SubResource("RectangleShape2D_boafo")
+shape = SubResource("RectangleShape2D_n6s44")
 
 [node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock" unique_id=612154986]
 position = Vector2(-40, 16)
@@ -1341,7 +1348,7 @@ offset = Vector2(-10, -26)
 
 [node name="ShardsTexture" parent="Houses/Factory" unique_id=1455373539 instance=ExtResource("35_ani0e")]
 position = Vector2(6, 31)
-texture = SubResource("ViewportTexture_3b86v")
+texture = SubResource("ViewportTexture_boafo")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false
@@ -1420,10 +1427,23 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0" unique_id=582535130]
-shape = SubResource("RectangleShape2D_nd6mw")
+shape = SubResource("RectangleShape2D_3b86v")
 
 [node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1" unique_id=110762082]
 position = Vector2(0, 9)
+
+[node name="ScienceGuy" parent="Houses/Factory" unique_id=623431601 instance=ExtResource("11_bu27y")]
+position = Vector2(-249, -172)
+default_lines = Array[StringName]([&"science_guy_athome", &"science_guy_athome_2"])
+save = false
+existence_predicate = SubResource("Resource_vegnp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Houses/Factory/ScienceGuy" unique_id=136220697]
+position = Vector2(0, -8)
+texture = ExtResource("15_kc1q2")
+region_enabled = true
+region_rect = Rect2(48, 48, 16, 16)
+region_filter_clip_enabled = true
 
 [node name="Chapel" type="Node2D" parent="Houses" unique_id=30406025]
 y_sort_enabled = true
@@ -1608,7 +1628,7 @@ item = &"drill_lure"
 position = Vector2(-62, 32)
 ghost = 2
 destination_name = &"east"
-gradient = SubResource("Gradient_n5fi2")
+gradient = SubResource("Gradient_nd6mw")
 
 [node name="Windows2" parent="Houses/UhhHouse" unique_id=1137365394 instance=ExtResource("49_n6s44")]
 position = Vector2(3, -3)
@@ -1720,7 +1740,7 @@ position = Vector2(-961, 595)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
 position = Vector2(46, 0)
-curve = SubResource("Curve2D_ark2t")
+curve = SubResource("Curve2D_n5fi2")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-76, 164)
