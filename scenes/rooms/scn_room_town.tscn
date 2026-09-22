@@ -127,7 +127,7 @@ metadata/_custom_type_script = "uid://cybgyxtius8n1"
 
 [sub_resource type="Resource" id="Resource_dlfy3"]
 script = ExtResource("35_06enm")
-level_min = 72
+level_min = 70
 level_max = 99
 metadata/_custom_type_script = "uid://c50jackklahng"
 
@@ -160,7 +160,7 @@ metadata/_custom_type_script = "uid://c50jackklahng"
 [sub_resource type="Resource" id="Resource_06enm"]
 script = ExtResource("35_06enm")
 level_min = 60
-level_max = 71
+level_max = 69
 metadata/_custom_type_script = "uid://c50jackklahng"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xos6n"]

@@ -249,6 +249,21 @@ multipanther -> +10 (=99)
 - [ ] circus is in grass house backyar.d..?
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
+- [ ] rain guy shows up when you come out of the store and it stops raining
+- [ ] no tarikas president topic get
+- [ ] disable car when talking to bird
+- [ ] rotate clothes sprite greg when rotating greg
+- [ ] writing hotel opens load menu.. ????
+- [ ] forest pizzles are always greg
+- [ ] make kid more common in wooods
+- [ ] get stuck between chapel and fence
+- [ ] give more skating instructions
+- [ ] forbid entrance to town east before you get rose..?
+- [ ] try to detect if youre stuck and turn off rounding for a bit i guess that should work
+- [ ] return forest bin chance to get more petals&stuff..
+- [ ] increase kid
+- [ ] forest perk descriptions say floats
+- [ ] move flowerboy flower quest option up so if they dont scroll down they still see that
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
