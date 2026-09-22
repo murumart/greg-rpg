@@ -24,7 +24,7 @@ func _naturalist_setup() -> void:
 		return
 	var dbox := SOL.dialogue_box as DialogueBox
 	var dnames := _generate_unique_bird_names()
-	const BIRD_NAME_RANGE := Vector2i(62, 69)
+	const BIRD_NAME_RANGE := Vector2i(63, 70)
 	for i in range(BIRD_NAME_RANGE.x, BIRD_NAME_RANGE.y):
 		var names := []
 		for x in 3:
