@@ -4,6 +4,7 @@ const BountyBoard = preload("res://scenes/gui/scr_bounty_board.gd")
 
 @onready var popo1 := $Npcs/Popo1 as OverworldCharacter
 @onready var popo2 := $Npcs/Popo2 as OverworldCharacter
+@onready var note: Sprite2D = $Decor/Note
 
 #var bounty: Dictionary[StringName, int]
 const TRACKED_BOUNTIES := {
@@ -44,18 +45,30 @@ static var police_standing: int:
 		DAT.set_data("police_standing", to)
 
 
+static func should_be_at_blocker() -> bool:
+	var greg := ResMan.get_character("greg")
+	return police_standing >= 3 and greg.level >= 70
+
+
 func _ready() -> void:
 	super._ready()
+	note.hide()
 	#load_bounties()
 	if DAT.seconds < 1 and not LTS.gate_id and not DIR.standalone() and true:
 		fulfill_bounty("all") #DEBUG
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
+	if should_be_at_blocker():
+		popo1.hide()
+		note.show()
 	_waiter_setup()
 
 
 func _on_popo_1_interact_on_interact() -> void:
+	if should_be_at_blocker():
+		SOL.dialogue("police_atblockade")
+		return
 	var dlg := DialogueBuilder.new().set_char("popo_1")
 	var newbounts := false
 	for b in TRACKED_BOUNTIES:
@@ -125,32 +138,32 @@ func _on_popo_1_interact_on_interact() -> void:
 			await dlg.speak_choice()
 		elif choice == &"bounty":
 			dlg.reset().set_char("popo_1")
-			dlg.add_line(dlg.ml("about the bounty system?"))
-			dlg.add_line(dlg.ml("our community is troubled by troublesome troubles."))
-			dlg.add_line(dlg.ml("the bounty system is a citizens' initiative!"))
-			dlg.add_line(dlg.ml("do a good deed, and get rewarded for it!"))
-			dlg.add_line(dlg.ml("the board on the wall over there has more 'inf."))
+			dlg.al("about the bounty system?")
+			dlg.al("our community is troubled by troublesome troubles.")
+			dlg.al("the bounty system is a citizens' initiative!")
+			dlg.al("do a good deed, and get rewarded for it!")
+			dlg.al("the board on the wall over there has more 'inf.")
 			await dlg.speak_choice()
 		elif choice == &"east":
 			dlg.reset().set_char("popo_1")
 			dlg.add_line(dlg.ml("the road to the east of town is blocked?"))
 			if police_standing < 3:
-				dlg.add_line(dlg.ml("there has been a bit of a crime there recently..."))
-				dlg.add_line(dlg.ml("a bunch of people were ran over. it was really sad."))
-				dlg.add_line(dlg.ml("so you can't go there at the moment..."))
-				dlg.add_line(dlg.ml("but if you keep collaborating with us..."))
-				dlg.add_line(dlg.ml("we could grant you some access privileges."))
+				dlg.al("there has been a bit of a crime there recently...")
+				dlg.al("a bunch of people were ran over. it was really sad.")
+				dlg.al("so you can't go there at the moment...")
+				dlg.al("but if you keep collaborating with us...")
+				dlg.al("we could grant you some access privileges.")
 			else:
 				if ResMan.get_character("greg").level < DAT.ENTER_TOWN_EAST_LEVEL:
-					dlg.add_line(dlg.ml("ahhh... my love for you is strong..., my love..."))
-					dlg.add_line(dlg.ml("but not as strong as the enemies in that part of town."))
-					dlg.add_line(dlg.ml("please, level up to at least %s..." % DAT.ENTER_TOWN_EAST_LEVEL))
-					dlg.add_line(dlg.ml("you don't deserve to be super annihilated."))
+					dlg.al("ahhh... my love for you is strong..., my love...")
+					dlg.al("but not as strong as the enemies in that part of town.")
+					dlg.al("please, level up to at least %s..." % DAT.ENTER_TOWN_EAST_LEVEL)
+					dlg.al("you don't deserve to be super annihilated.")
 				else:
-					dlg.add_line(dlg.ml("well, you're not supposed to go there, yet..."))
-					dlg.add_line(dlg.ml("but you're just so... awesome!! i'm letting you in."))
-					DAT.set_data("popo_blockade_lifted", true)
-					dlg.add_line(dlg.ml("the blockade should be lifted now."))
+					dlg.al("well, you're not supposed to go there, yet...")
+					dlg.al("but you're just so... awesome!! i'm letting you in.")
+					#DAT.set_data("popo_blockade_lifted", true)
+					dlg.al("the blockade should be lifted now.")
 
 
 			await dlg.speak_choice()
@@ -190,7 +203,7 @@ func get_greeting() -> Dialogue:
 	var dlg := DialogueBuilder.new().set_char("popo_1")
 	if police_standing <= 3:
 		dlg.add_line(dlg.ml("greetings, citizen!"))
-	elif police_standing <= 7:
+	elif police_standing < 7:
 		dlg.add_line(dlg.ml("welcome back, agent!"))
 	else:
 		dlg.add_line(dlg.ml("i love you."))

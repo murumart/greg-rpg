@@ -28,17 +28,18 @@ func _ready() -> void:
 func _inspected() -> void:
 	var lvl := ResMan.get_character(GREG).level
 
+	CarOverworld.static_paused = true
 	if lvl < LEVEL_LIMIT:
 		SOL.dialogue("insp_blocking_bird_low")
-		return
-
-	SOL.dialogue("insp_blocking_bird")
-	await SOL.dialogue_closed
-	if SOL.dialogue_choice == "yes":
-		# the battel
-		await _cutscene_before()
-		DAT.set_data(FOUGHT_KEY, true)
-		LTS.enter_battle(load("res://resources/battle_infos/woods_guy_fight.tres"))
+	else:
+		SOL.dialogue("insp_blocking_bird")
+		await SOL.dialogue_closed
+		if SOL.dialogue_choice == "yes":
+			# the battel
+			await _cutscene_before()
+			DAT.set_data(FOUGHT_KEY, true)
+			LTS.enter_battle(load("res://resources/battle_infos/woods_guy_fight.tres"))
+	CarOverworld.static_paused = false
 
 
 func _cutscene_before() -> void:

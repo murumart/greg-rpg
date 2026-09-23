@@ -180,6 +180,10 @@ var songs := {
 		"title": "lion",
 		"stream": preload("res://music/mus_lion.ogg")
 	},
+	"love": {
+		"title": "i love you like a lover loves love",
+		"stream": preload("res://music/mus_love.ogg")
+	},
 	"mail_mission": {
 		"title": "mail mission",
 		"stream": preload("res://music/mus_mail_mission.ogg")

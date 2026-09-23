@@ -368,9 +368,9 @@ func _calc_completion_percent(file: Dictionary) -> float:
 							break
 		else:
 			checks += 1.0
-			if value == gotten:
+			if value == type_convert(gotten, typeof(value)):
 				sum += 1.0
-			truth = value == gotten
+				truth = true
 	return (sum / checks) * 100.0
 
 

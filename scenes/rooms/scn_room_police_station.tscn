@@ -2686,6 +2686,14 @@ offset = Vector2(-6, -1)
 region_enabled = true
 region_rect = Rect2(69, 31, 11, 9)
 
+[node name="Note" type="Sprite2D" parent="Decor" unique_id=832610475]
+position = Vector2(68, -23)
+texture = ExtResource("13_tbltf")
+centered = false
+offset = Vector2(-6, -1)
+region_enabled = true
+region_rect = Rect2(69, 31, 11, 9)
+
 [node name="Sprite2D4" type="Sprite2D" parent="Decor" unique_id=783070258]
 position = Vector2(67, -27)
 texture = ExtResource("13_tbltf")
@@ -2816,6 +2824,8 @@ position = Vector2(-28, -1)
 [node name="Lights" type="Node2D" parent="Decor" unique_id=1904184997]
 z_index = 1
 material = SubResource("CanvasItemMaterial_ax68p")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="WindowLight" type="Sprite2D" parent="Decor/Lights" unique_id=1795198186]
 modulate = Color(0.414979, 0.414283, 0.375282, 1)

@@ -2504,7 +2504,7 @@ CHAR popo_1
 	"they are as dark as your ebony hair..."
 	"like your eyes, it shines darkly..."
 	"peering into my soul..." ooh, like you're doing now!
-	that was my real reward for that bounty...
+	this was the real reward for that bounty...
 	...but here's some extra stuff, too.
 
 
@@ -2603,6 +2603,28 @@ DIALOGUE police_waiter_mid_5
 
 DIALOGUE police_waiter_2
 	unfortunately they're busy right now.
+
+
+DIALOGUE police_bringflower
+CHAR popo_1
+EMO blush
+	hey...
+	you reached level 70...
+	i think... our date... will be wonderful...
+	i just need... one thing from you...
+EMO
+	get me a [color=FLOWERCOLOR]rose[/color]!
+	what's a date good for without a romantic flower...?
+
+
+DIALOGUE police_atblockade
+	(a written note.)
+	meet me at the blockade... bring a [color=FLOWERCOLOR]rose[/color]...
+
+
+DIALOGUE police_bringflower_2
+CHAR popo_1
+	this blockade's not being lifted until you get me that [color=FLOWERCOLOR]rose[/color]...
 
 
 DIALOGUE kid_firstencounter

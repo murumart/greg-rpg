@@ -16,6 +16,8 @@ var regions := []
 @onready var collision_shape_2: CollisionShape2D = $CollisionArea/CollisionShape2
 @onready var cigarette_timer: Timer = $CigaretteTimer
 
+@onready var vroom: AudioStreamPlayer2D = get_node_or_null("VroomVroom")
+
 @export var path_container: Node
 @export var moves := true: set = set_moves
 
@@ -32,6 +34,8 @@ var current_target := 0
 var velocity := Vector2()
 
 var battle_info: BattleInfo
+
+static var static_paused := false
 
 
 func _ready() -> void:
@@ -59,7 +63,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not moves:
+	vroom.max_distance = 1.0 if static_paused else 200.0
+	if not moves or static_paused:
 		return
 	# moving towards the target
 	global_position = global_position.move_toward(target, delta * speed)
@@ -98,7 +103,7 @@ func at_which_path_point() -> Node2D:
 
 
 func _on_collision(ob: Node2D) -> void:
-	if not moves:
+	if not moves or static_paused:
 		return
 	if ob is PlayerOverworld:
 		_on_collided_with_player(ob)
@@ -150,9 +155,8 @@ func get_save_key(key: String) -> String:
 
 func set_moves(to: bool):
 	moves = to
-	var vroom := get_node_or_null("VroomVroom") # did i really name it that
 	# goddamn vroom
-	if vroom:
+	if is_instance_valid(vroom):
 		vroom.playing = to
 
 

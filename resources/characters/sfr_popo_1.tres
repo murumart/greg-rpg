@@ -2,6 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://2p1vjwibp3dp" path="res://sprites/characters/overworld/spr_popo_1.png" id="1_x1kib"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvt5c"]
+atlas = ExtResource("1_x1kib")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50j6l"]
+atlas = ExtResource("1_x1kib")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a17m5"]
+atlas = ExtResource("1_x1kib")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvb80"]
+atlas = ExtResource("1_x1kib")
+region = Rect2(48, 64, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_6msjl"]
 atlas = ExtResource("1_x1kib")
 region = Rect2(0, 0, 16, 16)
@@ -68,6 +84,23 @@ region = Rect2(48, 48, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvt5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50j6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a17m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvb80")
+}],
+"loop": 1,
+"name": &"romantic_wind",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6msjl")
