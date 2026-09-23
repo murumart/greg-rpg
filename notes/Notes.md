@@ -287,6 +287,7 @@ multipanther -> +10 (=99)
 - [X] mayor mention golden key
 - [X] do smthabout science guy. remove or add to east
 - [X] add greenhousicle to sg hub
+- [ ] make beta voice deeper
 - [ ] note of maximum level in forest HUD
 - [ ] more mentions of mayor before east
 - [ ] savescumming at the random prize..
