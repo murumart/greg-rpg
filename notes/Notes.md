@@ -263,6 +263,7 @@ multipanther -> +10 (=99)
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
 - [ ] circus is in grass house backyar.d..?
+- [ ] trash and such appear out of bounds south in woods
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
