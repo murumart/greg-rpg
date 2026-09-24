@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://c5vfksm4oeh8h"
 
 [resource]
 script = ExtResource("3_nsaho")
-name = &"rose petals"
+name = &"rose petal"
 description = "petals that form a flower."
 texture = ExtResource("4_bnw11")
 price = -1

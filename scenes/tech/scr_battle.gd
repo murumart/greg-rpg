@@ -881,7 +881,7 @@ func _dance_battle_ended(data: Dictionary) -> void:
 		loser.flee()
 	else:
 		winner.character.attack *= 3
-		winner.character.defense *= 3
+		#winner.character.defense *= 3
 		winner.character.speed *= 3
 		winner.character.level *= 3
 		message("%s powers up tremendously!" %

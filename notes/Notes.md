@@ -248,6 +248,10 @@ multipanther -> +10 (=99)
 - [X] finish completed game dict WHATEVR:::
 - [X] disable car when talking to bird
 - [X] forbid entrance to town east before you get rose..?
+- [X] forest pizzles are always greg (wasnt real)
+- [X] make kid more common in wooods
+- [X] return forest bin chance to get more petals&stuff..
+- [X] forest perk descriptions say floats
 - [ ] circus is in grass house backyar.d..?
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
@@ -255,14 +259,9 @@ multipanther -> +10 (=99)
 - [ ] no tarikas president topic get
 - [ ] rotate clothes sprite greg when rotating greg
 - [ ] writing hotel opens load menu.. ????
-- [ ] forest pizzles are always greg
-- [ ] make kid more common in wooods
 - [ ] get stuck between chapel and fence
 - [ ] give more skating instructions
 - [ ] try to detect if youre stuck and turn off rounding for a bit i guess that should work
-- [ ] return forest bin chance to get more petals&stuff..
-- [ ] increase kid
-- [ ] forest perk descriptions say floats
 - [ ] move flowerboy flower quest option up so if they dont scroll down they still see that
 
 ### smally

@@ -25,8 +25,8 @@ const VEGET_GREENHOUSE_INTERVAL := 21
 const BIN_LOOT: Dictionary[StringName, int] = {
 	&"gummy_worm": 30,
 	&"gummy_fish": 8,
-	&"rose_petals": 4,
-	&"rose_thorns": 2,
+	&"rose_petals": 5,
+	&"rose_thorns": 3,
 	&"eggshell": 6,
 	&"egg_cooked": 3,
 	&"egg": 5,
@@ -167,8 +167,9 @@ func _init_board(a) -> void:
 
 
 func gen_bins() -> void:
-	var trash_count := roundi(forest.trash_amount_curve.sample_baked(
-		forest.current_room / 100.0) * randf())
+	var trash_count := roundi(
+		forest.trash_amount_curve.sample_baked(forest.current_room / 100.0) * randf()
+	)
 	if forest.questing.get_perk_double_trash():
 		trash_count *= 2
 	trash_count += roundi(forest.questing.get_perk_extra_trash_amount())

@@ -22,7 +22,11 @@ func _criteria_statement(informations: Array) -> void:
 func _returns_statement(informations: Array) -> void:
 	super(informations)
 	if add_to_perk:
-		informations.append(str("- ", add_to_perk.key.replace("_", " "), " +", add_to_perk.value))
+		var intval := int(add_to_perk.value)
+		if intval == add_to_perk.value:
+			informations.append(str("- ", add_to_perk.key.replace("_", " "), " +", intval))
+		else:
+			informations.append(str("- ", add_to_perk.key.replace("_", " "), " +", add_to_perk.value))
 
 
 func _grant_parts(inventory: Array) -> void:
