@@ -18,8 +18,8 @@ signal broadcast_balance(balance: float)
 signal broadcast_boredom(boredom: float)
 signal game_over
 
-var speed := 3000.0
-var friction := 30.0
+var speed := 60.0
+var friction := 5.0
 var jump_height := 15.0
 var balance := 0.0
 var boredom := 0.0
@@ -32,7 +32,7 @@ var can_input := true
 var flips_in_air := 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.5
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") * 0.008
 
 @onready var jump_case: RayCast2D = $JumpCase
 @onready var sprite: Sprite2D = $Sprite2D
@@ -45,7 +45,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 0
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not test_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity
 		jump_sound.pitch_scale = maxf(remap(velocity.y, -300.0, 100.0, 3, 0.2), 0.2)
 	if test_floor():
 		in_air = false
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		flips_in_air = 0
 		if did_flip_during_air:
 			SND.play_sound(S_6)
-			if absf(balance) < 0.06:
+			if absf(balance) < 0.2:
 				text("perfect landing!!", Color.DARK_SEA_GREEN)
 				trick()
 				SND.play_sound(S_8)
@@ -83,16 +83,18 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("move_left", "move_right")
 	if can_input and direction:
-		velocity.x = direction * speed * delta
+		velocity.x = direction * speed
 		balance += velocity.x * 0.001 * delta
 		sprite.scale.x = signf(velocity.x)
 	else:
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-	if can_input and Input.is_action_pressed("menu"):
+		velocity.x = move_toward(velocity.x, 0, friction)
+	if can_input and Input.is_action_pressed(&"cancel"):
 		balance += direction * delta * absf(velocity.y) * 0.2 * maxf(absf(balance) * 2, 0.2)
-	if can_input and Input.is_action_just_pressed("cancel"):
-		trick()
 	mod_balance(delta * 0.333)
+	if balance_right.is_colliding():
+		velocity.x += balance_right.get_collision_normal().x * 10.0
+	if balance_left.is_colliding():
+		velocity.x -= balance_left.get_collision_normal().x * 10.0
 	sprite_look()
 
 	move_and_slide()

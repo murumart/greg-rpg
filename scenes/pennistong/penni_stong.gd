@@ -56,6 +56,7 @@ var enlives := 0:
 
 
 func _ready() -> void:
+	give_up_label.text = give_up_label.text % KeybindsSettings.action_string("cancel")
 	set_physics_process(false)
 	for p in paddles:
 		((p.get_child(1) as CollisionShape2D).shape

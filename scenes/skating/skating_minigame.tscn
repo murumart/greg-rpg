@@ -256,7 +256,8 @@ position = Vector2(80, 60)
 position = Vector2(50, 46)
 collision_layer = 2
 floor_stop_on_slope = false
-floor_max_angle = 0.357792
+floor_block_on_wall = false
+floor_max_angle = 0.17453292
 script = ExtResource("3_i87m7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1631689144]

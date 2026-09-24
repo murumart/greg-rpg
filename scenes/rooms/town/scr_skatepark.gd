@@ -99,12 +99,22 @@ func sk8r_kid_talk() -> void:
 			await dlg.speak_choice()
 
 	elif choice == &"skate":
-		dlg.al("so you want to be a [color=ff4422]cool skaters[/color]...").schoices(["yes", "no"])
+		dlg.al("so you want to be a [color=ff4422]cool skaters[/color]...").schoices(["yes", "no", "help"])
 		var c := await dlg.speak_choice()
 		dlg.reset()
+		var axx := KeybindsSettings.action_string(&"ui_accept")
+		var menu := KeybindsSettings.action_string(&"cancel")
 		if c == &"yes":
 			dlg.al("very well. here's my skateboard.")
-			dlg.al("move with movement keys, jump with %s and tilt with %s in the air."
-				% [KeybindsSettings.action_string(&"ui_accept"), KeybindsSettings.action_string(&"menu")])
+			dlg.al("move with movement keys, jump with %s and tilt with %s in the air." % [axx, menu])
 			await dlg.speak_choice()
 			LTS.level_transition("res://scenes/skating/skating_minigame.tscn")
+		elif c == &"help":
+			dlg.al("skating is easy, bro.")
+			dlg.al("you have to gain points by being [color=f42]style[/color].")
+			dlg.al("doing flips in the air is the best way to be stylish.")
+			dlg.al("if you hold %s in the air, you flip fast." % menu)
+			dlg.al("performing a flip will give you a bit more air to flip again.")
+			dlg.al("to get off the ground, you jump with %s." % axx)
+			dlg.al("you jump higher if you're moving faster...")
+			dlg.al("so try jumping while coming down from the ledge.")
