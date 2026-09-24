@@ -326,11 +326,11 @@ func art_sun_spirit_rage()->void:
 	rage.get_child(2).hide()
 	rage.get_child(1).show()
 	await SOL.dialogue_closed
+	SND.play_song("", 10)
 	SOL.dialogue("insp_sun_spirit_rage_3")
-	SND.play_song("bells", 10, {pitch_scale = 0.77, volume = -10})
 	rage.get_child(1).hide()
 	await SOL.dialogue_closed
-	SND.play_song("", 10)
+	SND.play_song("bells", 10, {pitch_scale = 0.77, volume = -10})
 	SOL.dialogue("insp_sun_spirit_rage_4")
 	await SOL.dialogue_closed
 	var tw := create_tween(); tw.tween_property(rage,"modulate:a",0.0,2.0)
