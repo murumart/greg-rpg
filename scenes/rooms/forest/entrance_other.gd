@@ -26,12 +26,13 @@ func _ready() -> void:
 
 		var choices := [&"bye", &"woods", &"you", &"me"]
 		if DAT.get_data(&"flowerboy_talked_woods", false):
-			choices.append(&"air")
-			choices.append(&"exit")
+			choices.insert(2, &"air")
+			choices.insert(2, &"exit")
 		if DAT.get_data(&"forest_max_depth", 0) > 0:
-			choices.append(&"glass")
-		if DAT.get_data(&"flowerboy_talked_you", false) and DAT.get_data(&"flowerboy_talked_me", false):
-			choices.append(&"flower")
+			choices.insert(2, &"glass")
+		if (DAT.get_data(&"forest_max_depth", 0) > 2
+				or (DAT.get_data(&"flowerboy_talked_you", false) and DAT.get_data(&"flowerboy_talked_me", false))):
+			choices.insert(1, &"flower")
 		SOL.dialogue_box.adjust("woods_guy_help", 0, &"choices", choices)
 	)
 	if is_instance_valid(despair_style):
