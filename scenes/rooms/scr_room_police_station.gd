@@ -44,6 +44,12 @@ static var police_standing: int:
 	set(to):
 		DAT.set_data("police_standing", to)
 
+static var blockade_lifted: bool:
+	get:
+		return DAT.get_data("popo_blockade_lifted", false)
+	set(to):
+		DAT.set_data("popo_blockade_lifted", to)
+
 
 static func should_be_at_blocker() -> bool:
 	var greg := ResMan.get_character("greg")
@@ -59,13 +65,16 @@ func _ready() -> void:
 	setup_cells()
 	remove_child(rage)
 	SOL.add_ui_child(rage, -1)
-	if should_be_at_blocker():
+	if should_be_at_blocker() or blockade_lifted:
 		popo1.hide()
+	if not blockade_lifted:
 		note.show()
 	_waiter_setup()
 
 
 func _on_popo_1_interact_on_interact() -> void:
+	if blockade_lifted:
+		return
 	if should_be_at_blocker():
 		SOL.dialogue("police_atblockade")
 		return
@@ -290,8 +299,12 @@ func setup_cells() -> void:
 			$Cells/Vampire/VampireInspect.key = "vampire_cell_empty"
 			$Cells/Vampire/Sprite2D.hide()
 
-	if not TRACKED_BOUNTIES.keys().any(func(a: StringName) -> bool: return is_bounty_fulfilled(a)):
-		popo2.default_lines.append_array(["police_nobounties", "police_nobounties_2"])
+	if not DAT.get_data("trash_guy_inspected", false) and not TRACKED_BOUNTIES.keys().any(func(a: StringName) -> bool: return is_bounty_fulfilled(a)):
+		popo2.default_lines = [&"police_nobounties", &"police_nobounties_2"]
+	elif blockade_lifted:
+		popo2.default_lines = [&"popo_afterdate", &"popo_afterdate_2"]
+	else:
+		popo2.default_lines = [&"police_bounties"]
 
 
 # this is source code poetry

@@ -19,7 +19,7 @@ extends Node2D
 func _ready() -> void:
 	var gregc := ResMan.get_character("greg")
 	var has_rose := gregc.inventory.has("flower5")
-	if DAT.get_data("popo_blockade_lifted", false):
+	if PoliceStation.blockade_lifted:
 		queue_free()
 		return
 	remove_child(love_gradient)
@@ -41,6 +41,7 @@ func _ready() -> void:
 
 func _popo_interacted() -> void:
 	pass
+
 
 func _body_entered() -> void:
 	anim.play("slide")
@@ -122,6 +123,6 @@ func _date_cutscene() -> void:
 		DAT.free_player("cutscene")
 		room.play_room_music(1.0)
 		CarOverworld.static_paused = false
-		DAT.set_data("popo_blockade_lifted", true)
+		PoliceStation.blockade_lifted = true
 		queue_free()
 	)

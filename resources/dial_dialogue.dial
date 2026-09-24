@@ -2627,6 +2627,26 @@ CHAR popo_1
 	this blockade's not being lifted until you get me that [color=FLOWERCOLOR]rose[/color]...
 
 
+DIALOGUE police_bounties
+CHAR popo_2
+	i'm enjoying this room. i'm proud of the composition.
+	feel free to take a closer look at the cells.
+
+
+DIALOGUE popo_afterdate
+CHAR popo_2
+	how did your date go?
+	...you're smiling wide, so i guess it went well.
+
+
+DIALOGUE popo_afterdate_2
+CHAR popo_2
+	i wonder if you're going to get into all that...
+	...nasty freak stuff that gabs fantasizes about out loud.
+EMO glad
+	████ ████, i hope not. i hope you guys crash and burn.
+
+
 DIALOGUE kid_firstencounter
 CHAR kid
 	yo! stinky adult man!
