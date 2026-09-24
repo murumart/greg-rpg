@@ -257,9 +257,9 @@ multipanther -> +10 (=99)
 - [X] rain guy shows up when you come out of the store and it stops raining
 - [X] rotate clothes sprite greg when rotating greg
 - [X] writing hotel opens load menu.. ????
+- [X] no tarikas president topic get
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
-- [ ] no tarikas president topic get
 - [ ] give more skating instructions
 - [ ] move flowerboy flower quest option up so if they dont scroll down they still see that
 - [ ] circus is in grass house backyar.d..?

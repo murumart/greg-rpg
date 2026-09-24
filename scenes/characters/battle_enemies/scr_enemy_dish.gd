@@ -61,6 +61,7 @@ func hurt(amount: float, h_gender: int) -> void:
 		auto_ai = false
 		await create_tween().tween_interval(2.0).finished
 		SOL.dialogue("president_die_die_die")
+		TownPark.add_tarikas_topic("president")
 		await SOL.dialogue_closed
 		die()
 		DAT.add_max_level(3)
