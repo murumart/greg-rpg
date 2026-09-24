@@ -252,6 +252,8 @@ multipanther -> +10 (=99)
 - [X] make kid more common in wooods
 - [X] return forest bin chance to get more petals&stuff..
 - [X] forest perk descriptions say floats
+- [X] get stuck between chapel and fence
+- [X] try to detect if youre stuck and turn off rounding for a bit i guess that should work
 - [ ] circus is in grass house backyar.d..?
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
@@ -259,9 +261,7 @@ multipanther -> +10 (=99)
 - [ ] no tarikas president topic get
 - [ ] rotate clothes sprite greg when rotating greg
 - [ ] writing hotel opens load menu.. ????
-- [ ] get stuck between chapel and fence
 - [ ] give more skating instructions
-- [ ] try to detect if youre stuck and turn off rounding for a bit i guess that should work
 - [ ] move flowerboy flower quest option up so if they dont scroll down they still see that
 
 ### smally

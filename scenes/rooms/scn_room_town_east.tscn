@@ -106,7 +106,7 @@ size = Vector2(1, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivof4"]
 size = Vector2(1, 65)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6s44"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boafo"]
 resource_local_to_scene = true
 size = Vector2(21, 16)
 
@@ -311,7 +311,7 @@ height = 26
 fill = 1
 fill_from = Vector2(0.506755, 0.558884)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_boafo"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3b86v"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl7lh"]
@@ -526,7 +526,7 @@ _data = {
 a = Vector2(-42, 0)
 b = Vector2(43, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b86v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd6mw"]
 resource_local_to_scene = true
 size = Vector2(16, 8)
 
@@ -672,7 +672,7 @@ size = Vector2(13, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wcl6"]
 size = Vector2(14, 18)
 
-[sub_resource type="Gradient" id="Gradient_nd6mw"]
+[sub_resource type="Gradient" id="Gradient_n5fi2"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
@@ -684,7 +684,7 @@ size = Vector2(8, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c52i7"]
 size = Vector2(79, 7)
 
-[sub_resource type="Curve2D" id="Curve2D_n5fi2"]
+[sub_resource type="Curve2D" id="Curve2D_vegnp"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -76, 164, 150.748, -194.999, -150.748, 194.999, -223, 415, 137.19, 6.61157, -137.19, -6.61157, -528, 572, 0, 0, 0, 0, -898, 571)
@@ -878,7 +878,7 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_odpk7")
 
 [node name="Greg" parent="." unique_id=139843330 instance=ExtResource("6_s1sou")]
-position = Vector2(-529, -150)
+position = Vector2(244, 63)
 metadata/_edit_group_ = true
 
 [node name="Camera" parent="Greg" unique_id=523505788 instance=ExtResource("7_5ym11")]
@@ -1046,7 +1046,7 @@ greg_speed = 20.0
 [node name="CollisionShape2D" parent="Houses/HousingBlock/ClimbingPlace" index="0" unique_id=936589654]
 z_index = 1
 position = Vector2(2.5, 20)
-shape = SubResource("RectangleShape2D_n6s44")
+shape = SubResource("RectangleShape2D_boafo")
 
 [node name="BrokenWindow" type="Sprite2D" parent="Houses/HousingBlock" unique_id=612154986]
 position = Vector2(-40, 16)
@@ -1348,7 +1348,7 @@ offset = Vector2(-10, -26)
 
 [node name="ShardsTexture" parent="Houses/Factory" unique_id=1455373539 instance=ExtResource("35_ani0e")]
 position = Vector2(6, 31)
-texture = SubResource("ViewportTexture_boafo")
+texture = SubResource("ViewportTexture_3b86v")
 
 [node name="Menace" type="Node2D" parent="Houses/Factory" unique_id=966217765]
 visible = false
@@ -1427,7 +1427,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="Houses/Factory/RoomGate/Area2D" index="0" unique_id=582535130]
-shape = SubResource("RectangleShape2D_3b86v")
+shape = SubResource("RectangleShape2D_nd6mw")
 
 [node name="SpawnPoint" parent="Houses/Factory/RoomGate" index="1" unique_id=110762082]
 position = Vector2(0, 9)
@@ -1628,7 +1628,7 @@ item = &"drill_lure"
 position = Vector2(-62, 32)
 ghost = 2
 destination_name = &"east"
-gradient = SubResource("Gradient_nd6mw")
+gradient = SubResource("Gradient_n5fi2")
 
 [node name="Windows2" parent="Houses/UhhHouse" unique_id=1137365394 instance=ExtResource("49_n6s44")]
 position = Vector2(3, -3)
@@ -1740,7 +1740,7 @@ position = Vector2(-961, 595)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
 position = Vector2(46, 0)
-curve = SubResource("Curve2D_n5fi2")
+curve = SubResource("Curve2D_vegnp")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-76, 164)

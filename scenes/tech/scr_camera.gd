@@ -46,3 +46,7 @@ func _physics_process(delta: float) -> void:
 	if free_cam:
 		global_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * (1.0 / zoom.x) * get_process_delta_time() * 120.0
 		zoom += Math.v2(Input.get_axis("ui_page_down", "ui_page_up")) / 50.0
+
+	#var rounded := global_position.round()
+	#var diff := global_position - rounded
+	#offset = diff

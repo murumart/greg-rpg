@@ -92,23 +92,30 @@ func set_state(to: States) -> void:
 	#direct_animation()
 
 
+var _collision_time := 0.0
 func movement(delta: float) -> void:
+	var collided := false
 	match move_mode:
 		MoveModes.WALK:
 			velocity = Vector2()
 			velocity = (input * SPEED * delta)
-			var _collided := move_and_slide()
+			collided = move_and_slide()
 
 		MoveModes.SKATE:
 			if input:
 				velocity = velocity.move_toward(input * SPEED * 3 * delta, delta * 128)
 			else:
 				velocity = velocity.move_toward(Vector2(), delta * 128)
-			var collided := move_and_slide()
+			collided = move_and_slide()
 			if collided:
 				velocity *= 0.5
-	global_position.x = roundi(global_position.x)
-	global_position.y = roundi(global_position.y)
+	if collided:
+		_collision_time += delta
+	else:
+		_collision_time = 0.0
+	if _collision_time < 1.5: # hack to hopefully unstuck the player sometime
+		global_position.x = roundi(global_position.x)
+		global_position.y = roundi(global_position.y)
 
 
 func direct_raycast() -> void:
