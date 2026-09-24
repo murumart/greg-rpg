@@ -1737,6 +1737,7 @@ position = Vector2(-72, 57)
 default_lines = Array[StringName]([&"rain_guy_1", &"rain_guy_2", &"rain_guy_3"])
 save = false
 existence_predicate = SubResource("Resource_gnvqg")
+existence_check_deferred = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Houses/Store/RainGuy" unique_id=1784295079]
 position = Vector2(0, -8)

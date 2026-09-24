@@ -67,6 +67,7 @@ var player_collision_timer := Timer.new()
 
 @export_group("")
 @export var existence_predicate: Predicate
+@export var existence_check_deferred := false
 
 var target: Vector2: set = set_target
 
@@ -80,9 +81,13 @@ func _ready() -> void:
 			queue_free()
 			return
 	if existence_predicate:
-		if existence_predicate.check() != Predicate.SUCCESS:
-			queue_free()
-			return
+		var check := func() -> void:
+			if existence_predicate.check() != Predicate.SUCCESS:
+				queue_free()
+		if existence_check_deferred:
+			check.call_deferred()
+		else:
+			check.call()
 	if save_position:
 		set_global_position(DAT.get_data(get_save_key("position"), global_position))
 	if save_convo_progess:
