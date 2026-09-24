@@ -10,6 +10,7 @@ const HAS_ENTRANCE := [
 ]
 
 const OBJECT_AMOUNT := 64
+const TILE_AREA := Rect2i(Vector2i(-18, -16), Vector2i(18*2, 16*2))
 
 const TREE := preload("res://scenes/decor/scn_tree.tscn")
 const TREE_COUNT := 45
@@ -42,14 +43,34 @@ const BIN_LOOT: Dictionary[StringName, int] = {
 #const BIN_LOOT := {"gummy_worm": 10} # DEBUG
 
 var forest: ForestPath
-var _space_state: PhysicsDirectSpaceState2D
-var used_poses := []
+var used_poses: Array[Vector2i] = []
 var generated_objects: Dictionary[Vector2, StringName] = {}
 
 
 func _init(_forest: ForestPath) -> void:
 	forest = _forest
-	_space_state = forest.get_world_2d().direct_space_state
+	#forest.draw.connect(func() -> void:
+	#	for p in used_poses:
+	#		forest.draw_rect(Rect2(p.x * 16, p.y * 16, 16, 16), Color(Color.RED, 0.5))
+	#	for x in range(TILE_AREA.position.x, TILE_AREA.end.x):
+	#		for y in range(TILE_AREA.position.y, TILE_AREA.end.y):
+	#			var sp := Vector2i(x, y)
+	#			if forest.paths.scale.x != 1.0:
+	#				sp.x *= -1
+	#				sp.x -= 1
+	#			if forest.paths.scale.y != 1.0:
+	#				sp.y *= -1
+	#				sp.y -= 1
+	#			if is_valid_placement_spot(Vector2(x, y)):
+	#				forest.draw_rect(Rect2(x * 16 + 1, y * 16 + 1, 16 - 2, 16 - 2), Color(Color.AQUA, 0.25))
+	#			var td := forest.paths.get_cell_tile_data(forest.enabled_layer, sp)
+	#			if is_instance_valid(td):
+	#				forest.draw_string(preload("res://fonts/gregtiny.ttf"), Vector2i(x * 16 + 8, y * 16 + 8), str(td.terrain_set), HORIZONTAL_ALIGNMENT_CENTER, -1, 6)
+	#	for a in generated_objects.keys():
+	#		var n := generated_objects[a]
+	#		forest.draw_string(preload("res://fonts/gregtiny.ttf"), a, n, HORIZONTAL_ALIGNMENT_CENTER, -1, 6)
+	#)
+	#forest.queue_redraw.call_deferred()
 
 
 func generate() -> void:
@@ -67,13 +88,14 @@ func generate() -> void:
 		gen_us()
 
 
-func rand_pos() -> Vector2:
-	var pos := Vector2()
+func rand_pos() -> Vector2i:
+	var pos := Vector2i()
 	for j in LOCATION_TESTS:
-		pos.x = randi_range(-17, 16)
-		pos.y = randi_range(-15, 14)
-		if valid_placement_spot(pos):
+		pos.x = randi_range(TILE_AREA.position.x, TILE_AREA.end.x)
+		pos.y = randi_range(TILE_AREA.position.y, TILE_AREA.end.y)
+		if is_valid_placement_spot(pos):
 			break
+	used_poses.append(pos)
 	return pos
 
 
@@ -82,35 +104,31 @@ func is_area_free(rect: Rect2i) -> bool:
 		for j in rect.size.y:
 			var x := i + rect.position.x
 			var y := j + rect.position.y
-			if not valid_placement_spot(Vector2(x, y)):
+			if not is_valid_placement_spot(Vector2(x, y)):
 				return false
 	return true
 
 
-func valid_placement_spot(pos: Vector2) -> bool:
-	var vpos := Vector2i((pos * forest.paths.scale).round())
-	if vpos in used_poses:
+func is_valid_placement_spot(pos: Vector2i) -> bool:
+	if pos in used_poses:
 		return false
+	var vpos := pos
+	if forest.paths.scale.x != 1.0:
+		vpos.x *= -1
+		vpos.x -= 1
+	if forest.paths.scale.y != 1.0:
+		vpos.y *= -1
+		vpos.y -= 1
 	var tds := [
 		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos),
-		forest.paths.get_cell_tile_data(
-			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.UP)),
-		forest.paths.get_cell_tile_data(
-			forest.enabled_layer, vpos + Vector2i(forest.paths.scale * Vector2.DOWN))
+		# tall cliff bottom tile isnt actually a tile
+		forest.paths.get_cell_tile_data(forest.enabled_layer, vpos + Vector2i.UP),
 	]
 	for td: TileData in tds:
-		if not (not td or (
-			td.terrain != 0 and td.terrain != 1 and td.terrain != 2)):
+		if not is_instance_valid(td):
+			continue
+		if td.terrain_set != -1:
 			return false
-	#var params := PhysicsPointQueryParameters2D.new()
-	#params.collision_mask = 0b1
-	#params.position = forest.to_global(Vector2(vpos * 16.0))
-	#var colls := _space_state.intersect_point(params)
-	#print(colls)
-	#if not colls.is_empty():
-		#used_poses.append(vpos)
-		#return false
-	used_poses.append(vpos)
 	return true
 
 
@@ -137,7 +155,7 @@ func gen_trees() -> void:
 		var tree := TREE.instantiate()
 		forest.add_child(tree)
 		var pos := rand_pos()
-		tree.global_position = pos * 16
+		tree.global_position = pos * 16.0 + Math.v2(8.0)
 		tree.type = randi() % tree.TYPES_SIZE
 		if randf() < 0.2:
 			tree.face_visible = true
@@ -147,7 +165,7 @@ func gen_trees() -> void:
 func gen_board() -> void:
 	if forest.current_room % BOARD_INTERVAL != 0:
 		return
-	var pos := rand_pos() * 16
+	var pos := rand_pos() * 16.0 + Vector2(8.0, 10.0)
 	_place_board(pos)
 	#print(" ---- placed quest board at ", pos)
 
@@ -177,7 +195,7 @@ func gen_bins() -> void:
 		var trash := TRASH.instantiate() as TrashBin
 		trash.save = false
 		forest.add_child(trash)
-		trash.global_position = rand_pos() * 16
+		trash.global_position = rand_pos() * 16.0 + Math.v2(8.0)
 		trash.replenish_seconds = -1
 		trash.opened.connect(forest.questing.update_quests)
 		trash.got_item.connect(forest.questing._trash_item_got)
@@ -215,7 +233,7 @@ func gen_enemies() -> void:
 		enemy.difficulty = forest.current_room * 0.99
 		enemy.chase_target = forest.greg
 		forest.add_child(enemy)
-		var pos := rand_pos().floor()
+		var pos := rand_pos()
 		enemy.global_position = pos * 16
 		enemy.add_to_group("forest_enemies")
 	#print(" ---- added ", enemy_count, " enemies")
@@ -258,11 +276,15 @@ func gen_objects() -> void:
 func gen_object(type: StringName) -> Node2D:
 	var object := ForestObjects.get_object(type)
 	var sze: Vector2i = object.get(ForestObjects.SIZE, ForestObjects.DEFAULT_SIZE)
-	var start_x := randi_range(-18, 17)
-	var start_y := randi_range(-16, 15)
-	for i in range(start_x, 17, sze.x):
-		for j in range(start_y, 15, sze.y):
-			if is_area_free(Rect2i(i, j, sze.x, sze.y)):
+	var start_x := randi_range(TILE_AREA.position.x, TILE_AREA.end.x)
+	var start_y := randi_range(TILE_AREA.position.y, TILE_AREA.end.y)
+	for i in range(start_x, TILE_AREA.end.x, sze.x):
+		for j in range(start_y, TILE_AREA.end.y, sze.y):
+			var rect := Rect2i(i, j, sze.x, sze.y)
+			if is_area_free(rect):
+				for ix in rect.size.x:
+					for jy in rect.size.y:
+						Math.ensure_member(used_poses, Vector2i(rect.position.x + ix, rect.position.y + jy))
 				return _place_object(
 						# adding half the object's size which makes it
 						# not spawn inside obstructed positions
