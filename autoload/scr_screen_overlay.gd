@@ -195,8 +195,10 @@ func vfx_damage_number(pos: Vector2, text: String, color := Color.WHITE, size :=
 
 # spawn vfx effects
 func vfx(nomen: StringName, pos := Vector2(), options := {}) -> Node:
+	var rpath := "res://scenes/vfx/scn_vfx_%s.tscn" % nomen
+	assert(nomen in effects_dict or ResourceLoader.exists(rpath), "vfx " + nomen + " doesnt exist")
 	# the nomen must be the filenam
-	var effect: Node2D = effects_dict.get(nomen, load("res://scenes/vfx/scn_vfx_%s.tscn" % nomen)).instantiate()
+	var effect: Node2D = effects_dict.get(nomen, load(rpath)).instantiate()
 	effect.z_index = options.get("z_index", 100)
 	# can specify custom parent node to the effect, defaults to this here SOL
 	var parent: Node = options.get("parent", self)

@@ -4,6 +4,7 @@
 # stutid temp files
 *.tmp
 *~
+*autosave*
 
 # other
 desktop.ini

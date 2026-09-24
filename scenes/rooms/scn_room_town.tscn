@@ -664,13 +664,13 @@ height = 120
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Gradient" id="Gradient_06enm"]
+[sub_resource type="Gradient" id="Gradient_2hmyh"]
 resource_local_to_scene = true
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.176107, 0.639195, 1)
 colors = PackedColorArray(0, 0.745098, 0.976471, 0.862745, 0.47451, 0.882353, 1, 0.713726, 0.67451, 0.878431, 1, 0.196078, 1, 1, 1, 0)
 
-[sub_resource type="Curve2D" id="Curve2D_50lhf"]
+[sub_resource type="Curve2D" id="Curve2D_ycmof"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -135, -26, 114.876, -76.8595, -114.876, 76.8595, -447, 304, 198.907, 3.12066, -198.907, -3.12066, -955, 372, 243.884, 10.4959, -243.884, -10.4959, -1539, 380)
@@ -2571,12 +2571,13 @@ region_rect = Rect2(0, 32, 16, 16)
 [node name="AfterBattlePosition" type="Marker2D" parent="Other/BirdBlocker" unique_id=1491847169]
 position = Vector2(51, 25)
 
-[node name="PoliceBlocker" type="Node2D" parent="Other" unique_id=1427749609 node_paths=PackedStringArray("greg", "science_guy")]
+[node name="PoliceBlocker" type="Node2D" parent="Other" unique_id=1427749609 node_paths=PackedStringArray("greg", "science_guy", "room")]
 y_sort_enabled = true
 position = Vector2(943, -104)
 script = ExtResource("43_b736o")
 greg = NodePath("../../Greg")
 science_guy = NodePath("../../Houses/UhhHouse2/ScienceGUy")
+room = NodePath("../..")
 
 [node name="Cars" type="Node2D" parent="Other/PoliceBlocker" unique_id=1929337608]
 
@@ -2670,7 +2671,7 @@ greg = NodePath("../../Greg")
 [node name="Bike" parent="Other" unique_id=524279476 instance=ExtResource("12_8ipa6")]
 position = Vector2(95, -59)
 destination_name = &"town"
-gradient = SubResource("Gradient_06enm")
+gradient = SubResource("Gradient_2hmyh")
 
 [node name="BikeCallTimer" type="Timer" parent="Other/Bike" unique_id=545980096 node_paths=PackedStringArray("greg")]
 wait_time = 6.0
@@ -2705,7 +2706,7 @@ position = Vector2(-1157, 392)
 position = Vector2(-1620, 391)
 
 [node name="CameraPath" parent="Other/RideAroundTown" index="2" unique_id=751607947]
-curve = SubResource("Curve2D_50lhf")
+curve = SubResource("Curve2D_ycmof")
 
 [node name="Follow" parent="Other/RideAroundTown/CameraPath" index="0" unique_id=244325270]
 position = Vector2(-135, -26)
