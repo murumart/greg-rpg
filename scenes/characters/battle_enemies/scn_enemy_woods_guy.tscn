@@ -36,6 +36,7 @@ metadata/_edit_lock_ = true
 collision_layer = 0
 collision_mask = 1
 saving_disabled = true
+loading_disabled = true
 menu_disabled = true
 
 [node name="HitArea" parent="Battle/Greg" unique_id=1889597103 instance=ExtResource("6_7lfy5")]

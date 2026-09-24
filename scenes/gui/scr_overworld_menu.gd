@@ -41,6 +41,7 @@ var using_item_index := 0
 
 @onready var reference_button := $ReferenceButton
 var saving_disabled := false
+var loading_disabled := false
 
 
 func _ready() -> void:
@@ -60,6 +61,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			var opts := {"restrict": -1}
 			if saving_disabled and loading:
 				opts["restrict"] = SaveScreen.LOAD
+			if loading_disabled and not loading:
+				opts["restrict"] = SaveScreen.SAVE
+			elif loading_disabled:
+				return
 			elif saving_disabled:
 				SOL.vfx_damage_number(Vector2(0, SOL.SCREEN_CENTER.y), "saving disabled!")
 				return

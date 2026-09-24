@@ -36,7 +36,7 @@ func _ready() -> void:
 	board.hide()
 	reference_to_opposing_array[0].died.connect(func(_a):
 		greeble.state = PlayerOverworld.States.NOT_FREE_MOVE
-		greeble.sprite.rotate(PI * 0.5)
+		greeble.rotate(PI * 0.5)
 	)
 	hide_board()
 	attacks = [

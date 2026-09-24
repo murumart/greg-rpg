@@ -11,7 +11,14 @@ enum States {FREE_MOVE, NOT_FREE_MOVE}
 enum MoveModes {WALK, SKATE}
 enum Rots {UP = -1, RIGHT, DOWN, LEFT}
 
-@export var saving_disabled := false: set = set_saving_disabled
+@export var saving_disabled := false:
+	set(to):
+		saving_disabled = to
+		menu.saving_disabled = to
+@export var loading_disabled := false:
+	set(to):
+		loading_disabled = to
+		menu.loading_disabled = to
 @export var menu_disabled := false
 @export var _debug_prints := false
 
@@ -242,11 +249,6 @@ func open_menu() -> void:
 func close_menu() -> void:
 	menu.close.call_deferred()
 	DAT.free_player("overworld_menu")
-
-
-func set_saving_disabled(to: bool) -> void:
-	saving_disabled = to
-	menu.saving_disabled = to
 
 
 func load_armour_sprites() -> void:
