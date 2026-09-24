@@ -117,4 +117,6 @@ func sk8r_kid_talk() -> void:
 			dlg.al("performing a flip will give you a bit more air to flip again.")
 			dlg.al("to get off the ground, you jump with %s." % axx)
 			dlg.al("you jump higher if you're moving faster...")
-			dlg.al("so try jumping while coming down from the ledge.")
+			dlg.al("so try jumping while coming down from the slopes.")
+			dlg.al("it's so easy, even a          could do it.")
+			await dlg.speak_choice()

@@ -258,9 +258,9 @@ multipanther -> +10 (=99)
 - [X] rotate clothes sprite greg when rotating greg
 - [X] writing hotel opens load menu.. ????
 - [X] no tarikas president topic get
+- [X] give more skating instructions
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
-- [ ] give more skating instructions
 - [ ] move flowerboy flower quest option up so if they dont scroll down they still see that
 - [ ] circus is in grass house backyar.d..?
 
