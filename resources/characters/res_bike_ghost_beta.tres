@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://d2jk7oc1csuhy" path="res://sounds/talking/bike_ghost.ogg" id="3_c7i3b"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xqb0m"]
-random_pitch = 1.33
+random_pitch = 1.0951157
 streams_count = 1
 stream_0/stream = ExtResource("3_c7i3b")
 
