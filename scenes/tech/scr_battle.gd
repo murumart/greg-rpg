@@ -196,8 +196,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func load_battle(_info: BattleInfo) -> void:
 	var info := _info.duplicate()
-	for p in info.get_property_list():
-		printt(p.name, info.get(p.name))
 	info._before_load()
 	# second argument of info.get_ is the default value
 	for m in info.get_("party", DAT.get_data("party", ["greg"])):

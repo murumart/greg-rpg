@@ -260,10 +260,10 @@ multipanther -> +10 (=99)
 - [X] no tarikas president topic get
 - [X] give more skating instructions
 - [X] move flowerboy flower quest option up so if they dont scroll down they still see that
+- [X] trash and such appear out of bounds south in woods
 - [ ] 1 damage from drenchfoot? at high level?
 - [ ] nerf turf2..
 - [ ] circus is in grass house backyar.d..?
-- [ ] trash and such appear out of bounds south in woods
 
 ### smally
 - [X] starmap puzzle feedback when you get correct solution
