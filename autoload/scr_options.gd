@@ -19,7 +19,7 @@ var IONS := {
 	"main_volume": {
 		"value": 0.0,
 		"range": [0.0, 1.0],
-		"default_value": 0.0,
+		"default_value": 0.75,
 		"step": 0.05,# by what increment the value can go up or down
 		"display": KEY_PERCENT,
 	},

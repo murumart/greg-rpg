@@ -92,7 +92,7 @@ func rand_pos() -> Vector2i:
 	var pos := Vector2i()
 	for j in LOCATION_TESTS:
 		pos.x = randi_range(TILE_AREA.position.x, TILE_AREA.end.x)
-		pos.y = randi_range(TILE_AREA.position.y, TILE_AREA.end.y)
+		pos.y = randi_range(TILE_AREA.position.y + 1, TILE_AREA.end.y - 1)
 		if is_valid_placement_spot(pos):
 			break
 	used_poses.append(pos)
@@ -277,9 +277,9 @@ func gen_object(type: StringName) -> Node2D:
 	var object := ForestObjects.get_object(type)
 	var sze: Vector2i = object.get(ForestObjects.SIZE, ForestObjects.DEFAULT_SIZE)
 	var start_x := randi_range(TILE_AREA.position.x, TILE_AREA.end.x)
-	var start_y := randi_range(TILE_AREA.position.y, TILE_AREA.end.y)
+	var start_y := randi_range(TILE_AREA.position.y + 1, TILE_AREA.end.y - 1)
 	for i in range(start_x, TILE_AREA.end.x, sze.x):
-		for j in range(start_y, TILE_AREA.end.y, sze.y):
+		for j in range(start_y, TILE_AREA.end.y - 1, sze.y):
 			var rect := Rect2i(i, j, sze.x, sze.y)
 			if is_area_free(rect):
 				for ix in rect.size.x:

@@ -3,7 +3,7 @@ extends Node
 # handles data, saving and loading it
 # ...and a bunch of other things.
 
-const VERSION := Vector3(1, 2, 9)
+const VERSION := Vector3(1, 2, 10)
 const FLOWERS = [
 	&"flower0",
 	&"flower1",

@@ -342,14 +342,16 @@ offset_left = 9.0
 offset_top = 19.0
 offset_right = 49.0
 offset_bottom = 59.0
-intensity = 0.5
+intensity = 1.0
+speed = 0.5
+idiff = -1.0
 
 [node name="FunnyText" type="RichTextLabel" parent="." unique_id=1867677603]
 layout_mode = 0
 offset_left = 5.0
-offset_top = 74.0
+offset_top = 56.0
 offset_right = 57.0
-offset_bottom = 108.0
+offset_bottom = 90.0
 theme_override_colors/default_color = Color(0.4653617, 0.4653617, 0.4653617, 1)
 bbcode_enabled = true
 text = "[center]rpg"
