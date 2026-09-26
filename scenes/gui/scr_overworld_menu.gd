@@ -61,7 +61,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var opts := {"restrict": -1}
 			if saving_disabled and loading:
 				opts["restrict"] = SaveScreen.LOAD
-			if loading_disabled and not loading:
+			elif loading_disabled and not loading:
 				opts["restrict"] = SaveScreen.SAVE
 			elif loading_disabled:
 				return
